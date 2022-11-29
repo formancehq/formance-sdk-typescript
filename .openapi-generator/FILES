@@ -3,6 +3,7 @@ AccountsApi.md
 BalancesApi.md
 ClientsApi.md
 MappingApi.md
+PaymentsApi.md
 README.md
 ScopesApi.md
 ScriptApi.md
@@ -16,6 +17,7 @@ apis/AccountsApi.ts
 apis/BalancesApi.ts
 apis/ClientsApi.ts
 apis/MappingApi.ts
+apis/PaymentsApi.ts
 apis/ScopesApi.ts
 apis/ScriptApi.ts
 apis/SearchApi.ts
@@ -35,6 +37,7 @@ index.ts
 middleware.ts
 models/Account.ts
 models/AccountWithVolumesAndBalances.ts
+models/BankingCircleConfig.ts
 models/ChangeOneConfigSecretRequest.ts
 models/Client.ts
 models/ClientAllOf.ts
@@ -44,6 +47,9 @@ models/Config.ts
 models/ConfigInfo.ts
 models/ConfigInfoResponse.ts
 models/ConfigUser.ts
+models/ConnectorBaseInfo.ts
+models/ConnectorConfig.ts
+models/ConnectorTask.ts
 models/Contract.ts
 models/CreateClientResponse.ts
 models/CreateScopeResponse.ts
@@ -51,7 +57,9 @@ models/CreateSecretResponse.ts
 models/CreateTransaction400Response.ts
 models/CreateTransaction409Response.ts
 models/CreateTransactions400Response.ts
+models/CurrencyCloudConfig.ts
 models/Cursor.ts
+models/DummyPayConfig.ts
 models/ErrorCode.ts
 models/ErrorResponse.ts
 models/GetAccount200Response.ts
@@ -64,6 +72,7 @@ models/GetBalancesAggregated400Response.ts
 models/GetManyConfigs200Response.ts
 models/GetManyConfigs200ResponseCursor.ts
 models/GetManyConfigs200ResponseCursorAllOf.ts
+models/GetPaymentResponse.ts
 models/GetTransaction400Response.ts
 models/GetTransaction404Response.ts
 models/LedgerStorage.ts
@@ -72,6 +81,11 @@ models/ListAccounts200ResponseCursor.ts
 models/ListAccounts200ResponseCursorAllOf.ts
 models/ListAccounts400Response.ts
 models/ListClientsResponse.ts
+models/ListConnectorsConfigsResponse.ts
+models/ListConnectorsConfigsResponseConnector.ts
+models/ListConnectorsConfigsResponseConnectorKey.ts
+models/ListConnectorsResponse.ts
+models/ListPaymentsResponse.ts
 models/ListScopesResponse.ts
 models/ListTransactions200Response.ts
 models/ListTransactions200ResponseCursor.ts
@@ -79,7 +93,9 @@ models/ListTransactions200ResponseCursorAllOf.ts
 models/ListUsersResponse.ts
 models/Mapping.ts
 models/MappingResponse.ts
+models/ModulrConfig.ts
 models/ObjectSerializer.ts
+models/Payment.ts
 models/PostTransaction.ts
 models/PostTransactionScript.ts
 models/Posting.ts
@@ -99,6 +115,8 @@ models/SecretAllOf.ts
 models/SecretOptions.ts
 models/Stats.ts
 models/StatsResponse.ts
+models/StripeConfig.ts
+models/StripeTask.ts
 models/Transaction.ts
 models/TransactionData.ts
 models/TransactionResponse.ts
@@ -108,6 +126,7 @@ models/User.ts
 models/Volume.ts
 models/WebhooksConfig.ts
 models/WebhooksCursor.ts
+models/WiseConfig.ts
 models/all.ts
 package.json
 rxjsStub.ts

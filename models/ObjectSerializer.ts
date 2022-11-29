@@ -1,5 +1,6 @@
 export * from '../models/Account';
 export * from '../models/AccountWithVolumesAndBalances';
+export * from '../models/BankingCircleConfig';
 export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
 export * from '../models/ClientAllOf';
@@ -9,6 +10,9 @@ export * from '../models/Config';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
 export * from '../models/ConfigUser';
+export * from '../models/ConnectorBaseInfo';
+export * from '../models/ConnectorConfig';
+export * from '../models/ConnectorTask';
 export * from '../models/Contract';
 export * from '../models/CreateClientResponse';
 export * from '../models/CreateScopeResponse';
@@ -16,7 +20,9 @@ export * from '../models/CreateSecretResponse';
 export * from '../models/CreateTransaction400Response';
 export * from '../models/CreateTransaction409Response';
 export * from '../models/CreateTransactions400Response';
+export * from '../models/CurrencyCloudConfig';
 export * from '../models/Cursor';
+export * from '../models/DummyPayConfig';
 export * from '../models/ErrorCode';
 export * from '../models/ErrorResponse';
 export * from '../models/GetAccount200Response';
@@ -29,6 +35,7 @@ export * from '../models/GetBalancesAggregated400Response';
 export * from '../models/GetManyConfigs200Response';
 export * from '../models/GetManyConfigs200ResponseCursor';
 export * from '../models/GetManyConfigs200ResponseCursorAllOf';
+export * from '../models/GetPaymentResponse';
 export * from '../models/GetTransaction400Response';
 export * from '../models/GetTransaction404Response';
 export * from '../models/LedgerStorage';
@@ -37,6 +44,11 @@ export * from '../models/ListAccounts200ResponseCursor';
 export * from '../models/ListAccounts200ResponseCursorAllOf';
 export * from '../models/ListAccounts400Response';
 export * from '../models/ListClientsResponse';
+export * from '../models/ListConnectorsConfigsResponse';
+export * from '../models/ListConnectorsConfigsResponseConnector';
+export * from '../models/ListConnectorsConfigsResponseConnectorKey';
+export * from '../models/ListConnectorsResponse';
+export * from '../models/ListPaymentsResponse';
 export * from '../models/ListScopesResponse';
 export * from '../models/ListTransactions200Response';
 export * from '../models/ListTransactions200ResponseCursor';
@@ -44,6 +56,8 @@ export * from '../models/ListTransactions200ResponseCursorAllOf';
 export * from '../models/ListUsersResponse';
 export * from '../models/Mapping';
 export * from '../models/MappingResponse';
+export * from '../models/ModulrConfig';
+export * from '../models/Payment';
 export * from '../models/PostTransaction';
 export * from '../models/PostTransactionScript';
 export * from '../models/Posting';
@@ -63,6 +77,8 @@ export * from '../models/SecretAllOf';
 export * from '../models/SecretOptions';
 export * from '../models/Stats';
 export * from '../models/StatsResponse';
+export * from '../models/StripeConfig';
+export * from '../models/StripeTask';
 export * from '../models/Transaction';
 export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
@@ -72,9 +88,11 @@ export * from '../models/User';
 export * from '../models/Volume';
 export * from '../models/WebhooksConfig';
 export * from '../models/WebhooksCursor';
+export * from '../models/WiseConfig';
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
@@ -84,6 +102,9 @@ import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
+import { ConnectorConfig } from '../models/ConnectorConfig';
+import { ConnectorTask } from '../models/ConnectorTask';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
@@ -91,7 +112,9 @@ import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse   } from '../models/ErrorResponse';
 import { GetAccount200Response } from '../models/GetAccount200Response';
@@ -104,6 +127,7 @@ import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregate
 import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
 import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
 import { LedgerStorage } from '../models/LedgerStorage';
@@ -112,6 +136,11 @@ import { ListAccounts200ResponseCursor } from '../models/ListAccounts200Response
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListClientsResponse } from '../models/ListClientsResponse';
+import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
+import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
+import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnectorsConfigsResponseConnectorKey';
+import { ListConnectorsResponse } from '../models/ListConnectorsResponse';
+import { ListPaymentsResponse } from '../models/ListPaymentsResponse';
 import { ListScopesResponse } from '../models/ListScopesResponse';
 import { ListTransactions200Response } from '../models/ListTransactions200Response';
 import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
@@ -119,6 +148,8 @@ import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactio
 import { ListUsersResponse } from '../models/ListUsersResponse';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
+import { ModulrConfig } from '../models/ModulrConfig';
+import { Payment  , PaymentSchemeEnum   , PaymentTypeEnum        } from '../models/Payment';
 import { PostTransaction } from '../models/PostTransaction';
 import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
@@ -138,6 +169,8 @@ import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
+import { StripeConfig } from '../models/StripeConfig';
+import { StripeTask } from '../models/StripeTask';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -147,6 +180,7 @@ import { User } from '../models/User';
 import { Volume } from '../models/Volume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
+import { WiseConfig } from '../models/WiseConfig';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -169,12 +203,15 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
 let enumsMap: Set<string> = new Set<string>([
     "ErrorCode",
+    "PaymentSchemeEnum",
+    "PaymentTypeEnum",
     "ScriptResultErrorCodeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
     "Account": Account,
     "AccountWithVolumesAndBalances": AccountWithVolumesAndBalances,
+    "BankingCircleConfig": BankingCircleConfig,
     "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
     "ClientAllOf": ClientAllOf,
@@ -184,6 +221,9 @@ let typeMap: {[index: string]: any} = {
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
     "ConfigUser": ConfigUser,
+    "ConnectorBaseInfo": ConnectorBaseInfo,
+    "ConnectorConfig": ConnectorConfig,
+    "ConnectorTask": ConnectorTask,
     "Contract": Contract,
     "CreateClientResponse": CreateClientResponse,
     "CreateScopeResponse": CreateScopeResponse,
@@ -191,7 +231,9 @@ let typeMap: {[index: string]: any} = {
     "CreateTransaction400Response": CreateTransaction400Response,
     "CreateTransaction409Response": CreateTransaction409Response,
     "CreateTransactions400Response": CreateTransactions400Response,
+    "CurrencyCloudConfig": CurrencyCloudConfig,
     "Cursor": Cursor,
+    "DummyPayConfig": DummyPayConfig,
     "ErrorResponse": ErrorResponse,
     "GetAccount200Response": GetAccount200Response,
     "GetAccount400Response": GetAccount400Response,
@@ -203,6 +245,7 @@ let typeMap: {[index: string]: any} = {
     "GetManyConfigs200Response": GetManyConfigs200Response,
     "GetManyConfigs200ResponseCursor": GetManyConfigs200ResponseCursor,
     "GetManyConfigs200ResponseCursorAllOf": GetManyConfigs200ResponseCursorAllOf,
+    "GetPaymentResponse": GetPaymentResponse,
     "GetTransaction400Response": GetTransaction400Response,
     "GetTransaction404Response": GetTransaction404Response,
     "LedgerStorage": LedgerStorage,
@@ -211,6 +254,11 @@ let typeMap: {[index: string]: any} = {
     "ListAccounts200ResponseCursorAllOf": ListAccounts200ResponseCursorAllOf,
     "ListAccounts400Response": ListAccounts400Response,
     "ListClientsResponse": ListClientsResponse,
+    "ListConnectorsConfigsResponse": ListConnectorsConfigsResponse,
+    "ListConnectorsConfigsResponseConnector": ListConnectorsConfigsResponseConnector,
+    "ListConnectorsConfigsResponseConnectorKey": ListConnectorsConfigsResponseConnectorKey,
+    "ListConnectorsResponse": ListConnectorsResponse,
+    "ListPaymentsResponse": ListPaymentsResponse,
     "ListScopesResponse": ListScopesResponse,
     "ListTransactions200Response": ListTransactions200Response,
     "ListTransactions200ResponseCursor": ListTransactions200ResponseCursor,
@@ -218,6 +266,8 @@ let typeMap: {[index: string]: any} = {
     "ListUsersResponse": ListUsersResponse,
     "Mapping": Mapping,
     "MappingResponse": MappingResponse,
+    "ModulrConfig": ModulrConfig,
+    "Payment": Payment,
     "PostTransaction": PostTransaction,
     "PostTransactionScript": PostTransactionScript,
     "Posting": Posting,
@@ -237,6 +287,8 @@ let typeMap: {[index: string]: any} = {
     "SecretOptions": SecretOptions,
     "Stats": Stats,
     "StatsResponse": StatsResponse,
+    "StripeConfig": StripeConfig,
+    "StripeTask": StripeTask,
     "Transaction": Transaction,
     "TransactionData": TransactionData,
     "TransactionResponse": TransactionResponse,
@@ -246,6 +298,7 @@ let typeMap: {[index: string]: any} = {
     "Volume": Volume,
     "WebhooksConfig": WebhooksConfig,
     "WebhooksCursor": WebhooksCursor,
+    "WiseConfig": WiseConfig,
 }
 
 export class ObjectSerializer {
