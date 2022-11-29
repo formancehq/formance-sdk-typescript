@@ -4,6 +4,7 @@ import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
@@ -13,6 +14,9 @@ import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
+import { ConnectorConfig } from '../models/ConnectorConfig';
+import { ConnectorTask } from '../models/ConnectorTask';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
@@ -20,7 +24,9 @@ import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { GetAccount200Response } from '../models/GetAccount200Response';
@@ -33,6 +39,7 @@ import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregate
 import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
 import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
 import { LedgerStorage } from '../models/LedgerStorage';
@@ -41,6 +48,11 @@ import { ListAccounts200ResponseCursor } from '../models/ListAccounts200Response
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListClientsResponse } from '../models/ListClientsResponse';
+import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
+import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
+import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnectorsConfigsResponseConnectorKey';
+import { ListConnectorsResponse } from '../models/ListConnectorsResponse';
+import { ListPaymentsResponse } from '../models/ListPaymentsResponse';
 import { ListScopesResponse } from '../models/ListScopesResponse';
 import { ListTransactions200Response } from '../models/ListTransactions200Response';
 import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
@@ -48,6 +60,8 @@ import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactio
 import { ListUsersResponse } from '../models/ListUsersResponse';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
+import { ModulrConfig } from '../models/ModulrConfig';
+import { Payment } from '../models/Payment';
 import { PostTransaction } from '../models/PostTransaction';
 import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
@@ -67,6 +81,8 @@ import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
+import { StripeConfig } from '../models/StripeConfig';
+import { StripeTask } from '../models/StripeTask';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -76,6 +92,7 @@ import { User } from '../models/User';
 import { Volume } from '../models/Volume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
+import { WiseConfig } from '../models/WiseConfig';
 
 import { AccountsApiRequestFactory, AccountsApiResponseProcessor} from "../apis/AccountsApi";
 export class ObservableAccountsApi {
@@ -557,6 +574,264 @@ export class ObservableMappingApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateMapping(rsp)));
+            }));
+    }
+
+}
+
+import { PaymentsApiRequestFactory, PaymentsApiResponseProcessor} from "../apis/PaymentsApi";
+export class ObservablePaymentsApi {
+    private requestFactory: PaymentsApiRequestFactory;
+    private responseProcessor: PaymentsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: PaymentsApiRequestFactory,
+        responseProcessor?: PaymentsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new PaymentsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new PaymentsApiResponseProcessor();
+    }
+
+    /**
+     * Get all installed connectors
+     * Get all installed connectors
+     */
+    public getAllConnectors(_options?: Configuration): Observable<ListConnectorsResponse> {
+        const requestContextPromise = this.requestFactory.getAllConnectors(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getAllConnectors(rsp)));
+            }));
+    }
+
+    /**
+     * Get all available connectors configs
+     * Get all available connectors configs
+     */
+    public getAllConnectorsConfigs(_options?: Configuration): Observable<ListConnectorsConfigsResponse> {
+        const requestContextPromise = this.requestFactory.getAllConnectorsConfigs(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getAllConnectorsConfigs(rsp)));
+            }));
+    }
+
+    /**
+     * Get a specific task associated to the connector
+     * Read a specific task of the connector
+     * @param connector The connector code
+     * @param taskId The task id
+     */
+    public getConnectorTask(connector: 'stripe', taskId: string, _options?: Configuration): Observable<ConnectorTask> {
+        const requestContextPromise = this.requestFactory.getConnectorTask(connector, taskId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getConnectorTask(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a payment.
+     * @param paymentId The payment id
+     */
+    public getPayment(paymentId: string, _options?: Configuration): Observable<Payment> {
+        const requestContextPromise = this.requestFactory.getPayment(paymentId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getPayment(rsp)));
+            }));
+    }
+
+    /**
+     * Install connector
+     * Install connector
+     * @param connector The connector code
+     * @param connectorConfig 
+     */
+    public installConnector(connector: 'stripe' | 'dummypay' | 'wise' | 'modulr' | 'currencycloud', connectorConfig: ConnectorConfig, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.installConnector(connector, connectorConfig, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.installConnector(rsp)));
+            }));
+    }
+
+    /**
+     * List all tasks associated with this connector.
+     * List connector tasks
+     * @param connector The connector code
+     */
+    public listConnectorTasks(connector: 'stripe', _options?: Configuration): Observable<Array<ConnectorTask>> {
+        const requestContextPromise = this.requestFactory.listConnectorTasks(connector, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listConnectorTasks(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of payments.
+     * @param limit Limit the number of payments to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter.
+     * @param skip How many payments to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter.
+     * @param sort Field used to sort payments (Default is by date).
+     */
+    public listPayments(limit?: number, skip?: number, sort?: Array<string>, _options?: Configuration): Observable<ListPaymentsResponse> {
+        const requestContextPromise = this.requestFactory.listPayments(limit, skip, sort, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listPayments(rsp)));
+            }));
+    }
+
+    /**
+     * Read connector config
+     * Read connector config
+     * @param connector The connector code
+     */
+    public readConnectorConfig(connector: 'stripe', _options?: Configuration): Observable<ConnectorConfig> {
+        const requestContextPromise = this.requestFactory.readConnectorConfig(connector, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.readConnectorConfig(rsp)));
+            }));
+    }
+
+    /**
+     * Reset connector. Will remove the connector and ALL PAYMENTS generated with it.
+     * Reset connector
+     * @param connector The connector code
+     */
+    public resetConnector(connector: 'stripe', _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.resetConnector(connector, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.resetConnector(rsp)));
+            }));
+    }
+
+    /**
+     * Uninstall  connector
+     * Uninstall connector
+     * @param connector The connector code
+     */
+    public uninstallConnector(connector: 'stripe', _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.uninstallConnector(connector, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.uninstallConnector(rsp)));
             }));
     }
 
