@@ -602,7 +602,7 @@ export class PromiseSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Promise<void> {
+    public search(query: Query, _options?: Configuration): Promise<Response> {
         const result = this.api.search(query, _options);
         return result.toPromise();
     }

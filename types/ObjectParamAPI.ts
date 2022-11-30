@@ -974,7 +974,7 @@ export class ObjectSearchApi {
      * Search
      * @param param the request object
      */
-    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<void> {
+    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<Response> {
         return this.api.search(param.query,  options).toPromise();
     }
 

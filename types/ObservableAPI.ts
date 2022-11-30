@@ -1089,7 +1089,7 @@ export class ObservableSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Observable<void> {
+    public search(query: Query, _options?: Configuration): Observable<Response> {
         const requestContextPromise = this.requestFactory.search(query, _options);
 
         // build promise chain
