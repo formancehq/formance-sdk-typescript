@@ -1,5 +1,7 @@
 export * from '../models/Account';
 export * from '../models/AccountWithVolumesAndBalances';
+export * from '../models/Attempt';
+export * from '../models/AttemptResponse';
 export * from '../models/BankingCircleConfig';
 export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
@@ -7,6 +9,10 @@ export * from '../models/ClientAllOf';
 export * from '../models/ClientOptions';
 export * from '../models/ClientSecret';
 export * from '../models/Config';
+export * from '../models/ConfigActivated';
+export * from '../models/ConfigActivatedResponse';
+export * from '../models/ConfigDeactivated';
+export * from '../models/ConfigDeactivatedResponse';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
 export * from '../models/ConfigUser';
@@ -86,12 +92,13 @@ export * from '../models/Transactions';
 export * from '../models/TransactionsResponse';
 export * from '../models/User';
 export * from '../models/Volume';
-export * from '../models/WebhooksConfig';
 export * from '../models/WebhooksCursor';
 export * from '../models/WiseConfig';
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -99,6 +106,10 @@ import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigActivated } from '../models/ConfigActivated';
+import { ConfigActivatedResponse } from '../models/ConfigActivatedResponse';
+import { ConfigDeactivated } from '../models/ConfigDeactivated';
+import { ConfigDeactivatedResponse } from '../models/ConfigDeactivatedResponse';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigUser } from '../models/ConfigUser';
@@ -178,7 +189,6 @@ import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
-import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
 
@@ -211,6 +221,8 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "Account": Account,
     "AccountWithVolumesAndBalances": AccountWithVolumesAndBalances,
+    "Attempt": Attempt,
+    "AttemptResponse": AttemptResponse,
     "BankingCircleConfig": BankingCircleConfig,
     "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
@@ -218,6 +230,10 @@ let typeMap: {[index: string]: any} = {
     "ClientOptions": ClientOptions,
     "ClientSecret": ClientSecret,
     "Config": Config,
+    "ConfigActivated": ConfigActivated,
+    "ConfigActivatedResponse": ConfigActivatedResponse,
+    "ConfigDeactivated": ConfigDeactivated,
+    "ConfigDeactivatedResponse": ConfigDeactivatedResponse,
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
     "ConfigUser": ConfigUser,
@@ -296,7 +312,6 @@ let typeMap: {[index: string]: any} = {
     "TransactionsResponse": TransactionsResponse,
     "User": User,
     "Volume": Volume,
-    "WebhooksConfig": WebhooksConfig,
     "WebhooksCursor": WebhooksCursor,
     "WiseConfig": WiseConfig,
 }

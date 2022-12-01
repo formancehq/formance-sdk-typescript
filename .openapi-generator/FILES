@@ -37,6 +37,8 @@ index.ts
 middleware.ts
 models/Account.ts
 models/AccountWithVolumesAndBalances.ts
+models/Attempt.ts
+models/AttemptResponse.ts
 models/BankingCircleConfig.ts
 models/ChangeOneConfigSecretRequest.ts
 models/Client.ts
@@ -44,6 +46,10 @@ models/ClientAllOf.ts
 models/ClientOptions.ts
 models/ClientSecret.ts
 models/Config.ts
+models/ConfigActivated.ts
+models/ConfigActivatedResponse.ts
+models/ConfigDeactivated.ts
+models/ConfigDeactivatedResponse.ts
 models/ConfigInfo.ts
 models/ConfigInfoResponse.ts
 models/ConfigUser.ts
@@ -124,7 +130,6 @@ models/Transactions.ts
 models/TransactionsResponse.ts
 models/User.ts
 models/Volume.ts
-models/WebhooksConfig.ts
 models/WebhooksCursor.ts
 models/WiseConfig.ts
 models/all.ts

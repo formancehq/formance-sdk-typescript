@@ -12,61 +12,56 @@
 
 import { HttpFile } from '../http/http';
 
-export class StripeTask {
-    /**
-    * The id of the oldest BalanceTransaction fetched from stripe for this account
-    */
-    'oldestId'?: string;
-    /**
-    * The creation date of the oldest BalanceTransaction fetched from stripe for this account
-    */
-    'oldestDate'?: Date;
-    /**
-    * The id of the more recent BalanceTransaction fetched from stripe for this account
-    */
-    'moreRecentId'?: string;
-    /**
-    * The creation date of the more recent BalanceTransaction fetched from stripe for this account
-    */
-    'moreRecentDate'?: Date;
-    'noMoreHistory'?: boolean;
+export class ConfigActivated {
+    'endpoint'?: string;
+    'secret'?: string;
+    'eventTypes'?: Array<string>;
+    'active'?: boolean;
+    'createdAt'?: Date;
+    'modifiedAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "oldestId",
-            "baseName": "oldestId",
+            "name": "endpoint",
+            "baseName": "endpoint",
             "type": "string",
             "format": ""
         },
         {
-            "name": "oldestDate",
-            "baseName": "oldestDate",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "moreRecentId",
-            "baseName": "moreRecentId",
+            "name": "secret",
+            "baseName": "secret",
             "type": "string",
             "format": ""
         },
         {
-            "name": "moreRecentDate",
-            "baseName": "moreRecentDate",
-            "type": "Date",
-            "format": "date-time"
+            "name": "eventTypes",
+            "baseName": "eventTypes",
+            "type": "Array<string>",
+            "format": ""
         },
         {
-            "name": "noMoreHistory",
-            "baseName": "noMoreHistory",
+            "name": "active",
+            "baseName": "active",
             "type": "boolean",
             "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "modifiedAt",
+            "baseName": "modifiedAt",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return StripeTask.attributeTypeMap;
+        return ConfigActivated.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,44 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { ConfigDeactivated } from '../models/ConfigDeactivated';
 import { HttpFile } from '../http/http';
 
-export class Posting {
-    'amount': number;
-    'asset': string;
-    'destination': string;
-    'source': string;
+export class ConfigDeactivatedResponse {
+    'data'?: ConfigDeactivated;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "amount",
-            "baseName": "amount",
-            "type": "number",
-            "format": ""
-        },
-        {
-            "name": "asset",
-            "baseName": "asset",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "destination",
-            "baseName": "destination",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "source",
-            "baseName": "source",
-            "type": "string",
+            "name": "data",
+            "baseName": "data",
+            "type": "ConfigDeactivated",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Posting.attributeTypeMap;
+        return ConfigDeactivatedResponse.attributeTypeMap;
     }
 
     public constructor() {

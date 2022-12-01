@@ -4,6 +4,8 @@ import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -11,6 +13,10 @@ import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigActivated } from '../models/ConfigActivated';
+import { ConfigActivatedResponse } from '../models/ConfigActivatedResponse';
+import { ConfigDeactivated } from '../models/ConfigDeactivated';
+import { ConfigDeactivatedResponse } from '../models/ConfigDeactivatedResponse';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigUser } from '../models/ConfigUser';
@@ -90,7 +96,6 @@ import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
-import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
 
@@ -194,7 +199,7 @@ export class ObservableAccountsApi {
      * @param metadata Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      * @param balance Filter accounts by their balance (default operator is gte)
      * @param balanceOperator Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      */
     public listAccounts(ledger: string, pageSize?: number, after?: string, address?: string, metadata?: any, balance?: number, balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e', paginationToken?: string, _options?: Configuration): Observable<ListAccounts200Response> {
         const requestContextPromise = this.requestFactory.listAccounts(ledger, pageSize, after, address, metadata, balance, balanceOperator, paginationToken, _options);
@@ -238,7 +243,7 @@ export class ObservableBalancesApi {
      * @param ledger Name of the ledger.
      * @param address Filter balances involving given account, either as source or destination.
      * @param after Pagination cursor, will return accounts after given address, in descending order.
-     * @param paginationToken Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * @param paginationToken Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
      */
     public getBalances(ledger: string, address?: string, after?: string, paginationToken?: string, _options?: Configuration): Observable<GetBalances200Response> {
         const requestContextPromise = this.requestFactory.getBalances(ledger, address, after, paginationToken, _options);
@@ -1089,7 +1094,7 @@ export class ObservableSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Observable<void> {
+    public search(query: Query, _options?: Configuration): Observable<Response> {
         const requestContextPromise = this.requestFactory.search(query, _options);
 
         // build promise chain
@@ -1240,10 +1245,12 @@ export class ObservableTransactionsApi {
      * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, metadata?: any, _options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.countTransactions(ledger, reference, account, source, destination, metadata, _options);
+    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, metadata?: any, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.countTransactions(ledger, reference, account, source, destination, startTime, endTime, metadata, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1346,7 +1353,7 @@ export class ObservableTransactionsApi {
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
      * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     public listTransactions(ledger: string, pageSize?: number, after?: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, paginationToken?: string, metadata?: any, _options?: Configuration): Observable<ListTransactions200Response> {
@@ -1479,7 +1486,7 @@ export class ObservableWebhooksApi {
      * Activate one config
      * @param id Config ID
      */
-    public activateOneConfig(id: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public activateOneConfig(id: string, _options?: Configuration): Observable<ConfigActivatedResponse> {
         const requestContextPromise = this.requestFactory.activateOneConfig(id, _options);
 
         // build promise chain
@@ -1499,12 +1506,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
      * @param changeOneConfigSecretRequest 
      */
-    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<ConfigActivatedResponse> {
         const requestContextPromise = this.requestFactory.changeOneConfigSecret(id, changeOneConfigSecretRequest, _options);
 
         // build promise chain
@@ -1527,7 +1534,7 @@ export class ObservableWebhooksApi {
      * Deactivate one config
      * @param id Config ID
      */
-    public deactivateOneConfig(id: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public deactivateOneConfig(id: string, _options?: Configuration): Observable<ConfigDeactivatedResponse> {
         const requestContextPromise = this.requestFactory.deactivateOneConfig(id, _options);
 
         // build promise chain
@@ -1595,11 +1602,11 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param configUser 
      */
-    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<string> {
+    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigActivatedResponse> {
         const requestContextPromise = this.requestFactory.insertOneConfig(configUser, _options);
 
         // build promise chain
@@ -1615,6 +1622,30 @@ export class ObservableWebhooksApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertOneConfig(rsp)));
+            }));
+    }
+
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param id Config ID
+     */
+    public testOneConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
+        const requestContextPromise = this.requestFactory.testOneConfig(id, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testOneConfig(rsp)));
             }));
     }
 

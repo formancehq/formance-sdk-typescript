@@ -10,7 +10,10 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { AttemptResponse } from '../models/AttemptResponse';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
+import { ConfigActivatedResponse } from '../models/ConfigActivatedResponse';
+import { ConfigDeactivatedResponse } from '../models/ConfigDeactivatedResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 
@@ -57,7 +60,7 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
      * @param changeOneConfigSecretRequest 
@@ -226,7 +229,7 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param configUser 
      */
@@ -273,6 +276,44 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
         return requestContext;
     }
 
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param id Config ID
+     */
+    public async testOneConfig(id: string, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new RequiredError("WebhooksApi", "testOneConfig", "id");
+        }
+
+
+        // Path Params
+        const localVarPath = '/api/webhooks/configs/{id}/test'
+            .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["Authorization"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
 }
 
 export class WebhooksApiResponseProcessor {
@@ -284,13 +325,13 @@ export class WebhooksApiResponseProcessor {
      * @params response Response returned by the server for a request to activateOneConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async activateOneConfig(response: ResponseContext): Promise<GetManyConfigs200Response > {
+     public async activateOneConfig(response: ResponseContext): Promise<ConfigActivatedResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
             return body;
         }
         if (isCodeInRange("304", response.httpStatusCode)) {
@@ -299,10 +340,10 @@ export class WebhooksApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
             return body;
         }
 
@@ -316,22 +357,22 @@ export class WebhooksApiResponseProcessor {
      * @params response Response returned by the server for a request to changeOneConfigSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async changeOneConfigSecret(response: ResponseContext): Promise<GetManyConfigs200Response > {
+     public async changeOneConfigSecret(response: ResponseContext): Promise<ConfigActivatedResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
             return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
             return body;
         }
 
@@ -345,13 +386,13 @@ export class WebhooksApiResponseProcessor {
      * @params response Response returned by the server for a request to deactivateOneConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deactivateOneConfig(response: ResponseContext): Promise<GetManyConfigs200Response > {
+     public async deactivateOneConfig(response: ResponseContext): Promise<ConfigDeactivatedResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigDeactivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigDeactivatedResponse", ""
+            ) as ConfigDeactivatedResponse;
             return body;
         }
         if (isCodeInRange("304", response.httpStatusCode)) {
@@ -360,10 +401,10 @@ export class WebhooksApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigDeactivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigDeactivatedResponse", ""
+            ) as ConfigDeactivatedResponse;
             return body;
         }
 
@@ -431,13 +472,13 @@ export class WebhooksApiResponseProcessor {
      * @params response Response returned by the server for a request to insertOneConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async insertOneConfig(response: ResponseContext): Promise<string > {
+     public async insertOneConfig(response: ResponseContext): Promise<ConfigActivatedResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: string = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "string", ""
-            ) as string;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -450,10 +491,39 @@ export class WebhooksApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: string = ObjectSerializer.deserialize(
+            const body: ConfigActivatedResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "string", ""
-            ) as string;
+                "ConfigActivatedResponse", ""
+            ) as ConfigActivatedResponse;
+            return body;
+        }
+
+        throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to testOneConfig
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async testOneConfig(response: ResponseContext): Promise<AttemptResponse > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: AttemptResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "AttemptResponse", ""
+            ) as AttemptResponse;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: AttemptResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "AttemptResponse", ""
+            ) as AttemptResponse;
             return body;
         }
 

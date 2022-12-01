@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **search**
-> void search(query)
+> Response search(query)
 
 Search with Query
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**void**
+**Response**
 
 ### Authorization
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details

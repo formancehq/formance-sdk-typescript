@@ -92,15 +92,19 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
      * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public async countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, metadata?: any, _options?: Configuration): Promise<RequestContext> {
+    public async countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, metadata?: any, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'ledger' is not null or undefined
         if (ledger === null || ledger === undefined) {
             throw new RequiredError("TransactionsApi", "countTransactions", "ledger");
         }
+
+
 
 
 
@@ -134,6 +138,16 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (destination !== undefined) {
             requestContext.setQueryParam("destination", ObjectSerializer.serialize(destination, "string", ""));
+        }
+
+        // Query Params
+        if (startTime !== undefined) {
+            requestContext.setQueryParam("start_time", ObjectSerializer.serialize(startTime, "string", ""));
+        }
+
+        // Query Params
+        if (endTime !== undefined) {
+            requestContext.setQueryParam("end_time", ObjectSerializer.serialize(endTime, "string", ""));
         }
 
         // Query Params
@@ -331,7 +345,7 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
      * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     public async listTransactions(ledger: string, pageSize?: number, after?: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, paginationToken?: string, metadata?: any, _options?: Configuration): Promise<RequestContext> {

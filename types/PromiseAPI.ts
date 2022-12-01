@@ -3,6 +3,8 @@ import { Configuration} from '../configuration'
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -10,6 +12,10 @@ import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigActivated } from '../models/ConfigActivated';
+import { ConfigActivatedResponse } from '../models/ConfigActivatedResponse';
+import { ConfigDeactivated } from '../models/ConfigDeactivated';
+import { ConfigDeactivatedResponse } from '../models/ConfigDeactivatedResponse';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigUser } from '../models/ConfigUser';
@@ -89,7 +95,6 @@ import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
-import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
 import { ObservableAccountsApi } from './ObservableAPI';
@@ -148,7 +153,7 @@ export class PromiseAccountsApi {
      * @param metadata Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      * @param balance Filter accounts by their balance (default operator is gte)
      * @param balanceOperator Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      */
     public listAccounts(ledger: string, pageSize?: number, after?: string, address?: string, metadata?: any, balance?: number, balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e', paginationToken?: string, _options?: Configuration): Promise<ListAccounts200Response> {
         const result = this.api.listAccounts(ledger, pageSize, after, address, metadata, balance, balanceOperator, paginationToken, _options);
@@ -179,7 +184,7 @@ export class PromiseBalancesApi {
      * @param ledger Name of the ledger.
      * @param address Filter balances involving given account, either as source or destination.
      * @param after Pagination cursor, will return accounts after given address, in descending order.
-     * @param paginationToken Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * @param paginationToken Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
      */
     public getBalances(ledger: string, address?: string, after?: string, paginationToken?: string, _options?: Configuration): Promise<GetBalances200Response> {
         const result = this.api.getBalances(ledger, address, after, paginationToken, _options);
@@ -602,7 +607,7 @@ export class PromiseSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Promise<void> {
+    public search(query: Query, _options?: Configuration): Promise<Response> {
         const result = this.api.search(query, _options);
         return result.toPromise();
     }
@@ -700,10 +705,12 @@ export class PromiseTransactionsApi {
      * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, metadata?: any, _options?: Configuration): Promise<void> {
-        const result = this.api.countTransactions(ledger, reference, account, source, destination, metadata, _options);
+    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, metadata?: any, _options?: Configuration): Promise<void> {
+        const result = this.api.countTransactions(ledger, reference, account, source, destination, startTime, endTime, metadata, _options);
         return result.toPromise();
     }
 
@@ -750,7 +757,7 @@ export class PromiseTransactionsApi {
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
      * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     public listTransactions(ledger: string, pageSize?: number, after?: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, paginationToken?: string, metadata?: any, _options?: Configuration): Promise<ListTransactions200Response> {
@@ -829,18 +836,18 @@ export class PromiseWebhooksApi {
      * Activate one config
      * @param id Config ID
      */
-    public activateOneConfig(id: string, _options?: Configuration): Promise<GetManyConfigs200Response> {
+    public activateOneConfig(id: string, _options?: Configuration): Promise<ConfigActivatedResponse> {
         const result = this.api.activateOneConfig(id, _options);
         return result.toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
      * @param changeOneConfigSecretRequest 
      */
-    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Promise<GetManyConfigs200Response> {
+    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Promise<ConfigActivatedResponse> {
         const result = this.api.changeOneConfigSecret(id, changeOneConfigSecretRequest, _options);
         return result.toPromise();
     }
@@ -849,7 +856,7 @@ export class PromiseWebhooksApi {
      * Deactivate one config
      * @param id Config ID
      */
-    public deactivateOneConfig(id: string, _options?: Configuration): Promise<GetManyConfigs200Response> {
+    public deactivateOneConfig(id: string, _options?: Configuration): Promise<ConfigDeactivatedResponse> {
         const result = this.api.deactivateOneConfig(id, _options);
         return result.toPromise();
     }
@@ -875,12 +882,22 @@ export class PromiseWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param configUser 
      */
-    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Promise<string> {
+    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Promise<ConfigActivatedResponse> {
         const result = this.api.insertOneConfig(configUser, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param id Config ID
+     */
+    public testOneConfig(id: string, _options?: Configuration): Promise<AttemptResponse> {
+        const result = this.api.testOneConfig(id, _options);
         return result.toPromise();
     }
 
