@@ -3,6 +3,8 @@ import { Configuration} from '../configuration'
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -12,6 +14,7 @@ import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
@@ -197,7 +200,7 @@ export interface AccountsApiListAccountsRequest {
      */
     balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e'
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      * @type string
      * @memberof AccountsApilistAccounts
      */
@@ -269,7 +272,7 @@ export interface BalancesApiGetBalancesRequest {
      */
     after?: string
     /**
-     * Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
      * @type string
      * @memberof BalancesApigetBalances
      */
@@ -974,7 +977,7 @@ export class ObjectSearchApi {
      * Search
      * @param param the request object
      */
-    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<void> {
+    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<Response> {
         return this.api.search(param.query,  options).toPromise();
     }
 
@@ -1088,6 +1091,18 @@ export interface TransactionsApiCountTransactionsRequest {
      * @memberof TransactionsApicountTransactions
      */
     destination?: string
+    /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+     * @type string
+     * @memberof TransactionsApicountTransactions
+     */
+    startTime?: string
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
+     * @type string
+     * @memberof TransactionsApicountTransactions
+     */
+    endTime?: string
     /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      * @type any
@@ -1203,7 +1218,7 @@ export interface TransactionsApiListTransactionsRequest {
      */
     endTime?: string
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
      * @type string
      * @memberof TransactionsApilistTransactions
      */
@@ -1251,7 +1266,7 @@ export class ObjectTransactionsApi {
      * @param param the request object
      */
     public countTransactions(param: TransactionsApiCountTransactionsRequest, options?: Configuration): Promise<void> {
-        return this.api.countTransactions(param.ledger, param.reference, param.account, param.source, param.destination, param.metadata,  options).toPromise();
+        return this.api.countTransactions(param.ledger, param.reference, param.account, param.source, param.destination, param.startTime, param.endTime, param.metadata,  options).toPromise();
     }
 
     /**
@@ -1408,6 +1423,15 @@ export interface WebhooksApiInsertOneConfigRequest {
     configUser: ConfigUser
 }
 
+export interface WebhooksApiTestOneConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApitestOneConfig
+     */
+    id: string
+}
+
 export class ObjectWebhooksApi {
     private api: ObservableWebhooksApi
 
@@ -1419,16 +1443,16 @@ export class ObjectWebhooksApi {
      * Activate one config
      * @param param the request object
      */
-    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.activateOneConfig(param.id,  options).toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param param the request object
      */
-    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.changeOneConfigSecret(param.id, param.changeOneConfigSecretRequest,  options).toPromise();
     }
 
@@ -1436,7 +1460,7 @@ export class ObjectWebhooksApi {
      * Deactivate one config
      * @param param the request object
      */
-    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.deactivateOneConfig(param.id,  options).toPromise();
     }
 
@@ -1458,12 +1482,21 @@ export class ObjectWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param param the request object
      */
-    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<string> {
+    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.insertOneConfig(param.configUser,  options).toPromise();
+    }
+
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param param the request object
+     */
+    public testOneConfig(param: WebhooksApiTestOneConfigRequest, options?: Configuration): Promise<AttemptResponse> {
+        return this.api.testOneConfig(param.id,  options).toPromise();
     }
 
 }

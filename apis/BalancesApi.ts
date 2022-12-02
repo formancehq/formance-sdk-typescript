@@ -25,7 +25,7 @@ export class BalancesApiRequestFactory extends BaseAPIRequestFactory {
      * @param ledger Name of the ledger.
      * @param address Filter balances involving given account, either as source or destination.
      * @param after Pagination cursor, will return accounts after given address, in descending order.
-     * @param paginationToken Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * @param paginationToken Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results.
      */
     public async getBalances(ledger: string, address?: string, after?: string, paginationToken?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

@@ -10,51 +10,73 @@
  * Do not edit the class manually.
  */
 
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class Query {
-    'ledgers'?: Array<string>;
-    'nextToken'?: string;
-    'size'?: number;
-    'terms'?: Array<string>;
-    'target'?: string;
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "ledgers",
-            "baseName": "ledgers",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "nextToken",
-            "baseName": "nextToken",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "size",
-            "baseName": "size",
+            "name": "date",
+            "baseName": "date",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
+            "format": ""
+        },
+        {
+            "name": "payload",
+            "baseName": "payload",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "statusCode",
+            "baseName": "statusCode",
             "type": "number",
             "format": ""
         },
         {
-            "name": "terms",
-            "baseName": "terms",
-            "type": "Array<string>",
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
             "format": ""
         },
         {
-            "name": "target",
-            "baseName": "target",
+            "name": "status",
+            "baseName": "status",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return Query.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {

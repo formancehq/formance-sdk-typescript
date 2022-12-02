@@ -37,6 +37,8 @@ index.ts
 middleware.ts
 models/Account.ts
 models/AccountWithVolumesAndBalances.ts
+models/Attempt.ts
+models/AttemptResponse.ts
 models/BankingCircleConfig.ts
 models/ChangeOneConfigSecretRequest.ts
 models/Client.ts
@@ -46,6 +48,7 @@ models/ClientSecret.ts
 models/Config.ts
 models/ConfigInfo.ts
 models/ConfigInfoResponse.ts
+models/ConfigResponse.ts
 models/ConfigUser.ts
 models/ConnectorBaseInfo.ts
 models/ConnectorConfig.ts
