@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { Transaction } from '../models/Transaction';
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class ListTransactions200ResponseCursorAllOf {
-    'data': Array<Transaction>;
+export class ConfigResponse {
+    'data'?: WebhooksConfig;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,12 +22,12 @@ export class ListTransactions200ResponseCursorAllOf {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<Transaction>",
+            "type": "WebhooksConfig",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ListTransactions200ResponseCursorAllOf.attributeTypeMap;
+        return ConfigResponse.attributeTypeMap;
     }
 
     public constructor() {

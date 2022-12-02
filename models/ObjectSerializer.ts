@@ -1,5 +1,7 @@
 export * from '../models/Account';
 export * from '../models/AccountWithVolumesAndBalances';
+export * from '../models/Attempt';
+export * from '../models/AttemptResponse';
 export * from '../models/BankingCircleConfig';
 export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
@@ -9,6 +11,7 @@ export * from '../models/ClientSecret';
 export * from '../models/Config';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
+export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
@@ -92,6 +95,8 @@ export * from '../models/WiseConfig';
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -101,6 +106,7 @@ import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
@@ -211,6 +217,8 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "Account": Account,
     "AccountWithVolumesAndBalances": AccountWithVolumesAndBalances,
+    "Attempt": Attempt,
+    "AttemptResponse": AttemptResponse,
     "BankingCircleConfig": BankingCircleConfig,
     "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
@@ -220,6 +228,7 @@ let typeMap: {[index: string]: any} = {
     "Config": Config,
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
+    "ConfigResponse": ConfigResponse,
     "ConfigUser": ConfigUser,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,

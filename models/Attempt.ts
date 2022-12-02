@@ -10,51 +10,73 @@
  * Do not edit the class manually.
  */
 
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class Secret {
-    'name': string;
-    'metadata'?: { [key: string]: any; };
-    'id': string;
-    'lastDigits': string;
-    'clear': string;
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: any; }",
+            "name": "date",
+            "baseName": "date",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
             "format": ""
         },
         {
-            "name": "id",
-            "baseName": "id",
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "lastDigits",
-            "baseName": "lastDigits",
+            "name": "statusCode",
+            "baseName": "statusCode",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
             "type": "string",
             "format": ""
         },
         {
-            "name": "clear",
-            "baseName": "clear",
-            "type": "string",
-            "format": ""
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return Secret.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {

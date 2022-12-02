@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { Transaction } from '../models/Transaction';
+import { Attempt } from '../models/Attempt';
 import { HttpFile } from '../http/http';
 
-export class ListTransactions200ResponseCursorAllOf {
-    'data': Array<Transaction>;
+export class AttemptResponse {
+    'data'?: Attempt;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,12 +22,12 @@ export class ListTransactions200ResponseCursorAllOf {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Array<Transaction>",
+            "type": "Attempt",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ListTransactions200ResponseCursorAllOf.attributeTypeMap;
+        return AttemptResponse.attributeTypeMap;
     }
 
     public constructor() {
