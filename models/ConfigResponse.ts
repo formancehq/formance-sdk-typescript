@@ -10,24 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class ListConnectorsConfigsResponse {
-    'connector'?: ListConnectorsConfigsResponseConnector;
+export class ConfigResponse {
+    'data'?: WebhooksConfig;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "connector",
-            "baseName": "connector",
-            "type": "ListConnectorsConfigsResponseConnector",
+            "name": "data",
+            "baseName": "data",
+            "type": "WebhooksConfig",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ListConnectorsConfigsResponse.attributeTypeMap;
+        return ConfigResponse.attributeTypeMap;
     }
 
     public constructor() {

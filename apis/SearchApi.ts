@@ -11,6 +11,7 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { Query } from '../models/Query';
+import { Response } from '../models/Response';
 
 /**
  * no description
@@ -76,18 +77,22 @@ export class SearchApiResponseProcessor {
      * @params response Response returned by the server for a request to search
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async search(response: ResponseContext): Promise<void > {
+     public async search(response: ResponseContext): Promise<Response > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return;
+            const body: Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Response", ""
+            ) as Response;
+            return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: Response = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "Response", ""
+            ) as Response;
             return body;
         }
 

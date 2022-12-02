@@ -10,65 +10,73 @@
  * Do not edit the class manually.
  */
 
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class ClientOptions {
-    '_public'?: boolean;
-    'redirectUris'?: Array<string>;
-    'description'?: string;
-    'name': string;
-    'trusted'?: boolean;
-    'postLogoutRedirectUris'?: Array<string>;
-    'metadata'?: { [key: string]: any; };
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "_public",
-            "baseName": "public",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "redirectUris",
-            "baseName": "redirectUris",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "description",
-            "baseName": "description",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "date",
+            "baseName": "date",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
+            "format": ""
+        },
+        {
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "trusted",
-            "baseName": "trusted",
-            "type": "boolean",
+            "name": "statusCode",
+            "baseName": "statusCode",
+            "type": "number",
             "format": ""
         },
         {
-            "name": "postLogoutRedirectUris",
-            "baseName": "postLogoutRedirectUris",
-            "type": "Array<string>",
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
             "format": ""
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: any; }",
+            "name": "status",
+            "baseName": "status",
+            "type": "string",
             "format": ""
+        },
+        {
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return ClientOptions.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {
