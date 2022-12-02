@@ -10,30 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { Attempt } from '../models/Attempt';
 import { HttpFile } from '../http/http';
 
-export class CreateTransaction400Response {
-    'errorCode': string;
-    'errorMessage'?: string;
+export class AttemptResponse {
+    'data'?: Attempt;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "errorCode",
-            "baseName": "error_code",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "errorMessage",
-            "baseName": "error_message",
-            "type": "string",
+            "name": "data",
+            "baseName": "data",
+            "type": "Attempt",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return CreateTransaction400Response.attributeTypeMap;
+        return AttemptResponse.attributeTypeMap;
     }
 
     public constructor() {

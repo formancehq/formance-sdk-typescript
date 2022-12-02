@@ -10,65 +10,73 @@
  * Do not edit the class manually.
  */
 
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class WebhooksConfig {
-    'id'?: string;
-    'endpoint'?: string;
-    'secret'?: string;
-    'eventTypes'?: Array<string>;
-    'active'?: boolean;
-    'createdAt'?: Date;
-    'modifiedAt'?: Date;
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "id",
-            "baseName": "id",
-            "type": "string",
-            "format": "uuid"
-        },
-        {
-            "name": "endpoint",
-            "baseName": "endpoint",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "secret",
-            "baseName": "secret",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "eventTypes",
-            "baseName": "eventTypes",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "active",
-            "baseName": "active",
-            "type": "boolean",
-            "format": ""
-        },
-        {
-            "name": "createdAt",
-            "baseName": "createdAt",
+            "name": "date",
+            "baseName": "date",
             "type": "Date",
             "format": "date-time"
         },
         {
-            "name": "modifiedAt",
-            "baseName": "modifiedAt",
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
+            "format": ""
+        },
+        {
+            "name": "payload",
+            "baseName": "payload",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "statusCode",
+            "baseName": "statusCode",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
             "type": "Date",
             "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return WebhooksConfig.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {

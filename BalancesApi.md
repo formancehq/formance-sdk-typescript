@@ -29,7 +29,7 @@ let body:formance.BalancesApiGetBalancesRequest = {
   address: "users:001",
   // string | Pagination cursor, will return accounts after given address, in descending order. (optional)
   after: "users:003",
-  // string | Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. (optional)
+  // string | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. (optional)
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
 };
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
  **ledger** | [**string**] | Name of the ledger. | defaults to undefined
  **address** | [**string**] | Filter balances involving given account, either as source or destination. | (optional) defaults to undefined
  **after** | [**string**] | Pagination cursor, will return accounts after given address, in descending order. | (optional) defaults to undefined
- **paginationToken** | [**string**] | Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. | (optional) defaults to undefined
+ **paginationToken** | [**string**] | Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. | (optional) defaults to undefined
 
 
 ### Return type
