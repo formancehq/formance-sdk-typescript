@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**connectorsStripeTransfer**](PaymentsApi.md#connectorsStripeTransfer) | **POST** /api/payments/connectors/stripe/transfer | Transfer funds between Stripe accounts
 [**getAllConnectors**](PaymentsApi.md#getAllConnectors) | **GET** /api/payments/connectors | Get all installed connectors
 [**getAllConnectorsConfigs**](PaymentsApi.md#getAllConnectorsConfigs) | **GET** /api/payments/connectors/configs | Get all available connectors configs
 [**getConnectorTask**](PaymentsApi.md#getConnectorTask) | **GET** /api/payments/connectors/{connector}/tasks/{taskId} | Read a specific task of the connector
@@ -15,6 +16,65 @@ Method | HTTP request | Description
 [**resetConnector**](PaymentsApi.md#resetConnector) | **POST** /api/payments/connectors/{connector}/reset | Reset connector
 [**uninstallConnector**](PaymentsApi.md#uninstallConnector) | **DELETE** /api/payments/connectors/{connector} | Uninstall connector
 
+
+# **connectorsStripeTransfer**
+> void connectorsStripeTransfer(stripeTransferRequest)
+
+Execute a transfer between two Stripe accounts
+
+### Example
+
+
+```typescript
+import { formance } from '@formancehq/formance';
+import * as fs from 'fs';
+
+const configuration = formance.createConfiguration();
+const apiInstance = new formance.PaymentsApi(configuration);
+
+let body:formance.PaymentsApiConnectorsStripeTransferRequest = {
+  // StripeTransferRequest
+  stripeTransferRequest: {
+    amount: 100,
+    asset: "USD",
+    destination: "acct_1Gqj58KZcSIg2N2q",
+    metadata: {},
+  },
+};
+
+apiInstance.connectorsStripeTransfer(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **stripeTransferRequest** | **StripeTransferRequest**|  |
+
+
+### Return type
+
+**void**
+
+### Authorization
+
+[Authorization](README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Transfer has been executed |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getAllConnectors**
 > ListConnectorsResponse getAllConnectors()

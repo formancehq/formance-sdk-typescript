@@ -10,6 +10,7 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
@@ -17,7 +18,7 @@ import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListTransactions200Response } from '../models/ListTransactions200Response';
-import { PostTransaction } from '../models/PostTransaction';
+import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
@@ -160,10 +161,10 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a new transaction to a ledger.
      * @param ledger Name of the ledger.
-     * @param postTransaction The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript 
+     * @param transactionData 
      * @param preview Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      */
-    public async createTransaction(ledger: string, postTransaction: PostTransaction, preview?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async createTransaction(ledger: string, transactionData: TransactionData, preview?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'ledger' is not null or undefined
@@ -172,9 +173,9 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'postTransaction' is not null or undefined
-        if (postTransaction === null || postTransaction === undefined) {
-            throw new RequiredError("TransactionsApi", "createTransaction", "postTransaction");
+        // verify required parameter 'transactionData' is not null or undefined
+        if (transactionData === null || transactionData === undefined) {
+            throw new RequiredError("TransactionsApi", "createTransaction", "transactionData");
         }
 
 
@@ -199,7 +200,7 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(postTransaction, "PostTransaction", ""),
+            ObjectSerializer.serialize(transactionData, "TransactionData", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -326,9 +327,9 @@ export class TransactionsApiRequestFactory extends BaseAPIRequestFactory {
      * @param pageSize The maximum number of results to return per page
      * @param after Pagination cursor, will return transactions after given txid (in descending order).
      * @param reference Find transactions by reference field.
-     * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
-     * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
-     * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param account Find transactions with postings involving given account, either as source or destination.
+     * @param source Find transactions with postings involving given account at source.
+     * @param destination Find transactions with postings involving given account at destination.
      * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
      * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
      * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
@@ -502,6 +503,13 @@ export class TransactionsApiResponseProcessor {
             ) as GetTransaction404Response;
             throw new ApiException<GetTransaction404Response>(response.httpStatusCode, "Not Found", body, response.headers);
         }
+        if (isCodeInRange("409", response.httpStatusCode)) {
+            const body: AddMetadataToAccount409Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "AddMetadataToAccount409Response", ""
+            ) as AddMetadataToAccount409Response;
+            throw new ApiException<AddMetadataToAccount409Response>(response.httpStatusCode, "Conflict", body, response.headers);
+        }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
@@ -555,6 +563,13 @@ export class TransactionsApiResponseProcessor {
                 "TransactionsResponse", ""
             ) as TransactionsResponse;
             return body;
+        }
+        if (isCodeInRange("304", response.httpStatusCode)) {
+            const body: TransactionsResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "TransactionsResponse", ""
+            ) as TransactionsResponse;
+            throw new ApiException<TransactionsResponse>(response.httpStatusCode, "Not modified (when preview is enabled)", body, response.headers);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
             const body: CreateTransaction400Response = ObjectSerializer.deserialize(
@@ -734,6 +749,13 @@ export class TransactionsApiResponseProcessor {
                 "GetTransaction404Response", ""
             ) as GetTransaction404Response;
             throw new ApiException<GetTransaction404Response>(response.httpStatusCode, "Not Found", body, response.headers);
+        }
+        if (isCodeInRange("409", response.httpStatusCode)) {
+            const body: AddMetadataToAccount409Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "AddMetadataToAccount409Response", ""
+            ) as AddMetadataToAccount409Response;
+            throw new ApiException<AddMetadataToAccount409Response>(response.httpStatusCode, "Conflict", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

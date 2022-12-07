@@ -73,6 +73,7 @@ Name | Type | Description  | Notes
 **204** | No Content |  -  |
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
+**409** | Conflict |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
@@ -145,7 +146,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **createTransaction**
-> TransactionsResponse createTransaction(postTransaction)
+> TransactionsResponse createTransaction(transactionData)
 
 
 ### Example
@@ -161,8 +162,8 @@ const apiInstance = new formance.TransactionsApi(configuration);
 let body:formance.TransactionsApiCreateTransactionRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
-  // PostTransaction | The request body must contain one of the following objects:   - `postings`: suitable for simple transactions   - `script`: enabling more complex transactions with Numscript 
-  postTransaction: {
+  // TransactionData
+  transactionData: {
     timestamp: new Date('1970-01-01T00:00:00.00Z'),
     postings: [
       {
@@ -172,17 +173,6 @@ let body:formance.TransactionsApiCreateTransactionRequest = {
         source: "users:001",
       },
     ],
-    script: {
-      plain: `vars {
-account $user
-}
-send [COIN 10] (
-	source = @world
-	destination = $user
-)
-`,
-      vars: {},
-    },
     reference: "ref:001",
     metadata: {
       "key": null,
@@ -202,7 +192,7 @@ apiInstance.createTransaction(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **postTransaction** | **PostTransaction**| The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript  |
+ **transactionData** | **TransactionData**|  |
  **ledger** | [**string**] | Name of the ledger. | defaults to undefined
  **preview** | [**boolean**] | Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker. | (optional) defaults to undefined
 
@@ -225,6 +215,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**304** | Not modified (when preview is enabled) |  -  |
 **400** | Bad Request |  -  |
 **409** | Conflict |  -  |
 
@@ -388,11 +379,11 @@ let body:formance.TransactionsApiListTransactionsRequest = {
   after: "1234",
   // string | Find transactions by reference field. (optional)
   reference: "ref:001",
-  // string | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). (optional)
+  // string | Find transactions with postings involving given account, either as source or destination. (optional)
   account: "users:001",
-  // string | Filter transactions with postings involving given account at source (regular expression placed between ^ and $). (optional)
+  // string | Find transactions with postings involving given account at source. (optional)
   source: "users:001",
-  // string | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). (optional)
+  // string | Find transactions with postings involving given account at destination. (optional)
   destination: "users:001",
   // string | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  (optional)
   startTime: "start_time_example",
@@ -418,9 +409,9 @@ Name | Type | Description  | Notes
  **pageSize** | [**number**] | The maximum number of results to return per page | (optional) defaults to 15
  **after** | [**string**] | Pagination cursor, will return transactions after given txid (in descending order). | (optional) defaults to undefined
  **reference** | [**string**] | Find transactions by reference field. | (optional) defaults to undefined
- **account** | [**string**] | Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $). | (optional) defaults to undefined
- **source** | [**string**] | Filter transactions with postings involving given account at source (regular expression placed between ^ and $). | (optional) defaults to undefined
- **destination** | [**string**] | Filter transactions with postings involving given account at destination (regular expression placed between ^ and $). | (optional) defaults to undefined
+ **account** | [**string**] | Find transactions with postings involving given account, either as source or destination. | (optional) defaults to undefined
+ **source** | [**string**] | Find transactions with postings involving given account at source. | (optional) defaults to undefined
+ **destination** | [**string**] | Find transactions with postings involving given account at destination. | (optional) defaults to undefined
  **startTime** | [**string**] | Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).  | (optional) defaults to undefined
  **endTime** | [**string**] | Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).  | (optional) defaults to undefined
  **paginationToken** | [**string**] | Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set.  | (optional) defaults to undefined
@@ -504,6 +495,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
+**409** | Conflict |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

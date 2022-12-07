@@ -12,25 +12,33 @@
 
 import { HttpFile } from '../http/http';
 
-export class AccountWithVolumesAndBalances {
-    'address': string;
-    'type'?: string;
+export class StripeTransferRequest {
+    'amount'?: number;
+    'asset'?: string;
+    'destination'?: string;
+    /**
+    * A set of key/value pairs that you can attach to a transfer object. It can be useful for storing additional information about the transfer in a structured format. 
+    */
     'metadata'?: any;
-    'volumes'?: { [key: string]: { [key: string]: number; }; };
-    'balances'?: { [key: string]: number; };
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "address",
-            "baseName": "address",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "asset",
+            "baseName": "asset",
             "type": "string",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
+            "name": "destination",
+            "baseName": "destination",
             "type": "string",
             "format": ""
         },
@@ -39,22 +47,10 @@ export class AccountWithVolumesAndBalances {
             "baseName": "metadata",
             "type": "any",
             "format": ""
-        },
-        {
-            "name": "volumes",
-            "baseName": "volumes",
-            "type": "{ [key: string]: { [key: string]: number; }; }",
-            "format": ""
-        },
-        {
-            "name": "balances",
-            "baseName": "balances",
-            "type": "{ [key: string]: number; }",
-            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountWithVolumesAndBalances.attributeTypeMap;
+        return StripeTransferRequest.attributeTypeMap;
     }
 
     public constructor() {
