@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class ConfigResponse {
+    'data'?: WebhooksConfig;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,12 +22,12 @@ export class ConfigInfoResponse {
         {
             "name": "data",
             "baseName": "data",
-            "type": "ConfigInfo",
+            "type": "WebhooksConfig",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return ConfigResponse.attributeTypeMap;
     }
 
     public constructor() {

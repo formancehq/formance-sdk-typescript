@@ -37,6 +37,9 @@ index.ts
 middleware.ts
 models/Account.ts
 models/AccountWithVolumesAndBalances.ts
+models/AddMetadataToAccount409Response.ts
+models/Attempt.ts
+models/AttemptResponse.ts
 models/BankingCircleConfig.ts
 models/ChangeOneConfigSecretRequest.ts
 models/Client.ts
@@ -46,6 +49,7 @@ models/ClientSecret.ts
 models/Config.ts
 models/ConfigInfo.ts
 models/ConfigInfoResponse.ts
+models/ConfigResponse.ts
 models/ConfigUser.ts
 models/ConnectorBaseInfo.ts
 models/ConnectorConfig.ts
@@ -96,8 +100,6 @@ models/MappingResponse.ts
 models/ModulrConfig.ts
 models/ObjectSerializer.ts
 models/Payment.ts
-models/PostTransaction.ts
-models/PostTransactionScript.ts
 models/Posting.ts
 models/Query.ts
 models/ReadClientResponse.ts
@@ -105,6 +107,7 @@ models/ReadUserResponse.ts
 models/Response.ts
 models/ResponseCursor.ts
 models/ResponseCursorTotal.ts
+models/RunScript400Response.ts
 models/Scope.ts
 models/ScopeAllOf.ts
 models/ScopeOptions.ts
@@ -117,6 +120,7 @@ models/Stats.ts
 models/StatsResponse.ts
 models/StripeConfig.ts
 models/StripeTask.ts
+models/StripeTransferRequest.ts
 models/Transaction.ts
 models/TransactionData.ts
 models/TransactionResponse.ts

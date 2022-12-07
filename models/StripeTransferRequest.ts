@@ -10,24 +10,47 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class StripeTransferRequest {
+    'amount'?: number;
+    'asset'?: string;
+    'destination'?: string;
+    /**
+    * A set of key/value pairs that you can attach to a transfer object. It can be useful for storing additional information about the transfer in a structured format. 
+    */
+    'metadata'?: any;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "ConfigInfo",
+            "name": "amount",
+            "baseName": "amount",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "asset",
+            "baseName": "asset",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "destination",
+            "baseName": "destination",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "any",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return StripeTransferRequest.attributeTypeMap;
     }
 
     public constructor() {

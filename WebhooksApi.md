@@ -10,10 +10,11 @@ Method | HTTP request | Description
 [**deleteOneConfig**](WebhooksApi.md#deleteOneConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
 [**getManyConfigs**](WebhooksApi.md#getManyConfigs) | **GET** /api/webhooks/configs | Get many configs
 [**insertOneConfig**](WebhooksApi.md#insertOneConfig) | **POST** /api/webhooks/configs | Insert a new config 
+[**testOneConfig**](WebhooksApi.md#testOneConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
 
 
 # **activateOneConfig**
-> GetManyConfigs200Response activateOneConfig()
+> ConfigResponse activateOneConfig()
 
 
 ### Example
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**GetManyConfigs200Response**
+**ConfigResponse**
 
 ### Authorization
 
@@ -67,9 +68,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **changeOneConfigSecret**
-> GetManyConfigs200Response changeOneConfigSecret()
+> ConfigResponse changeOneConfigSecret()
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
 
 ### Example
 
@@ -106,7 +107,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**GetManyConfigs200Response**
+**ConfigResponse**
 
 ### Authorization
 
@@ -121,12 +122,12 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Secret successfully changed. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deactivateOneConfig**
-> GetManyConfigs200Response deactivateOneConfig()
+> ConfigResponse deactivateOneConfig()
 
 
 ### Example
@@ -159,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**GetManyConfigs200Response**
+**ConfigResponse**
 
 ### Authorization
 
@@ -228,7 +229,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**200** | Config successfully deleted. |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
@@ -290,9 +291,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **insertOneConfig**
-> string insertOneConfig(configUser)
+> ConfigResponse insertOneConfig(configUser)
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
 
 ### Example
 
@@ -324,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**string**
+**ConfigResponse**
 
 ### Authorization
 
@@ -333,14 +334,68 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: text/plain
+ - **Accept**: application/json, text/plain
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Config created successfully, returns its ID. |  -  |
+**200** | Config created successfully. |  -  |
 **400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **testOneConfig**
+> AttemptResponse testOneConfig()
+
+Test one config by sending a webhook to its endpoint. 
+
+### Example
+
+
+```typescript
+import { formance } from '@formancehq/formance';
+import * as fs from 'fs';
+
+const configuration = formance.createConfiguration();
+const apiInstance = new formance.WebhooksApi(configuration);
+
+let body:formance.WebhooksApiTestOneConfigRequest = {
+  // string | Config ID
+  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+};
+
+apiInstance.testOneConfig(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**string**] | Config ID | defaults to undefined
+
+
+### Return type
+
+**AttemptResponse**
+
+### Authorization
+
+[Authorization](README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

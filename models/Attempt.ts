@@ -10,67 +10,73 @@
  * Do not edit the class manually.
  */
 
-import { Posting } from '../models/Posting';
-import { Volume } from '../models/Volume';
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class Transaction {
-    'timestamp': Date;
-    'postings': Array<Posting>;
-    'reference'?: string;
-    'metadata'?: { [key: string]: any; };
-    'txid': number;
-    'preCommitVolumes'?: { [key: string]: { [key: string]: Volume; }; };
-    'postCommitVolumes'?: { [key: string]: { [key: string]: Volume; }; };
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "timestamp",
-            "baseName": "timestamp",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "postings",
-            "baseName": "postings",
-            "type": "Array<Posting>",
-            "format": ""
-        },
-        {
-            "name": "reference",
-            "baseName": "reference",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "{ [key: string]: any; }",
+            "name": "date",
+            "baseName": "date",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
             "format": ""
         },
         {
-            "name": "txid",
-            "baseName": "txid",
+            "name": "payload",
+            "baseName": "payload",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "statusCode",
+            "baseName": "statusCode",
             "type": "number",
             "format": ""
         },
         {
-            "name": "preCommitVolumes",
-            "baseName": "preCommitVolumes",
-            "type": "{ [key: string]: { [key: string]: Volume; }; }",
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
             "format": ""
         },
         {
-            "name": "postCommitVolumes",
-            "baseName": "postCommitVolumes",
-            "type": "{ [key: string]: { [key: string]: Volume; }; }",
+            "name": "status",
+            "baseName": "status",
+            "type": "string",
             "format": ""
+        },
+        {
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return Transaction.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {

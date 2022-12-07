@@ -10,24 +10,30 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class AddMetadataToAccount409Response {
+    'errorCode': string;
+    'errorMessage'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "ConfigInfo",
+            "name": "errorCode",
+            "baseName": "error_code",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "errorMessage",
+            "baseName": "error_message",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return AddMetadataToAccount409Response.attributeTypeMap;
     }
 
     public constructor() {
