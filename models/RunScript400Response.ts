@@ -12,49 +12,28 @@
 
 import { HttpFile } from '../http/http';
 
-export class AccountWithVolumesAndBalances {
-    'address': string;
-    'type'?: string;
-    'metadata'?: any;
-    'volumes'?: { [key: string]: { [key: string]: number; }; };
-    'balances'?: { [key: string]: number; };
+export class RunScript400Response {
+    'errorCode': string;
+    'errorMessage'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "address",
-            "baseName": "address",
+            "name": "errorCode",
+            "baseName": "error_code",
             "type": "string",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
+            "name": "errorMessage",
+            "baseName": "error_message",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "any",
-            "format": ""
-        },
-        {
-            "name": "volumes",
-            "baseName": "volumes",
-            "type": "{ [key: string]: { [key: string]: number; }; }",
-            "format": ""
-        },
-        {
-            "name": "balances",
-            "baseName": "balances",
-            "type": "{ [key: string]: number; }",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return AccountWithVolumesAndBalances.attributeTypeMap;
+        return RunScript400Response.attributeTypeMap;
     }
 
     public constructor() {

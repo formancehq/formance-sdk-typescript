@@ -3,6 +3,9 @@ import { Configuration} from '../configuration'
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -12,6 +15,7 @@ import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
@@ -61,8 +65,6 @@ import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
 import { Payment } from '../models/Payment';
-import { PostTransaction } from '../models/PostTransaction';
-import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
@@ -70,6 +72,7 @@ import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
 import { ResponseCursor } from '../models/ResponseCursor';
 import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
+import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
 import { ScopeOptions } from '../models/ScopeOptions';
@@ -82,6 +85,7 @@ import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
+import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -560,6 +564,15 @@ export class ObjectMappingApi {
 import { ObservablePaymentsApi } from "./ObservableAPI";
 import { PaymentsApiRequestFactory, PaymentsApiResponseProcessor} from "../apis/PaymentsApi";
 
+export interface PaymentsApiConnectorsStripeTransferRequest {
+    /**
+     * 
+     * @type StripeTransferRequest
+     * @memberof PaymentsApiconnectorsStripeTransfer
+     */
+    stripeTransferRequest: StripeTransferRequest
+}
+
 export interface PaymentsApiGetAllConnectorsRequest {
 }
 
@@ -667,6 +680,15 @@ export class ObjectPaymentsApi {
 
     public constructor(configuration: Configuration, requestFactory?: PaymentsApiRequestFactory, responseProcessor?: PaymentsApiResponseProcessor) {
         this.api = new ObservablePaymentsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Execute a transfer between two Stripe accounts
+     * Transfer funds between Stripe accounts
+     * @param param the request object
+     */
+    public connectorsStripeTransfer(param: PaymentsApiConnectorsStripeTransferRequest, options?: Configuration): Promise<void> {
+        return this.api.connectorsStripeTransfer(param.stripeTransferRequest,  options).toPromise();
     }
 
     /**
@@ -1104,11 +1126,11 @@ export interface TransactionsApiCreateTransactionRequest {
      */
     ledger: string
     /**
-     * The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript 
-     * @type PostTransaction
+     * 
+     * @type TransactionData
      * @memberof TransactionsApicreateTransaction
      */
-    postTransaction: PostTransaction
+    transactionData: TransactionData
     /**
      * Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      * @type boolean
@@ -1173,19 +1195,19 @@ export interface TransactionsApiListTransactionsRequest {
      */
     reference?: string
     /**
-     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * Find transactions with postings involving given account, either as source or destination.
      * @type string
      * @memberof TransactionsApilistTransactions
      */
     account?: string
     /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * Find transactions with postings involving given account at source.
      * @type string
      * @memberof TransactionsApilistTransactions
      */
     source?: string
     /**
-     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * Find transactions with postings involving given account at destination.
      * @type string
      * @memberof TransactionsApilistTransactions
      */
@@ -1259,7 +1281,7 @@ export class ObjectTransactionsApi {
      * @param param the request object
      */
     public createTransaction(param: TransactionsApiCreateTransactionRequest, options?: Configuration): Promise<TransactionsResponse> {
-        return this.api.createTransaction(param.ledger, param.postTransaction, param.preview,  options).toPromise();
+        return this.api.createTransaction(param.ledger, param.transactionData, param.preview,  options).toPromise();
     }
 
     /**
@@ -1408,6 +1430,15 @@ export interface WebhooksApiInsertOneConfigRequest {
     configUser: ConfigUser
 }
 
+export interface WebhooksApiTestOneConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApitestOneConfig
+     */
+    id: string
+}
+
 export class ObjectWebhooksApi {
     private api: ObservableWebhooksApi
 
@@ -1419,16 +1450,16 @@ export class ObjectWebhooksApi {
      * Activate one config
      * @param param the request object
      */
-    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.activateOneConfig(param.id,  options).toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param param the request object
      */
-    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.changeOneConfigSecret(param.id, param.changeOneConfigSecretRequest,  options).toPromise();
     }
 
@@ -1436,7 +1467,7 @@ export class ObjectWebhooksApi {
      * Deactivate one config
      * @param param the request object
      */
-    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.deactivateOneConfig(param.id,  options).toPromise();
     }
 
@@ -1458,12 +1489,21 @@ export class ObjectWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param param the request object
      */
-    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<string> {
+    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
         return this.api.insertOneConfig(param.configUser,  options).toPromise();
+    }
+
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param param the request object
+     */
+    public testOneConfig(param: WebhooksApiTestOneConfigRequest, options?: Configuration): Promise<AttemptResponse> {
+        return this.api.testOneConfig(param.id,  options).toPromise();
     }
 
 }

@@ -1,5 +1,8 @@
 export * from '../models/Account';
 export * from '../models/AccountWithVolumesAndBalances';
+export * from '../models/AddMetadataToAccount409Response';
+export * from '../models/Attempt';
+export * from '../models/AttemptResponse';
 export * from '../models/BankingCircleConfig';
 export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
@@ -9,6 +12,7 @@ export * from '../models/ClientSecret';
 export * from '../models/Config';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
+export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
@@ -58,8 +62,6 @@ export * from '../models/Mapping';
 export * from '../models/MappingResponse';
 export * from '../models/ModulrConfig';
 export * from '../models/Payment';
-export * from '../models/PostTransaction';
-export * from '../models/PostTransactionScript';
 export * from '../models/Posting';
 export * from '../models/Query';
 export * from '../models/ReadClientResponse';
@@ -67,6 +69,7 @@ export * from '../models/ReadUserResponse';
 export * from '../models/Response';
 export * from '../models/ResponseCursor';
 export * from '../models/ResponseCursorTotal';
+export * from '../models/RunScript400Response';
 export * from '../models/Scope';
 export * from '../models/ScopeAllOf';
 export * from '../models/ScopeOptions';
@@ -79,6 +82,7 @@ export * from '../models/Stats';
 export * from '../models/StatsResponse';
 export * from '../models/StripeConfig';
 export * from '../models/StripeTask';
+export * from '../models/StripeTransferRequest';
 export * from '../models/Transaction';
 export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
@@ -92,6 +96,9 @@ export * from '../models/WiseConfig';
 
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -101,6 +108,7 @@ import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
@@ -150,8 +158,6 @@ import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
 import { Payment  , PaymentSchemeEnum   , PaymentTypeEnum        } from '../models/Payment';
-import { PostTransaction } from '../models/PostTransaction';
-import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
@@ -159,6 +165,7 @@ import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
 import { ResponseCursor } from '../models/ResponseCursor';
 import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
+import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
 import { ScopeOptions } from '../models/ScopeOptions';
@@ -171,6 +178,7 @@ import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
+import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -211,6 +219,9 @@ let enumsMap: Set<string> = new Set<string>([
 let typeMap: {[index: string]: any} = {
     "Account": Account,
     "AccountWithVolumesAndBalances": AccountWithVolumesAndBalances,
+    "AddMetadataToAccount409Response": AddMetadataToAccount409Response,
+    "Attempt": Attempt,
+    "AttemptResponse": AttemptResponse,
     "BankingCircleConfig": BankingCircleConfig,
     "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
@@ -220,6 +231,7 @@ let typeMap: {[index: string]: any} = {
     "Config": Config,
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
+    "ConfigResponse": ConfigResponse,
     "ConfigUser": ConfigUser,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
@@ -268,8 +280,6 @@ let typeMap: {[index: string]: any} = {
     "MappingResponse": MappingResponse,
     "ModulrConfig": ModulrConfig,
     "Payment": Payment,
-    "PostTransaction": PostTransaction,
-    "PostTransactionScript": PostTransactionScript,
     "Posting": Posting,
     "Query": Query,
     "ReadClientResponse": ReadClientResponse,
@@ -277,6 +287,7 @@ let typeMap: {[index: string]: any} = {
     "Response": Response,
     "ResponseCursor": ResponseCursor,
     "ResponseCursorTotal": ResponseCursorTotal,
+    "RunScript400Response": RunScript400Response,
     "Scope": Scope,
     "ScopeAllOf": ScopeAllOf,
     "ScopeOptions": ScopeOptions,
@@ -289,6 +300,7 @@ let typeMap: {[index: string]: any} = {
     "StatsResponse": StatsResponse,
     "StripeConfig": StripeConfig,
     "StripeTask": StripeTask,
+    "StripeTransferRequest": StripeTransferRequest,
     "Transaction": Transaction,
     "TransactionData": TransactionData,
     "TransactionResponse": TransactionResponse,
