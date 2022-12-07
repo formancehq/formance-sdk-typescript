@@ -4,6 +4,9 @@ import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
+import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { Attempt } from '../models/Attempt';
+import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
 import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
@@ -13,6 +16,7 @@ import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
@@ -62,8 +66,6 @@ import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
 import { Payment } from '../models/Payment';
-import { PostTransaction } from '../models/PostTransaction';
-import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
@@ -71,6 +73,7 @@ import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
 import { ResponseCursor } from '../models/ResponseCursor';
 import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
+import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
 import { ScopeOptions } from '../models/ScopeOptions';
@@ -83,6 +86,7 @@ import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
+import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -593,6 +597,30 @@ export class ObservablePaymentsApi {
         this.configuration = configuration;
         this.requestFactory = requestFactory || new PaymentsApiRequestFactory(configuration);
         this.responseProcessor = responseProcessor || new PaymentsApiResponseProcessor();
+    }
+
+    /**
+     * Execute a transfer between two Stripe accounts
+     * Transfer funds between Stripe accounts
+     * @param stripeTransferRequest 
+     */
+    public connectorsStripeTransfer(stripeTransferRequest: StripeTransferRequest, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.connectorsStripeTransfer(stripeTransferRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.connectorsStripeTransfer(rsp)));
+            }));
     }
 
     /**
@@ -1264,11 +1292,11 @@ export class ObservableTransactionsApi {
     /**
      * Create a new transaction to a ledger.
      * @param ledger Name of the ledger.
-     * @param postTransaction The request body must contain one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript 
+     * @param transactionData 
      * @param preview Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      */
-    public createTransaction(ledger: string, postTransaction: PostTransaction, preview?: boolean, _options?: Configuration): Observable<TransactionsResponse> {
-        const requestContextPromise = this.requestFactory.createTransaction(ledger, postTransaction, preview, _options);
+    public createTransaction(ledger: string, transactionData: TransactionData, preview?: boolean, _options?: Configuration): Observable<TransactionsResponse> {
+        const requestContextPromise = this.requestFactory.createTransaction(ledger, transactionData, preview, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1341,9 +1369,9 @@ export class ObservableTransactionsApi {
      * @param pageSize The maximum number of results to return per page
      * @param after Pagination cursor, will return transactions after given txid (in descending order).
      * @param reference Find transactions by reference field.
-     * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
-     * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
-     * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param account Find transactions with postings involving given account, either as source or destination.
+     * @param source Find transactions with postings involving given account at source.
+     * @param destination Find transactions with postings involving given account at destination.
      * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
      * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
      * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
@@ -1479,7 +1507,7 @@ export class ObservableWebhooksApi {
      * Activate one config
      * @param id Config ID
      */
-    public activateOneConfig(id: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public activateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
         const requestContextPromise = this.requestFactory.activateOneConfig(id, _options);
 
         // build promise chain
@@ -1499,12 +1527,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
      * @param changeOneConfigSecretRequest 
      */
-    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<ConfigResponse> {
         const requestContextPromise = this.requestFactory.changeOneConfigSecret(id, changeOneConfigSecretRequest, _options);
 
         // build promise chain
@@ -1527,7 +1555,7 @@ export class ObservableWebhooksApi {
      * Deactivate one config
      * @param id Config ID
      */
-    public deactivateOneConfig(id: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public deactivateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
         const requestContextPromise = this.requestFactory.deactivateOneConfig(id, _options);
 
         // build promise chain
@@ -1595,11 +1623,11 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret.  If not passed or empty, a secret is automatically generated.  The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
      * Insert a new config 
      * @param configUser 
      */
-    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<string> {
+    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigResponse> {
         const requestContextPromise = this.requestFactory.insertOneConfig(configUser, _options);
 
         // build promise chain
@@ -1615,6 +1643,30 @@ export class ObservableWebhooksApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertOneConfig(rsp)));
+            }));
+    }
+
+    /**
+     * Test one config by sending a webhook to its endpoint. 
+     * Test one config
+     * @param id Config ID
+     */
+    public testOneConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
+        const requestContextPromise = this.requestFactory.testOneConfig(id, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testOneConfig(rsp)));
             }));
     }
 

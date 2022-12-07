@@ -12,28 +12,28 @@
 
 import { HttpFile } from '../http/http';
 
-export class Contract {
-    'account'?: string;
-    'expr': any;
+export class RunScript400Response {
+    'errorCode': string;
+    'errorMessage'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "account",
-            "baseName": "account",
+            "name": "errorCode",
+            "baseName": "error_code",
             "type": "string",
             "format": ""
         },
         {
-            "name": "expr",
-            "baseName": "expr",
-            "type": "any",
+            "name": "errorMessage",
+            "baseName": "error_message",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Contract.attributeTypeMap;
+        return RunScript400Response.attributeTypeMap;
     }
 
     public constructor() {

@@ -10,6 +10,8 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { RunScript400Response } from '../models/RunScript400Response';
 import { Script } from '../models/Script';
 import { ScriptResult } from '../models/ScriptResult';
 
@@ -99,6 +101,20 @@ export class ScriptApiResponseProcessor {
                 "ScriptResult", ""
             ) as ScriptResult;
             return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: RunScript400Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "RunScript400Response", ""
+            ) as RunScript400Response;
+            throw new ApiException<RunScript400Response>(response.httpStatusCode, "Bad Request", body, response.headers);
+        }
+        if (isCodeInRange("409", response.httpStatusCode)) {
+            const body: AddMetadataToAccount409Response = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "AddMetadataToAccount409Response", ""
+            ) as AddMetadataToAccount409Response;
+            throw new ApiException<AddMetadataToAccount409Response>(response.httpStatusCode, "Conflict", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
