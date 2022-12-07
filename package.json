@@ -1,6 +1,6 @@
 {
   "name": "@formancehq/formance",
-  "version": "v0.2.2",
+  "version": "v1.0.0-beta.4",
   "description": "OpenAPI client for @formancehq/formance",
   "author": "OpenAPI-Generator Contributors",
   "repository": {

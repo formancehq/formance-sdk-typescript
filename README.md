@@ -1,4 +1,4 @@
-## @formancehq/formance@v0.2.2
+## @formancehq/formance@v1.0.0-beta.4
 
 This generator creates TypeScript/JavaScript client that utilizes fetch-api.
 
@@ -21,7 +21,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @formancehq/formance@v0.2.2 --save
+npm install @formancehq/formance@v1.0.0-beta.4 --save
 ```
 
 _unPublished (not recommended):_

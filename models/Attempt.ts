@@ -10,64 +10,73 @@
  * Do not edit the class manually.
  */
 
-import { StripeTask } from '../models/StripeTask';
+import { WebhooksConfig } from '../models/WebhooksConfig';
 import { HttpFile } from '../http/http';
 
-export class ConnectorTask {
-    /**
-    * The id of the oldest BalanceTransaction fetched from stripe for this account
-    */
-    'oldestId'?: string;
-    /**
-    * The creation date of the oldest BalanceTransaction fetched from stripe for this account
-    */
-    'oldestDate'?: Date;
-    /**
-    * The id of the more recent BalanceTransaction fetched from stripe for this account
-    */
-    'moreRecentId'?: string;
-    /**
-    * The creation date of the more recent BalanceTransaction fetched from stripe for this account
-    */
-    'moreRecentDate'?: Date;
-    'noMoreHistory'?: boolean;
+export class Attempt {
+    'webhookID'?: string;
+    'date'?: Date;
+    'config'?: WebhooksConfig;
+    'payload'?: string;
+    'statusCode'?: number;
+    'retryAttempt'?: number;
+    'status'?: string;
+    'nextRetryAfter'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "oldestId",
-            "baseName": "oldestId",
+            "name": "webhookID",
+            "baseName": "webhookID",
             "type": "string",
             "format": ""
         },
         {
-            "name": "oldestDate",
-            "baseName": "oldestDate",
+            "name": "date",
+            "baseName": "date",
             "type": "Date",
             "format": "date-time"
         },
         {
-            "name": "moreRecentId",
-            "baseName": "moreRecentId",
+            "name": "config",
+            "baseName": "config",
+            "type": "WebhooksConfig",
+            "format": ""
+        },
+        {
+            "name": "payload",
+            "baseName": "payload",
             "type": "string",
             "format": ""
         },
         {
-            "name": "moreRecentDate",
-            "baseName": "moreRecentDate",
-            "type": "Date",
-            "format": "date-time"
+            "name": "statusCode",
+            "baseName": "statusCode",
+            "type": "number",
+            "format": ""
         },
         {
-            "name": "noMoreHistory",
-            "baseName": "noMoreHistory",
-            "type": "boolean",
+            "name": "retryAttempt",
+            "baseName": "retryAttempt",
+            "type": "number",
             "format": ""
+        },
+        {
+            "name": "status",
+            "baseName": "status",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "nextRetryAfter",
+            "baseName": "nextRetryAfter",
+            "type": "Date",
+            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {
-        return ConnectorTask.attributeTypeMap;
+        return Attempt.attributeTypeMap;
     }
 
     public constructor() {

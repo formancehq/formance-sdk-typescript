@@ -10,30 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { Attempt } from '../models/Attempt';
 import { HttpFile } from '../http/http';
 
-export class Contract {
-    'account'?: string;
-    'expr': any;
+export class AttemptResponse {
+    'data'?: Attempt;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "account",
-            "baseName": "account",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "expr",
-            "baseName": "expr",
-            "type": "any",
+            "name": "data",
+            "baseName": "data",
+            "type": "Attempt",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Contract.attributeTypeMap;
+        return AttemptResponse.attributeTypeMap;
     }
 
     public constructor() {
