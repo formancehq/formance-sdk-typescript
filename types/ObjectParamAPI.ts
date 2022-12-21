@@ -81,6 +81,7 @@ import { ScriptResult } from '../models/ScriptResult';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
@@ -505,6 +506,29 @@ export class ObjectClientsApi {
      */
     public updateClient(param: ClientsApiUpdateClientRequest, options?: Configuration): Promise<CreateClientResponse> {
         return this.api.updateClient(param.clientId, param.body,  options).toPromise();
+    }
+
+}
+
+import { ObservableDefaultApi } from "./ObservableAPI";
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+
+export interface DefaultApiGetServerInfoRequest {
+}
+
+export class ObjectDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public getServerInfo(param: DefaultApiGetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.getServerInfo( options).toPromise();
     }
 
 }
@@ -996,7 +1020,7 @@ export class ObjectSearchApi {
      * Search
      * @param param the request object
      */
-    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<void> {
+    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<Response> {
         return this.api.search(param.query,  options).toPromise();
     }
 

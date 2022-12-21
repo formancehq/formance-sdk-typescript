@@ -2,6 +2,7 @@
 AccountsApi.md
 BalancesApi.md
 ClientsApi.md
+DefaultApi.md
 MappingApi.md
 PaymentsApi.md
 README.md
@@ -16,6 +17,7 @@ WebhooksApi.md
 apis/AccountsApi.ts
 apis/BalancesApi.ts
 apis/ClientsApi.ts
+apis/DefaultApi.ts
 apis/MappingApi.ts
 apis/PaymentsApi.ts
 apis/ScopesApi.ts
@@ -116,6 +118,7 @@ models/ScriptResult.ts
 models/Secret.ts
 models/SecretAllOf.ts
 models/SecretOptions.ts
+models/ServerInfo.ts
 models/Stats.ts
 models/StatsResponse.ts
 models/StripeConfig.ts

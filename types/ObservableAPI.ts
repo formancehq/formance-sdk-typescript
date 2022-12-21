@@ -82,6 +82,7 @@ import { ScriptResult } from '../models/ScriptResult';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
@@ -513,6 +514,46 @@ export class ObservableClientsApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateClient(rsp)));
+            }));
+    }
+
+}
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class ObservableDefaultApi {
+    private requestFactory: DefaultApiRequestFactory;
+    private responseProcessor: DefaultApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
+    }
+
+    /**
+     * Get server info
+     */
+    public getServerInfo(_options?: Configuration): Observable<ServerInfo> {
+        const requestContextPromise = this.requestFactory.getServerInfo(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getServerInfo(rsp)));
             }));
     }
 
@@ -1117,7 +1158,7 @@ export class ObservableSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Observable<void> {
+    public search(query: Query, _options?: Configuration): Observable<Response> {
         const requestContextPromise = this.requestFactory.search(query, _options);
 
         // build promise chain

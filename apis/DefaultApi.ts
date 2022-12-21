@@ -10,46 +10,26 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { Query } from '../models/Query';
-import { Response } from '../models/Response';
+import { ServerInfo } from '../models/ServerInfo';
 
 /**
  * no description
  */
-export class SearchApiRequestFactory extends BaseAPIRequestFactory {
+export class DefaultApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Search with Query
-     * Search
-     * @param query 
+     * Get server info
      */
-    public async search(query: Query, _options?: Configuration): Promise<RequestContext> {
+    public async getServerInfo(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'query' is not null or undefined
-        if (query === null || query === undefined) {
-            throw new RequiredError("SearchApi", "search", "query");
-        }
-
-
         // Path Params
-        const localVarPath = '/api/search/';
+        const localVarPath = '/api/search/_info';
 
         // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
-
-        // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
-        ]);
-        requestContext.setHeaderParam("Content-Type", contentType);
-        const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(query, "Query", ""),
-            contentType
-        );
-        requestContext.setBody(serializedBody);
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
@@ -68,31 +48,31 @@ export class SearchApiRequestFactory extends BaseAPIRequestFactory {
 
 }
 
-export class SearchApiResponseProcessor {
+export class DefaultApiResponseProcessor {
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to search
+     * @params response Response returned by the server for a request to getServerInfo
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async search(response: ResponseContext): Promise<Response > {
+     public async getServerInfo(response: ResponseContext): Promise<ServerInfo > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Response = ObjectSerializer.deserialize(
+            const body: ServerInfo = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Response", ""
-            ) as Response;
+                "ServerInfo", ""
+            ) as ServerInfo;
             return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Response = ObjectSerializer.deserialize(
+            const body: ServerInfo = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Response", ""
-            ) as Response;
+                "ServerInfo", ""
+            ) as ServerInfo;
             return body;
         }
 

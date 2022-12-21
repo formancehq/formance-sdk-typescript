@@ -81,6 +81,7 @@ import { ScriptResult } from '../models/ScriptResult';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
@@ -301,6 +302,33 @@ export class PromiseClientsApi {
      */
     public updateClient(clientId: string, body?: ClientOptions, _options?: Configuration): Promise<CreateClientResponse> {
         const result = this.api.updateClient(clientId, body, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableDefaultApi } from './ObservableAPI';
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class PromiseDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get server info
+     */
+    public getServerInfo(_options?: Configuration): Promise<ServerInfo> {
+        const result = this.api.getServerInfo(_options);
         return result.toPromise();
     }
 
@@ -616,7 +644,7 @@ export class PromiseSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Promise<void> {
+    public search(query: Query, _options?: Configuration): Promise<Response> {
         const result = this.api.search(query, _options);
         return result.toPromise();
     }

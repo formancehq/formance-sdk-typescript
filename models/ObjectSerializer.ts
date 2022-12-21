@@ -78,6 +78,7 @@ export * from '../models/ScriptResult';
 export * from '../models/Secret';
 export * from '../models/SecretAllOf';
 export * from '../models/SecretOptions';
+export * from '../models/ServerInfo';
 export * from '../models/Stats';
 export * from '../models/StatsResponse';
 export * from '../models/StripeConfig';
@@ -174,6 +175,7 @@ import { ScriptResult , ScriptResultErrorCodeEnum     } from '../models/ScriptRe
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
@@ -296,6 +298,7 @@ let typeMap: {[index: string]: any} = {
     "Secret": Secret,
     "SecretAllOf": SecretAllOf,
     "SecretOptions": SecretOptions,
+    "ServerInfo": ServerInfo,
     "Stats": Stats,
     "StatsResponse": StatsResponse,
     "StripeConfig": StripeConfig,

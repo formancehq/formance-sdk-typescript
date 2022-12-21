@@ -1,6 +1,6 @@
 {
   "name": "@formancehq/formance",
-  "version": "v1.0.0-beta.4",
+  "version": "develop",
   "description": "OpenAPI client for @formancehq/formance",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
@@ -29,7 +29,6 @@
     "@types/node-fetch": "^2.5.7",
     "@types/node": "*",
     "form-data": "^2.5.0",
-    "btoa": "^1.2.1",
     "es6-promise": "^4.2.4",
     "url-parse": "^1.4.3"
   },

@@ -10,24 +10,23 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class ServerInfo {
+    'version': string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "ConfigInfo",
+            "name": "version",
+            "baseName": "version",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return ServerInfo.attributeTypeMap;
     }
 
     public constructor() {
