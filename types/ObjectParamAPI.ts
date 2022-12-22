@@ -19,7 +19,8 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTask } from '../models/ConnectorTask';
+import { ConnectorTaskBase } from '../models/ConnectorTaskBase';
+import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
@@ -51,6 +52,7 @@ import { ListAccounts200ResponseCursor } from '../models/ListAccounts200Response
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListClientsResponse } from '../models/ListClientsResponse';
+import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
 import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
 import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnectorsConfigsResponseConnectorKey';
@@ -81,11 +83,30 @@ import { ScriptResult } from '../models/ScriptResult';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
+import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
+import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
+import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
+import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorDummyPay } from '../models/TaskDescriptorDummyPay';
+import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
+import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorModulr } from '../models/TaskDescriptorModulr';
+import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
+import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
+import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
+import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
+import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
+import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -509,6 +530,29 @@ export class ObjectClientsApi {
 
 }
 
+import { ObservableDefaultApi } from "./ObservableAPI";
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+
+export interface DefaultApiGetServerInfoRequest {
+}
+
+export class ObjectDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public getServerInfo(param: DefaultApiGetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.getServerInfo( options).toPromise();
+    }
+
+}
+
 import { ObservableMappingApi } from "./ObservableAPI";
 import { MappingApiRequestFactory, MappingApiResponseProcessor} from "../apis/MappingApi";
 
@@ -582,10 +626,10 @@ export interface PaymentsApiGetAllConnectorsConfigsRequest {
 export interface PaymentsApiGetConnectorTaskRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39;
+     * @type Connectors
      * @memberof PaymentsApigetConnectorTask
      */
-    connector: 'stripe'
+    connector: Connectors
     /**
      * The task id
      * @type string
@@ -606,10 +650,10 @@ export interface PaymentsApiGetPaymentRequest {
 export interface PaymentsApiInstallConnectorRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39; | &#39;dummypay&#39; | &#39;wise&#39; | &#39;modulr&#39; | &#39;currencycloud&#39;
+     * @type Connectors
      * @memberof PaymentsApiinstallConnector
      */
-    connector: 'stripe' | 'dummypay' | 'wise' | 'modulr' | 'currencycloud'
+    connector: Connectors
     /**
      * 
      * @type ConnectorConfig
@@ -621,10 +665,10 @@ export interface PaymentsApiInstallConnectorRequest {
 export interface PaymentsApiListConnectorTasksRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39;
+     * @type Connectors
      * @memberof PaymentsApilistConnectorTasks
      */
-    connector: 'stripe'
+    connector: Connectors
 }
 
 export interface PaymentsApiListPaymentsRequest {
@@ -651,28 +695,28 @@ export interface PaymentsApiListPaymentsRequest {
 export interface PaymentsApiReadConnectorConfigRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39;
+     * @type Connectors
      * @memberof PaymentsApireadConnectorConfig
      */
-    connector: 'stripe'
+    connector: Connectors
 }
 
 export interface PaymentsApiResetConnectorRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39;
+     * @type Connectors
      * @memberof PaymentsApiresetConnector
      */
-    connector: 'stripe'
+    connector: Connectors
 }
 
 export interface PaymentsApiUninstallConnectorRequest {
     /**
      * The connector code
-     * @type &#39;stripe&#39;
+     * @type Connectors
      * @memberof PaymentsApiuninstallConnector
      */
-    connector: 'stripe'
+    connector: Connectors
 }
 
 export class ObjectPaymentsApi {
@@ -714,7 +758,7 @@ export class ObjectPaymentsApi {
      * Read a specific task of the connector
      * @param param the request object
      */
-    public getConnectorTask(param: PaymentsApiGetConnectorTaskRequest, options?: Configuration): Promise<ConnectorTask> {
+    public getConnectorTask(param: PaymentsApiGetConnectorTaskRequest, options?: Configuration): Promise<ListConnectorTasks200ResponseInner> {
         return this.api.getConnectorTask(param.connector, param.taskId,  options).toPromise();
     }
 
@@ -740,7 +784,7 @@ export class ObjectPaymentsApi {
      * List connector tasks
      * @param param the request object
      */
-    public listConnectorTasks(param: PaymentsApiListConnectorTasksRequest, options?: Configuration): Promise<Array<ConnectorTask>> {
+    public listConnectorTasks(param: PaymentsApiListConnectorTasksRequest, options?: Configuration): Promise<Array<ListConnectorTasks200ResponseInner>> {
         return this.api.listConnectorTasks(param.connector,  options).toPromise();
     }
 
@@ -996,7 +1040,7 @@ export class ObjectSearchApi {
      * Search
      * @param param the request object
      */
-    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<void> {
+    public search(param: SearchApiSearchRequest, options?: Configuration): Promise<Response> {
         return this.api.search(param.query,  options).toPromise();
     }
 

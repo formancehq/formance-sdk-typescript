@@ -19,7 +19,8 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTask } from '../models/ConnectorTask';
+import { ConnectorTaskBase } from '../models/ConnectorTaskBase';
+import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
@@ -51,6 +52,7 @@ import { ListAccounts200ResponseCursor } from '../models/ListAccounts200Response
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListClientsResponse } from '../models/ListClientsResponse';
+import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
 import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
 import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnectorsConfigsResponseConnectorKey';
@@ -81,11 +83,30 @@ import { ScriptResult } from '../models/ScriptResult';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
+import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
+import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
+import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
+import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorDummyPay } from '../models/TaskDescriptorDummyPay';
+import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
+import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorModulr } from '../models/TaskDescriptorModulr';
+import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
+import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
+import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
+import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
+import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
+import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -309,6 +330,33 @@ export class PromiseClientsApi {
 
 
 
+import { ObservableDefaultApi } from './ObservableAPI';
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class PromiseDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get server info
+     */
+    public getServerInfo(_options?: Configuration): Promise<ServerInfo> {
+        const result = this.api.getServerInfo(_options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
 import { ObservableMappingApi } from './ObservableAPI';
 
 import { MappingApiRequestFactory, MappingApiResponseProcessor} from "../apis/MappingApi";
@@ -395,7 +443,7 @@ export class PromisePaymentsApi {
      * @param connector The connector code
      * @param taskId The task id
      */
-    public getConnectorTask(connector: 'stripe', taskId: string, _options?: Configuration): Promise<ConnectorTask> {
+    public getConnectorTask(connector: Connectors, taskId: string, _options?: Configuration): Promise<ListConnectorTasks200ResponseInner> {
         const result = this.api.getConnectorTask(connector, taskId, _options);
         return result.toPromise();
     }
@@ -415,7 +463,7 @@ export class PromisePaymentsApi {
      * @param connector The connector code
      * @param connectorConfig 
      */
-    public installConnector(connector: 'stripe' | 'dummypay' | 'wise' | 'modulr' | 'currencycloud', connectorConfig: ConnectorConfig, _options?: Configuration): Promise<void> {
+    public installConnector(connector: Connectors, connectorConfig: ConnectorConfig, _options?: Configuration): Promise<void> {
         const result = this.api.installConnector(connector, connectorConfig, _options);
         return result.toPromise();
     }
@@ -425,7 +473,7 @@ export class PromisePaymentsApi {
      * List connector tasks
      * @param connector The connector code
      */
-    public listConnectorTasks(connector: 'stripe', _options?: Configuration): Promise<Array<ConnectorTask>> {
+    public listConnectorTasks(connector: Connectors, _options?: Configuration): Promise<Array<ListConnectorTasks200ResponseInner>> {
         const result = this.api.listConnectorTasks(connector, _options);
         return result.toPromise();
     }
@@ -446,7 +494,7 @@ export class PromisePaymentsApi {
      * Read connector config
      * @param connector The connector code
      */
-    public readConnectorConfig(connector: 'stripe', _options?: Configuration): Promise<ConnectorConfig> {
+    public readConnectorConfig(connector: Connectors, _options?: Configuration): Promise<ConnectorConfig> {
         const result = this.api.readConnectorConfig(connector, _options);
         return result.toPromise();
     }
@@ -456,7 +504,7 @@ export class PromisePaymentsApi {
      * Reset connector
      * @param connector The connector code
      */
-    public resetConnector(connector: 'stripe', _options?: Configuration): Promise<void> {
+    public resetConnector(connector: Connectors, _options?: Configuration): Promise<void> {
         const result = this.api.resetConnector(connector, _options);
         return result.toPromise();
     }
@@ -466,7 +514,7 @@ export class PromisePaymentsApi {
      * Uninstall connector
      * @param connector The connector code
      */
-    public uninstallConnector(connector: 'stripe', _options?: Configuration): Promise<void> {
+    public uninstallConnector(connector: Connectors, _options?: Configuration): Promise<void> {
         const result = this.api.uninstallConnector(connector, _options);
         return result.toPromise();
     }
@@ -616,7 +664,7 @@ export class PromiseSearchApi {
      * Search
      * @param query 
      */
-    public search(query: Query, _options?: Configuration): Promise<void> {
+    public search(query: Query, _options?: Configuration): Promise<Response> {
         const result = this.api.search(query, _options);
         return result.toPromise();
     }

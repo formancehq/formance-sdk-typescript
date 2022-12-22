@@ -21,13 +21,13 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiActivateOneConfigRequest = {
+let body:WebhooksApiActivateOneConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
@@ -76,13 +76,13 @@ Change the signing secret of the endpoint of a config.  If not passed or empty, 
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiChangeOneConfigSecretRequest = {
+let body:WebhooksApiChangeOneConfigSecretRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   // ChangeOneConfigSecretRequest (optional)
@@ -134,13 +134,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiDeactivateOneConfigRequest = {
+let body:WebhooksApiDeactivateOneConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
@@ -188,13 +188,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiDeleteOneConfigRequest = {
+let body:WebhooksApiDeleteOneConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
@@ -242,13 +242,13 @@ Sorted by updated date descending
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiGetManyConfigsRequest = {
+let body:WebhooksApiGetManyConfigsRequest = {
   // string | Optional filter by Config ID (optional)
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   // string | Optional filter by endpoint URL (optional)
@@ -299,13 +299,13 @@ Insert a new config.  The endpoint should be a valid https URL and be unique.  T
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiInsertOneConfigRequest = {
+let body:WebhooksApiInsertOneConfigRequest = {
   // ConfigUser
   configUser: null,
 };
@@ -354,13 +354,13 @@ Test one config by sending a webhook to its endpoint.
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { WebhooksApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.WebhooksApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WebhooksApi(configuration);
 
-let body:formance.WebhooksApiTestOneConfigRequest = {
+let body:WebhooksApiTestOneConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };

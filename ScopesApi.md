@@ -22,13 +22,13 @@ Add a transient scope to a scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiAddTransientScopeRequest = {
+let body:ScopesApiAddTransientScopeRequest = {
   // string | Scope ID
   scopeId: "scopeId_example",
   // string | Transient scope ID
@@ -79,13 +79,13 @@ Create scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiCreateScopeRequest = {
+let body:ScopesApiCreateScopeRequest = {
   // ScopeOptions (optional)
   body: {
     label: "label_example",
@@ -138,13 +138,13 @@ Delete scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiDeleteScopeRequest = {
+let body:ScopesApiDeleteScopeRequest = {
   // string | Scope ID
   scopeId: "scopeId_example",
 };
@@ -192,13 +192,13 @@ Delete a transient scope from a scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiDeleteTransientScopeRequest = {
+let body:ScopesApiDeleteTransientScopeRequest = {
   // string | Scope ID
   scopeId: "scopeId_example",
   // string | Transient scope ID
@@ -249,11 +249,11 @@ List Scopes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
 let body:any = {};
 
@@ -297,13 +297,13 @@ Read scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiReadScopeRequest = {
+let body:ScopesApiReadScopeRequest = {
   // string | Scope ID
   scopeId: "scopeId_example",
 };
@@ -351,13 +351,13 @@ Update scope
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScopesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScopesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScopesApi(configuration);
 
-let body:formance.ScopesApiUpdateScopeRequest = {
+let body:ScopesApiUpdateScopeRequest = {
   // string | Scope ID
   scopeId: "scopeId_example",
   // ScopeOptions (optional)

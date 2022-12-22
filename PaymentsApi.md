@@ -26,13 +26,13 @@ Execute a transfer between two Stripe accounts
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiConnectorsStripeTransferRequest = {
+let body:PaymentsApiConnectorsStripeTransferRequest = {
   // StripeTransferRequest
   stripeTransferRequest: {
     amount: 100,
@@ -85,11 +85,11 @@ Get all installed connectors
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
 let body:any = {};
 
@@ -133,11 +133,11 @@ Get all available connectors configs
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
 let body:any = {};
 
@@ -173,7 +173,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getConnectorTask**
-> ConnectorTask getConnectorTask()
+> ListConnectorTasks200ResponseInner getConnectorTask()
 
 Get a specific task associated to the connector
 
@@ -181,15 +181,15 @@ Get a specific task associated to the connector
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiGetConnectorTaskRequest = {
-  // 'stripe' | The connector code
-  connector: "stripe",
+let body:PaymentsApiGetConnectorTaskRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
   // string | The task id
   taskId: "task1",
 };
@@ -204,13 +204,13 @@ apiInstance.getConnectorTask(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector** | [**&#39;stripe&#39;**]**Array<&#39;stripe&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
  **taskId** | [**string**] | The task id | defaults to undefined
 
 
 ### Return type
 
-**ConnectorTask**
+**ListConnectorTasks200ResponseInner**
 
 ### Authorization
 
@@ -237,13 +237,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiGetPaymentRequest = {
+let body:PaymentsApiGetPaymentRequest = {
   // string | The payment id
   paymentId: "XXX",
 };
@@ -291,15 +291,15 @@ Install connector
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiInstallConnectorRequest = {
-  // 'stripe' | 'dummypay' | 'wise' | 'modulr' | 'currencycloud' | The connector code
-  connector: "stripe",
+let body:PaymentsApiInstallConnectorRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
   // ConnectorConfig
   connectorConfig: null,
 };
@@ -315,7 +315,7 @@ apiInstance.installConnector(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connectorConfig** | **ConnectorConfig**|  |
- **connector** | [**&#39;stripe&#39; | &#39;dummypay&#39; | &#39;wise&#39; | &#39;modulr&#39; | &#39;currencycloud&#39;**]**Array<&#39;stripe&#39; &#124; &#39;dummypay&#39; &#124; &#39;wise&#39; &#124; &#39;modulr&#39; &#124; &#39;currencycloud&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
 
 
 ### Return type
@@ -340,7 +340,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listConnectorTasks**
-> Array<ConnectorTask> listConnectorTasks()
+> Array<ListConnectorTasks200ResponseInner> listConnectorTasks()
 
 List all tasks associated with this connector.
 
@@ -348,15 +348,15 @@ List all tasks associated with this connector.
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiListConnectorTasksRequest = {
-  // 'stripe' | The connector code
-  connector: "stripe",
+let body:PaymentsApiListConnectorTasksRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
 };
 
 apiInstance.listConnectorTasks(body).then((data:any) => {
@@ -369,12 +369,12 @@ apiInstance.listConnectorTasks(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector** | [**&#39;stripe&#39;**]**Array<&#39;stripe&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
 
 
 ### Return type
 
-**Array<ConnectorTask>**
+**Array<ListConnectorTasks200ResponseInner>**
 
 ### Authorization
 
@@ -401,13 +401,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiListPaymentsRequest = {
+let body:PaymentsApiListPaymentsRequest = {
   // number | Limit the number of payments to return, pagination can be achieved in conjunction with 'skip' parameter. (optional)
   limit: 10,
   // number | How many payments to skip, pagination can be achieved in conjunction with 'limit' parameter. (optional)
@@ -463,15 +463,15 @@ Read connector config
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiReadConnectorConfigRequest = {
-  // 'stripe' | The connector code
-  connector: "stripe",
+let body:PaymentsApiReadConnectorConfigRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
 };
 
 apiInstance.readConnectorConfig(body).then((data:any) => {
@@ -484,7 +484,7 @@ apiInstance.readConnectorConfig(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector** | [**&#39;stripe&#39;**]**Array<&#39;stripe&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
 
 
 ### Return type
@@ -517,15 +517,15 @@ Reset connector. Will remove the connector and ALL PAYMENTS generated with it.
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiResetConnectorRequest = {
-  // 'stripe' | The connector code
-  connector: "stripe",
+let body:PaymentsApiResetConnectorRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
 };
 
 apiInstance.resetConnector(body).then((data:any) => {
@@ -538,7 +538,7 @@ apiInstance.resetConnector(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector** | [**&#39;stripe&#39;**]**Array<&#39;stripe&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
 
 
 ### Return type
@@ -571,15 +571,15 @@ Uninstall  connector
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { PaymentsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.PaymentsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new PaymentsApi(configuration);
 
-let body:formance.PaymentsApiUninstallConnectorRequest = {
-  // 'stripe' | The connector code
-  connector: "stripe",
+let body:PaymentsApiUninstallConnectorRequest = {
+  // Connectors | The connector code
+  connector: "STRIPE",
 };
 
 apiInstance.uninstallConnector(body).then((data:any) => {
@@ -592,7 +592,7 @@ apiInstance.uninstallConnector(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connector** | [**&#39;stripe&#39;**]**Array<&#39;stripe&#39; &#124; &#39;11184809&#39;>** | The connector code | defaults to undefined
+ **connector** | **Connectors** | The connector code | defaults to undefined
 
 
 ### Return type

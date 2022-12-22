@@ -16,13 +16,13 @@ Get ledger stats (aggregate metrics on accounts and transactions) The stats for 
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { StatsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.StatsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new StatsApi(configuration);
 
-let body:formance.StatsApiReadStatsRequest = {
+let body:StatsApiReadStatsRequest = {
   // string | name of the ledger
   ledger: "ledger001",
 };

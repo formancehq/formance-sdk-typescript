@@ -21,13 +21,13 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiAddMetadataOnTransactionRequest = {
+let body:TransactionsApiAddMetadataOnTransactionRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // number | Transaction ID.
@@ -85,13 +85,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiCountTransactionsRequest = {
+let body:TransactionsApiCountTransactionsRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Filter transactions by reference field. (optional)
@@ -153,13 +153,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiCreateTransactionRequest = {
+let body:TransactionsApiCreateTransactionRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // TransactionData
@@ -229,13 +229,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiCreateTransactionsRequest = {
+let body:TransactionsApiCreateTransactionsRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // Transactions
@@ -305,13 +305,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiGetTransactionRequest = {
+let body:TransactionsApiGetTransactionRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // number | Transaction ID.
@@ -364,13 +364,13 @@ List transactions from a ledger, sorted by txid in descending order.
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiListTransactionsRequest = {
+let body:TransactionsApiListTransactionsRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // number | The maximum number of results to return per page (optional)
@@ -448,13 +448,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { TransactionsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.TransactionsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new TransactionsApi(configuration);
 
-let body:formance.TransactionsApiRevertTransactionRequest = {
+let body:TransactionsApiRevertTransactionRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // number | Transaction ID.

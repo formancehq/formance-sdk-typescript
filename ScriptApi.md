@@ -15,13 +15,13 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ScriptApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ScriptApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ScriptApi(configuration);
 
-let body:formance.ScriptApiRunScriptRequest = {
+let body:ScriptApiRunScriptRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // Script

@@ -17,11 +17,11 @@ List users
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { UsersApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.UsersApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new UsersApi(configuration);
 
 let body:any = {};
 
@@ -65,13 +65,13 @@ Read user
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { UsersApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.UsersApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new UsersApi(configuration);
 
-let body:formance.UsersApiReadUserRequest = {
+let body:UsersApiReadUserRequest = {
   // string | User ID
   userId: "userId_example",
 };
