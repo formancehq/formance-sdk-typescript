@@ -11,7 +11,8 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTask } from '../models/ConnectorTask';
+import { Connectors } from '../models/Connectors';
+import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
 import { ListConnectorsResponse } from '../models/ListConnectorsResponse';
 import { ListPaymentsResponse } from '../models/ListPaymentsResponse';
@@ -137,7 +138,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * @param connector The connector code
      * @param taskId The task id
      */
-    public async getConnectorTask(connector: 'stripe', taskId: string, _options?: Configuration): Promise<RequestContext> {
+    public async getConnectorTask(connector: Connectors, taskId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -220,7 +221,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * @param connector The connector code
      * @param connectorConfig 
      */
-    public async installConnector(connector: 'stripe' | 'dummypay' | 'wise' | 'modulr' | 'currencycloud', connectorConfig: ConnectorConfig, _options?: Configuration): Promise<RequestContext> {
+    public async installConnector(connector: Connectors, connectorConfig: ConnectorConfig, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -275,7 +276,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * List connector tasks
      * @param connector The connector code
      */
-    public async listConnectorTasks(connector: 'stripe', _options?: Configuration): Promise<RequestContext> {
+    public async listConnectorTasks(connector: Connectors, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -363,7 +364,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * Read connector config
      * @param connector The connector code
      */
-    public async readConnectorConfig(connector: 'stripe', _options?: Configuration): Promise<RequestContext> {
+    public async readConnectorConfig(connector: Connectors, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -401,7 +402,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * Reset connector
      * @param connector The connector code
      */
-    public async resetConnector(connector: 'stripe', _options?: Configuration): Promise<RequestContext> {
+    public async resetConnector(connector: Connectors, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -439,7 +440,7 @@ export class PaymentsApiRequestFactory extends BaseAPIRequestFactory {
      * Uninstall connector
      * @param connector The connector code
      */
-    public async uninstallConnector(connector: 'stripe', _options?: Configuration): Promise<RequestContext> {
+    public async uninstallConnector(connector: Connectors, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'connector' is not null or undefined
@@ -566,22 +567,22 @@ export class PaymentsApiResponseProcessor {
      * @params response Response returned by the server for a request to getConnectorTask
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getConnectorTask(response: ResponseContext): Promise<ConnectorTask > {
+     public async getConnectorTask(response: ResponseContext): Promise<ListConnectorTasks200ResponseInner > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ConnectorTask = ObjectSerializer.deserialize(
+            const body: ListConnectorTasks200ResponseInner = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ConnectorTask", ""
-            ) as ConnectorTask;
+                "ListConnectorTasks200ResponseInner", ""
+            ) as ListConnectorTasks200ResponseInner;
             return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ConnectorTask = ObjectSerializer.deserialize(
+            const body: ListConnectorTasks200ResponseInner = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ConnectorTask", ""
-            ) as ConnectorTask;
+                "ListConnectorTasks200ResponseInner", ""
+            ) as ListConnectorTasks200ResponseInner;
             return body;
         }
 
@@ -649,22 +650,22 @@ export class PaymentsApiResponseProcessor {
      * @params response Response returned by the server for a request to listConnectorTasks
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listConnectorTasks(response: ResponseContext): Promise<Array<ConnectorTask> > {
+     public async listConnectorTasks(response: ResponseContext): Promise<Array<ListConnectorTasks200ResponseInner> > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<ConnectorTask> = ObjectSerializer.deserialize(
+            const body: Array<ListConnectorTasks200ResponseInner> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<ConnectorTask>", ""
-            ) as Array<ConnectorTask>;
+                "Array<ListConnectorTasks200ResponseInner>", ""
+            ) as Array<ListConnectorTasks200ResponseInner>;
             return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<ConnectorTask> = ObjectSerializer.deserialize(
+            const body: Array<ListConnectorTasks200ResponseInner> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<ConnectorTask>", ""
-            ) as Array<ConnectorTask>;
+                "Array<ListConnectorTasks200ResponseInner>", ""
+            ) as Array<ListConnectorTasks200ResponseInner>;
             return body;
         }
 

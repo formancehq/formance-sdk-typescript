@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **search**
-> void search(query)
+> Response search(query)
 
 Search with Query
 
@@ -16,13 +16,13 @@ Search with Query
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { SearchApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.SearchApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new SearchApi(configuration);
 
-let body:formance.SearchApiSearchRequest = {
+let body:SearchApiSearchRequest = {
   // Query
   query: {
     ledgers: [
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**void**
+**Response**
 
 ### Authorization
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details

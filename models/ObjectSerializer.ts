@@ -16,7 +16,8 @@ export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
-export * from '../models/ConnectorTask';
+export * from '../models/ConnectorTaskBase';
+export * from '../models/Connectors';
 export * from '../models/Contract';
 export * from '../models/CreateClientResponse';
 export * from '../models/CreateScopeResponse';
@@ -48,6 +49,7 @@ export * from '../models/ListAccounts200ResponseCursor';
 export * from '../models/ListAccounts200ResponseCursorAllOf';
 export * from '../models/ListAccounts400Response';
 export * from '../models/ListClientsResponse';
+export * from '../models/ListConnectorTasks200ResponseInner';
 export * from '../models/ListConnectorsConfigsResponse';
 export * from '../models/ListConnectorsConfigsResponseConnector';
 export * from '../models/ListConnectorsConfigsResponseConnectorKey';
@@ -78,11 +80,30 @@ export * from '../models/ScriptResult';
 export * from '../models/Secret';
 export * from '../models/SecretAllOf';
 export * from '../models/SecretOptions';
+export * from '../models/ServerInfo';
 export * from '../models/Stats';
 export * from '../models/StatsResponse';
 export * from '../models/StripeConfig';
 export * from '../models/StripeTask';
 export * from '../models/StripeTransferRequest';
+export * from '../models/TaskDescriptorBankingCircle';
+export * from '../models/TaskDescriptorBankingCircleAllOf';
+export * from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+export * from '../models/TaskDescriptorCurrencyCloud';
+export * from '../models/TaskDescriptorCurrencyCloudAllOf';
+export * from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+export * from '../models/TaskDescriptorDummyPay';
+export * from '../models/TaskDescriptorDummyPayAllOf';
+export * from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+export * from '../models/TaskDescriptorModulr';
+export * from '../models/TaskDescriptorModulrAllOf';
+export * from '../models/TaskDescriptorModulrAllOfDescriptor';
+export * from '../models/TaskDescriptorStripe';
+export * from '../models/TaskDescriptorStripeAllOf';
+export * from '../models/TaskDescriptorStripeAllOfDescriptor';
+export * from '../models/TaskDescriptorWise';
+export * from '../models/TaskDescriptorWiseAllOf';
+export * from '../models/TaskDescriptorWiseAllOfDescriptor';
 export * from '../models/Transaction';
 export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
@@ -112,7 +133,8 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTask } from '../models/ConnectorTask';
+import { ConnectorTaskBase  , ConnectorTaskBaseStatusEnum     } from '../models/ConnectorTaskBase';
+import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
@@ -144,6 +166,7 @@ import { ListAccounts200ResponseCursor } from '../models/ListAccounts200Response
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
 import { ListClientsResponse } from '../models/ListClientsResponse';
+import { ListConnectorTasks200ResponseInner  , ListConnectorTasks200ResponseInnerStatusEnum      } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
 import { ListConnectorsConfigsResponseConnector } from '../models/ListConnectorsConfigsResponseConnector';
 import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnectorsConfigsResponseConnectorKey';
@@ -174,11 +197,30 @@ import { ScriptResult , ScriptResultErrorCodeEnum     } from '../models/ScriptRe
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
+import { ServerInfo } from '../models/ServerInfo';
 import { Stats } from '../models/Stats';
 import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { TaskDescriptorBankingCircle  , TaskDescriptorBankingCircleStatusEnum      } from '../models/TaskDescriptorBankingCircle';
+import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
+import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorCurrencyCloud  , TaskDescriptorCurrencyCloudStatusEnum      } from '../models/TaskDescriptorCurrencyCloud';
+import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
+import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorDummyPay  , TaskDescriptorDummyPayStatusEnum      } from '../models/TaskDescriptorDummyPay';
+import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
+import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorModulr  , TaskDescriptorModulrStatusEnum      } from '../models/TaskDescriptorModulr';
+import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
+import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorStripe  , TaskDescriptorStripeStatusEnum      } from '../models/TaskDescriptorStripe';
+import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
+import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorWise  , TaskDescriptorWiseStatusEnum      } from '../models/TaskDescriptorWise';
+import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
+import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -210,10 +252,19 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
 
 let enumsMap: Set<string> = new Set<string>([
+    "ConnectorTaskBaseStatusEnum",
+    "Connectors",
     "ErrorCode",
+    "ListConnectorTasks200ResponseInnerStatusEnum",
     "PaymentSchemeEnum",
     "PaymentTypeEnum",
     "ScriptResultErrorCodeEnum",
+    "TaskDescriptorBankingCircleStatusEnum",
+    "TaskDescriptorCurrencyCloudStatusEnum",
+    "TaskDescriptorDummyPayStatusEnum",
+    "TaskDescriptorModulrStatusEnum",
+    "TaskDescriptorStripeStatusEnum",
+    "TaskDescriptorWiseStatusEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -235,7 +286,7 @@ let typeMap: {[index: string]: any} = {
     "ConfigUser": ConfigUser,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
-    "ConnectorTask": ConnectorTask,
+    "ConnectorTaskBase": ConnectorTaskBase,
     "Contract": Contract,
     "CreateClientResponse": CreateClientResponse,
     "CreateScopeResponse": CreateScopeResponse,
@@ -266,6 +317,7 @@ let typeMap: {[index: string]: any} = {
     "ListAccounts200ResponseCursorAllOf": ListAccounts200ResponseCursorAllOf,
     "ListAccounts400Response": ListAccounts400Response,
     "ListClientsResponse": ListClientsResponse,
+    "ListConnectorTasks200ResponseInner": ListConnectorTasks200ResponseInner,
     "ListConnectorsConfigsResponse": ListConnectorsConfigsResponse,
     "ListConnectorsConfigsResponseConnector": ListConnectorsConfigsResponseConnector,
     "ListConnectorsConfigsResponseConnectorKey": ListConnectorsConfigsResponseConnectorKey,
@@ -296,11 +348,30 @@ let typeMap: {[index: string]: any} = {
     "Secret": Secret,
     "SecretAllOf": SecretAllOf,
     "SecretOptions": SecretOptions,
+    "ServerInfo": ServerInfo,
     "Stats": Stats,
     "StatsResponse": StatsResponse,
     "StripeConfig": StripeConfig,
     "StripeTask": StripeTask,
     "StripeTransferRequest": StripeTransferRequest,
+    "TaskDescriptorBankingCircle": TaskDescriptorBankingCircle,
+    "TaskDescriptorBankingCircleAllOf": TaskDescriptorBankingCircleAllOf,
+    "TaskDescriptorBankingCircleAllOfDescriptor": TaskDescriptorBankingCircleAllOfDescriptor,
+    "TaskDescriptorCurrencyCloud": TaskDescriptorCurrencyCloud,
+    "TaskDescriptorCurrencyCloudAllOf": TaskDescriptorCurrencyCloudAllOf,
+    "TaskDescriptorCurrencyCloudAllOfDescriptor": TaskDescriptorCurrencyCloudAllOfDescriptor,
+    "TaskDescriptorDummyPay": TaskDescriptorDummyPay,
+    "TaskDescriptorDummyPayAllOf": TaskDescriptorDummyPayAllOf,
+    "TaskDescriptorDummyPayAllOfDescriptor": TaskDescriptorDummyPayAllOfDescriptor,
+    "TaskDescriptorModulr": TaskDescriptorModulr,
+    "TaskDescriptorModulrAllOf": TaskDescriptorModulrAllOf,
+    "TaskDescriptorModulrAllOfDescriptor": TaskDescriptorModulrAllOfDescriptor,
+    "TaskDescriptorStripe": TaskDescriptorStripe,
+    "TaskDescriptorStripeAllOf": TaskDescriptorStripeAllOf,
+    "TaskDescriptorStripeAllOfDescriptor": TaskDescriptorStripeAllOfDescriptor,
+    "TaskDescriptorWise": TaskDescriptorWise,
+    "TaskDescriptorWiseAllOf": TaskDescriptorWiseAllOf,
+    "TaskDescriptorWiseAllOfDescriptor": TaskDescriptorWiseAllOfDescriptor,
     "Transaction": Transaction,
     "TransactionData": TransactionData,
     "TransactionResponse": TransactionResponse,

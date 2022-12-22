@@ -16,13 +16,13 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { BalancesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.BalancesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BalancesApi(configuration);
 
-let body:formance.BalancesApiGetBalancesRequest = {
+let body:BalancesApiGetBalancesRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Filter balances involving given account, either as source or destination. (optional)
@@ -79,13 +79,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { BalancesApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.BalancesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BalancesApi(configuration);
 
-let body:formance.BalancesApiGetBalancesAggregatedRequest = {
+let body:BalancesApiGetBalancesAggregatedRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Filter balances involving given account, either as source or destination. (optional)

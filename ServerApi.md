@@ -15,11 +15,11 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { ServerApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.ServerApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ServerApi(configuration);
 
 let body:any = {};
 

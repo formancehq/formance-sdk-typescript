@@ -18,13 +18,13 @@ Method | HTTP request | Description
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { AccountsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.AccountsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AccountsApi(configuration);
 
-let body:formance.AccountsApiAddMetadataToAccountRequest = {
+let body:AccountsApiAddMetadataToAccountRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Exact address of the account. It must match the following regular expressions pattern: ``` ^\\w+(:\\w+)*$ ``` 
@@ -81,13 +81,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { AccountsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.AccountsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AccountsApi(configuration);
 
-let body:formance.AccountsApiCountAccountsRequest = {
+let body:AccountsApiCountAccountsRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Filter accounts by address pattern (regular expression placed between ^ and $). (optional)
@@ -140,13 +140,13 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { AccountsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.AccountsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AccountsApi(configuration);
 
-let body:formance.AccountsApiGetAccountRequest = {
+let body:AccountsApiGetAccountRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // string | Exact address of the account. It must match the following regular expressions pattern: ``` ^\\w+(:\\w+)*$ ``` 
@@ -198,13 +198,13 @@ List accounts from a ledger, sorted by address in descending order.
 
 
 ```typescript
-import { formance } from '@formancehq/formance';
+import { AccountsApi, createConfiguration } from '@formancehq/formance';
 import * as fs from 'fs';
 
-const configuration = formance.createConfiguration();
-const apiInstance = new formance.AccountsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AccountsApi(configuration);
 
-let body:formance.AccountsApiListAccountsRequest = {
+let body:AccountsApiListAccountsRequest = {
   // string | Name of the ledger.
   ledger: "ledger001",
   // number | The maximum number of results to return per page (optional)
