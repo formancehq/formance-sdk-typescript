@@ -16,7 +16,6 @@ export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
-export * from '../models/ConnectorTaskBase';
 export * from '../models/Connectors';
 export * from '../models/Contract';
 export * from '../models/CreateClientResponse';
@@ -25,8 +24,13 @@ export * from '../models/CreateSecretResponse';
 export * from '../models/CreateTransaction400Response';
 export * from '../models/CreateTransaction409Response';
 export * from '../models/CreateTransactions400Response';
+export * from '../models/CreateWalletRequest';
+export * from '../models/CreateWalletResponse';
+export * from '../models/CreditWalletRequest';
 export * from '../models/CurrencyCloudConfig';
 export * from '../models/Cursor';
+export * from '../models/DebitWalletRequest';
+export * from '../models/DebitWalletResponse';
 export * from '../models/DummyPayConfig';
 export * from '../models/ErrorCode';
 export * from '../models/ErrorResponse';
@@ -37,12 +41,16 @@ export * from '../models/GetBalances200ResponseCursor';
 export * from '../models/GetBalances200ResponseCursorAllOf';
 export * from '../models/GetBalancesAggregated200Response';
 export * from '../models/GetBalancesAggregated400Response';
+export * from '../models/GetHoldsResponse';
 export * from '../models/GetManyConfigs200Response';
 export * from '../models/GetManyConfigs200ResponseCursor';
 export * from '../models/GetManyConfigs200ResponseCursorAllOf';
 export * from '../models/GetPaymentResponse';
 export * from '../models/GetTransaction400Response';
 export * from '../models/GetTransaction404Response';
+export * from '../models/GetWalletResponse';
+export * from '../models/GetWalletsResponse';
+export * from '../models/Hold';
 export * from '../models/LedgerStorage';
 export * from '../models/ListAccounts200Response';
 export * from '../models/ListAccounts200ResponseCursor';
@@ -63,6 +71,7 @@ export * from '../models/ListUsersResponse';
 export * from '../models/Mapping';
 export * from '../models/MappingResponse';
 export * from '../models/ModulrConfig';
+export * from '../models/Monetary';
 export * from '../models/Payment';
 export * from '../models/Posting';
 export * from '../models/Query';
@@ -87,30 +96,28 @@ export * from '../models/StripeConfig';
 export * from '../models/StripeTask';
 export * from '../models/StripeTransferRequest';
 export * from '../models/TaskDescriptorBankingCircle';
-export * from '../models/TaskDescriptorBankingCircleAllOf';
-export * from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+export * from '../models/TaskDescriptorBankingCircleDescriptor';
 export * from '../models/TaskDescriptorCurrencyCloud';
-export * from '../models/TaskDescriptorCurrencyCloudAllOf';
-export * from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+export * from '../models/TaskDescriptorCurrencyCloudDescriptor';
 export * from '../models/TaskDescriptorDummyPay';
-export * from '../models/TaskDescriptorDummyPayAllOf';
-export * from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+export * from '../models/TaskDescriptorDummyPayDescriptor';
 export * from '../models/TaskDescriptorModulr';
-export * from '../models/TaskDescriptorModulrAllOf';
-export * from '../models/TaskDescriptorModulrAllOfDescriptor';
+export * from '../models/TaskDescriptorModulrDescriptor';
 export * from '../models/TaskDescriptorStripe';
-export * from '../models/TaskDescriptorStripeAllOf';
-export * from '../models/TaskDescriptorStripeAllOfDescriptor';
+export * from '../models/TaskDescriptorStripeDescriptor';
 export * from '../models/TaskDescriptorWise';
-export * from '../models/TaskDescriptorWiseAllOf';
-export * from '../models/TaskDescriptorWiseAllOfDescriptor';
+export * from '../models/TaskDescriptorWiseDescriptor';
 export * from '../models/Transaction';
 export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
 export * from '../models/Transactions';
 export * from '../models/TransactionsResponse';
+export * from '../models/UpdateWalletRequest';
 export * from '../models/User';
 export * from '../models/Volume';
+export * from '../models/Wallet';
+export * from '../models/WalletWithBalances';
+export * from '../models/WalletWithBalancesAllOf';
 export * from '../models/WebhooksConfig';
 export * from '../models/WebhooksCursor';
 export * from '../models/WiseConfig';
@@ -133,7 +140,6 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTaskBase  , ConnectorTaskBaseStatusEnum     } from '../models/ConnectorTaskBase';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
@@ -142,8 +148,13 @@ import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse   } from '../models/ErrorResponse';
@@ -154,12 +165,16 @@ import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCu
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
 import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
 import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { GetWalletsResponse } from '../models/GetWalletsResponse';
+import { Hold } from '../models/Hold';
 import { LedgerStorage } from '../models/LedgerStorage';
 import { ListAccounts200Response } from '../models/ListAccounts200Response';
 import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
@@ -180,6 +195,7 @@ import { ListUsersResponse } from '../models/ListUsersResponse';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment  , PaymentSchemeEnum   , PaymentTypeEnum        } from '../models/Payment';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
@@ -204,30 +220,28 @@ import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { TaskDescriptorBankingCircle  , TaskDescriptorBankingCircleStatusEnum      } from '../models/TaskDescriptorBankingCircle';
-import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
-import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud  , TaskDescriptorCurrencyCloudStatusEnum      } from '../models/TaskDescriptorCurrencyCloud';
-import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
-import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorCurrencyCloudDescriptor } from '../models/TaskDescriptorCurrencyCloudDescriptor';
 import { TaskDescriptorDummyPay  , TaskDescriptorDummyPayStatusEnum      } from '../models/TaskDescriptorDummyPay';
-import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
-import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorDummyPayDescriptor } from '../models/TaskDescriptorDummyPayDescriptor';
 import { TaskDescriptorModulr  , TaskDescriptorModulrStatusEnum      } from '../models/TaskDescriptorModulr';
-import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
-import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorModulrDescriptor } from '../models/TaskDescriptorModulrDescriptor';
 import { TaskDescriptorStripe  , TaskDescriptorStripeStatusEnum      } from '../models/TaskDescriptorStripe';
-import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
-import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise  , TaskDescriptorWiseStatusEnum      } from '../models/TaskDescriptorWise';
-import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
-import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
+import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesAllOf } from '../models/WalletWithBalancesAllOf';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
@@ -252,7 +266,6 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
 
 let enumsMap: Set<string> = new Set<string>([
-    "ConnectorTaskBaseStatusEnum",
     "Connectors",
     "ErrorCode",
     "ListConnectorTasks200ResponseInnerStatusEnum",
@@ -286,7 +299,6 @@ let typeMap: {[index: string]: any} = {
     "ConfigUser": ConfigUser,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
-    "ConnectorTaskBase": ConnectorTaskBase,
     "Contract": Contract,
     "CreateClientResponse": CreateClientResponse,
     "CreateScopeResponse": CreateScopeResponse,
@@ -294,8 +306,13 @@ let typeMap: {[index: string]: any} = {
     "CreateTransaction400Response": CreateTransaction400Response,
     "CreateTransaction409Response": CreateTransaction409Response,
     "CreateTransactions400Response": CreateTransactions400Response,
+    "CreateWalletRequest": CreateWalletRequest,
+    "CreateWalletResponse": CreateWalletResponse,
+    "CreditWalletRequest": CreditWalletRequest,
     "CurrencyCloudConfig": CurrencyCloudConfig,
     "Cursor": Cursor,
+    "DebitWalletRequest": DebitWalletRequest,
+    "DebitWalletResponse": DebitWalletResponse,
     "DummyPayConfig": DummyPayConfig,
     "ErrorResponse": ErrorResponse,
     "GetAccount200Response": GetAccount200Response,
@@ -305,12 +322,16 @@ let typeMap: {[index: string]: any} = {
     "GetBalances200ResponseCursorAllOf": GetBalances200ResponseCursorAllOf,
     "GetBalancesAggregated200Response": GetBalancesAggregated200Response,
     "GetBalancesAggregated400Response": GetBalancesAggregated400Response,
+    "GetHoldsResponse": GetHoldsResponse,
     "GetManyConfigs200Response": GetManyConfigs200Response,
     "GetManyConfigs200ResponseCursor": GetManyConfigs200ResponseCursor,
     "GetManyConfigs200ResponseCursorAllOf": GetManyConfigs200ResponseCursorAllOf,
     "GetPaymentResponse": GetPaymentResponse,
     "GetTransaction400Response": GetTransaction400Response,
     "GetTransaction404Response": GetTransaction404Response,
+    "GetWalletResponse": GetWalletResponse,
+    "GetWalletsResponse": GetWalletsResponse,
+    "Hold": Hold,
     "LedgerStorage": LedgerStorage,
     "ListAccounts200Response": ListAccounts200Response,
     "ListAccounts200ResponseCursor": ListAccounts200ResponseCursor,
@@ -331,6 +352,7 @@ let typeMap: {[index: string]: any} = {
     "Mapping": Mapping,
     "MappingResponse": MappingResponse,
     "ModulrConfig": ModulrConfig,
+    "Monetary": Monetary,
     "Payment": Payment,
     "Posting": Posting,
     "Query": Query,
@@ -355,30 +377,28 @@ let typeMap: {[index: string]: any} = {
     "StripeTask": StripeTask,
     "StripeTransferRequest": StripeTransferRequest,
     "TaskDescriptorBankingCircle": TaskDescriptorBankingCircle,
-    "TaskDescriptorBankingCircleAllOf": TaskDescriptorBankingCircleAllOf,
-    "TaskDescriptorBankingCircleAllOfDescriptor": TaskDescriptorBankingCircleAllOfDescriptor,
+    "TaskDescriptorBankingCircleDescriptor": TaskDescriptorBankingCircleDescriptor,
     "TaskDescriptorCurrencyCloud": TaskDescriptorCurrencyCloud,
-    "TaskDescriptorCurrencyCloudAllOf": TaskDescriptorCurrencyCloudAllOf,
-    "TaskDescriptorCurrencyCloudAllOfDescriptor": TaskDescriptorCurrencyCloudAllOfDescriptor,
+    "TaskDescriptorCurrencyCloudDescriptor": TaskDescriptorCurrencyCloudDescriptor,
     "TaskDescriptorDummyPay": TaskDescriptorDummyPay,
-    "TaskDescriptorDummyPayAllOf": TaskDescriptorDummyPayAllOf,
-    "TaskDescriptorDummyPayAllOfDescriptor": TaskDescriptorDummyPayAllOfDescriptor,
+    "TaskDescriptorDummyPayDescriptor": TaskDescriptorDummyPayDescriptor,
     "TaskDescriptorModulr": TaskDescriptorModulr,
-    "TaskDescriptorModulrAllOf": TaskDescriptorModulrAllOf,
-    "TaskDescriptorModulrAllOfDescriptor": TaskDescriptorModulrAllOfDescriptor,
+    "TaskDescriptorModulrDescriptor": TaskDescriptorModulrDescriptor,
     "TaskDescriptorStripe": TaskDescriptorStripe,
-    "TaskDescriptorStripeAllOf": TaskDescriptorStripeAllOf,
-    "TaskDescriptorStripeAllOfDescriptor": TaskDescriptorStripeAllOfDescriptor,
+    "TaskDescriptorStripeDescriptor": TaskDescriptorStripeDescriptor,
     "TaskDescriptorWise": TaskDescriptorWise,
-    "TaskDescriptorWiseAllOf": TaskDescriptorWiseAllOf,
-    "TaskDescriptorWiseAllOfDescriptor": TaskDescriptorWiseAllOfDescriptor,
+    "TaskDescriptorWiseDescriptor": TaskDescriptorWiseDescriptor,
     "Transaction": Transaction,
     "TransactionData": TransactionData,
     "TransactionResponse": TransactionResponse,
     "Transactions": Transactions,
     "TransactionsResponse": TransactionsResponse,
+    "UpdateWalletRequest": UpdateWalletRequest,
     "User": User,
     "Volume": Volume,
+    "Wallet": Wallet,
+    "WalletWithBalances": WalletWithBalances,
+    "WalletWithBalancesAllOf": WalletWithBalancesAllOf,
     "WebhooksConfig": WebhooksConfig,
     "WebhooksCursor": WebhooksCursor,
     "WiseConfig": WiseConfig,

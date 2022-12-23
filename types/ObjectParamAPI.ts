@@ -19,7 +19,6 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTaskBase } from '../models/ConnectorTaskBase';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
@@ -28,8 +27,13 @@ import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse } from '../models/ErrorResponse';
@@ -40,12 +44,16 @@ import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCu
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
 import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
 import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { GetWalletsResponse } from '../models/GetWalletsResponse';
+import { Hold } from '../models/Hold';
 import { LedgerStorage } from '../models/LedgerStorage';
 import { ListAccounts200Response } from '../models/ListAccounts200Response';
 import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
@@ -66,6 +74,7 @@ import { ListUsersResponse } from '../models/ListUsersResponse';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment } from '../models/Payment';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
@@ -90,30 +99,28 @@ import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
-import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
-import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
-import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
-import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorCurrencyCloudDescriptor } from '../models/TaskDescriptorCurrencyCloudDescriptor';
 import { TaskDescriptorDummyPay } from '../models/TaskDescriptorDummyPay';
-import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
-import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorDummyPayDescriptor } from '../models/TaskDescriptorDummyPayDescriptor';
 import { TaskDescriptorModulr } from '../models/TaskDescriptorModulr';
-import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
-import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorModulrDescriptor } from '../models/TaskDescriptorModulrDescriptor';
 import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
-import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
-import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
-import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
-import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
+import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesAllOf } from '../models/WalletWithBalancesAllOf';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
@@ -1401,6 +1408,213 @@ export class ObjectUsersApi {
      */
     public readUser(param: UsersApiReadUserRequest, options?: Configuration): Promise<ReadUserResponse> {
         return this.api.readUser(param.userId,  options).toPromise();
+    }
+
+}
+
+import { ObservableWalletsApi } from "./ObservableAPI";
+import { WalletsApiRequestFactory, WalletsApiResponseProcessor} from "../apis/WalletsApi";
+
+export interface WalletsApiConfirmHoldRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApiconfirmHold
+     */
+    id: string
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApiconfirmHold
+     */
+    holdId: string
+}
+
+export interface WalletsApiCreateWalletRequest {
+    /**
+     * 
+     * @type CreateWalletRequest
+     * @memberof WalletsApicreateWallet
+     */
+    createWalletRequest?: CreateWalletRequest
+}
+
+export interface WalletsApiCreditWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApicreditWallet
+     */
+    id: string
+    /**
+     * 
+     * @type CreditWalletRequest
+     * @memberof WalletsApicreditWallet
+     */
+    creditWalletRequest?: CreditWalletRequest
+}
+
+export interface WalletsApiDebitWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApidebitWallet
+     */
+    id: string
+    /**
+     * 
+     * @type DebitWalletRequest
+     * @memberof WalletsApidebitWallet
+     */
+    debitWalletRequest?: DebitWalletRequest
+}
+
+export interface WalletsApiGetHoldsRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetHolds
+     */
+    id: string
+}
+
+export interface WalletsApiGetWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetWallet
+     */
+    id: string
+}
+
+export interface WalletsApiGetWalletsRequest {
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApigetWallets
+     */
+    pageSize?: number
+    /**
+     * Pagination cursor, will return accounts after given address, in descending order.
+     * @type string
+     * @memberof WalletsApigetWallets
+     */
+    after?: string
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @type string
+     * @memberof WalletsApigetWallets
+     */
+    paginationToken?: string
+}
+
+export interface WalletsApiUpdateWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApiupdateWallet
+     */
+    id: string
+    /**
+     * 
+     * @type UpdateWalletRequest
+     * @memberof WalletsApiupdateWallet
+     */
+    updateWalletRequest?: UpdateWalletRequest
+}
+
+export interface WalletsApiVoidHoldRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApivoidHold
+     */
+    id: string
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApivoidHold
+     */
+    holdId: string
+}
+
+export class ObjectWalletsApi {
+    private api: ObservableWalletsApi
+
+    public constructor(configuration: Configuration, requestFactory?: WalletsApiRequestFactory, responseProcessor?: WalletsApiResponseProcessor) {
+        this.api = new ObservableWalletsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Confirm a hold
+     * @param param the request object
+     */
+    public confirmHold(param: WalletsApiConfirmHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.confirmHold(param.id, param.holdId,  options).toPromise();
+    }
+
+    /**
+     * Create a new wallet
+     * @param param the request object
+     */
+    public createWallet(param: WalletsApiCreateWalletRequest = {}, options?: Configuration): Promise<CreateWalletResponse> {
+        return this.api.createWallet(param.createWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Credit a wallet
+     * @param param the request object
+     */
+    public creditWallet(param: WalletsApiCreditWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.creditWallet(param.id, param.creditWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Debit a wallet
+     * @param param the request object
+     */
+    public debitWallet(param: WalletsApiDebitWalletRequest, options?: Configuration): Promise<DebitWalletResponse | void> {
+        return this.api.debitWallet(param.id, param.debitWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Get all holds for a wallet
+     * @param param the request object
+     */
+    public getHolds(param: WalletsApiGetHoldsRequest, options?: Configuration): Promise<GetHoldsResponse> {
+        return this.api.getHolds(param.id,  options).toPromise();
+    }
+
+    /**
+     * Get a wallet
+     * @param param the request object
+     */
+    public getWallet(param: WalletsApiGetWalletRequest, options?: Configuration): Promise<GetWalletResponse> {
+        return this.api.getWallet(param.id,  options).toPromise();
+    }
+
+    /**
+     * Get all wallets
+     * @param param the request object
+     */
+    public getWallets(param: WalletsApiGetWalletsRequest = {}, options?: Configuration): Promise<GetWalletsResponse> {
+        return this.api.getWallets(param.pageSize, param.after, param.paginationToken,  options).toPromise();
+    }
+
+    /**
+     * Update a wallet
+     * @param param the request object
+     */
+    public updateWallet(param: WalletsApiUpdateWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.updateWallet(param.id, param.updateWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Cancel a hold
+     * @param param the request object
+     */
+    public voidHold(param: WalletsApiVoidHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.voidHold(param.id, param.holdId,  options).toPromise();
     }
 
 }
