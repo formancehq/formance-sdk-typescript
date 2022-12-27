@@ -12,21 +12,35 @@
 
 import { HttpFile } from '../http/http';
 
-export class ServerInfo {
-    'version': string;
+export class TaskDescriptorModulrDescriptor {
+    'name'?: string;
+    'key'?: string;
+    'accountID'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "version",
-            "baseName": "version",
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "key",
+            "baseName": "key",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "accountID",
+            "baseName": "accountID",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ServerInfo.attributeTypeMap;
+        return TaskDescriptorModulrDescriptor.attributeTypeMap;
     }
 
     public constructor() {

@@ -16,7 +16,6 @@ export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
-export * from '../models/ConnectorTaskBase';
 export * from '../models/Connectors';
 export * from '../models/Contract';
 export * from '../models/CreateClientResponse';
@@ -87,23 +86,17 @@ export * from '../models/StripeConfig';
 export * from '../models/StripeTask';
 export * from '../models/StripeTransferRequest';
 export * from '../models/TaskDescriptorBankingCircle';
-export * from '../models/TaskDescriptorBankingCircleAllOf';
-export * from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+export * from '../models/TaskDescriptorBankingCircleDescriptor';
 export * from '../models/TaskDescriptorCurrencyCloud';
-export * from '../models/TaskDescriptorCurrencyCloudAllOf';
-export * from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+export * from '../models/TaskDescriptorCurrencyCloudDescriptor';
 export * from '../models/TaskDescriptorDummyPay';
-export * from '../models/TaskDescriptorDummyPayAllOf';
-export * from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+export * from '../models/TaskDescriptorDummyPayDescriptor';
 export * from '../models/TaskDescriptorModulr';
-export * from '../models/TaskDescriptorModulrAllOf';
-export * from '../models/TaskDescriptorModulrAllOfDescriptor';
+export * from '../models/TaskDescriptorModulrDescriptor';
 export * from '../models/TaskDescriptorStripe';
-export * from '../models/TaskDescriptorStripeAllOf';
-export * from '../models/TaskDescriptorStripeAllOfDescriptor';
+export * from '../models/TaskDescriptorStripeDescriptor';
 export * from '../models/TaskDescriptorWise';
-export * from '../models/TaskDescriptorWiseAllOf';
-export * from '../models/TaskDescriptorWiseAllOfDescriptor';
+export * from '../models/TaskDescriptorWiseDescriptor';
 export * from '../models/Transaction';
 export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
@@ -133,7 +126,6 @@ import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
-import { ConnectorTaskBase  , ConnectorTaskBaseStatusEnum     } from '../models/ConnectorTaskBase';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
 import { CreateClientResponse } from '../models/CreateClientResponse';
@@ -204,23 +196,17 @@ import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
 import { TaskDescriptorBankingCircle  , TaskDescriptorBankingCircleStatusEnum      } from '../models/TaskDescriptorBankingCircle';
-import { TaskDescriptorBankingCircleAllOf } from '../models/TaskDescriptorBankingCircleAllOf';
-import { TaskDescriptorBankingCircleAllOfDescriptor } from '../models/TaskDescriptorBankingCircleAllOfDescriptor';
+import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud  , TaskDescriptorCurrencyCloudStatusEnum      } from '../models/TaskDescriptorCurrencyCloud';
-import { TaskDescriptorCurrencyCloudAllOf } from '../models/TaskDescriptorCurrencyCloudAllOf';
-import { TaskDescriptorCurrencyCloudAllOfDescriptor } from '../models/TaskDescriptorCurrencyCloudAllOfDescriptor';
+import { TaskDescriptorCurrencyCloudDescriptor } from '../models/TaskDescriptorCurrencyCloudDescriptor';
 import { TaskDescriptorDummyPay  , TaskDescriptorDummyPayStatusEnum      } from '../models/TaskDescriptorDummyPay';
-import { TaskDescriptorDummyPayAllOf } from '../models/TaskDescriptorDummyPayAllOf';
-import { TaskDescriptorDummyPayAllOfDescriptor } from '../models/TaskDescriptorDummyPayAllOfDescriptor';
+import { TaskDescriptorDummyPayDescriptor } from '../models/TaskDescriptorDummyPayDescriptor';
 import { TaskDescriptorModulr  , TaskDescriptorModulrStatusEnum      } from '../models/TaskDescriptorModulr';
-import { TaskDescriptorModulrAllOf } from '../models/TaskDescriptorModulrAllOf';
-import { TaskDescriptorModulrAllOfDescriptor } from '../models/TaskDescriptorModulrAllOfDescriptor';
+import { TaskDescriptorModulrDescriptor } from '../models/TaskDescriptorModulrDescriptor';
 import { TaskDescriptorStripe  , TaskDescriptorStripeStatusEnum      } from '../models/TaskDescriptorStripe';
-import { TaskDescriptorStripeAllOf } from '../models/TaskDescriptorStripeAllOf';
-import { TaskDescriptorStripeAllOfDescriptor } from '../models/TaskDescriptorStripeAllOfDescriptor';
+import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise  , TaskDescriptorWiseStatusEnum      } from '../models/TaskDescriptorWise';
-import { TaskDescriptorWiseAllOf } from '../models/TaskDescriptorWiseAllOf';
-import { TaskDescriptorWiseAllOfDescriptor } from '../models/TaskDescriptorWiseAllOfDescriptor';
+import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
@@ -252,7 +238,6 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
 
 let enumsMap: Set<string> = new Set<string>([
-    "ConnectorTaskBaseStatusEnum",
     "Connectors",
     "ErrorCode",
     "ListConnectorTasks200ResponseInnerStatusEnum",
@@ -286,7 +271,6 @@ let typeMap: {[index: string]: any} = {
     "ConfigUser": ConfigUser,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
-    "ConnectorTaskBase": ConnectorTaskBase,
     "Contract": Contract,
     "CreateClientResponse": CreateClientResponse,
     "CreateScopeResponse": CreateScopeResponse,
@@ -355,23 +339,17 @@ let typeMap: {[index: string]: any} = {
     "StripeTask": StripeTask,
     "StripeTransferRequest": StripeTransferRequest,
     "TaskDescriptorBankingCircle": TaskDescriptorBankingCircle,
-    "TaskDescriptorBankingCircleAllOf": TaskDescriptorBankingCircleAllOf,
-    "TaskDescriptorBankingCircleAllOfDescriptor": TaskDescriptorBankingCircleAllOfDescriptor,
+    "TaskDescriptorBankingCircleDescriptor": TaskDescriptorBankingCircleDescriptor,
     "TaskDescriptorCurrencyCloud": TaskDescriptorCurrencyCloud,
-    "TaskDescriptorCurrencyCloudAllOf": TaskDescriptorCurrencyCloudAllOf,
-    "TaskDescriptorCurrencyCloudAllOfDescriptor": TaskDescriptorCurrencyCloudAllOfDescriptor,
+    "TaskDescriptorCurrencyCloudDescriptor": TaskDescriptorCurrencyCloudDescriptor,
     "TaskDescriptorDummyPay": TaskDescriptorDummyPay,
-    "TaskDescriptorDummyPayAllOf": TaskDescriptorDummyPayAllOf,
-    "TaskDescriptorDummyPayAllOfDescriptor": TaskDescriptorDummyPayAllOfDescriptor,
+    "TaskDescriptorDummyPayDescriptor": TaskDescriptorDummyPayDescriptor,
     "TaskDescriptorModulr": TaskDescriptorModulr,
-    "TaskDescriptorModulrAllOf": TaskDescriptorModulrAllOf,
-    "TaskDescriptorModulrAllOfDescriptor": TaskDescriptorModulrAllOfDescriptor,
+    "TaskDescriptorModulrDescriptor": TaskDescriptorModulrDescriptor,
     "TaskDescriptorStripe": TaskDescriptorStripe,
-    "TaskDescriptorStripeAllOf": TaskDescriptorStripeAllOf,
-    "TaskDescriptorStripeAllOfDescriptor": TaskDescriptorStripeAllOfDescriptor,
+    "TaskDescriptorStripeDescriptor": TaskDescriptorStripeDescriptor,
     "TaskDescriptorWise": TaskDescriptorWise,
-    "TaskDescriptorWiseAllOf": TaskDescriptorWiseAllOf,
-    "TaskDescriptorWiseAllOfDescriptor": TaskDescriptorWiseAllOfDescriptor,
+    "TaskDescriptorWiseDescriptor": TaskDescriptorWiseDescriptor,
     "Transaction": Transaction,
     "TransactionData": TransactionData,
     "TransactionResponse": TransactionResponse,
