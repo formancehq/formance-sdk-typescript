@@ -7,16 +7,17 @@ import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount4
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
@@ -39,9 +40,6 @@ import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCu
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
@@ -1401,44 +1399,44 @@ export class ObjectUsersApi {
 import { ObservableWebhooksApi } from "./ObservableAPI";
 import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
 
-export interface WebhooksApiActivateOneConfigRequest {
+export interface WebhooksApiActivateConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApiactivateOneConfig
+     * @memberof WebhooksApiactivateConfig
      */
     id: string
 }
 
-export interface WebhooksApiChangeOneConfigSecretRequest {
+export interface WebhooksApiChangeConfigSecretRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @memberof WebhooksApichangeConfigSecret
      */
     id: string
     /**
      * 
-     * @type ChangeOneConfigSecretRequest
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @type ConfigChangeSecret
+     * @memberof WebhooksApichangeConfigSecret
      */
-    changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest
+    configChangeSecret?: ConfigChangeSecret
 }
 
-export interface WebhooksApiDeactivateOneConfigRequest {
+export interface WebhooksApiDeactivateConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApideactivateOneConfig
+     * @memberof WebhooksApideactivateConfig
      */
     id: string
 }
 
-export interface WebhooksApiDeleteOneConfigRequest {
+export interface WebhooksApiDeleteConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApideleteOneConfig
+     * @memberof WebhooksApideleteConfig
      */
     id: string
 }
@@ -1458,20 +1456,20 @@ export interface WebhooksApiGetManyConfigsRequest {
     endpoint?: string
 }
 
-export interface WebhooksApiInsertOneConfigRequest {
+export interface WebhooksApiInsertConfigRequest {
     /**
      * 
      * @type ConfigUser
-     * @memberof WebhooksApiinsertOneConfig
+     * @memberof WebhooksApiinsertConfig
      */
     configUser: ConfigUser
 }
 
-export interface WebhooksApiTestOneConfigRequest {
+export interface WebhooksApiTestConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApitestOneConfig
+     * @memberof WebhooksApitestConfig
      */
     id: string
 }
@@ -1484,36 +1482,39 @@ export class ObjectWebhooksApi {
     }
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param param the request object
      */
-    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.activateOneConfig(param.id,  options).toPromise();
+    public activateConfig(param: WebhooksApiActivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.activateConfig(param.id,  options).toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param param the request object
      */
-    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.changeOneConfigSecret(param.id, param.changeOneConfigSecretRequest,  options).toPromise();
+    public changeConfigSecret(param: WebhooksApiChangeConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.changeConfigSecret(param.id, param.configChangeSecret,  options).toPromise();
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param param the request object
      */
-    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.deactivateOneConfig(param.id,  options).toPromise();
+    public deactivateConfig(param: WebhooksApiDeactivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.deactivateConfig(param.id,  options).toPromise();
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param param the request object
      */
-    public deleteOneConfig(param: WebhooksApiDeleteOneConfigRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOneConfig(param.id,  options).toPromise();
+    public deleteConfig(param: WebhooksApiDeleteConfigRequest, options?: Configuration): Promise<void> {
+        return this.api.deleteConfig(param.id,  options).toPromise();
     }
 
     /**
@@ -1521,26 +1522,26 @@ export class ObjectWebhooksApi {
      * Get many configs
      * @param param the request object
      */
-    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<ConfigsResponse> {
         return this.api.getManyConfigs(param.id, param.endpoint,  options).toPromise();
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param param the request object
      */
-    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.insertOneConfig(param.configUser,  options).toPromise();
+    public insertConfig(param: WebhooksApiInsertConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.insertConfig(param.configUser,  options).toPromise();
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param param the request object
      */
-    public testOneConfig(param: WebhooksApiTestOneConfigRequest, options?: Configuration): Promise<AttemptResponse> {
-        return this.api.testOneConfig(param.id,  options).toPromise();
+    public testConfig(param: WebhooksApiTestConfigRequest, options?: Configuration): Promise<AttemptResponse> {
+        return this.api.testConfig(param.id,  options).toPromise();
     }
 
 }

@@ -8,16 +8,17 @@ import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount4
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
@@ -40,9 +41,6 @@ import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCu
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
@@ -1558,11 +1556,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param id Config ID
      */
-    public activateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.activateOneConfig(id, _options);
+    public activateConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.activateConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1576,18 +1575,18 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.activateOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.activateConfig(rsp)));
             }));
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
-     * @param changeOneConfigSecretRequest 
+     * @param configChangeSecret 
      */
-    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.changeOneConfigSecret(id, changeOneConfigSecretRequest, _options);
+    public changeConfigSecret(id: string, configChangeSecret?: ConfigChangeSecret, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.changeConfigSecret(id, configChangeSecret, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1601,16 +1600,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.changeOneConfigSecret(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.changeConfigSecret(rsp)));
             }));
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param id Config ID
      */
-    public deactivateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.deactivateOneConfig(id, _options);
+    public deactivateConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.deactivateConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1624,16 +1624,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deactivateOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deactivateConfig(rsp)));
             }));
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param id Config ID
      */
-    public deleteOneConfig(id: string, _options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.deleteOneConfig(id, _options);
+    public deleteConfig(id: string, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.deleteConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1647,7 +1648,7 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteConfig(rsp)));
             }));
     }
 
@@ -1657,7 +1658,7 @@ export class ObservableWebhooksApi {
      * @param id Optional filter by Config ID
      * @param endpoint Optional filter by endpoint URL
      */
-    public getManyConfigs(id?: string, endpoint?: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public getManyConfigs(id?: string, endpoint?: string, _options?: Configuration): Observable<ConfigsResponse> {
         const requestContextPromise = this.requestFactory.getManyConfigs(id, endpoint, _options);
 
         // build promise chain
@@ -1677,12 +1678,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param configUser 
      */
-    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.insertOneConfig(configUser, _options);
+    public insertConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.insertConfig(configUser, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1696,17 +1697,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertConfig(rsp)));
             }));
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param id Config ID
      */
-    public testOneConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
-        const requestContextPromise = this.requestFactory.testOneConfig(id, _options);
+    public testConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
+        const requestContextPromise = this.requestFactory.testConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1720,7 +1721,7 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testConfig(rsp)));
             }));
     }
 
