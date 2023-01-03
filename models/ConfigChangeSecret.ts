@@ -12,41 +12,21 @@
 
 import { HttpFile } from '../http/http';
 
-export class StripeConfig {
-    /**
-    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe api
-    */
-    'pollingPeriod'?: string;
-    'apiKey': string;
-    /**
-    * Number of BalanceTransaction to fetch at each polling interval. 
-    */
-    'pageSize'?: number;
+export class ConfigChangeSecret {
+    'secret'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pollingPeriod",
-            "baseName": "pollingPeriod",
+            "name": "secret",
+            "baseName": "secret",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "apiKey",
-            "baseName": "apiKey",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "pageSize",
-            "baseName": "pageSize",
-            "type": "number",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StripeConfig.attributeTypeMap;
+        return ConfigChangeSecret.attributeTypeMap;
     }
 
     public constructor() {

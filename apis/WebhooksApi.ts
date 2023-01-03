@@ -11,10 +11,10 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { AttemptResponse } from '../models/AttemptResponse';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
+import { ConfigsResponse } from '../models/ConfigsResponse';
 
 /**
  * no description
@@ -22,15 +22,16 @@ import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
 export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param id Config ID
      */
-    public async activateOneConfig(id: string, _options?: Configuration): Promise<RequestContext> {
+    public async activateConfig(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new RequiredError("WebhooksApi", "activateOneConfig", "id");
+            throw new RequiredError("WebhooksApi", "activateConfig", "id");
         }
 
 
@@ -59,17 +60,17 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
-     * @param changeOneConfigSecretRequest 
+     * @param configChangeSecret 
      */
-    public async changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Promise<RequestContext> {
+    public async changeConfigSecret(id: string, configChangeSecret?: ConfigChangeSecret, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new RequiredError("WebhooksApi", "changeOneConfigSecret", "id");
+            throw new RequiredError("WebhooksApi", "changeConfigSecret", "id");
         }
 
 
@@ -89,7 +90,7 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(changeOneConfigSecretRequest, "ChangeOneConfigSecretRequest", ""),
+            ObjectSerializer.serialize(configChangeSecret, "ConfigChangeSecret", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -110,15 +111,16 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param id Config ID
      */
-    public async deactivateOneConfig(id: string, _options?: Configuration): Promise<RequestContext> {
+    public async deactivateConfig(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new RequiredError("WebhooksApi", "deactivateOneConfig", "id");
+            throw new RequiredError("WebhooksApi", "deactivateConfig", "id");
         }
 
 
@@ -147,15 +149,16 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param id Config ID
      */
-    public async deleteOneConfig(id: string, _options?: Configuration): Promise<RequestContext> {
+    public async deleteConfig(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new RequiredError("WebhooksApi", "deleteOneConfig", "id");
+            throw new RequiredError("WebhooksApi", "deleteConfig", "id");
         }
 
 
@@ -228,16 +231,16 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param configUser 
      */
-    public async insertOneConfig(configUser: ConfigUser, _options?: Configuration): Promise<RequestContext> {
+    public async insertConfig(configUser: ConfigUser, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'configUser' is not null or undefined
         if (configUser === null || configUser === undefined) {
-            throw new RequiredError("WebhooksApi", "insertOneConfig", "configUser");
+            throw new RequiredError("WebhooksApi", "insertConfig", "configUser");
         }
 
 
@@ -276,16 +279,16 @@ export class WebhooksApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param id Config ID
      */
-    public async testOneConfig(id: string, _options?: Configuration): Promise<RequestContext> {
+    public async testConfig(id: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'id' is not null or undefined
         if (id === null || id === undefined) {
-            throw new RequiredError("WebhooksApi", "testOneConfig", "id");
+            throw new RequiredError("WebhooksApi", "testConfig", "id");
         }
 
 
@@ -321,10 +324,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to activateOneConfig
+     * @params response Response returned by the server for a request to activateConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async activateOneConfig(response: ResponseContext): Promise<ConfigResponse > {
+     public async activateConfig(response: ResponseContext): Promise<ConfigResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ConfigResponse = ObjectSerializer.deserialize(
@@ -353,10 +356,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to changeOneConfigSecret
+     * @params response Response returned by the server for a request to changeConfigSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async changeOneConfigSecret(response: ResponseContext): Promise<ConfigResponse > {
+     public async changeConfigSecret(response: ResponseContext): Promise<ConfigResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ConfigResponse = ObjectSerializer.deserialize(
@@ -382,10 +385,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deactivateOneConfig
+     * @params response Response returned by the server for a request to deactivateConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deactivateOneConfig(response: ResponseContext): Promise<ConfigResponse > {
+     public async deactivateConfig(response: ResponseContext): Promise<ConfigResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ConfigResponse = ObjectSerializer.deserialize(
@@ -414,10 +417,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to deleteOneConfig
+     * @params response Response returned by the server for a request to deleteConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteOneConfig(response: ResponseContext): Promise<void > {
+     public async deleteConfig(response: ResponseContext): Promise<void > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             return;
@@ -442,22 +445,22 @@ export class WebhooksApiResponseProcessor {
      * @params response Response returned by the server for a request to getManyConfigs
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getManyConfigs(response: ResponseContext): Promise<GetManyConfigs200Response > {
+     public async getManyConfigs(response: ResponseContext): Promise<ConfigsResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigsResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigsResponse", ""
+            ) as ConfigsResponse;
             return body;
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: GetManyConfigs200Response = ObjectSerializer.deserialize(
+            const body: ConfigsResponse = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "GetManyConfigs200Response", ""
-            ) as GetManyConfigs200Response;
+                "ConfigsResponse", ""
+            ) as ConfigsResponse;
             return body;
         }
 
@@ -468,10 +471,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to insertOneConfig
+     * @params response Response returned by the server for a request to insertConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async insertOneConfig(response: ResponseContext): Promise<ConfigResponse > {
+     public async insertConfig(response: ResponseContext): Promise<ConfigResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: ConfigResponse = ObjectSerializer.deserialize(
@@ -504,10 +507,10 @@ export class WebhooksApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to testOneConfig
+     * @params response Response returned by the server for a request to testConfig
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async testOneConfig(response: ResponseContext): Promise<AttemptResponse > {
+     public async testConfig(response: ResponseContext): Promise<AttemptResponse > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: AttemptResponse = ObjectSerializer.deserialize(

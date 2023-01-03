@@ -10,43 +10,24 @@
  * Do not edit the class manually.
  */
 
+import { WebhooksCursor } from '../models/WebhooksCursor';
 import { HttpFile } from '../http/http';
 
-export class StripeConfig {
-    /**
-    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe api
-    */
-    'pollingPeriod'?: string;
-    'apiKey': string;
-    /**
-    * Number of BalanceTransaction to fetch at each polling interval. 
-    */
-    'pageSize'?: number;
+export class ConfigsResponse {
+    'cursor': WebhooksCursor;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "pollingPeriod",
-            "baseName": "pollingPeriod",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "apiKey",
-            "baseName": "apiKey",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "pageSize",
-            "baseName": "pageSize",
-            "type": "number",
+            "name": "cursor",
+            "baseName": "cursor",
+            "type": "WebhooksCursor",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return StripeConfig.attributeTypeMap;
+        return ConfigsResponse.attributeTypeMap;
     }
 
     public constructor() {

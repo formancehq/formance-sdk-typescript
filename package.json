@@ -1,7 +1,7 @@
 {
 "files": ["dist", "types"],
 "name": "@formancehq/formance",
-"version": "v1.0.0-rc.3",
+"version": "v1.0.0-rc.4",
 "description": "OpenAPI client for @formancehq/formance",
 "author": "OpenAPI-Generator Contributors",
 "repository": {
