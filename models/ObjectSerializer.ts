@@ -4,16 +4,17 @@ export * from '../models/AddMetadataToAccount409Response';
 export * from '../models/Attempt';
 export * from '../models/AttemptResponse';
 export * from '../models/BankingCircleConfig';
-export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
 export * from '../models/ClientAllOf';
 export * from '../models/ClientOptions';
 export * from '../models/ClientSecret';
 export * from '../models/Config';
+export * from '../models/ConfigChangeSecret';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
 export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
+export * from '../models/ConfigsResponse';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
 export * from '../models/Connectors';
@@ -36,9 +37,6 @@ export * from '../models/GetBalances200ResponseCursor';
 export * from '../models/GetBalances200ResponseCursorAllOf';
 export * from '../models/GetBalancesAggregated200Response';
 export * from '../models/GetBalancesAggregated400Response';
-export * from '../models/GetManyConfigs200Response';
-export * from '../models/GetManyConfigs200ResponseCursor';
-export * from '../models/GetManyConfigs200ResponseCursorAllOf';
 export * from '../models/GetPaymentResponse';
 export * from '../models/GetTransaction400Response';
 export * from '../models/GetTransaction404Response';
@@ -114,16 +112,17 @@ import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount4
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
@@ -146,9 +145,6 @@ import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCu
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
@@ -259,16 +255,17 @@ let typeMap: {[index: string]: any} = {
     "Attempt": Attempt,
     "AttemptResponse": AttemptResponse,
     "BankingCircleConfig": BankingCircleConfig,
-    "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
     "ClientAllOf": ClientAllOf,
     "ClientOptions": ClientOptions,
     "ClientSecret": ClientSecret,
     "Config": Config,
+    "ConfigChangeSecret": ConfigChangeSecret,
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
     "ConfigResponse": ConfigResponse,
     "ConfigUser": ConfigUser,
+    "ConfigsResponse": ConfigsResponse,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
     "Contract": Contract,
@@ -289,9 +286,6 @@ let typeMap: {[index: string]: any} = {
     "GetBalances200ResponseCursorAllOf": GetBalances200ResponseCursorAllOf,
     "GetBalancesAggregated200Response": GetBalancesAggregated200Response,
     "GetBalancesAggregated400Response": GetBalancesAggregated400Response,
-    "GetManyConfigs200Response": GetManyConfigs200Response,
-    "GetManyConfigs200ResponseCursor": GetManyConfigs200ResponseCursor,
-    "GetManyConfigs200ResponseCursorAllOf": GetManyConfigs200ResponseCursorAllOf,
     "GetPaymentResponse": GetPaymentResponse,
     "GetTransaction400Response": GetTransaction400Response,
     "GetTransaction404Response": GetTransaction404Response,
