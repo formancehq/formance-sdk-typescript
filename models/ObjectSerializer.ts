@@ -3,50 +3,74 @@ export * from '../models/AccountWithVolumesAndBalances';
 export * from '../models/AddMetadataToAccount409Response';
 export * from '../models/Attempt';
 export * from '../models/AttemptResponse';
+export * from '../models/Balance';
+export * from '../models/BalanceWithAssets';
+export * from '../models/BalanceWithAssetsAllOf';
 export * from '../models/BankingCircleConfig';
-export * from '../models/ChangeOneConfigSecretRequest';
 export * from '../models/Client';
 export * from '../models/ClientAllOf';
 export * from '../models/ClientOptions';
 export * from '../models/ClientSecret';
 export * from '../models/Config';
+export * from '../models/ConfigChangeSecret';
 export * from '../models/ConfigInfo';
 export * from '../models/ConfigInfoResponse';
 export * from '../models/ConfigResponse';
 export * from '../models/ConfigUser';
+export * from '../models/ConfigsResponse';
+export * from '../models/ConfirmHoldRequest';
 export * from '../models/ConnectorBaseInfo';
 export * from '../models/ConnectorConfig';
 export * from '../models/Connectors';
 export * from '../models/Contract';
+export * from '../models/CreateBalanceResponse';
 export * from '../models/CreateClientResponse';
 export * from '../models/CreateScopeResponse';
 export * from '../models/CreateSecretResponse';
 export * from '../models/CreateTransaction400Response';
 export * from '../models/CreateTransaction409Response';
 export * from '../models/CreateTransactions400Response';
+export * from '../models/CreateWalletRequest';
+export * from '../models/CreateWalletResponse';
+export * from '../models/CreditWalletRequest';
 export * from '../models/CurrencyCloudConfig';
 export * from '../models/Cursor';
+export * from '../models/DebitWalletRequest';
+export * from '../models/DebitWalletResponse';
 export * from '../models/DummyPayConfig';
 export * from '../models/ErrorCode';
 export * from '../models/ErrorResponse';
+export * from '../models/ExpandedDebitHold';
+export * from '../models/ExpandedDebitHoldAllOf';
 export * from '../models/GetAccount200Response';
 export * from '../models/GetAccount400Response';
+export * from '../models/GetBalanceResponse';
 export * from '../models/GetBalances200Response';
 export * from '../models/GetBalances200ResponseCursor';
 export * from '../models/GetBalances200ResponseCursorAllOf';
 export * from '../models/GetBalancesAggregated200Response';
 export * from '../models/GetBalancesAggregated400Response';
-export * from '../models/GetManyConfigs200Response';
-export * from '../models/GetManyConfigs200ResponseCursor';
-export * from '../models/GetManyConfigs200ResponseCursorAllOf';
+export * from '../models/GetHoldResponse';
+export * from '../models/GetHoldsResponse';
+export * from '../models/GetHoldsResponseCursor';
+export * from '../models/GetHoldsResponseCursorAllOf';
 export * from '../models/GetPaymentResponse';
 export * from '../models/GetTransaction400Response';
 export * from '../models/GetTransaction404Response';
+export * from '../models/GetTransactionsResponse';
+export * from '../models/GetTransactionsResponseCursor';
+export * from '../models/GetTransactionsResponseCursorAllOf';
+export * from '../models/GetWalletResponse';
+export * from '../models/Hold';
+export * from '../models/LedgerAccountSubject';
 export * from '../models/LedgerStorage';
 export * from '../models/ListAccounts200Response';
 export * from '../models/ListAccounts200ResponseCursor';
 export * from '../models/ListAccounts200ResponseCursorAllOf';
 export * from '../models/ListAccounts400Response';
+export * from '../models/ListBalancesResponse';
+export * from '../models/ListBalancesResponseCursor';
+export * from '../models/ListBalancesResponseCursorAllOf';
 export * from '../models/ListClientsResponse';
 export * from '../models/ListConnectorTasks200ResponseInner';
 export * from '../models/ListConnectorsConfigsResponse';
@@ -59,9 +83,13 @@ export * from '../models/ListTransactions200Response';
 export * from '../models/ListTransactions200ResponseCursor';
 export * from '../models/ListTransactions200ResponseCursorAllOf';
 export * from '../models/ListUsersResponse';
+export * from '../models/ListWalletsResponse';
+export * from '../models/ListWalletsResponseCursor';
+export * from '../models/ListWalletsResponseCursorAllOf';
 export * from '../models/Mapping';
 export * from '../models/MappingResponse';
 export * from '../models/ModulrConfig';
+export * from '../models/Monetary';
 export * from '../models/Payment';
 export * from '../models/Posting';
 export * from '../models/Query';
@@ -85,6 +113,7 @@ export * from '../models/StatsResponse';
 export * from '../models/StripeConfig';
 export * from '../models/StripeTask';
 export * from '../models/StripeTransferRequest';
+export * from '../models/Subject';
 export * from '../models/TaskDescriptorBankingCircle';
 export * from '../models/TaskDescriptorBankingCircleDescriptor';
 export * from '../models/TaskDescriptorCurrencyCloud';
@@ -102,8 +131,17 @@ export * from '../models/TransactionData';
 export * from '../models/TransactionResponse';
 export * from '../models/Transactions';
 export * from '../models/TransactionsResponse';
+export * from '../models/UpdateWalletRequest';
 export * from '../models/User';
 export * from '../models/Volume';
+export * from '../models/Wallet';
+export * from '../models/WalletSubject';
+export * from '../models/WalletWithBalances';
+export * from '../models/WalletWithBalancesAllOf';
+export * from '../models/WalletsCursor';
+export * from '../models/WalletsPosting';
+export * from '../models/WalletsTransaction';
+export * from '../models/WalletsVolume';
 export * from '../models/WebhooksConfig';
 export * from '../models/WebhooksCursor';
 export * from '../models/WiseConfig';
@@ -113,50 +151,74 @@ import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBa
 import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
+import { Balance } from '../models/Balance';
+import { BalanceWithAssets } from '../models/BalanceWithAssets';
+import { BalanceWithAssetsAllOf } from '../models/BalanceWithAssetsAllOf';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
+import { ConfirmHoldRequest } from '../models/ConfirmHoldRequest';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
+import { CreateBalanceResponse } from '../models/CreateBalanceResponse';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
 import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse   } from '../models/ErrorResponse';
+import { ExpandedDebitHold } from '../models/ExpandedDebitHold';
+import { ExpandedDebitHoldAllOf } from '../models/ExpandedDebitHoldAllOf';
 import { GetAccount200Response } from '../models/GetAccount200Response';
 import { GetAccount400Response } from '../models/GetAccount400Response';
+import { GetBalanceResponse } from '../models/GetBalanceResponse';
 import { GetBalances200Response } from '../models/GetBalances200Response';
 import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCursor';
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { GetHoldResponse } from '../models/GetHoldResponse';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
+import { GetHoldsResponseCursor } from '../models/GetHoldsResponseCursor';
+import { GetHoldsResponseCursorAllOf } from '../models/GetHoldsResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetTransactionsResponse } from '../models/GetTransactionsResponse';
+import { GetTransactionsResponseCursor } from '../models/GetTransactionsResponseCursor';
+import { GetTransactionsResponseCursorAllOf } from '../models/GetTransactionsResponseCursorAllOf';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { Hold } from '../models/Hold';
+import { LedgerAccountSubject } from '../models/LedgerAccountSubject';
 import { LedgerStorage } from '../models/LedgerStorage';
 import { ListAccounts200Response } from '../models/ListAccounts200Response';
 import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
+import { ListBalancesResponse } from '../models/ListBalancesResponse';
+import { ListBalancesResponseCursor } from '../models/ListBalancesResponseCursor';
+import { ListBalancesResponseCursorAllOf } from '../models/ListBalancesResponseCursorAllOf';
 import { ListClientsResponse } from '../models/ListClientsResponse';
 import { ListConnectorTasks200ResponseInner  , ListConnectorTasks200ResponseInnerStatusEnum      } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
@@ -169,9 +231,13 @@ import { ListTransactions200Response } from '../models/ListTransactions200Respon
 import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
 import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactions200ResponseCursorAllOf';
 import { ListUsersResponse } from '../models/ListUsersResponse';
+import { ListWalletsResponse } from '../models/ListWalletsResponse';
+import { ListWalletsResponseCursor } from '../models/ListWalletsResponseCursor';
+import { ListWalletsResponseCursorAllOf } from '../models/ListWalletsResponseCursorAllOf';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment  , PaymentSchemeEnum   , PaymentTypeEnum        } from '../models/Payment';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
@@ -195,6 +261,7 @@ import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { Subject } from '../models/Subject';
 import { TaskDescriptorBankingCircle  , TaskDescriptorBankingCircleStatusEnum      } from '../models/TaskDescriptorBankingCircle';
 import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud  , TaskDescriptorCurrencyCloudStatusEnum      } from '../models/TaskDescriptorCurrencyCloud';
@@ -212,8 +279,17 @@ import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletSubject } from '../models/WalletSubject';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesAllOf } from '../models/WalletWithBalancesAllOf';
+import { WalletsCursor } from '../models/WalletsCursor';
+import { WalletsPosting } from '../models/WalletsPosting';
+import { WalletsTransaction } from '../models/WalletsTransaction';
+import { WalletsVolume } from '../models/WalletsVolume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
@@ -258,48 +334,72 @@ let typeMap: {[index: string]: any} = {
     "AddMetadataToAccount409Response": AddMetadataToAccount409Response,
     "Attempt": Attempt,
     "AttemptResponse": AttemptResponse,
+    "Balance": Balance,
+    "BalanceWithAssets": BalanceWithAssets,
+    "BalanceWithAssetsAllOf": BalanceWithAssetsAllOf,
     "BankingCircleConfig": BankingCircleConfig,
-    "ChangeOneConfigSecretRequest": ChangeOneConfigSecretRequest,
     "Client": Client,
     "ClientAllOf": ClientAllOf,
     "ClientOptions": ClientOptions,
     "ClientSecret": ClientSecret,
     "Config": Config,
+    "ConfigChangeSecret": ConfigChangeSecret,
     "ConfigInfo": ConfigInfo,
     "ConfigInfoResponse": ConfigInfoResponse,
     "ConfigResponse": ConfigResponse,
     "ConfigUser": ConfigUser,
+    "ConfigsResponse": ConfigsResponse,
+    "ConfirmHoldRequest": ConfirmHoldRequest,
     "ConnectorBaseInfo": ConnectorBaseInfo,
     "ConnectorConfig": ConnectorConfig,
     "Contract": Contract,
+    "CreateBalanceResponse": CreateBalanceResponse,
     "CreateClientResponse": CreateClientResponse,
     "CreateScopeResponse": CreateScopeResponse,
     "CreateSecretResponse": CreateSecretResponse,
     "CreateTransaction400Response": CreateTransaction400Response,
     "CreateTransaction409Response": CreateTransaction409Response,
     "CreateTransactions400Response": CreateTransactions400Response,
+    "CreateWalletRequest": CreateWalletRequest,
+    "CreateWalletResponse": CreateWalletResponse,
+    "CreditWalletRequest": CreditWalletRequest,
     "CurrencyCloudConfig": CurrencyCloudConfig,
     "Cursor": Cursor,
+    "DebitWalletRequest": DebitWalletRequest,
+    "DebitWalletResponse": DebitWalletResponse,
     "DummyPayConfig": DummyPayConfig,
     "ErrorResponse": ErrorResponse,
+    "ExpandedDebitHold": ExpandedDebitHold,
+    "ExpandedDebitHoldAllOf": ExpandedDebitHoldAllOf,
     "GetAccount200Response": GetAccount200Response,
     "GetAccount400Response": GetAccount400Response,
+    "GetBalanceResponse": GetBalanceResponse,
     "GetBalances200Response": GetBalances200Response,
     "GetBalances200ResponseCursor": GetBalances200ResponseCursor,
     "GetBalances200ResponseCursorAllOf": GetBalances200ResponseCursorAllOf,
     "GetBalancesAggregated200Response": GetBalancesAggregated200Response,
     "GetBalancesAggregated400Response": GetBalancesAggregated400Response,
-    "GetManyConfigs200Response": GetManyConfigs200Response,
-    "GetManyConfigs200ResponseCursor": GetManyConfigs200ResponseCursor,
-    "GetManyConfigs200ResponseCursorAllOf": GetManyConfigs200ResponseCursorAllOf,
+    "GetHoldResponse": GetHoldResponse,
+    "GetHoldsResponse": GetHoldsResponse,
+    "GetHoldsResponseCursor": GetHoldsResponseCursor,
+    "GetHoldsResponseCursorAllOf": GetHoldsResponseCursorAllOf,
     "GetPaymentResponse": GetPaymentResponse,
     "GetTransaction400Response": GetTransaction400Response,
     "GetTransaction404Response": GetTransaction404Response,
+    "GetTransactionsResponse": GetTransactionsResponse,
+    "GetTransactionsResponseCursor": GetTransactionsResponseCursor,
+    "GetTransactionsResponseCursorAllOf": GetTransactionsResponseCursorAllOf,
+    "GetWalletResponse": GetWalletResponse,
+    "Hold": Hold,
+    "LedgerAccountSubject": LedgerAccountSubject,
     "LedgerStorage": LedgerStorage,
     "ListAccounts200Response": ListAccounts200Response,
     "ListAccounts200ResponseCursor": ListAccounts200ResponseCursor,
     "ListAccounts200ResponseCursorAllOf": ListAccounts200ResponseCursorAllOf,
     "ListAccounts400Response": ListAccounts400Response,
+    "ListBalancesResponse": ListBalancesResponse,
+    "ListBalancesResponseCursor": ListBalancesResponseCursor,
+    "ListBalancesResponseCursorAllOf": ListBalancesResponseCursorAllOf,
     "ListClientsResponse": ListClientsResponse,
     "ListConnectorTasks200ResponseInner": ListConnectorTasks200ResponseInner,
     "ListConnectorsConfigsResponse": ListConnectorsConfigsResponse,
@@ -312,9 +412,13 @@ let typeMap: {[index: string]: any} = {
     "ListTransactions200ResponseCursor": ListTransactions200ResponseCursor,
     "ListTransactions200ResponseCursorAllOf": ListTransactions200ResponseCursorAllOf,
     "ListUsersResponse": ListUsersResponse,
+    "ListWalletsResponse": ListWalletsResponse,
+    "ListWalletsResponseCursor": ListWalletsResponseCursor,
+    "ListWalletsResponseCursorAllOf": ListWalletsResponseCursorAllOf,
     "Mapping": Mapping,
     "MappingResponse": MappingResponse,
     "ModulrConfig": ModulrConfig,
+    "Monetary": Monetary,
     "Payment": Payment,
     "Posting": Posting,
     "Query": Query,
@@ -338,6 +442,7 @@ let typeMap: {[index: string]: any} = {
     "StripeConfig": StripeConfig,
     "StripeTask": StripeTask,
     "StripeTransferRequest": StripeTransferRequest,
+    "Subject": Subject,
     "TaskDescriptorBankingCircle": TaskDescriptorBankingCircle,
     "TaskDescriptorBankingCircleDescriptor": TaskDescriptorBankingCircleDescriptor,
     "TaskDescriptorCurrencyCloud": TaskDescriptorCurrencyCloud,
@@ -355,8 +460,17 @@ let typeMap: {[index: string]: any} = {
     "TransactionResponse": TransactionResponse,
     "Transactions": Transactions,
     "TransactionsResponse": TransactionsResponse,
+    "UpdateWalletRequest": UpdateWalletRequest,
     "User": User,
     "Volume": Volume,
+    "Wallet": Wallet,
+    "WalletSubject": WalletSubject,
+    "WalletWithBalances": WalletWithBalances,
+    "WalletWithBalancesAllOf": WalletWithBalancesAllOf,
+    "WalletsCursor": WalletsCursor,
+    "WalletsPosting": WalletsPosting,
+    "WalletsTransaction": WalletsTransaction,
+    "WalletsVolume": WalletsVolume,
     "WebhooksConfig": WebhooksConfig,
     "WebhooksCursor": WebhooksCursor,
     "WiseConfig": WiseConfig,

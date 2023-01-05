@@ -4,18 +4,19 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateOneConfig**](WebhooksApi.md#activateOneConfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
-[**changeOneConfigSecret**](WebhooksApi.md#changeOneConfigSecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
-[**deactivateOneConfig**](WebhooksApi.md#deactivateOneConfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
-[**deleteOneConfig**](WebhooksApi.md#deleteOneConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
+[**activateConfig**](WebhooksApi.md#activateConfig) | **PUT** /api/webhooks/configs/{id}/activate | Activate one config
+[**changeConfigSecret**](WebhooksApi.md#changeConfigSecret) | **PUT** /api/webhooks/configs/{id}/secret/change | Change the signing secret of a config
+[**deactivateConfig**](WebhooksApi.md#deactivateConfig) | **PUT** /api/webhooks/configs/{id}/deactivate | Deactivate one config
+[**deleteConfig**](WebhooksApi.md#deleteConfig) | **DELETE** /api/webhooks/configs/{id} | Delete one config
 [**getManyConfigs**](WebhooksApi.md#getManyConfigs) | **GET** /api/webhooks/configs | Get many configs
-[**insertOneConfig**](WebhooksApi.md#insertOneConfig) | **POST** /api/webhooks/configs | Insert a new config 
-[**testOneConfig**](WebhooksApi.md#testOneConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
+[**insertConfig**](WebhooksApi.md#insertConfig) | **POST** /api/webhooks/configs | Insert a new config
+[**testConfig**](WebhooksApi.md#testConfig) | **GET** /api/webhooks/configs/{id}/test | Test one config
 
 
-# **activateOneConfig**
-> ConfigResponse activateOneConfig()
+# **activateConfig**
+> ConfigResponse activateConfig()
 
+Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example
 
@@ -27,12 +28,12 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiActivateOneConfigRequest = {
+let body:WebhooksApiActivateConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 
-apiInstance.activateOneConfig(body).then((data:any) => {
+apiInstance.activateConfig(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
@@ -67,10 +68,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **changeOneConfigSecret**
-> ConfigResponse changeOneConfigSecret()
+# **changeConfigSecret**
+> ConfigResponse changeConfigSecret()
 
-Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
 
 ### Example
 
@@ -82,16 +83,16 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiChangeOneConfigSecretRequest = {
+let body:WebhooksApiChangeConfigSecretRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-  // ChangeOneConfigSecretRequest (optional)
-  changeOneConfigSecretRequest: {
+  // ConfigChangeSecret (optional)
+  configChangeSecret: {
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   },
 };
 
-apiInstance.changeOneConfigSecret(body).then((data:any) => {
+apiInstance.changeConfigSecret(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
@@ -101,7 +102,7 @@ apiInstance.changeOneConfigSecret(body).then((data:any) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changeOneConfigSecretRequest** | **ChangeOneConfigSecretRequest**|  |
+ **configChangeSecret** | **ConfigChangeSecret**|  |
  **id** | [**string**] | Config ID | defaults to undefined
 
 
@@ -126,9 +127,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deactivateOneConfig**
-> ConfigResponse deactivateOneConfig()
+# **deactivateConfig**
+> ConfigResponse deactivateConfig()
 
+Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example
 
@@ -140,12 +142,12 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiDeactivateOneConfigRequest = {
+let body:WebhooksApiDeactivateConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 
-apiInstance.deactivateOneConfig(body).then((data:any) => {
+apiInstance.deactivateConfig(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
@@ -180,9 +182,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteOneConfig**
-> void deleteOneConfig()
+# **deleteConfig**
+> void deleteConfig()
 
+Delete a webhooks config by ID.
 
 ### Example
 
@@ -194,12 +197,12 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiDeleteOneConfigRequest = {
+let body:WebhooksApiDeleteConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 
-apiInstance.deleteOneConfig(body).then((data:any) => {
+apiInstance.deleteConfig(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
@@ -234,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **getManyConfigs**
-> GetManyConfigs200Response getManyConfigs()
+> ConfigsResponse getManyConfigs()
 
 Sorted by updated date descending
 
@@ -271,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**GetManyConfigs200Response**
+**ConfigsResponse**
 
 ### Authorization
 
@@ -290,10 +293,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **insertOneConfig**
-> ConfigResponse insertOneConfig(configUser)
+# **insertConfig**
+> ConfigResponse insertConfig(configUser)
 
-Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
 
 ### Example
 
@@ -305,12 +308,16 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiInsertOneConfigRequest = {
+let body:WebhooksApiInsertConfigRequest = {
   // ConfigUser
-  configUser: null,
+  configUser: {
+    endpoint: "https://example.com",
+    secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+    eventTypes: ["TYPE1","TYPE2"],
+  },
 };
 
-apiInstance.insertOneConfig(body).then((data:any) => {
+apiInstance.insertConfig(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
@@ -345,10 +352,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **testOneConfig**
-> AttemptResponse testOneConfig()
+# **testConfig**
+> AttemptResponse testConfig()
 
-Test one config by sending a webhook to its endpoint. 
+Test a config by sending a webhook to its endpoint.
 
 ### Example
 
@@ -360,12 +367,12 @@ import * as fs from 'fs';
 const configuration = createConfiguration();
 const apiInstance = new WebhooksApi(configuration);
 
-let body:WebhooksApiTestOneConfigRequest = {
+let body:WebhooksApiTestConfigRequest = {
   // string | Config ID
   id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 
-apiInstance.testOneConfig(body).then((data:any) => {
+apiInstance.testConfig(body).then((data:any) => {
   console.log('API called successfully. Returned data: ' + data);
 }).catch((error:any) => console.error(error));
 ```
