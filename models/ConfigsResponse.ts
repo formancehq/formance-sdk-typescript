@@ -10,24 +10,24 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
+import { WebhooksCursor } from '../models/WebhooksCursor';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class ConfigsResponse {
+    'cursor': WebhooksCursor;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "ConfigInfo",
+            "name": "cursor",
+            "baseName": "cursor",
+            "type": "WebhooksCursor",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return ConfigsResponse.attributeTypeMap;
     }
 
     public constructor() {

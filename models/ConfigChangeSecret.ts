@@ -10,24 +10,23 @@
  * Do not edit the class manually.
  */
 
-import { ConfigInfo } from '../models/ConfigInfo';
 import { HttpFile } from '../http/http';
 
-export class ConfigInfoResponse {
-    'data': ConfigInfo;
+export class ConfigChangeSecret {
+    'secret'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "ConfigInfo",
+            "name": "secret",
+            "baseName": "secret",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ConfigInfoResponse.attributeTypeMap;
+        return ConfigChangeSecret.attributeTypeMap;
     }
 
     public constructor() {
