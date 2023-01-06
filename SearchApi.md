@@ -10,7 +10,7 @@ Method | HTTP request | Description
 # **search**
 > Response search(query)
 
-Search with Query
+ElasticSearch query engine
 
 ### Example
 
@@ -26,14 +26,19 @@ let body:SearchApiSearchRequest = {
   // Query
   query: {
     ledgers: [
-      "ledgers_example",
+      "quickstart",
     ],
-    nextToken: "nextToken_example",
-    size: 1,
+    after: [
+      "users:002",
+    ],
+    pageSize: 0,
     terms: [
-      "terms_example",
+      "destination=central_bank1",
     ],
+    sort: "txid:asc",
+    policy: "OR",
     target: "target_example",
+    cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   },
 };
 
@@ -68,7 +73,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
+**0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
 

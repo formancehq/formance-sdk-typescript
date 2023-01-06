@@ -4,52 +4,76 @@ import { Configuration} from '../configuration'
 import { Account } from '../models/Account';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
 import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { AssetHolder } from '../models/AssetHolder';
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
+import { Balance } from '../models/Balance';
+import { BalanceWithAssets } from '../models/BalanceWithAssets';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
+import { ConfirmHoldRequest } from '../models/ConfirmHoldRequest';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
+import { CreateBalanceResponse } from '../models/CreateBalanceResponse';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
 import { CreateSecretResponse } from '../models/CreateSecretResponse';
 import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
 import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
 import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
 import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse } from '../models/ErrorResponse';
+import { ExpandedDebitHold } from '../models/ExpandedDebitHold';
+import { ExpandedDebitHoldAllOf } from '../models/ExpandedDebitHoldAllOf';
 import { GetAccount200Response } from '../models/GetAccount200Response';
 import { GetAccount400Response } from '../models/GetAccount400Response';
+import { GetBalanceResponse } from '../models/GetBalanceResponse';
 import { GetBalances200Response } from '../models/GetBalances200Response';
 import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCursor';
 import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
 import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
 import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { GetHoldResponse } from '../models/GetHoldResponse';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
+import { GetHoldsResponseCursor } from '../models/GetHoldsResponseCursor';
+import { GetHoldsResponseCursorAllOf } from '../models/GetHoldsResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
 import { GetTransaction400Response } from '../models/GetTransaction400Response';
 import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetTransactionsResponse } from '../models/GetTransactionsResponse';
+import { GetTransactionsResponseCursor } from '../models/GetTransactionsResponseCursor';
+import { GetTransactionsResponseCursorAllOf } from '../models/GetTransactionsResponseCursorAllOf';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { Hold } from '../models/Hold';
+import { LedgerAccountSubject } from '../models/LedgerAccountSubject';
 import { LedgerStorage } from '../models/LedgerStorage';
 import { ListAccounts200Response } from '../models/ListAccounts200Response';
 import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
 import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
 import { ListAccounts400Response } from '../models/ListAccounts400Response';
+import { ListBalancesResponse } from '../models/ListBalancesResponse';
+import { ListBalancesResponseCursor } from '../models/ListBalancesResponseCursor';
+import { ListBalancesResponseCursorAllOf } from '../models/ListBalancesResponseCursorAllOf';
 import { ListClientsResponse } from '../models/ListClientsResponse';
 import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
@@ -62,17 +86,19 @@ import { ListTransactions200Response } from '../models/ListTransactions200Respon
 import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
 import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactions200ResponseCursorAllOf';
 import { ListUsersResponse } from '../models/ListUsersResponse';
+import { ListWalletsResponse } from '../models/ListWalletsResponse';
+import { ListWalletsResponseCursor } from '../models/ListWalletsResponseCursor';
+import { ListWalletsResponseCursorAllOf } from '../models/ListWalletsResponseCursorAllOf';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment } from '../models/Payment';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
 import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
-import { ResponseCursor } from '../models/ResponseCursor';
-import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
 import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
@@ -88,6 +114,7 @@ import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { Subject } from '../models/Subject';
 import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
 import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
@@ -100,13 +127,24 @@ import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
 import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
 import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
+import { Total } from '../models/Total';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletSubject } from '../models/WalletSubject';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesBalances } from '../models/WalletWithBalancesBalances';
+import { WalletsCursor } from '../models/WalletsCursor';
+import { WalletsErrorResponse } from '../models/WalletsErrorResponse';
+import { WalletsPosting } from '../models/WalletsPosting';
+import { WalletsTransaction } from '../models/WalletsTransaction';
+import { WalletsVolume } from '../models/WalletsVolume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
 import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
@@ -529,6 +567,9 @@ import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/De
 export interface DefaultApiGetServerInfoRequest {
 }
 
+export interface DefaultApiSearchgetServerInfoRequest {
+}
+
 export class ObjectDefaultApi {
     private api: ObservableDefaultApi
 
@@ -542,6 +583,14 @@ export class ObjectDefaultApi {
      */
     public getServerInfo(param: DefaultApiGetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
         return this.api.getServerInfo( options).toPromise();
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public searchgetServerInfo(param: DefaultApiSearchgetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.searchgetServerInfo( options).toPromise();
     }
 
 }
@@ -1029,7 +1078,7 @@ export class ObjectSearchApi {
     }
 
     /**
-     * Search with Query
+     * ElasticSearch query engine
      * Search
      * @param param the request object
      */
@@ -1398,47 +1447,391 @@ export class ObjectUsersApi {
 
 }
 
-import { ObservableWebhooksApi } from "./ObservableAPI";
-import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
+import { ObservableWalletsApi } from "./ObservableAPI";
+import { WalletsApiRequestFactory, WalletsApiResponseProcessor} from "../apis/WalletsApi";
 
-export interface WebhooksApiActivateOneConfigRequest {
+export interface WalletsApiConfirmHoldRequest {
     /**
-     * Config ID
+     * 
      * @type string
-     * @memberof WebhooksApiactivateOneConfig
+     * @memberof WalletsApiconfirmHold
      */
-    id: string
+    holdId: string
+    /**
+     * 
+     * @type ConfirmHoldRequest
+     * @memberof WalletsApiconfirmHold
+     */
+    confirmHoldRequest?: ConfirmHoldRequest
 }
 
-export interface WebhooksApiChangeOneConfigSecretRequest {
+export interface WalletsApiCreateBalanceRequest {
     /**
-     * Config ID
+     * 
      * @type string
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @memberof WalletsApicreateBalance
      */
     id: string
     /**
      * 
-     * @type ChangeOneConfigSecretRequest
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @type Balance
+     * @memberof WalletsApicreateBalance
      */
-    changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest
+    body?: Balance
 }
 
-export interface WebhooksApiDeactivateOneConfigRequest {
+export interface WalletsApiCreateWalletRequest {
     /**
-     * Config ID
+     * 
+     * @type CreateWalletRequest
+     * @memberof WalletsApicreateWallet
+     */
+    createWalletRequest?: CreateWalletRequest
+}
+
+export interface WalletsApiCreditWalletRequest {
+    /**
+     * 
      * @type string
-     * @memberof WebhooksApideactivateOneConfig
+     * @memberof WalletsApicreditWallet
+     */
+    id: string
+    /**
+     * 
+     * @type CreditWalletRequest
+     * @memberof WalletsApicreditWallet
+     */
+    creditWalletRequest?: CreditWalletRequest
+}
+
+export interface WalletsApiDebitWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApidebitWallet
+     */
+    id: string
+    /**
+     * 
+     * @type DebitWalletRequest
+     * @memberof WalletsApidebitWallet
+     */
+    debitWalletRequest?: DebitWalletRequest
+}
+
+export interface WalletsApiGetBalanceRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetBalance
+     */
+    id: string
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetBalance
+     */
+    balanceName: string
+}
+
+export interface WalletsApiGetHoldRequest {
+    /**
+     * The hold ID
+     * @type string
+     * @memberof WalletsApigetHold
+     */
+    holdID: string
+}
+
+export interface WalletsApiGetHoldsRequest {
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApigetHolds
+     */
+    pageSize?: number
+    /**
+     * The wallet to filter on
+     * @type string
+     * @memberof WalletsApigetHolds
+     */
+    walletID?: string
+    /**
+     * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @type any
+     * @memberof WalletsApigetHolds
+     */
+    metadata?: any
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @type string
+     * @memberof WalletsApigetHolds
+     */
+    cursor?: string
+}
+
+export interface WalletsApiGetTransactionsRequest {
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApigetTransactions
+     */
+    pageSize?: number
+    /**
+     * A wallet ID to filter on
+     * @type string
+     * @memberof WalletsApigetTransactions
+     */
+    walletId?: string
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the cursor is set. 
+     * @type string
+     * @memberof WalletsApigetTransactions
+     */
+    cursor?: string
+}
+
+export interface WalletsApiGetWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetWallet
      */
     id: string
 }
 
-export interface WebhooksApiDeleteOneConfigRequest {
+export interface WalletsApiListBalancesRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApilistBalances
+     */
+    id: string
+}
+
+export interface WalletsApiListWalletsRequest {
+    /**
+     * Filter on wallet name
+     * @type string
+     * @memberof WalletsApilistWallets
+     */
+    name?: string
+    /**
+     * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @type any
+     * @memberof WalletsApilistWallets
+     */
+    metadata?: any
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApilistWallets
+     */
+    pageSize?: number
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @type string
+     * @memberof WalletsApilistWallets
+     */
+    cursor?: string
+}
+
+export interface WalletsApiUpdateWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApiupdateWallet
+     */
+    id: string
+    /**
+     * 
+     * @type UpdateWalletRequest
+     * @memberof WalletsApiupdateWallet
+     */
+    updateWalletRequest?: UpdateWalletRequest
+}
+
+export interface WalletsApiVoidHoldRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApivoidHold
+     */
+    holdId: string
+}
+
+export interface WalletsApiWalletsgetServerInfoRequest {
+}
+
+export class ObjectWalletsApi {
+    private api: ObservableWalletsApi
+
+    public constructor(configuration: Configuration, requestFactory?: WalletsApiRequestFactory, responseProcessor?: WalletsApiResponseProcessor) {
+        this.api = new ObservableWalletsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Confirm a hold
+     * @param param the request object
+     */
+    public confirmHold(param: WalletsApiConfirmHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.confirmHold(param.holdId, param.confirmHoldRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a balance
+     * @param param the request object
+     */
+    public createBalance(param: WalletsApiCreateBalanceRequest, options?: Configuration): Promise<CreateBalanceResponse> {
+        return this.api.createBalance(param.id, param.body,  options).toPromise();
+    }
+
+    /**
+     * Create a new wallet
+     * @param param the request object
+     */
+    public createWallet(param: WalletsApiCreateWalletRequest = {}, options?: Configuration): Promise<CreateWalletResponse> {
+        return this.api.createWallet(param.createWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Credit a wallet
+     * @param param the request object
+     */
+    public creditWallet(param: WalletsApiCreditWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.creditWallet(param.id, param.creditWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Debit a wallet
+     * @param param the request object
+     */
+    public debitWallet(param: WalletsApiDebitWalletRequest, options?: Configuration): Promise<DebitWalletResponse | void> {
+        return this.api.debitWallet(param.id, param.debitWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Get detailed balance
+     * @param param the request object
+     */
+    public getBalance(param: WalletsApiGetBalanceRequest, options?: Configuration): Promise<GetBalanceResponse> {
+        return this.api.getBalance(param.id, param.balanceName,  options).toPromise();
+    }
+
+    /**
+     * Get a hold
+     * @param param the request object
+     */
+    public getHold(param: WalletsApiGetHoldRequest, options?: Configuration): Promise<GetHoldResponse> {
+        return this.api.getHold(param.holdID,  options).toPromise();
+    }
+
+    /**
+     * Get all holds for a wallet
+     * @param param the request object
+     */
+    public getHolds(param: WalletsApiGetHoldsRequest = {}, options?: Configuration): Promise<GetHoldsResponse> {
+        return this.api.getHolds(param.pageSize, param.walletID, param.metadata, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * @param param the request object
+     */
+    public getTransactions(param: WalletsApiGetTransactionsRequest = {}, options?: Configuration): Promise<GetTransactionsResponse> {
+        return this.api.getTransactions(param.pageSize, param.walletId, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * Get a wallet
+     * @param param the request object
+     */
+    public getWallet(param: WalletsApiGetWalletRequest, options?: Configuration): Promise<GetWalletResponse> {
+        return this.api.getWallet(param.id,  options).toPromise();
+    }
+
+    /**
+     * List balances of a wallet
+     * @param param the request object
+     */
+    public listBalances(param: WalletsApiListBalancesRequest, options?: Configuration): Promise<ListBalancesResponse> {
+        return this.api.listBalances(param.id,  options).toPromise();
+    }
+
+    /**
+     * List all wallets
+     * @param param the request object
+     */
+    public listWallets(param: WalletsApiListWalletsRequest = {}, options?: Configuration): Promise<ListWalletsResponse> {
+        return this.api.listWallets(param.name, param.metadata, param.pageSize, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * Update a wallet
+     * @param param the request object
+     */
+    public updateWallet(param: WalletsApiUpdateWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.updateWallet(param.id, param.updateWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Cancel a hold
+     * @param param the request object
+     */
+    public voidHold(param: WalletsApiVoidHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.voidHold(param.holdId,  options).toPromise();
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public walletsgetServerInfo(param: WalletsApiWalletsgetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.walletsgetServerInfo( options).toPromise();
+    }
+
+}
+
+import { ObservableWebhooksApi } from "./ObservableAPI";
+import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
+
+export interface WebhooksApiActivateConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApideleteOneConfig
+     * @memberof WebhooksApiactivateConfig
+     */
+    id: string
+}
+
+export interface WebhooksApiChangeConfigSecretRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApichangeConfigSecret
+     */
+    id: string
+    /**
+     * 
+     * @type ConfigChangeSecret
+     * @memberof WebhooksApichangeConfigSecret
+     */
+    configChangeSecret?: ConfigChangeSecret
+}
+
+export interface WebhooksApiDeactivateConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApideactivateConfig
+     */
+    id: string
+}
+
+export interface WebhooksApiDeleteConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApideleteConfig
      */
     id: string
 }
@@ -1458,20 +1851,20 @@ export interface WebhooksApiGetManyConfigsRequest {
     endpoint?: string
 }
 
-export interface WebhooksApiInsertOneConfigRequest {
+export interface WebhooksApiInsertConfigRequest {
     /**
      * 
      * @type ConfigUser
-     * @memberof WebhooksApiinsertOneConfig
+     * @memberof WebhooksApiinsertConfig
      */
     configUser: ConfigUser
 }
 
-export interface WebhooksApiTestOneConfigRequest {
+export interface WebhooksApiTestConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApitestOneConfig
+     * @memberof WebhooksApitestConfig
      */
     id: string
 }
@@ -1484,36 +1877,39 @@ export class ObjectWebhooksApi {
     }
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param param the request object
      */
-    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.activateOneConfig(param.id,  options).toPromise();
+    public activateConfig(param: WebhooksApiActivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.activateConfig(param.id,  options).toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param param the request object
      */
-    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.changeOneConfigSecret(param.id, param.changeOneConfigSecretRequest,  options).toPromise();
+    public changeConfigSecret(param: WebhooksApiChangeConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.changeConfigSecret(param.id, param.configChangeSecret,  options).toPromise();
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param param the request object
      */
-    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.deactivateOneConfig(param.id,  options).toPromise();
+    public deactivateConfig(param: WebhooksApiDeactivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.deactivateConfig(param.id,  options).toPromise();
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param param the request object
      */
-    public deleteOneConfig(param: WebhooksApiDeleteOneConfigRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOneConfig(param.id,  options).toPromise();
+    public deleteConfig(param: WebhooksApiDeleteConfigRequest, options?: Configuration): Promise<void> {
+        return this.api.deleteConfig(param.id,  options).toPromise();
     }
 
     /**
@@ -1521,26 +1917,26 @@ export class ObjectWebhooksApi {
      * Get many configs
      * @param param the request object
      */
-    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<ConfigsResponse> {
         return this.api.getManyConfigs(param.id, param.endpoint,  options).toPromise();
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param param the request object
      */
-    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.insertOneConfig(param.configUser,  options).toPromise();
+    public insertConfig(param: WebhooksApiInsertConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.insertConfig(param.configUser,  options).toPromise();
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param param the request object
      */
-    public testOneConfig(param: WebhooksApiTestOneConfigRequest, options?: Configuration): Promise<AttemptResponse> {
-        return this.api.testOneConfig(param.id,  options).toPromise();
+    public testConfig(param: WebhooksApiTestConfigRequest, options?: Configuration): Promise<AttemptResponse> {
+        return this.api.testConfig(param.id,  options).toPromise();
     }
 
 }
