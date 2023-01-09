@@ -10,6 +10,7 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
+import { ErrorResponse } from '../models/ErrorResponse';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
 
@@ -19,7 +20,7 @@ import { MappingResponse } from '../models/MappingResponse';
 export class MappingApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Get the mapping of a ledger.
+     * Get the mapping of a ledger
      * @param ledger Name of the ledger.
      */
     public async getMapping(ledger: string, _options?: Configuration): Promise<RequestContext> {
@@ -56,7 +57,7 @@ export class MappingApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Update the mapping of a ledger.
+     * Update the mapping of a ledger
      * @param ledger Name of the ledger.
      * @param mapping 
      */
@@ -130,6 +131,13 @@ export class MappingApiResponseProcessor {
             ) as MappingResponse;
             return body;
         }
+        if (isCodeInRange("0", response.httpStatusCode)) {
+            const body: ErrorResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrorResponse", ""
+            ) as ErrorResponse;
+            throw new ApiException<ErrorResponse>(response.httpStatusCode, "Error", body, response.headers);
+        }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
@@ -158,6 +166,13 @@ export class MappingApiResponseProcessor {
                 "MappingResponse", ""
             ) as MappingResponse;
             return body;
+        }
+        if (isCodeInRange("0", response.httpStatusCode)) {
+            const body: ErrorResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrorResponse", ""
+            ) as ErrorResponse;
+            throw new ApiException<ErrorResponse>(response.httpStatusCode, "Error", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

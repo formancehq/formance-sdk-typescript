@@ -11,6 +11,7 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
+import { ErrorResponse } from '../models/ErrorResponse';
 
 /**
  * no description
@@ -18,7 +19,7 @@ import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 export class ServerApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Show server information.
+     * Show server information
      */
     public async getInfo(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -65,6 +66,13 @@ export class ServerApiResponseProcessor {
                 "ConfigInfoResponse", ""
             ) as ConfigInfoResponse;
             return body;
+        }
+        if (isCodeInRange("0", response.httpStatusCode)) {
+            const body: ErrorResponse = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrorResponse", ""
+            ) as ErrorResponse;
+            throw new ApiException<ErrorResponse>(response.httpStatusCode, "Error", body, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

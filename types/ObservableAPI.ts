@@ -3,54 +3,73 @@ import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Account } from '../models/Account';
+import { AccountResponse } from '../models/AccountResponse';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
-import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { AccountsCursorResponse } from '../models/AccountsCursorResponse';
+import { AccountsCursorResponseCursor } from '../models/AccountsCursorResponseCursor';
+import { AggregateBalancesResponse } from '../models/AggregateBalancesResponse';
+import { AssetHolder } from '../models/AssetHolder';
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
+import { Balance } from '../models/Balance';
+import { BalanceWithAssets } from '../models/BalanceWithAssets';
+import { BalancesCursorResponse } from '../models/BalancesCursorResponse';
+import { BalancesCursorResponseCursor } from '../models/BalancesCursorResponseCursor';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
+import { ConfigsResponseCursor } from '../models/ConfigsResponseCursor';
+import { ConfigsResponseCursorAllOf } from '../models/ConfigsResponseCursorAllOf';
+import { ConfirmHoldRequest } from '../models/ConfirmHoldRequest';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
+import { CreateBalanceResponse } from '../models/CreateBalanceResponse';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
 import { CreateSecretResponse } from '../models/CreateSecretResponse';
-import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
-import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
-import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
-import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse } from '../models/ErrorResponse';
-import { GetAccount200Response } from '../models/GetAccount200Response';
-import { GetAccount400Response } from '../models/GetAccount400Response';
-import { GetBalances200Response } from '../models/GetBalances200Response';
-import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCursor';
-import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
-import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
-import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { ErrorsEnum } from '../models/ErrorsEnum';
+import { ExpandedDebitHold } from '../models/ExpandedDebitHold';
+import { ExpandedDebitHoldAllOf } from '../models/ExpandedDebitHoldAllOf';
+import { GetBalanceResponse } from '../models/GetBalanceResponse';
+import { GetHoldResponse } from '../models/GetHoldResponse';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
+import { GetHoldsResponseCursor } from '../models/GetHoldsResponseCursor';
+import { GetHoldsResponseCursorAllOf } from '../models/GetHoldsResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
-import { GetTransaction400Response } from '../models/GetTransaction400Response';
-import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetTransactionsResponse } from '../models/GetTransactionsResponse';
+import { GetTransactionsResponseCursor } from '../models/GetTransactionsResponseCursor';
+import { GetTransactionsResponseCursorAllOf } from '../models/GetTransactionsResponseCursorAllOf';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { Hold } from '../models/Hold';
+import { LedgerAccountSubject } from '../models/LedgerAccountSubject';
+import { LedgerInfo } from '../models/LedgerInfo';
+import { LedgerInfoResponse } from '../models/LedgerInfoResponse';
+import { LedgerInfoStorage } from '../models/LedgerInfoStorage';
 import { LedgerStorage } from '../models/LedgerStorage';
-import { ListAccounts200Response } from '../models/ListAccounts200Response';
-import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
-import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
-import { ListAccounts400Response } from '../models/ListAccounts400Response';
+import { ListAccountsResponse } from '../models/ListAccountsResponse';
+import { ListBalancesResponse } from '../models/ListBalancesResponse';
+import { ListBalancesResponseCursor } from '../models/ListBalancesResponseCursor';
+import { ListBalancesResponseCursorAllOf } from '../models/ListBalancesResponseCursorAllOf';
 import { ListClientsResponse } from '../models/ListClientsResponse';
 import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
@@ -59,27 +78,32 @@ import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnect
 import { ListConnectorsResponse } from '../models/ListConnectorsResponse';
 import { ListPaymentsResponse } from '../models/ListPaymentsResponse';
 import { ListScopesResponse } from '../models/ListScopesResponse';
-import { ListTransactions200Response } from '../models/ListTransactions200Response';
-import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
-import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactions200ResponseCursorAllOf';
 import { ListUsersResponse } from '../models/ListUsersResponse';
+import { ListWalletsResponse } from '../models/ListWalletsResponse';
+import { ListWalletsResponseCursor } from '../models/ListWalletsResponseCursor';
+import { ListWalletsResponseCursorAllOf } from '../models/ListWalletsResponseCursorAllOf';
+import { Log } from '../models/Log';
+import { LogsCursorResponse } from '../models/LogsCursorResponse';
+import { LogsCursorResponseCursor } from '../models/LogsCursorResponseCursor';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
+import { MigrationInfo } from '../models/MigrationInfo';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment } from '../models/Payment';
+import { PaymentsAccount } from '../models/PaymentsAccount';
+import { PostTransaction } from '../models/PostTransaction';
+import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
 import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
-import { ResponseCursor } from '../models/ResponseCursor';
-import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
-import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
 import { ScopeOptions } from '../models/ScopeOptions';
 import { Script } from '../models/Script';
-import { ScriptResult } from '../models/ScriptResult';
+import { ScriptResponse } from '../models/ScriptResponse';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
@@ -89,6 +113,7 @@ import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { Subject } from '../models/Subject';
 import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
 import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
@@ -101,15 +126,25 @@ import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
 import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
 import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
+import { Total } from '../models/Total';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
+import { TransactionsCursorResponse } from '../models/TransactionsCursorResponse';
+import { TransactionsCursorResponseCursor } from '../models/TransactionsCursorResponseCursor';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletSubject } from '../models/WalletSubject';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesBalances } from '../models/WalletWithBalancesBalances';
+import { WalletsErrorResponse } from '../models/WalletsErrorResponse';
+import { WalletsTransaction } from '../models/WalletsTransaction';
+import { WalletsVolume } from '../models/WalletsVolume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
-import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
 
 import { AccountsApiRequestFactory, AccountsApiResponseProcessor} from "../apis/AccountsApi";
@@ -129,7 +164,7 @@ export class ObservableAccountsApi {
     }
 
     /**
-     * Add metadata to an account.
+     * Add metadata to an account
      * @param ledger Name of the ledger.
      * @param address Exact address of the account. It must match the following regular expressions pattern: &#x60;&#x60;&#x60; ^\\w+(:\\w+)*$ &#x60;&#x60;&#x60; 
      * @param requestBody metadata
@@ -154,7 +189,7 @@ export class ObservableAccountsApi {
     }
 
     /**
-     * Count the accounts from a ledger.
+     * Count the accounts from a ledger
      * @param ledger Name of the ledger.
      * @param address Filter accounts by address pattern (regular expression placed between ^ and $).
      * @param metadata Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -179,11 +214,11 @@ export class ObservableAccountsApi {
     }
 
     /**
-     * Get account by its address.
+     * Get account by its address
      * @param ledger Name of the ledger.
      * @param address Exact address of the account. It must match the following regular expressions pattern: &#x60;&#x60;&#x60; ^\\w+(:\\w+)*$ &#x60;&#x60;&#x60; 
      */
-    public getAccount(ledger: string, address: string, _options?: Configuration): Observable<GetAccount200Response> {
+    public getAccount(ledger: string, address: string, _options?: Configuration): Observable<AccountResponse> {
         const requestContextPromise = this.requestFactory.getAccount(ledger, address, _options);
 
         // build promise chain
@@ -204,18 +239,21 @@ export class ObservableAccountsApi {
 
     /**
      * List accounts from a ledger, sorted by address in descending order.
-     * List accounts from a ledger.
+     * List accounts from a ledger
      * @param ledger Name of the ledger.
-     * @param pageSize The maximum number of results to return per page
+     * @param pageSize The maximum number of results to return per page. 
+     * @param pageSize2 The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
      * @param after Pagination cursor, will return accounts after given address, in descending order.
      * @param address Filter accounts by address pattern (regular expression placed between ^ and $).
      * @param metadata Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      * @param balance Filter accounts by their balance (default operator is gte)
-     * @param balanceOperator Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param balanceOperator Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not. 
+     * @param balanceOperator2 Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not. Deprecated, please use &#x60;balanceOperator&#x60; instead. 
+     * @param cursor Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
      */
-    public listAccounts(ledger: string, pageSize?: number, after?: string, address?: string, metadata?: any, balance?: number, balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e', paginationToken?: string, _options?: Configuration): Observable<ListAccounts200Response> {
-        const requestContextPromise = this.requestFactory.listAccounts(ledger, pageSize, after, address, metadata, balance, balanceOperator, paginationToken, _options);
+    public listAccounts(ledger: string, pageSize?: number, pageSize2?: number, after?: string, address?: string, metadata?: any, balance?: number, balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e' | 'ne', balanceOperator2?: 'gte' | 'lte' | 'gt' | 'lt' | 'e' | 'ne', cursor?: string, paginationToken?: string, _options?: Configuration): Observable<AccountsCursorResponse> {
+        const requestContextPromise = this.requestFactory.listAccounts(ledger, pageSize, pageSize2, after, address, metadata, balance, balanceOperator, balanceOperator2, cursor, paginationToken, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -256,10 +294,11 @@ export class ObservableBalancesApi {
      * @param ledger Name of the ledger.
      * @param address Filter balances involving given account, either as source or destination.
      * @param after Pagination cursor, will return accounts after given address, in descending order.
-     * @param paginationToken Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * @param cursor Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @param paginationToken Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. Deprecated, please use &#x60;cursor&#x60; instead.
      */
-    public getBalances(ledger: string, address?: string, after?: string, paginationToken?: string, _options?: Configuration): Observable<GetBalances200Response> {
-        const requestContextPromise = this.requestFactory.getBalances(ledger, address, after, paginationToken, _options);
+    public getBalances(ledger: string, address?: string, after?: string, cursor?: string, paginationToken?: string, _options?: Configuration): Observable<BalancesCursorResponse> {
+        const requestContextPromise = this.requestFactory.getBalances(ledger, address, after, cursor, paginationToken, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -282,7 +321,7 @@ export class ObservableBalancesApi {
      * @param ledger Name of the ledger.
      * @param address Filter balances involving given account, either as source or destination.
      */
-    public getBalancesAggregated(ledger: string, address?: string, _options?: Configuration): Observable<GetBalancesAggregated200Response> {
+    public getBalancesAggregated(ledger: string, address?: string, _options?: Configuration): Observable<AggregateBalancesResponse> {
         const requestContextPromise = this.requestFactory.getBalancesAggregated(ledger, address, _options);
 
         // build promise chain
@@ -570,6 +609,120 @@ export class ObservableDefaultApi {
             }));
     }
 
+    /**
+     * Get server info
+     */
+    public searchgetServerInfo(_options?: Configuration): Observable<ServerInfo> {
+        const requestContextPromise = this.requestFactory.searchgetServerInfo(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.searchgetServerInfo(rsp)));
+            }));
+    }
+
+}
+
+import { LedgerApiRequestFactory, LedgerApiResponseProcessor} from "../apis/LedgerApi";
+export class ObservableLedgerApi {
+    private requestFactory: LedgerApiRequestFactory;
+    private responseProcessor: LedgerApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: LedgerApiRequestFactory,
+        responseProcessor?: LedgerApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new LedgerApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new LedgerApiResponseProcessor();
+    }
+
+    /**
+     * Get information about a ledger
+     * @param ledger Name of the ledger.
+     */
+    public getLedgerInfo(ledger: string, _options?: Configuration): Observable<LedgerInfoResponse> {
+        const requestContextPromise = this.requestFactory.getLedgerInfo(ledger, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getLedgerInfo(rsp)));
+            }));
+    }
+
+}
+
+import { LogsApiRequestFactory, LogsApiResponseProcessor} from "../apis/LogsApi";
+export class ObservableLogsApi {
+    private requestFactory: LogsApiRequestFactory;
+    private responseProcessor: LogsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: LogsApiRequestFactory,
+        responseProcessor?: LogsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new LogsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new LogsApiResponseProcessor();
+    }
+
+    /**
+     * List the logs from a ledger, sorted by ID in descending order.
+     * List the logs from a ledger
+     * @param ledger Name of the ledger.
+     * @param pageSize The maximum number of results to return per page. 
+     * @param pageSize2 The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
+     * @param after Pagination cursor, will return the logs after a given ID. (in descending order).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @param startTime2 Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @param endTime2 Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
+     * @param cursor Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
+     */
+    public listLogs(ledger: string, pageSize?: number, pageSize2?: number, after?: string, startTime?: Date, startTime2?: Date, endTime?: Date, endTime2?: Date, cursor?: string, paginationToken?: string, _options?: Configuration): Observable<LogsCursorResponse> {
+        const requestContextPromise = this.requestFactory.listLogs(ledger, pageSize, pageSize2, after, startTime, startTime2, endTime, endTime2, cursor, paginationToken, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listLogs(rsp)));
+            }));
+    }
+
 }
 
 import { MappingApiRequestFactory, MappingApiResponseProcessor} from "../apis/MappingApi";
@@ -589,7 +742,7 @@ export class ObservableMappingApi {
     }
 
     /**
-     * Get the mapping of a ledger.
+     * Get the mapping of a ledger
      * @param ledger Name of the ledger.
      */
     public getMapping(ledger: string, _options?: Configuration): Observable<MappingResponse> {
@@ -612,7 +765,7 @@ export class ObservableMappingApi {
     }
 
     /**
-     * Update the mapping of a ledger.
+     * Update the mapping of a ledger
      * @param ledger Name of the ledger.
      * @param mapping 
      */
@@ -842,6 +995,31 @@ export class ObservablePaymentsApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listPayments(rsp)));
+            }));
+    }
+
+    /**
+     * Returns a list of accounts.
+     * @param limit Limit the number of accounts to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter.
+     * @param skip How many accounts to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter.
+     * @param sort Field used to sort payments (Default is by date).
+     */
+    public paymentslistAccounts(limit?: number, skip?: number, sort?: Array<string>, _options?: Configuration): Observable<ListAccountsResponse> {
+        const requestContextPromise = this.requestFactory.paymentslistAccounts(limit, skip, sort, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.paymentslistAccounts(rsp)));
             }));
     }
 
@@ -1124,12 +1302,13 @@ export class ObservableScriptApi {
     }
 
     /**
-     * Execute a Numscript.
+     * This route is deprecated, and has been merged into `POST /{ledger}/transactions`. 
+     * Execute a Numscript
      * @param ledger Name of the ledger.
      * @param script 
      * @param preview Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      */
-    public runScript(ledger: string, script: Script, preview?: boolean, _options?: Configuration): Observable<ScriptResult> {
+    public runScript(ledger: string, script: Script, preview?: boolean, _options?: Configuration): Observable<ScriptResponse> {
         const requestContextPromise = this.requestFactory.runScript(ledger, script, preview, _options);
 
         // build promise chain
@@ -1167,7 +1346,7 @@ export class ObservableSearchApi {
     }
 
     /**
-     * Search with Query
+     * ElasticSearch query engine
      * Search
      * @param query 
      */
@@ -1209,7 +1388,7 @@ export class ObservableServerApi {
     }
 
     /**
-     * Show server information.
+     * Show server information
      */
     public getInfo(_options?: Configuration): Observable<ConfigInfoResponse> {
         const requestContextPromise = this.requestFactory.getInfo(_options);
@@ -1249,8 +1428,8 @@ export class ObservableStatsApi {
     }
 
     /**
-     * Get ledger stats (aggregate metrics on accounts and transactions) The stats for account 
-     * Get Stats
+     * Get statistics from a ledger. (aggregate metrics on accounts and transactions) 
+     * Get statistics from a ledger
      * @param ledger name of the ledger
      */
     public readStats(ledger: string, _options?: Configuration): Observable<StatsResponse> {
@@ -1291,7 +1470,7 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Set the metadata of a transaction by its ID.
+     * Set the metadata of a transaction by its ID
      * @param ledger Name of the ledger.
      * @param txid Transaction ID.
      * @param requestBody metadata
@@ -1316,16 +1495,20 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Count the transactions from a ledger.
+     * Count the transactions from a ledger
      * @param ledger Name of the ledger.
      * @param reference Filter transactions by reference field.
      * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @param startTime2 Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @param endTime2 Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, metadata?: any, _options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.countTransactions(ledger, reference, account, source, destination, metadata, _options);
+    public countTransactions(ledger: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: Date, startTime2?: Date, endTime?: Date, endTime2?: Date, metadata?: any, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.countTransactions(ledger, reference, account, source, destination, startTime, startTime2, endTime, endTime2, metadata, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1344,13 +1527,13 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Create a new transaction to a ledger.
+     * Create a new transaction to a ledger
      * @param ledger Name of the ledger.
-     * @param transactionData 
+     * @param postTransaction The request body must contain at least one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript 
      * @param preview Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      */
-    public createTransaction(ledger: string, transactionData: TransactionData, preview?: boolean, _options?: Configuration): Observable<TransactionsResponse> {
-        const requestContextPromise = this.requestFactory.createTransaction(ledger, transactionData, preview, _options);
+    public createTransaction(ledger: string, postTransaction: PostTransaction, preview?: boolean, _options?: Configuration): Observable<TransactionsResponse> {
+        const requestContextPromise = this.requestFactory.createTransaction(ledger, postTransaction, preview, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1369,7 +1552,7 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Create a new batch of transactions to a ledger.
+     * Create a new batch of transactions to a ledger
      * @param ledger Name of the ledger.
      * @param transactions 
      */
@@ -1393,7 +1576,7 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Get transaction from a ledger by its ID.
+     * Get transaction from a ledger by its ID
      * @param ledger Name of the ledger.
      * @param txid Transaction ID.
      */
@@ -1418,21 +1601,25 @@ export class ObservableTransactionsApi {
 
     /**
      * List transactions from a ledger, sorted by txid in descending order.
-     * List transactions from a ledger.
+     * List transactions from a ledger
      * @param ledger Name of the ledger.
-     * @param pageSize The maximum number of results to return per page
+     * @param pageSize The maximum number of results to return per page. 
+     * @param pageSize2 The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
      * @param after Pagination cursor, will return transactions after given txid (in descending order).
      * @param reference Find transactions by reference field.
-     * @param account Find transactions with postings involving given account, either as source or destination.
-     * @param source Find transactions with postings involving given account at source.
-     * @param destination Find transactions with postings involving given account at destination.
-     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
-     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @param account Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
+     * @param source Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     * @param destination Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
+     * @param startTime Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @param startTime2 Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @param endTime Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @param endTime2 Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
+     * @param cursor Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @param paginationToken Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
      * @param metadata Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    public listTransactions(ledger: string, pageSize?: number, after?: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: string, endTime?: string, paginationToken?: string, metadata?: any, _options?: Configuration): Observable<ListTransactions200Response> {
-        const requestContextPromise = this.requestFactory.listTransactions(ledger, pageSize, after, reference, account, source, destination, startTime, endTime, paginationToken, metadata, _options);
+    public listTransactions(ledger: string, pageSize?: number, pageSize2?: number, after?: string, reference?: string, account?: string, source?: string, destination?: string, startTime?: Date, startTime2?: Date, endTime?: Date, endTime2?: Date, cursor?: string, paginationToken?: string, metadata?: any, _options?: Configuration): Observable<TransactionsCursorResponse> {
+        const requestContextPromise = this.requestFactory.listTransactions(ledger, pageSize, pageSize2, after, reference, account, source, destination, startTime, startTime2, endTime, endTime2, cursor, paginationToken, metadata, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1451,7 +1638,7 @@ export class ObservableTransactionsApi {
     }
 
     /**
-     * Revert a ledger transaction by its ID.
+     * Revert a ledger transaction by its ID
      * @param ledger Name of the ledger.
      * @param txid Transaction ID.
      */
@@ -1541,6 +1728,381 @@ export class ObservableUsersApi {
 
 }
 
+import { WalletsApiRequestFactory, WalletsApiResponseProcessor} from "../apis/WalletsApi";
+export class ObservableWalletsApi {
+    private requestFactory: WalletsApiRequestFactory;
+    private responseProcessor: WalletsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: WalletsApiRequestFactory,
+        responseProcessor?: WalletsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new WalletsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new WalletsApiResponseProcessor();
+    }
+
+    /**
+     * Confirm a hold
+     * @param holdId 
+     * @param confirmHoldRequest 
+     */
+    public confirmHold(holdId: string, confirmHoldRequest?: ConfirmHoldRequest, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.confirmHold(holdId, confirmHoldRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.confirmHold(rsp)));
+            }));
+    }
+
+    /**
+     * Create a balance
+     * @param id 
+     * @param body 
+     */
+    public createBalance(id: string, body?: Balance, _options?: Configuration): Observable<CreateBalanceResponse> {
+        const requestContextPromise = this.requestFactory.createBalance(id, body, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createBalance(rsp)));
+            }));
+    }
+
+    /**
+     * Create a new wallet
+     * @param createWalletRequest 
+     */
+    public createWallet(createWalletRequest?: CreateWalletRequest, _options?: Configuration): Observable<CreateWalletResponse> {
+        const requestContextPromise = this.requestFactory.createWallet(createWalletRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.createWallet(rsp)));
+            }));
+    }
+
+    /**
+     * Credit a wallet
+     * @param id 
+     * @param creditWalletRequest 
+     */
+    public creditWallet(id: string, creditWalletRequest?: CreditWalletRequest, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.creditWallet(id, creditWalletRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.creditWallet(rsp)));
+            }));
+    }
+
+    /**
+     * Debit a wallet
+     * @param id 
+     * @param debitWalletRequest 
+     */
+    public debitWallet(id: string, debitWalletRequest?: DebitWalletRequest, _options?: Configuration): Observable<DebitWalletResponse | void> {
+        const requestContextPromise = this.requestFactory.debitWallet(id, debitWalletRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.debitWallet(rsp)));
+            }));
+    }
+
+    /**
+     * Get detailed balance
+     * @param id 
+     * @param balanceName 
+     */
+    public getBalance(id: string, balanceName: string, _options?: Configuration): Observable<GetBalanceResponse> {
+        const requestContextPromise = this.requestFactory.getBalance(id, balanceName, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getBalance(rsp)));
+            }));
+    }
+
+    /**
+     * Get a hold
+     * @param holdID The hold ID
+     */
+    public getHold(holdID: string, _options?: Configuration): Observable<GetHoldResponse> {
+        const requestContextPromise = this.requestFactory.getHold(holdID, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getHold(rsp)));
+            }));
+    }
+
+    /**
+     * Get all holds for a wallet
+     * @param pageSize The maximum number of results to return per page
+     * @param walletID The wallet to filter on
+     * @param metadata Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @param cursor Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     */
+    public getHolds(pageSize?: number, walletID?: string, metadata?: any, cursor?: string, _options?: Configuration): Observable<GetHoldsResponse> {
+        const requestContextPromise = this.requestFactory.getHolds(pageSize, walletID, metadata, cursor, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getHolds(rsp)));
+            }));
+    }
+
+    /**
+     * @param pageSize The maximum number of results to return per page
+     * @param walletId A wallet ID to filter on
+     * @param cursor Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the cursor is set. 
+     */
+    public getTransactions(pageSize?: number, walletId?: string, cursor?: string, _options?: Configuration): Observable<GetTransactionsResponse> {
+        const requestContextPromise = this.requestFactory.getTransactions(pageSize, walletId, cursor, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getTransactions(rsp)));
+            }));
+    }
+
+    /**
+     * Get a wallet
+     * @param id 
+     */
+    public getWallet(id: string, _options?: Configuration): Observable<GetWalletResponse> {
+        const requestContextPromise = this.requestFactory.getWallet(id, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getWallet(rsp)));
+            }));
+    }
+
+    /**
+     * List balances of a wallet
+     * @param id 
+     */
+    public listBalances(id: string, _options?: Configuration): Observable<ListBalancesResponse> {
+        const requestContextPromise = this.requestFactory.listBalances(id, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listBalances(rsp)));
+            }));
+    }
+
+    /**
+     * List all wallets
+     * @param name Filter on wallet name
+     * @param metadata Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @param pageSize The maximum number of results to return per page
+     * @param cursor Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     */
+    public listWallets(name?: string, metadata?: any, pageSize?: number, cursor?: string, _options?: Configuration): Observable<ListWalletsResponse> {
+        const requestContextPromise = this.requestFactory.listWallets(name, metadata, pageSize, cursor, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listWallets(rsp)));
+            }));
+    }
+
+    /**
+     * Update a wallet
+     * @param id 
+     * @param updateWalletRequest 
+     */
+    public updateWallet(id: string, updateWalletRequest?: UpdateWalletRequest, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.updateWallet(id, updateWalletRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateWallet(rsp)));
+            }));
+    }
+
+    /**
+     * Cancel a hold
+     * @param holdId 
+     */
+    public voidHold(holdId: string, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.voidHold(holdId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.voidHold(rsp)));
+            }));
+    }
+
+    /**
+     * Get server info
+     */
+    public walletsgetServerInfo(_options?: Configuration): Observable<ServerInfo> {
+        const requestContextPromise = this.requestFactory.walletsgetServerInfo(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.walletsgetServerInfo(rsp)));
+            }));
+    }
+
+}
+
 import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
 export class ObservableWebhooksApi {
     private requestFactory: WebhooksApiRequestFactory;
@@ -1558,11 +2120,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param id Config ID
      */
-    public activateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.activateOneConfig(id, _options);
+    public activateConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.activateConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1576,18 +2139,18 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.activateOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.activateConfig(rsp)));
             }));
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param id Config ID
-     * @param changeOneConfigSecretRequest 
+     * @param configChangeSecret 
      */
-    public changeOneConfigSecret(id: string, changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.changeOneConfigSecret(id, changeOneConfigSecretRequest, _options);
+    public changeConfigSecret(id: string, configChangeSecret?: ConfigChangeSecret, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.changeConfigSecret(id, configChangeSecret, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1601,16 +2164,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.changeOneConfigSecret(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.changeConfigSecret(rsp)));
             }));
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param id Config ID
      */
-    public deactivateOneConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.deactivateOneConfig(id, _options);
+    public deactivateConfig(id: string, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.deactivateConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1624,16 +2188,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deactivateOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deactivateConfig(rsp)));
             }));
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param id Config ID
      */
-    public deleteOneConfig(id: string, _options?: Configuration): Observable<void> {
-        const requestContextPromise = this.requestFactory.deleteOneConfig(id, _options);
+    public deleteConfig(id: string, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.deleteConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1647,7 +2212,7 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteConfig(rsp)));
             }));
     }
 
@@ -1657,7 +2222,7 @@ export class ObservableWebhooksApi {
      * @param id Optional filter by Config ID
      * @param endpoint Optional filter by endpoint URL
      */
-    public getManyConfigs(id?: string, endpoint?: string, _options?: Configuration): Observable<GetManyConfigs200Response> {
+    public getManyConfigs(id?: string, endpoint?: string, _options?: Configuration): Observable<ConfigsResponse> {
         const requestContextPromise = this.requestFactory.getManyConfigs(id, endpoint, _options);
 
         // build promise chain
@@ -1677,12 +2242,12 @@ export class ObservableWebhooksApi {
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param configUser 
      */
-    public insertOneConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigResponse> {
-        const requestContextPromise = this.requestFactory.insertOneConfig(configUser, _options);
+    public insertConfig(configUser: ConfigUser, _options?: Configuration): Observable<ConfigResponse> {
+        const requestContextPromise = this.requestFactory.insertConfig(configUser, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1696,17 +2261,17 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.insertConfig(rsp)));
             }));
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param id Config ID
      */
-    public testOneConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
-        const requestContextPromise = this.requestFactory.testOneConfig(id, _options);
+    public testConfig(id: string, _options?: Configuration): Observable<AttemptResponse> {
+        const requestContextPromise = this.requestFactory.testConfig(id, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1720,7 +2285,7 @@ export class ObservableWebhooksApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testOneConfig(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.testConfig(rsp)));
             }));
     }
 

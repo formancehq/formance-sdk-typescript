@@ -2,54 +2,73 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { Account } from '../models/Account';
+import { AccountResponse } from '../models/AccountResponse';
 import { AccountWithVolumesAndBalances } from '../models/AccountWithVolumesAndBalances';
-import { AddMetadataToAccount409Response } from '../models/AddMetadataToAccount409Response';
+import { AccountsCursorResponse } from '../models/AccountsCursorResponse';
+import { AccountsCursorResponseCursor } from '../models/AccountsCursorResponseCursor';
+import { AggregateBalancesResponse } from '../models/AggregateBalancesResponse';
+import { AssetHolder } from '../models/AssetHolder';
 import { Attempt } from '../models/Attempt';
 import { AttemptResponse } from '../models/AttemptResponse';
+import { Balance } from '../models/Balance';
+import { BalanceWithAssets } from '../models/BalanceWithAssets';
+import { BalancesCursorResponse } from '../models/BalancesCursorResponse';
+import { BalancesCursorResponseCursor } from '../models/BalancesCursorResponseCursor';
 import { BankingCircleConfig } from '../models/BankingCircleConfig';
-import { ChangeOneConfigSecretRequest } from '../models/ChangeOneConfigSecretRequest';
 import { Client } from '../models/Client';
 import { ClientAllOf } from '../models/ClientAllOf';
 import { ClientOptions } from '../models/ClientOptions';
 import { ClientSecret } from '../models/ClientSecret';
 import { Config } from '../models/Config';
+import { ConfigChangeSecret } from '../models/ConfigChangeSecret';
 import { ConfigInfo } from '../models/ConfigInfo';
 import { ConfigInfoResponse } from '../models/ConfigInfoResponse';
 import { ConfigResponse } from '../models/ConfigResponse';
 import { ConfigUser } from '../models/ConfigUser';
+import { ConfigsResponse } from '../models/ConfigsResponse';
+import { ConfigsResponseCursor } from '../models/ConfigsResponseCursor';
+import { ConfigsResponseCursorAllOf } from '../models/ConfigsResponseCursorAllOf';
+import { ConfirmHoldRequest } from '../models/ConfirmHoldRequest';
 import { ConnectorBaseInfo } from '../models/ConnectorBaseInfo';
 import { ConnectorConfig } from '../models/ConnectorConfig';
 import { Connectors } from '../models/Connectors';
 import { Contract } from '../models/Contract';
+import { CreateBalanceResponse } from '../models/CreateBalanceResponse';
 import { CreateClientResponse } from '../models/CreateClientResponse';
 import { CreateScopeResponse } from '../models/CreateScopeResponse';
 import { CreateSecretResponse } from '../models/CreateSecretResponse';
-import { CreateTransaction400Response } from '../models/CreateTransaction400Response';
-import { CreateTransaction409Response } from '../models/CreateTransaction409Response';
-import { CreateTransactions400Response } from '../models/CreateTransactions400Response';
+import { CreateWalletRequest } from '../models/CreateWalletRequest';
+import { CreateWalletResponse } from '../models/CreateWalletResponse';
+import { CreditWalletRequest } from '../models/CreditWalletRequest';
 import { CurrencyCloudConfig } from '../models/CurrencyCloudConfig';
 import { Cursor } from '../models/Cursor';
+import { DebitWalletRequest } from '../models/DebitWalletRequest';
+import { DebitWalletResponse } from '../models/DebitWalletResponse';
 import { DummyPayConfig } from '../models/DummyPayConfig';
-import { ErrorCode } from '../models/ErrorCode';
 import { ErrorResponse } from '../models/ErrorResponse';
-import { GetAccount200Response } from '../models/GetAccount200Response';
-import { GetAccount400Response } from '../models/GetAccount400Response';
-import { GetBalances200Response } from '../models/GetBalances200Response';
-import { GetBalances200ResponseCursor } from '../models/GetBalances200ResponseCursor';
-import { GetBalances200ResponseCursorAllOf } from '../models/GetBalances200ResponseCursorAllOf';
-import { GetBalancesAggregated200Response } from '../models/GetBalancesAggregated200Response';
-import { GetBalancesAggregated400Response } from '../models/GetBalancesAggregated400Response';
-import { GetManyConfigs200Response } from '../models/GetManyConfigs200Response';
-import { GetManyConfigs200ResponseCursor } from '../models/GetManyConfigs200ResponseCursor';
-import { GetManyConfigs200ResponseCursorAllOf } from '../models/GetManyConfigs200ResponseCursorAllOf';
+import { ErrorsEnum } from '../models/ErrorsEnum';
+import { ExpandedDebitHold } from '../models/ExpandedDebitHold';
+import { ExpandedDebitHoldAllOf } from '../models/ExpandedDebitHoldAllOf';
+import { GetBalanceResponse } from '../models/GetBalanceResponse';
+import { GetHoldResponse } from '../models/GetHoldResponse';
+import { GetHoldsResponse } from '../models/GetHoldsResponse';
+import { GetHoldsResponseCursor } from '../models/GetHoldsResponseCursor';
+import { GetHoldsResponseCursorAllOf } from '../models/GetHoldsResponseCursorAllOf';
 import { GetPaymentResponse } from '../models/GetPaymentResponse';
-import { GetTransaction400Response } from '../models/GetTransaction400Response';
-import { GetTransaction404Response } from '../models/GetTransaction404Response';
+import { GetTransactionsResponse } from '../models/GetTransactionsResponse';
+import { GetTransactionsResponseCursor } from '../models/GetTransactionsResponseCursor';
+import { GetTransactionsResponseCursorAllOf } from '../models/GetTransactionsResponseCursorAllOf';
+import { GetWalletResponse } from '../models/GetWalletResponse';
+import { Hold } from '../models/Hold';
+import { LedgerAccountSubject } from '../models/LedgerAccountSubject';
+import { LedgerInfo } from '../models/LedgerInfo';
+import { LedgerInfoResponse } from '../models/LedgerInfoResponse';
+import { LedgerInfoStorage } from '../models/LedgerInfoStorage';
 import { LedgerStorage } from '../models/LedgerStorage';
-import { ListAccounts200Response } from '../models/ListAccounts200Response';
-import { ListAccounts200ResponseCursor } from '../models/ListAccounts200ResponseCursor';
-import { ListAccounts200ResponseCursorAllOf } from '../models/ListAccounts200ResponseCursorAllOf';
-import { ListAccounts400Response } from '../models/ListAccounts400Response';
+import { ListAccountsResponse } from '../models/ListAccountsResponse';
+import { ListBalancesResponse } from '../models/ListBalancesResponse';
+import { ListBalancesResponseCursor } from '../models/ListBalancesResponseCursor';
+import { ListBalancesResponseCursorAllOf } from '../models/ListBalancesResponseCursorAllOf';
 import { ListClientsResponse } from '../models/ListClientsResponse';
 import { ListConnectorTasks200ResponseInner } from '../models/ListConnectorTasks200ResponseInner';
 import { ListConnectorsConfigsResponse } from '../models/ListConnectorsConfigsResponse';
@@ -58,27 +77,32 @@ import { ListConnectorsConfigsResponseConnectorKey } from '../models/ListConnect
 import { ListConnectorsResponse } from '../models/ListConnectorsResponse';
 import { ListPaymentsResponse } from '../models/ListPaymentsResponse';
 import { ListScopesResponse } from '../models/ListScopesResponse';
-import { ListTransactions200Response } from '../models/ListTransactions200Response';
-import { ListTransactions200ResponseCursor } from '../models/ListTransactions200ResponseCursor';
-import { ListTransactions200ResponseCursorAllOf } from '../models/ListTransactions200ResponseCursorAllOf';
 import { ListUsersResponse } from '../models/ListUsersResponse';
+import { ListWalletsResponse } from '../models/ListWalletsResponse';
+import { ListWalletsResponseCursor } from '../models/ListWalletsResponseCursor';
+import { ListWalletsResponseCursorAllOf } from '../models/ListWalletsResponseCursorAllOf';
+import { Log } from '../models/Log';
+import { LogsCursorResponse } from '../models/LogsCursorResponse';
+import { LogsCursorResponseCursor } from '../models/LogsCursorResponseCursor';
 import { Mapping } from '../models/Mapping';
 import { MappingResponse } from '../models/MappingResponse';
+import { MigrationInfo } from '../models/MigrationInfo';
 import { ModulrConfig } from '../models/ModulrConfig';
+import { Monetary } from '../models/Monetary';
 import { Payment } from '../models/Payment';
+import { PaymentsAccount } from '../models/PaymentsAccount';
+import { PostTransaction } from '../models/PostTransaction';
+import { PostTransactionScript } from '../models/PostTransactionScript';
 import { Posting } from '../models/Posting';
 import { Query } from '../models/Query';
 import { ReadClientResponse } from '../models/ReadClientResponse';
 import { ReadUserResponse } from '../models/ReadUserResponse';
 import { Response } from '../models/Response';
-import { ResponseCursor } from '../models/ResponseCursor';
-import { ResponseCursorTotal } from '../models/ResponseCursorTotal';
-import { RunScript400Response } from '../models/RunScript400Response';
 import { Scope } from '../models/Scope';
 import { ScopeAllOf } from '../models/ScopeAllOf';
 import { ScopeOptions } from '../models/ScopeOptions';
 import { Script } from '../models/Script';
-import { ScriptResult } from '../models/ScriptResult';
+import { ScriptResponse } from '../models/ScriptResponse';
 import { Secret } from '../models/Secret';
 import { SecretAllOf } from '../models/SecretAllOf';
 import { SecretOptions } from '../models/SecretOptions';
@@ -88,6 +112,7 @@ import { StatsResponse } from '../models/StatsResponse';
 import { StripeConfig } from '../models/StripeConfig';
 import { StripeTask } from '../models/StripeTask';
 import { StripeTransferRequest } from '../models/StripeTransferRequest';
+import { Subject } from '../models/Subject';
 import { TaskDescriptorBankingCircle } from '../models/TaskDescriptorBankingCircle';
 import { TaskDescriptorBankingCircleDescriptor } from '../models/TaskDescriptorBankingCircleDescriptor';
 import { TaskDescriptorCurrencyCloud } from '../models/TaskDescriptorCurrencyCloud';
@@ -100,15 +125,25 @@ import { TaskDescriptorStripe } from '../models/TaskDescriptorStripe';
 import { TaskDescriptorStripeDescriptor } from '../models/TaskDescriptorStripeDescriptor';
 import { TaskDescriptorWise } from '../models/TaskDescriptorWise';
 import { TaskDescriptorWiseDescriptor } from '../models/TaskDescriptorWiseDescriptor';
+import { Total } from '../models/Total';
 import { Transaction } from '../models/Transaction';
 import { TransactionData } from '../models/TransactionData';
 import { TransactionResponse } from '../models/TransactionResponse';
 import { Transactions } from '../models/Transactions';
+import { TransactionsCursorResponse } from '../models/TransactionsCursorResponse';
+import { TransactionsCursorResponseCursor } from '../models/TransactionsCursorResponseCursor';
 import { TransactionsResponse } from '../models/TransactionsResponse';
+import { UpdateWalletRequest } from '../models/UpdateWalletRequest';
 import { User } from '../models/User';
 import { Volume } from '../models/Volume';
+import { Wallet } from '../models/Wallet';
+import { WalletSubject } from '../models/WalletSubject';
+import { WalletWithBalances } from '../models/WalletWithBalances';
+import { WalletWithBalancesBalances } from '../models/WalletWithBalancesBalances';
+import { WalletsErrorResponse } from '../models/WalletsErrorResponse';
+import { WalletsTransaction } from '../models/WalletsTransaction';
+import { WalletsVolume } from '../models/WalletsVolume';
 import { WebhooksConfig } from '../models/WebhooksConfig';
-import { WebhooksCursor } from '../models/WebhooksCursor';
 import { WiseConfig } from '../models/WiseConfig';
 
 import { ObservableAccountsApi } from "./ObservableAPI";
@@ -179,11 +214,17 @@ export interface AccountsApiListAccountsRequest {
      */
     ledger: string
     /**
-     * The maximum number of results to return per page
+     * The maximum number of results to return per page. 
      * @type number
      * @memberof AccountsApilistAccounts
      */
     pageSize?: number
+    /**
+     * The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
+     * @type number
+     * @memberof AccountsApilistAccounts
+     */
+    pageSize2?: number
     /**
      * Pagination cursor, will return accounts after given address, in descending order.
      * @type string
@@ -209,13 +250,25 @@ export interface AccountsApiListAccountsRequest {
      */
     balance?: number
     /**
-     * Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, or equal
-     * @type &#39;gte&#39; | &#39;lte&#39; | &#39;gt&#39; | &#39;lt&#39; | &#39;e&#39;
+     * Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not. 
+     * @type &#39;gte&#39; | &#39;lte&#39; | &#39;gt&#39; | &#39;lt&#39; | &#39;e&#39; | &#39;ne&#39;
      * @memberof AccountsApilistAccounts
      */
-    balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e'
+    balanceOperator?: 'gte' | 'lte' | 'gt' | 'lt' | 'e' | 'ne'
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * Operator used for the filtering of balances can be greater than/equal, less than/equal, greater than, less than, equal or not. Deprecated, please use &#x60;balanceOperator&#x60; instead. 
+     * @type &#39;gte&#39; | &#39;lte&#39; | &#39;gt&#39; | &#39;lt&#39; | &#39;e&#39; | &#39;ne&#39;
+     * @memberof AccountsApilistAccounts
+     */
+    balanceOperator2?: 'gte' | 'lte' | 'gt' | 'lt' | 'e' | 'ne'
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @type string
+     * @memberof AccountsApilistAccounts
+     */
+    cursor?: string
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
      * @type string
      * @memberof AccountsApilistAccounts
      */
@@ -230,7 +283,7 @@ export class ObjectAccountsApi {
     }
 
     /**
-     * Add metadata to an account.
+     * Add metadata to an account
      * @param param the request object
      */
     public addMetadataToAccount(param: AccountsApiAddMetadataToAccountRequest, options?: Configuration): Promise<void> {
@@ -238,7 +291,7 @@ export class ObjectAccountsApi {
     }
 
     /**
-     * Count the accounts from a ledger.
+     * Count the accounts from a ledger
      * @param param the request object
      */
     public countAccounts(param: AccountsApiCountAccountsRequest, options?: Configuration): Promise<void> {
@@ -246,20 +299,20 @@ export class ObjectAccountsApi {
     }
 
     /**
-     * Get account by its address.
+     * Get account by its address
      * @param param the request object
      */
-    public getAccount(param: AccountsApiGetAccountRequest, options?: Configuration): Promise<GetAccount200Response> {
+    public getAccount(param: AccountsApiGetAccountRequest, options?: Configuration): Promise<AccountResponse> {
         return this.api.getAccount(param.ledger, param.address,  options).toPromise();
     }
 
     /**
      * List accounts from a ledger, sorted by address in descending order.
-     * List accounts from a ledger.
+     * List accounts from a ledger
      * @param param the request object
      */
-    public listAccounts(param: AccountsApiListAccountsRequest, options?: Configuration): Promise<ListAccounts200Response> {
-        return this.api.listAccounts(param.ledger, param.pageSize, param.after, param.address, param.metadata, param.balance, param.balanceOperator, param.paginationToken,  options).toPromise();
+    public listAccounts(param: AccountsApiListAccountsRequest, options?: Configuration): Promise<AccountsCursorResponse> {
+        return this.api.listAccounts(param.ledger, param.pageSize, param.pageSize2, param.after, param.address, param.metadata, param.balance, param.balanceOperator, param.balanceOperator2, param.cursor, param.paginationToken,  options).toPromise();
     }
 
 }
@@ -287,7 +340,13 @@ export interface BalancesApiGetBalancesRequest {
      */
     after?: string
     /**
-     * Parameter used in pagination requests.  Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results.
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @type string
+     * @memberof BalancesApigetBalances
+     */
+    cursor?: string
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. Deprecated, please use &#x60;cursor&#x60; instead.
      * @type string
      * @memberof BalancesApigetBalances
      */
@@ -320,15 +379,15 @@ export class ObjectBalancesApi {
      * Get the balances from a ledger's account
      * @param param the request object
      */
-    public getBalances(param: BalancesApiGetBalancesRequest, options?: Configuration): Promise<GetBalances200Response> {
-        return this.api.getBalances(param.ledger, param.address, param.after, param.paginationToken,  options).toPromise();
+    public getBalances(param: BalancesApiGetBalancesRequest, options?: Configuration): Promise<BalancesCursorResponse> {
+        return this.api.getBalances(param.ledger, param.address, param.after, param.cursor, param.paginationToken,  options).toPromise();
     }
 
     /**
      * Get the aggregated balances from selected accounts
      * @param param the request object
      */
-    public getBalancesAggregated(param: BalancesApiGetBalancesAggregatedRequest, options?: Configuration): Promise<GetBalancesAggregated200Response> {
+    public getBalancesAggregated(param: BalancesApiGetBalancesAggregatedRequest, options?: Configuration): Promise<AggregateBalancesResponse> {
         return this.api.getBalancesAggregated(param.ledger, param.address,  options).toPromise();
     }
 
@@ -529,6 +588,9 @@ import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/De
 export interface DefaultApiGetServerInfoRequest {
 }
 
+export interface DefaultApiSearchgetServerInfoRequest {
+}
+
 export class ObjectDefaultApi {
     private api: ObservableDefaultApi
 
@@ -542,6 +604,127 @@ export class ObjectDefaultApi {
      */
     public getServerInfo(param: DefaultApiGetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
         return this.api.getServerInfo( options).toPromise();
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public searchgetServerInfo(param: DefaultApiSearchgetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.searchgetServerInfo( options).toPromise();
+    }
+
+}
+
+import { ObservableLedgerApi } from "./ObservableAPI";
+import { LedgerApiRequestFactory, LedgerApiResponseProcessor} from "../apis/LedgerApi";
+
+export interface LedgerApiGetLedgerInfoRequest {
+    /**
+     * Name of the ledger.
+     * @type string
+     * @memberof LedgerApigetLedgerInfo
+     */
+    ledger: string
+}
+
+export class ObjectLedgerApi {
+    private api: ObservableLedgerApi
+
+    public constructor(configuration: Configuration, requestFactory?: LedgerApiRequestFactory, responseProcessor?: LedgerApiResponseProcessor) {
+        this.api = new ObservableLedgerApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get information about a ledger
+     * @param param the request object
+     */
+    public getLedgerInfo(param: LedgerApiGetLedgerInfoRequest, options?: Configuration): Promise<LedgerInfoResponse> {
+        return this.api.getLedgerInfo(param.ledger,  options).toPromise();
+    }
+
+}
+
+import { ObservableLogsApi } from "./ObservableAPI";
+import { LogsApiRequestFactory, LogsApiResponseProcessor} from "../apis/LogsApi";
+
+export interface LogsApiListLogsRequest {
+    /**
+     * Name of the ledger.
+     * @type string
+     * @memberof LogsApilistLogs
+     */
+    ledger: string
+    /**
+     * The maximum number of results to return per page. 
+     * @type number
+     * @memberof LogsApilistLogs
+     */
+    pageSize?: number
+    /**
+     * The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
+     * @type number
+     * @memberof LogsApilistLogs
+     */
+    pageSize2?: number
+    /**
+     * Pagination cursor, will return the logs after a given ID. (in descending order).
+     * @type string
+     * @memberof LogsApilistLogs
+     */
+    after?: string
+    /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @type Date
+     * @memberof LogsApilistLogs
+     */
+    startTime?: Date
+    /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @type Date
+     * @memberof LogsApilistLogs
+     */
+    startTime2?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @type Date
+     * @memberof LogsApilistLogs
+     */
+    endTime?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
+     * @type Date
+     * @memberof LogsApilistLogs
+     */
+    endTime2?: Date
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
+     * @type string
+     * @memberof LogsApilistLogs
+     */
+    cursor?: string
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
+     * @type string
+     * @memberof LogsApilistLogs
+     */
+    paginationToken?: string
+}
+
+export class ObjectLogsApi {
+    private api: ObservableLogsApi
+
+    public constructor(configuration: Configuration, requestFactory?: LogsApiRequestFactory, responseProcessor?: LogsApiResponseProcessor) {
+        this.api = new ObservableLogsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * List the logs from a ledger, sorted by ID in descending order.
+     * List the logs from a ledger
+     * @param param the request object
+     */
+    public listLogs(param: LogsApiListLogsRequest, options?: Configuration): Promise<LogsCursorResponse> {
+        return this.api.listLogs(param.ledger, param.pageSize, param.pageSize2, param.after, param.startTime, param.startTime2, param.endTime, param.endTime2, param.cursor, param.paginationToken,  options).toPromise();
     }
 
 }
@@ -581,7 +764,7 @@ export class ObjectMappingApi {
     }
 
     /**
-     * Get the mapping of a ledger.
+     * Get the mapping of a ledger
      * @param param the request object
      */
     public getMapping(param: MappingApiGetMappingRequest, options?: Configuration): Promise<MappingResponse> {
@@ -589,7 +772,7 @@ export class ObjectMappingApi {
     }
 
     /**
-     * Update the mapping of a ledger.
+     * Update the mapping of a ledger
      * @param param the request object
      */
     public updateMapping(param: MappingApiUpdateMappingRequest, options?: Configuration): Promise<MappingResponse> {
@@ -681,6 +864,27 @@ export interface PaymentsApiListPaymentsRequest {
      * Field used to sort payments (Default is by date).
      * @type Array&lt;string&gt;
      * @memberof PaymentsApilistPayments
+     */
+    sort?: Array<string>
+}
+
+export interface PaymentsApiPaymentslistAccountsRequest {
+    /**
+     * Limit the number of accounts to return, pagination can be achieved in conjunction with &#39;skip&#39; parameter.
+     * @type number
+     * @memberof PaymentsApipaymentslistAccounts
+     */
+    limit?: number
+    /**
+     * How many accounts to skip, pagination can be achieved in conjunction with &#39;limit&#39; parameter.
+     * @type number
+     * @memberof PaymentsApipaymentslistAccounts
+     */
+    skip?: number
+    /**
+     * Field used to sort payments (Default is by date).
+     * @type Array&lt;string&gt;
+     * @memberof PaymentsApipaymentslistAccounts
      */
     sort?: Array<string>
 }
@@ -787,6 +991,14 @@ export class ObjectPaymentsApi {
      */
     public listPayments(param: PaymentsApiListPaymentsRequest = {}, options?: Configuration): Promise<ListPaymentsResponse> {
         return this.api.listPayments(param.limit, param.skip, param.sort,  options).toPromise();
+    }
+
+    /**
+     * Returns a list of accounts.
+     * @param param the request object
+     */
+    public paymentslistAccounts(param: PaymentsApiPaymentslistAccountsRequest = {}, options?: Configuration): Promise<ListAccountsResponse> {
+        return this.api.paymentslistAccounts(param.limit, param.skip, param.sort,  options).toPromise();
     }
 
     /**
@@ -1000,10 +1212,11 @@ export class ObjectScriptApi {
     }
 
     /**
-     * Execute a Numscript.
+     * This route is deprecated, and has been merged into `POST /{ledger}/transactions`. 
+     * Execute a Numscript
      * @param param the request object
      */
-    public runScript(param: ScriptApiRunScriptRequest, options?: Configuration): Promise<ScriptResult> {
+    public runScript(param: ScriptApiRunScriptRequest, options?: Configuration): Promise<ScriptResponse> {
         return this.api.runScript(param.ledger, param.script, param.preview,  options).toPromise();
     }
 
@@ -1029,7 +1242,7 @@ export class ObjectSearchApi {
     }
 
     /**
-     * Search with Query
+     * ElasticSearch query engine
      * Search
      * @param param the request object
      */
@@ -1053,7 +1266,7 @@ export class ObjectServerApi {
     }
 
     /**
-     * Show server information.
+     * Show server information
      * @param param the request object
      */
     public getInfo(param: ServerApiGetInfoRequest = {}, options?: Configuration): Promise<ConfigInfoResponse> {
@@ -1082,8 +1295,8 @@ export class ObjectStatsApi {
     }
 
     /**
-     * Get ledger stats (aggregate metrics on accounts and transactions) The stats for account 
-     * Get Stats
+     * Get statistics from a ledger. (aggregate metrics on accounts and transactions) 
+     * Get statistics from a ledger
      * @param param the request object
      */
     public readStats(param: StatsApiReadStatsRequest, options?: Configuration): Promise<StatsResponse> {
@@ -1148,6 +1361,30 @@ export interface TransactionsApiCountTransactionsRequest {
      */
     destination?: string
     /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @type Date
+     * @memberof TransactionsApicountTransactions
+     */
+    startTime?: Date
+    /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @type Date
+     * @memberof TransactionsApicountTransactions
+     */
+    startTime2?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @type Date
+     * @memberof TransactionsApicountTransactions
+     */
+    endTime?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
+     * @type Date
+     * @memberof TransactionsApicountTransactions
+     */
+    endTime2?: Date
+    /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      * @type any
      * @memberof TransactionsApicountTransactions
@@ -1163,11 +1400,11 @@ export interface TransactionsApiCreateTransactionRequest {
      */
     ledger: string
     /**
-     * 
-     * @type TransactionData
+     * The request body must contain at least one of the following objects:   - &#x60;postings&#x60;: suitable for simple transactions   - &#x60;script&#x60;: enabling more complex transactions with Numscript 
+     * @type PostTransaction
      * @memberof TransactionsApicreateTransaction
      */
-    transactionData: TransactionData
+    postTransaction: PostTransaction
     /**
      * Set the preview mode. Preview mode doesn&#39;t add the logs to the database or publish a message to the message broker.
      * @type boolean
@@ -1214,11 +1451,17 @@ export interface TransactionsApiListTransactionsRequest {
      */
     ledger: string
     /**
-     * The maximum number of results to return per page
+     * The maximum number of results to return per page. 
      * @type number
      * @memberof TransactionsApilistTransactions
      */
     pageSize?: number
+    /**
+     * The maximum number of results to return per page. Deprecated, please use &#x60;pageSize&#x60; instead. 
+     * @type number
+     * @memberof TransactionsApilistTransactions
+     */
+    pageSize2?: number
     /**
      * Pagination cursor, will return transactions after given txid (in descending order).
      * @type string
@@ -1232,37 +1475,55 @@ export interface TransactionsApiListTransactionsRequest {
      */
     reference?: string
     /**
-     * Find transactions with postings involving given account, either as source or destination.
+     * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      * @type string
      * @memberof TransactionsApilistTransactions
      */
     account?: string
     /**
-     * Find transactions with postings involving given account at source.
+     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
      * @type string
      * @memberof TransactionsApilistTransactions
      */
     source?: string
     /**
-     * Find transactions with postings involving given account at destination.
+     * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      * @type string
      * @memberof TransactionsApilistTransactions
      */
     destination?: string
     /**
-     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute). 
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). 
+     * @type Date
+     * @memberof TransactionsApilistTransactions
+     */
+    startTime?: Date
+    /**
+     * Filter transactions that occurred after this timestamp. The format is RFC3339 and is inclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; includes the first second of 4th minute). Deprecated, please use &#x60;startTime&#x60; instead. 
+     * @type Date
+     * @memberof TransactionsApilistTransactions
+     */
+    startTime2?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). 
+     * @type Date
+     * @memberof TransactionsApilistTransactions
+     */
+    endTime?: Date
+    /**
+     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, \&quot;2023-01-02T15:04:01Z\&quot; excludes the first second of 4th minute). Deprecated, please use &#x60;endTime&#x60; instead. 
+     * @type Date
+     * @memberof TransactionsApilistTransactions
+     */
+    endTime2?: Date
+    /**
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. 
      * @type string
      * @memberof TransactionsApilistTransactions
      */
-    startTime?: string
+    cursor?: string
     /**
-     * Filter transactions that occurred before this timestamp. The format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute). 
-     * @type string
-     * @memberof TransactionsApilistTransactions
-     */
-    endTime?: string
-    /**
-     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results.  Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * Parameter used in pagination requests. Maximum page size is set to 15. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set. Deprecated, please use &#x60;cursor&#x60; instead. 
      * @type string
      * @memberof TransactionsApilistTransactions
      */
@@ -1298,7 +1559,7 @@ export class ObjectTransactionsApi {
     }
 
     /**
-     * Set the metadata of a transaction by its ID.
+     * Set the metadata of a transaction by its ID
      * @param param the request object
      */
     public addMetadataOnTransaction(param: TransactionsApiAddMetadataOnTransactionRequest, options?: Configuration): Promise<void> {
@@ -1306,23 +1567,23 @@ export class ObjectTransactionsApi {
     }
 
     /**
-     * Count the transactions from a ledger.
+     * Count the transactions from a ledger
      * @param param the request object
      */
     public countTransactions(param: TransactionsApiCountTransactionsRequest, options?: Configuration): Promise<void> {
-        return this.api.countTransactions(param.ledger, param.reference, param.account, param.source, param.destination, param.metadata,  options).toPromise();
+        return this.api.countTransactions(param.ledger, param.reference, param.account, param.source, param.destination, param.startTime, param.startTime2, param.endTime, param.endTime2, param.metadata,  options).toPromise();
     }
 
     /**
-     * Create a new transaction to a ledger.
+     * Create a new transaction to a ledger
      * @param param the request object
      */
     public createTransaction(param: TransactionsApiCreateTransactionRequest, options?: Configuration): Promise<TransactionsResponse> {
-        return this.api.createTransaction(param.ledger, param.transactionData, param.preview,  options).toPromise();
+        return this.api.createTransaction(param.ledger, param.postTransaction, param.preview,  options).toPromise();
     }
 
     /**
-     * Create a new batch of transactions to a ledger.
+     * Create a new batch of transactions to a ledger
      * @param param the request object
      */
     public createTransactions(param: TransactionsApiCreateTransactionsRequest, options?: Configuration): Promise<TransactionsResponse> {
@@ -1330,7 +1591,7 @@ export class ObjectTransactionsApi {
     }
 
     /**
-     * Get transaction from a ledger by its ID.
+     * Get transaction from a ledger by its ID
      * @param param the request object
      */
     public getTransaction(param: TransactionsApiGetTransactionRequest, options?: Configuration): Promise<TransactionResponse> {
@@ -1339,15 +1600,15 @@ export class ObjectTransactionsApi {
 
     /**
      * List transactions from a ledger, sorted by txid in descending order.
-     * List transactions from a ledger.
+     * List transactions from a ledger
      * @param param the request object
      */
-    public listTransactions(param: TransactionsApiListTransactionsRequest, options?: Configuration): Promise<ListTransactions200Response> {
-        return this.api.listTransactions(param.ledger, param.pageSize, param.after, param.reference, param.account, param.source, param.destination, param.startTime, param.endTime, param.paginationToken, param.metadata,  options).toPromise();
+    public listTransactions(param: TransactionsApiListTransactionsRequest, options?: Configuration): Promise<TransactionsCursorResponse> {
+        return this.api.listTransactions(param.ledger, param.pageSize, param.pageSize2, param.after, param.reference, param.account, param.source, param.destination, param.startTime, param.startTime2, param.endTime, param.endTime2, param.cursor, param.paginationToken, param.metadata,  options).toPromise();
     }
 
     /**
-     * Revert a ledger transaction by its ID.
+     * Revert a ledger transaction by its ID
      * @param param the request object
      */
     public revertTransaction(param: TransactionsApiRevertTransactionRequest, options?: Configuration): Promise<TransactionResponse> {
@@ -1398,47 +1659,391 @@ export class ObjectUsersApi {
 
 }
 
-import { ObservableWebhooksApi } from "./ObservableAPI";
-import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
+import { ObservableWalletsApi } from "./ObservableAPI";
+import { WalletsApiRequestFactory, WalletsApiResponseProcessor} from "../apis/WalletsApi";
 
-export interface WebhooksApiActivateOneConfigRequest {
+export interface WalletsApiConfirmHoldRequest {
     /**
-     * Config ID
+     * 
      * @type string
-     * @memberof WebhooksApiactivateOneConfig
+     * @memberof WalletsApiconfirmHold
      */
-    id: string
+    holdId: string
+    /**
+     * 
+     * @type ConfirmHoldRequest
+     * @memberof WalletsApiconfirmHold
+     */
+    confirmHoldRequest?: ConfirmHoldRequest
 }
 
-export interface WebhooksApiChangeOneConfigSecretRequest {
+export interface WalletsApiCreateBalanceRequest {
     /**
-     * Config ID
+     * 
      * @type string
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @memberof WalletsApicreateBalance
      */
     id: string
     /**
      * 
-     * @type ChangeOneConfigSecretRequest
-     * @memberof WebhooksApichangeOneConfigSecret
+     * @type Balance
+     * @memberof WalletsApicreateBalance
      */
-    changeOneConfigSecretRequest?: ChangeOneConfigSecretRequest
+    body?: Balance
 }
 
-export interface WebhooksApiDeactivateOneConfigRequest {
+export interface WalletsApiCreateWalletRequest {
     /**
-     * Config ID
+     * 
+     * @type CreateWalletRequest
+     * @memberof WalletsApicreateWallet
+     */
+    createWalletRequest?: CreateWalletRequest
+}
+
+export interface WalletsApiCreditWalletRequest {
+    /**
+     * 
      * @type string
-     * @memberof WebhooksApideactivateOneConfig
+     * @memberof WalletsApicreditWallet
+     */
+    id: string
+    /**
+     * 
+     * @type CreditWalletRequest
+     * @memberof WalletsApicreditWallet
+     */
+    creditWalletRequest?: CreditWalletRequest
+}
+
+export interface WalletsApiDebitWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApidebitWallet
+     */
+    id: string
+    /**
+     * 
+     * @type DebitWalletRequest
+     * @memberof WalletsApidebitWallet
+     */
+    debitWalletRequest?: DebitWalletRequest
+}
+
+export interface WalletsApiGetBalanceRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetBalance
+     */
+    id: string
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetBalance
+     */
+    balanceName: string
+}
+
+export interface WalletsApiGetHoldRequest {
+    /**
+     * The hold ID
+     * @type string
+     * @memberof WalletsApigetHold
+     */
+    holdID: string
+}
+
+export interface WalletsApiGetHoldsRequest {
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApigetHolds
+     */
+    pageSize?: number
+    /**
+     * The wallet to filter on
+     * @type string
+     * @memberof WalletsApigetHolds
+     */
+    walletID?: string
+    /**
+     * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @type any
+     * @memberof WalletsApigetHolds
+     */
+    metadata?: any
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @type string
+     * @memberof WalletsApigetHolds
+     */
+    cursor?: string
+}
+
+export interface WalletsApiGetTransactionsRequest {
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApigetTransactions
+     */
+    pageSize?: number
+    /**
+     * A wallet ID to filter on
+     * @type string
+     * @memberof WalletsApigetTransactions
+     */
+    walletId?: string
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the cursor is set. 
+     * @type string
+     * @memberof WalletsApigetTransactions
+     */
+    cursor?: string
+}
+
+export interface WalletsApiGetWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApigetWallet
      */
     id: string
 }
 
-export interface WebhooksApiDeleteOneConfigRequest {
+export interface WalletsApiListBalancesRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApilistBalances
+     */
+    id: string
+}
+
+export interface WalletsApiListWalletsRequest {
+    /**
+     * Filter on wallet name
+     * @type string
+     * @memberof WalletsApilistWallets
+     */
+    name?: string
+    /**
+     * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
+     * @type any
+     * @memberof WalletsApilistWallets
+     */
+    metadata?: any
+    /**
+     * The maximum number of results to return per page
+     * @type number
+     * @memberof WalletsApilistWallets
+     */
+    pageSize?: number
+    /**
+     * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when the pagination token is set. 
+     * @type string
+     * @memberof WalletsApilistWallets
+     */
+    cursor?: string
+}
+
+export interface WalletsApiUpdateWalletRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApiupdateWallet
+     */
+    id: string
+    /**
+     * 
+     * @type UpdateWalletRequest
+     * @memberof WalletsApiupdateWallet
+     */
+    updateWalletRequest?: UpdateWalletRequest
+}
+
+export interface WalletsApiVoidHoldRequest {
+    /**
+     * 
+     * @type string
+     * @memberof WalletsApivoidHold
+     */
+    holdId: string
+}
+
+export interface WalletsApiWalletsgetServerInfoRequest {
+}
+
+export class ObjectWalletsApi {
+    private api: ObservableWalletsApi
+
+    public constructor(configuration: Configuration, requestFactory?: WalletsApiRequestFactory, responseProcessor?: WalletsApiResponseProcessor) {
+        this.api = new ObservableWalletsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Confirm a hold
+     * @param param the request object
+     */
+    public confirmHold(param: WalletsApiConfirmHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.confirmHold(param.holdId, param.confirmHoldRequest,  options).toPromise();
+    }
+
+    /**
+     * Create a balance
+     * @param param the request object
+     */
+    public createBalance(param: WalletsApiCreateBalanceRequest, options?: Configuration): Promise<CreateBalanceResponse> {
+        return this.api.createBalance(param.id, param.body,  options).toPromise();
+    }
+
+    /**
+     * Create a new wallet
+     * @param param the request object
+     */
+    public createWallet(param: WalletsApiCreateWalletRequest = {}, options?: Configuration): Promise<CreateWalletResponse> {
+        return this.api.createWallet(param.createWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Credit a wallet
+     * @param param the request object
+     */
+    public creditWallet(param: WalletsApiCreditWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.creditWallet(param.id, param.creditWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Debit a wallet
+     * @param param the request object
+     */
+    public debitWallet(param: WalletsApiDebitWalletRequest, options?: Configuration): Promise<DebitWalletResponse | void> {
+        return this.api.debitWallet(param.id, param.debitWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Get detailed balance
+     * @param param the request object
+     */
+    public getBalance(param: WalletsApiGetBalanceRequest, options?: Configuration): Promise<GetBalanceResponse> {
+        return this.api.getBalance(param.id, param.balanceName,  options).toPromise();
+    }
+
+    /**
+     * Get a hold
+     * @param param the request object
+     */
+    public getHold(param: WalletsApiGetHoldRequest, options?: Configuration): Promise<GetHoldResponse> {
+        return this.api.getHold(param.holdID,  options).toPromise();
+    }
+
+    /**
+     * Get all holds for a wallet
+     * @param param the request object
+     */
+    public getHolds(param: WalletsApiGetHoldsRequest = {}, options?: Configuration): Promise<GetHoldsResponse> {
+        return this.api.getHolds(param.pageSize, param.walletID, param.metadata, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * @param param the request object
+     */
+    public getTransactions(param: WalletsApiGetTransactionsRequest = {}, options?: Configuration): Promise<GetTransactionsResponse> {
+        return this.api.getTransactions(param.pageSize, param.walletId, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * Get a wallet
+     * @param param the request object
+     */
+    public getWallet(param: WalletsApiGetWalletRequest, options?: Configuration): Promise<GetWalletResponse> {
+        return this.api.getWallet(param.id,  options).toPromise();
+    }
+
+    /**
+     * List balances of a wallet
+     * @param param the request object
+     */
+    public listBalances(param: WalletsApiListBalancesRequest, options?: Configuration): Promise<ListBalancesResponse> {
+        return this.api.listBalances(param.id,  options).toPromise();
+    }
+
+    /**
+     * List all wallets
+     * @param param the request object
+     */
+    public listWallets(param: WalletsApiListWalletsRequest = {}, options?: Configuration): Promise<ListWalletsResponse> {
+        return this.api.listWallets(param.name, param.metadata, param.pageSize, param.cursor,  options).toPromise();
+    }
+
+    /**
+     * Update a wallet
+     * @param param the request object
+     */
+    public updateWallet(param: WalletsApiUpdateWalletRequest, options?: Configuration): Promise<void> {
+        return this.api.updateWallet(param.id, param.updateWalletRequest,  options).toPromise();
+    }
+
+    /**
+     * Cancel a hold
+     * @param param the request object
+     */
+    public voidHold(param: WalletsApiVoidHoldRequest, options?: Configuration): Promise<void> {
+        return this.api.voidHold(param.holdId,  options).toPromise();
+    }
+
+    /**
+     * Get server info
+     * @param param the request object
+     */
+    public walletsgetServerInfo(param: WalletsApiWalletsgetServerInfoRequest = {}, options?: Configuration): Promise<ServerInfo> {
+        return this.api.walletsgetServerInfo( options).toPromise();
+    }
+
+}
+
+import { ObservableWebhooksApi } from "./ObservableAPI";
+import { WebhooksApiRequestFactory, WebhooksApiResponseProcessor} from "../apis/WebhooksApi";
+
+export interface WebhooksApiActivateConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApideleteOneConfig
+     * @memberof WebhooksApiactivateConfig
+     */
+    id: string
+}
+
+export interface WebhooksApiChangeConfigSecretRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApichangeConfigSecret
+     */
+    id: string
+    /**
+     * 
+     * @type ConfigChangeSecret
+     * @memberof WebhooksApichangeConfigSecret
+     */
+    configChangeSecret?: ConfigChangeSecret
+}
+
+export interface WebhooksApiDeactivateConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApideactivateConfig
+     */
+    id: string
+}
+
+export interface WebhooksApiDeleteConfigRequest {
+    /**
+     * Config ID
+     * @type string
+     * @memberof WebhooksApideleteConfig
      */
     id: string
 }
@@ -1458,20 +2063,20 @@ export interface WebhooksApiGetManyConfigsRequest {
     endpoint?: string
 }
 
-export interface WebhooksApiInsertOneConfigRequest {
+export interface WebhooksApiInsertConfigRequest {
     /**
      * 
      * @type ConfigUser
-     * @memberof WebhooksApiinsertOneConfig
+     * @memberof WebhooksApiinsertConfig
      */
     configUser: ConfigUser
 }
 
-export interface WebhooksApiTestOneConfigRequest {
+export interface WebhooksApiTestConfigRequest {
     /**
      * Config ID
      * @type string
-     * @memberof WebhooksApitestOneConfig
+     * @memberof WebhooksApitestConfig
      */
     id: string
 }
@@ -1484,36 +2089,39 @@ export class ObjectWebhooksApi {
     }
 
     /**
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      * Activate one config
      * @param param the request object
      */
-    public activateOneConfig(param: WebhooksApiActivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.activateOneConfig(param.id,  options).toPromise();
+    public activateConfig(param: WebhooksApiActivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.activateConfig(param.id,  options).toPromise();
     }
 
     /**
-     * Change the signing secret of the endpoint of a config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
+     * Change the signing secret of the endpoint of a webhooks config.  If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding) 
      * Change the signing secret of a config
      * @param param the request object
      */
-    public changeOneConfigSecret(param: WebhooksApiChangeOneConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.changeOneConfigSecret(param.id, param.changeOneConfigSecretRequest,  options).toPromise();
+    public changeConfigSecret(param: WebhooksApiChangeConfigSecretRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.changeConfigSecret(param.id, param.configChangeSecret,  options).toPromise();
     }
 
     /**
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      * Deactivate one config
      * @param param the request object
      */
-    public deactivateOneConfig(param: WebhooksApiDeactivateOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.deactivateOneConfig(param.id,  options).toPromise();
+    public deactivateConfig(param: WebhooksApiDeactivateConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.deactivateConfig(param.id,  options).toPromise();
     }
 
     /**
+     * Delete a webhooks config by ID.
      * Delete one config
      * @param param the request object
      */
-    public deleteOneConfig(param: WebhooksApiDeleteOneConfigRequest, options?: Configuration): Promise<void> {
-        return this.api.deleteOneConfig(param.id,  options).toPromise();
+    public deleteConfig(param: WebhooksApiDeleteConfigRequest, options?: Configuration): Promise<void> {
+        return this.api.deleteConfig(param.id,  options).toPromise();
     }
 
     /**
@@ -1521,26 +2129,26 @@ export class ObjectWebhooksApi {
      * Get many configs
      * @param param the request object
      */
-    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<GetManyConfigs200Response> {
+    public getManyConfigs(param: WebhooksApiGetManyConfigsRequest = {}, options?: Configuration): Promise<ConfigsResponse> {
         return this.api.getManyConfigs(param.id, param.endpoint,  options).toPromise();
     }
 
     /**
-     * Insert a new config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
-     * Insert a new config 
+     * Insert a new webhooks config.  The endpoint should be a valid https URL and be unique.  The secret is the endpoint's verification secret. If not passed or empty, a secret is automatically generated. The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)  All eventTypes are converted to lower-case when inserted. 
+     * Insert a new config
      * @param param the request object
      */
-    public insertOneConfig(param: WebhooksApiInsertOneConfigRequest, options?: Configuration): Promise<ConfigResponse> {
-        return this.api.insertOneConfig(param.configUser,  options).toPromise();
+    public insertConfig(param: WebhooksApiInsertConfigRequest, options?: Configuration): Promise<ConfigResponse> {
+        return this.api.insertConfig(param.configUser,  options).toPromise();
     }
 
     /**
-     * Test one config by sending a webhook to its endpoint. 
+     * Test a config by sending a webhook to its endpoint.
      * Test one config
      * @param param the request object
      */
-    public testOneConfig(param: WebhooksApiTestOneConfigRequest, options?: Configuration): Promise<AttemptResponse> {
-        return this.api.testOneConfig(param.id,  options).toPromise();
+    public testConfig(param: WebhooksApiTestConfigRequest, options?: Configuration): Promise<AttemptResponse> {
+        return this.api.testConfig(param.id,  options).toPromise();
     }
 
 }

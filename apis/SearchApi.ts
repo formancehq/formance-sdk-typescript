@@ -19,7 +19,7 @@ import { Response } from '../models/Response';
 export class SearchApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Search with Query
+     * ElasticSearch query engine
      * Search
      * @param query 
      */
@@ -85,6 +85,9 @@ export class SearchApiResponseProcessor {
                 "Response", ""
             ) as Response;
             return body;
+        }
+        if (isCodeInRange("0", response.httpStatusCode)) {
+            throw new ApiException<undefined>(response.httpStatusCode, "Error", undefined, response.headers);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
