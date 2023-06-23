@@ -1,28 +1,27 @@
 {
   "compilerOptions": {
-    "strict": true,
-    /* Basic Options */
     "target": "es5",
+    "lib": ["es2021"],
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "allowJs": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "declaration": true,
-
-    /* Additional Checks */
-     "noUnusedLocals": false,                /* Report errors on unused locals. */ // TODO: reenable (unused imports!)
-     "noUnusedParameters": false,            /* Report errors on unused parameters. */ // TODO: set to true again
-     "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
-     "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
-
-    "removeComments": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "noLib": false,
-    "lib": [ "es6" ],
+    "types": ["reflect-metadata"]
   },
-  "exclude": [
-    "dist",
-    "node_modules"
-  ],
-  "filesGlob": [
-    "./**/*.ts",
-  ]
+  "include": ["src"]
 }
