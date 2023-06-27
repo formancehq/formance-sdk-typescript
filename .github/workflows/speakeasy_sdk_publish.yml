@@ -4,8 +4,8 @@ name: Publish
     branches:
       - main
       - beta
-    paths:
-      - RELEASES.md
+    # paths:
+    #   - RELEASES.md
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v14
