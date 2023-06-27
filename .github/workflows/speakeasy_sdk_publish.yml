@@ -3,6 +3,7 @@ name: Publish
   push:
     branches:
       - main
+      - beta
     paths:
       - RELEASES.md
 jobs:
