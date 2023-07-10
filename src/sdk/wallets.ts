@@ -19,13 +19,14 @@ export class Wallets {
      * Confirm a hold
      */
     async confirmHold(
-        req: operations.ConfirmHoldRequest,
+        holdId: string,
+        confirmHoldRequest?: shared.ConfirmHoldRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.ConfirmHoldResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ConfirmHoldRequest(req);
-        }
-
+        const req = new operations.ConfirmHoldRequest({
+            holdId: holdId,
+            confirmHoldRequest: confirmHoldRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -97,13 +98,14 @@ export class Wallets {
      * Create a balance
      */
     async createBalance(
-        req: operations.CreateBalanceRequest,
+        id: string,
+        createBalanceRequest?: shared.CreateBalanceRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.CreateBalanceResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CreateBalanceRequest(req);
-        }
-
+        const req = new operations.CreateBalanceRequest({
+            id: id,
+            createBalanceRequest: createBalanceRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -261,13 +263,14 @@ export class Wallets {
      * Credit a wallet
      */
     async creditWallet(
-        req: operations.CreditWalletRequest,
+        id: string,
+        creditWalletRequest?: shared.CreditWalletRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.CreditWalletResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CreditWalletRequest(req);
-        }
-
+        const req = new operations.CreditWalletRequest({
+            id: id,
+            creditWalletRequest: creditWalletRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -339,13 +342,14 @@ export class Wallets {
      * Debit a wallet
      */
     async debitWallet(
-        req: operations.DebitWalletRequest,
+        id: string,
+        debitWalletRequest?: shared.DebitWalletRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.DebitWalletResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DebitWalletRequest(req);
-        }
-
+        const req = new operations.DebitWalletRequest({
+            id: id,
+            debitWalletRequest: debitWalletRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -425,13 +429,14 @@ export class Wallets {
      * Get detailed balance
      */
     async getBalance(
-        req: operations.GetBalanceRequest,
+        balanceName: string,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetBalanceResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetBalanceRequest(req);
-        }
-
+        const req = new operations.GetBalanceRequest({
+            balanceName: balanceName,
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -498,13 +503,12 @@ export class Wallets {
      * Get a hold
      */
     async getHold(
-        req: operations.GetHoldRequest,
+        holdID: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetHoldResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetHoldRequest(req);
-        }
-
+        const req = new operations.GetHoldRequest({
+            holdID: holdID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -567,13 +571,18 @@ export class Wallets {
      * Get all holds for a wallet
      */
     async getHolds(
-        req: operations.GetHoldsRequest,
+        cursor?: string,
+        metadata?: Record<string, string>,
+        pageSize?: number,
+        walletID?: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetHoldsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetHoldsRequest(req);
-        }
-
+        const req = new operations.GetHoldsRequest({
+            cursor: cursor,
+            metadata: metadata,
+            pageSize: pageSize,
+            walletID: walletID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -634,13 +643,16 @@ export class Wallets {
     }
 
     async getTransactions(
-        req: operations.GetTransactionsRequest,
+        cursor?: string,
+        pageSize?: number,
+        walletID?: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetTransactionsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetTransactionsRequest(req);
-        }
-
+        const req = new operations.GetTransactionsRequest({
+            cursor: cursor,
+            pageSize: pageSize,
+            walletID: walletID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -704,13 +716,12 @@ export class Wallets {
      * Get a wallet
      */
     async getWallet(
-        req: operations.GetWalletRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetWalletResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetWalletRequest(req);
-        }
-
+        const req = new operations.GetWalletRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -775,13 +786,12 @@ export class Wallets {
      * Get wallet summary
      */
     async getWalletSummary(
-        req: operations.GetWalletSummaryRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetWalletSummaryResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetWalletSummaryRequest(req);
-        }
-
+        const req = new operations.GetWalletSummaryRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -846,13 +856,12 @@ export class Wallets {
      * List balances of a wallet
      */
     async listBalances(
-        req: operations.ListBalancesRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ListBalancesResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListBalancesRequest(req);
-        }
-
+        const req = new operations.ListBalancesRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -907,13 +916,18 @@ export class Wallets {
      * List all wallets
      */
     async listWallets(
-        req: operations.ListWalletsRequest,
+        cursor?: string,
+        metadata?: Record<string, string>,
+        name?: string,
+        pageSize?: number,
         config?: AxiosRequestConfig
     ): Promise<operations.ListWalletsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListWalletsRequest(req);
-        }
-
+        const req = new operations.ListWalletsRequest({
+            cursor: cursor,
+            metadata: metadata,
+            name: name,
+            pageSize: pageSize,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -969,13 +983,14 @@ export class Wallets {
      * Update a wallet
      */
     async updateWallet(
-        req: operations.UpdateWalletRequest,
+        id: string,
+        requestBody?: operations.UpdateWalletRequestBody,
         config?: AxiosRequestConfig
     ): Promise<operations.UpdateWalletResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UpdateWalletRequest(req);
-        }
-
+        const req = new operations.UpdateWalletRequest({
+            id: id,
+            requestBody: requestBody,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1043,13 +1058,12 @@ export class Wallets {
      * Cancel a hold
      */
     async voidHold(
-        req: operations.VoidHoldRequest,
+        holdId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.VoidHoldResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.VoidHoldRequest(req);
-        }
-
+        const req = new operations.VoidHoldRequest({
+            holdId: holdId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

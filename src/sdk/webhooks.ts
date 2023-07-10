@@ -22,13 +22,12 @@ export class Webhooks {
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      */
     async activateConfig(
-        req: operations.ActivateConfigRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ActivateConfigResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ActivateConfigRequest(req);
-        }
-
+        const req = new operations.ActivateConfigRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -98,13 +97,14 @@ export class Webhooks {
      *
      */
     async changeConfigSecret(
-        req: operations.ChangeConfigSecretRequest,
+        id: string,
+        configChangeSecret?: shared.ConfigChangeSecret,
         config?: AxiosRequestConfig
     ): Promise<operations.ChangeConfigSecretResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ChangeConfigSecretRequest(req);
-        }
-
+        const req = new operations.ChangeConfigSecretRequest({
+            id: id,
+            configChangeSecret: configChangeSecret,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -190,13 +190,12 @@ export class Webhooks {
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      */
     async deactivateConfig(
-        req: operations.DeactivateConfigRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeactivateConfigResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeactivateConfigRequest(req);
-        }
-
+        const req = new operations.DeactivateConfigRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -266,13 +265,12 @@ export class Webhooks {
      * Delete a webhooks config by ID.
      */
     async deleteConfig(
-        req: operations.DeleteConfigRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteConfigResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteConfigRequest(req);
-        }
-
+        const req = new operations.DeleteConfigRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -332,13 +330,14 @@ export class Webhooks {
      * Sorted by updated date descending
      */
     async getManyConfigs(
-        req: operations.GetManyConfigsRequest,
+        endpoint?: string,
+        id?: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetManyConfigsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetManyConfigsRequest(req);
-        }
-
+        const req = new operations.GetManyConfigsRequest({
+            endpoint: endpoint,
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -499,13 +498,12 @@ export class Webhooks {
      * Test a config by sending a webhook to its endpoint.
      */
     async testConfig(
-        req: operations.TestConfigRequest,
+        id: string,
         config?: AxiosRequestConfig
     ): Promise<operations.TestConfigResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.TestConfigRequest(req);
-        }
-
+        const req = new operations.TestConfigRequest({
+            id: id,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

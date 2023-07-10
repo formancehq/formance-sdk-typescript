@@ -292,7 +292,7 @@ src/sdk/models/shared/getversionsresponse.ts
 src/sdk/models/shared/version.ts
 src/sdk/models/shared/security.ts
 src/sdk/models/shared/index.ts
-docs/sdks/sdk/README.md
+docs/sdks/formance/README.md
 docs/sdks/auth/README.md
 docs/sdks/ledger/README.md
 docs/sdks/orchestration/README.md

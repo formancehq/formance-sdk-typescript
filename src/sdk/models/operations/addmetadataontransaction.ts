@@ -8,12 +8,6 @@ import { AxiosResponse } from "axios";
 
 export class AddMetadataOnTransactionRequest extends SpeakeasyBase {
     /**
-     * metadata
-     */
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    requestBody?: Record<string, any>;
-
-    /**
      * Name of the ledger.
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
@@ -24,6 +18,12 @@ export class AddMetadataOnTransactionRequest extends SpeakeasyBase {
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=txid" })
     txid: number;
+
+    /**
+     * metadata
+     */
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: Record<string, any>;
 }
 
 export class AddMetadataOnTransactionResponse extends SpeakeasyBase {

@@ -13,16 +13,16 @@ export class CountAccountsMetadata extends SpeakeasyBase {}
 
 export class CountAccountsRequest extends SpeakeasyBase {
     /**
-     * Filter accounts by address pattern (regular expression placed between ^ and $).
-     */
-    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=address" })
-    address?: string;
-
-    /**
      * Name of the ledger.
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
     ledger: string;
+
+    /**
+     * Filter accounts by address pattern (regular expression placed between ^ and $).
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=address" })
+    address?: string;
 
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2

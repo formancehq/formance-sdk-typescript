@@ -7,14 +7,14 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class UpdateScopeRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    updateScopeRequest?: shared.UpdateScopeRequest;
-
     /**
      * Scope ID
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=scopeId" })
     scopeId: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    updateScopeRequest?: shared.UpdateScopeRequest;
 }
 
 export class UpdateScopeResponse extends SpeakeasyBase {

@@ -17,19 +17,17 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ActivateConfigResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.activateConfig({
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-}).then((res: ActivateConfigResponse) => {
+sdk.webhooks.activateConfig("4997257d-dfb6-445b-929c-cbe2ab182818").then((res: ActivateConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -38,10 +36,10 @@ sdk.webhooks.activateConfig({
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.ActivateConfigRequest](../../models/operations/activateconfigrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | Config ID                                                    | 4997257d-dfb6-445b-929c-cbe2ab182818                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -60,21 +58,18 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ChangeConfigSecretResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.changeConfigSecret({
-  configChangeSecret: {
-    secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-  },
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+sdk.webhooks.changeConfigSecret("4997257d-dfb6-445b-929c-cbe2ab182818", {
+  secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
 }).then((res: ChangeConfigSecretResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -84,10 +79,11 @@ sdk.webhooks.changeConfigSecret({
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.ChangeConfigSecretRequest](../../models/operations/changeconfigsecretrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `id`                                                                   | *string*                                                               | :heavy_check_mark:                                                     | Config ID                                                              | 4997257d-dfb6-445b-929c-cbe2ab182818                                   |
+| `configChangeSecret`                                                   | [shared.ConfigChangeSecret](../../models/shared/configchangesecret.md) | :heavy_minus_sign:                                                     | N/A                                                                    |                                                                        |
+| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |                                                                        |
 
 
 ### Response
@@ -102,19 +98,17 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeactivateConfigResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.deactivateConfig({
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-}).then((res: DeactivateConfigResponse) => {
+sdk.webhooks.deactivateConfig("4997257d-dfb6-445b-929c-cbe2ab182818").then((res: DeactivateConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -123,10 +117,10 @@ sdk.webhooks.deactivateConfig({
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.DeactivateConfigRequest](../../models/operations/deactivateconfigrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | Config ID                                                    | 4997257d-dfb6-445b-929c-cbe2ab182818                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -141,19 +135,17 @@ Delete a webhooks config by ID.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteConfigResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.deleteConfig({
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-}).then((res: DeleteConfigResponse) => {
+sdk.webhooks.deleteConfig("4997257d-dfb6-445b-929c-cbe2ab182818").then((res: DeleteConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -162,10 +154,10 @@ sdk.webhooks.deleteConfig({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.DeleteConfigRequest](../../models/operations/deleteconfigrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | Config ID                                                    | 4997257d-dfb6-445b-929c-cbe2ab182818                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -180,20 +172,17 @@ Sorted by updated date descending
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetManyConfigsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.getManyConfigs({
-  endpoint: "https://example.com",
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-}).then((res: GetManyConfigsResponse) => {
+sdk.webhooks.getManyConfigs("https://example.com", "4997257d-dfb6-445b-929c-cbe2ab182818").then((res: GetManyConfigsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -202,10 +191,11 @@ sdk.webhooks.getManyConfigs({
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.GetManyConfigsRequest](../../models/operations/getmanyconfigsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `endpoint`                                                   | *string*                                                     | :heavy_minus_sign:                                           | Optional filter by endpoint URL                              | https://example.com                                          |
+| `id`                                                         | *string*                                                     | :heavy_minus_sign:                                           | Optional filter by Config ID                                 | 4997257d-dfb6-445b-929c-cbe2ab182818                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -229,11 +219,11 @@ All eventTypes are converted to lower-case when inserted.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { InsertConfigResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -242,8 +232,6 @@ const sdk = new SDK({
 sdk.webhooks.insertConfig({
   endpoint: "https://example.com",
   eventTypes: [
-    "TYPE1",
-    "TYPE1",
     "TYPE1",
     "TYPE1",
   ],
@@ -275,19 +263,17 @@ Test a config by sending a webhook to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { TestConfigResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WebhooksErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.webhooks.testConfig({
-  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
-}).then((res: TestConfigResponse) => {
+sdk.webhooks.testConfig("4997257d-dfb6-445b-929c-cbe2ab182818").then((res: TestConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -296,10 +282,10 @@ sdk.webhooks.testConfig({
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.TestConfigRequest](../../models/operations/testconfigrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | Config ID                                                    | 4997257d-dfb6-445b-929c-cbe2ab182818                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response

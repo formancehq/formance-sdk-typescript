@@ -26,22 +26,19 @@ Confirm a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ConfirmHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.confirmHold({
-  confirmHoldRequest: {
-    amount: 100,
-    final: true,
-  },
-  holdId: "in",
+sdk.wallets.confirmHold("assumenda", {
+  amount: 100,
+  final: true,
 }).then((res: ConfirmHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -51,10 +48,11 @@ sdk.wallets.confirmHold({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.ConfirmHoldRequest](../../models/operations/confirmholdrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `holdId`                                                               | *string*                                                               | :heavy_check_mark:                                                     | N/A                                                                    |
+| `confirmHoldRequest`                                                   | [shared.ConfirmHoldRequest](../../models/shared/confirmholdrequest.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
 
 
 ### Response
@@ -69,23 +67,20 @@ Create a balance
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateBalanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.createBalance({
-  createBalanceRequest: {
-    expiresAt: new Date("2020-01-25T11:09:22.009Z"),
-    name: "Keith Gulgowski",
-    priority: 411820,
-  },
-  id: "6ae395ef-b9ba-488f-ba66-997074ba4469",
+sdk.wallets.createBalance("ipsam", {
+  expiresAt: new Date("2022-11-08T13:10:11.700Z"),
+  name: "Marshall Glover",
+  priority: 288476,
 }).then((res: CreateBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -95,10 +90,11 @@ sdk.wallets.createBalance({
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.CreateBalanceRequest](../../models/operations/createbalancerequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `id`                                                                       | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `createBalanceRequest`                                                     | [shared.CreateBalanceRequest](../../models/shared/createbalancerequest.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
 
 
 ### Response
@@ -113,11 +109,11 @@ Create a new wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -125,11 +121,12 @@ const sdk = new SDK({
 
 sdk.wallets.createWallet({
   metadata: {
-    "eum": "vero",
-    "aspernatur": "architecto",
-    "magnam": "et",
+    "eum": "non",
+    "eligendi": "sint",
+    "aliquid": "provident",
+    "necessitatibus": "sint",
   },
-  name: "Derrick McLaughlin",
+  name: "Curtis Toy",
 }).then((res: CreateWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -157,43 +154,49 @@ Credit a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreditWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.creditWallet({
-  creditWalletRequest: {
-    amount: {
-      amount: 33625,
-      asset: "mollitia",
-    },
-    balance: "reiciendis",
-    metadata: {
-      "ad": "eum",
-      "dolor": "necessitatibus",
-      "odit": "nemo",
-    },
-    reference: "quasi",
-    sources: [
-      {
-        balance: "debitis",
-        identifier: "eius",
-        type: "maxime",
-      },
-      {
-        balance: "facilis",
-        identifier: "in",
-        type: "architecto",
-      },
-    ],
+sdk.wallets.creditWallet("in", {
+  amount: {
+    amount: 449198,
+    asset: "illum",
   },
-  id: "1e5b7fd2-ed02-4892-9cdd-c692601fb576",
+  balance: "maiores",
+  metadata: {
+    "dicta": "magnam",
+    "cumque": "facere",
+    "ea": "aliquid",
+  },
+  reference: "laborum",
+  sources: [
+    {
+      identifier: "occaecati",
+      type: "enim",
+    },
+    {
+      balance: "delectus",
+      identifier: "quidem",
+      type: "provident",
+    },
+    {
+      balance: "id",
+      identifier: "blanditiis",
+      type: "deleniti",
+    },
+    {
+      balance: "amet",
+      identifier: "deserunt",
+      type: "nisi",
+    },
+  ],
 }).then((res: CreditWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -203,10 +206,11 @@ sdk.wallets.creditWallet({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.CreditWalletRequest](../../models/operations/creditwalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `creditWalletRequest`                                                    | [shared.CreditWalletRequest](../../models/shared/creditwalletrequest.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
 
 
 ### Response
@@ -221,42 +225,36 @@ Debit a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DebitWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.debitWallet({
-  debitWalletRequest: {
-    amount: {
-      amount: 722056,
-      asset: "eaque",
-    },
-    balances: [
-      "nemo",
-      "voluptatibus",
-      "perferendis",
-      "fugiat",
-    ],
-    description: "amet",
-    destination: {
-      identifier: "cumque",
-      type: "corporis",
-    },
-    metadata: {
-      "libero": "nobis",
-      "dolores": "quis",
-      "totam": "dignissimos",
-      "eaque": "quis",
-    },
-    pending: false,
+sdk.wallets.debitWallet("vel", {
+  amount: {
+    amount: 618809,
+    asset: "omnis",
   },
-  id: "3202c73d-5fe9-4b90-8289-09b3fe49a8d9",
+  balances: [
+    "perferendis",
+    "nihil",
+  ],
+  description: "magnam",
+  destination: {
+    balance: "id",
+    identifier: "labore",
+    type: "labore",
+  },
+  metadata: {
+    "natus": "nobis",
+    "eum": "vero",
+  },
+  pending: false,
 }).then((res: DebitWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -266,10 +264,11 @@ sdk.wallets.debitWallet({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.DebitWalletRequest](../../models/operations/debitwalletrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `id`                                                                   | *string*                                                               | :heavy_check_mark:                                                     | N/A                                                                    |
+| `debitWalletRequest`                                                   | [shared.DebitWalletRequest](../../models/shared/debitwalletrequest.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
 
 
 ### Response
@@ -284,20 +283,17 @@ Get detailed balance
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetBalanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getBalance({
-  balanceName: "nobis",
-  id: "bf486333-23f9-4b77-b3a4-100674ebf692",
-}).then((res: GetBalanceResponse) => {
+sdk.wallets.getBalance("aspernatur", "architecto").then((res: GetBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -306,10 +302,11 @@ sdk.wallets.getBalance({
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetBalanceRequest](../../models/operations/getbalancerequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `balanceName`                                                | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -324,19 +321,17 @@ Get a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getHold({
-  holdID: "atque",
-}).then((res: GetHoldResponse) => {
+sdk.wallets.getHold("magnam").then((res: GetHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -345,10 +340,10 @@ sdk.wallets.getHold({
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `request`                                                              | [operations.GetHoldRequest](../../models/operations/getholdrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `holdID`                                                     | *string*                                                     | :heavy_check_mark:                                           | The hold ID                                                  |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -363,24 +358,19 @@ Get all holds for a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetHoldsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getHolds({
-  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  metadata: {
-    "fugiat": "ab",
-  },
-  pageSize: 743835,
-  walletID: "dolorum",
-}).then((res: GetHoldsResponse) => {
+sdk.wallets.getHolds("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
+  "excepturi": "ullam",
+}, 590873, "quos").then((res: GetHoldsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -389,10 +379,13 @@ sdk.wallets.getHolds({
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [operations.GetHoldsRequest](../../models/operations/getholdsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
+| Parameter                                                                                                                                                                                                                      | Type                                                                                                                                                                                                                           | Required                                                                                                                                                                                                                       | Description                                                                                                                                                                                                                    | Example                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cursor`                                                                                                                                                                                                                       | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the pagination token is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                   |
+| `metadata`                                                                                                                                                                                                                     | Record<string, *string*>                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.                                                                                                                             |                                                                                                                                                                                                                                |
+| `pageSize`                                                                                                                                                                                                                     | *number*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | The maximum number of results to return per page                                                                                                                                                                               |                                                                                                                                                                                                                                |
+| `walletID`                                                                                                                                                                                                                     | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | The wallet to filter on                                                                                                                                                                                                        |                                                                                                                                                                                                                                |
+| `config`                                                                                                                                                                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                             | Available config options for making requests.                                                                                                                                                                                  |                                                                                                                                                                                                                                |
 
 
 ### Response
@@ -405,21 +398,17 @@ sdk.wallets.getHolds({
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getTransactions({
-  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  pageSize: 478596,
-  walletID: "voluptate",
-}).then((res: GetTransactionsResponse) => {
+sdk.wallets.getTransactions("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 574325, "accusantium").then((res: GetTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -428,10 +417,12 @@ sdk.wallets.getTransactions({
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.GetTransactionsRequest](../../models/operations/gettransactionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `config`                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                           | :heavy_minus_sign:                                                                     | Available config options for making requests.                                          |
+| Parameter                                                                                                                                                                                                            | Type                                                                                                                                                                                                                 | Required                                                                                                                                                                                                             | Description                                                                                                                                                                                                          | Example                                                                                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                                                                                                                                             | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the cursor is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                         |
+| `pageSize`                                                                                                                                                                                                           | *number*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | The maximum number of results to return per page                                                                                                                                                                     |                                                                                                                                                                                                                      |
+| `walletID`                                                                                                                                                                                                           | *string*                                                                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                                                                   | A wallet ID to filter on                                                                                                                                                                                             |                                                                                                                                                                                                                      |
+| `config`                                                                                                                                                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                   | Available config options for making requests.                                                                                                                                                                        |                                                                                                                                                                                                                      |
 
 
 ### Response
@@ -446,19 +437,17 @@ Get a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getWallet({
-  id: "a89ebf73-7ae4-4203-8e5e-6a95d8a0d446",
-}).then((res: GetWalletResponse) => {
+sdk.wallets.getWallet("mollitia").then((res: GetWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -467,10 +456,10 @@ sdk.wallets.getWallet({
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.GetWalletRequest](../../models/operations/getwalletrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -485,19 +474,17 @@ Get wallet summary
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetWalletSummaryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.getWalletSummary({
-  id: "ce2af7a7-3cf3-4be4-93f8-70b326b5a734",
-}).then((res: GetWalletSummaryResponse) => {
+sdk.wallets.getWalletSummary("reiciendis").then((res: GetWalletSummaryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -506,10 +493,10 @@ sdk.wallets.getWalletSummary({
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.GetWalletSummaryRequest](../../models/operations/getwalletsummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -524,18 +511,16 @@ List balances of a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListBalancesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.listBalances({
-  id: "29cdb1a8-422b-4b67-9d23-22715bf0cbb1",
-}).then((res: ListBalancesResponse) => {
+sdk.wallets.listBalances("mollitia").then((res: ListBalancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -544,10 +529,10 @@ sdk.wallets.listBalances({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.ListBalancesRequest](../../models/operations/listbalancesrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -562,26 +547,19 @@ List all wallets
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListWalletsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.listWallets({
-  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  metadata: {
-    "ipsum": "veritatis",
-    "nobis": "quos",
-    "tempore": "cupiditate",
-    "aperiam": "delectus",
-  },
-  name: "Joanne Grant",
-  pageSize: 100294,
-}).then((res: ListWalletsResponse) => {
+sdk.wallets.listWallets("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
+  "eum": "dolor",
+  "necessitatibus": "odit",
+}, "nemo", 97260).then((res: ListWalletsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -590,10 +568,13 @@ sdk.wallets.listWallets({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.ListWalletsRequest](../../models/operations/listwalletsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                                                                                                                                                                                      | Type                                                                                                                                                                                                                           | Required                                                                                                                                                                                                                       | Description                                                                                                                                                                                                                    | Example                                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `cursor`                                                                                                                                                                                                                       | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Parameter used in pagination requests.<br/>Set to the value of next for the next page of results.<br/>Set to the value of previous for the previous page of results.<br/>No other parameters can be set when the pagination token is set.<br/> | aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==                                                                                                                                                                                   |
+| `metadata`                                                                                                                                                                                                                     | Record<string, *string*>                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.                                                                                                                           |                                                                                                                                                                                                                                |
+| `name`                                                                                                                                                                                                                         | *string*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | Filter on wallet name                                                                                                                                                                                                          |                                                                                                                                                                                                                                |
+| `pageSize`                                                                                                                                                                                                                     | *number*                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                             | The maximum number of results to return per page                                                                                                                                                                               |                                                                                                                                                                                                                                |
+| `config`                                                                                                                                                                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                             | Available config options for making requests.                                                                                                                                                                                  |                                                                                                                                                                                                                                |
 
 
 ### Response
@@ -608,23 +589,23 @@ Update a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { UpdateWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.updateWallet({
-  requestBody: {
-    metadata: {
-      "aut": "quas",
-    },
+sdk.wallets.updateWallet("iure", {
+  metadata: {
+    "debitis": "eius",
+    "maxime": "deleniti",
+    "facilis": "in",
+    "architecto": "architecto",
   },
-  id: "e0adcf4b-9218-479f-8e95-3f73ef7fbc7a",
 }).then((res: UpdateWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -634,10 +615,11 @@ sdk.wallets.updateWallet({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.UpdateWalletRequest](../../models/operations/updatewalletrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `id`                                                                                     | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `requestBody`                                                                            | [operations.UpdateWalletRequestBody](../../models/operations/updatewalletrequestbody.md) | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
@@ -652,19 +634,17 @@ Cancel a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { VoidHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.wallets.voidHold({
-  holdId: "facilis",
-}).then((res: VoidHoldResponse) => {
+sdk.wallets.voidHold("repudiandae").then((res: VoidHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -673,10 +653,10 @@ sdk.wallets.voidHold({
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [operations.VoidHoldRequest](../../models/operations/voidholdrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `holdId`                                                     | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -691,11 +671,11 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { WalletsgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },

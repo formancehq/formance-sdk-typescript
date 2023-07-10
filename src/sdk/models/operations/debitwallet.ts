@@ -7,11 +7,11 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class DebitWalletRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    debitWalletRequest?: shared.DebitWalletRequest;
-
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
     id: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    debitWalletRequest?: shared.DebitWalletRequest;
 }
 
 export class DebitWalletResponse extends SpeakeasyBase {

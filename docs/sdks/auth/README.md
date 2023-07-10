@@ -29,19 +29,16 @@ Add scope to client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { AddScopeToClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.addScopeToClient({
-  clientId: "corrupti",
-  scopeId: "provident",
-}).then((res: AddScopeToClientResponse) => {
+sdk.auth.addScopeToClient("corrupti", "provident").then((res: AddScopeToClientResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -50,10 +47,11 @@ sdk.auth.addScopeToClient({
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.AddScopeToClientRequest](../../models/operations/addscopetoclientrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `clientId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Client ID                                                    |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -68,19 +66,16 @@ Add a transient scope to a scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { AddTransientScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.addTransientScope({
-  scopeId: "distinctio",
-  transientScopeId: "quibusdam",
-}).then((res: AddTransientScopeResponse) => {
+sdk.auth.addTransientScope("distinctio", "quibusdam").then((res: AddTransientScopeResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -89,10 +84,11 @@ sdk.auth.addTransientScope({
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.AddTransientScopeRequest](../../models/operations/addtransientscoperequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `config`                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                               | :heavy_minus_sign:                                                                         | Available config options for making requests.                                              |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `transientScopeId`                                           | *string*                                                     | :heavy_check_mark:                                           | Transient scope ID                                           |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -107,10 +103,10 @@ Create client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -163,10 +159,10 @@ Create scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -207,26 +203,20 @@ Add a secret to a client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateSecretResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.createSecret({
-  createSecretRequest: {
-    metadata: {
-      "odit": "at",
-      "at": "maiores",
-      "molestiae": "quod",
-      "quod": "esse",
-    },
-    name: "Miss Lowell Parisian",
+sdk.auth.createSecret("quo", {
+  metadata: {
+    "at": "at",
   },
-  clientId: "occaecati",
+  name: "Javier Schmidt",
 }).then((res: CreateSecretResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -236,10 +226,11 @@ sdk.auth.createSecret({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.CreateSecretRequest](../../models/operations/createsecretrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `clientId`                                                               | *string*                                                                 | :heavy_check_mark:                                                       | Client ID                                                                |
+| `createSecretRequest`                                                    | [shared.CreateSecretRequest](../../models/shared/createsecretrequest.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
 
 
 ### Response
@@ -254,18 +245,16 @@ Delete client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.deleteClient({
-  clientId: "fugit",
-}).then((res: DeleteClientResponse) => {
+sdk.auth.deleteClient("totam").then((res: DeleteClientResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -274,10 +263,10 @@ sdk.auth.deleteClient({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.DeleteClientRequest](../../models/operations/deleteclientrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `clientId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Client ID                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -292,18 +281,16 @@ Delete scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.deleteScope({
-  scopeId: "deleniti",
-}).then((res: DeleteScopeResponse) => {
+sdk.auth.deleteScope("porro").then((res: DeleteScopeResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -312,10 +299,10 @@ sdk.auth.deleteScope({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.DeleteScopeRequest](../../models/operations/deletescoperequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -330,19 +317,16 @@ Delete scope from client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteScopeFromClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.deleteScopeFromClient({
-  clientId: "hic",
-  scopeId: "optio",
-}).then((res: DeleteScopeFromClientResponse) => {
+sdk.auth.deleteScopeFromClient("dolorum", "dicta").then((res: DeleteScopeFromClientResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -351,10 +335,11 @@ sdk.auth.deleteScopeFromClient({
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.DeleteScopeFromClientRequest](../../models/operations/deletescopefromclientrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `clientId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Client ID                                                    |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -369,19 +354,16 @@ Delete a secret from a client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteSecretResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.deleteSecret({
-  clientId: "totam",
-  secretId: "beatae",
-}).then((res: DeleteSecretResponse) => {
+sdk.auth.deleteSecret("nam", "officia").then((res: DeleteSecretResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -390,10 +372,11 @@ sdk.auth.deleteSecret({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.DeleteSecretRequest](../../models/operations/deletesecretrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `clientId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Client ID                                                    |
+| `secretId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Secret ID                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -408,19 +391,16 @@ Delete a transient scope from a scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { DeleteTransientScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.deleteTransientScope({
-  scopeId: "commodi",
-  transientScopeId: "molestiae",
-}).then((res: DeleteTransientScopeResponse) => {
+sdk.auth.deleteTransientScope("occaecati", "fugit").then((res: DeleteTransientScopeResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -429,10 +409,11 @@ sdk.auth.deleteTransientScope({
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.DeleteTransientScopeRequest](../../models/operations/deletetransientscoperequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `transientScopeId`                                           | *string*                                                     | :heavy_check_mark:                                           | Transient scope ID                                           |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -447,10 +428,10 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -482,10 +463,10 @@ List clients
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListClientsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -517,10 +498,10 @@ List Scopes
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListScopesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -552,10 +533,10 @@ List users
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListUsersResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -587,18 +568,16 @@ Read client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ReadClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.readClient({
-  clientId: "modi",
-}).then((res: ReadClientResponse) => {
+sdk.auth.readClient("deleniti").then((res: ReadClientResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -607,10 +586,10 @@ sdk.auth.readClient({
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.ReadClientRequest](../../models/operations/readclientrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `clientId`                                                   | *string*                                                     | :heavy_check_mark:                                           | Client ID                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -625,18 +604,16 @@ Read scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ReadScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.readScope({
-  scopeId: "qui",
-}).then((res: ReadScopeResponse) => {
+sdk.auth.readScope("hic").then((res: ReadScopeResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -645,10 +622,10 @@ sdk.auth.readScope({
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.ReadScopeRequest](../../models/operations/readscoperequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `scopeId`                                                    | *string*                                                     | :heavy_check_mark:                                           | Scope ID                                                     |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -663,18 +640,16 @@ Read user
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ReadUserResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.readUser({
-  userId: "impedit",
-}).then((res: ReadUserResponse) => {
+sdk.auth.readUser("optio").then((res: ReadUserResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -683,10 +658,10 @@ sdk.auth.readUser({
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `request`                                                                | [operations.ReadUserRequest](../../models/operations/readuserrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `userId`                                                     | *string*                                                     | :heavy_check_mark:                                           | User ID                                                      |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -701,37 +676,32 @@ Update client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { UpdateClientResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.updateClient({
-  updateClientRequest: {
-    description: "cum",
-    metadata: {
-      "ipsum": "excepturi",
-      "aspernatur": "perferendis",
-    },
-    name: "Faye Cormier",
-    postLogoutRedirectUris: [
-      "laboriosam",
-      "hic",
-      "saepe",
-    ],
-    public: false,
-    redirectUris: [
-      "in",
-      "corporis",
-      "iste",
-    ],
-    trusted: false,
+sdk.auth.updateClient("totam", {
+  description: "beatae",
+  metadata: {
+    "molestiae": "modi",
+    "qui": "impedit",
   },
-  clientId: "iure",
+  name: "Cory Emmerich",
+  postLogoutRedirectUris: [
+    "ad",
+  ],
+  public: false,
+  redirectUris: [
+    "sed",
+    "iste",
+    "dolor",
+  ],
+  trusted: false,
 }).then((res: UpdateClientResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -741,10 +711,11 @@ sdk.auth.updateClient({
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.UpdateClientRequest](../../models/operations/updateclientrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `clientId`                                                               | *string*                                                                 | :heavy_check_mark:                                                       | Client ID                                                                |
+| `updateClientRequest`                                                    | [shared.UpdateClientRequest](../../models/shared/updateclientrequest.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `config`                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)             | :heavy_minus_sign:                                                       | Available config options for making requests.                            |
 
 
 ### Response
@@ -759,25 +730,23 @@ Update scope
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { UpdateScopeResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.auth.updateScope({
-  updateScopeRequest: {
-    label: "saepe",
-    metadata: {
-      "architecto": "ipsa",
-      "reiciendis": "est",
-      "mollitia": "laborum",
-    },
+sdk.auth.updateScope("natus", {
+  label: "laboriosam",
+  metadata: {
+    "saepe": "fuga",
+    "in": "corporis",
+    "iste": "iure",
+    "saepe": "quidem",
   },
-  scopeId: "dolores",
 }).then((res: UpdateScopeResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -787,10 +756,11 @@ sdk.auth.updateScope({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.UpdateScopeRequest](../../models/operations/updatescoperequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `scopeId`                                                              | *string*                                                               | :heavy_check_mark:                                                     | Scope ID                                                               |
+| `updateScopeRequest`                                                   | [shared.UpdateScopeRequest](../../models/shared/updatescoperequest.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
 
 
 ### Response

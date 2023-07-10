@@ -19,13 +19,14 @@ export class Ledger {
      * Create a new batch of transactions to a ledger
      */
     async createTransactions(
-        req: operations.CreateTransactionsRequest,
+        transactions: shared.Transactions,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.CreateTransactionsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CreateTransactionsRequest(req);
-        }
-
+        const req = new operations.CreateTransactionsRequest({
+            transactions: transactions,
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -106,13 +107,16 @@ export class Ledger {
      * Set the metadata of a transaction by its ID
      */
     async addMetadataOnTransaction(
-        req: operations.AddMetadataOnTransactionRequest,
+        ledger: string,
+        txid: number,
+        requestBody?: Record<string, any>,
         config?: AxiosRequestConfig
     ): Promise<operations.AddMetadataOnTransactionResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.AddMetadataOnTransactionRequest(req);
-        }
-
+        const req = new operations.AddMetadataOnTransactionRequest({
+            ledger: ledger,
+            txid: txid,
+            requestBody: requestBody,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -185,13 +189,16 @@ export class Ledger {
      * Add metadata to an account
      */
     async addMetadataToAccount(
-        req: operations.AddMetadataToAccountRequest,
+        requestBody: Record<string, any>,
+        address: string,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.AddMetadataToAccountResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.AddMetadataToAccountRequest(req);
-        }
-
+        const req = new operations.AddMetadataToAccountRequest({
+            requestBody: requestBody,
+            address: address,
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -266,13 +273,16 @@ export class Ledger {
      * Count the accounts from a ledger
      */
     async countAccounts(
-        req: operations.CountAccountsRequest,
+        ledger: string,
+        address?: string,
+        metadata?: operations.CountAccountsMetadata,
         config?: AxiosRequestConfig
     ): Promise<operations.CountAccountsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CountAccountsRequest(req);
-        }
-
+        const req = new operations.CountAccountsRequest({
+            ledger: ledger,
+            address: address,
+            metadata: metadata,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -396,13 +406,16 @@ export class Ledger {
      * Create a new transaction to a ledger
      */
     async createTransaction(
-        req: operations.CreateTransactionRequest,
+        postTransaction: shared.PostTransaction,
+        ledger: string,
+        preview?: boolean,
         config?: AxiosRequestConfig
     ): Promise<operations.CreateTransactionResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CreateTransactionRequest(req);
-        }
-
+        const req = new operations.CreateTransactionRequest({
+            postTransaction: postTransaction,
+            ledger: ledger,
+            preview: preview,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -479,13 +492,14 @@ export class Ledger {
      * Get account by its address
      */
     async getAccount(
-        req: operations.GetAccountRequest,
+        address: string,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetAccountResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetAccountRequest(req);
-        }
-
+        const req = new operations.GetAccountRequest({
+            address: address,
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -622,13 +636,14 @@ export class Ledger {
      * Get the aggregated balances from selected accounts
      */
     async getBalancesAggregated(
-        req: operations.GetBalancesAggregatedRequest,
+        ledger: string,
+        address?: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetBalancesAggregatedResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetBalancesAggregatedRequest(req);
-        }
-
+        const req = new operations.GetBalancesAggregatedRequest({
+            ledger: ledger,
+            address: address,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -759,13 +774,12 @@ export class Ledger {
      * Get information about a ledger
      */
     async getLedgerInfo(
-        req: operations.GetLedgerInfoRequest,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetLedgerInfoResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetLedgerInfoRequest(req);
-        }
-
+        const req = new operations.GetLedgerInfoRequest({
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -828,13 +842,12 @@ export class Ledger {
      * Get the mapping of a ledger
      */
     async getMapping(
-        req: operations.GetMappingRequest,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetMappingResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetMappingRequest(req);
-        }
-
+        const req = new operations.GetMappingRequest({
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -897,13 +910,14 @@ export class Ledger {
      * Get transaction from a ledger by its ID
      */
     async getTransaction(
-        req: operations.GetTransactionRequest,
+        ledger: string,
+        txid: number,
         config?: AxiosRequestConfig
     ): Promise<operations.GetTransactionResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetTransactionRequest(req);
-        }
-
+        const req = new operations.GetTransactionRequest({
+            ledger: ledger,
+            txid: txid,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1193,13 +1207,12 @@ export class Ledger {
      *
      */
     async readStats(
-        req: operations.ReadStatsRequest,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ReadStatsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ReadStatsRequest(req);
-        }
-
+        const req = new operations.ReadStatsRequest({
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1262,13 +1275,14 @@ export class Ledger {
      * Revert a ledger transaction by its ID
      */
     async revertTransaction(
-        req: operations.RevertTransactionRequest,
+        ledger: string,
+        txid: number,
         config?: AxiosRequestConfig
     ): Promise<operations.RevertTransactionResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.RevertTransactionRequest(req);
-        }
-
+        const req = new operations.RevertTransactionRequest({
+            ledger: ledger,
+            txid: txid,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1341,13 +1355,16 @@ export class Ledger {
      * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
      */
     async runScript(
-        req: operations.RunScriptRequest,
+        script: shared.Script,
+        ledger: string,
+        preview?: boolean,
         config?: AxiosRequestConfig
     ): Promise<operations.RunScriptResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.RunScriptRequest(req);
-        }
-
+        const req = new operations.RunScriptRequest({
+            script: script,
+            ledger: ledger,
+            preview: preview,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1416,13 +1433,14 @@ export class Ledger {
      * Update the mapping of a ledger
      */
     async updateMapping(
-        req: operations.UpdateMappingRequest,
+        mapping: shared.Mapping,
+        ledger: string,
         config?: AxiosRequestConfig
     ): Promise<operations.UpdateMappingResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UpdateMappingRequest(req);
-        }
-
+        const req = new operations.UpdateMappingRequest({
+            mapping: mapping,
+            ledger: ledger,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

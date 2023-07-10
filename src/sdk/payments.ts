@@ -101,13 +101,14 @@ export class Payments {
      * Execute a transfer between two accounts.
      */
     async connectorsTransfer(
-        req: operations.ConnectorsTransferRequest,
+        transferRequest: shared.TransferRequest,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.ConnectorsTransferResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ConnectorsTransferRequest(req);
-        }
-
+        const req = new operations.ConnectorsTransferRequest({
+            transferRequest: transferRequest,
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -183,13 +184,14 @@ export class Payments {
      * Get a specific task associated to the connector.
      */
     async getConnectorTask(
-        req: operations.GetConnectorTaskRequest,
+        connector: shared.Connector,
+        taskId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetConnectorTaskResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetConnectorTaskRequest(req);
-        }
-
+        const req = new operations.GetConnectorTaskRequest({
+            connector: connector,
+            taskId: taskId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -248,13 +250,12 @@ export class Payments {
      * Get a payment
      */
     async getPayment(
-        req: operations.GetPaymentRequest,
+        paymentId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetPaymentResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetPaymentRequest(req);
-        }
-
+        const req = new operations.GetPaymentRequest({
+            paymentId: paymentId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -312,13 +313,14 @@ export class Payments {
      * Install a connector by its name and config.
      */
     async installConnector(
-        req: operations.InstallConnectorRequest,
+        requestBody: any,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.InstallConnectorResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.InstallConnectorRequest(req);
-        }
-
+        const req = new operations.InstallConnectorRequest({
+            requestBody: requestBody,
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -501,13 +503,16 @@ export class Payments {
      * List all tasks associated with this connector.
      */
     async listConnectorTasks(
-        req: operations.ListConnectorTasksRequest,
+        connector: shared.Connector,
+        cursor?: string,
+        pageSize?: number,
         config?: AxiosRequestConfig
     ): Promise<operations.ListConnectorTasksResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListConnectorTasksRequest(req);
-        }
-
+        const req = new operations.ListConnectorTasksRequest({
+            connector: connector,
+            cursor: cursor,
+            pageSize: pageSize,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -571,13 +576,12 @@ export class Payments {
      * List transfers
      */
     async listConnectorsTransfers(
-        req: operations.ListConnectorsTransfersRequest,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.ListConnectorsTransfersResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListConnectorsTransfersRequest(req);
-        }
-
+        const req = new operations.ListConnectorsTransfersRequest({
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -637,13 +641,16 @@ export class Payments {
      * List payments
      */
     async listPayments(
-        req: operations.ListPaymentsRequest,
+        cursor?: string,
+        pageSize?: number,
+        sort?: string[],
         config?: AxiosRequestConfig
     ): Promise<operations.ListPaymentsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListPaymentsRequest(req);
-        }
-
+        const req = new operations.ListPaymentsRequest({
+            cursor: cursor,
+            pageSize: pageSize,
+            sort: sort,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -753,13 +760,16 @@ export class Payments {
      * List accounts
      */
     async paymentslistAccounts(
-        req: operations.PaymentslistAccountsRequest,
+        cursor?: string,
+        pageSize?: number,
+        sort?: string[],
         config?: AxiosRequestConfig
     ): Promise<operations.PaymentslistAccountsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.PaymentslistAccountsRequest(req);
-        }
-
+        const req = new operations.PaymentslistAccountsRequest({
+            cursor: cursor,
+            pageSize: pageSize,
+            sort: sort,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -819,13 +829,12 @@ export class Payments {
      * Read connector config
      */
     async readConnectorConfig(
-        req: operations.ReadConnectorConfigRequest,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.ReadConnectorConfigResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ReadConnectorConfigRequest(req);
-        }
-
+        const req = new operations.ReadConnectorConfigRequest({
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -890,13 +899,12 @@ export class Payments {
      *
      */
     async resetConnector(
-        req: operations.ResetConnectorRequest,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.ResetConnectorResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ResetConnectorRequest(req);
-        }
-
+        const req = new operations.ResetConnectorRequest({
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -951,13 +959,12 @@ export class Payments {
      * Uninstall a connector by its name.
      */
     async uninstallConnector(
-        req: operations.UninstallConnectorRequest,
+        connector: shared.Connector,
         config?: AxiosRequestConfig
     ): Promise<operations.UninstallConnectorResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UninstallConnectorRequest(req);
-        }
-
+        const req = new operations.UninstallConnectorRequest({
+            connector: connector,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1006,13 +1013,14 @@ export class Payments {
      * Update metadata
      */
     async updateMetadata(
-        req: operations.UpdateMetadataRequest,
+        paymentMetadata: shared.PaymentMetadata,
+        paymentId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.UpdateMetadataResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UpdateMetadataRequest(req);
-        }
-
+        const req = new operations.UpdateMetadataRequest({
+            paymentMetadata: paymentMetadata,
+            paymentId: paymentId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

@@ -7,14 +7,14 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ChangeConfigSecretRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    configChangeSecret?: shared.ConfigChangeSecret;
-
     /**
      * Config ID
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
     id: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    configChangeSecret?: shared.ConfigChangeSecret;
 }
 
 export class ChangeConfigSecretResponse extends SpeakeasyBase {

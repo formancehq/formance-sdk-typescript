@@ -12,10 +12,10 @@ ElasticSearch query engine
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { SearchResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -24,21 +24,20 @@ const sdk = new SDK({
 sdk.search.search({
   after: [
     "users:002",
+    "users:002",
   ],
   cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   ledgers: [
     "quickstart",
     "quickstart",
     "quickstart",
-    "quickstart",
   ],
-  pageSize: 952749,
+  pageSize: 552822,
   policy: "OR",
   raw: {},
   sort: "txid:asc",
-  target: "dolorum",
+  target: "perferendis",
   terms: [
-    "destination=central_bank1",
     "destination=central_bank1",
   ],
 }).then((res: SearchResponse) => {
@@ -68,10 +67,10 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { SearchgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },

@@ -30,45 +30,47 @@ Create a new batch of transactions to a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.ledger.createTransactions({
-  transactions: {
-    transactions: [
-      {
-        metadata: {
-          "explicabo": "nobis",
-          "enim": "omnis",
-        },
-        postings: [
-          {
-            amount: 100,
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-          {
-            amount: 100,
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
-        reference: "ref:001",
-        timestamp: new Date("2022-06-06T21:04:34.044Z"),
+  transactions: [
+    {
+      metadata: {
+        "reiciendis": "est",
       },
-    ],
-  },
-  ledger: "ledger001",
-}).then((res: CreateTransactionsResponse) => {
+      postings: [
+        {
+          amount: 100,
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+        {
+          amount: 100,
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+        {
+          amount: 100,
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+      ],
+      reference: "ref:001",
+      timestamp: new Date("2022-08-29T05:39:49.755Z"),
+    },
+  ],
+}, "ledger001").then((res: CreateTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -77,10 +79,11 @@ sdk.ledger.createTransactions({
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.CreateTransactionsRequest](../../models/operations/createtransactionsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `transactions`                                               | [shared.Transactions](../../models/shared/transactions.md)   | :heavy_check_mark:                                           | N/A                                                          |                                                              |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -95,22 +98,18 @@ Set the metadata of a transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { AddMetadataOnTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.addMetadataOnTransaction({
-  requestBody: {
-    "iure": "culpa",
-  },
-  ledger: "ledger001",
-  txid: 1234,
+sdk.ledger.addMetadataOnTransaction("ledger001", 1234, {
+  "corporis": "explicabo",
 }).then((res: AddMetadataOnTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -120,10 +119,12 @@ sdk.ledger.addMetadataOnTransaction({
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                | [operations.AddMetadataOnTransactionRequest](../../models/operations/addmetadataontransactionrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `config`                                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                             | :heavy_minus_sign:                                                                                       | Available config options for making requests.                                                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `txid`                                                       | *number*                                                     | :heavy_check_mark:                                           | Transaction ID.                                              | 1234                                                         |
+| `requestBody`                                                | Record<string, *any*>                                        | :heavy_minus_sign:                                           | metadata                                                     |                                                              |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -138,26 +139,22 @@ Add metadata to an account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { AddMetadataToAccountResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.ledger.addMetadataToAccount({
-  requestBody: {
-    "sapiente": "architecto",
-    "mollitia": "dolorem",
-    "culpa": "consequuntur",
-    "repellat": "mollitia",
-  },
-  address: "users:001",
-  ledger: "ledger001",
-}).then((res: AddMetadataToAccountResponse) => {
+  "enim": "omnis",
+  "nemo": "minima",
+  "excepturi": "accusantium",
+  "iure": "culpa",
+}, "users:001", "ledger001").then((res: AddMetadataToAccountResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -166,10 +163,12 @@ sdk.ledger.addMetadataToAccount({
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.AddMetadataToAccountRequest](../../models/operations/addmetadatatoaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `requestBody`                                                                                                | Record<string, *any*>                                                                                        | :heavy_check_mark:                                                                                           | metadata                                                                                                     |                                                                                                              |
+| `address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
+| `ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
+| `config`                                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                 | :heavy_minus_sign:                                                                                           | Available config options for making requests.                                                                |                                                                                                              |
 
 
 ### Response
@@ -184,21 +183,17 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CountAccountsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.countAccounts({
-  address: "users:.+",
-  ledger: "ledger001",
-  metadata: {},
-}).then((res: CountAccountsResponse) => {
+sdk.ledger.countAccounts("ledger001", "users:.+", {}).then((res: CountAccountsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -207,10 +202,12 @@ sdk.ledger.countAccounts({
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.CountAccountsRequest](../../models/operations/countaccountsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `ledger`                                                                                                                         | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | Name of the ledger.                                                                                                              | ledger001                                                                                                                        |
+| `address`                                                                                                                        | *string*                                                                                                                         | :heavy_minus_sign:                                                                                                               | Filter accounts by address pattern (regular expression placed between ^ and $).                                                  | users:.+                                                                                                                         |
+| `metadata`                                                                                                                       | [operations.CountAccountsMetadata](../../models/operations/countaccountsmetadata.md)                                             | :heavy_minus_sign:                                                                                                               | Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2 |                                                                                                                                  |
+| `config`                                                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                                     | :heavy_minus_sign:                                                                                                               | Available config options for making requests.                                                                                    |                                                                                                                                  |
 
 
 ### Response
@@ -225,11 +222,11 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CountTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -238,12 +235,12 @@ const sdk = new SDK({
 sdk.ledger.countTransactions({
   account: "users:001",
   destination: "users:001",
-  endTime: new Date("2022-06-30T02:19:51.375Z"),
+  endTime: new Date("2020-02-15T22:48:47.492Z"),
   ledger: "ledger001",
   metadata: {},
   reference: "ref:001",
   source: "users:001",
-  startTime: new Date("2022-07-14T19:07:02.935Z"),
+  startTime: new Date("2022-05-07T17:33:24.154Z"),
 }).then((res: CountTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -271,47 +268,60 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.ledger.createTransaction({
-  postTransaction: {
-    metadata: {
-      "velit": "error",
-      "quia": "quis",
-    },
-    postings: [
-      {
-        amount: 100,
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
-    reference: "ref:001",
-    script: {
-      plain: "vars {
-    account $user
-    }
-    send [COIN 10] (
-    	source = @world
-    	destination = $user
-    )
-    ",
-      vars: {},
-    },
-    timestamp: new Date("2021-09-08T21:06:19.630Z"),
+  metadata: {
+    "culpa": "consequuntur",
   },
-  ledger: "ledger001",
-  preview: true,
-}).then((res: CreateTransactionResponse) => {
+  postings: [
+    {
+      amount: 100,
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+    {
+      amount: 100,
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+    {
+      amount: 100,
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+    {
+      amount: 100,
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+  ],
+  reference: "ref:001",
+  script: {
+    plain: "vars {
+  account $user
+  }
+  send [COIN 10] (
+  	source = @world
+  	destination = $user
+  )
+  ",
+    vars: {},
+  },
+  timestamp: new Date("2021-11-02T05:58:55.429Z"),
+}, "ledger001", true).then((res: CreateTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -320,10 +330,12 @@ sdk.ledger.createTransaction({
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.CreateTransactionRequest](../../models/operations/createtransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `config`                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                               | :heavy_minus_sign:                                                                         | Available config options for making requests.                                              |
+| Parameter                                                                                                                                                                              | Type                                                                                                                                                                                   | Required                                                                                                                                                                               | Description                                                                                                                                                                            | Example                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `postTransaction`                                                                                                                                                                      | [shared.PostTransaction](../../models/shared/posttransaction.md)                                                                                                                       | :heavy_check_mark:                                                                                                                                                                     | The request body must contain at least one of the following objects:<br/>  - `postings`: suitable for simple transactions<br/>  - `script`: enabling more complex transactions with Numscript<br/> |                                                                                                                                                                                        |
+| `ledger`                                                                                                                                                                               | *string*                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                     | Name of the ledger.                                                                                                                                                                    | ledger001                                                                                                                                                                              |
+| `preview`                                                                                                                                                                              | *boolean*                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                     | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.                                                                    | true                                                                                                                                                                                   |
+| `config`                                                                                                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                     | Available config options for making requests.                                                                                                                                          |                                                                                                                                                                                        |
 
 
 ### Response
@@ -338,20 +350,17 @@ Get account by its address
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetAccountResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.getAccount({
-  address: "users:001",
-  ledger: "ledger001",
-}).then((res: GetAccountResponse) => {
+sdk.ledger.getAccount("users:001", "ledger001").then((res: GetAccountResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -360,10 +369,11 @@ sdk.ledger.getAccount({
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetAccountRequest](../../models/operations/getaccountrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  | Example                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `address`                                                                                                    | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Exact address of the account. It must match the following regular expressions pattern:<br/>```<br/>^\w+(:\w+)*$<br/>```<br/> | users:001                                                                                                    |
+| `ledger`                                                                                                     | *string*                                                                                                     | :heavy_check_mark:                                                                                           | Name of the ledger.                                                                                          | ledger001                                                                                                    |
+| `config`                                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                 | :heavy_minus_sign:                                                                                           | Available config options for making requests.                                                                |                                                                                                              |
 
 
 ### Response
@@ -378,11 +388,11 @@ Get the balances from a ledger's account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetBalancesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -421,20 +431,17 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetBalancesAggregatedResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.getBalancesAggregated({
-  address: "users:001",
-  ledger: "ledger001",
-}).then((res: GetBalancesAggregatedResponse) => {
+sdk.ledger.getBalancesAggregated("ledger001", "users:001").then((res: GetBalancesAggregatedResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -443,10 +450,11 @@ sdk.ledger.getBalancesAggregated({
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.GetBalancesAggregatedRequest](../../models/operations/getbalancesaggregatedrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `ledger`                                                                  | *string*                                                                  | :heavy_check_mark:                                                        | Name of the ledger.                                                       | ledger001                                                                 |
+| `address`                                                                 | *string*                                                                  | :heavy_minus_sign:                                                        | Filter balances involving given account, either as source or destination. | users:001                                                                 |
+| `config`                                                                  | [AxiosRequestConfig](https://axios-http.com/docs/req_config)              | :heavy_minus_sign:                                                        | Available config options for making requests.                             |                                                                           |
 
 
 ### Response
@@ -461,11 +469,11 @@ Show server information
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -497,19 +505,17 @@ Get information about a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetLedgerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum, MigrationInfoState } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.getLedgerInfo({
-  ledger: "ledger001",
-}).then((res: GetLedgerInfoResponse) => {
+sdk.ledger.getLedgerInfo("ledger001").then((res: GetLedgerInfoResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -518,10 +524,10 @@ sdk.ledger.getLedgerInfo({
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.GetLedgerInfoRequest](../../models/operations/getledgerinforequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -536,19 +542,17 @@ Get the mapping of a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetMappingResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.getMapping({
-  ledger: "ledger001",
-}).then((res: GetMappingResponse) => {
+sdk.ledger.getMapping("ledger001").then((res: GetMappingResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -557,10 +561,10 @@ sdk.ledger.getMapping({
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetMappingRequest](../../models/operations/getmappingrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -575,20 +579,17 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.getTransaction({
-  ledger: "ledger001",
-  txid: 1234,
-}).then((res: GetTransactionResponse) => {
+sdk.ledger.getTransaction("ledger001", 1234).then((res: GetTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -597,10 +598,11 @@ sdk.ledger.getTransaction({
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.GetTransactionRequest](../../models/operations/gettransactionrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `txid`                                                       | *number*                                                     | :heavy_check_mark:                                           | Transaction ID.                                              | 1234                                                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -615,11 +617,11 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListAccountsBalanceOperator, ListAccountsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -633,7 +635,7 @@ sdk.ledger.listAccounts({
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   ledger: "ledger001",
   metadata: {},
-  pageSize: 317202,
+  pageSize: 253291,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
 }).then((res: ListAccountsResponse) => {
   if (res.statusCode == 200) {
@@ -662,11 +664,11 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListLogsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum, LogType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -675,11 +677,11 @@ const sdk = new SDK({
 sdk.ledger.listLogs({
   after: "1234",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  endTime: new Date("2022-03-22T21:41:36.666Z"),
+  endTime: new Date("2022-07-14T19:07:02.935Z"),
   ledger: "ledger001",
-  pageSize: 196582,
+  pageSize: 474697,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  startTime: new Date("2021-11-23T05:54:08.890Z"),
+  startTime: new Date("2022-05-18T10:03:04.921Z"),
 }).then((res: ListLogsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -707,11 +709,11 @@ List transactions from a ledger, sorted by txid in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -722,14 +724,14 @@ sdk.ledger.listTransactions({
   after: "1234",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   destination: "users:001",
-  endTime: new Date("2021-05-11T16:11:54.761Z"),
+  endTime: new Date("2022-08-30T15:03:11.112Z"),
   ledger: "ledger001",
   metadata: {},
-  pageSize: 13571,
+  pageSize: 110375,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   reference: "ref:001",
   source: "users:001",
-  startTime: new Date("2022-05-18T15:52:05.226Z"),
+  startTime: new Date("2021-09-08T21:06:19.630Z"),
 }).then((res: ListTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -758,19 +760,17 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ReadStatsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.readStats({
-  ledger: "ledger001",
-}).then((res: ReadStatsResponse) => {
+sdk.ledger.readStats("ledger001").then((res: ReadStatsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -779,10 +779,10 @@ sdk.ledger.readStats({
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.ReadStatsRequest](../../models/operations/readstatsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | name of the ledger                                           | ledger001                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -797,20 +797,17 @@ Revert a ledger transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { RevertTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.ledger.revertTransaction({
-  ledger: "ledger001",
-  txid: 1234,
-}).then((res: RevertTransactionResponse) => {
+sdk.ledger.revertTransaction("ledger001", 1234).then((res: RevertTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -819,10 +816,11 @@ sdk.ledger.revertTransaction({
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.RevertTransactionRequest](../../models/operations/reverttransactionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `config`                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                               | :heavy_minus_sign:                                                                         | Available config options for making requests.                                              |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `txid`                                                       | *number*                                                     | :heavy_check_mark:                                           | Transaction ID.                                              | 1234                                                         |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response
@@ -840,38 +838,32 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { RunScriptResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.ledger.runScript({
-  script: {
-    metadata: {
-      "laborum": "quasi",
-      "reiciendis": "voluptatibus",
-      "vero": "nihil",
-      "praesentium": "voluptatibus",
-    },
-    plain: "vars {
-  account $user
-  }
-  send [COIN 10] (
-  	source = @world
-  	destination = $user
-  )
-  ",
-    reference: "order_1234",
-    vars: {},
+  metadata: {
+    "odit": "quo",
+    "sequi": "tenetur",
   },
-  ledger: "ledger001",
-  preview: true,
-}).then((res: RunScriptResponse) => {
+  plain: "vars {
+account $user
+}
+send [COIN 10] (
+	source = @world
+	destination = $user
+)
+",
+  reference: "order_1234",
+  vars: {},
+}, "ledger001", true).then((res: RunScriptResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -880,10 +872,12 @@ sdk.ledger.runScript({
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.RunScriptRequest](../../models/operations/runscriptrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                                                                           | Type                                                                                                                | Required                                                                                                            | Description                                                                                                         | Example                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `script`                                                                                                            | [shared.Script](../../models/shared/script.md)                                                                      | :heavy_check_mark:                                                                                                  | N/A                                                                                                                 |                                                                                                                     |
+| `ledger`                                                                                                            | *string*                                                                                                            | :heavy_check_mark:                                                                                                  | Name of the ledger.                                                                                                 | ledger001                                                                                                           |
+| `preview`                                                                                                           | *boolean*                                                                                                           | :heavy_minus_sign:                                                                                                  | Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker. | true                                                                                                                |
+| `config`                                                                                                            | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                        | :heavy_minus_sign:                                                                                                  | Available config options for making requests.                                                                       |                                                                                                                     |
 
 
 ### Response
@@ -898,27 +892,28 @@ Update the mapping of a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { UpdateMappingResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.ledger.updateMapping({
-  mapping: {
-    contracts: [
-      {
-        account: "users:001",
-        expr: {},
-      },
-    ],
-  },
-  ledger: "ledger001",
-}).then((res: UpdateMappingResponse) => {
+  contracts: [
+    {
+      account: "users:001",
+      expr: {},
+    },
+    {
+      account: "users:001",
+      expr: {},
+    },
+  ],
+}, "ledger001").then((res: UpdateMappingResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -927,10 +922,11 @@ sdk.ledger.updateMapping({
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.UpdateMappingRequest](../../models/operations/updatemappingrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  | Example                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `mapping`                                                    | [shared.Mapping](../../models/shared/mapping.md)             | :heavy_check_mark:                                           | N/A                                                          |                                                              |
+| `ledger`                                                     | *string*                                                     | :heavy_check_mark:                                           | Name of the ledger.                                          | ledger001                                                    |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |                                                              |
 
 
 ### Response

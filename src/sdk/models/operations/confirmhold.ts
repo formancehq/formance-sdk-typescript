@@ -7,11 +7,11 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ConfirmHoldRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    confirmHoldRequest?: shared.ConfirmHoldRequest;
-
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=hold_id" })
     holdId: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    confirmHoldRequest?: shared.ConfirmHoldRequest;
 }
 
 export class ConfirmHoldResponse extends SpeakeasyBase {

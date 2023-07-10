@@ -17,11 +17,11 @@ export class UpdateWalletRequestBody extends SpeakeasyBase {
 }
 
 export class UpdateWalletRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    requestBody?: UpdateWalletRequestBody;
-
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
     id: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: UpdateWalletRequestBody;
 }
 
 export class UpdateWalletResponse extends SpeakeasyBase {

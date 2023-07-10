@@ -7,6 +7,12 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class RunWorkflowRequest extends SpeakeasyBase {
+    /**
+     * The flow id
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=workflowID" })
+    workflowID: string;
+
     @SpeakeasyMetadata({ data: "request, media_type=application/json" })
     requestBody?: Record<string, string>;
 
@@ -15,12 +21,6 @@ export class RunWorkflowRequest extends SpeakeasyBase {
      */
     @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=wait" })
     wait?: boolean;
-
-    /**
-     * The flow id
-     */
-    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=workflowID" })
-    workflowID: string;
 }
 
 export class RunWorkflowResponse extends SpeakeasyBase {

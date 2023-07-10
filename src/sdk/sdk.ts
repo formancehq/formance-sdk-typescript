@@ -65,8 +65,8 @@ export class SDKConfiguration {
     serverDefaults: any;
     language = "typescript";
     openapiDocVersion = "v1.0.20230623";
-    sdkVersion = "v1.0.20230623-beta.1";
-    genVersion = "2.50.2";
+    sdkVersion = "v1.0.20230627";
+    genVersion = "2.58.0";
 
     public constructor(init?: Partial<SDKConfiguration>) {
         Object.assign(this, init);
@@ -89,7 +89,7 @@ export class SDKConfiguration {
  * <SecurityDefinitions />
  *
  */
-export class SDK {
+export class Formance {
     public auth: Auth;
     public ledger: Ledger;
     public orchestration: Orchestration;

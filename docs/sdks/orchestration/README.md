@@ -21,19 +21,17 @@ Cancel a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CancelEventResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.cancelEvent({
-  instanceID: "omnis",
-}).then((res: CancelEventResponse) => {
+sdk.orchestration.cancelEvent("id").then((res: CancelEventResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -42,10 +40,10 @@ sdk.orchestration.cancelEvent({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.CancelEventRequest](../../models/operations/canceleventrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `instanceID`                                                 | *string*                                                     | :heavy_check_mark:                                           | The instance id                                              |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -60,34 +58,30 @@ Create a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { CreateWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
 sdk.orchestration.createWorkflow({
-  name: "Ms. Karla Aufderhar",
+  name: "Richard Boyer",
   stages: [
     {
-      "corporis": "dolore",
+      "reiciendis": "voluptatibus",
     },
     {
-      "dicta": "harum",
-      "enim": "accusamus",
+      "nihil": "praesentium",
+      "voluptatibus": "ipsa",
+      "omnis": "voluptate",
+      "cum": "perferendis",
     },
     {
-      "repudiandae": "quae",
-      "ipsum": "quidem",
-    },
-    {
-      "excepturi": "pariatur",
-      "modi": "praesentium",
-      "rem": "voluptates",
+      "reprehenderit": "ut",
     },
   ],
 }).then((res: CreateWorkflowResponse) => {
@@ -117,19 +111,17 @@ Get a workflow instance by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetInstanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.getInstance({
-  instanceID: "quasi",
-}).then((res: GetInstanceResponse) => {
+sdk.orchestration.getInstance("maiores").then((res: GetInstanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -138,10 +130,10 @@ sdk.orchestration.getInstance({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.GetInstanceRequest](../../models/operations/getinstancerequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `instanceID`                                                 | *string*                                                     | :heavy_check_mark:                                           | The instance id                                              |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -156,19 +148,17 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetInstanceHistoryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.getInstanceHistory({
-  instanceID: "repudiandae",
-}).then((res: GetInstanceHistoryResponse) => {
+sdk.orchestration.getInstanceHistory("dicta").then((res: GetInstanceHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -177,10 +167,10 @@ sdk.orchestration.getInstanceHistory({
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.GetInstanceHistoryRequest](../../models/operations/getinstancehistoryrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `instanceID`                                                 | *string*                                                     | :heavy_check_mark:                                           | The instance id                                              |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -195,20 +185,17 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetInstanceStageHistoryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { Connector, ErrorErrorCode, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.getInstanceStageHistory({
-  instanceID: "sint",
-  number: 83112,
-}).then((res: GetInstanceStageHistoryResponse) => {
+sdk.orchestration.getInstanceStageHistory("corporis", 296140).then((res: GetInstanceStageHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -217,10 +204,11 @@ sdk.orchestration.getInstanceStageHistory({
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                              | [operations.GetInstanceStageHistoryRequest](../../models/operations/getinstancestagehistoryrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `instanceID`                                                 | *string*                                                     | :heavy_check_mark:                                           | The instance id                                              |
+| `number`                                                     | *number*                                                     | :heavy_check_mark:                                           | The stage number                                             |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -235,19 +223,17 @@ Get a flow by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.getWorkflow({
-  flowId: "itaque",
-}).then((res: GetWorkflowResponse) => {
+sdk.orchestration.getWorkflow("iusto").then((res: GetWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -256,10 +242,10 @@ sdk.orchestration.getWorkflow({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.GetWorkflowRequest](../../models/operations/getworkflowrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `flowId`                                                     | *string*                                                     | :heavy_check_mark:                                           | The flow id                                                  |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -274,20 +260,17 @@ List instances of a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListInstancesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.listInstances({
-  running: false,
-  workflowID: "incidunt",
-}).then((res: ListInstancesResponse) => {
+sdk.orchestration.listInstances(false, "dicta").then((res: ListInstancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -296,10 +279,11 @@ sdk.orchestration.listInstances({
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `request`                                                                          | [operations.ListInstancesRequest](../../models/operations/listinstancesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `running`                                                    | *boolean*                                                    | :heavy_minus_sign:                                           | Filter running instances                                     |
+| `workflowID`                                                 | *string*                                                     | :heavy_minus_sign:                                           | A workflow id                                                |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -314,11 +298,11 @@ List registered workflows
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { ListWorkflowsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -350,11 +334,11 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { OrchestrationgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -386,24 +370,20 @@ Run workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { RunWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.runWorkflow({
-  requestBody: {
-    "consequatur": "est",
-    "quibusdam": "explicabo",
-  },
-  wait: false,
-  workflowID: "deserunt",
-}).then((res: RunWorkflowResponse) => {
+sdk.orchestration.runWorkflow("harum", {
+  "accusamus": "commodi",
+  "repudiandae": "quae",
+}, false).then((res: RunWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -412,10 +392,12 @@ sdk.orchestration.runWorkflow({
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `request`                                                                      | [operations.RunWorkflowRequest](../../models/operations/runworkflowrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `workflowID`                                                 | *string*                                                     | :heavy_check_mark:                                           | The flow id                                                  |
+| `requestBody`                                                | Record<string, *string*>                                     | :heavy_minus_sign:                                           | N/A                                                          |
+| `wait`                                                       | *boolean*                                                    | :heavy_minus_sign:                                           | Wait end of the workflow before return                       |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
@@ -430,21 +412,18 @@ Send an event to a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { SendEventResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.orchestration.sendEvent({
-  requestBody: {
-    name: "Marty Green",
-  },
-  instanceID: "aliquid",
+sdk.orchestration.sendEvent("ipsum", {
+  name: "Virgil Mante",
 }).then((res: SendEventResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -454,10 +433,11 @@ sdk.orchestration.sendEvent({
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.SendEventRequest](../../models/operations/sendeventrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `instanceID`                                                                       | *string*                                                                           | :heavy_check_mark:                                                                 | The instance id                                                                    |
+| `requestBody`                                                                      | [operations.SendEventRequestBody](../../models/operations/sendeventrequestbody.md) | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `config`                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                       | :heavy_minus_sign:                                                                 | Available config options for making requests.                                      |
 
 
 ### Response

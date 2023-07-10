@@ -14,14 +14,14 @@ export class SendEventRequestBody extends SpeakeasyBase {
 }
 
 export class SendEventRequest extends SpeakeasyBase {
-    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-    requestBody?: SendEventRequestBody;
-
     /**
      * The instance id
      */
     @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=instanceID" })
     instanceID: string;
+
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: SendEventRequestBody;
 }
 
 export class SendEventResponse extends SpeakeasyBase {

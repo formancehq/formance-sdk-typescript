@@ -19,13 +19,14 @@ export class Auth {
      * Add scope to client
      */
     async addScopeToClient(
-        req: operations.AddScopeToClientRequest,
+        clientId: string,
+        scopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.AddScopeToClientResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.AddScopeToClientRequest(req);
-        }
-
+        const req = new operations.AddScopeToClientRequest({
+            clientId: clientId,
+            scopeId: scopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -80,13 +81,14 @@ export class Auth {
      * Add a transient scope to a scope
      */
     async addTransientScope(
-        req: operations.AddTransientScopeRequest,
+        scopeId: string,
+        transientScopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.AddTransientScopeResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.AddTransientScopeRequest(req);
-        }
-
+        const req = new operations.AddTransientScopeRequest({
+            scopeId: scopeId,
+            transientScopeId: transientScopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -285,13 +287,14 @@ export class Auth {
      * Add a secret to a client
      */
     async createSecret(
-        req: operations.CreateSecretRequest,
+        clientId: string,
+        createSecretRequest?: shared.CreateSecretRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.CreateSecretResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CreateSecretRequest(req);
-        }
-
+        const req = new operations.CreateSecretRequest({
+            clientId: clientId,
+            createSecretRequest: createSecretRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -361,13 +364,12 @@ export class Auth {
      * Delete client
      */
     async deleteClient(
-        req: operations.DeleteClientRequest,
+        clientId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteClientResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteClientRequest(req);
-        }
-
+        const req = new operations.DeleteClientRequest({
+            clientId: clientId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -418,13 +420,12 @@ export class Auth {
      * Delete scope
      */
     async deleteScope(
-        req: operations.DeleteScopeRequest,
+        scopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteScopeResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteScopeRequest(req);
-        }
-
+        const req = new operations.DeleteScopeRequest({
+            scopeId: scopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -472,13 +473,14 @@ export class Auth {
      * Delete scope from client
      */
     async deleteScopeFromClient(
-        req: operations.DeleteScopeFromClientRequest,
+        clientId: string,
+        scopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteScopeFromClientResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteScopeFromClientRequest(req);
-        }
-
+        const req = new operations.DeleteScopeFromClientRequest({
+            clientId: clientId,
+            scopeId: scopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -531,13 +533,14 @@ export class Auth {
      * Delete a secret from a client
      */
     async deleteSecret(
-        req: operations.DeleteSecretRequest,
+        clientId: string,
+        secretId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteSecretResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteSecretRequest(req);
-        }
-
+        const req = new operations.DeleteSecretRequest({
+            clientId: clientId,
+            secretId: secretId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -592,13 +595,14 @@ export class Auth {
      * Delete a transient scope from a scope
      */
     async deleteTransientScope(
-        req: operations.DeleteTransientScopeRequest,
+        scopeId: string,
+        transientScopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.DeleteTransientScopeResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.DeleteTransientScopeRequest(req);
-        }
-
+        const req = new operations.DeleteTransientScopeRequest({
+            scopeId: scopeId,
+            transientScopeId: transientScopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -870,13 +874,12 @@ export class Auth {
      * Read client
      */
     async readClient(
-        req: operations.ReadClientRequest,
+        clientId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ReadClientResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ReadClientRequest(req);
-        }
-
+        const req = new operations.ReadClientRequest({
+            clientId: clientId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -934,13 +937,12 @@ export class Auth {
      * Read scope
      */
     async readScope(
-        req: operations.ReadScopeRequest,
+        scopeId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ReadScopeResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ReadScopeRequest(req);
-        }
-
+        const req = new operations.ReadScopeRequest({
+            scopeId: scopeId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -998,13 +1000,12 @@ export class Auth {
      * Read user
      */
     async readUser(
-        req: operations.ReadUserRequest,
+        userId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ReadUserResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ReadUserRequest(req);
-        }
-
+        const req = new operations.ReadUserRequest({
+            userId: userId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1059,13 +1060,14 @@ export class Auth {
      * Update client
      */
     async updateClient(
-        req: operations.UpdateClientRequest,
+        clientId: string,
+        updateClientRequest?: shared.UpdateClientRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.UpdateClientResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UpdateClientRequest(req);
-        }
-
+        const req = new operations.UpdateClientRequest({
+            clientId: clientId,
+            updateClientRequest: updateClientRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -1138,13 +1140,14 @@ export class Auth {
      * Update scope
      */
     async updateScope(
-        req: operations.UpdateScopeRequest,
+        scopeId: string,
+        updateScopeRequest?: shared.UpdateScopeRequest,
         config?: AxiosRequestConfig
     ): Promise<operations.UpdateScopeResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.UpdateScopeRequest(req);
-        }
-
+        const req = new operations.UpdateScopeRequest({
+            scopeId: scopeId,
+            updateScopeRequest: updateScopeRequest,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

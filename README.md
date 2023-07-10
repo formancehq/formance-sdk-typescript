@@ -19,10 +19,10 @@ yarn add @formance/formance-sdk
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetVersionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
@@ -39,9 +39,9 @@ sdk.getVersions().then((res: GetVersionsResponse) => {
 <!-- Start SDK Available Operations -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
+### [Formance SDK](docs/sdks/formance/README.md)
 
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+* [getVersions](docs/sdks/formance/README.md#getversions) - Show stack version information
 
 ### [auth](docs/sdks/auth/README.md)
 

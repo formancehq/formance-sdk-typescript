@@ -1,9 +1,9 @@
 <!-- Start SDK Example Usage -->
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetVersionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },

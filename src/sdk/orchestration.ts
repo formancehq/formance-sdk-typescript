@@ -22,13 +22,12 @@ export class Orchestration {
      * Cancel a running workflow
      */
     async cancelEvent(
-        req: operations.CancelEventRequest,
+        instanceID: string,
         config?: AxiosRequestConfig
     ): Promise<operations.CancelEventResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CancelEventRequest(req);
-        }
-
+        const req = new operations.CancelEventRequest({
+            instanceID: instanceID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -169,13 +168,12 @@ export class Orchestration {
      * Get a workflow instance by id
      */
     async getInstance(
-        req: operations.GetInstanceRequest,
+        instanceID: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetInstanceResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetInstanceRequest(req);
-        }
-
+        const req = new operations.GetInstanceRequest({
+            instanceID: instanceID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -242,13 +240,12 @@ export class Orchestration {
      * Get a workflow instance history by id
      */
     async getInstanceHistory(
-        req: operations.GetInstanceHistoryRequest,
+        instanceID: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetInstanceHistoryResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetInstanceHistoryRequest(req);
-        }
-
+        const req = new operations.GetInstanceHistoryRequest({
+            instanceID: instanceID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -316,13 +313,14 @@ export class Orchestration {
      * Get a workflow instance stage history
      */
     async getInstanceStageHistory(
-        req: operations.GetInstanceStageHistoryRequest,
+        instanceID: string,
+        number: number,
         config?: AxiosRequestConfig
     ): Promise<operations.GetInstanceStageHistoryResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetInstanceStageHistoryRequest(req);
-        }
-
+        const req = new operations.GetInstanceStageHistoryRequest({
+            instanceID: instanceID,
+            number: number,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -390,13 +388,12 @@ export class Orchestration {
      * Get a flow by id
      */
     async getWorkflow(
-        req: operations.GetWorkflowRequest,
+        flowId: string,
         config?: AxiosRequestConfig
     ): Promise<operations.GetWorkflowResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetWorkflowRequest(req);
-        }
-
+        const req = new operations.GetWorkflowRequest({
+            flowId: flowId,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -463,13 +460,14 @@ export class Orchestration {
      * List instances of a workflow
      */
     async listInstances(
-        req: operations.ListInstancesRequest,
+        running?: boolean,
+        workflowID?: string,
         config?: AxiosRequestConfig
     ): Promise<operations.ListInstancesResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListInstancesRequest(req);
-        }
-
+        const req = new operations.ListInstancesRequest({
+            running: running,
+            workflowID: workflowID,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -654,13 +652,16 @@ export class Orchestration {
      * Run workflow
      */
     async runWorkflow(
-        req: operations.RunWorkflowRequest,
+        workflowID: string,
+        requestBody?: Record<string, string>,
+        wait?: boolean,
         config?: AxiosRequestConfig
     ): Promise<operations.RunWorkflowResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.RunWorkflowRequest(req);
-        }
-
+        const req = new operations.RunWorkflowRequest({
+            workflowID: workflowID,
+            requestBody: requestBody,
+            wait: wait,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
@@ -739,13 +740,14 @@ export class Orchestration {
      * Send an event to a running workflow
      */
     async sendEvent(
-        req: operations.SendEventRequest,
+        instanceID: string,
+        requestBody?: operations.SendEventRequestBody,
         config?: AxiosRequestConfig
     ): Promise<operations.SendEventResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.SendEventRequest(req);
-        }
-
+        const req = new operations.SendEventRequest({
+            instanceID: instanceID,
+            requestBody: requestBody,
+        });
         const baseURL: string = utils.templateUrl(
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults

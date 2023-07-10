@@ -1,4 +1,4 @@
-# SDK
+# Formance SDK
 
 ## Overview
 
@@ -26,16 +26,16 @@ Show stack version information
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { GetVersionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
-const sdk = new SDK({
+const sdk = new Formance({
   security: {
     authorization: "",
   },
 });
 
-sdk.sdk.getVersions().then((res: GetVersionsResponse) => {
+sdk.formance.getVersions().then((res: GetVersionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
