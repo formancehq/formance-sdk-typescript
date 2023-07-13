@@ -1,7 +1,8 @@
-# orchestration
+# flows
 
 ### Available Operations
 
+* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
 * [getInstance](#getinstance) - Get a workflow instance by id
@@ -10,9 +11,44 @@
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
+
+## flowsgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```typescript
+import { Formance } from "@formance/formance-sdk";
+import { FlowsgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
+import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
+
+const sdk = new Formance({
+  security: {
+    authorization: "",
+  },
+});
+
+sdk.flows.flowsgetServerInfo().then((res: FlowsgetServerInfoResponse) => {
+  if (res.statusCode == 200) {
+    // handle response
+  }
+});
+```
+
+### Parameters
+
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
+
+
+### Response
+
+**Promise<[operations.FlowsgetServerInfoResponse](../../models/operations/flowsgetserverinforesponse.md)>**
+
 
 ## cancelEvent
 
@@ -31,7 +67,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.cancelEvent("id").then((res: CancelEventResponse) => {
+sdk.flows.cancelEvent("architecto").then((res: CancelEventResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -68,20 +104,11 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.createWorkflow({
-  name: "Richard Boyer",
+sdk.flows.createWorkflow({
+  name: "Lela Orn",
   stages: [
     {
-      "reiciendis": "voluptatibus",
-    },
-    {
-      "nihil": "praesentium",
-      "voluptatibus": "ipsa",
-      "omnis": "voluptate",
-      "cum": "perferendis",
-    },
-    {
-      "reprehenderit": "ut",
+      "corporis": "explicabo",
     },
   ],
 }).then((res: CreateWorkflowResponse) => {
@@ -121,7 +148,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.getInstance("maiores").then((res: GetInstanceResponse) => {
+sdk.flows.getInstance("nobis").then((res: GetInstanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -158,7 +185,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.getInstanceHistory("dicta").then((res: GetInstanceHistoryResponse) => {
+sdk.flows.getInstanceHistory("enim").then((res: GetInstanceHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -195,7 +222,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.getInstanceStageHistory("corporis", 296140).then((res: GetInstanceStageHistoryResponse) => {
+sdk.flows.getInstanceStageHistory("omnis", 363711).then((res: GetInstanceStageHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -233,7 +260,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.getWorkflow("iusto").then((res: GetWorkflowResponse) => {
+sdk.flows.getWorkflow("minima").then((res: GetWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -270,7 +297,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.listInstances(false, "dicta").then((res: ListInstancesResponse) => {
+sdk.flows.listInstances(false, "excepturi").then((res: ListInstancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -308,7 +335,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.listWorkflows().then((res: ListWorkflowsResponse) => {
+sdk.flows.listWorkflows().then((res: ListWorkflowsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -325,42 +352,6 @@ sdk.orchestration.listWorkflows().then((res: ListWorkflowsResponse) => {
 ### Response
 
 **Promise<[operations.ListWorkflowsResponse](../../models/operations/listworkflowsresponse.md)>**
-
-
-## orchestrationgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```typescript
-import { Formance } from "@formance/formance-sdk";
-import { OrchestrationgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
-
-const sdk = new Formance({
-  security: {
-    authorization: "",
-  },
-});
-
-sdk.orchestration.orchestrationgetServerInfo().then((res: OrchestrationgetServerInfoResponse) => {
-  if (res.statusCode == 200) {
-    // handle response
-  }
-});
-```
-
-### Parameters
-
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
-
-
-### Response
-
-**Promise<[operations.OrchestrationgetServerInfoResponse](../../models/operations/orchestrationgetserverinforesponse.md)>**
 
 
 ## runWorkflow
@@ -380,9 +371,9 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.runWorkflow("harum", {
-  "accusamus": "commodi",
-  "repudiandae": "quae",
+sdk.flows.runWorkflow("accusantium", {
+  "culpa": "doloribus",
+  "sapiente": "architecto",
 }, false).then((res: RunWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -422,8 +413,8 @@ const sdk = new Formance({
   },
 });
 
-sdk.orchestration.sendEvent("ipsum", {
-  name: "Virgil Mante",
+sdk.flows.sendEvent("mollitia", {
+  name: "Cecilia Crooks",
 }).then((res: SendEventResponse) => {
   if (res.statusCode == 200) {
     // handle response

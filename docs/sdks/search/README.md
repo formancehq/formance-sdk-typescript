@@ -32,12 +32,15 @@ sdk.search.search({
     "quickstart",
     "quickstart",
   ],
-  pageSize: 552822,
+  pageSize: 735194,
   policy: "OR",
   raw: {},
   sort: "txid:asc",
-  target: "perferendis",
+  target: "labore",
   terms: [
+    "destination=central_bank1",
+    "destination=central_bank1",
+    "destination=central_bank1",
     "destination=central_bank1",
   ],
 }).then((res: SearchResponse) => {

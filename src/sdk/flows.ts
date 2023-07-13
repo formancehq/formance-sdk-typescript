@@ -8,11 +8,70 @@ import * as shared from "./models/shared";
 import { SDKConfiguration } from "./sdk";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-export class Orchestration {
+export class Flows {
     private sdkConfiguration: SDKConfiguration;
 
     constructor(sdkConfig: SDKConfiguration) {
         this.sdkConfiguration = sdkConfig;
+    }
+
+    /**
+     * Get server info
+     */
+    async flowsgetServerInfo(
+        config?: AxiosRequestConfig
+    ): Promise<operations.FlowsgetServerInfoResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/_info";
+
+        const client: AxiosInstance =
+            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+
+        const headers = { ...config?.headers };
+        headers["Accept"] = "application/json;q=1, application/json;q=0";
+        headers[
+            "user-agent"
+        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.FlowsgetServerInfoResponse =
+            new operations.FlowsgetServerInfoResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
+                }
+                break;
+        }
+
+        return res;
     }
 
     /**
@@ -34,7 +93,7 @@ export class Orchestration {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/orchestration/instances/{instanceID}/abort",
+            "/api/Flows/instances/{instanceID}/abort",
             req
         );
 
@@ -99,7 +158,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/workflows";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
@@ -178,11 +237,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/orchestration/instances/{instanceID}",
-            req
-        );
+        const url: string = utils.generateURL(baseURL, "/api/Flows/instances/{instanceID}", req);
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -252,7 +307,7 @@ export class Orchestration {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/orchestration/instances/{instanceID}/history",
+            "/api/Flows/instances/{instanceID}/history",
             req
         );
 
@@ -327,7 +382,7 @@ export class Orchestration {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/orchestration/instances/{instanceID}/stages/{number}/history",
+            "/api/Flows/instances/{instanceID}/stages/{number}/history",
             req
         );
 
@@ -398,11 +453,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/orchestration/workflows/{flowId}",
-            req
-        );
+        const url: string = utils.generateURL(baseURL, "/api/Flows/workflows/{flowId}", req);
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -472,7 +523,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/instances";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/instances";
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -535,7 +586,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/workflows";
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -587,65 +638,6 @@ export class Orchestration {
     }
 
     /**
-     * Get server info
-     */
-    async orchestrationgetServerInfo(
-        config?: AxiosRequestConfig
-    ): Promise<operations.OrchestrationgetServerInfoResponse> {
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.OrchestrationgetServerInfoResponse =
-            new operations.OrchestrationgetServerInfoResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
-                }
-                break;
-        }
-
-        return res;
-    }
-
-    /**
      * Run workflow
      *
      * @remarks
@@ -668,7 +660,7 @@ export class Orchestration {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/orchestration/workflows/{workflowID}/instances",
+            "/api/Flows/workflows/{workflowID}/instances",
             req
         );
 
@@ -754,7 +746,7 @@ export class Orchestration {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/orchestration/instances/{instanceID}/events",
+            "/api/Flows/instances/{instanceID}/events",
             req
         );
 

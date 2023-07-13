@@ -1,4 +1,4 @@
-# OrchestrationgetServerInfoResponse
+# FlowsgetServerInfoResponse
 
 
 ## Fields

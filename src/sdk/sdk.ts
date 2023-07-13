@@ -4,10 +4,10 @@
 
 import * as utils from "../internal/utils";
 import { Auth } from "./auth";
+import { Flows } from "./flows";
 import { Ledger } from "./ledger";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { Orchestration } from "./orchestration";
 import { Payments } from "./payments";
 import { Search } from "./search";
 import { Wallets } from "./wallets";
@@ -64,9 +64,9 @@ export class SDKConfiguration {
     serverURL: string;
     serverDefaults: any;
     language = "typescript";
-    openapiDocVersion = "v1.0.20230710";
-    sdkVersion = "v1.0.20230710";
-    genVersion = "2.58.2";
+    openapiDocVersion = "v1.0.20230713";
+    sdkVersion = "v1.0.20230713";
+    genVersion = "2.64.0";
 
     public constructor(init?: Partial<SDKConfiguration>) {
         Object.assign(this, init);
@@ -91,8 +91,8 @@ export class SDKConfiguration {
  */
 export class Formance {
     public auth: Auth;
+    public flows: Flows;
     public ledger: Ledger;
-    public orchestration: Orchestration;
     public payments: Payments;
     public search: Search;
     public wallets: Wallets;
@@ -136,8 +136,8 @@ export class Formance {
         });
 
         this.auth = new Auth(this.sdkConfiguration);
+        this.flows = new Flows(this.sdkConfiguration);
         this.ledger = new Ledger(this.sdkConfiguration);
-        this.orchestration = new Orchestration(this.sdkConfiguration);
         this.payments = new Payments(this.sdkConfiguration);
         this.search = new Search(this.sdkConfiguration);
         this.wallets = new Wallets(this.sdkConfiguration);

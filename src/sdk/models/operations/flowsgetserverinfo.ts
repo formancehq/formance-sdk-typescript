@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class OrchestrationgetServerInfoResponse extends SpeakeasyBase {
+export class FlowsgetServerInfoResponse extends SpeakeasyBase {
     @SpeakeasyMetadata()
     contentType: string;
 

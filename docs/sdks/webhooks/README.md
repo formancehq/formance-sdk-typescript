@@ -233,7 +233,6 @@ sdk.webhooks.insertConfig({
   endpoint: "https://example.com",
   eventTypes: [
     "TYPE1",
-    "TYPE1",
   ],
   secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
 }).then((res: InsertConfigResponse) => {

@@ -82,7 +82,7 @@ sdk.payments.connectorsTransfer({
   asset: "USD",
   destination: "acct_1Gqj58KZcSIg2N2q",
   source: "acct_1Gqj58KZcSIg2N2q",
-}, Connector.Modulr).then((res: ConnectorsTransferResponse) => {
+}, Connector.DummyPay).then((res: ConnectorsTransferResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -120,7 +120,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.getConnectorTask(Connector.Modulr, "voluptates").then((res: GetConnectorTaskResponse) => {
+sdk.payments.getConnectorTask(Connector.DummyPay, "consequatur").then((res: GetConnectorTaskResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -158,7 +158,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.getPayment("quasi").then((res: GetPaymentResponse) => {
+sdk.payments.getPayment("est").then((res: GetPaymentResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -200,7 +200,7 @@ sdk.payments.installConnector({
   endpoint: "XXX",
   password: "XXX",
   username: "XXX",
-}, Connector.Modulr).then((res: InstallConnectorResponse) => {
+}, Connector.Stripe).then((res: InstallConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -309,7 +309,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listConnectorTasks(Connector.Stripe, "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 929297).then((res: ListConnectorTasksResponse) => {
+sdk.payments.listConnectorTasks(Connector.Modulr, "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 716327).then((res: ListConnectorTasksResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -348,7 +348,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listConnectorsTransfers(Connector.DummyPay).then((res: ListConnectorsTransfersResponse) => {
+sdk.payments.listConnectorsTransfers(Connector.BankingCircle).then((res: ListConnectorsTransfersResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -385,8 +385,9 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listPayments("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 318569, [
-  "est",
+sdk.payments.listPayments("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 289406, [
+  "qui",
+  "aliquid",
 ]).then((res: ListPaymentsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -461,8 +462,10 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.paymentslistAccounts("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 842342, [
-  "deserunt",
+sdk.payments.paymentslistAccounts("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 586513, [
+  "perferendis",
+  "magni",
+  "assumenda",
 ]).then((res: PaymentslistAccountsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -502,7 +505,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.readConnectorConfig(Connector.CurrencyCloud).then((res: ReadConnectorConfigResponse) => {
+sdk.payments.readConnectorConfig(Connector.Wise).then((res: ReadConnectorConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -541,7 +544,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.resetConnector(Connector.BankingCircle).then((res: ResetConnectorResponse) => {
+sdk.payments.resetConnector(Connector.Stripe).then((res: ResetConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -578,7 +581,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.uninstallConnector(Connector.DummyPay).then((res: UninstallConnectorResponse) => {
+sdk.payments.uninstallConnector(Connector.Stripe).then((res: UninstallConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -615,8 +618,8 @@ const sdk = new Formance({
 });
 
 sdk.payments.updateMetadata({
-  key: "modi",
-}, "qui").then((res: UpdateMetadataResponse) => {
+  key: "dolorum",
+}, "excepturi").then((res: UpdateMetadataResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }

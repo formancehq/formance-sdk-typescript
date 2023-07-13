@@ -36,7 +36,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.confirmHold("assumenda", {
+sdk.wallets.confirmHold("eum", {
   amount: 100,
   final: true,
 }).then((res: ConfirmHoldResponse) => {
@@ -77,10 +77,10 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.createBalance("ipsam", {
-  expiresAt: new Date("2022-11-08T13:10:11.700Z"),
-  name: "Marshall Glover",
-  priority: 288476,
+sdk.wallets.createBalance("non", {
+  expiresAt: new Date("2021-04-10T02:35:06.342Z"),
+  name: "Sherri Tremblay",
+  priority: 223081,
 }).then((res: CreateBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -121,12 +121,12 @@ const sdk = new Formance({
 
 sdk.wallets.createWallet({
   metadata: {
-    "eum": "non",
-    "eligendi": "sint",
-    "aliquid": "provident",
-    "necessitatibus": "sint",
+    "a": "dolorum",
+    "in": "in",
+    "illum": "maiores",
+    "rerum": "dicta",
   },
-  name: "Curtis Toy",
+  name: "Blanca Schulist",
 }).then((res: CreateWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -164,37 +164,32 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.creditWallet("in", {
+sdk.wallets.creditWallet("laborum", {
   amount: {
-    amount: 449198,
-    asset: "illum",
+    amount: 881104,
+    asset: "non",
   },
-  balance: "maiores",
+  balance: "occaecati",
   metadata: {
-    "dicta": "magnam",
-    "cumque": "facere",
-    "ea": "aliquid",
+    "accusamus": "delectus",
+    "quidem": "provident",
   },
-  reference: "laborum",
+  reference: "nam",
   sources: [
     {
-      identifier: "occaecati",
-      type: "enim",
+      balance: "deleniti",
+      identifier: "sapiente",
+      type: "amet",
     },
     {
-      balance: "delectus",
-      identifier: "quidem",
-      type: "provident",
+      balance: "nisi",
+      identifier: "vel",
+      type: "natus",
     },
     {
-      balance: "id",
-      identifier: "blanditiis",
-      type: "deleniti",
-    },
-    {
-      balance: "amet",
-      identifier: "deserunt",
-      type: "nisi",
+      balance: "molestiae",
+      identifier: "perferendis",
+      type: "nihil",
     },
   ],
 }).then((res: CreditWalletResponse) => {
@@ -235,24 +230,23 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.debitWallet("vel", {
+sdk.wallets.debitWallet("magnam", {
   amount: {
-    amount: 618809,
-    asset: "omnis",
+    amount: 716075,
+    asset: "id",
   },
   balances: [
-    "perferendis",
-    "nihil",
+    "labore",
+    "suscipit",
   ],
-  description: "magnam",
+  description: "natus",
   destination: {
-    balance: "id",
-    identifier: "labore",
-    type: "labore",
+    balance: "eum",
+    identifier: "vero",
+    type: "aspernatur",
   },
   metadata: {
-    "natus": "nobis",
-    "eum": "vero",
+    "magnam": "et",
   },
   pending: false,
 }).then((res: DebitWalletResponse) => {
@@ -293,7 +287,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getBalance("aspernatur", "architecto").then((res: GetBalanceResponse) => {
+sdk.wallets.getBalance("excepturi", "ullam").then((res: GetBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -331,7 +325,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getHold("magnam").then((res: GetHoldResponse) => {
+sdk.wallets.getHold("provident").then((res: GetHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -369,8 +363,10 @@ const sdk = new Formance({
 });
 
 sdk.wallets.getHolds("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
-  "excepturi": "ullam",
-}, 590873, "quos").then((res: GetHoldsResponse) => {
+  "sint": "accusantium",
+  "mollitia": "reiciendis",
+  "mollitia": "ad",
+}, 431418, "dolor").then((res: GetHoldsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -408,7 +404,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getTransactions("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 574325, "accusantium").then((res: GetTransactionsResponse) => {
+sdk.wallets.getTransactions("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 896547, "odit").then((res: GetTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -447,7 +443,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getWallet("mollitia").then((res: GetWalletResponse) => {
+sdk.wallets.getWallet("nemo").then((res: GetWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -484,7 +480,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getWalletSummary("reiciendis").then((res: GetWalletSummaryResponse) => {
+sdk.wallets.getWalletSummary("quasi").then((res: GetWalletSummaryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -520,7 +516,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.listBalances("mollitia").then((res: ListBalancesResponse) => {
+sdk.wallets.listBalances("iure").then((res: ListBalancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -557,9 +553,11 @@ const sdk = new Formance({
 });
 
 sdk.wallets.listWallets("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
-  "eum": "dolor",
-  "necessitatibus": "odit",
-}, "nemo", 97260).then((res: ListWalletsResponse) => {
+  "debitis": "eius",
+  "maxime": "deleniti",
+  "facilis": "in",
+  "architecto": "architecto",
+}, "repudiandae", 352312).then((res: ListWalletsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -599,12 +597,10 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.updateWallet("iure", {
+sdk.wallets.updateWallet("expedita", {
   metadata: {
-    "debitis": "eius",
-    "maxime": "deleniti",
-    "facilis": "in",
-    "architecto": "architecto",
+    "repellat": "quibusdam",
+    "sed": "saepe",
   },
 }).then((res: UpdateWalletResponse) => {
   if (res.statusCode == 200) {
@@ -644,7 +640,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.voidHold("repudiandae").then((res: VoidHoldResponse) => {
+sdk.wallets.voidHold("pariatur").then((res: VoidHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
