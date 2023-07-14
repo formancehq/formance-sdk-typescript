@@ -23,7 +23,6 @@ Get server info
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { FlowsgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -59,7 +58,6 @@ Cancel a running workflow
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CancelEventResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -96,7 +94,6 @@ Create a workflow
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreateWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -140,7 +137,6 @@ Get a workflow instance by id
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetInstanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -177,7 +173,6 @@ Get a workflow instance history by id
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetInstanceHistoryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -214,7 +209,6 @@ Get a workflow instance stage history
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetInstanceStageHistoryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { Connector, ErrorErrorCode, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -252,7 +246,6 @@ Get a flow by id
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -289,7 +282,6 @@ List instances of a workflow
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListInstancesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -327,7 +319,6 @@ List registered workflows
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListWorkflowsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -363,7 +354,6 @@ Run workflow
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { RunWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -405,7 +395,6 @@ Send an event to a running workflow
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { SendEventResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {

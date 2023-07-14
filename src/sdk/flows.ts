@@ -25,7 +25,7 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/_info";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -93,7 +93,7 @@ export class Flows {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/Flows/instances/{instanceID}/abort",
+            "/api/orchestration/instances/{instanceID}/abort",
             req
         );
 
@@ -158,7 +158,7 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/workflows";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
@@ -237,7 +237,11 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/Flows/instances/{instanceID}", req);
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/orchestration/instances/{instanceID}",
+            req
+        );
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -307,7 +311,7 @@ export class Flows {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/Flows/instances/{instanceID}/history",
+            "/api/orchestration/instances/{instanceID}/history",
             req
         );
 
@@ -382,7 +386,7 @@ export class Flows {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/Flows/instances/{instanceID}/stages/{number}/history",
+            "/api/orchestration/instances/{instanceID}/stages/{number}/history",
             req
         );
 
@@ -453,7 +457,11 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/Flows/workflows/{flowId}", req);
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/orchestration/workflows/{flowId}",
+            req
+        );
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -523,7 +531,7 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/instances";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/instances";
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -586,7 +594,7 @@ export class Flows {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/Flows/workflows";
+        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
 
         const client: AxiosInstance =
             this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
@@ -660,7 +668,7 @@ export class Flows {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/Flows/workflows/{workflowID}/instances",
+            "/api/orchestration/workflows/{workflowID}/instances",
             req
         );
 
@@ -746,7 +754,7 @@ export class Flows {
         );
         const url: string = utils.generateURL(
             baseURL,
-            "/api/Flows/instances/{instanceID}/events",
+            "/api/orchestration/instances/{instanceID}/events",
             req
         );
 

@@ -32,7 +32,6 @@ Create a new batch of transactions to a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreateTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -149,7 +148,6 @@ Set the metadata of a transaction by its ID
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { AddMetadataOnTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -190,7 +188,6 @@ Add metadata to an account
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { AddMetadataToAccountResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -233,7 +230,6 @@ Count the accounts from a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CountAccountsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -272,7 +268,6 @@ Count the transactions from a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CountTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -318,7 +313,6 @@ Create a new transaction to a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreateTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -390,7 +384,6 @@ Get account by its address
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetAccountResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -428,7 +421,6 @@ Get the balances from a ledger's account
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetBalancesResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -471,7 +463,6 @@ Get the aggregated balances from selected accounts
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetBalancesAggregatedResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -509,7 +500,6 @@ Show server information
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -545,7 +535,6 @@ Get information about a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetLedgerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum, MigrationInfoState } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -582,7 +571,6 @@ Get the mapping of a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetMappingResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -619,7 +607,6 @@ Get transaction from a ledger by its ID
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -657,7 +644,6 @@ List accounts from a ledger, sorted by address in descending order.
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListAccountsBalanceOperator, ListAccountsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -704,7 +690,6 @@ List the logs from a ledger, sorted by ID in descending order.
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListLogsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum, LogType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -749,7 +734,6 @@ List transactions from a ledger, sorted by txid in descending order.
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -800,7 +784,6 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ReadStatsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -837,7 +820,6 @@ Revert a ledger transaction by its ID
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { RevertTransactionResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -878,7 +860,6 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { RunScriptResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -934,7 +915,6 @@ Update the mapping of a ledger
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { UpdateMappingResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {

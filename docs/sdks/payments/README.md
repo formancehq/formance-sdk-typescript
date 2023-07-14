@@ -150,7 +150,6 @@ Get a payment
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetPaymentResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { Connector, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -230,7 +229,6 @@ List all installed connectors.
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListAllConnectorsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -377,7 +375,6 @@ List payments
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ListPaymentsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { Connector, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -454,7 +451,6 @@ List accounts
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { PaymentslistAccountsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { Connector, PaymentsAccountType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {

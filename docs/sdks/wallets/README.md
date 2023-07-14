@@ -28,7 +28,6 @@ Confirm a hold
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { ConfirmHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -69,7 +68,6 @@ Create a balance
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreateBalanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -111,7 +109,6 @@ Create a new wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreateWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -156,7 +153,6 @@ Credit a wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { CreditWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -222,7 +218,6 @@ Debit a wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { DebitWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -279,7 +274,6 @@ Get detailed balance
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetBalanceResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -317,7 +311,6 @@ Get a hold
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -354,7 +347,6 @@ Get all holds for a wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetHoldsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -396,7 +388,6 @@ sdk.wallets.getHolds("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetTransactionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -435,7 +426,6 @@ Get a wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -472,7 +462,6 @@ Get wallet summary
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetWalletSummaryResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -589,7 +578,6 @@ Update a wallet
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { UpdateWalletResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -632,7 +620,6 @@ Cancel a hold
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { VoidHoldResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {
@@ -669,7 +656,6 @@ Get server info
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { WalletsgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { WalletsErrorResponseErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
 
 const sdk = new Formance({
   security: {

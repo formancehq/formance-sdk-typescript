@@ -18,6 +18,8 @@ yarn add @formance/formance-sdk
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetVersionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
