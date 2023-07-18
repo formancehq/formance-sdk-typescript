@@ -5,1510 +5,1492 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { SDKConfiguration } from "./sdk";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export class Ledger {
-    private sdkConfiguration: SDKConfiguration;
+  _defaultClient: AxiosInstance;
+  _securityClient: AxiosInstance;
+  _serverURL: string;
+  _language: string;
+  _sdkVersion: string;
+  _genVersion: string;
 
-    constructor(sdkConfig: SDKConfiguration) {
-        this.sdkConfiguration = sdkConfig;
+  constructor(
+    defaultClient: AxiosInstance,
+    securityClient: AxiosInstance,
+    serverURL: string,
+    language: string,
+    sdkVersion: string,
+    genVersion: string
+  ) {
+    this._defaultClient = defaultClient;
+    this._securityClient = securityClient;
+    this._serverURL = serverURL;
+    this._language = language;
+    this._sdkVersion = sdkVersion;
+    this._genVersion = genVersion;
+  }
+
+  /**
+   * Create a new batch of transactions to a ledger
+   */
+  async createTransactions(
+    transactions: shared.Transactions,
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.CreateTransactionsResponse> {
+    const req = new operations.CreateTransactionsRequest({
+      transactions: transactions,
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions/batch",
+      req
+    );
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "transactions",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * Create a new batch of transactions to a ledger
-     */
-    async createTransactions(
-        transactions: shared.Transactions,
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.CreateTransactionsResponse> {
-        const req = new operations.CreateTransactionsRequest({
-            transactions: transactions,
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/transactions/batch",
-            req
-        );
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "transactions", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.CreateTransactionsResponse =
-            new operations.CreateTransactionsResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transactionsResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransactionsResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Set the metadata of a transaction by its ID
-     */
-    async addMetadataOnTransaction(
-        ledger: string,
-        txid: number,
-        requestBody?: Record<string, any>,
-        config?: AxiosRequestConfig
-    ): Promise<operations.AddMetadataOnTransactionResponse> {
-        const req = new operations.AddMetadataOnTransactionRequest({
-            ledger: ledger,
-            txid: txid,
-            requestBody: requestBody,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/transactions/{txid}/metadata",
-            req
-        );
-
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "requestBody", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
+    const res: operations.CreateTransactionsResponse =
+      new operations.CreateTransactionsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transactionsResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransactionsResponse
+          );
         }
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const res: operations.AddMetadataOnTransactionResponse =
-            new operations.AddMetadataOnTransactionResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Add metadata to an account
-     */
-    async addMetadataToAccount(
-        requestBody: Record<string, any>,
-        address: string,
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.AddMetadataToAccountResponse> {
-        const req = new operations.AddMetadataToAccountRequest({
-            requestBody: requestBody,
-            address: address,
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/accounts/{address}/metadata",
-            req
-        );
+    return res;
+  }
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+  /**
+   * Set the metadata of a transaction by its ID
+   */
+  async addMetadataOnTransaction(
+    ledger: string,
+    txid: number,
+    requestBody?: Record<string, any>,
+    config?: AxiosRequestConfig
+  ): Promise<operations.AddMetadataOnTransactionResponse> {
+    const req = new operations.AddMetadataOnTransactionRequest({
+      ledger: ledger,
+      txid: txid,
+      requestBody: requestBody,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions/{txid}/metadata",
+      req
+    );
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "requestBody", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.AddMetadataToAccountResponse =
-            new operations.AddMetadataToAccountResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "requestBody",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * Count the accounts from a ledger
-     */
-    async countAccounts(
-        ledger: string,
-        address?: string,
-        metadata?: operations.CountAccountsMetadata,
-        config?: AxiosRequestConfig
-    ): Promise<operations.CountAccountsResponse> {
-        const req = new operations.CountAccountsRequest({
-            ledger: ledger,
-            address: address,
-            metadata: metadata,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/accounts", req);
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "head",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.CountAccountsResponse = new operations.CountAccountsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-            headers: utils.getHeadersFromResponse(httpRes.headers),
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Count the transactions from a ledger
-     */
-    async countTransactions(
-        req: operations.CountTransactionsRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.CountTransactionsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.CountTransactionsRequest(req);
+    const res: operations.AddMetadataOnTransactionResponse =
+      new operations.AddMetadataOnTransactionResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "head",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.CountTransactionsResponse = new operations.CountTransactionsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-            headers: utils.getHeadersFromResponse(httpRes.headers),
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Create a new transaction to a ledger
-     */
-    async createTransaction(
-        postTransaction: shared.PostTransaction,
-        ledger: string,
-        preview?: boolean,
-        config?: AxiosRequestConfig
-    ): Promise<operations.CreateTransactionResponse> {
-        const req = new operations.CreateTransactionRequest({
-            postTransaction: postTransaction,
-            ledger: ledger,
-            preview: preview,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
+    return res;
+  }
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+  /**
+   * Add metadata to an account
+   */
+  async addMetadataToAccount(
+    requestBody: Record<string, any>,
+    address: string,
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.AddMetadataToAccountResponse> {
+    const req = new operations.AddMetadataToAccountRequest({
+      requestBody: requestBody,
+      address: address,
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/accounts/{address}/metadata",
+      req
+    );
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "postTransaction", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.CreateTransactionResponse = new operations.CreateTransactionResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transactionsResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransactionsResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "requestBody",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * Get account by its address
-     */
-    async getAccount(
-        address: string,
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetAccountResponse> {
-        const req = new operations.GetAccountRequest({
-            address: address,
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/accounts/{address}",
-            req
-        );
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.GetAccountResponse = new operations.GetAccountResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.accountResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.AccountResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Get the balances from a ledger's account
-     */
-    async getBalances(
-        req: operations.GetBalancesRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetBalancesResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.GetBalancesRequest(req);
+    const res: operations.AddMetadataToAccountResponse =
+      new operations.AddMetadataToAccountResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/balances", req);
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.GetBalancesResponse = new operations.GetBalancesResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.balancesCursorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.BalancesCursorResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Get the aggregated balances from selected accounts
-     */
-    async getBalancesAggregated(
-        ledger: string,
-        address?: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetBalancesAggregatedResponse> {
-        const req = new operations.GetBalancesAggregatedRequest({
-            ledger: ledger,
-            address: address,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/aggregate/balances",
-            req
-        );
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Count the accounts from a ledger
+   */
+  async countAccounts(
+    ledger: string,
+    address?: string,
+    metadata?: Record<string, any>,
+    config?: AxiosRequestConfig
+  ): Promise<operations.CountAccountsResponse> {
+    const req = new operations.CountAccountsRequest({
+      ledger: ledger,
+      address: address,
+      metadata: metadata,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/accounts",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "head",
+      headers: headers,
+      ...config,
+    });
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const res: operations.GetBalancesAggregatedResponse =
-            new operations.GetBalancesAggregatedResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.aggregateBalancesResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.AggregateBalancesResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Show server information
-     */
-    async getInfo(config?: AxiosRequestConfig): Promise<operations.GetInfoResponse> {
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/ledger/_info";
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.CountAccountsResponse =
+      new operations.CountAccountsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+        headers: utils.getHeadersFromResponse(httpRes.headers),
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const res: operations.GetInfoResponse = new operations.GetInfoResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.configInfoResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ConfigInfoResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Get information about a ledger
-     */
-    async getLedgerInfo(
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetLedgerInfoResponse> {
-        const req = new operations.GetLedgerInfoRequest({
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/_info", req);
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.GetLedgerInfoResponse = new operations.GetLedgerInfoResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.ledgerInfoResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.LedgerInfoResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+  /**
+   * Count the transactions from a ledger
+   */
+  async countTransactions(
+    req: operations.CountTransactionsRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.CountTransactionsResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.CountTransactionsRequest(req);
     }
 
-    /**
-     * Get the mapping of a ledger
-     */
-    async getMapping(
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetMappingResponse> {
-        const req = new operations.GetMappingRequest({
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/mapping", req);
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions",
+      req
+    );
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "head",
+      headers: headers,
+      ...config,
+    });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.GetMappingResponse = new operations.GetMappingResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.mappingResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.MappingResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Get transaction from a ledger by its ID
-     */
-    async getTransaction(
-        ledger: string,
-        txid: number,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetTransactionResponse> {
-        const req = new operations.GetTransactionRequest({
-            ledger: ledger,
-            txid: txid,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/transactions/{txid}",
-            req
-        );
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.CountTransactionsResponse =
+      new operations.CountTransactionsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+        headers: utils.getHeadersFromResponse(httpRes.headers),
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const res: operations.GetTransactionResponse = new operations.GetTransactionResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transactionResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransactionResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * List accounts from a ledger
-     *
-     * @remarks
-     * List accounts from a ledger, sorted by address in descending order.
-     */
-    async listAccounts(
-        req: operations.ListAccountsRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListAccountsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListAccountsRequest(req);
-        }
+    return res;
+  }
 
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/accounts", req);
+  /**
+   * Create a new transaction to a ledger
+   */
+  async createTransaction(
+    postTransaction: shared.PostTransaction,
+    ledger: string,
+    preview?: boolean,
+    config?: AxiosRequestConfig
+  ): Promise<operations.CreateTransactionResponse> {
+    const req = new operations.CreateTransactionRequest({
+      postTransaction: postTransaction,
+      ledger: ledger,
+      preview: preview,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions",
+      req
+    );
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.ListAccountsResponse = new operations.ListAccountsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.accountsCursorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.AccountsCursorResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "postTransaction",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * List the logs from a ledger
-     *
-     * @remarks
-     * List the logs from a ledger, sorted by ID in descending order.
-     */
-    async listLogs(
-        req: operations.ListLogsRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListLogsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListLogsRequest(req);
-        }
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/logs", req);
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.ListLogsResponse = new operations.ListLogsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.logsCursorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.LogsCursorResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * List transactions from a ledger
-     *
-     * @remarks
-     * List transactions from a ledger, sorted by txid in descending order.
-     */
-    async listTransactions(
-        req: operations.ListTransactionsRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListTransactionsResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new operations.ListTransactionsRequest(req);
+    const res: operations.CreateTransactionResponse =
+      new operations.CreateTransactionResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transactionsResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransactionsResponse
+          );
         }
-
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        const res: operations.ListTransactionsResponse = new operations.ListTransactionsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transactionsCursorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransactionsCursorResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Get statistics from a ledger
-     *
-     * @remarks
-     * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-     *
-     */
-    async readStats(
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ReadStatsResponse> {
-        const req = new operations.ReadStatsRequest({
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/stats", req);
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Get account by its address
+   */
+  async getAccount(
+    address: string,
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetAccountResponse> {
+    const req = new operations.GetAccountRequest({
+      address: address,
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/accounts/{address}",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const res: operations.ReadStatsResponse = new operations.ReadStatsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.statsResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.StatsResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Revert a ledger transaction by its ID
-     */
-    async revertTransaction(
-        ledger: string,
-        txid: number,
-        config?: AxiosRequestConfig
-    ): Promise<operations.RevertTransactionResponse> {
-        const req = new operations.RevertTransactionRequest({
-            ledger: ledger,
-            txid: txid,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/ledger/{ledger}/transactions/{txid}/revert",
-            req
-        );
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.GetAccountResponse =
+      new operations.GetAccountResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.accountResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.AccountResponse
+          );
         }
-
-        const res: operations.RevertTransactionResponse = new operations.RevertTransactionResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transactionResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransactionResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
         }
-
-        return res;
+        break;
     }
 
-    /**
-     * Execute a Numscript
-     *
-     * @remarks
-     * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
-     *
-     *
-     * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
-     */
-    async runScript(
-        script: shared.Script,
-        ledger: string,
-        preview?: boolean,
-        config?: AxiosRequestConfig
-    ): Promise<operations.RunScriptResponse> {
-        const req = new operations.RunScriptRequest({
-            script: script,
-            ledger: ledger,
-            preview: preview,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/script", req);
+    return res;
+  }
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "script", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.RunScriptResponse = new operations.RunScriptResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.scriptResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ScriptResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+  /**
+   * Get the balances from a ledger's account
+   */
+  async getBalances(
+    req: operations.GetBalancesRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetBalancesResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.GetBalancesRequest(req);
     }
 
-    /**
-     * Update the mapping of a ledger
-     */
-    async updateMapping(
-        mapping: shared.Mapping,
-        ledger: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.UpdateMappingResponse> {
-        const req = new operations.UpdateMappingRequest({
-            mapping: mapping,
-            ledger: ledger,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/mapping", req);
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/balances",
+      req
+    );
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "mapping", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json;q=1, application/json;q=0";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "put",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.UpdateMappingResponse = new operations.UpdateMappingResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.mappingResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.MappingResponse
-                    );
-                }
-                break;
-            default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
+
+    const res: operations.GetBalancesResponse =
+      new operations.GetBalancesResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.balancesCursorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.BalancesCursorResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get the aggregated balances from selected accounts
+   */
+  async getBalancesAggregated(
+    ledger: string,
+    address?: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetBalancesAggregatedResponse> {
+    const req = new operations.GetBalancesAggregatedRequest({
+      ledger: ledger,
+      address: address,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/aggregate/balances",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.GetBalancesAggregatedResponse =
+      new operations.GetBalancesAggregatedResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.aggregateBalancesResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.AggregateBalancesResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Show server information
+   */
+  async getInfo(
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetInfoResponse> {
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/ledger/_info";
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.GetInfoResponse = new operations.GetInfoResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
+    });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.configInfoResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ConfigInfoResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get information about a ledger
+   */
+  async getLedgerInfo(
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetLedgerInfoResponse> {
+    const req = new operations.GetLedgerInfoRequest({
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/_info",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.GetLedgerInfoResponse =
+      new operations.GetLedgerInfoResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.ledgerInfoResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.LedgerInfoResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get the mapping of a ledger
+   */
+  async getMapping(
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetMappingResponse> {
+    const req = new operations.GetMappingRequest({
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/mapping",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.GetMappingResponse =
+      new operations.GetMappingResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.mappingResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.MappingResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get transaction from a ledger by its ID
+   */
+  async getTransaction(
+    ledger: string,
+    txid: number,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetTransactionResponse> {
+    const req = new operations.GetTransactionRequest({
+      ledger: ledger,
+      txid: txid,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions/{txid}",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.GetTransactionResponse =
+      new operations.GetTransactionResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transactionResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransactionResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List accounts from a ledger
+   *
+   * @remarks
+   * List accounts from a ledger, sorted by address in descending order.
+   */
+  async listAccounts(
+    req: operations.ListAccountsRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListAccountsResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.ListAccountsRequest(req);
+    }
+
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/accounts",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListAccountsResponse =
+      new operations.ListAccountsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.accountsCursorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.AccountsCursorResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List the logs from a ledger
+   *
+   * @remarks
+   * List the logs from a ledger, sorted by ID in descending order.
+   */
+  async listLogs(
+    req: operations.ListLogsRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListLogsResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.ListLogsRequest(req);
+    }
+
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/logs",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListLogsResponse = new operations.ListLogsResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
+    });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.logsCursorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.LogsCursorResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List transactions from a ledger
+   *
+   * @remarks
+   * List transactions from a ledger, sorted by txid in descending order.
+   */
+  async listTransactions(
+    req: operations.ListTransactionsRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListTransactionsResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new operations.ListTransactionsRequest(req);
+    }
+
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListTransactionsResponse =
+      new operations.ListTransactionsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transactionsCursorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransactionsCursorResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get statistics from a ledger
+   *
+   * @remarks
+   * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+   *
+   */
+  async readStats(
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ReadStatsResponse> {
+    const req = new operations.ReadStatsRequest({
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/stats",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ReadStatsResponse = new operations.ReadStatsResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
+    });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.statsResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.StatsResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Revert a ledger transaction by its ID
+   */
+  async revertTransaction(
+    ledger: string,
+    txid: number,
+    config?: AxiosRequestConfig
+  ): Promise<operations.RevertTransactionResponse> {
+    const req = new operations.RevertTransactionRequest({
+      ledger: ledger,
+      txid: txid,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/transactions/{txid}/revert",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.RevertTransactionResponse =
+      new operations.RevertTransactionResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transactionResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransactionResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Execute a Numscript
+   *
+   * @remarks
+   * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+   *
+   *
+   * @deprecated this method will be removed in a future release, please migrate away from it as soon as possible
+   */
+  async runScript(
+    script: shared.Script,
+    ledger: string,
+    preview?: boolean,
+    config?: AxiosRequestConfig
+  ): Promise<operations.RunScriptResponse> {
+    const req = new operations.RunScriptRequest({
+      script: script,
+      ledger: ledger,
+      preview: preview,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/script",
+      req
+    );
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "script",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
+    }
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.RunScriptResponse = new operations.RunScriptResponse({
+      statusCode: httpRes.status,
+      contentType: contentType,
+      rawResponse: httpRes,
+    });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.scriptResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ScriptResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Update the mapping of a ledger
+   */
+  async updateMapping(
+    mapping: shared.Mapping,
+    ledger: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.UpdateMappingResponse> {
+    const req = new operations.UpdateMappingRequest({
+      mapping: mapping,
+      ledger: ledger,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/ledger/{ledger}/mapping",
+      req
+    );
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "mapping",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
+    }
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "put",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.UpdateMappingResponse =
+      new operations.UpdateMappingResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.mappingResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.MappingResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.errorResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ErrorResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
 }

@@ -3,22 +3,21 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ConnectorsStripeTransferResponse extends SpeakeasyBase {
-    @SpeakeasyMetadata()
-    contentType: string;
+  @SpeakeasyMetadata()
+  contentType: string;
 
-    @SpeakeasyMetadata()
-    statusCode: number;
+  @SpeakeasyMetadata()
+  statusCode: number;
 
-    @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+  @SpeakeasyMetadata()
+  rawResponse?: AxiosResponse;
 
-    /**
-     * OK
-     */
-    @SpeakeasyMetadata()
-    stripeTransferResponse?: shared.StripeTransferResponse;
+  /**
+   * OK
+   */
+  @SpeakeasyMetadata()
+  stripeTransferResponse?: Record<string, any>;
 }

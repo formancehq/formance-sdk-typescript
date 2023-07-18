@@ -5,1079 +5,1039 @@
 import * as utils from "../internal/utils";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { SDKConfiguration } from "./sdk";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export class Payments {
-    private sdkConfiguration: SDKConfiguration;
+  _defaultClient: AxiosInstance;
+  _securityClient: AxiosInstance;
+  _serverURL: string;
+  _language: string;
+  _sdkVersion: string;
+  _genVersion: string;
 
-    constructor(sdkConfig: SDKConfiguration) {
-        this.sdkConfiguration = sdkConfig;
+  constructor(
+    defaultClient: AxiosInstance,
+    securityClient: AxiosInstance,
+    serverURL: string,
+    language: string,
+    sdkVersion: string,
+    genVersion: string
+  ) {
+    this._defaultClient = defaultClient;
+    this._securityClient = securityClient;
+    this._serverURL = serverURL;
+    this._language = language;
+    this._sdkVersion = sdkVersion;
+    this._genVersion = genVersion;
+  }
+
+  /**
+   * Transfer funds between Stripe accounts
+   *
+   * @remarks
+   * Execute a transfer between two Stripe accounts.
+   */
+  async connectorsStripeTransfer(
+    req: shared.StripeTransferRequest,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ConnectorsStripeTransferResponse> {
+    if (!(req instanceof utils.SpeakeasyBase)) {
+      req = new shared.StripeTransferRequest(req);
     }
 
-    /**
-     * Transfer funds between Stripe accounts
-     *
-     * @remarks
-     * Execute a transfer between two Stripe accounts.
-     */
-    async connectorsStripeTransfer(
-        req: shared.StripeTransferRequest,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ConnectorsStripeTransferResponse> {
-        if (!(req instanceof utils.SpeakeasyBase)) {
-            req = new shared.StripeTransferRequest(req);
-        }
+    const baseURL: string = this._serverURL;
+    const url: string =
+      baseURL.replace(/\/$/, "") + "/api/payments/connectors/stripe/transfers";
 
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string =
-            baseURL.replace(/\/$/, "") + "/api/payments/connectors/stripe/transfers";
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.ConnectorsStripeTransferResponse =
-            new operations.ConnectorsStripeTransferResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.stripeTransferResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.StripeTransferResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "request",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * Transfer funds between Connector accounts
-     *
-     * @remarks
-     * Execute a transfer between two accounts.
-     */
-    async connectorsTransfer(
-        transferRequest: shared.TransferRequest,
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ConnectorsTransferResponse> {
-        const req = new operations.ConnectorsTransferRequest({
-            transferRequest: transferRequest,
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/transfers",
-            req
-        );
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "transferRequest", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.ConnectorsTransferResponse =
-            new operations.ConnectorsTransferResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transferResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransferResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Read a specific task of the connector
-     *
-     * @remarks
-     * Get a specific task associated to the connector.
-     */
-    async getConnectorTask(
-        connector: shared.Connector,
-        taskId: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetConnectorTaskResponse> {
-        const req = new operations.GetConnectorTaskRequest({
-            connector: connector,
-            taskId: taskId,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/tasks/{taskId}",
-            req
-        );
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.ConnectorsStripeTransferResponse =
+      new operations.ConnectorsStripeTransferResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.stripeTransferResponse = utils.objectToClass(httpRes?.data);
         }
-
-        const res: operations.GetConnectorTaskResponse = new operations.GetConnectorTaskResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.taskResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TaskResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Get a payment
-     */
-    async getPayment(
-        paymentId: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.GetPaymentResponse> {
-        const req = new operations.GetPaymentRequest({
-            paymentId: paymentId,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/payments/payments/{paymentId}", req);
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Transfer funds between Connector accounts
+   *
+   * @remarks
+   * Execute a transfer between two accounts.
+   */
+  async connectorsTransfer(
+    transferRequest: shared.TransferRequest,
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ConnectorsTransferResponse> {
+    const req = new operations.ConnectorsTransferRequest({
+      transferRequest: transferRequest,
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/transfers",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.GetPaymentResponse = new operations.GetPaymentResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.paymentResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.PaymentResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "transferRequest",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * Install a connector
-     *
-     * @remarks
-     * Install a connector by its name and config.
-     */
-    async installConnector(
-        requestBody: any,
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.InstallConnectorResponse> {
-        const req = new operations.InstallConnectorRequest({
-            requestBody: requestBody,
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/payments/connectors/{connector}", req);
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "requestBody", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "*/*";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.InstallConnectorResponse = new operations.InstallConnectorResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * List all installed connectors
-     *
-     * @remarks
-     * List all installed connectors.
-     */
-    async listAllConnectors(
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListAllConnectorsResponse> {
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/payments/connectors";
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.ConnectorsTransferResponse =
+      new operations.ConnectorsTransferResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transferResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransferResponse
+          );
         }
-
-        const res: operations.ListAllConnectorsResponse = new operations.ListAllConnectorsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.connectorsResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ConnectorsResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * List the configs of each available connector
-     *
-     * @remarks
-     * List the configs of each available connector.
-     */
-    async listConfigsAvailableConnectors(
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListConfigsAvailableConnectorsResponse> {
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/payments/connectors/configs";
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Read a specific task of the connector
+   *
+   * @remarks
+   * Get a specific task associated to the connector.
+   */
+  async getConnectorTask(
+    connector: shared.Connector,
+    taskId: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetConnectorTaskResponse> {
+    const req = new operations.GetConnectorTaskRequest({
+      connector: connector,
+      taskId: taskId,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/tasks/{taskId}",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const res: operations.ListConfigsAvailableConnectorsResponse =
-            new operations.ListConfigsAvailableConnectorsResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.connectorsConfigsResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ConnectorsConfigsResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * List tasks from a connector
-     *
-     * @remarks
-     * List all tasks associated with this connector.
-     */
-    async listConnectorTasks(
-        connector: shared.Connector,
-        cursor?: string,
-        pageSize?: number,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListConnectorTasksResponse> {
-        const req = new operations.ListConnectorTasksRequest({
-            connector: connector,
-            cursor: cursor,
-            pageSize: pageSize,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/tasks",
-            req
-        );
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.GetConnectorTaskResponse =
+      new operations.GetConnectorTaskResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.taskResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TaskResponse
+          );
         }
-
-        const res: operations.ListConnectorTasksResponse =
-            new operations.ListConnectorTasksResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.tasksCursor = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TasksCursor
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * List transfers and their statuses
-     *
-     * @remarks
-     * List transfers
-     */
-    async listConnectorsTransfers(
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListConnectorsTransfersResponse> {
-        const req = new operations.ListConnectorsTransfersRequest({
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/transfers",
-            req
-        );
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Get a payment
+   */
+  async getPayment(
+    paymentId: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.GetPaymentResponse> {
+    const req = new operations.GetPaymentRequest({
+      paymentId: paymentId,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/payments/{paymentId}",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const res: operations.ListConnectorsTransfersResponse =
-            new operations.ListConnectorsTransfersResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.transfersResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.TransfersResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * List payments
-     */
-    async listPayments(
-        cursor?: string,
-        pageSize?: number,
-        sort?: string[],
-        config?: AxiosRequestConfig
-    ): Promise<operations.ListPaymentsResponse> {
-        const req = new operations.ListPaymentsRequest({
-            cursor: cursor,
-            pageSize: pageSize,
-            sort: sort,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/payments/payments";
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.GetPaymentResponse =
+      new operations.GetPaymentResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.paymentResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.PaymentResponse
+          );
         }
-
-        const res: operations.ListPaymentsResponse = new operations.ListPaymentsResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.paymentsCursor = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.PaymentsCursor
-                    );
-                }
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Get server info
-     */
-    async paymentsgetServerInfo(
-        config?: AxiosRequestConfig
-    ): Promise<operations.PaymentsgetServerInfoResponse> {
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/payments/_info";
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * Install a connector
+   *
+   * @remarks
+   * Install a connector by its name and config.
+   */
+  async installConnector(
+    requestBody: any,
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.InstallConnectorResponse> {
+    const req = new operations.InstallConnectorRequest({
+      requestBody: requestBody,
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}",
+      req
+    );
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.PaymentsgetServerInfoResponse =
-            new operations.PaymentsgetServerInfoResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
-                }
-                break;
-        }
-
-        return res;
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "requestBody",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
     }
 
-    /**
-     * List accounts
-     */
-    async paymentslistAccounts(
-        cursor?: string,
-        pageSize?: number,
-        sort?: string[],
-        config?: AxiosRequestConfig
-    ): Promise<operations.PaymentslistAccountsResponse> {
-        const req = new operations.PaymentslistAccountsRequest({
-            cursor: cursor,
-            pageSize: pageSize,
-            sort: sort,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/payments/accounts";
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "*/*";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const headers = { ...config?.headers };
-        const queryParams: string = utils.serializeQueryParams(req);
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url + queryParams,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.PaymentslistAccountsResponse =
-            new operations.PaymentslistAccountsResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.accountsCursor = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.AccountsCursor
-                    );
-                }
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Read the config of a connector
-     *
-     * @remarks
-     * Read connector config
-     */
-    async readConnectorConfig(
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ReadConnectorConfigResponse> {
-        const req = new operations.ReadConnectorConfigRequest({
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/config",
-            req
-        );
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "application/json";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "get",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.ReadConnectorConfigResponse =
-            new operations.ReadConnectorConfigResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        const decodedRes = new TextDecoder().decode(httpRes?.data);
-        switch (true) {
-            case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.connectorConfigResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ConnectorConfigResponse
-                    );
-                }
-                break;
-        }
-
-        return res;
+    const res: operations.InstallConnectorResponse =
+      new operations.InstallConnectorResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
     }
 
-    /**
-     * Reset a connector
-     *
-     * @remarks
-     * Reset a connector by its name.
-     * It will remove the connector and ALL PAYMENTS generated with it.
-     *
-     */
-    async resetConnector(
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.ResetConnectorResponse> {
-        const req = new operations.ResetConnectorRequest({
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/connectors/{connector}/reset",
-            req
-        );
+    return res;
+  }
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+  /**
+   * List all installed connectors
+   *
+   * @remarks
+   * List all installed connectors.
+   */
+  async listAllConnectors(
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListAllConnectorsResponse> {
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/payments/connectors";
 
-        const headers = { ...config?.headers };
-        headers["Accept"] = "*/*";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "post",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const res: operations.ResetConnectorResponse = new operations.ResetConnectorResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
 
-    /**
-     * Uninstall a connector
-     *
-     * @remarks
-     * Uninstall a connector by its name.
-     */
-    async uninstallConnector(
-        connector: shared.Connector,
-        config?: AxiosRequestConfig
-    ): Promise<operations.UninstallConnectorResponse> {
-        const req = new operations.UninstallConnectorRequest({
-            connector: connector,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(baseURL, "/api/payments/connectors/{connector}", req);
-
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
-
-        const headers = { ...config?.headers };
-        headers["Accept"] = "*/*";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
-
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "delete",
-            headers: headers,
-            responseType: "arraybuffer",
-            ...config,
-        });
-
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
+    const res: operations.ListAllConnectorsResponse =
+      new operations.ListAllConnectorsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.connectorsResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ConnectorsResponse
+          );
         }
-
-        const res: operations.UninstallConnectorResponse =
-            new operations.UninstallConnectorResponse({
-                statusCode: httpRes.status,
-                contentType: contentType,
-                rawResponse: httpRes,
-            });
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-        }
-
-        return res;
+        break;
     }
 
-    /**
-     * Update metadata
-     */
-    async updateMetadata(
-        paymentMetadata: shared.PaymentMetadata,
-        paymentId: string,
-        config?: AxiosRequestConfig
-    ): Promise<operations.UpdateMetadataResponse> {
-        const req = new operations.UpdateMetadataRequest({
-            paymentMetadata: paymentMetadata,
-            paymentId: paymentId,
-        });
-        const baseURL: string = utils.templateUrl(
-            this.sdkConfiguration.serverURL,
-            this.sdkConfiguration.serverDefaults
-        );
-        const url: string = utils.generateURL(
-            baseURL,
-            "/api/payments/payments/{paymentId}/metadata",
-            req
-        );
+    return res;
+  }
 
-        let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+  /**
+   * List the configs of each available connector
+   *
+   * @remarks
+   * List the configs of each available connector.
+   */
+  async listConfigsAvailableConnectors(
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListConfigsAvailableConnectorsResponse> {
+    const baseURL: string = this._serverURL;
+    const url: string =
+      baseURL.replace(/\/$/, "") + "/api/payments/connectors/configs";
 
-        try {
-            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "paymentMetadata", "json");
-        } catch (e: unknown) {
-            if (e instanceof Error) {
-                throw new Error(`Error serializing request body, cause: ${e.message}`);
-            }
-        }
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
 
-        const client: AxiosInstance =
-            this.sdkConfiguration.securityClient || this.sdkConfiguration.defaultClient;
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
 
-        const headers = { ...reqBodyHeaders, ...config?.headers };
-        if (reqBody == null || Object.keys(reqBody).length === 0)
-            throw new Error("request body is required");
-        headers["Accept"] = "*/*";
-        headers[
-            "user-agent"
-        ] = `speakeasy-sdk/${this.sdkConfiguration.language} ${this.sdkConfiguration.sdkVersion} ${this.sdkConfiguration.genVersion} ${this.sdkConfiguration.openapiDocVersion}`;
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
 
-        const httpRes: AxiosResponse = await client.request({
-            validateStatus: () => true,
-            url: url,
-            method: "patch",
-            headers: headers,
-            responseType: "arraybuffer",
-            data: reqBody,
-            ...config,
-        });
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-        if (httpRes?.status == null) {
-            throw new Error(`status code not found in response: ${httpRes}`);
-        }
-
-        const res: operations.UpdateMetadataResponse = new operations.UpdateMetadataResponse({
-            statusCode: httpRes.status,
-            contentType: contentType,
-            rawResponse: httpRes,
-        });
-        switch (true) {
-            case httpRes?.status == 204:
-                break;
-        }
-
-        return res;
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
     }
+
+    const res: operations.ListConfigsAvailableConnectorsResponse =
+      new operations.ListConfigsAvailableConnectorsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.connectorsConfigsResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ConnectorsConfigsResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List tasks from a connector
+   *
+   * @remarks
+   * List all tasks associated with this connector.
+   */
+  async listConnectorTasks(
+    connector: shared.Connector,
+    cursor?: string,
+    pageSize?: number,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListConnectorTasksResponse> {
+    const req = new operations.ListConnectorTasksRequest({
+      connector: connector,
+      cursor: cursor,
+      pageSize: pageSize,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/tasks",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListConnectorTasksResponse =
+      new operations.ListConnectorTasksResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.tasksCursor = utils.objectToClass(
+            httpRes?.data,
+            shared.TasksCursor
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List transfers and their statuses
+   *
+   * @remarks
+   * List transfers
+   */
+  async listConnectorsTransfers(
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListConnectorsTransfersResponse> {
+    const req = new operations.ListConnectorsTransfersRequest({
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/transfers",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListConnectorsTransfersResponse =
+      new operations.ListConnectorsTransfersResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.transfersResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.TransfersResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List payments
+   */
+  async listPayments(
+    cursor?: string,
+    pageSize?: number,
+    sort?: string[],
+    config?: AxiosRequestConfig
+  ): Promise<operations.ListPaymentsResponse> {
+    const req = new operations.ListPaymentsRequest({
+      cursor: cursor,
+      pageSize: pageSize,
+      sort: sort,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/payments/payments";
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ListPaymentsResponse =
+      new operations.ListPaymentsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.paymentsCursor = utils.objectToClass(
+            httpRes?.data,
+            shared.PaymentsCursor
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get server info
+   */
+  async paymentsgetServerInfo(
+    config?: AxiosRequestConfig
+  ): Promise<operations.PaymentsgetServerInfoResponse> {
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/payments/_info";
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.PaymentsgetServerInfoResponse =
+      new operations.PaymentsgetServerInfoResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.serverInfo = utils.objectToClass(
+            httpRes?.data,
+            shared.ServerInfo
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * List accounts
+   */
+  async paymentslistAccounts(
+    cursor?: string,
+    pageSize?: number,
+    sort?: string[],
+    config?: AxiosRequestConfig
+  ): Promise<operations.PaymentslistAccountsResponse> {
+    const req = new operations.PaymentslistAccountsRequest({
+      cursor: cursor,
+      pageSize: pageSize,
+      sort: sort,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/payments/accounts";
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url + queryParams,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.PaymentslistAccountsResponse =
+      new operations.PaymentslistAccountsResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.accountsCursor = utils.objectToClass(
+            httpRes?.data,
+            shared.AccountsCursor
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Read the config of a connector
+   *
+   * @remarks
+   * Read connector config
+   */
+  async readConnectorConfig(
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ReadConnectorConfigResponse> {
+    const req = new operations.ReadConnectorConfigRequest({
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/config",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ReadConnectorConfigResponse =
+      new operations.ReadConnectorConfigResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.connectorConfigResponse = utils.objectToClass(
+            httpRes?.data,
+            shared.ConnectorConfigResponse
+          );
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Reset a connector
+   *
+   * @remarks
+   * Reset a connector by its name.
+   * It will remove the connector and ALL PAYMENTS generated with it.
+   *
+   */
+  async resetConnector(
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.ResetConnectorResponse> {
+    const req = new operations.ResetConnectorRequest({
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}/reset",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "*/*";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "post",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.ResetConnectorResponse =
+      new operations.ResetConnectorResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Uninstall a connector
+   *
+   * @remarks
+   * Uninstall a connector by its name.
+   */
+  async uninstallConnector(
+    connector: shared.Connector,
+    config?: AxiosRequestConfig
+  ): Promise<operations.UninstallConnectorResponse> {
+    const req = new operations.UninstallConnectorRequest({
+      connector: connector,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/connectors/{connector}",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "*/*";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "delete",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.UninstallConnectorResponse =
+      new operations.UninstallConnectorResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Update metadata
+   */
+  async updateMetadata(
+    paymentMetadata: shared.PaymentMetadata,
+    paymentId: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.UpdateMetadataResponse> {
+    const req = new operations.UpdateMetadataRequest({
+      paymentMetadata: paymentMetadata,
+      paymentId: paymentId,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/payments/payments/{paymentId}/metadata",
+      req
+    );
+
+    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+
+    try {
+      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+        req,
+        "paymentMetadata",
+        "json"
+      );
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Error serializing request body, cause: ${e.message}`);
+      }
+    }
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...reqBodyHeaders, ...config?.headers };
+    if (reqBody == null || Object.keys(reqBody).length === 0)
+      throw new Error("request body is required");
+    headers["Accept"] = "*/*";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "patch",
+      headers: headers,
+      data: reqBody,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.UpdateMetadataResponse =
+      new operations.UpdateMetadataResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
+        break;
+    }
+
+    return res;
+  }
 }

@@ -7,29 +7,29 @@ import { Connector } from "./connector";
 import { Expose, Transform } from "class-transformer";
 
 export enum PaymentsAccountType {
-    Target = "TARGET",
-    Source = "SOURCE",
+  Target = "TARGET",
+  Source = "SOURCE",
 }
 
 export class PaymentsAccount extends SpeakeasyBase {
-    @SpeakeasyMetadata()
-    @Expose({ name: "createdAt" })
-    @Transform(({ value }) => new Date(value), { toClassOnly: true })
-    createdAt: Date;
+  @SpeakeasyMetadata()
+  @Expose({ name: "createdAt" })
+  @Transform(({ value }) => new Date(value), { toClassOnly: true })
+  createdAt: Date;
 
-    @SpeakeasyMetadata()
-    @Expose({ name: "id" })
-    id: string;
+  @SpeakeasyMetadata()
+  @Expose({ name: "id" })
+  id: string;
 
-    @SpeakeasyMetadata()
-    @Expose({ name: "provider" })
-    provider: Connector;
+  @SpeakeasyMetadata()
+  @Expose({ name: "provider" })
+  provider: Connector;
 
-    @SpeakeasyMetadata()
-    @Expose({ name: "reference" })
-    reference: string;
+  @SpeakeasyMetadata()
+  @Expose({ name: "reference" })
+  reference: string;
 
-    @SpeakeasyMetadata()
-    @Expose({ name: "type" })
-    type: PaymentsAccountType;
+  @SpeakeasyMetadata()
+  @Expose({ name: "type" })
+  type: PaymentsAccountType;
 }

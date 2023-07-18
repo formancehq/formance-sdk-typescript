@@ -1,13 +1,11 @@
 <!-- Start SDK Example Usage -->
-
-
 ```typescript
 import { Formance } from "@formance/formance-sdk";
 import { GetVersionsResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
 
 const sdk = new Formance({
   security: {
-    authorization: "",
+    authorization: "Bearer YOUR_ACCESS_TOKEN_HERE",
   },
 });
 

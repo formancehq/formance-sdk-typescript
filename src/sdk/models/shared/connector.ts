@@ -6,10 +6,10 @@
  * The name of the connector.
  */
 export enum Connector {
-    Stripe = "STRIPE",
-    DummyPay = "DUMMY-PAY",
-    Wise = "WISE",
-    Modulr = "MODULR",
-    CurrencyCloud = "CURRENCY-CLOUD",
-    BankingCircle = "BANKING-CIRCLE",
+  Stripe = "STRIPE",
+  DummyPay = "DUMMY-PAY",
+  Wise = "WISE",
+  Modulr = "MODULR",
+  CurrencyCloud = "CURRENCY-CLOUD",
+  BankingCircle = "BANKING-CIRCLE",
 }
