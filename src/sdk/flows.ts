@@ -32,62 +32,6 @@ export class Flows {
   }
 
   /**
-   * Get server info
-   */
-  async flowsgetServerInfo(
-    config?: AxiosRequestConfig
-  ): Promise<operations.FlowsgetServerInfoResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.FlowsgetServerInfoResponse =
-      new operations.FlowsgetServerInfoResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.serverInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.ServerInfo
-          );
-        }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
-        }
-        break;
-    }
-
-    return res;
-  }
-
-  /**
    * Cancel a running workflow
    *
    * @remarks
@@ -217,6 +161,67 @@ export class Flows {
             shared.CreateWorkflowResponse
           );
         }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Delete a flow by id
+   *
+   * @remarks
+   * Delete a flow by id
+   */
+  async deleteWorkflow(
+    flowId: string,
+    config?: AxiosRequestConfig
+  ): Promise<operations.DeleteWorkflowResponse> {
+    const req = new operations.DeleteWorkflowRequest({
+      flowId: flowId,
+    });
+    const baseURL: string = this._serverURL;
+    const url: string = utils.generateURL(
+      baseURL,
+      "/api/orchestration/workflows/{flowId}",
+      req
+    );
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "delete",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.DeleteWorkflowResponse =
+      new operations.DeleteWorkflowResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 204:
         break;
       default:
         if (utils.matchContentType(contentType, `application/json`)) {
@@ -612,6 +617,62 @@ export class Flows {
           res.listWorkflowsResponse = utils.objectToClass(
             httpRes?.data,
             shared.ListWorkflowsResponse
+          );
+        }
+        break;
+      default:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.error = utils.objectToClass(httpRes?.data, shared.ErrorT);
+        }
+        break;
+    }
+
+    return res;
+  }
+
+  /**
+   * Get server info
+   */
+  async orchestrationgetServerInfo(
+    config?: AxiosRequestConfig
+  ): Promise<operations.OrchestrationgetServerInfoResponse> {
+    const baseURL: string = this._serverURL;
+    const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
+
+    const client: AxiosInstance = this._securityClient || this._defaultClient;
+
+    const headers = { ...config?.headers };
+    headers["Accept"] = "application/json;q=1, application/json;q=0";
+    headers[
+      "user-agent"
+    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+
+    const httpRes: AxiosResponse = await client.request({
+      validateStatus: () => true,
+      url: url,
+      method: "get",
+      headers: headers,
+      ...config,
+    });
+
+    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+    if (httpRes?.status == null) {
+      throw new Error(`status code not found in response: ${httpRes}`);
+    }
+
+    const res: operations.OrchestrationgetServerInfoResponse =
+      new operations.OrchestrationgetServerInfoResponse({
+        statusCode: httpRes.status,
+        contentType: contentType,
+        rawResponse: httpRes,
+      });
+    switch (true) {
+      case httpRes?.status == 200:
+        if (utils.matchContentType(contentType, `application/json`)) {
+          res.serverInfo = utils.objectToClass(
+            httpRes?.data,
+            shared.ServerInfo
           );
         }
         break;

@@ -40,8 +40,7 @@ sdk.payments.connectorsStripeTransfer({
   asset: "USD",
   destination: "acct_1Gqj58KZcSIg2N2q",
   metadata: {
-    "cumque": "facere",
-    "ea": "aliquid",
+    "debitis": "a",
   },
 }).then((res: ConnectorsStripeTransferResponse) => {
   if (res.statusCode == 200) {
@@ -72,7 +71,7 @@ sdk.payments.connectorsTransfer({
   asset: "USD",
   destination: "acct_1Gqj58KZcSIg2N2q",
   source: "acct_1Gqj58KZcSIg2N2q",
-}, Connector.CurrencyCloud).then((res: ConnectorsTransferResponse) => {
+}, Connector.BankingCircle).then((res: ConnectorsTransferResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -96,7 +95,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.getConnectorTask(Connector.BankingCircle, "non").then((res: GetConnectorTaskResponse) => {
+sdk.payments.getConnectorTask(Connector.Modulr, "in").then((res: GetConnectorTaskResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -120,7 +119,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.getPayment("occaecati").then((res: GetPaymentResponse) => {
+sdk.payments.getPayment("illum").then((res: GetPaymentResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -145,9 +144,10 @@ const sdk = new Formance({
 });
 
 sdk.payments.installConnector({
-  directory: "/tmp/dummypay",
-  fileGenerationPeriod: "60s",
-  filePollingPeriod: "60s",
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  pollingPeriod: "60s",
 }, Connector.BankingCircle).then((res: InstallConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -219,7 +219,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listConnectorTasks(Connector.BankingCircle, "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 692532).then((res: ListConnectorTasksResponse) => {
+sdk.payments.listConnectorTasks(Connector.Stripe, "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 297437).then((res: ListConnectorTasksResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -243,7 +243,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listConnectorsTransfers(Connector.Modulr).then((res: ListConnectorsTransfersResponse) => {
+sdk.payments.listConnectorsTransfers(Connector.Mangopay).then((res: ListConnectorsTransfersResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -267,10 +267,9 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.listPayments("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 725255, [
-  "blanditiis",
-  "deleniti",
-  "sapiente",
+sdk.payments.listPayments("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 813798, [
+  "aliquid",
+  "laborum",
 ]).then((res: ListPaymentsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -318,10 +317,8 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.paymentslistAccounts("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 230533, [
-  "nisi",
-  "vel",
-  "natus",
+sdk.payments.paymentslistAccounts("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 881104, [
+  "occaecati",
 ]).then((res: PaymentslistAccountsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -346,7 +343,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.readConnectorConfig(Connector.Modulr).then((res: ReadConnectorConfigResponse) => {
+sdk.payments.readConnectorConfig(Connector.Wise).then((res: ReadConnectorConfigResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -372,7 +369,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.resetConnector(Connector.Wise).then((res: ResetConnectorResponse) => {
+sdk.payments.resetConnector(Connector.Moneycorp).then((res: ResetConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -396,7 +393,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.payments.uninstallConnector(Connector.Stripe).then((res: UninstallConnectorResponse) => {
+sdk.payments.uninstallConnector(Connector.Moneycorp).then((res: UninstallConnectorResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -420,8 +417,8 @@ const sdk = new Formance({
 });
 
 sdk.payments.updateMetadata({
-  key: "nihil",
-}, "magnam").then((res: UpdateMetadataResponse) => {
+  key: "quidem",
+}, "provident").then((res: UpdateMetadataResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }

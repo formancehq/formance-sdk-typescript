@@ -5,18 +5,18 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
-export class ModulrConfig extends SpeakeasyBase {
+export class MoneycorpConfig extends SpeakeasyBase {
   @SpeakeasyMetadata()
   @Expose({ name: "apiKey" })
   apiKey: string;
 
   @SpeakeasyMetadata()
-  @Expose({ name: "apiSecret" })
-  apiSecret: string;
+  @Expose({ name: "clientID" })
+  clientID: string;
 
   @SpeakeasyMetadata()
   @Expose({ name: "endpoint" })
-  endpoint?: string;
+  endpoint: string;
 
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.

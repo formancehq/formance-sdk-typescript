@@ -44,8 +44,8 @@ sdk.ledger.createTransactions({
   transactions: [
     {
       metadata: {
-        "commodi": "quam",
-        "molestiae": "velit",
+        "velit": "error",
+        "quia": "quis",
       },
       postings: [
         {
@@ -54,25 +54,14 @@ sdk.ledger.createTransactions({
           destination: "users:002",
           source: "users:001",
         },
-        {
-          amount: 100,
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-        {
-          amount: 100,
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
       ],
       reference: "ref:001",
-      timestamp: new Date("2022-08-30T15:03:11.112Z"),
+      timestamp: new Date("2021-09-08T21:06:19.630Z"),
     },
     {
       metadata: {
-        "laborum": "animi",
+        "odit": "quo",
+        "sequi": "tenetur",
       },
       postings: [
         {
@@ -89,34 +78,7 @@ sdk.ledger.createTransactions({
         },
       ],
       reference: "ref:001",
-      timestamp: new Date("2022-03-22T21:41:36.666Z"),
-    },
-    {
-      metadata: {
-        "tenetur": "ipsam",
-      },
-      postings: [
-        {
-          amount: 100,
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-        {
-          amount: 100,
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-        {
-          amount: 100,
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-      ],
-      reference: "ref:001",
-      timestamp: new Date("2022-12-17T03:20:13.120Z"),
+      timestamp: new Date("2021-05-11T16:11:54.761Z"),
     },
   ],
 }, "ledger001").then((res: CreateTransactionsResponse) => {
@@ -144,7 +106,7 @@ const sdk = new Formance({
 });
 
 sdk.ledger.addMetadataOnTransaction("ledger001", 1234, {
-  "error": "temporibus",
+  "quasi": "error",
 }).then((res: AddMetadataOnTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -170,9 +132,10 @@ const sdk = new Formance({
 });
 
 sdk.ledger.addMetadataToAccount({
-  "quasi": "reiciendis",
-  "voluptatibus": "vero",
-  "nihil": "praesentium",
+  "laborum": "quasi",
+  "reiciendis": "voluptatibus",
+  "vero": "nihil",
+  "praesentium": "voluptatibus",
 }, "users:001", "ledger001").then((res: AddMetadataToAccountResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -198,10 +161,7 @@ const sdk = new Formance({
 });
 
 sdk.ledger.countAccounts("ledger001", "users:.+", {
-  "ipsa": "omnis",
-  "voluptate": "cum",
-  "perferendis": "doloremque",
-  "reprehenderit": "ut",
+  "omnis": "voluptate",
 }).then((res: CountAccountsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -229,15 +189,14 @@ const sdk = new Formance({
 sdk.ledger.countTransactions({
   account: "users:001",
   destination: "users:001",
-  endTime: new Date("2022-08-22T09:14:02.538Z"),
+  endTime: new Date("2022-12-17T09:48:56.551Z"),
   ledger: "ledger001",
   metadata: {
-    "dolore": "iusto",
-    "dicta": "harum",
+    "reprehenderit": "ut",
   },
   reference: "ref:001",
   source: "users:001",
-  startTime: new Date("2022-02-13T15:01:52.114Z"),
+  startTime: new Date("2022-08-22T09:14:02.538Z"),
 }).then((res: CountTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -264,16 +223,10 @@ const sdk = new Formance({
 
 sdk.ledger.createTransaction({
   metadata: {
-    "repudiandae": "quae",
-    "ipsum": "quidem",
+    "dolore": "iusto",
+    "dicta": "harum",
   },
   postings: [
-    {
-      amount: 100,
-      asset: "COIN",
-      destination: "users:002",
-      source: "users:001",
-    },
     {
       amount: 100,
       asset: "COIN",
@@ -298,12 +251,13 @@ sdk.ledger.createTransaction({
   )
   ",
     vars: {
-      "pariatur": "modi",
-      "praesentium": "rem",
-      "voluptates": "quasi",
+      "commodi": "repudiandae",
+      "quae": "ipsum",
+      "quidem": "molestias",
+      "excepturi": "pariatur",
     },
   },
-  timestamp: new Date("2021-04-10T08:07:33.561Z"),
+  timestamp: new Date("2022-06-29T05:25:54.356Z"),
 }, "ledger001", true).then((res: CreateTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -510,9 +464,11 @@ sdk.ledger.listAccounts({
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   ledger: "ledger001",
   metadata: {
-    "itaque": "incidunt",
+    "voluptates": "quasi",
+    "repudiandae": "sint",
+    "veritatis": "itaque",
   },
-  pageSize: 318569,
+  pageSize: 277718,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
 }).then((res: ListAccountsResponse) => {
   if (res.statusCode == 200) {
@@ -541,11 +497,11 @@ const sdk = new Formance({
 sdk.ledger.listLogs({
   after: "1234",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  endTime: new Date("2022-05-02T09:29:06.042Z"),
+  endTime: new Date("2022-12-28T14:02:06.064Z"),
   ledger: "ledger001",
-  pageSize: 842342,
+  pageSize: 667411,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  startTime: new Date("2022-05-09T18:45:16.013Z"),
+  startTime: new Date("2022-08-09T16:21:07.003Z"),
 }).then((res: ListLogsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -575,17 +531,19 @@ sdk.ledger.listTransactions({
   after: "1234",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   destination: "users:001",
-  endTime: new Date("2021-04-26T18:54:54.344Z"),
+  endTime: new Date("2021-07-27T01:56:50.693Z"),
   ledger: "ledger001",
   metadata: {
-    "modi": "qui",
-    "aliquid": "cupiditate",
+    "labore": "modi",
+    "qui": "aliquid",
+    "cupiditate": "quos",
+    "perferendis": "magni",
   },
-  pageSize: 552822,
+  pageSize: 828940,
   paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   reference: "ref:001",
   source: "users:001",
-  startTime: new Date("2022-11-01T19:07:16.800Z"),
+  startTime: new Date("2022-12-30T06:52:02.282Z"),
 }).then((res: ListTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -664,10 +622,7 @@ const sdk = new Formance({
 
 sdk.ledger.runScript({
   metadata: {
-    "ipsam": "alias",
-    "fugit": "dolorum",
-    "excepturi": "tempora",
-    "facilis": "tempore",
+    "dolorum": "excepturi",
   },
   plain: "vars {
 account $user
@@ -679,8 +634,8 @@ send [COIN 10] (
 ",
   reference: "order_1234",
   vars: {
-    "delectus": "eum",
-    "non": "eligendi",
+    "facilis": "tempore",
+    "labore": "delectus",
   },
 }, "ledger001", true).then((res: RunScriptResponse) => {
   if (res.statusCode == 200) {
@@ -711,22 +666,14 @@ sdk.ledger.updateMapping({
     {
       account: "users:001",
       expr: {
+        "eligendi": "sint",
+      },
+    },
+    {
+      account: "users:001",
+      expr: {
         "provident": "necessitatibus",
         "sint": "officia",
-      },
-    },
-    {
-      account: "users:001",
-      expr: {
-        "debitis": "a",
-      },
-    },
-    {
-      account: "users:001",
-      expr: {
-        "in": "in",
-        "illum": "maiores",
-        "rerum": "dicta",
       },
     },
   ],

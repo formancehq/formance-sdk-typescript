@@ -6,7 +6,17 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
-export class FlowsgetServerInfoResponse extends SpeakeasyBase {
+export class DeleteWorkflowRequest extends SpeakeasyBase {
+  /**
+   * The flow id
+   */
+  @SpeakeasyMetadata({
+    data: "pathParam, style=simple;explode=false;name=flowId",
+  })
+  flowId: string;
+}
+
+export class DeleteWorkflowResponse extends SpeakeasyBase {
   @SpeakeasyMetadata()
   contentType: string;
 
@@ -15,12 +25,6 @@ export class FlowsgetServerInfoResponse extends SpeakeasyBase {
    */
   @SpeakeasyMetadata()
   error?: shared.ErrorT;
-
-  /**
-   * Server information
-   */
-  @SpeakeasyMetadata()
-  serverInfo?: shared.ServerInfo;
 
   @SpeakeasyMetadata()
   statusCode: number;

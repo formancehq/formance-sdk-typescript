@@ -33,15 +33,17 @@ sdk.search.search({
     "quickstart",
     "quickstart",
   ],
-  pageSize: 287991,
+  pageSize: 501324,
   policy: "OR",
   raw: {
-    "suscipit": "natus",
-    "nobis": "eum",
+    "sapiente": "amet",
+    "deserunt": "nisi",
+    "vel": "natus",
   },
   sort: "txid:asc",
-  target: "vero",
+  target: "omnis",
   terms: [
+    "destination=central_bank1",
     "destination=central_bank1",
   ],
 }).then((res: SearchResponse) => {

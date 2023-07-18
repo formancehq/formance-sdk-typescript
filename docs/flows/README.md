@@ -2,41 +2,18 @@
 
 ### Available Operations
 
-* [flowsgetServerInfo](#flowsgetserverinfo) - Get server info
 * [cancelEvent](#cancelevent) - Cancel a running workflow
 * [createWorkflow](#createworkflow) - Create workflow
+* [deleteWorkflow](#deleteworkflow) - Delete a flow by id
 * [getInstance](#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](#getinstancestagehistory) - Get a workflow instance stage history
 * [getWorkflow](#getworkflow) - Get a flow by id
 * [listInstances](#listinstances) - List instances of a workflow
 * [listWorkflows](#listworkflows) - List registered workflows
+* [orchestrationgetServerInfo](#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](#runworkflow) - Run workflow
 * [sendEvent](#sendevent) - Send an event to a running workflow
-
-## flowsgetServerInfo
-
-Get server info
-
-### Example Usage
-
-```typescript
-import { Formance } from "@formance/formance-sdk";
-import { FlowsgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
-import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
-
-const sdk = new Formance({
-  security: {
-    authorization: "Bearer YOUR_ACCESS_TOKEN_HERE",
-  },
-});
-
-sdk.flows.flowsgetServerInfo().then((res: FlowsgetServerInfoResponse) => {
-  if (res.statusCode == 200) {
-    // handle response
-  }
-});
-```
 
 ## cancelEvent
 
@@ -93,6 +70,30 @@ sdk.flows.createWorkflow({
 });
 ```
 
+## deleteWorkflow
+
+Delete a flow by id
+
+### Example Usage
+
+```typescript
+import { Formance } from "@formance/formance-sdk";
+import { DeleteWorkflowResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
+import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
+
+const sdk = new Formance({
+  security: {
+    authorization: "Bearer YOUR_ACCESS_TOKEN_HERE",
+  },
+});
+
+sdk.flows.deleteWorkflow("nobis").then((res: DeleteWorkflowResponse) => {
+  if (res.statusCode == 200) {
+    // handle response
+  }
+});
+```
+
 ## getInstance
 
 Get a workflow instance by id
@@ -110,7 +111,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.getInstance("nobis").then((res: GetInstanceResponse) => {
+sdk.flows.getInstance("enim").then((res: GetInstanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -134,7 +135,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.getInstanceHistory("enim").then((res: GetInstanceHistoryResponse) => {
+sdk.flows.getInstanceHistory("omnis").then((res: GetInstanceHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -158,7 +159,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.getInstanceStageHistory("omnis", 363711).then((res: GetInstanceStageHistoryResponse) => {
+sdk.flows.getInstanceStageHistory("nemo", 325047).then((res: GetInstanceStageHistoryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -182,7 +183,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.getWorkflow("minima").then((res: GetWorkflowResponse) => {
+sdk.flows.getWorkflow("excepturi").then((res: GetWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -206,7 +207,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.listInstances(false, "excepturi").then((res: ListInstancesResponse) => {
+sdk.flows.listInstances(false, "accusantium").then((res: ListInstancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -237,6 +238,30 @@ sdk.flows.listWorkflows().then((res: ListWorkflowsResponse) => {
 });
 ```
 
+## orchestrationgetServerInfo
+
+Get server info
+
+### Example Usage
+
+```typescript
+import { Formance } from "@formance/formance-sdk";
+import { OrchestrationgetServerInfoResponse } from "@formance/formance-sdk/dist/sdk/models/operations";
+import { ErrorErrorCode } from "@formance/formance-sdk/dist/sdk/models/shared";
+
+const sdk = new Formance({
+  security: {
+    authorization: "Bearer YOUR_ACCESS_TOKEN_HERE",
+  },
+});
+
+sdk.flows.orchestrationgetServerInfo().then((res: OrchestrationgetServerInfoResponse) => {
+  if (res.statusCode == 200) {
+    // handle response
+  }
+});
+```
+
 ## runWorkflow
 
 Run workflow
@@ -254,9 +279,10 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.runWorkflow("accusantium", {
-  "culpa": "doloribus",
-  "sapiente": "architecto",
+sdk.flows.runWorkflow("iure", {
+  "doloribus": "sapiente",
+  "architecto": "mollitia",
+  "dolorem": "culpa",
 }, false).then((res: RunWorkflowResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -281,8 +307,8 @@ const sdk = new Formance({
   },
 });
 
-sdk.flows.sendEvent("mollitia", {
-  name: "Cecilia Crooks",
+sdk.flows.sendEvent("consequuntur", {
+  name: "Shaun McCullough",
 }).then((res: SendEventResponse) => {
   if (res.statusCode == 200) {
     // handle response

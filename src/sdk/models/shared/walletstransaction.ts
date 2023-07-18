@@ -7,7 +7,7 @@ import {
   SpeakeasyBase,
   SpeakeasyMetadata,
 } from "../../../internal/utils";
-import { Posting } from "./posting";
+import { WalletsPosting } from "./walletsposting";
 import { WalletsVolume } from "./walletsvolume";
 import { Expose, Transform, Type } from "class-transformer";
 
@@ -37,10 +37,10 @@ export class WalletsTransaction extends SpeakeasyBase {
   )
   postCommitVolumes?: Record<string, Record<string, WalletsVolume>>;
 
-  @SpeakeasyMetadata({ elemType: Posting })
+  @SpeakeasyMetadata({ elemType: WalletsPosting })
   @Expose({ name: "postings" })
-  @Type(() => Posting)
-  postings: Posting[];
+  @Type(() => WalletsPosting)
+  postings: WalletsPosting[];
 
   @SpeakeasyMetadata({ elemType: WalletsVolume, elemDepth: 2 })
   @Expose({ name: "preCommitVolumes" })

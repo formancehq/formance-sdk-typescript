@@ -12,4 +12,6 @@ export enum Connector {
   Modulr = "MODULR",
   CurrencyCloud = "CURRENCY-CLOUD",
   BankingCircle = "BANKING-CIRCLE",
+  Mangopay = "MANGOPAY",
+  Moneycorp = "MONEYCORP",
 }

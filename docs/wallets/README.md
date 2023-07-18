@@ -36,7 +36,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.confirmHold("architecto", {
+sdk.wallets.confirmHold("perferendis", {
   amount: 100,
   final: true,
 }).then((res: ConfirmHoldResponse) => {
@@ -63,10 +63,10 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.createBalance("magnam", {
-  expiresAt: new Date("2022-06-06T23:06:26.119Z"),
-  name: "Ramona Lueilwitz MD",
-  priority: 968962,
+sdk.wallets.createBalance("nihil", {
+  expiresAt: new Date("2022-04-14T15:11:13.227Z"),
+  name: "Leroy Greenfelder",
+  priority: 749170,
 }).then((res: CreateBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -93,11 +93,10 @@ const sdk = new Formance({
 
 sdk.wallets.createWallet({
   metadata: {
-    "ad": "eum",
-    "dolor": "necessitatibus",
-    "odit": "nemo",
+    "vero": "aspernatur",
+    "architecto": "magnam",
   },
-  name: "Vera Wyman",
+  name: "Miriam Hermann",
 }).then((res: CreateWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
@@ -122,28 +121,28 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.creditWallet("maxime", {
+sdk.wallets.creditWallet("sint", {
   amount: {
-    amount: 537023,
-    asset: "facilis",
+    amount: 33625,
+    asset: "mollitia",
   },
-  balance: "in",
+  balance: "reiciendis",
   metadata: {
-    "architecto": "repudiandae",
+    "ad": "eum",
+    "dolor": "necessitatibus",
+    "odit": "nemo",
   },
-  reference: "ullam",
+  reference: "quasi",
   sources: [
     {
-      identifier: "repellat",
-      type: "quibusdam",
+      balance: "debitis",
+      identifier: "eius",
+      type: "maxime",
     },
     {
-      identifier: "saepe",
-      type: "pariatur",
-    },
-    {
-      identifier: "consequuntur",
-      type: "praesentium",
+      balance: "facilis",
+      identifier: "in",
+      type: "architecto",
     },
   ],
 }).then((res: CreditWalletResponse) => {
@@ -170,24 +169,26 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.debitWallet("natus", {
+sdk.wallets.debitWallet("architecto", {
   amount: {
-    amount: 166847,
-    asset: "sunt",
+    amount: 919483,
+    asset: "ullam",
   },
   balances: [
-    "illum",
-    "pariatur",
-    "maxime",
-    "ea",
+    "nihil",
+    "repellat",
+    "quibusdam",
   ],
-  description: "excepturi",
+  description: "sed",
   destination: {
-    identifier: "ea",
-    type: "accusantium",
+    balance: "pariatur",
+    identifier: "accusantium",
+    type: "consequuntur",
   },
   metadata: {
-    "maiores": "quidem",
+    "natus": "magni",
+    "sunt": "quo",
+    "illum": "pariatur",
   },
   pending: false,
 }).then((res: DebitWalletResponse) => {
@@ -214,7 +215,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getBalance("ipsam", "voluptate").then((res: GetBalanceResponse) => {
+sdk.wallets.getBalance("maxime", "ea").then((res: GetBalanceResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -238,7 +239,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getHold("autem").then((res: GetHoldResponse) => {
+sdk.wallets.getHold("excepturi").then((res: GetHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -263,10 +264,8 @@ const sdk = new Formance({
 });
 
 sdk.wallets.getHolds("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
-  "eaque": "pariatur",
-  "nemo": "voluptatibus",
-  "perferendis": "fugiat",
-}, 230742, "aut").then((res: GetHoldsResponse) => {
+  "ea": "accusantium",
+}, 69167, "maiores").then((res: GetHoldsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -288,7 +287,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getTransactions("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 764912, "corporis").then((res: GetTransactionsResponse) => {
+sdk.wallets.getTransactions("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", 697429, "ipsam").then((res: GetTransactionsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -312,7 +311,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getWallet("hic").then((res: GetWalletResponse) => {
+sdk.wallets.getWallet("voluptate").then((res: GetWalletResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -336,7 +335,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.getWalletSummary("libero").then((res: GetWalletSummaryResponse) => {
+sdk.wallets.getWalletSummary("autem").then((res: GetWalletSummaryResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -359,7 +358,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.listBalances("nobis").then((res: ListBalancesResponse) => {
+sdk.wallets.listBalances("nam").then((res: ListBalancesResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -383,8 +382,8 @@ const sdk = new Formance({
 });
 
 sdk.wallets.listWallets("aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==", {
-  "quis": "totam",
-}, "dignissimos", 54338).then((res: ListWalletsResponse) => {
+  "pariatur": "nemo",
+}, "voluptatibus", 16627).then((res: ListWalletsResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
@@ -408,9 +407,9 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.updateWallet("quis", {
+sdk.wallets.updateWallet("fugiat", {
   metadata: {
-    "eos": "perferendis",
+    "aut": "cumque",
   },
 }).then((res: UpdateWalletResponse) => {
   if (res.statusCode == 200) {
@@ -436,7 +435,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.wallets.voidHold("dolores").then((res: VoidHoldResponse) => {
+sdk.wallets.voidHold("corporis").then((res: VoidHoldResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }

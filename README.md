@@ -67,15 +67,16 @@ sdk.getVersions().then((res: GetVersionsResponse) => {
 
 ### [flows](docs/flows/README.md)
 
-* [flowsgetServerInfo](docs/flows/README.md#flowsgetserverinfo) - Get server info
 * [cancelEvent](docs/flows/README.md#cancelevent) - Cancel a running workflow
 * [createWorkflow](docs/flows/README.md#createworkflow) - Create workflow
+* [deleteWorkflow](docs/flows/README.md#deleteworkflow) - Delete a flow by id
 * [getInstance](docs/flows/README.md#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](docs/flows/README.md#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](docs/flows/README.md#getinstancestagehistory) - Get a workflow instance stage history
 * [getWorkflow](docs/flows/README.md#getworkflow) - Get a flow by id
 * [listInstances](docs/flows/README.md#listinstances) - List instances of a workflow
 * [listWorkflows](docs/flows/README.md#listworkflows) - List registered workflows
+* [orchestrationgetServerInfo](docs/flows/README.md#orchestrationgetserverinfo) - Get server info
 * [runWorkflow](docs/flows/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/flows/README.md#sendevent) - Send an event to a running workflow
 
