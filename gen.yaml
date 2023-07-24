@@ -4,7 +4,7 @@ generation:
   singleTagPerOp: true
   telemetryEnabled: false
 typescript:
-  version: v1.0.20230718.1
+  version: v1.0.202307124
   author: Formance
   maxMethodParams: 4
   packageName: '@formance/formance-sdk'
