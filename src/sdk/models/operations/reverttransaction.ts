@@ -22,6 +22,14 @@ export class RevertTransactionRequest extends SpeakeasyBase {
     data: "pathParam, style=simple;explode=false;name=txid",
   })
   txid: number;
+
+  /**
+   * Allow to disable balances checks
+   */
+  @SpeakeasyMetadata({
+    data: "queryParam, style=form;explode=true;name=disableChecks",
+  })
+  disableChecks?: boolean;
 }
 
 export class RevertTransactionResponse extends SpeakeasyBase {

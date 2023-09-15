@@ -76,7 +76,7 @@ export class Formance {
   public _securityClient: AxiosInstance;
   public _serverURL: string;
   private _language = "typescript";
-  private _sdkVersion = "v1.0.20230725";
+  private _sdkVersion = "v1.0.20230915";
   private _genVersion = "2.31.0";
   private _globals: any;
 

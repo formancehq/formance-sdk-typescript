@@ -1,6 +1,6 @@
 {
   "name": "@formance/formance-sdk",
-  "version": "v1.0.20230725",
+  "version": "v1.0.20230915",
   "author": "Formance",
   "scripts": {
     "prepare": "tsc --build"

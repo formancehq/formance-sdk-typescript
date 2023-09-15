@@ -1259,11 +1259,13 @@ export class Ledger {
   async revertTransaction(
     ledger: string,
     txid: number,
+    disableChecks?: boolean,
     config?: AxiosRequestConfig
   ): Promise<operations.RevertTransactionResponse> {
     const req = new operations.RevertTransactionRequest({
       ledger: ledger,
       txid: txid,
+      disableChecks: disableChecks,
     });
     const baseURL: string = this._serverURL;
     const url: string = utils.generateURL(
@@ -1275,6 +1277,7 @@ export class Ledger {
     const client: AxiosInstance = this._securityClient || this._defaultClient;
 
     const headers = { ...config?.headers };
+    const queryParams: string = utils.serializeQueryParams(req);
     headers["Accept"] = "application/json;q=1, application/json;q=0";
     headers[
       "user-agent"
@@ -1282,7 +1285,7 @@ export class Ledger {
 
     const httpRes: AxiosResponse = await client.request({
       validateStatus: () => true,
-      url: url,
+      url: url + queryParams,
       method: "post",
       headers: headers,
       ...config,

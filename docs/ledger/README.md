@@ -593,7 +593,7 @@ const sdk = new Formance({
   },
 });
 
-sdk.ledger.revertTransaction("ledger001", 1234).then((res: RevertTransactionResponse) => {
+sdk.ledger.revertTransaction("ledger001", 1234, false).then((res: RevertTransactionResponse) => {
   if (res.statusCode == 200) {
     // handle response
   }
