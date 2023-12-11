@@ -6,12 +6,9 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Scope } from "./scope";
 import { Expose, Type } from "class-transformer";
 
-/**
- * Updated scope
- */
 export class UpdateScopeResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "data" })
-  @Type(() => Scope)
-  data?: Scope;
+    @SpeakeasyMetadata()
+    @Expose({ name: "data" })
+    @Type(() => Scope)
+    data?: Scope;
 }

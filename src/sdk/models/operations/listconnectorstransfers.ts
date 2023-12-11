@@ -7,28 +7,35 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ListConnectorsTransfersRequest extends SpeakeasyBase {
-  /**
-   * The name of the connector.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=connector",
-  })
-  connector: shared.Connector;
+    /**
+     * The name of the connector.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=connector" })
+    connector: shared.Connector;
 }
 
 export class ListConnectorsTransfersResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  transfersResponse?: shared.TransfersResponse;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    transfersResponse?: shared.TransfersResponse;
 }

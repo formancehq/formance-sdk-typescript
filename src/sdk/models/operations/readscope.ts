@@ -7,28 +7,35 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ReadScopeRequest extends SpeakeasyBase {
-  /**
-   * Scope ID
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=scopeId",
-  })
-  scopeId: string;
+    /**
+     * Scope ID
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=scopeId" })
+    scopeId: string;
 }
 
 export class ReadScopeResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Retrieved scope
-   */
-  @SpeakeasyMetadata()
-  readScopeResponse?: shared.ReadScopeResponse;
+    /**
+     * Retrieved scope
+     */
+    @SpeakeasyMetadata()
+    readScopeResponse?: shared.ReadScopeResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

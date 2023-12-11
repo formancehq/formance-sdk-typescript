@@ -3,21 +3,31 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
+import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class ConnectorsStripeTransferResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  stripeTransferResponse?: Record<string, any>;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    stripeTransferResponse?: shared.StripeTransferResponse;
 }

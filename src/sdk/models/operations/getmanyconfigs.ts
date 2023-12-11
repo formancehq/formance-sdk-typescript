@@ -7,40 +7,47 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetManyConfigsRequest extends SpeakeasyBase {
-  /**
-   * Optional filter by endpoint URL
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=endpoint",
-  })
-  endpoint?: string;
+    /**
+     * Optional filter by endpoint URL
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=endpoint" })
+    endpoint?: string;
 
-  /**
-   * Optional filter by Config ID
-   */
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=id" })
-  id?: string;
+    /**
+     * Optional filter by Config ID
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=id" })
+    id?: string;
 }
 
 export class GetManyConfigsResponse extends SpeakeasyBase {
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  configsResponse?: shared.ConfigsResponse;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    configsResponse?: shared.ConfigsResponse;
 
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  webhooksErrorResponse?: shared.WebhooksErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    webhooksErrorResponse?: shared.WebhooksErrorResponse;
 }

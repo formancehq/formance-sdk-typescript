@@ -6,30 +6,35 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { AxiosResponse } from "axios";
 
 export class DeleteScopeFromClientRequest extends SpeakeasyBase {
-  /**
-   * Client ID
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=clientId",
-  })
-  clientId: string;
+    /**
+     * Client ID
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=clientId" })
+    clientId: string;
 
-  /**
-   * Scope ID
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=scopeId",
-  })
-  scopeId: string;
+    /**
+     * Scope ID
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=scopeId" })
+    scopeId: string;
 }
 
 export class DeleteScopeFromClientResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

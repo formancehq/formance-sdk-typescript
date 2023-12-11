@@ -7,34 +7,41 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetBalanceRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=balanceName",
-  })
-  balanceName: string;
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=balanceName" })
+    balanceName: string;
 
-  @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
-  id: string;
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
+    id: string;
 }
 
 export class GetBalanceResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Balance summary
-   */
-  @SpeakeasyMetadata()
-  getBalanceResponse?: shared.GetBalanceResponse;
+    /**
+     * Balance summary
+     */
+    @SpeakeasyMetadata()
+    getBalanceResponse?: shared.GetBalanceResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  walletsErrorResponse?: shared.WalletsErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    walletsErrorResponse?: shared.WalletsErrorResponse;
 }

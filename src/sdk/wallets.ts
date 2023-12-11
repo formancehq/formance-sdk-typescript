@@ -3,1161 +3,1283 @@
  */
 
 import * as utils from "../internal/utils";
+import * as errors from "./models/errors";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { SDKConfiguration } from "./sdk";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
 export class Wallets {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    private sdkConfiguration: SDKConfiguration;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Confirm a hold
-   */
-  async confirmHold(
-    holdId: string,
-    confirmHoldRequest?: shared.ConfirmHoldRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ConfirmHoldResponse> {
-    const req = new operations.ConfirmHoldRequest({
-      holdId: holdId,
-      confirmHoldRequest: confirmHoldRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/holds/{hold_id}/confirm",
-      req
-    );
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "confirmHoldRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
+    constructor(sdkConfig: SDKConfiguration) {
+        this.sdkConfiguration = sdkConfig;
     }
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ConfirmHoldResponse =
-      new operations.ConfirmHoldResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+    /**
+     * Confirm a hold
+     */
+    async confirmHold(
+        req: operations.ConfirmHoldRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ConfirmHoldResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ConfirmHoldRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/holds/{hold_id}/confirm", req);
 
-  /**
-   * Create a balance
-   */
-  async createBalance(
-    id: string,
-    createBalanceRequest?: shared.CreateBalanceRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateBalanceResponse> {
-    const req = new operations.CreateBalanceRequest({
-      id: id,
-      createBalanceRequest: createBalanceRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/balances",
-      req
-    );
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "createBalanceRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateBalanceResponse =
-      new operations.CreateBalanceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 201:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.createBalanceResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.CreateBalanceResponse
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "confirmHoldRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Create a new wallet
-   */
-  async createWallet(
-    req: shared.CreateWalletRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateWalletResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.CreateWalletRequest(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/wallets";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateWalletResponse =
-      new operations.CreateWalletResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 201:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.createWalletResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.CreateWalletResponse
-          );
+        const res: operations.ConfirmHoldResponse = new operations.ConfirmHoldResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        return res;
+    }
+
+    /**
+     * Create a balance
+     */
+    async createBalance(
+        req: operations.CreateBalanceRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateBalanceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.CreateBalanceRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}/balances", req);
 
-  /**
-   * Credit a wallet
-   */
-  async creditWallet(
-    id: string,
-    creditWalletRequest?: shared.CreditWalletRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreditWalletResponse> {
-    const req = new operations.CreditWalletRequest({
-      id: id,
-      creditWalletRequest: creditWalletRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/credit",
-      req
-    );
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "creditWalletRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreditWalletResponse =
-      new operations.CreditWalletResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "createBalanceRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  /**
-   * Debit a wallet
-   */
-  async debitWallet(
-    id: string,
-    debitWalletRequest?: shared.DebitWalletRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DebitWalletResponse> {
-    const req = new operations.DebitWalletRequest({
-      id: id,
-      debitWalletRequest: debitWalletRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/debit",
-      req
-    );
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "debitWalletRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DebitWalletResponse =
-      new operations.DebitWalletResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 201:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.debitWalletResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.DebitWalletResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 204:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const res: operations.CreateBalanceResponse = new operations.CreateBalanceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 201:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.createBalanceResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.CreateBalanceResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Get detailed balance
-   */
-  async getBalance(
-    balanceName: string,
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetBalanceResponse> {
-    const req = new operations.GetBalanceRequest({
-      balanceName: balanceName,
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/balances/{balanceName}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetBalanceResponse =
-      new operations.GetBalanceResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getBalanceResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetBalanceResponse
-          );
+    /**
+     * Create a new wallet
+     */
+    async createWallet(
+        req: shared.CreateWalletRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateWalletResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.CreateWalletRequest(req);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/wallets";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  /**
-   * Get a hold
-   */
-  async getHold(
-    holdID: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetHoldResponse> {
-    const req = new operations.GetHoldRequest({
-      holdID: holdID,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/holds/{holdID}",
-      req
-    );
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetHoldResponse = new operations.GetHoldResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getHoldResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetHoldResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const res: operations.CreateWalletResponse = new operations.CreateWalletResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 201:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.createWalletResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.CreateWalletResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Get all holds for a wallet
-   */
-  async getHolds(
-    cursor?: string,
-    metadata?: Record<string, string>,
-    pageSize?: number,
-    walletID?: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetHoldsResponse> {
-    const req = new operations.GetHoldsRequest({
-      cursor: cursor,
-      metadata: metadata,
-      pageSize: pageSize,
-      walletID: walletID,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/holds";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    const queryParams: string = utils.serializeQueryParams(req);
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url + queryParams,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetHoldsResponse = new operations.GetHoldsResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getHoldsResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetHoldsResponse
-          );
+    /**
+     * Credit a wallet
+     */
+    async creditWallet(
+        req: operations.CreditWalletRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreditWalletResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.CreditWalletRequest(req);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}/credit", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "creditWalletRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  async getTransactions(
-    cursor?: string,
-    pageSize?: number,
-    walletID?: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetTransactionsResponse> {
-    const req = new operations.GetTransactionsRequest({
-      cursor: cursor,
-      pageSize: pageSize,
-      walletID: walletID,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string =
-      baseURL.replace(/\/$/, "") + "/api/wallets/transactions";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const headers = { ...config?.headers };
-    const queryParams: string = utils.serializeQueryParams(req);
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url + queryParams,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetTransactionsResponse =
-      new operations.GetTransactionsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getTransactionsResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetTransactionsResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const res: operations.CreditWalletResponse = new operations.CreditWalletResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Get a wallet
-   */
-  async getWallet(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetWalletResponse> {
-    const req = new operations.GetWalletRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetWalletResponse = new operations.GetWalletResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getWalletResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetWalletResponse
-          );
+    /**
+     * Debit a wallet
+     */
+    async debitWallet(
+        req: operations.DebitWalletRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DebitWalletResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DebitWalletRequest(req);
         }
-        break;
-      case httpRes?.status == 404:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}/debit", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "debitWalletRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  /**
-   * Get wallet summary
-   */
-  async getWalletSummary(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetWalletSummaryResponse> {
-    const req = new operations.GetWalletSummaryRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/summary",
-      req
-    );
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetWalletSummaryResponse =
-      new operations.GetWalletSummaryResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.getWalletSummaryResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.GetWalletSummaryResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      case httpRes?.status == 404:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const res: operations.DebitWalletResponse = new operations.DebitWalletResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 201:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.debitWalletResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.DebitWalletResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 204:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * List balances of a wallet
-   */
-  async listBalances(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListBalancesResponse> {
-    const req = new operations.ListBalancesRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}/balances",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListBalancesResponse =
-      new operations.ListBalancesResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.listBalancesResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ListBalancesResponse
-          );
+    /**
+     * Get detailed balance
+     */
+    async getBalance(
+        req: operations.GetBalanceRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetBalanceResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetBalanceRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/wallets/wallets/{id}/balances/{balanceName}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
 
-  /**
-   * List all wallets
-   */
-  async listWallets(
-    cursor?: string,
-    metadata?: Record<string, string>,
-    name?: string,
-    pageSize?: number,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListWalletsResponse> {
-    const req = new operations.ListWalletsRequest({
-      cursor: cursor,
-      metadata: metadata,
-      name: name,
-      pageSize: pageSize,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/wallets";
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
 
-    const headers = { ...config?.headers };
-    const queryParams: string = utils.serializeQueryParams(req);
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url + queryParams,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListWalletsResponse =
-      new operations.ListWalletsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.listWalletsResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ListWalletsResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Update a wallet
-   */
-  async updateWallet(
-    id: string,
-    requestBody?: operations.UpdateWalletRequestBody,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateWalletResponse> {
-    const req = new operations.UpdateWalletRequest({
-      id: id,
-      requestBody: requestBody,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/wallets/{id}",
-      req
-    );
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "requestBody",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "patch",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateWalletResponse =
-      new operations.UpdateWalletResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+        const res: operations.GetBalanceResponse = new operations.GetBalanceResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getBalanceResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetBalanceResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Cancel a hold
-   */
-  async voidHold(
-    holdId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.VoidHoldResponse> {
-    const req = new operations.VoidHoldRequest({
-      holdId: holdId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/wallets/holds/{hold_id}/void",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.VoidHoldResponse = new operations.VoidHoldResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+    /**
+     * Get a hold
+     */
+    async getHold(
+        req: operations.GetHoldRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetHoldResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetHoldRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/holds/{holdID}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
 
-  /**
-   * Get server info
-   */
-  async walletsgetServerInfo(
-    config?: AxiosRequestConfig
-  ): Promise<operations.WalletsgetServerInfoResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/_info";
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.WalletsgetServerInfoResponse =
-      new operations.WalletsgetServerInfoResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.serverInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.ServerInfo
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.walletsErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WalletsErrorResponse
-          );
+
+        const res: operations.GetHoldResponse = new operations.GetHoldResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getHoldResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetHoldResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Get all holds for a wallet
+     */
+    async getHolds(
+        req: operations.GetHoldsRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetHoldsResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetHoldsRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/holds";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        const queryParams: string = utils.serializeQueryParams(req);
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url + queryParams,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetHoldsResponse = new operations.GetHoldsResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getHoldsResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetHoldsResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    async getTransactions(
+        req: operations.GetTransactionsRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetTransactionsResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetTransactionsRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/transactions";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        const queryParams: string = utils.serializeQueryParams(req);
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url + queryParams,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetTransactionsResponse = new operations.GetTransactionsResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getTransactionsResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetTransactionsResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Get a wallet
+     */
+    async getWallet(
+        req: operations.GetWalletRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetWalletResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetWalletRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetWalletResponse = new operations.GetWalletResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getWalletResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetWalletResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Get wallet summary
+     */
+    async getWalletSummary(
+        req: operations.GetWalletSummaryRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetWalletSummaryResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetWalletSummaryRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}/summary", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetWalletSummaryResponse = new operations.GetWalletSummaryResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.getWalletSummaryResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.GetWalletSummaryResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List balances of a wallet
+     */
+    async listBalances(
+        req: operations.ListBalancesRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListBalancesResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ListBalancesRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}/balances", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListBalancesResponse = new operations.ListBalancesResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.listBalancesResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ListBalancesResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List all wallets
+     */
+    async listWallets(
+        req: operations.ListWalletsRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ListWalletsResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ListWalletsRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/wallets";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        const queryParams: string = utils.serializeQueryParams(req);
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url + queryParams,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListWalletsResponse = new operations.ListWalletsResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.listWalletsResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ListWalletsResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update a wallet
+     */
+    async updateWallet(
+        req: operations.UpdateWalletRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateWalletResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.UpdateWalletRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/wallets/{id}", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "requestBody", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "patch",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateWalletResponse = new operations.UpdateWalletResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Cancel a hold
+     */
+    async voidHold(
+        req: operations.VoidHoldRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.VoidHoldResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.VoidHoldRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/wallets/holds/{hold_id}/void", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.VoidHoldResponse = new operations.VoidHoldResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Get server info
+     */
+    async walletsgetServerInfo(
+        config?: AxiosRequestConfig
+    ): Promise<operations.WalletsgetServerInfoResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/wallets/_info";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.WalletsgetServerInfoResponse =
+            new operations.WalletsgetServerInfoResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.walletsErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WalletsErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

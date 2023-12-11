@@ -3,1187 +3,1219 @@
  */
 
 import * as utils from "../internal/utils";
+import * as errors from "./models/errors";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { SDKConfiguration } from "./sdk";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
 export class Auth {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    private sdkConfiguration: SDKConfiguration;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Add scope to client
-   */
-  async addScopeToClient(
-    clientId: string,
-    scopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.AddScopeToClientResponse> {
-    const req = new operations.AddScopeToClientRequest({
-      clientId: clientId,
-      scopeId: scopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}/scopes/{scopeId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
+    constructor(sdkConfig: SDKConfiguration) {
+        this.sdkConfiguration = sdkConfig;
     }
 
-    const res: operations.AddScopeToClientResponse =
-      new operations.AddScopeToClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Add a transient scope to a scope
-   *
-   * @remarks
-   * Add a transient scope to a scope
-   */
-  async addTransientScope(
-    scopeId: string,
-    transientScopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.AddTransientScopeResponse> {
-    const req = new operations.AddTransientScopeRequest({
-      scopeId: scopeId,
-      transientScopeId: transientScopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/scopes/{scopeId}/transient/{transientScopeId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.AddTransientScopeResponse =
-      new operations.AddTransientScopeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Create client
-   */
-  async createClient(
-    req: shared.CreateClientRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateClientResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.CreateClientRequest(req);
-    }
-
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/clients";
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateClientResponse =
-      new operations.CreateClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 201:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.createClientResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.CreateClientResponse
-          );
+    /**
+     * Add scope to client
+     */
+    async addScopeToClient(
+        req: operations.AddScopeToClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.AddScopeToClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.AddScopeToClientRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/auth/clients/{clientId}/scopes/{scopeId}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
 
-  /**
-   * Create scope
-   *
-   * @remarks
-   * Create scope
-   */
-  async createScope(
-    req: shared.CreateScopeRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateScopeResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.CreateScopeRequest(req);
-    }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/scopes";
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateScopeResponse =
-      new operations.CreateScopeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 201:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.createScopeResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.CreateScopeResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Add a secret to a client
-   */
-  async createSecret(
-    clientId: string,
-    createSecretRequest?: shared.CreateSecretRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.CreateSecretResponse> {
-    const req = new operations.CreateSecretRequest({
-      clientId: clientId,
-      createSecretRequest: createSecretRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}/secrets",
-      req
-    );
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "createSecretRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.CreateSecretResponse =
-      new operations.CreateSecretResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.createSecretResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.CreateSecretResponse
-          );
+        const res: operations.AddScopeToClientResponse = new operations.AddScopeToClientResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Delete client
-   */
-  async deleteClient(
-    clientId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteClientResponse> {
-    const req = new operations.DeleteClientRequest({
-      clientId: clientId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteClientResponse =
-      new operations.DeleteClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Delete scope
-   *
-   * @remarks
-   * Delete scope
-   */
-  async deleteScope(
-    scopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteScopeResponse> {
-    const req = new operations.DeleteScopeRequest({
-      scopeId: scopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/scopes/{scopeId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteScopeResponse =
-      new operations.DeleteScopeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Delete scope from client
-   */
-  async deleteScopeFromClient(
-    clientId: string,
-    scopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteScopeFromClientResponse> {
-    const req = new operations.DeleteScopeFromClientRequest({
-      clientId: clientId,
-      scopeId: scopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}/scopes/{scopeId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteScopeFromClientResponse =
-      new operations.DeleteScopeFromClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Delete a secret from a client
-   */
-  async deleteSecret(
-    clientId: string,
-    secretId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteSecretResponse> {
-    const req = new operations.DeleteSecretRequest({
-      clientId: clientId,
-      secretId: secretId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}/secrets/{secretId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteSecretResponse =
-      new operations.DeleteSecretResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Delete a transient scope from a scope
-   *
-   * @remarks
-   * Delete a transient scope from a scope
-   */
-  async deleteTransientScope(
-    scopeId: string,
-    transientScopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteTransientScopeResponse> {
-    const req = new operations.DeleteTransientScopeRequest({
-      scopeId: scopeId,
-      transientScopeId: transientScopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/scopes/{scopeId}/transient/{transientScopeId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "*/*";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteTransientScopeResponse =
-      new operations.DeleteTransientScopeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 204:
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Get server info
-   */
-  async getServerInfo(
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetServerInfoResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/_info";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetServerInfoResponse =
-      new operations.GetServerInfoResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.serverInfo = utils.objectToClass(
-            httpRes?.data,
-            shared.ServerInfo
-          );
+    /**
+     * Add a transient scope to a scope
+     *
+     * @remarks
+     * Add a transient scope to a scope
+     */
+    async addTransientScope(
+        req: operations.AddTransientScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.AddTransientScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.AddTransientScopeRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/auth/scopes/{scopeId}/transient/{transientScopeId}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
 
-  /**
-   * List clients
-   */
-  async listClients(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListClientsResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/clients";
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListClientsResponse =
-      new operations.ListClientsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.listClientsResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ListClientsResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * List scopes
-   *
-   * @remarks
-   * List Scopes
-   */
-  async listScopes(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListScopesResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/scopes";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListScopesResponse =
-      new operations.ListScopesResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.listScopesResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ListScopesResponse
-          );
+        const res: operations.AddTransientScopeResponse = new operations.AddTransientScopeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * List users
-   *
-   * @remarks
-   * List users
-   */
-  async listUsers(
-    config?: AxiosRequestConfig
-  ): Promise<operations.ListUsersResponse> {
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/auth/users";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ListUsersResponse = new operations.ListUsersResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.listUsersResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ListUsersResponse
-          );
+    /**
+     * Create client
+     */
+    async createClient(
+        req: shared.CreateClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.CreateClientRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/clients";
 
-  /**
-   * Read client
-   */
-  async readClient(
-    clientId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ReadClientResponse> {
-    const req = new operations.ReadClientRequest({
-      clientId: clientId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}",
-      req
-    );
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ReadClientResponse =
-      new operations.ReadClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.readClientResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ReadClientResponse
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  /**
-   * Read scope
-   *
-   * @remarks
-   * Read scope
-   */
-  async readScope(
-    scopeId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ReadScopeResponse> {
-    const req = new operations.ReadScopeRequest({
-      scopeId: scopeId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/scopes/{scopeId}",
-      req
-    );
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ReadScopeResponse = new operations.ReadScopeResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.readScopeResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ReadScopeResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Read user
-   *
-   * @remarks
-   * Read user
-   */
-  async readUser(
-    userId: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ReadUserResponse> {
-    const req = new operations.ReadUserRequest({
-      userId: userId,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/users/{userId}",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ReadUserResponse = new operations.ReadUserResponse({
-      statusCode: httpRes.status,
-      contentType: contentType,
-      rawResponse: httpRes,
-    });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.readUserResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ReadUserResponse
-          );
+        const res: operations.CreateClientResponse = new operations.CreateClientResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 201:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.createClientResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.CreateClientResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
-
-  /**
-   * Update client
-   */
-  async updateClient(
-    clientId: string,
-    updateClientRequest?: shared.UpdateClientRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateClientResponse> {
-    const req = new operations.UpdateClientRequest({
-      clientId: clientId,
-      updateClientRequest: updateClientRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/clients/{clientId}",
-      req
-    );
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "updateClientRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateClientResponse =
-      new operations.UpdateClientResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.updateClientResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.UpdateClientResponse
-          );
+    /**
+     * Create scope
+     *
+     * @remarks
+     * Create scope
+     */
+    async createScope(
+        req: shared.CreateScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.CreateScopeRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/scopes";
 
-  /**
-   * Update scope
-   *
-   * @remarks
-   * Update scope
-   */
-  async updateScope(
-    scopeId: string,
-    updateScopeRequest?: shared.UpdateScopeRequest,
-    config?: AxiosRequestConfig
-  ): Promise<operations.UpdateScopeResponse> {
-    const req = new operations.UpdateScopeRequest({
-      scopeId: scopeId,
-      updateScopeRequest: updateScopeRequest,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/auth/scopes/{scopeId}",
-      req
-    );
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "updateScopeRequest",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.UpdateScopeResponse =
-      new operations.UpdateScopeResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.updateScopeResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.UpdateScopeResponse
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.CreateScopeResponse = new operations.CreateScopeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 201:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.createScopeResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.CreateScopeResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Add a secret to a client
+     */
+    async createSecret(
+        req: operations.CreateSecretRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.CreateSecretResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.CreateSecretRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/clients/{clientId}/secrets", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "createSecretRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.CreateSecretResponse = new operations.CreateSecretResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.createSecretResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.CreateSecretResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete client
+     */
+    async deleteClient(
+        req: operations.DeleteClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteClientRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/clients/{clientId}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteClientResponse = new operations.DeleteClientResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete scope
+     *
+     * @remarks
+     * Delete scope
+     */
+    async deleteScope(
+        req: operations.DeleteScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteScopeRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/scopes/{scopeId}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteScopeResponse = new operations.DeleteScopeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete scope from client
+     */
+    async deleteScopeFromClient(
+        req: operations.DeleteScopeFromClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteScopeFromClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteScopeFromClientRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/auth/clients/{clientId}/scopes/{scopeId}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteScopeFromClientResponse =
+            new operations.DeleteScopeFromClientResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete a secret from a client
+     */
+    async deleteSecret(
+        req: operations.DeleteSecretRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteSecretResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteSecretRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/auth/clients/{clientId}/secrets/{secretId}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteSecretResponse = new operations.DeleteSecretResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Delete a transient scope from a scope
+     *
+     * @remarks
+     * Delete a transient scope from a scope
+     */
+    async deleteTransientScope(
+        req: operations.DeleteTransientScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteTransientScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteTransientScopeRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/auth/scopes/{scopeId}/transient/{transientScopeId}",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "*/*";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteTransientScopeResponse =
+            new operations.DeleteTransientScopeResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        switch (true) {
+            case httpRes?.status == 204:
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Get server info
+     */
+    async getServerInfo(config?: AxiosRequestConfig): Promise<operations.GetServerInfoResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/_info";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetServerInfoResponse = new operations.GetServerInfoResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List clients
+     */
+    async listClients(config?: AxiosRequestConfig): Promise<operations.ListClientsResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/clients";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListClientsResponse = new operations.ListClientsResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.listClientsResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ListClientsResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List scopes
+     *
+     * @remarks
+     * List Scopes
+     */
+    async listScopes(config?: AxiosRequestConfig): Promise<operations.ListScopesResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/scopes";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListScopesResponse = new operations.ListScopesResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.listScopesResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ListScopesResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * List users
+     *
+     * @remarks
+     * List users
+     */
+    async listUsers(config?: AxiosRequestConfig): Promise<operations.ListUsersResponse> {
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/auth/users";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ListUsersResponse = new operations.ListUsersResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.listUsersResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ListUsersResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Read client
+     */
+    async readClient(
+        req: operations.ReadClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ReadClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ReadClientRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/clients/{clientId}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ReadClientResponse = new operations.ReadClientResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.readClientResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ReadClientResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Read scope
+     *
+     * @remarks
+     * Read scope
+     */
+    async readScope(
+        req: operations.ReadScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ReadScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ReadScopeRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/scopes/{scopeId}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ReadScopeResponse = new operations.ReadScopeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.readScopeResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ReadScopeResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Read user
+     *
+     * @remarks
+     * Read user
+     */
+    async readUser(
+        req: operations.ReadUserRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ReadUserResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ReadUserRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/users/{userId}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.ReadUserResponse = new operations.ReadUserResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.readUserResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ReadUserResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update client
+     */
+    async updateClient(
+        req: operations.UpdateClientRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateClientResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.UpdateClientRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/clients/{clientId}", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "updateClientRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateClientResponse = new operations.UpdateClientResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.updateClientResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.UpdateClientResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Update scope
+     *
+     * @remarks
+     * Update scope
+     */
+    async updateScope(
+        req: operations.UpdateScopeRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.UpdateScopeResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.UpdateScopeRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/auth/scopes/{scopeId}", req);
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "updateScopeRequest",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        const headers: RawAxiosRequestHeaders = { ...reqBodyHeaders, ...config?.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.UpdateScopeResponse = new operations.UpdateScopeResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.updateScopeResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.UpdateScopeResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }
