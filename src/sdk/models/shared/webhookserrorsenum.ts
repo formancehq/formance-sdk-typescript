@@ -3,14 +3,7 @@
  */
 
 export enum WebhooksErrorsEnum {
-  Internal = "INTERNAL",
-  InsufficientFund = "INSUFFICIENT_FUND",
-  Validation = "VALIDATION",
-  Conflict = "CONFLICT",
-  NoScript = "NO_SCRIPT",
-  CompilationFailed = "COMPILATION_FAILED",
-  MetadataOverride = "METADATA_OVERRIDE",
-  NotFound = "NOT_FOUND",
-  ContextCancelled = "CONTEXT_CANCELLED",
-  Store = "STORE",
+    Internal = "INTERNAL",
+    Validation = "VALIDATION",
+    NotFound = "NOT_FOUND",
 }

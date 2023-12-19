@@ -7,42 +7,47 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetBalancesAggregatedRequest extends SpeakeasyBase {
-  /**
-   * Name of the ledger.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=ledger",
-  })
-  ledger: string;
+    /**
+     * Filter balances involving given account, either as source or destination.
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=address" })
+    address?: string;
 
-  /**
-   * Filter balances involving given account, either as source or destination.
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=address",
-  })
-  address?: string;
+    /**
+     * Name of the ledger.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
+    ledger: string;
 }
 
 export class GetBalancesAggregatedResponse extends SpeakeasyBase {
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  aggregateBalancesResponse?: shared.AggregateBalancesResponse;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    aggregateBalancesResponse?: shared.AggregateBalancesResponse;
 
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  errorResponse?: shared.ErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    errorResponse?: shared.ErrorResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }
