@@ -7,64 +7,65 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class GetHoldsRequest extends SpeakeasyBase {
-  /**
-   * Parameter used in pagination requests.
-   *
-   * @remarks
-   * Set to the value of next for the next page of results.
-   * Set to the value of previous for the previous page of results.
-   * No other parameters can be set when the pagination token is set.
-   *
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=cursor",
-  })
-  cursor?: string;
+    /**
+     * Parameter used in pagination requests.
+     *
+     * @remarks
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when the pagination token is set.
+     *
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=cursor" })
+    cursor?: string;
 
-  /**
-   * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=deepObject;explode=true;name=metadata",
-  })
-  metadata?: Record<string, string>;
+    /**
+     * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=deepObject;explode=true;name=metadata" })
+    metadata?: Record<string, string>;
 
-  /**
-   * The maximum number of results to return per page
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=pageSize",
-  })
-  pageSize?: number;
+    /**
+     * The maximum number of results to return per page
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=pageSize" })
+    pageSize?: number;
 
-  /**
-   * The wallet to filter on
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=walletID",
-  })
-  walletID?: string;
+    /**
+     * The wallet to filter on
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=walletID" })
+    walletID?: string;
 }
 
 export class GetHoldsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Holds
-   */
-  @SpeakeasyMetadata()
-  getHoldsResponse?: shared.GetHoldsResponse;
+    /**
+     * Holds
+     */
+    @SpeakeasyMetadata()
+    getHoldsResponse?: shared.GetHoldsResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  walletsErrorResponse?: shared.WalletsErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    walletsErrorResponse?: shared.WalletsErrorResponse;
 }

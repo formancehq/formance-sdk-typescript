@@ -81,7 +81,7 @@ export class SpeakeasyBase {
       for (const prop of props) {
         if (payload && payload.hasOwnProperty(prop.key)) {
           const value = payload[prop.key];
-          if (isSpeakeasyBase(prop.type)) {
+          if (isSpeakeasyBase(prop.type) && value != null) {
             (this as any)[prop.key] = new prop.type(value);
           } else if (
             prop.type.name == "Array" &&
@@ -176,10 +176,12 @@ export function templateUrl(
   params: Record<string, string>
 ): string {
   let res: string = stringWithParams;
-  Object.entries(params).forEach(([key, value]) => {
-    const match: string = "{" + key + "}";
-    res = res.replaceAll(match, value);
-  });
+  if(params) {
+    Object.entries(params).forEach(([key, value]) => {
+      const match: string = "{" + key + "}";
+      res = res.replaceAll(match, value);
+    });
+  }
   return res;
 }
 

@@ -8,37 +8,44 @@ import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
 export class SendEventRequestBody extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "name" })
-  name: string;
+    @SpeakeasyMetadata()
+    @Expose({ name: "name" })
+    name: string;
 }
 
 export class SendEventRequest extends SpeakeasyBase {
-  /**
-   * The instance id
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=instanceID",
-  })
-  instanceID: string;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: SendEventRequestBody;
 
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody?: SendEventRequestBody;
+    /**
+     * The instance id
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=instanceID" })
+    instanceID: string;
 }
 
 export class SendEventResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * General error
-   */
-  @SpeakeasyMetadata()
-  error?: shared.ErrorT;
+    /**
+     * General error
+     */
+    @SpeakeasyMetadata()
+    error?: shared.ErrorT;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }
