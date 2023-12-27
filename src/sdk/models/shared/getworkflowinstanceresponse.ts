@@ -6,12 +6,9 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { WorkflowInstance } from "./workflowinstance";
 import { Expose, Type } from "class-transformer";
 
-/**
- * The workflow instance
- */
 export class GetWorkflowInstanceResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "data" })
-  @Type(() => WorkflowInstance)
-  data: WorkflowInstance;
+    @SpeakeasyMetadata()
+    @Expose({ name: "data" })
+    @Type(() => WorkflowInstance)
+    data: WorkflowInstance;
 }

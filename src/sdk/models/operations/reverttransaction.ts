@@ -7,50 +7,53 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class RevertTransactionRequest extends SpeakeasyBase {
-  /**
-   * Name of the ledger.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=ledger",
-  })
-  ledger: string;
+    /**
+     * Allow to disable balances checks
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=disableChecks" })
+    disableChecks?: boolean;
 
-  /**
-   * Transaction ID.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=txid",
-  })
-  txid: number;
+    /**
+     * Name of the ledger.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
+    ledger: string;
 
-  /**
-   * Allow to disable balances checks
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=disableChecks",
-  })
-  disableChecks?: boolean;
+    /**
+     * Transaction ID.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=txid" })
+    txid: number;
 }
 
 export class RevertTransactionResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  errorResponse?: shared.ErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    errorResponse?: shared.ErrorResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  transactionResponse?: shared.TransactionResponse;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    transactionResponse?: shared.TransactionResponse;
 }

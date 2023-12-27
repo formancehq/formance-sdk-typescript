@@ -3,12 +3,12 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import { Payment } from "./payment";
+import { OrchestrationPayment } from "./orchestrationpayment";
 import { Expose, Type } from "class-transformer";
 
 export class ActivityGetPaymentOutput extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  @Expose({ name: "data" })
-  @Type(() => Payment)
-  data: Payment;
+    @SpeakeasyMetadata()
+    @Expose({ name: "data" })
+    @Type(() => OrchestrationPayment)
+    data: OrchestrationPayment;
 }

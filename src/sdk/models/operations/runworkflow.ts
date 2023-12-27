@@ -7,43 +7,50 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class RunWorkflowRequest extends SpeakeasyBase {
-  /**
-   * The flow id
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=workflowID",
-  })
-  workflowID: string;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: Record<string, string>;
 
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody?: Record<string, string>;
+    /**
+     * Wait end of the workflow before return
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=wait" })
+    wait?: boolean;
 
-  /**
-   * Wait end of the workflow before return
-   */
-  @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=wait" })
-  wait?: boolean;
+    /**
+     * The flow id
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=workflowID" })
+    workflowID: string;
 }
 
 export class RunWorkflowResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * General error
-   */
-  @SpeakeasyMetadata()
-  error?: shared.ErrorT;
+    /**
+     * General error
+     */
+    @SpeakeasyMetadata()
+    error?: shared.ErrorT;
 
-  /**
-   * The workflow instance
-   */
-  @SpeakeasyMetadata()
-  runWorkflowResponse?: shared.RunWorkflowResponse;
+    /**
+     * The workflow instance
+     */
+    @SpeakeasyMetadata()
+    runWorkflowResponse?: shared.RunWorkflowResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

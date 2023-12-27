@@ -6,12 +6,9 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { WorkflowInstanceHistory } from "./workflowinstancehistory";
 import { Expose, Type } from "class-transformer";
 
-/**
- * The workflow instance history
- */
 export class GetWorkflowInstanceHistoryResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: WorkflowInstanceHistory })
-  @Expose({ name: "data" })
-  @Type(() => WorkflowInstanceHistory)
-  data: WorkflowInstanceHistory[];
+    @SpeakeasyMetadata({ elemType: WorkflowInstanceHistory })
+    @Expose({ name: "data" })
+    @Type(() => WorkflowInstanceHistory)
+    data: WorkflowInstanceHistory[];
 }

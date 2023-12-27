@@ -7,31 +7,38 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class UpdateClientRequest extends SpeakeasyBase {
-  /**
-   * Client ID
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=clientId",
-  })
-  clientId: string;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    updateClientRequest?: shared.UpdateClientRequest;
 
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  updateClientRequest?: shared.UpdateClientRequest;
+    /**
+     * Client ID
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=clientId" })
+    clientId: string;
 }
 
 export class UpdateClientResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Updated client
-   */
-  @SpeakeasyMetadata()
-  updateClientResponse?: shared.UpdateClientResponse;
+    /**
+     * Updated client
+     */
+    @SpeakeasyMetadata()
+    updateClientResponse?: shared.UpdateClientResponse;
 }
