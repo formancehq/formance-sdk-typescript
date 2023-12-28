@@ -7,18 +7,27 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class CreateClientResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Client created
-   */
-  @SpeakeasyMetadata()
-  createClientResponse?: shared.CreateClientResponse;
+    /**
+     * Client created
+     */
+    @SpeakeasyMetadata()
+    createClientResponse?: shared.CreateClientResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

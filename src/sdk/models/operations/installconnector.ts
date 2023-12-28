@@ -7,25 +7,38 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class InstallConnectorRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: any;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: any;
 
-  /**
-   * The name of the connector.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=connector",
-  })
-  connector: shared.Connector;
+    /**
+     * The name of the connector.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=connector" })
+    connector: shared.Connector;
 }
 
 export class InstallConnectorResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    connectorResponse?: shared.ConnectorResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
+
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

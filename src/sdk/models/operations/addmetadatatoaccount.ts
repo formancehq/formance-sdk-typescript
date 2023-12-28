@@ -7,48 +7,53 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class AddMetadataToAccountRequest extends SpeakeasyBase {
-  /**
-   * metadata
-   */
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody: Record<string, any>;
+    /**
+     * metadata
+     */
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody: Record<string, any>;
 
-  /**
-   * Exact address of the account. It must match the following regular expressions pattern:
-   *
-   * @remarks
-   * ```
-   * ^\w+(:\w+)*$
-   * ```
-   *
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=address",
-  })
-  address: string;
+    /**
+     * Exact address of the account. It must match the following regular expressions pattern:
+     *
+     * @remarks
+     * ```
+     * ^\w+(:\w+)*$
+     * ```
+     *
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=address" })
+    address: string;
 
-  /**
-   * Name of the ledger.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=ledger",
-  })
-  ledger: string;
+    /**
+     * Name of the ledger.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
+    ledger: string;
 }
 
 export class AddMetadataToAccountResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  errorResponse?: shared.ErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    errorResponse?: shared.ErrorResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

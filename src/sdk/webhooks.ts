@@ -3,558 +3,832 @@
  */
 
 import * as utils from "../internal/utils";
+import * as errors from "./models/errors";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import { SDKConfiguration } from "./sdk";
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
 export class Webhooks {
-  _defaultClient: AxiosInstance;
-  _securityClient: AxiosInstance;
-  _serverURL: string;
-  _language: string;
-  _sdkVersion: string;
-  _genVersion: string;
+    private sdkConfiguration: SDKConfiguration;
 
-  constructor(
-    defaultClient: AxiosInstance,
-    securityClient: AxiosInstance,
-    serverURL: string,
-    language: string,
-    sdkVersion: string,
-    genVersion: string
-  ) {
-    this._defaultClient = defaultClient;
-    this._securityClient = securityClient;
-    this._serverURL = serverURL;
-    this._language = language;
-    this._sdkVersion = sdkVersion;
-    this._genVersion = genVersion;
-  }
-
-  /**
-   * Activate one config
-   *
-   * @remarks
-   * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
-   */
-  async activateConfig(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ActivateConfigResponse> {
-    const req = new operations.ActivateConfigRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/webhooks/configs/{id}/activate",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
+    constructor(sdkConfig: SDKConfiguration) {
+        this.sdkConfiguration = sdkConfig;
     }
 
-    const res: operations.ActivateConfigResponse =
-      new operations.ActivateConfigResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.configResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ConfigResponse
-          );
+    /**
+     * Activate one config
+     *
+     * @remarks
+     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
+     */
+    async activateConfig(
+        req: operations.ActivateConfigRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ActivateConfigResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ActivateConfigRequest(req);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/webhooks/configs/{id}/activate", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
         }
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Change the signing secret of a config
-   *
-   * @remarks
-   * Change the signing secret of the endpoint of a webhooks config.
-   *
-   * If not passed or empty, a secret is automatically generated.
-   * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-   *
-   */
-  async changeConfigSecret(
-    id: string,
-    configChangeSecret?: shared.ConfigChangeSecret,
-    config?: AxiosRequestConfig
-  ): Promise<operations.ChangeConfigSecretResponse> {
-    const req = new operations.ChangeConfigSecretRequest({
-      id: id,
-      configChangeSecret: configChangeSecret,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/webhooks/configs/{id}/secret/change",
-      req
-    );
-
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "configChangeSecret",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.ChangeConfigSecretResponse =
-      new operations.ChangeConfigSecretResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.configResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ConfigResponse
-          );
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = { ...config?.headers, ...properties.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-    }
 
-    return res;
-  }
-
-  /**
-   * Deactivate one config
-   *
-   * @remarks
-   * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
-   */
-  async deactivateConfig(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeactivateConfigResponse> {
-    const req = new operations.DeactivateConfigRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/webhooks/configs/{id}/deactivate",
-      req
-    );
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "put",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeactivateConfigResponse =
-      new operations.DeactivateConfigResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.configResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ConfigResponse
-          );
+        const res: operations.ActivateConfigResponse = new operations.ActivateConfigResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.configResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ConfigResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+
+        return res;
+    }
+
+    /**
+     * Change the signing secret of a config
+     *
+     * @remarks
+     * Change the signing secret of the endpoint of a webhooks config.
+     *
+     * If not passed or empty, a secret is automatically generated.
+     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+     *
+     */
+    async changeConfigSecret(
+        req: operations.ChangeConfigSecretRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.ChangeConfigSecretResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.ChangeConfigSecretRequest(req);
         }
-        break;
-    }
 
-    return res;
-  }
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/webhooks/configs/{id}/secret/change",
+            req
+        );
 
-  /**
-   * Delete one config
-   *
-   * @remarks
-   * Delete a webhooks config by ID.
-   */
-  async deleteConfig(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.DeleteConfigResponse> {
-    const req = new operations.DeleteConfigRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/webhooks/configs/{id}",
-      req
-    );
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "delete",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.DeleteConfigResponse =
-      new operations.DeleteConfigResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
+                req,
+                "configChangeSecret",
+                "json"
+            );
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
         }
-        break;
-    }
-
-    return res;
-  }
-
-  /**
-   * Get many configs
-   *
-   * @remarks
-   * Sorted by updated date descending
-   */
-  async getManyConfigs(
-    endpoint?: string,
-    id?: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.GetManyConfigsResponse> {
-    const req = new operations.GetManyConfigsRequest({
-      endpoint: endpoint,
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/webhooks/configs";
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...config?.headers };
-    const queryParams: string = utils.serializeQueryParams(req);
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url + queryParams,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.GetManyConfigsResponse =
-      new operations.GetManyConfigsResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.configsResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ConfigsResponse
-          );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
         }
-        break;
-    }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = {
+            ...reqBodyHeaders,
+            ...config?.headers,
+            ...properties.headers,
+        };
+        headers["Accept"] = "application/json";
 
-    return res;
-  }
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-  /**
-   * Insert a new config
-   *
-   * @remarks
-   * Insert a new webhooks config.
-   *
-   * The endpoint should be a valid https URL and be unique.
-   *
-   * The secret is the endpoint's verification secret.
-   * If not passed or empty, a secret is automatically generated.
-   * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-   *
-   * All eventTypes are converted to lower-case when inserted.
-   *
-   */
-  async insertConfig(
-    req: shared.ConfigUser,
-    config?: AxiosRequestConfig
-  ): Promise<operations.InsertConfigResponse> {
-    if (!(req instanceof utils.SpeakeasyBase)) {
-      req = new shared.ConfigUser(req);
-    }
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
 
-    const baseURL: string = this._serverURL;
-    const url: string = baseURL.replace(/\/$/, "") + "/api/webhooks/configs";
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    let [reqBodyHeaders, reqBody]: [object, any] = [{}, {}];
-
-    try {
-      [reqBodyHeaders, reqBody] = utils.serializeRequestBody(
-        req,
-        "request",
-        "json"
-      );
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        throw new Error(`Error serializing request body, cause: ${e.message}`);
-      }
-    }
-
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
-
-    const headers = { ...reqBodyHeaders, ...config?.headers };
-    if (reqBody == null || Object.keys(reqBody).length === 0)
-      throw new Error("request body is required");
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
-
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "post",
-      headers: headers,
-      data: reqBody,
-      ...config,
-    });
-
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
-
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
-    }
-
-    const res: operations.InsertConfigResponse =
-      new operations.InsertConfigResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.configResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.ConfigResponse
-          );
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+
+        const res: operations.ChangeConfigSecretResponse =
+            new operations.ChangeConfigSecretResponse({
+                statusCode: httpRes.status,
+                contentType: contentType,
+                rawResponse: httpRes,
+            });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.configResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ConfigResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 400:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    const err = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        errors.WebhooksErrorResponse
+                    );
+                    err.rawResponse = httpRes;
+                    throw new errors.WebhooksErrorResponse(err);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
         }
-        break;
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Deactivate one config
+     *
+     * @remarks
+     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
+     */
+    async deactivateConfig(
+        req: operations.DeactivateConfigRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeactivateConfigResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeactivateConfigRequest(req);
+        }
 
-  /**
-   * Test one config
-   *
-   * @remarks
-   * Test a config by sending a webhook to its endpoint.
-   */
-  async testConfig(
-    id: string,
-    config?: AxiosRequestConfig
-  ): Promise<operations.TestConfigResponse> {
-    const req = new operations.TestConfigRequest({
-      id: id,
-    });
-    const baseURL: string = this._serverURL;
-    const url: string = utils.generateURL(
-      baseURL,
-      "/api/webhooks/configs/{id}/test",
-      req
-    );
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(
+            baseURL,
+            "/api/webhooks/configs/{id}/deactivate",
+            req
+        );
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
+        }
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
+        }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = { ...config?.headers, ...properties.headers };
+        headers["Accept"] = "application/json";
 
-    const client: AxiosInstance = this._securityClient || this._defaultClient;
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
 
-    const headers = { ...config?.headers };
-    headers["Accept"] = "application/json;q=1, application/json;q=0";
-    headers[
-      "user-agent"
-    ] = `speakeasy-sdk/${this._language} ${this._sdkVersion} ${this._genVersion}`;
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "put",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
 
-    const httpRes: AxiosResponse = await client.request({
-      validateStatus: () => true,
-      url: url,
-      method: "get",
-      headers: headers,
-      ...config,
-    });
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
 
-    const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
 
-    if (httpRes?.status == null) {
-      throw new Error(`status code not found in response: ${httpRes}`);
+        const res: operations.DeactivateConfigResponse = new operations.DeactivateConfigResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.configResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ConfigResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 404:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    const err = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        errors.WebhooksErrorResponse
+                    );
+                    err.rawResponse = httpRes;
+                    throw new errors.WebhooksErrorResponse(err);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
     }
 
-    const res: operations.TestConfigResponse =
-      new operations.TestConfigResponse({
-        statusCode: httpRes.status,
-        contentType: contentType,
-        rawResponse: httpRes,
-      });
-    switch (true) {
-      case httpRes?.status == 200:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.attemptResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.AttemptResponse
-          );
+    /**
+     * Delete one config
+     *
+     * @remarks
+     * Delete a webhooks config by ID.
+     */
+    async deleteConfig(
+        req: operations.DeleteConfigRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.DeleteConfigResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.DeleteConfigRequest(req);
         }
-        break;
-      default:
-        if (utils.matchContentType(contentType, `application/json`)) {
-          res.webhooksErrorResponse = utils.objectToClass(
-            httpRes?.data,
-            shared.WebhooksErrorResponse
-          );
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/webhooks/configs/{id}", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
         }
-        break;
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
+        }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = { ...config?.headers, ...properties.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "delete",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.DeleteConfigResponse = new operations.DeleteConfigResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                break;
+            case [400, 404].includes(httpRes?.status):
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    const err = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        errors.WebhooksErrorResponse
+                    );
+                    err.rawResponse = httpRes;
+                    throw new errors.WebhooksErrorResponse(err);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
     }
 
-    return res;
-  }
+    /**
+     * Get many configs
+     *
+     * @remarks
+     * Sorted by updated date descending
+     */
+    async getManyConfigs(
+        req: operations.GetManyConfigsRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.GetManyConfigsResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.GetManyConfigsRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/webhooks/configs";
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
+        }
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
+        }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = { ...config?.headers, ...properties.headers };
+        const queryParams: string = utils.serializeQueryParams(req);
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url + queryParams,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.GetManyConfigsResponse = new operations.GetManyConfigsResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.configsResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ConfigsResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Insert a new config
+     *
+     * @remarks
+     * Insert a new webhooks config.
+     *
+     * The endpoint should be a valid https URL and be unique.
+     *
+     * The secret is the endpoint's verification secret.
+     * If not passed or empty, a secret is automatically generated.
+     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+     *
+     * All eventTypes are converted to lower-case when inserted.
+     *
+     */
+    async insertConfig(
+        req: shared.ConfigUser,
+        config?: AxiosRequestConfig
+    ): Promise<operations.InsertConfigResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new shared.ConfigUser(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = baseURL.replace(/\/$/, "") + "/api/webhooks/configs";
+
+        let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
+
+        try {
+            [reqBodyHeaders, reqBody] = utils.serializeRequestBody(req, "request", "json");
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                throw new Error(`Error serializing request body, cause: ${e.message}`);
+            }
+        }
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
+        }
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
+        }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = {
+            ...reqBodyHeaders,
+            ...config?.headers,
+            ...properties.headers,
+        };
+        if (reqBody == null) throw new Error("request body is required");
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "post",
+            headers: headers,
+            responseType: "arraybuffer",
+            data: reqBody,
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.InsertConfigResponse = new operations.InsertConfigResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.configResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.ConfigResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case httpRes?.status == 400:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    const err = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        errors.WebhooksErrorResponse
+                    );
+                    err.rawResponse = httpRes;
+                    throw new errors.WebhooksErrorResponse(err);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
+
+    /**
+     * Test one config
+     *
+     * @remarks
+     * Test a config by sending a webhook to its endpoint.
+     */
+    async testConfig(
+        req: operations.TestConfigRequest,
+        config?: AxiosRequestConfig
+    ): Promise<operations.TestConfigResponse> {
+        if (!(req instanceof utils.SpeakeasyBase)) {
+            req = new operations.TestConfigRequest(req);
+        }
+
+        const baseURL: string = utils.templateUrl(
+            this.sdkConfiguration.serverURL,
+            this.sdkConfiguration.serverDefaults
+        );
+        const url: string = utils.generateURL(baseURL, "/api/webhooks/configs/{id}/test", req);
+        const client: AxiosInstance = this.sdkConfiguration.defaultClient;
+        let globalSecurity = this.sdkConfiguration.security;
+        if (typeof globalSecurity === "function") {
+            globalSecurity = await globalSecurity();
+        }
+        if (!(globalSecurity instanceof utils.SpeakeasyBase)) {
+            globalSecurity = new shared.Security(globalSecurity);
+        }
+        const properties = utils.parseSecurityProperties(globalSecurity);
+        const headers: RawAxiosRequestHeaders = { ...config?.headers, ...properties.headers };
+        headers["Accept"] = "application/json";
+
+        headers["user-agent"] = this.sdkConfiguration.userAgent;
+
+        const httpRes: AxiosResponse = await client.request({
+            validateStatus: () => true,
+            url: url,
+            method: "get",
+            headers: headers,
+            responseType: "arraybuffer",
+            ...config,
+        });
+
+        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+
+        if (httpRes?.status == null) {
+            throw new Error(`status code not found in response: ${httpRes}`);
+        }
+
+        const res: operations.TestConfigResponse = new operations.TestConfigResponse({
+            statusCode: httpRes.status,
+            contentType: contentType,
+            rawResponse: httpRes,
+        });
+        const decodedRes = new TextDecoder().decode(httpRes?.data);
+        switch (true) {
+            case httpRes?.status == 200:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.attemptResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.AttemptResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case [400, 404].includes(httpRes?.status):
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    const err = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        errors.WebhooksErrorResponse
+                    );
+                    err.rawResponse = httpRes;
+                    throw new errors.WebhooksErrorResponse(err);
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+            case (httpRes?.status >= 400 && httpRes?.status < 500) ||
+                (httpRes?.status >= 500 && httpRes?.status < 600):
+                throw new errors.SDKError(
+                    "API error occurred",
+                    httpRes.status,
+                    decodedRes,
+                    httpRes
+                );
+            default:
+                if (utils.matchContentType(contentType, `application/json`)) {
+                    res.webhooksErrorResponse = utils.objectToClass(
+                        JSON.parse(decodedRes),
+                        shared.WebhooksErrorResponse
+                    );
+                } else {
+                    throw new errors.SDKError(
+                        "unknown content-type received: " + contentType,
+                        httpRes.status,
+                        decodedRes,
+                        httpRes
+                    );
+                }
+                break;
+        }
+
+        return res;
+    }
 }

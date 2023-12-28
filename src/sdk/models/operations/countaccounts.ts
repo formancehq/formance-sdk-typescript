@@ -7,47 +7,50 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class CountAccountsRequest extends SpeakeasyBase {
-  /**
-   * Name of the ledger.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=ledger",
-  })
-  ledger: string;
+    /**
+     * Filter accounts by address pattern (regular expression placed between ^ and $).
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=form;explode=true;name=address" })
+    address?: string;
 
-  /**
-   * Filter accounts by address pattern (regular expression placed between ^ and $).
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=form;explode=true;name=address",
-  })
-  address?: string;
+    /**
+     * Name of the ledger.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
+    ledger: string;
 
-  /**
-   * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
-   */
-  @SpeakeasyMetadata({
-    data: "queryParam, style=deepObject;explode=true;name=metadata",
-  })
-  metadata?: Record<string, any>;
+    /**
+     * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
+     */
+    @SpeakeasyMetadata({ data: "queryParam, style=deepObject;explode=true;name=metadata" })
+    metadata?: Record<string, any>;
 }
 
 export class CountAccountsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  errorResponse?: shared.ErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    errorResponse?: shared.ErrorResponse;
 
-  @SpeakeasyMetadata()
-  headers?: Record<string, string[]>;
+    @SpeakeasyMetadata()
+    headers?: Record<string, string[]>;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 }

@@ -6,12 +6,9 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { User } from "./user";
 import { Expose, Type } from "class-transformer";
 
-/**
- * List of users
- */
 export class ListUsersResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata({ elemType: User })
-  @Expose({ name: "data" })
-  @Type(() => User)
-  data?: User[];
+    @SpeakeasyMetadata({ elemType: User })
+    @Expose({ name: "data" })
+    @Type(() => User)
+    data?: User[];
 }

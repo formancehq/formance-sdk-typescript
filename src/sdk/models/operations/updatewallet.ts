@@ -8,35 +8,44 @@ import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
 export class UpdateWalletRequestBody extends SpeakeasyBase {
-  /**
-   * Custom metadata to attach to this wallet.
-   */
-  @SpeakeasyMetadata()
-  @Expose({ name: "metadata" })
-  metadata: Record<string, string>;
+    /**
+     * Custom metadata to attach to this wallet.
+     */
+    @SpeakeasyMetadata()
+    @Expose({ name: "metadata" })
+    metadata: Record<string, string>;
 }
 
 export class UpdateWalletRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
-  id: string;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    requestBody?: UpdateWalletRequestBody;
 
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  requestBody?: UpdateWalletRequestBody;
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=id" })
+    id: string;
 }
 
 export class UpdateWalletResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  walletsErrorResponse?: shared.WalletsErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    walletsErrorResponse?: shared.WalletsErrorResponse;
 }

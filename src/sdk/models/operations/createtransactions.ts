@@ -7,37 +7,44 @@ import * as shared from "../shared";
 import { AxiosResponse } from "axios";
 
 export class CreateTransactionsRequest extends SpeakeasyBase {
-  @SpeakeasyMetadata({ data: "request, media_type=application/json" })
-  transactions: shared.Transactions;
+    @SpeakeasyMetadata({ data: "request, media_type=application/json" })
+    transactions: shared.Transactions;
 
-  /**
-   * Name of the ledger.
-   */
-  @SpeakeasyMetadata({
-    data: "pathParam, style=simple;explode=false;name=ledger",
-  })
-  ledger: string;
+    /**
+     * Name of the ledger.
+     */
+    @SpeakeasyMetadata({ data: "pathParam, style=simple;explode=false;name=ledger" })
+    ledger: string;
 }
 
 export class CreateTransactionsResponse extends SpeakeasyBase {
-  @SpeakeasyMetadata()
-  contentType: string;
+    /**
+     * HTTP response content type for this operation
+     */
+    @SpeakeasyMetadata()
+    contentType: string;
 
-  /**
-   * Error
-   */
-  @SpeakeasyMetadata()
-  errorResponse?: shared.ErrorResponse;
+    /**
+     * Error
+     */
+    @SpeakeasyMetadata()
+    errorResponse?: shared.ErrorResponse;
 
-  @SpeakeasyMetadata()
-  statusCode: number;
+    /**
+     * HTTP response status code for this operation
+     */
+    @SpeakeasyMetadata()
+    statusCode: number;
 
-  @SpeakeasyMetadata()
-  rawResponse?: AxiosResponse;
+    /**
+     * Raw HTTP response; suitable for custom response parsing
+     */
+    @SpeakeasyMetadata()
+    rawResponse?: AxiosResponse;
 
-  /**
-   * OK
-   */
-  @SpeakeasyMetadata()
-  transactionsResponse?: shared.TransactionsResponse;
+    /**
+     * OK
+     */
+    @SpeakeasyMetadata()
+    transactionsResponse?: shared.TransactionsResponse;
 }
