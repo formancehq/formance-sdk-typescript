@@ -3,9 +3,9 @@
  */
 
 import * as utils from "../internal/utils";
-import * as errors from "./models/errors";
-import * as operations from "./models/operations";
-import * as shared from "./models/shared";
+import * as errors from "../sdk/models/errors";
+import * as operations from "../sdk/models/operations";
+import * as shared from "../sdk/models/shared";
 import { SDKConfiguration } from "./sdk";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
@@ -34,7 +34,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/instances/{instanceID}/abort",
             req
@@ -55,14 +55,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "put",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -70,7 +70,7 @@ export class Orchestration {
 
         const res: operations.CancelEventResponse = new operations.CancelEventResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -86,11 +86,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -120,7 +120,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/triggers";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/triggers";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -151,7 +151,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -159,7 +159,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -167,20 +167,20 @@ export class Orchestration {
 
         const res: operations.CreateTriggerResponse = new operations.CreateTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.createTriggerResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.CreateTriggerResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -196,11 +196,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -230,7 +230,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -261,7 +261,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -269,7 +269,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -277,20 +277,20 @@ export class Orchestration {
 
         const res: operations.CreateWorkflowResponse = new operations.CreateWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.createWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.CreateWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -306,11 +306,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -340,7 +340,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/triggers/{triggerID}",
             req
@@ -361,14 +361,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -376,7 +376,7 @@ export class Orchestration {
 
         const res: operations.DeleteTriggerResponse = new operations.DeleteTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -392,11 +392,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -426,7 +426,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/workflows/{flowId}",
             req
@@ -447,14 +447,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -462,7 +462,7 @@ export class Orchestration {
 
         const res: operations.DeleteWorkflowResponse = new operations.DeleteWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -478,11 +478,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -512,7 +512,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/instances/{instanceID}",
             req
@@ -533,14 +533,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -548,20 +548,20 @@ export class Orchestration {
 
         const res: operations.GetInstanceResponse = new operations.GetInstanceResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.getWorkflowInstanceResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.GetWorkflowInstanceResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -577,11 +577,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -611,7 +611,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/instances/{instanceID}/history",
             req
@@ -632,14 +632,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -648,20 +648,20 @@ export class Orchestration {
         const res: operations.GetInstanceHistoryResponse =
             new operations.GetInstanceHistoryResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.getWorkflowInstanceHistoryResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.GetWorkflowInstanceHistoryResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -677,11 +677,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -711,7 +711,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/instances/{instanceID}/stages/{number}/history",
             req
@@ -732,14 +732,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -748,20 +748,20 @@ export class Orchestration {
         const res: operations.GetInstanceStageHistoryResponse =
             new operations.GetInstanceStageHistoryResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.getWorkflowInstanceHistoryStageResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.GetWorkflowInstanceHistoryStageResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -777,11 +777,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -811,7 +811,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/workflows/{flowId}",
             req
@@ -832,14 +832,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -847,20 +847,20 @@ export class Orchestration {
 
         const res: operations.GetWorkflowResponse = new operations.GetWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.getWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.GetWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -876,11 +876,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -910,7 +910,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/instances";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/instances";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -928,14 +928,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -943,20 +943,20 @@ export class Orchestration {
 
         const res: operations.ListInstancesResponse = new operations.ListInstancesResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.listRunsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ListRunsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -972,11 +972,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -999,7 +999,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/triggers";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/triggers";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1016,14 +1016,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1031,20 +1031,20 @@ export class Orchestration {
 
         const res: operations.ListTriggersResponse = new operations.ListTriggersResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.listTriggersResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ListTriggersResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1060,11 +1060,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1094,7 +1094,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/triggers/{triggerID}/occurrences",
             req
@@ -1115,14 +1115,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1131,20 +1131,20 @@ export class Orchestration {
         const res: operations.ListTriggersOccurrencesResponse =
             new operations.ListTriggersOccurrencesResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.listTriggersOccurrencesResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ListTriggersOccurrencesResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1160,11 +1160,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1187,7 +1187,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/workflows";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1204,14 +1204,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1219,20 +1219,20 @@ export class Orchestration {
 
         const res: operations.ListWorkflowsResponse = new operations.ListWorkflowsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.listWorkflowsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ListWorkflowsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1248,11 +1248,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1274,7 +1274,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/_info";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1291,14 +1291,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1307,17 +1307,17 @@ export class Orchestration {
         const res: operations.OrchestrationgetServerInfoResponse =
             new operations.OrchestrationgetServerInfoResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.serverInfo = utils.objectToClass(JSON.parse(decodedRes), shared.ServerInfo);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1333,11 +1333,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1367,7 +1367,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/triggers/{triggerID}",
             req
@@ -1388,14 +1388,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1403,20 +1403,20 @@ export class Orchestration {
 
         const res: operations.ReadTriggerResponse = new operations.ReadTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.readTriggerResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ReadTriggerResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1432,11 +1432,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1466,7 +1466,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/workflows/{workflowID}/instances",
             req
@@ -1502,7 +1502,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -1510,7 +1510,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1518,20 +1518,20 @@ export class Orchestration {
 
         const res: operations.RunWorkflowResponse = new operations.RunWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.runWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.RunWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1547,11 +1547,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1581,7 +1581,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/instances/{instanceID}/events",
             req
@@ -1616,7 +1616,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -1624,7 +1624,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1632,7 +1632,7 @@ export class Orchestration {
 
         const res: operations.SendEventResponse = new operations.SendEventResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -1648,11 +1648,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.error = utils.objectToClass(JSON.parse(decodedRes), shared.ErrorT);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1682,7 +1682,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/triggers/{triggerID}/test",
             req
@@ -1717,7 +1717,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -1725,7 +1725,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1733,20 +1733,20 @@ export class Orchestration {
 
         const res: operations.TestTriggerResponse = new operations.TestTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2TestTriggerResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2TestTriggerResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1762,11 +1762,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1796,7 +1796,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/instances/{instanceID}/abort",
             req
@@ -1817,14 +1817,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "put",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1832,7 +1832,7 @@ export class Orchestration {
 
         const res: operations.V2CancelEventResponse = new operations.V2CancelEventResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -1848,11 +1848,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1882,7 +1882,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/triggers";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/triggers";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -1913,7 +1913,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -1921,7 +1921,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1929,20 +1929,20 @@ export class Orchestration {
 
         const res: operations.V2CreateTriggerResponse = new operations.V2CreateTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2CreateTriggerResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2CreateTriggerResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1958,11 +1958,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1992,7 +1992,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/workflows";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/workflows";
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2023,7 +2023,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2031,7 +2031,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2039,20 +2039,20 @@ export class Orchestration {
 
         const res: operations.V2CreateWorkflowResponse = new operations.V2CreateWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2CreateWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2CreateWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2068,11 +2068,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2102,7 +2102,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/triggers/{triggerID}",
             req
@@ -2123,14 +2123,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2138,7 +2138,7 @@ export class Orchestration {
 
         const res: operations.V2DeleteTriggerResponse = new operations.V2DeleteTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2146,13 +2146,13 @@ export class Orchestration {
             case httpRes?.status == 204:
                 break;
             case httpRes?.status == 404:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2Error);
                     err.rawResponse = httpRes;
                     throw new errors.V2Error(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2168,11 +2168,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2202,7 +2202,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/workflows/{flowId}",
             req
@@ -2223,14 +2223,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2238,7 +2238,7 @@ export class Orchestration {
 
         const res: operations.V2DeleteWorkflowResponse = new operations.V2DeleteWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2246,13 +2246,13 @@ export class Orchestration {
             case httpRes?.status == 204:
                 break;
             case [400, 404].includes(httpRes?.status):
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2Error);
                     err.rawResponse = httpRes;
                     throw new errors.V2Error(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2268,11 +2268,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2302,7 +2302,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/instances/{instanceID}",
             req
@@ -2323,14 +2323,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2338,20 +2338,20 @@ export class Orchestration {
 
         const res: operations.V2GetInstanceResponse = new operations.V2GetInstanceResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2GetWorkflowInstanceResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2GetWorkflowInstanceResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2367,11 +2367,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2401,7 +2401,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/instances/{instanceID}/history",
             req
@@ -2422,14 +2422,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2438,20 +2438,20 @@ export class Orchestration {
         const res: operations.V2GetInstanceHistoryResponse =
             new operations.V2GetInstanceHistoryResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2GetWorkflowInstanceHistoryResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2GetWorkflowInstanceHistoryResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2467,11 +2467,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2501,7 +2501,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/instances/{instanceID}/stages/{number}/history",
             req
@@ -2522,14 +2522,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2538,20 +2538,20 @@ export class Orchestration {
         const res: operations.V2GetInstanceStageHistoryResponse =
             new operations.V2GetInstanceStageHistoryResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2GetWorkflowInstanceHistoryStageResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2GetWorkflowInstanceHistoryStageResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2567,11 +2567,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2593,7 +2593,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/_info";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/_info";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -2610,14 +2610,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2625,20 +2625,20 @@ export class Orchestration {
 
         const res: operations.V2GetServerInfoResponse = new operations.V2GetServerInfoResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ServerInfo = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ServerInfo
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2654,11 +2654,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2688,7 +2688,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/workflows/{flowId}",
             req
@@ -2709,14 +2709,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2724,20 +2724,20 @@ export class Orchestration {
 
         const res: operations.V2GetWorkflowResponse = new operations.V2GetWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2GetWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2GetWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2753,11 +2753,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2787,7 +2787,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/instances";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/instances";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -2805,14 +2805,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2820,20 +2820,20 @@ export class Orchestration {
 
         const res: operations.V2ListInstancesResponse = new operations.V2ListInstancesResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ListRunsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ListRunsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2849,11 +2849,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2876,7 +2876,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/triggers";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/triggers";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -2893,14 +2893,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2908,20 +2908,20 @@ export class Orchestration {
 
         const res: operations.V2ListTriggersResponse = new operations.V2ListTriggersResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ListTriggersResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ListTriggersResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2937,11 +2937,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2971,7 +2971,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/triggers/{triggerID}/occurrences",
             req
@@ -2992,14 +2992,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3008,20 +3008,20 @@ export class Orchestration {
         const res: operations.V2ListTriggersOccurrencesResponse =
             new operations.V2ListTriggersOccurrencesResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ListTriggersOccurrencesResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ListTriggersOccurrencesResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3037,11 +3037,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3066,7 +3066,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/workflows";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/orchestration/v2/workflows";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3083,14 +3083,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3098,20 +3098,20 @@ export class Orchestration {
 
         const res: operations.V2ListWorkflowsResponse = new operations.V2ListWorkflowsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ListWorkflowsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ListWorkflowsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3127,11 +3127,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3161,7 +3161,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/triggers/{triggerID}",
             req
@@ -3182,14 +3182,14 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3197,20 +3197,20 @@ export class Orchestration {
 
         const res: operations.V2ReadTriggerResponse = new operations.V2ReadTriggerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ReadTriggerResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ReadTriggerResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3226,11 +3226,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3260,7 +3260,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/workflows/{workflowID}/instances",
             req
@@ -3296,7 +3296,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -3304,7 +3304,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3312,20 +3312,20 @@ export class Orchestration {
 
         const res: operations.V2RunWorkflowResponse = new operations.V2RunWorkflowResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2RunWorkflowResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2RunWorkflowResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3341,11 +3341,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3375,7 +3375,7 @@ export class Orchestration {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/orchestration/v2/instances/{instanceID}/events",
             req
@@ -3410,7 +3410,7 @@ export class Orchestration {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -3418,7 +3418,7 @@ export class Orchestration {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3426,7 +3426,7 @@ export class Orchestration {
 
         const res: operations.V2SendEventResponse = new operations.V2SendEventResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -3442,11 +3442,11 @@ export class Orchestration {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2Error = utils.objectToClass(JSON.parse(decodedRes), shared.V2Error);
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2Error = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes

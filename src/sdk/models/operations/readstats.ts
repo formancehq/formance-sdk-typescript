@@ -3,7 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
+import * as shared from "../../../sdk/models/shared";
 import { AxiosResponse } from "axios";
 
 export class ReadStatsRequest extends SpeakeasyBase {
@@ -25,7 +26,7 @@ export class ReadStatsResponse extends SpeakeasyBase {
      * Error
      */
     @SpeakeasyMetadata()
-    errorResponse?: shared.ErrorResponse;
+    errorResponse?: errors.ErrorResponse;
 
     /**
      * OK
@@ -43,5 +44,5 @@ export class ReadStatsResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 }

@@ -3,9 +3,12 @@
  */
 
 import { SpeakeasyMetadata } from "../../../internal/utils";
-import { V2ErrorsEnum } from "./v2errorsenum";
+import * as shared from "../../../sdk/models/shared";
 import { classToPlain, Expose } from "class-transformer";
 
+/**
+ * Error
+ */
 export class V2ErrorResponse extends Error {
     @SpeakeasyMetadata()
     @Expose({ name: "details" })
@@ -13,7 +16,7 @@ export class V2ErrorResponse extends Error {
 
     @SpeakeasyMetadata()
     @Expose({ name: "errorCode" })
-    errorCode: V2ErrorsEnum;
+    errorCode: shared.V2ErrorsEnum;
 
     @SpeakeasyMetadata()
     @Expose({ name: "errorMessage" })

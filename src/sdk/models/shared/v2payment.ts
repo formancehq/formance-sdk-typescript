@@ -11,7 +11,7 @@ import { Expose, Transform, Type } from "class-transformer";
 
 export class V2PaymentRaw extends SpeakeasyBase {}
 
-export enum V2PaymentScheme {
+export enum Scheme {
     Visa = "visa",
     Mastercard = "mastercard",
     Amex = "amex",
@@ -90,7 +90,7 @@ export class V2Payment extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "scheme" })
-    scheme: V2PaymentScheme;
+    scheme: Scheme;
 
     @SpeakeasyMetadata()
     @Expose({ name: "sourceAccountID" })

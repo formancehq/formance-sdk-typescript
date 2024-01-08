@@ -3,13 +3,13 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
 import { AxiosResponse } from "axios";
 
 /**
  * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
  */
-export class CountTransactionsMetadata extends SpeakeasyBase {}
+export class Metadata extends SpeakeasyBase {}
 
 export class CountTransactionsRequest extends SpeakeasyBase {
     /**
@@ -44,7 +44,7 @@ export class CountTransactionsRequest extends SpeakeasyBase {
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     @SpeakeasyMetadata({ data: "queryParam, style=deepObject;explode=true;name=metadata" })
-    metadata?: CountTransactionsMetadata;
+    metadata?: Metadata;
 
     /**
      * Filter transactions by reference field.
@@ -80,10 +80,10 @@ export class CountTransactionsResponse extends SpeakeasyBase {
      * Error
      */
     @SpeakeasyMetadata()
-    errorResponse?: shared.ErrorResponse;
+    errorResponse?: errors.ErrorResponse;
 
     @SpeakeasyMetadata()
-    headers?: Record<string, string[]>;
+    headers: Record<string, string[]>;
 
     /**
      * HTTP response status code for this operation
@@ -95,5 +95,5 @@ export class CountTransactionsResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 }

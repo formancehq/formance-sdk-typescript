@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
 import { AxiosResponse } from "axios";
 
 export class CountAccountsRequest extends SpeakeasyBase {
@@ -37,10 +37,10 @@ export class CountAccountsResponse extends SpeakeasyBase {
      * Error
      */
     @SpeakeasyMetadata()
-    errorResponse?: shared.ErrorResponse;
+    errorResponse?: errors.ErrorResponse;
 
     @SpeakeasyMetadata()
-    headers?: Record<string, string[]>;
+    headers: Record<string, string[]>;
 
     /**
      * HTTP response status code for this operation
@@ -52,5 +52,5 @@ export class CountAccountsResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 }

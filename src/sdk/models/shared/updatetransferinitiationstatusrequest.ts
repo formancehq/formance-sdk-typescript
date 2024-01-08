@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose } from "class-transformer";
 
-export enum UpdateTransferInitiationStatusRequestStatus {
+export enum Status {
     WaitingForValidation = "WAITING_FOR_VALIDATION",
     Processing = "PROCESSING",
     Processed = "PROCESSED",
@@ -17,5 +17,5 @@ export enum UpdateTransferInitiationStatusRequestStatus {
 export class UpdateTransferInitiationStatusRequest extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "status" })
-    status: UpdateTransferInitiationStatusRequestStatus;
+    status: Status;
 }

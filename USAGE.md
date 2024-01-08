@@ -1,22 +1,20 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async () => {
+async function run() {
     const sdk = new SDK({
-        security: {
-            authorization: "",
-        },
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.sdk.getVersions();
+    const res = await sdk.getVersions();
 
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

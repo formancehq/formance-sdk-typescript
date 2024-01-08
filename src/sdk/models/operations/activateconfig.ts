@@ -3,7 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
+import * as shared from "../../../sdk/models/shared";
 import { AxiosResponse } from "axios";
 
 export class ActivateConfigRequest extends SpeakeasyBase {
@@ -37,11 +38,11 @@ export class ActivateConfigResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 
     /**
      * Error
      */
     @SpeakeasyMetadata()
-    webhooksErrorResponse?: shared.WebhooksErrorResponse;
+    webhooksErrorResponse?: errors.WebhooksErrorResponse;
 }

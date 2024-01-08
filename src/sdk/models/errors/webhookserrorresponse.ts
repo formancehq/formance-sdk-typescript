@@ -3,9 +3,12 @@
  */
 
 import { SpeakeasyMetadata } from "../../../internal/utils";
-import { WebhooksErrorsEnum } from "./webhookserrorsenum";
+import * as shared from "../../../sdk/models/shared";
 import { classToPlain, Expose } from "class-transformer";
 
+/**
+ * Error
+ */
 export class WebhooksErrorResponse extends Error {
     @SpeakeasyMetadata()
     @Expose({ name: "details" })
@@ -13,7 +16,7 @@ export class WebhooksErrorResponse extends Error {
 
     @SpeakeasyMetadata()
     @Expose({ name: "errorCode" })
-    errorCode: WebhooksErrorsEnum;
+    errorCode: shared.WebhooksErrorsEnum;
 
     @SpeakeasyMetadata()
     @Expose({ name: "errorMessage" })

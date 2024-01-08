@@ -2,6 +2,9 @@
 
 <div align="left">
     <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
+    </a>
 </div>
 
 
@@ -12,55 +15,57 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
-<!-- Start SDK Installation -->
-# SDK Installation
 
-## NPM
+<!-- Start SDK Installation [installation] -->
+## SDK Installation
+
+### NPM
 
 ```bash
 npm add <UNSET>
 ```
 
-## Yarn
+### Yarn
 
 ```bash
 yarn add <UNSET>
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
 
+### Example
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async () => {
+async function run() {
     const sdk = new SDK({
-        security: {
-            authorization: "",
-        },
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.sdk.getVersions();
+    const res = await sdk.getVersions();
 
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
-# Available Resources and Operations
+<!-- Start Available Resources and Operations [operations] -->
+## Available Resources and Operations
 
-## [SDK](docs/sdks/sdk/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 * [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
-## [auth](docs/sdks/auth/README.md)
+### [auth](docs/sdks/auth/README.md)
 
 * [createClient](docs/sdks/auth/README.md#createclient) - Create client
 * [createSecret](docs/sdks/auth/README.md#createsecret) - Add a secret to a client
@@ -73,7 +78,7 @@ import { SDK } from "@formance/formance-sdk";
 * [readUser](docs/sdks/auth/README.md#readuser) - Read user
 * [updateClient](docs/sdks/auth/README.md#updateclient) - Update client
 
-## [ledger](docs/sdks/ledger/README.md)
+### [ledger](docs/sdks/ledger/README.md)
 
 * [createTransactions](docs/sdks/ledger/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledger/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -113,7 +118,7 @@ import { SDK } from "@formance/formance-sdk";
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
 
-## [orchestration](docs/sdks/orchestration/README.md)
+### [orchestration](docs/sdks/orchestration/README.md)
 
 * [cancelEvent](docs/sdks/orchestration/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestration/README.md#createtrigger) - Create trigger
@@ -151,7 +156,7 @@ import { SDK } from "@formance/formance-sdk";
 * [v2RunWorkflow](docs/sdks/orchestration/README.md#v2runworkflow) - Run workflow
 * [v2SendEvent](docs/sdks/orchestration/README.md#v2sendevent) - Send an event to a running workflow
 
-## [payments](docs/sdks/payments/README.md)
+### [payments](docs/sdks/payments/README.md)
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -193,7 +198,7 @@ import { SDK } from "@formance/formance-sdk";
 * [updateConnectorConfigV1](docs/sdks/payments/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/payments/README.md#updatemetadata) - Update metadata
 
-## [reconciliation](docs/sdks/reconciliation/README.md)
+### [reconciliation](docs/sdks/reconciliation/README.md)
 
 * [createPolicy](docs/sdks/reconciliation/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/reconciliation/README.md#deletepolicy) - Delete a policy
@@ -204,12 +209,12 @@ import { SDK } from "@formance/formance-sdk";
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliation/README.md#reconciliationgetserverinfo) - Get server info
 
-## [search](docs/sdks/search/README.md)
+### [search](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
 * [searchgetServerInfo](docs/sdks/search/README.md#searchgetserverinfo) - Get server info
 
-## [wallets](docs/sdks/wallets/README.md)
+### [wallets](docs/sdks/wallets/README.md)
 
 * [confirmHold](docs/sdks/wallets/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/wallets/README.md#createbalance) - Create a balance
@@ -228,7 +233,7 @@ import { SDK } from "@formance/formance-sdk";
 * [voidHold](docs/sdks/wallets/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/wallets/README.md#walletsgetserverinfo) - Get server info
 
-## [webhooks](docs/sdks/webhooks/README.md)
+### [webhooks](docs/sdks/webhooks/README.md)
 
 * [activateConfig](docs/sdks/webhooks/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/webhooks/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -237,60 +242,61 @@ import { SDK } from "@formance/formance-sdk";
 * [getManyConfigs](docs/sdks/webhooks/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/webhooks/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/webhooks/README.md#testconfig) - Test one config
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Dev Containers -->
+<!-- Start Error Handling [errors] -->
+## Error Handling
 
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or throw an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400,404              | application/json     |
+| errors.SDKError      | 400-600              | */*                  |
 
-<!-- End Dev Containers -->
-
-<!-- Start Error Handling -->
-# Error Handling
-
-Handling errors in your SDK should largely match your expectations.  All operations return a response object or throw an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
-
-
-## Example
+Example
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
-  const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
-  });
+async function run() {
+    const sdk = new SDK({
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    });
 
-  
-  let res;
-  try {
-    res = await sdk.ledger.addMetadataToAccount({
-    requestBody: {
-      "key": "string",
-    },
-    address: "users:001",
-    ledger: "ledger001",
-  });
-  } catch (e) { 
-    if (e instanceof ErrorResponse) {
-      console.error(e) // handle exception 
-    
-  }
+    let res;
+    try {
+        res = await sdk.ledger.addMetadataToAccount({
+            requestBody: {
+                key: "string",
+            },
+            address: "users:001",
+            ledger: "ledger001",
+        });
+    } catch (err) {
+        if (err instanceof errors.ErrorResponse) {
+            console.error(err); // handle exception
+            throw err;
+        } else if (err instanceof errors.SDKError) {
+            console.error(err); // handle exception
+            throw err;
+        }
+    }
 
+    if (res.statusCode == 200) {
+        // handle response
+    }
+}
 
-  if (res.statusCode == 200) {
-    // handle response
-  }
-})();
+run();
+
 ```
-<!-- End Error Handling -->
+<!-- End Error Handling [errors] -->
 
-<!-- Start Server Selection -->
-# Server Selection
+<!-- Start Server Selection [server] -->
+## Server Selection
 
-## Select Server by Index
+### Select Server by Index
 
 You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
@@ -298,78 +304,103 @@ You can override the default server globally by passing a server index to the `s
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
 
-For example:
-
+#### Example
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async () => {
+async function run() {
     const sdk = new SDK({
-        security: {
-            authorization: "",
-        },
         serverIdx: 0,
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.sdk.getVersions();
+    const res = await sdk.getVersions();
 
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
 
 
-## Override Server URL Per-Client
+### Override Server URL Per-Client
 
 The default server can also be overridden globally by passing a URL to the `serverURL: str` optional parameter when initializing the SDK client instance. For example:
-
-
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async () => {
+async function run() {
     const sdk = new SDK({
-        security: {
-            authorization: "",
-        },
         serverURL: "http://localhost",
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.sdk.getVersions();
+    const res = await sdk.getVersions();
 
     if (res.statusCode == 200) {
         // handle response
     }
-})();
+}
+
+run();
 
 ```
-<!-- End Server Selection -->
+<!-- End Server Selection [server] -->
 
-<!-- Start Custom HTTP Client -->
-# Custom HTTP Client
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
 
-The Typescript SDK makes API calls using the (axios)[https://axios-http.com/docs/intro] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `AxiosInstance` object.
-
+The Typescript SDK makes API calls using the [axios](https://axios-http.com/docs/intro) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `AxiosInstance` object.
 
 For example, you could specify a header for every request that your sdk makes as follows:
 
 ```typescript
-from @formance/formance-sdk import SDK;
-import axios;
+import { @formance/formance-sdk } from "SDK";
+import axios from "axios";
 
 const httpClient = axios.create({
     headers: {'x-custom-header': 'someValue'}
 })
 
-
 const sdk = new SDK({defaultClient: httpClient});
 ```
+<!-- End Custom HTTP Client [http-client] -->
 
+<!-- Start Authentication [security] -->
+## Authentication
 
-<!-- End Custom HTTP Client -->
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name            | Type            | Scheme          |
+| --------------- | --------------- | --------------- |
+| `authorization` | oauth2          | OAuth2 token    |
+
+To authenticate with the API the `authorization` parameter must be set when initializing the SDK client instance. For example:
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+    const sdk = new SDK({
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    });
+
+    const res = await sdk.getVersions();
+
+    if (res.statusCode == 200) {
+        // handle response
+    }
+}
+
+run();
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

@@ -30,20 +30,19 @@ Show stack version information
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.sdk.getVersions();
-
+  const res = await sdk.getVersions();
 
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -55,8 +54,12 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.GetVersionsResponse](../../models/operations/getversionsresponse.md)>**
+**Promise<[operations.GetVersionsResponse](../../sdk/models/operations/getversionsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getApiAuthWellKnownOpenidConfiguration
 
@@ -65,20 +68,19 @@ import { SDK } from "@formance/formance-sdk";
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.sdk.getApiAuthWellKnownOpenidConfiguration();
-
+  const res = await sdk.getApiAuthWellKnownOpenidConfiguration();
 
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -90,5 +92,9 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.GetApiAuthWellKnownOpenidConfigurationResponse](../../models/operations/getapiauthwellknownopenidconfigurationresponse.md)>**
+**Promise<[operations.GetApiAuthWellKnownOpenidConfigurationResponse](../../sdk/models/operations/getapiauthwellknownopenidconfigurationresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

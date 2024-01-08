@@ -15,89 +15,51 @@ ElasticSearch query engine
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.search.search({
     after: [
-      "u",
-      "s",
-      "e",
-      "r",
-      "s",
-      ":",
-      "0",
-      "0",
-      "2",
+      "users:002",
     ],
     cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     ledgers: [
-      "q",
-      "u",
-      "i",
-      "c",
-      "k",
-      "s",
-      "t",
-      "a",
-      "r",
-      "t",
+      "quickstart",
     ],
     policy: "OR",
     raw: {},
     sort: "id:asc",
     terms: [
-      "d",
-      "e",
-      "s",
-      "t",
-      "i",
-      "n",
-      "a",
-      "t",
-      "i",
-      "o",
-      "n",
-      "=",
-      "c",
-      "e",
-      "n",
-      "t",
-      "r",
-      "a",
-      "l",
-      "_",
-      "b",
-      "a",
-      "n",
-      "k",
-      "1",
+      "destination=central_bank1",
     ],
   });
-
 
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
 | Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `request`                                                    | [shared.Query](../../models/shared/query.md)                 | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `request`                                                    | [shared.Query](../../sdk/models/shared/query.md)             | :heavy_check_mark:                                           | The request object to use for the request.                   |
 | `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
 
-**Promise<[operations.SearchResponse](../../models/operations/searchresponse.md)>**
+**Promise<[operations.SearchResponse](../../sdk/models/operations/searchresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## searchgetServerInfo
 
@@ -108,20 +70,19 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.search.searchgetServerInfo();
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -133,5 +94,9 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.SearchgetServerInfoResponse](../../models/operations/searchgetserverinforesponse.md)>**
+**Promise<[operations.SearchgetServerInfoResponse](../../sdk/models/operations/searchgetserverinforesponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

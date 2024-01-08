@@ -3,11 +3,11 @@
  */
 
 import * as utils from "../internal/utils";
+import * as errors from "../sdk/models/errors";
+import * as operations from "../sdk/models/operations";
+import * as shared from "../sdk/models/shared";
 import { Auth } from "./auth";
 import { Ledger } from "./ledger";
-import * as errors from "./models/errors";
-import * as operations from "./models/operations";
-import * as shared from "./models/shared";
 import { Orchestration } from "./orchestration";
 import { Payments } from "./payments";
 import { Reconciliation } from "./reconciliation";
@@ -31,10 +31,7 @@ export const ServerList = [
  * The available configuration options for the SDK
  */
 export type SDKProps = {
-    /**
-     * The security details required to authenticate the SDK
-     */
-    security?: shared.Security | (() => Promise<shared.Security>);
+    authorization?: string;
 
     /**
      * Allows overriding the default axios client used by the SDK
@@ -62,11 +59,11 @@ export class SDKConfiguration {
     serverURL: string;
     serverDefaults: any;
     language = "typescript";
-    openapiDocVersion = "v2.0.0-beta.5";
-    sdkVersion = "v2.0.0-beta.5";
-    genVersion = "2.173.0";
+    openapiDocVersion = "v2.0.0-beta.6";
+    sdkVersion = "v2.0.0-beta.6";
+    genVersion = "2.214.10";
     userAgent =
-        "speakeasy-sdk/typescript v2.0.0-beta.5 2.173.0 v2.0.0-beta.5 @formance/formance-sdk";
+        "speakeasy-sdk/typescript v2.0.0-beta.6 2.214.10 v2.0.0-beta.6 @formance/formance-sdk";
     retryConfig?: utils.RetryConfig;
     public constructor(init?: Partial<SDKConfiguration>) {
         Object.assign(this, init);
@@ -109,10 +106,11 @@ export class SDK {
             serverURL = ServerList[serverIdx];
         }
 
-        const defaultClient = props?.defaultClient ?? axios.create({ baseURL: serverURL });
+        const defaultClient = props?.defaultClient ?? axios.create();
         this.sdkConfiguration = new SDKConfiguration({
             defaultClient: defaultClient,
-            security: props?.security,
+            security: new shared.Security({ authorization: props?.authorization }),
+
             serverURL: serverURL,
             retryConfig: props?.retryConfig,
         });
@@ -135,7 +133,7 @@ export class SDK {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/versions";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/versions";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -152,14 +150,14 @@ export class SDK {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -167,20 +165,20 @@ export class SDK {
 
         const res: operations.GetVersionsResponse = new operations.GetVersionsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.getVersionsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.GetVersionsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -207,7 +205,7 @@ export class SDK {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string =
+        const operationUrl: string =
             baseURL.replace(/\/$/, "") + "/api/auth/.well-known/openid-configuration";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
@@ -225,14 +223,14 @@ export class SDK {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -241,7 +239,7 @@ export class SDK {
         const res: operations.GetApiAuthWellKnownOpenidConfigurationResponse =
             new operations.GetApiAuthWellKnownOpenidConfigurationResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         switch (true) {

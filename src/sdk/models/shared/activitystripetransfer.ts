@@ -12,7 +12,7 @@ import { Expose, Type } from "class-transformer";
  * It can be useful for storing additional information about the transfer in a structured format.
  *
  */
-export class ActivityStripeTransferMetadata extends SpeakeasyBase {}
+export class Metadata extends SpeakeasyBase {}
 
 export class ActivityStripeTransfer extends SpeakeasyBase {
     @SpeakeasyMetadata()
@@ -40,8 +40,8 @@ export class ActivityStripeTransfer extends SpeakeasyBase {
      */
     @SpeakeasyMetadata()
     @Expose({ name: "metadata" })
-    @Type(() => ActivityStripeTransferMetadata)
-    metadata?: ActivityStripeTransferMetadata;
+    @Type(() => Metadata)
+    metadata?: Metadata;
 
     @SpeakeasyMetadata()
     @Expose({ name: "waitingValidation" })

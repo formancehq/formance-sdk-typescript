@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
-export class ConnectorsConfigsResponseDataConnectorKey extends SpeakeasyBase {
+export class Key extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "dataType" })
     dataType: string;
@@ -15,18 +15,18 @@ export class ConnectorsConfigsResponseDataConnectorKey extends SpeakeasyBase {
     required: boolean;
 }
 
-export class ConnectorsConfigsResponseDataConnector extends SpeakeasyBase {
+export class ConnectorsConfigsResponseConnector extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "key" })
-    @Type(() => ConnectorsConfigsResponseDataConnectorKey)
-    key: ConnectorsConfigsResponseDataConnectorKey;
+    @Type(() => Key)
+    key: Key;
 }
 
 export class ConnectorsConfigsResponseData extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "connector" })
-    @Type(() => ConnectorsConfigsResponseDataConnector)
-    connector: ConnectorsConfigsResponseDataConnector;
+    @Type(() => ConnectorsConfigsResponseConnector)
+    connector: ConnectorsConfigsResponseConnector;
 }
 
 export class ConnectorsConfigsResponse extends SpeakeasyBase {

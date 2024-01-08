@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { V2AssetHolder } from "./v2assetholder";
 import { Expose, Transform, Type } from "class-transformer";
 
-export class V2WalletWithBalancesBalances extends SpeakeasyBase {
+export class Balances extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "main" })
     @Type(() => V2AssetHolder)
@@ -16,8 +16,8 @@ export class V2WalletWithBalancesBalances extends SpeakeasyBase {
 export class V2WalletWithBalances extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "balances" })
-    @Type(() => V2WalletWithBalancesBalances)
-    balances: V2WalletWithBalancesBalances;
+    @Type(() => Balances)
+    balances: Balances;
 
     @SpeakeasyMetadata()
     @Expose({ name: "createdAt" })

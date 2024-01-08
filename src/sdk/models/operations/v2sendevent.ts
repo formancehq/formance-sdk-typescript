@@ -3,7 +3,7 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
 import { AxiosResponse } from "axios";
 import { Expose } from "class-transformer";
 
@@ -41,11 +41,11 @@ export class V2SendEventResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 
     /**
      * General error
      */
     @SpeakeasyMetadata()
-    v2Error?: shared.V2Error;
+    v2Error?: errors.V2Error;
 }

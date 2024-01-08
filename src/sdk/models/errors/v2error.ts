@@ -5,16 +5,19 @@
 import { SpeakeasyMetadata } from "../../../internal/utils";
 import { classToPlain, Expose } from "class-transformer";
 
-export enum V2ErrorErrorCode {
+export enum ErrorCode {
     Validation = "VALIDATION",
     NotFound = "NOT_FOUND",
     Internal = "INTERNAL",
 }
 
+/**
+ * General error
+ */
 export class V2Error extends Error {
     @SpeakeasyMetadata()
     @Expose({ name: "errorCode" })
-    errorCode: V2ErrorErrorCode;
+    errorCode: ErrorCode;
 
     @SpeakeasyMetadata()
     @Expose({ name: "errorMessage" })

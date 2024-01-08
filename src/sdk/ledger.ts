@@ -3,9 +3,9 @@
  */
 
 import * as utils from "../internal/utils";
-import * as errors from "./models/errors";
-import * as operations from "./models/operations";
-import * as shared from "./models/shared";
+import * as errors from "../sdk/models/errors";
+import * as operations from "../sdk/models/operations";
+import * as shared from "../sdk/models/shared";
 import { SDKConfiguration } from "./sdk";
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 
@@ -31,7 +31,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/transactions/batch",
             req
@@ -67,7 +67,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -75,7 +75,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -84,20 +84,20 @@ export class Ledger {
         const res: operations.CreateTransactionsResponse =
             new operations.CreateTransactionsResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.transactionsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.TransactionsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -113,14 +113,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -147,7 +144,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/transactions/{txid}/metadata",
             req
@@ -182,7 +179,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -190,7 +187,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -199,7 +196,7 @@ export class Ledger {
         const res: operations.AddMetadataOnTransactionResponse =
             new operations.AddMetadataOnTransactionResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -215,14 +212,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -249,7 +243,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/accounts/{address}/metadata",
             req
@@ -285,7 +279,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -293,7 +287,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -302,7 +296,7 @@ export class Ledger {
         const res: operations.AddMetadataToAccountResponse =
             new operations.AddMetadataToAccountResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -310,13 +304,13 @@ export class Ledger {
             case httpRes?.status == 204:
                 break;
             case [400, 404].includes(httpRes?.status):
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -332,14 +326,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -366,7 +357,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/accounts", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/accounts",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -384,14 +379,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "head",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -399,7 +394,7 @@ export class Ledger {
 
         const res: operations.CountAccountsResponse = new operations.CountAccountsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
             headers: utils.getHeadersFromResponse(httpRes.headers),
         });
@@ -416,14 +411,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -450,7 +442,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/transactions",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -468,14 +464,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "head",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -483,7 +479,7 @@ export class Ledger {
 
         const res: operations.CountTransactionsResponse = new operations.CountTransactionsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
             headers: utils.getHeadersFromResponse(httpRes.headers),
         });
@@ -500,14 +496,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -534,7 +527,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/transactions",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -567,7 +564,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -575,7 +572,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -583,20 +580,20 @@ export class Ledger {
 
         const res: operations.CreateTransactionResponse = new operations.CreateTransactionResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.transactionsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.TransactionsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -604,13 +601,13 @@ export class Ledger {
                 }
                 break;
             case httpRes?.status == 400:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -626,14 +623,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -660,7 +654,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/accounts/{address}",
             req
@@ -681,14 +675,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -696,20 +690,20 @@ export class Ledger {
 
         const res: operations.GetAccountResponse = new operations.GetAccountResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.accountResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.AccountResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -725,14 +719,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -759,7 +750,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/balances", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/balances",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -777,14 +772,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -792,20 +787,20 @@ export class Ledger {
 
         const res: operations.GetBalancesResponse = new operations.GetBalancesResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.balancesCursorResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.BalancesCursorResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -821,14 +816,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -855,7 +847,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/aggregate/balances",
             req
@@ -877,14 +869,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -893,20 +885,20 @@ export class Ledger {
         const res: operations.GetBalancesAggregatedResponse =
             new operations.GetBalancesAggregatedResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.aggregateBalancesResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.AggregateBalancesResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -922,14 +914,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -949,7 +938,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/ledger/_info";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/ledger/_info";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -966,14 +955,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -981,20 +970,20 @@ export class Ledger {
 
         const res: operations.GetInfoResponse = new operations.GetInfoResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.configInfoResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ConfigInfoResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1010,14 +999,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1044,7 +1030,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/_info", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/_info", req);
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1061,14 +1047,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1076,20 +1062,20 @@ export class Ledger {
 
         const res: operations.GetLedgerInfoResponse = new operations.GetLedgerInfoResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.ledgerInfoResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.LedgerInfoResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1105,14 +1091,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1139,7 +1122,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/mapping", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/mapping",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1156,14 +1143,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1171,20 +1158,20 @@ export class Ledger {
 
         const res: operations.GetMappingResponse = new operations.GetMappingResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.mappingResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.MappingResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1200,14 +1187,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1234,7 +1218,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/transactions/{txid}",
             req
@@ -1255,14 +1239,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1270,20 +1254,20 @@ export class Ledger {
 
         const res: operations.GetTransactionResponse = new operations.GetTransactionResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.transactionResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.TransactionResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1299,14 +1283,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1336,7 +1317,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/accounts", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/accounts",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1354,14 +1339,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1369,20 +1354,20 @@ export class Ledger {
 
         const res: operations.ListAccountsResponse = new operations.ListAccountsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.accountsCursorResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.AccountsCursorResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1398,14 +1383,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1435,7 +1417,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/logs", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/logs", req);
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1453,14 +1435,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1468,20 +1450,20 @@ export class Ledger {
 
         const res: operations.ListLogsResponse = new operations.ListLogsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.logsCursorResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.LogsCursorResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1497,14 +1479,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1534,7 +1513,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/transactions", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/transactions",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1552,14 +1535,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1567,20 +1550,20 @@ export class Ledger {
 
         const res: operations.ListTransactionsResponse = new operations.ListTransactionsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.transactionsCursorResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.TransactionsCursorResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1596,14 +1579,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1634,7 +1614,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/stats", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/stats", req);
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -1651,14 +1631,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1666,20 +1646,20 @@ export class Ledger {
 
         const res: operations.ReadStatsResponse = new operations.ReadStatsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.statsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.StatsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1695,14 +1675,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1729,7 +1706,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/{ledger}/transactions/{txid}/revert",
             req
@@ -1751,14 +1728,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1766,20 +1743,20 @@ export class Ledger {
 
         const res: operations.RevertTransactionResponse = new operations.RevertTransactionResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.transactionResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.TransactionResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1795,14 +1772,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1835,7 +1809,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/script", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/script", req);
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -1868,7 +1842,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -1876,7 +1850,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1884,20 +1858,20 @@ export class Ledger {
 
         const res: operations.RunScriptResponse = new operations.RunScriptResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.scriptResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.ScriptResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -1932,7 +1906,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/{ledger}/mapping", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/{ledger}/mapping",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -1964,7 +1942,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "put",
             headers: headers,
             responseType: "arraybuffer",
@@ -1972,7 +1950,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -1980,20 +1958,20 @@ export class Ledger {
 
         const res: operations.UpdateMappingResponse = new operations.UpdateMappingResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.mappingResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.MappingResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2009,14 +1987,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.errorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.errorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2043,7 +2018,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/transactions/{id}/metadata",
             req
@@ -2080,7 +2055,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2088,7 +2063,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2097,7 +2072,7 @@ export class Ledger {
         const res: operations.V2AddMetadataOnTransactionResponse =
             new operations.V2AddMetadataOnTransactionResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2105,13 +2080,13 @@ export class Ledger {
             case httpRes?.status == 204:
                 break;
             case [400, 404].includes(httpRes?.status):
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2127,14 +2102,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2161,7 +2133,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/accounts/{address}/metadata",
             req
@@ -2199,7 +2171,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2207,7 +2179,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2216,7 +2188,7 @@ export class Ledger {
         const res: operations.V2AddMetadataToAccountResponse =
             new operations.V2AddMetadataToAccountResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2224,13 +2196,13 @@ export class Ledger {
             case httpRes?.status == 204:
                 break;
             case [400, 404].includes(httpRes?.status):
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2246,14 +2218,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2280,7 +2249,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/accounts", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/accounts",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2312,7 +2285,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "head",
             headers: headers,
             responseType: "arraybuffer",
@@ -2320,7 +2293,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2328,7 +2301,7 @@ export class Ledger {
 
         const res: operations.V2CountAccountsResponse = new operations.V2CountAccountsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
             headers: utils.getHeadersFromResponse(httpRes.headers),
         });
@@ -2345,14 +2318,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2379,7 +2349,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/transactions", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/transactions",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2411,7 +2385,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "head",
             headers: headers,
             responseType: "arraybuffer",
@@ -2419,7 +2393,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2428,7 +2402,7 @@ export class Ledger {
         const res: operations.V2CountTransactionsResponse =
             new operations.V2CountTransactionsResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
                 headers: utils.getHeadersFromResponse(httpRes.headers),
             });
@@ -2445,14 +2419,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2479,7 +2450,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/_bulk", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/_bulk",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2510,7 +2485,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2518,7 +2493,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2526,20 +2501,20 @@ export class Ledger {
 
         const res: operations.V2CreateBulkResponse = new operations.V2CreateBulkResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case [200, 400].includes(httpRes?.status):
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2BulkResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2BulkResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2554,14 +2529,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2588,7 +2560,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}", req);
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2623,7 +2595,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2631,7 +2603,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2639,7 +2611,7 @@ export class Ledger {
 
         const res: operations.V2CreateLedgerResponse = new operations.V2CreateLedgerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2647,13 +2619,13 @@ export class Ledger {
             case httpRes?.status == 204:
                 break;
             case httpRes?.status == 400:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2669,14 +2641,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2703,7 +2672,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/transactions", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/transactions",
+            req
+        );
 
         let [reqBodyHeaders, reqBody]: [object, any] = [{}, null];
 
@@ -2741,7 +2714,7 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
@@ -2749,7 +2722,7 @@ export class Ledger {
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2758,20 +2731,20 @@ export class Ledger {
         const res: operations.V2CreateTransactionResponse =
             new operations.V2CreateTransactionResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2CreateTransactionResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2CreateTransactionResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2779,13 +2752,13 @@ export class Ledger {
                 }
                 break;
             case httpRes?.status == 400:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2801,14 +2774,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2838,7 +2808,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}",
             req
@@ -2859,14 +2829,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2875,7 +2845,7 @@ export class Ledger {
         const res: operations.V2DeleteAccountMetadataResponse =
             new operations.V2DeleteAccountMetadataResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         switch (true) {
@@ -2912,7 +2882,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}",
             req
@@ -2933,14 +2903,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "delete",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -2949,7 +2919,7 @@ export class Ledger {
         const res: operations.V2DeleteTransactionMetadataResponse =
             new operations.V2DeleteTransactionMetadataResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
@@ -2957,13 +2927,13 @@ export class Ledger {
             case httpRes?.status >= 200 && httpRes?.status < 300:
                 break;
             case httpRes?.status == 400:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -2979,14 +2949,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3013,7 +2980,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/accounts/{address}",
             req
@@ -3035,14 +3002,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3050,20 +3017,20 @@ export class Ledger {
 
         const res: operations.V2GetAccountResponse = new operations.V2GetAccountResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2AccountResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2AccountResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3079,14 +3046,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3106,7 +3070,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/ledger/v2/_info";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/ledger/v2/_info";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3123,14 +3087,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3138,20 +3102,20 @@ export class Ledger {
 
         const res: operations.V2GetInfoResponse = new operations.V2GetInfoResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2ConfigInfoResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2ConfigInfoResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3167,14 +3131,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3201,7 +3162,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}", req);
+        const operationUrl: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}", req);
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3218,14 +3179,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3233,17 +3194,17 @@ export class Ledger {
 
         const res: operations.V2GetLedgerResponse = new operations.V2GetLedgerResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2Ledger = utils.objectToClass(JSON.parse(decodedRes), shared.V2Ledger);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3259,14 +3220,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3293,7 +3251,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/_info", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/_info",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3310,14 +3272,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3325,20 +3287,20 @@ export class Ledger {
 
         const res: operations.V2GetLedgerInfoResponse = new operations.V2GetLedgerInfoResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2LedgerInfoResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2LedgerInfoResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3354,14 +3316,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3388,7 +3347,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/transactions/{id}",
             req
@@ -3410,14 +3369,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3425,20 +3384,20 @@ export class Ledger {
 
         const res: operations.V2GetTransactionResponse = new operations.V2GetTransactionResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2GetTransactionResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2GetTransactionResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3446,13 +3405,13 @@ export class Ledger {
                 }
                 break;
             case httpRes?.status == 404:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3468,14 +3427,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3502,7 +3458,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = baseURL.replace(/\/$/, "") + "/api/ledger/v2";
+        const operationUrl: string = baseURL.replace(/\/$/, "") + "/api/ledger/v2";
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3520,14 +3476,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3535,20 +3491,20 @@ export class Ledger {
 
         const res: operations.V2ListLedgersResponse = new operations.V2ListLedgersResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2LedgerListResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2LedgerListResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3564,14 +3520,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3602,7 +3555,11 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(baseURL, "/api/ledger/v2/{ledger}/stats", req);
+        const operationUrl: string = utils.generateURL(
+            baseURL,
+            "/api/ledger/v2/{ledger}/stats",
+            req
+        );
         const client: AxiosInstance = this.sdkConfiguration.defaultClient;
         let globalSecurity = this.sdkConfiguration.security;
         if (typeof globalSecurity === "function") {
@@ -3619,14 +3576,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url,
+            url: operationUrl,
             method: "get",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3634,20 +3591,20 @@ export class Ledger {
 
         const res: operations.V2ReadStatsResponse = new operations.V2ReadStatsResponse({
             statusCode: httpRes.status,
-            contentType: contentType,
+            contentType: responseContentType,
             rawResponse: httpRes,
         });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 200:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2StatsResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2StatsResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3663,14 +3620,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3697,7 +3651,7 @@ export class Ledger {
             this.sdkConfiguration.serverURL,
             this.sdkConfiguration.serverDefaults
         );
-        const url: string = utils.generateURL(
+        const operationUrl: string = utils.generateURL(
             baseURL,
             "/api/ledger/v2/{ledger}/transactions/{id}/revert",
             req
@@ -3719,14 +3673,14 @@ export class Ledger {
 
         const httpRes: AxiosResponse = await client.request({
             validateStatus: () => true,
-            url: url + queryParams,
+            url: operationUrl + queryParams,
             method: "post",
             headers: headers,
             responseType: "arraybuffer",
             ...config,
         });
 
-        const contentType: string = httpRes?.headers?.["content-type"] ?? "";
+        const responseContentType: string = httpRes?.headers?.["content-type"] ?? "";
 
         if (httpRes?.status == null) {
             throw new Error(`status code not found in response: ${httpRes}`);
@@ -3735,20 +3689,20 @@ export class Ledger {
         const res: operations.V2RevertTransactionResponse =
             new operations.V2RevertTransactionResponse({
                 statusCode: httpRes.status,
-                contentType: contentType,
+                contentType: responseContentType,
                 rawResponse: httpRes,
             });
         const decodedRes = new TextDecoder().decode(httpRes?.data);
         switch (true) {
             case httpRes?.status == 201:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     res.v2RevertTransactionResponse = utils.objectToClass(
                         JSON.parse(decodedRes),
                         shared.V2RevertTransactionResponse
                     );
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3756,13 +3710,13 @@ export class Ledger {
                 }
                 break;
             case httpRes?.status == 400:
-                if (utils.matchContentType(contentType, `application/json`)) {
+                if (utils.matchContentType(responseContentType, `application/json`)) {
                     const err = utils.objectToClass(JSON.parse(decodedRes), errors.V2ErrorResponse);
                     err.rawResponse = httpRes;
                     throw new errors.V2ErrorResponse(err);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes
@@ -3778,14 +3732,11 @@ export class Ledger {
                     httpRes
                 );
             default:
-                if (utils.matchContentType(contentType, `application/json`)) {
-                    res.v2ErrorResponse = utils.objectToClass(
-                        JSON.parse(decodedRes),
-                        shared.V2ErrorResponse
-                    );
+                if (utils.matchContentType(responseContentType, `application/json`)) {
+                    res.v2ErrorResponse = JSON.parse(decodedRes);
                 } else {
                     throw new errors.SDKError(
-                        "unknown content-type received: " + contentType,
+                        "unknown content-type received: " + responseContentType,
                         httpRes.status,
                         decodedRes,
                         httpRes

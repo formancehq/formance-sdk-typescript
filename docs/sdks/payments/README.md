@@ -52,11 +52,9 @@ Add an account to a pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.addAccountToPool({
@@ -66,25 +64,30 @@ import { SDK } from "@formance/formance-sdk";
     poolId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.AddAccountToPoolRequest](../../models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.AddAccountToPoolRequest](../../sdk/models/operations/addaccounttopoolrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
 
 
 ### Response
 
-**Promise<[operations.AddAccountToPoolResponse](../../models/operations/addaccounttopoolresponse.md)>**
+**Promise<[operations.AddAccountToPoolResponse](../../sdk/models/operations/addaccounttopoolresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## connectorsTransfer
 
@@ -96,11 +99,9 @@ Execute a transfer between two accounts.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.connectorsTransfer({
@@ -113,25 +114,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connector: Connector.CurrencyCloud,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.ConnectorsTransferRequest](../../models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.ConnectorsTransferRequest](../../sdk/models/operations/connectorstransferrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.ConnectorsTransferResponse](../../models/operations/connectorstransferresponse.md)>**
+**Promise<[operations.ConnectorsTransferResponse](../../sdk/models/operations/connectorstransferresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## createBankAccount
 
@@ -142,11 +148,9 @@ Create a bank account in Payments and on the PSP.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.createBankAccount({
@@ -158,25 +162,30 @@ import { SDK } from "@formance/formance-sdk";
     name: "My account",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `request`                                                              | [shared.BankAccountRequest](../../models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [shared.BankAccountRequest](../../sdk/models/shared/bankaccountrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
 
 
 ### Response
 
-**Promise<[operations.CreateBankAccountResponse](../../models/operations/createbankaccountresponse.md)>**
+**Promise<[operations.CreateBankAccountResponse](../../sdk/models/operations/createbankaccountresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## createPayment
 
@@ -188,43 +197,46 @@ Create a payment
 import { SDK } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.createPayment({
     amount: 100,
     asset: "USD",
     connectorID: "string",
-    createdAt: new Date("2023-11-09T02:12:55.787Z"),
+    createdAt: new Date("2024-11-09T01:03:21.153Z"),
     reference: "string",
     scheme: PaymentScheme.GooglePay,
     status: PaymentStatus.Refunded,
     type: PaymentType.Transfer,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `request`                                                      | [shared.PaymentRequest](../../models/shared/paymentrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
-| `config`                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)   | :heavy_minus_sign:                                             | Available config options for making requests.                  |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `request`                                                          | [shared.PaymentRequest](../../sdk/models/shared/paymentrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `config`                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)       | :heavy_minus_sign:                                                 | Available config options for making requests.                      |
 
 
 ### Response
 
-**Promise<[operations.CreatePaymentResponse](../../models/operations/createpaymentresponse.md)>**
+**Promise<[operations.CreatePaymentResponse](../../sdk/models/operations/createpaymentresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## createPool
 
@@ -235,11 +247,9 @@ Create a Pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.createPool({
@@ -249,25 +259,30 @@ import { SDK } from "@formance/formance-sdk";
     name: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
 | Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `request`                                                    | [shared.PoolRequest](../../models/shared/poolrequest.md)     | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `request`                                                    | [shared.PoolRequest](../../sdk/models/shared/poolrequest.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
 | `config`                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config) | :heavy_minus_sign:                                           | Available config options for making requests.                |
 
 
 ### Response
 
-**Promise<[operations.CreatePoolResponse](../../models/operations/createpoolresponse.md)>**
+**Promise<[operations.CreatePoolResponse](../../sdk/models/operations/createpoolresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## createTransferInitiation
 
@@ -279,11 +294,9 @@ Create a transfer initiation
 import { SDK } from "@formance/formance-sdk";
 import { Connector, TransferInitiationRequestType } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.createTransferInitiation({
@@ -295,31 +308,36 @@ import { Connector, TransferInitiationRequestType } from "@formance/formance-sdk
       "key": "string",
     },
     reference: "XXX",
-    scheduledAt: new Date("2022-05-04T12:05:29.406Z"),
+    scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
     sourceAccountID: "string",
     type: TransferInitiationRequestType.Transfer,
     validated: false,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [shared.TransferInitiationRequest](../../models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [shared.TransferInitiationRequest](../../sdk/models/shared/transferinitiationrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
 
-**Promise<[operations.CreateTransferInitiationResponse](../../models/operations/createtransferinitiationresponse.md)>**
+**Promise<[operations.CreateTransferInitiationResponse](../../sdk/models/operations/createtransferinitiationresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## deletePool
 
@@ -330,36 +348,39 @@ Delete a pool by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.deletePool({
     poolId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.DeletePoolRequest](../../models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.DeletePoolRequest](../../sdk/models/operations/deletepoolrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
 
 
 ### Response
 
-**Promise<[operations.DeletePoolResponse](../../models/operations/deletepoolresponse.md)>**
+**Promise<[operations.DeletePoolResponse](../../sdk/models/operations/deletepoolresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## deleteTransferInitiation
 
@@ -370,36 +391,39 @@ Delete a transfer initiation by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.deleteTransferInitiation({
     transferId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                | [operations.DeleteTransferInitiationRequest](../../models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
-| `config`                                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                             | :heavy_minus_sign:                                                                                       | Available config options for making requests.                                                            |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                    | [operations.DeleteTransferInitiationRequest](../../sdk/models/operations/deletetransferinitiationrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `config`                                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                 | :heavy_minus_sign:                                                                                           | Available config options for making requests.                                                                |
 
 
 ### Response
 
-**Promise<[operations.DeleteTransferInitiationResponse](../../models/operations/deletetransferinitiationresponse.md)>**
+**Promise<[operations.DeleteTransferInitiationResponse](../../sdk/models/operations/deletetransferinitiationresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getAccountBalances
 
@@ -410,11 +434,9 @@ Get account balances
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getAccountBalances({
@@ -425,25 +447,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.GetAccountBalancesRequest](../../models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.GetAccountBalancesRequest](../../sdk/models/operations/getaccountbalancesrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.GetAccountBalancesResponse](../../models/operations/getaccountbalancesresponse.md)>**
+**Promise<[operations.GetAccountBalancesResponse](../../sdk/models/operations/getaccountbalancesresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getBankAccount
 
@@ -454,36 +481,39 @@ Get a bank account created by user on Formance
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getBankAccount({
     bankAccountId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.GetBankAccountRequest](../../models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.GetBankAccountRequest](../../sdk/models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
 
-**Promise<[operations.GetBankAccountResponse](../../models/operations/getbankaccountresponse.md)>**
+**Promise<[operations.GetBankAccountResponse](../../sdk/models/operations/getbankaccountresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~getConnectorTask~~
 
@@ -497,11 +527,9 @@ Get a specific task associated to the connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getConnectorTask({
@@ -509,25 +537,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     taskId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.GetConnectorTaskRequest](../../models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.GetConnectorTaskRequest](../../sdk/models/operations/getconnectortaskrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
 
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskResponse](../../models/operations/getconnectortaskresponse.md)>**
+**Promise<[operations.GetConnectorTaskResponse](../../sdk/models/operations/getconnectortaskresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getConnectorTaskV1
 
@@ -539,11 +572,9 @@ Get a specific task associated to the connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getConnectorTaskV1({
@@ -552,25 +583,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     taskId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.GetConnectorTaskV1Request](../../models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.GetConnectorTaskV1Request](../../sdk/models/operations/getconnectortaskv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskV1Response](../../models/operations/getconnectortaskv1response.md)>**
+**Promise<[operations.GetConnectorTaskV1Response](../../sdk/models/operations/getconnectortaskv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getPayment
 
@@ -581,36 +617,39 @@ Get a payment
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getPayment({
     paymentId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `request`                                                                    | [operations.GetPaymentRequest](../../models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `config`                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                 | :heavy_minus_sign:                                                           | Available config options for making requests.                                |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `request`                                                                        | [operations.GetPaymentRequest](../../sdk/models/operations/getpaymentrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
 
 
 ### Response
 
-**Promise<[operations.GetPaymentResponse](../../models/operations/getpaymentresponse.md)>**
+**Promise<[operations.GetPaymentResponse](../../sdk/models/operations/getpaymentresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getPool
 
@@ -621,36 +660,39 @@ Get a Pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getPool({
     poolId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `request`                                                              | [operations.GetPoolRequest](../../models/operations/getpoolrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `config`                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)           | :heavy_minus_sign:                                                     | Available config options for making requests.                          |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [operations.GetPoolRequest](../../sdk/models/operations/getpoolrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
 
 
 ### Response
 
-**Promise<[operations.GetPoolResponse](../../models/operations/getpoolresponse.md)>**
+**Promise<[operations.GetPoolResponse](../../sdk/models/operations/getpoolresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getPoolBalances
 
@@ -661,37 +703,40 @@ Get pool balances
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getPoolBalances({
-    at: new Date("2022-05-04T19:57:32.195Z"),
+    at: new Date("2023-05-05T06:40:23.018Z"),
     poolId: "string",
   });
-
 
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `request`                                                                              | [operations.GetPoolBalancesRequest](../../models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `config`                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                           | :heavy_minus_sign:                                                                     | Available config options for making requests.                                          |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `request`                                                                                  | [operations.GetPoolBalancesRequest](../../sdk/models/operations/getpoolbalancesrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `config`                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                               | :heavy_minus_sign:                                                                         | Available config options for making requests.                                              |
 
 
 ### Response
 
-**Promise<[operations.GetPoolBalancesResponse](../../models/operations/getpoolbalancesresponse.md)>**
+**Promise<[operations.GetPoolBalancesResponse](../../sdk/models/operations/getpoolbalancesresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## getTransferInitiation
 
@@ -702,36 +747,39 @@ Get a transfer initiation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.getTransferInitiation({
     transferId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.GetTransferInitiationRequest](../../models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.GetTransferInitiationRequest](../../sdk/models/operations/gettransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
 
 
 ### Response
 
-**Promise<[operations.GetTransferInitiationResponse](../../models/operations/gettransferinitiationresponse.md)>**
+**Promise<[operations.GetTransferInitiationResponse](../../sdk/models/operations/gettransferinitiationresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## installConnector
 
@@ -743,11 +791,9 @@ Install a connector by its name and config.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.installConnector({
@@ -755,25 +801,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connector: Connector.Wise,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.InstallConnectorRequest](../../models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.InstallConnectorRequest](../../sdk/models/operations/installconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
 
 
 ### Response
 
-**Promise<[operations.InstallConnectorResponse](../../models/operations/installconnectorresponse.md)>**
+**Promise<[operations.InstallConnectorResponse](../../sdk/models/operations/installconnectorresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listAllConnectors
 
@@ -784,20 +835,19 @@ List all installed connectors.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listAllConnectors();
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -809,8 +859,12 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.ListAllConnectorsResponse](../../models/operations/listallconnectorsresponse.md)>**
+**Promise<[operations.ListAllConnectorsResponse](../../sdk/models/operations/listallconnectorsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listBankAccounts
 
@@ -821,11 +875,9 @@ List all bank accounts created by user on Formance.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listBankAccounts({
@@ -835,25 +887,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.ListBankAccountsRequest](../../models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ListBankAccountsRequest](../../sdk/models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
 
 
 ### Response
 
-**Promise<[operations.ListBankAccountsResponse](../../models/operations/listbankaccountsresponse.md)>**
+**Promise<[operations.ListBankAccountsResponse](../../sdk/models/operations/listbankaccountsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listConfigsAvailableConnectors
 
@@ -864,20 +921,19 @@ List the configs of each available connector.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listConfigsAvailableConnectors();
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -889,8 +945,12 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.ListConfigsAvailableConnectorsResponse](../../models/operations/listconfigsavailableconnectorsresponse.md)>**
+**Promise<[operations.ListConfigsAvailableConnectorsResponse](../../sdk/models/operations/listconfigsavailableconnectorsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~listConnectorTasks~~
 
@@ -904,11 +964,9 @@ List all tasks associated with this connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listConnectorTasks({
@@ -916,25 +974,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.ListConnectorTasksRequest](../../models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.ListConnectorTasksRequest](../../sdk/models/operations/listconnectortasksrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksResponse](../../models/operations/listconnectortasksresponse.md)>**
+**Promise<[operations.ListConnectorTasksResponse](../../sdk/models/operations/listconnectortasksresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listConnectorTasksV1
 
@@ -946,11 +1009,9 @@ List all tasks associated with this connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listConnectorTasksV1({
@@ -959,25 +1020,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.ListConnectorTasksV1Request](../../models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [operations.ListConnectorTasksV1Request](../../sdk/models/operations/listconnectortasksv1request.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `config`                                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                         | :heavy_minus_sign:                                                                                   | Available config options for making requests.                                                        |
 
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksV1Response](../../models/operations/listconnectortasksv1response.md)>**
+**Promise<[operations.ListConnectorTasksV1Response](../../sdk/models/operations/listconnectortasksv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listPayments
 
@@ -988,11 +1054,9 @@ List payments
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listPayments({
@@ -1002,25 +1066,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `request`                                                                        | [operations.ListPaymentsRequest](../../models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `config`                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                     | :heavy_minus_sign:                                                               | Available config options for making requests.                                    |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.ListPaymentsRequest](../../sdk/models/operations/listpaymentsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
 
 
 ### Response
 
-**Promise<[operations.ListPaymentsResponse](../../models/operations/listpaymentsresponse.md)>**
+**Promise<[operations.ListPaymentsResponse](../../sdk/models/operations/listpaymentsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listPools
 
@@ -1031,11 +1100,9 @@ List Pools
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listPools({
@@ -1045,25 +1112,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `request`                                                                  | [operations.ListPoolsRequest](../../models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `config`                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)               | :heavy_minus_sign:                                                         | Available config options for making requests.                              |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `request`                                                                      | [operations.ListPoolsRequest](../../sdk/models/operations/listpoolsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `config`                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                   | :heavy_minus_sign:                                                             | Available config options for making requests.                                  |
 
 
 ### Response
 
-**Promise<[operations.ListPoolsResponse](../../models/operations/listpoolsresponse.md)>**
+**Promise<[operations.ListPoolsResponse](../../sdk/models/operations/listpoolsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## listTransferInitiations
 
@@ -1074,11 +1146,9 @@ List Transfer Initiations
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.listTransferInitiations({
@@ -1088,25 +1158,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                              | [operations.ListTransferInitiationsRequest](../../models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.ListTransferInitiationsRequest](../../sdk/models/operations/listtransferinitiationsrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `config`                                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                               | :heavy_minus_sign:                                                                                         | Available config options for making requests.                                                              |
 
 
 ### Response
 
-**Promise<[operations.ListTransferInitiationsResponse](../../models/operations/listtransferinitiationsresponse.md)>**
+**Promise<[operations.ListTransferInitiationsResponse](../../sdk/models/operations/listtransferinitiationsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentsgetAccount
 
@@ -1117,36 +1192,39 @@ Get an account
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.paymentsgetAccount({
     accountId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.PaymentsgetAccountRequest](../../models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.PaymentsgetAccountRequest](../../sdk/models/operations/paymentsgetaccountrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.PaymentsgetAccountResponse](../../models/operations/paymentsgetaccountresponse.md)>**
+**Promise<[operations.PaymentsgetAccountResponse](../../sdk/models/operations/paymentsgetaccountresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentsgetServerInfo
 
@@ -1157,20 +1235,19 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.paymentsgetServerInfo();
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
@@ -1182,8 +1259,12 @@ import { SDK } from "@formance/formance-sdk";
 
 ### Response
 
-**Promise<[operations.PaymentsgetServerInfoResponse](../../models/operations/paymentsgetserverinforesponse.md)>**
+**Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## paymentslistAccounts
 
@@ -1194,11 +1275,9 @@ List accounts
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.paymentslistAccounts({
@@ -1208,25 +1287,30 @@ import { SDK } from "@formance/formance-sdk";
     ],
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.PaymentslistAccountsRequest](../../models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [operations.PaymentslistAccountsRequest](../../sdk/models/operations/paymentslistaccountsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `config`                                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                         | :heavy_minus_sign:                                                                                   | Available config options for making requests.                                                        |
 
 
 ### Response
 
-**Promise<[operations.PaymentslistAccountsResponse](../../models/operations/paymentslistaccountsresponse.md)>**
+**Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~readConnectorConfig~~
 
@@ -1240,36 +1324,39 @@ Read connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.readConnectorConfig({
     connector: Connector.Adyen,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `request`                                                                                      | [operations.ReadConnectorConfigRequest](../../models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `config`                                                                                       | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                   | :heavy_minus_sign:                                                                             | Available config options for making requests.                                                  |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.ReadConnectorConfigRequest](../../sdk/models/operations/readconnectorconfigrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
 
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigResponse](../../models/operations/readconnectorconfigresponse.md)>**
+**Promise<[operations.ReadConnectorConfigResponse](../../sdk/models/operations/readconnectorconfigresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## readConnectorConfigV1
 
@@ -1281,11 +1368,9 @@ Read connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.readConnectorConfigV1({
@@ -1293,25 +1378,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connectorId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.ReadConnectorConfigV1Request](../../models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.ReadConnectorConfigV1Request](../../sdk/models/operations/readconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
 
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigV1Response](../../models/operations/readconnectorconfigv1response.md)>**
+**Promise<[operations.ReadConnectorConfigV1Response](../../sdk/models/operations/readconnectorconfigv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## removeAccountFromPool
 
@@ -1322,11 +1412,9 @@ Remove an account from a pool by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.removeAccountFromPool({
@@ -1334,25 +1422,30 @@ import { SDK } from "@formance/formance-sdk";
     poolId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `request`                                                                                          | [operations.RemoveAccountFromPoolRequest](../../models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `config`                                                                                           | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                       | :heavy_minus_sign:                                                                                 | Available config options for making requests.                                                      |
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [operations.RemoveAccountFromPoolRequest](../../sdk/models/operations/removeaccountfrompoolrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
 
 
 ### Response
 
-**Promise<[operations.RemoveAccountFromPoolResponse](../../models/operations/removeaccountfrompoolresponse.md)>**
+**Promise<[operations.RemoveAccountFromPoolResponse](../../sdk/models/operations/removeaccountfrompoolresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~resetConnector~~
 
@@ -1368,36 +1461,39 @@ It will remove the connector and ALL PAYMENTS generated with it.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.resetConnector({
     connector: Connector.Moneycorp,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.ResetConnectorRequest](../../models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.ResetConnectorRequest](../../sdk/models/operations/resetconnectorrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
 
-**Promise<[operations.ResetConnectorResponse](../../models/operations/resetconnectorresponse.md)>**
+**Promise<[operations.ResetConnectorResponse](../../sdk/models/operations/resetconnectorresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## resetConnectorV1
 
@@ -1411,11 +1507,9 @@ It will remove the connector and ALL PAYMENTS generated with it.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.resetConnectorV1({
@@ -1423,25 +1517,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connectorId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `request`                                                                                | [operations.ResetConnectorV1Request](../../models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.ResetConnectorV1Request](../../sdk/models/operations/resetconnectorv1request.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
 
 
 ### Response
 
-**Promise<[operations.ResetConnectorV1Response](../../models/operations/resetconnectorv1response.md)>**
+**Promise<[operations.ResetConnectorV1Response](../../sdk/models/operations/resetconnectorv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## retryTransferInitiation
 
@@ -1452,36 +1551,39 @@ Retry a failed transfer initiation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.retryTransferInitiation({
     transferId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                              | [operations.RetryTransferInitiationRequest](../../models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.RetryTransferInitiationRequest](../../sdk/models/operations/retrytransferinitiationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `config`                                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                               | :heavy_minus_sign:                                                                                         | Available config options for making requests.                                                              |
 
 
 ### Response
 
-**Promise<[operations.RetryTransferInitiationResponse](../../models/operations/retrytransferinitiationresponse.md)>**
+**Promise<[operations.RetryTransferInitiationResponse](../../sdk/models/operations/retrytransferinitiationresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## udpateTransferInitiationStatus
 
@@ -1491,41 +1593,44 @@ Update a transfer initiation status
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { UpdateTransferInitiationStatusRequestStatus } from "@formance/formance-sdk/dist/sdk/models/shared";
+import { Status } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.udpateTransferInitiationStatus({
     updateTransferInitiationStatusRequest: {
-      status: UpdateTransferInitiationStatusRequestStatus.Validated,
+      status: Status.Validated,
     },
     transferId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                            | [operations.UdpateTransferInitiationStatusRequest](../../models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
-| `config`                                                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                         | :heavy_minus_sign:                                                                                                   | Available config options for making requests.                                                                        |
+| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                | [operations.UdpateTransferInitiationStatusRequest](../../sdk/models/operations/udpatetransferinitiationstatusrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
+| `config`                                                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                                             | :heavy_minus_sign:                                                                                                       | Available config options for making requests.                                                                            |
 
 
 ### Response
 
-**Promise<[operations.UdpateTransferInitiationStatusResponse](../../models/operations/udpatetransferinitiationstatusresponse.md)>**
+**Promise<[operations.UdpateTransferInitiationStatusResponse](../../sdk/models/operations/udpatetransferinitiationstatusresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## ~~uninstallConnector~~
 
@@ -1539,36 +1644,39 @@ Uninstall a connector by its name.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.uninstallConnector({
     connector: Connector.Wise,
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.UninstallConnectorRequest](../../models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `config`                                                                                     | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                 | :heavy_minus_sign:                                                                           | Available config options for making requests.                                                |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `request`                                                                                        | [operations.UninstallConnectorRequest](../../sdk/models/operations/uninstallconnectorrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
 
 
 ### Response
 
-**Promise<[operations.UninstallConnectorResponse](../../models/operations/uninstallconnectorresponse.md)>**
+**Promise<[operations.UninstallConnectorResponse](../../sdk/models/operations/uninstallconnectorresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## uninstallConnectorV1
 
@@ -1580,11 +1688,9 @@ Uninstall a connector by its name.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.uninstallConnectorV1({
@@ -1592,25 +1698,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connectorId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `request`                                                                                        | [operations.UninstallConnectorV1Request](../../models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `config`                                                                                         | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                     | :heavy_minus_sign:                                                                               | Available config options for making requests.                                                    |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [operations.UninstallConnectorV1Request](../../sdk/models/operations/uninstallconnectorv1request.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `config`                                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                         | :heavy_minus_sign:                                                                                   | Available config options for making requests.                                                        |
 
 
 ### Response
 
-**Promise<[operations.UninstallConnectorV1Response](../../models/operations/uninstallconnectorv1response.md)>**
+**Promise<[operations.UninstallConnectorV1Response](../../sdk/models/operations/uninstallconnectorv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## updateConnectorConfigV1
 
@@ -1622,11 +1733,9 @@ Update connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.updateConnectorConfigV1({
@@ -1635,25 +1744,30 @@ import { Connector } from "@formance/formance-sdk/dist/sdk/models/shared";
     connectorId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                              | [operations.UpdateConnectorConfigV1Request](../../models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
-| `config`                                                                                               | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                           | :heavy_minus_sign:                                                                                     | Available config options for making requests.                                                          |
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.UpdateConnectorConfigV1Request](../../sdk/models/operations/updateconnectorconfigv1request.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `config`                                                                                                   | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                                               | :heavy_minus_sign:                                                                                         | Available config options for making requests.                                                              |
 
 
 ### Response
 
-**Promise<[operations.UpdateConnectorConfigV1Response](../../models/operations/updateconnectorconfigv1response.md)>**
+**Promise<[operations.UpdateConnectorConfigV1Response](../../sdk/models/operations/updateconnectorconfigv1response.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## updateMetadata
 
@@ -1664,11 +1778,9 @@ Update metadata
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-(async() => {
+async function run() {
   const sdk = new SDK({
-    security: {
-      authorization: "",
-    },
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
   const res = await sdk.payments.updateMetadata({
@@ -1678,22 +1790,27 @@ import { SDK } from "@formance/formance-sdk";
     paymentId: "string",
   });
 
-
   if (res.statusCode == 200) {
     // handle response
   }
-})();
+}
+
+run();
 ```
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `request`                                                                            | [operations.UpdateMetadataRequest](../../models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `config`                                                                             | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                         | :heavy_minus_sign:                                                                   | Available config options for making requests.                                        |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.UpdateMetadataRequest](../../sdk/models/operations/updatemetadatarequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `config`                                                                                 | [AxiosRequestConfig](https://axios-http.com/docs/req_config)                             | :heavy_minus_sign:                                                                       | Available config options for making requests.                                            |
 
 
 ### Response
 
-**Promise<[operations.UpdateMetadataResponse](../../models/operations/updatemetadataresponse.md)>**
+**Promise<[operations.UpdateMetadataResponse](../../sdk/models/operations/updatemetadataresponse.md)>**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

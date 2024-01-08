@@ -10,7 +10,7 @@ import { PaymentStatus } from "./paymentstatus";
 import { PaymentType } from "./paymenttype";
 import { Expose, Transform, Type } from "class-transformer";
 
-export class PaymentRaw extends SpeakeasyBase {}
+export class Raw extends SpeakeasyBase {}
 
 export class Payment extends SpeakeasyBase {
     @SpeakeasyMetadata({ elemType: PaymentAdjustment })
@@ -57,8 +57,8 @@ export class Payment extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "raw" })
-    @Type(() => PaymentRaw)
-    raw: PaymentRaw;
+    @Type(() => Raw)
+    raw: Raw;
 
     @SpeakeasyMetadata()
     @Expose({ name: "reference" })

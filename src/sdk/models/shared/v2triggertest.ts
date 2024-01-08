@@ -5,7 +5,7 @@
 import { objectToClass, SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Transform, Type } from "class-transformer";
 
-export class V2TriggerTestFilter extends SpeakeasyBase {
+export class Filter extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "error" })
     error?: string;
@@ -15,7 +15,7 @@ export class V2TriggerTestFilter extends SpeakeasyBase {
     match?: boolean;
 }
 
-export class V2TriggerTestVariables extends SpeakeasyBase {
+export class Variables extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "error" })
     error?: string;
@@ -28,20 +28,20 @@ export class V2TriggerTestVariables extends SpeakeasyBase {
 export class V2TriggerTest extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "filter" })
-    @Type(() => V2TriggerTestFilter)
-    filter?: V2TriggerTestFilter;
+    @Type(() => Filter)
+    filter?: Filter;
 
-    @SpeakeasyMetadata({ elemType: V2TriggerTestVariables })
+    @SpeakeasyMetadata({ elemType: Variables })
     @Expose({ name: "variables" })
     @Transform(
         ({ value }) => {
-            const obj: Record<string, V2TriggerTestVariables> = {};
+            const obj: Record<string, Variables> = {};
             for (const key in value) {
-                obj[key] = objectToClass(value[key], V2TriggerTestVariables);
+                obj[key] = objectToClass(value[key], Variables);
             }
             return obj;
         },
         { toClassOnly: true }
     )
-    variables?: Record<string, V2TriggerTestVariables>;
+    variables?: Record<string, Variables>;
 }

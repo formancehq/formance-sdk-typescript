@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Transform } from "class-transformer";
 
-export enum MigrationInfoState {
+export enum State {
     ToDo = "to do",
     Done = "done",
 }
@@ -22,7 +22,7 @@ export class MigrationInfo extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "state" })
-    state?: MigrationInfoState;
+    state?: State;
 
     @SpeakeasyMetadata()
     @Expose({ name: "version" })

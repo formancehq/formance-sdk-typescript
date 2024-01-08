@@ -6,7 +6,7 @@ import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { MigrationInfo } from "./migrationinfo";
 import { Expose, Type } from "class-transformer";
 
-export class LedgerInfoStorage extends SpeakeasyBase {
+export class Storage extends SpeakeasyBase {
     @SpeakeasyMetadata({ elemType: MigrationInfo })
     @Expose({ name: "migrations" })
     @Type(() => MigrationInfo)
@@ -20,6 +20,6 @@ export class LedgerInfo extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "storage" })
-    @Type(() => LedgerInfoStorage)
-    storage?: LedgerInfoStorage;
+    @Type(() => Storage)
+    storage?: Storage;
 }

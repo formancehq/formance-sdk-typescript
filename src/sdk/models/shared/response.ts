@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
-export class ResponseCursorTotal extends SpeakeasyBase {
+export class Total extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "relation" })
     relation?: string;
@@ -38,8 +38,8 @@ export class ResponseCursor extends SpeakeasyBase {
 
     @SpeakeasyMetadata()
     @Expose({ name: "total" })
-    @Type(() => ResponseCursorTotal)
-    total?: ResponseCursorTotal;
+    @Type(() => Total)
+    total?: Total;
 }
 
 export class Response extends SpeakeasyBase {

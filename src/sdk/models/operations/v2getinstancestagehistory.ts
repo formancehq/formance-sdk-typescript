@@ -3,7 +3,8 @@
  */
 
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
-import * as shared from "../shared";
+import * as errors from "../../../sdk/models/errors";
+import * as shared from "../../../sdk/models/shared";
 import { AxiosResponse } from "axios";
 
 export class V2GetInstanceStageHistoryRequest extends SpeakeasyBase {
@@ -37,13 +38,13 @@ export class V2GetInstanceStageHistoryResponse extends SpeakeasyBase {
      * Raw HTTP response; suitable for custom response parsing
      */
     @SpeakeasyMetadata()
-    rawResponse?: AxiosResponse;
+    rawResponse: AxiosResponse;
 
     /**
      * General error
      */
     @SpeakeasyMetadata()
-    v2Error?: shared.V2Error;
+    v2Error?: errors.V2Error;
 
     /**
      * The workflow instance stage history

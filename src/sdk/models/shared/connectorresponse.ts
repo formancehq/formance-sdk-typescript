@@ -5,7 +5,7 @@
 import { SpeakeasyBase, SpeakeasyMetadata } from "../../../internal/utils";
 import { Expose, Type } from "class-transformer";
 
-export class ConnectorResponseData extends SpeakeasyBase {
+export class Data extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "connectorID" })
     connectorID: string;
@@ -14,6 +14,6 @@ export class ConnectorResponseData extends SpeakeasyBase {
 export class ConnectorResponse extends SpeakeasyBase {
     @SpeakeasyMetadata()
     @Expose({ name: "data" })
-    @Type(() => ConnectorResponseData)
-    data: ConnectorResponseData;
+    @Type(() => Data)
+    data: Data;
 }
