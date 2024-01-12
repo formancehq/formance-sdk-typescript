@@ -161,6 +161,7 @@ export * from "./transactions";
 export * from "./transactionscursorresponse";
 export * from "./transactionsresponse";
 export * from "./transferinitiation";
+export * from "./transferinitiationadjusments";
 export * from "./transferinitiationpayments";
 export * from "./transferinitiationrequest";
 export * from "./transferinitiationresponse";

@@ -1,2 +1,9 @@
-dist/
-node_modules/
+/models
+/sdk/models/errors
+/sdk/types
+/lib
+/sdk
+/index.*
+/cjs
+/node_modules
+/.tsbuildinfo

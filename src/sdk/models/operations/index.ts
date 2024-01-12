@@ -59,7 +59,6 @@ export * from "./getpolicy";
 export * from "./getpool";
 export * from "./getpoolbalances";
 export * from "./getreconciliation";
-export * from "./getserverinfo";
 export * from "./gettransaction";
 export * from "./gettransactions";
 export * from "./gettransferinitiation";
