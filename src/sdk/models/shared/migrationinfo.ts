@@ -5,8 +5,8 @@
 import { z } from "zod";
 
 export enum State {
-    ToDo = "to do",
-    Done = "done",
+    ToDo = "TO DO",
+    Done = "DONE",
 }
 
 export type MigrationInfo = {

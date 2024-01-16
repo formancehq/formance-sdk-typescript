@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: 0ca5b84a-3ba0-4a7e-92ad-aca4c6fc378f
+id: b9d1a5ae-1066-4858-9cca-59f29423c455
 management:
-  docChecksum: 95f392ca415ee81efbcf27592234e0ec
-  docVersion: v2.0.0-beta.8
+  docChecksum: 19f45ae5d8990dc505885da49871ae14
+  docVersion: v2.0.0-beta.9
   speakeasyVersion: internal
   generationVersion: 2.230.1
-  releaseVersion: v2.0.0-beta.8
-  configChecksum: 73521a4a4ea712aa566738b1b5626638
+  releaseVersion: v2.0.0-beta.9
+  configChecksum: 1414e6389bb9958f36f1445b3e3586b1
 features:
   typescript:
     core: 3.4.3
