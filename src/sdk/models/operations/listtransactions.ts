@@ -122,7 +122,7 @@ export namespace ListTransactionsRequest$ {
                 .optional(),
             ledger: z.string(),
             metadata: z.record(z.any()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             reference: z.string().optional(),
             source: z.string().optional(),
             startTime: z
@@ -155,7 +155,7 @@ export namespace ListTransactionsRequest$ {
         endTime?: string | undefined;
         ledger: string;
         metadata?: Record<string, any> | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         reference?: string | undefined;
         source?: string | undefined;
         startTime?: string | undefined;
@@ -173,7 +173,7 @@ export namespace ListTransactionsRequest$ {
                 .optional(),
             ledger: z.string(),
             metadata: z.record(z.any()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             reference: z.string().optional(),
             source: z.string().optional(),
             startTime: z
@@ -190,7 +190,7 @@ export namespace ListTransactionsRequest$ {
                 ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 ...(v.source === undefined ? null : { source: v.source }),
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),

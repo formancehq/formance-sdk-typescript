@@ -9,7 +9,7 @@ export type V2DeleteTransactionMetadataRequest = {
     /**
      * Transaction ID.
      */
-    id: number;
+    id: bigint;
     /**
      * The key to remove.
      */
@@ -53,7 +53,7 @@ export namespace V2DeleteTransactionMetadataRequest$ {
         Inbound
     > = z
         .object({
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             key: z.string(),
             ledger: z.string(),
         })
@@ -77,7 +77,7 @@ export namespace V2DeleteTransactionMetadataRequest$ {
         V2DeleteTransactionMetadataRequest
     > = z
         .object({
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             key: z.string(),
             ledger: z.string(),
         })

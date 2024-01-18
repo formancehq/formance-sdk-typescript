@@ -94,7 +94,7 @@ export namespace ListLogsRequest$ {
                 .transform((v) => new Date(v))
                 .optional(),
             ledger: z.string(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             startTime: z
                 .string()
                 .datetime({ offset: true })
@@ -117,7 +117,7 @@ export namespace ListLogsRequest$ {
         cursor?: string | undefined;
         endTime?: string | undefined;
         ledger: string;
-        pageSize?: number | undefined;
+        pageSize: number;
         startTime?: string | undefined;
     };
 
@@ -130,7 +130,7 @@ export namespace ListLogsRequest$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             ledger: z.string(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             startTime: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -142,7 +142,7 @@ export namespace ListLogsRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),
             };
         });

@@ -11,7 +11,7 @@ export type V2GetTransactionRequest = {
     /**
      * Transaction ID.
      */
-    id: number;
+    id: bigint;
     /**
      * Name of the ledger.
      */
@@ -54,7 +54,7 @@ export namespace V2GetTransactionRequest$ {
     export const inboundSchema: z.ZodType<V2GetTransactionRequest, z.ZodTypeDef, Inbound> = z
         .object({
             expand: z.string().optional(),
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             ledger: z.string(),
             pit: z
                 .string()
@@ -81,7 +81,7 @@ export namespace V2GetTransactionRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2GetTransactionRequest> = z
         .object({
             expand: z.string().optional(),
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             ledger: z.string(),
             pit: z
                 .date()

@@ -12,7 +12,7 @@ export type OrchestrationPaymentAdjustmentRaw = {};
 
 export type OrchestrationPaymentAdjustment = {
     absolute: boolean;
-    amount: number;
+    amount: bigint;
     date: Date;
     raw: OrchestrationPaymentAdjustmentRaw;
     status: OrchestrationPaymentStatus;
@@ -50,7 +50,7 @@ export namespace OrchestrationPaymentAdjustment$ {
     export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, Inbound> = z
         .object({
             absolute: z.boolean(),
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             date: z
                 .string()
                 .datetime({ offset: true })
@@ -80,7 +80,7 @@ export namespace OrchestrationPaymentAdjustment$ {
         z
             .object({
                 absolute: z.boolean(),
-                amount: z.number().int(),
+                amount: z.bigint().transform((v) => Number(v)),
                 date: z.date().transform((v) => v.toISOString()),
                 raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.outboundSchema),
                 status: OrchestrationPaymentStatus$,

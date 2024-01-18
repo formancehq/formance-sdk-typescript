@@ -10,7 +10,7 @@ export type OrchestrationV2Transaction = {
     postings: Array<V2Posting>;
     reference?: string | undefined;
     timestamp: Date;
-    txid: number;
+    txid: bigint;
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export namespace OrchestrationV2Transaction$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            txid: z.number().int(),
+            txid: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -58,7 +58,7 @@ export namespace OrchestrationV2Transaction$ {
             postings: z.array(V2Posting$.outboundSchema),
             reference: z.string().optional(),
             timestamp: z.date().transform((v) => v.toISOString()),
-            txid: z.number().int(),
+            txid: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

@@ -8,7 +8,7 @@ export type V2Monetary = {
     /**
      * The amount of the monetary value.
      */
-    amount: number;
+    amount: bigint;
     /**
      * The asset of the monetary value.
      */
@@ -24,7 +24,7 @@ export namespace V2Monetary$ {
 
     export const inboundSchema: z.ZodType<V2Monetary, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
         })
         .transform((v) => {
@@ -41,7 +41,7 @@ export namespace V2Monetary$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Monetary> = z
         .object({
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
         })
         .transform((v) => {

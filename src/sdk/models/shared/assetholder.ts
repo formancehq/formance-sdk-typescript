@@ -5,7 +5,7 @@
 import { z } from "zod";
 
 export type AssetHolder = {
-    assets: Record<string, number>;
+    assets: Record<string, bigint>;
 };
 
 /** @internal */
@@ -16,7 +16,7 @@ export namespace AssetHolder$ {
 
     export const inboundSchema: z.ZodType<AssetHolder, z.ZodTypeDef, Inbound> = z
         .object({
-            assets: z.record(z.number().int()),
+            assets: z.record(z.number().transform((v) => BigInt(v))),
         })
         .transform((v) => {
             return {
@@ -30,7 +30,7 @@ export namespace AssetHolder$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AssetHolder> = z
         .object({
-            assets: z.record(z.number().int()),
+            assets: z.record(z.bigint().transform((v) => Number(v))),
         })
         .transform((v) => {
             return {

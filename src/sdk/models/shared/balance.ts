@@ -7,7 +7,7 @@ import { z } from "zod";
 export type Balance = {
     expiresAt?: Date | undefined;
     name: string;
-    priority?: number | undefined;
+    priority?: bigint | undefined;
 };
 
 /** @internal */
@@ -26,7 +26,10 @@ export namespace Balance$ {
                 .transform((v) => new Date(v))
                 .optional(),
             name: z.string(),
-            priority: z.number().int().optional(),
+            priority: z
+                .number()
+                .transform((v) => BigInt(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -49,7 +52,10 @@ export namespace Balance$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             name: z.string(),
-            priority: z.number().int().optional(),
+            priority: z
+                .bigint()
+                .transform((v) => Number(v))
+                .optional(),
         })
         .transform((v) => {
             return {

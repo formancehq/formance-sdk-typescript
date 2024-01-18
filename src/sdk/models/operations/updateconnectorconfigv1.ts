@@ -6,7 +6,7 @@ import * as shared from "../../../sdk/models/shared";
 import { z } from "zod";
 
 export type UpdateConnectorConfigV1Request = {
-    requestBody?: any | undefined;
+    connectorConfig: shared.ConnectorConfig;
     /**
      * The name of the connector.
      */
@@ -35,27 +35,27 @@ export type UpdateConnectorConfigV1Response = {
 /** @internal */
 export namespace UpdateConnectorConfigV1Request$ {
     export type Inbound = {
-        RequestBody?: any | undefined;
+        ConnectorConfig: shared.ConnectorConfig$.Inbound;
         connector: shared.Connector;
         connectorId: string;
     };
 
     export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Request, z.ZodTypeDef, Inbound> = z
         .object({
-            RequestBody: z.any().optional(),
+            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
             connector: shared.Connector$,
             connectorId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
+                connectorConfig: v.ConnectorConfig,
                 connector: v.connector,
                 connectorId: v.connectorId,
             };
         });
 
     export type Outbound = {
-        RequestBody?: any | undefined;
+        ConnectorConfig: shared.ConnectorConfig$.Outbound;
         connector: shared.Connector;
         connectorId: string;
     };
@@ -63,13 +63,13 @@ export namespace UpdateConnectorConfigV1Request$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateConnectorConfigV1Request> =
         z
             .object({
-                requestBody: z.any().optional(),
+                connectorConfig: shared.ConnectorConfig$.outboundSchema,
                 connector: shared.Connector$,
                 connectorId: z.string(),
             })
             .transform((v) => {
                 return {
-                    ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
+                    ConnectorConfig: v.connectorConfig,
                     connector: v.connector,
                     connectorId: v.connectorId,
                 };

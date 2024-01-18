@@ -66,7 +66,7 @@ export namespace GetHoldsRequest$ {
         .object({
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             walletID: z.string().optional(),
         })
         .transform((v) => {
@@ -81,7 +81,7 @@ export namespace GetHoldsRequest$ {
     export type Outbound = {
         cursor?: string | undefined;
         metadata?: Record<string, string> | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         walletID?: string | undefined;
     };
 
@@ -89,14 +89,14 @@ export namespace GetHoldsRequest$ {
         .object({
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             walletID: z.string().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.walletID === undefined ? null : { walletID: v.walletID }),
             };
         });

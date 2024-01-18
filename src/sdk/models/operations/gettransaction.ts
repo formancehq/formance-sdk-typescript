@@ -14,7 +14,7 @@ export type GetTransactionRequest = {
     /**
      * Transaction ID.
      */
-    txid: number;
+    txid: bigint;
 };
 
 export type GetTransactionResponse = {
@@ -50,7 +50,7 @@ export namespace GetTransactionRequest$ {
     export const inboundSchema: z.ZodType<GetTransactionRequest, z.ZodTypeDef, Inbound> = z
         .object({
             ledger: z.string(),
-            txid: z.number().int(),
+            txid: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -67,7 +67,7 @@ export namespace GetTransactionRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTransactionRequest> = z
         .object({
             ledger: z.string(),
-            txid: z.number().int(),
+            txid: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

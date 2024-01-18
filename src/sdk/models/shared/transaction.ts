@@ -13,7 +13,7 @@ export type Transaction = {
     preCommitVolumes?: Record<string, Record<string, Volume>> | undefined;
     reference?: string | undefined;
     timestamp: Date;
-    txid: number;
+    txid: bigint;
 };
 
 /** @internal */
@@ -39,7 +39,7 @@ export namespace Transaction$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            txid: z.number().int(),
+            txid: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -75,7 +75,7 @@ export namespace Transaction$ {
             preCommitVolumes: z.record(z.record(Volume$.outboundSchema)).optional(),
             reference: z.string().optional(),
             timestamp: z.date().transform((v) => v.toISOString()),
-            txid: z.number().int(),
+            txid: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

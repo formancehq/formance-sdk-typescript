@@ -34,19 +34,16 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.confirmHold({
+  const result = await sdk.wallets.confirmHold({
     confirmHoldRequest: {
-      amount: 100,
+      amount: 100n,
       final: true,
     },
     holdId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -84,18 +81,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.createBalance({
+  const result = await sdk.wallets.createBalance({
     createBalanceRequest: {
       name: "string",
     },
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -133,18 +127,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.createWallet({
+  const result = await sdk.wallets.createWallet({
     metadata: {
       "key": "string",
     },
     name: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -182,27 +173,24 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.creditWallet({
+  const result = await sdk.wallets.creditWallet({
     creditWalletRequest: {
       amount: {
-        amount: 201874,
+        amount: 201874n,
         asset: "string",
       },
       metadata: {
         "key": "string",
       },
       sources: [
-        "string",
+        ,
       ],
     },
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -240,16 +228,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.debitWallet({
+  const result = await sdk.wallets.debitWallet({
     debitWalletRequest: {
       amount: {
-        amount: 245256,
+        amount: 245256n,
         asset: "string",
       },
       balances: [
         "string",
       ],
-      destination: "string",
       metadata: {
         "key": "string",
       },
@@ -257,11 +244,8 @@ async function run() {
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -299,16 +283,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getBalance({
+  const result = await sdk.wallets.getBalance({
     balanceName: "string",
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -346,15 +327,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getHold({
+  const result = await sdk.wallets.getHold({
     holdID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -392,18 +370,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getHolds({
+  const result = await sdk.wallets.getHolds({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
       "key": "string",
     },
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -439,15 +414,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getTransactions({
+  const result = await sdk.wallets.getTransactions({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -485,15 +457,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getWallet({
+  const result = await sdk.wallets.getWallet({
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -531,15 +500,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.getWalletSummary({
+  const result = await sdk.wallets.getWalletSummary({
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -577,15 +543,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.listBalances({
+  const result = await sdk.wallets.listBalances({
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -623,18 +586,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.listWallets({
+  const result = await sdk.wallets.listWallets({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
       "key": "string",
     },
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -672,7 +632,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.updateWallet({
+  const result = await sdk.wallets.updateWallet({
     requestBody: {
       metadata: {
         "key": "string",
@@ -681,11 +641,8 @@ async function run() {
     id: "<ID>",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -723,15 +680,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.voidHold({
+  const result = await sdk.wallets.voidHold({
     holdId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -769,13 +723,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.wallets.walletsgetServerInfo();
+  const result = await sdk.wallets.walletsgetServerInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

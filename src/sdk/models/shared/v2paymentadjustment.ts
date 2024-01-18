@@ -9,7 +9,7 @@ export type V2PaymentAdjustmentRaw = {};
 
 export type V2PaymentAdjustment = {
     absolute: boolean;
-    amount: number;
+    amount: bigint;
     date: Date;
     raw: V2PaymentAdjustmentRaw;
     status: V2PaymentStatus;
@@ -42,7 +42,7 @@ export namespace V2PaymentAdjustment$ {
     export const inboundSchema: z.ZodType<V2PaymentAdjustment, z.ZodTypeDef, Inbound> = z
         .object({
             absolute: z.boolean(),
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             date: z
                 .string()
                 .datetime({ offset: true })
@@ -71,7 +71,7 @@ export namespace V2PaymentAdjustment$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentAdjustment> = z
         .object({
             absolute: z.boolean(),
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             date: z.date().transform((v) => v.toISOString()),
             raw: z.lazy(() => V2PaymentAdjustmentRaw$.outboundSchema),
             status: V2PaymentStatus$,

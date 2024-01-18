@@ -59,7 +59,7 @@ export namespace ListPaymentsRequest$ {
     export const inboundSchema: z.ZodType<ListPaymentsRequest, z.ZodTypeDef, Inbound> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
@@ -72,20 +72,20 @@ export namespace ListPaymentsRequest$ {
 
     export type Outbound = {
         cursor?: string | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         sort?: Array<string> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPaymentsRequest> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.sort === undefined ? null : { sort: v.sort }),
             };
         });

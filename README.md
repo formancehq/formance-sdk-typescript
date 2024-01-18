@@ -32,6 +32,12 @@ yarn add <UNSET>
 ```
 <!-- End SDK Installation [installation] -->
 
+<!-- Start Requirements [requirements] -->
+## Requirements
+
+For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
+<!-- End Requirements [requirements] -->
+
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
 
@@ -45,13 +51,10 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.getVersions();
+    const result = await sdk.getVersions();
 
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
-    }
-
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -266,28 +269,29 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.ledger
-        .addMetadataToAccount({
+    let result;
+    try {
+        result = await sdk.ledger.addMetadataToAccount({
             requestBody: {
                 key: "string",
             },
             address: "users:001",
             ledger: "ledger001",
-        })
-        .catch((err) => {
-            if (err instanceof errors.ErrorResponse) {
+        });
+    } catch (err) {
+        switch (true) {
+            case err instanceof errors.ErrorResponse: {
                 console.error(err); // handle exception
-                return null;
-            } else {
+                return;
+            }
+            default: {
                 throw err;
             }
-        });
-
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
+        }
     }
 
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();
@@ -300,18 +304,54 @@ run();
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
 
+```typescript
+import { SDK } from "@formance/formance-sdk";
 
+async function run() {
+    const sdk = new SDK({
+        serverIdx: 0,
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    });
+
+    const result = await sdk.getVersions();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
 
 
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL: str` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+    const sdk = new SDK({
+        serverURL: "http://localhost",
+        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    });
+
+    const result = await sdk.getVersions();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
@@ -383,13 +423,10 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const res = await sdk.getVersions();
+    const result = await sdk.getVersions();
 
-    if (res?.statusCode !== 200) {
-        throw new Error("Unexpected status code: " + res?.statusCode || "-");
-    }
-
-    // handle response
+    // Handle the result
+    console.log(result);
 }
 
 run();

@@ -67,7 +67,7 @@ export namespace ListWalletsRequest$ {
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
             name: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
@@ -82,7 +82,7 @@ export namespace ListWalletsRequest$ {
         cursor?: string | undefined;
         metadata?: Record<string, string> | undefined;
         name?: string | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListWalletsRequest> = z
@@ -90,14 +90,14 @@ export namespace ListWalletsRequest$ {
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
             name: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
             };
         });
 }

@@ -53,15 +53,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.cancelEvent({
+  const result = await sdk.orchestration.cancelEvent({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -99,7 +96,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.createTrigger({
+  const result = await sdk.orchestration.createTrigger({
     event: "string",
     vars: {
       "key": "string",
@@ -107,11 +104,8 @@ async function run() {
     workflowID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -149,7 +143,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.createWorkflow({
+  const result = await sdk.orchestration.createWorkflow({
     stages: [
       {
         "key": "string",
@@ -157,11 +151,8 @@ async function run() {
     ],
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -199,15 +190,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.deleteTrigger({
+  const result = await sdk.orchestration.deleteTrigger({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -245,15 +233,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.deleteWorkflow({
+  const result = await sdk.orchestration.deleteWorkflow({
     flowId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -291,15 +276,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.getInstance({
+  const result = await sdk.orchestration.getInstance({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -337,15 +319,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.getInstanceHistory({
+  const result = await sdk.orchestration.getInstanceHistory({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -383,16 +362,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.getInstanceStageHistory({
+  const result = await sdk.orchestration.getInstanceStageHistory({
     instanceID: "string",
     number: 600636,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -430,15 +406,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.getWorkflow({
+  const result = await sdk.orchestration.getWorkflow({
     flowId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -476,13 +449,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.listInstances({});
+  const result = await sdk.orchestration.listInstances({});
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -520,13 +490,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.listTriggers();
+  const result = await sdk.orchestration.listTriggers();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -563,15 +530,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.listTriggersOccurrences({
+  const result = await sdk.orchestration.listTriggersOccurrences({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -609,13 +573,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.listWorkflows();
+  const result = await sdk.orchestration.listWorkflows();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -652,13 +613,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.orchestrationgetServerInfo();
+  const result = await sdk.orchestration.orchestrationgetServerInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -695,15 +653,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.readTrigger({
+  const result = await sdk.orchestration.readTrigger({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -741,18 +696,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.runWorkflow({
+  const result = await sdk.orchestration.runWorkflow({
     requestBody: {
       "key": "string",
     },
     workflowID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -790,18 +742,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.sendEvent({
+  const result = await sdk.orchestration.sendEvent({
     requestBody: {
       name: "string",
     },
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -839,18 +788,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.testTrigger({
+  const result = await sdk.orchestration.testTrigger({
     requestBody: {
       "key": "string",
     },
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -888,15 +834,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2CancelEvent({
+  const result = await sdk.orchestration.v2CancelEvent({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -934,7 +877,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2CreateTrigger({
+  const result = await sdk.orchestration.v2CreateTrigger({
     event: "string",
     vars: {
       "key": "string",
@@ -942,11 +885,8 @@ async function run() {
     workflowID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -984,7 +924,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2CreateWorkflow({
+  const result = await sdk.orchestration.v2CreateWorkflow({
     stages: [
       {
         "key": "string",
@@ -992,11 +932,8 @@ async function run() {
     ],
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1034,15 +971,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2DeleteTrigger({
+  const result = await sdk.orchestration.v2DeleteTrigger({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1081,15 +1015,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2DeleteWorkflow({
+  const result = await sdk.orchestration.v2DeleteWorkflow({
     flowId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1128,15 +1059,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2GetInstance({
+  const result = await sdk.orchestration.v2GetInstance({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1174,15 +1102,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2GetInstanceHistory({
+  const result = await sdk.orchestration.v2GetInstanceHistory({
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1220,16 +1145,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2GetInstanceStageHistory({
+  const result = await sdk.orchestration.v2GetInstanceStageHistory({
     instanceID: "string",
     number: 465454,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1267,13 +1189,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2GetServerInfo();
+  const result = await sdk.orchestration.v2GetServerInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1310,15 +1229,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2GetWorkflow({
+  const result = await sdk.orchestration.v2GetWorkflow({
     flowId: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1356,13 +1272,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2ListInstances({});
+  const result = await sdk.orchestration.v2ListInstances({});
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1400,13 +1313,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2ListTriggers();
+  const result = await sdk.orchestration.v2ListTriggers();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1443,15 +1353,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2ListTriggersOccurrences({
+  const result = await sdk.orchestration.v2ListTriggersOccurrences({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1489,13 +1396,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2ListWorkflows();
+  const result = await sdk.orchestration.v2ListWorkflows();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1532,15 +1436,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2ReadTrigger({
+  const result = await sdk.orchestration.v2ReadTrigger({
     triggerID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1578,18 +1479,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2RunWorkflow({
+  const result = await sdk.orchestration.v2RunWorkflow({
     requestBody: {
       "key": "string",
     },
     workflowID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1627,18 +1525,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.orchestration.v2SendEvent({
+  const result = await sdk.orchestration.v2SendEvent({
     requestBody: {
       name: "string",
     },
     instanceID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

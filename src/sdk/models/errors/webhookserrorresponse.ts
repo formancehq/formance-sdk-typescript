@@ -25,8 +25,8 @@ export class WebhooksErrorResponse extends Error {
     /** The original data that was passed to this error instance. */
     data$: WebhooksErrorResponseData;
 
-    constructor(err: WebhooksErrorResponseData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: WebhooksErrorResponseData) {
+        super("");
         this.data$ = err;
 
         if (err.details != null) {

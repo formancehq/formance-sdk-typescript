@@ -18,7 +18,7 @@ export type RevertTransactionRequest = {
     /**
      * Transaction ID.
      */
-    txid: number;
+    txid: bigint;
 };
 
 export type RevertTransactionResponse = {
@@ -56,7 +56,7 @@ export namespace RevertTransactionRequest$ {
         .object({
             disableChecks: z.boolean().optional(),
             ledger: z.string(),
-            txid: z.number().int(),
+            txid: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -76,7 +76,7 @@ export namespace RevertTransactionRequest$ {
         .object({
             disableChecks: z.boolean().optional(),
             ledger: z.string(),
-            txid: z.number().int(),
+            txid: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

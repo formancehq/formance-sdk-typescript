@@ -20,7 +20,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.search.search({
+  const result = await sdk.search.search({
     after: [
       "users:002",
     ],
@@ -36,11 +36,8 @@ async function run() {
     ],
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -78,13 +75,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.search.searchgetServerInfo();
+  const result = await sdk.search.searchgetServerInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

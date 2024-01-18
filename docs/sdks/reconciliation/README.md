@@ -26,7 +26,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.createPolicy({
+  const result = await sdk.reconciliation.createPolicy({
     ledgerName: "default",
     ledgerQuery: {
       "key": "string",
@@ -35,11 +35,8 @@ async function run() {
     paymentsPoolID: "XXX",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -77,15 +74,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.deletePolicy({
+  const result = await sdk.reconciliation.deletePolicy({
     policyID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -123,15 +117,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.getPolicy({
+  const result = await sdk.reconciliation.getPolicy({
     policyID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -169,15 +160,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.getReconciliation({
+  const result = await sdk.reconciliation.getReconciliation({
     reconciliationID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -215,15 +203,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.listPolicies({
+  const result = await sdk.reconciliation.listPolicies({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -261,15 +246,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.listReconciliations({
+  const result = await sdk.reconciliation.listReconciliations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -307,7 +289,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.reconcile({
+  const result = await sdk.reconciliation.reconcile({
     reconciliationRequest: {
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
       reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
@@ -315,11 +297,8 @@ async function run() {
     policyID: "string",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -357,13 +336,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.reconciliation.reconciliationgetServerInfo();
+  const result = await sdk.reconciliation.reconciliationgetServerInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

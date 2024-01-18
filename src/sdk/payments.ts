@@ -1103,7 +1103,7 @@ export class Payments extends ClientSDK {
 
         const payload$ = operations.InstallConnectorRequest$.outboundSchema.parse(input);
 
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$.ConnectorConfig, { explode: true });
 
         const pathParams$ = {
             connector: enc$.encodeSimple("connector", payload$.connector, {
@@ -2513,7 +2513,7 @@ export class Payments extends ClientSDK {
 
         const payload$ = operations.UpdateConnectorConfigV1Request$.outboundSchema.parse(input);
 
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = enc$.encodeJSON("body", payload$.ConnectorConfig, { explode: true });
 
         const pathParams$ = {
             connector: enc$.encodeSimple("connector", payload$.connector, {

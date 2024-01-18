@@ -7,7 +7,7 @@ import * as shared from "../../../sdk/models/shared";
 import { z } from "zod";
 
 export type V2CreateBulkRequest = {
-    requestBody?: Array<any> | undefined;
+    requestBody?: Array<shared.V2BulkElement> | undefined;
     /**
      * Name of the ledger.
      */
@@ -40,13 +40,13 @@ export type V2CreateBulkResponse = {
 /** @internal */
 export namespace V2CreateBulkRequest$ {
     export type Inbound = {
-        RequestBody?: Array<any> | undefined;
+        RequestBody?: Array<shared.V2BulkElement$.Inbound> | undefined;
         ledger: string;
     };
 
     export const inboundSchema: z.ZodType<V2CreateBulkRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            RequestBody: z.array(z.any()).optional(),
+            RequestBody: z.array(shared.V2BulkElement$.inboundSchema).optional(),
             ledger: z.string(),
         })
         .transform((v) => {
@@ -57,13 +57,13 @@ export namespace V2CreateBulkRequest$ {
         });
 
     export type Outbound = {
-        RequestBody?: Array<any> | undefined;
+        RequestBody?: Array<shared.V2BulkElement$.Outbound> | undefined;
         ledger: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateBulkRequest> = z
         .object({
-            requestBody: z.array(z.any()).optional(),
+            requestBody: z.array(shared.V2BulkElement$.outboundSchema).optional(),
             ledger: z.string(),
         })
         .transform((v) => {

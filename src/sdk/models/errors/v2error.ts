@@ -28,8 +28,8 @@ export class V2Error extends Error {
     /** The original data that was passed to this error instance. */
     data$: V2ErrorData;
 
-    constructor(err: V2ErrorData, options?: ErrorOptions) {
-        super("", options);
+    constructor(err: V2ErrorData) {
+        super("");
         this.data$ = err;
 
         this.errorCode = err.errorCode;

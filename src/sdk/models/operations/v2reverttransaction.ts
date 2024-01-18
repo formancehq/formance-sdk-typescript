@@ -14,7 +14,7 @@ export type V2RevertTransactionRequest = {
     /**
      * Transaction ID.
      */
-    id: number;
+    id: bigint;
     /**
      * Name of the ledger.
      */
@@ -55,7 +55,7 @@ export namespace V2RevertTransactionRequest$ {
     export const inboundSchema: z.ZodType<V2RevertTransactionRequest, z.ZodTypeDef, Inbound> = z
         .object({
             force: z.boolean().optional(),
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             ledger: z.string(),
         })
         .transform((v) => {
@@ -75,7 +75,7 @@ export namespace V2RevertTransactionRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2RevertTransactionRequest> = z
         .object({
             force: z.boolean().optional(),
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             ledger: z.string(),
         })
         .transform((v) => {

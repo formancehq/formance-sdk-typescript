@@ -17,7 +17,7 @@ export type AddMetadataOnTransactionRequest = {
     /**
      * Transaction ID.
      */
-    txid: number;
+    txid: bigint;
 };
 
 export type AddMetadataOnTransactionResponse = {
@@ -52,7 +52,7 @@ export namespace AddMetadataOnTransactionRequest$ {
             .object({
                 RequestBody: z.nullable(z.record(z.any())).optional(),
                 ledger: z.string(),
-                txid: z.number().int(),
+                txid: z.number().transform((v) => BigInt(v)),
             })
             .transform((v) => {
                 return {
@@ -76,7 +76,7 @@ export namespace AddMetadataOnTransactionRequest$ {
         .object({
             requestBody: z.nullable(z.record(z.any())).optional(),
             ledger: z.string(),
-            txid: z.number().int(),
+            txid: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

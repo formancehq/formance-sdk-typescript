@@ -21,7 +21,7 @@ export type V2AddMetadataOnTransactionRequest = {
     /**
      * Transaction ID.
      */
-    id: number;
+    id: bigint;
     /**
      * Name of the ledger.
      */
@@ -66,7 +66,7 @@ export namespace V2AddMetadataOnTransactionRequest$ {
             "Idempotency-Key": z.string().optional(),
             RequestBody: z.record(z.string()).optional(),
             dryRun: z.boolean().optional(),
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             ledger: z.string(),
         })
         .transform((v) => {
@@ -98,7 +98,7 @@ export namespace V2AddMetadataOnTransactionRequest$ {
             idempotencyKey: z.string().optional(),
             requestBody: z.record(z.string()).optional(),
             dryRun: z.boolean().optional(),
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             ledger: z.string(),
         })
         .transform((v) => {

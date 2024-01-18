@@ -5,8 +5,8 @@
 import { bytesToBase64 } from "./base64";
 
 export class EncodingError extends Error {
-  constructor(message: string, options?: ErrorOptions) {
-    super(message, options);
+  constructor(message: string) {
+    super(message);
     this.name = "EncodingError";
   }
 }
@@ -201,7 +201,12 @@ export function encodeDeepObject(
   value: unknown,
   options?: { charEncoding?: "percent" | "none" },
 ) {
+  if (value == null) {
+    return "";
+  }
+
   let out = "";
+
   const encodeString = (v: string) => {
     return options?.charEncoding === "percent" ? encodeURIComponent(v) : v;
   };

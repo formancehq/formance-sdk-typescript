@@ -7,6 +7,7 @@ import { z } from "zod";
 export type ConfigUser = {
     endpoint: string;
     eventTypes: Array<string>;
+    name?: string | undefined;
     secret?: string | undefined;
 };
 
@@ -15,6 +16,7 @@ export namespace ConfigUser$ {
     export type Inbound = {
         endpoint: string;
         eventTypes: Array<string>;
+        name?: string | undefined;
         secret?: string | undefined;
     };
 
@@ -22,12 +24,14 @@ export namespace ConfigUser$ {
         .object({
             endpoint: z.string(),
             eventTypes: z.array(z.string()),
+            name: z.string().optional(),
             secret: z.string().optional(),
         })
         .transform((v) => {
             return {
                 endpoint: v.endpoint,
                 eventTypes: v.eventTypes,
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.secret === undefined ? null : { secret: v.secret }),
             };
         });
@@ -35,6 +39,7 @@ export namespace ConfigUser$ {
     export type Outbound = {
         endpoint: string;
         eventTypes: Array<string>;
+        name?: string | undefined;
         secret?: string | undefined;
     };
 
@@ -42,12 +47,14 @@ export namespace ConfigUser$ {
         .object({
             endpoint: z.string(),
             eventTypes: z.array(z.string()),
+            name: z.string().optional(),
             secret: z.string().optional(),
         })
         .transform((v) => {
             return {
                 endpoint: v.endpoint,
                 eventTypes: v.eventTypes,
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.secret === undefined ? null : { secret: v.secret }),
             };
         });

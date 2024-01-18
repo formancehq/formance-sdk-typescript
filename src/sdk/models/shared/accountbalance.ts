@@ -7,7 +7,7 @@ import { z } from "zod";
 export type AccountBalance = {
     accountId: string;
     asset: string;
-    balance: number;
+    balance: bigint;
     createdAt: Date;
     /**
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -31,7 +31,7 @@ export namespace AccountBalance$ {
         .object({
             accountId: z.string(),
             asset: z.string(),
-            balance: z.number().int(),
+            balance: z.number().transform((v) => BigInt(v)),
             createdAt: z
                 .string()
                 .datetime({ offset: true })
@@ -66,7 +66,7 @@ export namespace AccountBalance$ {
         .object({
             accountId: z.string(),
             asset: z.string(),
-            balance: z.number().int(),
+            balance: z.bigint().transform((v) => Number(v)),
             createdAt: z.date().transform((v) => v.toISOString()),
             currency: z.string(),
             lastUpdatedAt: z.date().transform((v) => v.toISOString()),

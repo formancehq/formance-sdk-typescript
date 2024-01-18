@@ -6,11 +6,11 @@ import { z } from "zod";
 
 export type Reconciliation = {
     createdAt: Date;
-    driftBalances: Record<string, number>;
+    driftBalances: Record<string, bigint>;
     error?: string | undefined;
     id: string;
-    ledgerBalances: Record<string, number>;
-    paymentsBalances: Record<string, number>;
+    ledgerBalances: Record<string, bigint>;
+    paymentsBalances: Record<string, bigint>;
     policyID: string;
     reconciledAtLedger: Date;
     reconciledAtPayments: Date;
@@ -38,11 +38,11 @@ export namespace Reconciliation$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-            driftBalances: z.record(z.number().int()),
+            driftBalances: z.record(z.number().transform((v) => BigInt(v))),
             error: z.string().optional(),
             id: z.string(),
-            ledgerBalances: z.record(z.number().int()),
-            paymentsBalances: z.record(z.number().int()),
+            ledgerBalances: z.record(z.number().transform((v) => BigInt(v))),
+            paymentsBalances: z.record(z.number().transform((v) => BigInt(v))),
             policyID: z.string(),
             reconciledAtLedger: z
                 .string()
@@ -85,11 +85,11 @@ export namespace Reconciliation$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Reconciliation> = z
         .object({
             createdAt: z.date().transform((v) => v.toISOString()),
-            driftBalances: z.record(z.number().int()),
+            driftBalances: z.record(z.bigint().transform((v) => Number(v))),
             error: z.string().optional(),
             id: z.string(),
-            ledgerBalances: z.record(z.number().int()),
-            paymentsBalances: z.record(z.number().int()),
+            ledgerBalances: z.record(z.bigint().transform((v) => Number(v))),
+            paymentsBalances: z.record(z.bigint().transform((v) => Number(v))),
             policyID: z.string(),
             reconciledAtLedger: z.date().transform((v) => v.toISOString()),
             reconciledAtPayments: z.date().transform((v) => v.toISOString()),

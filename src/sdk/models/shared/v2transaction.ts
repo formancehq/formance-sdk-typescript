@@ -6,7 +6,7 @@ import { V2Posting, V2Posting$ } from "./v2posting";
 import { z } from "zod";
 
 export type V2Transaction = {
-    id: number;
+    id: bigint;
     metadata: Record<string, string>;
     postings: Array<V2Posting>;
     reference?: string | undefined;
@@ -27,7 +27,7 @@ export namespace V2Transaction$ {
 
     export const inboundSchema: z.ZodType<V2Transaction, z.ZodTypeDef, Inbound> = z
         .object({
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),
             postings: z.array(V2Posting$.inboundSchema),
             reference: z.string().optional(),
@@ -59,7 +59,7 @@ export namespace V2Transaction$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Transaction> = z
         .object({
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             metadata: z.record(z.string()),
             postings: z.array(V2Posting$.outboundSchema),
             reference: z.string().optional(),

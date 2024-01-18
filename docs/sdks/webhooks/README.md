@@ -25,15 +25,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.activateConfig({
+  const result = await sdk.webhooks.activateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -75,18 +72,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.changeConfigSecret({
+  const result = await sdk.webhooks.changeConfigSecret({
     configChangeSecret: {
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -125,15 +119,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.deactivateConfig({
+  const result = await sdk.webhooks.deactivateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -172,15 +163,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.deleteConfig({
+  const result = await sdk.webhooks.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -219,16 +207,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.getManyConfigs({
+  const result = await sdk.webhooks.getManyConfigs({
     endpoint: "https://example.com",
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -275,20 +260,18 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.insertConfig({
+  const result = await sdk.webhooks.insertConfig({
     endpoint: "https://example.com",
     eventTypes: [
       "TYPE1",
       "TYPE2",
     ],
+    name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -327,15 +310,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.webhooks.testConfig({
+  const result = await sdk.webhooks.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

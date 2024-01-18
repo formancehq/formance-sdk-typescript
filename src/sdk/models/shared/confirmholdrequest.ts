@@ -8,7 +8,7 @@ export type ConfirmHoldRequest = {
     /**
      * Define the amount to transfer.
      */
-    amount?: number | undefined;
+    amount?: bigint | undefined;
     /**
      * Define a final confirmation. Remaining funds will be returned to the wallet.
      */
@@ -24,7 +24,10 @@ export namespace ConfirmHoldRequest$ {
 
     export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int().optional(),
+            amount: z
+                .number()
+                .transform((v) => BigInt(v))
+                .optional(),
             final: z.boolean().optional(),
         })
         .transform((v) => {
@@ -41,7 +44,10 @@ export namespace ConfirmHoldRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldRequest> = z
         .object({
-            amount: z.number().int().optional(),
+            amount: z
+                .bigint()
+                .transform((v) => Number(v))
+                .optional(),
             final: z.boolean().optional(),
         })
         .transform((v) => {

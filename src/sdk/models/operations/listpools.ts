@@ -67,7 +67,7 @@ export namespace ListPoolsRequest$ {
     export const inboundSchema: z.ZodType<ListPoolsRequest, z.ZodTypeDef, Inbound> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
@@ -82,7 +82,7 @@ export namespace ListPoolsRequest$ {
 
     export type Outbound = {
         cursor?: string | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         query?: string | undefined;
         sort?: Array<string> | undefined;
     };
@@ -90,14 +90,14 @@ export namespace ListPoolsRequest$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPoolsRequest> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.query === undefined ? null : { query: v.query }),
                 ...(v.sort === undefined ? null : { sort: v.sort }),
             };

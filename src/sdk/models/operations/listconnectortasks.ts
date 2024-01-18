@@ -60,7 +60,7 @@ export namespace ListConnectorTasksRequest$ {
         .object({
             connector: shared.Connector$,
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
@@ -73,20 +73,20 @@ export namespace ListConnectorTasksRequest$ {
     export type Outbound = {
         connector: shared.Connector;
         cursor?: string | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListConnectorTasksRequest> = z
         .object({
             connector: shared.Connector$,
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
                 connector: v.connector,
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
             };
         });
 }

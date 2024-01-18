@@ -103,7 +103,7 @@ export namespace ListAccountsRequest$ {
             cursor: z.string().optional(),
             ledger: z.string(),
             metadata: z.record(z.any()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             pagination_token: z.string().optional(),
         })
         .transform((v) => {
@@ -128,7 +128,7 @@ export namespace ListAccountsRequest$ {
         cursor?: string | undefined;
         ledger: string;
         metadata?: Record<string, any> | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         pagination_token?: string | undefined;
     };
 
@@ -140,7 +140,7 @@ export namespace ListAccountsRequest$ {
             cursor: z.string().optional(),
             ledger: z.string(),
             metadata: z.record(z.any()).optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             paginationToken: z.string().optional(),
         })
         .transform((v) => {
@@ -151,7 +151,7 @@ export namespace ListAccountsRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ledger: v.ledger,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.paginationToken === undefined
                     ? null
                     : { pagination_token: v.paginationToken }),

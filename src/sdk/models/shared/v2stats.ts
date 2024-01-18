@@ -6,7 +6,7 @@ import { z } from "zod";
 
 export type V2Stats = {
     accounts: number;
-    transactions: number;
+    transactions: bigint;
 };
 
 /** @internal */
@@ -19,7 +19,7 @@ export namespace V2Stats$ {
     export const inboundSchema: z.ZodType<V2Stats, z.ZodTypeDef, Inbound> = z
         .object({
             accounts: z.number().int(),
-            transactions: z.number().int(),
+            transactions: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -36,7 +36,7 @@ export namespace V2Stats$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Stats> = z
         .object({
             accounts: z.number().int(),
-            transactions: z.number().int(),
+            transactions: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

@@ -7,7 +7,7 @@ import { V2Volume, V2Volume$ } from "./v2volume";
 import { z } from "zod";
 
 export type V2ExpandedTransaction = {
-    id: number;
+    id: bigint;
     metadata: Record<string, string>;
     postCommitVolumes?: Record<string, Record<string, V2Volume>> | undefined;
     postings: Array<V2Posting>;
@@ -32,7 +32,7 @@ export namespace V2ExpandedTransaction$ {
 
     export const inboundSchema: z.ZodType<V2ExpandedTransaction, z.ZodTypeDef, Inbound> = z
         .object({
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),
             postCommitVolumes: z.record(z.record(V2Volume$.inboundSchema)).optional(),
             postings: z.array(V2Posting$.inboundSchema),
@@ -74,7 +74,7 @@ export namespace V2ExpandedTransaction$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ExpandedTransaction> = z
         .object({
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             metadata: z.record(z.string()),
             postCommitVolumes: z.record(z.record(V2Volume$.outboundSchema)).optional(),
             postings: z.array(V2Posting$.outboundSchema),

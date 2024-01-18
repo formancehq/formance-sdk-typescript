@@ -60,7 +60,7 @@ export namespace GetTransactionsRequest$ {
     export const inboundSchema: z.ZodType<GetTransactionsRequest, z.ZodTypeDef, Inbound> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             walletID: z.string().optional(),
         })
         .transform((v) => {
@@ -73,20 +73,20 @@ export namespace GetTransactionsRequest$ {
 
     export type Outbound = {
         cursor?: string | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         walletID?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetTransactionsRequest> = z
         .object({
             cursor: z.string().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             walletID: z.string().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.walletID === undefined ? null : { walletID: v.walletID }),
             };
         });

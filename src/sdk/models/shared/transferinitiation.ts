@@ -19,7 +19,7 @@ export enum TransferInitiationType {
 }
 
 export type TransferInitiation = {
-    amount: number;
+    amount: bigint;
     asset: string;
     connectorID: string;
     createdAt: Date;
@@ -63,7 +63,7 @@ export namespace TransferInitiation$ {
 
     export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z
@@ -132,7 +132,7 @@ export namespace TransferInitiation$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiation> = z
         .object({
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z.date().transform((v) => v.toISOString()),

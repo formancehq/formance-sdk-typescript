@@ -8,7 +8,7 @@ import { PaymentType, PaymentType$ } from "./paymenttype";
 import { z } from "zod";
 
 export type PaymentRequest = {
-    amount: number;
+    amount: bigint;
     asset: string;
     connectorID: string;
     createdAt: Date;
@@ -37,7 +37,7 @@ export namespace PaymentRequest$ {
 
     export const inboundSchema: z.ZodType<PaymentRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z
@@ -85,7 +85,7 @@ export namespace PaymentRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentRequest> = z
         .object({
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z.date().transform((v) => v.toISOString()),

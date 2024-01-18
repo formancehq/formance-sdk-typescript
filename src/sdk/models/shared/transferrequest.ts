@@ -5,7 +5,7 @@
 import { z } from "zod";
 
 export type TransferRequest = {
-    amount: number;
+    amount: bigint;
     asset: string;
     destination: string;
     source?: string | undefined;
@@ -22,7 +22,7 @@ export namespace TransferRequest$ {
 
     export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
             destination: z.string(),
             source: z.string().optional(),
@@ -45,7 +45,7 @@ export namespace TransferRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferRequest> = z
         .object({
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
             destination: z.string(),
             source: z.string().optional(),

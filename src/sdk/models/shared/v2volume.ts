@@ -5,9 +5,9 @@
 import { z } from "zod";
 
 export type V2Volume = {
-    balance?: number | undefined;
-    input: number;
-    output: number;
+    balance?: bigint | undefined;
+    input: bigint;
+    output: bigint;
 };
 
 /** @internal */
@@ -20,9 +20,12 @@ export namespace V2Volume$ {
 
     export const inboundSchema: z.ZodType<V2Volume, z.ZodTypeDef, Inbound> = z
         .object({
-            balance: z.number().int().optional(),
-            input: z.number().int(),
-            output: z.number().int(),
+            balance: z
+                .number()
+                .transform((v) => BigInt(v))
+                .optional(),
+            input: z.number().transform((v) => BigInt(v)),
+            output: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -40,9 +43,12 @@ export namespace V2Volume$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Volume> = z
         .object({
-            balance: z.number().int().optional(),
-            input: z.number().int(),
-            output: z.number().int(),
+            balance: z
+                .bigint()
+                .transform((v) => Number(v))
+                .optional(),
+            input: z.bigint().transform((v) => Number(v)),
+            output: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

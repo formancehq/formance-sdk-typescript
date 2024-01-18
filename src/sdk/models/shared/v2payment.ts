@@ -45,7 +45,7 @@ export type V2Payment = {
     createdAt: Date;
     destinationAccountID: string;
     id: string;
-    initialAmount: number;
+    initialAmount: bigint;
     metadata: V2PaymentMetadata | null;
     provider?: V2Connector | undefined;
     raw: V2PaymentRaw | null;
@@ -104,7 +104,7 @@ export namespace V2Payment$ {
                 .transform((v) => new Date(v)),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(V2PaymentMetadata$.inboundSchema),
             provider: V2Connector$.optional(),
             raw: z.nullable(z.lazy(() => V2PaymentRaw$.inboundSchema)),
@@ -160,7 +160,7 @@ export namespace V2Payment$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(V2PaymentMetadata$.outboundSchema),
             provider: V2Connector$.optional(),
             raw: z.nullable(z.lazy(() => V2PaymentRaw$.outboundSchema)),

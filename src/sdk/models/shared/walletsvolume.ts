@@ -5,9 +5,9 @@
 import { z } from "zod";
 
 export type WalletsVolume = {
-    balance: number;
-    input: number;
-    output: number;
+    balance: bigint;
+    input: bigint;
+    output: bigint;
 };
 
 /** @internal */
@@ -20,9 +20,9 @@ export namespace WalletsVolume$ {
 
     export const inboundSchema: z.ZodType<WalletsVolume, z.ZodTypeDef, Inbound> = z
         .object({
-            balance: z.number().int(),
-            input: z.number().int(),
-            output: z.number().int(),
+            balance: z.number().transform((v) => BigInt(v)),
+            input: z.number().transform((v) => BigInt(v)),
+            output: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
@@ -40,9 +40,9 @@ export namespace WalletsVolume$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletsVolume> = z
         .object({
-            balance: z.number().int(),
-            input: z.number().int(),
-            output: z.number().int(),
+            balance: z.bigint().transform((v) => Number(v)),
+            input: z.bigint().transform((v) => Number(v)),
+            output: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {

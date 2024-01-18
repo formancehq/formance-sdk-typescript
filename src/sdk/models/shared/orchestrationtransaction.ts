@@ -6,7 +6,7 @@ import { Posting, Posting$ } from "./posting";
 import { z } from "zod";
 
 export type OrchestrationTransaction = {
-    id: number;
+    id: bigint;
     metadata: Record<string, string>;
     postings: Array<Posting>;
     reference?: string | undefined;
@@ -27,7 +27,7 @@ export namespace OrchestrationTransaction$ {
 
     export const inboundSchema: z.ZodType<OrchestrationTransaction, z.ZodTypeDef, Inbound> = z
         .object({
-            id: z.number().int(),
+            id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),
             postings: z.array(Posting$.inboundSchema),
             reference: z.string().optional(),
@@ -59,7 +59,7 @@ export namespace OrchestrationTransaction$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationTransaction> = z
         .object({
-            id: z.number().int(),
+            id: z.bigint().transform((v) => Number(v)),
             metadata: z.record(z.string()),
             postings: z.array(Posting$.outboundSchema),
             reference: z.string().optional(),

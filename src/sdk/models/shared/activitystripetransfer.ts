@@ -14,7 +14,7 @@ import { z } from "zod";
 export type Metadata = {};
 
 export type ActivityStripeTransfer = {
-    amount?: number | undefined;
+    amount?: bigint | undefined;
     asset?: string | undefined;
     connectorID?: string | undefined;
     destination?: string | undefined;
@@ -53,12 +53,15 @@ export namespace ActivityStripeTransfer$ {
 
     export const inboundSchema: z.ZodType<ActivityStripeTransfer, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int().optional(),
+            amount: z
+                .number()
+                .transform((v) => BigInt(v))
+                .optional(),
             asset: z.string().optional(),
             connectorID: z.string().optional(),
             destination: z.string().optional(),
             metadata: z.lazy(() => Metadata$.inboundSchema).optional(),
-            waitingValidation: z.boolean().optional(),
+            waitingValidation: z.boolean().default(false),
         })
         .transform((v) => {
             return {
@@ -79,17 +82,20 @@ export namespace ActivityStripeTransfer$ {
         connectorID?: string | undefined;
         destination?: string | undefined;
         metadata?: Metadata$.Outbound | undefined;
-        waitingValidation?: boolean | undefined;
+        waitingValidation: boolean;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityStripeTransfer> = z
         .object({
-            amount: z.number().int().optional(),
+            amount: z
+                .bigint()
+                .transform((v) => Number(v))
+                .optional(),
             asset: z.string().optional(),
             connectorID: z.string().optional(),
             destination: z.string().optional(),
             metadata: z.lazy(() => Metadata$.outboundSchema).optional(),
-            waitingValidation: z.boolean().optional(),
+            waitingValidation: z.boolean().default(false),
         })
         .transform((v) => {
             return {
@@ -98,9 +104,7 @@ export namespace ActivityStripeTransfer$ {
                 ...(v.connectorID === undefined ? null : { connectorID: v.connectorID }),
                 ...(v.destination === undefined ? null : { destination: v.destination }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.waitingValidation === undefined
-                    ? null
-                    : { waitingValidation: v.waitingValidation }),
+                waitingValidation: v.waitingValidation,
             };
         });
 }

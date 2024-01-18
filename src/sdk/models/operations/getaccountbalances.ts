@@ -104,7 +104,7 @@ export namespace GetAccountBalancesRequest$ {
                 .transform((v) => new Date(v))
                 .optional(),
             limit: z.number().int().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             sort: z.array(z.string()).optional(),
             to: z
                 .string()
@@ -131,7 +131,7 @@ export namespace GetAccountBalancesRequest$ {
         cursor?: string | undefined;
         from?: string | undefined;
         limit?: number | undefined;
-        pageSize?: number | undefined;
+        pageSize: number;
         sort?: Array<string> | undefined;
         to?: string | undefined;
     };
@@ -146,7 +146,7 @@ export namespace GetAccountBalancesRequest$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             limit: z.number().int().optional(),
-            pageSize: z.number().int().optional(),
+            pageSize: z.number().int().default(15),
             sort: z.array(z.string()).optional(),
             to: z
                 .date()
@@ -160,7 +160,7 @@ export namespace GetAccountBalancesRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.from === undefined ? null : { from: v.from }),
                 ...(v.limit === undefined ? null : { limit: v.limit }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.sort === undefined ? null : { sort: v.sort }),
                 ...(v.to === undefined ? null : { to: v.to }),
             };

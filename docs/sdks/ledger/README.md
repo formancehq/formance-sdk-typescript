@@ -55,7 +55,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.createTransactions({
+  const result = await sdk.ledger.createTransactions({
     transactions: {
       transactions: [
         {
@@ -64,7 +64,7 @@ async function run() {
           },
           postings: [
             {
-              amount: 100,
+              amount: 100n,
               asset: "COIN",
               destination: "users:002",
               source: "users:001",
@@ -77,11 +77,8 @@ async function run() {
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -119,19 +116,16 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.addMetadataOnTransaction({
+  const result = await sdk.ledger.addMetadataOnTransaction({
     requestBody: {
       "key": "string",
     },
     ledger: "ledger001",
-    txid: 1234,
+    txid: 1234n,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -169,7 +163,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.addMetadataToAccount({
+  const result = await sdk.ledger.addMetadataToAccount({
     requestBody: {
       "key": "string",
     },
@@ -177,11 +171,8 @@ async function run() {
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -220,7 +211,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.countAccounts({
+  const result = await sdk.ledger.countAccounts({
     address: "users:.+",
     ledger: "ledger001",
     metadata: {
@@ -228,11 +219,8 @@ async function run() {
     },
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -270,7 +258,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.countTransactions({
+  const result = await sdk.ledger.countTransactions({
     account: "users:001",
     destination: "users:001",
     ledger: "ledger001",
@@ -279,11 +267,8 @@ async function run() {
     source: "users:001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -321,14 +306,14 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.createTransaction({
+  const result = await sdk.ledger.createTransaction({
     postTransaction: {
       metadata: {
         "key": "string",
       },
       postings: [
         {
-          amount: 100,
+          amount: 100n,
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -353,11 +338,8 @@ async function run() {
     preview: true,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -396,16 +378,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getAccount({
+  const result = await sdk.ledger.getAccount({
     address: "users:001",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -443,18 +422,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getBalances({
+  const result = await sdk.ledger.getBalances({
     address: "users:001",
     after: "users:003",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -492,16 +468,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getBalancesAggregated({
+  const result = await sdk.ledger.getBalancesAggregated({
     address: "users:001",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -539,13 +512,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getInfo();
+  const result = await sdk.ledger.getInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -582,15 +552,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getLedgerInfo({
+  const result = await sdk.ledger.getLedgerInfo({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -628,15 +595,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getMapping({
+  const result = await sdk.ledger.getMapping({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -674,16 +638,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.getTransaction({
+  const result = await sdk.ledger.getTransaction({
     ledger: "ledger001",
-    txid: 1234,
+    txid: 1234n,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -721,7 +682,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.listAccounts({
+  const result = await sdk.ledger.listAccounts({
     address: "users:.+",
     after: "users:003",
     balance: 2400,
@@ -733,11 +694,8 @@ async function run() {
     paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -775,17 +733,14 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.listLogs({
+  const result = await sdk.ledger.listLogs({
     after: "1234",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -823,7 +778,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.listTransactions({
+  const result = await sdk.ledger.listTransactions({
     account: "users:001",
     after: "1234",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -836,11 +791,8 @@ async function run() {
     source: "users:001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -879,15 +831,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.readStats({
+  const result = await sdk.ledger.readStats({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -925,16 +874,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.revertTransaction({
+  const result = await sdk.ledger.revertTransaction({
     ledger: "ledger001",
-    txid: 1234,
+    txid: 1234n,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -975,7 +921,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.runScript({
+  const result = await sdk.ledger.runScript({
     script: {
       metadata: {
         "key": "string",
@@ -997,11 +943,8 @@ async function run() {
     preview: true,
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1039,7 +982,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.updateMapping({
+  const result = await sdk.ledger.updateMapping({
     mapping: {
       contracts: [
         {
@@ -1051,11 +994,8 @@ async function run() {
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1093,20 +1033,17 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2AddMetadataOnTransaction({
+  const result = await sdk.ledger.v2AddMetadataOnTransaction({
     requestBody: {
       "admin": "true",
     },
     dryRun: true,
-    id: 1234,
+    id: 1234n,
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1145,7 +1082,7 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2AddMetadataToAccount({
+  const result = await sdk.ledger.v2AddMetadataToAccount({
     requestBody: {
       "admin": "true",
     },
@@ -1154,11 +1091,8 @@ async function run() {
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1197,18 +1131,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2CountAccounts({
+  const result = await sdk.ledger.v2CountAccounts({
     requestBody: {
       "key": "string",
     },
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1246,18 +1177,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2CountTransactions({
+  const result = await sdk.ledger.v2CountTransactions({
     requestBody: {
       "key": "string",
     },
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1295,18 +1223,15 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2CreateBulk({
+  const result = await sdk.ledger.v2CreateBulk({
     requestBody: [
-      "string",
+      ,
     ],
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1344,16 +1269,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2CreateLedger({
+  const result = await sdk.ledger.v2CreateLedger({
     v2CreateLedgerRequest: {},
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1392,14 +1314,14 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2CreateTransaction({
+  const result = await sdk.ledger.v2CreateTransaction({
     v2PostTransaction: {
       metadata: {
         "admin": "true",
       },
       postings: [
         {
-          amount: 100,
+          amount: 100n,
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -1424,11 +1346,8 @@ async function run() {
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1467,17 +1386,14 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2DeleteAccountMetadata({
+  const result = await sdk.ledger.v2DeleteAccountMetadata({
     address: "3680 Emile Grove",
     key: "foo",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1515,17 +1431,14 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2DeleteTransactionMetadata({
-    id: 1234,
+  const result = await sdk.ledger.v2DeleteTransactionMetadata({
+    id: 1234n,
     key: "foo",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1564,16 +1477,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2GetAccount({
+  const result = await sdk.ledger.v2GetAccount({
     address: "users:001",
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1611,13 +1521,10 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2GetInfo();
+  const result = await sdk.ledger.v2GetInfo();
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1654,15 +1561,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2GetLedger({
+  const result = await sdk.ledger.v2GetLedger({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1700,15 +1604,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2GetLedgerInfo({
+  const result = await sdk.ledger.v2GetLedgerInfo({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1746,16 +1647,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2GetTransaction({
-    id: 1234,
+  const result = await sdk.ledger.v2GetTransaction({
+    id: 1234n,
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1794,15 +1692,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2ListLedgers({
+  const result = await sdk.ledger.v2ListLedgers({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1841,15 +1736,12 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2ReadStats({
+  const result = await sdk.ledger.v2ReadStats({
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();
@@ -1887,16 +1779,13 @@ async function run() {
     authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
   });
 
-  const res = await sdk.ledger.v2RevertTransaction({
-    id: 1234,
+  const result = await sdk.ledger.v2RevertTransaction({
+    id: 1234n,
     ledger: "ledger001",
   });
 
-  if (res?.statusCode !== 200) {
-    throw new Error("Unexpected status code: " + res?.statusCode || "-");
-  }
-  
-  // handle response
+  // Handle the result
+  console.log(result)
 }
 
 run();

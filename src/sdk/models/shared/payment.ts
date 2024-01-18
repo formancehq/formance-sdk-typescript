@@ -13,13 +13,13 @@ export type Raw = {};
 
 export type Payment = {
     adjustments: Array<PaymentAdjustment>;
-    amount: number;
+    amount: bigint;
     asset: string;
     connectorID: string;
     createdAt: Date;
     destinationAccountID: string;
     id: string;
-    initialAmount: number;
+    initialAmount: bigint;
     metadata: Record<string, string> | null;
     provider?: Connector | undefined;
     raw: Raw | null;
@@ -65,7 +65,7 @@ export namespace Payment$ {
     export const inboundSchema: z.ZodType<Payment, z.ZodTypeDef, Inbound> = z
         .object({
             adjustments: z.array(PaymentAdjustment$.inboundSchema),
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z
@@ -74,7 +74,7 @@ export namespace Payment$ {
                 .transform((v) => new Date(v)),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(z.record(z.string())),
             provider: Connector$.optional(),
             raw: z.nullable(z.lazy(() => Raw$.inboundSchema)),
@@ -127,13 +127,13 @@ export namespace Payment$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Payment> = z
         .object({
             adjustments: z.array(PaymentAdjustment$.outboundSchema),
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
             connectorID: z.string(),
             createdAt: z.date().transform((v) => v.toISOString()),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(z.record(z.string())),
             provider: Connector$.optional(),
             raw: z.nullable(z.lazy(() => Raw$.outboundSchema)),

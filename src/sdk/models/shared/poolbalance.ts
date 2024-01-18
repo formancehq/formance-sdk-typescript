@@ -5,7 +5,7 @@
 import { z } from "zod";
 
 export type PoolBalance = {
-    amount: number;
+    amount: bigint;
     asset: string;
 };
 
@@ -18,7 +18,7 @@ export namespace PoolBalance$ {
 
     export const inboundSchema: z.ZodType<PoolBalance, z.ZodTypeDef, Inbound> = z
         .object({
-            amount: z.number().int(),
+            amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
         })
         .transform((v) => {
@@ -35,7 +35,7 @@ export namespace PoolBalance$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolBalance> = z
         .object({
-            amount: z.number().int(),
+            amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
         })
         .transform((v) => {

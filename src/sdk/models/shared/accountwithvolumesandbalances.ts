@@ -7,7 +7,7 @@ import { z } from "zod";
 
 export type AccountWithVolumesAndBalances = {
     address: string;
-    balances?: Record<string, number> | undefined;
+    balances?: Record<string, bigint> | undefined;
     metadata?: Record<string, any> | undefined;
     type?: string | undefined;
     volumes?: Record<string, Volume> | undefined;
@@ -26,7 +26,7 @@ export namespace AccountWithVolumesAndBalances$ {
     export const inboundSchema: z.ZodType<AccountWithVolumesAndBalances, z.ZodTypeDef, Inbound> = z
         .object({
             address: z.string(),
-            balances: z.record(z.number().int()).optional(),
+            balances: z.record(z.number().transform((v) => BigInt(v))).optional(),
             metadata: z.record(z.any()).optional(),
             type: z.string().optional(),
             volumes: z.record(Volume$.inboundSchema).optional(),
@@ -53,7 +53,7 @@ export namespace AccountWithVolumesAndBalances$ {
         z
             .object({
                 address: z.string(),
-                balances: z.record(z.number().int()).optional(),
+                balances: z.record(z.bigint().transform((v) => Number(v))).optional(),
                 metadata: z.record(z.any()).optional(),
                 type: z.string().optional(),
                 volumes: z.record(Volume$.outboundSchema).optional(),

@@ -54,7 +54,7 @@ export type OrchestrationPayment = {
     createdAt: Date;
     destinationAccountID: string;
     id: string;
-    initialAmount: number;
+    initialAmount: bigint;
     metadata: OrchestrationPaymentMetadata | null;
     provider?: OrchestrationConnector | undefined;
     raw: OrchestrationPaymentRaw | null;
@@ -115,7 +115,7 @@ export namespace OrchestrationPayment$ {
                 .transform((v) => new Date(v)),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(OrchestrationPaymentMetadata$.inboundSchema),
             provider: OrchestrationConnector$.optional(),
             raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.inboundSchema)),
@@ -171,7 +171,7 @@ export namespace OrchestrationPayment$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             destinationAccountID: z.string(),
             id: z.string(),
-            initialAmount: z.number().int(),
+            initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(OrchestrationPaymentMetadata$.outboundSchema),
             provider: OrchestrationConnector$.optional(),
             raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.outboundSchema)),

@@ -6,7 +6,7 @@ import * as shared from "../../../sdk/models/shared";
 import { z } from "zod";
 
 export type InstallConnectorRequest = {
-    requestBody?: any | undefined;
+    connectorConfig: shared.ConnectorConfig;
     /**
      * The name of the connector.
      */
@@ -35,35 +35,35 @@ export type InstallConnectorResponse = {
 /** @internal */
 export namespace InstallConnectorRequest$ {
     export type Inbound = {
-        RequestBody?: any | undefined;
+        ConnectorConfig: shared.ConnectorConfig$.Inbound;
         connector: shared.Connector;
     };
 
     export const inboundSchema: z.ZodType<InstallConnectorRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            RequestBody: z.any().optional(),
+            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
             connector: shared.Connector$,
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
+                connectorConfig: v.ConnectorConfig,
                 connector: v.connector,
             };
         });
 
     export type Outbound = {
-        RequestBody?: any | undefined;
+        ConnectorConfig: shared.ConnectorConfig$.Outbound;
         connector: shared.Connector;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InstallConnectorRequest> = z
         .object({
-            requestBody: z.any().optional(),
+            connectorConfig: shared.ConnectorConfig$.outboundSchema,
             connector: shared.Connector$,
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
+                ConnectorConfig: v.connectorConfig,
                 connector: v.connector,
             };
         });

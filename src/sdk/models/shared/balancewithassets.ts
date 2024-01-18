@@ -5,10 +5,10 @@
 import { z } from "zod";
 
 export type BalanceWithAssets = {
-    assets: Record<string, number>;
+    assets: Record<string, bigint>;
     expiresAt?: Date | undefined;
     name: string;
-    priority?: number | undefined;
+    priority?: bigint | undefined;
 };
 
 /** @internal */
@@ -22,14 +22,17 @@ export namespace BalanceWithAssets$ {
 
     export const inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, Inbound> = z
         .object({
-            assets: z.record(z.number().int()),
+            assets: z.record(z.number().transform((v) => BigInt(v))),
             expiresAt: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
             name: z.string(),
-            priority: z.number().int().optional(),
+            priority: z
+                .number()
+                .transform((v) => BigInt(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -49,13 +52,16 @@ export namespace BalanceWithAssets$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalanceWithAssets> = z
         .object({
-            assets: z.record(z.number().int()),
+            assets: z.record(z.bigint().transform((v) => Number(v))),
             expiresAt: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
             name: z.string(),
-            priority: z.number().int().optional(),
+            priority: z
+                .bigint()
+                .transform((v) => Number(v))
+                .optional(),
         })
         .transform((v) => {
             return {

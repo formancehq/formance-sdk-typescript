@@ -1,21 +1,23 @@
 lockVersion: 2.0.0
-id: b9d1a5ae-1066-4858-9cca-59f29423c455
+id: 95b949ef-1329-4b73-9799-4dc53718cf2a
 management:
-  docChecksum: 19f45ae5d8990dc505885da49871ae14
-  docVersion: v2.0.0-beta.9
+  docChecksum: bf3929cd2ca1ce376006df43bc2705f2
+  docVersion: v2.0.0-beta.10
   speakeasyVersion: internal
-  generationVersion: 2.230.1
-  releaseVersion: v2.0.0-beta.9
-  configChecksum: 1414e6389bb9958f36f1445b3e3586b1
+  generationVersion: 2.234.1
+  releaseVersion: v2.0.0-beta.10
+  configChecksum: 33dc644a38fc4e03fe8e891064da6636
 features:
   typescript:
-    core: 3.4.3
+    constsAndDefaults: 0.1.1
+    core: 3.4.6
     deprecations: 2.81.1
     errors: 2.81.8
     globalSecurity: 2.82.2
     globalServerURLs: 2.82.1
     groups: 2.81.2
     ignores: 2.81.1
+    unions: 2.85.0
 generatedFiles:
   - src/sdk/auth.ts
   - src/sdk/ledger.ts
@@ -28,12 +30,14 @@ generatedFiles:
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
+  - RUNTIMES.md
   - package-lock.json
   - package.json
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/encodings.ts
+  - src/lib/event-streams.ts
   - src/lib/http.ts
   - src/lib/retries.ts
   - src/lib/sdks.ts
@@ -252,11 +256,19 @@ generatedFiles:
   - src/sdk/models/shared/script.ts
   - src/sdk/models/shared/v2errorsenum.ts
   - src/sdk/models/shared/v2bulkresponse.ts
-  - src/sdk/models/shared/v2createledgerrequest.ts
-  - src/sdk/models/shared/v2createtransactionresponse.ts
+  - src/sdk/models/shared/v2bulkelementresult.ts
   - src/sdk/models/shared/v2transaction.ts
   - src/sdk/models/shared/v2posting.ts
+  - src/sdk/models/shared/v2bulkelement.ts
+  - src/sdk/models/shared/v2bulkelementcreatetransaction.ts
   - src/sdk/models/shared/v2posttransaction.ts
+  - src/sdk/models/shared/v2bulkelementaddmetadata.ts
+  - src/sdk/models/shared/v2targettype.ts
+  - src/sdk/models/shared/v2targetid.ts
+  - src/sdk/models/shared/v2bulkelementreverttransaction.ts
+  - src/sdk/models/shared/v2bulkelementdeletemetadata.ts
+  - src/sdk/models/shared/v2createledgerrequest.ts
+  - src/sdk/models/shared/v2createtransactionresponse.ts
   - src/sdk/models/shared/v2accountresponse.ts
   - src/sdk/models/shared/v2account.ts
   - src/sdk/models/shared/v2volume.ts
@@ -284,6 +296,19 @@ generatedFiles:
   - src/sdk/models/shared/stagestatus.ts
   - src/sdk/models/shared/getworkflowinstancehistoryresponse.ts
   - src/sdk/models/shared/workflowinstancehistory.ts
+  - src/sdk/models/shared/stage.ts
+  - src/sdk/models/shared/stagesend.ts
+  - src/sdk/models/shared/stagesendsource.ts
+  - src/sdk/models/shared/stagesendsourcewallet.ts
+  - src/sdk/models/shared/stagesendsourcepayment.ts
+  - src/sdk/models/shared/stagesendsourceaccount.ts
+  - src/sdk/models/shared/stagesenddestination.ts
+  - src/sdk/models/shared/stagesenddestinationwallet.ts
+  - src/sdk/models/shared/stagesenddestinationpayment.ts
+  - src/sdk/models/shared/stagesenddestinationaccount.ts
+  - src/sdk/models/shared/monetary.ts
+  - src/sdk/models/shared/stagedelay.ts
+  - src/sdk/models/shared/stagewaitevent.ts
   - src/sdk/models/shared/getworkflowinstancehistorystageresponse.ts
   - src/sdk/models/shared/workflowinstancehistorystage.ts
   - src/sdk/models/shared/workflowinstancehistorystageoutput.ts
@@ -304,6 +329,9 @@ generatedFiles:
   - src/sdk/models/shared/orchestrationaccount.ts
   - src/sdk/models/shared/activitydebitwalletoutput.ts
   - src/sdk/models/shared/hold.ts
+  - src/sdk/models/shared/subject.ts
+  - src/sdk/models/shared/ledgeraccountsubject.ts
+  - src/sdk/models/shared/walletsubject.ts
   - src/sdk/models/shared/activitycreatetransactionoutput.ts
   - src/sdk/models/shared/workflowinstancehistorystageinput.ts
   - src/sdk/models/shared/activityvoidhold.ts
@@ -315,7 +343,6 @@ generatedFiles:
   - src/sdk/models/shared/activitygetaccount.ts
   - src/sdk/models/shared/activitydebitwallet.ts
   - src/sdk/models/shared/debitwalletrequest.ts
-  - src/sdk/models/shared/monetary.ts
   - src/sdk/models/shared/activitycreditwallet.ts
   - src/sdk/models/shared/creditwalletrequest.ts
   - src/sdk/models/shared/activitycreatetransaction.ts
@@ -344,6 +371,19 @@ generatedFiles:
   - src/sdk/models/shared/v2stagestatus.ts
   - src/sdk/models/shared/v2getworkflowinstancehistoryresponse.ts
   - src/sdk/models/shared/v2workflowinstancehistory.ts
+  - src/sdk/models/shared/v2stage.ts
+  - src/sdk/models/shared/v2stagesend.ts
+  - src/sdk/models/shared/v2stagesendsource.ts
+  - src/sdk/models/shared/v2stagesendsourcewallet.ts
+  - src/sdk/models/shared/v2stagesendsourcepayment.ts
+  - src/sdk/models/shared/v2stagesendsourceaccount.ts
+  - src/sdk/models/shared/v2stagesenddestination.ts
+  - src/sdk/models/shared/v2stagesenddestinationwallet.ts
+  - src/sdk/models/shared/v2stagesenddestinationpayment.ts
+  - src/sdk/models/shared/v2stagesenddestinationaccount.ts
+  - src/sdk/models/shared/v2monetary.ts
+  - src/sdk/models/shared/v2stagedelay.ts
+  - src/sdk/models/shared/v2stagewaitevent.ts
   - src/sdk/models/shared/v2getworkflowinstancehistorystageresponse.ts
   - src/sdk/models/shared/v2workflowinstancehistorystage.ts
   - src/sdk/models/shared/v2workflowinstancehistorystageoutput.ts
@@ -361,6 +401,9 @@ generatedFiles:
   - src/sdk/models/shared/v2activitygetaccountoutput.ts
   - src/sdk/models/shared/v2activitydebitwalletoutput.ts
   - src/sdk/models/shared/v2hold.ts
+  - src/sdk/models/shared/v2subject.ts
+  - src/sdk/models/shared/v2ledgeraccountsubject.ts
+  - src/sdk/models/shared/v2walletsubject.ts
   - src/sdk/models/shared/v2activitycreatetransactionoutput.ts
   - src/sdk/models/shared/orchestrationv2transaction.ts
   - src/sdk/models/shared/v2workflowinstancehistorystageinput.ts
@@ -372,7 +415,6 @@ generatedFiles:
   - src/sdk/models/shared/v2activitygetaccount.ts
   - src/sdk/models/shared/v2activitydebitwallet.ts
   - src/sdk/models/shared/v2debitwalletrequest.ts
-  - src/sdk/models/shared/v2monetary.ts
   - src/sdk/models/shared/v2activitycreditwallet.ts
   - src/sdk/models/shared/v2creditwalletrequest.ts
   - src/sdk/models/shared/v2activitycreatetransaction.ts
@@ -412,10 +454,29 @@ generatedFiles:
   - src/sdk/models/shared/balancescursor.ts
   - src/sdk/models/shared/accountbalance.ts
   - src/sdk/models/shared/taskresponse.ts
+  - src/sdk/models/shared/taskstripe.ts
+  - src/sdk/models/shared/taskwise.ts
+  - src/sdk/models/shared/taskcurrencycloud.ts
+  - src/sdk/models/shared/taskdummypay.ts
+  - src/sdk/models/shared/taskmodulr.ts
+  - src/sdk/models/shared/taskbankingcircle.ts
+  - src/sdk/models/shared/taskmangopay.ts
+  - src/sdk/models/shared/taskmoneycorp.ts
   - src/sdk/models/shared/poolbalancesresponse.ts
   - src/sdk/models/shared/poolbalances.ts
   - src/sdk/models/shared/poolbalance.ts
   - src/sdk/models/shared/connectorresponse.ts
+  - src/sdk/models/shared/connectorconfig.ts
+  - src/sdk/models/shared/stripeconfig.ts
+  - src/sdk/models/shared/dummypayconfig.ts
+  - src/sdk/models/shared/wiseconfig.ts
+  - src/sdk/models/shared/modulrconfig.ts
+  - src/sdk/models/shared/currencycloudconfig.ts
+  - src/sdk/models/shared/bankingcircleconfig.ts
+  - src/sdk/models/shared/mangopayconfig.ts
+  - src/sdk/models/shared/moneycorpconfig.ts
+  - src/sdk/models/shared/atlarconfig.ts
+  - src/sdk/models/shared/adyenconfig.ts
   - src/sdk/models/shared/connectorsresponse.ts
   - src/sdk/models/shared/bankaccountscursor.ts
   - src/sdk/models/shared/connectorsconfigsresponse.ts
@@ -817,12 +878,28 @@ generatedFiles:
   - docs/sdk/models/shared/script.md
   - docs/sdk/models/shared/v2errorsenum.md
   - docs/sdk/models/shared/v2bulkresponse.md
-  - docs/sdk/models/shared/v2createledgerrequest.md
-  - docs/sdk/models/shared/v2createtransactionresponse.md
+  - docs/sdk/models/shared/v2bulkelementresulterrorschemas.md
+  - docs/sdk/models/shared/v2bulkelementresultdeletemetadataschemas.md
+  - docs/sdk/models/shared/v2bulkelementresultreverttransactionschemas.md
+  - docs/sdk/models/shared/schemas.md
+  - docs/sdk/models/shared/v2bulkelementresultcreatetransactionschemas.md
+  - docs/sdk/models/shared/v2bulkelementresult.md
   - docs/sdk/models/shared/v2transaction.md
   - docs/sdk/models/shared/v2posting.md
+  - docs/sdk/models/shared/v2bulkelement.md
+  - docs/sdk/models/shared/v2bulkelementcreatetransaction.md
   - docs/sdk/models/shared/v2posttransactionscript.md
   - docs/sdk/models/shared/v2posttransaction.md
+  - docs/sdk/models/shared/v2bulkelementaddmetadatadata.md
+  - docs/sdk/models/shared/v2bulkelementaddmetadata.md
+  - docs/sdk/models/shared/v2targettype.md
+  - docs/sdk/models/shared/v2targetid.md
+  - docs/sdk/models/shared/v2bulkelementreverttransactiondata.md
+  - docs/sdk/models/shared/v2bulkelementreverttransaction.md
+  - docs/sdk/models/shared/v2bulkelementdeletemetadatadata.md
+  - docs/sdk/models/shared/v2bulkelementdeletemetadata.md
+  - docs/sdk/models/shared/v2createledgerrequest.md
+  - docs/sdk/models/shared/v2createtransactionresponse.md
   - docs/sdk/models/shared/v2accountresponse.md
   - docs/sdk/models/shared/v2account.md
   - docs/sdk/models/shared/v2volume.md
@@ -854,6 +931,19 @@ generatedFiles:
   - docs/sdk/models/shared/stagestatus.md
   - docs/sdk/models/shared/getworkflowinstancehistoryresponse.md
   - docs/sdk/models/shared/workflowinstancehistory.md
+  - docs/sdk/models/shared/stage.md
+  - docs/sdk/models/shared/stagesend.md
+  - docs/sdk/models/shared/stagesendsource.md
+  - docs/sdk/models/shared/stagesendsourcewallet.md
+  - docs/sdk/models/shared/stagesendsourcepayment.md
+  - docs/sdk/models/shared/stagesendsourceaccount.md
+  - docs/sdk/models/shared/stagesenddestination.md
+  - docs/sdk/models/shared/stagesenddestinationwallet.md
+  - docs/sdk/models/shared/stagesenddestinationpayment.md
+  - docs/sdk/models/shared/stagesenddestinationaccount.md
+  - docs/sdk/models/shared/monetary.md
+  - docs/sdk/models/shared/stagedelay.md
+  - docs/sdk/models/shared/stagewaitevent.md
   - docs/sdk/models/shared/getworkflowinstancehistorystageresponse.md
   - docs/sdk/models/shared/workflowinstancehistorystage.md
   - docs/sdk/models/shared/workflowinstancehistorystageoutput.md
@@ -880,6 +970,9 @@ generatedFiles:
   - docs/sdk/models/shared/orchestrationaccount.md
   - docs/sdk/models/shared/activitydebitwalletoutput.md
   - docs/sdk/models/shared/hold.md
+  - docs/sdk/models/shared/subject.md
+  - docs/sdk/models/shared/ledgeraccountsubject.md
+  - docs/sdk/models/shared/walletsubject.md
   - docs/sdk/models/shared/activitycreatetransactionoutput.md
   - docs/sdk/models/shared/workflowinstancehistorystageinput.md
   - docs/sdk/models/shared/activityvoidhold.md
@@ -892,7 +985,6 @@ generatedFiles:
   - docs/sdk/models/shared/activitygetaccount.md
   - docs/sdk/models/shared/activitydebitwallet.md
   - docs/sdk/models/shared/debitwalletrequest.md
-  - docs/sdk/models/shared/monetary.md
   - docs/sdk/models/shared/activitycreditwallet.md
   - docs/sdk/models/shared/creditwalletrequest.md
   - docs/sdk/models/shared/activitycreatetransaction.md
@@ -924,6 +1016,19 @@ generatedFiles:
   - docs/sdk/models/shared/v2stagestatus.md
   - docs/sdk/models/shared/v2getworkflowinstancehistoryresponse.md
   - docs/sdk/models/shared/v2workflowinstancehistory.md
+  - docs/sdk/models/shared/v2stage.md
+  - docs/sdk/models/shared/v2stagesend.md
+  - docs/sdk/models/shared/v2stagesendsource.md
+  - docs/sdk/models/shared/v2stagesendsourcewallet.md
+  - docs/sdk/models/shared/v2stagesendsourcepayment.md
+  - docs/sdk/models/shared/v2stagesendsourceaccount.md
+  - docs/sdk/models/shared/v2stagesenddestination.md
+  - docs/sdk/models/shared/v2stagesenddestinationwallet.md
+  - docs/sdk/models/shared/v2stagesenddestinationpayment.md
+  - docs/sdk/models/shared/v2stagesenddestinationaccount.md
+  - docs/sdk/models/shared/v2monetary.md
+  - docs/sdk/models/shared/v2stagedelay.md
+  - docs/sdk/models/shared/v2stagewaitevent.md
   - docs/sdk/models/shared/v2getworkflowinstancehistorystageresponse.md
   - docs/sdk/models/shared/v2workflowinstancehistorystage.md
   - docs/sdk/models/shared/v2workflowinstancehistorystageoutput.md
@@ -947,6 +1052,9 @@ generatedFiles:
   - docs/sdk/models/shared/v2activitygetaccountoutput.md
   - docs/sdk/models/shared/v2activitydebitwalletoutput.md
   - docs/sdk/models/shared/v2hold.md
+  - docs/sdk/models/shared/v2subject.md
+  - docs/sdk/models/shared/v2ledgeraccountsubject.md
+  - docs/sdk/models/shared/v2walletsubject.md
   - docs/sdk/models/shared/v2activitycreatetransactionoutput.md
   - docs/sdk/models/shared/orchestrationv2transaction.md
   - docs/sdk/models/shared/v2workflowinstancehistorystageinput.md
@@ -959,7 +1067,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2activitygetaccount.md
   - docs/sdk/models/shared/v2activitydebitwallet.md
   - docs/sdk/models/shared/v2debitwalletrequest.md
-  - docs/sdk/models/shared/v2monetary.md
   - docs/sdk/models/shared/v2activitycreditwallet.md
   - docs/sdk/models/shared/v2creditwalletrequest.md
   - docs/sdk/models/shared/v2activitycreatetransaction.md
@@ -1007,12 +1114,48 @@ generatedFiles:
   - docs/sdk/models/shared/balancescursorcursor.md
   - docs/sdk/models/shared/balancescursor.md
   - docs/sdk/models/shared/accountbalance.md
+  - docs/sdk/models/shared/taskresponsedata.md
   - docs/sdk/models/shared/taskresponse.md
+  - docs/sdk/models/shared/taskstripedescriptor.md
+  - docs/sdk/models/shared/taskstripestate.md
+  - docs/sdk/models/shared/taskstripe.md
+  - docs/sdk/models/shared/taskwisedescriptor.md
+  - docs/sdk/models/shared/taskwisestate.md
+  - docs/sdk/models/shared/taskwise.md
+  - docs/sdk/models/shared/taskcurrencyclouddescriptor.md
+  - docs/sdk/models/shared/taskcurrencycloudstate.md
+  - docs/sdk/models/shared/taskcurrencycloud.md
+  - docs/sdk/models/shared/taskdummypaydescriptor.md
+  - docs/sdk/models/shared/taskdummypaystate.md
+  - docs/sdk/models/shared/taskdummypay.md
+  - docs/sdk/models/shared/taskmodulrdescriptor.md
+  - docs/sdk/models/shared/taskmodulrstate.md
+  - docs/sdk/models/shared/taskmodulr.md
+  - docs/sdk/models/shared/descriptor.md
+  - docs/sdk/models/shared/taskbankingcirclestate.md
+  - docs/sdk/models/shared/taskbankingcircle.md
+  - docs/sdk/models/shared/taskmangopaydescriptor.md
+  - docs/sdk/models/shared/taskmangopaystate.md
+  - docs/sdk/models/shared/taskmangopay.md
+  - docs/sdk/models/shared/taskmoneycorpdescriptor.md
+  - docs/sdk/models/shared/taskmoneycorpstate.md
+  - docs/sdk/models/shared/taskmoneycorp.md
   - docs/sdk/models/shared/poolbalancesresponse.md
   - docs/sdk/models/shared/poolbalances.md
   - docs/sdk/models/shared/poolbalance.md
   - docs/sdk/models/shared/data.md
   - docs/sdk/models/shared/connectorresponse.md
+  - docs/sdk/models/shared/connectorconfig.md
+  - docs/sdk/models/shared/stripeconfig.md
+  - docs/sdk/models/shared/dummypayconfig.md
+  - docs/sdk/models/shared/wiseconfig.md
+  - docs/sdk/models/shared/modulrconfig.md
+  - docs/sdk/models/shared/currencycloudconfig.md
+  - docs/sdk/models/shared/bankingcircleconfig.md
+  - docs/sdk/models/shared/mangopayconfig.md
+  - docs/sdk/models/shared/moneycorpconfig.md
+  - docs/sdk/models/shared/atlarconfig.md
+  - docs/sdk/models/shared/adyenconfig.md
   - docs/sdk/models/shared/connectorsresponsedata.md
   - docs/sdk/models/shared/connectorsresponse.md
   - docs/sdk/models/shared/bankaccountscursorcursor.md
@@ -1021,6 +1164,7 @@ generatedFiles:
   - docs/sdk/models/shared/connectorsconfigsresponseconnector.md
   - docs/sdk/models/shared/connectorsconfigsresponsedata.md
   - docs/sdk/models/shared/connectorsconfigsresponse.md
+  - docs/sdk/models/shared/taskscursordata.md
   - docs/sdk/models/shared/taskscursorcursor.md
   - docs/sdk/models/shared/taskscursor.md
   - docs/sdk/models/shared/paymentscursorcursor.md
