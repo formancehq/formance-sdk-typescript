@@ -105,6 +105,7 @@ export * from "./removeaccountfrompool";
 export * from "./resetconnector";
 export * from "./resetconnectorv1";
 export * from "./retrytransferinitiation";
+export * from "./reversetransferinitiation";
 export * from "./reverttransaction";
 export * from "./runscript";
 export * from "./runworkflow";

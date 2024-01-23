@@ -27,6 +27,7 @@ export type TransferInitiation = {
     destinationAccountID: string;
     error: string;
     id: string;
+    initialAmount: bigint;
     metadata?: Record<string, string> | null | undefined;
     reference: string;
     relatedAdjustments?: Array<TransferInitiationAdjusments> | undefined;
@@ -51,6 +52,7 @@ export namespace TransferInitiation$ {
         destinationAccountID: string;
         error: string;
         id: string;
+        initialAmount: number;
         metadata?: Record<string, string> | null | undefined;
         reference: string;
         relatedAdjustments?: Array<TransferInitiationAdjusments$.Inbound> | undefined;
@@ -74,6 +76,7 @@ export namespace TransferInitiation$ {
             destinationAccountID: z.string(),
             error: z.string(),
             id: z.string(),
+            initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(z.record(z.string())).optional(),
             reference: z.string(),
             relatedAdjustments: z.array(TransferInitiationAdjusments$.inboundSchema).optional(),
@@ -96,6 +99,7 @@ export namespace TransferInitiation$ {
                 destinationAccountID: v.destinationAccountID,
                 error: v.error,
                 id: v.id,
+                initialAmount: v.initialAmount,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 reference: v.reference,
                 ...(v.relatedAdjustments === undefined
@@ -120,6 +124,7 @@ export namespace TransferInitiation$ {
         destinationAccountID: string;
         error: string;
         id: string;
+        initialAmount: number;
         metadata?: Record<string, string> | null | undefined;
         reference: string;
         relatedAdjustments?: Array<TransferInitiationAdjusments$.Outbound> | undefined;
@@ -140,6 +145,7 @@ export namespace TransferInitiation$ {
             destinationAccountID: z.string(),
             error: z.string(),
             id: z.string(),
+            initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(z.record(z.string())).optional(),
             reference: z.string(),
             relatedAdjustments: z.array(TransferInitiationAdjusments$.outboundSchema).optional(),
@@ -159,6 +165,7 @@ export namespace TransferInitiation$ {
                 destinationAccountID: v.destinationAccountID,
                 error: v.error,
                 id: v.id,
+                initialAmount: v.initialAmount,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 reference: v.reference,
                 ...(v.relatedAdjustments === undefined

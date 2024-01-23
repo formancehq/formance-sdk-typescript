@@ -37,6 +37,7 @@
 * [~~resetConnector~~](#resetconnector) - Reset a connector :warning: **Deprecated**
 * [resetConnectorV1](#resetconnectorv1) - Reset a connector
 * [retryTransferInitiation](#retrytransferinitiation) - Retry a failed transfer initiation
+* [reverseTransferInitiation](#reversetransferinitiation) - Reverse a transfer initiation
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
@@ -1578,6 +1579,58 @@ run();
 ### Response
 
 **Promise<[operations.RetryTransferInitiationResponse](../../sdk/models/operations/retrytransferinitiationresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## reverseTransferInitiation
+
+Reverse transfer initiation
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.payments.reverseTransferInitiation({
+    reverseTransferInitiationRequest: {
+      amount: 327549n,
+      asset: "USD",
+      description: "Streamlined high-level local area network",
+      metadata: {
+        "key": "string",
+      },
+      reference: "XXX",
+    },
+    transferId: "string",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ReverseTransferInitiationRequest](../../sdk/models/operations/reversetransferinitiationrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.ReverseTransferInitiationResponse](../../sdk/models/operations/reversetransferinitiationresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

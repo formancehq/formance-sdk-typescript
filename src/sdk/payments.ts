@@ -2289,6 +2289,75 @@ export class Payments extends ClientSDK {
     }
 
     /**
+     * Reverse a transfer initiation
+     *
+     * @remarks
+     * Reverse transfer initiation
+     */
+    async reverseTransferInitiation(
+        input: operations.ReverseTransferInitiationRequest,
+        options?: RequestOptions
+    ): Promise<operations.ReverseTransferInitiationResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "*/*");
+
+        const payload$ = operations.ReverseTransferInitiationRequest$.outboundSchema.parse(input);
+
+        const body$ = enc$.encodeJSON("body", payload$.ReverseTransferInitiationRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            transferId: enc$.encodeSimple("transferId", payload$.transferId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+
+        const path$ = this.templateURLComponent(
+            "/api/payments/transfer-initiations/{transferId}/reverse"
+        )(pathParams$);
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const response = await this.fetch$(
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                body: body$,
+            },
+            options
+        );
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchStatusCode(response, 204)) {
+            // fallthrough
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+
+        return operations.ReverseTransferInitiationResponse$.inboundSchema.parse(responseFields$);
+    }
+
+    /**
      * Update the status of a transfer initiation
      *
      * @remarks

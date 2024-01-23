@@ -153,6 +153,7 @@ export * from "./reconciliationrequest";
 export * from "./reconciliationresponse";
 export * from "./reconciliationscursorresponse";
 export * from "./response";
+export * from "./reversetransferinitiationrequest";
 export * from "./runworkflowresponse";
 export * from "./script";
 export * from "./scriptresponse";
