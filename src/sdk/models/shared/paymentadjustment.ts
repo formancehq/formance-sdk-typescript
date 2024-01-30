@@ -8,10 +8,10 @@ import { z } from "zod";
 export type PaymentAdjustmentRaw = {};
 
 export type PaymentAdjustment = {
-    absolute: boolean;
     amount: bigint;
-    date: Date;
+    createdAt: Date;
     raw: PaymentAdjustmentRaw;
+    reference: string;
     status: PaymentStatus;
 };
 
@@ -33,56 +33,56 @@ export namespace PaymentAdjustmentRaw$ {
 /** @internal */
 export namespace PaymentAdjustment$ {
     export type Inbound = {
-        absolute: boolean;
         amount: number;
-        date: string;
+        createdAt: string;
         raw: PaymentAdjustmentRaw$.Inbound;
+        reference: string;
         status: PaymentStatus;
     };
 
     export const inboundSchema: z.ZodType<PaymentAdjustment, z.ZodTypeDef, Inbound> = z
         .object({
-            absolute: z.boolean(),
             amount: z.number().transform((v) => BigInt(v)),
-            date: z
+            createdAt: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             raw: z.lazy(() => PaymentAdjustmentRaw$.inboundSchema),
+            reference: z.string(),
             status: PaymentStatus$,
         })
         .transform((v) => {
             return {
-                absolute: v.absolute,
                 amount: v.amount,
-                date: v.date,
+                createdAt: v.createdAt,
                 raw: v.raw,
+                reference: v.reference,
                 status: v.status,
             };
         });
 
     export type Outbound = {
-        absolute: boolean;
         amount: number;
-        date: string;
+        createdAt: string;
         raw: PaymentAdjustmentRaw$.Outbound;
+        reference: string;
         status: PaymentStatus;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentAdjustment> = z
         .object({
-            absolute: z.boolean(),
             amount: z.bigint().transform((v) => Number(v)),
-            date: z.date().transform((v) => v.toISOString()),
+            createdAt: z.date().transform((v) => v.toISOString()),
             raw: z.lazy(() => PaymentAdjustmentRaw$.outboundSchema),
+            reference: z.string(),
             status: PaymentStatus$,
         })
         .transform((v) => {
             return {
-                absolute: v.absolute,
                 amount: v.amount,
-                date: v.date,
+                createdAt: v.createdAt,
                 raw: v.raw,
+                reference: v.reference,
                 status: v.status,
             };
         });

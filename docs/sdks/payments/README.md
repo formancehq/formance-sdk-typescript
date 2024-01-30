@@ -210,7 +210,7 @@ async function run() {
     createdAt: new Date("2024-11-09T01:03:21.153Z"),
     reference: "string",
     scheme: PaymentScheme.GooglePay,
-    status: PaymentStatus.Refunded,
+    status: PaymentStatus.DisputeWon,
     type: PaymentType.Transfer,
   });
 
