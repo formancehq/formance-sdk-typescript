@@ -13,6 +13,7 @@ export type BankAccount = {
     iban?: string | undefined;
     id: string;
     metadata?: Record<string, string> | null | undefined;
+    name: string;
     provider?: string | undefined;
     swiftBicCode?: string | undefined;
 };
@@ -28,6 +29,7 @@ export namespace BankAccount$ {
         iban?: string | undefined;
         id: string;
         metadata?: Record<string, string> | null | undefined;
+        name: string;
         provider?: string | undefined;
         swiftBicCode?: string | undefined;
     };
@@ -45,6 +47,7 @@ export namespace BankAccount$ {
             iban: z.string().optional(),
             id: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
+            name: z.string(),
             provider: z.string().optional(),
             swiftBicCode: z.string().optional(),
         })
@@ -58,6 +61,7 @@ export namespace BankAccount$ {
                 ...(v.iban === undefined ? null : { iban: v.iban }),
                 id: v.id,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
+                name: v.name,
                 ...(v.provider === undefined ? null : { provider: v.provider }),
                 ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
             };
@@ -72,6 +76,7 @@ export namespace BankAccount$ {
         iban?: string | undefined;
         id: string;
         metadata?: Record<string, string> | null | undefined;
+        name: string;
         provider?: string | undefined;
         swiftBicCode?: string | undefined;
     };
@@ -86,6 +91,7 @@ export namespace BankAccount$ {
             iban: z.string().optional(),
             id: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
+            name: z.string(),
             provider: z.string().optional(),
             swiftBicCode: z.string().optional(),
         })
@@ -99,6 +105,7 @@ export namespace BankAccount$ {
                 ...(v.iban === undefined ? null : { iban: v.iban }),
                 id: v.id,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
+                name: v.name,
                 ...(v.provider === undefined ? null : { provider: v.provider }),
                 ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
             };

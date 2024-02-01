@@ -15,6 +15,10 @@ export type GetBalancesAggregatedRequest = {
      * Name of the ledger.
      */
     ledger: string;
+    /**
+     * Use insertion date instead of effective date
+     */
+    useInsertionDate?: boolean | undefined;
 };
 
 export type GetBalancesAggregatedResponse = {
@@ -45,34 +49,44 @@ export namespace GetBalancesAggregatedRequest$ {
     export type Inbound = {
         address?: string | undefined;
         ledger: string;
+        use_insertion_date?: boolean | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetBalancesAggregatedRequest, z.ZodTypeDef, Inbound> = z
         .object({
             address: z.string().optional(),
             ledger: z.string(),
+            use_insertion_date: z.boolean().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.address === undefined ? null : { address: v.address }),
                 ledger: v.ledger,
+                ...(v.use_insertion_date === undefined
+                    ? null
+                    : { useInsertionDate: v.use_insertion_date }),
             };
         });
 
     export type Outbound = {
         address?: string | undefined;
         ledger: string;
+        use_insertion_date?: boolean | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetBalancesAggregatedRequest> = z
         .object({
             address: z.string().optional(),
             ledger: z.string(),
+            useInsertionDate: z.boolean().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.address === undefined ? null : { address: v.address }),
                 ledger: v.ledger,
+                ...(v.useInsertionDate === undefined
+                    ? null
+                    : { use_insertion_date: v.useInsertionDate }),
             };
         });
 }

@@ -704,6 +704,10 @@ export class Ledger extends ClientSDK {
                 explode: true,
                 charEncoding: "percent",
             }),
+            enc$.encodeForm("use_insertion_date", payload$.use_insertion_date, {
+                explode: true,
+                charEncoding: "percent",
+            }),
         ]
             .filter(Boolean)
             .join("&");
