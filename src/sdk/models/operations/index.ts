@@ -36,6 +36,7 @@ export * from "./deletesecret";
 export * from "./deletetransferinitiation";
 export * from "./deletetrigger";
 export * from "./deleteworkflow";
+export * from "./forwardbankaccount";
 export * from "./getaccount";
 export * from "./getaccountbalances";
 export * from "./getapiauthwellknownopenidconfiguration";

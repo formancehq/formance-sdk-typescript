@@ -11,6 +11,7 @@
 * [createTransferInitiation](#createtransferinitiation) - Create a TransferInitiation
 * [deletePool](#deletepool) - Delete a Pool
 * [deleteTransferInitiation](#deletetransferinitiation) - Delete a transfer initiation
+* [forwardBankAccount](#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
@@ -420,6 +421,52 @@ run();
 ### Response
 
 **Promise<[operations.DeleteTransferInitiationResponse](../../sdk/models/operations/deletetransferinitiationresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## forwardBankAccount
+
+Forward a bank account to a connector
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.payments.forwardBankAccount({
+    forwardBankAccountRequest: {
+      connectorID: "string",
+    },
+    bankAccountId: "string",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ForwardBankAccountRequest](../../sdk/models/operations/forwardbankaccountrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.ForwardBankAccountResponse](../../sdk/models/operations/forwardbankaccountresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

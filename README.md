@@ -170,6 +170,7 @@ run();
 * [createTransferInitiation](docs/sdks/payments/README.md#createtransferinitiation) - Create a TransferInitiation
 * [deletePool](docs/sdks/payments/README.md#deletepool) - Delete a Pool
 * [deleteTransferInitiation](docs/sdks/payments/README.md#deletetransferinitiation) - Delete a transfer initiation
+* [forwardBankAccount](docs/sdks/payments/README.md#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](docs/sdks/payments/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/payments/README.md#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](docs/sdks/payments/README.md#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**

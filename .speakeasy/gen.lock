@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
-id: edc2b505-907f-48cf-8eaf-f84ad81ac592
+id: 2287823e-f7ab-4121-950f-2215b11c6542
 management:
-  docChecksum: 7dfe7c153410dab21130617af7d17ee2
-  docVersion: v2.0.0-rc.2
+  docChecksum: 25f7693c65559e6fd8db6433caadba98
+  docVersion: v2.0.0-rc.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: v2.0.0-rc.2
-  configChecksum: dc92b71f7ca59241894a554e0f481f75
+  releaseVersion: v2.0.0-rc.3
+  configChecksum: 6396749c22a1f59ca1814888c1bb27e9
 features:
   typescript:
     constsAndDefaults: 0.1.1
@@ -142,6 +142,7 @@ generatedFiles:
   - src/sdk/models/operations/createtransferinitiation.ts
   - src/sdk/models/operations/deletepool.ts
   - src/sdk/models/operations/deletetransferinitiation.ts
+  - src/sdk/models/operations/forwardbankaccount.ts
   - src/sdk/models/operations/getaccountbalances.ts
   - src/sdk/models/operations/getbankaccount.ts
   - src/sdk/models/operations/getconnectortask.ts
@@ -435,6 +436,7 @@ generatedFiles:
   - src/sdk/models/shared/transferrequest.ts
   - src/sdk/models/shared/bankaccountresponse.ts
   - src/sdk/models/shared/bankaccount.ts
+  - src/sdk/models/shared/bankaccountadjustment.ts
   - src/sdk/models/shared/bankaccountrequest.ts
   - src/sdk/models/shared/paymentresponse.ts
   - src/sdk/models/shared/payment.ts
@@ -452,6 +454,7 @@ generatedFiles:
   - src/sdk/models/shared/transferinitiationpayments.ts
   - src/sdk/models/shared/transferinitiationadjusments.ts
   - src/sdk/models/shared/transferinitiationrequest.ts
+  - src/sdk/models/shared/forwardbankaccountrequest.ts
   - src/sdk/models/shared/balancescursor.ts
   - src/sdk/models/shared/accountbalance.ts
   - src/sdk/models/shared/taskresponse.ts
@@ -702,6 +705,8 @@ generatedFiles:
   - docs/sdk/models/operations/deletepoolresponse.md
   - docs/sdk/models/operations/deletetransferinitiationrequest.md
   - docs/sdk/models/operations/deletetransferinitiationresponse.md
+  - docs/sdk/models/operations/forwardbankaccountrequest.md
+  - docs/sdk/models/operations/forwardbankaccountresponse.md
   - docs/sdk/models/operations/getaccountbalancesrequest.md
   - docs/sdk/models/operations/getaccountbalancesresponse.md
   - docs/sdk/models/operations/getbankaccountrequest.md
@@ -1094,6 +1099,7 @@ generatedFiles:
   - docs/sdk/models/shared/transferrequest.md
   - docs/sdk/models/shared/bankaccountresponse.md
   - docs/sdk/models/shared/bankaccount.md
+  - docs/sdk/models/shared/bankaccountadjustment.md
   - docs/sdk/models/shared/bankaccountrequest.md
   - docs/sdk/models/shared/paymentresponse.md
   - docs/sdk/models/shared/raw.md
@@ -1115,6 +1121,7 @@ generatedFiles:
   - docs/sdk/models/shared/transferinitiationadjusments.md
   - docs/sdk/models/shared/transferinitiationrequesttype.md
   - docs/sdk/models/shared/transferinitiationrequest.md
+  - docs/sdk/models/shared/forwardbankaccountrequest.md
   - docs/sdk/models/shared/balancescursorcursor.md
   - docs/sdk/models/shared/balancescursor.md
   - docs/sdk/models/shared/accountbalance.md

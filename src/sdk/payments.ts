@@ -528,6 +528,75 @@ export class Payments extends ClientSDK {
     }
 
     /**
+     * Forward a bank account to a connector
+     */
+    async forwardBankAccount(
+        input: operations.ForwardBankAccountRequest,
+        options?: RequestOptions
+    ): Promise<operations.ForwardBankAccountResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = operations.ForwardBankAccountRequest$.outboundSchema.parse(input);
+
+        const body$ = enc$.encodeJSON("body", payload$.ForwardBankAccountRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            bankAccountId: enc$.encodeSimple("bankAccountId", payload$.bankAccountId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+
+        const path$ = this.templateURLComponent(
+            "/api/payments/bank-accounts/{bankAccountId}/forward"
+        )(pathParams$);
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const response = await this.fetch$(
+            {
+                security: securitySettings$,
+                method: "POST",
+                path: path$,
+                headers: headers$,
+                body: body$,
+            },
+            options
+        );
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = operations.ForwardBankAccountResponse$.inboundSchema.parse({
+                ...responseFields$,
+                BankAccountResponse: responseBody,
+            });
+            return result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
      * Get account balances
      */
     async getAccountBalances(
