@@ -8,7 +8,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: v2.0.0-rc.3
+  version: v2.0.0-rc.4
   author: Formance
   clientServerStatusCodesAsErrors: false
   flattenGlobalSecurity: true
