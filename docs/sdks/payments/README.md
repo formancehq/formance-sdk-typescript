@@ -42,6 +42,7 @@
 * [udpateTransferInitiationStatus](#udpatetransferinitiationstatus) - Update the status of a transfer initiation
 * [~~uninstallConnector~~](#uninstallconnector) - Uninstall a connector :warning: **Deprecated**
 * [uninstallConnectorV1](#uninstallconnectorv1) - Uninstall a connector
+* [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
 
@@ -1816,6 +1817,54 @@ run();
 ### Response
 
 **Promise<[operations.UninstallConnectorV1Response](../../sdk/models/operations/uninstallconnectorv1response.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## updateBankAccountMetadata
+
+Update metadata of a bank account
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.payments.updateBankAccountMetadata({
+    updateBankAccountMetadataRequest: {
+      metadata: {
+        "key": "string",
+      },
+    },
+    bankAccountId: "string",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdateBankAccountMetadataRequest](../../sdk/models/operations/updatebankaccountmetadatarequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.UpdateBankAccountMetadataResponse](../../sdk/models/operations/updatebankaccountmetadataresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

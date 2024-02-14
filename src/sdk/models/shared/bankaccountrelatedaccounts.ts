@@ -4,7 +4,7 @@
 
 import { z } from "zod";
 
-export type BankAccountAdjustment = {
+export type BankAccountRelatedAccounts = {
     accountID: string;
     connectorID: string;
     createdAt: Date;
@@ -13,7 +13,7 @@ export type BankAccountAdjustment = {
 };
 
 /** @internal */
-export namespace BankAccountAdjustment$ {
+export namespace BankAccountRelatedAccounts$ {
     export type Inbound = {
         accountID: string;
         connectorID: string;
@@ -22,7 +22,7 @@ export namespace BankAccountAdjustment$ {
         provider: string;
     };
 
-    export const inboundSchema: z.ZodType<BankAccountAdjustment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BankAccountRelatedAccounts, z.ZodTypeDef, Inbound> = z
         .object({
             accountID: z.string(),
             connectorID: z.string(),
@@ -51,7 +51,7 @@ export namespace BankAccountAdjustment$ {
         provider: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountAdjustment> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountRelatedAccounts> = z
         .object({
             accountID: z.string(),
             connectorID: z.string(),

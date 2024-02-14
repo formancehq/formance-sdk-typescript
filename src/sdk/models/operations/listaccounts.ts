@@ -20,7 +20,7 @@ export type ListAccountsRequest = {
      */
     balance?: number | undefined;
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      *
      * @remarks
      * Set to the value of next for the next page of results.
@@ -45,7 +45,7 @@ export type ListAccountsRequest = {
      */
     pageSize?: number | undefined;
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      *
      * @remarks
      * Set to the value of next for the next page of results.

@@ -16,7 +16,7 @@ export type ListTransactionsRequest = {
      */
     after?: string | undefined;
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      *
      * @remarks
      * Set to the value of next for the next page of results.

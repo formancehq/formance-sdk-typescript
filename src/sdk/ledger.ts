@@ -622,6 +622,10 @@ export class Ledger extends ClientSDK {
             }),
             enc$.encodeForm("after", payload$.after, { explode: true, charEncoding: "percent" }),
             enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("pageSize", payload$.pageSize, {
+                explode: true,
+                charEncoding: "percent",
+            }),
         ]
             .filter(Boolean)
             .join("&");

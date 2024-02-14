@@ -118,6 +118,7 @@ export * from "./testtrigger";
 export * from "./udpatetransferinitiationstatus";
 export * from "./uninstallconnector";
 export * from "./uninstallconnectorv1";
+export * from "./updatebankaccountmetadata";
 export * from "./updateclient";
 export * from "./updateconnectorconfigv1";
 export * from "./updatemapping";

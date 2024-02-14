@@ -16,7 +16,7 @@ export type GetBalancesRequest = {
      */
     after?: string | undefined;
     /**
-     * Parameter used in pagination requests. Maximum page size is set to 15.
+     * Parameter used in pagination requests. Maximum page size is set to 1000.
      *
      * @remarks
      * Set to the value of next for the next page of results.
@@ -29,6 +29,13 @@ export type GetBalancesRequest = {
      * Name of the ledger.
      */
     ledger: string;
+    /**
+     * The maximum number of results to return per page.
+     *
+     * @remarks
+     *
+     */
+    pageSize?: number | undefined;
 };
 
 export type GetBalancesResponse = {
@@ -61,6 +68,7 @@ export namespace GetBalancesRequest$ {
         after?: string | undefined;
         cursor?: string | undefined;
         ledger: string;
+        pageSize?: number | undefined;
     };
 
     export const inboundSchema: z.ZodType<GetBalancesRequest, z.ZodTypeDef, Inbound> = z
@@ -69,6 +77,7 @@ export namespace GetBalancesRequest$ {
             after: z.string().optional(),
             cursor: z.string().optional(),
             ledger: z.string(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
@@ -76,6 +85,7 @@ export namespace GetBalancesRequest$ {
                 ...(v.after === undefined ? null : { after: v.after }),
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ledger: v.ledger,
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
             };
         });
 
@@ -84,6 +94,7 @@ export namespace GetBalancesRequest$ {
         after?: string | undefined;
         cursor?: string | undefined;
         ledger: string;
+        pageSize: number;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetBalancesRequest> = z
@@ -92,6 +103,7 @@ export namespace GetBalancesRequest$ {
             after: z.string().optional(),
             cursor: z.string().optional(),
             ledger: z.string(),
+            pageSize: z.number().int().default(15),
         })
         .transform((v) => {
             return {
@@ -99,6 +111,7 @@ export namespace GetBalancesRequest$ {
                 ...(v.after === undefined ? null : { after: v.after }),
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ledger: v.ledger,
+                pageSize: v.pageSize,
             };
         });
 }

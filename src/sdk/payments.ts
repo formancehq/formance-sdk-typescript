@@ -2635,6 +2635,72 @@ export class Payments extends ClientSDK {
     }
 
     /**
+     * Update metadata of a bank account
+     */
+    async updateBankAccountMetadata(
+        input: operations.UpdateBankAccountMetadataRequest,
+        options?: RequestOptions
+    ): Promise<operations.UpdateBankAccountMetadataResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "*/*");
+
+        const payload$ = operations.UpdateBankAccountMetadataRequest$.outboundSchema.parse(input);
+
+        const body$ = enc$.encodeJSON("body", payload$.UpdateBankAccountMetadataRequest, {
+            explode: true,
+        });
+
+        const pathParams$ = {
+            bankAccountId: enc$.encodeSimple("bankAccountId", payload$.bankAccountId, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+
+        const path$ = this.templateURLComponent(
+            "/api/payments/bank-accounts/{bankAccountId}/metadata"
+        )(pathParams$);
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const response = await this.fetch$(
+            {
+                security: securitySettings$,
+                method: "PATCH",
+                path: path$,
+                headers: headers$,
+                body: body$,
+            },
+            options
+        );
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchStatusCode(response, 204)) {
+            // fallthrough
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+
+        return operations.UpdateBankAccountMetadataResponse$.inboundSchema.parse(responseFields$);
+    }
+
+    /**
      * Update the config of a connector
      *
      * @remarks
