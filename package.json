@@ -1,7 +1,7 @@
 {
   "type": "commonjs",
   "name": "@formance/formance-sdk",
-  "version": "v2.0.0-rc.7",
+  "version": "v2.0.0-rc.8",
   "author": "Formance",
   "main": "./index.js",
   "sideEffects": false,
