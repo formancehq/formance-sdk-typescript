@@ -7,20 +7,22 @@ import { z } from "zod";
 
 export type V2TriggerOccurrence = {
     date: Date;
+    error?: string | undefined;
     event: Record<string, any>;
     triggerID: string;
-    workflowInstance: V2WorkflowInstance;
-    workflowInstanceID: string;
+    workflowInstance?: V2WorkflowInstance | undefined;
+    workflowInstanceID?: string | undefined;
 };
 
 /** @internal */
 export namespace V2TriggerOccurrence$ {
     export type Inbound = {
         date: string;
+        error?: string | undefined;
         event: Record<string, any>;
         triggerID: string;
-        workflowInstance: V2WorkflowInstance$.Inbound;
-        workflowInstanceID: string;
+        workflowInstance?: V2WorkflowInstance$.Inbound | undefined;
+        workflowInstanceID?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2TriggerOccurrence, z.ZodTypeDef, Inbound> = z
@@ -29,44 +31,57 @@ export namespace V2TriggerOccurrence$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
+            error: z.string().optional(),
             event: z.record(z.any()),
             triggerID: z.string(),
-            workflowInstance: V2WorkflowInstance$.inboundSchema,
-            workflowInstanceID: z.string(),
+            workflowInstance: V2WorkflowInstance$.inboundSchema.optional(),
+            workflowInstanceID: z.string().optional(),
         })
         .transform((v) => {
             return {
                 date: v.date,
+                ...(v.error === undefined ? null : { error: v.error }),
                 event: v.event,
                 triggerID: v.triggerID,
-                workflowInstance: v.workflowInstance,
-                workflowInstanceID: v.workflowInstanceID,
+                ...(v.workflowInstance === undefined
+                    ? null
+                    : { workflowInstance: v.workflowInstance }),
+                ...(v.workflowInstanceID === undefined
+                    ? null
+                    : { workflowInstanceID: v.workflowInstanceID }),
             };
         });
 
     export type Outbound = {
         date: string;
+        error?: string | undefined;
         event: Record<string, any>;
         triggerID: string;
-        workflowInstance: V2WorkflowInstance$.Outbound;
-        workflowInstanceID: string;
+        workflowInstance?: V2WorkflowInstance$.Outbound | undefined;
+        workflowInstanceID?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TriggerOccurrence> = z
         .object({
             date: z.date().transform((v) => v.toISOString()),
+            error: z.string().optional(),
             event: z.record(z.any()),
             triggerID: z.string(),
-            workflowInstance: V2WorkflowInstance$.outboundSchema,
-            workflowInstanceID: z.string(),
+            workflowInstance: V2WorkflowInstance$.outboundSchema.optional(),
+            workflowInstanceID: z.string().optional(),
         })
         .transform((v) => {
             return {
                 date: v.date,
+                ...(v.error === undefined ? null : { error: v.error }),
                 event: v.event,
                 triggerID: v.triggerID,
-                workflowInstance: v.workflowInstance,
-                workflowInstanceID: v.workflowInstanceID,
+                ...(v.workflowInstance === undefined
+                    ? null
+                    : { workflowInstance: v.workflowInstance }),
+                ...(v.workflowInstanceID === undefined
+                    ? null
+                    : { workflowInstanceID: v.workflowInstanceID }),
             };
         });
 }
