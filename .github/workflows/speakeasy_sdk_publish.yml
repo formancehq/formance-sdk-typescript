@@ -1,47 +1,39 @@
-name: Publish
-"on":
-  push:
-    branches:
-      - release/v*.*.*
-      - release/v*.*.*-alpha.*
-      - release/v*.*.*-beta.*
-      - release/v*.*.*-rc.*version
-jobs:
-  Release:
-    name: 'Release'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/release/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ steps.extract_branch.outputs.branch }}
-          release_name: ${{ steps.extract_branch.outputs.branch }}
-          draft: false
-          prerelease: false
-      - run: gh repo edit --default-branch=release/${{ steps.extract_branch.outputs.branch }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.NUMARY_GITHUB_TOKEN }}
+name: Generate
 
-  Publish:
-    name: 'Publish'
-    needs:
-      - Release
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
+    inputs:
+      force:
+        description: "Force generation of SDKs"
+        type: boolean
+        default: false
+  schedule:
+    - cron: 0 0 * * * # Runs every day at midnight
+
+jobs:
+  get_openai_spec_url:
+    name: Get OpenAPI Spec URL
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: formancehq/action-sdks@v1
+        id: get_openai_spec_url
         with:
-          node-version: '18.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      openapi_spec_url: ${{ steps.get_openai_spec_url.outputs.openapi_spec_url }}
+  generate:
+    needs: get_openai_spec_url
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v15 
+    with:
+      speakeasy_version: latest
+      openapi_docs: |
+        - location: ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
+      languages: |-
+        - typescript
+      publish_typescript: false
+      mode: pr
+      force: ${{ github.event.inputs.force }}
+    secrets:
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      npm_token:  ${{ secrets.NPM_TOKEN }}
