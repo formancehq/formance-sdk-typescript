@@ -30,7 +30,7 @@ jobs:
         - ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
       languages: |-
         - typescript
-      publish_typescript: false
+      publish_typescript: true
       mode: pr
       force: ${{ github.event.inputs.force }}
     secrets:
