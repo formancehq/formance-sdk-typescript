@@ -23,7 +23,7 @@ jobs:
       openapi_spec_url: ${{ steps.get_openai_spec_url.outputs.openapi_spec_url }}
   generate:
     needs: get_openai_spec_url
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v15 
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
     with:
       speakeasy_version: latest
       openapi_docs: |
