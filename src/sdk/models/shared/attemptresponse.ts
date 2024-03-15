@@ -3,7 +3,7 @@
  */
 
 import { Attempt, Attempt$ } from "./attempt";
-import { z } from "zod";
+import * as z from "zod";
 
 export type AttemptResponse = {
     data: Attempt;

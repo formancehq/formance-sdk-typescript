@@ -29,17 +29,17 @@ async function run() {
 
   const result = await sdk.auth.createClient({
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
-    name: "string",
+    name: "<value>",
     postLogoutRedirectUris: [
-      "string",
+      "<value>",
     ],
     redirectUris: [
-      "string",
+      "<value>",
     ],
     scopes: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -85,11 +85,11 @@ async function run() {
   const result = await sdk.auth.createSecret({
     createSecretRequest: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
-      name: "string",
+      name: "<value>",
     },
-    clientId: "string",
+    clientId: "<value>",
   });
 
   // Handle the result
@@ -132,7 +132,7 @@ async function run() {
   });
 
   const result = await sdk.auth.deleteClient({
-    clientId: "string",
+    clientId: "<value>",
   });
 
   // Handle the result
@@ -175,8 +175,8 @@ async function run() {
   });
 
   const result = await sdk.auth.deleteSecret({
-    clientId: "string",
-    secretId: "string",
+    clientId: "<value>",
+    secretId: "<value>",
   });
 
   // Handle the result
@@ -299,7 +299,7 @@ async function run() {
   });
 
   const result = await sdk.auth.readClient({
-    clientId: "string",
+    clientId: "<value>",
   });
 
   // Handle the result
@@ -342,7 +342,7 @@ async function run() {
   });
 
   const result = await sdk.auth.readUser({
-    userId: "string",
+    userId: "<value>",
   });
 
   // Handle the result
@@ -387,20 +387,20 @@ async function run() {
   const result = await sdk.auth.updateClient({
     updateClientRequest: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
-      name: "string",
+      name: "<value>",
       postLogoutRedirectUris: [
-        "string",
+        "<value>",
       ],
       redirectUris: [
-        "string",
+        "<value>",
       ],
       scopes: [
-        "string",
+        "<value>",
       ],
     },
-    clientId: "string",
+    clientId: "<value>",
   });
 
   // Handle the result

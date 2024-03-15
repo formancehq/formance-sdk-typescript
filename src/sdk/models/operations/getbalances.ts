@@ -4,7 +4,7 @@
 
 import * as errors from "../../../sdk/models/errors";
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetBalancesRequest = {
     /**
@@ -85,7 +85,7 @@ export namespace GetBalancesRequest$ {
                 ...(v.after === undefined ? null : { after: v.after }),
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ledger: v.ledger,
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
             };
         });
 

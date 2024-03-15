@@ -60,11 +60,11 @@ async function run() {
       transactions: [
         {
           metadata: {
-            "key": "string",
+            "key": "<value>",
           },
           postings: [
             {
-              amount: 100n,
+              amount: BigInt(100),
               asset: "COIN",
               destination: "users:002",
               source: "users:001",
@@ -118,10 +118,10 @@ async function run() {
 
   const result = await sdk.ledger.addMetadataOnTransaction({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
     ledger: "ledger001",
-    txid: 1234n,
+    txid: BigInt(1234),
   });
 
   // Handle the result
@@ -165,7 +165,7 @@ async function run() {
 
   const result = await sdk.ledger.addMetadataToAccount({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
     address: "users:001",
     ledger: "ledger001",
@@ -215,7 +215,7 @@ async function run() {
     address: "users:.+",
     ledger: "ledger001",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
   });
 
@@ -309,11 +309,11 @@ async function run() {
   const result = await sdk.ledger.createTransaction({
     postTransaction: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
       postings: [
         {
-          amount: 100n,
+          amount: BigInt(100),
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -330,7 +330,7 @@ async function run() {
       )
       ",
         vars: {
-          "user": "string",
+          "user": "users:042",
         },
       },
     },
@@ -640,7 +640,7 @@ async function run() {
 
   const result = await sdk.ledger.getTransaction({
     ledger: "ledger001",
-    txid: 1234n,
+    txid: BigInt(1234),
   });
 
   // Handle the result
@@ -689,7 +689,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
     paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
@@ -785,7 +785,7 @@ async function run() {
     destination: "users:001",
     ledger: "ledger001",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
     reference: "ref:001",
     source: "users:001",
@@ -876,7 +876,7 @@ async function run() {
 
   const result = await sdk.ledger.revertTransaction({
     ledger: "ledger001",
-    txid: 1234n,
+    txid: BigInt(1234),
   });
 
   // Handle the result
@@ -924,7 +924,7 @@ async function run() {
   const result = await sdk.ledger.runScript({
     script: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
       plain: "vars {
     account $user
@@ -936,7 +936,7 @@ async function run() {
     ",
       reference: "order_1234",
       vars: {
-        "user": "string",
+        "user": "users:042",
       },
     },
     ledger: "ledger001",
@@ -1038,7 +1038,7 @@ async function run() {
       "admin": "true",
     },
     dryRun: true,
-    id: 1234n,
+    id: BigInt(1234),
     ledger: "ledger001",
   });
 
@@ -1133,7 +1133,7 @@ async function run() {
 
   const result = await sdk.ledger.v2CountAccounts({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
     ledger: "ledger001",
   });
@@ -1179,7 +1179,7 @@ async function run() {
 
   const result = await sdk.ledger.v2CountTransactions({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
     ledger: "ledger001",
   });
@@ -1217,6 +1217,7 @@ Bulk request
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
+import { V2TargetType } from "@formance/formance-sdk/sdk/models/shared";
 
 async function run() {
   const sdk = new SDK({
@@ -1225,7 +1226,16 @@ async function run() {
 
   const result = await sdk.ledger.v2CreateBulk({
     requestBody: [
-      ,
+        {
+          action: "<value>",
+          data: {
+            metadata: {
+              "key": "<value>",
+            },
+          targetId: "<value>",
+            targetType: V2TargetType.Account,
+          },
+        },
     ],
     ledger: "ledger001",
   });
@@ -1321,7 +1331,7 @@ async function run() {
       },
       postings: [
         {
-          amount: 100n,
+          amount: BigInt(100),
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -1338,7 +1348,7 @@ async function run() {
       )
       ",
         vars: {
-          "user": "string",
+          "user": "users:042",
         },
       },
     },
@@ -1432,7 +1442,7 @@ async function run() {
   });
 
   const result = await sdk.ledger.v2DeleteTransactionMetadata({
-    id: 1234n,
+    id: BigInt(1234),
     key: "foo",
     ledger: "ledger001",
   });
@@ -1648,7 +1658,7 @@ async function run() {
   });
 
   const result = await sdk.ledger.v2GetTransaction({
-    id: 1234n,
+    id: BigInt(1234),
     ledger: "ledger001",
   });
 
@@ -1780,7 +1790,7 @@ async function run() {
   });
 
   const result = await sdk.ledger.v2RevertTransaction({
-    id: 1234n,
+    id: BigInt(1234),
     ledger: "ledger001",
   });
 

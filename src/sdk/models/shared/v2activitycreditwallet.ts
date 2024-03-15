@@ -3,7 +3,7 @@
  */
 
 import { V2CreditWalletRequest, V2CreditWalletRequest$ } from "./v2creditwalletrequest";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ActivityCreditWallet = {
     data?: V2CreditWalletRequest | undefined;

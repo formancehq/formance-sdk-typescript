@@ -6,7 +6,7 @@ import {
     OrchestrationPaymentStatus,
     OrchestrationPaymentStatus$,
 } from "./orchestrationpaymentstatus";
-import { z } from "zod";
+import * as z from "zod";
 
 export type OrchestrationPaymentAdjustmentRaw = {};
 

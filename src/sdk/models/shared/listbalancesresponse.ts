@@ -3,7 +3,7 @@
  */
 
 import { Balance, Balance$ } from "./balance";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListBalancesResponseCursor = {
     data: Array<Balance>;

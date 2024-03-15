@@ -31,7 +31,6 @@
 * [listTransferInitiations](#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
@@ -62,9 +61,9 @@ async function run() {
 
   const result = await sdk.payments.addAccountToPool({
     addAccountToPoolRequest: {
-      accountID: "string",
+      accountID: "<value>",
     },
-    poolId: "string",
+    poolId: "<value>",
   });
 
   // Handle the result
@@ -109,7 +108,7 @@ async function run() {
 
   const result = await sdk.payments.connectorsTransfer({
     transferRequest: {
-      amount: 100n,
+      amount: BigInt(100),
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
@@ -157,10 +156,10 @@ async function run() {
   });
 
   const result = await sdk.payments.createBankAccount({
-    connectorID: "string",
+    connectorID: "<value>",
     country: "GB",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
     name: "My account",
   });
@@ -206,11 +205,11 @@ async function run() {
   });
 
   const result = await sdk.payments.createPayment({
-    amount: 100n,
+    amount: BigInt(100),
     asset: "USD",
-    connectorID: "string",
+    connectorID: "<value>",
     createdAt: new Date("2024-11-09T01:03:21.153Z"),
-    reference: "string",
+    reference: "<value>",
     scheme: PaymentScheme.GooglePay,
     status: PaymentStatus.DisputeWon,
     type: PaymentType.Transfer,
@@ -257,9 +256,9 @@ async function run() {
 
   const result = await sdk.payments.createPool({
     accountIDs: [
-      "string",
+      "<value>",
     ],
-    name: "string",
+    name: "<value>",
   });
 
   // Handle the result
@@ -295,7 +294,7 @@ Create a transfer initiation
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector, TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
+import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
 async function run() {
   const sdk = new SDK({
@@ -303,16 +302,16 @@ async function run() {
   });
 
   const result = await sdk.payments.createTransferInitiation({
-    amount: 256698n,
+    amount: BigInt(256698),
     asset: "USD",
     description: "Multi-tiered incremental methodology",
-    destinationAccountID: "string",
+    destinationAccountID: "<value>",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
     reference: "XXX",
     scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
-    sourceAccountID: "string",
+    sourceAccountID: "<value>",
     type: TransferInitiationRequestType.Transfer,
     validated: false,
   });
@@ -357,7 +356,7 @@ async function run() {
   });
 
   const result = await sdk.payments.deletePool({
-    poolId: "string",
+    poolId: "<value>",
   });
 
   // Handle the result
@@ -400,7 +399,7 @@ async function run() {
   });
 
   const result = await sdk.payments.deleteTransferInitiation({
-    transferId: "string",
+    transferId: "<value>",
   });
 
   // Handle the result
@@ -444,9 +443,9 @@ async function run() {
 
   const result = await sdk.payments.forwardBankAccount({
     forwardBankAccountRequest: {
-      connectorID: "string",
+      connectorID: "<value>",
     },
-    bankAccountId: "string",
+    bankAccountId: "<value>",
   });
 
   // Handle the result
@@ -489,10 +488,10 @@ async function run() {
   });
 
   const result = await sdk.payments.getAccountBalances({
-    accountId: "string",
+    accountId: "<value>",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -536,7 +535,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getBankAccount({
-    bankAccountId: "string",
+    bankAccountId: "<value>",
   });
 
   // Handle the result
@@ -583,7 +582,7 @@ async function run() {
 
   const result = await sdk.payments.getConnectorTask({
     connector: Connector.Atlar,
-    taskId: "string",
+    taskId: "<value>",
   });
 
   // Handle the result
@@ -628,8 +627,8 @@ async function run() {
 
   const result = await sdk.payments.getConnectorTaskV1({
     connector: Connector.CurrencyCloud,
-    connectorId: "string",
-    taskId: "string",
+    connectorId: "<value>",
+    taskId: "<value>",
   });
 
   // Handle the result
@@ -672,7 +671,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getPayment({
-    paymentId: "string",
+    paymentId: "<value>",
   });
 
   // Handle the result
@@ -715,7 +714,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getPool({
-    poolId: "string",
+    poolId: "<value>",
   });
 
   // Handle the result
@@ -759,7 +758,7 @@ async function run() {
 
   const result = await sdk.payments.getPoolBalances({
     at: new Date("2023-05-05T06:40:23.018Z"),
-    poolId: "string",
+    poolId: "<value>",
   });
 
   // Handle the result
@@ -802,7 +801,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getTransferInitiation({
-    transferId: "string",
+    transferId: "<value>",
   });
 
   // Handle the result
@@ -846,7 +845,12 @@ async function run() {
   });
 
   const result = await sdk.payments.installConnector({
-    connector: Connector.Wise,
+  connectorConfig:     {
+        apiKey: "XXX",
+        name: "My Wise Account",
+        pollingPeriod: "60s",
+      },
+    connector: Connector.Atlar,
   });
 
   // Handle the result
@@ -931,7 +935,7 @@ async function run() {
   const result = await sdk.payments.listBankAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -1064,7 +1068,7 @@ async function run() {
 
   const result = await sdk.payments.listConnectorTasksV1({
     connector: Connector.BankingCircle,
-    connectorId: "string",
+    connectorId: "<value>",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
@@ -1110,7 +1114,7 @@ async function run() {
   const result = await sdk.payments.listPayments({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -1156,7 +1160,7 @@ async function run() {
   const result = await sdk.payments.listPools({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -1202,7 +1206,7 @@ async function run() {
   const result = await sdk.payments.listTransferInitiations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
-      "string",
+      "<value>",
     ],
   });
 
@@ -1246,7 +1250,7 @@ async function run() {
   });
 
   const result = await sdk.payments.paymentsgetAccount({
-    accountId: "string",
+    accountId: "<value>",
   });
 
   // Handle the result
@@ -1308,52 +1312,6 @@ run();
 ### Response
 
 **Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## paymentslistAccounts
-
-List accounts
-
-### Example Usage
-
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
-
-  const result = await sdk.payments.paymentslistAccounts({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "string",
-    ],
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.PaymentslistAccountsRequest](../../sdk/models/operations/paymentslistaccountsrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -1423,7 +1381,7 @@ async function run() {
 
   const result = await sdk.payments.readConnectorConfigV1({
     connector: Connector.CurrencyCloud,
-    connectorId: "string",
+    connectorId: "<value>",
   });
 
   // Handle the result
@@ -1466,8 +1424,8 @@ async function run() {
   });
 
   const result = await sdk.payments.removeAccountFromPool({
-    accountId: "string",
-    poolId: "string",
+    accountId: "<value>",
+    poolId: "<value>",
   });
 
   // Handle the result
@@ -1562,7 +1520,7 @@ async function run() {
 
   const result = await sdk.payments.resetConnectorV1({
     connector: Connector.Adyen,
-    connectorId: "string",
+    connectorId: "<value>",
   });
 
   // Handle the result
@@ -1605,7 +1563,7 @@ async function run() {
   });
 
   const result = await sdk.payments.retryTransferInitiation({
-    transferId: "string",
+    transferId: "<value>",
   });
 
   // Handle the result
@@ -1649,15 +1607,15 @@ async function run() {
 
   const result = await sdk.payments.reverseTransferInitiation({
     reverseTransferInitiationRequest: {
-      amount: 327549n,
+      amount: BigInt(327549),
       asset: "USD",
       description: "Streamlined high-level local area network",
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
       reference: "XXX",
     },
-    transferId: "string",
+    transferId: "<value>",
   });
 
   // Handle the result
@@ -1704,7 +1662,7 @@ async function run() {
     updateTransferInitiationStatusRequest: {
       status: Status.Validated,
     },
-    transferId: "string",
+    transferId: "<value>",
   });
 
   // Handle the result
@@ -1795,7 +1753,7 @@ async function run() {
 
   const result = await sdk.payments.uninstallConnectorV1({
     connector: Connector.Adyen,
-    connectorId: "string",
+    connectorId: "<value>",
   });
 
   // Handle the result
@@ -1840,10 +1798,10 @@ async function run() {
   const result = await sdk.payments.updateBankAccountMetadata({
     updateBankAccountMetadataRequest: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
     },
-    bankAccountId: "string",
+    bankAccountId: "<value>",
   });
 
   // Handle the result
@@ -1887,8 +1845,14 @@ async function run() {
   });
 
   const result = await sdk.payments.updateConnectorConfigV1({
+  connectorConfig:     {
+        apiKey: "XXX",
+        name: "My Stripe Account",
+        pageSize: 50,
+        pollingPeriod: "60s",
+      },
     connector: Connector.Stripe,
-    connectorId: "string",
+    connectorId: "<value>",
   });
 
   // Handle the result
@@ -1932,9 +1896,9 @@ async function run() {
 
   const result = await sdk.payments.updateMetadata({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
-    paymentId: "string",
+    paymentId: "<value>",
   });
 
   // Handle the result

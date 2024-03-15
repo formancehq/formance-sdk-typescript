@@ -4,7 +4,7 @@
 
 import { ErrorsEnum, ErrorsEnum$ } from "./errorsenum";
 import { Transaction, Transaction$ } from "./transaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ScriptResponse = {
     details?: string | undefined;

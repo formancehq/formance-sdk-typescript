@@ -3,7 +3,7 @@
  */
 
 import { V2Account, V2Account$ } from "./v2account";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2AccountResponse = {
     data: V2Account;

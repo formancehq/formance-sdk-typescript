@@ -4,7 +4,7 @@
 
 import * as errors from "../../../sdk/models/errors";
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListLogsRequest = {
     /**
@@ -107,7 +107,7 @@ export namespace ListLogsRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),
             };
         });

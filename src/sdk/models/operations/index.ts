@@ -93,7 +93,6 @@ export * from "./listworkflows";
 export * from "./orchestrationgetserverinfo";
 export * from "./paymentsgetaccount";
 export * from "./paymentsgetserverinfo";
-export * from "./paymentslistaccounts";
 export * from "./readclient";
 export * from "./readconnectorconfig";
 export * from "./readconnectorconfigv1";

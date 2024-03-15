@@ -3,7 +3,7 @@
  */
 
 import { Version, Version$ } from "./version";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetVersionsResponse = {
     env: string;

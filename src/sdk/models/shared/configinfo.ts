@@ -3,7 +3,7 @@
  */
 
 import { Config, Config$ } from "./config";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ConfigInfo = {
     config: Config;

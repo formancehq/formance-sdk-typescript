@@ -4,7 +4,7 @@
 
 import * as errors from "../../../sdk/models/errors";
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListTransactionsRequest = {
     /**
@@ -140,7 +140,7 @@ export namespace ListTransactionsRequest$ {
                 ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 ...(v.source === undefined ? null : { source: v.source }),
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),

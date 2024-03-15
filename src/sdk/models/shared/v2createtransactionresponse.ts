@@ -3,7 +3,7 @@
  */
 
 import { V2Transaction, V2Transaction$ } from "./v2transaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2CreateTransactionResponse = {
     data: V2Transaction;

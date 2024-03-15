@@ -6,7 +6,7 @@ import {
     OrchestrationV2Transaction,
     OrchestrationV2Transaction$,
 } from "./orchestrationv2transaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ActivityCreateTransactionOutput = {
     data: Array<OrchestrationV2Transaction>;

@@ -18,7 +18,7 @@ import {
     OrchestrationListWalletsResponse,
     OrchestrationListWalletsResponse$,
 } from "./orchestrationlistwalletsresponse";
-import { z } from "zod";
+import * as z from "zod";
 
 export type WorkflowInstanceHistoryStageOutput = {
     createTransaction?: ActivityCreateTransactionOutput | undefined;

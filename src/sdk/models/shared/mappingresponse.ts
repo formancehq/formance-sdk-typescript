@@ -3,7 +3,7 @@
  */
 
 import { Mapping, Mapping$ } from "./mapping";
-import { z } from "zod";
+import * as z from "zod";
 
 export type MappingResponse = {
     data?: Mapping | null | undefined;

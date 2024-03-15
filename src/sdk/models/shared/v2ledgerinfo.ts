@@ -3,7 +3,7 @@
  */
 
 import { V2MigrationInfo, V2MigrationInfo$ } from "./v2migrationinfo";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2LedgerInfoStorage = {
     migrations?: Array<V2MigrationInfo> | undefined;

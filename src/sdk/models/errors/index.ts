@@ -4,6 +4,7 @@
 
 export * from "./errorresponse";
 export * from "./sdkerror";
+export * from "./sdkvalidationerror";
 export * from "./v2error";
 export * from "./v2errorresponse";
 export * from "./webhookserrorresponse";

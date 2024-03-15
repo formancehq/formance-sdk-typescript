@@ -3,7 +3,7 @@
  */
 
 import { MigrationInfo, MigrationInfo$ } from "./migrationinfo";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Storage = {
     migrations?: Array<MigrationInfo> | undefined;

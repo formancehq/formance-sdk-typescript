@@ -3,7 +3,7 @@
  */
 
 import { V2WorkflowInstance, V2WorkflowInstance$ } from "./v2workflowinstance";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2RunWorkflowResponse = {
     data: V2WorkflowInstance;

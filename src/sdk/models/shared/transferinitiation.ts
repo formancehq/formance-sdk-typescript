@@ -11,7 +11,7 @@ import {
     TransferInitiationPayments$,
 } from "./transferinitiationpayments";
 import { TransferInitiationStatus, TransferInitiationStatus$ } from "./transferinitiationstatus";
-import { z } from "zod";
+import * as z from "zod";
 
 export enum TransferInitiationType {
     Transfer = "TRANSFER",

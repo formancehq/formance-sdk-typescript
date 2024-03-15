@@ -3,7 +3,7 @@
  */
 
 import { PoolBalance, PoolBalance$ } from "./poolbalance";
-import { z } from "zod";
+import * as z from "zod";
 
 export type PoolBalances = {
     balances: Array<PoolBalance>;

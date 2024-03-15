@@ -3,7 +3,7 @@
  */
 
 import * as errors from "../../../sdk/models/errors";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2DeleteTriggerRequest = {
     /**

@@ -3,7 +3,7 @@
  */
 
 import { WorkflowConfig, WorkflowConfig$ } from "./workflowconfig";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Workflow = {
     config: WorkflowConfig;

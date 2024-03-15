@@ -3,7 +3,7 @@
  */
 
 import { WebhooksConfig, WebhooksConfig$ } from "./webhooksconfig";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Attempt = {
     config: WebhooksConfig;

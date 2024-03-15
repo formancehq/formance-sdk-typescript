@@ -3,7 +3,7 @@
  */
 
 import { Pool, Pool$ } from "./pool";
-import { z } from "zod";
+import * as z from "zod";
 
 export type PoolsCursorCursor = {
     data: Array<Pool>;

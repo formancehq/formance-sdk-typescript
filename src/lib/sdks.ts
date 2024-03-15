@@ -7,6 +7,7 @@ import { SecurityState, resolveSecurity, resolveGlobalSecurity } from "./securit
 import { pathToFunc } from "./url";
 import { encodeForm } from "./encodings";
 import { stringToBase64 } from "./base64";
+import { SDKHooks, HookContext } from "../hooks";
 
 export type RequestOptions = {
     fetchOptions?: Omit<RequestInit, "method" | "body">;
@@ -24,20 +25,29 @@ type RequestConfig = {
 
 export class ClientSDK {
     private readonly client: HTTPClient;
-    protected readonly baseURL: URL;
+    protected readonly baseURL: URL | null;
+    protected readonly hooks$: SDKHooks;
 
-    constructor(init: { client: HTTPClient; baseURL: URL }) {
+    constructor(init: { client: HTTPClient; baseURL: URL | null; hooks: SDKHooks }) {
         const url = init.baseURL;
-        url.pathname = url.pathname.replace(/\/+$/, "") + "/";
+        if (url) {
+            url.pathname = url.pathname.replace(/\/+$/, "") + "/";
+        }
 
-        this.client = init.client;
-        this.baseURL = url;
+        this.hooks$ = init.hooks;
+        const { baseURL, client } = this.hooks$.sdkInit({ baseURL: url, client: init.client });
+        this.baseURL = baseURL;
+        this.client = client;
     }
 
-    protected async fetch$(conf: RequestConfig, options?: RequestOptions) {
+    protected createRequest$(conf: RequestConfig, options?: RequestOptions) {
         const { method, path, query, headers: opHeaders, security } = conf;
 
-        const reqURL = new URL(conf.baseURL ?? this.baseURL);
+        const base = conf.baseURL ?? this.baseURL;
+        if (!base) {
+            throw new TypeError("No base URL provided for operation");
+        }
+        const reqURL = new URL(base);
         const inputURL = new URL(path, reqURL);
 
         if (path) {
@@ -63,7 +73,7 @@ export class ClientSDK {
 
         const username = security?.basic.username || "";
         const password = security?.basic.password || "";
-        if (username) {
+        if (username || password) {
             const encoded = stringToBase64([username, password].join(":"));
             headers.set("Authorization", `Basic ${encoded}`);
         }
@@ -85,14 +95,36 @@ export class ClientSDK {
             headers.set(k, v);
         }
 
-        const req = new Request(reqURL, {
+        return new Request(reqURL, {
             ...options?.fetchOptions,
             body: conf.body ?? null,
             headers,
             method,
         });
+    }
 
-        return this.client.request(req);
+    protected async do$(
+        req: Request,
+        options: {
+            context: HookContext;
+            errorCodes: number | string | (number | string)[];
+        }
+    ) {
+        const { context, errorCodes } = options;
+
+        let response = await this.client.request(await this.hooks$.beforeRequest(context, req));
+
+        if (this.matchStatusCode(response, errorCodes)) {
+            const result = await this.hooks$.afterError(context, response, null);
+            if (result.error) {
+                throw result.error;
+            }
+            response = result.response || response;
+        } else {
+            response = await this.hooks$.afterSuccess(context, response);
+        }
+
+        return response;
     }
 
     protected unpackHeaders = unpackHeaders;

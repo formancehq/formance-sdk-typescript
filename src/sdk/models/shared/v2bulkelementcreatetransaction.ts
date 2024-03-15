@@ -3,7 +3,7 @@
  */
 
 import { V2PostTransaction, V2PostTransaction$ } from "./v2posttransaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2BulkElementCreateTransaction = {
     action: string;

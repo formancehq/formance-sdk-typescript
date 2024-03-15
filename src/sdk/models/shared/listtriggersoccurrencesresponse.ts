@@ -3,7 +3,7 @@
  */
 
 import { TriggerOccurrence, TriggerOccurrence$ } from "./triggeroccurrence";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListTriggersOccurrencesResponse = {
     data: Array<TriggerOccurrence>;

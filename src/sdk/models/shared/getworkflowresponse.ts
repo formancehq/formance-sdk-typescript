@@ -3,7 +3,7 @@
  */
 
 import { Workflow, Workflow$ } from "./workflow";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetWorkflowResponse = {
     data: Workflow;

@@ -3,7 +3,7 @@
  */
 
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListWalletsRequest = {
     /**
@@ -74,7 +74,7 @@ export namespace ListWalletsRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
             };
         });
 

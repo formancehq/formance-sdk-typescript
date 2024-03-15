@@ -3,7 +3,7 @@
  */
 
 import { V2StageStatus, V2StageStatus$ } from "./v2stagestatus";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2WorkflowInstance = {
     createdAt: Date;

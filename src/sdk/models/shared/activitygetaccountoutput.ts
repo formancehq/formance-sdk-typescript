@@ -3,7 +3,7 @@
  */
 
 import { OrchestrationAccount, OrchestrationAccount$ } from "./orchestrationaccount";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ActivityGetAccountOutput = {
     data: OrchestrationAccount;

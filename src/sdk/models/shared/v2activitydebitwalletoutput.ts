@@ -3,7 +3,7 @@
  */
 
 import { V2Hold, V2Hold$ } from "./v2hold";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ActivityDebitWalletOutput = {
     data: V2Hold;

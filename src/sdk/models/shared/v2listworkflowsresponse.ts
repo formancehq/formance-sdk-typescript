@@ -3,7 +3,7 @@
  */
 
 import { V2Workflow, V2Workflow$ } from "./v2workflow";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ListWorkflowsResponseCursor = {
     data: Array<V2Workflow>;

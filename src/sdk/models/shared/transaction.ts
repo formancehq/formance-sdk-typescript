@@ -4,7 +4,7 @@
 
 import { Posting, Posting$ } from "./posting";
 import { Volume, Volume$ } from "./volume";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Transaction = {
     metadata?: Record<string, any> | null | undefined;

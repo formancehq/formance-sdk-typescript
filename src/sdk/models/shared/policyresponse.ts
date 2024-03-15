@@ -3,7 +3,7 @@
  */
 
 import { Policy, Policy$ } from "./policy";
-import { z } from "zod";
+import * as z from "zod";
 
 export type PolicyResponse = {
     data: Policy;

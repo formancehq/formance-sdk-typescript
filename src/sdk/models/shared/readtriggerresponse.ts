@@ -3,7 +3,7 @@
  */
 
 import { Trigger, Trigger$ } from "./trigger";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ReadTriggerResponse = {
     data: Trigger;

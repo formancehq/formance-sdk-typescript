@@ -6,7 +6,7 @@ import { V2Connector, V2Connector$ } from "./v2connector";
 import { V2PaymentAdjustment, V2PaymentAdjustment$ } from "./v2paymentadjustment";
 import { V2PaymentMetadata, V2PaymentMetadata$ } from "./v2paymentmetadata";
 import { V2PaymentStatus, V2PaymentStatus$ } from "./v2paymentstatus";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2PaymentRaw = {};
 

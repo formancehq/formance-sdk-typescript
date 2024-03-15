@@ -3,7 +3,7 @@
  */
 
 import { AssetHolder, AssetHolder$ } from "./assetholder";
-import { z } from "zod";
+import * as z from "zod";
 
 export type WalletWithBalancesBalances = {
     main: AssetHolder;

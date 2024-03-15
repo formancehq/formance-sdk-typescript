@@ -12,7 +12,7 @@ import { ModulrConfig, ModulrConfig$ } from "./modulrconfig";
 import { MoneycorpConfig, MoneycorpConfig$ } from "./moneycorpconfig";
 import { StripeConfig, StripeConfig$ } from "./stripeconfig";
 import { WiseConfig, WiseConfig$ } from "./wiseconfig";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ConnectorConfig =
     | WiseConfig
@@ -51,7 +51,6 @@ export namespace ConnectorConfig$ {
         | DummyPayConfig$.Outbound
         | AtlarConfig$.Outbound
         | BankingCircleConfig$.Outbound;
-
     export const inboundSchema: z.ZodType<ConnectorConfig, z.ZodTypeDef, Inbound> = z.union([
         WiseConfig$.inboundSchema,
         StripeConfig$.inboundSchema,
@@ -64,7 +63,6 @@ export namespace ConnectorConfig$ {
         AtlarConfig$.inboundSchema,
         BankingCircleConfig$.inboundSchema,
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorConfig> = z.union([
         WiseConfig$.outboundSchema,
         StripeConfig$.outboundSchema,

@@ -3,7 +3,7 @@
  */
 
 import { AccountBalance, AccountBalance$ } from "./accountbalance";
-import { z } from "zod";
+import * as z from "zod";
 
 export type BalancesCursorCursor = {
     data: Array<AccountBalance>;

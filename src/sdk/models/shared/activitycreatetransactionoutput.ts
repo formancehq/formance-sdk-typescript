@@ -3,7 +3,7 @@
  */
 
 import { OrchestrationTransaction, OrchestrationTransaction$ } from "./orchestrationtransaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ActivityCreateTransactionOutput = {
     data: OrchestrationTransaction;

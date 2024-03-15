@@ -5,7 +5,7 @@
 import { PaymentScheme, PaymentScheme$ } from "./paymentscheme";
 import { PaymentStatus, PaymentStatus$ } from "./paymentstatus";
 import { PaymentType, PaymentType$ } from "./paymenttype";
-import { z } from "zod";
+import * as z from "zod";
 
 export type PaymentRequest = {
     amount: bigint;

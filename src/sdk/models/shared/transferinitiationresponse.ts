@@ -3,7 +3,7 @@
  */
 
 import { TransferInitiation, TransferInitiation$ } from "./transferinitiation";
-import { z } from "zod";
+import * as z from "zod";
 
 export type TransferInitiationResponse = {
     data: TransferInitiation;

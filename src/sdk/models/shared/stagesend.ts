@@ -5,7 +5,7 @@
 import { Monetary, Monetary$ } from "./monetary";
 import { StageSendDestination, StageSendDestination$ } from "./stagesenddestination";
 import { StageSendSource, StageSendSource$ } from "./stagesendsource";
-import { z } from "zod";
+import * as z from "zod";
 
 export type StageSend = {
     amount?: Monetary | undefined;

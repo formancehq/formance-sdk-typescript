@@ -3,7 +3,7 @@
  */
 
 import { Volume, Volume$ } from "./volume";
-import { z } from "zod";
+import * as z from "zod";
 
 export type OrchestrationAccount = {
     address: string;

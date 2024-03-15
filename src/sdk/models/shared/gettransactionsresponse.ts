@@ -3,7 +3,7 @@
  */
 
 import { WalletsTransaction, WalletsTransaction$ } from "./walletstransaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetTransactionsResponseCursor = {
     data: Array<WalletsTransaction>;

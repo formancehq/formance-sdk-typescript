@@ -3,7 +3,7 @@
  */
 
 import { Log, Log$ } from "./log";
-import { z } from "zod";
+import * as z from "zod";
 
 export type LogsCursorResponseCursor = {
     data: Array<Log>;

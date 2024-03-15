@@ -3,7 +3,7 @@
  */
 
 import { V2Ledger, V2Ledger$ } from "./v2ledger";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2LedgerListResponseCursor = {
     data: Array<V2Ledger>;

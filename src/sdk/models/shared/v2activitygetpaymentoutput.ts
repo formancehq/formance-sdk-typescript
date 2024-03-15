@@ -3,7 +3,7 @@
  */
 
 import { V2Payment, V2Payment$ } from "./v2payment";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ActivityGetPaymentOutput = {
     data: V2Payment;

@@ -54,7 +54,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.cancelEvent({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -97,11 +97,11 @@ async function run() {
   });
 
   const result = await sdk.orchestration.createTrigger({
-    event: "string",
+    event: "<value>",
     vars: {
-      "key": "string",
+      "key": "<value>",
     },
-    workflowID: "string",
+    workflowID: "<value>",
   });
 
   // Handle the result
@@ -146,7 +146,7 @@ async function run() {
   const result = await sdk.orchestration.createWorkflow({
     stages: [
       {
-        "key": "string",
+        "key": "<value>",
       },
     ],
   });
@@ -191,7 +191,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.deleteTrigger({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -234,7 +234,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.deleteWorkflow({
-    flowId: "string",
+    flowId: "<value>",
   });
 
   // Handle the result
@@ -277,7 +277,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.getInstance({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -320,7 +320,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.getInstanceHistory({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -363,7 +363,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.getInstanceStageHistory({
-    instanceID: "string",
+    instanceID: "<value>",
     number: 600636,
   });
 
@@ -407,7 +407,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.getWorkflow({
-    flowId: "string",
+    flowId: "<value>",
   });
 
   // Handle the result
@@ -531,7 +531,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.listTriggersOccurrences({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -654,7 +654,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.readTrigger({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -698,9 +698,9 @@ async function run() {
 
   const result = await sdk.orchestration.runWorkflow({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
-    workflowID: "string",
+    workflowID: "<value>",
   });
 
   // Handle the result
@@ -744,9 +744,9 @@ async function run() {
 
   const result = await sdk.orchestration.sendEvent({
     requestBody: {
-      name: "string",
+      name: "<value>",
     },
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -790,9 +790,9 @@ async function run() {
 
   const result = await sdk.orchestration.testTrigger({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -835,7 +835,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2CancelEvent({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -878,11 +878,11 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2CreateTrigger({
-    event: "string",
+    event: "<value>",
     vars: {
-      "key": "string",
+      "key": "<value>",
     },
-    workflowID: "string",
+    workflowID: "<value>",
   });
 
   // Handle the result
@@ -927,7 +927,7 @@ async function run() {
   const result = await sdk.orchestration.v2CreateWorkflow({
     stages: [
       {
-        "key": "string",
+        "key": "<value>",
       },
     ],
   });
@@ -972,7 +972,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2DeleteTrigger({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -1016,7 +1016,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2DeleteWorkflow({
-    flowId: "string",
+    flowId: "<value>",
   });
 
   // Handle the result
@@ -1060,7 +1060,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2GetInstance({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -1103,7 +1103,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2GetInstanceHistory({
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result
@@ -1146,7 +1146,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2GetInstanceStageHistory({
-    instanceID: "string",
+    instanceID: "<value>",
     number: 465454,
   });
 
@@ -1230,7 +1230,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2GetWorkflow({
-    flowId: "string",
+    flowId: "<value>",
   });
 
   // Handle the result
@@ -1354,7 +1354,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2ListTriggersOccurrences({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -1437,7 +1437,7 @@ async function run() {
   });
 
   const result = await sdk.orchestration.v2ReadTrigger({
-    triggerID: "string",
+    triggerID: "<value>",
   });
 
   // Handle the result
@@ -1481,9 +1481,9 @@ async function run() {
 
   const result = await sdk.orchestration.v2RunWorkflow({
     requestBody: {
-      "key": "string",
+      "key": "<value>",
     },
-    workflowID: "string",
+    workflowID: "<value>",
   });
 
   // Handle the result
@@ -1527,9 +1527,9 @@ async function run() {
 
   const result = await sdk.orchestration.v2SendEvent({
     requestBody: {
-      name: "string",
+      name: "<value>",
     },
-    instanceID: "string",
+    instanceID: "<value>",
   });
 
   // Handle the result

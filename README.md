@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/formancehq/formance-sdk-typescript
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add https://github.com/formancehq/formance-sdk-typescript
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -190,7 +190,6 @@ run();
 * [listTransferInitiations](docs/sdks/payments/README.md#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](docs/sdks/payments/README.md#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](docs/sdks/payments/README.md#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](docs/sdks/payments/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/payments/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/payments/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/payments/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -261,7 +260,8 @@ All SDK methods return a response object or throw an error. If Error objects are
 | errors.ErrorResponse | 400,404              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
 
-Example
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
+
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
@@ -276,13 +276,20 @@ async function run() {
     try {
         result = await sdk.ledger.addMetadataToAccount({
             requestBody: {
-                key: "string",
+                key: "<value>",
             },
             address: "users:001",
             ledger: "ledger001",
         });
     } catch (err) {
         switch (true) {
+            case err instanceof errors.SDKValidationError: {
+                // Validation errors can be pretty-printed
+                console.error(err.pretty());
+                // Raw value may also be inspected
+                console.error(err.rawValue);
+                return;
+            }
             case err instanceof errors.ErrorResponse: {
                 console.error(err); // handle exception
                 return;

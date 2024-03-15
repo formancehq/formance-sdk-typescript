@@ -3,7 +3,7 @@
  */
 
 import { V2Transaction, V2Transaction$ } from "./v2transaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2BulkElementResultErrorSchemas = {
     errorCode: string;
@@ -270,40 +270,78 @@ export namespace V2BulkElementResult$ {
               responseType: "DELETE_METADATA";
           })
         | (V2BulkElementResultErrorSchemas$.Outbound & { responseType: "REVERT_TRANSACTION" });
-
     export const inboundSchema: z.ZodType<V2BulkElementResult, z.ZodTypeDef, Inbound> = z.union([
         z
             .lazy(() => Schemas$.inboundSchema)
-            .and(z.object({ responseType: z.literal("CREATE_TRANSACTION") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultDeleteMetadataSchemas$.inboundSchema)
-            .and(z.object({ responseType: z.literal("ERROR") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("ERROR") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultCreateTransactionSchemas$.inboundSchema)
-            .and(z.object({ responseType: z.literal("ADD_METADATA") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("ADD_METADATA") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultRevertTransactionSchemas$.inboundSchema)
-            .and(z.object({ responseType: z.literal("DELETE_METADATA") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("DELETE_METADATA") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultErrorSchemas$.inboundSchema)
-            .and(z.object({ responseType: z.literal("REVERT_TRANSACTION") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("REVERT_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElementResult> = z.union([
         z
             .lazy(() => Schemas$.outboundSchema)
-            .and(z.object({ responseType: z.literal("CREATE_TRANSACTION") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultDeleteMetadataSchemas$.outboundSchema)
-            .and(z.object({ responseType: z.literal("ERROR") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("ERROR") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultCreateTransactionSchemas$.outboundSchema)
-            .and(z.object({ responseType: z.literal("ADD_METADATA") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("ADD_METADATA") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultRevertTransactionSchemas$.outboundSchema)
-            .and(z.object({ responseType: z.literal("DELETE_METADATA") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("DELETE_METADATA") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
         z
             .lazy(() => V2BulkElementResultErrorSchemas$.outboundSchema)
-            .and(z.object({ responseType: z.literal("REVERT_TRANSACTION") })),
+            .and(
+                z
+                    .object({ responseType: z.literal("REVERT_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
     ]);
 }

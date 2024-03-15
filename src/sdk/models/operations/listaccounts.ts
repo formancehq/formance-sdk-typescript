@@ -4,7 +4,7 @@
 
 import * as errors from "../../../sdk/models/errors";
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListAccountsRequest = {
     /**
@@ -114,7 +114,7 @@ export namespace ListAccountsRequest$ {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 ledger: v.ledger,
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.pagination_token === undefined
                     ? null
                     : { paginationToken: v.pagination_token }),

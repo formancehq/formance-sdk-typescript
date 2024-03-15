@@ -10,7 +10,7 @@ import { TaskModulr, TaskModulr$ } from "./taskmodulr";
 import { TaskMoneycorp, TaskMoneycorp$ } from "./taskmoneycorp";
 import { TaskStripe, TaskStripe$ } from "./taskstripe";
 import { TaskWise, TaskWise$ } from "./taskwise";
-import { z } from "zod";
+import * as z from "zod";
 
 export type TasksCursorData =
     | TaskStripe
@@ -64,7 +64,6 @@ export namespace TasksCursorData$ {
         | TaskBankingCircle$.Outbound
         | TaskMangoPay$.Outbound
         | TaskMoneycorp$.Outbound;
-
     export const inboundSchema: z.ZodType<TasksCursorData, z.ZodTypeDef, Inbound> = z.union([
         TaskStripe$.inboundSchema,
         TaskWise$.inboundSchema,
@@ -75,7 +74,6 @@ export namespace TasksCursorData$ {
         TaskMangoPay$.inboundSchema,
         TaskMoneycorp$.inboundSchema,
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursorData> = z.union([
         TaskStripe$.outboundSchema,
         TaskWise$.outboundSchema,

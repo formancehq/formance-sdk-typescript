@@ -3,7 +3,7 @@
  */
 
 import { V2Trigger, V2Trigger$ } from "./v2trigger";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ListTriggersResponseCursor = {
     data: Array<V2Trigger>;

@@ -3,7 +3,7 @@
  */
 
 import { Hold, Hold$ } from "./hold";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetHoldsResponseCursor = {
     data: Array<Hold>;

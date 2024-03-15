@@ -5,7 +5,7 @@
 import { V2StageSendSourceAccount, V2StageSendSourceAccount$ } from "./v2stagesendsourceaccount";
 import { V2StageSendSourcePayment, V2StageSendSourcePayment$ } from "./v2stagesendsourcepayment";
 import { V2StageSendSourceWallet, V2StageSendSourceWallet$ } from "./v2stagesendsourcewallet";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2StageSendSource = {
     account?: V2StageSendSourceAccount | undefined;
