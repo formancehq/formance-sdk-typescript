@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add https://github.com/formancehq/formance-sdk-typescript
+npm add @formance/formance-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/formancehq/formance-sdk-typescript
+yarn add @formance/formance-sdk
 ```
 <!-- End SDK Installation [installation] -->
 
