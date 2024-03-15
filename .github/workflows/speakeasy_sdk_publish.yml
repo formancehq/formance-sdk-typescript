@@ -1,39 +1,19 @@
-name: Generate
+name: Publish
 
 on:
-  workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
-    inputs:
-      force:
-        description: "Force generation of SDKs"
-        type: boolean
-        default: false
-  schedule:
-    - cron: 0 0 * * * # Runs every day at midnight
+  push: # Will trigger when the RELEASES.md file is updated by the merged PR from the generation workflow
+    paths:
+      - 'RELEASES.md'
+    branches:
+      - main
 
 jobs:
-  get_openai_spec_url:
-    name: Get OpenAPI Spec URL
-    runs-on: ubuntu-latest
-    steps:
-      - uses: formancehq/action-sdks@v1
-        id: get_openai_spec_url
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      openapi_spec_url: ${{ steps.get_openai_spec_url.outputs.openapi_spec_url }}
-  generate:
-    needs: get_openai_spec_url
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
+  publish:
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v14 # Import the SDK publishing workflow to handle publishing to the package managers
     with:
-      speakeasy_version: latest
-      openapi_docs: |
-        - ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
-      languages: |-
-        - typescript
-      publish_typescript: false
-      mode: pr
-      force: ${{ github.event.inputs.force }}
+      publish_typescript: true # Tells the publishing action to publish the Python SDK to PyPI
+      create_release: true
     secrets:
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       npm_token:  ${{ secrets.NPM_TOKEN }}
+      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
