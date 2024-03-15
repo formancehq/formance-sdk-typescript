@@ -29,7 +29,7 @@ async function run() {
   const result = await sdk.reconciliation.createPolicy({
     ledgerName: "default",
     ledgerQuery: {
-      "key": "string",
+      "key": "<value>",
     },
     name: "XXX",
     paymentsPoolID: "XXX",
@@ -75,7 +75,7 @@ async function run() {
   });
 
   const result = await sdk.reconciliation.deletePolicy({
-    policyID: "string",
+    policyID: "<value>",
   });
 
   // Handle the result
@@ -118,7 +118,7 @@ async function run() {
   });
 
   const result = await sdk.reconciliation.getPolicy({
-    policyID: "string",
+    policyID: "<value>",
   });
 
   // Handle the result
@@ -161,7 +161,7 @@ async function run() {
   });
 
   const result = await sdk.reconciliation.getReconciliation({
-    reconciliationID: "string",
+    reconciliationID: "<value>",
   });
 
   // Handle the result
@@ -294,7 +294,7 @@ async function run() {
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
       reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
     },
-    policyID: "string",
+    policyID: "<value>",
   });
 
   // Handle the result

@@ -3,7 +3,7 @@
  */
 
 import { TransactionData, TransactionData$ } from "./transactiondata";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Transactions = {
     transactions: Array<TransactionData>;

@@ -3,7 +3,7 @@
  */
 
 import { V2WalletWithBalances, V2WalletWithBalances$ } from "./v2walletwithbalances";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ActivityGetWalletOutput = {
     data: V2WalletWithBalances;

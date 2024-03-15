@@ -3,7 +3,7 @@
  */
 
 import { V2TriggerTest, V2TriggerTest$ } from "./v2triggertest";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2TestTriggerResponse = {
     data: V2TriggerTest;

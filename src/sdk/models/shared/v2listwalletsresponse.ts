@@ -3,7 +3,7 @@
  */
 
 import { V2Wallet, V2Wallet$ } from "./v2wallet";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ListWalletsResponseCursor = {
     data: Array<V2Wallet>;

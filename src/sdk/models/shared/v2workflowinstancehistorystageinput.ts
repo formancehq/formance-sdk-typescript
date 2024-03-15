@@ -15,7 +15,7 @@ import { V2ActivityGetWallet, V2ActivityGetWallet$ } from "./v2activitygetwallet
 import { V2ActivityListWallets, V2ActivityListWallets$ } from "./v2activitylistwallets";
 import { V2ActivityStripeTransfer, V2ActivityStripeTransfer$ } from "./v2activitystripetransfer";
 import { V2ActivityVoidHold, V2ActivityVoidHold$ } from "./v2activityvoidhold";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2WorkflowInstanceHistoryStageInput = {
     confirmHold?: V2ActivityConfirmHold | undefined;

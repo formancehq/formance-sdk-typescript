@@ -3,7 +3,7 @@
  */
 
 import { LedgerInfo, LedgerInfo$ } from "./ledgerinfo";
-import { z } from "zod";
+import * as z from "zod";
 
 export type LedgerInfoResponse = {
     data?: LedgerInfo | undefined;

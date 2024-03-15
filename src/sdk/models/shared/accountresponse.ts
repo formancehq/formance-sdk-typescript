@@ -6,7 +6,7 @@ import {
     AccountWithVolumesAndBalances,
     AccountWithVolumesAndBalances$,
 } from "./accountwithvolumesandbalances";
-import { z } from "zod";
+import * as z from "zod";
 
 export type AccountResponse = {
     data: AccountWithVolumesAndBalances;

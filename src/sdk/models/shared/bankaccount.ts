@@ -6,7 +6,7 @@ import {
     BankAccountRelatedAccounts,
     BankAccountRelatedAccounts$,
 } from "./bankaccountrelatedaccounts";
-import { z } from "zod";
+import * as z from "zod";
 
 export type BankAccount = {
     accountID?: string | undefined;

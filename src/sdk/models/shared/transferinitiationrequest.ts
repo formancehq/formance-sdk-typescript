@@ -3,7 +3,7 @@
  */
 
 import { Connector, Connector$ } from "./connector";
-import { z } from "zod";
+import * as z from "zod";
 
 export enum TransferInitiationRequestType {
     Transfer = "TRANSFER",

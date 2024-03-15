@@ -3,7 +3,7 @@
  */
 
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListConnectorTasksRequest = {
     /**
@@ -66,7 +66,7 @@ export namespace ListConnectorTasksRequest$ {
             return {
                 connector: v.connector,
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
             };
         });
 

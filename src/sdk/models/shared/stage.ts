@@ -5,7 +5,7 @@
 import { StageDelay, StageDelay$ } from "./stagedelay";
 import { StageSend, StageSend$ } from "./stagesend";
 import { StageWaitEvent, StageWaitEvent$ } from "./stagewaitevent";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Stage = StageWaitEvent | StageDelay | StageSend;
 
@@ -14,13 +14,11 @@ export namespace Stage$ {
     export type Inbound = StageWaitEvent$.Inbound | StageDelay$.Inbound | StageSend$.Inbound;
 
     export type Outbound = StageWaitEvent$.Outbound | StageDelay$.Outbound | StageSend$.Outbound;
-
     export const inboundSchema: z.ZodType<Stage, z.ZodTypeDef, Inbound> = z.union([
         StageWaitEvent$.inboundSchema,
         StageDelay$.inboundSchema,
         StageSend$.inboundSchema,
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stage> = z.union([
         StageWaitEvent$.outboundSchema,
         StageDelay$.outboundSchema,

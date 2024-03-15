@@ -3,7 +3,7 @@
  */
 
 import { V2LedgerInfo, V2LedgerInfo$ } from "./v2ledgerinfo";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2LedgerInfoResponse = {
     data?: V2LedgerInfo | undefined;

@@ -20,7 +20,7 @@ import {
 } from "./v2activitygetpaymentoutput";
 import { V2ActivityGetWalletOutput, V2ActivityGetWalletOutput$ } from "./v2activitygetwalletoutput";
 import { V2ListWalletsResponse, V2ListWalletsResponse$ } from "./v2listwalletsresponse";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2WorkflowInstanceHistoryStageOutput = {
     createTransaction?: V2ActivityCreateTransactionOutput | undefined;

@@ -3,7 +3,7 @@
  */
 
 import { Secret, Secret$ } from "./secret";
-import { z } from "zod";
+import * as z from "zod";
 
 export type CreateSecretResponse = {
     data?: Secret | undefined;

@@ -6,7 +6,7 @@ import {
     V2WorkflowInstanceHistoryStage,
     V2WorkflowInstanceHistoryStage$,
 } from "./v2workflowinstancehistorystage";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2GetWorkflowInstanceHistoryStageResponse = {
     data: Array<V2WorkflowInstanceHistoryStage>;

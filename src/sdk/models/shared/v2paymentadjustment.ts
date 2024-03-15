@@ -3,7 +3,7 @@
  */
 
 import { V2PaymentStatus, V2PaymentStatus$ } from "./v2paymentstatus";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2PaymentAdjustmentRaw = {};
 

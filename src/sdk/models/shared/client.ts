@@ -3,7 +3,7 @@
  */
 
 import { ClientSecret, ClientSecret$ } from "./clientsecret";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Client = {
     description?: string | undefined;

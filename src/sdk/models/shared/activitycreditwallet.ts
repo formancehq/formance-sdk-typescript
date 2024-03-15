@@ -3,7 +3,7 @@
  */
 
 import { CreditWalletRequest, CreditWalletRequest$ } from "./creditwalletrequest";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ActivityCreditWallet = {
     data?: CreditWalletRequest | undefined;

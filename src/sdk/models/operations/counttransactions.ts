@@ -3,7 +3,7 @@
  */
 
 import * as errors from "../../../sdk/models/errors";
-import { z } from "zod";
+import * as z from "zod";
 
 /**
  * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.

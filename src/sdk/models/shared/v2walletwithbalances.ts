@@ -3,7 +3,7 @@
  */
 
 import { V2AssetHolder, V2AssetHolder$ } from "./v2assetholder";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Balances = {
     main: V2AssetHolder;

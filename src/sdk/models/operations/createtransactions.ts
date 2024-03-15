@@ -4,7 +4,7 @@
 
 import * as errors from "../../../sdk/models/errors";
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type CreateTransactionsRequest = {
     transactions: shared.Transactions;

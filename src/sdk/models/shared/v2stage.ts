@@ -5,7 +5,7 @@
 import { V2StageDelay, V2StageDelay$ } from "./v2stagedelay";
 import { V2StageSend, V2StageSend$ } from "./v2stagesend";
 import { V2StageWaitEvent, V2StageWaitEvent$ } from "./v2stagewaitevent";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2Stage = V2StageWaitEvent | V2StageDelay | V2StageSend;
 
@@ -17,13 +17,11 @@ export namespace V2Stage$ {
         | V2StageWaitEvent$.Outbound
         | V2StageDelay$.Outbound
         | V2StageSend$.Outbound;
-
     export const inboundSchema: z.ZodType<V2Stage, z.ZodTypeDef, Inbound> = z.union([
         V2StageWaitEvent$.inboundSchema,
         V2StageDelay$.inboundSchema,
         V2StageSend$.inboundSchema,
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Stage> = z.union([
         V2StageWaitEvent$.outboundSchema,
         V2StageDelay$.outboundSchema,

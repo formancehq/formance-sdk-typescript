@@ -5,10 +5,18 @@ generation:
     optionalPropertyRendering: withExample
   fixes:
     nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: v2.0.0-rc.15
+  version: 2.1.0
+  additionalDependencies:
+    dependencies: {}
+    devDependencies: {}
+    peerDependencies: {}
   author: Formance
   clientServerStatusCodesAsErrors: false
   flattenGlobalSecurity: true
@@ -24,4 +32,5 @@ typescript:
   maxMethodParams: 0
   outputModelSuffix: output
   packageName: '@formance/formance-sdk'
+  responseFormat: envelope
   templateVersion: v2

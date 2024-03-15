@@ -3,7 +3,7 @@
  */
 
 import { LedgerStorage, LedgerStorage$ } from "./ledgerstorage";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Config = {
     storage: LedgerStorage;

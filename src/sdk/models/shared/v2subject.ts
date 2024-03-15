@@ -4,7 +4,7 @@
 
 import { V2LedgerAccountSubject, V2LedgerAccountSubject$ } from "./v2ledgeraccountsubject";
 import { V2WalletSubject, V2WalletSubject$ } from "./v2walletsubject";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2Subject =
     | (V2LedgerAccountSubject & { type: "ACCOUNT" })
@@ -19,14 +19,20 @@ export namespace V2Subject$ {
     export type Outbound =
         | (V2LedgerAccountSubject$.Outbound & { type: "ACCOUNT" })
         | (V2WalletSubject$.Outbound & { type: "WALLET" });
-
     export const inboundSchema: z.ZodType<V2Subject, z.ZodTypeDef, Inbound> = z.union([
-        V2LedgerAccountSubject$.inboundSchema.and(z.object({ type: z.literal("ACCOUNT") })),
-        V2WalletSubject$.inboundSchema.and(z.object({ type: z.literal("WALLET") })),
+        V2LedgerAccountSubject$.inboundSchema.and(
+            z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))
+        ),
+        V2WalletSubject$.inboundSchema.and(
+            z.object({ type: z.literal("WALLET") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Subject> = z.union([
-        V2LedgerAccountSubject$.outboundSchema.and(z.object({ type: z.literal("ACCOUNT") })),
-        V2WalletSubject$.outboundSchema.and(z.object({ type: z.literal("WALLET") })),
+        V2LedgerAccountSubject$.outboundSchema.and(
+            z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))
+        ),
+        V2WalletSubject$.outboundSchema.and(
+            z.object({ type: z.literal("WALLET") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 }

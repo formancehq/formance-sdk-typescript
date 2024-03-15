@@ -3,7 +3,7 @@
  */
 
 import { V2Posting, V2Posting$ } from "./v2posting";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2PostTransactionScript = {
     plain: string;

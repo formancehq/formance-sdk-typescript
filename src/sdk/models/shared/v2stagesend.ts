@@ -5,7 +5,7 @@
 import { V2Monetary, V2Monetary$ } from "./v2monetary";
 import { V2StageSendDestination, V2StageSendDestination$ } from "./v2stagesenddestination";
 import { V2StageSendSource, V2StageSendSource$ } from "./v2stagesendsource";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2StageSend = {
     amount?: V2Monetary | undefined;

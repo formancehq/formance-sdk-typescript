@@ -3,7 +3,7 @@
  */
 
 import { Reconciliation, Reconciliation$ } from "./reconciliation";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ReconciliationResponse = {
     data: Reconciliation;

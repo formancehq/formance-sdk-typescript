@@ -6,7 +6,7 @@ import {
     OrchestrationPostTransaction,
     OrchestrationPostTransaction$,
 } from "./orchestrationposttransaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ActivityCreateTransaction = {
     data?: OrchestrationPostTransaction | undefined;

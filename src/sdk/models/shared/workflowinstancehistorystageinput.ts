@@ -13,7 +13,7 @@ import { ActivityListWallets, ActivityListWallets$ } from "./activitylistwallets
 import { ActivityRevertTransaction, ActivityRevertTransaction$ } from "./activityreverttransaction";
 import { ActivityStripeTransfer, ActivityStripeTransfer$ } from "./activitystripetransfer";
 import { ActivityVoidHold, ActivityVoidHold$ } from "./activityvoidhold";
-import { z } from "zod";
+import * as z from "zod";
 
 export type WorkflowInstanceHistoryStageInput = {
     confirmHold?: ActivityConfirmHold | undefined;

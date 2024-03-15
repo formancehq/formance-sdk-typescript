@@ -4,7 +4,7 @@
 
 import { LedgerAccountSubject, LedgerAccountSubject$ } from "./ledgeraccountsubject";
 import { WalletSubject, WalletSubject$ } from "./walletsubject";
-import { z } from "zod";
+import * as z from "zod";
 
 export type Subject =
     | (LedgerAccountSubject & { type: "ACCOUNT" })
@@ -19,14 +19,20 @@ export namespace Subject$ {
     export type Outbound =
         | (LedgerAccountSubject$.Outbound & { type: "ACCOUNT" })
         | (WalletSubject$.Outbound & { type: "WALLET" });
-
     export const inboundSchema: z.ZodType<Subject, z.ZodTypeDef, Inbound> = z.union([
-        LedgerAccountSubject$.inboundSchema.and(z.object({ type: z.literal("ACCOUNT") })),
-        WalletSubject$.inboundSchema.and(z.object({ type: z.literal("WALLET") })),
+        LedgerAccountSubject$.inboundSchema.and(
+            z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))
+        ),
+        WalletSubject$.inboundSchema.and(
+            z.object({ type: z.literal("WALLET") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
-
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Subject> = z.union([
-        LedgerAccountSubject$.outboundSchema.and(z.object({ type: z.literal("ACCOUNT") })),
-        WalletSubject$.outboundSchema.and(z.object({ type: z.literal("WALLET") })),
+        LedgerAccountSubject$.outboundSchema.and(
+            z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))
+        ),
+        WalletSubject$.outboundSchema.and(
+            z.object({ type: z.literal("WALLET") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 }

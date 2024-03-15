@@ -3,7 +3,7 @@
  */
 
 import { Client, Client$ } from "./client";
-import { z } from "zod";
+import * as z from "zod";
 
 export type UpdateClientResponse = {
     data?: Client | undefined;

@@ -5,7 +5,6 @@
 export * from "./account";
 export * from "./accountbalance";
 export * from "./accountresponse";
-export * from "./accountscursor";
 export * from "./accountscursorresponse";
 export * from "./accountwithvolumesandbalances";
 export * from "./activityconfirmhold";

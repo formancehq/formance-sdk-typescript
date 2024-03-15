@@ -3,7 +3,7 @@
  */
 
 import { ConfigInfo, ConfigInfo$ } from "./configinfo";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ConfigInfoResponse = {
     data: ConfigInfo;

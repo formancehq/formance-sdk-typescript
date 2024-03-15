@@ -3,7 +3,7 @@
  */
 
 import { Posting, Posting$ } from "./posting";
-import { z } from "zod";
+import * as z from "zod";
 
 export type OrchestrationPostTransactionScript = {
     plain: string;

@@ -3,7 +3,7 @@
  */
 
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 export type ListBankAccountsRequest = {
     /**
@@ -65,7 +65,7 @@ export namespace ListBankAccountsRequest$ {
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+                pageSize: v.pageSize,
                 ...(v.sort === undefined ? null : { sort: v.sort }),
             };
         });

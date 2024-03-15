@@ -14,7 +14,7 @@ import {
     V2StageSendDestinationWallet,
     V2StageSendDestinationWallet$,
 } from "./v2stagesenddestinationwallet";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2StageSendDestination = {
     account?: V2StageSendDestinationAccount | undefined;

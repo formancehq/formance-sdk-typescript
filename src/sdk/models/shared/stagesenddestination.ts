@@ -14,7 +14,7 @@ import {
     StageSendDestinationWallet,
     StageSendDestinationWallet$,
 } from "./stagesenddestinationwallet";
-import { z } from "zod";
+import * as z from "zod";
 
 export type StageSendDestination = {
     account?: StageSendDestinationAccount | undefined;

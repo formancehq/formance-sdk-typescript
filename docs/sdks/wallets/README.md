@@ -36,10 +36,10 @@ async function run() {
 
   const result = await sdk.wallets.confirmHold({
     confirmHoldRequest: {
-      amount: 100n,
+      amount: BigInt(100),
       final: true,
     },
-    holdId: "string",
+    holdId: "<value>",
   });
 
   // Handle the result
@@ -83,9 +83,9 @@ async function run() {
 
   const result = await sdk.wallets.createBalance({
     createBalanceRequest: {
-      name: "string",
+      name: "<value>",
     },
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -129,9 +129,9 @@ async function run() {
 
   const result = await sdk.wallets.createWallet({
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
-    name: "string",
+    name: "<value>",
   });
 
   // Handle the result
@@ -176,17 +176,20 @@ async function run() {
   const result = await sdk.wallets.creditWallet({
     creditWalletRequest: {
       amount: {
-        amount: 201874n,
-        asset: "string",
+        amount: BigInt(100),
+        asset: "USD/2",
       },
       metadata: {
-        "key": "string",
+        "key": "",
       },
       sources: [
-        ,
+          {
+            identifier: "<value>",
+            type: "<value>",
+          },
       ],
     },
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -231,17 +234,22 @@ async function run() {
   const result = await sdk.wallets.debitWallet({
     debitWalletRequest: {
       amount: {
-        amount: 245256n,
-        asset: "string",
+        amount: BigInt(100),
+        asset: "USD/2",
       },
       balances: [
-        "string",
+        "<value>",
       ],
+    destination:     {
+          identifier: "<value>",
+          type: "<value>",
+        },
       metadata: {
-        "key": "string",
+        "key": "",
       },
+      pending: true,
     },
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -284,8 +292,8 @@ async function run() {
   });
 
   const result = await sdk.wallets.getBalance({
-    balanceName: "string",
-    id: "<ID>",
+    balanceName: "<value>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -328,7 +336,7 @@ async function run() {
   });
 
   const result = await sdk.wallets.getHold({
-    holdID: "string",
+    holdID: "<value>",
   });
 
   // Handle the result
@@ -373,7 +381,7 @@ async function run() {
   const result = await sdk.wallets.getHolds({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
   });
 
@@ -458,7 +466,7 @@ async function run() {
   });
 
   const result = await sdk.wallets.getWallet({
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -501,7 +509,7 @@ async function run() {
   });
 
   const result = await sdk.wallets.getWalletSummary({
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -544,7 +552,7 @@ async function run() {
   });
 
   const result = await sdk.wallets.listBalances({
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -589,7 +597,7 @@ async function run() {
   const result = await sdk.wallets.listWallets({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
-      "key": "string",
+      "key": "<value>",
     },
   });
 
@@ -635,10 +643,10 @@ async function run() {
   const result = await sdk.wallets.updateWallet({
     requestBody: {
       metadata: {
-        "key": "string",
+        "key": "<value>",
       },
     },
-    id: "<ID>",
+    id: "<id>",
   });
 
   // Handle the result
@@ -681,7 +689,7 @@ async function run() {
   });
 
   const result = await sdk.wallets.voidHold({
-    holdId: "string",
+    holdId: "<value>",
   });
 
   // Handle the result

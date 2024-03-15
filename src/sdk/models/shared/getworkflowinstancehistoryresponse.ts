@@ -3,7 +3,7 @@
  */
 
 import { WorkflowInstanceHistory, WorkflowInstanceHistory$ } from "./workflowinstancehistory";
-import { z } from "zod";
+import * as z from "zod";
 
 export type GetWorkflowInstanceHistoryResponse = {
     data: Array<WorkflowInstanceHistory>;

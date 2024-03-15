@@ -3,7 +3,7 @@
  */
 
 import { V2Volume, V2Volume$ } from "./v2volume";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2Account = {
     address: string;

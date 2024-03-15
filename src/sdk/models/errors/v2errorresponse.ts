@@ -3,7 +3,7 @@
  */
 
 import * as shared from "../../../sdk/models/shared";
-import { z } from "zod";
+import * as z from "zod";
 
 /**
  * Error
@@ -35,9 +35,10 @@ export class V2ErrorResponse extends Error {
         this.errorCode = err.errorCode;
         this.errorMessage = err.errorMessage;
 
-        const msg = "message" in err && typeof err.message === "string" ? err.message : "";
-        const content = JSON.stringify(err);
-        this.message = [msg, content].filter(Boolean).join("\n");
+        this.message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : "API error occurred";
 
         this.name = "V2ErrorResponse";
     }

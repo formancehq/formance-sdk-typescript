@@ -3,7 +3,7 @@
  */
 
 import { Wallet, Wallet$ } from "./wallet";
-import { z } from "zod";
+import * as z from "zod";
 
 export type CreateWalletResponse = {
     data: Wallet;

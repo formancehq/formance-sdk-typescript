@@ -10,7 +10,7 @@ import {
     V2WorkflowInstanceHistoryStageOutput,
     V2WorkflowInstanceHistoryStageOutput$,
 } from "./v2workflowinstancehistorystageoutput";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2WorkflowInstanceHistoryStage = {
     attempt: number;

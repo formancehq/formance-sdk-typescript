@@ -3,7 +3,7 @@
  */
 
 import { V2TriggerOccurrence, V2TriggerOccurrence$ } from "./v2triggeroccurrence";
-import { z } from "zod";
+import * as z from "zod";
 
 export type V2ListTriggersOccurrencesResponseCursor = {
     data: Array<V2TriggerOccurrence>;

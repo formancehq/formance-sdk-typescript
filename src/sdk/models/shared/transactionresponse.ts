@@ -3,7 +3,7 @@
  */
 
 import { Transaction, Transaction$ } from "./transaction";
-import { z } from "zod";
+import * as z from "zod";
 
 export type TransactionResponse = {
     data: Transaction;
