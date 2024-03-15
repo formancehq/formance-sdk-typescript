@@ -5,11 +5,12 @@ management:
   docVersion: v2.0.0-rc.16
   speakeasyVersion: 1.209.3
   generationVersion: 2.281.2
-  releaseVersion: 2.1.0
-  configChecksum: 47f722bb5f17d7fcacc07a121a9b6247
+  releaseVersion: 2.1.1
+  configChecksum: 00c93473c7647d4797568b53ac8488c2
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
+  published: true
 features:
   typescript:
     constsAndDefaults: 0.1.5
