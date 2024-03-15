@@ -27,7 +27,7 @@ jobs:
     with:
       speakeasy_version: latest
       openapi_docs: |
-        - location: ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
+        - ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
       languages: |-
         - typescript
       publish_typescript: false
