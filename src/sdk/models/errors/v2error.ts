@@ -65,6 +65,7 @@ export namespace V2Error$ {
                 errorMessage: v.errorMessage,
             });
         });
+
     export type Outbound = {
         errorCode: ErrorCode;
         errorMessage: string;
