@@ -19,6 +19,10 @@ export type DebitWalletRequest = {
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
     pending?: boolean | undefined;
+    /**
+     * cannot be used in conjunction with `pending` property
+     */
+    timestamp?: Date | undefined;
 };
 
 /** @internal */
@@ -30,6 +34,7 @@ export namespace DebitWalletRequest$ {
         destination?: Subject$.Inbound | undefined;
         metadata: Record<string, string>;
         pending?: boolean | undefined;
+        timestamp?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<DebitWalletRequest, z.ZodTypeDef, Inbound> = z
@@ -40,6 +45,11 @@ export namespace DebitWalletRequest$ {
             destination: Subject$.inboundSchema.optional(),
             metadata: z.record(z.string()),
             pending: z.boolean().optional(),
+            timestamp: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -49,6 +59,7 @@ export namespace DebitWalletRequest$ {
                 ...(v.destination === undefined ? null : { destination: v.destination }),
                 metadata: v.metadata,
                 ...(v.pending === undefined ? null : { pending: v.pending }),
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 
@@ -59,6 +70,7 @@ export namespace DebitWalletRequest$ {
         destination?: Subject$.Outbound | undefined;
         metadata: Record<string, string>;
         pending?: boolean | undefined;
+        timestamp?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DebitWalletRequest> = z
@@ -69,6 +81,10 @@ export namespace DebitWalletRequest$ {
             destination: Subject$.outboundSchema.optional(),
             metadata: z.record(z.string()),
             pending: z.boolean().optional(),
+            timestamp: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -78,6 +94,7 @@ export namespace DebitWalletRequest$ {
                 ...(v.destination === undefined ? null : { destination: v.destination }),
                 metadata: v.metadata,
                 ...(v.pending === undefined ? null : { pending: v.pending }),
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 }

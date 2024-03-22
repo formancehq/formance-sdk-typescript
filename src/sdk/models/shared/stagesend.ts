@@ -12,6 +12,7 @@ export type StageSend = {
     destination?: StageSendDestination | undefined;
     metadata?: Record<string, string> | undefined;
     source?: StageSendSource | undefined;
+    timestamp?: Date | undefined;
 };
 
 /** @internal */
@@ -21,6 +22,7 @@ export namespace StageSend$ {
         destination?: StageSendDestination$.Inbound | undefined;
         metadata?: Record<string, string> | undefined;
         source?: StageSendSource$.Inbound | undefined;
+        timestamp?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<StageSend, z.ZodTypeDef, Inbound> = z
@@ -29,6 +31,11 @@ export namespace StageSend$ {
             destination: StageSendDestination$.inboundSchema.optional(),
             metadata: z.record(z.string()).optional(),
             source: StageSendSource$.inboundSchema.optional(),
+            timestamp: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -36,6 +43,7 @@ export namespace StageSend$ {
                 ...(v.destination === undefined ? null : { destination: v.destination }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.source === undefined ? null : { source: v.source }),
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 
@@ -44,6 +52,7 @@ export namespace StageSend$ {
         destination?: StageSendDestination$.Outbound | undefined;
         metadata?: Record<string, string> | undefined;
         source?: StageSendSource$.Outbound | undefined;
+        timestamp?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSend> = z
@@ -52,6 +61,10 @@ export namespace StageSend$ {
             destination: StageSendDestination$.outboundSchema.optional(),
             metadata: z.record(z.string()).optional(),
             source: StageSendSource$.outboundSchema.optional(),
+            timestamp: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -59,6 +72,7 @@ export namespace StageSend$ {
                 ...(v.destination === undefined ? null : { destination: v.destination }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.source === undefined ? null : { source: v.source }),
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 }

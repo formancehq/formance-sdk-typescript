@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 254f15d23bfd21d49b8db8ecb44639be
-  docVersion: v2.0.0-rc.16
-  speakeasyVersion: 1.213.0
-  generationVersion: 2.283.1
-  releaseVersion: 2.1.2
-  configChecksum: 4a81c23185341654a1cee5567a502ebb
+  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
+  docVersion: v2.0.0-rc.18
+  speakeasyVersion: 1.219.2
+  generationVersion: 2.286.7
+  releaseVersion: 2.1.3
+  configChecksum: d42545059207c2cfb93305620e3692bc
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -509,7 +509,6 @@ generatedFiles:
   - src/sdk/models/shared/reconciliationrequest.ts
   - src/sdk/models/shared/response.ts
   - src/sdk/models/shared/query.ts
-  - src/sdk/models/shared/walletserrorresponse.ts
   - src/sdk/models/shared/confirmholdrequest.ts
   - src/sdk/models/shared/createbalanceresponse.ts
   - src/sdk/models/shared/balance.ts
@@ -541,6 +540,7 @@ generatedFiles:
   - src/sdk/models/errors/errorresponse.ts
   - src/sdk/models/errors/v2errorresponse.ts
   - src/sdk/models/errors/v2error.ts
+  - src/sdk/models/errors/walletserrorresponse.ts
   - src/sdk/models/errors/webhookserrorresponse.ts
   - src/sdk/models/errors/index.ts
   - src/sdk/models/operations/index.ts
@@ -1212,8 +1212,6 @@ generatedFiles:
   - docs/sdk/models/shared/response.md
   - docs/sdk/models/shared/queryraw.md
   - docs/sdk/models/shared/query.md
-  - docs/sdk/models/shared/walletserrorresponseerrorcode.md
-  - docs/sdk/models/shared/walletserrorresponse.md
   - docs/sdk/models/shared/confirmholdrequest.md
   - docs/sdk/models/shared/createbalanceresponse.md
   - docs/sdk/models/shared/balance.md
@@ -1251,6 +1249,8 @@ generatedFiles:
   - docs/sdk/models/errors/v2errorresponse.md
   - docs/sdk/models/errors/errorcode.md
   - docs/sdk/models/errors/v2error.md
+  - docs/sdk/models/errors/schemaserrorcode.md
+  - docs/sdk/models/errors/walletserrorresponse.md
   - docs/sdk/models/errors/webhookserrorresponse.md
   - docs/sdks/sdk/README.md
   - docs/sdks/auth/README.md

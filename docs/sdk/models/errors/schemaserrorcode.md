@@ -1,4 +1,4 @@
-# WalletsErrorResponseErrorCode
+# SchemasErrorCode
 
 
 ## Values

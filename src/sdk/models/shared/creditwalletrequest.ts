@@ -18,6 +18,7 @@ export type CreditWalletRequest = {
     metadata: Record<string, string>;
     reference?: string | undefined;
     sources: Array<Subject>;
+    timestamp?: Date | undefined;
 };
 
 /** @internal */
@@ -28,6 +29,7 @@ export namespace CreditWalletRequest$ {
         metadata: Record<string, string>;
         reference?: string | undefined;
         sources: Array<Subject$.Inbound>;
+        timestamp?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<CreditWalletRequest, z.ZodTypeDef, Inbound> = z
@@ -37,6 +39,11 @@ export namespace CreditWalletRequest$ {
             metadata: z.record(z.string()),
             reference: z.string().optional(),
             sources: z.array(Subject$.inboundSchema),
+            timestamp: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -45,6 +52,7 @@ export namespace CreditWalletRequest$ {
                 metadata: v.metadata,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 sources: v.sources,
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 
@@ -54,6 +62,7 @@ export namespace CreditWalletRequest$ {
         metadata: Record<string, string>;
         reference?: string | undefined;
         sources: Array<Subject$.Outbound>;
+        timestamp?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreditWalletRequest> = z
@@ -63,6 +72,10 @@ export namespace CreditWalletRequest$ {
             metadata: z.record(z.string()),
             reference: z.string().optional(),
             sources: z.array(Subject$.outboundSchema),
+            timestamp: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -71,6 +84,7 @@ export namespace CreditWalletRequest$ {
                 metadata: v.metadata,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 sources: v.sources,
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 }
