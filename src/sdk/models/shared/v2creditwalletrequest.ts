@@ -18,6 +18,7 @@ export type V2CreditWalletRequest = {
     metadata: Record<string, string>;
     reference?: string | undefined;
     sources: Array<V2Subject>;
+    timestamp?: Date | undefined;
 };
 
 /** @internal */
@@ -28,6 +29,7 @@ export namespace V2CreditWalletRequest$ {
         metadata: Record<string, string>;
         reference?: string | undefined;
         sources: Array<V2Subject$.Inbound>;
+        timestamp?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2CreditWalletRequest, z.ZodTypeDef, Inbound> = z
@@ -37,6 +39,11 @@ export namespace V2CreditWalletRequest$ {
             metadata: z.record(z.string()),
             reference: z.string().optional(),
             sources: z.array(V2Subject$.inboundSchema),
+            timestamp: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -45,6 +52,7 @@ export namespace V2CreditWalletRequest$ {
                 metadata: v.metadata,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 sources: v.sources,
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 
@@ -54,6 +62,7 @@ export namespace V2CreditWalletRequest$ {
         metadata: Record<string, string>;
         reference?: string | undefined;
         sources: Array<V2Subject$.Outbound>;
+        timestamp?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreditWalletRequest> = z
@@ -63,6 +72,10 @@ export namespace V2CreditWalletRequest$ {
             metadata: z.record(z.string()),
             reference: z.string().optional(),
             sources: z.array(V2Subject$.outboundSchema),
+            timestamp: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
         })
         .transform((v) => {
             return {
@@ -71,6 +84,7 @@ export namespace V2CreditWalletRequest$ {
                 metadata: v.metadata,
                 ...(v.reference === undefined ? null : { reference: v.reference }),
                 sources: v.sources,
+                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
             };
         });
 }

@@ -313,7 +313,6 @@ export * from "./v2workflowinstancehistorystageoutput";
 export * from "./version";
 export * from "./volume";
 export * from "./wallet";
-export * from "./walletserrorresponse";
 export * from "./walletstransaction";
 export * from "./walletsubject";
 export * from "./walletsvolume";
