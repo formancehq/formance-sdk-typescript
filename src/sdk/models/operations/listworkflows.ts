@@ -11,10 +11,6 @@ export type ListWorkflowsResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * List of workflows
      */
     listWorkflowsResponse?: shared.ListWorkflowsResponse | undefined;
@@ -32,7 +28,6 @@ export type ListWorkflowsResponse = {
 export namespace ListWorkflowsResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         ListWorkflowsResponse?: shared.ListWorkflowsResponse$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
@@ -41,7 +36,6 @@ export namespace ListWorkflowsResponse$ {
     export const inboundSchema: z.ZodType<ListWorkflowsResponse, z.ZodTypeDef, Inbound> = z
         .object({
             ContentType: z.string(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             ListWorkflowsResponse: shared.ListWorkflowsResponse$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
@@ -49,7 +43,6 @@ export namespace ListWorkflowsResponse$ {
         .transform((v) => {
             return {
                 contentType: v.ContentType,
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 ...(v.ListWorkflowsResponse === undefined
                     ? null
                     : { listWorkflowsResponse: v.ListWorkflowsResponse }),
@@ -60,7 +53,6 @@ export namespace ListWorkflowsResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         ListWorkflowsResponse?: shared.ListWorkflowsResponse$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
@@ -69,7 +61,6 @@ export namespace ListWorkflowsResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListWorkflowsResponse> = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             listWorkflowsResponse: shared.ListWorkflowsResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
             rawResponse: z.instanceof(Response).transform(() => {
@@ -79,7 +70,6 @@ export namespace ListWorkflowsResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.listWorkflowsResponse === undefined
                     ? null
                     : { ListWorkflowsResponse: v.listWorkflowsResponse }),

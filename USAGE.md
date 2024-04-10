@@ -7,7 +7,7 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const result = await sdk.getVersions();
+    const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);

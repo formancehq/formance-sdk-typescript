@@ -6,35 +6,42 @@ import * as z from "zod";
 
 export type V2CreateLedgerRequest = {
     bucket?: string | undefined;
+    metadata?: Record<string, string> | undefined;
 };
 
 /** @internal */
 export namespace V2CreateLedgerRequest$ {
     export type Inbound = {
         bucket?: string | undefined;
+        metadata?: Record<string, string> | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, Inbound> = z
         .object({
             bucket: z.string().optional(),
+            metadata: z.record(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.bucket === undefined ? null : { bucket: v.bucket }),
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 
     export type Outbound = {
         bucket?: string | undefined;
+        metadata?: Record<string, string> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> = z
         .object({
             bucket: z.string().optional(),
+            metadata: z.record(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.bucket === undefined ? null : { bucket: v.bucket }),
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 }

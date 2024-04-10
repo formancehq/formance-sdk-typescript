@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: b48bcb11c6ebfbb0f797aef5364a5064
-  docVersion: v2.0.0-rc.18
-  speakeasyVersion: 1.219.2
-  generationVersion: 2.286.7
-  releaseVersion: 2.1.3
-  configChecksum: d42545059207c2cfb93305620e3692bc
+  docChecksum: 1c0c06fbfb1fa7dfd4a7da5ce409a49e
+  docVersion: v2.0.0-rc.20
+  speakeasyVersion: 1.245.0
+  generationVersion: 2.301.3
+  releaseVersion: 2.2.0
+  configChecksum: 1b4eba0c542735e364f474ed68d071f0
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -14,14 +14,14 @@ management:
 features:
   typescript:
     constsAndDefaults: 0.1.5
-    core: 3.6.3
+    core: 3.7.1
     deprecations: 2.81.1
     errors: 2.81.9
-    globalSecurity: 2.82.8
+    globalSecurity: 2.82.9
     globalServerURLs: 2.82.4
     groups: 2.81.2
     ignores: 2.81.1
-    responseFormat: 0.2.2
+    responseFormat: 0.2.3
     unions: 2.85.3
 generatedFiles:
   - src/sdk/auth.ts
@@ -55,8 +55,8 @@ generatedFiles:
   - src/sdk/types/operations.ts
   - src/sdk/types/rfcdate.ts
   - tsconfig.json
+  - src/sdk/models/operations/getoidcwellknowns.ts
   - src/sdk/models/operations/getversions.ts
-  - src/sdk/models/operations/getapiauthwellknownopenidconfiguration.ts
   - src/sdk/models/operations/createclient.ts
   - src/sdk/models/operations/createsecret.ts
   - src/sdk/models/operations/deleteclient.ts
@@ -94,6 +94,7 @@ generatedFiles:
   - src/sdk/models/operations/v2createledger.ts
   - src/sdk/models/operations/v2createtransaction.ts
   - src/sdk/models/operations/v2deleteaccountmetadata.ts
+  - src/sdk/models/operations/v2deleteledgermetadata.ts
   - src/sdk/models/operations/v2deletetransactionmetadata.ts
   - src/sdk/models/operations/v2getaccount.ts
   - src/sdk/models/operations/v2getinfo.ts
@@ -103,6 +104,7 @@ generatedFiles:
   - src/sdk/models/operations/v2listledgers.ts
   - src/sdk/models/operations/v2readstats.ts
   - src/sdk/models/operations/v2reverttransaction.ts
+  - src/sdk/models/operations/v2updateledgermetadata.ts
   - src/sdk/models/operations/cancelevent.ts
   - src/sdk/models/operations/createtrigger.ts
   - src/sdk/models/operations/createworkflow.ts
@@ -279,6 +281,7 @@ generatedFiles:
   - src/sdk/models/shared/v2account.ts
   - src/sdk/models/shared/v2volume.ts
   - src/sdk/models/shared/v2configinforesponse.ts
+  - src/sdk/models/shared/v2getledgerresponse.ts
   - src/sdk/models/shared/v2ledger.ts
   - src/sdk/models/shared/v2ledgerinforesponse.ts
   - src/sdk/models/shared/v2ledgerinfo.ts
@@ -289,7 +292,6 @@ generatedFiles:
   - src/sdk/models/shared/v2statsresponse.ts
   - src/sdk/models/shared/v2stats.ts
   - src/sdk/models/shared/v2reverttransactionresponse.ts
-  - src/sdk/models/shared/error.ts
   - src/sdk/models/shared/createtriggerresponse.ts
   - src/sdk/models/shared/trigger.ts
   - src/sdk/models/shared/triggerdata.ts
@@ -485,6 +487,7 @@ generatedFiles:
   - src/sdk/models/shared/moneycorpconfig.ts
   - src/sdk/models/shared/atlarconfig.ts
   - src/sdk/models/shared/adyenconfig.ts
+  - src/sdk/models/shared/genericconfig.ts
   - src/sdk/models/shared/connectorsresponse.ts
   - src/sdk/models/shared/bankaccountscursor.ts
   - src/sdk/models/shared/connectorsconfigsresponse.ts
@@ -498,7 +501,6 @@ generatedFiles:
   - src/sdk/models/shared/reversetransferinitiationrequest.ts
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.ts
   - src/sdk/models/shared/updatebankaccountmetadatarequest.ts
-  - src/sdk/models/shared/reconciliationerrorresponse.ts
   - src/sdk/models/shared/policyresponse.ts
   - src/sdk/models/shared/policy.ts
   - src/sdk/models/shared/policyrequest.ts
@@ -528,9 +530,9 @@ generatedFiles:
   - src/sdk/models/shared/getwalletsummaryresponse.ts
   - src/sdk/models/shared/listbalancesresponse.ts
   - src/sdk/models/shared/listwalletsresponse.ts
-  - src/sdk/models/shared/webhookserrorsenum.ts
   - src/sdk/models/shared/configresponse.ts
   - src/sdk/models/shared/webhooksconfig.ts
+  - src/sdk/models/shared/webhookserrorsenum.ts
   - src/sdk/models/shared/configchangesecret.ts
   - src/sdk/models/shared/configsresponse.ts
   - src/sdk/models/shared/configuser.ts
@@ -539,14 +541,16 @@ generatedFiles:
   - src/sdk/models/shared/security.ts
   - src/sdk/models/errors/errorresponse.ts
   - src/sdk/models/errors/v2errorresponse.ts
+  - src/sdk/models/errors/error.ts
   - src/sdk/models/errors/v2error.ts
+  - src/sdk/models/errors/reconciliationerrorresponse.ts
   - src/sdk/models/errors/walletserrorresponse.ts
   - src/sdk/models/errors/webhookserrorresponse.ts
   - src/sdk/models/errors/index.ts
   - src/sdk/models/operations/index.ts
   - src/sdk/models/shared/index.ts
+  - docs/sdk/models/operations/getoidcwellknownsresponse.md
   - docs/sdk/models/operations/getversionsresponse.md
-  - docs/sdk/models/operations/getapiauthwellknownopenidconfigurationresponse.md
   - docs/sdk/models/operations/createclientresponse.md
   - docs/sdk/models/operations/createsecretrequest.md
   - docs/sdk/models/operations/createsecretresponse.md
@@ -618,6 +622,8 @@ generatedFiles:
   - docs/sdk/models/operations/v2createtransactionresponse.md
   - docs/sdk/models/operations/v2deleteaccountmetadatarequest.md
   - docs/sdk/models/operations/v2deleteaccountmetadataresponse.md
+  - docs/sdk/models/operations/v2deleteledgermetadatarequest.md
+  - docs/sdk/models/operations/v2deleteledgermetadataresponse.md
   - docs/sdk/models/operations/v2deletetransactionmetadatarequest.md
   - docs/sdk/models/operations/v2deletetransactionmetadataresponse.md
   - docs/sdk/models/operations/v2getaccountrequest.md
@@ -635,6 +641,8 @@ generatedFiles:
   - docs/sdk/models/operations/v2readstatsresponse.md
   - docs/sdk/models/operations/v2reverttransactionrequest.md
   - docs/sdk/models/operations/v2reverttransactionresponse.md
+  - docs/sdk/models/operations/v2updateledgermetadatarequest.md
+  - docs/sdk/models/operations/v2updateledgermetadataresponse.md
   - docs/sdk/models/operations/canceleventrequest.md
   - docs/sdk/models/operations/canceleventresponse.md
   - docs/sdk/models/operations/createtriggerresponse.md
@@ -917,6 +925,7 @@ generatedFiles:
   - docs/sdk/models/shared/v2account.md
   - docs/sdk/models/shared/v2volume.md
   - docs/sdk/models/shared/v2configinforesponse.md
+  - docs/sdk/models/shared/v2getledgerresponse.md
   - docs/sdk/models/shared/v2ledger.md
   - docs/sdk/models/shared/v2ledgerinforesponse.md
   - docs/sdk/models/shared/v2ledgerinfostorage.md
@@ -930,8 +939,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2statsresponse.md
   - docs/sdk/models/shared/v2stats.md
   - docs/sdk/models/shared/v2reverttransactionresponse.md
-  - docs/sdk/models/shared/errorcode.md
-  - docs/sdk/models/shared/errort.md
   - docs/sdk/models/shared/createtriggerresponse.md
   - docs/sdk/models/shared/trigger.md
   - docs/sdk/models/shared/triggerdata.md
@@ -1171,6 +1178,7 @@ generatedFiles:
   - docs/sdk/models/shared/moneycorpconfig.md
   - docs/sdk/models/shared/atlarconfig.md
   - docs/sdk/models/shared/adyenconfig.md
+  - docs/sdk/models/shared/genericconfig.md
   - docs/sdk/models/shared/connectorsresponsedata.md
   - docs/sdk/models/shared/connectorsresponse.md
   - docs/sdk/models/shared/bankaccountscursorcursor.md
@@ -1196,7 +1204,6 @@ generatedFiles:
   - docs/sdk/models/shared/status.md
   - docs/sdk/models/shared/updatetransferinitiationstatusrequest.md
   - docs/sdk/models/shared/updatebankaccountmetadatarequest.md
-  - docs/sdk/models/shared/reconciliationerrorresponse.md
   - docs/sdk/models/shared/policyresponse.md
   - docs/sdk/models/shared/policy.md
   - docs/sdk/models/shared/policyrequest.md
@@ -1235,9 +1242,9 @@ generatedFiles:
   - docs/sdk/models/shared/listbalancesresponse.md
   - docs/sdk/models/shared/listwalletsresponsecursor.md
   - docs/sdk/models/shared/listwalletsresponse.md
-  - docs/sdk/models/shared/webhookserrorsenum.md
   - docs/sdk/models/shared/configresponse.md
   - docs/sdk/models/shared/webhooksconfig.md
+  - docs/sdk/models/shared/webhookserrorsenum.md
   - docs/sdk/models/shared/configchangesecret.md
   - docs/sdk/models/shared/configsresponsecursor.md
   - docs/sdk/models/shared/configsresponse.md
@@ -1248,8 +1255,11 @@ generatedFiles:
   - docs/sdk/models/errors/errorresponse.md
   - docs/sdk/models/errors/v2errorresponse.md
   - docs/sdk/models/errors/errorcode.md
-  - docs/sdk/models/errors/v2error.md
+  - docs/sdk/models/errors/errort.md
   - docs/sdk/models/errors/schemaserrorcode.md
+  - docs/sdk/models/errors/v2error.md
+  - docs/sdk/models/errors/reconciliationerrorresponse.md
+  - docs/sdk/models/errors/schemaswalletserrorresponseerrorcode.md
   - docs/sdk/models/errors/walletserrorresponse.md
   - docs/sdk/models/errors/webhookserrorresponse.md
   - docs/sdks/sdk/README.md

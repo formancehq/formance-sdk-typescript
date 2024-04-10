@@ -50,9 +50,10 @@ run();
 **Promise<[operations.ActivateConfigResponse](../../sdk/models/operations/activateconfigresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## changeConfigSecret
 
@@ -102,7 +103,7 @@ run();
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400                          | application/json             |
+| errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## deactivateConfig
@@ -146,7 +147,7 @@ run();
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 404                          | application/json             |
+| errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## deleteConfig
@@ -190,7 +191,7 @@ run();
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400,404                      | application/json             |
+| errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getManyConfigs
@@ -233,9 +234,10 @@ run();
 **Promise<[operations.GetManyConfigsResponse](../../sdk/models/operations/getmanyconfigsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.WebhooksErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## insertConfig
 
@@ -293,7 +295,7 @@ run();
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400                          | application/json             |
+| errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## testConfig
@@ -337,5 +339,5 @@ run();
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
-| errors.WebhooksErrorResponse | 400,404                      | application/json             |
+| errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |

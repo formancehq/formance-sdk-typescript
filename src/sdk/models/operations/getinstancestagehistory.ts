@@ -22,10 +22,6 @@ export type GetInstanceStageHistoryResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * The workflow instance stage history
      */
     getWorkflowInstanceHistoryStageResponse?:
@@ -83,7 +79,6 @@ export namespace GetInstanceStageHistoryRequest$ {
 export namespace GetInstanceStageHistoryResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         GetWorkflowInstanceHistoryStageResponse?:
             | shared.GetWorkflowInstanceHistoryStageResponse$.Inbound
             | undefined;
@@ -95,7 +90,6 @@ export namespace GetInstanceStageHistoryResponse$ {
         z
             .object({
                 ContentType: z.string(),
-                Error: shared.ErrorT$.inboundSchema.optional(),
                 GetWorkflowInstanceHistoryStageResponse:
                     shared.GetWorkflowInstanceHistoryStageResponse$.inboundSchema.optional(),
                 StatusCode: z.number().int(),
@@ -104,7 +98,6 @@ export namespace GetInstanceStageHistoryResponse$ {
             .transform((v) => {
                 return {
                     contentType: v.ContentType,
-                    ...(v.Error === undefined ? null : { error: v.Error }),
                     ...(v.GetWorkflowInstanceHistoryStageResponse === undefined
                         ? null
                         : {
@@ -118,7 +111,6 @@ export namespace GetInstanceStageHistoryResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         GetWorkflowInstanceHistoryStageResponse?:
             | shared.GetWorkflowInstanceHistoryStageResponse$.Outbound
             | undefined;
@@ -133,7 +125,6 @@ export namespace GetInstanceStageHistoryResponse$ {
     > = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             getWorkflowInstanceHistoryStageResponse:
                 shared.GetWorkflowInstanceHistoryStageResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
@@ -144,7 +135,6 @@ export namespace GetInstanceStageHistoryResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.getWorkflowInstanceHistoryStageResponse === undefined
                     ? null
                     : {

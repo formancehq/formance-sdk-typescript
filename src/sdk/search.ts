@@ -80,7 +80,7 @@ export class Search extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -114,18 +114,10 @@ export class Search extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchStatusCode(response, "default")) {
-            // fallthrough
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.SearchResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -157,7 +149,7 @@ export class Search extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,

@@ -42,10 +42,6 @@ export type ListPoliciesResponse = {
      * Raw HTTP response; suitable for custom response parsing
      */
     rawResponse: Response;
-    /**
-     * Error response
-     */
-    reconciliationErrorResponse?: shared.ReconciliationErrorResponse | undefined;
 };
 
 /** @internal */
@@ -92,7 +88,6 @@ export namespace ListPoliciesResponse$ {
         PoliciesCursorResponse?: shared.PoliciesCursorResponse$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
-        reconciliationErrorResponse?: shared.ReconciliationErrorResponse$.Inbound | undefined;
     };
 
     export const inboundSchema: z.ZodType<ListPoliciesResponse, z.ZodTypeDef, Inbound> = z
@@ -101,8 +96,6 @@ export namespace ListPoliciesResponse$ {
             PoliciesCursorResponse: shared.PoliciesCursorResponse$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
-            reconciliationErrorResponse:
-                shared.ReconciliationErrorResponse$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -112,9 +105,6 @@ export namespace ListPoliciesResponse$ {
                     : { policiesCursorResponse: v.PoliciesCursorResponse }),
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
-                ...(v.reconciliationErrorResponse === undefined
-                    ? null
-                    : { reconciliationErrorResponse: v.reconciliationErrorResponse }),
             };
         });
 
@@ -123,7 +113,6 @@ export namespace ListPoliciesResponse$ {
         PoliciesCursorResponse?: shared.PoliciesCursorResponse$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
-        reconciliationErrorResponse?: shared.ReconciliationErrorResponse$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListPoliciesResponse> = z
@@ -134,8 +123,6 @@ export namespace ListPoliciesResponse$ {
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
             }),
-            reconciliationErrorResponse:
-                shared.ReconciliationErrorResponse$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
@@ -145,9 +132,6 @@ export namespace ListPoliciesResponse$ {
                     : { PoliciesCursorResponse: v.policiesCursorResponse }),
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
-                ...(v.reconciliationErrorResponse === undefined
-                    ? null
-                    : { reconciliationErrorResponse: v.reconciliationErrorResponse }),
             };
         });
 }

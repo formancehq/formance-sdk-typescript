@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 
-export enum SchemasErrorCode {
+export enum SchemasWalletsErrorResponseErrorCode {
     Validation = "VALIDATION",
     InternalError = "INTERNAL_ERROR",
     InsufficientFund = "INSUFFICIENT_FUND",
@@ -15,7 +15,7 @@ export enum SchemasErrorCode {
  * Error
  */
 export type WalletsErrorResponseData = {
-    errorCode: SchemasErrorCode;
+    errorCode: SchemasWalletsErrorResponseErrorCode;
     errorMessage: string;
 };
 
@@ -23,7 +23,7 @@ export type WalletsErrorResponseData = {
  * Error
  */
 export class WalletsErrorResponse extends Error {
-    errorCode: SchemasErrorCode;
+    errorCode: SchemasWalletsErrorResponseErrorCode;
     errorMessage: string;
 
     /** The original data that was passed to this error instance. */
@@ -46,18 +46,20 @@ export class WalletsErrorResponse extends Error {
 }
 
 /** @internal */
-export const SchemasErrorCode$ = z.nativeEnum(SchemasErrorCode);
+export const SchemasWalletsErrorResponseErrorCode$ = z.nativeEnum(
+    SchemasWalletsErrorResponseErrorCode
+);
 
 /** @internal */
 export namespace WalletsErrorResponse$ {
     export type Inbound = {
-        errorCode: SchemasErrorCode;
+        errorCode: SchemasWalletsErrorResponseErrorCode;
         errorMessage: string;
     };
 
     export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, Inbound> = z
         .object({
-            errorCode: SchemasErrorCode$,
+            errorCode: SchemasWalletsErrorResponseErrorCode$,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -68,7 +70,7 @@ export namespace WalletsErrorResponse$ {
         });
 
     export type Outbound = {
-        errorCode: SchemasErrorCode;
+        errorCode: SchemasWalletsErrorResponseErrorCode;
         errorMessage: string;
     };
 
@@ -78,7 +80,7 @@ export namespace WalletsErrorResponse$ {
         .pipe(
             z
                 .object({
-                    errorCode: SchemasErrorCode$,
+                    errorCode: SchemasWalletsErrorResponseErrorCode$,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

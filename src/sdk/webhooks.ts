@@ -82,7 +82,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -121,14 +121,14 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ActivateConfigResponse$.inboundSchema.parse({
+                    return errors.WebhooksErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        webhooksErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -185,7 +185,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -219,7 +219,7 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -232,19 +232,6 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ChangeConfigSecretResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        webhooksErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -296,7 +283,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -330,7 +317,7 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -343,19 +330,6 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.DeactivateConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        webhooksErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -405,7 +379,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -428,7 +402,7 @@ export class Webhooks extends ClientSDK {
 
         if (this.matchStatusCode(response, 200)) {
             // fallthrough
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -441,19 +415,6 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.DeleteConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        webhooksErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -514,7 +475,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -553,14 +514,14 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetManyConfigsResponse$.inboundSchema.parse({
+                    return errors.WebhooksErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        webhooksErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -617,7 +578,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -651,7 +612,7 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -664,19 +625,6 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.InsertConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        webhooksErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -726,7 +674,7 @@ export class Webhooks extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -760,7 +708,7 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -773,19 +721,6 @@ export class Webhooks extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.TestConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        webhooksErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);

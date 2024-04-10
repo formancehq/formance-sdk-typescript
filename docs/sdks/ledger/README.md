@@ -31,6 +31,7 @@
 * [v2CreateLedger](#v2createledger) - Create a ledger
 * [v2CreateTransaction](#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](#v2getaccount) - Get account by its address
 * [v2GetInfo](#v2getinfo) - Show server information
@@ -40,6 +41,7 @@
 * [v2ListLedgers](#v2listledgers) - List ledgers
 * [v2ReadStats](#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](#v2updateledgermetadata) - Update ledger metadata
 
 ## createTransactions
 
@@ -98,9 +100,10 @@ run();
 **Promise<[operations.CreateTransactionsResponse](../../sdk/models/operations/createtransactionsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## addMetadataOnTransaction
 
@@ -145,9 +148,10 @@ run();
 **Promise<[operations.AddMetadataOnTransactionResponse](../../sdk/models/operations/addmetadataontransactionresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## addMetadataToAccount
 
@@ -194,7 +198,7 @@ run();
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400,404              | application/json     |
+| errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## countAccounts
@@ -240,9 +244,10 @@ run();
 **Promise<[operations.CountAccountsResponse](../../sdk/models/operations/countaccountsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## countTransactions
 
@@ -288,9 +293,10 @@ run();
 **Promise<[operations.CountTransactionsResponse](../../sdk/models/operations/counttransactionsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## createTransaction
 
@@ -361,7 +367,7 @@ run();
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getAccount
@@ -404,9 +410,10 @@ run();
 **Promise<[operations.GetAccountResponse](../../sdk/models/operations/getaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getBalances
 
@@ -450,9 +457,10 @@ run();
 **Promise<[operations.GetBalancesResponse](../../sdk/models/operations/getbalancesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getBalancesAggregated
 
@@ -494,9 +502,10 @@ run();
 **Promise<[operations.GetBalancesAggregatedResponse](../../sdk/models/operations/getbalancesaggregatedresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getInfo
 
@@ -534,9 +543,10 @@ run();
 **Promise<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getLedgerInfo
 
@@ -577,9 +587,10 @@ run();
 **Promise<[operations.GetLedgerInfoResponse](../../sdk/models/operations/getledgerinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getMapping
 
@@ -620,9 +631,10 @@ run();
 **Promise<[operations.GetMappingResponse](../../sdk/models/operations/getmappingresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## getTransaction
 
@@ -664,9 +676,10 @@ run();
 **Promise<[operations.GetTransactionResponse](../../sdk/models/operations/gettransactionresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## listAccounts
 
@@ -715,9 +728,10 @@ run();
 **Promise<[operations.ListAccountsResponse](../../sdk/models/operations/listaccountsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## listLogs
 
@@ -760,9 +774,10 @@ run();
 **Promise<[operations.ListLogsResponse](../../sdk/models/operations/listlogsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## listTransactions
 
@@ -812,9 +827,10 @@ run();
 **Promise<[operations.ListTransactionsResponse](../../sdk/models/operations/listtransactionsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## readStats
 
@@ -856,9 +872,10 @@ run();
 **Promise<[operations.ReadStatsResponse](../../sdk/models/operations/readstatsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## revertTransaction
 
@@ -900,9 +917,10 @@ run();
 **Promise<[operations.RevertTransactionResponse](../../sdk/models/operations/reverttransactionresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## ~~runScript~~
 
@@ -1015,9 +1033,10 @@ run();
 **Promise<[operations.UpdateMappingResponse](../../sdk/models/operations/updatemappingresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object         | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | default              | application/json     |
+| errors.SDKError      | 4xx-5xx              | */*                  |
 
 ## v2AddMetadataOnTransaction
 
@@ -1065,7 +1084,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400,404                | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2AddMetadataToAccount
@@ -1114,7 +1133,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400,404                | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2CountAccounts
@@ -1159,9 +1178,10 @@ run();
 **Promise<[operations.V2CountAccountsResponse](../../sdk/models/operations/v2countaccountsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2CountTransactions
 
@@ -1205,9 +1225,10 @@ run();
 **Promise<[operations.V2CountTransactionsResponse](../../sdk/models/operations/v2counttransactionsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2CreateBulk
 
@@ -1261,9 +1282,10 @@ run();
 **Promise<[operations.V2CreateBulkResponse](../../sdk/models/operations/v2createbulkresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2CreateLedger
 
@@ -1280,7 +1302,11 @@ async function run() {
   });
 
   const result = await sdk.ledger.v2CreateLedger({
-    v2CreateLedgerRequest: {},
+    v2CreateLedgerRequest: {
+      metadata: {
+        "admin": "true",
+      },
+    },
     ledger: "ledger001",
   });
 
@@ -1307,7 +1333,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2CreateTransaction
@@ -1379,7 +1405,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2DeleteAccountMetadata
@@ -1427,6 +1453,51 @@ run();
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
+## v2DeleteLedgerMetadata
+
+Delete ledger metadata by key
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.ledger.v2DeleteLedgerMetadata({
+    key: "foo",
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2DeleteLedgerMetadataRequest](../../sdk/models/operations/v2deleteledgermetadatarequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2DeleteLedgerMetadataResponse](../../sdk/models/operations/v2deleteledgermetadataresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
 ## v2DeleteTransactionMetadata
 
 Delete metadata by key
@@ -1470,7 +1541,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2GetAccount
@@ -1513,9 +1584,10 @@ run();
 **Promise<[operations.V2GetAccountResponse](../../sdk/models/operations/v2getaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2GetInfo
 
@@ -1553,9 +1625,10 @@ run();
 **Promise<[operations.V2GetInfoResponse](../../sdk/models/operations/v2getinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2GetLedger
 
@@ -1596,9 +1669,10 @@ run();
 **Promise<[operations.V2GetLedgerResponse](../../sdk/models/operations/v2getledgerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2GetLedgerInfo
 
@@ -1639,9 +1713,10 @@ run();
 **Promise<[operations.V2GetLedgerInfoResponse](../../sdk/models/operations/v2getledgerinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2GetTransaction
 
@@ -1685,7 +1760,7 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 404                    | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2ListLedgers
@@ -1727,9 +1802,10 @@ run();
 **Promise<[operations.V2ListLedgersResponse](../../sdk/models/operations/v2listledgersresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2ReadStats
 
@@ -1771,9 +1847,10 @@ run();
 **Promise<[operations.V2ReadStatsResponse](../../sdk/models/operations/v2readstatsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
 
 ## v2RevertTransaction
 
@@ -1817,5 +1894,52 @@ run();
 
 | Error Object           | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| errors.V2ErrorResponse | 400                    | application/json       |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2UpdateLedgerMetadata
+
+Update ledger metadata
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.ledger.v2UpdateLedgerMetadata({
+    requestBody: {
+      "admin": "true",
+    },
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2UpdateLedgerMetadataRequest](../../sdk/models/operations/v2updateledgermetadatarequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2UpdateLedgerMetadataResponse](../../sdk/models/operations/v2updateledgermetadataresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4xx-5xx                | */*                    |

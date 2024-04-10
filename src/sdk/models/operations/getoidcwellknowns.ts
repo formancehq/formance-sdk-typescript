@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 
-export type GetApiAuthWellKnownOpenidConfigurationResponse = {
+export type GetOIDCWellKnownsResponse = {
     /**
      * HTTP response content type for this operation
      */
@@ -20,18 +20,14 @@ export type GetApiAuthWellKnownOpenidConfigurationResponse = {
 };
 
 /** @internal */
-export namespace GetApiAuthWellKnownOpenidConfigurationResponse$ {
+export namespace GetOIDCWellKnownsResponse$ {
     export type Inbound = {
         ContentType: string;
         StatusCode: number;
         RawResponse: Response;
     };
 
-    export const inboundSchema: z.ZodType<
-        GetApiAuthWellKnownOpenidConfigurationResponse,
-        z.ZodTypeDef,
-        Inbound
-    > = z
+    export const inboundSchema: z.ZodType<GetOIDCWellKnownsResponse, z.ZodTypeDef, Inbound> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),
@@ -51,11 +47,7 @@ export namespace GetApiAuthWellKnownOpenidConfigurationResponse$ {
         RawResponse: never;
     };
 
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        GetApiAuthWellKnownOpenidConfigurationResponse
-    > = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetOIDCWellKnownsResponse> = z
         .object({
             contentType: z.string(),
             statusCode: z.number().int(),

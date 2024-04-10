@@ -18,10 +18,6 @@ export type GetInstanceHistoryResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * The workflow instance history
      */
     getWorkflowInstanceHistoryResponse?: shared.GetWorkflowInstanceHistoryResponse | undefined;
@@ -70,7 +66,6 @@ export namespace GetInstanceHistoryRequest$ {
 export namespace GetInstanceHistoryResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         GetWorkflowInstanceHistoryResponse?:
             | shared.GetWorkflowInstanceHistoryResponse$.Inbound
             | undefined;
@@ -81,7 +76,6 @@ export namespace GetInstanceHistoryResponse$ {
     export const inboundSchema: z.ZodType<GetInstanceHistoryResponse, z.ZodTypeDef, Inbound> = z
         .object({
             ContentType: z.string(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             GetWorkflowInstanceHistoryResponse:
                 shared.GetWorkflowInstanceHistoryResponse$.inboundSchema.optional(),
             StatusCode: z.number().int(),
@@ -90,7 +84,6 @@ export namespace GetInstanceHistoryResponse$ {
         .transform((v) => {
             return {
                 contentType: v.ContentType,
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 ...(v.GetWorkflowInstanceHistoryResponse === undefined
                     ? null
                     : { getWorkflowInstanceHistoryResponse: v.GetWorkflowInstanceHistoryResponse }),
@@ -101,7 +94,6 @@ export namespace GetInstanceHistoryResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         GetWorkflowInstanceHistoryResponse?:
             | shared.GetWorkflowInstanceHistoryResponse$.Outbound
             | undefined;
@@ -112,7 +104,6 @@ export namespace GetInstanceHistoryResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetInstanceHistoryResponse> = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             getWorkflowInstanceHistoryResponse:
                 shared.GetWorkflowInstanceHistoryResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
@@ -123,7 +114,6 @@ export namespace GetInstanceHistoryResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.getWorkflowInstanceHistoryResponse === undefined
                     ? null
                     : { GetWorkflowInstanceHistoryResponse: v.getWorkflowInstanceHistoryResponse }),

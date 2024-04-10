@@ -80,7 +80,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -119,14 +119,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePolicyResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -181,7 +181,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -209,14 +209,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.DeletePolicyResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -274,7 +274,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -313,14 +313,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPolicyResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -372,7 +372,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -411,14 +411,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetReconciliationResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -470,7 +470,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -509,14 +509,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPoliciesResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -568,7 +568,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -607,14 +607,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListReconciliationsResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -670,7 +670,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -709,14 +709,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReconcileResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -752,7 +752,7 @@ export class Reconciliation extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -790,14 +790,14 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReconciliationgetServerInfoResponse$.inboundSchema.parse({
+                    return errors.ReconciliationErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        reconciliationErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
