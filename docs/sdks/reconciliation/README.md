@@ -56,9 +56,10 @@ run();
 **Promise<[operations.CreatePolicyResponse](../../sdk/models/operations/createpolicyresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## deletePolicy
 
@@ -99,9 +100,10 @@ run();
 **Promise<[operations.DeletePolicyResponse](../../sdk/models/operations/deletepolicyresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## getPolicy
 
@@ -142,9 +144,10 @@ run();
 **Promise<[operations.GetPolicyResponse](../../sdk/models/operations/getpolicyresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## getReconciliation
 
@@ -185,9 +188,10 @@ run();
 **Promise<[operations.GetReconciliationResponse](../../sdk/models/operations/getreconciliationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## listPolicies
 
@@ -228,9 +232,10 @@ run();
 **Promise<[operations.ListPoliciesResponse](../../sdk/models/operations/listpoliciesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## listReconciliations
 
@@ -271,9 +276,10 @@ run();
 **Promise<[operations.ListReconciliationsResponse](../../sdk/models/operations/listreconciliationsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## reconcile
 
@@ -318,9 +324,10 @@ run();
 **Promise<[operations.ReconcileResponse](../../sdk/models/operations/reconcileresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |
 
 ## reconciliationgetServerInfo
 
@@ -358,6 +365,7 @@ run();
 **Promise<[operations.ReconciliationgetServerInfoResponse](../../sdk/models/operations/reconciliationgetserverinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                       | Status Code                        | Content Type                       |
+| ---------------------------------- | ---------------------------------- | ---------------------------------- |
+| errors.ReconciliationErrorResponse | default                            | application/json                   |
+| errors.SDKError                    | 4xx-5xx                            | */*                                |

@@ -86,6 +86,69 @@ export class SDK extends ClientSDK {
     }
 
     /**
+     * Retrieve OpenID connect well-knowns.
+     */
+    async getOIDCWellKnowns(
+        options?: RequestOptions
+    ): Promise<operations.GetOIDCWellKnownsResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "*/*");
+
+        const path$ = this.templateURLComponent("/api/auth/.well-known/openid-configuration")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "getOIDCWellKnowns",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchStatusCode(response, 200)) {
+            // fallthrough
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+
+        return schemas$.parse(
+            undefined,
+            () => operations.GetOIDCWellKnownsResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
+    }
+
+    /**
      * Show stack version information
      */
     async getVersions(options?: RequestOptions): Promise<operations.GetVersionsResponse> {
@@ -112,7 +175,7 @@ export class SDK extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -149,68 +212,5 @@ export class SDK extends ClientSDK {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
-    }
-
-    async getApiAuthWellKnownOpenidConfiguration(
-        options?: RequestOptions
-    ): Promise<operations.GetApiAuthWellKnownOpenidConfigurationResponse> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
-
-        const path$ = this.templateURLComponent("/api/auth/.well-known/openid-configuration")();
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "get_/api/auth/.well-known/openid-configuration",
-            oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
-        const request = this.createRequest$(
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-            },
-            options
-        );
-
-        const response = await this.do$(request, doOptions);
-
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-        };
-
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
-        }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.GetApiAuthWellKnownOpenidConfigurationResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
     }
 }

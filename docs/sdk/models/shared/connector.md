@@ -15,3 +15,4 @@
 | `Moneycorp`     | MONEYCORP       |
 | `Atlar`         | ATLAR           |
 | `Adyen`         | ADYEN           |
+| `Generic`       | GENERIC         |

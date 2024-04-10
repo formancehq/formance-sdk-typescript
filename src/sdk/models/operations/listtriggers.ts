@@ -11,10 +11,6 @@ export type ListTriggersResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * List of triggers
      */
     listTriggersResponse?: shared.ListTriggersResponse | undefined;
@@ -32,7 +28,6 @@ export type ListTriggersResponse = {
 export namespace ListTriggersResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         ListTriggersResponse?: shared.ListTriggersResponse$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
@@ -41,7 +36,6 @@ export namespace ListTriggersResponse$ {
     export const inboundSchema: z.ZodType<ListTriggersResponse, z.ZodTypeDef, Inbound> = z
         .object({
             ContentType: z.string(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             ListTriggersResponse: shared.ListTriggersResponse$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
@@ -49,7 +43,6 @@ export namespace ListTriggersResponse$ {
         .transform((v) => {
             return {
                 contentType: v.ContentType,
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 ...(v.ListTriggersResponse === undefined
                     ? null
                     : { listTriggersResponse: v.ListTriggersResponse }),
@@ -60,7 +53,6 @@ export namespace ListTriggersResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         ListTriggersResponse?: shared.ListTriggersResponse$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
@@ -69,7 +61,6 @@ export namespace ListTriggersResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListTriggersResponse> = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             listTriggersResponse: shared.ListTriggersResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
             rawResponse: z.instanceof(Response).transform(() => {
@@ -79,7 +70,6 @@ export namespace ListTriggersResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.listTriggersResponse === undefined
                     ? null
                     : { ListTriggersResponse: v.listTriggersResponse }),

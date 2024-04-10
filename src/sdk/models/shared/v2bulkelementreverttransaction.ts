@@ -5,6 +5,7 @@
 import * as z from "zod";
 
 export type V2BulkElementRevertTransactionData = {
+    atEffectiveDate?: boolean | undefined;
     force?: boolean | undefined;
     id: bigint;
 };
@@ -18,6 +19,7 @@ export type V2BulkElementRevertTransaction = {
 /** @internal */
 export namespace V2BulkElementRevertTransactionData$ {
     export type Inbound = {
+        atEffectiveDate?: boolean | undefined;
         force?: boolean | undefined;
         id: number;
     };
@@ -28,17 +30,22 @@ export namespace V2BulkElementRevertTransactionData$ {
         Inbound
     > = z
         .object({
+            atEffectiveDate: z.boolean().optional(),
             force: z.boolean().optional(),
             id: z.number().transform((v) => BigInt(v)),
         })
         .transform((v) => {
             return {
+                ...(v.atEffectiveDate === undefined
+                    ? null
+                    : { atEffectiveDate: v.atEffectiveDate }),
                 ...(v.force === undefined ? null : { force: v.force }),
                 id: v.id,
             };
         });
 
     export type Outbound = {
+        atEffectiveDate?: boolean | undefined;
         force?: boolean | undefined;
         id: number;
     };
@@ -49,11 +56,15 @@ export namespace V2BulkElementRevertTransactionData$ {
         V2BulkElementRevertTransactionData
     > = z
         .object({
+            atEffectiveDate: z.boolean().optional(),
             force: z.boolean().optional(),
             id: z.bigint().transform((v) => Number(v)),
         })
         .transform((v) => {
             return {
+                ...(v.atEffectiveDate === undefined
+                    ? null
+                    : { atEffectiveDate: v.atEffectiveDate }),
                 ...(v.force === undefined ? null : { force: v.force }),
                 id: v.id,
             };

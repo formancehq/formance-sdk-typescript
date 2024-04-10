@@ -85,7 +85,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -113,14 +113,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ConfirmHoldResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -174,7 +174,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -213,14 +213,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateBalanceResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -266,7 +266,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -305,14 +305,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateWalletResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -360,7 +360,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -383,7 +383,7 @@ export class Wallets extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -396,19 +396,6 @@ export class Wallets extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreditWalletResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        walletsErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -462,7 +449,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -498,7 +485,7 @@ export class Wallets extends ClientSDK {
             return result;
         } else if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -511,19 +498,6 @@ export class Wallets extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.DebitWalletResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        walletsErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -582,7 +556,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -621,14 +595,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBalanceResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -678,7 +652,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -717,14 +691,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetHoldResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -781,7 +755,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -820,14 +794,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetHoldsResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -880,7 +854,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -919,14 +893,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTransactionsResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -973,7 +947,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1007,23 +981,31 @@ export class Wallets extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchStatusCode(response, 404)) {
+            // fallthrough
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetWalletResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
+
+        return schemas$.parse(
+            undefined,
+            () => operations.GetWalletResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -1066,7 +1048,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1100,23 +1082,31 @@ export class Wallets extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchStatusCode(response, 404)) {
+            // fallthrough
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetWalletSummaryResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
+
+        return schemas$.parse(
+            undefined,
+            () => operations.GetWalletSummaryResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 
     /**
@@ -1159,7 +1149,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1246,7 +1236,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1285,14 +1275,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListWalletsResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1340,7 +1330,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1368,14 +1358,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateWalletResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1431,7 +1421,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1459,14 +1449,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.VoidHoldResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1508,7 +1498,7 @@ export class Wallets extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1546,14 +1536,14 @@ export class Wallets extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.WalletsgetServerInfoResponse$.inboundSchema.parse({
+                    return errors.WalletsErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        walletsErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);

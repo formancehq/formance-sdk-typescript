@@ -18,8 +18,48 @@ and standard method from web, mobile and desktop applications.
 
 ### Available Operations
 
+* [getOIDCWellKnowns](#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [getVersions](#getversions) - Show stack version information
-* [getApiAuthWellKnownOpenidConfiguration](#getapiauthwellknownopenidconfiguration)
+
+## getOIDCWellKnowns
+
+Retrieve OpenID connect well-knowns.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+async function run() {
+  const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  });
+
+  const result = await sdk.getOIDCWellKnowns();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.GetOIDCWellKnownsResponse](../../sdk/models/operations/getoidcwellknownsresponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## getVersions
 
@@ -55,44 +95,6 @@ run();
 ### Response
 
 **Promise<[operations.GetVersionsResponse](../../sdk/models/operations/getversionsresponse.md)>**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
-## getApiAuthWellKnownOpenidConfiguration
-
-### Example Usage
-
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
-
-  const result = await sdk.getApiAuthWellKnownOpenidConfiguration();
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-
-
-### Response
-
-**Promise<[operations.GetApiAuthWellKnownOpenidConfigurationResponse](../../sdk/models/operations/getapiauthwellknownopenidconfigurationresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

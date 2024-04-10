@@ -15,10 +15,6 @@ export type CreateTriggerResponse = {
      */
     createTriggerResponse?: shared.CreateTriggerResponse | undefined;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * HTTP response status code for this operation
      */
     statusCode: number;
@@ -33,7 +29,6 @@ export namespace CreateTriggerResponse$ {
     export type Inbound = {
         ContentType: string;
         CreateTriggerResponse?: shared.CreateTriggerResponse$.Inbound | undefined;
-        Error?: shared.ErrorT$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
     };
@@ -42,7 +37,6 @@ export namespace CreateTriggerResponse$ {
         .object({
             ContentType: z.string(),
             CreateTriggerResponse: shared.CreateTriggerResponse$.inboundSchema.optional(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
         })
@@ -52,7 +46,6 @@ export namespace CreateTriggerResponse$ {
                 ...(v.CreateTriggerResponse === undefined
                     ? null
                     : { createTriggerResponse: v.CreateTriggerResponse }),
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
             };
@@ -61,7 +54,6 @@ export namespace CreateTriggerResponse$ {
     export type Outbound = {
         ContentType: string;
         CreateTriggerResponse?: shared.CreateTriggerResponse$.Outbound | undefined;
-        Error?: shared.ErrorT$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
     };
@@ -70,7 +62,6 @@ export namespace CreateTriggerResponse$ {
         .object({
             contentType: z.string(),
             createTriggerResponse: shared.CreateTriggerResponse$.outboundSchema.optional(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             statusCode: z.number().int(),
             rawResponse: z.instanceof(Response).transform(() => {
                 throw new Error("Response cannot be serialized");
@@ -82,7 +73,6 @@ export namespace CreateTriggerResponse$ {
                 ...(v.createTriggerResponse === undefined
                     ? null
                     : { CreateTriggerResponse: v.createTriggerResponse }),
-                ...(v.error === undefined ? null : { Error: v.error }),
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,
             };

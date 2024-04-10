@@ -63,9 +63,10 @@ run();
 **Promise<[operations.ConfirmHoldResponse](../../sdk/models/operations/confirmholdresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## createBalance
 
@@ -109,9 +110,10 @@ run();
 **Promise<[operations.CreateBalanceResponse](../../sdk/models/operations/createbalanceresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## createWallet
 
@@ -155,9 +157,10 @@ run();
 **Promise<[operations.CreateWalletResponse](../../sdk/models/operations/createwalletresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## creditWallet
 
@@ -215,7 +218,7 @@ run();
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | 400                         | application/json            |
+| errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## debitWallet
@@ -276,7 +279,7 @@ run();
 
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| errors.WalletsErrorResponse | 400                         | application/json            |
+| errors.WalletsErrorResponse | default                     | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getBalance
@@ -319,9 +322,10 @@ run();
 **Promise<[operations.GetBalanceResponse](../../sdk/models/operations/getbalanceresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getHold
 
@@ -362,9 +366,10 @@ run();
 **Promise<[operations.GetHoldResponse](../../sdk/models/operations/getholdresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getHolds
 
@@ -408,9 +413,10 @@ run();
 **Promise<[operations.GetHoldsResponse](../../sdk/models/operations/getholdsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getTransactions
 
@@ -449,9 +455,10 @@ run();
 **Promise<[operations.GetTransactionsResponse](../../sdk/models/operations/gettransactionsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getWallet
 
@@ -492,9 +499,10 @@ run();
 **Promise<[operations.GetWalletResponse](../../sdk/models/operations/getwalletresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## getWalletSummary
 
@@ -535,9 +543,10 @@ run();
 **Promise<[operations.GetWalletSummaryResponse](../../sdk/models/operations/getwalletsummaryresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## listBalances
 
@@ -624,9 +633,10 @@ run();
 **Promise<[operations.ListWalletsResponse](../../sdk/models/operations/listwalletsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## updateWallet
 
@@ -672,9 +682,10 @@ run();
 **Promise<[operations.UpdateWalletResponse](../../sdk/models/operations/updatewalletresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## voidHold
 
@@ -715,9 +726,10 @@ run();
 **Promise<[operations.VoidHoldResponse](../../sdk/models/operations/voidholdresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## walletsgetServerInfo
 
@@ -755,6 +767,7 @@ run();
 **Promise<[operations.WalletsgetServerInfoResponse](../../sdk/models/operations/walletsgetserverinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| errors.WalletsErrorResponse | default                     | application/json            |
+| errors.SDKError             | 4xx-5xx                     | */*                         |

@@ -84,7 +84,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -123,14 +123,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateTransactionsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -187,7 +187,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -215,14 +215,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.AddMetadataOnTransactionResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -285,7 +285,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -308,7 +308,7 @@ export class Ledger extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -321,19 +321,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.AddMetadataToAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -397,7 +384,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -433,14 +420,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CountAccountsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -515,7 +502,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -551,14 +538,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CountTransactionsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -616,7 +603,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -650,7 +637,7 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -663,19 +650,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -731,7 +705,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -770,14 +744,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAccountResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -840,7 +814,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -879,14 +853,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBalancesResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -926,7 +900,7 @@ export class Ledger extends ClientSDK {
                 explode: true,
                 charEncoding: "percent",
             }),
-            enc$.encodeForm("use_insertion_date", payload$.use_insertion_date, {
+            enc$.encodeForm("useInsertionDate", payload$.useInsertionDate, {
                 explode: true,
                 charEncoding: "percent",
             }),
@@ -949,7 +923,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -988,14 +962,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBalancesAggregatedResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1029,7 +1003,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1067,14 +1041,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetInfoResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1124,7 +1098,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1163,14 +1137,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetLedgerInfoResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1220,7 +1194,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1259,14 +1233,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetMappingResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1322,7 +1296,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1361,14 +1335,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTransactionResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1443,7 +1417,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1482,14 +1456,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAccountsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1559,7 +1533,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1598,14 +1572,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListLogsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1689,7 +1663,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1728,14 +1702,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTransactionsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1789,7 +1763,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1828,14 +1802,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadStatsResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1898,7 +1872,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1937,14 +1911,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RevertTransactionResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2008,7 +1982,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2092,7 +2066,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2131,14 +2105,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateMappingResponse$.inboundSchema.parse({
+                    return errors.ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2204,7 +2178,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2227,7 +2201,7 @@ export class Ledger extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2240,19 +2214,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2AddMetadataOnTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2328,7 +2289,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2351,7 +2312,7 @@ export class Ledger extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2364,19 +2325,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2AddMetadataToAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2437,7 +2385,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2473,14 +2421,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CountAccountsResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2537,7 +2485,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2573,14 +2521,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CountTransactionsResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2631,7 +2579,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2670,14 +2618,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CreateBulkResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2728,7 +2676,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2751,7 +2699,7 @@ export class Ledger extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2764,19 +2712,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateLedgerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2847,7 +2782,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2881,7 +2816,7 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2894,19 +2829,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2969,7 +2891,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3000,6 +2922,103 @@ export class Ledger extends ClientSDK {
         return schemas$.parse(
             undefined,
             () => operations.V2DeleteAccountMetadataResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
+    }
+
+    /**
+     * Delete ledger metadata by key
+     */
+    async v2DeleteLedgerMetadata(
+        input: operations.V2DeleteLedgerMetadataRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2DeleteLedgerMetadataResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2DeleteLedgerMetadataRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            key: enc$.encodeSimple("key", payload$.key, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/metadata/{key}")(
+            pathParams$
+        );
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2DeleteLedgerMetadata",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            {
+                security: securitySettings$,
+                method: "DELETE",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchStatusCode(response, 204)) {
+            // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+
+        return schemas$.parse(
+            undefined,
+            () => operations.V2DeleteLedgerMetadataResponse$.inboundSchema.parse(responseFields$),
             "Response validation failed"
         );
     }
@@ -3057,7 +3076,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3080,7 +3099,7 @@ export class Ledger extends ClientSDK {
 
         if (this.matchStatusCode(response, "2XX")) {
             // fallthrough
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -3093,19 +3112,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2DeleteTransactionMetadataResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3175,7 +3181,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3214,14 +3220,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetAccountResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3255,7 +3261,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3293,14 +3299,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetInfoResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3350,7 +3356,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3378,7 +3384,7 @@ export class Ledger extends ClientSDK {
                 (val$) => {
                     return operations.V2GetLedgerResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Ledger: val$,
+                        V2GetLedgerResponse: val$,
                     });
                 },
                 "Response validation failed"
@@ -3389,14 +3395,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetLedgerResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3446,7 +3452,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3485,14 +3491,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetLedgerInfoResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3550,7 +3556,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3584,7 +3590,7 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 404, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -3597,19 +3603,6 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ErrorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3661,7 +3654,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3700,14 +3693,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ListLedgersResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3761,7 +3754,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3800,14 +3793,14 @@ export class Ledger extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ReadStatsResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3844,6 +3837,10 @@ export class Ledger extends ClientSDK {
         );
 
         const query$ = [
+            enc$.encodeForm("atEffectiveDate", payload$.atEffectiveDate, {
+                explode: true,
+                charEncoding: "percent",
+            }),
             enc$.encodeForm("force", payload$.force, { explode: true, charEncoding: "percent" }),
         ]
             .filter(Boolean)
@@ -3864,7 +3861,7 @@ export class Ledger extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3898,7 +3895,7 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             return result;
-        } else if (this.matchResponse(response, 400, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -3911,22 +3908,101 @@ export class Ledger extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError("Unexpected API response", response, responseBody);
+        }
+    }
+
+    /**
+     * Update ledger metadata
+     */
+    async v2UpdateLedgerMetadata(
+        input: operations.V2UpdateLedgerMetadataRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2UpdateLedgerMetadataResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2UpdateLedgerMetadataRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/metadata")(pathParams$);
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2UpdateLedgerMetadata",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            {
+                security: securitySettings$,
+                method: "PUT",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+        };
+
+        if (this.matchStatusCode(response, 204)) {
+            // fallthrough
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2RevertTransactionResponse$.inboundSchema.parse({
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
                         ...responseFields$,
-                        V2ErrorResponse: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
         }
+
+        return schemas$.parse(
+            undefined,
+            () => operations.V2UpdateLedgerMetadataResponse$.inboundSchema.parse(responseFields$),
+            "Response validation failed"
+        );
     }
 }

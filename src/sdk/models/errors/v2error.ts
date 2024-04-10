@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 
-export enum ErrorCode {
+export enum SchemasErrorCode {
     Validation = "VALIDATION",
     NotFound = "NOT_FOUND",
     Internal = "INTERNAL",
@@ -14,7 +14,7 @@ export enum ErrorCode {
  * General error
  */
 export type V2ErrorData = {
-    errorCode: ErrorCode;
+    errorCode: SchemasErrorCode;
     errorMessage: string;
 };
 
@@ -22,7 +22,7 @@ export type V2ErrorData = {
  * General error
  */
 export class V2Error extends Error {
-    errorCode: ErrorCode;
+    errorCode: SchemasErrorCode;
     errorMessage: string;
 
     /** The original data that was passed to this error instance. */
@@ -45,18 +45,18 @@ export class V2Error extends Error {
 }
 
 /** @internal */
-export const ErrorCode$ = z.nativeEnum(ErrorCode);
+export const SchemasErrorCode$ = z.nativeEnum(SchemasErrorCode);
 
 /** @internal */
 export namespace V2Error$ {
     export type Inbound = {
-        errorCode: ErrorCode;
+        errorCode: SchemasErrorCode;
         errorMessage: string;
     };
 
     export const inboundSchema: z.ZodType<V2Error, z.ZodTypeDef, Inbound> = z
         .object({
-            errorCode: ErrorCode$,
+            errorCode: SchemasErrorCode$,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -67,7 +67,7 @@ export namespace V2Error$ {
         });
 
     export type Outbound = {
-        errorCode: ErrorCode;
+        errorCode: SchemasErrorCode;
         errorMessage: string;
     };
 
@@ -77,7 +77,7 @@ export namespace V2Error$ {
         .pipe(
             z
                 .object({
-                    errorCode: ErrorCode$,
+                    errorCode: SchemasErrorCode$,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

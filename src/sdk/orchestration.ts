@@ -87,7 +87,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -115,14 +115,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CancelEventResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -177,7 +177,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -216,14 +216,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateTriggerResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -272,7 +272,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -311,14 +311,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateWorkflowResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -373,7 +373,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -401,14 +401,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.DeleteTriggerResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -469,7 +469,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -497,14 +497,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.DeleteWorkflowResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -565,7 +565,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -604,14 +604,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetInstanceResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -666,7 +666,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -705,14 +705,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetInstanceHistoryResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -771,7 +771,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -810,14 +810,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetInstanceStageHistoryResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -872,7 +872,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -911,14 +911,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetWorkflowResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -976,7 +976,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1015,14 +1015,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListInstancesResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1059,7 +1059,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1097,14 +1097,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTriggersResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1159,7 +1159,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1198,14 +1198,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTriggersOccurrencesResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1242,7 +1242,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1280,14 +1280,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListWorkflowsResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1323,7 +1323,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1361,14 +1361,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.OrchestrationgetServerInfoResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1423,7 +1423,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1462,14 +1462,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadTriggerResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1529,7 +1529,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1568,14 +1568,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.RunWorkflowResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1631,7 +1631,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1659,14 +1659,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.SendEventResponse$.inboundSchema.parse({
+                    return errors.ErrorT$.inboundSchema.parse({
                         ...responseFields$,
-                        Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1728,7 +1728,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1767,14 +1767,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.TestTriggerResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1829,7 +1829,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1857,14 +1857,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CancelEventResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -1919,7 +1919,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -1958,14 +1958,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CreateTriggerResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2014,7 +2014,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2053,14 +2053,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2CreateWorkflowResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2115,7 +2115,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2138,7 +2138,7 @@ export class Orchestration extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, 404, "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2151,19 +2151,6 @@ export class Orchestration extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2DeleteTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2Error: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2224,7 +2211,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2247,7 +2234,7 @@ export class Orchestration extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
-        } else if (this.matchResponse(response, [400, 404], "application/json")) {
+        } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
@@ -2260,19 +2247,6 @@ export class Orchestration extends ClientSDK {
                 "Response validation failed"
             );
             throw result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2DeleteWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2Error: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2333,7 +2307,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2372,14 +2346,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetInstanceResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2434,7 +2408,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2473,14 +2447,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetInstanceHistoryResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2539,7 +2513,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2578,14 +2552,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetInstanceStageHistoryResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2619,7 +2593,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2657,14 +2631,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetServerInfoResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2719,7 +2693,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2758,14 +2732,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2GetWorkflowResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2823,7 +2797,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2862,14 +2836,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ListInstancesResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -2906,7 +2880,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -2944,14 +2918,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ListTriggersResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3006,7 +2980,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3045,14 +3019,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ListTriggersOccurrencesResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3089,7 +3063,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3127,14 +3101,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ListWorkflowsResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3189,7 +3163,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3228,14 +3202,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2ReadTriggerResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3295,7 +3269,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3334,14 +3308,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2RunWorkflowResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);
@@ -3397,7 +3371,7 @@ export class Orchestration extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
             {
                 security: securitySettings$,
@@ -3425,14 +3399,14 @@ export class Orchestration extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.V2SendEventResponse$.inboundSchema.parse({
+                    return errors.V2Error$.inboundSchema.parse({
                         ...responseFields$,
-                        V2Error: val$,
+                        ...val$,
                     });
                 },
                 "Response validation failed"
             );
-            return result;
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError("Unexpected API response", response, responseBody);

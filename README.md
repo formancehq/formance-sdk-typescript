@@ -51,7 +51,7 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const result = await sdk.getVersions();
+    const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -67,8 +67,8 @@ run();
 
 ### [SDK](docs/sdks/sdk/README.md)
 
+* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
-* [getApiAuthWellKnownOpenidConfiguration](docs/sdks/sdk/README.md#getapiauthwellknownopenidconfiguration)
 
 ### [auth](docs/sdks/auth/README.md)
 
@@ -112,6 +112,7 @@ run();
 * [v2CreateLedger](docs/sdks/ledger/README.md#v2createledger) - Create a ledger
 * [v2CreateTransaction](docs/sdks/ledger/README.md#v2createtransaction) - Create a new transaction to a ledger
 * [v2DeleteAccountMetadata](docs/sdks/ledger/README.md#v2deleteaccountmetadata) - Delete metadata by key
+* [v2DeleteLedgerMetadata](docs/sdks/ledger/README.md#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](docs/sdks/ledger/README.md#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](docs/sdks/ledger/README.md#v2getaccount) - Get account by its address
 * [v2GetInfo](docs/sdks/ledger/README.md#v2getinfo) - Show server information
@@ -121,6 +122,7 @@ run();
 * [v2ListLedgers](docs/sdks/ledger/README.md#v2listledgers) - List ledgers
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
+* [v2UpdateLedgerMetadata](docs/sdks/ledger/README.md#v2updateledgermetadata) - Update ledger metadata
 
 ### [orchestration](docs/sdks/orchestration/README.md)
 
@@ -257,7 +259,7 @@ All SDK methods return a response object or throw an error. If Error objects are
 
 | Error Object         | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400,404              | application/json     |
+| errors.ErrorResponse | default              | application/json     |
 | errors.SDKError      | 4xx-5xx              | */*                  |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
@@ -274,11 +276,25 @@ async function run() {
 
     let result;
     try {
-        result = await sdk.ledger.addMetadataToAccount({
-            requestBody: {
-                key: "<value>",
+        result = await sdk.ledger.createTransactions({
+            transactions: {
+                transactions: [
+                    {
+                        metadata: {
+                            key: "<value>",
+                        },
+                        postings: [
+                            {
+                                amount: BigInt(100),
+                                asset: "COIN",
+                                destination: "users:002",
+                                source: "users:001",
+                            },
+                        ],
+                        reference: "ref:001",
+                    },
+                ],
             },
-            address: "users:001",
             ledger: "ledger001",
         });
     } catch (err) {
@@ -329,7 +345,7 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const result = await sdk.getVersions();
+    const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -353,7 +369,7 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const result = await sdk.getVersions();
+    const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -433,7 +449,7 @@ async function run() {
         authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
     });
 
-    const result = await sdk.getVersions();
+    const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);

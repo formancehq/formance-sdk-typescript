@@ -11,10 +11,6 @@ export type OrchestrationgetServerInfoResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * Server information
      */
     serverInfo?: shared.ServerInfo | undefined;
@@ -32,7 +28,6 @@ export type OrchestrationgetServerInfoResponse = {
 export namespace OrchestrationgetServerInfoResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         ServerInfo?: shared.ServerInfo$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
@@ -45,7 +40,6 @@ export namespace OrchestrationgetServerInfoResponse$ {
     > = z
         .object({
             ContentType: z.string(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             ServerInfo: shared.ServerInfo$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
@@ -53,7 +47,6 @@ export namespace OrchestrationgetServerInfoResponse$ {
         .transform((v) => {
             return {
                 contentType: v.ContentType,
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 ...(v.ServerInfo === undefined ? null : { serverInfo: v.ServerInfo }),
                 statusCode: v.StatusCode,
                 rawResponse: v.RawResponse,
@@ -62,7 +55,6 @@ export namespace OrchestrationgetServerInfoResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         ServerInfo?: shared.ServerInfo$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
@@ -75,7 +67,6 @@ export namespace OrchestrationgetServerInfoResponse$ {
     > = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             serverInfo: shared.ServerInfo$.outboundSchema.optional(),
             statusCode: z.number().int(),
             rawResponse: z.instanceof(Response).transform(() => {
@@ -85,7 +76,6 @@ export namespace OrchestrationgetServerInfoResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.serverInfo === undefined ? null : { ServerInfo: v.serverInfo }),
                 StatusCode: v.statusCode,
                 RawResponse: v.rawResponse,

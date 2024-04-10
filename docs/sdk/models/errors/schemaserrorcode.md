@@ -3,9 +3,8 @@
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `Validation`       | VALIDATION         |
-| `InternalError`    | INTERNAL_ERROR     |
-| `InsufficientFund` | INSUFFICIENT_FUND  |
-| `HoldClosed`       | HOLD_CLOSED        |
+| Name         | Value        |
+| ------------ | ------------ |
+| `Validation` | VALIDATION   |
+| `NotFound`   | NOT_FOUND    |
+| `Internal`   | INTERNAL     |

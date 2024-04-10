@@ -1,4 +1,4 @@
-# GetApiAuthWellKnownOpenidConfigurationResponse
+# V2DeleteLedgerMetadataResponse
 
 
 ## Fields

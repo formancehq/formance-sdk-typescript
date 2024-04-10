@@ -7,6 +7,7 @@ import * as z from "zod";
 export type V2Ledger = {
     addedAt: Date;
     bucket: string;
+    metadata?: Record<string, string> | undefined;
     name: string;
 };
 
@@ -15,6 +16,7 @@ export namespace V2Ledger$ {
     export type Inbound = {
         addedAt: string;
         bucket: string;
+        metadata?: Record<string, string> | undefined;
         name: string;
     };
 
@@ -25,12 +27,14 @@ export namespace V2Ledger$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             bucket: z.string(),
+            metadata: z.record(z.string()).optional(),
             name: z.string(),
         })
         .transform((v) => {
             return {
                 addedAt: v.addedAt,
                 bucket: v.bucket,
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 name: v.name,
             };
         });
@@ -38,6 +42,7 @@ export namespace V2Ledger$ {
     export type Outbound = {
         addedAt: string;
         bucket: string;
+        metadata?: Record<string, string> | undefined;
         name: string;
     };
 
@@ -45,12 +50,14 @@ export namespace V2Ledger$ {
         .object({
             addedAt: z.date().transform((v) => v.toISOString()),
             bucket: z.string(),
+            metadata: z.record(z.string()).optional(),
             name: z.string(),
         })
         .transform((v) => {
             return {
                 addedAt: v.addedAt,
                 bucket: v.bucket,
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 name: v.name,
             };
         });

@@ -78,9 +78,10 @@ run();
 **Promise<[operations.CancelEventResponse](../../sdk/models/operations/canceleventresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## createTrigger
 
@@ -125,9 +126,10 @@ run();
 **Promise<[operations.CreateTriggerResponse](../../sdk/models/operations/createtriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## createWorkflow
 
@@ -172,9 +174,10 @@ run();
 **Promise<[operations.CreateWorkflowResponse](../../sdk/models/operations/createworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## deleteTrigger
 
@@ -215,9 +218,10 @@ run();
 **Promise<[operations.DeleteTriggerResponse](../../sdk/models/operations/deletetriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## deleteWorkflow
 
@@ -258,9 +262,10 @@ run();
 **Promise<[operations.DeleteWorkflowResponse](../../sdk/models/operations/deleteworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## getInstance
 
@@ -301,9 +306,10 @@ run();
 **Promise<[operations.GetInstanceResponse](../../sdk/models/operations/getinstanceresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## getInstanceHistory
 
@@ -344,9 +350,10 @@ run();
 **Promise<[operations.GetInstanceHistoryResponse](../../sdk/models/operations/getinstancehistoryresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## getInstanceStageHistory
 
@@ -388,9 +395,10 @@ run();
 **Promise<[operations.GetInstanceStageHistoryResponse](../../sdk/models/operations/getinstancestagehistoryresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## getWorkflow
 
@@ -431,9 +439,10 @@ run();
 **Promise<[operations.GetWorkflowResponse](../../sdk/models/operations/getworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## listInstances
 
@@ -472,9 +481,10 @@ run();
 **Promise<[operations.ListInstancesResponse](../../sdk/models/operations/listinstancesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## listTriggers
 
@@ -512,9 +522,10 @@ run();
 **Promise<[operations.ListTriggersResponse](../../sdk/models/operations/listtriggersresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## listTriggersOccurrences
 
@@ -555,9 +566,10 @@ run();
 **Promise<[operations.ListTriggersOccurrencesResponse](../../sdk/models/operations/listtriggersoccurrencesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## listWorkflows
 
@@ -595,9 +607,10 @@ run();
 **Promise<[operations.ListWorkflowsResponse](../../sdk/models/operations/listworkflowsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## orchestrationgetServerInfo
 
@@ -635,9 +648,10 @@ run();
 **Promise<[operations.OrchestrationgetServerInfoResponse](../../sdk/models/operations/orchestrationgetserverinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## readTrigger
 
@@ -678,9 +692,10 @@ run();
 **Promise<[operations.ReadTriggerResponse](../../sdk/models/operations/readtriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## runWorkflow
 
@@ -724,9 +739,10 @@ run();
 **Promise<[operations.RunWorkflowResponse](../../sdk/models/operations/runworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## sendEvent
 
@@ -770,9 +786,10 @@ run();
 **Promise<[operations.SendEventResponse](../../sdk/models/operations/sendeventresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.ErrorT    | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## testTrigger
 
@@ -816,9 +833,10 @@ run();
 **Promise<[operations.TestTriggerResponse](../../sdk/models/operations/testtriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2CancelEvent
 
@@ -859,9 +877,10 @@ run();
 **Promise<[operations.V2CancelEventResponse](../../sdk/models/operations/v2canceleventresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2CreateTrigger
 
@@ -906,9 +925,10 @@ run();
 **Promise<[operations.V2CreateTriggerResponse](../../sdk/models/operations/v2createtriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2CreateWorkflow
 
@@ -953,9 +973,10 @@ run();
 **Promise<[operations.V2CreateWorkflowResponse](../../sdk/models/operations/v2createworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2DeleteTrigger
 
@@ -998,7 +1019,7 @@ run();
 
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.V2Error   | 404              | application/json |
+| errors.V2Error   | default          | application/json |
 | errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2DeleteWorkflow
@@ -1042,7 +1063,7 @@ run();
 
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.V2Error   | 400,404          | application/json |
+| errors.V2Error   | default          | application/json |
 | errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2GetInstance
@@ -1084,9 +1105,10 @@ run();
 **Promise<[operations.V2GetInstanceResponse](../../sdk/models/operations/v2getinstanceresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2GetInstanceHistory
 
@@ -1127,9 +1149,10 @@ run();
 **Promise<[operations.V2GetInstanceHistoryResponse](../../sdk/models/operations/v2getinstancehistoryresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2GetInstanceStageHistory
 
@@ -1171,9 +1194,10 @@ run();
 **Promise<[operations.V2GetInstanceStageHistoryResponse](../../sdk/models/operations/v2getinstancestagehistoryresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2GetServerInfo
 
@@ -1211,9 +1235,10 @@ run();
 **Promise<[operations.V2GetServerInfoResponse](../../sdk/models/operations/v2getserverinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2GetWorkflow
 
@@ -1254,9 +1279,10 @@ run();
 **Promise<[operations.V2GetWorkflowResponse](../../sdk/models/operations/v2getworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2ListInstances
 
@@ -1295,9 +1321,10 @@ run();
 **Promise<[operations.V2ListInstancesResponse](../../sdk/models/operations/v2listinstancesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2ListTriggers
 
@@ -1335,9 +1362,10 @@ run();
 **Promise<[operations.V2ListTriggersResponse](../../sdk/models/operations/v2listtriggersresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2ListTriggersOccurrences
 
@@ -1378,9 +1406,10 @@ run();
 **Promise<[operations.V2ListTriggersOccurrencesResponse](../../sdk/models/operations/v2listtriggersoccurrencesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2ListWorkflows
 
@@ -1418,9 +1447,10 @@ run();
 **Promise<[operations.V2ListWorkflowsResponse](../../sdk/models/operations/v2listworkflowsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2ReadTrigger
 
@@ -1461,9 +1491,10 @@ run();
 **Promise<[operations.V2ReadTriggerResponse](../../sdk/models/operations/v2readtriggerresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2RunWorkflow
 
@@ -1507,9 +1538,10 @@ run();
 **Promise<[operations.V2RunWorkflowResponse](../../sdk/models/operations/v2runworkflowresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## v2SendEvent
 
@@ -1553,6 +1585,7 @@ run();
 **Promise<[operations.V2SendEventResponse](../../sdk/models/operations/v2sendeventresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.V2Error   | default          | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |

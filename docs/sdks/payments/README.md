@@ -113,7 +113,7 @@ async function run() {
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
     },
-    connector: Connector.CurrencyCloud,
+    connector: Connector.BankingCircle,
   });
 
   // Handle the result
@@ -581,7 +581,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getConnectorTask({
-    connector: Connector.Atlar,
+    connector: Connector.Adyen,
     taskId: "<value>",
   });
 
@@ -626,7 +626,7 @@ async function run() {
   });
 
   const result = await sdk.payments.getConnectorTaskV1({
-    connector: Connector.CurrencyCloud,
+    connector: Connector.BankingCircle,
     connectorId: "<value>",
     taskId: "<value>",
   });
@@ -850,7 +850,7 @@ async function run() {
         name: "My Wise Account",
         pollingPeriod: "60s",
       },
-    connector: Connector.Atlar,
+    connector: Connector.Adyen,
   });
 
   // Handle the result
@@ -1022,7 +1022,7 @@ async function run() {
   });
 
   const result = await sdk.payments.listConnectorTasks({
-    connector: Connector.Wise,
+    connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
@@ -1336,7 +1336,7 @@ async function run() {
   });
 
   const result = await sdk.payments.readConnectorConfig({
-    connector: Connector.Adyen,
+    connector: Connector.Generic,
   });
 
   // Handle the result
@@ -1473,7 +1473,7 @@ async function run() {
   });
 
   const result = await sdk.payments.resetConnector({
-    connector: Connector.Moneycorp,
+    connector: Connector.Atlar,
   });
 
   // Handle the result
@@ -1519,7 +1519,7 @@ async function run() {
   });
 
   const result = await sdk.payments.resetConnectorV1({
-    connector: Connector.Adyen,
+    connector: Connector.Generic,
     connectorId: "<value>",
   });
 
@@ -1708,7 +1708,7 @@ async function run() {
   });
 
   const result = await sdk.payments.uninstallConnector({
-    connector: Connector.Wise,
+    connector: Connector.Modulr,
   });
 
   // Handle the result
@@ -1752,7 +1752,7 @@ async function run() {
   });
 
   const result = await sdk.payments.uninstallConnectorV1({
-    connector: Connector.Adyen,
+    connector: Connector.Generic,
     connectorId: "<value>",
   });
 

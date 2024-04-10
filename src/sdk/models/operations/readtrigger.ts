@@ -18,10 +18,6 @@ export type ReadTriggerResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * A specific trigger
      */
     readTriggerResponse?: shared.ReadTriggerResponse | undefined;
@@ -70,7 +66,6 @@ export namespace ReadTriggerRequest$ {
 export namespace ReadTriggerResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         ReadTriggerResponse?: shared.ReadTriggerResponse$.Inbound | undefined;
         StatusCode: number;
         RawResponse: Response;
@@ -79,7 +74,6 @@ export namespace ReadTriggerResponse$ {
     export const inboundSchema: z.ZodType<ReadTriggerResponse, z.ZodTypeDef, Inbound> = z
         .object({
             ContentType: z.string(),
-            Error: shared.ErrorT$.inboundSchema.optional(),
             ReadTriggerResponse: shared.ReadTriggerResponse$.inboundSchema.optional(),
             StatusCode: z.number().int(),
             RawResponse: z.instanceof(Response),
@@ -87,7 +81,6 @@ export namespace ReadTriggerResponse$ {
         .transform((v) => {
             return {
                 contentType: v.ContentType,
-                ...(v.Error === undefined ? null : { error: v.Error }),
                 ...(v.ReadTriggerResponse === undefined
                     ? null
                     : { readTriggerResponse: v.ReadTriggerResponse }),
@@ -98,7 +91,6 @@ export namespace ReadTriggerResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         ReadTriggerResponse?: shared.ReadTriggerResponse$.Outbound | undefined;
         StatusCode: number;
         RawResponse: never;
@@ -107,7 +99,6 @@ export namespace ReadTriggerResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadTriggerResponse> = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             readTriggerResponse: shared.ReadTriggerResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
             rawResponse: z.instanceof(Response).transform(() => {
@@ -117,7 +108,6 @@ export namespace ReadTriggerResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.readTriggerResponse === undefined
                     ? null
                     : { ReadTriggerResponse: v.readTriggerResponse }),

@@ -18,10 +18,6 @@ export type ListTriggersOccurrencesResponse = {
      */
     contentType: string;
     /**
-     * General error
-     */
-    error?: shared.ErrorT | undefined;
-    /**
      * List of triggers occurrences
      */
     listTriggersOccurrencesResponse?: shared.ListTriggersOccurrencesResponse | undefined;
@@ -71,7 +67,6 @@ export namespace ListTriggersOccurrencesRequest$ {
 export namespace ListTriggersOccurrencesResponse$ {
     export type Inbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Inbound | undefined;
         ListTriggersOccurrencesResponse?:
             | shared.ListTriggersOccurrencesResponse$.Inbound
             | undefined;
@@ -83,7 +78,6 @@ export namespace ListTriggersOccurrencesResponse$ {
         z
             .object({
                 ContentType: z.string(),
-                Error: shared.ErrorT$.inboundSchema.optional(),
                 ListTriggersOccurrencesResponse:
                     shared.ListTriggersOccurrencesResponse$.inboundSchema.optional(),
                 StatusCode: z.number().int(),
@@ -92,7 +86,6 @@ export namespace ListTriggersOccurrencesResponse$ {
             .transform((v) => {
                 return {
                     contentType: v.ContentType,
-                    ...(v.Error === undefined ? null : { error: v.Error }),
                     ...(v.ListTriggersOccurrencesResponse === undefined
                         ? null
                         : { listTriggersOccurrencesResponse: v.ListTriggersOccurrencesResponse }),
@@ -103,7 +96,6 @@ export namespace ListTriggersOccurrencesResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Error?: shared.ErrorT$.Outbound | undefined;
         ListTriggersOccurrencesResponse?:
             | shared.ListTriggersOccurrencesResponse$.Outbound
             | undefined;
@@ -118,7 +110,6 @@ export namespace ListTriggersOccurrencesResponse$ {
     > = z
         .object({
             contentType: z.string(),
-            error: shared.ErrorT$.outboundSchema.optional(),
             listTriggersOccurrencesResponse:
                 shared.ListTriggersOccurrencesResponse$.outboundSchema.optional(),
             statusCode: z.number().int(),
@@ -129,7 +120,6 @@ export namespace ListTriggersOccurrencesResponse$ {
         .transform((v) => {
             return {
                 ContentType: v.contentType,
-                ...(v.error === undefined ? null : { Error: v.error }),
                 ...(v.listTriggersOccurrencesResponse === undefined
                     ? null
                     : { ListTriggersOccurrencesResponse: v.listTriggersOccurrencesResponse }),
