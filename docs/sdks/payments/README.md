@@ -54,11 +54,11 @@ Add an account to a pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.addAccountToPool({
     addAccountToPoolRequest: {
       accountID: "<value>",
@@ -101,11 +101,11 @@ Execute a transfer between two accounts.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.connectorsTransfer({
     transferRequest: {
       amount: BigInt(100),
@@ -150,11 +150,11 @@ Create a bank account in Payments and on the PSP.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.createBankAccount({
     connectorID: "<value>",
     country: "GB",
@@ -199,11 +199,11 @@ Create a payment
 import { SDK } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.createPayment({
     amount: BigInt(100),
     asset: "USD",
@@ -249,11 +249,11 @@ Create a Pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.createPool({
     accountIDs: [
       "<value>",
@@ -296,11 +296,11 @@ Create a transfer initiation
 import { SDK } from "@formance/formance-sdk";
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.createTransferInitiation({
     amount: BigInt(256698),
     asset: "USD",
@@ -350,11 +350,11 @@ Delete a pool by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.deletePool({
     poolId: "<value>",
   });
@@ -393,11 +393,11 @@ Delete a transfer initiation by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.deleteTransferInitiation({
     transferId: "<value>",
   });
@@ -436,11 +436,11 @@ Forward a bank account to a connector
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.forwardBankAccount({
     forwardBankAccountRequest: {
       connectorID: "<value>",
@@ -482,11 +482,11 @@ Get account balances
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getAccountBalances({
     accountId: "<value>",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -529,11 +529,11 @@ Get a bank account created by user on Formance
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getBankAccount({
     bankAccountId: "<value>",
   });
@@ -575,11 +575,11 @@ Get a specific task associated to the connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getConnectorTask({
     connector: Connector.Adyen,
     taskId: "<value>",
@@ -620,11 +620,11 @@ Get a specific task associated to the connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getConnectorTaskV1({
     connector: Connector.BankingCircle,
     connectorId: "<value>",
@@ -665,11 +665,11 @@ Get a payment
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getPayment({
     paymentId: "<value>",
   });
@@ -708,11 +708,11 @@ Get a Pool
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getPool({
     poolId: "<value>",
   });
@@ -751,11 +751,11 @@ Get pool balances
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getPoolBalances({
     at: new Date("2023-05-05T06:40:23.018Z"),
     poolId: "<value>",
@@ -795,11 +795,11 @@ Get a transfer initiation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.getTransferInitiation({
     transferId: "<value>",
   });
@@ -839,11 +839,11 @@ Install a connector by its name and config.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.installConnector({
   connectorConfig:     {
         apiKey: "XXX",
@@ -887,11 +887,11 @@ List all installed connectors.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listAllConnectors();
 
   // Handle the result
@@ -927,11 +927,11 @@ List all bank accounts created by user on Formance.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listBankAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
@@ -973,11 +973,11 @@ List the configs of each available connector.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listConfigsAvailableConnectors();
 
   // Handle the result
@@ -1016,11 +1016,11 @@ List all tasks associated with this connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listConnectorTasks({
     connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
@@ -1061,11 +1061,11 @@ List all tasks associated with this connector.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listConnectorTasksV1({
     connector: Connector.BankingCircle,
     connectorId: "<value>",
@@ -1106,11 +1106,11 @@ List payments
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listPayments({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
@@ -1152,11 +1152,11 @@ List Pools
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listPools({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
@@ -1198,11 +1198,11 @@ List Transfer Initiations
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.listTransferInitiations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
@@ -1244,11 +1244,11 @@ Get an account
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.paymentsgetAccount({
     accountId: "<value>",
   });
@@ -1287,11 +1287,11 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.paymentsgetServerInfo();
 
   // Handle the result
@@ -1330,11 +1330,11 @@ Read connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.readConnectorConfig({
     connector: Connector.Generic,
   });
@@ -1374,11 +1374,11 @@ Read connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.readConnectorConfigV1({
     connector: Connector.CurrencyCloud,
     connectorId: "<value>",
@@ -1418,11 +1418,11 @@ Remove an account from a pool by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.removeAccountFromPool({
     accountId: "<value>",
     poolId: "<value>",
@@ -1467,11 +1467,11 @@ It will remove the connector and ALL PAYMENTS generated with it.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.resetConnector({
     connector: Connector.Atlar,
   });
@@ -1513,11 +1513,11 @@ It will remove the connector and ALL PAYMENTS generated with it.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.resetConnectorV1({
     connector: Connector.Generic,
     connectorId: "<value>",
@@ -1557,11 +1557,11 @@ Retry a failed transfer initiation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.retryTransferInitiation({
     transferId: "<value>",
   });
@@ -1600,11 +1600,11 @@ Reverse transfer initiation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.reverseTransferInitiation({
     reverseTransferInitiationRequest: {
       amount: BigInt(327549),
@@ -1653,11 +1653,11 @@ Update a transfer initiation status
 import { SDK } from "@formance/formance-sdk";
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.udpateTransferInitiationStatus({
     updateTransferInitiationStatusRequest: {
       status: Status.Validated,
@@ -1702,11 +1702,11 @@ Uninstall a connector by its name.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.uninstallConnector({
     connector: Connector.Modulr,
   });
@@ -1746,11 +1746,11 @@ Uninstall a connector by its name.
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.uninstallConnectorV1({
     connector: Connector.Generic,
     connectorId: "<value>",
@@ -1790,11 +1790,11 @@ Update metadata of a bank account
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.updateBankAccountMetadata({
     updateBankAccountMetadataRequest: {
       metadata: {
@@ -1839,11 +1839,11 @@ Update connector config
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.updateConnectorConfigV1({
   connectorConfig:     {
         apiKey: "XXX",
@@ -1889,11 +1889,11 @@ Update metadata
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.payments.updateMetadata({
     requestBody: {
       "key": "<value>",

@@ -12,13 +12,14 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 2.2.0
+  version: 2.2.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   author: Formance
   clientServerStatusCodesAsErrors: false
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi
