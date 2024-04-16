@@ -29,11 +29,11 @@ Confirm a hold
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.confirmHold({
     confirmHoldRequest: {
       amount: BigInt(100),
@@ -77,11 +77,11 @@ Create a balance
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.createBalance({
     createBalanceRequest: {
       name: "<value>",
@@ -124,11 +124,11 @@ Create a new wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.createWallet({
     metadata: {
       "key": "<value>",
@@ -171,11 +171,11 @@ Credit a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.creditWallet({
     creditWalletRequest: {
       amount: {
@@ -230,11 +230,11 @@ Debit a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.debitWallet({
     debitWalletRequest: {
       amount: {
@@ -291,11 +291,11 @@ Get detailed balance
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getBalance({
     balanceName: "<value>",
     id: "<id>",
@@ -336,11 +336,11 @@ Get a hold
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getHold({
     holdID: "<value>",
   });
@@ -380,11 +380,11 @@ Get all holds for a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getHolds({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
@@ -425,11 +425,11 @@ run();
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getTransactions({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
@@ -469,11 +469,11 @@ Get a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getWallet({
     id: "<id>",
   });
@@ -513,11 +513,11 @@ Get wallet summary
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.getWalletSummary({
     id: "<id>",
   });
@@ -557,11 +557,11 @@ List balances of a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.listBalances({
     id: "<id>",
   });
@@ -600,11 +600,11 @@ List all wallets
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.listWallets({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     metadata: {
@@ -647,11 +647,11 @@ Update a wallet
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.updateWallet({
     requestBody: {
       metadata: {
@@ -696,11 +696,11 @@ Cancel a hold
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.voidHold({
     holdId: "<value>",
   });
@@ -740,11 +740,11 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.wallets.walletsgetServerInfo();
 
   // Handle the result

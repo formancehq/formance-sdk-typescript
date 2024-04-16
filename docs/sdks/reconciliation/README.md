@@ -21,11 +21,11 @@ Create a policy
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.createPolicy({
     ledgerName: "default",
     ledgerQuery: {
@@ -70,11 +70,11 @@ Delete a policy by its id.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.deletePolicy({
     policyID: "<value>",
   });
@@ -114,11 +114,11 @@ Get a policy
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.getPolicy({
     policyID: "<value>",
   });
@@ -158,11 +158,11 @@ Get a reconciliation
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.getReconciliation({
     reconciliationID: "<value>",
   });
@@ -202,11 +202,11 @@ List policies
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.listPolicies({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
@@ -246,11 +246,11 @@ List reconciliations
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.listReconciliations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
@@ -290,11 +290,11 @@ Reconcile using a policy
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.reconcile({
     reconciliationRequest: {
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
@@ -338,11 +338,11 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.reconciliation.reconciliationgetServerInfo();
 
   // Handle the result

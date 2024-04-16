@@ -48,11 +48,11 @@ Cancel a running workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.cancelEvent({
     instanceID: "<value>",
   });
@@ -92,11 +92,11 @@ Create trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.createTrigger({
     event: "<value>",
     vars: {
@@ -140,11 +140,11 @@ Create a workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.createWorkflow({
     stages: [
       {
@@ -188,11 +188,11 @@ Read trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.deleteTrigger({
     triggerID: "<value>",
   });
@@ -232,11 +232,11 @@ Delete a flow by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.deleteWorkflow({
     flowId: "<value>",
   });
@@ -276,11 +276,11 @@ Get a workflow instance by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.getInstance({
     instanceID: "<value>",
   });
@@ -320,11 +320,11 @@ Get a workflow instance history by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.getInstanceHistory({
     instanceID: "<value>",
   });
@@ -364,11 +364,11 @@ Get a workflow instance stage history
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.getInstanceStageHistory({
     instanceID: "<value>",
     number: 600636,
@@ -409,11 +409,11 @@ Get a flow by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.getWorkflow({
     flowId: "<value>",
   });
@@ -453,11 +453,11 @@ List instances of a workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.listInstances({});
 
   // Handle the result
@@ -495,11 +495,11 @@ List triggers
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.listTriggers();
 
   // Handle the result
@@ -536,11 +536,11 @@ List triggers occurrences
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.listTriggersOccurrences({
     triggerID: "<value>",
   });
@@ -580,11 +580,11 @@ List registered workflows
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.listWorkflows();
 
   // Handle the result
@@ -621,11 +621,11 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.orchestrationgetServerInfo();
 
   // Handle the result
@@ -662,11 +662,11 @@ Read trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.readTrigger({
     triggerID: "<value>",
   });
@@ -706,11 +706,11 @@ Run workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.runWorkflow({
     requestBody: {
       "key": "<value>",
@@ -753,11 +753,11 @@ Send an event to a running workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.sendEvent({
     requestBody: {
       name: "<value>",
@@ -800,11 +800,11 @@ Test trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.testTrigger({
     requestBody: {
       "key": "<value>",
@@ -847,11 +847,11 @@ Cancel a running workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2CancelEvent({
     instanceID: "<value>",
   });
@@ -891,11 +891,11 @@ Create trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2CreateTrigger({
     event: "<value>",
     vars: {
@@ -939,11 +939,11 @@ Create a workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2CreateWorkflow({
     stages: [
       {
@@ -987,11 +987,11 @@ Read trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2DeleteTrigger({
     triggerID: "<value>",
   });
@@ -1031,11 +1031,11 @@ Delete a flow by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2DeleteWorkflow({
     flowId: "<value>",
   });
@@ -1075,11 +1075,11 @@ Get a workflow instance by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2GetInstance({
     instanceID: "<value>",
   });
@@ -1119,11 +1119,11 @@ Get a workflow instance history by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2GetInstanceHistory({
     instanceID: "<value>",
   });
@@ -1163,11 +1163,11 @@ Get a workflow instance stage history
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2GetInstanceStageHistory({
     instanceID: "<value>",
     number: 465454,
@@ -1208,11 +1208,11 @@ Get server info
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2GetServerInfo();
 
   // Handle the result
@@ -1249,11 +1249,11 @@ Get a flow by id
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2GetWorkflow({
     flowId: "<value>",
   });
@@ -1293,11 +1293,11 @@ List instances of a workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2ListInstances({});
 
   // Handle the result
@@ -1335,11 +1335,11 @@ List triggers
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2ListTriggers();
 
   // Handle the result
@@ -1376,11 +1376,11 @@ List triggers occurrences
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2ListTriggersOccurrences({
     triggerID: "<value>",
   });
@@ -1420,11 +1420,11 @@ List registered workflows
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2ListWorkflows();
 
   // Handle the result
@@ -1461,11 +1461,11 @@ Read trigger
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2ReadTrigger({
     triggerID: "<value>",
   });
@@ -1505,11 +1505,11 @@ Run workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2RunWorkflow({
     requestBody: {
       "key": "<value>",
@@ -1552,11 +1552,11 @@ Send an event to a running workflow
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.orchestration.v2SendEvent({
     requestBody: {
       name: "<value>",

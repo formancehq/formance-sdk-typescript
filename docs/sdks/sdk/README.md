@@ -30,11 +30,11 @@ Retrieve OpenID connect well-knowns.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.getOIDCWellKnowns();
 
   // Handle the result
@@ -70,11 +70,11 @@ Show stack version information
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-  const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-  });
+const sdk = new SDK({
+  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
   const result = await sdk.getVersions();
 
   // Handle the result

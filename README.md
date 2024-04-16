@@ -46,11 +46,11 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-    const sdk = new SDK({
-        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
     const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
@@ -269,11 +269,11 @@ Validation errors can also occur when either method arguments or data returned f
 import { SDK } from "@formance/formance-sdk";
 import * as errors from "@formance/formance-sdk/sdk/models/errors";
 
-async function run() {
-    const sdk = new SDK({
-        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
     let result;
     try {
         result = await sdk.ledger.createTransactions({
@@ -339,12 +339,12 @@ You can override the default server globally by passing a server index to the `s
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-    const sdk = new SDK({
-        serverIdx: 0,
-        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    serverIdx: 0,
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
     const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
@@ -363,12 +363,12 @@ The default server can also be overridden globally by passing a URL to the `serv
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-    const sdk = new SDK({
-        serverURL: "http://localhost",
-        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    serverURL: "http://localhost",
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
     const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
@@ -444,11 +444,11 @@ To authenticate with the API the `authorization` parameter must be set when init
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-async function run() {
-    const sdk = new SDK({
-        authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
-    });
+const sdk = new SDK({
+    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+});
 
+async function run() {
     const result = await sdk.getOIDCWellKnowns();
 
     // Handle the result
