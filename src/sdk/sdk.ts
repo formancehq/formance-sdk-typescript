@@ -46,42 +46,42 @@ export class SDK extends ClientSDK {
     }
 
     private _auth?: Auth;
-    get auth() {
+    get auth(): Auth {
         return (this._auth ??= new Auth(this.options$));
     }
 
     private _ledger?: Ledger;
-    get ledger() {
+    get ledger(): Ledger {
         return (this._ledger ??= new Ledger(this.options$));
     }
 
     private _orchestration?: Orchestration;
-    get orchestration() {
+    get orchestration(): Orchestration {
         return (this._orchestration ??= new Orchestration(this.options$));
     }
 
     private _payments?: Payments;
-    get payments() {
+    get payments(): Payments {
         return (this._payments ??= new Payments(this.options$));
     }
 
     private _reconciliation?: Reconciliation;
-    get reconciliation() {
+    get reconciliation(): Reconciliation {
         return (this._reconciliation ??= new Reconciliation(this.options$));
     }
 
     private _search?: Search;
-    get search() {
+    get search(): Search {
         return (this._search ??= new Search(this.options$));
     }
 
     private _wallets?: Wallets;
-    get wallets() {
+    get wallets(): Wallets {
         return (this._wallets ??= new Wallets(this.options$));
     }
 
     private _webhooks?: Webhooks;
-    get webhooks() {
+    get webhooks(): Webhooks {
         return (this._webhooks ??= new Webhooks(this.options$));
     }
 
@@ -116,6 +116,7 @@ export class SDK extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -177,6 +178,7 @@ export class SDK extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

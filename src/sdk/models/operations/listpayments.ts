@@ -24,6 +24,13 @@ export type ListPaymentsRequest = {
      */
     pageSize?: number | undefined;
     /**
+     * Filters used to filter resources.
+     *
+     * @remarks
+     *
+     */
+    query?: string | undefined;
+    /**
      * Fields used to sort payments (default is date:desc).
      */
     sort?: Array<string> | undefined;
@@ -53,6 +60,7 @@ export namespace ListPaymentsRequest$ {
     export type Inbound = {
         cursor?: string | undefined;
         pageSize?: number | undefined;
+        query?: string | undefined;
         sort?: Array<string> | undefined;
     };
 
@@ -60,12 +68,14 @@ export namespace ListPaymentsRequest$ {
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
+            query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 pageSize: v.pageSize,
+                ...(v.query === undefined ? null : { query: v.query }),
                 ...(v.sort === undefined ? null : { sort: v.sort }),
             };
         });
@@ -73,6 +83,7 @@ export namespace ListPaymentsRequest$ {
     export type Outbound = {
         cursor?: string | undefined;
         pageSize: number;
+        query?: string | undefined;
         sort?: Array<string> | undefined;
     };
 
@@ -80,12 +91,14 @@ export namespace ListPaymentsRequest$ {
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
+            query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 pageSize: v.pageSize,
+                ...(v.query === undefined ? null : { query: v.query }),
                 ...(v.sort === undefined ? null : { sort: v.sort }),
             };
         });

@@ -26,7 +26,8 @@ export type TransferInitiationRequest = {
 };
 
 /** @internal */
-export const TransferInitiationRequestType$ = z.nativeEnum(TransferInitiationRequestType);
+export const TransferInitiationRequestType$: z.ZodNativeEnum<typeof TransferInitiationRequestType> =
+    z.nativeEnum(TransferInitiationRequestType);
 
 /** @internal */
 export namespace TransferInitiationRequest$ {

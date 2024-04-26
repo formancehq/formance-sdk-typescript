@@ -23,7 +23,7 @@ Create client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -78,7 +78,7 @@ Add a secret to a client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -127,7 +127,7 @@ Delete client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -170,7 +170,7 @@ Delete a secret from a client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -214,7 +214,7 @@ List clients
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -254,7 +254,7 @@ List users
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -294,7 +294,7 @@ Read client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -337,7 +337,7 @@ Read user
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -380,7 +380,7 @@ Update client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

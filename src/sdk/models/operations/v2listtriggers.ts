@@ -5,6 +5,26 @@
 import * as shared from "../shared";
 import * as z from "zod";
 
+export type V2ListTriggersRequest = {
+    /**
+     * Parameter used in pagination requests.
+     *
+     * @remarks
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     *
+     */
+    cursor?: string | undefined;
+    /**
+     * The maximum number of results to return per page.
+     *
+     * @remarks
+     *
+     */
+    pageSize?: number | undefined;
+};
+
 export type V2ListTriggersResponse = {
     /**
      * HTTP response content type for this operation
@@ -23,6 +43,43 @@ export type V2ListTriggersResponse = {
      */
     v2ListTriggersResponse?: shared.V2ListTriggersResponse | undefined;
 };
+
+/** @internal */
+export namespace V2ListTriggersRequest$ {
+    export type Inbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<V2ListTriggersRequest, z.ZodTypeDef, Inbound> = z
+        .object({
+            cursor: z.string().optional(),
+            pageSize: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+            };
+        });
+
+    export type Outbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListTriggersRequest> = z
+        .object({
+            cursor: z.string().optional(),
+            pageSize: z.number().int().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
+            };
+        });
+}
 
 /** @internal */
 export namespace V2ListTriggersResponse$ {

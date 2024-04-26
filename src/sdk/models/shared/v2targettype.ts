@@ -10,4 +10,4 @@ export enum V2TargetType {
 }
 
 /** @internal */
-export const V2TargetType$ = z.nativeEnum(V2TargetType);
+export const V2TargetType$: z.ZodNativeEnum<typeof V2TargetType> = z.nativeEnum(V2TargetType);

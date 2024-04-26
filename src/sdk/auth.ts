@@ -80,6 +80,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -166,6 +167,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -249,6 +251,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -333,6 +336,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -395,6 +399,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -464,6 +469,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -546,6 +552,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -632,6 +639,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -716,6 +724,7 @@ export class Auth extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",

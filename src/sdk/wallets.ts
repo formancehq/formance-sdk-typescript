@@ -87,6 +87,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -176,6 +177,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -268,6 +270,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -362,6 +365,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -451,6 +455,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -558,6 +563,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -654,6 +660,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -757,6 +764,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -856,6 +864,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -949,6 +958,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -1050,6 +1060,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -1151,6 +1162,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -1238,6 +1250,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -1332,6 +1345,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PATCH",
@@ -1423,6 +1437,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -1500,6 +1515,7 @@ export class Wallets extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

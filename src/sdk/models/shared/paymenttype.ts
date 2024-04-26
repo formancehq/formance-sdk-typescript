@@ -12,4 +12,4 @@ export enum PaymentType {
 }
 
 /** @internal */
-export const PaymentType$ = z.nativeEnum(PaymentType);
+export const PaymentType$: z.ZodNativeEnum<typeof PaymentType> = z.nativeEnum(PaymentType);

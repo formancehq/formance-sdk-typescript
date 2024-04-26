@@ -45,7 +45,8 @@ export class V2Error extends Error {
 }
 
 /** @internal */
-export const SchemasErrorCode$ = z.nativeEnum(SchemasErrorCode);
+export const SchemasErrorCode$: z.ZodNativeEnum<typeof SchemasErrorCode> =
+    z.nativeEnum(SchemasErrorCode);
 
 /** @internal */
 export namespace V2Error$ {

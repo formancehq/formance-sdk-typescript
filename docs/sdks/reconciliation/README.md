@@ -22,7 +22,7 @@ Create a policy
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -71,7 +71,7 @@ Delete a policy by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -115,7 +115,7 @@ Get a policy
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -159,7 +159,7 @@ Get a reconciliation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -203,7 +203,7 @@ List policies
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -247,7 +247,7 @@ List reconciliations
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -291,7 +291,7 @@ Reconcile using a policy
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -339,7 +339,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

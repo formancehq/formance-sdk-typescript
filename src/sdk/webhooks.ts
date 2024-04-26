@@ -84,6 +84,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -187,6 +188,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -285,6 +287,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "PUT",
@@ -381,6 +384,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "DELETE",
@@ -477,6 +481,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",
@@ -580,6 +585,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -676,6 +682,7 @@ export class Webhooks extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

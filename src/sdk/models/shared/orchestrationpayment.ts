@@ -79,10 +79,12 @@ export namespace OrchestrationPaymentRaw$ {
 }
 
 /** @internal */
-export const OrchestrationPaymentScheme$ = z.nativeEnum(OrchestrationPaymentScheme);
+export const OrchestrationPaymentScheme$: z.ZodNativeEnum<typeof OrchestrationPaymentScheme> =
+    z.nativeEnum(OrchestrationPaymentScheme);
 
 /** @internal */
-export const OrchestrationPaymentType$ = z.nativeEnum(OrchestrationPaymentType);
+export const OrchestrationPaymentType$: z.ZodNativeEnum<typeof OrchestrationPaymentType> =
+    z.nativeEnum(OrchestrationPaymentType);
 
 /** @internal */
 export namespace OrchestrationPayment$ {

@@ -82,6 +82,7 @@ export class Search extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "POST",
@@ -151,6 +152,7 @@ export class Search extends ClientSDK {
 
         const doOptions = { context, errorCodes: ["default"] };
         const request = this.createRequest$(
+            context,
             {
                 security: securitySettings$,
                 method: "GET",

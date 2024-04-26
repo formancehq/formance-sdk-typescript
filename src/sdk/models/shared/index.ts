@@ -4,8 +4,10 @@
 
 export * from "./account";
 export * from "./accountbalance";
+export * from "./accountrequest";
 export * from "./accountresponse";
 export * from "./accountscursorresponse";
+export * from "./accounttype";
 export * from "./accountwithvolumesandbalances";
 export * from "./activityconfirmhold";
 export * from "./activitycreatetransaction";

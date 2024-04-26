@@ -17,7 +17,7 @@ export type MigrationInfo = {
 };
 
 /** @internal */
-export const State$ = z.nativeEnum(State);
+export const State$: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
 
 /** @internal */
 export namespace MigrationInfo$ {

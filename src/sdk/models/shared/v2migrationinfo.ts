@@ -17,7 +17,8 @@ export type V2MigrationInfo = {
 };
 
 /** @internal */
-export const V2MigrationInfoState$ = z.nativeEnum(V2MigrationInfoState);
+export const V2MigrationInfoState$: z.ZodNativeEnum<typeof V2MigrationInfoState> =
+    z.nativeEnum(V2MigrationInfoState);
 
 /** @internal */
 export namespace V2MigrationInfo$ {

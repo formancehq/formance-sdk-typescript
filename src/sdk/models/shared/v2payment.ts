@@ -68,10 +68,10 @@ export namespace V2PaymentRaw$ {
 }
 
 /** @internal */
-export const Scheme$ = z.nativeEnum(Scheme);
+export const Scheme$: z.ZodNativeEnum<typeof Scheme> = z.nativeEnum(Scheme);
 
 /** @internal */
-export const V2PaymentType$ = z.nativeEnum(V2PaymentType);
+export const V2PaymentType$: z.ZodNativeEnum<typeof V2PaymentType> = z.nativeEnum(V2PaymentType);
 
 /** @internal */
 export namespace V2Payment$ {

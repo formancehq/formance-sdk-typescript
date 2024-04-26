@@ -7,6 +7,23 @@ import * as z from "zod";
 
 export type V2ListInstancesRequest = {
     /**
+     * Parameter used in pagination requests.
+     *
+     * @remarks
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     *
+     */
+    cursor?: string | undefined;
+    /**
+     * The maximum number of results to return per page.
+     *
+     * @remarks
+     *
+     */
+    pageSize?: number | undefined;
+    /**
      * Filter running instances
      */
     running?: boolean | undefined;
@@ -38,34 +55,46 @@ export type V2ListInstancesResponse = {
 /** @internal */
 export namespace V2ListInstancesRequest$ {
     export type Inbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
         running?: boolean | undefined;
         workflowID?: string | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2ListInstancesRequest, z.ZodTypeDef, Inbound> = z
         .object({
+            cursor: z.string().optional(),
+            pageSize: z.number().int().optional(),
             running: z.boolean().optional(),
             workflowID: z.string().optional(),
         })
         .transform((v) => {
             return {
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
                 ...(v.running === undefined ? null : { running: v.running }),
                 ...(v.workflowID === undefined ? null : { workflowID: v.workflowID }),
             };
         });
 
     export type Outbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
         running?: boolean | undefined;
         workflowID?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListInstancesRequest> = z
         .object({
+            cursor: z.string().optional(),
+            pageSize: z.number().int().optional(),
             running: z.boolean().optional(),
             workflowID: z.string().optional(),
         })
         .transform((v) => {
             return {
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
                 ...(v.running === undefined ? null : { running: v.running }),
                 ...(v.workflowID === undefined ? null : { workflowID: v.workflowID }),
             };
