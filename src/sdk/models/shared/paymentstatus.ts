@@ -19,4 +19,4 @@ export enum PaymentStatus {
 }
 
 /** @internal */
-export const PaymentStatus$ = z.nativeEnum(PaymentStatus);
+export const PaymentStatus$: z.ZodNativeEnum<typeof PaymentStatus> = z.nativeEnum(PaymentStatus);

@@ -7,6 +7,23 @@ import * as z from "zod";
 
 export type V2ListTriggersOccurrencesRequest = {
     /**
+     * Parameter used in pagination requests.
+     *
+     * @remarks
+     * Set to the value of next for the next page of results.
+     * Set to the value of previous for the previous page of results.
+     * No other parameters can be set when this parameter is set.
+     *
+     */
+    cursor?: string | undefined;
+    /**
+     * The maximum number of results to return per page.
+     *
+     * @remarks
+     *
+     */
+    pageSize?: number | undefined;
+    /**
      * The trigger id
      */
     triggerID: string;
@@ -34,21 +51,29 @@ export type V2ListTriggersOccurrencesResponse = {
 /** @internal */
 export namespace V2ListTriggersOccurrencesRequest$ {
     export type Inbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
         triggerID: string;
     };
 
     export const inboundSchema: z.ZodType<V2ListTriggersOccurrencesRequest, z.ZodTypeDef, Inbound> =
         z
             .object({
+                cursor: z.string().optional(),
+                pageSize: z.number().int().optional(),
                 triggerID: z.string(),
             })
             .transform((v) => {
                 return {
+                    ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                    ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
                     triggerID: v.triggerID,
                 };
             });
 
     export type Outbound = {
+        cursor?: string | undefined;
+        pageSize?: number | undefined;
         triggerID: string;
     };
 
@@ -58,10 +83,14 @@ export namespace V2ListTriggersOccurrencesRequest$ {
         V2ListTriggersOccurrencesRequest
     > = z
         .object({
+            cursor: z.string().optional(),
+            pageSize: z.number().int().optional(),
             triggerID: z.string(),
         })
         .transform((v) => {
             return {
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
                 triggerID: v.triggerID,
             };
         });

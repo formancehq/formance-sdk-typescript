@@ -47,7 +47,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -166,6 +166,7 @@ run();
 
 * [addAccountToPool](docs/sdks/payments/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/payments/README.md#connectorstransfer) - Transfer funds between Connector accounts
+* [createAccount](docs/sdks/payments/README.md#createaccount) - Create an account
 * [createBankAccount](docs/sdks/payments/README.md#createbankaccount) - Create a BankAccount in Payments and on the PSP
 * [createPayment](docs/sdks/payments/README.md#createpayment) - Create a payment
 * [createPool](docs/sdks/payments/README.md#createpool) - Create a Pool
@@ -270,7 +271,7 @@ import { SDK } from "@formance/formance-sdk";
 import * as errors from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -341,7 +342,7 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
     serverIdx: 0,
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -365,7 +366,7 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
     serverURL: "http://localhost",
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -445,7 +446,7 @@ To authenticate with the API the `authorization` parameter must be set when init
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

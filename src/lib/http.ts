@@ -7,17 +7,28 @@ export type Fetcher = (
   init?: RequestInit,
 ) => Promise<Response>;
 
-type Awaitable<T> = T | Promise<T>;
+export type Awaitable<T> = T | Promise<T>;
 
 const DEFAULT_FETCHER: Fetcher = (input, init) => fetch(input, init);
+
+export type RequestInput = {
+  /**
+   * The URL the request will use.
+   */
+  url: URL;
+  /**
+   * Options used to create a [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request).
+   */
+  options?: RequestInit | undefined;
+};
 
 export interface HTTPClientOptions {
   fetcher?: Fetcher;
 }
 
-type BeforeRequestHook = (req: Request) => Awaitable<Request | void>;
-type RequestErrorHook = (err: unknown, req: Request) => Awaitable<void>;
-type ResponseHook = (res: Response, req: Request) => Awaitable<void>;
+export type BeforeRequestHook = (req: Request) => Awaitable<Request | void>;
+export type RequestErrorHook = (err: unknown, req: Request) => Awaitable<void>;
+export type ResponseHook = (res: Response, req: Request) => Awaitable<void>;
 
 export class HTTPClient {
   private fetcher: Fetcher;
@@ -100,7 +111,7 @@ export class HTTPClient {
       | [hook: "beforeRequest", fn: BeforeRequestHook]
       | [hook: "requestError", fn: RequestErrorHook]
       | [hook: "response", fn: ResponseHook]
-  ) {
+  ): this {
     let target: unknown[];
     if (args[0] === "beforeRequest") {
       target = this.requestHooks;
@@ -120,7 +131,7 @@ export class HTTPClient {
     return this;
   }
 
-  clone() {
+  clone(): HTTPClient {
     const child = new HTTPClient(this.options);
     child.requestHooks = this.requestHooks.slice();
     child.requestErrorHooks = this.requestErrorHooks.slice();
@@ -160,7 +171,7 @@ const codeRangeRE = new RegExp("^[0-9]xx$", "i");
 export function matchStatusCode(
   response: Response,
   codes: number | string | (number | string)[],
-) {
+): boolean {
   const actual = `${response.status}`;
   const expectedCodes = Array.isArray(codes) ? codes : [codes];
   if (!expectedCodes.length) {

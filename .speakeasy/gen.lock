@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 68e0f776ba164f3551b4b29494444ee0
-  docVersion: v2.0.0-rc.22
-  speakeasyVersion: 1.253.1
-  generationVersion: 2.306.0
-  releaseVersion: 2.2.1
-  configChecksum: 448d7ae5bf17e00794322aea36b2583b
+  docChecksum: f82424cbd31992df4c912ba2ffe8f66c
+  docVersion: v2.0.0-rc.24
+  speakeasyVersion: 1.274.1
+  generationVersion: 2.314.0
+  releaseVersion: 2.3.0
+  configChecksum: 0b9b7aebaecf7c01ac07219537c627f3
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -14,9 +14,9 @@ management:
 features:
   typescript:
     constsAndDefaults: 0.1.5
-    core: 3.7.1
+    core: 3.9.0
     deprecations: 2.81.1
-    errors: 2.81.9
+    errors: 2.81.10
     globalSecurity: 2.82.9
     globalServerURLs: 2.82.4
     groups: 2.81.2
@@ -36,6 +36,7 @@ generatedFiles:
   - .eslintrc.js
   - .npmignore
   - RUNTIMES.md
+  - jsr.json
   - package.json
   - src/index.ts
   - src/lib/base64.ts
@@ -142,6 +143,7 @@ generatedFiles:
   - src/sdk/models/operations/v2sendevent.ts
   - src/sdk/models/operations/addaccounttopool.ts
   - src/sdk/models/operations/connectorstransfer.ts
+  - src/sdk/models/operations/createaccount.ts
   - src/sdk/models/operations/createbankaccount.ts
   - src/sdk/models/operations/createpayment.ts
   - src/sdk/models/operations/createpool.ts
@@ -440,6 +442,10 @@ generatedFiles:
   - src/sdk/models/shared/transferresponse.ts
   - src/sdk/models/shared/connector.ts
   - src/sdk/models/shared/transferrequest.ts
+  - src/sdk/models/shared/paymentsaccountresponse.ts
+  - src/sdk/models/shared/paymentsaccount.ts
+  - src/sdk/models/shared/accounttype.ts
+  - src/sdk/models/shared/accountrequest.ts
   - src/sdk/models/shared/bankaccountresponse.ts
   - src/sdk/models/shared/bankaccount.ts
   - src/sdk/models/shared/bankaccountrelatedaccounts.ts
@@ -495,8 +501,6 @@ generatedFiles:
   - src/sdk/models/shared/paymentscursor.ts
   - src/sdk/models/shared/poolscursor.ts
   - src/sdk/models/shared/transferinitiationscursor.ts
-  - src/sdk/models/shared/paymentsaccountresponse.ts
-  - src/sdk/models/shared/paymentsaccount.ts
   - src/sdk/models/shared/connectorconfigresponse.ts
   - src/sdk/models/shared/reversetransferinitiationrequest.ts
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.ts
@@ -694,9 +698,11 @@ generatedFiles:
   - docs/sdk/models/operations/v2getworkflowresponse.md
   - docs/sdk/models/operations/v2listinstancesrequest.md
   - docs/sdk/models/operations/v2listinstancesresponse.md
+  - docs/sdk/models/operations/v2listtriggersrequest.md
   - docs/sdk/models/operations/v2listtriggersresponse.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesrequest.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesresponse.md
+  - docs/sdk/models/operations/v2listworkflowsrequest.md
   - docs/sdk/models/operations/v2listworkflowsresponse.md
   - docs/sdk/models/operations/v2readtriggerrequest.md
   - docs/sdk/models/operations/v2readtriggerresponse.md
@@ -709,6 +715,7 @@ generatedFiles:
   - docs/sdk/models/operations/addaccounttopoolresponse.md
   - docs/sdk/models/operations/connectorstransferrequest.md
   - docs/sdk/models/operations/connectorstransferresponse.md
+  - docs/sdk/models/operations/createaccountresponse.md
   - docs/sdk/models/operations/createbankaccountresponse.md
   - docs/sdk/models/operations/createpaymentresponse.md
   - docs/sdk/models/operations/createpoolresponse.md
@@ -1108,6 +1115,11 @@ generatedFiles:
   - docs/sdk/models/shared/transferresponse.md
   - docs/sdk/models/shared/connector.md
   - docs/sdk/models/shared/transferrequest.md
+  - docs/sdk/models/shared/paymentsaccountresponse.md
+  - docs/sdk/models/shared/paymentsaccountraw.md
+  - docs/sdk/models/shared/paymentsaccount.md
+  - docs/sdk/models/shared/accounttype.md
+  - docs/sdk/models/shared/accountrequest.md
   - docs/sdk/models/shared/bankaccountresponse.md
   - docs/sdk/models/shared/bankaccount.md
   - docs/sdk/models/shared/bankaccountrelatedaccounts.md
@@ -1196,9 +1208,6 @@ generatedFiles:
   - docs/sdk/models/shared/poolscursor.md
   - docs/sdk/models/shared/transferinitiationscursorcursor.md
   - docs/sdk/models/shared/transferinitiationscursor.md
-  - docs/sdk/models/shared/paymentsaccountresponse.md
-  - docs/sdk/models/shared/paymentsaccountraw.md
-  - docs/sdk/models/shared/paymentsaccount.md
   - docs/sdk/models/shared/connectorconfigresponse.md
   - docs/sdk/models/shared/reversetransferinitiationrequest.md
   - docs/sdk/models/shared/status.md

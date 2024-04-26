@@ -11,4 +11,5 @@ export enum WebhooksErrorsEnum {
 }
 
 /** @internal */
-export const WebhooksErrorsEnum$ = z.nativeEnum(WebhooksErrorsEnum);
+export const WebhooksErrorsEnum$: z.ZodNativeEnum<typeof WebhooksErrorsEnum> =
+    z.nativeEnum(WebhooksErrorsEnum);

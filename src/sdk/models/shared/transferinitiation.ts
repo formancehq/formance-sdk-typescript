@@ -39,7 +39,8 @@ export type TransferInitiation = {
 };
 
 /** @internal */
-export const TransferInitiationType$ = z.nativeEnum(TransferInitiationType);
+export const TransferInitiationType$: z.ZodNativeEnum<typeof TransferInitiationType> =
+    z.nativeEnum(TransferInitiationType);
 
 /** @internal */
 export namespace TransferInitiation$ {

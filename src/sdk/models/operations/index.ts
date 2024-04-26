@@ -12,6 +12,7 @@ export * from "./confirmhold";
 export * from "./connectorstransfer";
 export * from "./countaccounts";
 export * from "./counttransactions";
+export * from "./createaccount";
 export * from "./createbalance";
 export * from "./createbankaccount";
 export * from "./createclient";

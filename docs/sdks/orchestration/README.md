@@ -49,7 +49,7 @@ Cancel a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -93,7 +93,7 @@ Create trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -141,7 +141,7 @@ Create a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -189,7 +189,7 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -233,7 +233,7 @@ Delete a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -277,7 +277,7 @@ Get a workflow instance by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -321,7 +321,7 @@ Get a workflow instance history by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -365,7 +365,7 @@ Get a workflow instance stage history
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -410,7 +410,7 @@ Get a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -454,7 +454,7 @@ List instances of a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -496,7 +496,7 @@ List triggers
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -537,7 +537,7 @@ List triggers occurrences
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -581,7 +581,7 @@ List registered workflows
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -622,7 +622,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -663,7 +663,7 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -707,7 +707,7 @@ Run workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -754,7 +754,7 @@ Send an event to a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -801,7 +801,7 @@ Test trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -848,7 +848,7 @@ Cancel a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -892,7 +892,7 @@ Create trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -940,7 +940,7 @@ Create a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -988,7 +988,7 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1032,7 +1032,7 @@ Delete a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1076,7 +1076,7 @@ Get a workflow instance by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1120,7 +1120,7 @@ Get a workflow instance history by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1164,7 +1164,7 @@ Get a workflow instance stage history
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1209,7 +1209,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1250,7 +1250,7 @@ Get a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1294,11 +1294,13 @@ List instances of a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListInstances({});
+  const result = await sdk.orchestration.v2ListInstances({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  });
 
   // Handle the result
   console.log(result)
@@ -1336,11 +1338,13 @@ List triggers
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListTriggers();
+  const result = await sdk.orchestration.v2ListTriggers({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  });
 
   // Handle the result
   console.log(result)
@@ -1353,6 +1357,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListTriggersRequest](../../sdk/models/operations/v2listtriggersrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -1377,11 +1382,12 @@ List triggers occurrences
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
   const result = await sdk.orchestration.v2ListTriggersOccurrences({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     triggerID: "<value>",
   });
 
@@ -1421,11 +1427,13 @@ List registered workflows
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListWorkflows();
+  const result = await sdk.orchestration.v2ListWorkflows({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  });
 
   // Handle the result
   console.log(result)
@@ -1438,6 +1446,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListWorkflowsRequest](../../sdk/models/operations/v2listworkflowsrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 
@@ -1462,7 +1471,7 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1506,7 +1515,7 @@ Run workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1553,7 +1562,7 @@ Send an event to a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "Bearer <YOUR_ACCESS_TOKEN_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

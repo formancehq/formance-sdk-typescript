@@ -18,7 +18,7 @@ export type UpdateTransferInitiationStatusRequest = {
 };
 
 /** @internal */
-export const Status$ = z.nativeEnum(Status);
+export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
 
 /** @internal */
 export namespace UpdateTransferInitiationStatusRequest$ {

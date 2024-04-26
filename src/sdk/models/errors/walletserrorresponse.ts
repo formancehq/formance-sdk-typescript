@@ -46,9 +46,9 @@ export class WalletsErrorResponse extends Error {
 }
 
 /** @internal */
-export const SchemasWalletsErrorResponseErrorCode$ = z.nativeEnum(
-    SchemasWalletsErrorResponseErrorCode
-);
+export const SchemasWalletsErrorResponseErrorCode$: z.ZodNativeEnum<
+    typeof SchemasWalletsErrorResponseErrorCode
+> = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
 
 /** @internal */
 export namespace WalletsErrorResponse$ {
