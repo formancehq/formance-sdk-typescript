@@ -9,6 +9,7 @@ export type Trigger = {
     event: string;
     filter?: string | undefined;
     id: string;
+    name?: string | undefined;
     vars?: Record<string, any> | undefined;
     workflowID: string;
 };
@@ -20,6 +21,7 @@ export namespace Trigger$ {
         event: string;
         filter?: string | undefined;
         id: string;
+        name?: string | undefined;
         vars?: Record<string, any> | undefined;
         workflowID: string;
     };
@@ -33,6 +35,7 @@ export namespace Trigger$ {
             event: z.string(),
             filter: z.string().optional(),
             id: z.string(),
+            name: z.string().optional(),
             vars: z.record(z.any()).optional(),
             workflowID: z.string(),
         })
@@ -42,6 +45,7 @@ export namespace Trigger$ {
                 event: v.event,
                 ...(v.filter === undefined ? null : { filter: v.filter }),
                 id: v.id,
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.vars === undefined ? null : { vars: v.vars }),
                 workflowID: v.workflowID,
             };
@@ -52,6 +56,7 @@ export namespace Trigger$ {
         event: string;
         filter?: string | undefined;
         id: string;
+        name?: string | undefined;
         vars?: Record<string, any> | undefined;
         workflowID: string;
     };
@@ -62,6 +67,7 @@ export namespace Trigger$ {
             event: z.string(),
             filter: z.string().optional(),
             id: z.string(),
+            name: z.string().optional(),
             vars: z.record(z.any()).optional(),
             workflowID: z.string(),
         })
@@ -71,6 +77,7 @@ export namespace Trigger$ {
                 event: v.event,
                 ...(v.filter === undefined ? null : { filter: v.filter }),
                 id: v.id,
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.vars === undefined ? null : { vars: v.vars }),
                 workflowID: v.workflowID,
             };

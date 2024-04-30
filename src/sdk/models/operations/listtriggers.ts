@@ -5,6 +5,13 @@
 import * as shared from "../shared";
 import * as z from "zod";
 
+export type ListTriggersRequest = {
+    /**
+     * search by name
+     */
+    name?: string | undefined;
+};
+
 export type ListTriggersResponse = {
     /**
      * HTTP response content type for this operation
@@ -23,6 +30,37 @@ export type ListTriggersResponse = {
      */
     rawResponse: Response;
 };
+
+/** @internal */
+export namespace ListTriggersRequest$ {
+    export type Inbound = {
+        name?: string | undefined;
+    };
+
+    export const inboundSchema: z.ZodType<ListTriggersRequest, z.ZodTypeDef, Inbound> = z
+        .object({
+            name: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.name === undefined ? null : { name: v.name }),
+            };
+        });
+
+    export type Outbound = {
+        name?: string | undefined;
+    };
+
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListTriggersRequest> = z
+        .object({
+            name: z.string().optional(),
+        })
+        .transform((v) => {
+            return {
+                ...(v.name === undefined ? null : { name: v.name }),
+            };
+        });
+}
 
 /** @internal */
 export namespace ListTriggersResponse$ {

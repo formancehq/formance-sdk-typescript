@@ -7,6 +7,7 @@ import * as z from "zod";
 export type TriggerData = {
     event: string;
     filter?: string | undefined;
+    name?: string | undefined;
     vars?: Record<string, any> | undefined;
     workflowID: string;
 };
@@ -16,6 +17,7 @@ export namespace TriggerData$ {
     export type Inbound = {
         event: string;
         filter?: string | undefined;
+        name?: string | undefined;
         vars?: Record<string, any> | undefined;
         workflowID: string;
     };
@@ -24,6 +26,7 @@ export namespace TriggerData$ {
         .object({
             event: z.string(),
             filter: z.string().optional(),
+            name: z.string().optional(),
             vars: z.record(z.any()).optional(),
             workflowID: z.string(),
         })
@@ -31,6 +34,7 @@ export namespace TriggerData$ {
             return {
                 event: v.event,
                 ...(v.filter === undefined ? null : { filter: v.filter }),
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.vars === undefined ? null : { vars: v.vars }),
                 workflowID: v.workflowID,
             };
@@ -39,6 +43,7 @@ export namespace TriggerData$ {
     export type Outbound = {
         event: string;
         filter?: string | undefined;
+        name?: string | undefined;
         vars?: Record<string, any> | undefined;
         workflowID: string;
     };
@@ -47,6 +52,7 @@ export namespace TriggerData$ {
         .object({
             event: z.string(),
             filter: z.string().optional(),
+            name: z.string().optional(),
             vars: z.record(z.any()).optional(),
             workflowID: z.string(),
         })
@@ -54,6 +60,7 @@ export namespace TriggerData$ {
             return {
                 event: v.event,
                 ...(v.filter === undefined ? null : { filter: v.filter }),
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.vars === undefined ? null : { vars: v.vars }),
                 workflowID: v.workflowID,
             };
