@@ -126,7 +126,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -228,7 +232,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -324,7 +332,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -415,7 +427,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -512,7 +528,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -620,7 +640,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -722,7 +746,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -828,7 +856,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -930,7 +962,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1035,7 +1071,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1045,14 +1085,28 @@ export class Orchestration extends ClientSDK {
      * @remarks
      * List triggers
      */
-    async listTriggers(options?: RequestOptions): Promise<operations.ListTriggersResponse> {
+    async listTriggers(
+        input: operations.ListTriggersRequest,
+        options?: RequestOptions
+    ): Promise<operations.ListTriggersResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.ListTriggersRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
         const path$ = this.templateURLComponent("/api/orchestration/triggers")();
 
-        const query$ = "";
+        const query$ = [
+            enc$.encodeForm("name", payload$.name, { explode: true, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -1078,6 +1132,7 @@ export class Orchestration extends ClientSDK {
                 path: path$,
                 headers: headers$,
                 query: query$,
+                body: body$,
             },
             options
         );
@@ -1118,7 +1173,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1220,7 +1279,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1303,7 +1366,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1385,7 +1452,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1487,7 +1558,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1594,7 +1669,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1686,7 +1765,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -1795,7 +1878,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -1886,7 +1973,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -1988,7 +2079,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2084,7 +2179,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2175,7 +2274,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -2272,7 +2375,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(
@@ -2380,7 +2487,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2482,7 +2593,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2588,7 +2703,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2668,7 +2787,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2770,7 +2893,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2880,7 +3007,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -2909,6 +3040,7 @@ export class Orchestration extends ClientSDK {
 
         const query$ = [
             enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("name", payload$.name, { explode: true, charEncoding: "percent" }),
             enc$.encodeForm("pageSize", payload$.pageSize, {
                 explode: true,
                 charEncoding: "percent",
@@ -2982,7 +3114,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -3092,7 +3228,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -3194,7 +3334,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -3296,7 +3440,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -3403,7 +3551,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
     }
 
@@ -3495,7 +3647,11 @@ export class Orchestration extends ClientSDK {
             throw result;
         } else {
             const responseBody = await response.text();
-            throw new errors.SDKError("Unexpected API response", response, responseBody);
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
         }
 
         return schemas$.parse(

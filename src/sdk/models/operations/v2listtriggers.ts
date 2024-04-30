@@ -17,6 +17,10 @@ export type V2ListTriggersRequest = {
      */
     cursor?: string | undefined;
     /**
+     * search by name
+     */
+    name?: string | undefined;
+    /**
      * The maximum number of results to return per page.
      *
      * @remarks
@@ -48,34 +52,40 @@ export type V2ListTriggersResponse = {
 export namespace V2ListTriggersRequest$ {
     export type Inbound = {
         cursor?: string | undefined;
+        name?: string | undefined;
         pageSize?: number | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2ListTriggersRequest, z.ZodTypeDef, Inbound> = z
         .object({
             cursor: z.string().optional(),
+            name: z.string().optional(),
             pageSize: z.number().int().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
             };
         });
 
     export type Outbound = {
         cursor?: string | undefined;
+        name?: string | undefined;
         pageSize?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListTriggersRequest> = z
         .object({
             cursor: z.string().optional(),
+            name: z.string().optional(),
             pageSize: z.number().int().optional(),
         })
         .transform((v) => {
             return {
                 ...(v.cursor === undefined ? null : { cursor: v.cursor }),
+                ...(v.name === undefined ? null : { name: v.name }),
                 ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
             };
         });
