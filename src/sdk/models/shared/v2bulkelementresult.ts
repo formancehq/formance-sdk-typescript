@@ -31,11 +31,11 @@ export type V2BulkElementResultCreateTransactionSchemas = {
 };
 
 export type V2BulkElementResult =
-    | (Schemas & { responseType: "CREATE_TRANSACTION" })
-    | (V2BulkElementResultDeleteMetadataSchemas & { responseType: "ERROR" })
-    | (V2BulkElementResultCreateTransactionSchemas & { responseType: "ADD_METADATA" })
-    | (V2BulkElementResultRevertTransactionSchemas & { responseType: "DELETE_METADATA" })
-    | (V2BulkElementResultErrorSchemas & { responseType: "REVERT_TRANSACTION" });
+    | (Schemas & { responseType: "ADD_METADATA" })
+    | (V2BulkElementResultDeleteMetadataSchemas & { responseType: "DELETE_METADATA" })
+    | (V2BulkElementResultCreateTransactionSchemas & { responseType: "CREATE_TRANSACTION" })
+    | (V2BulkElementResultRevertTransactionSchemas & { responseType: "REVERT_TRANSACTION" })
+    | (V2BulkElementResultErrorSchemas & { responseType: "ERROR" });
 
 /** @internal */
 export namespace V2BulkElementResultErrorSchemas$ {
@@ -254,56 +254,60 @@ export namespace V2BulkElementResultCreateTransactionSchemas$ {
 /** @internal */
 export namespace V2BulkElementResult$ {
     export type Inbound =
-        | (Schemas$.Inbound & { responseType: "CREATE_TRANSACTION" })
-        | (V2BulkElementResultDeleteMetadataSchemas$.Inbound & { responseType: "ERROR" })
-        | (V2BulkElementResultCreateTransactionSchemas$.Inbound & { responseType: "ADD_METADATA" })
-        | (V2BulkElementResultRevertTransactionSchemas$.Inbound & {
-              responseType: "DELETE_METADATA";
+        | (Schemas$.Inbound & { responseType: "ADD_METADATA" })
+        | (V2BulkElementResultDeleteMetadataSchemas$.Inbound & { responseType: "DELETE_METADATA" })
+        | (V2BulkElementResultCreateTransactionSchemas$.Inbound & {
+              responseType: "CREATE_TRANSACTION";
           })
-        | (V2BulkElementResultErrorSchemas$.Inbound & { responseType: "REVERT_TRANSACTION" });
+        | (V2BulkElementResultRevertTransactionSchemas$.Inbound & {
+              responseType: "REVERT_TRANSACTION";
+          })
+        | (V2BulkElementResultErrorSchemas$.Inbound & { responseType: "ERROR" });
 
     export type Outbound =
-        | (Schemas$.Outbound & { responseType: "CREATE_TRANSACTION" })
-        | (V2BulkElementResultDeleteMetadataSchemas$.Outbound & { responseType: "ERROR" })
-        | (V2BulkElementResultCreateTransactionSchemas$.Outbound & { responseType: "ADD_METADATA" })
-        | (V2BulkElementResultRevertTransactionSchemas$.Outbound & {
-              responseType: "DELETE_METADATA";
+        | (Schemas$.Outbound & { responseType: "ADD_METADATA" })
+        | (V2BulkElementResultDeleteMetadataSchemas$.Outbound & { responseType: "DELETE_METADATA" })
+        | (V2BulkElementResultCreateTransactionSchemas$.Outbound & {
+              responseType: "CREATE_TRANSACTION";
           })
-        | (V2BulkElementResultErrorSchemas$.Outbound & { responseType: "REVERT_TRANSACTION" });
+        | (V2BulkElementResultRevertTransactionSchemas$.Outbound & {
+              responseType: "REVERT_TRANSACTION";
+          })
+        | (V2BulkElementResultErrorSchemas$.Outbound & { responseType: "ERROR" });
     export const inboundSchema: z.ZodType<V2BulkElementResult, z.ZodTypeDef, Inbound> = z.union([
         z
             .lazy(() => Schemas$.inboundSchema)
-            .and(
-                z
-                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
-                    .transform((v) => ({ responseType: v.responseType }))
-            ),
-        z
-            .lazy(() => V2BulkElementResultDeleteMetadataSchemas$.inboundSchema)
-            .and(
-                z
-                    .object({ responseType: z.literal("ERROR") })
-                    .transform((v) => ({ responseType: v.responseType }))
-            ),
-        z
-            .lazy(() => V2BulkElementResultCreateTransactionSchemas$.inboundSchema)
             .and(
                 z
                     .object({ responseType: z.literal("ADD_METADATA") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
-            .lazy(() => V2BulkElementResultRevertTransactionSchemas$.inboundSchema)
+            .lazy(() => V2BulkElementResultDeleteMetadataSchemas$.inboundSchema)
             .and(
                 z
                     .object({ responseType: z.literal("DELETE_METADATA") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
-            .lazy(() => V2BulkElementResultErrorSchemas$.inboundSchema)
+            .lazy(() => V2BulkElementResultCreateTransactionSchemas$.inboundSchema)
+            .and(
+                z
+                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
+        z
+            .lazy(() => V2BulkElementResultRevertTransactionSchemas$.inboundSchema)
             .and(
                 z
                     .object({ responseType: z.literal("REVERT_TRANSACTION") })
+                    .transform((v) => ({ responseType: v.responseType }))
+            ),
+        z
+            .lazy(() => V2BulkElementResultErrorSchemas$.inboundSchema)
+            .and(
+                z
+                    .object({ responseType: z.literal("ERROR") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
     ]);
@@ -312,35 +316,35 @@ export namespace V2BulkElementResult$ {
             .lazy(() => Schemas$.outboundSchema)
             .and(
                 z
-                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
+                    .object({ responseType: z.literal("ADD_METADATA") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
             .lazy(() => V2BulkElementResultDeleteMetadataSchemas$.outboundSchema)
             .and(
                 z
-                    .object({ responseType: z.literal("ERROR") })
+                    .object({ responseType: z.literal("DELETE_METADATA") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
             .lazy(() => V2BulkElementResultCreateTransactionSchemas$.outboundSchema)
             .and(
                 z
-                    .object({ responseType: z.literal("ADD_METADATA") })
+                    .object({ responseType: z.literal("CREATE_TRANSACTION") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
             .lazy(() => V2BulkElementResultRevertTransactionSchemas$.outboundSchema)
             .and(
                 z
-                    .object({ responseType: z.literal("DELETE_METADATA") })
+                    .object({ responseType: z.literal("REVERT_TRANSACTION") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
         z
             .lazy(() => V2BulkElementResultErrorSchemas$.outboundSchema)
             .and(
                 z
-                    .object({ responseType: z.literal("REVERT_TRANSACTION") })
+                    .object({ responseType: z.literal("ERROR") })
                     .transform((v) => ({ responseType: v.responseType }))
             ),
     ]);

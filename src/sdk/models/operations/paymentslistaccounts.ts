@@ -23,7 +23,13 @@ export type PaymentslistAccountsRequest = {
      *
      */
     pageSize?: number | undefined;
-    query?: Record<string, any> | undefined;
+    /**
+     * Filters used to filter resources.
+     *
+     * @remarks
+     *
+     */
+    query?: string | undefined;
     /**
      * Fields used to sort payments (default is date:desc).
      */
@@ -54,7 +60,7 @@ export namespace PaymentslistAccountsRequest$ {
     export type Inbound = {
         cursor?: string | undefined;
         pageSize?: number | undefined;
-        query?: Record<string, any> | undefined;
+        query?: string | undefined;
         sort?: Array<string> | undefined;
     };
 
@@ -62,7 +68,7 @@ export namespace PaymentslistAccountsRequest$ {
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
-            query: z.record(z.any()).optional(),
+            query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {
@@ -77,7 +83,7 @@ export namespace PaymentslistAccountsRequest$ {
     export type Outbound = {
         cursor?: string | undefined;
         pageSize: number;
-        query?: Record<string, any> | undefined;
+        query?: string | undefined;
         sort?: Array<string> | undefined;
     };
 
@@ -85,7 +91,7 @@ export namespace PaymentslistAccountsRequest$ {
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
-            query: z.record(z.any()).optional(),
+            query: z.string().optional(),
             sort: z.array(z.string()).optional(),
         })
         .transform((v) => {

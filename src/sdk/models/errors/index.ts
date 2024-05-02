@@ -4,6 +4,7 @@
 
 export * from "./error";
 export * from "./errorresponse";
+export * from "./paymentserrorresponse";
 export * from "./reconciliationerrorresponse";
 export * from "./sdkerror";
 export * from "./sdkvalidationerror";
