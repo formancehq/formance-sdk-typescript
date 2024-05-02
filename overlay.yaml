@@ -38,8 +38,5 @@ actions:
       - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
   - target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["requestBody"]
     remove: true
-  - target: $["paths"]["/api/payments/accounts"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
   - target: $["paths"]["/api/payments/accounts"]["get"]["requestBody"]
     remove: true
