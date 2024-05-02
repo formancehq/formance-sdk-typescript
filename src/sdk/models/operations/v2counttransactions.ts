@@ -5,12 +5,12 @@
 import * as z from "zod";
 
 export type V2CountTransactionsRequest = {
-    requestBody?: Record<string, any> | undefined;
     /**
      * Name of the ledger.
      */
     ledger: string;
     pit?: Date | undefined;
+    query?: Record<string, any> | undefined;
 };
 
 export type V2CountTransactionsResponse = {
@@ -32,49 +32,49 @@ export type V2CountTransactionsResponse = {
 /** @internal */
 export namespace V2CountTransactionsRequest$ {
     export type Inbound = {
-        RequestBody?: Record<string, any> | undefined;
         ledger: string;
         pit?: string | undefined;
+        query?: Record<string, any> | undefined;
     };
 
     export const inboundSchema: z.ZodType<V2CountTransactionsRequest, z.ZodTypeDef, Inbound> = z
         .object({
-            RequestBody: z.record(z.any()).optional(),
             ledger: z.string(),
             pit: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
+            query: z.record(z.any()).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 ledger: v.ledger,
                 ...(v.pit === undefined ? null : { pit: v.pit }),
+                ...(v.query === undefined ? null : { query: v.query }),
             };
         });
 
     export type Outbound = {
-        RequestBody?: Record<string, any> | undefined;
         ledger: string;
         pit?: string | undefined;
+        query?: Record<string, any> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CountTransactionsRequest> = z
         .object({
-            requestBody: z.record(z.any()).optional(),
             ledger: z.string(),
             pit: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
+            query: z.record(z.any()).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 ledger: v.ledger,
                 ...(v.pit === undefined ? null : { pit: v.pit }),
+                ...(v.query === undefined ? null : { query: v.query }),
             };
         });
 }

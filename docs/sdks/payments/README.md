@@ -32,6 +32,7 @@
 * [listTransferInitiations](#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
+* [paymentslistAccounts](#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
@@ -109,7 +110,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.connectorsTransfer({
     transferRequest: {
-      amount: BigInt(100),
+      amount: BigInt("100"),
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
@@ -160,9 +161,6 @@ async function run() {
   const result = await sdk.payments.createAccount({
     connectorID: "<value>",
     createdAt: new Date("2024-08-19T02:15:08.668Z"),
-    metadata: {
-      "key": "<value>",
-    },
     reference: "<value>",
     type: AccountType.Unknown,
   });
@@ -209,9 +207,6 @@ async function run() {
   const result = await sdk.payments.createBankAccount({
     connectorID: "<value>",
     country: "GB",
-    metadata: {
-      "key": "<value>",
-    },
     name: "My account",
   });
 
@@ -256,7 +251,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.createPayment({
-    amount: BigInt(100),
+    amount: BigInt("100"),
     asset: "USD",
     connectorID: "<value>",
     createdAt: new Date("2024-11-09T01:03:21.153Z"),
@@ -353,13 +348,10 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.createTransferInitiation({
-    amount: BigInt(256698),
+    amount: BigInt("256698"),
     asset: "USD",
     description: "Multi-tiered incremental methodology",
     destinationAccountID: "<value>",
-    metadata: {
-      "key": "<value>",
-    },
     reference: "XXX",
     scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
     sourceAccountID: "<value>",
@@ -541,9 +533,6 @@ async function run() {
   const result = await sdk.payments.getAccountBalances({
     accountId: "<value>",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -985,9 +974,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listBankAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -1164,9 +1150,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listPayments({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -1210,9 +1193,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listPools({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -1256,9 +1236,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listTransferInitiations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    sort: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -1363,6 +1340,49 @@ run();
 ### Response
 
 **Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## paymentslistAccounts
+
+List accounts
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.payments.paymentslistAccounts({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.PaymentslistAccountsRequest](../../sdk/models/operations/paymentslistaccountsrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -1658,7 +1678,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.reverseTransferInitiation({
     reverseTransferInitiationRequest: {
-      amount: BigInt(327549),
+      amount: BigInt("327549"),
       asset: "USD",
       description: "Streamlined high-level local area network",
       metadata: {
