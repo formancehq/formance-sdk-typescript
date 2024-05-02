@@ -1,0 +1,45 @@
+overlay: 1.0.0
+info:
+  title: Overlay spec.json => updated-spec.json
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/accounts"]["get"]["parameters"]
+    update:
+      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
+  - target: $["paths"]["/api/payments/accounts"]["get"]["requestBody"]
+    remove: true

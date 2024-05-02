@@ -28,19 +28,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.createClient({
-    metadata: {
-      "key": "<value>",
-    },
     name: "<value>",
-    postLogoutRedirectUris: [
-      "<value>",
-    ],
-    redirectUris: [
-      "<value>",
-    ],
-    scopes: [
-      "<value>",
-    ],
   });
 
   // Handle the result
@@ -83,12 +71,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.createSecret({
-    createSecretRequest: {
-      metadata: {
-        "key": "<value>",
-      },
-      name: "<value>",
-    },
     clientId: "<value>",
   });
 
@@ -385,21 +367,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.updateClient({
-    updateClientRequest: {
-      metadata: {
-        "key": "<value>",
-      },
-      name: "<value>",
-      postLogoutRedirectUris: [
-        "<value>",
-      ],
-      redirectUris: [
-        "<value>",
-      ],
-      scopes: [
-        "<value>",
-      ],
-    },
     clientId: "<value>",
   });
 

@@ -115,11 +115,16 @@ run();
 * [v2DeleteLedgerMetadata](docs/sdks/ledger/README.md#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](docs/sdks/ledger/README.md#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](docs/sdks/ledger/README.md#v2getaccount) - Get account by its address
+* [v2GetBalancesAggregated](docs/sdks/ledger/README.md#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [v2GetInfo](docs/sdks/ledger/README.md#v2getinfo) - Show server information
 * [v2GetLedger](docs/sdks/ledger/README.md#v2getledger) - Get a ledger
 * [v2GetLedgerInfo](docs/sdks/ledger/README.md#v2getledgerinfo) - Get information about a ledger
 * [v2GetTransaction](docs/sdks/ledger/README.md#v2gettransaction) - Get transaction from a ledger by its ID
+* [v2GetVolumesWithBalances](docs/sdks/ledger/README.md#v2getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
+* [v2ListAccounts](docs/sdks/ledger/README.md#v2listaccounts) - List accounts from a ledger
 * [v2ListLedgers](docs/sdks/ledger/README.md#v2listledgers) - List ledgers
+* [v2ListLogs](docs/sdks/ledger/README.md#v2listlogs) - List the logs from a ledger
+* [v2ListTransactions](docs/sdks/ledger/README.md#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](docs/sdks/ledger/README.md#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction) - Revert a ledger transaction by its ID
 * [v2UpdateLedgerMetadata](docs/sdks/ledger/README.md#v2updateledgermetadata) - Update ledger metadata
@@ -193,6 +198,7 @@ run();
 * [listTransferInitiations](docs/sdks/payments/README.md#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](docs/sdks/payments/README.md#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](docs/sdks/payments/README.md#paymentsgetserverinfo) - Get server info
+* [paymentslistAccounts](docs/sdks/payments/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/payments/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/payments/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/payments/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -281,12 +287,9 @@ async function run() {
             transactions: {
                 transactions: [
                     {
-                        metadata: {
-                            key: "<value>",
-                        },
                         postings: [
                             {
-                                amount: BigInt(100),
+                                amount: BigInt("100"),
                                 asset: "COIN",
                                 destination: "users:002",
                                 source: "users:001",

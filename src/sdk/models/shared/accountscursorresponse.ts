@@ -5,7 +5,7 @@
 import { Account, Account$ } from "./account";
 import * as z from "zod";
 
-export type Cursor = {
+export type AccountsCursorResponseCursor = {
     data: Array<Account>;
     hasMore: boolean;
     next?: string | undefined;
@@ -14,11 +14,11 @@ export type Cursor = {
 };
 
 export type AccountsCursorResponse = {
-    cursor: Cursor;
+    cursor: AccountsCursorResponseCursor;
 };
 
 /** @internal */
-export namespace Cursor$ {
+export namespace AccountsCursorResponseCursor$ {
     export type Inbound = {
         data: Array<Account$.Inbound>;
         hasMore: boolean;
@@ -27,7 +27,7 @@ export namespace Cursor$ {
         previous?: string | undefined;
     };
 
-    export const inboundSchema: z.ZodType<Cursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountsCursorResponseCursor, z.ZodTypeDef, Inbound> = z
         .object({
             data: z.array(Account$.inboundSchema),
             hasMore: z.boolean(),
@@ -53,7 +53,7 @@ export namespace Cursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Cursor> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponseCursor> = z
         .object({
             data: z.array(Account$.outboundSchema),
             hasMore: z.boolean(),
@@ -75,12 +75,12 @@ export namespace Cursor$ {
 /** @internal */
 export namespace AccountsCursorResponse$ {
     export type Inbound = {
-        cursor: Cursor$.Inbound;
+        cursor: AccountsCursorResponseCursor$.Inbound;
     };
 
     export const inboundSchema: z.ZodType<AccountsCursorResponse, z.ZodTypeDef, Inbound> = z
         .object({
-            cursor: z.lazy(() => Cursor$.inboundSchema),
+            cursor: z.lazy(() => AccountsCursorResponseCursor$.inboundSchema),
         })
         .transform((v) => {
             return {
@@ -89,12 +89,12 @@ export namespace AccountsCursorResponse$ {
         });
 
     export type Outbound = {
-        cursor: Cursor$.Outbound;
+        cursor: AccountsCursorResponseCursor$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponse> = z
         .object({
-            cursor: z.lazy(() => Cursor$.outboundSchema),
+            cursor: z.lazy(() => AccountsCursorResponseCursor$.outboundSchema),
         })
         .transform((v) => {
             return {

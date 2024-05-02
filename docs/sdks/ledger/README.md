@@ -34,11 +34,16 @@
 * [v2DeleteLedgerMetadata](#v2deleteledgermetadata) - Delete ledger metadata by key
 * [v2DeleteTransactionMetadata](#v2deletetransactionmetadata) - Delete metadata by key
 * [v2GetAccount](#v2getaccount) - Get account by its address
+* [v2GetBalancesAggregated](#v2getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [v2GetInfo](#v2getinfo) - Show server information
 * [v2GetLedger](#v2getledger) - Get a ledger
 * [v2GetLedgerInfo](#v2getledgerinfo) - Get information about a ledger
 * [v2GetTransaction](#v2gettransaction) - Get transaction from a ledger by its ID
+* [v2GetVolumesWithBalances](#v2getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
+* [v2ListAccounts](#v2listaccounts) - List accounts from a ledger
 * [v2ListLedgers](#v2listledgers) - List ledgers
+* [v2ListLogs](#v2listlogs) - List the logs from a ledger
+* [v2ListTransactions](#v2listtransactions) - List transactions from a ledger
 * [v2ReadStats](#v2readstats) - Get statistics from a ledger
 * [v2RevertTransaction](#v2reverttransaction) - Revert a ledger transaction by its ID
 * [v2UpdateLedgerMetadata](#v2updateledgermetadata) - Update ledger metadata
@@ -61,12 +66,9 @@ async function run() {
     transactions: {
       transactions: [
         {
-          metadata: {
-            "key": "<value>",
-          },
           postings: [
             {
-              amount: BigInt(100),
+              amount: BigInt("100"),
               asset: "COIN",
               destination: "users:002",
               source: "users:001",
@@ -120,11 +122,8 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.addMetadataOnTransaction({
-    requestBody: {
-      "key": "<value>",
-    },
     ledger: "ledger001",
-    txid: BigInt(1234),
+    txid: BigInt("1234"),
   });
 
   // Handle the result
@@ -218,9 +217,6 @@ async function run() {
   const result = await sdk.ledger.countAccounts({
     address: "users:.+",
     ledger: "ledger001",
-    metadata: {
-      "key": "<value>",
-    },
   });
 
   // Handle the result
@@ -267,7 +263,6 @@ async function run() {
     account: "users:001",
     destination: "users:001",
     ledger: "ledger001",
-    metadata: {},
     reference: "ref:001",
     source: "users:001",
   });
@@ -314,12 +309,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.createTransaction({
     postTransaction: {
-      metadata: {
-        "key": "<value>",
-      },
       postings: [
         {
-          amount: BigInt(100),
+          amount: BigInt("100"),
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -652,7 +644,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.getTransaction({
     ledger: "ledger001",
-    txid: BigInt(1234),
+    txid: BigInt("1234"),
   });
 
   // Handle the result
@@ -701,9 +693,6 @@ async function run() {
     balance: 2400,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
-    metadata: {
-      "key": "<value>",
-    },
     paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
@@ -799,9 +788,6 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     destination: "users:001",
     ledger: "ledger001",
-    metadata: {
-      "key": "<value>",
-    },
     reference: "ref:001",
     source: "users:001",
   });
@@ -893,7 +879,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.revertTransaction({
     ledger: "ledger001",
-    txid: BigInt(1234),
+    txid: BigInt("1234"),
   });
 
   // Handle the result
@@ -941,9 +927,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.runScript({
     script: {
-      metadata: {
-        "key": "<value>",
-      },
       plain: "vars {
     account $user
     }
@@ -1057,7 +1040,7 @@ async function run() {
       "admin": "true",
     },
     dryRun: true,
-    id: BigInt(1234),
+    id: BigInt("1234"),
     ledger: "ledger001",
   });
 
@@ -1151,9 +1134,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2CountAccounts({
-    requestBody: {
-      "key": "<value>",
-    },
     ledger: "ledger001",
   });
 
@@ -1198,9 +1178,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2CountTransactions({
-    requestBody: {
-      "key": "<value>",
-    },
     ledger: "ledger001",
   });
 
@@ -1238,7 +1215,6 @@ Bulk request
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { V2TargetType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
   authorization: "<YOUR_AUTHORIZATION_HERE>",
@@ -1249,13 +1225,6 @@ async function run() {
     requestBody: [
         {
           action: "<value>",
-          data: {
-            metadata: {
-              "key": "<value>",
-            },
-          targetId: "<value>",
-            targetType: V2TargetType.Account,
-          },
         },
     ],
     ledger: "ledger001",
@@ -1357,7 +1326,7 @@ async function run() {
       },
       postings: [
         {
-          amount: BigInt(100),
+          amount: BigInt("100"),
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -1513,7 +1482,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2DeleteTransactionMetadata({
-    id: BigInt(1234),
+    id: BigInt("1234"),
     key: "foo",
     ledger: "ledger001",
   });
@@ -1582,6 +1551,50 @@ run();
 ### Response
 
 **Promise<[operations.V2GetAccountResponse](../../sdk/models/operations/v2getaccountresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2GetBalancesAggregated
+
+Get the aggregated balances from selected accounts
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.ledger.v2GetBalancesAggregated({
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2GetBalancesAggregatedRequest](../../sdk/models/operations/v2getbalancesaggregatedrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2GetBalancesAggregatedResponse](../../sdk/models/operations/v2getbalancesaggregatedresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1733,7 +1746,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2GetTransaction({
-    id: BigInt(1234),
+    id: BigInt("1234"),
     ledger: "ledger001",
   });
 
@@ -1756,6 +1769,96 @@ run();
 ### Response
 
 **Promise<[operations.V2GetTransactionResponse](../../sdk/models/operations/v2gettransactionresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2GetVolumesWithBalances
+
+Get list of volumes with balances for (account/asset)
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.ledger.v2GetVolumesWithBalances({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2GetVolumesWithBalancesRequest](../../sdk/models/operations/v2getvolumeswithbalancesrequest.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2GetVolumesWithBalancesResponse](../../sdk/models/operations/v2getvolumeswithbalancesresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2ListAccounts
+
+List accounts from a ledger, sorted by address in descending order.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.ledger.v2ListAccounts({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListAccountsRequest](../../sdk/models/operations/v2listaccountsrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2ListAccountsResponse](../../sdk/models/operations/v2listaccountsresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1800,6 +1903,96 @@ run();
 ### Response
 
 **Promise<[operations.V2ListLedgersResponse](../../sdk/models/operations/v2listledgersresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2ListLogs
+
+List the logs from a ledger, sorted by ID in descending order.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.ledger.v2ListLogs({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListLogsRequest](../../sdk/models/operations/v2listlogsrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2ListLogsResponse](../../sdk/models/operations/v2listlogsresponse.md)>**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4xx-5xx                | */*                    |
+
+## v2ListTransactions
+
+List transactions from a ledger, sorted by id in descending order.
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const result = await sdk.ledger.v2ListTransactions({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+  });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListTransactionsRequest](../../sdk/models/operations/v2listtransactionsrequest.md)                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+
+
+### Response
+
+**Promise<[operations.V2ListTransactionsResponse](../../sdk/models/operations/v2listtransactionsresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1867,7 +2060,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2RevertTransaction({
-    id: BigInt(1234),
+    id: BigInt("1234"),
     ledger: "ledger001",
   });
 

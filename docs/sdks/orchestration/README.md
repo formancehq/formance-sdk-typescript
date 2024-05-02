@@ -99,9 +99,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.createTrigger({
     event: "<value>",
-    vars: {
-      "key": "<value>",
-    },
     workflowID: "<value>",
   });
 
@@ -713,9 +710,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.runWorkflow({
-    requestBody: {
-      "key": "<value>",
-    },
     workflowID: "<value>",
   });
 
@@ -760,9 +754,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.sendEvent({
-    requestBody: {
-      name: "<value>",
-    },
     instanceID: "<value>",
   });
 
@@ -807,9 +798,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.testTrigger({
-    requestBody: {
-      "key": "<value>",
-    },
     triggerID: "<value>",
   });
 
@@ -899,9 +887,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.v2CreateTrigger({
     event: "<value>",
-    vars: {
-      "key": "<value>",
-    },
     workflowID: "<value>",
   });
 
@@ -1521,9 +1506,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2RunWorkflow({
-    requestBody: {
-      "key": "<value>",
-    },
     workflowID: "<value>",
   });
 
@@ -1568,9 +1550,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2SendEvent({
-    requestBody: {
-      name: "<value>",
-    },
     instanceID: "<value>",
   });
 

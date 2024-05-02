@@ -28,6 +28,8 @@ jobs:
       speakeasy_version: latest
       openapi_docs: |
         - ${{ needs.get_openai_spec_url.outputs.openapi_spec_url }}
+      overlay_docs: |
+        - overlay.yaml
       languages: |-
         - typescript
       publish_typescript: true

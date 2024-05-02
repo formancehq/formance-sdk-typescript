@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: de4ce37109543835d271fd330d36d4f0
+  docChecksum: b7dab401105771ee0cc7b55046e7eed0
   docVersion: v2.0.0-rc.26
-  speakeasyVersion: 1.277.0
-  generationVersion: 2.317.0
-  releaseVersion: 2.3.1
-  configChecksum: 03fb7096b8613ce631c03c3877f901db
+  speakeasyVersion: 1.277.6
+  generationVersion: 2.319.7
+  releaseVersion: 2.3.2
+  configChecksum: 154d9a8e4eef12aade459e53e6265d96
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -98,11 +98,16 @@ generatedFiles:
   - src/sdk/models/operations/v2deleteledgermetadata.ts
   - src/sdk/models/operations/v2deletetransactionmetadata.ts
   - src/sdk/models/operations/v2getaccount.ts
+  - src/sdk/models/operations/v2getbalancesaggregated.ts
   - src/sdk/models/operations/v2getinfo.ts
   - src/sdk/models/operations/v2getledger.ts
   - src/sdk/models/operations/v2getledgerinfo.ts
   - src/sdk/models/operations/v2gettransaction.ts
+  - src/sdk/models/operations/v2getvolumeswithbalances.ts
+  - src/sdk/models/operations/v2listaccounts.ts
   - src/sdk/models/operations/v2listledgers.ts
+  - src/sdk/models/operations/v2listlogs.ts
+  - src/sdk/models/operations/v2listtransactions.ts
   - src/sdk/models/operations/v2readstats.ts
   - src/sdk/models/operations/v2reverttransaction.ts
   - src/sdk/models/operations/v2updateledgermetadata.ts
@@ -170,6 +175,7 @@ generatedFiles:
   - src/sdk/models/operations/listtransferinitiations.ts
   - src/sdk/models/operations/paymentsgetaccount.ts
   - src/sdk/models/operations/paymentsgetserverinfo.ts
+  - src/sdk/models/operations/paymentslistaccounts.ts
   - src/sdk/models/operations/readconnectorconfig.ts
   - src/sdk/models/operations/readconnectorconfigv1.ts
   - src/sdk/models/operations/removeaccountfrompool.ts
@@ -282,6 +288,7 @@ generatedFiles:
   - src/sdk/models/shared/v2accountresponse.ts
   - src/sdk/models/shared/v2account.ts
   - src/sdk/models/shared/v2volume.ts
+  - src/sdk/models/shared/v2aggregatebalancesresponse.ts
   - src/sdk/models/shared/v2configinforesponse.ts
   - src/sdk/models/shared/v2getledgerresponse.ts
   - src/sdk/models/shared/v2ledger.ts
@@ -290,7 +297,13 @@ generatedFiles:
   - src/sdk/models/shared/v2migrationinfo.ts
   - src/sdk/models/shared/v2gettransactionresponse.ts
   - src/sdk/models/shared/v2expandedtransaction.ts
+  - src/sdk/models/shared/v2volumeswithbalancecursorresponse.ts
+  - src/sdk/models/shared/v2volumeswithbalance.ts
+  - src/sdk/models/shared/v2accountscursorresponse.ts
   - src/sdk/models/shared/v2ledgerlistresponse.ts
+  - src/sdk/models/shared/v2logscursorresponse.ts
+  - src/sdk/models/shared/v2log.ts
+  - src/sdk/models/shared/v2transactionscursorresponse.ts
   - src/sdk/models/shared/v2statsresponse.ts
   - src/sdk/models/shared/v2stats.ts
   - src/sdk/models/shared/v2reverttransactionresponse.ts
@@ -501,6 +514,7 @@ generatedFiles:
   - src/sdk/models/shared/paymentscursor.ts
   - src/sdk/models/shared/poolscursor.ts
   - src/sdk/models/shared/transferinitiationscursor.ts
+  - src/sdk/models/shared/accountscursor.ts
   - src/sdk/models/shared/connectorconfigresponse.ts
   - src/sdk/models/shared/reversetransferinitiationrequest.ts
   - src/sdk/models/shared/updatetransferinitiationstatusrequest.ts
@@ -632,6 +646,8 @@ generatedFiles:
   - docs/sdk/models/operations/v2deletetransactionmetadataresponse.md
   - docs/sdk/models/operations/v2getaccountrequest.md
   - docs/sdk/models/operations/v2getaccountresponse.md
+  - docs/sdk/models/operations/v2getbalancesaggregatedrequest.md
+  - docs/sdk/models/operations/v2getbalancesaggregatedresponse.md
   - docs/sdk/models/operations/v2getinforesponse.md
   - docs/sdk/models/operations/v2getledgerrequest.md
   - docs/sdk/models/operations/v2getledgerresponse.md
@@ -639,8 +655,16 @@ generatedFiles:
   - docs/sdk/models/operations/v2getledgerinforesponse.md
   - docs/sdk/models/operations/v2gettransactionrequest.md
   - docs/sdk/models/operations/v2gettransactionresponse.md
+  - docs/sdk/models/operations/v2getvolumeswithbalancesrequest.md
+  - docs/sdk/models/operations/v2getvolumeswithbalancesresponse.md
+  - docs/sdk/models/operations/v2listaccountsrequest.md
+  - docs/sdk/models/operations/v2listaccountsresponse.md
   - docs/sdk/models/operations/v2listledgersrequest.md
   - docs/sdk/models/operations/v2listledgersresponse.md
+  - docs/sdk/models/operations/v2listlogsrequest.md
+  - docs/sdk/models/operations/v2listlogsresponse.md
+  - docs/sdk/models/operations/v2listtransactionsrequest.md
+  - docs/sdk/models/operations/v2listtransactionsresponse.md
   - docs/sdk/models/operations/v2readstatsrequest.md
   - docs/sdk/models/operations/v2readstatsresponse.md
   - docs/sdk/models/operations/v2reverttransactionrequest.md
@@ -762,6 +786,8 @@ generatedFiles:
   - docs/sdk/models/operations/paymentsgetaccountrequest.md
   - docs/sdk/models/operations/paymentsgetaccountresponse.md
   - docs/sdk/models/operations/paymentsgetserverinforesponse.md
+  - docs/sdk/models/operations/paymentslistaccountsrequest.md
+  - docs/sdk/models/operations/paymentslistaccountsresponse.md
   - docs/sdk/models/operations/readconnectorconfigrequest.md
   - docs/sdk/models/operations/readconnectorconfigresponse.md
   - docs/sdk/models/operations/readconnectorconfigv1request.md
@@ -892,7 +918,7 @@ generatedFiles:
   - docs/sdk/models/shared/expr.md
   - docs/sdk/models/shared/contract.md
   - docs/sdk/models/shared/transactionresponse.md
-  - docs/sdk/models/shared/cursor.md
+  - docs/sdk/models/shared/accountscursorresponsecursor.md
   - docs/sdk/models/shared/accountscursorresponse.md
   - docs/sdk/models/shared/account.md
   - docs/sdk/models/shared/logscursorresponsecursor.md
@@ -932,6 +958,7 @@ generatedFiles:
   - docs/sdk/models/shared/v2accountresponse.md
   - docs/sdk/models/shared/v2account.md
   - docs/sdk/models/shared/v2volume.md
+  - docs/sdk/models/shared/v2aggregatebalancesresponse.md
   - docs/sdk/models/shared/v2configinforesponse.md
   - docs/sdk/models/shared/v2getledgerresponse.md
   - docs/sdk/models/shared/v2ledger.md
@@ -942,8 +969,19 @@ generatedFiles:
   - docs/sdk/models/shared/v2migrationinfo.md
   - docs/sdk/models/shared/v2gettransactionresponse.md
   - docs/sdk/models/shared/v2expandedtransaction.md
+  - docs/sdk/models/shared/v2volumeswithbalancecursorresponsecursor.md
+  - docs/sdk/models/shared/v2volumeswithbalancecursorresponse.md
+  - docs/sdk/models/shared/v2volumeswithbalance.md
+  - docs/sdk/models/shared/v2accountscursorresponsecursor.md
+  - docs/sdk/models/shared/v2accountscursorresponse.md
   - docs/sdk/models/shared/v2ledgerlistresponsecursor.md
   - docs/sdk/models/shared/v2ledgerlistresponse.md
+  - docs/sdk/models/shared/v2logscursorresponsecursor.md
+  - docs/sdk/models/shared/v2logscursorresponse.md
+  - docs/sdk/models/shared/v2logtype.md
+  - docs/sdk/models/shared/v2log.md
+  - docs/sdk/models/shared/v2transactionscursorresponsecursor.md
+  - docs/sdk/models/shared/v2transactionscursorresponse.md
   - docs/sdk/models/shared/v2statsresponse.md
   - docs/sdk/models/shared/v2stats.md
   - docs/sdk/models/shared/v2reverttransactionresponse.md
@@ -1209,6 +1247,8 @@ generatedFiles:
   - docs/sdk/models/shared/poolscursor.md
   - docs/sdk/models/shared/transferinitiationscursorcursor.md
   - docs/sdk/models/shared/transferinitiationscursor.md
+  - docs/sdk/models/shared/cursor.md
+  - docs/sdk/models/shared/accountscursor.md
   - docs/sdk/models/shared/connectorconfigresponse.md
   - docs/sdk/models/shared/reversetransferinitiationrequest.md
   - docs/sdk/models/shared/status.md

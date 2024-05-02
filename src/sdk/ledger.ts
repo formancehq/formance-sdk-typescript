@@ -104,6 +104,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -212,6 +213,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -315,6 +317,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -419,6 +422,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 200)) {
@@ -542,6 +546,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 200)) {
@@ -648,6 +653,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -755,6 +761,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -869,6 +876,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -983,6 +991,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1067,6 +1076,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1168,6 +1178,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1269,6 +1280,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1376,6 +1388,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1502,6 +1515,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1623,6 +1637,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1758,6 +1773,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1863,6 +1879,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1977,6 +1994,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 201, "application/json")) {
@@ -2092,6 +2110,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2181,6 +2200,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2298,6 +2318,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -2414,6 +2435,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -2456,7 +2478,6 @@ export class Ledger extends ClientSDK {
     ): Promise<operations.V2CountAccountsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
@@ -2464,7 +2485,7 @@ export class Ledger extends ClientSDK {
             (value$) => operations.V2CountAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = null;
 
         const pathParams$ = {
             ledger: enc$.encodeSimple("ledger", payload$.ledger, {
@@ -2476,6 +2497,7 @@ export class Ledger extends ClientSDK {
 
         const query$ = [
             enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
         ]
             .filter(Boolean)
             .join("&");
@@ -2515,6 +2537,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -2559,7 +2582,6 @@ export class Ledger extends ClientSDK {
     ): Promise<operations.V2CountTransactionsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
@@ -2567,7 +2589,7 @@ export class Ledger extends ClientSDK {
             (value$) => operations.V2CountTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = null;
 
         const pathParams$ = {
             ledger: enc$.encodeSimple("ledger", payload$.ledger, {
@@ -2581,6 +2603,7 @@ export class Ledger extends ClientSDK {
 
         const query$ = [
             enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
         ]
             .filter(Boolean)
             .join("&");
@@ -2620,6 +2643,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -2719,6 +2743,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, [200, 400], "application/json")) {
@@ -2821,6 +2846,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -2932,6 +2958,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3046,6 +3073,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, "2XX")) {
@@ -3135,6 +3163,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
@@ -3241,6 +3270,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, "2XX")) {
@@ -3351,6 +3381,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3361,6 +3392,119 @@ export class Ledger extends ClientSDK {
                     return operations.V2GetAccountResponse$.inboundSchema.parse({
                         ...responseFields$,
                         V2AccountResponse: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
+        }
+    }
+
+    /**
+     * Get the aggregated balances from selected accounts
+     */
+    async v2GetBalancesAggregated(
+        input: operations.V2GetBalancesAggregatedRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2GetBalancesAggregatedResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2GetBalancesAggregatedRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/aggregate/balances")(
+            pathParams$
+        );
+
+        const query$ = [
+            enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+            enc$.encodeForm("useInsertionDate", payload$.useInsertionDate, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2GetBalancesAggregated",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.V2GetBalancesAggregatedResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        V2AggregateBalancesResponse: val$,
                     });
                 },
                 "Response validation failed"
@@ -3435,6 +3579,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3536,6 +3681,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3637,6 +3783,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3746,6 +3893,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3756,6 +3904,249 @@ export class Ledger extends ClientSDK {
                     return operations.V2GetTransactionResponse$.inboundSchema.parse({
                         ...responseFields$,
                         V2GetTransactionResponse: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
+        }
+    }
+
+    /**
+     * Get list of volumes with balances for (account/asset)
+     */
+    async v2GetVolumesWithBalances(
+        input: operations.V2GetVolumesWithBalancesRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2GetVolumesWithBalancesResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2GetVolumesWithBalancesRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/volumes")(pathParams$);
+
+        const query$ = [
+            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("endTime", payload$.endTime, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("groupBy", payload$.groupBy, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("insertionDate", payload$.insertionDate, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("pageSize", payload$.pageSize, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+            enc$.encodeForm("startTime", payload$.startTime, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2GetVolumesWithBalances",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.V2GetVolumesWithBalancesResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        V2VolumesWithBalanceCursorResponse: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
+        }
+    }
+
+    /**
+     * List accounts from a ledger
+     *
+     * @remarks
+     * List accounts from a ledger, sorted by address in descending order.
+     */
+    async v2ListAccounts(
+        input: operations.V2ListAccountsRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2ListAccountsResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2ListAccountsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/accounts")(pathParams$);
+
+        const query$ = [
+            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("expand", payload$.expand, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("pageSize", payload$.pageSize, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2ListAccounts",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.V2ListAccountsResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        V2AccountsCursorResponse: val$,
                     });
                 },
                 "Response validation failed"
@@ -3849,6 +4240,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3859,6 +4251,239 @@ export class Ledger extends ClientSDK {
                     return operations.V2ListLedgersResponse$.inboundSchema.parse({
                         ...responseFields$,
                         V2LedgerListResponse: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
+        }
+    }
+
+    /**
+     * List the logs from a ledger
+     *
+     * @remarks
+     * List the logs from a ledger, sorted by ID in descending order.
+     */
+    async v2ListLogs(
+        input: operations.V2ListLogsRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2ListLogsResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2ListLogsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/logs")(pathParams$);
+
+        const query$ = [
+            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("pageSize", payload$.pageSize, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2ListLogs",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.V2ListLogsResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        V2LogsCursorResponse: val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.V2ErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
+        } else {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
+                response,
+                responseBody
+            );
+        }
+    }
+
+    /**
+     * List transactions from a ledger
+     *
+     * @remarks
+     * List transactions from a ledger, sorted by id in descending order.
+     */
+    async v2ListTransactions(
+        input: operations.V2ListTransactionsRequest,
+        options?: RequestOptions
+    ): Promise<operations.V2ListTransactionsResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const payload$ = schemas$.parse(
+            input,
+            (value$) => operations.V2ListTransactionsRequest$.outboundSchema.parse(value$),
+            "Input validation failed"
+        );
+        const body$ = null;
+
+        const pathParams$ = {
+            ledger: enc$.encodeSimple("ledger", payload$.ledger, {
+                explode: false,
+                charEncoding: "percent",
+            }),
+        };
+        const path$ = this.templateURLComponent("/api/ledger/v2/{ledger}/transactions")(
+            pathParams$
+        );
+
+        const query$ = [
+            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("expand", payload$.expand, { explode: true, charEncoding: "percent" }),
+            enc$.encodeForm("pageSize", payload$.pageSize, {
+                explode: true,
+                charEncoding: "percent",
+            }),
+            enc$.encodeForm("pit", payload$.pit, { explode: true, charEncoding: "percent" }),
+            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+        ]
+            .filter(Boolean)
+            .join("&");
+
+        let security$;
+        if (typeof this.options$.authorization === "function") {
+            security$ = { authorization: await this.options$.authorization() };
+        } else if (this.options$.authorization) {
+            security$ = { authorization: this.options$.authorization };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "v2ListTransactions",
+            oAuth2Scopes: [],
+            securitySource: this.options$.authorization,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["default"] };
+        const request = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+                body: body$,
+            },
+            options
+        );
+
+        const response = await this.do$(request, doOptions);
+
+        const responseFields$ = {
+            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+            StatusCode: response.status,
+            RawResponse: response,
+            Headers: {},
+        };
+
+        if (this.matchResponse(response, 200, "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return operations.V2ListTransactionsResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        V2TransactionsCursorResponse: val$,
                     });
                 },
                 "Response validation failed"
@@ -3954,6 +4579,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -4066,6 +4692,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchResponse(response, 201, "application/json")) {
@@ -4168,6 +4795,7 @@ export class Ledger extends ClientSDK {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
             StatusCode: response.status,
             RawResponse: response,
+            Headers: {},
         };
 
         if (this.matchStatusCode(response, 204)) {
