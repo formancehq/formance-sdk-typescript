@@ -89,9 +89,10 @@ run();
 **Promise<[operations.AddAccountToPoolResponse](../../sdk/models/operations/addaccounttopoolresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## connectorsTransfer
 
@@ -139,9 +140,10 @@ run();
 **Promise<[operations.ConnectorsTransferResponse](../../sdk/models/operations/connectorstransferresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## createAccount
 
@@ -186,9 +188,10 @@ run();
 **Promise<[operations.CreateAccountResponse](../../sdk/models/operations/createaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## createBankAccount
 
@@ -231,9 +234,10 @@ run();
 **Promise<[operations.CreateBankAccountResponse](../../sdk/models/operations/createbankaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## createPayment
 
@@ -282,9 +286,10 @@ run();
 **Promise<[operations.CreatePaymentResponse](../../sdk/models/operations/createpaymentresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## createPool
 
@@ -328,9 +333,10 @@ run();
 **Promise<[operations.CreatePoolResponse](../../sdk/models/operations/createpoolresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## createTransferInitiation
 
@@ -380,9 +386,10 @@ run();
 **Promise<[operations.CreateTransferInitiationResponse](../../sdk/models/operations/createtransferinitiationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## deletePool
 
@@ -423,9 +430,10 @@ run();
 **Promise<[operations.DeletePoolResponse](../../sdk/models/operations/deletepoolresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## deleteTransferInitiation
 
@@ -466,9 +474,10 @@ run();
 **Promise<[operations.DeleteTransferInitiationResponse](../../sdk/models/operations/deletetransferinitiationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## forwardBankAccount
 
@@ -512,9 +521,10 @@ run();
 **Promise<[operations.ForwardBankAccountResponse](../../sdk/models/operations/forwardbankaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getAccountBalances
 
@@ -556,9 +566,10 @@ run();
 **Promise<[operations.GetAccountBalancesResponse](../../sdk/models/operations/getaccountbalancesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getBankAccount
 
@@ -599,9 +610,10 @@ run();
 **Promise<[operations.GetBankAccountResponse](../../sdk/models/operations/getbankaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~getConnectorTask~~
 
@@ -646,9 +658,10 @@ run();
 **Promise<[operations.GetConnectorTaskResponse](../../sdk/models/operations/getconnectortaskresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getConnectorTaskV1
 
@@ -692,9 +705,10 @@ run();
 **Promise<[operations.GetConnectorTaskV1Response](../../sdk/models/operations/getconnectortaskv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getPayment
 
@@ -735,9 +749,10 @@ run();
 **Promise<[operations.GetPaymentResponse](../../sdk/models/operations/getpaymentresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getPool
 
@@ -778,9 +793,10 @@ run();
 **Promise<[operations.GetPoolResponse](../../sdk/models/operations/getpoolresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getPoolBalances
 
@@ -822,9 +838,10 @@ run();
 **Promise<[operations.GetPoolBalancesResponse](../../sdk/models/operations/getpoolbalancesresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## getTransferInitiation
 
@@ -865,9 +882,10 @@ run();
 **Promise<[operations.GetTransferInitiationResponse](../../sdk/models/operations/gettransferinitiationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## installConnector
 
@@ -914,9 +932,10 @@ run();
 **Promise<[operations.InstallConnectorResponse](../../sdk/models/operations/installconnectorresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listAllConnectors
 
@@ -954,9 +973,10 @@ run();
 **Promise<[operations.ListAllConnectorsResponse](../../sdk/models/operations/listallconnectorsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listBankAccounts
 
@@ -997,9 +1017,10 @@ run();
 **Promise<[operations.ListBankAccountsResponse](../../sdk/models/operations/listbankaccountsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listConfigsAvailableConnectors
 
@@ -1037,9 +1058,10 @@ run();
 **Promise<[operations.ListConfigsAvailableConnectorsResponse](../../sdk/models/operations/listconfigsavailableconnectorsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~listConnectorTasks~~
 
@@ -1084,9 +1106,10 @@ run();
 **Promise<[operations.ListConnectorTasksResponse](../../sdk/models/operations/listconnectortasksresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listConnectorTasksV1
 
@@ -1130,9 +1153,10 @@ run();
 **Promise<[operations.ListConnectorTasksV1Response](../../sdk/models/operations/listconnectortasksv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listPayments
 
@@ -1173,9 +1197,10 @@ run();
 **Promise<[operations.ListPaymentsResponse](../../sdk/models/operations/listpaymentsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listPools
 
@@ -1216,9 +1241,10 @@ run();
 **Promise<[operations.ListPoolsResponse](../../sdk/models/operations/listpoolsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## listTransferInitiations
 
@@ -1259,9 +1285,10 @@ run();
 **Promise<[operations.ListTransferInitiationsResponse](../../sdk/models/operations/listtransferinitiationsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentsgetAccount
 
@@ -1302,9 +1329,10 @@ run();
 **Promise<[operations.PaymentsgetAccountResponse](../../sdk/models/operations/paymentsgetaccountresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentsgetServerInfo
 
@@ -1342,9 +1370,10 @@ run();
 **Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## paymentslistAccounts
 
@@ -1385,9 +1414,10 @@ run();
 **Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~readConnectorConfig~~
 
@@ -1431,9 +1461,10 @@ run();
 **Promise<[operations.ReadConnectorConfigResponse](../../sdk/models/operations/readconnectorconfigresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## readConnectorConfigV1
 
@@ -1476,9 +1507,10 @@ run();
 **Promise<[operations.ReadConnectorConfigV1Response](../../sdk/models/operations/readconnectorconfigv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## removeAccountFromPool
 
@@ -1520,9 +1552,10 @@ run();
 **Promise<[operations.RemoveAccountFromPoolResponse](../../sdk/models/operations/removeaccountfrompoolresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~resetConnector~~
 
@@ -1568,9 +1601,10 @@ run();
 **Promise<[operations.ResetConnectorResponse](../../sdk/models/operations/resetconnectorresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## resetConnectorV1
 
@@ -1615,9 +1649,10 @@ run();
 **Promise<[operations.ResetConnectorV1Response](../../sdk/models/operations/resetconnectorv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## retryTransferInitiation
 
@@ -1658,9 +1693,10 @@ run();
 **Promise<[operations.RetryTransferInitiationResponse](../../sdk/models/operations/retrytransferinitiationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## reverseTransferInitiation
 
@@ -1710,9 +1746,10 @@ run();
 **Promise<[operations.ReverseTransferInitiationResponse](../../sdk/models/operations/reversetransferinitiationresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## udpateTransferInitiationStatus
 
@@ -1757,9 +1794,10 @@ run();
 **Promise<[operations.UdpateTransferInitiationStatusResponse](../../sdk/models/operations/udpatetransferinitiationstatusresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## ~~uninstallConnector~~
 
@@ -1803,9 +1841,10 @@ run();
 **Promise<[operations.UninstallConnectorResponse](../../sdk/models/operations/uninstallconnectorresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## uninstallConnectorV1
 
@@ -1848,9 +1887,10 @@ run();
 **Promise<[operations.UninstallConnectorV1Response](../../sdk/models/operations/uninstallconnectorv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## updateBankAccountMetadata
 
@@ -1896,9 +1936,10 @@ run();
 **Promise<[operations.UpdateBankAccountMetadataResponse](../../sdk/models/operations/updatebankaccountmetadataresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## updateConnectorConfigV1
 
@@ -1947,9 +1988,10 @@ run();
 **Promise<[operations.UpdateConnectorConfigV1Response](../../sdk/models/operations/updateconnectorconfigv1response.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |
 
 ## updateMetadata
 
@@ -1993,6 +2035,7 @@ run();
 **Promise<[operations.UpdateMetadataResponse](../../sdk/models/operations/updatemetadataresponse.md)>**
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object                 | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4xx-5xx                      | */*                          |

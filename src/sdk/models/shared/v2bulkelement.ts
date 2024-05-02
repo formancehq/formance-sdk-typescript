@@ -18,59 +18,59 @@ import {
 import * as z from "zod";
 
 export type V2BulkElement =
-    | (V2BulkElementCreateTransaction & { action: "ADD_METADATA" })
-    | (V2BulkElementAddMetadata & { action: "CREATE_TRANSACTION" })
-    | (V2BulkElementRevertTransaction & { action: "DELETE_METADATA" })
-    | (V2BulkElementDeleteMetadata & { action: "REVERT_TRANSACTION" });
+    | (V2BulkElementAddMetadata & { action: "ADD_METADATA" })
+    | (V2BulkElementCreateTransaction & { action: "CREATE_TRANSACTION" })
+    | (V2BulkElementDeleteMetadata & { action: "DELETE_METADATA" })
+    | (V2BulkElementRevertTransaction & { action: "REVERT_TRANSACTION" });
 
 /** @internal */
 export namespace V2BulkElement$ {
     export type Inbound =
-        | (V2BulkElementCreateTransaction$.Inbound & { action: "ADD_METADATA" })
-        | (V2BulkElementAddMetadata$.Inbound & { action: "CREATE_TRANSACTION" })
-        | (V2BulkElementRevertTransaction$.Inbound & { action: "DELETE_METADATA" })
-        | (V2BulkElementDeleteMetadata$.Inbound & { action: "REVERT_TRANSACTION" });
+        | (V2BulkElementAddMetadata$.Inbound & { action: "ADD_METADATA" })
+        | (V2BulkElementCreateTransaction$.Inbound & { action: "CREATE_TRANSACTION" })
+        | (V2BulkElementDeleteMetadata$.Inbound & { action: "DELETE_METADATA" })
+        | (V2BulkElementRevertTransaction$.Inbound & { action: "REVERT_TRANSACTION" });
 
     export type Outbound =
-        | (V2BulkElementCreateTransaction$.Outbound & { action: "ADD_METADATA" })
-        | (V2BulkElementAddMetadata$.Outbound & { action: "CREATE_TRANSACTION" })
-        | (V2BulkElementRevertTransaction$.Outbound & { action: "DELETE_METADATA" })
-        | (V2BulkElementDeleteMetadata$.Outbound & { action: "REVERT_TRANSACTION" });
+        | (V2BulkElementAddMetadata$.Outbound & { action: "ADD_METADATA" })
+        | (V2BulkElementCreateTransaction$.Outbound & { action: "CREATE_TRANSACTION" })
+        | (V2BulkElementDeleteMetadata$.Outbound & { action: "DELETE_METADATA" })
+        | (V2BulkElementRevertTransaction$.Outbound & { action: "REVERT_TRANSACTION" });
     export const inboundSchema: z.ZodType<V2BulkElement, z.ZodTypeDef, Inbound> = z.union([
-        V2BulkElementCreateTransaction$.inboundSchema.and(
+        V2BulkElementAddMetadata$.inboundSchema.and(
             z.object({ action: z.literal("ADD_METADATA") }).transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementAddMetadata$.inboundSchema.and(
+        V2BulkElementCreateTransaction$.inboundSchema.and(
             z
                 .object({ action: z.literal("CREATE_TRANSACTION") })
                 .transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementRevertTransaction$.inboundSchema.and(
+        V2BulkElementDeleteMetadata$.inboundSchema.and(
             z
                 .object({ action: z.literal("DELETE_METADATA") })
                 .transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementDeleteMetadata$.inboundSchema.and(
+        V2BulkElementRevertTransaction$.inboundSchema.and(
             z
                 .object({ action: z.literal("REVERT_TRANSACTION") })
                 .transform((v) => ({ action: v.action }))
         ),
     ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElement> = z.union([
-        V2BulkElementCreateTransaction$.outboundSchema.and(
+        V2BulkElementAddMetadata$.outboundSchema.and(
             z.object({ action: z.literal("ADD_METADATA") }).transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementAddMetadata$.outboundSchema.and(
+        V2BulkElementCreateTransaction$.outboundSchema.and(
             z
                 .object({ action: z.literal("CREATE_TRANSACTION") })
                 .transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementRevertTransaction$.outboundSchema.and(
+        V2BulkElementDeleteMetadata$.outboundSchema.and(
             z
                 .object({ action: z.literal("DELETE_METADATA") })
                 .transform((v) => ({ action: v.action }))
         ),
-        V2BulkElementDeleteMetadata$.outboundSchema.and(
+        V2BulkElementRevertTransaction$.outboundSchema.and(
             z
                 .object({ action: z.literal("REVERT_TRANSACTION") })
                 .transform((v) => ({ action: v.action }))

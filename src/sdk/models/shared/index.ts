@@ -132,6 +132,7 @@ export * from "./paymentsaccount";
 export * from "./paymentsaccountresponse";
 export * from "./paymentscheme";
 export * from "./paymentscursor";
+export * from "./paymentserrorsenum";
 export * from "./paymentstatus";
 export * from "./paymenttype";
 export * from "./policiescursorresponse";

@@ -52,7 +52,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -113,6 +113,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -214,6 +227,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -301,6 +327,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -388,6 +427,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -475,6 +527,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -562,6 +627,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -649,6 +727,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -671,7 +762,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.DeletePoolResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -730,6 +821,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -758,7 +862,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.DeleteTransferInitiationResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -819,6 +923,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -919,6 +1036,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1023,6 +1153,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1114,6 +1257,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1214,6 +1370,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1316,6 +1485,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1405,6 +1587,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1494,6 +1689,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1589,6 +1797,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1680,6 +1901,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1775,6 +2009,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1852,6 +2099,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -1947,6 +2207,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2024,6 +2297,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2128,6 +2414,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2234,6 +2533,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2327,6 +2639,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2420,6 +2745,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2513,6 +2851,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2602,6 +2953,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2676,6 +3040,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2712,7 +3089,7 @@ export class Payments extends ClientSDK {
                 explode: true,
                 charEncoding: "percent",
             }),
-            enc$.encodeJSON("query", payload$.query, { explode: false, charEncoding: "percent" }),
+            enc$.encodeForm("query", payload$.query, { explode: true, charEncoding: "percent" }),
             enc$.encodeForm("sort", payload$.sort, { explode: true, charEncoding: "percent" }),
         ]
             .filter(Boolean)
@@ -2769,6 +3146,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2865,6 +3255,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2963,6 +3366,19 @@ export class Payments extends ClientSDK {
                 "Response validation failed"
             );
             return result;
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -2985,7 +3401,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.RemoveAccountFromPoolResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3050,6 +3466,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3082,7 +3511,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.ResetConnectorResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3143,6 +3572,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3173,7 +3615,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.ResetConnectorV1Response> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3238,6 +3680,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3266,7 +3721,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.RetryTransferInitiationResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3327,6 +3782,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3356,7 +3824,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3419,6 +3887,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3449,7 +3930,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3513,6 +3994,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3546,7 +4040,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.UninstallConnectorResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3607,6 +4101,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3635,7 +4142,7 @@ export class Payments extends ClientSDK {
     ): Promise<operations.UninstallConnectorV1Response> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3700,6 +4207,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3726,7 +4246,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3789,6 +4309,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3819,7 +4352,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3884,6 +4417,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -3910,7 +4456,7 @@ export class Payments extends ClientSDK {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "*/*");
+        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input,
@@ -3971,6 +4517,19 @@ export class Payments extends ClientSDK {
 
         if (this.matchStatusCode(response, 204)) {
             // fallthrough
+        } else if (this.matchResponse(response, "default", "application/json")) {
+            const responseBody = await response.json();
+            const result = schemas$.parse(
+                responseBody,
+                (val$) => {
+                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
+                        ...responseFields$,
+                        ...val$,
+                    });
+                },
+                "Response validation failed"
+            );
+            throw result;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
