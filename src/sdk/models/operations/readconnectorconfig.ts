@@ -12,25 +12,6 @@ export type ReadConnectorConfigRequest = {
     connector: shared.Connector;
 };
 
-export type ReadConnectorConfigResponse = {
-    /**
-     * OK
-     */
-    connectorConfigResponse?: shared.ConnectorConfigResponse | undefined;
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
-
 /** @internal */
 export namespace ReadConnectorConfigRequest$ {
     export const inboundSchema: z.ZodType<ReadConnectorConfigRequest, z.ZodTypeDef, unknown> = z
@@ -54,54 +35,6 @@ export namespace ReadConnectorConfigRequest$ {
         .transform((v) => {
             return {
                 connector: v.connector,
-            };
-        });
-}
-
-/** @internal */
-export namespace ReadConnectorConfigResponse$ {
-    export const inboundSchema: z.ZodType<ReadConnectorConfigResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ConnectorConfigResponse: shared.ConnectorConfigResponse$.inboundSchema.optional(),
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                ...(v.ConnectorConfigResponse === undefined
-                    ? null
-                    : { connectorConfigResponse: v.ConnectorConfigResponse }),
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ConnectorConfigResponse?: shared.ConnectorConfigResponse$.Outbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadConnectorConfigResponse> = z
-        .object({
-            connectorConfigResponse: shared.ConnectorConfigResponse$.outboundSchema.optional(),
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ...(v.connectorConfigResponse === undefined
-                    ? null
-                    : { ConnectorConfigResponse: v.connectorConfigResponse }),
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

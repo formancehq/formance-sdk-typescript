@@ -4,11 +4,12 @@
 
 import * as z from "zod";
 
-export enum WebhooksErrorsEnum {
-    Internal = "INTERNAL",
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
-}
+export const WebhooksErrorsEnum = {
+    Internal: "INTERNAL",
+    Validation: "VALIDATION",
+    NotFound: "NOT_FOUND",
+} as const;
+export type WebhooksErrorsEnum = (typeof WebhooksErrorsEnum)[keyof typeof WebhooksErrorsEnum];
 
 /** @internal */
 export const WebhooksErrorsEnum$: z.ZodNativeEnum<typeof WebhooksErrorsEnum> =

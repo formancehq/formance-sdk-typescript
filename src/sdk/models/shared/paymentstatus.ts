@@ -4,19 +4,20 @@
 
 import * as z from "zod";
 
-export enum PaymentStatus {
-    Pending = "PENDING",
-    Succeeded = "SUCCEEDED",
-    Cancelled = "CANCELLED",
-    Failed = "FAILED",
-    Expired = "EXPIRED",
-    Refunded = "REFUNDED",
-    RefundedFailure = "REFUNDED_FAILURE",
-    Dispute = "DISPUTE",
-    DisputeWon = "DISPUTE_WON",
-    DisputeLost = "DISPUTE_LOST",
-    Other = "OTHER",
-}
+export const PaymentStatus = {
+    Pending: "PENDING",
+    Succeeded: "SUCCEEDED",
+    Cancelled: "CANCELLED",
+    Failed: "FAILED",
+    Expired: "EXPIRED",
+    Refunded: "REFUNDED",
+    RefundedFailure: "REFUNDED_FAILURE",
+    Dispute: "DISPUTE",
+    DisputeWon: "DISPUTE_WON",
+    DisputeLost: "DISPUTE_LOST",
+    Other: "OTHER",
+} as const;
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus];
 
 /** @internal */
 export const PaymentStatus$: z.ZodNativeEnum<typeof PaymentStatus> = z.nativeEnum(PaymentStatus);

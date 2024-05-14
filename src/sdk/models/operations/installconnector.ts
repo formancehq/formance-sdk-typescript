@@ -6,108 +6,41 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type InstallConnectorRequest = {
-    connectorConfig: shared.ConnectorConfig;
     /**
      * The name of the connector.
      */
     connector: shared.Connector;
-};
-
-export type InstallConnectorResponse = {
-    /**
-     * OK
-     */
-    connectorResponse?: shared.ConnectorResponse | undefined;
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
+    connectorConfig: shared.ConnectorConfig;
 };
 
 /** @internal */
 export namespace InstallConnectorRequest$ {
     export const inboundSchema: z.ZodType<InstallConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
-            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
             connector: shared.Connector$,
+            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
         })
         .transform((v) => {
             return {
-                connectorConfig: v.ConnectorConfig,
                 connector: v.connector,
+                connectorConfig: v.ConnectorConfig,
             };
         });
 
     export type Outbound = {
-        ConnectorConfig: shared.ConnectorConfig$.Outbound;
         connector: shared.Connector;
+        ConnectorConfig: shared.ConnectorConfig$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InstallConnectorRequest> = z
         .object({
-            connectorConfig: shared.ConnectorConfig$.outboundSchema,
             connector: shared.Connector$,
+            connectorConfig: shared.ConnectorConfig$.outboundSchema,
         })
         .transform((v) => {
             return {
-                ConnectorConfig: v.connectorConfig,
                 connector: v.connector,
-            };
-        });
-}
-
-/** @internal */
-export namespace InstallConnectorResponse$ {
-    export const inboundSchema: z.ZodType<InstallConnectorResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ConnectorResponse: shared.ConnectorResponse$.inboundSchema.optional(),
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                ...(v.ConnectorResponse === undefined
-                    ? null
-                    : { connectorResponse: v.ConnectorResponse }),
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ConnectorResponse?: shared.ConnectorResponse$.Outbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InstallConnectorResponse> = z
-        .object({
-            connectorResponse: shared.ConnectorResponse$.outboundSchema.optional(),
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ...(v.connectorResponse === undefined
-                    ? null
-                    : { ConnectorResponse: v.connectorResponse }),
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
+                ConnectorConfig: v.connectorConfig,
             };
         });
 }

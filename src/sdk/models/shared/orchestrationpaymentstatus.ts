@@ -4,14 +4,16 @@
 
 import * as z from "zod";
 
-export enum OrchestrationPaymentStatus {
-    Pending = "PENDING",
-    Active = "ACTIVE",
-    Terminated = "TERMINATED",
-    Failed = "FAILED",
-    Succeeded = "SUCCEEDED",
-    Cancelled = "CANCELLED",
-}
+export const OrchestrationPaymentStatus = {
+    Pending: "PENDING",
+    Active: "ACTIVE",
+    Terminated: "TERMINATED",
+    Failed: "FAILED",
+    Succeeded: "SUCCEEDED",
+    Cancelled: "CANCELLED",
+} as const;
+export type OrchestrationPaymentStatus =
+    (typeof OrchestrationPaymentStatus)[keyof typeof OrchestrationPaymentStatus];
 
 /** @internal */
 export const OrchestrationPaymentStatus$: z.ZodNativeEnum<typeof OrchestrationPaymentStatus> =

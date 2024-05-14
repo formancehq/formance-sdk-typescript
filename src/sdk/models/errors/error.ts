@@ -4,11 +4,12 @@
 
 import * as z from "zod";
 
-export enum ErrorCode {
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
-    Internal = "INTERNAL",
-}
+export const ErrorCode = {
+    Validation: "VALIDATION",
+    NotFound: "NOT_FOUND",
+    Internal: "INTERNAL",
+} as const;
+export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
 
 /**
  * General error

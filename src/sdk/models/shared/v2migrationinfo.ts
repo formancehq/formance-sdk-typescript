@@ -4,10 +4,11 @@
 
 import * as z from "zod";
 
-export enum V2MigrationInfoState {
-    ToDo = "TO DO",
-    Done = "DONE",
-}
+export const V2MigrationInfoState = {
+    ToDo: "TO DO",
+    Done: "DONE",
+} as const;
+export type V2MigrationInfoState = (typeof V2MigrationInfoState)[keyof typeof V2MigrationInfoState];
 
 export type V2MigrationInfo = {
     date?: Date | undefined;

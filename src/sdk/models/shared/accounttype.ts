@@ -4,11 +4,12 @@
 
 import * as z from "zod";
 
-export enum AccountType {
-    Unknown = "UNKNOWN",
-    Internal = "INTERNAL",
-    External = "EXTERNAL",
-}
+export const AccountType = {
+    Unknown: "UNKNOWN",
+    Internal: "INTERNAL",
+    External: "EXTERNAL",
+} as const;
+export type AccountType = (typeof AccountType)[keyof typeof AccountType];
 
 /** @internal */
 export const AccountType$: z.ZodNativeEnum<typeof AccountType> = z.nativeEnum(AccountType);

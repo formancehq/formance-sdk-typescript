@@ -4,20 +4,22 @@
 
 import * as z from "zod";
 
-export enum TransferInitiationStatus {
-    WaitingForValidation = "WAITING_FOR_VALIDATION",
-    Processing = "PROCESSING",
-    Processed = "PROCESSED",
-    Failed = "FAILED",
-    Rejected = "REJECTED",
-    Validated = "VALIDATED",
-    AskRetried = "ASK_RETRIED",
-    AskReversed = "ASK_REVERSED",
-    ReverseProcessing = "REVERSE_PROCESSING",
-    ReverseFailed = "REVERSE_FAILED",
-    PartiallyReversed = "PARTIALLY_REVERSED",
-    Reversed = "REVERSED",
-}
+export const TransferInitiationStatus = {
+    WaitingForValidation: "WAITING_FOR_VALIDATION",
+    Processing: "PROCESSING",
+    Processed: "PROCESSED",
+    Failed: "FAILED",
+    Rejected: "REJECTED",
+    Validated: "VALIDATED",
+    AskRetried: "ASK_RETRIED",
+    AskReversed: "ASK_REVERSED",
+    ReverseProcessing: "REVERSE_PROCESSING",
+    ReverseFailed: "REVERSE_FAILED",
+    PartiallyReversed: "PARTIALLY_REVERSED",
+    Reversed: "REVERSED",
+} as const;
+export type TransferInitiationStatus =
+    (typeof TransferInitiationStatus)[keyof typeof TransferInitiationStatus];
 
 /** @internal */
 export const TransferInitiationStatus$: z.ZodNativeEnum<typeof TransferInitiationStatus> =

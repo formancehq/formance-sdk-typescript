@@ -4,14 +4,15 @@
 
 import * as z from "zod";
 
-export enum V2PaymentStatus {
-    Pending = "PENDING",
-    Active = "ACTIVE",
-    Terminated = "TERMINATED",
-    Failed = "FAILED",
-    Succeeded = "SUCCEEDED",
-    Cancelled = "CANCELLED",
-}
+export const V2PaymentStatus = {
+    Pending: "PENDING",
+    Active: "ACTIVE",
+    Terminated: "TERMINATED",
+    Failed: "FAILED",
+    Succeeded: "SUCCEEDED",
+    Cancelled: "CANCELLED",
+} as const;
+export type V2PaymentStatus = (typeof V2PaymentStatus)[keyof typeof V2PaymentStatus];
 
 /** @internal */
 export const V2PaymentStatus$: z.ZodNativeEnum<typeof V2PaymentStatus> =

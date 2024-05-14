@@ -19,14 +19,17 @@ Create a policy
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.createPolicy({
+  const result = await formance.reconciliation.createPolicy({
     ledgerName: "default",
     ledgerQuery: {
       "key": "<value>",
@@ -53,7 +56,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePolicyResponse](../../sdk/models/operations/createpolicyresponse.md)>**
+**Promise<[shared.PolicyResponse](../../sdk/models/shared/policyresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -68,14 +71,17 @@ Delete a policy by its id.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.deletePolicy({
+  const result = await formance.reconciliation.deletePolicy({
     policyID: "XXX",
   });
 
@@ -112,14 +118,17 @@ Get a policy
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.getPolicy({
+  const result = await formance.reconciliation.getPolicy({
     policyID: "XXX",
   });
 
@@ -141,7 +150,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPolicyResponse](../../sdk/models/operations/getpolicyresponse.md)>**
+**Promise<[shared.PolicyResponse](../../sdk/models/shared/policyresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -156,14 +165,17 @@ Get a reconciliation
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.getReconciliation({
+  const result = await formance.reconciliation.getReconciliation({
     reconciliationID: "XXX",
   });
 
@@ -185,7 +197,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetReconciliationResponse](../../sdk/models/operations/getreconciliationresponse.md)>**
+**Promise<[shared.ReconciliationResponse](../../sdk/models/shared/reconciliationresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -200,16 +212,19 @@ List policies
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.listPolicies({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.reconciliation.listPolicies({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -230,7 +245,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPoliciesResponse](../../sdk/models/operations/listpoliciesresponse.md)>**
+**Promise<[shared.PoliciesCursorResponse](../../sdk/models/shared/policiescursorresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -245,16 +260,19 @@ List reconciliations
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.listReconciliations({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.reconciliation.listReconciliations({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -275,7 +293,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListReconciliationsResponse](../../sdk/models/operations/listreconciliationsresponse.md)>**
+**Promise<[shared.ReconciliationsCursorResponse](../../sdk/models/shared/reconciliationscursorresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -290,19 +308,22 @@ Reconcile using a policy
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.reconcile({
+  const result = await formance.reconciliation.reconcile({
+    policyID: "XXX",
     reconciliationRequest: {
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
       reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
     },
-    policyID: "XXX",
   });
 
   // Handle the result
@@ -323,7 +344,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReconcileResponse](../../sdk/models/operations/reconcileresponse.md)>**
+**Promise<[shared.ReconciliationResponse](../../sdk/models/shared/reconciliationresponse.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -338,14 +359,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.reconciliation.reconciliationgetServerInfo();
+  const result = await formance.reconciliation.reconciliationgetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -364,7 +388,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReconciliationgetServerInfoResponse](../../sdk/models/operations/reconciliationgetserverinforesponse.md)>**
+**Promise<[shared.ServerInfo](../../sdk/models/shared/serverinfo.md)>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |

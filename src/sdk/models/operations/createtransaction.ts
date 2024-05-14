@@ -7,6 +7,14 @@ import * as z from "zod";
 
 export type CreateTransactionRequest = {
     /**
+     * Name of the ledger.
+     */
+    ledger: string;
+    /**
+     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    preview?: boolean | undefined;
+    /**
      * The request body must contain at least one of the following objects:
      *
      * @remarks
@@ -15,116 +23,41 @@ export type CreateTransactionRequest = {
      *
      */
     postTransaction: shared.PostTransaction;
-    /**
-     * Name of the ledger.
-     */
-    ledger: string;
-    /**
-     * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
-     */
-    preview?: boolean | undefined;
-};
-
-export type CreateTransactionResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-    /**
-     * OK
-     */
-    transactionsResponse?: shared.TransactionsResponse | undefined;
 };
 
 /** @internal */
 export namespace CreateTransactionRequest$ {
     export const inboundSchema: z.ZodType<CreateTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
-            PostTransaction: shared.PostTransaction$.inboundSchema,
             ledger: z.string(),
             preview: z.boolean().optional(),
+            PostTransaction: shared.PostTransaction$.inboundSchema,
         })
         .transform((v) => {
             return {
-                postTransaction: v.PostTransaction,
                 ledger: v.ledger,
                 ...(v.preview === undefined ? null : { preview: v.preview }),
+                postTransaction: v.PostTransaction,
             };
         });
 
     export type Outbound = {
-        PostTransaction: shared.PostTransaction$.Outbound;
         ledger: string;
         preview?: boolean | undefined;
+        PostTransaction: shared.PostTransaction$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTransactionRequest> = z
         .object({
-            postTransaction: shared.PostTransaction$.outboundSchema,
             ledger: z.string(),
             preview: z.boolean().optional(),
+            postTransaction: shared.PostTransaction$.outboundSchema,
         })
         .transform((v) => {
             return {
-                PostTransaction: v.postTransaction,
                 ledger: v.ledger,
                 ...(v.preview === undefined ? null : { preview: v.preview }),
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateTransactionResponse$ {
-    export const inboundSchema: z.ZodType<CreateTransactionResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-            TransactionsResponse: shared.TransactionsResponse$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-                ...(v.TransactionsResponse === undefined
-                    ? null
-                    : { transactionsResponse: v.TransactionsResponse }),
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-        TransactionsResponse?: shared.TransactionsResponse$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateTransactionResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-            transactionsResponse: shared.TransactionsResponse$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-                ...(v.transactionsResponse === undefined
-                    ? null
-                    : { TransactionsResponse: v.transactionsResponse }),
+                PostTransaction: v.postTransaction,
             };
         });
 }

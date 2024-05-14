@@ -5,10 +5,12 @@
 import { Connector, Connector$ } from "./connector";
 import * as z from "zod";
 
-export enum TransferInitiationRequestType {
-    Transfer = "TRANSFER",
-    Payout = "PAYOUT",
-}
+export const TransferInitiationRequestType = {
+    Transfer: "TRANSFER",
+    Payout: "PAYOUT",
+} as const;
+export type TransferInitiationRequestType =
+    (typeof TransferInitiationRequestType)[keyof typeof TransferInitiationRequestType];
 
 export type TransferInitiationRequest = {
     amount: bigint;

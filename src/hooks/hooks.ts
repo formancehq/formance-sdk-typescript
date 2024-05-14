@@ -18,6 +18,7 @@ import {
 } from "./types";
 
 import { initHooks } from "./registration";
+import { ClientCredentialsHook } from "./clientcredentials";
 
 export class SDKHooks implements Hooks {
     sdkInitHooks: SDKInitHook[] = [];
@@ -27,6 +28,11 @@ export class SDKHooks implements Hooks {
     afterErrorHooks: AfterErrorHook[] = [];
 
     constructor() {
+        const cc = new ClientCredentialsHook();
+        this.registerSDKInitHook(cc);
+        this.registerBeforeRequestHook(cc);
+        this.registerAfterErrorHook(cc);
+
         initHooks(this);
     }
 

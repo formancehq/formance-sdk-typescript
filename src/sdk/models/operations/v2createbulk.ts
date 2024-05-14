@@ -6,104 +6,41 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type V2CreateBulkRequest = {
-    requestBody?: Array<shared.V2BulkElement> | undefined;
     /**
      * Name of the ledger.
      */
     ledger: string;
-};
-
-export type V2CreateBulkResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-    /**
-     * OK
-     */
-    v2BulkResponse?: shared.V2BulkResponse | undefined;
+    requestBody?: Array<shared.V2BulkElement> | undefined;
 };
 
 /** @internal */
 export namespace V2CreateBulkRequest$ {
     export const inboundSchema: z.ZodType<V2CreateBulkRequest, z.ZodTypeDef, unknown> = z
         .object({
-            RequestBody: z.array(shared.V2BulkElement$.inboundSchema).optional(),
             ledger: z.string(),
+            RequestBody: z.array(shared.V2BulkElement$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 ledger: v.ledger,
+                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
             };
         });
 
     export type Outbound = {
-        RequestBody?: Array<shared.V2BulkElement$.Outbound> | undefined;
         ledger: string;
+        RequestBody?: Array<shared.V2BulkElement$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateBulkRequest> = z
         .object({
-            requestBody: z.array(shared.V2BulkElement$.outboundSchema).optional(),
             ledger: z.string(),
+            requestBody: z.array(shared.V2BulkElement$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 ledger: v.ledger,
-            };
-        });
-}
-
-/** @internal */
-export namespace V2CreateBulkResponse$ {
-    export const inboundSchema: z.ZodType<V2CreateBulkResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-            V2BulkResponse: shared.V2BulkResponse$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-                ...(v.V2BulkResponse === undefined ? null : { v2BulkResponse: v.V2BulkResponse }),
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-        V2BulkResponse?: shared.V2BulkResponse$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateBulkResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-            v2BulkResponse: shared.V2BulkResponse$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-                ...(v.v2BulkResponse === undefined ? null : { V2BulkResponse: v.v2BulkResponse }),
+                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
             };
         });
 }

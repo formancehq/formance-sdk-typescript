@@ -4,12 +4,13 @@
 
 import * as z from "zod";
 
-export enum PaymentType {
-    PayIn = "PAY-IN",
-    Payout = "PAYOUT",
-    Transfer = "TRANSFER",
-    Other = "OTHER",
-}
+export const PaymentType = {
+    PayIn: "PAY-IN",
+    Payout: "PAYOUT",
+    Transfer: "TRANSFER",
+    Other: "OTHER",
+} as const;
+export type PaymentType = (typeof PaymentType)[keyof typeof PaymentType];
 
 /** @internal */
 export const PaymentType$: z.ZodNativeEnum<typeof PaymentType> = z.nativeEnum(PaymentType);

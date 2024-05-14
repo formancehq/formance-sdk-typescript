@@ -4,18 +4,20 @@
 
 import * as z from "zod";
 
-export enum SchemasWalletsErrorResponseErrorCode {
-    Validation = "VALIDATION",
-    InternalError = "INTERNAL_ERROR",
-    InsufficientFund = "INSUFFICIENT_FUND",
-    HoldClosed = "HOLD_CLOSED",
-}
+export const WalletsErrorResponseErrorCode = {
+    Validation: "VALIDATION",
+    InternalError: "INTERNAL_ERROR",
+    InsufficientFund: "INSUFFICIENT_FUND",
+    HoldClosed: "HOLD_CLOSED",
+} as const;
+export type WalletsErrorResponseErrorCode =
+    (typeof WalletsErrorResponseErrorCode)[keyof typeof WalletsErrorResponseErrorCode];
 
 /**
  * Error
  */
 export type WalletsErrorResponseData = {
-    errorCode: SchemasWalletsErrorResponseErrorCode;
+    errorCode: WalletsErrorResponseErrorCode;
     errorMessage: string;
 };
 
@@ -23,7 +25,7 @@ export type WalletsErrorResponseData = {
  * Error
  */
 export class WalletsErrorResponse extends Error {
-    errorCode: SchemasWalletsErrorResponseErrorCode;
+    errorCode: WalletsErrorResponseErrorCode;
     errorMessage: string;
 
     /** The original data that was passed to this error instance. */
@@ -46,15 +48,14 @@ export class WalletsErrorResponse extends Error {
 }
 
 /** @internal */
-export const SchemasWalletsErrorResponseErrorCode$: z.ZodNativeEnum<
-    typeof SchemasWalletsErrorResponseErrorCode
-> = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
+export const WalletsErrorResponseErrorCode$: z.ZodNativeEnum<typeof WalletsErrorResponseErrorCode> =
+    z.nativeEnum(WalletsErrorResponseErrorCode);
 
 /** @internal */
 export namespace WalletsErrorResponse$ {
     export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: SchemasWalletsErrorResponseErrorCode$,
+            errorCode: WalletsErrorResponseErrorCode$,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -65,7 +66,7 @@ export namespace WalletsErrorResponse$ {
         });
 
     export type Outbound = {
-        errorCode: SchemasWalletsErrorResponseErrorCode;
+        errorCode: WalletsErrorResponseErrorCode;
         errorMessage: string;
     };
 
@@ -75,7 +76,7 @@ export namespace WalletsErrorResponse$ {
         .pipe(
             z
                 .object({
-                    errorCode: SchemasWalletsErrorResponseErrorCode$,
+                    errorCode: WalletsErrorResponseErrorCode$,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

@@ -4,11 +4,12 @@
 
 import * as z from "zod";
 
-export enum V2LogType {
-    NewTransaction = "NEW_TRANSACTION",
-    SetMetadata = "SET_METADATA",
-    RevertedTransaction = "REVERTED_TRANSACTION",
-}
+export const V2LogType = {
+    NewTransaction: "NEW_TRANSACTION",
+    SetMetadata: "SET_METADATA",
+    RevertedTransaction: "REVERTED_TRANSACTION",
+} as const;
+export type V2LogType = (typeof V2LogType)[keyof typeof V2LogType];
 
 export type V2Log = {
     data: Record<string, any>;

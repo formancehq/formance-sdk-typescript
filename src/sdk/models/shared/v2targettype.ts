@@ -4,10 +4,11 @@
 
 import * as z from "zod";
 
-export enum V2TargetType {
-    Transaction = "TRANSACTION",
-    Account = "ACCOUNT",
-}
+export const V2TargetType = {
+    Transaction: "TRANSACTION",
+    Account: "ACCOUNT",
+} as const;
+export type V2TargetType = (typeof V2TargetType)[keyof typeof V2TargetType];
 
 /** @internal */
 export const V2TargetType$: z.ZodNativeEnum<typeof V2TargetType> = z.nativeEnum(V2TargetType);

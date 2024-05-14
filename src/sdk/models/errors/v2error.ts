@@ -4,17 +4,18 @@
 
 import * as z from "zod";
 
-export enum SchemasErrorCode {
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
-    Internal = "INTERNAL",
-}
+export const V2ErrorErrorCode = {
+    Validation: "VALIDATION",
+    NotFound: "NOT_FOUND",
+    Internal: "INTERNAL",
+} as const;
+export type V2ErrorErrorCode = (typeof V2ErrorErrorCode)[keyof typeof V2ErrorErrorCode];
 
 /**
  * General error
  */
 export type V2ErrorData = {
-    errorCode: SchemasErrorCode;
+    errorCode: V2ErrorErrorCode;
     errorMessage: string;
 };
 
@@ -22,7 +23,7 @@ export type V2ErrorData = {
  * General error
  */
 export class V2Error extends Error {
-    errorCode: SchemasErrorCode;
+    errorCode: V2ErrorErrorCode;
     errorMessage: string;
 
     /** The original data that was passed to this error instance. */
@@ -45,14 +46,14 @@ export class V2Error extends Error {
 }
 
 /** @internal */
-export const SchemasErrorCode$: z.ZodNativeEnum<typeof SchemasErrorCode> =
-    z.nativeEnum(SchemasErrorCode);
+export const V2ErrorErrorCode$: z.ZodNativeEnum<typeof V2ErrorErrorCode> =
+    z.nativeEnum(V2ErrorErrorCode);
 
 /** @internal */
 export namespace V2Error$ {
     export const inboundSchema: z.ZodType<V2Error, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: SchemasErrorCode$,
+            errorCode: V2ErrorErrorCode$,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -63,7 +64,7 @@ export namespace V2Error$ {
         });
 
     export type Outbound = {
-        errorCode: SchemasErrorCode;
+        errorCode: V2ErrorErrorCode;
         errorMessage: string;
     };
 
@@ -73,7 +74,7 @@ export namespace V2Error$ {
         .pipe(
             z
                 .object({
-                    errorCode: SchemasErrorCode$,
+                    errorCode: V2ErrorErrorCode$,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

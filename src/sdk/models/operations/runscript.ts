@@ -6,7 +6,6 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type RunScriptRequest = {
-    script: shared.Script;
     /**
      * Name of the ledger.
      */
@@ -15,112 +14,42 @@ export type RunScriptRequest = {
      * Set the preview mode. Preview mode doesn't add the logs to the database or publish a message to the message broker.
      */
     preview?: boolean | undefined;
-};
-
-export type RunScriptResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.
-     *
-     * @remarks
-     *
-     * On failure, it will also return a 200 status code, and the following fields:
-     *   - `details`: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.
-     *   - `errorCode` and `error_code` (deprecated): contains the string code of the error
-     *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
-     *
-     */
-    scriptResponse?: shared.ScriptResponse | undefined;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
+    script: shared.Script;
 };
 
 /** @internal */
 export namespace RunScriptRequest$ {
     export const inboundSchema: z.ZodType<RunScriptRequest, z.ZodTypeDef, unknown> = z
         .object({
-            Script: shared.Script$.inboundSchema,
             ledger: z.string(),
             preview: z.boolean().optional(),
+            Script: shared.Script$.inboundSchema,
         })
         .transform((v) => {
             return {
-                script: v.Script,
                 ledger: v.ledger,
                 ...(v.preview === undefined ? null : { preview: v.preview }),
+                script: v.Script,
             };
         });
 
     export type Outbound = {
-        Script: shared.Script$.Outbound;
         ledger: string;
         preview?: boolean | undefined;
+        Script: shared.Script$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunScriptRequest> = z
         .object({
-            script: shared.Script$.outboundSchema,
             ledger: z.string(),
             preview: z.boolean().optional(),
+            script: shared.Script$.outboundSchema,
         })
         .transform((v) => {
             return {
-                Script: v.script,
                 ledger: v.ledger,
                 ...(v.preview === undefined ? null : { preview: v.preview }),
-            };
-        });
-}
-
-/** @internal */
-export namespace RunScriptResponse$ {
-    export const inboundSchema: z.ZodType<RunScriptResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            ScriptResponse: shared.ScriptResponse$.inboundSchema.optional(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                ...(v.ScriptResponse === undefined ? null : { scriptResponse: v.ScriptResponse }),
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        ScriptResponse?: shared.ScriptResponse$.Outbound | undefined;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunScriptResponse> = z
-        .object({
-            contentType: z.string(),
-            scriptResponse: shared.ScriptResponse$.outboundSchema.optional(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                ...(v.scriptResponse === undefined ? null : { ScriptResponse: v.scriptResponse }),
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
+                Script: v.script,
             };
         });
 }

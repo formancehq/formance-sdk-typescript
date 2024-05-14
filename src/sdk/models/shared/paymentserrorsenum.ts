@@ -4,11 +4,12 @@
 
 import * as z from "zod";
 
-export enum PaymentsErrorsEnum {
-    Internal = "INTERNAL",
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
-}
+export const PaymentsErrorsEnum = {
+    Internal: "INTERNAL",
+    Validation: "VALIDATION",
+    NotFound: "NOT_FOUND",
+} as const;
+export type PaymentsErrorsEnum = (typeof PaymentsErrorsEnum)[keyof typeof PaymentsErrorsEnum];
 
 /** @internal */
 export const PaymentsErrorsEnum$: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =

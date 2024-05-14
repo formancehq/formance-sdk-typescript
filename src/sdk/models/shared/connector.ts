@@ -4,19 +4,20 @@
 
 import * as z from "zod";
 
-export enum Connector {
-    Stripe = "STRIPE",
-    DummyPay = "DUMMY-PAY",
-    Wise = "WISE",
-    Modulr = "MODULR",
-    CurrencyCloud = "CURRENCY-CLOUD",
-    BankingCircle = "BANKING-CIRCLE",
-    Mangopay = "MANGOPAY",
-    Moneycorp = "MONEYCORP",
-    Atlar = "ATLAR",
-    Adyen = "ADYEN",
-    Generic = "GENERIC",
-}
+export const Connector = {
+    Stripe: "STRIPE",
+    DummyPay: "DUMMY-PAY",
+    Wise: "WISE",
+    Modulr: "MODULR",
+    CurrencyCloud: "CURRENCY-CLOUD",
+    BankingCircle: "BANKING-CIRCLE",
+    Mangopay: "MANGOPAY",
+    Moneycorp: "MONEYCORP",
+    Atlar: "ATLAR",
+    Adyen: "ADYEN",
+    Generic: "GENERIC",
+} as const;
+export type Connector = (typeof Connector)[keyof typeof Connector];
 
 /** @internal */
 export const Connector$: z.ZodNativeEnum<typeof Connector> = z.nativeEnum(Connector);

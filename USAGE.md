@@ -1,13 +1,16 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+    const result = await formance.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);

@@ -4,16 +4,17 @@
 
 import * as z from "zod";
 
-export enum ErrorsEnum {
-    Internal = "INTERNAL",
-    InsufficientFund = "INSUFFICIENT_FUND",
-    Validation = "VALIDATION",
-    Conflict = "CONFLICT",
-    NoScript = "NO_SCRIPT",
-    CompilationFailed = "COMPILATION_FAILED",
-    MetadataOverride = "METADATA_OVERRIDE",
-    NotFound = "NOT_FOUND",
-}
+export const ErrorsEnum = {
+    Internal: "INTERNAL",
+    InsufficientFund: "INSUFFICIENT_FUND",
+    Validation: "VALIDATION",
+    Conflict: "CONFLICT",
+    NoScript: "NO_SCRIPT",
+    CompilationFailed: "COMPILATION_FAILED",
+    MetadataOverride: "METADATA_OVERRIDE",
+    NotFound: "NOT_FOUND",
+} as const;
+export type ErrorsEnum = (typeof ErrorsEnum)[keyof typeof ErrorsEnum];
 
 /** @internal */
 export const ErrorsEnum$: z.ZodNativeEnum<typeof ErrorsEnum> = z.nativeEnum(ErrorsEnum);

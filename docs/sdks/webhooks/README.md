@@ -18,14 +18,17 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.activateConfig({
+  const result = await formance.webhooks.activateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
@@ -47,7 +50,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ActivateConfigResponse](../../sdk/models/operations/activateconfigresponse.md)>**
+**Promise<[shared.ConfigResponse](../../sdk/models/shared/configresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -66,18 +69,21 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.changeConfigSecret({
+  const result = await formance.webhooks.changeConfigSecret({
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
     configChangeSecret: {
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     },
-    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
   // Handle the result
@@ -98,7 +104,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ChangeConfigSecretResponse](../../sdk/models/operations/changeconfigsecretresponse.md)>**
+**Promise<[shared.ConfigResponse](../../sdk/models/shared/configresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -113,14 +119,17 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.deactivateConfig({
+  const result = await formance.webhooks.deactivateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
@@ -142,7 +151,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeactivateConfigResponse](../../sdk/models/operations/deactivateconfigresponse.md)>**
+**Promise<[shared.ConfigResponse](../../sdk/models/shared/configresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -157,14 +166,17 @@ Delete a webhooks config by ID.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.deleteConfig({
+  const result = await formance.webhooks.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
@@ -201,16 +213,19 @@ Sorted by updated date descending
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.getManyConfigs({
-    endpoint: "https://example.com",
+  const result = await formance.webhooks.getManyConfigs({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+    endpoint: "https://example.com",
   });
 
   // Handle the result
@@ -231,7 +246,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetManyConfigsResponse](../../sdk/models/operations/getmanyconfigsresponse.md)>**
+**Promise<[shared.ConfigsResponse](../../sdk/models/shared/configsresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -255,14 +270,17 @@ All eventTypes are converted to lower-case when inserted.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.insertConfig({
+  const result = await formance.webhooks.insertConfig({
     endpoint: "https://example.com",
     eventTypes: [
       "TYPE1",
@@ -290,7 +308,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InsertConfigResponse](../../sdk/models/operations/insertconfigresponse.md)>**
+**Promise<[shared.ConfigResponse](../../sdk/models/shared/configresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -305,14 +323,17 @@ Test a config by sending a webhook to its endpoint.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.webhooks.testConfig({
+  const result = await formance.webhooks.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
 
@@ -334,7 +355,7 @@ run();
 
 ### Response
 
-**Promise<[operations.TestConfigResponse](../../sdk/models/operations/testconfigresponse.md)>**
+**Promise<[shared.AttemptResponse](../../sdk/models/shared/attemptresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |

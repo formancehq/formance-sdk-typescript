@@ -10,33 +10,35 @@ import * as z from "zod";
 
 export type V2PaymentRaw = {};
 
-export enum Scheme {
-    Visa = "visa",
-    Mastercard = "mastercard",
-    Amex = "amex",
-    Diners = "diners",
-    Discover = "discover",
-    Jcb = "jcb",
-    Unionpay = "unionpay",
-    SepaDebit = "sepa debit",
-    SepaCredit = "sepa credit",
-    Sepa = "sepa",
-    ApplePay = "apple pay",
-    GooglePay = "google pay",
-    A2a = "a2a",
-    AchDebit = "ach debit",
-    Ach = "ach",
-    Rtp = "rtp",
-    Unknown = "unknown",
-    Other = "other",
-}
+export const Scheme = {
+    Visa: "visa",
+    Mastercard: "mastercard",
+    Amex: "amex",
+    Diners: "diners",
+    Discover: "discover",
+    Jcb: "jcb",
+    Unionpay: "unionpay",
+    SepaDebit: "sepa debit",
+    SepaCredit: "sepa credit",
+    Sepa: "sepa",
+    ApplePay: "apple pay",
+    GooglePay: "google pay",
+    A2a: "a2a",
+    AchDebit: "ach debit",
+    Ach: "ach",
+    Rtp: "rtp",
+    Unknown: "unknown",
+    Other: "other",
+} as const;
+export type Scheme = (typeof Scheme)[keyof typeof Scheme];
 
-export enum V2PaymentType {
-    PayIn = "PAY-IN",
-    Payout = "PAYOUT",
-    Transfer = "TRANSFER",
-    Other = "OTHER",
-}
+export const V2PaymentType = {
+    PayIn: "PAY-IN",
+    Payout: "PAYOUT",
+    Transfer: "TRANSFER",
+    Other: "OTHER",
+} as const;
+export type V2PaymentType = (typeof V2PaymentType)[keyof typeof V2PaymentType];
 
 export type V2Payment = {
     adjustments: Array<V2PaymentAdjustment>;

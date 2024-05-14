@@ -13,10 +13,12 @@ import {
 import { TransferInitiationStatus, TransferInitiationStatus$ } from "./transferinitiationstatus";
 import * as z from "zod";
 
-export enum TransferInitiationType {
-    Transfer = "TRANSFER",
-    Payout = "PAYOUT",
-}
+export const TransferInitiationType = {
+    Transfer: "TRANSFER",
+    Payout: "PAYOUT",
+} as const;
+export type TransferInitiationType =
+    (typeof TransferInitiationType)[keyof typeof TransferInitiationType];
 
 export type TransferInitiation = {
     amount: bigint;

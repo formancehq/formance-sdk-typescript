@@ -44,14 +44,17 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+    const result = await formance.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -65,10 +68,10 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
+### [Formance SDK](docs/sdks/formance/README.md)
 
-* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+* [getOIDCWellKnowns](docs/sdks/formance/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
+* [getVersions](docs/sdks/formance/README.md#getversions) - Show stack version information
 
 ### [auth](docs/sdks/auth/README.md)
 
@@ -273,17 +276,21 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import * as errors from "@formance/formance-sdk/sdk/models/errors";
 
-const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
     let result;
     try {
-        result = await sdk.ledger.createTransactions({
+        result = await formance.ledger.createTransactions({
+            ledger: "ledger001",
             transactions: {
                 transactions: [
                     {
@@ -299,7 +306,6 @@ async function run() {
                     },
                 ],
             },
-            ledger: "ledger001",
         });
     } catch (err) {
         switch (true) {
@@ -341,15 +347,18 @@ You can override the default server globally by passing a server index to the `s
 | 0 | `http://localhost` | None |
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
+const formance = new Formance({
     serverIdx: 0,
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+    const result = await formance.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -365,15 +374,18 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
+const formance = new Formance({
     serverURL: "http://localhost",
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+    const result = await formance.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);
@@ -402,7 +414,7 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { HTTPClient } from "@formance/formance-sdk/lib/http";
 
 const httpClient = new HTTPClient({
@@ -429,7 +441,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new SDK({ httpClient });
+const sdk = new Formance({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -438,22 +450,26 @@ const sdk = new SDK({ httpClient });
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name            | Type            | Scheme          |
-| --------------- | --------------- | --------------- |
-| `authorization` | oauth2          | OAuth2 token    |
+| Name           | Type           | Scheme         |
+| -------------- | -------------- | -------------- |
+| `clientID`     | oauth2         | OAuth2 token   |
+| `clientSecret` | oauth2         | OAuth2 token   |
 
-To authenticate with the API the `authorization` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+    security: {
+        clientID: "<YOUR_CLIENT_ID_HERE>",
+        clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+    },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+    const result = await formance.getOIDCWellKnowns();
 
     // Handle the result
     console.log(result);

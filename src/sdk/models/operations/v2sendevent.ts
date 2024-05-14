@@ -9,27 +9,14 @@ export type V2SendEventRequestBody = {
 };
 
 export type V2SendEventRequest = {
-    requestBody?: V2SendEventRequestBody | undefined;
     /**
      * The instance id
      */
     instanceID: string;
+    requestBody?: V2SendEventRequestBody | undefined;
 };
 
-export type V2SendEventResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2SendEventResponse = {};
 
 /** @internal */
 export namespace V2SendEventRequestBody$ {
@@ -62,69 +49,43 @@ export namespace V2SendEventRequestBody$ {
 export namespace V2SendEventRequest$ {
     export const inboundSchema: z.ZodType<V2SendEventRequest, z.ZodTypeDef, unknown> = z
         .object({
-            RequestBody: z.lazy(() => V2SendEventRequestBody$.inboundSchema).optional(),
             instanceID: z.string(),
+            RequestBody: z.lazy(() => V2SendEventRequestBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 instanceID: v.instanceID,
+                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
             };
         });
 
     export type Outbound = {
-        RequestBody?: V2SendEventRequestBody$.Outbound | undefined;
         instanceID: string;
+        RequestBody?: V2SendEventRequestBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2SendEventRequest> = z
         .object({
-            requestBody: z.lazy(() => V2SendEventRequestBody$.outboundSchema).optional(),
             instanceID: z.string(),
+            requestBody: z.lazy(() => V2SendEventRequestBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 instanceID: v.instanceID,
+                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
             };
         });
 }
 
 /** @internal */
 export namespace V2SendEventResponse$ {
-    export const inboundSchema: z.ZodType<V2SendEventResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2SendEventResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2SendEventResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2SendEventResponse> = z.object(
+        {}
+    );
 }

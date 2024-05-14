@@ -19,33 +19,37 @@ import * as z from "zod";
 
 export type OrchestrationPaymentRaw = {};
 
-export enum OrchestrationPaymentScheme {
-    Visa = "visa",
-    Mastercard = "mastercard",
-    Amex = "amex",
-    Diners = "diners",
-    Discover = "discover",
-    Jcb = "jcb",
-    Unionpay = "unionpay",
-    SepaDebit = "sepa debit",
-    SepaCredit = "sepa credit",
-    Sepa = "sepa",
-    ApplePay = "apple pay",
-    GooglePay = "google pay",
-    A2a = "a2a",
-    AchDebit = "ach debit",
-    Ach = "ach",
-    Rtp = "rtp",
-    Unknown = "unknown",
-    Other = "other",
-}
+export const OrchestrationPaymentScheme = {
+    Visa: "visa",
+    Mastercard: "mastercard",
+    Amex: "amex",
+    Diners: "diners",
+    Discover: "discover",
+    Jcb: "jcb",
+    Unionpay: "unionpay",
+    SepaDebit: "sepa debit",
+    SepaCredit: "sepa credit",
+    Sepa: "sepa",
+    ApplePay: "apple pay",
+    GooglePay: "google pay",
+    A2a: "a2a",
+    AchDebit: "ach debit",
+    Ach: "ach",
+    Rtp: "rtp",
+    Unknown: "unknown",
+    Other: "other",
+} as const;
+export type OrchestrationPaymentScheme =
+    (typeof OrchestrationPaymentScheme)[keyof typeof OrchestrationPaymentScheme];
 
-export enum OrchestrationPaymentType {
-    PayIn = "PAY-IN",
-    Payout = "PAYOUT",
-    Transfer = "TRANSFER",
-    Other = "OTHER",
-}
+export const OrchestrationPaymentType = {
+    PayIn: "PAY-IN",
+    Payout: "PAYOUT",
+    Transfer: "TRANSFER",
+    Other: "OTHER",
+} as const;
+export type OrchestrationPaymentType =
+    (typeof OrchestrationPaymentType)[keyof typeof OrchestrationPaymentType];
 
 export type OrchestrationPayment = {
     adjustments: Array<OrchestrationPaymentAdjustment>;

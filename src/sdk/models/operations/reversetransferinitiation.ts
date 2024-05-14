@@ -6,47 +6,34 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type ReverseTransferInitiationRequest = {
-    reverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest;
     /**
      * The transfer ID.
      */
     transferId: string;
+    reverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest;
 };
 
-export type ReverseTransferInitiationResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type ReverseTransferInitiationResponse = {};
 
 /** @internal */
 export namespace ReverseTransferInitiationRequest$ {
     export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, unknown> =
         z
             .object({
+                transferId: z.string(),
                 ReverseTransferInitiationRequest:
                     shared.ReverseTransferInitiationRequest$.inboundSchema,
-                transferId: z.string(),
             })
             .transform((v) => {
                 return {
-                    reverseTransferInitiationRequest: v.ReverseTransferInitiationRequest,
                     transferId: v.transferId,
+                    reverseTransferInitiationRequest: v.ReverseTransferInitiationRequest,
                 };
             });
 
     export type Outbound = {
-        ReverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest$.Outbound;
         transferId: string;
+        ReverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
@@ -55,14 +42,14 @@ export namespace ReverseTransferInitiationRequest$ {
         ReverseTransferInitiationRequest
     > = z
         .object({
+            transferId: z.string(),
             reverseTransferInitiationRequest:
                 shared.ReverseTransferInitiationRequest$.outboundSchema,
-            transferId: z.string(),
         })
         .transform((v) => {
             return {
-                ReverseTransferInitiationRequest: v.reverseTransferInitiationRequest,
                 transferId: v.transferId,
+                ReverseTransferInitiationRequest: v.reverseTransferInitiationRequest,
             };
         });
 }
@@ -73,43 +60,13 @@ export namespace ReverseTransferInitiationResponse$ {
         ReverseTransferInitiationResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    > = z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         ReverseTransferInitiationResponse
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

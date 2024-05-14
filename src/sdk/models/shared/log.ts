@@ -4,10 +4,11 @@
 
 import * as z from "zod";
 
-export enum Type {
-    NewTransaction = "NEW_TRANSACTION",
-    SetMetadata = "SET_METADATA",
-}
+export const Type = {
+    NewTransaction: "NEW_TRANSACTION",
+    SetMetadata: "SET_METADATA",
+} as const;
+export type Type = (typeof Type)[keyof typeof Type];
 
 export type Log = {
     data: Record<string, any>;

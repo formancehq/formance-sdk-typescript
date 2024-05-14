@@ -20,14 +20,17 @@ Create client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.createClient({
+  const result = await formance.auth.createClient({
     name: "<value>",
   });
 
@@ -49,7 +52,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateClientResponse](../../sdk/models/operations/createclientresponse.md)>**
+**Promise<[shared.CreateClientResponse](../../sdk/models/shared/createclientresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -63,14 +66,17 @@ Add a secret to a client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.createSecret({
+  const result = await formance.auth.createSecret({
     clientId: "<value>",
   });
 
@@ -92,7 +98,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateSecretResponse](../../sdk/models/operations/createsecretresponse.md)>**
+**Promise<[shared.CreateSecretResponse](../../sdk/models/shared/createsecretresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -106,14 +112,17 @@ Delete client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.deleteClient({
+  const result = await formance.auth.deleteClient({
     clientId: "<value>",
   });
 
@@ -149,14 +158,17 @@ Delete a secret from a client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.deleteSecret({
+  const result = await formance.auth.deleteSecret({
     clientId: "<value>",
     secretId: "<value>",
   });
@@ -193,14 +205,17 @@ List clients
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.listClients();
+  const result = await formance.auth.listClients();
 
   // Handle the result
   console.log(result)
@@ -219,7 +234,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListClientsResponse](../../sdk/models/operations/listclientsresponse.md)>**
+**Promise<[shared.ListClientsResponse](../../sdk/models/shared/listclientsresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -233,14 +248,17 @@ List users
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.listUsers();
+  const result = await formance.auth.listUsers();
 
   // Handle the result
   console.log(result)
@@ -259,7 +277,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListUsersResponse](../../sdk/models/operations/listusersresponse.md)>**
+**Promise<[shared.ListUsersResponse](../../sdk/models/shared/listusersresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -273,14 +291,17 @@ Read client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.readClient({
+  const result = await formance.auth.readClient({
     clientId: "<value>",
   });
 
@@ -302,7 +323,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadClientResponse](../../sdk/models/operations/readclientresponse.md)>**
+**Promise<[shared.ReadClientResponse](../../sdk/models/shared/readclientresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -316,14 +337,17 @@ Read user
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.readUser({
+  const result = await formance.auth.readUser({
     userId: "<value>",
   });
 
@@ -345,7 +369,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadUserResponse](../../sdk/models/operations/readuserresponse.md)>**
+**Promise<[shared.ReadUserResponse](../../sdk/models/shared/readuserresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -359,14 +383,17 @@ Update client
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.auth.updateClient({
+  const result = await formance.auth.updateClient({
     clientId: "<value>",
   });
 
@@ -388,7 +415,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateClientResponse](../../sdk/models/operations/updateclientresponse.md)>**
+**Promise<[shared.UpdateClientResponse](../../sdk/models/shared/updateclientresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

@@ -14,19 +14,7 @@ export type V2CountTransactionsRequest = {
 };
 
 export type V2CountTransactionsResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
     headers: Record<string, Array<string>>;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
 };
 
 /** @internal */
@@ -77,42 +65,25 @@ export namespace V2CountTransactionsRequest$ {
 export namespace V2CountTransactionsResponse$ {
     export const inboundSchema: z.ZodType<V2CountTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
-            ContentType: z.string(),
             Headers: z.record(z.array(z.string())),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
         })
         .transform((v) => {
             return {
-                contentType: v.ContentType,
                 headers: v.Headers,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
             };
         });
 
     export type Outbound = {
-        ContentType: string;
         Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: never;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CountTransactionsResponse> = z
         .object({
-            contentType: z.string(),
             headers: z.record(z.array(z.string())),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
         })
         .transform((v) => {
             return {
-                ContentType: v.contentType,
                 Headers: v.headers,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

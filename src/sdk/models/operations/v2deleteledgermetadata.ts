@@ -6,99 +6,57 @@ import * as z from "zod";
 
 export type V2DeleteLedgerMetadataRequest = {
     /**
-     * Key to remove.
-     */
-    key: string;
-    /**
      * Name of the ledger.
      */
     ledger: string;
+    /**
+     * Key to remove.
+     */
+    key: string;
 };
 
-export type V2DeleteLedgerMetadataResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2DeleteLedgerMetadataResponse = {};
 
 /** @internal */
 export namespace V2DeleteLedgerMetadataRequest$ {
     export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
-            key: z.string(),
             ledger: z.string(),
+            key: z.string(),
         })
         .transform((v) => {
             return {
-                key: v.key,
                 ledger: v.ledger,
+                key: v.key,
             };
         });
 
     export type Outbound = {
-        key: string;
         ledger: string;
+        key: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2DeleteLedgerMetadataRequest> =
         z
             .object({
-                key: z.string(),
                 ledger: z.string(),
+                key: z.string(),
             })
             .transform((v) => {
                 return {
-                    key: v.key,
                     ledger: v.ledger,
+                    key: v.key,
                 };
             });
 }
 
 /** @internal */
 export namespace V2DeleteLedgerMetadataResponse$ {
-    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataResponse, z.ZodTypeDef, unknown> =
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2DeleteLedgerMetadataResponse> =
-        z
-            .object({
-                contentType: z.string(),
-                statusCode: z.number().int(),
-                rawResponse: z.instanceof(Response).transform(() => {
-                    throw new Error("Response cannot be serialized");
-                }),
-            })
-            .transform((v) => {
-                return {
-                    ContentType: v.contentType,
-                    StatusCode: v.statusCode,
-                    RawResponse: v.rawResponse,
-                };
-            });
+        z.object({});
 }

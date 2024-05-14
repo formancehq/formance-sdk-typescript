@@ -11,13 +11,33 @@ export type Metadata = {};
 
 export type CountTransactionsRequest = {
     /**
+     * Name of the ledger.
+     */
+    ledger: string;
+    /**
+     * Filter transactions by reference field.
+     */
+    reference?: string | undefined;
+    /**
      * Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).
      */
     account?: string | undefined;
     /**
+     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
+     */
+    source?: string | undefined;
+    /**
      * Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).
      */
     destination?: string | undefined;
+    /**
+     * Filter transactions that occurred after this timestamp.
+     *
+     * @remarks
+     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
+     *
+     */
+    startTime?: Date | undefined;
     /**
      * Filter transactions that occurred before this timestamp.
      *
@@ -27,45 +47,13 @@ export type CountTransactionsRequest = {
      */
     endTime?: Date | undefined;
     /**
-     * Name of the ledger.
-     */
-    ledger: string;
-    /**
      * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
     metadata?: Metadata | undefined;
-    /**
-     * Filter transactions by reference field.
-     */
-    reference?: string | undefined;
-    /**
-     * Filter transactions with postings involving given account at source (regular expression placed between ^ and $).
-     */
-    source?: string | undefined;
-    /**
-     * Filter transactions that occurred after this timestamp.
-     *
-     * @remarks
-     * The format is RFC3339 and is inclusive (for example, "2023-01-02T15:04:01Z" includes the first second of 4th minute).
-     *
-     */
-    startTime?: Date | undefined;
 };
 
 export type CountTransactionsResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
     headers: Record<string, Array<string>>;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
 };
 
 /** @internal */
@@ -81,74 +69,74 @@ export namespace Metadata$ {
 export namespace CountTransactionsRequest$ {
     export const inboundSchema: z.ZodType<CountTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
-            account: z.string().optional(),
-            destination: z.string().optional(),
-            endTime: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
             ledger: z.string(),
-            metadata: z.lazy(() => Metadata$.inboundSchema).optional(),
             reference: z.string().optional(),
+            account: z.string().optional(),
             source: z.string().optional(),
+            destination: z.string().optional(),
             startTime: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
+            endTime: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+                .optional(),
+            metadata: z.lazy(() => Metadata$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.reference === undefined ? null : { reference: v.reference }),
+                ...(v.account === undefined ? null : { account: v.account }),
                 ...(v.source === undefined ? null : { source: v.source }),
+                ...(v.destination === undefined ? null : { destination: v.destination }),
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),
+                ...(v.endTime === undefined ? null : { endTime: v.endTime }),
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 
     export type Outbound = {
-        account?: string | undefined;
-        destination?: string | undefined;
-        endTime?: string | undefined;
         ledger: string;
-        metadata?: Metadata$.Outbound | undefined;
         reference?: string | undefined;
+        account?: string | undefined;
         source?: string | undefined;
+        destination?: string | undefined;
         startTime?: string | undefined;
+        endTime?: string | undefined;
+        metadata?: Metadata$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CountTransactionsRequest> = z
         .object({
-            account: z.string().optional(),
-            destination: z.string().optional(),
-            endTime: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
             ledger: z.string(),
-            metadata: z.lazy(() => Metadata$.outboundSchema).optional(),
             reference: z.string().optional(),
+            account: z.string().optional(),
             source: z.string().optional(),
+            destination: z.string().optional(),
             startTime: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
+            endTime: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+            metadata: z.lazy(() => Metadata$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.endTime === undefined ? null : { endTime: v.endTime }),
                 ledger: v.ledger,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
                 ...(v.reference === undefined ? null : { reference: v.reference }),
+                ...(v.account === undefined ? null : { account: v.account }),
                 ...(v.source === undefined ? null : { source: v.source }),
+                ...(v.destination === undefined ? null : { destination: v.destination }),
                 ...(v.startTime === undefined ? null : { startTime: v.startTime }),
+                ...(v.endTime === undefined ? null : { endTime: v.endTime }),
+                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 }
@@ -157,42 +145,25 @@ export namespace CountTransactionsRequest$ {
 export namespace CountTransactionsResponse$ {
     export const inboundSchema: z.ZodType<CountTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
-            ContentType: z.string(),
             Headers: z.record(z.array(z.string())),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
         })
         .transform((v) => {
             return {
-                contentType: v.ContentType,
                 headers: v.Headers,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
             };
         });
 
     export type Outbound = {
-        ContentType: string;
         Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: never;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CountTransactionsResponse> = z
         .object({
-            contentType: z.string(),
             headers: z.record(z.array(z.string())),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
         })
         .transform((v) => {
             return {
-                ContentType: v.contentType,
                 Headers: v.headers,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

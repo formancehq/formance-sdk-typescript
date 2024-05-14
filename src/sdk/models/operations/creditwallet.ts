@@ -6,96 +6,57 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type CreditWalletRequest = {
-    creditWalletRequest?: shared.CreditWalletRequest | undefined;
     id: string;
+    creditWalletRequest?: shared.CreditWalletRequest | undefined;
 };
 
-export type CreditWalletResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type CreditWalletResponse = {};
 
 /** @internal */
 export namespace CreditWalletRequest$ {
     export const inboundSchema: z.ZodType<CreditWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
-            CreditWalletRequest: shared.CreditWalletRequest$.inboundSchema.optional(),
             id: z.string(),
+            CreditWalletRequest: shared.CreditWalletRequest$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.CreditWalletRequest === undefined
                     ? null
                     : { creditWalletRequest: v.CreditWalletRequest }),
-                id: v.id,
             };
         });
 
     export type Outbound = {
-        CreditWalletRequest?: shared.CreditWalletRequest$.Outbound | undefined;
         id: string;
+        CreditWalletRequest?: shared.CreditWalletRequest$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreditWalletRequest> = z
         .object({
-            creditWalletRequest: shared.CreditWalletRequest$.outboundSchema.optional(),
             id: z.string(),
+            creditWalletRequest: shared.CreditWalletRequest$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.creditWalletRequest === undefined
                     ? null
                     : { CreditWalletRequest: v.creditWalletRequest }),
-                id: v.id,
             };
         });
 }
 
 /** @internal */
 export namespace CreditWalletResponse$ {
-    export const inboundSchema: z.ZodType<CreditWalletResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<CreditWalletResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreditWalletResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreditWalletResponse> = z.object(
+        {}
+    );
 }

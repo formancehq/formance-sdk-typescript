@@ -6,109 +6,42 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type CreateBalanceRequest = {
-    createBalanceRequest?: shared.CreateBalanceRequest | undefined;
     id: string;
-};
-
-export type CreateBalanceResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * Created balance
-     */
-    createBalanceResponse?: shared.CreateBalanceResponse | undefined;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
+    createBalanceRequest?: shared.CreateBalanceRequest | undefined;
 };
 
 /** @internal */
 export namespace CreateBalanceRequest$ {
     export const inboundSchema: z.ZodType<CreateBalanceRequest, z.ZodTypeDef, unknown> = z
         .object({
-            CreateBalanceRequest: shared.CreateBalanceRequest$.inboundSchema.optional(),
             id: z.string(),
+            CreateBalanceRequest: shared.CreateBalanceRequest$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.CreateBalanceRequest === undefined
                     ? null
                     : { createBalanceRequest: v.CreateBalanceRequest }),
-                id: v.id,
             };
         });
 
     export type Outbound = {
-        CreateBalanceRequest?: shared.CreateBalanceRequest$.Outbound | undefined;
         id: string;
+        CreateBalanceRequest?: shared.CreateBalanceRequest$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateBalanceRequest> = z
         .object({
-            createBalanceRequest: shared.CreateBalanceRequest$.outboundSchema.optional(),
             id: z.string(),
+            createBalanceRequest: shared.CreateBalanceRequest$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.createBalanceRequest === undefined
                     ? null
                     : { CreateBalanceRequest: v.createBalanceRequest }),
-                id: v.id,
-            };
-        });
-}
-
-/** @internal */
-export namespace CreateBalanceResponse$ {
-    export const inboundSchema: z.ZodType<CreateBalanceResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            CreateBalanceResponse: shared.CreateBalanceResponse$.inboundSchema.optional(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                ...(v.CreateBalanceResponse === undefined
-                    ? null
-                    : { createBalanceResponse: v.CreateBalanceResponse }),
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        CreateBalanceResponse?: shared.CreateBalanceResponse$.Outbound | undefined;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateBalanceResponse> = z
-        .object({
-            contentType: z.string(),
-            createBalanceResponse: shared.CreateBalanceResponse$.outboundSchema.optional(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                ...(v.createBalanceResponse === undefined
-                    ? null
-                    : { CreateBalanceResponse: v.createBalanceResponse }),
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

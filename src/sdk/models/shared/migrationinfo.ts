@@ -4,10 +4,11 @@
 
 import * as z from "zod";
 
-export enum State {
-    ToDo = "TO DO",
-    Done = "DONE",
-}
+export const State = {
+    ToDo: "TO DO",
+    Done: "DONE",
+} as const;
+export type State = (typeof State)[keyof typeof State];
 
 export type MigrationInfo = {
     date?: Date | undefined;

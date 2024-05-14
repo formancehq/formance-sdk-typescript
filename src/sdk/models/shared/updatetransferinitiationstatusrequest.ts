@@ -4,14 +4,15 @@
 
 import * as z from "zod";
 
-export enum Status {
-    WaitingForValidation = "WAITING_FOR_VALIDATION",
-    Processing = "PROCESSING",
-    Processed = "PROCESSED",
-    Failed = "FAILED",
-    Rejected = "REJECTED",
-    Validated = "VALIDATED",
-}
+export const Status = {
+    WaitingForValidation: "WAITING_FOR_VALIDATION",
+    Processing: "PROCESSING",
+    Processed: "PROCESSED",
+    Failed: "FAILED",
+    Rejected: "REJECTED",
+    Validated: "VALIDATED",
+} as const;
+export type Status = (typeof Status)[keyof typeof Status];
 
 export type UpdateTransferInitiationStatusRequest = {
     status: Status;
