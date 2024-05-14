@@ -30,11 +30,7 @@ export type ListBalancesResponse = {
 
 /** @internal */
 export namespace ListBalancesRequest$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<ListBalancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBalancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })
@@ -61,14 +57,7 @@ export namespace ListBalancesRequest$ {
 
 /** @internal */
 export namespace ListBalancesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListBalancesResponse?: shared.ListBalancesResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ListBalancesResponse: shared.ListBalancesResponse$.inboundSchema.optional(),

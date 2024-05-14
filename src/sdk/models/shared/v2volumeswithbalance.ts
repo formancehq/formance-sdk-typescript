@@ -14,15 +14,7 @@ export type V2VolumesWithBalance = {
 
 /** @internal */
 export namespace V2VolumesWithBalance$ {
-    export type Inbound = {
-        account: string;
-        asset: string;
-        balance: number;
-        input: number;
-        output: number;
-    };
-
-    export const inboundSchema: z.ZodType<V2VolumesWithBalance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2VolumesWithBalance, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string(),
             asset: z.string(),

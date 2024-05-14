@@ -26,14 +26,7 @@ export type ListUsersResponse = {
 
 /** @internal */
 export namespace ListUsersResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListUsersResponse?: shared.ListUsersResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListUsersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListUsersResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ListUsersResponse: shared.ListUsersResponse$.inboundSchema.optional(),

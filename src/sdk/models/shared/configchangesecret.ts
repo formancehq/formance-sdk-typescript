@@ -10,11 +10,7 @@ export type ConfigChangeSecret = {
 
 /** @internal */
 export namespace ConfigChangeSecret$ {
-    export type Inbound = {
-        secret: string;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigChangeSecret, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigChangeSecret, z.ZodTypeDef, unknown> = z
         .object({
             secret: z.string(),
         })

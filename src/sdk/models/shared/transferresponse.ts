@@ -10,11 +10,7 @@ export type TransferResponse = {
 
 /** @internal */
 export namespace TransferResponse$ {
-    export type Inbound = {
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransferResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferResponse, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
         })

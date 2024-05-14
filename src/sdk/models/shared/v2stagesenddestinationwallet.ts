@@ -11,12 +11,7 @@ export type V2StageSendDestinationWallet = {
 
 /** @internal */
 export namespace V2StageSendDestinationWallet$ {
-    export type Inbound = {
-        balance?: string | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageSendDestinationWallet, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageSendDestinationWallet, z.ZodTypeDef, unknown> = z
         .object({
             balance: z.string().optional(),
             id: z.string(),

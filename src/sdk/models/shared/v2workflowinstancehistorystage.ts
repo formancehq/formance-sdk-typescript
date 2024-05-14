@@ -27,20 +27,7 @@ export type V2WorkflowInstanceHistoryStage = {
 
 /** @internal */
 export namespace V2WorkflowInstanceHistoryStage$ {
-    export type Inbound = {
-        attempt: number;
-        error?: string | undefined;
-        input: V2WorkflowInstanceHistoryStageInput$.Inbound;
-        lastFailure?: string | undefined;
-        name: string;
-        nextExecution?: string | undefined;
-        output?: V2WorkflowInstanceHistoryStageOutput$.Inbound | undefined;
-        startedAt: string;
-        terminated: boolean;
-        terminatedAt?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistoryStage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> = z
         .object({
             attempt: z.number().int(),
             error: z.string().optional(),

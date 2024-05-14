@@ -20,12 +20,7 @@ export type PostTransaction = {
 
 /** @internal */
 export namespace PostTransactionScript$ {
-    export type Inbound = {
-        plain: string;
-        vars?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PostTransactionScript, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PostTransactionScript, z.ZodTypeDef, unknown> = z
         .object({
             plain: z.string(),
             vars: z.record(z.any()).optional(),
@@ -57,15 +52,7 @@ export namespace PostTransactionScript$ {
 
 /** @internal */
 export namespace PostTransaction$ {
-    export type Inbound = {
-        metadata?: Record<string, any> | null | undefined;
-        postings?: Array<Posting$.Inbound> | undefined;
-        reference?: string | undefined;
-        script?: PostTransactionScript$.Inbound | undefined;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PostTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PostTransaction, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.nullable(z.record(z.any())).optional(),
             postings: z.array(Posting$.inboundSchema).optional(),

@@ -33,11 +33,7 @@ export type GetHoldResponse = {
 
 /** @internal */
 export namespace GetHoldRequest$ {
-    export type Inbound = {
-        holdID: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldRequest, z.ZodTypeDef, unknown> = z
         .object({
             holdID: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetHoldRequest$ {
 
 /** @internal */
 export namespace GetHoldResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        GetHoldResponse?: shared.GetHoldResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             GetHoldResponse: shared.GetHoldResponse$.inboundSchema.optional(),

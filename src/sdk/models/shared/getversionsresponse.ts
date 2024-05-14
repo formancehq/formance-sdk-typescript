@@ -13,13 +13,7 @@ export type GetVersionsResponse = {
 
 /** @internal */
 export namespace GetVersionsResponse$ {
-    export type Inbound = {
-        env: string;
-        region: string;
-        versions: Array<Version$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             env: z.string(),
             region: z.string(),

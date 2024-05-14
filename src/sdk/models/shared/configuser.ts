@@ -13,14 +13,7 @@ export type ConfigUser = {
 
 /** @internal */
 export namespace ConfigUser$ {
-    export type Inbound = {
-        endpoint: string;
-        eventTypes: Array<string>;
-        name?: string | undefined;
-        secret?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, unknown> = z
         .object({
             endpoint: z.string(),
             eventTypes: z.array(z.string()),

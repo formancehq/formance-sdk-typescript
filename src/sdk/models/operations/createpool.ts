@@ -26,14 +26,7 @@ export type CreatePoolResponse = {
 
 /** @internal */
 export namespace CreatePoolResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PoolResponse?: shared.PoolResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreatePoolResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreatePoolResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PoolResponse: shared.PoolResponse$.inboundSchema.optional(),

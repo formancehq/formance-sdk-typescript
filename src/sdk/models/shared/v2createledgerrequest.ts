@@ -11,12 +11,7 @@ export type V2CreateLedgerRequest = {
 
 /** @internal */
 export namespace V2CreateLedgerRequest$ {
-    export type Inbound = {
-        bucket?: string | undefined;
-        metadata?: Record<string, string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z
         .object({
             bucket: z.string().optional(),
             metadata: z.record(z.string()).optional(),

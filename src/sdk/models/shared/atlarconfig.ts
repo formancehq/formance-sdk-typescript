@@ -54,17 +54,7 @@ export type AtlarConfig = {
 
 /** @internal */
 export namespace AtlarConfig$ {
-    export type Inbound = {
-        accessKey: string;
-        baseUrl?: string | undefined;
-        name: string;
-        pageSize?: number | undefined;
-        pollingPeriod?: string | undefined;
-        secret: string;
-        transferInitiationStatusPollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AtlarConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AtlarConfig, z.ZodTypeDef, unknown> = z
         .object({
             accessKey: z.string(),
             baseUrl: z.string().default("https://api.atlar.com"),

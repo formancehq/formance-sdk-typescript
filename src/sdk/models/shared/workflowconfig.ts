@@ -11,12 +11,7 @@ export type WorkflowConfig = {
 
 /** @internal */
 export namespace WorkflowConfig$ {
-    export type Inbound = {
-        name?: string | undefined;
-        stages: Array<Record<string, any>>;
-    };
-
-    export const inboundSchema: z.ZodType<WorkflowConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WorkflowConfig, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             stages: z.array(z.record(z.any())),

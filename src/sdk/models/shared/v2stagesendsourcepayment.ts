@@ -10,11 +10,7 @@ export type V2StageSendSourcePayment = {
 
 /** @internal */
 export namespace V2StageSendSourcePayment$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageSendSourcePayment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageSendSourcePayment, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })

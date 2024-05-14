@@ -10,11 +10,7 @@ export type StageWaitEvent = {
 
 /** @internal */
 export namespace StageWaitEvent$ {
-    export type Inbound = {
-        event: string;
-    };
-
-    export const inboundSchema: z.ZodType<StageWaitEvent, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StageWaitEvent, z.ZodTypeDef, unknown> = z
         .object({
             event: z.string(),
         })

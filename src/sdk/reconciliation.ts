@@ -46,16 +46,17 @@ export class Reconciliation extends ClientSDK {
      * Create a policy
      */
     async createPolicy(
-        input: shared.PolicyRequest,
+        request: shared.PolicyRequest,
         options?: RequestOptions
     ): Promise<operations.CreatePolicyResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.PolicyRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -81,7 +82,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -94,7 +95,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -146,15 +147,16 @@ export class Reconciliation extends ClientSDK {
      * Delete a policy by its id.
      */
     async deletePolicy(
-        input: operations.DeletePolicyRequest,
+        request: operations.DeletePolicyRequest,
         options?: RequestOptions
     ): Promise<operations.DeletePolicyResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeletePolicyRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -188,7 +190,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -201,7 +203,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -245,15 +247,16 @@ export class Reconciliation extends ClientSDK {
      * Get a policy
      */
     async getPolicy(
-        input: operations.GetPolicyRequest,
+        request: operations.GetPolicyRequest,
         options?: RequestOptions
     ): Promise<operations.GetPolicyResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetPolicyRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -287,7 +290,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -300,7 +303,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -349,15 +352,16 @@ export class Reconciliation extends ClientSDK {
      * Get a reconciliation
      */
     async getReconciliation(
-        input: operations.GetReconciliationRequest,
+        request: operations.GetReconciliationRequest,
         options?: RequestOptions
     ): Promise<operations.GetReconciliationResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetReconciliationRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -391,7 +395,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -404,7 +408,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -453,15 +457,16 @@ export class Reconciliation extends ClientSDK {
      * List policies
      */
     async listPolicies(
-        input: operations.ListPoliciesRequest,
+        request: operations.ListPoliciesRequest,
         options?: RequestOptions
     ): Promise<operations.ListPoliciesResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListPoliciesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -495,7 +500,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -508,7 +513,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -557,15 +562,16 @@ export class Reconciliation extends ClientSDK {
      * List reconciliations
      */
     async listReconciliations(
-        input: operations.ListReconciliationsRequest,
+        request: operations.ListReconciliationsRequest,
         options?: RequestOptions
     ): Promise<operations.ListReconciliationsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListReconciliationsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -599,7 +605,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -612,7 +618,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -664,16 +670,17 @@ export class Reconciliation extends ClientSDK {
      * Reconcile using a policy
      */
     async reconcile(
-        input: operations.ReconcileRequest,
+        request: operations.ReconcileRequest,
         options?: RequestOptions
     ): Promise<operations.ReconcileResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ReconcileRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -707,7 +714,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -720,7 +727,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -795,7 +802,7 @@ export class Reconciliation extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -807,7 +814,7 @@ export class Reconciliation extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

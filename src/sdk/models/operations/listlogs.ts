@@ -70,16 +70,7 @@ export type ListLogsResponse = {
 
 /** @internal */
 export namespace ListLogsRequest$ {
-    export type Inbound = {
-        after?: string | undefined;
-        cursor?: string | undefined;
-        endTime?: string | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-        startTime?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListLogsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListLogsRequest, z.ZodTypeDef, unknown> = z
         .object({
             after: z.string().optional(),
             cursor: z.string().optional(),
@@ -145,14 +136,7 @@ export namespace ListLogsRequest$ {
 
 /** @internal */
 export namespace ListLogsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        LogsCursorResponse?: shared.LogsCursorResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListLogsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListLogsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             LogsCursorResponse: shared.LogsCursorResponse$.inboundSchema.optional(),

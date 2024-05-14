@@ -29,12 +29,7 @@ export type V2UpdateLedgerMetadataResponse = {
 
 /** @internal */
 export namespace V2UpdateLedgerMetadataRequest$ {
-    export type Inbound = {
-        RequestBody?: Record<string, string> | undefined;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.record(z.string()).optional(),
             ledger: z.string(),
@@ -67,13 +62,7 @@ export namespace V2UpdateLedgerMetadataRequest$ {
 
 /** @internal */
 export namespace V2UpdateLedgerMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -36,13 +36,7 @@ export type V2DeleteAccountMetadataResponse = {
 
 /** @internal */
 export namespace V2DeleteAccountMetadataRequest$ {
-    export type Inbound = {
-        address: string;
-        key: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteAccountMetadataRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2DeleteAccountMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             key: z.string(),
@@ -80,13 +74,7 @@ export namespace V2DeleteAccountMetadataRequest$ {
 
 /** @internal */
 export namespace V2DeleteAccountMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteAccountMetadataResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2DeleteAccountMetadataResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

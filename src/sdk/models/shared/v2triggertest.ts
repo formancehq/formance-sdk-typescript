@@ -21,12 +21,7 @@ export type V2TriggerTest = {
 
 /** @internal */
 export namespace Filter$ {
-    export type Inbound = {
-        error?: string | undefined;
-        match?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Filter, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Filter, z.ZodTypeDef, unknown> = z
         .object({
             error: z.string().optional(),
             match: z.boolean().optional(),
@@ -58,12 +53,7 @@ export namespace Filter$ {
 
 /** @internal */
 export namespace Variables$ {
-    export type Inbound = {
-        error?: string | undefined;
-        value?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Variables, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Variables, z.ZodTypeDef, unknown> = z
         .object({
             error: z.string().optional(),
             value: z.string().optional(),
@@ -95,12 +85,7 @@ export namespace Variables$ {
 
 /** @internal */
 export namespace V2TriggerTest$ {
-    export type Inbound = {
-        filter?: Filter$.Inbound | undefined;
-        variables?: Record<string, Variables$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2TriggerTest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2TriggerTest, z.ZodTypeDef, unknown> = z
         .object({
             filter: z.lazy(() => Filter$.inboundSchema).optional(),
             variables: z.record(z.lazy(() => Variables$.inboundSchema)).optional(),

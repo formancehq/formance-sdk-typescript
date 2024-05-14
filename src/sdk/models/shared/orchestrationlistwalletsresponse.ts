@@ -19,18 +19,10 @@ export type OrchestrationListWalletsResponse = {
 
 /** @internal */
 export namespace OrchestrationListWalletsResponseCursor$ {
-    export type Inbound = {
-        data: Array<Wallet$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         OrchestrationListWalletsResponseCursor,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(Wallet$.inboundSchema),
@@ -82,11 +74,7 @@ export namespace OrchestrationListWalletsResponseCursor$ {
 
 /** @internal */
 export namespace OrchestrationListWalletsResponse$ {
-    export type Inbound = {
-        cursor: OrchestrationListWalletsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationListWalletsResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<OrchestrationListWalletsResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 cursor: z.lazy(() => OrchestrationListWalletsResponseCursor$.inboundSchema),

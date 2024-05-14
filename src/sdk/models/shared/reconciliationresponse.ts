@@ -11,11 +11,7 @@ export type ReconciliationResponse = {
 
 /** @internal */
 export namespace ReconciliationResponse$ {
-    export type Inbound = {
-        data: Reconciliation$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ReconciliationResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReconciliationResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Reconciliation$.inboundSchema,
         })

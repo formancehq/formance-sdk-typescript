@@ -33,11 +33,7 @@ export type V2GetLedgerResponse = {
 
 /** @internal */
 export namespace V2GetLedgerRequest$ {
-    export type Inbound = {
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetLedgerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetLedgerRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace V2GetLedgerRequest$ {
 
 /** @internal */
 export namespace V2GetLedgerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2GetLedgerResponse?: shared.V2GetLedgerResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetLedgerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetLedgerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

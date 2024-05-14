@@ -18,14 +18,7 @@ export type ConnectorsResponse = {
 
 /** @internal */
 export namespace ConnectorsResponseData$ {
-    export type Inbound = {
-        connectorID: string;
-        enabled?: boolean | undefined;
-        name: string;
-        provider: Connector;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsResponseData, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsResponseData, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             enabled: z.boolean().optional(),
@@ -67,11 +60,7 @@ export namespace ConnectorsResponseData$ {
 
 /** @internal */
 export namespace ConnectorsResponse$ {
-    export type Inbound = {
-        data: Array<ConnectorsResponseData$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(z.lazy(() => ConnectorsResponseData$.inboundSchema)),
         })

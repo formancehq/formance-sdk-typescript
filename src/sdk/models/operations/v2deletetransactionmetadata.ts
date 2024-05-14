@@ -36,16 +36,10 @@ export type V2DeleteTransactionMetadataResponse = {
 
 /** @internal */
 export namespace V2DeleteTransactionMetadataRequest$ {
-    export type Inbound = {
-        id: number;
-        key: string;
-        ledger: string;
-    };
-
     export const inboundSchema: z.ZodType<
         V2DeleteTransactionMetadataRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             id: z.number().transform((v) => BigInt(v)),
@@ -87,16 +81,10 @@ export namespace V2DeleteTransactionMetadataRequest$ {
 
 /** @internal */
 export namespace V2DeleteTransactionMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         V2DeleteTransactionMetadataResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

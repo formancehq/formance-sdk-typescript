@@ -34,12 +34,7 @@ export type ConnectorsTransferResponse = {
 
 /** @internal */
 export namespace ConnectorsTransferRequest$ {
-    export type Inbound = {
-        TransferRequest: shared.TransferRequest$.Inbound;
-        connector: shared.Connector;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsTransferRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsTransferRequest, z.ZodTypeDef, unknown> = z
         .object({
             TransferRequest: shared.TransferRequest$.inboundSchema,
             connector: shared.Connector$,
@@ -71,14 +66,7 @@ export namespace ConnectorsTransferRequest$ {
 
 /** @internal */
 export namespace ConnectorsTransferResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransferResponse?: shared.TransferResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsTransferResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsTransferResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

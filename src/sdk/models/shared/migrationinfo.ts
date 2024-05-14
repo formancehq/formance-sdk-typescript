@@ -21,14 +21,7 @@ export const State$: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
 
 /** @internal */
 export namespace MigrationInfo$ {
-    export type Inbound = {
-        date?: string | undefined;
-        name?: string | undefined;
-        state?: State | undefined;
-        version?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MigrationInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MigrationInfo, z.ZodTypeDef, unknown> = z
         .object({
             date: z
                 .string()

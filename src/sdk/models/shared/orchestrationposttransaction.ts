@@ -20,15 +20,10 @@ export type OrchestrationPostTransaction = {
 
 /** @internal */
 export namespace OrchestrationPostTransactionScript$ {
-    export type Inbound = {
-        plain: string;
-        vars?: Record<string, any> | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         OrchestrationPostTransactionScript,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             plain: z.string(),
@@ -65,15 +60,7 @@ export namespace OrchestrationPostTransactionScript$ {
 
 /** @internal */
 export namespace OrchestrationPostTransaction$ {
-    export type Inbound = {
-        metadata: Record<string, string>;
-        postings?: Array<Posting$.Inbound> | undefined;
-        reference?: string | undefined;
-        script?: OrchestrationPostTransactionScript$.Inbound | undefined;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationPostTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationPostTransaction, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.string()),
             postings: z.array(Posting$.inboundSchema).optional(),

@@ -22,14 +22,10 @@ export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
 
 /** @internal */
 export namespace UpdateTransferInitiationStatusRequest$ {
-    export type Inbound = {
-        status: Status;
-    };
-
     export const inboundSchema: z.ZodType<
         UpdateTransferInitiationStatusRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             status: Status$,

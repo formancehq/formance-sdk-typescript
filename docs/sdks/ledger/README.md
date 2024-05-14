@@ -217,6 +217,58 @@ async function run() {
   const result = await sdk.ledger.countAccounts({
     address: "users:.+",
     ledger: "ledger001",
+    metadata: {
+      "0": "m",
+      "1": "e",
+      "2": "t",
+      "3": "a",
+      "4": "d",
+      "5": "a",
+      "6": "t",
+      "7": "a",
+      "8": "[",
+      "9": "k",
+      "10": "e",
+      "11": "y",
+      "12": "]",
+      "13": "=",
+      "14": "v",
+      "15": "a",
+      "16": "l",
+      "17": "u",
+      "18": "e",
+      "19": "1",
+      "20": "&",
+      "21": "m",
+      "22": "e",
+      "23": "t",
+      "24": "a",
+      "25": "d",
+      "26": "a",
+      "27": "t",
+      "28": "a",
+      "29": "[",
+      "30": "a",
+      "31": ".",
+      "32": "n",
+      "33": "e",
+      "34": "s",
+      "35": "t",
+      "36": "e",
+      "37": "d",
+      "38": ".",
+      "39": "k",
+      "40": "e",
+      "41": "y",
+      "42": "]",
+      "43": "=",
+      "44": "v",
+      "45": "a",
+      "46": "l",
+      "47": "u",
+      "48": "e",
+      "49": "2",
+    },
   });
 
   // Handle the result
@@ -263,6 +315,7 @@ async function run() {
     account: "users:001",
     destination: "users:001",
     ledger: "ledger001",
+    metadata: {},
     reference: "ref:001",
     source: "users:001",
   });
@@ -693,7 +746,59 @@ async function run() {
     balance: 2400,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
-    paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    metadata: {
+      "0": "m",
+      "1": "e",
+      "2": "t",
+      "3": "a",
+      "4": "d",
+      "5": "a",
+      "6": "t",
+      "7": "a",
+      "8": "[",
+      "9": "k",
+      "10": "e",
+      "11": "y",
+      "12": "]",
+      "13": "=",
+      "14": "v",
+      "15": "a",
+      "16": "l",
+      "17": "u",
+      "18": "e",
+      "19": "1",
+      "20": "&",
+      "21": "m",
+      "22": "e",
+      "23": "t",
+      "24": "a",
+      "25": "d",
+      "26": "a",
+      "27": "t",
+      "28": "a",
+      "29": "[",
+      "30": "a",
+      "31": ".",
+      "32": "n",
+      "33": "e",
+      "34": "s",
+      "35": "t",
+      "36": "e",
+      "37": "d",
+      "38": ".",
+      "39": "k",
+      "40": "e",
+      "41": "y",
+      "42": "]",
+      "43": "=",
+      "44": "v",
+      "45": "a",
+      "46": "l",
+      "47": "u",
+      "48": "e",
+      "49": "2",
+    },
+    pageSize: 100,
   });
 
   // Handle the result
@@ -740,6 +845,7 @@ async function run() {
     after: "1234",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -788,6 +894,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     destination: "users:001",
     ledger: "ledger001",
+    pageSize: 100,
     reference: "ref:001",
     source: "users:001",
   });
@@ -1792,7 +1899,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2GetVolumesWithBalances({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    groupBy: 3,
     ledger: "ledger001",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1838,6 +1947,7 @@ async function run() {
   const result = await sdk.ledger.v2ListAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1882,6 +1992,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2ListLedgers({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1927,6 +2038,7 @@ async function run() {
   const result = await sdk.ledger.v2ListLogs({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1972,6 +2084,7 @@ async function run() {
   const result = await sdk.ledger.v2ListTransactions({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
+    pageSize: 100,
   });
 
   // Handle the result

@@ -42,13 +42,7 @@ export type AddMetadataToAccountResponse = {
 
 /** @internal */
 export namespace AddMetadataToAccountRequest$ {
-    export type Inbound = {
-        RequestBody: Record<string, any> | null;
-        address: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<AddMetadataToAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddMetadataToAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.nullable(z.record(z.any())),
             address: z.string(),
@@ -85,13 +79,7 @@ export namespace AddMetadataToAccountRequest$ {
 
 /** @internal */
 export namespace AddMetadataToAccountResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<AddMetadataToAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddMetadataToAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

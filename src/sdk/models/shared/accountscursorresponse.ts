@@ -19,15 +19,7 @@ export type AccountsCursorResponse = {
 
 /** @internal */
 export namespace AccountsCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<Account$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AccountsCursorResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountsCursorResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Account$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace AccountsCursorResponseCursor$ {
 
 /** @internal */
 export namespace AccountsCursorResponse$ {
-    export type Inbound = {
-        cursor: AccountsCursorResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<AccountsCursorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountsCursorResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => AccountsCursorResponseCursor$.inboundSchema),
         })

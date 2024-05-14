@@ -57,14 +57,7 @@ export type ListPaymentsResponse = {
 
 /** @internal */
 export namespace ListPaymentsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        query?: string | undefined;
-        sort?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListPaymentsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPaymentsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -106,14 +99,7 @@ export namespace ListPaymentsRequest$ {
 
 /** @internal */
 export namespace ListPaymentsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PaymentsCursor?: shared.PaymentsCursor$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListPaymentsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPaymentsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PaymentsCursor: shared.PaymentsCursor$.inboundSchema.optional(),

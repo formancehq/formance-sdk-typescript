@@ -33,11 +33,7 @@ export type SendEventResponse = {
 
 /** @internal */
 export namespace SendEventRequestBody$ {
-    export type Inbound = {
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<SendEventRequestBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SendEventRequestBody, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string(),
         })
@@ -64,12 +60,7 @@ export namespace SendEventRequestBody$ {
 
 /** @internal */
 export namespace SendEventRequest$ {
-    export type Inbound = {
-        RequestBody?: SendEventRequestBody$.Inbound | undefined;
-        instanceID: string;
-    };
-
-    export const inboundSchema: z.ZodType<SendEventRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SendEventRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.lazy(() => SendEventRequestBody$.inboundSchema).optional(),
             instanceID: z.string(),
@@ -101,13 +92,7 @@ export namespace SendEventRequest$ {
 
 /** @internal */
 export namespace SendEventResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<SendEventResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SendEventResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

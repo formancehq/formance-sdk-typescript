@@ -25,14 +25,7 @@ export type StripeConfig = {
 
 /** @internal */
 export namespace StripeConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        name: string;
-        pageSize?: number | undefined;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             name: z.string(),

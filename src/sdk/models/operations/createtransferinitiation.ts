@@ -26,14 +26,7 @@ export type CreateTransferInitiationResponse = {
 
 /** @internal */
 export namespace CreateTransferInitiationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransferInitiationResponse?: shared.TransferInitiationResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateTransferInitiationResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<CreateTransferInitiationResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

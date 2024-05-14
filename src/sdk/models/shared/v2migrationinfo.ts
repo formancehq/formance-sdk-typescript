@@ -22,14 +22,7 @@ export const V2MigrationInfoState$: z.ZodNativeEnum<typeof V2MigrationInfoState>
 
 /** @internal */
 export namespace V2MigrationInfo$ {
-    export type Inbound = {
-        date?: string | undefined;
-        name?: string | undefined;
-        state?: V2MigrationInfoState | undefined;
-        version?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2MigrationInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2MigrationInfo, z.ZodTypeDef, unknown> = z
         .object({
             date: z
                 .string()

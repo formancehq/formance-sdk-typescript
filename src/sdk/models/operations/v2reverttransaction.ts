@@ -45,14 +45,7 @@ export type V2RevertTransactionResponse = {
 
 /** @internal */
 export namespace V2RevertTransactionRequest$ {
-    export type Inbound = {
-        atEffectiveDate?: boolean | undefined;
-        force?: boolean | undefined;
-        id: number;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2RevertTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2RevertTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             atEffectiveDate: z.boolean().optional(),
             force: z.boolean().optional(),
@@ -98,14 +91,7 @@ export namespace V2RevertTransactionRequest$ {
 
 /** @internal */
 export namespace V2RevertTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2RevertTransactionResponse?: shared.V2RevertTransactionResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2RevertTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2RevertTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

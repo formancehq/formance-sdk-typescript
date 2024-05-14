@@ -19,15 +19,7 @@ export type V2ListTriggersResponse = {
 
 /** @internal */
 export namespace V2ListTriggersResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2Trigger$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTriggersResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTriggersResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(V2Trigger$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace V2ListTriggersResponseCursor$ {
 
 /** @internal */
 export namespace V2ListTriggersResponse$ {
-    export type Inbound = {
-        cursor: V2ListTriggersResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTriggersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTriggersResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => V2ListTriggersResponseCursor$.inboundSchema),
         })

@@ -52,15 +52,7 @@ export type V2ListLogsResponse = {
 
 /** @internal */
 export namespace V2ListLogsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListLogsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListLogsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             ledger: z.string(),
@@ -114,14 +106,7 @@ export namespace V2ListLogsRequest$ {
 
 /** @internal */
 export namespace V2ListLogsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2LogsCursorResponse?: shared.V2LogsCursorResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListLogsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListLogsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

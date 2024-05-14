@@ -33,11 +33,7 @@ export type V2GetInstanceHistoryResponse = {
 
 /** @internal */
 export namespace V2GetInstanceHistoryRequest$ {
-    export type Inbound = {
-        instanceID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetInstanceHistoryRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetInstanceHistoryRequest, z.ZodTypeDef, unknown> = z
         .object({
             instanceID: z.string(),
         })
@@ -64,16 +60,7 @@ export namespace V2GetInstanceHistoryRequest$ {
 
 /** @internal */
 export namespace V2GetInstanceHistoryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2GetWorkflowInstanceHistoryResponse?:
-            | shared.V2GetWorkflowInstanceHistoryResponse$.Inbound
-            | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetInstanceHistoryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetInstanceHistoryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

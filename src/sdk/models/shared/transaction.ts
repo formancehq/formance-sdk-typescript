@@ -18,17 +18,7 @@ export type Transaction = {
 
 /** @internal */
 export namespace Transaction$ {
-    export type Inbound = {
-        metadata?: Record<string, any> | null | undefined;
-        postCommitVolumes?: Record<string, Record<string, Volume$.Inbound>> | undefined;
-        postings: Array<Posting$.Inbound>;
-        preCommitVolumes?: Record<string, Record<string, Volume$.Inbound>> | undefined;
-        reference?: string | undefined;
-        timestamp: string;
-        txid: number;
-    };
-
-    export const inboundSchema: z.ZodType<Transaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Transaction, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.nullable(z.record(z.any())).optional(),
             postCommitVolumes: z.record(z.record(Volume$.inboundSchema)).optional(),

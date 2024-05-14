@@ -13,14 +13,7 @@ export type BalanceWithAssets = {
 
 /** @internal */
 export namespace BalanceWithAssets$ {
-    export type Inbound = {
-        assets: Record<string, number>;
-        expiresAt?: string | undefined;
-        name: string;
-        priority?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, unknown> = z
         .object({
             assets: z.record(z.number().transform((v) => BigInt(v))),
             expiresAt: z

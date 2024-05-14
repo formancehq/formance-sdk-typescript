@@ -20,15 +20,7 @@ export type MangoPayConfig = {
 
 /** @internal */
 export namespace MangoPayConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        clientID: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MangoPayConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MangoPayConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             clientID: z.string(),

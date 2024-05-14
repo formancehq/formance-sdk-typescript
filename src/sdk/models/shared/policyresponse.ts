@@ -11,11 +11,7 @@ export type PolicyResponse = {
 
 /** @internal */
 export namespace PolicyResponse$ {
-    export type Inbound = {
-        data: Policy$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<PolicyResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PolicyResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Policy$.inboundSchema,
         })

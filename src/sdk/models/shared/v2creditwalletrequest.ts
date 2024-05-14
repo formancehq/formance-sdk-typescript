@@ -23,16 +23,7 @@ export type V2CreditWalletRequest = {
 
 /** @internal */
 export namespace V2CreditWalletRequest$ {
-    export type Inbound = {
-        amount: V2Monetary$.Inbound;
-        balance?: string | undefined;
-        metadata: Record<string, string>;
-        reference?: string | undefined;
-        sources: Array<V2Subject$.Inbound>;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreditWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreditWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             amount: V2Monetary$.inboundSchema,
             balance: z.string().optional(),

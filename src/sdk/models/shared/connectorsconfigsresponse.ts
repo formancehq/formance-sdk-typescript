@@ -23,12 +23,7 @@ export type ConnectorsConfigsResponse = {
 
 /** @internal */
 export namespace Key$ {
-    export type Inbound = {
-        dataType: string;
-        required: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<Key, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Key, z.ZodTypeDef, unknown> = z
         .object({
             dataType: z.string(),
             required: z.boolean(),
@@ -60,14 +55,10 @@ export namespace Key$ {
 
 /** @internal */
 export namespace ConnectorsConfigsResponseConnector$ {
-    export type Inbound = {
-        key: Key$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         ConnectorsConfigsResponseConnector,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             key: z.lazy(() => Key$.inboundSchema),
@@ -99,11 +90,7 @@ export namespace ConnectorsConfigsResponseConnector$ {
 
 /** @internal */
 export namespace ConnectorsConfigsResponseData$ {
-    export type Inbound = {
-        connector: ConnectorsConfigsResponseConnector$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsConfigsResponseData, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsConfigsResponseData, z.ZodTypeDef, unknown> = z
         .object({
             connector: z.lazy(() => ConnectorsConfigsResponseConnector$.inboundSchema),
         })
@@ -131,11 +118,7 @@ export namespace ConnectorsConfigsResponseData$ {
 
 /** @internal */
 export namespace ConnectorsConfigsResponse$ {
-    export type Inbound = {
-        data: ConnectorsConfigsResponseData$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorsConfigsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorsConfigsResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.lazy(() => ConnectorsConfigsResponseData$.inboundSchema),
         })

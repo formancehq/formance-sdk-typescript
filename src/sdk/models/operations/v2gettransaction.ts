@@ -39,14 +39,7 @@ export type V2GetTransactionResponse = {
 
 /** @internal */
 export namespace V2GetTransactionRequest$ {
-    export type Inbound = {
-        expand?: string | undefined;
-        id: number;
-        ledger: string;
-        pit?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             expand: z.string().optional(),
             id: z.number().transform((v) => BigInt(v)),
@@ -95,14 +88,7 @@ export namespace V2GetTransactionRequest$ {
 
 /** @internal */
 export namespace V2GetTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2GetTransactionResponse?: shared.V2GetTransactionResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

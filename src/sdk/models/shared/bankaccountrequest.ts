@@ -16,17 +16,7 @@ export type BankAccountRequest = {
 
 /** @internal */
 export namespace BankAccountRequest$ {
-    export type Inbound = {
-        accountNumber?: string | undefined;
-        connectorID: string;
-        country: string;
-        iban?: string | undefined;
-        metadata?: Record<string, string> | null | undefined;
-        name: string;
-        swiftBicCode?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<BankAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BankAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountNumber: z.string().optional(),
             connectorID: z.string(),

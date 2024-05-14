@@ -36,15 +36,16 @@ export type TaskResponse = {
 
 /** @internal */
 export namespace TaskResponseData$ {
-    export type Inbound =
-        | TaskStripe$.Inbound
-        | TaskWise$.Inbound
-        | TaskCurrencyCloud$.Inbound
-        | TaskDummyPay$.Inbound
-        | TaskModulr$.Inbound
-        | TaskBankingCircle$.Inbound
-        | TaskMangoPay$.Inbound
-        | TaskMoneycorp$.Inbound;
+    export const inboundSchema: z.ZodType<TaskResponseData, z.ZodTypeDef, unknown> = z.union([
+        TaskStripe$.inboundSchema,
+        TaskWise$.inboundSchema,
+        TaskCurrencyCloud$.inboundSchema,
+        TaskDummyPay$.inboundSchema,
+        TaskModulr$.inboundSchema,
+        TaskBankingCircle$.inboundSchema,
+        TaskMangoPay$.inboundSchema,
+        TaskMoneycorp$.inboundSchema,
+    ]);
 
     export type Outbound =
         | TaskStripe$.Outbound
@@ -55,16 +56,6 @@ export namespace TaskResponseData$ {
         | TaskBankingCircle$.Outbound
         | TaskMangoPay$.Outbound
         | TaskMoneycorp$.Outbound;
-    export const inboundSchema: z.ZodType<TaskResponseData, z.ZodTypeDef, Inbound> = z.union([
-        TaskStripe$.inboundSchema,
-        TaskWise$.inboundSchema,
-        TaskCurrencyCloud$.inboundSchema,
-        TaskDummyPay$.inboundSchema,
-        TaskModulr$.inboundSchema,
-        TaskBankingCircle$.inboundSchema,
-        TaskMangoPay$.inboundSchema,
-        TaskMoneycorp$.inboundSchema,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskResponseData> = z.union([
         TaskStripe$.outboundSchema,
         TaskWise$.outboundSchema,
@@ -79,19 +70,7 @@ export namespace TaskResponseData$ {
 
 /** @internal */
 export namespace TaskResponse$ {
-    export type Inbound = {
-        data:
-            | TaskStripe$.Inbound
-            | TaskWise$.Inbound
-            | TaskCurrencyCloud$.Inbound
-            | TaskDummyPay$.Inbound
-            | TaskModulr$.Inbound
-            | TaskBankingCircle$.Inbound
-            | TaskMangoPay$.Inbound
-            | TaskMoneycorp$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<TaskResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.union([
                 TaskStripe$.inboundSchema,

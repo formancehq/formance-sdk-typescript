@@ -16,14 +16,7 @@ export type Script = {
 
 /** @internal */
 export namespace Script$ {
-    export type Inbound = {
-        metadata?: Record<string, any> | null | undefined;
-        plain: string;
-        reference?: string | undefined;
-        vars?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Script, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Script, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.nullable(z.record(z.any())).optional(),
             plain: z.string(),

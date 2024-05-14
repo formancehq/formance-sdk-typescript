@@ -11,12 +11,7 @@ export type V2StageDelay = {
 
 /** @internal */
 export namespace V2StageDelay$ {
-    export type Inbound = {
-        duration?: string | undefined;
-        until?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageDelay, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageDelay, z.ZodTypeDef, unknown> = z
         .object({
             duration: z.string().optional(),
             until: z

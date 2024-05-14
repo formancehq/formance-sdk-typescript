@@ -50,12 +50,7 @@ export const SchemasErrorCode$: z.ZodNativeEnum<typeof SchemasErrorCode> =
 
 /** @internal */
 export namespace V2Error$ {
-    export type Inbound = {
-        errorCode: SchemasErrorCode;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2Error, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Error, z.ZodTypeDef, unknown> = z
         .object({
             errorCode: SchemasErrorCode$,
             errorMessage: z.string(),

@@ -37,13 +37,7 @@ export type CountAccountsResponse = {
 
 /** @internal */
 export namespace CountAccountsRequest$ {
-    export type Inbound = {
-        address?: string | undefined;
-        ledger: string;
-        metadata?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CountAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CountAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string().optional(),
             ledger: z.string(),
@@ -80,14 +74,7 @@ export namespace CountAccountsRequest$ {
 
 /** @internal */
 export namespace CountAccountsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CountAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CountAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             Headers: z.record(z.array(z.string())),

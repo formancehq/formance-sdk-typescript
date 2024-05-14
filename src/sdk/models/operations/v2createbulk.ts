@@ -34,12 +34,7 @@ export type V2CreateBulkResponse = {
 
 /** @internal */
 export namespace V2CreateBulkRequest$ {
-    export type Inbound = {
-        RequestBody?: Array<shared.V2BulkElement$.Inbound> | undefined;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateBulkRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateBulkRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.array(shared.V2BulkElement$.inboundSchema).optional(),
             ledger: z.string(),
@@ -71,14 +66,7 @@ export namespace V2CreateBulkRequest$ {
 
 /** @internal */
 export namespace V2CreateBulkResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2BulkResponse?: shared.V2BulkResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateBulkResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateBulkResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

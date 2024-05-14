@@ -43,16 +43,17 @@ export class Auth extends ClientSDK {
      * Create client
      */
     async createClient(
-        input: shared.CreateClientRequest | undefined,
+        request?: shared.CreateClientRequest | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateClientResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.CreateClientRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -79,7 +80,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -92,7 +93,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -128,16 +129,17 @@ export class Auth extends ClientSDK {
      * Add a secret to a client
      */
     async createSecret(
-        input: operations.CreateSecretRequest,
+        request: operations.CreateSecretRequest,
         options?: RequestOptions
     ): Promise<operations.CreateSecretResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CreateSecretRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -171,7 +173,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -184,7 +186,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -220,15 +222,16 @@ export class Auth extends ClientSDK {
      * Delete client
      */
     async deleteClient(
-        input: operations.DeleteClientRequest,
+        request: operations.DeleteClientRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteClientResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeleteClientRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -260,7 +263,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -273,7 +276,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -304,15 +307,16 @@ export class Auth extends ClientSDK {
      * Delete a secret from a client
      */
     async deleteSecret(
-        input: operations.DeleteSecretRequest,
+        request: operations.DeleteSecretRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteSecretResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeleteSecretRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -350,7 +354,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -363,7 +367,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -418,7 +422,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -430,7 +434,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -493,7 +497,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -505,7 +509,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -541,15 +545,16 @@ export class Auth extends ClientSDK {
      * Read client
      */
     async readClient(
-        input: operations.ReadClientRequest,
+        request: operations.ReadClientRequest,
         options?: RequestOptions
     ): Promise<operations.ReadClientResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ReadClientRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -581,7 +586,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -594,7 +599,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -633,15 +638,16 @@ export class Auth extends ClientSDK {
      * Read user
      */
     async readUser(
-        input: operations.ReadUserRequest,
+        request: operations.ReadUserRequest,
         options?: RequestOptions
     ): Promise<operations.ReadUserResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ReadUserRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -673,7 +679,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -686,7 +692,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -722,16 +728,17 @@ export class Auth extends ClientSDK {
      * Update client
      */
     async updateClient(
-        input: operations.UpdateClientRequest,
+        request: operations.UpdateClientRequest,
         options?: RequestOptions
     ): Promise<operations.UpdateClientResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.UpdateClientRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -763,7 +770,7 @@ export class Auth extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -776,7 +783,7 @@ export class Auth extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

@@ -26,13 +26,7 @@ export type TaskMangoPay = {
 
 /** @internal */
 export namespace TaskMangoPayDescriptor$ {
-    export type Inbound = {
-        key?: string | undefined;
-        name?: string | undefined;
-        userID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskMangoPayDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskMangoPayDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             name: z.string().optional(),
@@ -69,9 +63,7 @@ export namespace TaskMangoPayDescriptor$ {
 
 /** @internal */
 export namespace TaskMangoPayState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskMangoPayState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskMangoPayState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -82,18 +74,7 @@ export namespace TaskMangoPayState$ {
 
 /** @internal */
 export namespace TaskMangoPay$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskMangoPayDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskMangoPayState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskMangoPay, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskMangoPay, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

@@ -12,12 +12,7 @@ export type V2ActivityDebitWallet = {
 
 /** @internal */
 export namespace V2ActivityDebitWallet$ {
-    export type Inbound = {
-        data?: V2DebitWalletRequest$.Inbound | undefined;
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityDebitWallet, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityDebitWallet, z.ZodTypeDef, unknown> = z
         .object({
             data: V2DebitWalletRequest$.inboundSchema.optional(),
             id: z.string().optional(),

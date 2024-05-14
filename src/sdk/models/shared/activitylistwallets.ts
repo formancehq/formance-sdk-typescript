@@ -10,11 +10,7 @@ export type ActivityListWallets = {
 
 /** @internal */
 export namespace ActivityListWallets$ {
-    export type Inbound = {
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityListWallets, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivityListWallets, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
         })

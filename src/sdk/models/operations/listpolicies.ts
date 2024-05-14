@@ -46,12 +46,7 @@ export type ListPoliciesResponse = {
 
 /** @internal */
 export namespace ListPoliciesRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListPoliciesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPoliciesRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().optional(),
@@ -83,14 +78,7 @@ export namespace ListPoliciesRequest$ {
 
 /** @internal */
 export namespace ListPoliciesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PoliciesCursorResponse?: shared.PoliciesCursorResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListPoliciesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPoliciesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PoliciesCursorResponse: shared.PoliciesCursorResponse$.inboundSchema.optional(),

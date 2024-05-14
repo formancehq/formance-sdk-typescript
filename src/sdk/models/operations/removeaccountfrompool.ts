@@ -32,12 +32,7 @@ export type RemoveAccountFromPoolResponse = {
 
 /** @internal */
 export namespace RemoveAccountFromPoolRequest$ {
-    export type Inbound = {
-        accountId: string;
-        poolId: string;
-    };
-
-    export const inboundSchema: z.ZodType<RemoveAccountFromPoolRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RemoveAccountFromPoolRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountId: z.string(),
             poolId: z.string(),
@@ -69,13 +64,7 @@ export namespace RemoveAccountFromPoolRequest$ {
 
 /** @internal */
 export namespace RemoveAccountFromPoolResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<RemoveAccountFromPoolResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RemoveAccountFromPoolResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

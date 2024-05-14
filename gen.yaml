@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 2.3.3
+  version: 2.4.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -32,6 +32,7 @@ typescript:
       webhooks: sdk/models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: '@formance/formance-sdk'
   responseFormat: envelope

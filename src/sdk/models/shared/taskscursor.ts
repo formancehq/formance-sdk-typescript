@@ -45,15 +45,16 @@ export type TasksCursor = {
 
 /** @internal */
 export namespace TasksCursorData$ {
-    export type Inbound =
-        | TaskStripe$.Inbound
-        | TaskWise$.Inbound
-        | TaskCurrencyCloud$.Inbound
-        | TaskDummyPay$.Inbound
-        | TaskModulr$.Inbound
-        | TaskBankingCircle$.Inbound
-        | TaskMangoPay$.Inbound
-        | TaskMoneycorp$.Inbound;
+    export const inboundSchema: z.ZodType<TasksCursorData, z.ZodTypeDef, unknown> = z.union([
+        TaskStripe$.inboundSchema,
+        TaskWise$.inboundSchema,
+        TaskCurrencyCloud$.inboundSchema,
+        TaskDummyPay$.inboundSchema,
+        TaskModulr$.inboundSchema,
+        TaskBankingCircle$.inboundSchema,
+        TaskMangoPay$.inboundSchema,
+        TaskMoneycorp$.inboundSchema,
+    ]);
 
     export type Outbound =
         | TaskStripe$.Outbound
@@ -64,16 +65,6 @@ export namespace TasksCursorData$ {
         | TaskBankingCircle$.Outbound
         | TaskMangoPay$.Outbound
         | TaskMoneycorp$.Outbound;
-    export const inboundSchema: z.ZodType<TasksCursorData, z.ZodTypeDef, Inbound> = z.union([
-        TaskStripe$.inboundSchema,
-        TaskWise$.inboundSchema,
-        TaskCurrencyCloud$.inboundSchema,
-        TaskDummyPay$.inboundSchema,
-        TaskModulr$.inboundSchema,
-        TaskBankingCircle$.inboundSchema,
-        TaskMangoPay$.inboundSchema,
-        TaskMoneycorp$.inboundSchema,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursorData> = z.union([
         TaskStripe$.outboundSchema,
         TaskWise$.outboundSchema,
@@ -88,24 +79,7 @@ export namespace TasksCursorData$ {
 
 /** @internal */
 export namespace TasksCursorCursor$ {
-    export type Inbound = {
-        data: Array<
-            | TaskStripe$.Inbound
-            | TaskWise$.Inbound
-            | TaskCurrencyCloud$.Inbound
-            | TaskDummyPay$.Inbound
-            | TaskModulr$.Inbound
-            | TaskBankingCircle$.Inbound
-            | TaskMangoPay$.Inbound
-            | TaskMoneycorp$.Inbound
-        >;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TasksCursorCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TasksCursorCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(
                 z.union([
@@ -183,11 +157,7 @@ export namespace TasksCursorCursor$ {
 
 /** @internal */
 export namespace TasksCursor$ {
-    export type Inbound = {
-        cursor: TasksCursorCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<TasksCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TasksCursor, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => TasksCursorCursor$.inboundSchema),
         })

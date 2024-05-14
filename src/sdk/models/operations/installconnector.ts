@@ -34,12 +34,7 @@ export type InstallConnectorResponse = {
 
 /** @internal */
 export namespace InstallConnectorRequest$ {
-    export type Inbound = {
-        ConnectorConfig: shared.ConnectorConfig$.Inbound;
-        connector: shared.Connector;
-    };
-
-    export const inboundSchema: z.ZodType<InstallConnectorRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InstallConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
             connector: shared.Connector$,
@@ -71,14 +66,7 @@ export namespace InstallConnectorRequest$ {
 
 /** @internal */
 export namespace InstallConnectorResponse$ {
-    export type Inbound = {
-        ConnectorResponse?: shared.ConnectorResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<InstallConnectorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InstallConnectorResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorResponse: shared.ConnectorResponse$.inboundSchema.optional(),
             ContentType: z.string(),

@@ -36,13 +36,7 @@ export type AddMetadataOnTransactionResponse = {
 
 /** @internal */
 export namespace AddMetadataOnTransactionRequest$ {
-    export type Inbound = {
-        RequestBody?: Record<string, any> | null | undefined;
-        ledger: string;
-        txid: number;
-    };
-
-    export const inboundSchema: z.ZodType<AddMetadataOnTransactionRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<AddMetadataOnTransactionRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 RequestBody: z.nullable(z.record(z.any())).optional(),
@@ -84,13 +78,7 @@ export namespace AddMetadataOnTransactionRequest$ {
 
 /** @internal */
 export namespace AddMetadataOnTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<AddMetadataOnTransactionResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<AddMetadataOnTransactionResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

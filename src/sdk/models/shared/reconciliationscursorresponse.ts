@@ -19,18 +19,10 @@ export type ReconciliationsCursorResponse = {
 
 /** @internal */
 export namespace ReconciliationsCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<Reconciliation$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         ReconciliationsCursorResponseCursor,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(Reconciliation$.inboundSchema),
@@ -82,11 +74,7 @@ export namespace ReconciliationsCursorResponseCursor$ {
 
 /** @internal */
 export namespace ReconciliationsCursorResponse$ {
-    export type Inbound = {
-        cursor: ReconciliationsCursorResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ReconciliationsCursorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReconciliationsCursorResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => ReconciliationsCursorResponseCursor$.inboundSchema),
         })

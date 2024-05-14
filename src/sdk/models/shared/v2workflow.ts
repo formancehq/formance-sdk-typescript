@@ -14,14 +14,7 @@ export type V2Workflow = {
 
 /** @internal */
 export namespace V2Workflow$ {
-    export type Inbound = {
-        config: V2WorkflowConfig$.Inbound;
-        createdAt: string;
-        id: string;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2Workflow, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Workflow, z.ZodTypeDef, unknown> = z
         .object({
             config: V2WorkflowConfig$.inboundSchema,
             createdAt: z

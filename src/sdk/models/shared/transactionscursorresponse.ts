@@ -19,15 +19,7 @@ export type TransactionsCursorResponse = {
 
 /** @internal */
 export namespace TransactionsCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<Transaction$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionsCursorResponseCursor, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<TransactionsCursorResponseCursor, z.ZodTypeDef, unknown> =
         z
             .object({
                 data: z.array(Transaction$.inboundSchema),
@@ -79,11 +71,7 @@ export namespace TransactionsCursorResponseCursor$ {
 
 /** @internal */
 export namespace TransactionsCursorResponse$ {
-    export type Inbound = {
-        cursor: TransactionsCursorResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionsCursorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransactionsCursorResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => TransactionsCursorResponseCursor$.inboundSchema),
         })

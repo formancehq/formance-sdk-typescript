@@ -39,14 +39,7 @@ export type V2BulkElementResult =
 
 /** @internal */
 export namespace V2BulkElementResultErrorSchemas$ {
-    export type Inbound = {
-        errorCode: string;
-        errorDescription: string;
-        errorDetails?: string | undefined;
-        responseType: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementResultErrorSchemas, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2BulkElementResultErrorSchemas, z.ZodTypeDef, unknown> =
         z
             .object({
                 errorCode: z.string(),
@@ -93,14 +86,10 @@ export namespace V2BulkElementResultErrorSchemas$ {
 
 /** @internal */
 export namespace V2BulkElementResultDeleteMetadataSchemas$ {
-    export type Inbound = {
-        responseType: string;
-    };
-
     export const inboundSchema: z.ZodType<
         V2BulkElementResultDeleteMetadataSchemas,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             responseType: z.string(),
@@ -132,15 +121,10 @@ export namespace V2BulkElementResultDeleteMetadataSchemas$ {
 
 /** @internal */
 export namespace V2BulkElementResultRevertTransactionSchemas$ {
-    export type Inbound = {
-        data: V2Transaction$.Inbound;
-        responseType: string;
-    };
-
     export const inboundSchema: z.ZodType<
         V2BulkElementResultRevertTransactionSchemas,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: V2Transaction$.inboundSchema,
@@ -177,11 +161,7 @@ export namespace V2BulkElementResultRevertTransactionSchemas$ {
 
 /** @internal */
 export namespace Schemas$ {
-    export type Inbound = {
-        responseType: string;
-    };
-
-    export const inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> = z
         .object({
             responseType: z.string(),
         })
@@ -208,15 +188,10 @@ export namespace Schemas$ {
 
 /** @internal */
 export namespace V2BulkElementResultCreateTransactionSchemas$ {
-    export type Inbound = {
-        data: V2Transaction$.Inbound;
-        responseType: string;
-    };
-
     export const inboundSchema: z.ZodType<
         V2BulkElementResultCreateTransactionSchemas,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: V2Transaction$.inboundSchema,
@@ -253,28 +228,7 @@ export namespace V2BulkElementResultCreateTransactionSchemas$ {
 
 /** @internal */
 export namespace V2BulkElementResult$ {
-    export type Inbound =
-        | (Schemas$.Inbound & { responseType: "ADD_METADATA" })
-        | (V2BulkElementResultDeleteMetadataSchemas$.Inbound & { responseType: "DELETE_METADATA" })
-        | (V2BulkElementResultCreateTransactionSchemas$.Inbound & {
-              responseType: "CREATE_TRANSACTION";
-          })
-        | (V2BulkElementResultRevertTransactionSchemas$.Inbound & {
-              responseType: "REVERT_TRANSACTION";
-          })
-        | (V2BulkElementResultErrorSchemas$.Inbound & { responseType: "ERROR" });
-
-    export type Outbound =
-        | (Schemas$.Outbound & { responseType: "ADD_METADATA" })
-        | (V2BulkElementResultDeleteMetadataSchemas$.Outbound & { responseType: "DELETE_METADATA" })
-        | (V2BulkElementResultCreateTransactionSchemas$.Outbound & {
-              responseType: "CREATE_TRANSACTION";
-          })
-        | (V2BulkElementResultRevertTransactionSchemas$.Outbound & {
-              responseType: "REVERT_TRANSACTION";
-          })
-        | (V2BulkElementResultErrorSchemas$.Outbound & { responseType: "ERROR" });
-    export const inboundSchema: z.ZodType<V2BulkElementResult, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<V2BulkElementResult, z.ZodTypeDef, unknown> = z.union([
         z
             .lazy(() => Schemas$.inboundSchema)
             .and(
@@ -311,6 +265,17 @@ export namespace V2BulkElementResult$ {
                     .transform((v) => ({ responseType: v.responseType }))
             ),
     ]);
+
+    export type Outbound =
+        | (Schemas$.Outbound & { responseType: "ADD_METADATA" })
+        | (V2BulkElementResultDeleteMetadataSchemas$.Outbound & { responseType: "DELETE_METADATA" })
+        | (V2BulkElementResultCreateTransactionSchemas$.Outbound & {
+              responseType: "CREATE_TRANSACTION";
+          })
+        | (V2BulkElementResultRevertTransactionSchemas$.Outbound & {
+              responseType: "REVERT_TRANSACTION";
+          })
+        | (V2BulkElementResultErrorSchemas$.Outbound & { responseType: "ERROR" });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElementResult> = z.union([
         z
             .lazy(() => Schemas$.outboundSchema)

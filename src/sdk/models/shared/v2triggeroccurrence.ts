@@ -16,16 +16,7 @@ export type V2TriggerOccurrence = {
 
 /** @internal */
 export namespace V2TriggerOccurrence$ {
-    export type Inbound = {
-        date: string;
-        error?: string | undefined;
-        event: Record<string, any>;
-        triggerID: string;
-        workflowInstance?: V2WorkflowInstance$.Inbound | undefined;
-        workflowInstanceID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2TriggerOccurrence, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2TriggerOccurrence, z.ZodTypeDef, unknown> = z
         .object({
             date: z
                 .string()

@@ -30,12 +30,7 @@ export type ReverseTransferInitiationResponse = {
 
 /** @internal */
 export namespace ReverseTransferInitiationRequest$ {
-    export type Inbound = {
-        ReverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest$.Inbound;
-        transferId: string;
-    };
-
-    export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 ReverseTransferInitiationRequest:
@@ -74,16 +69,10 @@ export namespace ReverseTransferInitiationRequest$ {
 
 /** @internal */
 export namespace ReverseTransferInitiationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         ReverseTransferInitiationResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

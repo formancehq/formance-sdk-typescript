@@ -49,12 +49,7 @@ export const ErrorCode$: z.ZodNativeEnum<typeof ErrorCode> = z.nativeEnum(ErrorC
 
 /** @internal */
 export namespace ErrorT$ {
-    export type Inbound = {
-        errorCode: ErrorCode;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
         .object({
             errorCode: ErrorCode$,
             errorMessage: z.string(),

@@ -28,11 +28,7 @@ export type DeleteWorkflowResponse = {
 
 /** @internal */
 export namespace DeleteWorkflowRequest$ {
-    export type Inbound = {
-        flowId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             flowId: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace DeleteWorkflowRequest$ {
 
 /** @internal */
 export namespace DeleteWorkflowResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

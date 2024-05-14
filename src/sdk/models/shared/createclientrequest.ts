@@ -17,18 +17,7 @@ export type CreateClientRequest = {
 
 /** @internal */
 export namespace CreateClientRequest$ {
-    export type Inbound = {
-        description?: string | undefined;
-        metadata?: Record<string, any> | undefined;
-        name: string;
-        postLogoutRedirectUris?: Array<string> | undefined;
-        public?: boolean | undefined;
-        redirectUris?: Array<string> | undefined;
-        scopes?: Array<string> | undefined;
-        trusted?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateClientRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateClientRequest, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string().optional(),
             metadata: z.record(z.any()).optional(),

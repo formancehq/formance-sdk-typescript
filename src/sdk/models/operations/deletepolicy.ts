@@ -28,11 +28,7 @@ export type DeletePolicyResponse = {
 
 /** @internal */
 export namespace DeletePolicyRequest$ {
-    export type Inbound = {
-        policyID: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePolicyRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePolicyRequest, z.ZodTypeDef, unknown> = z
         .object({
             policyID: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace DeletePolicyRequest$ {
 
 /** @internal */
 export namespace DeletePolicyResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeletePolicyResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeletePolicyResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

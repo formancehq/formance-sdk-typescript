@@ -37,12 +37,7 @@ export type GetManyConfigsResponse = {
 
 /** @internal */
 export namespace GetManyConfigsRequest$ {
-    export type Inbound = {
-        endpoint?: string | undefined;
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetManyConfigsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetManyConfigsRequest, z.ZodTypeDef, unknown> = z
         .object({
             endpoint: z.string().optional(),
             id: z.string().optional(),
@@ -74,14 +69,7 @@ export namespace GetManyConfigsRequest$ {
 
 /** @internal */
 export namespace GetManyConfigsResponse$ {
-    export type Inbound = {
-        ConfigsResponse?: shared.ConfigsResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetManyConfigsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetManyConfigsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConfigsResponse: shared.ConfigsResponse$.inboundSchema.optional(),
             ContentType: z.string(),

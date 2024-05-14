@@ -12,12 +12,7 @@ export type ActivityCreditWallet = {
 
 /** @internal */
 export namespace ActivityCreditWallet$ {
-    export type Inbound = {
-        data?: CreditWalletRequest$.Inbound | undefined;
-        id?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityCreditWallet, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivityCreditWallet, z.ZodTypeDef, unknown> = z
         .object({
             data: CreditWalletRequest$.inboundSchema.optional(),
             id: z.string().optional(),

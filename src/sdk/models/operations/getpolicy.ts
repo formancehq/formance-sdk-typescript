@@ -33,11 +33,7 @@ export type GetPolicyResponse = {
 
 /** @internal */
 export namespace GetPolicyRequest$ {
-    export type Inbound = {
-        policyID: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetPolicyRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPolicyRequest, z.ZodTypeDef, unknown> = z
         .object({
             policyID: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetPolicyRequest$ {
 
 /** @internal */
 export namespace GetPolicyResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PolicyResponse?: shared.PolicyResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetPolicyResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPolicyResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PolicyResponse: shared.PolicyResponse$.inboundSchema.optional(),

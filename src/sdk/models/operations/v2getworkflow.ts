@@ -33,11 +33,7 @@ export type V2GetWorkflowResponse = {
 
 /** @internal */
 export namespace V2GetWorkflowRequest$ {
-    export type Inbound = {
-        flowId: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             flowId: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace V2GetWorkflowRequest$ {
 
 /** @internal */
 export namespace V2GetWorkflowResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2GetWorkflowResponse?: shared.V2GetWorkflowResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

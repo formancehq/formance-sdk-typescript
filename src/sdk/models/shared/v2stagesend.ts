@@ -17,15 +17,7 @@ export type V2StageSend = {
 
 /** @internal */
 export namespace V2StageSend$ {
-    export type Inbound = {
-        amount?: V2Monetary$.Inbound | undefined;
-        destination?: V2StageSendDestination$.Inbound | undefined;
-        metadata?: Record<string, string> | undefined;
-        source?: V2StageSendSource$.Inbound | undefined;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageSend, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageSend, z.ZodTypeDef, unknown> = z
         .object({
             amount: V2Monetary$.inboundSchema.optional(),
             destination: V2StageSendDestination$.inboundSchema.optional(),

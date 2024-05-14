@@ -13,14 +13,7 @@ export type ClientSecret = {
 
 /** @internal */
 export namespace ClientSecret$ {
-    export type Inbound = {
-        id: string;
-        lastDigits: string;
-        metadata?: Record<string, any> | undefined;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<ClientSecret, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ClientSecret, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
             lastDigits: z.string(),

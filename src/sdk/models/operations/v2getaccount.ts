@@ -45,14 +45,7 @@ export type V2GetAccountResponse = {
 
 /** @internal */
 export namespace V2GetAccountRequest$ {
-    export type Inbound = {
-        address: string;
-        expand?: string | undefined;
-        ledger: string;
-        pit?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             expand: z.string().optional(),
@@ -101,14 +94,7 @@ export namespace V2GetAccountRequest$ {
 
 /** @internal */
 export namespace V2GetAccountResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2AccountResponse?: shared.V2AccountResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

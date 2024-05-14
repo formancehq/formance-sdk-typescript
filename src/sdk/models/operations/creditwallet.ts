@@ -27,12 +27,7 @@ export type CreditWalletResponse = {
 
 /** @internal */
 export namespace CreditWalletRequest$ {
-    export type Inbound = {
-        CreditWalletRequest?: shared.CreditWalletRequest$.Inbound | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<CreditWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreditWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             CreditWalletRequest: shared.CreditWalletRequest$.inboundSchema.optional(),
             id: z.string(),
@@ -68,13 +63,7 @@ export namespace CreditWalletRequest$ {
 
 /** @internal */
 export namespace CreditWalletResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreditWalletResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreditWalletResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

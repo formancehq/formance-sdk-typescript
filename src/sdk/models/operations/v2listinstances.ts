@@ -54,14 +54,7 @@ export type V2ListInstancesResponse = {
 
 /** @internal */
 export namespace V2ListInstancesRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        running?: boolean | undefined;
-        workflowID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListInstancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListInstancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().optional(),
@@ -103,14 +96,7 @@ export namespace V2ListInstancesRequest$ {
 
 /** @internal */
 export namespace V2ListInstancesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2ListRunsResponse?: shared.V2ListRunsResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListInstancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListInstancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

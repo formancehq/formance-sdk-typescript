@@ -32,9 +32,7 @@ export type Payment = {
 
 /** @internal */
 export namespace Raw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<Raw, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<Raw, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -43,26 +41,7 @@ export namespace Raw$ {
 
 /** @internal */
 export namespace Payment$ {
-    export type Inbound = {
-        adjustments: Array<PaymentAdjustment$.Inbound>;
-        amount: number;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        destinationAccountID: string;
-        id: string;
-        initialAmount: number;
-        metadata: Record<string, string> | null;
-        provider?: Connector | undefined;
-        raw: Raw$.Inbound | null;
-        reference: string;
-        scheme: PaymentScheme;
-        sourceAccountID: string;
-        status: PaymentStatus;
-        type: PaymentType;
-    };
-
-    export const inboundSchema: z.ZodType<Payment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> = z
         .object({
             adjustments: z.array(PaymentAdjustment$.inboundSchema),
             amount: z.number().transform((v) => BigInt(v)),

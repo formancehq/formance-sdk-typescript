@@ -16,11 +16,7 @@ export type LedgerInfo = {
 
 /** @internal */
 export namespace Storage$ {
-    export type Inbound = {
-        migrations?: Array<MigrationInfo$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Storage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Storage, z.ZodTypeDef, unknown> = z
         .object({
             migrations: z.array(MigrationInfo$.inboundSchema).optional(),
         })
@@ -47,12 +43,7 @@ export namespace Storage$ {
 
 /** @internal */
 export namespace LedgerInfo$ {
-    export type Inbound = {
-        name?: string | undefined;
-        storage?: Storage$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LedgerInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LedgerInfo, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             storage: z.lazy(() => Storage$.inboundSchema).optional(),

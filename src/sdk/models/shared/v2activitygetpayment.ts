@@ -10,11 +10,7 @@ export type V2ActivityGetPayment = {
 
 /** @internal */
 export namespace V2ActivityGetPayment$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityGetPayment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityGetPayment, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })

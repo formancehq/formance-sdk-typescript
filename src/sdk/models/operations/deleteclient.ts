@@ -28,11 +28,7 @@ export type DeleteClientResponse = {
 
 /** @internal */
 export namespace DeleteClientRequest$ {
-    export type Inbound = {
-        clientId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteClientRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteClientRequest, z.ZodTypeDef, unknown> = z
         .object({
             clientId: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace DeleteClientRequest$ {
 
 /** @internal */
 export namespace DeleteClientResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteClientResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteClientResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

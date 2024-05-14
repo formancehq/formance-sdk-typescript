@@ -28,12 +28,7 @@ export type Response = {
 
 /** @internal */
 export namespace Total$ {
-    export type Inbound = {
-        relation?: string | undefined;
-        value?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Total, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Total, z.ZodTypeDef, unknown> = z
         .object({
             relation: z.string().optional(),
             value: z.number().int().optional(),
@@ -65,16 +60,7 @@ export namespace Total$ {
 
 /** @internal */
 export namespace ResponseCursor$ {
-    export type Inbound = {
-        data?: Array<Record<string, any>> | undefined;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize?: number | undefined;
-        previous?: string | undefined;
-        total?: Total$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(z.record(z.any())).optional(),
             hasMore: z.boolean().optional(),
@@ -126,12 +112,7 @@ export namespace ResponseCursor$ {
 
 /** @internal */
 export namespace Response$ {
-    export type Inbound = {
-        cursor?: ResponseCursor$.Inbound | undefined;
-        data?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Response, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Response, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => ResponseCursor$.inboundSchema).optional(),
             data: z.record(z.any()).optional(),

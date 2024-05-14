@@ -34,12 +34,7 @@ export type CreateSecretResponse = {
 
 /** @internal */
 export namespace CreateSecretRequest$ {
-    export type Inbound = {
-        CreateSecretRequest?: shared.CreateSecretRequest$.Inbound | undefined;
-        clientId: string;
-    };
-
-    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, unknown> = z
         .object({
             CreateSecretRequest: shared.CreateSecretRequest$.inboundSchema.optional(),
             clientId: z.string(),
@@ -75,14 +70,7 @@ export namespace CreateSecretRequest$ {
 
 /** @internal */
 export namespace CreateSecretResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        CreateSecretResponse?: shared.CreateSecretResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             CreateSecretResponse: shared.CreateSecretResponse$.inboundSchema.optional(),

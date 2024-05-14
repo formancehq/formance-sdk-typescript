@@ -27,17 +27,7 @@ export type DebitWalletRequest = {
 
 /** @internal */
 export namespace DebitWalletRequest$ {
-    export type Inbound = {
-        amount: Monetary$.Inbound;
-        balances?: Array<string> | undefined;
-        description?: string | undefined;
-        destination?: Subject$.Inbound | undefined;
-        metadata: Record<string, string>;
-        pending?: boolean | undefined;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DebitWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DebitWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             amount: Monetary$.inboundSchema,
             balances: z.array(z.string()).optional(),

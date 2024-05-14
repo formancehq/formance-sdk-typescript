@@ -12,13 +12,7 @@ export type Account = {
 
 /** @internal */
 export namespace Account$ {
-    export type Inbound = {
-        address: string;
-        metadata?: Record<string, any> | undefined;
-        type?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             metadata: z.record(z.any()).optional(),

@@ -33,11 +33,7 @@ export type V2ReadStatsResponse = {
 
 /** @internal */
 export namespace V2ReadStatsRequest$ {
-    export type Inbound = {
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ReadStatsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ReadStatsRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace V2ReadStatsRequest$ {
 
 /** @internal */
 export namespace V2ReadStatsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2StatsResponse?: shared.V2StatsResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ReadStatsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ReadStatsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -30,12 +30,7 @@ export type V2CreateLedgerResponse = {
 
 /** @internal */
 export namespace V2CreateLedgerRequest$ {
-    export type Inbound = {
-        V2CreateLedgerRequest?: shared.V2CreateLedgerRequest$.Inbound | undefined;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z
         .object({
             V2CreateLedgerRequest: shared.V2CreateLedgerRequest$.inboundSchema.optional(),
             ledger: z.string(),
@@ -71,13 +66,7 @@ export namespace V2CreateLedgerRequest$ {
 
 /** @internal */
 export namespace V2CreateLedgerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateLedgerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateLedgerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

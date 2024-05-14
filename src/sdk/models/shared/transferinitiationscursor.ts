@@ -19,15 +19,7 @@ export type TransferInitiationsCursor = {
 
 /** @internal */
 export namespace TransferInitiationsCursorCursor$ {
-    export type Inbound = {
-        data: Array<TransferInitiation$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransferInitiationsCursorCursor, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<TransferInitiationsCursorCursor, z.ZodTypeDef, unknown> =
         z
             .object({
                 data: z.array(TransferInitiation$.inboundSchema),
@@ -79,11 +71,7 @@ export namespace TransferInitiationsCursorCursor$ {
 
 /** @internal */
 export namespace TransferInitiationsCursor$ {
-    export type Inbound = {
-        cursor: TransferInitiationsCursorCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<TransferInitiationsCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferInitiationsCursor, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => TransferInitiationsCursorCursor$.inboundSchema),
         })

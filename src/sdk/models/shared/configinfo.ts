@@ -13,13 +13,7 @@ export type ConfigInfo = {
 
 /** @internal */
 export namespace ConfigInfo$ {
-    export type Inbound = {
-        config: Config$.Inbound;
-        server: string;
-        version: string;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigInfo, z.ZodTypeDef, unknown> = z
         .object({
             config: Config$.inboundSchema,
             server: z.string(),

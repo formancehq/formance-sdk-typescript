@@ -16,16 +16,7 @@ export type V2Transaction = {
 
 /** @internal */
 export namespace V2Transaction$ {
-    export type Inbound = {
-        id: number;
-        metadata: Record<string, string>;
-        postings: Array<V2Posting$.Inbound>;
-        reference?: string | undefined;
-        reverted: boolean;
-        timestamp: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2Transaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Transaction, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),

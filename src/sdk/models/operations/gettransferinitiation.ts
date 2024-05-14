@@ -33,11 +33,7 @@ export type GetTransferInitiationResponse = {
 
 /** @internal */
 export namespace GetTransferInitiationRequest$ {
-    export type Inbound = {
-        transferId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransferInitiationRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransferInitiationRequest, z.ZodTypeDef, unknown> = z
         .object({
             transferId: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetTransferInitiationRequest$ {
 
 /** @internal */
 export namespace GetTransferInitiationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransferInitiationResponse?: shared.TransferInitiationResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransferInitiationResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransferInitiationResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -26,14 +26,7 @@ export type ListWorkflowsResponse = {
 
 /** @internal */
 export namespace ListWorkflowsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListWorkflowsResponse?: shared.ListWorkflowsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListWorkflowsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWorkflowsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ListWorkflowsResponse: shared.ListWorkflowsResponse$.inboundSchema.optional(),

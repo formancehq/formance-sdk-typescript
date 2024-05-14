@@ -15,15 +15,7 @@ export type AccountWithVolumesAndBalances = {
 
 /** @internal */
 export namespace AccountWithVolumesAndBalances$ {
-    export type Inbound = {
-        address: string;
-        balances?: Record<string, number> | undefined;
-        metadata?: Record<string, any> | undefined;
-        type?: string | undefined;
-        volumes?: Record<string, Volume$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AccountWithVolumesAndBalances, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountWithVolumesAndBalances, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             balances: z.record(z.number().transform((v) => BigInt(v))).optional(),

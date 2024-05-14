@@ -15,15 +15,7 @@ export type TransferInitiationAdjusments = {
 
 /** @internal */
 export namespace TransferInitiationAdjusments$ {
-    export type Inbound = {
-        adjustmentID: string;
-        createdAt: string;
-        error: string;
-        metadata?: Record<string, string> | null | undefined;
-        status: TransferInitiationStatus;
-    };
-
-    export const inboundSchema: z.ZodType<TransferInitiationAdjusments, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferInitiationAdjusments, z.ZodTypeDef, unknown> = z
         .object({
             adjustmentID: z.string(),
             createdAt: z

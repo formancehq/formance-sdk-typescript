@@ -11,11 +11,7 @@ export type V2RevertTransactionResponse = {
 
 /** @internal */
 export namespace V2RevertTransactionResponse$ {
-    export type Inbound = {
-        data: V2Transaction$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2RevertTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2RevertTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: V2Transaction$.inboundSchema,
         })

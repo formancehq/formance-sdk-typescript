@@ -33,11 +33,7 @@ export type GetMappingResponse = {
 
 /** @internal */
 export namespace GetMappingRequest$ {
-    export type Inbound = {
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetMappingRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMappingRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetMappingRequest$ {
 
 /** @internal */
 export namespace GetMappingResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        MappingResponse?: shared.MappingResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetMappingResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetMappingResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             MappingResponse: shared.MappingResponse$.inboundSchema.optional(),

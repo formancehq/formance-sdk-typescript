@@ -19,14 +19,7 @@ export type GenericConfig = {
 
 /** @internal */
 export namespace GenericConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GenericConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GenericConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             endpoint: z.string(),

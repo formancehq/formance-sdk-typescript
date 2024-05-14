@@ -10,11 +10,7 @@ export type V2StageWaitEvent = {
 
 /** @internal */
 export namespace V2StageWaitEvent$ {
-    export type Inbound = {
-        event: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, unknown> = z
         .object({
             event: z.string(),
         })

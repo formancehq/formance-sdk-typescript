@@ -33,11 +33,7 @@ export type V2SendEventResponse = {
 
 /** @internal */
 export namespace V2SendEventRequestBody$ {
-    export type Inbound = {
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2SendEventRequestBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2SendEventRequestBody, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string(),
         })
@@ -64,12 +60,7 @@ export namespace V2SendEventRequestBody$ {
 
 /** @internal */
 export namespace V2SendEventRequest$ {
-    export type Inbound = {
-        RequestBody?: V2SendEventRequestBody$.Inbound | undefined;
-        instanceID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2SendEventRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2SendEventRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.lazy(() => V2SendEventRequestBody$.inboundSchema).optional(),
             instanceID: z.string(),
@@ -101,13 +92,7 @@ export namespace V2SendEventRequest$ {
 
 /** @internal */
 export namespace V2SendEventResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2SendEventResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2SendEventResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

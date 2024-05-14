@@ -33,11 +33,7 @@ export type GetReconciliationResponse = {
 
 /** @internal */
 export namespace GetReconciliationRequest$ {
-    export type Inbound = {
-        reconciliationID: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetReconciliationRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetReconciliationRequest, z.ZodTypeDef, unknown> = z
         .object({
             reconciliationID: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetReconciliationRequest$ {
 
 /** @internal */
 export namespace GetReconciliationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ReconciliationResponse?: shared.ReconciliationResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetReconciliationResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetReconciliationResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ReconciliationResponse: shared.ReconciliationResponse$.inboundSchema.optional(),

@@ -57,14 +57,7 @@ export type ListTransferInitiationsResponse = {
 
 /** @internal */
 export namespace ListTransferInitiationsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        query?: string | undefined;
-        sort?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransferInitiationsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTransferInitiationsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -107,14 +100,7 @@ export namespace ListTransferInitiationsRequest$ {
 
 /** @internal */
 export namespace ListTransferInitiationsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransferInitiationsCursor?: shared.TransferInitiationsCursor$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransferInitiationsResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ListTransferInitiationsResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

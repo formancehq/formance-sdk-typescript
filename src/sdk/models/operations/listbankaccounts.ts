@@ -50,13 +50,7 @@ export type ListBankAccountsResponse = {
 
 /** @internal */
 export namespace ListBankAccountsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        sort?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListBankAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBankAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -93,14 +87,7 @@ export namespace ListBankAccountsRequest$ {
 
 /** @internal */
 export namespace ListBankAccountsResponse$ {
-    export type Inbound = {
-        BankAccountsCursor?: shared.BankAccountsCursor$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListBankAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBankAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             BankAccountsCursor: shared.BankAccountsCursor$.inboundSchema.optional(),
             ContentType: z.string(),

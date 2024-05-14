@@ -31,9 +31,7 @@ export type V2ActivityStripeTransfer = {
 
 /** @internal */
 export namespace V2ActivityStripeTransferMetadata$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<V2ActivityStripeTransferMetadata, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2ActivityStripeTransferMetadata, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};
@@ -47,16 +45,7 @@ export namespace V2ActivityStripeTransferMetadata$ {
 
 /** @internal */
 export namespace V2ActivityStripeTransfer$ {
-    export type Inbound = {
-        amount?: number | undefined;
-        asset?: string | undefined;
-        connectorID?: string | undefined;
-        destination?: string | undefined;
-        metadata?: V2ActivityStripeTransferMetadata$.Inbound | undefined;
-        waitingValidation?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityStripeTransfer, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityStripeTransfer, z.ZodTypeDef, unknown> = z
         .object({
             amount: z
                 .number()

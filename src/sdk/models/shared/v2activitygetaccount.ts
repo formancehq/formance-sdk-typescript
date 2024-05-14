@@ -11,12 +11,7 @@ export type V2ActivityGetAccount = {
 
 /** @internal */
 export namespace V2ActivityGetAccount$ {
-    export type Inbound = {
-        id: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityGetAccount, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityGetAccount, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
             ledger: z.string(),

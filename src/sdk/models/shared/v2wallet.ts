@@ -20,15 +20,7 @@ export type V2Wallet = {
 
 /** @internal */
 export namespace V2Wallet$ {
-    export type Inbound = {
-        createdAt: string;
-        id: string;
-        ledger: string;
-        metadata: Record<string, string>;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2Wallet, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Wallet, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

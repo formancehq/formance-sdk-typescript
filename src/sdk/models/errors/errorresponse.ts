@@ -46,13 +46,7 @@ export class ErrorResponse extends Error {
 
 /** @internal */
 export namespace ErrorResponse$ {
-    export type Inbound = {
-        details?: string | undefined;
-        errorCode: shared.ErrorsEnum;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<ErrorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
             errorCode: shared.ErrorsEnum$,

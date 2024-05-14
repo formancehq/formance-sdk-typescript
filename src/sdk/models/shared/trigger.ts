@@ -16,17 +16,7 @@ export type Trigger = {
 
 /** @internal */
 export namespace Trigger$ {
-    export type Inbound = {
-        createdAt: string;
-        event: string;
-        filter?: string | undefined;
-        id: string;
-        name?: string | undefined;
-        vars?: Record<string, any> | undefined;
-        workflowID: string;
-    };
-
-    export const inboundSchema: z.ZodType<Trigger, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Trigger, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

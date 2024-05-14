@@ -11,11 +11,7 @@ export type Mapping = {
 
 /** @internal */
 export namespace Mapping$ {
-    export type Inbound = {
-        contracts: Array<Contract$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<Mapping, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Mapping, z.ZodTypeDef, unknown> = z
         .object({
             contracts: z.array(Contract$.inboundSchema),
         })

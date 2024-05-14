@@ -24,15 +24,7 @@ export type Hold = {
 
 /** @internal */
 export namespace Hold$ {
-    export type Inbound = {
-        description: string;
-        destination?: Subject$.Inbound | undefined;
-        id: string;
-        metadata: Record<string, string>;
-        walletID: string;
-    };
-
-    export const inboundSchema: z.ZodType<Hold, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string(),
             destination: Subject$.inboundSchema.optional(),

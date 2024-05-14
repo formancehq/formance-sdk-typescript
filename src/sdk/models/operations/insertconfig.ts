@@ -26,14 +26,7 @@ export type InsertConfigResponse = {
 
 /** @internal */
 export namespace InsertConfigResponse$ {
-    export type Inbound = {
-        ConfigResponse?: shared.ConfigResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<InsertConfigResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<InsertConfigResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConfigResponse: shared.ConfigResponse$.inboundSchema.optional(),
             ContentType: z.string(),

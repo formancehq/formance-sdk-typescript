@@ -22,18 +22,7 @@ export type WalletsTransaction = {
 
 /** @internal */
 export namespace WalletsTransaction$ {
-    export type Inbound = {
-        id: number;
-        ledger?: string | undefined;
-        metadata: Record<string, string>;
-        postCommitVolumes?: Record<string, Record<string, WalletsVolume$.Inbound>> | undefined;
-        postings: Array<Posting$.Inbound>;
-        preCommitVolumes?: Record<string, Record<string, WalletsVolume$.Inbound>> | undefined;
-        reference?: string | undefined;
-        timestamp: string;
-    };
-
-    export const inboundSchema: z.ZodType<WalletsTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WalletsTransaction, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().int(),
             ledger: z.string().optional(),

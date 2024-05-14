@@ -53,16 +53,7 @@ export type V2ListAccountsResponse = {
 
 /** @internal */
 export namespace V2ListAccountsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        expand?: string | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             expand: z.string().optional(),
@@ -121,14 +112,7 @@ export namespace V2ListAccountsRequest$ {
 
 /** @internal */
 export namespace V2ListAccountsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2AccountsCursorResponse?: shared.V2AccountsCursorResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

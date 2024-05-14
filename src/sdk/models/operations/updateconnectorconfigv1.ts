@@ -34,13 +34,7 @@ export type UpdateConnectorConfigV1Response = {
 
 /** @internal */
 export namespace UpdateConnectorConfigV1Request$ {
-    export type Inbound = {
-        ConnectorConfig: shared.ConnectorConfig$.Inbound;
-        connector: shared.Connector;
-        connectorId: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Request, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Request, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
             connector: shared.Connector$,
@@ -78,13 +72,7 @@ export namespace UpdateConnectorConfigV1Request$ {
 
 /** @internal */
 export namespace UpdateConnectorConfigV1Response$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Response, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Response, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

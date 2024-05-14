@@ -23,15 +23,7 @@ export type CurrencyCloudConfig = {
 
 /** @internal */
 export namespace CurrencyCloudConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        endpoint?: string | undefined;
-        loginID: string;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CurrencyCloudConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CurrencyCloudConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             endpoint: z.string().optional(),

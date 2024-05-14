@@ -19,15 +19,7 @@ export type GetHoldsResponse = {
 
 /** @internal */
 export namespace GetHoldsResponseCursor$ {
-    export type Inbound = {
-        data: Array<Hold$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Hold$.inboundSchema),
             hasMore: z.boolean().optional(),
@@ -74,11 +66,7 @@ export namespace GetHoldsResponseCursor$ {
 
 /** @internal */
 export namespace GetHoldsResponse$ {
-    export type Inbound = {
-        cursor: GetHoldsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => GetHoldsResponseCursor$.inboundSchema),
         })

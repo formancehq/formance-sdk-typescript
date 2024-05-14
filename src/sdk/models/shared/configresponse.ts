@@ -11,11 +11,7 @@ export type ConfigResponse = {
 
 /** @internal */
 export namespace ConfigResponse$ {
-    export type Inbound = {
-        data: WebhooksConfig$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: WebhooksConfig$.inboundSchema,
         })

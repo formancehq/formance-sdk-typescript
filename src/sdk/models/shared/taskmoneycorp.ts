@@ -26,13 +26,7 @@ export type TaskMoneycorp = {
 
 /** @internal */
 export namespace TaskMoneycorpDescriptor$ {
-    export type Inbound = {
-        accountID?: string | undefined;
-        key?: string | undefined;
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskMoneycorpDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskMoneycorpDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             accountID: z.string().optional(),
             key: z.string().optional(),
@@ -69,9 +63,7 @@ export namespace TaskMoneycorpDescriptor$ {
 
 /** @internal */
 export namespace TaskMoneycorpState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskMoneycorpState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskMoneycorpState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -82,18 +74,7 @@ export namespace TaskMoneycorpState$ {
 
 /** @internal */
 export namespace TaskMoneycorp$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskMoneycorpDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskMoneycorpState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskMoneycorp, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskMoneycorp, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

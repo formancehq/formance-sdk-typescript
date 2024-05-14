@@ -26,14 +26,7 @@ export type CreateBankAccountResponse = {
 
 /** @internal */
 export namespace CreateBankAccountResponse$ {
-    export type Inbound = {
-        BankAccountResponse?: shared.BankAccountResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreateBankAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateBankAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             BankAccountResponse: shared.BankAccountResponse$.inboundSchema.optional(),
             ContentType: z.string(),

@@ -14,14 +14,7 @@ export type Workflow = {
 
 /** @internal */
 export namespace Workflow$ {
-    export type Inbound = {
-        config: WorkflowConfig$.Inbound;
-        createdAt: string;
-        id: string;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<Workflow, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Workflow, z.ZodTypeDef, unknown> = z
         .object({
             config: WorkflowConfig$.inboundSchema,
             createdAt: z

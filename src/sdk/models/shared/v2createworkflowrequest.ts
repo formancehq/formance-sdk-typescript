@@ -11,12 +11,7 @@ export type V2CreateWorkflowRequest = {
 
 /** @internal */
 export namespace V2CreateWorkflowRequest$ {
-    export type Inbound = {
-        name?: string | undefined;
-        stages: Array<Record<string, any>>;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             stages: z.array(z.record(z.any())),

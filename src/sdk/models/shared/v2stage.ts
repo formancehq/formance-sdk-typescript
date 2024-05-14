@@ -11,17 +11,16 @@ export type V2Stage = V2StageWaitEvent | V2StageDelay | V2StageSend;
 
 /** @internal */
 export namespace V2Stage$ {
-    export type Inbound = V2StageWaitEvent$.Inbound | V2StageDelay$.Inbound | V2StageSend$.Inbound;
+    export const inboundSchema: z.ZodType<V2Stage, z.ZodTypeDef, unknown> = z.union([
+        V2StageWaitEvent$.inboundSchema,
+        V2StageDelay$.inboundSchema,
+        V2StageSend$.inboundSchema,
+    ]);
 
     export type Outbound =
         | V2StageWaitEvent$.Outbound
         | V2StageDelay$.Outbound
         | V2StageSend$.Outbound;
-    export const inboundSchema: z.ZodType<V2Stage, z.ZodTypeDef, Inbound> = z.union([
-        V2StageWaitEvent$.inboundSchema,
-        V2StageDelay$.inboundSchema,
-        V2StageSend$.inboundSchema,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Stage> = z.union([
         V2StageWaitEvent$.outboundSchema,
         V2StageDelay$.outboundSchema,

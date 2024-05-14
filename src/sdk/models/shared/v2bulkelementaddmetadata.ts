@@ -20,13 +20,7 @@ export type V2BulkElementAddMetadata = {
 
 /** @internal */
 export namespace V2BulkElementAddMetadataData$ {
-    export type Inbound = {
-        metadata: Record<string, string>;
-        targetId: V2TargetId$.Inbound;
-        targetType: V2TargetType;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementAddMetadataData, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkElementAddMetadataData, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.string()),
             targetId: V2TargetId$.inboundSchema,
@@ -63,13 +57,7 @@ export namespace V2BulkElementAddMetadataData$ {
 
 /** @internal */
 export namespace V2BulkElementAddMetadata$ {
-    export type Inbound = {
-        action: string;
-        data?: V2BulkElementAddMetadataData$.Inbound | undefined;
-        ik?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementAddMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkElementAddMetadata, z.ZodTypeDef, unknown> = z
         .object({
             action: z.string(),
             data: z.lazy(() => V2BulkElementAddMetadataData$.inboundSchema).optional(),

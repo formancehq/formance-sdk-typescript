@@ -90,21 +90,7 @@ export type ListTransactionsResponse = {
 
 /** @internal */
 export namespace ListTransactionsRequest$ {
-    export type Inbound = {
-        account?: string | undefined;
-        after?: string | undefined;
-        cursor?: string | undefined;
-        destination?: string | undefined;
-        endTime?: string | undefined;
-        ledger: string;
-        metadata?: Record<string, any> | undefined;
-        pageSize?: number | undefined;
-        reference?: string | undefined;
-        source?: string | undefined;
-        startTime?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string().optional(),
             after: z.string().optional(),
@@ -195,14 +181,7 @@ export namespace ListTransactionsRequest$ {
 
 /** @internal */
 export namespace ListTransactionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransactionsCursorResponse?: shared.TransactionsCursorResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

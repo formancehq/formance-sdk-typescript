@@ -28,11 +28,7 @@ export type DeleteTransferInitiationResponse = {
 
 /** @internal */
 export namespace DeleteTransferInitiationRequest$ {
-    export type Inbound = {
-        transferId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteTransferInitiationRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DeleteTransferInitiationRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 transferId: z.string(),
@@ -64,13 +60,7 @@ export namespace DeleteTransferInitiationRequest$ {
 
 /** @internal */
 export namespace DeleteTransferInitiationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteTransferInitiationResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<DeleteTransferInitiationResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

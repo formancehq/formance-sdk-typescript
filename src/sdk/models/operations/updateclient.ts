@@ -34,12 +34,7 @@ export type UpdateClientResponse = {
 
 /** @internal */
 export namespace UpdateClientRequest$ {
-    export type Inbound = {
-        UpdateClientRequest?: shared.UpdateClientRequest$.Inbound | undefined;
-        clientId: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateClientRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateClientRequest, z.ZodTypeDef, unknown> = z
         .object({
             UpdateClientRequest: shared.UpdateClientRequest$.inboundSchema.optional(),
             clientId: z.string(),
@@ -75,14 +70,7 @@ export namespace UpdateClientRequest$ {
 
 /** @internal */
 export namespace UpdateClientResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        UpdateClientResponse?: shared.UpdateClientResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -11,12 +11,7 @@ export type Stats = {
 
 /** @internal */
 export namespace Stats$ {
-    export type Inbound = {
-        accounts: number;
-        transactions: number;
-    };
-
-    export const inboundSchema: z.ZodType<Stats, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z
         .object({
             accounts: z.number().int(),
             transactions: z.number().int(),

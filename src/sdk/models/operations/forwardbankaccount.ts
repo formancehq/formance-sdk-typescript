@@ -34,12 +34,7 @@ export type ForwardBankAccountResponse = {
 
 /** @internal */
 export namespace ForwardBankAccountRequest$ {
-    export type Inbound = {
-        ForwardBankAccountRequest: shared.ForwardBankAccountRequest$.Inbound;
-        bankAccountId: string;
-    };
-
-    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             ForwardBankAccountRequest: shared.ForwardBankAccountRequest$.inboundSchema,
             bankAccountId: z.string(),
@@ -71,14 +66,7 @@ export namespace ForwardBankAccountRequest$ {
 
 /** @internal */
 export namespace ForwardBankAccountResponse$ {
-    export type Inbound = {
-        BankAccountResponse?: shared.BankAccountResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ForwardBankAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ForwardBankAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             BankAccountResponse: shared.BankAccountResponse$.inboundSchema.optional(),
             ContentType: z.string(),

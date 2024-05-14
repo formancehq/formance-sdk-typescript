@@ -17,12 +17,7 @@ export type ConfirmHoldRequest = {
 
 /** @internal */
 export namespace ConfirmHoldRequest$ {
-    export type Inbound = {
-        amount?: number | undefined;
-        final?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, unknown> = z
         .object({
             amount: z
                 .number()

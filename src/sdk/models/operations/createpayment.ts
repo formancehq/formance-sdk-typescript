@@ -26,14 +26,7 @@ export type CreatePaymentResponse = {
 
 /** @internal */
 export namespace CreatePaymentResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PaymentResponse?: shared.PaymentResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreatePaymentResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreatePaymentResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PaymentResponse: shared.PaymentResponse$.inboundSchema.optional(),

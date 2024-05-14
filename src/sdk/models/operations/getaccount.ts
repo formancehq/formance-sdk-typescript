@@ -43,12 +43,7 @@ export type GetAccountResponse = {
 
 /** @internal */
 export namespace GetAccountRequest$ {
-    export type Inbound = {
-        address: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             ledger: z.string(),
@@ -80,14 +75,7 @@ export namespace GetAccountRequest$ {
 
 /** @internal */
 export namespace GetAccountResponse$ {
-    export type Inbound = {
-        AccountResponse?: shared.AccountResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             AccountResponse: shared.AccountResponse$.inboundSchema.optional(),
             ContentType: z.string(),

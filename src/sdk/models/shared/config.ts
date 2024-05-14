@@ -11,11 +11,7 @@ export type Config = {
 
 /** @internal */
 export namespace Config$ {
-    export type Inbound = {
-        storage: LedgerStorage$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<Config, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Config, z.ZodTypeDef, unknown> = z
         .object({
             storage: LedgerStorage$.inboundSchema,
         })

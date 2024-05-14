@@ -14,14 +14,7 @@ export type V2Account = {
 
 /** @internal */
 export namespace V2Account$ {
-    export type Inbound = {
-        address: string;
-        effectiveVolumes?: Record<string, V2Volume$.Inbound> | undefined;
-        metadata: Record<string, string>;
-        volumes?: Record<string, V2Volume$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2Account, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Account, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string(),
             effectiveVolumes: z.record(V2Volume$.inboundSchema).optional(),

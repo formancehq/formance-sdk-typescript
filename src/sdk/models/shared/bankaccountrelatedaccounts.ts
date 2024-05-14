@@ -14,15 +14,7 @@ export type BankAccountRelatedAccounts = {
 
 /** @internal */
 export namespace BankAccountRelatedAccounts$ {
-    export type Inbound = {
-        accountID: string;
-        connectorID: string;
-        createdAt: string;
-        id: string;
-        provider: string;
-    };
-
-    export const inboundSchema: z.ZodType<BankAccountRelatedAccounts, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BankAccountRelatedAccounts, z.ZodTypeDef, unknown> = z
         .object({
             accountID: z.string(),
             connectorID: z.string(),

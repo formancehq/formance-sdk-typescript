@@ -65,7 +65,7 @@ async function run() {
     addAccountToPoolRequest: {
       accountID: "<value>",
     },
-    poolId: "<value>",
+    poolId: "XXX",
   });
 
   // Handle the result
@@ -406,7 +406,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.deletePool({
-    poolId: "<value>",
+    poolId: "XXX",
   });
 
   // Handle the result
@@ -450,7 +450,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.deleteTransferInitiation({
-    transferId: "<value>",
+    transferId: "XXX",
   });
 
   // Handle the result
@@ -497,7 +497,7 @@ async function run() {
     forwardBankAccountRequest: {
       connectorID: "<value>",
     },
-    bankAccountId: "<value>",
+    bankAccountId: "XXX",
   });
 
   // Handle the result
@@ -541,8 +541,13 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.getAccountBalances({
-    accountId: "<value>",
+    accountId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -586,7 +591,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.getBankAccount({
-    bankAccountId: "<value>",
+    bankAccountId: "XXX",
   });
 
   // Handle the result
@@ -634,7 +639,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.getConnectorTask({
     connector: Connector.Adyen,
-    taskId: "<value>",
+    taskId: "task1",
   });
 
   // Handle the result
@@ -680,8 +685,8 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.getConnectorTaskV1({
     connector: Connector.BankingCircle,
-    connectorId: "<value>",
-    taskId: "<value>",
+    connectorId: "XXX",
+    taskId: "task1",
   });
 
   // Handle the result
@@ -725,7 +730,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.getPayment({
-    paymentId: "<value>",
+    paymentId: "XXX",
   });
 
   // Handle the result
@@ -769,7 +774,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.getPool({
-    poolId: "<value>",
+    poolId: "XXX",
   });
 
   // Handle the result
@@ -814,7 +819,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.getPoolBalances({
     at: new Date("2023-05-05T06:40:23.018Z"),
-    poolId: "<value>",
+    poolId: "XXX",
   });
 
   // Handle the result
@@ -858,7 +863,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.getTransferInitiation({
-    transferId: "<value>",
+    transferId: "XXX",
   });
 
   // Handle the result
@@ -994,6 +999,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listBankAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -1083,6 +1093,7 @@ async function run() {
   const result = await sdk.payments.listConnectorTasks({
     connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1128,8 +1139,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listConnectorTasksV1({
     connector: Connector.BankingCircle,
-    connectorId: "<value>",
+    connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1174,6 +1186,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listPayments({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -1218,6 +1235,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listPools({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -1262,6 +1284,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.listTransferInitiations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -1305,7 +1332,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.paymentsgetAccount({
-    accountId: "<value>",
+    accountId: "XXX",
   });
 
   // Handle the result
@@ -1391,6 +1418,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.paymentslistAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
   });
 
   // Handle the result
@@ -1483,7 +1515,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.readConnectorConfigV1({
     connector: Connector.CurrencyCloud,
-    connectorId: "<value>",
+    connectorId: "XXX",
   });
 
   // Handle the result
@@ -1527,8 +1559,8 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.removeAccountFromPool({
-    accountId: "<value>",
-    poolId: "<value>",
+    accountId: "XXX",
+    poolId: "XXX",
   });
 
   // Handle the result
@@ -1625,7 +1657,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.resetConnectorV1({
     connector: Connector.Generic,
-    connectorId: "<value>",
+    connectorId: "XXX",
   });
 
   // Handle the result
@@ -1669,7 +1701,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.retryTransferInitiation({
-    transferId: "<value>",
+    transferId: "XXX",
   });
 
   // Handle the result
@@ -1722,7 +1754,7 @@ async function run() {
       },
       reference: "XXX",
     },
-    transferId: "<value>",
+    transferId: "XXX",
   });
 
   // Handle the result
@@ -1770,7 +1802,7 @@ async function run() {
     updateTransferInitiationStatusRequest: {
       status: Status.Validated,
     },
-    transferId: "<value>",
+    transferId: "XXX",
   });
 
   // Handle the result
@@ -1863,7 +1895,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.uninstallConnectorV1({
     connector: Connector.Generic,
-    connectorId: "<value>",
+    connectorId: "XXX",
   });
 
   // Handle the result
@@ -1912,7 +1944,7 @@ async function run() {
         "key": "<value>",
       },
     },
-    bankAccountId: "<value>",
+    bankAccountId: "XXX",
   });
 
   // Handle the result
@@ -1964,7 +1996,7 @@ async function run() {
         pollingPeriod: "60s",
       },
     connector: Connector.Stripe,
-    connectorId: "<value>",
+    connectorId: "XXX",
   });
 
   // Handle the result
@@ -2011,7 +2043,7 @@ async function run() {
     requestBody: {
       "key": "<value>",
     },
-    paymentId: "<value>",
+    paymentId: "XXX",
   });
 
   // Handle the result

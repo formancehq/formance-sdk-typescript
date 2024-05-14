@@ -23,15 +23,7 @@ export const V2LogType$: z.ZodNativeEnum<typeof V2LogType> = z.nativeEnum(V2LogT
 
 /** @internal */
 export namespace V2Log$ {
-    export type Inbound = {
-        data: Record<string, any>;
-        date: string;
-        hash: string;
-        id: number;
-        type: V2LogType;
-    };
-
-    export const inboundSchema: z.ZodType<V2Log, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Log, z.ZodTypeDef, unknown> = z
         .object({
             data: z.record(z.any()),
             date: z

@@ -11,11 +11,7 @@ export type V2CreateWorkflowResponse = {
 
 /** @internal */
 export namespace V2CreateWorkflowResponse$ {
-    export type Inbound = {
-        data: V2Workflow$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: V2Workflow$.inboundSchema,
         })

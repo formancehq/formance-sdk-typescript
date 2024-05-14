@@ -11,11 +11,7 @@ export type ListWorkflowsResponse = {
 
 /** @internal */
 export namespace ListWorkflowsResponse$ {
-    export type Inbound = {
-        data: Array<Workflow$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<ListWorkflowsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWorkflowsResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Workflow$.inboundSchema),
         })

@@ -11,11 +11,7 @@ export type ListUsersResponse = {
 
 /** @internal */
 export namespace ListUsersResponse$ {
-    export type Inbound = {
-        data?: Array<User$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListUsersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListUsersResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(User$.inboundSchema).optional(),
         })

@@ -20,15 +20,7 @@ export type ModulrConfig = {
 
 /** @internal */
 export namespace ModulrConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        apiSecret: string;
-        endpoint?: string | undefined;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             apiSecret: z.string(),

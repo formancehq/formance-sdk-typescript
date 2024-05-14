@@ -15,12 +15,7 @@ export type ActivityCreateTransaction = {
 
 /** @internal */
 export namespace ActivityCreateTransaction$ {
-    export type Inbound = {
-        data?: OrchestrationPostTransaction$.Inbound | undefined;
-        ledger?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityCreateTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivityCreateTransaction, z.ZodTypeDef, unknown> = z
         .object({
             data: OrchestrationPostTransaction$.inboundSchema.optional(),
             ledger: z.string().optional(),

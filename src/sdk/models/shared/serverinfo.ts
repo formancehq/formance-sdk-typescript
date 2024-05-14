@@ -10,11 +10,7 @@ export type ServerInfo = {
 
 /** @internal */
 export namespace ServerInfo$ {
-    export type Inbound = {
-        version: string;
-    };
-
-    export const inboundSchema: z.ZodType<ServerInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ServerInfo, z.ZodTypeDef, unknown> = z
         .object({
             version: z.string(),
         })

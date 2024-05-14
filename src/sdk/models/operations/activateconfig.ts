@@ -33,11 +33,7 @@ export type ActivateConfigResponse = {
 
 /** @internal */
 export namespace ActivateConfigRequest$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<ActivateConfigRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivateConfigRequest, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace ActivateConfigRequest$ {
 
 /** @internal */
 export namespace ActivateConfigResponse$ {
-    export type Inbound = {
-        ConfigResponse?: shared.ConfigResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ActivateConfigResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivateConfigResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConfigResponse: shared.ConfigResponse$.inboundSchema.optional(),
             ContentType: z.string(),

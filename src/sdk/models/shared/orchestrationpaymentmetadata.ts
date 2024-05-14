@@ -10,11 +10,7 @@ export type OrchestrationPaymentMetadata = {
 
 /** @internal */
 export namespace OrchestrationPaymentMetadata$ {
-    export type Inbound = {
-        key?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationPaymentMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationPaymentMetadata, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
         })

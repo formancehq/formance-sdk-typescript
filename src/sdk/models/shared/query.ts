@@ -20,9 +20,7 @@ export type Query = {
 
 /** @internal */
 export namespace QueryRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<QueryRaw, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<QueryRaw, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -31,19 +29,7 @@ export namespace QueryRaw$ {
 
 /** @internal */
 export namespace Query$ {
-    export type Inbound = {
-        after?: Array<string> | undefined;
-        cursor?: string | undefined;
-        ledgers?: Array<string> | undefined;
-        pageSize?: number | undefined;
-        policy?: string | undefined;
-        raw?: QueryRaw$.Inbound | undefined;
-        sort?: string | undefined;
-        target?: string | undefined;
-        terms?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Query, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Query, z.ZodTypeDef, unknown> = z
         .object({
             after: z.array(z.string()).optional(),
             cursor: z.string().optional(),

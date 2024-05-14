@@ -58,15 +58,7 @@ export type GetBalancesResponse = {
 
 /** @internal */
 export namespace GetBalancesRequest$ {
-    export type Inbound = {
-        address?: string | undefined;
-        after?: string | undefined;
-        cursor?: string | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetBalancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetBalancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string().optional(),
             after: z.string().optional(),
@@ -113,14 +105,7 @@ export namespace GetBalancesRequest$ {
 
 /** @internal */
 export namespace GetBalancesResponse$ {
-    export type Inbound = {
-        BalancesCursorResponse?: shared.BalancesCursorResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             BalancesCursorResponse: shared.BalancesCursorResponse$.inboundSchema.optional(),
             ContentType: z.string(),

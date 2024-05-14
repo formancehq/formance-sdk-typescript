@@ -26,17 +26,10 @@ export type ReconciliationgetServerInfoResponse = {
 
 /** @internal */
 export namespace ReconciliationgetServerInfoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ServerInfo?: shared.ServerInfo$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         ReconciliationgetServerInfoResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

@@ -46,12 +46,7 @@ export type ListReconciliationsResponse = {
 
 /** @internal */
 export namespace ListReconciliationsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListReconciliationsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListReconciliationsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().optional(),
@@ -83,14 +78,7 @@ export namespace ListReconciliationsRequest$ {
 
 /** @internal */
 export namespace ListReconciliationsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ReconciliationsCursorResponse?: shared.ReconciliationsCursorResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListReconciliationsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListReconciliationsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ReconciliationsCursorResponse:

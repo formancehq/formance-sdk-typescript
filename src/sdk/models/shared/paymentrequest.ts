@@ -22,20 +22,7 @@ export type PaymentRequest = {
 
 /** @internal */
 export namespace PaymentRequest$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        destinationAccountID?: string | undefined;
-        reference: string;
-        scheme: PaymentScheme;
-        sourceAccountID?: string | undefined;
-        status: PaymentStatus;
-        type: PaymentType;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentRequest, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

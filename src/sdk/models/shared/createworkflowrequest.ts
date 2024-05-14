@@ -11,12 +11,7 @@ export type CreateWorkflowRequest = {
 
 /** @internal */
 export namespace CreateWorkflowRequest$ {
-    export type Inbound = {
-        name?: string | undefined;
-        stages: Array<Record<string, any>>;
-    };
-
-    export const inboundSchema: z.ZodType<CreateWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             stages: z.array(z.record(z.any())),

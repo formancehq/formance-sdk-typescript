@@ -26,17 +26,10 @@ export type ListConfigsAvailableConnectorsResponse = {
 
 /** @internal */
 export namespace ListConfigsAvailableConnectorsResponse$ {
-    export type Inbound = {
-        ConnectorsConfigsResponse?: shared.ConnectorsConfigsResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         ListConfigsAvailableConnectorsResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ConnectorsConfigsResponse: shared.ConnectorsConfigsResponse$.inboundSchema.optional(),

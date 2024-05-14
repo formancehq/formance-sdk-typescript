@@ -13,13 +13,7 @@ export type V2BulkElementCreateTransaction = {
 
 /** @internal */
 export namespace V2BulkElementCreateTransaction$ {
-    export type Inbound = {
-        action: string;
-        data?: V2PostTransaction$.Inbound | undefined;
-        ik?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementCreateTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkElementCreateTransaction, z.ZodTypeDef, unknown> = z
         .object({
             action: z.string(),
             data: V2PostTransaction$.inboundSchema.optional(),

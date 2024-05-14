@@ -33,11 +33,7 @@ export type GetPaymentResponse = {
 
 /** @internal */
 export namespace GetPaymentRequest$ {
-    export type Inbound = {
-        paymentId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetPaymentRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPaymentRequest, z.ZodTypeDef, unknown> = z
         .object({
             paymentId: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace GetPaymentRequest$ {
 
 /** @internal */
 export namespace GetPaymentResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PaymentResponse?: shared.PaymentResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetPaymentResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPaymentResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PaymentResponse: shared.PaymentResponse$.inboundSchema.optional(),

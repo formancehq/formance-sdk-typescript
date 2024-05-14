@@ -41,13 +41,7 @@ export type RevertTransactionResponse = {
 
 /** @internal */
 export namespace RevertTransactionRequest$ {
-    export type Inbound = {
-        disableChecks?: boolean | undefined;
-        ledger: string;
-        txid: number;
-    };
-
-    export const inboundSchema: z.ZodType<RevertTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RevertTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             disableChecks: z.boolean().optional(),
             ledger: z.string(),
@@ -84,14 +78,7 @@ export namespace RevertTransactionRequest$ {
 
 /** @internal */
 export namespace RevertTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransactionResponse?: shared.TransactionResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RevertTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RevertTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

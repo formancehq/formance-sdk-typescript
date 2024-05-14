@@ -39,12 +39,7 @@ export type V2GetInstanceStageHistoryResponse = {
 
 /** @internal */
 export namespace V2GetInstanceStageHistoryRequest$ {
-    export type Inbound = {
-        instanceID: string;
-        number: number;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetInstanceStageHistoryRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2GetInstanceStageHistoryRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 instanceID: z.string(),
@@ -81,19 +76,10 @@ export namespace V2GetInstanceStageHistoryRequest$ {
 
 /** @internal */
 export namespace V2GetInstanceStageHistoryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2GetWorkflowInstanceHistoryStageResponse?:
-            | shared.V2GetWorkflowInstanceHistoryStageResponse$.Inbound
-            | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         V2GetInstanceStageHistoryResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

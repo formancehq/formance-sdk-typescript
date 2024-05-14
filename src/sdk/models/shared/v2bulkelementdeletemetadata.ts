@@ -20,13 +20,7 @@ export type V2BulkElementDeleteMetadata = {
 
 /** @internal */
 export namespace V2BulkElementDeleteMetadataData$ {
-    export type Inbound = {
-        key: string;
-        targetId: V2TargetId$.Inbound;
-        targetType: V2TargetType;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementDeleteMetadataData, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2BulkElementDeleteMetadataData, z.ZodTypeDef, unknown> =
         z
             .object({
                 key: z.string(),
@@ -68,13 +62,7 @@ export namespace V2BulkElementDeleteMetadataData$ {
 
 /** @internal */
 export namespace V2BulkElementDeleteMetadata$ {
-    export type Inbound = {
-        action: string;
-        data?: V2BulkElementDeleteMetadataData$.Inbound | undefined;
-        ik?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementDeleteMetadata, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkElementDeleteMetadata, z.ZodTypeDef, unknown> = z
         .object({
             action: z.string(),
             data: z.lazy(() => V2BulkElementDeleteMetadataData$.inboundSchema).optional(),

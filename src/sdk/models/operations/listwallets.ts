@@ -51,14 +51,7 @@ export type ListWalletsResponse = {
 
 /** @internal */
 export namespace ListWalletsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        metadata?: Record<string, string> | undefined;
-        name?: string | undefined;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListWalletsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWalletsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
@@ -100,14 +93,7 @@ export namespace ListWalletsRequest$ {
 
 /** @internal */
 export namespace ListWalletsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListWalletsResponse?: shared.ListWalletsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListWalletsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWalletsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ListWalletsResponse: shared.ListWalletsResponse$.inboundSchema.optional(),

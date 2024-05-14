@@ -26,13 +26,7 @@ export type TaskDummyPay = {
 
 /** @internal */
 export namespace TaskDummyPayDescriptor$ {
-    export type Inbound = {
-        fileName?: string | undefined;
-        key?: string | undefined;
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskDummyPayDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskDummyPayDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             fileName: z.string().optional(),
             key: z.string().optional(),
@@ -69,9 +63,7 @@ export namespace TaskDummyPayDescriptor$ {
 
 /** @internal */
 export namespace TaskDummyPayState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskDummyPayState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskDummyPayState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -82,18 +74,7 @@ export namespace TaskDummyPayState$ {
 
 /** @internal */
 export namespace TaskDummyPay$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskDummyPayDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskDummyPayState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskDummyPay, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskDummyPay, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

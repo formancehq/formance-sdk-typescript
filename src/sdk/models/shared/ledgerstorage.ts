@@ -11,12 +11,7 @@ export type LedgerStorage = {
 
 /** @internal */
 export namespace LedgerStorage$ {
-    export type Inbound = {
-        driver: string;
-        ledgers: Array<string>;
-    };
-
-    export const inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, unknown> = z
         .object({
             driver: z.string(),
             ledgers: z.array(z.string()),

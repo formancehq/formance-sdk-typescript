@@ -23,18 +23,7 @@ export type BankingCircleConfig = {
 
 /** @internal */
 export namespace BankingCircleConfig$ {
-    export type Inbound = {
-        authorizationEndpoint: string;
-        endpoint: string;
-        name: string;
-        password: string;
-        pollingPeriod?: string | undefined;
-        userCertificate: string;
-        userCertificateKey: string;
-        username: string;
-    };
-
-    export const inboundSchema: z.ZodType<BankingCircleConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<BankingCircleConfig, z.ZodTypeDef, unknown> = z
         .object({
             authorizationEndpoint: z.string(),
             endpoint: z.string(),

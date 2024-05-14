@@ -11,11 +11,7 @@ export type CreateSecretResponse = {
 
 /** @internal */
 export namespace CreateSecretResponse$ {
-    export type Inbound = {
-        data?: Secret$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Secret$.inboundSchema.optional(),
         })

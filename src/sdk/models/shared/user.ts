@@ -12,13 +12,7 @@ export type User = {
 
 /** @internal */
 export namespace User$ {
-    export type Inbound = {
-        email?: string | undefined;
-        id?: string | undefined;
-        subject?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
         .object({
             email: z.string().optional(),
             id: z.string().optional(),

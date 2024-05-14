@@ -11,11 +11,7 @@ export type GetHoldResponse = {
 
 /** @internal */
 export namespace GetHoldResponse$ {
-    export type Inbound = {
-        data: ExpandedDebitHold$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: ExpandedDebitHold$.inboundSchema,
         })

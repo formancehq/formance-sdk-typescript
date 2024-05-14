@@ -11,11 +11,7 @@ export type PaymentResponse = {
 
 /** @internal */
 export namespace PaymentResponse$ {
-    export type Inbound = {
-        data: Payment$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Payment$.inboundSchema,
         })

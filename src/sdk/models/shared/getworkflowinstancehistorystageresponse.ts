@@ -14,14 +14,10 @@ export type GetWorkflowInstanceHistoryStageResponse = {
 
 /** @internal */
 export namespace GetWorkflowInstanceHistoryStageResponse$ {
-    export type Inbound = {
-        data: Array<WorkflowInstanceHistoryStage$.Inbound>;
-    };
-
     export const inboundSchema: z.ZodType<
         GetWorkflowInstanceHistoryStageResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(WorkflowInstanceHistoryStage$.inboundSchema),

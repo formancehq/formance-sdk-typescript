@@ -30,18 +30,19 @@ export type ConnectorConfig =
 
 /** @internal */
 export namespace ConnectorConfig$ {
-    export type Inbound =
-        | WiseConfig$.Inbound
-        | StripeConfig$.Inbound
-        | GenericConfig$.Inbound
-        | ModulrConfig$.Inbound
-        | CurrencyCloudConfig$.Inbound
-        | MangoPayConfig$.Inbound
-        | MoneycorpConfig$.Inbound
-        | AdyenConfig$.Inbound
-        | DummyPayConfig$.Inbound
-        | AtlarConfig$.Inbound
-        | BankingCircleConfig$.Inbound;
+    export const inboundSchema: z.ZodType<ConnectorConfig, z.ZodTypeDef, unknown> = z.union([
+        WiseConfig$.inboundSchema,
+        StripeConfig$.inboundSchema,
+        GenericConfig$.inboundSchema,
+        ModulrConfig$.inboundSchema,
+        CurrencyCloudConfig$.inboundSchema,
+        MangoPayConfig$.inboundSchema,
+        MoneycorpConfig$.inboundSchema,
+        AdyenConfig$.inboundSchema,
+        DummyPayConfig$.inboundSchema,
+        AtlarConfig$.inboundSchema,
+        BankingCircleConfig$.inboundSchema,
+    ]);
 
     export type Outbound =
         | WiseConfig$.Outbound
@@ -55,19 +56,6 @@ export namespace ConnectorConfig$ {
         | DummyPayConfig$.Outbound
         | AtlarConfig$.Outbound
         | BankingCircleConfig$.Outbound;
-    export const inboundSchema: z.ZodType<ConnectorConfig, z.ZodTypeDef, Inbound> = z.union([
-        WiseConfig$.inboundSchema,
-        StripeConfig$.inboundSchema,
-        GenericConfig$.inboundSchema,
-        ModulrConfig$.inboundSchema,
-        CurrencyCloudConfig$.inboundSchema,
-        MangoPayConfig$.inboundSchema,
-        MoneycorpConfig$.inboundSchema,
-        AdyenConfig$.inboundSchema,
-        DummyPayConfig$.inboundSchema,
-        AtlarConfig$.inboundSchema,
-        BankingCircleConfig$.inboundSchema,
-    ]);
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorConfig> = z.union([
         WiseConfig$.outboundSchema,
         StripeConfig$.outboundSchema,

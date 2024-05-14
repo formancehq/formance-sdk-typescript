@@ -44,18 +44,10 @@ export type V2AddMetadataOnTransactionResponse = {
 
 /** @internal */
 export namespace V2AddMetadataOnTransactionRequest$ {
-    export type Inbound = {
-        "Idempotency-Key"?: string | undefined;
-        RequestBody?: Record<string, string> | undefined;
-        dryRun?: boolean | undefined;
-        id: number;
-        ledger: string;
-    };
-
     export const inboundSchema: z.ZodType<
         V2AddMetadataOnTransactionRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             "Idempotency-Key": z.string().optional(),
@@ -111,16 +103,10 @@ export namespace V2AddMetadataOnTransactionRequest$ {
 
 /** @internal */
 export namespace V2AddMetadataOnTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         V2AddMetadataOnTransactionResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

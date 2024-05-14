@@ -27,12 +27,7 @@ export type ConfirmHoldResponse = {
 
 /** @internal */
 export namespace ConfirmHoldRequest$ {
-    export type Inbound = {
-        ConfirmHoldRequest?: shared.ConfirmHoldRequest$.Inbound | undefined;
-        hold_id: string;
-    };
-
-    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, unknown> = z
         .object({
             ConfirmHoldRequest: shared.ConfirmHoldRequest$.inboundSchema.optional(),
             hold_id: z.string(),
@@ -68,13 +63,7 @@ export namespace ConfirmHoldRequest$ {
 
 /** @internal */
 export namespace ConfirmHoldResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ConfirmHoldResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfirmHoldResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -26,13 +26,7 @@ export type TaskModulr = {
 
 /** @internal */
 export namespace TaskModulrDescriptor$ {
-    export type Inbound = {
-        accountID?: string | undefined;
-        key?: string | undefined;
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskModulrDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskModulrDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             accountID: z.string().optional(),
             key: z.string().optional(),
@@ -69,9 +63,7 @@ export namespace TaskModulrDescriptor$ {
 
 /** @internal */
 export namespace TaskModulrState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskModulrState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskModulrState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -80,18 +72,7 @@ export namespace TaskModulrState$ {
 
 /** @internal */
 export namespace TaskModulr$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskModulrDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskModulrState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskModulr, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskModulr, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

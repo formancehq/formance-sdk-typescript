@@ -11,12 +11,7 @@ export type LedgerAccountSubject = {
 
 /** @internal */
 export namespace LedgerAccountSubject$ {
-    export type Inbound = {
-        identifier: string;
-        type: string;
-    };
-
-    export const inboundSchema: z.ZodType<LedgerAccountSubject, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LedgerAccountSubject, z.ZodTypeDef, unknown> = z
         .object({
             identifier: z.string(),
             type: z.string(),

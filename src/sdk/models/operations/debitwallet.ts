@@ -31,12 +31,7 @@ export type DebitWalletResponse = {
 
 /** @internal */
 export namespace DebitWalletRequest$ {
-    export type Inbound = {
-        DebitWalletRequest?: shared.DebitWalletRequest$.Inbound | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<DebitWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DebitWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             DebitWalletRequest: shared.DebitWalletRequest$.inboundSchema.optional(),
             id: z.string(),
@@ -72,14 +67,7 @@ export namespace DebitWalletRequest$ {
 
 /** @internal */
 export namespace DebitWalletResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        DebitWalletResponse?: shared.DebitWalletResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DebitWalletResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DebitWalletResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             DebitWalletResponse: shared.DebitWalletResponse$.inboundSchema.optional(),

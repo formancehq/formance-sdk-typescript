@@ -17,12 +17,7 @@ export type Monetary = {
 
 /** @internal */
 export namespace Monetary$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-    };
-
-    export const inboundSchema: z.ZodType<Monetary, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Monetary, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

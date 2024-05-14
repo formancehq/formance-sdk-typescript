@@ -13,9 +13,7 @@ export type Contract = {
 
 /** @internal */
 export namespace Expr$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<Expr, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<Expr, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -24,12 +22,7 @@ export namespace Expr$ {
 
 /** @internal */
 export namespace Contract$ {
-    export type Inbound = {
-        account?: string | undefined;
-        expr: Expr$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<Contract, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Contract, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string().optional(),
             expr: z.lazy(() => Expr$.inboundSchema),

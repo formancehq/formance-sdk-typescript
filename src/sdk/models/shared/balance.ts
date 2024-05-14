@@ -12,13 +12,7 @@ export type Balance = {
 
 /** @internal */
 export namespace Balance$ {
-    export type Inbound = {
-        expiresAt?: string | undefined;
-        name: string;
-        priority?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Balance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = z
         .object({
             expiresAt: z
                 .string()

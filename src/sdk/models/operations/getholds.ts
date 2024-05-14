@@ -51,14 +51,7 @@ export type GetHoldsResponse = {
 
 /** @internal */
 export namespace GetHoldsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        metadata?: Record<string, string> | undefined;
-        pageSize?: number | undefined;
-        walletID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             metadata: z.record(z.string()).optional(),
@@ -100,14 +93,7 @@ export namespace GetHoldsRequest$ {
 
 /** @internal */
 export namespace GetHoldsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        GetHoldsResponse?: shared.GetHoldsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetHoldsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetHoldsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             GetHoldsResponse: shared.GetHoldsResponse$.inboundSchema.optional(),

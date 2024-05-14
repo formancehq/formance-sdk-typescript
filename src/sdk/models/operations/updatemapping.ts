@@ -34,12 +34,7 @@ export type UpdateMappingResponse = {
 
 /** @internal */
 export namespace UpdateMappingRequest$ {
-    export type Inbound = {
-        Mapping: shared.Mapping$.Inbound | null;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateMappingRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateMappingRequest, z.ZodTypeDef, unknown> = z
         .object({
             Mapping: z.nullable(shared.Mapping$.inboundSchema),
             ledger: z.string(),
@@ -71,14 +66,7 @@ export namespace UpdateMappingRequest$ {
 
 /** @internal */
 export namespace UpdateMappingResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        MappingResponse?: shared.MappingResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateMappingResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateMappingResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             MappingResponse: shared.MappingResponse$.inboundSchema.optional(),
