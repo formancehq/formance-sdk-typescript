@@ -14,15 +14,7 @@ export type StageStatus = {
 
 /** @internal */
 export namespace StageStatus$ {
-    export type Inbound = {
-        error?: string | undefined;
-        instanceID: string;
-        stage: number;
-        startedAt: string;
-        terminatedAt?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<StageStatus, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<StageStatus, z.ZodTypeDef, unknown> = z
         .object({
             error: z.string().optional(),
             instanceID: z.string(),

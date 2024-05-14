@@ -15,14 +15,7 @@ export type ScriptResponse = {
 
 /** @internal */
 export namespace ScriptResponse$ {
-    export type Inbound = {
-        details?: string | undefined;
-        errorCode?: ErrorsEnum | undefined;
-        errorMessage?: string | undefined;
-        transaction?: Transaction$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ScriptResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ScriptResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
             errorCode: ErrorsEnum$.optional(),

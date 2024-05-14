@@ -45,13 +45,7 @@ export class ReconciliationErrorResponse extends Error {
 
 /** @internal */
 export namespace ReconciliationErrorResponse$ {
-    export type Inbound = {
-        details?: string | undefined;
-        errorCode: string;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<ReconciliationErrorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReconciliationErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
             errorCode: z.string(),

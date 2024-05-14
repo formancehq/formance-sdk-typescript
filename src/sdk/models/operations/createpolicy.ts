@@ -26,14 +26,7 @@ export type CreatePolicyResponse = {
 
 /** @internal */
 export namespace CreatePolicyResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PolicyResponse?: shared.PolicyResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreatePolicyResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreatePolicyResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PolicyResponse: shared.PolicyResponse$.inboundSchema.optional(),

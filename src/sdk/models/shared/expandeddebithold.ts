@@ -32,17 +32,7 @@ export type ExpandedDebitHold = {
 
 /** @internal */
 export namespace ExpandedDebitHold$ {
-    export type Inbound = {
-        description: string;
-        destination?: Subject$.Inbound | undefined;
-        id: string;
-        metadata: Record<string, string>;
-        originalAmount: number;
-        remaining: number;
-        walletID: string;
-    };
-
-    export const inboundSchema: z.ZodType<ExpandedDebitHold, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ExpandedDebitHold, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string(),
             destination: Subject$.inboundSchema.optional(),

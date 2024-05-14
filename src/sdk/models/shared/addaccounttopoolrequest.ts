@@ -10,11 +10,7 @@ export type AddAccountToPoolRequest = {
 
 /** @internal */
 export namespace AddAccountToPoolRequest$ {
-    export type Inbound = {
-        accountID: string;
-    };
-
-    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountID: z.string(),
         })

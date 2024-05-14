@@ -30,12 +30,7 @@ export type UpdateBankAccountMetadataResponse = {
 
 /** @internal */
 export namespace UpdateBankAccountMetadataRequest$ {
-    export type Inbound = {
-        UpdateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest$.Inbound;
-        bankAccountId: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateBankAccountMetadataRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<UpdateBankAccountMetadataRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 UpdateBankAccountMetadataRequest:
@@ -74,16 +69,10 @@ export namespace UpdateBankAccountMetadataRequest$ {
 
 /** @internal */
 export namespace UpdateBankAccountMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         UpdateBankAccountMetadataResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

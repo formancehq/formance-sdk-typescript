@@ -61,18 +61,7 @@ export type V2GetVolumesWithBalancesResponse = {
 
 /** @internal */
 export namespace V2GetVolumesWithBalancesRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        endTime?: string | undefined;
-        groupBy?: number | undefined;
-        insertionDate?: boolean | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-        query?: Record<string, any> | undefined;
-        startTime?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetVolumesWithBalancesRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2GetVolumesWithBalancesRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 cursor: z.string().optional(),
@@ -153,16 +142,7 @@ export namespace V2GetVolumesWithBalancesRequest$ {
 
 /** @internal */
 export namespace V2GetVolumesWithBalancesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2VolumesWithBalanceCursorResponse?:
-            | shared.V2VolumesWithBalanceCursorResponse$.Inbound
-            | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetVolumesWithBalancesResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2GetVolumesWithBalancesResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

@@ -58,9 +58,7 @@ export type V2Payment = {
 
 /** @internal */
 export namespace V2PaymentRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<V2PaymentRaw, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<V2PaymentRaw, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -75,25 +73,7 @@ export const V2PaymentType$: z.ZodNativeEnum<typeof V2PaymentType> = z.nativeEnu
 
 /** @internal */
 export namespace V2Payment$ {
-    export type Inbound = {
-        adjustments: Array<V2PaymentAdjustment$.Inbound>;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        destinationAccountID: string;
-        id: string;
-        initialAmount: number;
-        metadata: V2PaymentMetadata$.Inbound | null;
-        provider?: V2Connector | undefined;
-        raw: V2PaymentRaw$.Inbound | null;
-        reference: string;
-        scheme: Scheme;
-        sourceAccountID: string;
-        status: V2PaymentStatus;
-        type: V2PaymentType;
-    };
-
-    export const inboundSchema: z.ZodType<V2Payment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Payment, z.ZodTypeDef, unknown> = z
         .object({
             adjustments: z.array(V2PaymentAdjustment$.inboundSchema),
             asset: z.string(),

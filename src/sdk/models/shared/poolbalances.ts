@@ -11,11 +11,7 @@ export type PoolBalances = {
 
 /** @internal */
 export namespace PoolBalances$ {
-    export type Inbound = {
-        balances: Array<PoolBalance$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<PoolBalances, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoolBalances, z.ZodTypeDef, unknown> = z
         .object({
             balances: z.array(PoolBalance$.inboundSchema),
         })

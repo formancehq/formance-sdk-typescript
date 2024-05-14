@@ -26,11 +26,7 @@ export type V2WalletWithBalances = {
 
 /** @internal */
 export namespace Balances$ {
-    export type Inbound = {
-        main: V2AssetHolder$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<Balances, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Balances, z.ZodTypeDef, unknown> = z
         .object({
             main: V2AssetHolder$.inboundSchema,
         })
@@ -57,16 +53,7 @@ export namespace Balances$ {
 
 /** @internal */
 export namespace V2WalletWithBalances$ {
-    export type Inbound = {
-        balances: Balances$.Inbound;
-        createdAt: string;
-        id: string;
-        ledger: string;
-        metadata: Record<string, string>;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2WalletWithBalances, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2WalletWithBalances, z.ZodTypeDef, unknown> = z
         .object({
             balances: z.lazy(() => Balances$.inboundSchema),
             createdAt: z

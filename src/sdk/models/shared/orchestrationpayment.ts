@@ -67,9 +67,7 @@ export type OrchestrationPayment = {
 
 /** @internal */
 export namespace OrchestrationPaymentRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<OrchestrationPaymentRaw, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<OrchestrationPaymentRaw, z.ZodTypeDef, unknown> =
         z.object({});
 
     export type Outbound = {};
@@ -88,25 +86,7 @@ export const OrchestrationPaymentType$: z.ZodNativeEnum<typeof OrchestrationPaym
 
 /** @internal */
 export namespace OrchestrationPayment$ {
-    export type Inbound = {
-        adjustments: Array<OrchestrationPaymentAdjustment$.Inbound>;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        destinationAccountID: string;
-        id: string;
-        initialAmount: number;
-        metadata: OrchestrationPaymentMetadata$.Inbound | null;
-        provider?: OrchestrationConnector | undefined;
-        raw: OrchestrationPaymentRaw$.Inbound | null;
-        reference: string;
-        scheme: OrchestrationPaymentScheme;
-        sourceAccountID: string;
-        status: OrchestrationPaymentStatus;
-        type: OrchestrationPaymentType;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationPayment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationPayment, z.ZodTypeDef, unknown> = z
         .object({
             adjustments: z.array(OrchestrationPaymentAdjustment$.inboundSchema),
             asset: z.string(),

@@ -76,7 +76,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.reconciliation.deletePolicy({
-    policyID: "<value>",
+    policyID: "XXX",
   });
 
   // Handle the result
@@ -120,7 +120,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.reconciliation.getPolicy({
-    policyID: "<value>",
+    policyID: "XXX",
   });
 
   // Handle the result
@@ -164,7 +164,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.reconciliation.getReconciliation({
-    reconciliationID: "<value>",
+    reconciliationID: "XXX",
   });
 
   // Handle the result
@@ -209,6 +209,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.reconciliation.listPolicies({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -253,6 +254,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.reconciliation.listReconciliations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -300,7 +302,7 @@ async function run() {
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
       reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
     },
-    policyID: "<value>",
+    policyID: "XXX",
   });
 
   // Handle the result

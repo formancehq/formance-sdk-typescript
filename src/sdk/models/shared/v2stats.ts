@@ -11,12 +11,7 @@ export type V2Stats = {
 
 /** @internal */
 export namespace V2Stats$ {
-    export type Inbound = {
-        accounts: number;
-        transactions: number;
-    };
-
-    export const inboundSchema: z.ZodType<V2Stats, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Stats, z.ZodTypeDef, unknown> = z
         .object({
             accounts: z.number().int(),
             transactions: z.number().transform((v) => BigInt(v)),

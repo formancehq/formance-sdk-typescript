@@ -14,14 +14,7 @@ export type TransactionData = {
 
 /** @internal */
 export namespace TransactionData$ {
-    export type Inbound = {
-        metadata?: Record<string, any> | null | undefined;
-        postings: Array<Posting$.Inbound>;
-        reference?: string | undefined;
-        timestamp?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransactionData, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransactionData, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.nullable(z.record(z.any())).optional(),
             postings: z.array(Posting$.inboundSchema),

@@ -34,12 +34,7 @@ export type TestTriggerResponse = {
 
 /** @internal */
 export namespace TestTriggerRequest$ {
-    export type Inbound = {
-        RequestBody?: Record<string, any> | undefined;
-        triggerID: string;
-    };
-
-    export const inboundSchema: z.ZodType<TestTriggerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TestTriggerRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.record(z.any()).optional(),
             triggerID: z.string(),
@@ -71,14 +66,7 @@ export namespace TestTriggerRequest$ {
 
 /** @internal */
 export namespace TestTriggerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2TestTriggerResponse?: shared.V2TestTriggerResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TestTriggerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TestTriggerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

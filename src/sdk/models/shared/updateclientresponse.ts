@@ -11,11 +11,7 @@ export type UpdateClientResponse = {
 
 /** @internal */
 export namespace UpdateClientResponse$ {
-    export type Inbound = {
-        data?: Client$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Client$.inboundSchema.optional(),
         })

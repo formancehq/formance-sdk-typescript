@@ -16,16 +16,7 @@ export type OrchestrationTransaction = {
 
 /** @internal */
 export namespace OrchestrationTransaction$ {
-    export type Inbound = {
-        id: number;
-        metadata: Record<string, string>;
-        postings: Array<Posting$.Inbound>;
-        reference?: string | undefined;
-        reverted: boolean;
-        timestamp: string;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationTransaction, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),

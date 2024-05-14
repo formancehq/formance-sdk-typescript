@@ -30,12 +30,7 @@ export type AddAccountToPoolResponse = {
 
 /** @internal */
 export namespace AddAccountToPoolRequest$ {
-    export type Inbound = {
-        AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.Inbound;
-        poolId: string;
-    };
-
-    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, unknown> = z
         .object({
             AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.inboundSchema,
             poolId: z.string(),
@@ -67,13 +62,7 @@ export namespace AddAccountToPoolRequest$ {
 
 /** @internal */
 export namespace AddAccountToPoolResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<AddAccountToPoolResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AddAccountToPoolResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

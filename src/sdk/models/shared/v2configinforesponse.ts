@@ -11,12 +11,7 @@ export type V2ConfigInfoResponse = {
 
 /** @internal */
 export namespace V2ConfigInfoResponse$ {
-    export type Inbound = {
-        server: string;
-        version: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ConfigInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ConfigInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             server: z.string(),
             version: z.string(),

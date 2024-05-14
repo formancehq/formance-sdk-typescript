@@ -11,11 +11,7 @@ export type V2ActivityGetWalletOutput = {
 
 /** @internal */
 export namespace V2ActivityGetWalletOutput$ {
-    export type Inbound = {
-        data: V2WalletWithBalances$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityGetWalletOutput, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityGetWalletOutput, z.ZodTypeDef, unknown> = z
         .object({
             data: V2WalletWithBalances$.inboundSchema,
         })

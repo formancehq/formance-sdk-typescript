@@ -32,12 +32,7 @@ export type DeleteSecretResponse = {
 
 /** @internal */
 export namespace DeleteSecretRequest$ {
-    export type Inbound = {
-        clientId: string;
-        secretId: string;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteSecretRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteSecretRequest, z.ZodTypeDef, unknown> = z
         .object({
             clientId: z.string(),
             secretId: z.string(),
@@ -69,13 +64,7 @@ export namespace DeleteSecretRequest$ {
 
 /** @internal */
 export namespace DeleteSecretResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<DeleteSecretResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DeleteSecretResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

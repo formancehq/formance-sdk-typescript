@@ -12,13 +12,7 @@ export type WalletSubject = {
 
 /** @internal */
 export namespace WalletSubject$ {
-    export type Inbound = {
-        balance?: string | undefined;
-        identifier: string;
-        type: string;
-    };
-
-    export const inboundSchema: z.ZodType<WalletSubject, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WalletSubject, z.ZodTypeDef, unknown> = z
         .object({
             balance: z.string().optional(),
             identifier: z.string(),

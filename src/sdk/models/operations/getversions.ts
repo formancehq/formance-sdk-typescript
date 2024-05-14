@@ -26,14 +26,7 @@ export type GetVersionsResponse = {
 
 /** @internal */
 export namespace GetVersionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        GetVersionsResponse?: shared.GetVersionsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             GetVersionsResponse: shared.GetVersionsResponse$.inboundSchema.optional(),

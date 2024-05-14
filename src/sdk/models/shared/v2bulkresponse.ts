@@ -11,11 +11,7 @@ export type V2BulkResponse = {
 
 /** @internal */
 export namespace V2BulkResponse$ {
-    export type Inbound = {
-        data: Array<V2BulkElementResult$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(V2BulkElementResult$.inboundSchema),
         })

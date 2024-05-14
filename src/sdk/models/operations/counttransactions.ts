@@ -70,9 +70,7 @@ export type CountTransactionsResponse = {
 
 /** @internal */
 export namespace Metadata$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -81,18 +79,7 @@ export namespace Metadata$ {
 
 /** @internal */
 export namespace CountTransactionsRequest$ {
-    export type Inbound = {
-        account?: string | undefined;
-        destination?: string | undefined;
-        endTime?: string | undefined;
-        ledger: string;
-        metadata?: Metadata$.Inbound | undefined;
-        reference?: string | undefined;
-        source?: string | undefined;
-        startTime?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CountTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CountTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string().optional(),
             destination: z.string().optional(),
@@ -168,14 +155,7 @@ export namespace CountTransactionsRequest$ {
 
 /** @internal */
 export namespace CountTransactionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CountTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CountTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             Headers: z.record(z.array(z.string())),

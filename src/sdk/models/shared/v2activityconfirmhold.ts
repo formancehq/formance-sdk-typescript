@@ -10,11 +10,7 @@ export type V2ActivityConfirmHold = {
 
 /** @internal */
 export namespace V2ActivityConfirmHold$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityConfirmHold, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityConfirmHold, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })

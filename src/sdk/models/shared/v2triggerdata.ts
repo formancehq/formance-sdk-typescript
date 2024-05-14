@@ -14,15 +14,7 @@ export type V2TriggerData = {
 
 /** @internal */
 export namespace V2TriggerData$ {
-    export type Inbound = {
-        event: string;
-        filter?: string | undefined;
-        name?: string | undefined;
-        vars?: Record<string, any> | undefined;
-        workflowID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2TriggerData, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2TriggerData, z.ZodTypeDef, unknown> = z
         .object({
             event: z.string(),
             filter: z.string().optional(),

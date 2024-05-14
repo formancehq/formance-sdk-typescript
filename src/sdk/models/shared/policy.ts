@@ -15,16 +15,7 @@ export type Policy = {
 
 /** @internal */
 export namespace Policy$ {
-    export type Inbound = {
-        createdAt: string;
-        id: string;
-        ledgerName: string;
-        ledgerQuery: Record<string, any>;
-        name: string;
-        paymentsPoolID: string;
-    };
-
-    export const inboundSchema: z.ZodType<Policy, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Policy, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

@@ -19,15 +19,7 @@ export type ListBalancesResponse = {
 
 /** @internal */
 export namespace ListBalancesResponseCursor$ {
-    export type Inbound = {
-        data: Array<Balance$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListBalancesResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBalancesResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Balance$.inboundSchema),
             hasMore: z.boolean().optional(),
@@ -74,11 +66,7 @@ export namespace ListBalancesResponseCursor$ {
 
 /** @internal */
 export namespace ListBalancesResponse$ {
-    export type Inbound = {
-        cursor: ListBalancesResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ListBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => ListBalancesResponseCursor$.inboundSchema),
         })

@@ -13,14 +13,7 @@ export type V2Ledger = {
 
 /** @internal */
 export namespace V2Ledger$ {
-    export type Inbound = {
-        addedAt: string;
-        bucket: string;
-        metadata?: Record<string, string> | undefined;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2Ledger, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2Ledger, z.ZodTypeDef, unknown> = z
         .object({
             addedAt: z
                 .string()

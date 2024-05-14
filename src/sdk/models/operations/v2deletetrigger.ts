@@ -28,11 +28,7 @@ export type V2DeleteTriggerResponse = {
 
 /** @internal */
 export namespace V2DeleteTriggerRequest$ {
-    export type Inbound = {
-        triggerID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteTriggerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2DeleteTriggerRequest, z.ZodTypeDef, unknown> = z
         .object({
             triggerID: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace V2DeleteTriggerRequest$ {
 
 /** @internal */
 export namespace V2DeleteTriggerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteTriggerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2DeleteTriggerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -42,16 +42,17 @@ export class Ledger extends ClientSDK {
      * Create a new batch of transactions to a ledger
      */
     async createTransactions(
-        input: operations.CreateTransactionsRequest,
+        request: operations.CreateTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.CreateTransactionsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CreateTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -85,7 +86,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -98,7 +99,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -147,16 +148,17 @@ export class Ledger extends ClientSDK {
      * Set the metadata of a transaction by its ID
      */
     async addMetadataOnTransaction(
-        input: operations.AddMetadataOnTransactionRequest,
+        request: operations.AddMetadataOnTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.AddMetadataOnTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.AddMetadataOnTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -194,7 +196,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -207,7 +209,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -251,16 +253,17 @@ export class Ledger extends ClientSDK {
      * Add metadata to an account
      */
     async addMetadataToAccount(
-        input: operations.AddMetadataToAccountRequest,
+        request: operations.AddMetadataToAccountRequest,
         options?: RequestOptions
     ): Promise<operations.AddMetadataToAccountResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.AddMetadataToAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -298,7 +301,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -311,7 +314,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -355,15 +358,16 @@ export class Ledger extends ClientSDK {
      * Count the accounts from a ledger
      */
     async countAccounts(
-        input: operations.CountAccountsRequest,
+        request: operations.CountAccountsRequest,
         options?: RequestOptions
     ): Promise<operations.CountAccountsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CountAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -403,7 +407,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -416,7 +420,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -462,15 +466,16 @@ export class Ledger extends ClientSDK {
      * Count the transactions from a ledger
      */
     async countTransactions(
-        input: operations.CountTransactionsRequest,
+        request: operations.CountTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.CountTransactionsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CountTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -527,7 +532,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -540,7 +545,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -586,16 +591,17 @@ export class Ledger extends ClientSDK {
      * Create a new transaction to a ledger
      */
     async createTransaction(
-        input: operations.CreateTransactionRequest,
+        request: operations.CreateTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.CreateTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CreateTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -634,7 +640,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -647,7 +653,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -696,15 +702,16 @@ export class Ledger extends ClientSDK {
      * Get account by its address
      */
     async getAccount(
-        input: operations.GetAccountRequest,
+        request: operations.GetAccountRequest,
         options?: RequestOptions
     ): Promise<operations.GetAccountResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -742,7 +749,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -755,7 +762,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -804,15 +811,16 @@ export class Ledger extends ClientSDK {
      * Get the balances from a ledger's account
      */
     async getBalances(
-        input: operations.GetBalancesRequest,
+        request: operations.GetBalancesRequest,
         options?: RequestOptions
     ): Promise<operations.GetBalancesResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetBalancesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -857,7 +865,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -870,7 +878,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -919,15 +927,16 @@ export class Ledger extends ClientSDK {
      * Get the aggregated balances from selected accounts
      */
     async getBalancesAggregated(
-        input: operations.GetBalancesAggregatedRequest,
+        request: operations.GetBalancesAggregatedRequest,
         options?: RequestOptions
     ): Promise<operations.GetBalancesAggregatedResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetBalancesAggregatedRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -972,7 +981,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -985,7 +994,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1058,7 +1067,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1070,7 +1079,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1119,15 +1128,16 @@ export class Ledger extends ClientSDK {
      * Get information about a ledger
      */
     async getLedgerInfo(
-        input: operations.GetLedgerInfoRequest,
+        request: operations.GetLedgerInfoRequest,
         options?: RequestOptions
     ): Promise<operations.GetLedgerInfoResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetLedgerInfoRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1159,7 +1169,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1172,7 +1182,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1221,15 +1231,16 @@ export class Ledger extends ClientSDK {
      * Get the mapping of a ledger
      */
     async getMapping(
-        input: operations.GetMappingRequest,
+        request: operations.GetMappingRequest,
         options?: RequestOptions
     ): Promise<operations.GetMappingResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetMappingRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1261,7 +1272,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1274,7 +1285,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1323,15 +1334,16 @@ export class Ledger extends ClientSDK {
      * Get transaction from a ledger by its ID
      */
     async getTransaction(
-        input: operations.GetTransactionRequest,
+        request: operations.GetTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.GetTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1369,7 +1381,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1382,7 +1394,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1434,15 +1446,16 @@ export class Ledger extends ClientSDK {
      * List accounts from a ledger, sorted by address in descending order.
      */
     async listAccounts(
-        input: operations.ListAccountsRequest,
+        request: operations.ListAccountsRequest,
         options?: RequestOptions
     ): Promise<operations.ListAccountsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1496,7 +1509,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1509,7 +1522,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1561,15 +1574,16 @@ export class Ledger extends ClientSDK {
      * List the logs from a ledger, sorted by ID in descending order.
      */
     async listLogs(
-        input: operations.ListLogsRequest,
+        request: operations.ListLogsRequest,
         options?: RequestOptions
     ): Promise<operations.ListLogsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListLogsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1618,7 +1632,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1631,7 +1645,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1683,15 +1697,16 @@ export class Ledger extends ClientSDK {
      * List transactions from a ledger, sorted by txid in descending order.
      */
     async listTransactions(
-        input: operations.ListTransactionsRequest,
+        request: operations.ListTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.ListTransactionsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1754,7 +1769,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1767,7 +1782,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1820,15 +1835,16 @@ export class Ledger extends ClientSDK {
      *
      */
     async readStats(
-        input: operations.ReadStatsRequest,
+        request: operations.ReadStatsRequest,
         options?: RequestOptions
     ): Promise<operations.ReadStatsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ReadStatsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1860,7 +1876,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1873,7 +1889,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1922,15 +1938,16 @@ export class Ledger extends ClientSDK {
      * Revert a ledger transaction by its ID
      */
     async revertTransaction(
-        input: operations.RevertTransactionRequest,
+        request: operations.RevertTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.RevertTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.RevertTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1975,7 +1992,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1988,7 +2005,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2043,16 +2060,17 @@ export class Ledger extends ClientSDK {
      * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     async runScript(
-        input: operations.RunScriptRequest,
+        request: operations.RunScriptRequest,
         options?: RequestOptions
     ): Promise<operations.RunScriptResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.RunScriptRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2091,7 +2109,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2104,7 +2122,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2140,16 +2158,17 @@ export class Ledger extends ClientSDK {
      * Update the mapping of a ledger
      */
     async updateMapping(
-        input: operations.UpdateMappingRequest,
+        request: operations.UpdateMappingRequest,
         options?: RequestOptions
     ): Promise<operations.UpdateMappingResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.UpdateMappingRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2181,7 +2200,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2194,7 +2213,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2243,16 +2262,17 @@ export class Ledger extends ClientSDK {
      * Set the metadata of a transaction by its ID
      */
     async v2AddMetadataOnTransaction(
-        input: operations.V2AddMetadataOnTransactionRequest,
+        request: operations.V2AddMetadataOnTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.V2AddMetadataOnTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2AddMetadataOnTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2299,7 +2319,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2312,7 +2332,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2357,16 +2377,17 @@ export class Ledger extends ClientSDK {
      * Add metadata to an account
      */
     async v2AddMetadataToAccount(
-        input: operations.V2AddMetadataToAccountRequest,
+        request: operations.V2AddMetadataToAccountRequest,
         options?: RequestOptions
     ): Promise<operations.V2AddMetadataToAccountResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2AddMetadataToAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2416,7 +2437,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2429,7 +2450,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2473,15 +2494,16 @@ export class Ledger extends ClientSDK {
      * Count the accounts from a ledger
      */
     async v2CountAccounts(
-        input: operations.V2CountAccountsRequest,
+        request: operations.V2CountAccountsRequest,
         options?: RequestOptions
     ): Promise<operations.V2CountAccountsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CountAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2518,7 +2540,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2531,7 +2553,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2577,15 +2599,16 @@ export class Ledger extends ClientSDK {
      * Count the transactions from a ledger
      */
     async v2CountTransactions(
-        input: operations.V2CountTransactionsRequest,
+        request: operations.V2CountTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.V2CountTransactionsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CountTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2624,7 +2647,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2637,7 +2660,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2683,16 +2706,17 @@ export class Ledger extends ClientSDK {
      * Bulk request
      */
     async v2CreateBulk(
-        input: operations.V2CreateBulkRequest,
+        request: operations.V2CreateBulkRequest,
         options?: RequestOptions
     ): Promise<operations.V2CreateBulkResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CreateBulkRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2724,7 +2748,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2737,7 +2761,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2786,16 +2810,17 @@ export class Ledger extends ClientSDK {
      * Create a ledger
      */
     async v2CreateLedger(
-        input: operations.V2CreateLedgerRequest,
+        request: operations.V2CreateLedgerRequest,
         options?: RequestOptions
     ): Promise<operations.V2CreateLedgerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CreateLedgerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2827,7 +2852,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2840,7 +2865,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2884,16 +2909,17 @@ export class Ledger extends ClientSDK {
      * Create a new transaction to a ledger
      */
     async v2CreateTransaction(
-        input: operations.V2CreateTransactionRequest,
+        request: operations.V2CreateTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.V2CreateTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CreateTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2939,7 +2965,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2952,7 +2978,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3004,15 +3030,16 @@ export class Ledger extends ClientSDK {
      * Delete metadata by key
      */
     async v2DeleteAccountMetadata(
-        input: operations.V2DeleteAccountMetadataRequest,
+        request: operations.V2DeleteAccountMetadataRequest,
         options?: RequestOptions
     ): Promise<operations.V2DeleteAccountMetadataResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2DeleteAccountMetadataRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3054,7 +3081,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3067,7 +3094,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3098,15 +3125,16 @@ export class Ledger extends ClientSDK {
      * Delete ledger metadata by key
      */
     async v2DeleteLedgerMetadata(
-        input: operations.V2DeleteLedgerMetadataRequest,
+        request: operations.V2DeleteLedgerMetadataRequest,
         options?: RequestOptions
     ): Promise<operations.V2DeleteLedgerMetadataResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2DeleteLedgerMetadataRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3144,7 +3172,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3157,7 +3185,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3204,15 +3232,16 @@ export class Ledger extends ClientSDK {
      * Delete metadata by key
      */
     async v2DeleteTransactionMetadata(
-        input: operations.V2DeleteTransactionMetadataRequest,
+        request: operations.V2DeleteTransactionMetadataRequest,
         options?: RequestOptions
     ): Promise<operations.V2DeleteTransactionMetadataResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2DeleteTransactionMetadataRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3251,7 +3280,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3264,7 +3293,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3311,15 +3340,16 @@ export class Ledger extends ClientSDK {
      * Get account by its address
      */
     async v2GetAccount(
-        input: operations.V2GetAccountRequest,
+        request: operations.V2GetAccountRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetAccountResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetAccountRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3362,7 +3392,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3375,7 +3405,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3424,15 +3454,16 @@ export class Ledger extends ClientSDK {
      * Get the aggregated balances from selected accounts
      */
     async v2GetBalancesAggregated(
-        input: operations.V2GetBalancesAggregatedRequest,
+        request: operations.V2GetBalancesAggregatedRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetBalancesAggregatedResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetBalancesAggregatedRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3475,7 +3506,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3488,7 +3519,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3561,7 +3592,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3573,7 +3604,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3622,15 +3653,16 @@ export class Ledger extends ClientSDK {
      * Get a ledger
      */
     async v2GetLedger(
-        input: operations.V2GetLedgerRequest,
+        request: operations.V2GetLedgerRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetLedgerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetLedgerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3662,7 +3694,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3675,7 +3707,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3724,15 +3756,16 @@ export class Ledger extends ClientSDK {
      * Get information about a ledger
      */
     async v2GetLedgerInfo(
-        input: operations.V2GetLedgerInfoRequest,
+        request: operations.V2GetLedgerInfoRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetLedgerInfoResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetLedgerInfoRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3764,7 +3797,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3777,7 +3810,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3826,15 +3859,16 @@ export class Ledger extends ClientSDK {
      * Get transaction from a ledger by its ID
      */
     async v2GetTransaction(
-        input: operations.V2GetTransactionRequest,
+        request: operations.V2GetTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3874,7 +3908,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3887,7 +3921,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3936,15 +3970,16 @@ export class Ledger extends ClientSDK {
      * Get list of volumes with balances for (account/asset)
      */
     async v2GetVolumesWithBalances(
-        input: operations.V2GetVolumesWithBalancesRequest,
+        request: operations.V2GetVolumesWithBalancesRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetVolumesWithBalancesResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetVolumesWithBalancesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4001,7 +4036,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4014,7 +4049,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4066,15 +4101,16 @@ export class Ledger extends ClientSDK {
      * List accounts from a ledger, sorted by address in descending order.
      */
     async v2ListAccounts(
-        input: operations.V2ListAccountsRequest,
+        request: operations.V2ListAccountsRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListAccountsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListAccountsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4117,7 +4153,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4130,7 +4166,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4179,15 +4215,16 @@ export class Ledger extends ClientSDK {
      * List ledgers
      */
     async v2ListLedgers(
-        input: operations.V2ListLedgersRequest,
+        request: operations.V2ListLedgersRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListLedgersResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListLedgersRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4221,7 +4258,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4234,7 +4271,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4286,15 +4323,16 @@ export class Ledger extends ClientSDK {
      * List the logs from a ledger, sorted by ID in descending order.
      */
     async v2ListLogs(
-        input: operations.V2ListLogsRequest,
+        request: operations.V2ListLogsRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListLogsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListLogsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4336,7 +4374,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4349,7 +4387,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4401,15 +4439,16 @@ export class Ledger extends ClientSDK {
      * List transactions from a ledger, sorted by id in descending order.
      */
     async v2ListTransactions(
-        input: operations.V2ListTransactionsRequest,
+        request: operations.V2ListTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListTransactionsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4454,7 +4493,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4467,7 +4506,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4520,15 +4559,16 @@ export class Ledger extends ClientSDK {
      *
      */
     async v2ReadStats(
-        input: operations.V2ReadStatsRequest,
+        request: operations.V2ReadStatsRequest,
         options?: RequestOptions
     ): Promise<operations.V2ReadStatsResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ReadStatsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4560,7 +4600,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4573,7 +4613,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4622,15 +4662,16 @@ export class Ledger extends ClientSDK {
      * Revert a ledger transaction by its ID
      */
     async v2RevertTransaction(
-        input: operations.V2RevertTransactionRequest,
+        request: operations.V2RevertTransactionRequest,
         options?: RequestOptions
     ): Promise<operations.V2RevertTransactionResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2RevertTransactionRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4673,7 +4714,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4686,7 +4727,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -4735,16 +4776,17 @@ export class Ledger extends ClientSDK {
      * Update ledger metadata
      */
     async v2UpdateLedgerMetadata(
-        input: operations.V2UpdateLedgerMetadataRequest,
+        request: operations.V2UpdateLedgerMetadataRequest,
         options?: RequestOptions
     ): Promise<operations.V2UpdateLedgerMetadataResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2UpdateLedgerMetadataRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -4776,7 +4818,7 @@ export class Ledger extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -4789,7 +4831,7 @@ export class Ledger extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

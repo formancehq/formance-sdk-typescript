@@ -19,15 +19,7 @@ export type ListWalletsResponse = {
 
 /** @internal */
 export namespace ListWalletsResponseCursor$ {
-    export type Inbound = {
-        data: Array<Wallet$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListWalletsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWalletsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Wallet$.inboundSchema),
             hasMore: z.boolean().optional(),
@@ -74,11 +66,7 @@ export namespace ListWalletsResponseCursor$ {
 
 /** @internal */
 export namespace ListWalletsResponse$ {
-    export type Inbound = {
-        cursor: ListWalletsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ListWalletsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListWalletsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => ListWalletsResponseCursor$.inboundSchema),
         })

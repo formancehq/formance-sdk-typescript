@@ -15,13 +15,7 @@ export type V2StageSendSource = {
 
 /** @internal */
 export namespace V2StageSendSource$ {
-    export type Inbound = {
-        account?: V2StageSendSourceAccount$.Inbound | undefined;
-        payment?: V2StageSendSourcePayment$.Inbound | undefined;
-        wallet?: V2StageSendSourceWallet$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageSendSource, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageSendSource, z.ZodTypeDef, unknown> = z
         .object({
             account: V2StageSendSourceAccount$.inboundSchema.optional(),
             payment: V2StageSendSourcePayment$.inboundSchema.optional(),

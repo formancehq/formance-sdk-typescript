@@ -19,15 +19,7 @@ export type V2LedgerListResponse = {
 
 /** @internal */
 export namespace V2LedgerListResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2Ledger$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2LedgerListResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2LedgerListResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(V2Ledger$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace V2LedgerListResponseCursor$ {
 
 /** @internal */
 export namespace V2LedgerListResponse$ {
-    export type Inbound = {
-        cursor: V2LedgerListResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2LedgerListResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2LedgerListResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => V2LedgerListResponseCursor$.inboundSchema),
         })

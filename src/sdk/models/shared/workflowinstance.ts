@@ -18,18 +18,7 @@ export type WorkflowInstance = {
 
 /** @internal */
 export namespace WorkflowInstance$ {
-    export type Inbound = {
-        createdAt: string;
-        error?: string | undefined;
-        id: string;
-        status?: Array<StageStatus$.Inbound> | undefined;
-        terminated: boolean;
-        terminatedAt?: string | undefined;
-        updatedAt: string;
-        workflowID: string;
-    };
-
-    export const inboundSchema: z.ZodType<WorkflowInstance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WorkflowInstance, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

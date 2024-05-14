@@ -30,15 +30,10 @@ export type UdpateTransferInitiationStatusResponse = {
 
 /** @internal */
 export namespace UdpateTransferInitiationStatusRequest$ {
-    export type Inbound = {
-        UpdateTransferInitiationStatusRequest: shared.UpdateTransferInitiationStatusRequest$.Inbound;
-        transferId: string;
-    };
-
     export const inboundSchema: z.ZodType<
         UdpateTransferInitiationStatusRequest,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             UpdateTransferInitiationStatusRequest:
@@ -77,16 +72,10 @@ export namespace UdpateTransferInitiationStatusRequest$ {
 
 /** @internal */
 export namespace UdpateTransferInitiationStatusResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         UdpateTransferInitiationStatusResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

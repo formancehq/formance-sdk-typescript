@@ -11,11 +11,7 @@ export type ReadTriggerResponse = {
 
 /** @internal */
 export namespace ReadTriggerResponse$ {
-    export type Inbound = {
-        data: Trigger$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ReadTriggerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReadTriggerResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Trigger$.inboundSchema,
         })

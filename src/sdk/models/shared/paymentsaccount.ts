@@ -27,9 +27,7 @@ export type PaymentsAccount = {
 
 /** @internal */
 export namespace PaymentsAccountRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<PaymentsAccountRaw, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<PaymentsAccountRaw, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -40,22 +38,7 @@ export namespace PaymentsAccountRaw$ {
 
 /** @internal */
 export namespace PaymentsAccount$ {
-    export type Inbound = {
-        accountName: string;
-        connectorID: string;
-        createdAt: string;
-        defaultAsset: string;
-        defaultCurrency: string;
-        id: string;
-        metadata: Record<string, string> | null;
-        pools?: Array<string> | undefined;
-        provider?: string | undefined;
-        raw: PaymentsAccountRaw$.Inbound | null;
-        reference: string;
-        type: AccountType;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentsAccount, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentsAccount, z.ZodTypeDef, unknown> = z
         .object({
             accountName: z.string(),
             connectorID: z.string(),

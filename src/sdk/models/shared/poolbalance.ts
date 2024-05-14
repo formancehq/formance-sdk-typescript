@@ -11,12 +11,7 @@ export type PoolBalance = {
 
 /** @internal */
 export namespace PoolBalance$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-    };
-
-    export const inboundSchema: z.ZodType<PoolBalance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoolBalance, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

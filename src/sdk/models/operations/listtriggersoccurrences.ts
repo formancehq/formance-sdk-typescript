@@ -33,11 +33,7 @@ export type ListTriggersOccurrencesResponse = {
 
 /** @internal */
 export namespace ListTriggersOccurrencesRequest$ {
-    export type Inbound = {
-        triggerID: string;
-    };
-
-    export const inboundSchema: z.ZodType<ListTriggersOccurrencesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTriggersOccurrencesRequest, z.ZodTypeDef, unknown> = z
         .object({
             triggerID: z.string(),
         })
@@ -65,16 +61,7 @@ export namespace ListTriggersOccurrencesRequest$ {
 
 /** @internal */
 export namespace ListTriggersOccurrencesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListTriggersOccurrencesResponse?:
-            | shared.ListTriggersOccurrencesResponse$.Inbound
-            | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListTriggersOccurrencesResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ListTriggersOccurrencesResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

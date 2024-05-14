@@ -15,15 +15,7 @@ export type GetWalletSummaryResponse = {
 
 /** @internal */
 export namespace GetWalletSummaryResponse$ {
-    export type Inbound = {
-        availableFunds: Record<string, number>;
-        balances: Array<BalanceWithAssets$.Inbound>;
-        expirableFunds: Record<string, number>;
-        expiredFunds: Record<string, number>;
-        holdFunds: Record<string, number>;
-    };
-
-    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, unknown> = z
         .object({
             availableFunds: z.record(z.number().transform((v) => BigInt(v))),
             balances: z.array(BalanceWithAssets$.inboundSchema),

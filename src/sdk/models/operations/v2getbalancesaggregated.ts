@@ -39,14 +39,7 @@ export type V2GetBalancesAggregatedResponse = {
 
 /** @internal */
 export namespace V2GetBalancesAggregatedRequest$ {
-    export type Inbound = {
-        ledger: string;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-        useInsertionDate?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetBalancesAggregatedRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetBalancesAggregatedRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
             pit: z
@@ -100,14 +93,7 @@ export namespace V2GetBalancesAggregatedRequest$ {
 
 /** @internal */
 export namespace V2GetBalancesAggregatedResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2AggregateBalancesResponse?: shared.V2AggregateBalancesResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetBalancesAggregatedResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<V2GetBalancesAggregatedResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

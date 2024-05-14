@@ -14,15 +14,7 @@ export type ReverseTransferInitiationRequest = {
 
 /** @internal */
 export namespace ReverseTransferInitiationRequest$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-        description: string;
-        metadata: Record<string, string> | null;
-        reference: string;
-    };
-
-    export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, unknown> =
         z
             .object({
                 amount: z.number().transform((v) => BigInt(v)),

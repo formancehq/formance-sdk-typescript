@@ -31,12 +31,7 @@ export type CreateBalanceResponse = {
 
 /** @internal */
 export namespace CreateBalanceRequest$ {
-    export type Inbound = {
-        CreateBalanceRequest?: shared.CreateBalanceRequest$.Inbound | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<CreateBalanceRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateBalanceRequest, z.ZodTypeDef, unknown> = z
         .object({
             CreateBalanceRequest: shared.CreateBalanceRequest$.inboundSchema.optional(),
             id: z.string(),
@@ -72,14 +67,7 @@ export namespace CreateBalanceRequest$ {
 
 /** @internal */
 export namespace CreateBalanceResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        CreateBalanceResponse?: shared.CreateBalanceResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreateBalanceResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateBalanceResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             CreateBalanceResponse: shared.CreateBalanceResponse$.inboundSchema.optional(),

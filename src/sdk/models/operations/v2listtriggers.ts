@@ -50,13 +50,7 @@ export type V2ListTriggersResponse = {
 
 /** @internal */
 export namespace V2ListTriggersRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        name?: string | undefined;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTriggersRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTriggersRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             name: z.string().optional(),
@@ -93,14 +87,7 @@ export namespace V2ListTriggersRequest$ {
 
 /** @internal */
 export namespace V2ListTriggersResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2ListTriggersResponse?: shared.V2ListTriggersResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTriggersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTriggersResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

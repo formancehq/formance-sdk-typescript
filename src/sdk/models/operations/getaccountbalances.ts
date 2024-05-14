@@ -82,18 +82,7 @@ export type GetAccountBalancesResponse = {
 
 /** @internal */
 export namespace GetAccountBalancesRequest$ {
-    export type Inbound = {
-        accountId: string;
-        asset?: string | undefined;
-        cursor?: string | undefined;
-        from?: string | undefined;
-        limit?: number | undefined;
-        pageSize?: number | undefined;
-        sort?: Array<string> | undefined;
-        to?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetAccountBalancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAccountBalancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountId: z.string(),
             asset: z.string().optional(),
@@ -169,14 +158,7 @@ export namespace GetAccountBalancesRequest$ {
 
 /** @internal */
 export namespace GetAccountBalancesResponse$ {
-    export type Inbound = {
-        BalancesCursor?: shared.BalancesCursor$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetAccountBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetAccountBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             BalancesCursor: shared.BalancesCursor$.inboundSchema.optional(),
             ContentType: z.string(),

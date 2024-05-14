@@ -11,11 +11,7 @@ export type ReadUserResponse = {
 
 /** @internal */
 export namespace ReadUserResponse$ {
-    export type Inbound = {
-        data?: User$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ReadUserResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReadUserResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: User$.inboundSchema.optional(),
         })

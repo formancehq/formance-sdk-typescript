@@ -28,11 +28,7 @@ export type V2CancelEventResponse = {
 
 /** @internal */
 export namespace V2CancelEventRequest$ {
-    export type Inbound = {
-        instanceID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2CancelEventRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CancelEventRequest, z.ZodTypeDef, unknown> = z
         .object({
             instanceID: z.string(),
         })
@@ -59,13 +55,7 @@ export namespace V2CancelEventRequest$ {
 
 /** @internal */
 export namespace V2CancelEventResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2CancelEventResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CancelEventResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

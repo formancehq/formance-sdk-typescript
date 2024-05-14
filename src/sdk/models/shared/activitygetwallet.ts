@@ -10,11 +10,7 @@ export type ActivityGetWallet = {
 
 /** @internal */
 export namespace ActivityGetWallet$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityGetWallet, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivityGetWallet, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })

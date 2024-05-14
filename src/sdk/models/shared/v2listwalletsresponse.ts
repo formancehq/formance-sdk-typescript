@@ -19,15 +19,7 @@ export type V2ListWalletsResponse = {
 
 /** @internal */
 export namespace V2ListWalletsResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2Wallet$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListWalletsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListWalletsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(V2Wallet$.inboundSchema),
             hasMore: z.boolean().optional(),
@@ -74,11 +66,7 @@ export namespace V2ListWalletsResponseCursor$ {
 
 /** @internal */
 export namespace V2ListWalletsResponse$ {
-    export type Inbound = {
-        cursor: V2ListWalletsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListWalletsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListWalletsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => V2ListWalletsResponseCursor$.inboundSchema),
         })

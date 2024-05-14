@@ -10,11 +10,7 @@ export type ForwardBankAccountRequest = {
 
 /** @internal */
 export namespace ForwardBankAccountRequest$ {
-    export type Inbound = {
-        connectorID: string;
-    };
-
-    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
         })

@@ -11,11 +11,7 @@ export type CreateWalletResponse = {
 
 /** @internal */
 export namespace CreateWalletResponse$ {
-    export type Inbound = {
-        data: Wallet$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<CreateWalletResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateWalletResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Wallet$.inboundSchema,
         })

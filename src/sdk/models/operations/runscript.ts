@@ -46,13 +46,7 @@ export type RunScriptResponse = {
 
 /** @internal */
 export namespace RunScriptRequest$ {
-    export type Inbound = {
-        Script: shared.Script$.Inbound;
-        ledger: string;
-        preview?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<RunScriptRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RunScriptRequest, z.ZodTypeDef, unknown> = z
         .object({
             Script: shared.Script$.inboundSchema,
             ledger: z.string(),
@@ -89,14 +83,7 @@ export namespace RunScriptRequest$ {
 
 /** @internal */
 export namespace RunScriptResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ScriptResponse?: shared.ScriptResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<RunScriptResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RunScriptResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ScriptResponse: shared.ScriptResponse$.inboundSchema.optional(),

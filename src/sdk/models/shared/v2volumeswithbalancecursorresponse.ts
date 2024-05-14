@@ -19,18 +19,10 @@ export type V2VolumesWithBalanceCursorResponse = {
 
 /** @internal */
 export namespace V2VolumesWithBalanceCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2VolumesWithBalance$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         V2VolumesWithBalanceCursorResponseCursor,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(V2VolumesWithBalance$.inboundSchema),
@@ -82,14 +74,10 @@ export namespace V2VolumesWithBalanceCursorResponseCursor$ {
 
 /** @internal */
 export namespace V2VolumesWithBalanceCursorResponse$ {
-    export type Inbound = {
-        cursor: V2VolumesWithBalanceCursorResponseCursor$.Inbound;
-    };
-
     export const inboundSchema: z.ZodType<
         V2VolumesWithBalanceCursorResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             cursor: z.lazy(() => V2VolumesWithBalanceCursorResponseCursor$.inboundSchema),

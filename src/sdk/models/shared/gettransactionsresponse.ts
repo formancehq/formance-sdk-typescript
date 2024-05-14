@@ -19,15 +19,7 @@ export type GetTransactionsResponse = {
 
 /** @internal */
 export namespace GetTransactionsResponseCursor$ {
-    export type Inbound = {
-        data: Array<WalletsTransaction$.Inbound>;
-        hasMore?: boolean | undefined;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransactionsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransactionsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(WalletsTransaction$.inboundSchema),
             hasMore: z.boolean().optional(),
@@ -75,11 +67,7 @@ export namespace GetTransactionsResponseCursor$ {
 
 /** @internal */
 export namespace GetTransactionsResponse$ {
-    export type Inbound = {
-        cursor: GetTransactionsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => GetTransactionsResponseCursor$.inboundSchema),
         })

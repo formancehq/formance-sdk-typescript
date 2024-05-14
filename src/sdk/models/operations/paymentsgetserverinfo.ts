@@ -26,14 +26,7 @@ export type PaymentsgetServerInfoResponse = {
 
 /** @internal */
 export namespace PaymentsgetServerInfoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ServerInfo?: shared.ServerInfo$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentsgetServerInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentsgetServerInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ServerInfo: shared.ServerInfo$.inboundSchema.optional(),

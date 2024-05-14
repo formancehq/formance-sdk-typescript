@@ -26,14 +26,7 @@ export type V2CreateTriggerResponse = {
 
 /** @internal */
 export namespace V2CreateTriggerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2CreateTriggerResponse?: shared.V2CreateTriggerResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateTriggerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateTriggerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

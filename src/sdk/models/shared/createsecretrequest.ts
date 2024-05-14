@@ -11,12 +11,7 @@ export type CreateSecretRequest = {
 
 /** @internal */
 export namespace CreateSecretRequest$ {
-    export type Inbound = {
-        metadata?: Record<string, any> | undefined;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.any()).optional(),
             name: z.string(),

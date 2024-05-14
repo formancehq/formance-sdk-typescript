@@ -50,14 +50,7 @@ export type V2CreateTransactionResponse = {
 
 /** @internal */
 export namespace V2CreateTransactionRequest$ {
-    export type Inbound = {
-        "Idempotency-Key"?: string | undefined;
-        V2PostTransaction: shared.V2PostTransaction$.Inbound;
-        dryRun?: boolean | undefined;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             "Idempotency-Key": z.string().optional(),
             V2PostTransaction: shared.V2PostTransaction$.inboundSchema,
@@ -103,14 +96,7 @@ export namespace V2CreateTransactionRequest$ {
 
 /** @internal */
 export namespace V2CreateTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2CreateTransactionResponse?: shared.V2CreateTransactionResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -46,13 +46,7 @@ export class V2ErrorResponse extends Error {
 
 /** @internal */
 export namespace V2ErrorResponse$ {
-    export type Inbound = {
-        details?: string | undefined;
-        errorCode: shared.V2ErrorsEnum;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ErrorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
             errorCode: shared.V2ErrorsEnum$,

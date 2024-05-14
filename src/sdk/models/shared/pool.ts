@@ -12,13 +12,7 @@ export type Pool = {
 
 /** @internal */
 export namespace Pool$ {
-    export type Inbound = {
-        accounts: Array<string>;
-        id: string;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<Pool, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Pool, z.ZodTypeDef, unknown> = z
         .object({
             accounts: z.array(z.string()),
             id: z.string(),

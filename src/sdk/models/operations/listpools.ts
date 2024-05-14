@@ -57,14 +57,7 @@ export type ListPoolsResponse = {
 
 /** @internal */
 export namespace ListPoolsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        query?: string | undefined;
-        sort?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListPoolsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPoolsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -106,14 +99,7 @@ export namespace ListPoolsRequest$ {
 
 /** @internal */
 export namespace ListPoolsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PoolsCursor?: shared.PoolsCursor$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListPoolsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListPoolsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PoolsCursor: shared.PoolsCursor$.inboundSchema.optional(),

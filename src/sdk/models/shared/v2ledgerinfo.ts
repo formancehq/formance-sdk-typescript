@@ -16,11 +16,7 @@ export type V2LedgerInfo = {
 
 /** @internal */
 export namespace V2LedgerInfoStorage$ {
-    export type Inbound = {
-        migrations?: Array<V2MigrationInfo$.Inbound> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2LedgerInfoStorage, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2LedgerInfoStorage, z.ZodTypeDef, unknown> = z
         .object({
             migrations: z.array(V2MigrationInfo$.inboundSchema).optional(),
         })
@@ -47,12 +43,7 @@ export namespace V2LedgerInfoStorage$ {
 
 /** @internal */
 export namespace V2LedgerInfo$ {
-    export type Inbound = {
-        name?: string | undefined;
-        storage?: V2LedgerInfoStorage$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2LedgerInfo, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2LedgerInfo, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
             storage: z.lazy(() => V2LedgerInfoStorage$.inboundSchema).optional(),

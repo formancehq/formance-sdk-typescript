@@ -46,15 +46,16 @@ export class Webhooks extends ClientSDK {
      * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
      */
     async activateConfig(
-        input: operations.ActivateConfigRequest,
+        request: operations.ActivateConfigRequest,
         options?: RequestOptions
     ): Promise<operations.ActivateConfigResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ActivateConfigRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -83,7 +84,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -96,7 +97,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -152,16 +153,17 @@ export class Webhooks extends ClientSDK {
      *
      */
     async changeConfigSecret(
-        input: operations.ChangeConfigSecretRequest,
+        request: operations.ChangeConfigSecretRequest,
         options?: RequestOptions
     ): Promise<operations.ChangeConfigSecretResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ChangeConfigSecretRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -192,7 +194,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -205,7 +207,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -257,15 +259,16 @@ export class Webhooks extends ClientSDK {
      * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
      */
     async deactivateConfig(
-        input: operations.DeactivateConfigRequest,
+        request: operations.DeactivateConfigRequest,
         options?: RequestOptions
     ): Promise<operations.DeactivateConfigResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeactivateConfigRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -296,7 +299,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -309,7 +312,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -361,15 +364,16 @@ export class Webhooks extends ClientSDK {
      * Delete a webhooks config by ID.
      */
     async deleteConfig(
-        input: operations.DeleteConfigRequest,
+        request: operations.DeleteConfigRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteConfigResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeleteConfigRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -398,7 +402,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -411,7 +415,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -458,15 +462,16 @@ export class Webhooks extends ClientSDK {
      * Sorted by updated date descending
      */
     async getManyConfigs(
-        input: operations.GetManyConfigsRequest,
+        request: operations.GetManyConfigsRequest,
         options?: RequestOptions
     ): Promise<operations.GetManyConfigsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetManyConfigsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -500,7 +505,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -513,7 +518,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -574,16 +579,17 @@ export class Webhooks extends ClientSDK {
      *
      */
     async insertConfig(
-        input: shared.ConfigUser,
+        request: shared.ConfigUser,
         options?: RequestOptions
     ): Promise<operations.InsertConfigResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.ConfigUser$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -609,7 +615,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -622,7 +628,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -674,15 +680,16 @@ export class Webhooks extends ClientSDK {
      * Test a config by sending a webhook to its endpoint.
      */
     async testConfig(
-        input: operations.TestConfigRequest,
+        request: operations.TestConfigRequest,
         options?: RequestOptions
     ): Promise<operations.TestConfigResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.TestConfigRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -711,7 +718,7 @@ export class Webhooks extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -724,7 +731,7 @@ export class Webhooks extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

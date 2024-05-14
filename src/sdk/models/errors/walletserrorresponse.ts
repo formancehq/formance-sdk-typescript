@@ -52,12 +52,7 @@ export const SchemasWalletsErrorResponseErrorCode$: z.ZodNativeEnum<
 
 /** @internal */
 export namespace WalletsErrorResponse$ {
-    export type Inbound = {
-        errorCode: SchemasWalletsErrorResponseErrorCode;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             errorCode: SchemasWalletsErrorResponseErrorCode$,
             errorMessage: z.string(),

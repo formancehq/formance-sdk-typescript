@@ -29,11 +29,7 @@ export type ResetConnectorResponse = {
 
 /** @internal */
 export namespace ResetConnectorRequest$ {
-    export type Inbound = {
-        connector: shared.Connector;
-    };
-
-    export const inboundSchema: z.ZodType<ResetConnectorRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ResetConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
             connector: shared.Connector$,
         })
@@ -60,13 +56,7 @@ export namespace ResetConnectorRequest$ {
 
 /** @internal */
 export namespace ResetConnectorResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ResetConnectorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ResetConnectorResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -79,18 +79,7 @@ export type ListAccountsResponse = {
 
 /** @internal */
 export namespace ListAccountsRequest$ {
-    export type Inbound = {
-        address?: string | undefined;
-        after?: string | undefined;
-        balance?: number | undefined;
-        cursor?: string | undefined;
-        ledger: string;
-        metadata?: Record<string, any> | undefined;
-        pageSize?: number | undefined;
-        pagination_token?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string().optional(),
             after: z.string().optional(),
@@ -156,14 +145,7 @@ export namespace ListAccountsRequest$ {
 
 /** @internal */
 export namespace ListAccountsResponse$ {
-    export type Inbound = {
-        AccountsCursorResponse?: shared.AccountsCursorResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             AccountsCursorResponse: shared.AccountsCursorResponse$.inboundSchema.optional(),
             ContentType: z.string(),

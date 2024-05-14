@@ -14,11 +14,7 @@ export type ConnectorResponse = {
 
 /** @internal */
 export namespace Data$ {
-    export type Inbound = {
-        connectorID: string;
-    };
-
-    export const inboundSchema: z.ZodType<Data, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
         })
@@ -45,11 +41,7 @@ export namespace Data$ {
 
 /** @internal */
 export namespace ConnectorResponse$ {
-    export type Inbound = {
-        data: Data$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.lazy(() => Data$.inboundSchema),
         })

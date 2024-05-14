@@ -11,12 +11,7 @@ export type ActivityRevertTransaction = {
 
 /** @internal */
 export namespace ActivityRevertTransaction$ {
-    export type Inbound = {
-        id: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityRevertTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ActivityRevertTransaction, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
             ledger: z.string(),

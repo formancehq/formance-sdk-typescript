@@ -12,13 +12,7 @@ export type WalletsVolume = {
 
 /** @internal */
 export namespace WalletsVolume$ {
-    export type Inbound = {
-        balance: number;
-        input: number;
-        output: number;
-    };
-
-    export const inboundSchema: z.ZodType<WalletsVolume, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WalletsVolume, z.ZodTypeDef, unknown> = z
         .object({
             balance: z.number().transform((v) => BigInt(v)),
             input: z.number().transform((v) => BigInt(v)),

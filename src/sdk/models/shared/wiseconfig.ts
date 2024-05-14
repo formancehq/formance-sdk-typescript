@@ -18,13 +18,7 @@ export type WiseConfig = {
 
 /** @internal */
 export namespace WiseConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             name: z.string(),

@@ -26,14 +26,7 @@ export type SearchResponse = {
 
 /** @internal */
 export namespace SearchResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        Response?: shared.Response$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<SearchResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<SearchResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             Response: shared.Response$.inboundSchema.optional(),

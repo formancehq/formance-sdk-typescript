@@ -20,15 +20,7 @@ export type AdyenConfig = {
 
 /** @internal */
 export namespace AdyenConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        hmacKey: string;
-        liveEndpointPrefix?: string | undefined;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             hmacKey: z.string(),

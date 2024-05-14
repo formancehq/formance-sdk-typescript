@@ -26,14 +26,7 @@ export type ListAllConnectorsResponse = {
 
 /** @internal */
 export namespace ListAllConnectorsResponse$ {
-    export type Inbound = {
-        ConnectorsResponse?: shared.ConnectorsResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListAllConnectorsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListAllConnectorsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorsResponse: shared.ConnectorsResponse$.inboundSchema.optional(),
             ContentType: z.string(),

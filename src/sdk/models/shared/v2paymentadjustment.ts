@@ -17,9 +17,7 @@ export type V2PaymentAdjustment = {
 
 /** @internal */
 export namespace V2PaymentAdjustmentRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<V2PaymentAdjustmentRaw, z.ZodTypeDef, Inbound> = z.object(
+    export const inboundSchema: z.ZodType<V2PaymentAdjustmentRaw, z.ZodTypeDef, unknown> = z.object(
         {}
     );
 
@@ -31,15 +29,7 @@ export namespace V2PaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace V2PaymentAdjustment$ {
-    export type Inbound = {
-        absolute: boolean;
-        amount: number;
-        date: string;
-        raw: V2PaymentAdjustmentRaw$.Inbound;
-        status: V2PaymentStatus;
-    };
-
-    export const inboundSchema: z.ZodType<V2PaymentAdjustment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2PaymentAdjustment, z.ZodTypeDef, unknown> = z
         .object({
             absolute: z.boolean(),
             amount: z.number().transform((v) => BigInt(v)),

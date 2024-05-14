@@ -14,15 +14,7 @@ export type Secret = {
 
 /** @internal */
 export namespace Secret$ {
-    export type Inbound = {
-        clear: string;
-        id: string;
-        lastDigits: string;
-        metadata?: Record<string, any> | undefined;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<Secret, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Secret, z.ZodTypeDef, unknown> = z
         .object({
             clear: z.string(),
             id: z.string(),

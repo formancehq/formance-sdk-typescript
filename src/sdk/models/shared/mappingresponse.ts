@@ -11,11 +11,7 @@ export type MappingResponse = {
 
 /** @internal */
 export namespace MappingResponse$ {
-    export type Inbound = {
-        data?: Mapping$.Inbound | null | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MappingResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MappingResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.nullable(Mapping$.inboundSchema).optional(),
         })

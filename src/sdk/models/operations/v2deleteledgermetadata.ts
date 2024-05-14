@@ -32,12 +32,7 @@ export type V2DeleteLedgerMetadataResponse = {
 
 /** @internal */
 export namespace V2DeleteLedgerMetadataRequest$ {
-    export type Inbound = {
-        key: string;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string(),
             ledger: z.string(),
@@ -70,13 +65,7 @@ export namespace V2DeleteLedgerMetadataRequest$ {
 
 /** @internal */
 export namespace V2DeleteLedgerMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2DeleteLedgerMetadataResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

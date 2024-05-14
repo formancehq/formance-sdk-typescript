@@ -11,11 +11,7 @@ export type ConfigInfoResponse = {
 
 /** @internal */
 export namespace ConfigInfoResponse$ {
-    export type Inbound = {
-        data: ConfigInfo$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: ConfigInfo$.inboundSchema,
         })

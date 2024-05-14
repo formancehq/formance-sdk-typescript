@@ -19,18 +19,7 @@ export type V2ExpandedTransaction = {
 
 /** @internal */
 export namespace V2ExpandedTransaction$ {
-    export type Inbound = {
-        id: number;
-        metadata: Record<string, string>;
-        postCommitVolumes?: Record<string, Record<string, V2Volume$.Inbound>> | undefined;
-        postings: Array<V2Posting$.Inbound>;
-        preCommitVolumes?: Record<string, Record<string, V2Volume$.Inbound>> | undefined;
-        reference?: string | undefined;
-        reverted: boolean;
-        timestamp: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ExpandedTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ExpandedTransaction, z.ZodTypeDef, unknown> = z
         .object({
             id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),

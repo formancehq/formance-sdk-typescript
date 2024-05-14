@@ -31,13 +31,7 @@ export type V2CountAccountsResponse = {
 
 /** @internal */
 export namespace V2CountAccountsRequest$ {
-    export type Inbound = {
-        ledger: string;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CountAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CountAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
             pit: z
@@ -81,14 +75,7 @@ export namespace V2CountAccountsRequest$ {
 
 /** @internal */
 export namespace V2CountAccountsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2CountAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CountAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             Headers: z.record(z.array(z.string())),

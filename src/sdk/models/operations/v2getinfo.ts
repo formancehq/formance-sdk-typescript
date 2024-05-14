@@ -26,14 +26,7 @@ export type V2GetInfoResponse = {
 
 /** @internal */
 export namespace V2GetInfoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2ConfigInfoResponse?: shared.V2ConfigInfoResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2GetInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2GetInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

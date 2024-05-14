@@ -19,15 +19,7 @@ export type V2ListRunsResponse = {
 
 /** @internal */
 export namespace V2ListRunsResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2WorkflowInstance$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListRunsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListRunsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(V2WorkflowInstance$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace V2ListRunsResponseCursor$ {
 
 /** @internal */
 export namespace V2ListRunsResponse$ {
-    export type Inbound = {
-        cursor: V2ListRunsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListRunsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListRunsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => V2ListRunsResponseCursor$.inboundSchema),
         })

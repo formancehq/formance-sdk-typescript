@@ -33,12 +33,7 @@ export type UninstallConnectorV1Response = {
 
 /** @internal */
 export namespace UninstallConnectorV1Request$ {
-    export type Inbound = {
-        connector: shared.Connector;
-        connectorId: string;
-    };
-
-    export const inboundSchema: z.ZodType<UninstallConnectorV1Request, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UninstallConnectorV1Request, z.ZodTypeDef, unknown> = z
         .object({
             connector: shared.Connector$,
             connectorId: z.string(),
@@ -70,13 +65,7 @@ export namespace UninstallConnectorV1Request$ {
 
 /** @internal */
 export namespace UninstallConnectorV1Response$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UninstallConnectorV1Response, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UninstallConnectorV1Response, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

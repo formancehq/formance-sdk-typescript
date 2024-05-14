@@ -13,14 +13,7 @@ export type Posting = {
 
 /** @internal */
 export namespace Posting$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-        destination: string;
-        source: string;
-    };
-
-    export const inboundSchema: z.ZodType<Posting, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Posting, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

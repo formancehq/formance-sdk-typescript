@@ -33,11 +33,7 @@ export type TestConfigResponse = {
 
 /** @internal */
 export namespace TestConfigRequest$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<TestConfigRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TestConfigRequest, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace TestConfigRequest$ {
 
 /** @internal */
 export namespace TestConfigResponse$ {
-    export type Inbound = {
-        AttemptResponse?: shared.AttemptResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<TestConfigResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TestConfigResponse, z.ZodTypeDef, unknown> = z
         .object({
             AttemptResponse: shared.AttemptResponse$.inboundSchema.optional(),
             ContentType: z.string(),

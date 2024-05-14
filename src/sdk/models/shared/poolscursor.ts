@@ -19,15 +19,7 @@ export type PoolsCursor = {
 
 /** @internal */
 export namespace PoolsCursorCursor$ {
-    export type Inbound = {
-        data: Array<Pool$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PoolsCursorCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoolsCursorCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Pool$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace PoolsCursorCursor$ {
 
 /** @internal */
 export namespace PoolsCursor$ {
-    export type Inbound = {
-        cursor: PoolsCursorCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<PoolsCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoolsCursor, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => PoolsCursorCursor$.inboundSchema),
         })

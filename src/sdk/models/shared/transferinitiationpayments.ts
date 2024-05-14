@@ -14,14 +14,7 @@ export type TransferInitiationPayments = {
 
 /** @internal */
 export namespace TransferInitiationPayments$ {
-    export type Inbound = {
-        createdAt: string;
-        error: string;
-        paymentID: string;
-        status: TransferInitiationStatus;
-    };
-
-    export const inboundSchema: z.ZodType<TransferInitiationPayments, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferInitiationPayments, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

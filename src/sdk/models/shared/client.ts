@@ -20,20 +20,7 @@ export type Client = {
 
 /** @internal */
 export namespace Client$ {
-    export type Inbound = {
-        description?: string | undefined;
-        id: string;
-        metadata?: Record<string, any> | undefined;
-        name: string;
-        postLogoutRedirectUris?: Array<string> | undefined;
-        public?: boolean | undefined;
-        redirectUris?: Array<string> | undefined;
-        scopes?: Array<string> | undefined;
-        secrets?: Array<ClientSecret$.Inbound> | undefined;
-        trusted?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Client, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Client, z.ZodTypeDef, unknown> = z
         .object({
             description: z.string().optional(),
             id: z.string(),

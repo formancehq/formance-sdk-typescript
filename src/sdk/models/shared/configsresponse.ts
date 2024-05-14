@@ -16,12 +16,7 @@ export type ConfigsResponse = {
 
 /** @internal */
 export namespace ConfigsResponseCursor$ {
-    export type Inbound = {
-        data: Array<WebhooksConfig$.Inbound>;
-        hasMore: boolean;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigsResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigsResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(WebhooksConfig$.inboundSchema),
             hasMore: z.boolean(),
@@ -53,11 +48,7 @@ export namespace ConfigsResponseCursor$ {
 
 /** @internal */
 export namespace ConfigsResponse$ {
-    export type Inbound = {
-        cursor: ConfigsResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConfigsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConfigsResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => ConfigsResponseCursor$.inboundSchema),
         })

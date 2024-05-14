@@ -26,14 +26,7 @@ export type CreateClientResponse = {
 
 /** @internal */
 export namespace CreateClientResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        CreateClientResponse?: shared.CreateClientResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<CreateClientResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateClientResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             CreateClientResponse: shared.CreateClientResponse$.inboundSchema.optional(),

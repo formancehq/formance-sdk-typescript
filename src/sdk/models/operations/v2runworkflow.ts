@@ -38,13 +38,7 @@ export type V2RunWorkflowResponse = {
 
 /** @internal */
 export namespace V2RunWorkflowRequest$ {
-    export type Inbound = {
-        RequestBody?: Record<string, string> | undefined;
-        wait?: boolean | undefined;
-        workflowID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2RunWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2RunWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.record(z.string()).optional(),
             wait: z.boolean().optional(),
@@ -81,14 +75,7 @@ export namespace V2RunWorkflowRequest$ {
 
 /** @internal */
 export namespace V2RunWorkflowResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2RunWorkflowResponse?: shared.V2RunWorkflowResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2RunWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2RunWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

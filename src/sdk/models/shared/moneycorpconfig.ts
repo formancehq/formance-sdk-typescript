@@ -20,15 +20,7 @@ export type MoneycorpConfig = {
 
 /** @internal */
 export namespace MoneycorpConfig$ {
-    export type Inbound = {
-        apiKey: string;
-        clientID: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> = z
         .object({
             apiKey: z.string(),
             clientID: z.string(),

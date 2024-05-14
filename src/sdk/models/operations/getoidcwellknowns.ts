@@ -21,13 +21,7 @@ export type GetOIDCWellKnownsResponse = {
 
 /** @internal */
 export namespace GetOIDCWellKnownsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetOIDCWellKnownsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetOIDCWellKnownsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

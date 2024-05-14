@@ -33,11 +33,7 @@ export type V2ReadTriggerResponse = {
 
 /** @internal */
 export namespace V2ReadTriggerRequest$ {
-    export type Inbound = {
-        triggerID: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ReadTriggerRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ReadTriggerRequest, z.ZodTypeDef, unknown> = z
         .object({
             triggerID: z.string(),
         })
@@ -64,14 +60,7 @@ export namespace V2ReadTriggerRequest$ {
 
 /** @internal */
 export namespace V2ReadTriggerResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2ReadTriggerResponse?: shared.V2ReadTriggerResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ReadTriggerResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ReadTriggerResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

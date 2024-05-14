@@ -26,14 +26,7 @@ export type WalletsgetServerInfoResponse = {
 
 /** @internal */
 export namespace WalletsgetServerInfoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ServerInfo?: shared.ServerInfo$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<WalletsgetServerInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WalletsgetServerInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ServerInfo: shared.ServerInfo$.inboundSchema.optional(),

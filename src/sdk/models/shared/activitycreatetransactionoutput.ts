@@ -11,11 +11,7 @@ export type ActivityCreateTransactionOutput = {
 
 /** @internal */
 export namespace ActivityCreateTransactionOutput$ {
-    export type Inbound = {
-        data: OrchestrationTransaction$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ActivityCreateTransactionOutput, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<ActivityCreateTransactionOutput, z.ZodTypeDef, unknown> =
         z
             .object({
                 data: OrchestrationTransaction$.inboundSchema,

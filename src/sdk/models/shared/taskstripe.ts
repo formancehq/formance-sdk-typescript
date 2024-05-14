@@ -26,13 +26,7 @@ export type TaskStripe = {
 
 /** @internal */
 export namespace TaskStripeDescriptor$ {
-    export type Inbound = {
-        account: string;
-        main?: boolean | undefined;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskStripeDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskStripeDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             account: z.string(),
             main: z.boolean().optional(),
@@ -69,9 +63,7 @@ export namespace TaskStripeDescriptor$ {
 
 /** @internal */
 export namespace TaskStripeState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskStripeState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskStripeState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -80,18 +72,7 @@ export namespace TaskStripeState$ {
 
 /** @internal */
 export namespace TaskStripe$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskStripeDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskStripeState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskStripe, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskStripe, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

@@ -24,11 +24,7 @@ export type TaskCurrencyCloud = {
 
 /** @internal */
 export namespace TaskCurrencyCloudDescriptor$ {
-    export type Inbound = {
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskCurrencyCloudDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskCurrencyCloudDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string().optional(),
         })
@@ -55,9 +51,7 @@ export namespace TaskCurrencyCloudDescriptor$ {
 
 /** @internal */
 export namespace TaskCurrencyCloudState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskCurrencyCloudState, z.ZodTypeDef, Inbound> = z.object(
+    export const inboundSchema: z.ZodType<TaskCurrencyCloudState, z.ZodTypeDef, unknown> = z.object(
         {}
     );
 
@@ -69,18 +63,7 @@ export namespace TaskCurrencyCloudState$ {
 
 /** @internal */
 export namespace TaskCurrencyCloud$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskCurrencyCloudDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskCurrencyCloudState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskCurrencyCloud, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskCurrencyCloud, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

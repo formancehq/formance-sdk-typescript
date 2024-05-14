@@ -12,13 +12,7 @@ export type Volume = {
 
 /** @internal */
 export namespace Volume$ {
-    export type Inbound = {
-        balance?: number | undefined;
-        input: number;
-        output: number;
-    };
-
-    export const inboundSchema: z.ZodType<Volume, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Volume, z.ZodTypeDef, unknown> = z
         .object({
             balance: z
                 .number()

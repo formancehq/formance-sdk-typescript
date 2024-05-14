@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `transferId`       | *string*           | :heavy_check_mark: | The transfer ID.   |
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `transferId`       | *string*           | :heavy_check_mark: | The transfer ID.   | XXX                |

@@ -50,15 +50,7 @@ export type V2AddMetadataToAccountResponse = {
 
 /** @internal */
 export namespace V2AddMetadataToAccountRequest$ {
-    export type Inbound = {
-        "Idempotency-Key"?: string | undefined;
-        RequestBody: Record<string, string>;
-        address: string;
-        dryRun?: boolean | undefined;
-        ledger: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2AddMetadataToAccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2AddMetadataToAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             "Idempotency-Key": z.string().optional(),
             RequestBody: z.record(z.string()),
@@ -110,13 +102,7 @@ export namespace V2AddMetadataToAccountRequest$ {
 
 /** @internal */
 export namespace V2AddMetadataToAccountResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2AddMetadataToAccountResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2AddMetadataToAccountResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -46,13 +46,7 @@ export type CreateTransactionResponse = {
 
 /** @internal */
 export namespace CreateTransactionRequest$ {
-    export type Inbound = {
-        PostTransaction: shared.PostTransaction$.Inbound;
-        ledger: string;
-        preview?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateTransactionRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateTransactionRequest, z.ZodTypeDef, unknown> = z
         .object({
             PostTransaction: shared.PostTransaction$.inboundSchema,
             ledger: z.string(),
@@ -89,14 +83,7 @@ export namespace CreateTransactionRequest$ {
 
 /** @internal */
 export namespace CreateTransactionResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TransactionsResponse?: shared.TransactionsResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<CreateTransactionResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateTransactionResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

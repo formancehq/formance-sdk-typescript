@@ -41,13 +41,7 @@ export type GetConnectorTaskV1Response = {
 
 /** @internal */
 export namespace GetConnectorTaskV1Request$ {
-    export type Inbound = {
-        connector: shared.Connector;
-        connectorId: string;
-        taskId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetConnectorTaskV1Request, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetConnectorTaskV1Request, z.ZodTypeDef, unknown> = z
         .object({
             connector: shared.Connector$,
             connectorId: z.string(),
@@ -84,14 +78,7 @@ export namespace GetConnectorTaskV1Request$ {
 
 /** @internal */
 export namespace GetConnectorTaskV1Response$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        TaskResponse?: shared.TaskResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetConnectorTaskV1Response, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetConnectorTaskV1Response, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

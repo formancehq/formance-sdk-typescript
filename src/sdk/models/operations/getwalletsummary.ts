@@ -30,11 +30,7 @@ export type GetWalletSummaryResponse = {
 
 /** @internal */
 export namespace GetWalletSummaryRequest$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetWalletSummaryRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetWalletSummaryRequest, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })
@@ -61,14 +57,7 @@ export namespace GetWalletSummaryRequest$ {
 
 /** @internal */
 export namespace GetWalletSummaryResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        GetWalletSummaryResponse?: shared.GetWalletSummaryResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             GetWalletSummaryResponse: shared.GetWalletSummaryResponse$.inboundSchema.optional(),

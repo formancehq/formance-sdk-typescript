@@ -19,18 +19,10 @@ export type V2TransactionsCursorResponse = {
 
 /** @internal */
 export namespace V2TransactionsCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<V2ExpandedTransaction$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         V2TransactionsCursorResponseCursor,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(V2ExpandedTransaction$.inboundSchema),
@@ -82,11 +74,7 @@ export namespace V2TransactionsCursorResponseCursor$ {
 
 /** @internal */
 export namespace V2TransactionsCursorResponse$ {
-    export type Inbound = {
-        cursor: V2TransactionsCursorResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2TransactionsCursorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2TransactionsCursorResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => V2TransactionsCursorResponseCursor$.inboundSchema),
         })

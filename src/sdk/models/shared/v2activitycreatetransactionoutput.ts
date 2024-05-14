@@ -14,14 +14,10 @@ export type V2ActivityCreateTransactionOutput = {
 
 /** @internal */
 export namespace V2ActivityCreateTransactionOutput$ {
-    export type Inbound = {
-        data: Array<OrchestrationV2Transaction$.Inbound>;
-    };
-
     export const inboundSchema: z.ZodType<
         V2ActivityCreateTransactionOutput,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             data: z.array(OrchestrationV2Transaction$.inboundSchema),

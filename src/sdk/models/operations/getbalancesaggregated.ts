@@ -41,13 +41,7 @@ export type GetBalancesAggregatedResponse = {
 
 /** @internal */
 export namespace GetBalancesAggregatedRequest$ {
-    export type Inbound = {
-        address?: string | undefined;
-        ledger: string;
-        useInsertionDate?: boolean | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetBalancesAggregatedRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetBalancesAggregatedRequest, z.ZodTypeDef, unknown> = z
         .object({
             address: z.string().optional(),
             ledger: z.string(),
@@ -88,14 +82,7 @@ export namespace GetBalancesAggregatedRequest$ {
 
 /** @internal */
 export namespace GetBalancesAggregatedResponse$ {
-    export type Inbound = {
-        AggregateBalancesResponse?: shared.AggregateBalancesResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetBalancesAggregatedResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetBalancesAggregatedResponse, z.ZodTypeDef, unknown> = z
         .object({
             AggregateBalancesResponse: shared.AggregateBalancesResponse$.inboundSchema.optional(),
             ContentType: z.string(),

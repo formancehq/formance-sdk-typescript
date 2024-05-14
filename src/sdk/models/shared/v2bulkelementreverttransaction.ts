@@ -18,16 +18,10 @@ export type V2BulkElementRevertTransaction = {
 
 /** @internal */
 export namespace V2BulkElementRevertTransactionData$ {
-    export type Inbound = {
-        atEffectiveDate?: boolean | undefined;
-        force?: boolean | undefined;
-        id: number;
-    };
-
     export const inboundSchema: z.ZodType<
         V2BulkElementRevertTransactionData,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             atEffectiveDate: z.boolean().optional(),
@@ -73,13 +67,7 @@ export namespace V2BulkElementRevertTransactionData$ {
 
 /** @internal */
 export namespace V2BulkElementRevertTransaction$ {
-    export type Inbound = {
-        action: string;
-        data?: V2BulkElementRevertTransactionData$.Inbound | undefined;
-        ik?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2BulkElementRevertTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2BulkElementRevertTransaction, z.ZodTypeDef, unknown> = z
         .object({
             action: z.string(),
             data: z.lazy(() => V2BulkElementRevertTransactionData$.inboundSchema).optional(),

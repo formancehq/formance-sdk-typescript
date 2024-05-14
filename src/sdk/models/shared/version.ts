@@ -12,13 +12,7 @@ export type Version = {
 
 /** @internal */
 export namespace Version$ {
-    export type Inbound = {
-        health: boolean;
-        name: string;
-        version: string;
-    };
-
-    export const inboundSchema: z.ZodType<Version, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> = z
         .object({
             health: z.boolean(),
             name: z.string(),

@@ -54,7 +54,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.cancelEvent({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -235,7 +235,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.deleteWorkflow({
-    flowId: "<value>",
+    flowId: "xxx",
   });
 
   // Handle the result
@@ -279,7 +279,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.getInstance({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -323,7 +323,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.getInstanceHistory({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -367,8 +367,8 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.getInstanceStageHistory({
-    instanceID: "<value>",
-    number: 600636,
+    instanceID: "xxx",
+    number: 0,
   });
 
   // Handle the result
@@ -412,7 +412,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.getWorkflow({
-    flowId: "<value>",
+    flowId: "xxx",
   });
 
   // Handle the result
@@ -455,7 +455,10 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.orchestration.listInstances({});
+  const result = await sdk.orchestration.listInstances({
+    running: true,
+    workflowID: "xxx",
+  });
 
   // Handle the result
   console.log(result)
@@ -710,7 +713,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.runWorkflow({
-    workflowID: "<value>",
+    workflowID: "xxx",
   });
 
   // Handle the result
@@ -754,7 +757,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.sendEvent({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -842,7 +845,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2CancelEvent({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -1023,7 +1026,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2DeleteWorkflow({
-    flowId: "<value>",
+    flowId: "xxx",
   });
 
   // Handle the result
@@ -1067,7 +1070,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2GetInstance({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -1111,7 +1114,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2GetInstanceHistory({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result
@@ -1155,8 +1158,8 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2GetInstanceStageHistory({
-    instanceID: "<value>",
-    number: 465454,
+    instanceID: "xxx",
+    number: 0,
   });
 
   // Handle the result
@@ -1241,7 +1244,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2GetWorkflow({
-    flowId: "<value>",
+    flowId: "xxx",
   });
 
   // Handle the result
@@ -1286,6 +1289,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.v2ListInstances({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    running: true,
+    workflowID: "xxx",
   });
 
   // Handle the result
@@ -1330,6 +1336,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.v2ListTriggers({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1374,6 +1381,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.v2ListTriggersOccurrences({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
     triggerID: "<value>",
   });
 
@@ -1419,6 +1427,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.orchestration.v2ListWorkflows({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
   });
 
   // Handle the result
@@ -1506,7 +1515,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2RunWorkflow({
-    workflowID: "<value>",
+    workflowID: "xxx",
   });
 
   // Handle the result
@@ -1550,7 +1559,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2SendEvent({
-    instanceID: "<value>",
+    instanceID: "xxx",
   });
 
   // Handle the result

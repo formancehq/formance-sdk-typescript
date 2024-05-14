@@ -44,27 +44,7 @@ export const TransferInitiationType$: z.ZodNativeEnum<typeof TransferInitiationT
 
 /** @internal */
 export namespace TransferInitiation$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        description: string;
-        destinationAccountID: string;
-        error: string;
-        id: string;
-        initialAmount: number;
-        metadata?: Record<string, string> | null | undefined;
-        reference: string;
-        relatedAdjustments?: Array<TransferInitiationAdjusments$.Inbound> | undefined;
-        relatedPayments?: Array<TransferInitiationPayments$.Inbound> | undefined;
-        scheduledAt: string;
-        sourceAccountID: string;
-        status: TransferInitiationStatus;
-        type: TransferInitiationType;
-    };
-
-    export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

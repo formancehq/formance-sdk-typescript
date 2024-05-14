@@ -8,13 +8,12 @@ export type V2TargetId = string | bigint;
 
 /** @internal */
 export namespace V2TargetId$ {
-    export type Inbound = string | number;
-
-    export type Outbound = string | number;
-    export const inboundSchema: z.ZodType<V2TargetId, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<V2TargetId, z.ZodTypeDef, unknown> = z.union([
         z.string(),
         z.number().transform((v) => BigInt(v)),
     ]);
+
+    export type Outbound = string | number;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TargetId> = z.union([
         z.string(),
         z.bigint().transform((v) => Number(v)),

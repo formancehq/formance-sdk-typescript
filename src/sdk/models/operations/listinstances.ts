@@ -37,12 +37,7 @@ export type ListInstancesResponse = {
 
 /** @internal */
 export namespace ListInstancesRequest$ {
-    export type Inbound = {
-        running?: boolean | undefined;
-        workflowID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<ListInstancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListInstancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             running: z.boolean().optional(),
             workflowID: z.string().optional(),
@@ -74,14 +69,7 @@ export namespace ListInstancesRequest$ {
 
 /** @internal */
 export namespace ListInstancesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ListRunsResponse?: shared.ListRunsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ListInstancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListInstancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             ListRunsResponse: shared.ListRunsResponse$.inboundSchema.optional(),

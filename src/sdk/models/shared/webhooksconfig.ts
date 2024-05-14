@@ -16,17 +16,7 @@ export type WebhooksConfig = {
 
 /** @internal */
 export namespace WebhooksConfig$ {
-    export type Inbound = {
-        active: boolean;
-        createdAt: string;
-        endpoint: string;
-        eventTypes: Array<string>;
-        id: string;
-        secret: string;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, unknown> = z
         .object({
             active: z.boolean(),
             createdAt: z

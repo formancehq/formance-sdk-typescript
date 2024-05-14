@@ -18,16 +18,7 @@ export type DummyPayConfig = {
 
 /** @internal */
 export namespace DummyPayConfig$ {
-    export type Inbound = {
-        directory: string;
-        filePollingPeriod?: string | undefined;
-        name: string;
-        numberOfAccountsPreGenerated?: number | undefined;
-        numberOfPaymentsPreGenerated?: number | undefined;
-        prefixFileToIngest?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<DummyPayConfig, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<DummyPayConfig, z.ZodTypeDef, unknown> = z
         .object({
             directory: z.string(),
             filePollingPeriod: z.string().default("10s"),

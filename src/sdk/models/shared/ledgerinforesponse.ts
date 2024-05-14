@@ -11,11 +11,7 @@ export type LedgerInfoResponse = {
 
 /** @internal */
 export namespace LedgerInfoResponse$ {
-    export type Inbound = {
-        data?: LedgerInfo$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<LedgerInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<LedgerInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: LedgerInfo$.inboundSchema.optional(),
         })

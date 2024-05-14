@@ -47,13 +47,7 @@ export type GetTransactionsResponse = {
 
 /** @internal */
 export namespace GetTransactionsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        walletID?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -90,14 +84,7 @@ export namespace GetTransactionsRequest$ {
 
 /** @internal */
 export namespace GetTransactionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        GetTransactionsResponse?: shared.GetTransactionsResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             GetTransactionsResponse: shared.GetTransactionsResponse$.inboundSchema.optional(),

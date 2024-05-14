@@ -10,11 +10,7 @@ export type AggregateBalancesResponse = {
 
 /** @internal */
 export namespace AggregateBalancesResponse$ {
-    export type Inbound = {
-        data: Record<string, number>;
-    };
-
-    export const inboundSchema: z.ZodType<AggregateBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AggregateBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.record(z.number().int()),
         })

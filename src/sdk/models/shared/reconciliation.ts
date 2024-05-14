@@ -19,20 +19,7 @@ export type Reconciliation = {
 
 /** @internal */
 export namespace Reconciliation$ {
-    export type Inbound = {
-        createdAt: string;
-        driftBalances: Record<string, number>;
-        error?: string | undefined;
-        id: string;
-        ledgerBalances: Record<string, number>;
-        paymentsBalances: Record<string, number>;
-        policyID: string;
-        reconciledAtLedger: string;
-        reconciledAtPayments: string;
-        status: string;
-    };
-
-    export const inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, unknown> = z
         .object({
             createdAt: z
                 .string()

@@ -26,13 +26,7 @@ export type TaskWise = {
 
 /** @internal */
 export namespace TaskWiseDescriptor$ {
-    export type Inbound = {
-        key?: string | undefined;
-        name?: string | undefined;
-        profileID?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TaskWiseDescriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskWiseDescriptor, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             name: z.string().optional(),
@@ -69,9 +63,7 @@ export namespace TaskWiseDescriptor$ {
 
 /** @internal */
 export namespace TaskWiseState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskWiseState, z.ZodTypeDef, Inbound> = z.object({});
+    export const inboundSchema: z.ZodType<TaskWiseState, z.ZodTypeDef, unknown> = z.object({});
 
     export type Outbound = {};
 
@@ -80,18 +72,7 @@ export namespace TaskWiseState$ {
 
 /** @internal */
 export namespace TaskWise$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: TaskWiseDescriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskWiseState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskWise, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskWise, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

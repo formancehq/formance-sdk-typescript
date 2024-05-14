@@ -43,16 +43,17 @@ export class Wallets extends ClientSDK {
      * Confirm a hold
      */
     async confirmHold(
-        input: operations.ConfirmHoldRequest,
+        request: operations.ConfirmHoldRequest,
         options?: RequestOptions
     ): Promise<operations.ConfirmHoldResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ConfirmHoldRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -86,7 +87,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -99,7 +100,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -143,16 +144,17 @@ export class Wallets extends ClientSDK {
      * Create a balance
      */
     async createBalance(
-        input: operations.CreateBalanceRequest,
+        request: operations.CreateBalanceRequest,
         options?: RequestOptions
     ): Promise<operations.CreateBalanceResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CreateBalanceRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -181,7 +183,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -194,7 +196,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -243,16 +245,17 @@ export class Wallets extends ClientSDK {
      * Create a new wallet
      */
     async createWallet(
-        input: shared.CreateWalletRequest | undefined,
+        request?: shared.CreateWalletRequest | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateWalletResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.CreateWalletRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -279,7 +282,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -292,7 +295,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -341,16 +344,17 @@ export class Wallets extends ClientSDK {
      * Credit a wallet
      */
     async creditWallet(
-        input: operations.CreditWalletRequest,
+        request: operations.CreditWalletRequest,
         options?: RequestOptions
     ): Promise<operations.CreditWalletResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CreditWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -379,7 +383,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -392,7 +396,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -436,16 +440,17 @@ export class Wallets extends ClientSDK {
      * Debit a wallet
      */
     async debitWallet(
-        input: operations.DebitWalletRequest,
+        request: operations.DebitWalletRequest,
         options?: RequestOptions
     ): Promise<operations.DebitWalletResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DebitWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -474,7 +479,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -487,7 +492,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -544,15 +549,16 @@ export class Wallets extends ClientSDK {
      * Get detailed balance
      */
     async getBalance(
-        input: operations.GetBalanceRequest,
+        request: operations.GetBalanceRequest,
         options?: RequestOptions
     ): Promise<operations.GetBalanceResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetBalanceRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -587,7 +593,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -600,7 +606,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -649,15 +655,16 @@ export class Wallets extends ClientSDK {
      * Get a hold
      */
     async getHold(
-        input: operations.GetHoldRequest,
+        request: operations.GetHoldRequest,
         options?: RequestOptions
     ): Promise<operations.GetHoldResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetHoldRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -689,7 +696,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -702,7 +709,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -751,15 +758,16 @@ export class Wallets extends ClientSDK {
      * Get all holds for a wallet
      */
     async getHolds(
-        input: operations.GetHoldsRequest,
+        request: operations.GetHoldsRequest,
         options?: RequestOptions
     ): Promise<operations.GetHoldsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetHoldsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -798,7 +806,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -811,7 +819,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -857,15 +865,16 @@ export class Wallets extends ClientSDK {
     }
 
     async getTransactions(
-        input: operations.GetTransactionsRequest,
+        request: operations.GetTransactionsRequest,
         options?: RequestOptions
     ): Promise<operations.GetTransactionsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetTransactionsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -903,7 +912,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -916,7 +925,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -965,15 +974,16 @@ export class Wallets extends ClientSDK {
      * Get a wallet
      */
     async getWallet(
-        input: operations.GetWalletRequest,
+        request: operations.GetWalletRequest,
         options?: RequestOptions
     ): Promise<operations.GetWalletResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1002,7 +1012,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1015,7 +1025,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1072,15 +1082,16 @@ export class Wallets extends ClientSDK {
      * Get wallet summary
      */
     async getWalletSummary(
-        input: operations.GetWalletSummaryRequest,
+        request: operations.GetWalletSummaryRequest,
         options?: RequestOptions
     ): Promise<operations.GetWalletSummaryResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetWalletSummaryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1109,7 +1120,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1122,7 +1133,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1179,15 +1190,16 @@ export class Wallets extends ClientSDK {
      * List balances of a wallet
      */
     async listBalances(
-        input: operations.ListBalancesRequest,
+        request: operations.ListBalancesRequest,
         options?: RequestOptions
     ): Promise<operations.ListBalancesResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListBalancesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1216,7 +1228,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1229,7 +1241,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1265,15 +1277,16 @@ export class Wallets extends ClientSDK {
      * List all wallets
      */
     async listWallets(
-        input: operations.ListWalletsRequest,
+        request: operations.ListWalletsRequest,
         options?: RequestOptions
     ): Promise<operations.ListWalletsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListWalletsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1309,7 +1322,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1322,7 +1335,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1371,16 +1384,17 @@ export class Wallets extends ClientSDK {
      * Update a wallet
      */
     async updateWallet(
-        input: operations.UpdateWalletRequest,
+        request: operations.UpdateWalletRequest,
         options?: RequestOptions
     ): Promise<operations.UpdateWalletResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.UpdateWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1409,7 +1423,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1422,7 +1436,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1466,15 +1480,16 @@ export class Wallets extends ClientSDK {
      * Cancel a hold
      */
     async voidHold(
-        input: operations.VoidHoldRequest,
+        request: operations.VoidHoldRequest,
         options?: RequestOptions
     ): Promise<operations.VoidHoldResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.VoidHoldRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1506,7 +1521,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1519,7 +1534,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1589,7 +1604,7 @@ export class Wallets extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1601,7 +1616,7 @@ export class Wallets extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

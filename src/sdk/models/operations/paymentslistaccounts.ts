@@ -57,14 +57,7 @@ export type PaymentslistAccountsResponse = {
 
 /** @internal */
 export namespace PaymentslistAccountsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-        query?: string | undefined;
-        sort?: Array<string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentslistAccountsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentslistAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -106,14 +99,7 @@ export namespace PaymentslistAccountsRequest$ {
 
 /** @internal */
 export namespace PaymentslistAccountsResponse$ {
-    export type Inbound = {
-        AccountsCursor?: shared.AccountsCursor$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentslistAccountsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentslistAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
             AccountsCursor: shared.AccountsCursor$.inboundSchema.optional(),
             ContentType: z.string(),

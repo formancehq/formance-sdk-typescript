@@ -10,11 +10,7 @@ export type V2AggregateBalancesResponse = {
 
 /** @internal */
 export namespace V2AggregateBalancesResponse$ {
-    export type Inbound = {
-        data: Record<string, number>;
-    };
-
-    export const inboundSchema: z.ZodType<V2AggregateBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2AggregateBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.record(z.number().transform((v) => BigInt(v))),
         })

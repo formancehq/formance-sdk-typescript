@@ -53,16 +53,7 @@ export type V2ListTransactionsResponse = {
 
 /** @internal */
 export namespace V2ListTransactionsRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        expand?: string | undefined;
-        ledger: string;
-        pageSize?: number | undefined;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             expand: z.string().optional(),
@@ -121,14 +112,7 @@ export namespace V2ListTransactionsRequest$ {
 
 /** @internal */
 export namespace V2ListTransactionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2TransactionsCursorResponse?: shared.V2TransactionsCursorResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

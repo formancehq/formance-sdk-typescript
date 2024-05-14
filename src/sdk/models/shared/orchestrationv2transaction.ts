@@ -15,15 +15,7 @@ export type OrchestrationV2Transaction = {
 
 /** @internal */
 export namespace OrchestrationV2Transaction$ {
-    export type Inbound = {
-        metadata: Record<string, string>;
-        postings: Array<V2Posting$.Inbound>;
-        reference?: string | undefined;
-        timestamp: string;
-        txid: number;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationV2Transaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationV2Transaction, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.string()),
             postings: z.array(V2Posting$.inboundSchema),

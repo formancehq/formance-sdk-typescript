@@ -11,12 +11,7 @@ export type PoolRequest = {
 
 /** @internal */
 export namespace PoolRequest$ {
-    export type Inbound = {
-        accountIDs: Array<string>;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<PoolRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoolRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountIDs: z.array(z.string()),
             name: z.string(),

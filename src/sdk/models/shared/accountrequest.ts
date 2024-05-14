@@ -17,17 +17,7 @@ export type AccountRequest = {
 
 /** @internal */
 export namespace AccountRequest$ {
-    export type Inbound = {
-        accountName?: string | undefined;
-        connectorID: string;
-        createdAt: string;
-        defaultAsset?: string | undefined;
-        metadata?: Record<string, string> | null | undefined;
-        reference: string;
-        type: AccountType;
-    };
-
-    export const inboundSchema: z.ZodType<AccountRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountRequest, z.ZodTypeDef, unknown> = z
         .object({
             accountName: z.string().optional(),
             connectorID: z.string(),

@@ -11,11 +11,7 @@ export type GetBalanceResponse = {
 
 /** @internal */
 export namespace GetBalanceResponse$ {
-    export type Inbound = {
-        data: BalanceWithAssets$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<GetBalanceResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetBalanceResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: BalanceWithAssets$.inboundSchema,
         })

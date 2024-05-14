@@ -11,11 +11,7 @@ export type V2StatsResponse = {
 
 /** @internal */
 export namespace V2StatsResponse$ {
-    export type Inbound = {
-        data: V2Stats$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<V2StatsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StatsResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: V2Stats$.inboundSchema,
         })

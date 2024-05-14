@@ -40,12 +40,7 @@ export type GetPoolBalancesResponse = {
 
 /** @internal */
 export namespace GetPoolBalancesRequest$ {
-    export type Inbound = {
-        at: string;
-        poolId: string;
-    };
-
-    export const inboundSchema: z.ZodType<GetPoolBalancesRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPoolBalancesRequest, z.ZodTypeDef, unknown> = z
         .object({
             at: z
                 .string()
@@ -80,14 +75,7 @@ export namespace GetPoolBalancesRequest$ {
 
 /** @internal */
 export namespace GetPoolBalancesResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        PoolBalancesResponse?: shared.PoolBalancesResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<GetPoolBalancesResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<GetPoolBalancesResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             PoolBalancesResponse: shared.PoolBalancesResponse$.inboundSchema.optional(),

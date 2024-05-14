@@ -46,13 +46,7 @@ export class WebhooksErrorResponse extends Error {
 
 /** @internal */
 export namespace WebhooksErrorResponse$ {
-    export type Inbound = {
-        details?: string | undefined;
-        errorCode: shared.WebhooksErrorsEnum;
-        errorMessage: string;
-    };
-
-    export const inboundSchema: z.ZodType<WebhooksErrorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<WebhooksErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
             errorCode: shared.WebhooksErrorsEnum$,

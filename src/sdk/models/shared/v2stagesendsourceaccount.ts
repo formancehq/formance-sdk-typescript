@@ -11,12 +11,7 @@ export type V2StageSendSourceAccount = {
 
 /** @internal */
 export namespace V2StageSendSourceAccount$ {
-    export type Inbound = {
-        id: string;
-        ledger?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2StageSendSourceAccount, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2StageSendSourceAccount, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
             ledger: z.string().optional(),

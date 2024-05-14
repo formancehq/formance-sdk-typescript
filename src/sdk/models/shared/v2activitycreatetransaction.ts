@@ -12,12 +12,7 @@ export type V2ActivityCreateTransaction = {
 
 /** @internal */
 export namespace V2ActivityCreateTransaction$ {
-    export type Inbound = {
-        data?: V2PostTransaction$.Inbound | undefined;
-        ledger?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityCreateTransaction, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityCreateTransaction, z.ZodTypeDef, unknown> = z
         .object({
             data: V2PostTransaction$.inboundSchema.optional(),
             ledger: z.string().optional(),

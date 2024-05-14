@@ -46,12 +46,7 @@ export type V2ListLedgersResponse = {
 
 /** @internal */
 export namespace V2ListLedgersRequest$ {
-    export type Inbound = {
-        cursor?: string | undefined;
-        pageSize?: number | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListLedgersRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListLedgersRequest, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.string().optional(),
             pageSize: z.number().int().optional(),
@@ -83,14 +78,7 @@ export namespace V2ListLedgersRequest$ {
 
 /** @internal */
 export namespace V2ListLedgersResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2LedgerListResponse?: shared.V2LedgerListResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2ListLedgersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ListLedgersResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

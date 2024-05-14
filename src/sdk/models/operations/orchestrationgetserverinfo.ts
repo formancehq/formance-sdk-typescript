@@ -26,17 +26,10 @@ export type OrchestrationgetServerInfoResponse = {
 
 /** @internal */
 export namespace OrchestrationgetServerInfoResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        ServerInfo?: shared.ServerInfo$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
     export const inboundSchema: z.ZodType<
         OrchestrationgetServerInfoResponse,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             ContentType: z.string(),

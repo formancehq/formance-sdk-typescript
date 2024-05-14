@@ -46,15 +46,16 @@ export class Orchestration extends ClientSDK {
      * Cancel a running workflow
      */
     async cancelEvent(
-        input: operations.CancelEventRequest,
+        request: operations.CancelEventRequest,
         options?: RequestOptions
     ): Promise<operations.CancelEventResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.CancelEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -88,7 +89,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -101,7 +102,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -148,16 +149,17 @@ export class Orchestration extends ClientSDK {
      * Create trigger
      */
     async createTrigger(
-        input: shared.TriggerData | undefined,
+        request?: shared.TriggerData | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.TriggerData$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -184,7 +186,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -197,7 +199,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -249,16 +251,17 @@ export class Orchestration extends ClientSDK {
      * Create a workflow
      */
     async createWorkflow(
-        input: shared.CreateWorkflowRequest | undefined,
+        request?: shared.CreateWorkflowRequest | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.CreateWorkflowRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -285,7 +288,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -298,7 +301,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -350,15 +353,16 @@ export class Orchestration extends ClientSDK {
      * Read trigger
      */
     async deleteTrigger(
-        input: operations.DeleteTriggerRequest,
+        request: operations.DeleteTriggerRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeleteTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -392,7 +396,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -405,7 +409,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -452,15 +456,16 @@ export class Orchestration extends ClientSDK {
      * Delete a flow by id
      */
     async deleteWorkflow(
-        input: operations.DeleteWorkflowRequest,
+        request: operations.DeleteWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.DeleteWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.DeleteWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -494,7 +499,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -507,7 +512,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -554,15 +559,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance by id
      */
     async getInstance(
-        input: operations.GetInstanceRequest,
+        request: operations.GetInstanceRequest,
         options?: RequestOptions
     ): Promise<operations.GetInstanceResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetInstanceRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -596,7 +602,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -609,7 +615,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -661,15 +667,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance history by id
      */
     async getInstanceHistory(
-        input: operations.GetInstanceHistoryRequest,
+        request: operations.GetInstanceHistoryRequest,
         options?: RequestOptions
     ): Promise<operations.GetInstanceHistoryResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetInstanceHistoryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -703,7 +710,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -716,7 +723,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -768,15 +775,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance stage history
      */
     async getInstanceStageHistory(
-        input: operations.GetInstanceStageHistoryRequest,
+        request: operations.GetInstanceStageHistoryRequest,
         options?: RequestOptions
     ): Promise<operations.GetInstanceStageHistoryResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetInstanceStageHistoryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -814,7 +822,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -827,7 +835,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -879,15 +887,16 @@ export class Orchestration extends ClientSDK {
      * Get a flow by id
      */
     async getWorkflow(
-        input: operations.GetWorkflowRequest,
+        request: operations.GetWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.GetWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.GetWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -921,7 +930,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -934,7 +943,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -986,15 +995,16 @@ export class Orchestration extends ClientSDK {
      * List instances of a workflow
      */
     async listInstances(
-        input: operations.ListInstancesRequest,
+        request: operations.ListInstancesRequest,
         options?: RequestOptions
     ): Promise<operations.ListInstancesResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListInstancesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1031,7 +1041,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1044,7 +1054,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1096,15 +1106,16 @@ export class Orchestration extends ClientSDK {
      * List triggers
      */
     async listTriggers(
-        input: operations.ListTriggersRequest,
+        request: operations.ListTriggersRequest,
         options?: RequestOptions
     ): Promise<operations.ListTriggersResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListTriggersRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1134,7 +1145,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1147,7 +1158,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1199,15 +1210,16 @@ export class Orchestration extends ClientSDK {
      * List triggers occurrences
      */
     async listTriggersOccurrences(
-        input: operations.ListTriggersOccurrencesRequest,
+        request: operations.ListTriggersOccurrencesRequest,
         options?: RequestOptions
     ): Promise<operations.ListTriggersOccurrencesResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ListTriggersOccurrencesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1241,7 +1253,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1254,7 +1266,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1330,7 +1342,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1342,7 +1354,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1417,7 +1429,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1429,7 +1441,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1481,15 +1493,16 @@ export class Orchestration extends ClientSDK {
      * Read trigger
      */
     async readTrigger(
-        input: operations.ReadTriggerRequest,
+        request: operations.ReadTriggerRequest,
         options?: RequestOptions
     ): Promise<operations.ReadTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.ReadTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1523,7 +1536,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1536,7 +1549,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1588,16 +1601,17 @@ export class Orchestration extends ClientSDK {
      * Run workflow
      */
     async runWorkflow(
-        input: operations.RunWorkflowRequest,
+        request: operations.RunWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.RunWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.RunWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1635,7 +1649,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1648,7 +1662,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1700,16 +1714,17 @@ export class Orchestration extends ClientSDK {
      * Send an event to a running workflow
      */
     async sendEvent(
-        input: operations.SendEventRequest,
+        request: operations.SendEventRequest,
         options?: RequestOptions
     ): Promise<operations.SendEventResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.SendEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1743,7 +1758,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1756,7 +1771,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1803,16 +1818,17 @@ export class Orchestration extends ClientSDK {
      * Test trigger
      */
     async testTrigger(
-        input: operations.TestTriggerRequest,
+        request: operations.TestTriggerRequest,
         options?: RequestOptions
     ): Promise<operations.TestTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.TestTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1846,7 +1862,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1859,7 +1875,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -1911,15 +1927,16 @@ export class Orchestration extends ClientSDK {
      * Cancel a running workflow
      */
     async v2CancelEvent(
-        input: operations.V2CancelEventRequest,
+        request: operations.V2CancelEventRequest,
         options?: RequestOptions
     ): Promise<operations.V2CancelEventResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2CancelEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -1953,7 +1970,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -1966,7 +1983,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2013,16 +2030,17 @@ export class Orchestration extends ClientSDK {
      * Create trigger
      */
     async v2CreateTrigger(
-        input: shared.V2TriggerData | undefined,
+        request?: shared.V2TriggerData | undefined,
         options?: RequestOptions
     ): Promise<operations.V2CreateTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.V2TriggerData$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -2049,7 +2067,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2062,7 +2080,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2114,16 +2132,17 @@ export class Orchestration extends ClientSDK {
      * Create a workflow
      */
     async v2CreateWorkflow(
-        input: shared.V2CreateWorkflowRequest | undefined,
+        request?: shared.V2CreateWorkflowRequest | undefined,
         options?: RequestOptions
     ): Promise<operations.V2CreateWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => shared.V2CreateWorkflowRequest$.outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
@@ -2150,7 +2169,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2163,7 +2182,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2215,15 +2234,16 @@ export class Orchestration extends ClientSDK {
      * Read trigger
      */
     async v2DeleteTrigger(
-        input: operations.V2DeleteTriggerRequest,
+        request: operations.V2DeleteTriggerRequest,
         options?: RequestOptions
     ): Promise<operations.V2DeleteTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2DeleteTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2257,7 +2277,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2270,7 +2290,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2317,15 +2337,16 @@ export class Orchestration extends ClientSDK {
      * Delete a flow by id
      */
     async v2DeleteWorkflow(
-        input: operations.V2DeleteWorkflowRequest,
+        request: operations.V2DeleteWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.V2DeleteWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2DeleteWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2359,7 +2380,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2372,7 +2393,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2419,15 +2440,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance by id
      */
     async v2GetInstance(
-        input: operations.V2GetInstanceRequest,
+        request: operations.V2GetInstanceRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetInstanceResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetInstanceRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2461,7 +2483,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2474,7 +2496,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2526,15 +2548,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance history by id
      */
     async v2GetInstanceHistory(
-        input: operations.V2GetInstanceHistoryRequest,
+        request: operations.V2GetInstanceHistoryRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetInstanceHistoryResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetInstanceHistoryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2568,7 +2591,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2581,7 +2604,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2633,15 +2656,16 @@ export class Orchestration extends ClientSDK {
      * Get a workflow instance stage history
      */
     async v2GetInstanceStageHistory(
-        input: operations.V2GetInstanceStageHistoryRequest,
+        request: operations.V2GetInstanceStageHistoryRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetInstanceStageHistoryResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetInstanceStageHistoryRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2679,7 +2703,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2692,7 +2716,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2765,7 +2789,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2777,7 +2801,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2829,15 +2853,16 @@ export class Orchestration extends ClientSDK {
      * Get a flow by id
      */
     async v2GetWorkflow(
-        input: operations.V2GetWorkflowRequest,
+        request: operations.V2GetWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.V2GetWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2GetWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2871,7 +2896,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2884,7 +2909,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -2936,15 +2961,16 @@ export class Orchestration extends ClientSDK {
      * List instances of a workflow
      */
     async v2ListInstances(
-        input: operations.V2ListInstancesRequest,
+        request: operations.V2ListInstancesRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListInstancesResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListInstancesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -2986,7 +3012,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -2999,7 +3025,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3051,15 +3077,16 @@ export class Orchestration extends ClientSDK {
      * List triggers
      */
     async v2ListTriggers(
-        input: operations.V2ListTriggersRequest,
+        request: operations.V2ListTriggersRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListTriggersResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListTriggersRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3094,7 +3121,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3107,7 +3134,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3159,15 +3186,16 @@ export class Orchestration extends ClientSDK {
      * List triggers occurrences
      */
     async v2ListTriggersOccurrences(
-        input: operations.V2ListTriggersOccurrencesRequest,
+        request: operations.V2ListTriggersOccurrencesRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListTriggersOccurrencesResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListTriggersOccurrencesRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3209,7 +3237,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3222,7 +3250,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3274,15 +3302,16 @@ export class Orchestration extends ClientSDK {
      * List registered workflows
      */
     async v2ListWorkflows(
-        input: operations.V2ListWorkflowsRequest,
+        request: operations.V2ListWorkflowsRequest,
         options?: RequestOptions
     ): Promise<operations.V2ListWorkflowsResponse> {
+        const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ListWorkflowsRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3316,7 +3345,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3329,7 +3358,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3381,15 +3410,16 @@ export class Orchestration extends ClientSDK {
      * Read trigger
      */
     async v2ReadTrigger(
-        input: operations.V2ReadTriggerRequest,
+        request: operations.V2ReadTriggerRequest,
         options?: RequestOptions
     ): Promise<operations.V2ReadTriggerResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2ReadTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3423,7 +3453,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3436,7 +3466,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3488,16 +3518,17 @@ export class Orchestration extends ClientSDK {
      * Run workflow
      */
     async v2RunWorkflow(
-        input: operations.V2RunWorkflowRequest,
+        request: operations.V2RunWorkflowRequest,
         options?: RequestOptions
     ): Promise<operations.V2RunWorkflowResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2RunWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3535,7 +3566,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3548,7 +3579,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",
@@ -3600,16 +3631,17 @@ export class Orchestration extends ClientSDK {
      * Send an event to a running workflow
      */
     async v2SendEvent(
-        input: operations.V2SendEventRequest,
+        request: operations.V2SendEventRequest,
         options?: RequestOptions
     ): Promise<operations.V2SendEventResponse> {
+        const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
-            input,
+            input$,
             (value$) => operations.V2SendEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
@@ -3643,7 +3675,7 @@ export class Orchestration extends ClientSDK {
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
         const doOptions = { context, errorCodes: ["default"] };
-        const request = this.createRequest$(
+        const request$ = this.createRequest$(
             context,
             {
                 security: securitySettings$,
@@ -3656,7 +3688,7 @@ export class Orchestration extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request, doOptions);
+        const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
             ContentType: response.headers.get("content-type") ?? "application/octet-stream",

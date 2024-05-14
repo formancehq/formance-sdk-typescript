@@ -377,6 +377,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.getHolds({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    metadata: {
+      "admin": "true",
+    },
+    pageSize: 100,
+    walletID: "wallet1",
   });
 
   // Handle the result
@@ -419,6 +424,8 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.getTransactions({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    walletID: "wallet1",
   });
 
   // Handle the result
@@ -594,6 +601,11 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.listWallets({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    metadata: {
+      "admin": "true",
+    },
+    name: "wallet1",
+    pageSize: 100,
   });
 
   // Handle the result

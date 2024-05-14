@@ -10,11 +10,7 @@ export type V2ActivityVoidHold = {
 
 /** @internal */
 export namespace V2ActivityVoidHold$ {
-    export type Inbound = {
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<V2ActivityVoidHold, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2ActivityVoidHold, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
         })

@@ -10,11 +10,7 @@ export type V2AssetHolder = {
 
 /** @internal */
 export namespace V2AssetHolder$ {
-    export type Inbound = {
-        assets: Record<string, number>;
-    };
-
-    export const inboundSchema: z.ZodType<V2AssetHolder, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2AssetHolder, z.ZodTypeDef, unknown> = z
         .object({
             assets: z.record(z.number().transform((v) => BigInt(v))),
         })

@@ -20,20 +20,7 @@ export type Attempt = {
 
 /** @internal */
 export namespace Attempt$ {
-    export type Inbound = {
-        config: WebhooksConfig$.Inbound;
-        createdAt: string;
-        id: string;
-        nextRetryAfter?: string | undefined;
-        payload: string;
-        retryAttempt: number;
-        status: string;
-        statusCode: number;
-        updatedAt: string;
-        webhookID: string;
-    };
-
-    export const inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> = z
         .object({
             config: WebhooksConfig$.inboundSchema,
             createdAt: z

@@ -25,12 +25,7 @@ export type TaskBankingCircle = {
 
 /** @internal */
 export namespace Descriptor$ {
-    export type Inbound = {
-        key?: string | undefined;
-        name?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Descriptor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Descriptor, z.ZodTypeDef, unknown> = z
         .object({
             key: z.string().optional(),
             name: z.string().optional(),
@@ -62,9 +57,7 @@ export namespace Descriptor$ {
 
 /** @internal */
 export namespace TaskBankingCircleState$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<TaskBankingCircleState, z.ZodTypeDef, Inbound> = z.object(
+    export const inboundSchema: z.ZodType<TaskBankingCircleState, z.ZodTypeDef, unknown> = z.object(
         {}
     );
 
@@ -76,18 +69,7 @@ export namespace TaskBankingCircleState$ {
 
 /** @internal */
 export namespace TaskBankingCircle$ {
-    export type Inbound = {
-        connectorID: string;
-        createdAt: string;
-        descriptor: Descriptor$.Inbound;
-        error?: string | undefined;
-        id: string;
-        state: TaskBankingCircleState$.Inbound;
-        status: PaymentStatus;
-        updatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<TaskBankingCircle, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TaskBankingCircle, z.ZodTypeDef, unknown> = z
         .object({
             connectorID: z.string(),
             createdAt: z

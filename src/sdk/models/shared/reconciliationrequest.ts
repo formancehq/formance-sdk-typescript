@@ -11,12 +11,7 @@ export type ReconciliationRequest = {
 
 /** @internal */
 export namespace ReconciliationRequest$ {
-    export type Inbound = {
-        reconciledAtLedger: string;
-        reconciledAtPayments: string;
-    };
-
-    export const inboundSchema: z.ZodType<ReconciliationRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ReconciliationRequest, z.ZodTypeDef, unknown> = z
         .object({
             reconciledAtLedger: z
                 .string()

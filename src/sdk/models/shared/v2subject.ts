@@ -12,14 +12,7 @@ export type V2Subject =
 
 /** @internal */
 export namespace V2Subject$ {
-    export type Inbound =
-        | (V2LedgerAccountSubject$.Inbound & { type: "ACCOUNT" })
-        | (V2WalletSubject$.Inbound & { type: "WALLET" });
-
-    export type Outbound =
-        | (V2LedgerAccountSubject$.Outbound & { type: "ACCOUNT" })
-        | (V2WalletSubject$.Outbound & { type: "WALLET" });
-    export const inboundSchema: z.ZodType<V2Subject, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<V2Subject, z.ZodTypeDef, unknown> = z.union([
         V2LedgerAccountSubject$.inboundSchema.and(
             z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))
         ),
@@ -27,6 +20,10 @@ export namespace V2Subject$ {
             z.object({ type: z.literal("WALLET") }).transform((v) => ({ type: v.type }))
         ),
     ]);
+
+    export type Outbound =
+        | (V2LedgerAccountSubject$.Outbound & { type: "ACCOUNT" })
+        | (V2WalletSubject$.Outbound & { type: "WALLET" });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Subject> = z.union([
         V2LedgerAccountSubject$.outboundSchema.and(
             z.object({ type: z.literal("ACCOUNT") }).transform((v) => ({ type: v.type }))

@@ -18,16 +18,7 @@ export type AccountBalance = {
 
 /** @internal */
 export namespace AccountBalance$ {
-    export type Inbound = {
-        accountId: string;
-        asset: string;
-        balance: number;
-        createdAt: string;
-        currency: string;
-        lastUpdatedAt: string;
-    };
-
-    export const inboundSchema: z.ZodType<AccountBalance, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AccountBalance, z.ZodTypeDef, unknown> = z
         .object({
             accountId: z.string(),
             asset: z.string(),

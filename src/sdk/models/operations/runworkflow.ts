@@ -38,13 +38,7 @@ export type RunWorkflowResponse = {
 
 /** @internal */
 export namespace RunWorkflowRequest$ {
-    export type Inbound = {
-        RequestBody?: Record<string, string> | undefined;
-        wait?: boolean | undefined;
-        workflowID: string;
-    };
-
-    export const inboundSchema: z.ZodType<RunWorkflowRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RunWorkflowRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.record(z.string()).optional(),
             wait: z.boolean().optional(),
@@ -81,14 +75,7 @@ export namespace RunWorkflowRequest$ {
 
 /** @internal */
 export namespace RunWorkflowResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        RunWorkflowResponse?: shared.RunWorkflowResponse$.Inbound | undefined;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<RunWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RunWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             RunWorkflowResponse: shared.RunWorkflowResponse$.inboundSchema.optional(),

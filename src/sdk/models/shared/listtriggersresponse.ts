@@ -11,11 +11,7 @@ export type ListTriggersResponse = {
 
 /** @internal */
 export namespace ListTriggersResponse$ {
-    export type Inbound = {
-        data: Array<Trigger$.Inbound>;
-    };
-
-    export const inboundSchema: z.ZodType<ListTriggersResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ListTriggersResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Trigger$.inboundSchema),
         })

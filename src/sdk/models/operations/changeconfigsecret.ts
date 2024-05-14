@@ -34,12 +34,7 @@ export type ChangeConfigSecretResponse = {
 
 /** @internal */
 export namespace ChangeConfigSecretRequest$ {
-    export type Inbound = {
-        ConfigChangeSecret?: shared.ConfigChangeSecret$.Inbound | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<ChangeConfigSecretRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ChangeConfigSecretRequest, z.ZodTypeDef, unknown> = z
         .object({
             ConfigChangeSecret: shared.ConfigChangeSecret$.inboundSchema.optional(),
             id: z.string(),
@@ -75,14 +70,7 @@ export namespace ChangeConfigSecretRequest$ {
 
 /** @internal */
 export namespace ChangeConfigSecretResponse$ {
-    export type Inbound = {
-        ConfigResponse?: shared.ConfigResponse$.Inbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<ChangeConfigSecretResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ChangeConfigSecretResponse, z.ZodTypeDef, unknown> = z
         .object({
             ConfigResponse: shared.ConfigResponse$.inboundSchema.optional(),
             ContentType: z.string(),

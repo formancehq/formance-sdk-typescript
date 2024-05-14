@@ -31,13 +31,7 @@ export type V2CountTransactionsResponse = {
 
 /** @internal */
 export namespace V2CountTransactionsRequest$ {
-    export type Inbound = {
-        ledger: string;
-        pit?: string | undefined;
-        query?: Record<string, any> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CountTransactionsRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CountTransactionsRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledger: z.string(),
             pit: z
@@ -81,14 +75,7 @@ export namespace V2CountTransactionsRequest$ {
 
 /** @internal */
 export namespace V2CountTransactionsResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<V2CountTransactionsResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CountTransactionsResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             Headers: z.record(z.array(z.string())),

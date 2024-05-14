@@ -29,12 +29,7 @@ export type UpdateMetadataResponse = {
 
 /** @internal */
 export namespace UpdateMetadataRequest$ {
-    export type Inbound = {
-        RequestBody: Record<string, string> | null;
-        paymentId: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateMetadataRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.nullable(z.record(z.string())),
             paymentId: z.string(),
@@ -66,13 +61,7 @@ export namespace UpdateMetadataRequest$ {
 
 /** @internal */
 export namespace UpdateMetadataResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateMetadataResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateMetadataResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

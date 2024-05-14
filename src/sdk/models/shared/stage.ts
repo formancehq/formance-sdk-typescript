@@ -11,14 +11,13 @@ export type Stage = StageWaitEvent | StageDelay | StageSend;
 
 /** @internal */
 export namespace Stage$ {
-    export type Inbound = StageWaitEvent$.Inbound | StageDelay$.Inbound | StageSend$.Inbound;
-
-    export type Outbound = StageWaitEvent$.Outbound | StageDelay$.Outbound | StageSend$.Outbound;
-    export const inboundSchema: z.ZodType<Stage, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z.union([
         StageWaitEvent$.inboundSchema,
         StageDelay$.inboundSchema,
         StageSend$.inboundSchema,
     ]);
+
+    export type Outbound = StageWaitEvent$.Outbound | StageDelay$.Outbound | StageSend$.Outbound;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stage> = z.union([
         StageWaitEvent$.outboundSchema,
         StageDelay$.outboundSchema,

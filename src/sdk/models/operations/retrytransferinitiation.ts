@@ -28,11 +28,7 @@ export type RetryTransferInitiationResponse = {
 
 /** @internal */
 export namespace RetryTransferInitiationRequest$ {
-    export type Inbound = {
-        transferId: string;
-    };
-
-    export const inboundSchema: z.ZodType<RetryTransferInitiationRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<RetryTransferInitiationRequest, z.ZodTypeDef, unknown> = z
         .object({
             transferId: z.string(),
         })
@@ -60,13 +56,7 @@ export namespace RetryTransferInitiationRequest$ {
 
 /** @internal */
 export namespace RetryTransferInitiationResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<RetryTransferInitiationResponse, z.ZodTypeDef, Inbound> =
+    export const inboundSchema: z.ZodType<RetryTransferInitiationResponse, z.ZodTypeDef, unknown> =
         z
             .object({
                 ContentType: z.string(),

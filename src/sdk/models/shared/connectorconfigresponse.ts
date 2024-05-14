@@ -11,11 +11,7 @@ export type ConnectorConfigResponse = {
 
 /** @internal */
 export namespace ConnectorConfigResponse$ {
-    export type Inbound = {
-        data: ConnectorConfig$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<ConnectorConfigResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<ConnectorConfigResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: ConnectorConfig$.inboundSchema,
         })

@@ -13,14 +13,7 @@ export type PolicyRequest = {
 
 /** @internal */
 export namespace PolicyRequest$ {
-    export type Inbound = {
-        ledgerName: string;
-        ledgerQuery: Record<string, any>;
-        name: string;
-        paymentsPoolID: string;
-    };
-
-    export const inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, unknown> = z
         .object({
             ledgerName: z.string(),
             ledgerQuery: z.record(z.any()),

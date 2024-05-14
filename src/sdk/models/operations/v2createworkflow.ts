@@ -26,14 +26,7 @@ export type V2CreateWorkflowResponse = {
 
 /** @internal */
 export namespace V2CreateWorkflowResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-        V2CreateWorkflowResponse?: shared.V2CreateWorkflowResponse$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -33,11 +33,7 @@ export type UpdateWalletResponse = {
 
 /** @internal */
 export namespace UpdateWalletRequestBody$ {
-    export type Inbound = {
-        metadata: Record<string, string>;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateWalletRequestBody, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateWalletRequestBody, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.string()),
         })
@@ -64,12 +60,7 @@ export namespace UpdateWalletRequestBody$ {
 
 /** @internal */
 export namespace UpdateWalletRequest$ {
-    export type Inbound = {
-        RequestBody?: UpdateWalletRequestBody$.Inbound | undefined;
-        id: string;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             RequestBody: z.lazy(() => UpdateWalletRequestBody$.inboundSchema).optional(),
             id: z.string(),
@@ -101,13 +92,7 @@ export namespace UpdateWalletRequest$ {
 
 /** @internal */
 export namespace UpdateWalletResponse$ {
-    export type Inbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: Response;
-    };
-
-    export const inboundSchema: z.ZodType<UpdateWalletResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<UpdateWalletResponse, z.ZodTypeDef, unknown> = z
         .object({
             ContentType: z.string(),
             StatusCode: z.number().int(),

@@ -25,18 +25,7 @@ export type V2BulkElement =
 
 /** @internal */
 export namespace V2BulkElement$ {
-    export type Inbound =
-        | (V2BulkElementAddMetadata$.Inbound & { action: "ADD_METADATA" })
-        | (V2BulkElementCreateTransaction$.Inbound & { action: "CREATE_TRANSACTION" })
-        | (V2BulkElementDeleteMetadata$.Inbound & { action: "DELETE_METADATA" })
-        | (V2BulkElementRevertTransaction$.Inbound & { action: "REVERT_TRANSACTION" });
-
-    export type Outbound =
-        | (V2BulkElementAddMetadata$.Outbound & { action: "ADD_METADATA" })
-        | (V2BulkElementCreateTransaction$.Outbound & { action: "CREATE_TRANSACTION" })
-        | (V2BulkElementDeleteMetadata$.Outbound & { action: "DELETE_METADATA" })
-        | (V2BulkElementRevertTransaction$.Outbound & { action: "REVERT_TRANSACTION" });
-    export const inboundSchema: z.ZodType<V2BulkElement, z.ZodTypeDef, Inbound> = z.union([
+    export const inboundSchema: z.ZodType<V2BulkElement, z.ZodTypeDef, unknown> = z.union([
         V2BulkElementAddMetadata$.inboundSchema.and(
             z.object({ action: z.literal("ADD_METADATA") }).transform((v) => ({ action: v.action }))
         ),
@@ -56,6 +45,12 @@ export namespace V2BulkElement$ {
                 .transform((v) => ({ action: v.action }))
         ),
     ]);
+
+    export type Outbound =
+        | (V2BulkElementAddMetadata$.Outbound & { action: "ADD_METADATA" })
+        | (V2BulkElementCreateTransaction$.Outbound & { action: "CREATE_TRANSACTION" })
+        | (V2BulkElementDeleteMetadata$.Outbound & { action: "DELETE_METADATA" })
+        | (V2BulkElementRevertTransaction$.Outbound & { action: "REVERT_TRANSACTION" });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElement> = z.union([
         V2BulkElementAddMetadata$.outboundSchema.and(
             z.object({ action: z.literal("ADD_METADATA") }).transform((v) => ({ action: v.action }))

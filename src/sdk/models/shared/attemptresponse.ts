@@ -11,11 +11,7 @@ export type AttemptResponse = {
 
 /** @internal */
 export namespace AttemptResponse$ {
-    export type Inbound = {
-        data: Attempt$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<AttemptResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<AttemptResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: Attempt$.inboundSchema,
         })

@@ -19,15 +19,7 @@ export type PoliciesCursorResponse = {
 
 /** @internal */
 export namespace PoliciesCursorResponseCursor$ {
-    export type Inbound = {
-        data: Array<Policy$.Inbound>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<PoliciesCursorResponseCursor, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoliciesCursorResponseCursor, z.ZodTypeDef, unknown> = z
         .object({
             data: z.array(Policy$.inboundSchema),
             hasMore: z.boolean(),
@@ -74,11 +66,7 @@ export namespace PoliciesCursorResponseCursor$ {
 
 /** @internal */
 export namespace PoliciesCursorResponse$ {
-    export type Inbound = {
-        cursor: PoliciesCursorResponseCursor$.Inbound;
-    };
-
-    export const inboundSchema: z.ZodType<PoliciesCursorResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PoliciesCursorResponse, z.ZodTypeDef, unknown> = z
         .object({
             cursor: z.lazy(() => PoliciesCursorResponseCursor$.inboundSchema),
         })

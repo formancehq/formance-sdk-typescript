@@ -17,9 +17,7 @@ export type PaymentAdjustment = {
 
 /** @internal */
 export namespace PaymentAdjustmentRaw$ {
-    export type Inbound = {};
-
-    export const inboundSchema: z.ZodType<PaymentAdjustmentRaw, z.ZodTypeDef, Inbound> = z.object(
+    export const inboundSchema: z.ZodType<PaymentAdjustmentRaw, z.ZodTypeDef, unknown> = z.object(
         {}
     );
 
@@ -32,15 +30,7 @@ export namespace PaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace PaymentAdjustment$ {
-    export type Inbound = {
-        amount: number;
-        createdAt: string;
-        raw: PaymentAdjustmentRaw$.Inbound;
-        reference: string;
-        status: PaymentStatus;
-    };
-
-    export const inboundSchema: z.ZodType<PaymentAdjustment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<PaymentAdjustment, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             createdAt: z

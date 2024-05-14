@@ -33,19 +33,10 @@ export type V2WorkflowInstanceHistoryStageOutput = {
 
 /** @internal */
 export namespace V2WorkflowInstanceHistoryStageOutput$ {
-    export type Inbound = {
-        CreateTransaction?: V2ActivityCreateTransactionOutput$.Inbound | undefined;
-        DebitWallet?: V2ActivityDebitWalletOutput$.Inbound | undefined;
-        GetAccount?: V2ActivityGetAccountOutput$.Inbound | undefined;
-        GetPayment?: V2ActivityGetPaymentOutput$.Inbound | undefined;
-        GetWallet?: V2ActivityGetWalletOutput$.Inbound | undefined;
-        ListWallets?: V2ListWalletsResponse$.Inbound | undefined;
-    };
-
     export const inboundSchema: z.ZodType<
         V2WorkflowInstanceHistoryStageOutput,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z
         .object({
             CreateTransaction: V2ActivityCreateTransactionOutput$.inboundSchema.optional(),

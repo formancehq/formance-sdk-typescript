@@ -13,14 +13,7 @@ export type TransferRequest = {
 
 /** @internal */
 export namespace TransferRequest$ {
-    export type Inbound = {
-        amount: number;
-        asset: string;
-        destination: string;
-        source?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> = z
         .object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),

@@ -11,11 +11,7 @@ export type V2LedgerInfoResponse = {
 
 /** @internal */
 export namespace V2LedgerInfoResponse$ {
-    export type Inbound = {
-        data?: V2LedgerInfo$.Inbound | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2LedgerInfoResponse, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2LedgerInfoResponse, z.ZodTypeDef, unknown> = z
         .object({
             data: V2LedgerInfo$.inboundSchema.optional(),
         })

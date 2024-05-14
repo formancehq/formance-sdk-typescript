@@ -16,16 +16,7 @@ export type V2WorkflowInstanceHistory = {
 
 /** @internal */
 export namespace V2WorkflowInstanceHistory$ {
-    export type Inbound = {
-        error?: string | undefined;
-        input: V2Stage$.Inbound;
-        name: string;
-        startedAt: string;
-        terminated: boolean;
-        terminatedAt?: string | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistory, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistory, z.ZodTypeDef, unknown> = z
         .object({
             error: z.string().optional(),
             input: V2Stage$.inboundSchema,

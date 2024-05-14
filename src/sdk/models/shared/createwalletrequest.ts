@@ -14,12 +14,7 @@ export type CreateWalletRequest = {
 
 /** @internal */
 export namespace CreateWalletRequest$ {
-    export type Inbound = {
-        metadata: Record<string, string>;
-        name: string;
-    };
-
-    export const inboundSchema: z.ZodType<CreateWalletRequest, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<CreateWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
             metadata: z.record(z.string()),
             name: z.string(),

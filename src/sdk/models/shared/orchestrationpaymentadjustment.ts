@@ -20,12 +20,10 @@ export type OrchestrationPaymentAdjustment = {
 
 /** @internal */
 export namespace OrchestrationPaymentAdjustmentRaw$ {
-    export type Inbound = {};
-
     export const inboundSchema: z.ZodType<
         OrchestrationPaymentAdjustmentRaw,
         z.ZodTypeDef,
-        Inbound
+        unknown
     > = z.object({});
 
     export type Outbound = {};
@@ -39,15 +37,7 @@ export namespace OrchestrationPaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace OrchestrationPaymentAdjustment$ {
-    export type Inbound = {
-        absolute: boolean;
-        amount: number;
-        date: string;
-        raw: OrchestrationPaymentAdjustmentRaw$.Inbound;
-        status: OrchestrationPaymentStatus;
-    };
-
-    export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, unknown> = z
         .object({
             absolute: z.boolean(),
             amount: z.number().transform((v) => BigInt(v)),
