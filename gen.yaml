@@ -1,16 +1,16 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: SDK
+  sdkClassName: Formance
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionDec2023: false
-    parameterOrderingFeb2024: false
-    requestResponseComponentNamesFeb2024: false
+    nameResolutionDec2023: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: false
+    oAuth2ClientCredentialsEnabled: true
   comments: {}
-  telemetryEnabled: false
+  telemetryEnabled: true
 typescript:
   version: 2.4.0
   additionalDependencies:
@@ -19,8 +19,8 @@ typescript:
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Formance
-  clientServerStatusCodesAsErrors: false
-  enumFormat: enum
+  clientServerStatusCodesAsErrors: true
+  enumFormat: union
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -35,5 +35,5 @@ typescript:
   methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: '@formance/formance-sdk'
-  responseFormat: envelope
+  responseFormat: flat
   templateVersion: v2
