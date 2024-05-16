@@ -33,10 +33,10 @@ export namespace PaymentRequest$ {
                 .transform((v) => new Date(v)),
             destinationAccountID: z.string().optional(),
             reference: z.string(),
-            scheme: PaymentScheme$,
+            scheme: PaymentScheme$.inboundSchema,
             sourceAccountID: z.string().optional(),
-            status: PaymentStatus$,
-            type: PaymentType$,
+            status: PaymentStatus$.inboundSchema,
+            type: PaymentType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -64,10 +64,10 @@ export namespace PaymentRequest$ {
         createdAt: string;
         destinationAccountID?: string | undefined;
         reference: string;
-        scheme: PaymentScheme;
+        scheme: string;
         sourceAccountID?: string | undefined;
-        status: PaymentStatus;
-        type: PaymentType;
+        status: string;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentRequest> = z
@@ -78,10 +78,10 @@ export namespace PaymentRequest$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             destinationAccountID: z.string().optional(),
             reference: z.string(),
-            scheme: PaymentScheme$,
+            scheme: PaymentScheme$.outboundSchema,
             sourceAccountID: z.string().optional(),
-            status: PaymentStatus$,
-            type: PaymentType$,
+            status: PaymentStatus$.outboundSchema,
+            type: PaymentType$.outboundSchema,
         })
         .transform((v) => {
             return {

@@ -24,7 +24,7 @@ export namespace V2BulkElementAddMetadataData$ {
         .object({
             metadata: z.record(z.string()),
             targetId: V2TargetId$.inboundSchema,
-            targetType: V2TargetType$,
+            targetType: V2TargetType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -37,14 +37,14 @@ export namespace V2BulkElementAddMetadataData$ {
     export type Outbound = {
         metadata: Record<string, string>;
         targetId: V2TargetId$.Outbound;
-        targetType: V2TargetType;
+        targetType: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElementAddMetadataData> = z
         .object({
             metadata: z.record(z.string()),
             targetId: V2TargetId$.outboundSchema,
-            targetType: V2TargetType$,
+            targetType: V2TargetType$.outboundSchema,
         })
         .transform((v) => {
             return {

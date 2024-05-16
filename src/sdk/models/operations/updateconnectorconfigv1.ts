@@ -6,7 +6,6 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type UpdateConnectorConfigV1Request = {
-    connectorConfig: shared.ConnectorConfig;
     /**
      * The name of the connector.
      */
@@ -15,57 +14,45 @@ export type UpdateConnectorConfigV1Request = {
      * The connector ID.
      */
     connectorId: string;
+    connectorConfig: shared.ConnectorConfig;
 };
 
-export type UpdateConnectorConfigV1Response = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type UpdateConnectorConfigV1Response = {};
 
 /** @internal */
 export namespace UpdateConnectorConfigV1Request$ {
     export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Request, z.ZodTypeDef, unknown> = z
         .object({
-            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
+            ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
         })
         .transform((v) => {
             return {
-                connectorConfig: v.ConnectorConfig,
                 connector: v.connector,
                 connectorId: v.connectorId,
+                connectorConfig: v.ConnectorConfig,
             };
         });
 
     export type Outbound = {
-        ConnectorConfig: shared.ConnectorConfig$.Outbound;
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
+        ConnectorConfig: shared.ConnectorConfig$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateConnectorConfigV1Request> =
         z
             .object({
-                connectorConfig: shared.ConnectorConfig$.outboundSchema,
-                connector: shared.Connector$,
+                connector: shared.Connector$.outboundSchema,
                 connectorId: z.string(),
+                connectorConfig: shared.ConnectorConfig$.outboundSchema,
             })
             .transform((v) => {
                 return {
-                    ConnectorConfig: v.connectorConfig,
                     connector: v.connector,
                     connectorId: v.connectorId,
+                    ConnectorConfig: v.connectorConfig,
                 };
             });
 }
@@ -73,43 +60,13 @@ export namespace UpdateConnectorConfigV1Request$ {
 /** @internal */
 export namespace UpdateConnectorConfigV1Response$ {
     export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Response, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                ContentType: z.string(),
-                StatusCode: z.number().int(),
-                RawResponse: z.instanceof(Response),
-            })
-            .transform((v) => {
-                return {
-                    contentType: v.ContentType,
-                    statusCode: v.StatusCode,
-                    rawResponse: v.RawResponse,
-                };
-            });
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         UpdateConnectorConfigV1Response
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

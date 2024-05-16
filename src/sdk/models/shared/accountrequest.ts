@@ -28,7 +28,7 @@ export namespace AccountRequest$ {
             defaultAsset: z.string().optional(),
             metadata: z.nullable(z.record(z.string())).optional(),
             reference: z.string(),
-            type: AccountType$,
+            type: AccountType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -49,7 +49,7 @@ export namespace AccountRequest$ {
         defaultAsset?: string | undefined;
         metadata?: Record<string, string> | null | undefined;
         reference: string;
-        type: AccountType;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountRequest> = z
@@ -60,7 +60,7 @@ export namespace AccountRequest$ {
             defaultAsset: z.string().optional(),
             metadata: z.nullable(z.record(z.string())).optional(),
             reference: z.string(),
-            type: AccountType$,
+            type: AccountType$.outboundSchema,
         })
         .transform((v) => {
             return {

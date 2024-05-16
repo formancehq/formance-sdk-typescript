@@ -83,7 +83,7 @@ export namespace TaskModulr$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskModulrState$.inboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
             updatedAt: z
                 .string()
                 .datetime({ offset: true })
@@ -109,7 +109,7 @@ export namespace TaskModulr$ {
         error?: string | undefined;
         id: string;
         state: TaskModulrState$.Outbound;
-        status: PaymentStatus;
+        status: string;
         updatedAt: string;
     };
 
@@ -121,7 +121,7 @@ export namespace TaskModulr$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskModulrState$.outboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
             updatedAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {

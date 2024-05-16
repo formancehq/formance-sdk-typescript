@@ -48,7 +48,7 @@ export class Webhooks extends ClientSDK {
     async activateConfig(
         request: operations.ActivateConfigRequest,
         options?: RequestOptions
-    ): Promise<operations.ActivateConfigResponse> {
+    ): Promise<shared.ConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -68,18 +68,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "activateConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -100,10 +97,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -111,10 +108,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ActivateConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigResponse: val$,
-                    });
+                    return shared.ConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -155,7 +149,7 @@ export class Webhooks extends ClientSDK {
     async changeConfigSecret(
         request: operations.ChangeConfigSecretRequest,
         options?: RequestOptions
-    ): Promise<operations.ChangeConfigSecretResponse> {
+    ): Promise<shared.ConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -178,18 +172,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "changeConfigSecret",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -210,10 +201,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -221,10 +212,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ChangeConfigSecretResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigResponse: val$,
-                    });
+                    return shared.ConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -261,7 +249,7 @@ export class Webhooks extends ClientSDK {
     async deactivateConfig(
         request: operations.DeactivateConfigRequest,
         options?: RequestOptions
-    ): Promise<operations.DeactivateConfigResponse> {
+    ): Promise<shared.ConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -283,18 +271,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deactivateConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -315,10 +300,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -326,10 +311,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.DeactivateConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigResponse: val$,
-                    });
+                    return shared.ConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -366,7 +348,7 @@ export class Webhooks extends ClientSDK {
     async deleteConfig(
         request: operations.DeleteConfigRequest,
         options?: RequestOptions
-    ): Promise<operations.DeleteConfigResponse> {
+    ): Promise<operations.DeleteConfigResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -386,18 +368,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deleteConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -418,14 +397,14 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -447,12 +426,6 @@ export class Webhooks extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteConfigResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -464,7 +437,7 @@ export class Webhooks extends ClientSDK {
     async getManyConfigs(
         request: operations.GetManyConfigsRequest,
         options?: RequestOptions
-    ): Promise<operations.GetManyConfigsResponse> {
+    ): Promise<shared.ConfigsResponse> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -489,18 +462,15 @@ export class Webhooks extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getManyConfigs",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -521,10 +491,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -532,10 +502,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetManyConfigsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigsResponse: val$,
-                    });
+                    return shared.ConfigsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -581,7 +548,7 @@ export class Webhooks extends ClientSDK {
     async insertConfig(
         request: shared.ConfigUser,
         options?: RequestOptions
-    ): Promise<operations.InsertConfigResponse> {
+    ): Promise<shared.ConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -599,18 +566,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "insertConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -631,10 +595,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -642,10 +606,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.InsertConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigResponse: val$,
-                    });
+                    return shared.ConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -682,7 +643,7 @@ export class Webhooks extends ClientSDK {
     async testConfig(
         request: operations.TestConfigRequest,
         options?: RequestOptions
-    ): Promise<operations.TestConfigResponse> {
+    ): Promise<shared.AttemptResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -702,18 +663,15 @@ export class Webhooks extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "testConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -734,10 +692,10 @@ export class Webhooks extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -745,10 +703,7 @@ export class Webhooks extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.TestConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AttemptResponse: val$,
-                    });
+                    return shared.AttemptResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );

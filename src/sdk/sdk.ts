@@ -11,6 +11,7 @@ import { Auth } from "./auth";
 import { Ledger } from "./ledger";
 import * as errors from "./models/errors";
 import * as operations from "./models/operations";
+import * as shared from "./models/shared";
 import { Orchestration } from "./orchestration";
 import { Payments } from "./payments";
 import { Reconciliation } from "./reconciliation";
@@ -18,7 +19,7 @@ import { Search } from "./search";
 import { Wallets } from "./wallets";
 import { Webhooks } from "./webhooks";
 
-export class SDK extends ClientSDK {
+export class Formance extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
 
     constructor(options: SDKOptions = {}) {
@@ -90,7 +91,7 @@ export class SDK extends ClientSDK {
      */
     async getOIDCWellKnowns(
         options?: RequestOptions
-    ): Promise<operations.GetOIDCWellKnownsResponse> {
+    ): Promise<operations.GetOIDCWellKnownsResponse | void> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "*/*");
@@ -99,18 +100,15 @@ export class SDK extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getOIDCWellKnowns",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -129,15 +127,8 @@ export class SDK extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchStatusCode(response, 200)) {
-            // fallthrough
+            return;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -146,18 +137,12 @@ export class SDK extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.GetOIDCWellKnownsResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
      * Show stack version information
      */
-    async getVersions(options?: RequestOptions): Promise<operations.GetVersionsResponse> {
+    async getVersions(options?: RequestOptions): Promise<shared.GetVersionsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -166,18 +151,15 @@ export class SDK extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getVersions",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -196,22 +178,12 @@ export class SDK extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetVersionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetVersionsResponse: val$,
-                    });
+                    return shared.GetVersionsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );

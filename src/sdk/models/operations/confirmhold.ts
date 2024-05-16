@@ -6,96 +6,57 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type ConfirmHoldRequest = {
-    confirmHoldRequest?: shared.ConfirmHoldRequest | undefined;
     holdId: string;
+    confirmHoldRequest?: shared.ConfirmHoldRequest | undefined;
 };
 
-export type ConfirmHoldResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type ConfirmHoldResponse = {};
 
 /** @internal */
 export namespace ConfirmHoldRequest$ {
     export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, unknown> = z
         .object({
-            ConfirmHoldRequest: shared.ConfirmHoldRequest$.inboundSchema.optional(),
             hold_id: z.string(),
+            ConfirmHoldRequest: shared.ConfirmHoldRequest$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                holdId: v.hold_id,
                 ...(v.ConfirmHoldRequest === undefined
                     ? null
                     : { confirmHoldRequest: v.ConfirmHoldRequest }),
-                holdId: v.hold_id,
             };
         });
 
     export type Outbound = {
-        ConfirmHoldRequest?: shared.ConfirmHoldRequest$.Outbound | undefined;
         hold_id: string;
+        ConfirmHoldRequest?: shared.ConfirmHoldRequest$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldRequest> = z
         .object({
-            confirmHoldRequest: shared.ConfirmHoldRequest$.outboundSchema.optional(),
             holdId: z.string(),
+            confirmHoldRequest: shared.ConfirmHoldRequest$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                hold_id: v.holdId,
                 ...(v.confirmHoldRequest === undefined
                     ? null
                     : { ConfirmHoldRequest: v.confirmHoldRequest }),
-                hold_id: v.holdId,
             };
         });
 }
 
 /** @internal */
 export namespace ConfirmHoldResponse$ {
-    export const inboundSchema: z.ZodType<ConfirmHoldResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfirmHoldResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldResponse> = z.object(
+        {}
+    );
 }

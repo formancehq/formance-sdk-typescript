@@ -12,24 +12,11 @@ export type UpdateWalletRequestBody = {
 };
 
 export type UpdateWalletRequest = {
-    requestBody?: UpdateWalletRequestBody | undefined;
     id: string;
+    requestBody?: UpdateWalletRequestBody | undefined;
 };
 
-export type UpdateWalletResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type UpdateWalletResponse = {};
 
 /** @internal */
 export namespace UpdateWalletRequestBody$ {
@@ -62,69 +49,43 @@ export namespace UpdateWalletRequestBody$ {
 export namespace UpdateWalletRequest$ {
     export const inboundSchema: z.ZodType<UpdateWalletRequest, z.ZodTypeDef, unknown> = z
         .object({
-            RequestBody: z.lazy(() => UpdateWalletRequestBody$.inboundSchema).optional(),
             id: z.string(),
+            RequestBody: z.lazy(() => UpdateWalletRequestBody$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 id: v.id,
+                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
             };
         });
 
     export type Outbound = {
-        RequestBody?: UpdateWalletRequestBody$.Outbound | undefined;
         id: string;
+        RequestBody?: UpdateWalletRequestBody$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateWalletRequest> = z
         .object({
-            requestBody: z.lazy(() => UpdateWalletRequestBody$.outboundSchema).optional(),
             id: z.string(),
+            requestBody: z.lazy(() => UpdateWalletRequestBody$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 id: v.id,
+                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
             };
         });
 }
 
 /** @internal */
 export namespace UpdateWalletResponse$ {
-    export const inboundSchema: z.ZodType<UpdateWalletResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<UpdateWalletResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateWalletResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateWalletResponse> = z.object(
+        {}
+    );
 }

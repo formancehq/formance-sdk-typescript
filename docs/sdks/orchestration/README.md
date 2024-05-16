@@ -46,14 +46,17 @@ Cancel a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.cancelEvent({
+  const result = await formance.orchestration.cancelEvent({
     instanceID: "xxx",
   });
 
@@ -90,14 +93,17 @@ Create trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.createTrigger({
+  const result = await formance.orchestration.createTrigger({
     event: "<value>",
     workflowID: "<value>",
   });
@@ -120,7 +126,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTriggerResponse](../../sdk/models/operations/createtriggerresponse.md)>**
+**Promise<[shared.CreateTriggerResponse](../../sdk/models/shared/createtriggerresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -135,14 +141,17 @@ Create a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.createWorkflow({
+  const result = await formance.orchestration.createWorkflow({
     stages: [
       {
         "key": "<value>",
@@ -168,7 +177,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateWorkflowResponse](../../sdk/models/operations/createworkflowresponse.md)>**
+**Promise<[shared.CreateWorkflowResponse](../../sdk/models/shared/createworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -183,14 +192,17 @@ Read trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.deleteTrigger({
+  const result = await formance.orchestration.deleteTrigger({
     triggerID: "<value>",
   });
 
@@ -227,14 +239,17 @@ Delete a flow by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.deleteWorkflow({
+  const result = await formance.orchestration.deleteWorkflow({
     flowId: "xxx",
   });
 
@@ -271,14 +286,17 @@ Get a workflow instance by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.getInstance({
+  const result = await formance.orchestration.getInstance({
     instanceID: "xxx",
   });
 
@@ -300,7 +318,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetInstanceResponse](../../sdk/models/operations/getinstanceresponse.md)>**
+**Promise<[shared.GetWorkflowInstanceResponse](../../sdk/models/shared/getworkflowinstanceresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -315,14 +333,17 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.getInstanceHistory({
+  const result = await formance.orchestration.getInstanceHistory({
     instanceID: "xxx",
   });
 
@@ -344,7 +365,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetInstanceHistoryResponse](../../sdk/models/operations/getinstancehistoryresponse.md)>**
+**Promise<[shared.GetWorkflowInstanceHistoryResponse](../../sdk/models/shared/getworkflowinstancehistoryresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -359,14 +380,17 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.getInstanceStageHistory({
+  const result = await formance.orchestration.getInstanceStageHistory({
     instanceID: "xxx",
     number: 0,
   });
@@ -389,7 +413,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetInstanceStageHistoryResponse](../../sdk/models/operations/getinstancestagehistoryresponse.md)>**
+**Promise<[shared.GetWorkflowInstanceHistoryStageResponse](../../sdk/models/shared/getworkflowinstancehistorystageresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -404,14 +428,17 @@ Get a flow by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.getWorkflow({
+  const result = await formance.orchestration.getWorkflow({
     flowId: "xxx",
   });
 
@@ -433,7 +460,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetWorkflowResponse](../../sdk/models/operations/getworkflowresponse.md)>**
+**Promise<[shared.GetWorkflowResponse](../../sdk/models/shared/getworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -448,16 +475,19 @@ List instances of a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.listInstances({
-    running: true,
+  const result = await formance.orchestration.listInstances({
     workflowID: "xxx",
+    running: true,
   });
 
   // Handle the result
@@ -478,7 +508,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListInstancesResponse](../../sdk/models/operations/listinstancesresponse.md)>**
+**Promise<[shared.ListRunsResponse](../../sdk/models/shared/listrunsresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -493,14 +523,17 @@ List triggers
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.listTriggers({});
+  const result = await formance.orchestration.listTriggers({});
 
   // Handle the result
   console.log(result)
@@ -520,7 +553,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTriggersResponse](../../sdk/models/operations/listtriggersresponse.md)>**
+**Promise<[shared.ListTriggersResponse](../../sdk/models/shared/listtriggersresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -535,14 +568,17 @@ List triggers occurrences
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.listTriggersOccurrences({
+  const result = await formance.orchestration.listTriggersOccurrences({
     triggerID: "<value>",
   });
 
@@ -564,7 +600,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTriggersOccurrencesResponse](../../sdk/models/operations/listtriggersoccurrencesresponse.md)>**
+**Promise<[shared.ListTriggersOccurrencesResponse](../../sdk/models/shared/listtriggersoccurrencesresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -579,14 +615,17 @@ List registered workflows
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.listWorkflows();
+  const result = await formance.orchestration.listWorkflows();
 
   // Handle the result
   console.log(result)
@@ -605,7 +644,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListWorkflowsResponse](../../sdk/models/operations/listworkflowsresponse.md)>**
+**Promise<[shared.ListWorkflowsResponse](../../sdk/models/shared/listworkflowsresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -620,14 +659,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.orchestrationgetServerInfo();
+  const result = await formance.orchestration.orchestrationgetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -646,7 +688,7 @@ run();
 
 ### Response
 
-**Promise<[operations.OrchestrationgetServerInfoResponse](../../sdk/models/operations/orchestrationgetserverinforesponse.md)>**
+**Promise<[shared.ServerInfo](../../sdk/models/shared/serverinfo.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -661,14 +703,17 @@ Read trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.readTrigger({
+  const result = await formance.orchestration.readTrigger({
     triggerID: "<value>",
   });
 
@@ -690,7 +735,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadTriggerResponse](../../sdk/models/operations/readtriggerresponse.md)>**
+**Promise<[shared.ReadTriggerResponse](../../sdk/models/shared/readtriggerresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -705,14 +750,17 @@ Run workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.runWorkflow({
+  const result = await formance.orchestration.runWorkflow({
     workflowID: "xxx",
   });
 
@@ -734,7 +782,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RunWorkflowResponse](../../sdk/models/operations/runworkflowresponse.md)>**
+**Promise<[shared.RunWorkflowResponse](../../sdk/models/shared/runworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -749,14 +797,17 @@ Send an event to a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.sendEvent({
+  const result = await formance.orchestration.sendEvent({
     instanceID: "xxx",
   });
 
@@ -793,14 +844,17 @@ Test trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.testTrigger({
+  const result = await formance.orchestration.testTrigger({
     triggerID: "<value>",
   });
 
@@ -822,7 +876,7 @@ run();
 
 ### Response
 
-**Promise<[operations.TestTriggerResponse](../../sdk/models/operations/testtriggerresponse.md)>**
+**Promise<[shared.V2TestTriggerResponse](../../sdk/models/shared/v2testtriggerresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -837,14 +891,17 @@ Cancel a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2CancelEvent({
+  const result = await formance.orchestration.v2CancelEvent({
     instanceID: "xxx",
   });
 
@@ -881,14 +938,17 @@ Create trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2CreateTrigger({
+  const result = await formance.orchestration.v2CreateTrigger({
     event: "<value>",
     workflowID: "<value>",
   });
@@ -911,7 +971,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateTriggerResponse](../../sdk/models/operations/v2createtriggerresponse.md)>**
+**Promise<[shared.V2CreateTriggerResponse](../../sdk/models/shared/v2createtriggerresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -926,14 +986,17 @@ Create a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2CreateWorkflow({
+  const result = await formance.orchestration.v2CreateWorkflow({
     stages: [
       {
         "key": "<value>",
@@ -959,7 +1022,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateWorkflowResponse](../../sdk/models/operations/v2createworkflowresponse.md)>**
+**Promise<[shared.V2CreateWorkflowResponse](../../sdk/models/shared/v2createworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -974,14 +1037,17 @@ Read trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2DeleteTrigger({
+  const result = await formance.orchestration.v2DeleteTrigger({
     triggerID: "<value>",
   });
 
@@ -1018,14 +1084,17 @@ Delete a flow by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2DeleteWorkflow({
+  const result = await formance.orchestration.v2DeleteWorkflow({
     flowId: "xxx",
   });
 
@@ -1062,14 +1131,17 @@ Get a workflow instance by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2GetInstance({
+  const result = await formance.orchestration.v2GetInstance({
     instanceID: "xxx",
   });
 
@@ -1091,7 +1163,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetInstanceResponse](../../sdk/models/operations/v2getinstanceresponse.md)>**
+**Promise<[shared.V2GetWorkflowInstanceResponse](../../sdk/models/shared/v2getworkflowinstanceresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1106,14 +1178,17 @@ Get a workflow instance history by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2GetInstanceHistory({
+  const result = await formance.orchestration.v2GetInstanceHistory({
     instanceID: "xxx",
   });
 
@@ -1135,7 +1210,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetInstanceHistoryResponse](../../sdk/models/operations/v2getinstancehistoryresponse.md)>**
+**Promise<[shared.V2GetWorkflowInstanceHistoryResponse](../../sdk/models/shared/v2getworkflowinstancehistoryresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1150,14 +1225,17 @@ Get a workflow instance stage history
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2GetInstanceStageHistory({
+  const result = await formance.orchestration.v2GetInstanceStageHistory({
     instanceID: "xxx",
     number: 0,
   });
@@ -1180,7 +1258,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetInstanceStageHistoryResponse](../../sdk/models/operations/v2getinstancestagehistoryresponse.md)>**
+**Promise<[shared.V2GetWorkflowInstanceHistoryStageResponse](../../sdk/models/shared/v2getworkflowinstancehistorystageresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1195,14 +1273,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2GetServerInfo();
+  const result = await formance.orchestration.v2GetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -1221,7 +1302,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetServerInfoResponse](../../sdk/models/operations/v2getserverinforesponse.md)>**
+**Promise<[shared.V2ServerInfo](../../sdk/models/shared/v2serverinfo.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1236,14 +1317,17 @@ Get a flow by id
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2GetWorkflow({
+  const result = await formance.orchestration.v2GetWorkflow({
     flowId: "xxx",
   });
 
@@ -1265,7 +1349,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetWorkflowResponse](../../sdk/models/operations/v2getworkflowresponse.md)>**
+**Promise<[shared.V2GetWorkflowResponse](../../sdk/models/shared/v2getworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1280,18 +1364,21 @@ List instances of a workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListInstances({
+  const result = await formance.orchestration.v2ListInstances({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
-    running: true,
     workflowID: "xxx",
+    running: true,
   });
 
   // Handle the result
@@ -1312,7 +1399,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListInstancesResponse](../../sdk/models/operations/v2listinstancesresponse.md)>**
+**Promise<[shared.V2ListRunsResponse](../../sdk/models/shared/v2listrunsresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1327,14 +1414,17 @@ List triggers
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListTriggers({
+  const result = await formance.orchestration.v2ListTriggers({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
@@ -1357,7 +1447,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListTriggersResponse](../../sdk/models/operations/v2listtriggersresponse.md)>**
+**Promise<[shared.V2ListTriggersResponse](../../sdk/models/shared/v2listtriggersresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1372,17 +1462,20 @@ List triggers occurrences
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListTriggersOccurrences({
+  const result = await formance.orchestration.v2ListTriggersOccurrences({
+    triggerID: "<value>",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
-    triggerID: "<value>",
   });
 
   // Handle the result
@@ -1403,7 +1496,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListTriggersOccurrencesResponse](../../sdk/models/operations/v2listtriggersoccurrencesresponse.md)>**
+**Promise<[shared.V2ListTriggersOccurrencesResponse](../../sdk/models/shared/v2listtriggersoccurrencesresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1418,14 +1511,17 @@ List registered workflows
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ListWorkflows({
+  const result = await formance.orchestration.v2ListWorkflows({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
@@ -1448,7 +1544,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListWorkflowsResponse](../../sdk/models/operations/v2listworkflowsresponse.md)>**
+**Promise<[shared.V2ListWorkflowsResponse](../../sdk/models/shared/v2listworkflowsresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1463,14 +1559,17 @@ Read trigger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2ReadTrigger({
+  const result = await formance.orchestration.v2ReadTrigger({
     triggerID: "<value>",
   });
 
@@ -1492,7 +1591,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ReadTriggerResponse](../../sdk/models/operations/v2readtriggerresponse.md)>**
+**Promise<[shared.V2ReadTriggerResponse](../../sdk/models/shared/v2readtriggerresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1507,14 +1606,17 @@ Run workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2RunWorkflow({
+  const result = await formance.orchestration.v2RunWorkflow({
     workflowID: "xxx",
   });
 
@@ -1536,7 +1638,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2RunWorkflowResponse](../../sdk/models/operations/v2runworkflowresponse.md)>**
+**Promise<[shared.V2RunWorkflowResponse](../../sdk/models/shared/v2runworkflowresponse.md)>**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -1551,14 +1653,17 @@ Send an event to a running workflow
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.orchestration.v2SendEvent({
+  const result = await formance.orchestration.v2SendEvent({
     instanceID: "xxx",
   });
 

@@ -6,95 +6,54 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type AddAccountToPoolRequest = {
-    addAccountToPoolRequest: shared.AddAccountToPoolRequest;
     /**
      * The pool ID.
      */
     poolId: string;
+    addAccountToPoolRequest: shared.AddAccountToPoolRequest;
 };
 
-export type AddAccountToPoolResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type AddAccountToPoolResponse = {};
 
 /** @internal */
 export namespace AddAccountToPoolRequest$ {
     export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, unknown> = z
         .object({
-            AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.inboundSchema,
             poolId: z.string(),
+            AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.inboundSchema,
         })
         .transform((v) => {
             return {
-                addAccountToPoolRequest: v.AddAccountToPoolRequest,
                 poolId: v.poolId,
+                addAccountToPoolRequest: v.AddAccountToPoolRequest,
             };
         });
 
     export type Outbound = {
-        AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.Outbound;
         poolId: string;
+        AddAccountToPoolRequest: shared.AddAccountToPoolRequest$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddAccountToPoolRequest> = z
         .object({
-            addAccountToPoolRequest: shared.AddAccountToPoolRequest$.outboundSchema,
             poolId: z.string(),
+            addAccountToPoolRequest: shared.AddAccountToPoolRequest$.outboundSchema,
         })
         .transform((v) => {
             return {
-                AddAccountToPoolRequest: v.addAccountToPoolRequest,
                 poolId: v.poolId,
+                AddAccountToPoolRequest: v.addAccountToPoolRequest,
             };
         });
 }
 
 /** @internal */
 export namespace AddAccountToPoolResponse$ {
-    export const inboundSchema: z.ZodType<AddAccountToPoolResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<AddAccountToPoolResponse, z.ZodTypeDef, unknown> =
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddAccountToPoolResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddAccountToPoolResponse> =
+        z.object({});
 }

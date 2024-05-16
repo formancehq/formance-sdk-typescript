@@ -20,30 +20,11 @@ export type GetConnectorTaskV1Request = {
     taskId: string;
 };
 
-export type GetConnectorTaskV1Response = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-    /**
-     * OK
-     */
-    taskResponse?: shared.TaskResponse | undefined;
-};
-
 /** @internal */
 export namespace GetConnectorTaskV1Request$ {
     export const inboundSchema: z.ZodType<GetConnectorTaskV1Request, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
             taskId: z.string(),
         })
@@ -56,14 +37,14 @@ export namespace GetConnectorTaskV1Request$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
         taskId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetConnectorTaskV1Request> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
             connectorId: z.string(),
             taskId: z.string(),
         })
@@ -72,50 +53,6 @@ export namespace GetConnectorTaskV1Request$ {
                 connector: v.connector,
                 connectorId: v.connectorId,
                 taskId: v.taskId,
-            };
-        });
-}
-
-/** @internal */
-export namespace GetConnectorTaskV1Response$ {
-    export const inboundSchema: z.ZodType<GetConnectorTaskV1Response, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-            TaskResponse: shared.TaskResponse$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-                ...(v.TaskResponse === undefined ? null : { taskResponse: v.TaskResponse }),
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-        TaskResponse?: shared.TaskResponse$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetConnectorTaskV1Response> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-            taskResponse: shared.TaskResponse$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-                ...(v.taskResponse === undefined ? null : { TaskResponse: v.taskResponse }),
             };
         });
 }

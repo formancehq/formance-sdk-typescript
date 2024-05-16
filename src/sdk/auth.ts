@@ -45,7 +45,7 @@ export class Auth extends ClientSDK {
     async createClient(
         request?: shared.CreateClientRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateClientResponse> {
+    ): Promise<shared.CreateClientResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -64,18 +64,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createClient",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -95,22 +92,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateClientResponse: val$,
-                    });
+                    return shared.CreateClientResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -131,7 +118,7 @@ export class Auth extends ClientSDK {
     async createSecret(
         request: operations.CreateSecretRequest,
         options?: RequestOptions
-    ): Promise<operations.CreateSecretResponse> {
+    ): Promise<shared.CreateSecretResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -157,18 +144,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createSecret",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -188,22 +172,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateSecretResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateSecretResponse: val$,
-                    });
+                    return shared.CreateSecretResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -224,7 +198,7 @@ export class Auth extends ClientSDK {
     async deleteClient(
         request: operations.DeleteClientRequest,
         options?: RequestOptions
-    ): Promise<operations.DeleteClientResponse> {
+    ): Promise<operations.DeleteClientResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -247,18 +221,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deleteClient",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -278,15 +249,8 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -295,12 +259,6 @@ export class Auth extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteClientResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -309,7 +267,7 @@ export class Auth extends ClientSDK {
     async deleteSecret(
         request: operations.DeleteSecretRequest,
         options?: RequestOptions
-    ): Promise<operations.DeleteSecretResponse> {
+    ): Promise<operations.DeleteSecretResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -338,18 +296,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deleteSecret",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -369,15 +324,8 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else {
             const responseBody = await response.text();
             throw new errors.SDKError(
@@ -386,18 +334,12 @@ export class Auth extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteSecretResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
      * List clients
      */
-    async listClients(options?: RequestOptions): Promise<operations.ListClientsResponse> {
+    async listClients(options?: RequestOptions): Promise<shared.ListClientsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -406,18 +348,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listClients",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -436,22 +375,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListClientsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListClientsResponse: val$,
-                    });
+                    return shared.ListClientsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -472,7 +401,7 @@ export class Auth extends ClientSDK {
      * @remarks
      * List users
      */
-    async listUsers(options?: RequestOptions): Promise<operations.ListUsersResponse> {
+    async listUsers(options?: RequestOptions): Promise<shared.ListUsersResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -481,18 +410,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listUsers",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -511,22 +437,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListUsersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListUsersResponse: val$,
-                    });
+                    return shared.ListUsersResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -547,7 +463,7 @@ export class Auth extends ClientSDK {
     async readClient(
         request: operations.ReadClientRequest,
         options?: RequestOptions
-    ): Promise<operations.ReadClientResponse> {
+    ): Promise<shared.ReadClientResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -570,18 +486,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "readClient",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -601,22 +514,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReadClientResponse: val$,
-                    });
+                    return shared.ReadClientResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -640,7 +543,7 @@ export class Auth extends ClientSDK {
     async readUser(
         request: operations.ReadUserRequest,
         options?: RequestOptions
-    ): Promise<operations.ReadUserResponse> {
+    ): Promise<shared.ReadUserResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -663,18 +566,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "readUser",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -694,22 +594,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadUserResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReadUserResponse: val$,
-                    });
+                    return shared.ReadUserResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -730,7 +620,7 @@ export class Auth extends ClientSDK {
     async updateClient(
         request: operations.UpdateClientRequest,
         options?: RequestOptions
-    ): Promise<operations.UpdateClientResponse> {
+    ): Promise<shared.UpdateClientResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -754,18 +644,15 @@ export class Auth extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "updateClient",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -785,22 +672,12 @@ export class Auth extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.UpdateClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UpdateClientResponse: val$,
-                    });
+                    return shared.UpdateClientResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );

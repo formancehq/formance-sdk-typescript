@@ -54,18 +54,21 @@ Add an account to a pool
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.addAccountToPool({
+  const result = await formance.payments.addAccountToPool({
+    poolId: "XXX",
     addAccountToPoolRequest: {
       accountID: "<value>",
     },
-    poolId: "XXX",
   });
 
   // Handle the result
@@ -101,22 +104,25 @@ Execute a transfer between two accounts.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.connectorsTransfer({
+  const result = await formance.payments.connectorsTransfer({
+    connector: Connector.BankingCircle,
     transferRequest: {
       amount: BigInt("100"),
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
     },
-    connector: Connector.BankingCircle,
   });
 
   // Handle the result
@@ -137,7 +143,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ConnectorsTransferResponse](../../sdk/models/operations/connectorstransferresponse.md)>**
+**Promise<[shared.TransferResponse](../../sdk/models/shared/transferresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -152,15 +158,18 @@ Create an account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.createAccount({
+  const result = await formance.payments.createAccount({
     connectorID: "<value>",
     createdAt: new Date("2024-08-19T02:15:08.668Z"),
     reference: "<value>",
@@ -185,7 +194,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateAccountResponse](../../sdk/models/operations/createaccountresponse.md)>**
+**Promise<[shared.PaymentsAccountResponse](../../sdk/models/shared/paymentsaccountresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -200,14 +209,17 @@ Create a bank account in Payments and on the PSP.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.createBankAccount({
+  const result = await formance.payments.createBankAccount({
     connectorID: "<value>",
     country: "GB",
     name: "My account",
@@ -231,7 +243,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateBankAccountResponse](../../sdk/models/operations/createbankaccountresponse.md)>**
+**Promise<[shared.BankAccountResponse](../../sdk/models/shared/bankaccountresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -246,15 +258,18 @@ Create a payment
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.createPayment({
+  const result = await formance.payments.createPayment({
     amount: BigInt("100"),
     asset: "USD",
     connectorID: "<value>",
@@ -283,7 +298,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePaymentResponse](../../sdk/models/operations/createpaymentresponse.md)>**
+**Promise<[shared.PaymentResponse](../../sdk/models/shared/paymentresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -298,14 +313,17 @@ Create a Pool
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.createPool({
+  const result = await formance.payments.createPool({
     accountIDs: [
       "<value>",
     ],
@@ -330,7 +348,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePoolResponse](../../sdk/models/operations/createpoolresponse.md)>**
+**Promise<[shared.PoolResponse](../../sdk/models/shared/poolresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -345,15 +363,18 @@ Create a transfer initiation
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.createTransferInitiation({
+  const result = await formance.payments.createTransferInitiation({
     amount: BigInt("256698"),
     asset: "USD",
     description: "Multi-tiered incremental methodology",
@@ -383,7 +404,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransferInitiationResponse](../../sdk/models/operations/createtransferinitiationresponse.md)>**
+**Promise<[shared.TransferInitiationResponse](../../sdk/models/shared/transferinitiationresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -398,14 +419,17 @@ Delete a pool by its id.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.deletePool({
+  const result = await formance.payments.deletePool({
     poolId: "XXX",
   });
 
@@ -442,14 +466,17 @@ Delete a transfer initiation by its id.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.deleteTransferInitiation({
+  const result = await formance.payments.deleteTransferInitiation({
     transferId: "XXX",
   });
 
@@ -486,18 +513,21 @@ Forward a bank account to a connector
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.forwardBankAccount({
+  const result = await formance.payments.forwardBankAccount({
+    bankAccountId: "XXX",
     forwardBankAccountRequest: {
       connectorID: "<value>",
     },
-    bankAccountId: "XXX",
   });
 
   // Handle the result
@@ -518,7 +548,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ForwardBankAccountResponse](../../sdk/models/operations/forwardbankaccountresponse.md)>**
+**Promise<[shared.BankAccountResponse](../../sdk/models/shared/bankaccountresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -533,17 +563,20 @@ Get account balances
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getAccountBalances({
+  const result = await formance.payments.getAccountBalances({
     accountId: "XXX",
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -568,7 +601,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAccountBalancesResponse](../../sdk/models/operations/getaccountbalancesresponse.md)>**
+**Promise<[shared.BalancesCursor](../../sdk/models/shared/balancescursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -583,14 +616,17 @@ Get a bank account created by user on Formance
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getBankAccount({
+  const result = await formance.payments.getBankAccount({
     bankAccountId: "XXX",
   });
 
@@ -612,7 +648,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBankAccountResponse](../../sdk/models/operations/getbankaccountresponse.md)>**
+**Promise<[shared.BankAccountResponse](../../sdk/models/shared/bankaccountresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -629,15 +665,18 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getConnectorTask({
+  const result = await formance.payments.getConnectorTask({
     connector: Connector.Adyen,
     taskId: "task1",
   });
@@ -660,7 +699,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskResponse](../../sdk/models/operations/getconnectortaskresponse.md)>**
+**Promise<[shared.TaskResponse](../../sdk/models/shared/taskresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -675,15 +714,18 @@ Get a specific task associated to the connector.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getConnectorTaskV1({
+  const result = await formance.payments.getConnectorTaskV1({
     connector: Connector.BankingCircle,
     connectorId: "XXX",
     taskId: "task1",
@@ -707,7 +749,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskV1Response](../../sdk/models/operations/getconnectortaskv1response.md)>**
+**Promise<[shared.TaskResponse](../../sdk/models/shared/taskresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -722,14 +764,17 @@ Get a payment
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getPayment({
+  const result = await formance.payments.getPayment({
     paymentId: "XXX",
   });
 
@@ -751,7 +796,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentResponse](../../sdk/models/operations/getpaymentresponse.md)>**
+**Promise<[shared.PaymentResponse](../../sdk/models/shared/paymentresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -766,14 +811,17 @@ Get a Pool
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getPool({
+  const result = await formance.payments.getPool({
     poolId: "XXX",
   });
 
@@ -795,7 +843,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPoolResponse](../../sdk/models/operations/getpoolresponse.md)>**
+**Promise<[shared.PoolResponse](../../sdk/models/shared/poolresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -810,16 +858,19 @@ Get pool balances
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getPoolBalances({
-    at: new Date("2023-05-05T06:40:23.018Z"),
+  const result = await formance.payments.getPoolBalances({
     poolId: "XXX",
+    at: new Date("2023-05-05T06:40:23.018Z"),
   });
 
   // Handle the result
@@ -840,7 +891,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPoolBalancesResponse](../../sdk/models/operations/getpoolbalancesresponse.md)>**
+**Promise<[shared.PoolBalancesResponse](../../sdk/models/shared/poolbalancesresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -855,14 +906,17 @@ Get a transfer initiation
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.getTransferInitiation({
+  const result = await formance.payments.getTransferInitiation({
     transferId: "XXX",
   });
 
@@ -884,7 +938,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransferInitiationResponse](../../sdk/models/operations/gettransferinitiationresponse.md)>**
+**Promise<[shared.TransferInitiationResponse](../../sdk/models/shared/transferinitiationresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -899,21 +953,26 @@ Install a connector by its name and config.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.installConnector({
+  const result = await formance.payments.installConnector({
+    connector: Connector.Wise,
   connectorConfig:     {
         apiKey: "XXX",
-        name: "My Wise Account",
+        hmacKey: "XXX",
+        liveEndpointPrefix: "XXX",
+        name: "My Adyen Account",
         pollingPeriod: "60s",
       },
-    connector: Connector.Adyen,
   });
 
   // Handle the result
@@ -934,7 +993,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InstallConnectorResponse](../../sdk/models/operations/installconnectorresponse.md)>**
+**Promise<[shared.ConnectorResponse](../../sdk/models/shared/connectorresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -949,14 +1008,17 @@ List all installed connectors.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listAllConnectors();
+  const result = await formance.payments.listAllConnectors();
 
   // Handle the result
   console.log(result)
@@ -975,7 +1037,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAllConnectorsResponse](../../sdk/models/operations/listallconnectorsresponse.md)>**
+**Promise<[shared.ConnectorsResponse](../../sdk/models/shared/connectorsresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -990,16 +1052,19 @@ List all bank accounts created by user on Formance.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listBankAccounts({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.payments.listBankAccounts({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -1024,7 +1089,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBankAccountsResponse](../../sdk/models/operations/listbankaccountsresponse.md)>**
+**Promise<[shared.BankAccountsCursor](../../sdk/models/shared/bankaccountscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1039,14 +1104,17 @@ List the configs of each available connector.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listConfigsAvailableConnectors();
+  const result = await formance.payments.listConfigsAvailableConnectors();
 
   // Handle the result
   console.log(result)
@@ -1065,7 +1133,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConfigsAvailableConnectorsResponse](../../sdk/models/operations/listconfigsavailableconnectorsresponse.md)>**
+**Promise<[shared.ConnectorsConfigsResponse](../../sdk/models/shared/connectorsconfigsresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1082,18 +1150,21 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listConnectorTasks({
+  const result = await formance.payments.listConnectorTasks({
     connector: Connector.Modulr,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -1114,7 +1185,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksResponse](../../sdk/models/operations/listconnectortasksresponse.md)>**
+**Promise<[shared.TasksCursor](../../sdk/models/shared/taskscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1129,19 +1200,22 @@ List all tasks associated with this connector.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listConnectorTasksV1({
+  const result = await formance.payments.listConnectorTasksV1({
     connector: Connector.BankingCircle,
     connectorId: "XXX",
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -1162,7 +1236,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksV1Response](../../sdk/models/operations/listconnectortasksv1response.md)>**
+**Promise<[shared.TasksCursor](../../sdk/models/shared/taskscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1177,16 +1251,19 @@ List payments
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listPayments({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.payments.listPayments({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -1211,7 +1288,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentsResponse](../../sdk/models/operations/listpaymentsresponse.md)>**
+**Promise<[shared.PaymentsCursor](../../sdk/models/shared/paymentscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1226,16 +1303,19 @@ List Pools
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listPools({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.payments.listPools({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -1260,7 +1340,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPoolsResponse](../../sdk/models/operations/listpoolsresponse.md)>**
+**Promise<[shared.PoolsCursor](../../sdk/models/shared/poolscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1275,16 +1355,19 @@ List Transfer Initiations
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.listTransferInitiations({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.payments.listTransferInitiations({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -1309,7 +1392,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransferInitiationsResponse](../../sdk/models/operations/listtransferinitiationsresponse.md)>**
+**Promise<[shared.TransferInitiationsCursor](../../sdk/models/shared/transferinitiationscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1324,14 +1407,17 @@ Get an account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.paymentsgetAccount({
+  const result = await formance.payments.paymentsgetAccount({
     accountId: "XXX",
   });
 
@@ -1353,7 +1439,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentsgetAccountResponse](../../sdk/models/operations/paymentsgetaccountresponse.md)>**
+**Promise<[shared.PaymentsAccountResponse](../../sdk/models/shared/paymentsaccountresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1368,14 +1454,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.paymentsgetServerInfo();
+  const result = await formance.payments.paymentsgetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -1394,7 +1483,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
+**Promise<[shared.ServerInfo](../../sdk/models/shared/serverinfo.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1409,16 +1498,19 @@ List accounts
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.paymentslistAccounts({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.payments.paymentslistAccounts({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     sort: [
       "date:asc",
       "status:desc",
@@ -1443,7 +1535,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
+**Promise<[shared.AccountsCursor](../../sdk/models/shared/accountscursor.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1460,15 +1552,18 @@ Read connector config
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.readConnectorConfig({
+  const result = await formance.payments.readConnectorConfig({
     connector: Connector.Generic,
   });
 
@@ -1490,7 +1585,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigResponse](../../sdk/models/operations/readconnectorconfigresponse.md)>**
+**Promise<[shared.ConnectorConfigResponse](../../sdk/models/shared/connectorconfigresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1505,15 +1600,18 @@ Read connector config
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.readConnectorConfigV1({
+  const result = await formance.payments.readConnectorConfigV1({
     connector: Connector.CurrencyCloud,
     connectorId: "XXX",
   });
@@ -1536,7 +1634,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigV1Response](../../sdk/models/operations/readconnectorconfigv1response.md)>**
+**Promise<[shared.ConnectorConfigResponse](../../sdk/models/shared/connectorconfigresponse.md)>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1551,16 +1649,19 @@ Remove an account from a pool by its id.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.removeAccountFromPool({
-    accountId: "XXX",
+  const result = await formance.payments.removeAccountFromPool({
     poolId: "XXX",
+    accountId: "XXX",
   });
 
   // Handle the result
@@ -1600,15 +1701,18 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.resetConnector({
+  const result = await formance.payments.resetConnector({
     connector: Connector.Atlar,
   });
 
@@ -1647,15 +1751,18 @@ It will remove the connector and ALL PAYMENTS generated with it.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.resetConnectorV1({
+  const result = await formance.payments.resetConnectorV1({
     connector: Connector.Generic,
     connectorId: "XXX",
   });
@@ -1693,14 +1800,17 @@ Retry a failed transfer initiation
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.retryTransferInitiation({
+  const result = await formance.payments.retryTransferInitiation({
     transferId: "XXX",
   });
 
@@ -1737,14 +1847,18 @@ Reverse transfer initiation
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.reverseTransferInitiation({
+  const result = await formance.payments.reverseTransferInitiation({
+    transferId: "XXX",
     reverseTransferInitiationRequest: {
       amount: BigInt("327549"),
       asset: "USD",
@@ -1754,7 +1868,6 @@ async function run() {
       },
       reference: "XXX",
     },
-    transferId: "XXX",
   });
 
   // Handle the result
@@ -1790,19 +1903,22 @@ Update a transfer initiation status
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.udpateTransferInitiationStatus({
+  const result = await formance.payments.udpateTransferInitiationStatus({
+    transferId: "XXX",
     updateTransferInitiationStatusRequest: {
       status: Status.Validated,
     },
-    transferId: "XXX",
   });
 
   // Handle the result
@@ -1840,15 +1956,18 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.uninstallConnector({
+  const result = await formance.payments.uninstallConnector({
     connector: Connector.Modulr,
   });
 
@@ -1885,15 +2004,18 @@ Uninstall a connector by its name.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.uninstallConnectorV1({
+  const result = await formance.payments.uninstallConnectorV1({
     connector: Connector.Generic,
     connectorId: "XXX",
   });
@@ -1931,20 +2053,23 @@ Update metadata of a bank account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.updateBankAccountMetadata({
+  const result = await formance.payments.updateBankAccountMetadata({
+    bankAccountId: "XXX",
     updateBankAccountMetadataRequest: {
       metadata: {
         "key": "<value>",
       },
     },
-    bankAccountId: "XXX",
   });
 
   // Handle the result
@@ -1980,23 +2105,26 @@ Update connector config
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.updateConnectorConfigV1({
+  const result = await formance.payments.updateConnectorConfigV1({
+    connector: Connector.Stripe,
+    connectorId: "XXX",
   connectorConfig:     {
         apiKey: "XXX",
         name: "My Stripe Account",
         pageSize: 50,
         pollingPeriod: "60s",
       },
-    connector: Connector.Stripe,
-    connectorId: "XXX",
   });
 
   // Handle the result
@@ -2032,18 +2160,21 @@ Update metadata
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.payments.updateMetadata({
+  const result = await formance.payments.updateMetadata({
+    paymentId: "XXX",
     requestBody: {
       "key": "<value>",
     },
-    paymentId: "XXX",
   });
 
   // Handle the result

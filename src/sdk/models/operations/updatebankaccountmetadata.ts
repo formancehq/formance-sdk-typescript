@@ -6,47 +6,34 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type UpdateBankAccountMetadataRequest = {
-    updateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest;
     /**
      * The bank account ID.
      */
     bankAccountId: string;
+    updateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest;
 };
 
-export type UpdateBankAccountMetadataResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type UpdateBankAccountMetadataResponse = {};
 
 /** @internal */
 export namespace UpdateBankAccountMetadataRequest$ {
     export const inboundSchema: z.ZodType<UpdateBankAccountMetadataRequest, z.ZodTypeDef, unknown> =
         z
             .object({
+                bankAccountId: z.string(),
                 UpdateBankAccountMetadataRequest:
                     shared.UpdateBankAccountMetadataRequest$.inboundSchema,
-                bankAccountId: z.string(),
             })
             .transform((v) => {
                 return {
-                    updateBankAccountMetadataRequest: v.UpdateBankAccountMetadataRequest,
                     bankAccountId: v.bankAccountId,
+                    updateBankAccountMetadataRequest: v.UpdateBankAccountMetadataRequest,
                 };
             });
 
     export type Outbound = {
-        UpdateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest$.Outbound;
         bankAccountId: string;
+        UpdateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
@@ -55,14 +42,14 @@ export namespace UpdateBankAccountMetadataRequest$ {
         UpdateBankAccountMetadataRequest
     > = z
         .object({
+            bankAccountId: z.string(),
             updateBankAccountMetadataRequest:
                 shared.UpdateBankAccountMetadataRequest$.outboundSchema,
-            bankAccountId: z.string(),
         })
         .transform((v) => {
             return {
-                UpdateBankAccountMetadataRequest: v.updateBankAccountMetadataRequest,
                 bankAccountId: v.bankAccountId,
+                UpdateBankAccountMetadataRequest: v.updateBankAccountMetadataRequest,
             };
         });
 }
@@ -73,43 +60,13 @@ export namespace UpdateBankAccountMetadataResponse$ {
         UpdateBankAccountMetadataResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    > = z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         UpdateBankAccountMetadataResponse
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

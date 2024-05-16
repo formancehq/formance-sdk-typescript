@@ -55,14 +55,18 @@ Create a new batch of transactions to a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.createTransactions({
+  const result = await formance.ledger.createTransactions({
+    ledger: "ledger001",
     transactions: {
       transactions: [
         {
@@ -78,7 +82,6 @@ async function run() {
         },
       ],
     },
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -99,7 +102,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransactionsResponse](../../sdk/models/operations/createtransactionsresponse.md)>**
+**Promise<[shared.TransactionsResponse](../../sdk/models/shared/transactionsresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -114,14 +117,17 @@ Set the metadata of a transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.addMetadataOnTransaction({
+  const result = await formance.ledger.addMetadataOnTransaction({
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
@@ -159,19 +165,22 @@ Add metadata to an account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.addMetadataToAccount({
+  const result = await formance.ledger.addMetadataToAccount({
+    ledger: "ledger001",
+    address: "users:001",
     requestBody: {
       "key": "<value>",
     },
-    address: "users:001",
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -207,16 +216,19 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.countAccounts({
-    address: "users:.+",
+  const result = await formance.ledger.countAccounts({
     ledger: "ledger001",
+    address: "users:.+",
     metadata: {
       "0": "m",
       "1": "e",
@@ -304,20 +316,23 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.countTransactions({
-    account: "users:001",
-    destination: "users:001",
+  const result = await formance.ledger.countTransactions({
     ledger: "ledger001",
-    metadata: {},
     reference: "ref:001",
+    account: "users:001",
     source: "users:001",
+    destination: "users:001",
+    metadata: {},
   });
 
   // Handle the result
@@ -353,14 +368,19 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.createTransaction({
+  const result = await formance.ledger.createTransaction({
+    ledger: "ledger001",
+    preview: true,
     postTransaction: {
       postings: [
         {
@@ -385,8 +405,6 @@ async function run() {
         },
       },
     },
-    ledger: "ledger001",
-    preview: true,
   });
 
   // Handle the result
@@ -407,7 +425,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransactionResponse](../../sdk/models/operations/createtransactionresponse.md)>**
+**Promise<[shared.TransactionsResponse](../../sdk/models/shared/transactionsresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -422,16 +440,19 @@ Get account by its address
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getAccount({
-    address: "users:001",
+  const result = await formance.ledger.getAccount({
     ledger: "ledger001",
+    address: "users:001",
   });
 
   // Handle the result
@@ -452,7 +473,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAccountResponse](../../sdk/models/operations/getaccountresponse.md)>**
+**Promise<[shared.AccountResponse](../../sdk/models/shared/accountresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -467,18 +488,21 @@ Get the balances from a ledger's account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getBalances({
+  const result = await formance.ledger.getBalances({
+    ledger: "ledger001",
     address: "users:001",
     after: "users:003",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -499,7 +523,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalancesResponse](../../sdk/models/operations/getbalancesresponse.md)>**
+**Promise<[shared.BalancesCursorResponse](../../sdk/models/shared/balancescursorresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -514,16 +538,19 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getBalancesAggregated({
-    address: "users:001",
+  const result = await formance.ledger.getBalancesAggregated({
     ledger: "ledger001",
+    address: "users:001",
   });
 
   // Handle the result
@@ -544,7 +571,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalancesAggregatedResponse](../../sdk/models/operations/getbalancesaggregatedresponse.md)>**
+**Promise<[shared.AggregateBalancesResponse](../../sdk/models/shared/aggregatebalancesresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -559,14 +586,17 @@ Show server information
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getInfo();
+  const result = await formance.ledger.getInfo();
 
   // Handle the result
   console.log(result)
@@ -585,7 +615,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)>**
+**Promise<[shared.ConfigInfoResponse](../../sdk/models/shared/configinforesponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -600,14 +630,17 @@ Get information about a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getLedgerInfo({
+  const result = await formance.ledger.getLedgerInfo({
     ledger: "ledger001",
   });
 
@@ -629,7 +662,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetLedgerInfoResponse](../../sdk/models/operations/getledgerinforesponse.md)>**
+**Promise<[shared.LedgerInfoResponse](../../sdk/models/shared/ledgerinforesponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -644,14 +677,17 @@ Get the mapping of a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getMapping({
+  const result = await formance.ledger.getMapping({
     ledger: "ledger001",
   });
 
@@ -673,7 +709,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetMappingResponse](../../sdk/models/operations/getmappingresponse.md)>**
+**Promise<[shared.MappingResponse](../../sdk/models/shared/mappingresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -688,14 +724,17 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.getTransaction({
+  const result = await formance.ledger.getTransaction({
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
@@ -718,7 +757,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionResponse](../../sdk/models/operations/gettransactionresponse.md)>**
+**Promise<[shared.TransactionResponse](../../sdk/models/shared/transactionresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -733,19 +772,21 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.listAccounts({
-    address: "users:.+",
-    after: "users:003",
-    balance: 2400,
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.listAccounts({
     ledger: "ledger001",
+    pageSize: 100,
+    after: "users:003",
+    address: "users:.+",
     metadata: {
       "0": "m",
       "1": "e",
@@ -798,7 +839,8 @@ async function run() {
       "48": "e",
       "49": "2",
     },
-    pageSize: 100,
+    balance: 2400,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -819,7 +861,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAccountsResponse](../../sdk/models/operations/listaccountsresponse.md)>**
+**Promise<[shared.AccountsCursorResponse](../../sdk/models/shared/accountscursorresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -834,18 +876,21 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.listLogs({
-    after: "1234",
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.listLogs({
     ledger: "ledger001",
     pageSize: 100,
+    after: "1234",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -866,7 +911,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListLogsResponse](../../sdk/models/operations/listlogsresponse.md)>**
+**Promise<[shared.LogsCursorResponse](../../sdk/models/shared/logscursorresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -881,22 +926,25 @@ List transactions from a ledger, sorted by txid in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.listTransactions({
-    account: "users:001",
-    after: "1234",
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    destination: "users:001",
+  const result = await formance.ledger.listTransactions({
     ledger: "ledger001",
     pageSize: 100,
+    after: "1234",
     reference: "ref:001",
+    account: "users:001",
     source: "users:001",
+    destination: "users:001",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -917,7 +965,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransactionsResponse](../../sdk/models/operations/listtransactionsresponse.md)>**
+**Promise<[shared.TransactionsCursorResponse](../../sdk/models/shared/transactionscursorresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -933,14 +981,17 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.readStats({
+  const result = await formance.ledger.readStats({
     ledger: "ledger001",
   });
 
@@ -962,7 +1013,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadStatsResponse](../../sdk/models/operations/readstatsresponse.md)>**
+**Promise<[shared.StatsResponse](../../sdk/models/shared/statsresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -977,14 +1028,17 @@ Revert a ledger transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.revertTransaction({
+  const result = await formance.ledger.revertTransaction({
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
@@ -1007,7 +1061,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RevertTransactionResponse](../../sdk/models/operations/reverttransactionresponse.md)>**
+**Promise<[shared.TransactionResponse](../../sdk/models/shared/transactionresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -1025,14 +1079,19 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.runScript({
+  const result = await formance.ledger.runScript({
+    ledger: "ledger001",
+    preview: true,
     script: {
       plain: "vars {
     account $user
@@ -1047,8 +1106,6 @@ async function run() {
         "user": "users:042",
       },
     },
-    ledger: "ledger001",
-    preview: true,
   });
 
   // Handle the result
@@ -1069,7 +1126,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RunScriptResponse](../../sdk/models/operations/runscriptresponse.md)>**
+**Promise<[shared.ScriptResponse](../../sdk/models/shared/scriptresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -1083,14 +1140,18 @@ Update the mapping of a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.updateMapping({
+  const result = await formance.ledger.updateMapping({
+    ledger: "ledger001",
     mapping: {
       contracts: [
         {
@@ -1099,7 +1160,6 @@ async function run() {
         },
       ],
     },
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1120,7 +1180,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateMappingResponse](../../sdk/models/operations/updatemappingresponse.md)>**
+**Promise<[shared.MappingResponse](../../sdk/models/shared/mappingresponse.md)>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -1135,20 +1195,23 @@ Set the metadata of a transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2AddMetadataOnTransaction({
+  const result = await formance.ledger.v2AddMetadataOnTransaction({
+    ledger: "ledger001",
+    id: BigInt("1234"),
+    dryRun: true,
     requestBody: {
       "admin": "true",
     },
-    dryRun: true,
-    id: BigInt("1234"),
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1184,20 +1247,23 @@ Add metadata to an account
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2AddMetadataToAccount({
+  const result = await formance.ledger.v2AddMetadataToAccount({
+    ledger: "ledger001",
+    address: "users:001",
+    dryRun: true,
     requestBody: {
       "admin": "true",
     },
-    address: "users:001",
-    dryRun: true,
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1233,14 +1299,17 @@ Count the accounts from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2CountAccounts({
+  const result = await formance.ledger.v2CountAccounts({
     ledger: "ledger001",
   });
 
@@ -1277,14 +1346,17 @@ Count the transactions from a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2CountTransactions({
+  const result = await formance.ledger.v2CountTransactions({
     ledger: "ledger001",
   });
 
@@ -1321,20 +1393,23 @@ Bulk request
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2CreateBulk({
+  const result = await formance.ledger.v2CreateBulk({
+    ledger: "ledger001",
     requestBody: [
         {
           action: "<value>",
         },
     ],
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1355,7 +1430,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateBulkResponse](../../sdk/models/operations/v2createbulkresponse.md)>**
+**Promise<[shared.V2BulkResponse](../../sdk/models/shared/v2bulkresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1370,20 +1445,23 @@ Create a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2CreateLedger({
+  const result = await formance.ledger.v2CreateLedger({
+    ledger: "ledger001",
     v2CreateLedgerRequest: {
       metadata: {
         "admin": "true",
       },
     },
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1419,14 +1497,19 @@ Create a new transaction to a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2CreateTransaction({
+  const result = await formance.ledger.v2CreateTransaction({
+    ledger: "ledger001",
+    dryRun: true,
     v2PostTransaction: {
       metadata: {
         "admin": "true",
@@ -1454,8 +1537,6 @@ async function run() {
         },
       },
     },
-    dryRun: true,
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1476,7 +1557,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateTransactionResponse](../../sdk/models/operations/v2createtransactionresponse.md)>**
+**Promise<[shared.V2CreateTransactionResponse](../../sdk/models/shared/v2createtransactionresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1491,17 +1572,20 @@ Delete metadata by key
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2DeleteAccountMetadata({
+  const result = await formance.ledger.v2DeleteAccountMetadata({
+    ledger: "ledger001",
     address: "3680 Emile Grove",
     key: "foo",
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1536,16 +1620,19 @@ Delete ledger metadata by key
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2DeleteLedgerMetadata({
-    key: "foo",
+  const result = await formance.ledger.v2DeleteLedgerMetadata({
     ledger: "ledger001",
+    key: "foo",
   });
 
   // Handle the result
@@ -1581,17 +1668,20 @@ Delete metadata by key
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2DeleteTransactionMetadata({
+  const result = await formance.ledger.v2DeleteTransactionMetadata({
+    ledger: "ledger001",
     id: BigInt("1234"),
     key: "foo",
-    ledger: "ledger001",
   });
 
   // Handle the result
@@ -1627,16 +1717,19 @@ Get account by its address
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetAccount({
-    address: "users:001",
+  const result = await formance.ledger.v2GetAccount({
     ledger: "ledger001",
+    address: "users:001",
   });
 
   // Handle the result
@@ -1657,7 +1750,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetAccountResponse](../../sdk/models/operations/v2getaccountresponse.md)>**
+**Promise<[shared.V2AccountResponse](../../sdk/models/shared/v2accountresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1672,14 +1765,17 @@ Get the aggregated balances from selected accounts
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetBalancesAggregated({
+  const result = await formance.ledger.v2GetBalancesAggregated({
     ledger: "ledger001",
   });
 
@@ -1701,7 +1797,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetBalancesAggregatedResponse](../../sdk/models/operations/v2getbalancesaggregatedresponse.md)>**
+**Promise<[shared.V2AggregateBalancesResponse](../../sdk/models/shared/v2aggregatebalancesresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1716,14 +1812,17 @@ Show server information
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetInfo();
+  const result = await formance.ledger.v2GetInfo();
 
   // Handle the result
   console.log(result)
@@ -1742,7 +1841,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetInfoResponse](../../sdk/models/operations/v2getinforesponse.md)>**
+**Promise<[shared.V2ConfigInfoResponse](../../sdk/models/shared/v2configinforesponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1757,14 +1856,17 @@ Get a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetLedger({
+  const result = await formance.ledger.v2GetLedger({
     ledger: "ledger001",
   });
 
@@ -1786,7 +1888,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetLedgerResponse](../../sdk/models/operations/v2getledgerresponse.md)>**
+**Promise<[shared.V2GetLedgerResponse](../../sdk/models/shared/v2getledgerresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1801,14 +1903,17 @@ Get information about a ledger
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetLedgerInfo({
+  const result = await formance.ledger.v2GetLedgerInfo({
     ledger: "ledger001",
   });
 
@@ -1830,7 +1935,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetLedgerInfoResponse](../../sdk/models/operations/v2getledgerinforesponse.md)>**
+**Promise<[shared.V2LedgerInfoResponse](../../sdk/models/shared/v2ledgerinforesponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1845,16 +1950,19 @@ Get transaction from a ledger by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetTransaction({
-    id: BigInt("1234"),
+  const result = await formance.ledger.v2GetTransaction({
     ledger: "ledger001",
+    id: BigInt("1234"),
   });
 
   // Handle the result
@@ -1875,7 +1983,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetTransactionResponse](../../sdk/models/operations/v2gettransactionresponse.md)>**
+**Promise<[shared.V2GetTransactionResponse](../../sdk/models/shared/v2gettransactionresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1890,18 +1998,21 @@ Get list of volumes with balances for (account/asset)
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2GetVolumesWithBalances({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    groupBy: 3,
-    ledger: "ledger001",
+  const result = await formance.ledger.v2GetVolumesWithBalances({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+    groupBy: 3,
   });
 
   // Handle the result
@@ -1922,7 +2033,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetVolumesWithBalancesResponse](../../sdk/models/operations/v2getvolumeswithbalancesresponse.md)>**
+**Promise<[shared.V2VolumesWithBalanceCursorResponse](../../sdk/models/shared/v2volumeswithbalancecursorresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1937,17 +2048,20 @@ List accounts from a ledger, sorted by address in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2ListAccounts({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.v2ListAccounts({
     ledger: "ledger001",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -1968,7 +2082,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListAccountsResponse](../../sdk/models/operations/v2listaccountsresponse.md)>**
+**Promise<[shared.V2AccountsCursorResponse](../../sdk/models/shared/v2accountscursorresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1983,16 +2097,19 @@ List ledgers
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2ListLedgers({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.v2ListLedgers({
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -2013,7 +2130,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListLedgersResponse](../../sdk/models/operations/v2listledgersresponse.md)>**
+**Promise<[shared.V2LedgerListResponse](../../sdk/models/shared/v2ledgerlistresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2028,17 +2145,20 @@ List the logs from a ledger, sorted by ID in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2ListLogs({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.v2ListLogs({
     ledger: "ledger001",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -2059,7 +2179,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListLogsResponse](../../sdk/models/operations/v2listlogsresponse.md)>**
+**Promise<[shared.V2LogsCursorResponse](../../sdk/models/shared/v2logscursorresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2074,17 +2194,20 @@ List transactions from a ledger, sorted by id in descending order.
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2ListTransactions({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.ledger.v2ListTransactions({
     ledger: "ledger001",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -2105,7 +2228,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListTransactionsResponse](../../sdk/models/operations/v2listtransactionsresponse.md)>**
+**Promise<[shared.V2TransactionsCursorResponse](../../sdk/models/shared/v2transactionscursorresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2121,14 +2244,17 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2ReadStats({
+  const result = await formance.ledger.v2ReadStats({
     ledger: "ledger001",
   });
 
@@ -2150,7 +2276,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ReadStatsResponse](../../sdk/models/operations/v2readstatsresponse.md)>**
+**Promise<[shared.V2StatsResponse](../../sdk/models/shared/v2statsresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2165,16 +2291,19 @@ Revert a ledger transaction by its ID
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2RevertTransaction({
-    id: BigInt("1234"),
+  const result = await formance.ledger.v2RevertTransaction({
     ledger: "ledger001",
+    id: BigInt("1234"),
   });
 
   // Handle the result
@@ -2195,7 +2324,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2RevertTransactionResponse](../../sdk/models/operations/v2reverttransactionresponse.md)>**
+**Promise<[shared.V2RevertTransactionResponse](../../sdk/models/shared/v2reverttransactionresponse.md)>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2210,18 +2339,21 @@ Update ledger metadata
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.ledger.v2UpdateLedgerMetadata({
+  const result = await formance.ledger.v2UpdateLedgerMetadata({
+    ledger: "ledger001",
     requestBody: {
       "admin": "true",
     },
-    ledger: "ledger001",
   });
 
   // Handle the result

@@ -5,95 +5,55 @@
 import * as z from "zod";
 
 export type UpdateMetadataRequest = {
-    requestBody: Record<string, string> | null;
     /**
      * The payment ID.
      */
     paymentId: string;
+    requestBody: Record<string, string> | null;
 };
 
-export type UpdateMetadataResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type UpdateMetadataResponse = {};
 
 /** @internal */
 export namespace UpdateMetadataRequest$ {
     export const inboundSchema: z.ZodType<UpdateMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
-            RequestBody: z.nullable(z.record(z.string())),
             paymentId: z.string(),
+            RequestBody: z.nullable(z.record(z.string())),
         })
         .transform((v) => {
             return {
-                requestBody: v.RequestBody,
                 paymentId: v.paymentId,
+                requestBody: v.RequestBody,
             };
         });
 
     export type Outbound = {
-        RequestBody: Record<string, string> | null;
         paymentId: string;
+        RequestBody: Record<string, string> | null;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateMetadataRequest> = z
         .object({
-            requestBody: z.nullable(z.record(z.string())),
             paymentId: z.string(),
+            requestBody: z.nullable(z.record(z.string())),
         })
         .transform((v) => {
             return {
-                RequestBody: v.requestBody,
                 paymentId: v.paymentId,
+                RequestBody: v.requestBody,
             };
         });
 }
 
 /** @internal */
 export namespace UpdateMetadataResponse$ {
-    export const inboundSchema: z.ZodType<UpdateMetadataResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<UpdateMetadataResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateMetadataResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateMetadataResponse> =
+        z.object({});
 }

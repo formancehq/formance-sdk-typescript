@@ -24,7 +24,7 @@ export namespace TransferInitiationAdjusments$ {
                 .transform((v) => new Date(v)),
             error: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
-            status: TransferInitiationStatus$,
+            status: TransferInitiationStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -41,7 +41,7 @@ export namespace TransferInitiationAdjusments$ {
         createdAt: string;
         error: string;
         metadata?: Record<string, string> | null | undefined;
-        status: TransferInitiationStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationAdjusments> = z
@@ -50,7 +50,7 @@ export namespace TransferInitiationAdjusments$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             error: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
-            status: TransferInitiationStatus$,
+            status: TransferInitiationStatus$.outboundSchema,
         })
         .transform((v) => {
             return {

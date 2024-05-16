@@ -5,32 +5,44 @@
 import * as z from "zod";
 
 export type Security = {
-    authorization: string;
+    clientID: string;
+    clientSecret: string;
+    tokenURL?: "/api/auth/oauth/token" | undefined;
 };
 
 /** @internal */
 export namespace Security$ {
     export const inboundSchema: z.ZodType<Security, z.ZodTypeDef, unknown> = z
         .object({
-            Authorization: z.string(),
+            ClientID: z.string(),
+            ClientSecret: z.string(),
+            TokenURL: z.literal("/api/auth/oauth/token").optional(),
         })
         .transform((v) => {
             return {
-                authorization: v.Authorization,
+                clientID: v.ClientID,
+                clientSecret: v.ClientSecret,
+                ...(v.TokenURL === undefined ? null : { tokenURL: v.TokenURL }),
             };
         });
 
     export type Outbound = {
-        Authorization: string;
+        ClientID: string;
+        ClientSecret: string;
+        TokenURL: "/api/auth/oauth/token";
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Security> = z
         .object({
-            authorization: z.string(),
+            clientID: z.string(),
+            clientSecret: z.string(),
+            tokenURL: z.literal("/api/auth/oauth/token").default("/api/auth/oauth/token" as const),
         })
         .transform((v) => {
             return {
-                Authorization: v.authorization,
+                ClientID: v.clientID,
+                ClientSecret: v.clientSecret,
+                TokenURL: v.tokenURL,
             };
         });
 }

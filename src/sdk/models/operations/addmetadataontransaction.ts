@@ -6,10 +6,6 @@ import * as z from "zod";
 
 export type AddMetadataOnTransactionRequest = {
     /**
-     * metadata
-     */
-    requestBody?: Record<string, any> | null | undefined;
-    /**
      * Name of the ledger.
      */
     ledger: string;
@@ -17,44 +13,35 @@ export type AddMetadataOnTransactionRequest = {
      * Transaction ID.
      */
     txid: bigint;
+    /**
+     * metadata
+     */
+    requestBody?: Record<string, any> | null | undefined;
 };
 
-export type AddMetadataOnTransactionResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type AddMetadataOnTransactionResponse = {};
 
 /** @internal */
 export namespace AddMetadataOnTransactionRequest$ {
     export const inboundSchema: z.ZodType<AddMetadataOnTransactionRequest, z.ZodTypeDef, unknown> =
         z
             .object({
-                RequestBody: z.nullable(z.record(z.any())).optional(),
                 ledger: z.string(),
                 txid: z.number().transform((v) => BigInt(v)),
+                RequestBody: z.nullable(z.record(z.any())).optional(),
             })
             .transform((v) => {
                 return {
-                    ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                     ledger: v.ledger,
                     txid: v.txid,
+                    ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 };
             });
 
     export type Outbound = {
-        RequestBody?: Record<string, any> | null | undefined;
         ledger: string;
         txid: number;
+        RequestBody?: Record<string, any> | null | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -63,15 +50,15 @@ export namespace AddMetadataOnTransactionRequest$ {
         AddMetadataOnTransactionRequest
     > = z
         .object({
-            requestBody: z.nullable(z.record(z.any())).optional(),
             ledger: z.string(),
             txid: z.bigint().transform((v) => Number(v)),
+            requestBody: z.nullable(z.record(z.any())).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 ledger: v.ledger,
                 txid: v.txid,
+                ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
             };
         });
 }
@@ -79,43 +66,13 @@ export namespace AddMetadataOnTransactionRequest$ {
 /** @internal */
 export namespace AddMetadataOnTransactionResponse$ {
     export const inboundSchema: z.ZodType<AddMetadataOnTransactionResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                ContentType: z.string(),
-                StatusCode: z.number().int(),
-                RawResponse: z.instanceof(Response),
-            })
-            .transform((v) => {
-                return {
-                    contentType: v.ContentType,
-                    statusCode: v.StatusCode,
-                    rawResponse: v.RawResponse,
-                };
-            });
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         AddMetadataOnTransactionResponse
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

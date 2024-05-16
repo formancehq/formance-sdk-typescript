@@ -27,19 +27,22 @@ Confirm a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.confirmHold({
+  const result = await formance.wallets.confirmHold({
+    holdId: "<value>",
     confirmHoldRequest: {
       amount: BigInt("100"),
       final: true,
     },
-    holdId: "<value>",
   });
 
   // Handle the result
@@ -75,14 +78,17 @@ Create a balance
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.createBalance({
+  const result = await formance.wallets.createBalance({
     id: "<id>",
   });
 
@@ -104,7 +110,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateBalanceResponse](../../sdk/models/operations/createbalanceresponse.md)>**
+**Promise<[shared.CreateBalanceResponse](../../sdk/models/shared/createbalanceresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -119,14 +125,17 @@ Create a new wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.createWallet({
+  const result = await formance.wallets.createWallet({
     metadata: {
       "key": "<value>",
     },
@@ -151,7 +160,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateWalletResponse](../../sdk/models/operations/createwalletresponse.md)>**
+**Promise<[shared.CreateWalletResponse](../../sdk/models/shared/createwalletresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -166,14 +175,18 @@ Credit a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.creditWallet({
+  const result = await formance.wallets.creditWallet({
+    id: "<id>",
     creditWalletRequest: {
       amount: {
         amount: BigInt("100"),
@@ -189,7 +202,6 @@ async function run() {
           },
       ],
     },
-    id: "<id>",
   });
 
   // Handle the result
@@ -225,14 +237,18 @@ Debit a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.debitWallet({
+  const result = await formance.wallets.debitWallet({
+    id: "<id>",
     debitWalletRequest: {
       amount: {
         amount: BigInt("100"),
@@ -243,7 +259,6 @@ async function run() {
       },
       pending: true,
     },
-    id: "<id>",
   });
 
   // Handle the result
@@ -264,7 +279,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DebitWalletResponse](../../sdk/models/operations/debitwalletresponse.md)>**
+**Promise<[shared.DebitWalletResponse](../../sdk/models/shared/debitwalletresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -279,16 +294,19 @@ Get detailed balance
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getBalance({
-    balanceName: "<value>",
+  const result = await formance.wallets.getBalance({
     id: "<id>",
+    balanceName: "<value>",
   });
 
   // Handle the result
@@ -309,7 +327,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalanceResponse](../../sdk/models/operations/getbalanceresponse.md)>**
+**Promise<[shared.GetBalanceResponse](../../sdk/models/shared/getbalanceresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -324,14 +342,17 @@ Get a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getHold({
+  const result = await formance.wallets.getHold({
     holdID: "<value>",
   });
 
@@ -353,7 +374,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetHoldResponse](../../sdk/models/operations/getholdresponse.md)>**
+**Promise<[shared.GetHoldResponse](../../sdk/models/shared/getholdresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -368,20 +389,23 @@ Get all holds for a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getHolds({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.wallets.getHolds({
+    pageSize: 100,
+    walletID: "wallet1",
     metadata: {
       "admin": "true",
     },
-    pageSize: 100,
-    walletID: "wallet1",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -402,7 +426,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetHoldsResponse](../../sdk/models/operations/getholdsresponse.md)>**
+**Promise<[shared.GetHoldsResponse](../../sdk/models/shared/getholdsresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -415,17 +439,20 @@ run();
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getTransactions({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.wallets.getTransactions({
     pageSize: 100,
     walletID: "wallet1",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -446,7 +473,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionsResponse](../../sdk/models/operations/gettransactionsresponse.md)>**
+**Promise<[shared.GetTransactionsResponse](../../sdk/models/shared/gettransactionsresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -461,14 +488,17 @@ Get a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getWallet({
+  const result = await formance.wallets.getWallet({
     id: "<id>",
   });
 
@@ -490,7 +520,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetWalletResponse](../../sdk/models/operations/getwalletresponse.md)>**
+**Promise<[shared.GetWalletResponse](../../sdk/models/shared/getwalletresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -505,14 +535,17 @@ Get wallet summary
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.getWalletSummary({
+  const result = await formance.wallets.getWalletSummary({
     id: "<id>",
   });
 
@@ -534,7 +567,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetWalletSummaryResponse](../../sdk/models/operations/getwalletsummaryresponse.md)>**
+**Promise<[shared.GetWalletSummaryResponse](../../sdk/models/shared/getwalletsummaryresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -549,14 +582,17 @@ List balances of a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.listBalances({
+  const result = await formance.wallets.listBalances({
     id: "<id>",
   });
 
@@ -578,7 +614,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBalancesResponse](../../sdk/models/operations/listbalancesresponse.md)>**
+**Promise<[shared.ListBalancesResponse](../../sdk/models/shared/listbalancesresponse.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -592,20 +628,23 @@ List all wallets
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.listWallets({
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  const result = await formance.wallets.listWallets({
+    name: "wallet1",
     metadata: {
       "admin": "true",
     },
-    name: "wallet1",
     pageSize: 100,
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   // Handle the result
@@ -626,7 +665,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListWalletsResponse](../../sdk/models/operations/listwalletsresponse.md)>**
+**Promise<[shared.ListWalletsResponse](../../sdk/models/shared/listwalletsresponse.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -641,14 +680,17 @@ Update a wallet
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.updateWallet({
+  const result = await formance.wallets.updateWallet({
     id: "<id>",
   });
 
@@ -685,14 +727,17 @@ Cancel a hold
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.voidHold({
+  const result = await formance.wallets.voidHold({
     holdId: "<value>",
   });
 
@@ -729,14 +774,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.wallets.walletsgetServerInfo();
+  const result = await formance.wallets.walletsgetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -755,7 +803,7 @@ run();
 
 ### Response
 
-**Promise<[operations.WalletsgetServerInfoResponse](../../sdk/models/operations/walletsgetserverinforesponse.md)>**
+**Promise<[shared.ServerInfo](../../sdk/models/shared/serverinfo.md)>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

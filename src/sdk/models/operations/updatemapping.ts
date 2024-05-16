@@ -6,108 +6,41 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type UpdateMappingRequest = {
-    mapping: shared.Mapping | null;
     /**
      * Name of the ledger.
      */
     ledger: string;
-};
-
-export type UpdateMappingResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * OK
-     */
-    mappingResponse?: shared.MappingResponse | undefined;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
+    mapping: shared.Mapping | null;
 };
 
 /** @internal */
 export namespace UpdateMappingRequest$ {
     export const inboundSchema: z.ZodType<UpdateMappingRequest, z.ZodTypeDef, unknown> = z
         .object({
-            Mapping: z.nullable(shared.Mapping$.inboundSchema),
             ledger: z.string(),
+            Mapping: z.nullable(shared.Mapping$.inboundSchema),
         })
         .transform((v) => {
             return {
-                mapping: v.Mapping,
                 ledger: v.ledger,
+                mapping: v.Mapping,
             };
         });
 
     export type Outbound = {
-        Mapping: shared.Mapping$.Outbound | null;
         ledger: string;
+        Mapping: shared.Mapping$.Outbound | null;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateMappingRequest> = z
         .object({
-            mapping: z.nullable(shared.Mapping$.outboundSchema),
             ledger: z.string(),
+            mapping: z.nullable(shared.Mapping$.outboundSchema),
         })
         .transform((v) => {
             return {
-                Mapping: v.mapping,
                 ledger: v.ledger,
-            };
-        });
-}
-
-/** @internal */
-export namespace UpdateMappingResponse$ {
-    export const inboundSchema: z.ZodType<UpdateMappingResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            MappingResponse: shared.MappingResponse$.inboundSchema.optional(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                ...(v.MappingResponse === undefined
-                    ? null
-                    : { mappingResponse: v.MappingResponse }),
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        MappingResponse?: shared.MappingResponse$.Outbound | undefined;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateMappingResponse> = z
-        .object({
-            contentType: z.string(),
-            mappingResponse: shared.MappingResponse$.outboundSchema.optional(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                ...(v.mappingResponse === undefined
-                    ? null
-                    : { MappingResponse: v.mappingResponse }),
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
+                Mapping: v.mapping,
             };
         });
 }

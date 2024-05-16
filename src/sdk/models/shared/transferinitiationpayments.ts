@@ -22,7 +22,7 @@ export namespace TransferInitiationPayments$ {
                 .transform((v) => new Date(v)),
             error: z.string(),
             paymentID: z.string(),
-            status: TransferInitiationStatus$,
+            status: TransferInitiationStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -37,7 +37,7 @@ export namespace TransferInitiationPayments$ {
         createdAt: string;
         error: string;
         paymentID: string;
-        status: TransferInitiationStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationPayments> = z
@@ -45,7 +45,7 @@ export namespace TransferInitiationPayments$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             error: z.string(),
             paymentID: z.string(),
-            status: TransferInitiationStatus$,
+            status: TransferInitiationStatus$.outboundSchema,
         })
         .transform((v) => {
             return {

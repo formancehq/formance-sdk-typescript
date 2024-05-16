@@ -49,7 +49,7 @@ export namespace WebhooksErrorResponse$ {
     export const inboundSchema: z.ZodType<WebhooksErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
-            errorCode: shared.WebhooksErrorsEnum$,
+            errorCode: shared.WebhooksErrorsEnum$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -62,7 +62,7 @@ export namespace WebhooksErrorResponse$ {
 
     export type Outbound = {
         details?: string | undefined;
-        errorCode: shared.WebhooksErrorsEnum;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -73,7 +73,7 @@ export namespace WebhooksErrorResponse$ {
             z
                 .object({
                     details: z.string().optional(),
-                    errorCode: shared.WebhooksErrorsEnum$,
+                    errorCode: shared.WebhooksErrorsEnum$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {
