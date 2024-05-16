@@ -11,6 +11,13 @@ export type ListConnectorTasksRequest = {
      */
     connector: shared.Connector;
     /**
+     * The maximum number of results to return per page.
+     *
+     * @remarks
+     *
+     */
+    pageSize?: number | undefined;
+    /**
      * Parameter used in pagination requests. Maximum page size is set to 15.
      *
      * @remarks
@@ -20,111 +27,41 @@ export type ListConnectorTasksRequest = {
      *
      */
     cursor?: string | undefined;
-    /**
-     * The maximum number of results to return per page.
-     *
-     * @remarks
-     *
-     */
-    pageSize?: number | undefined;
-};
-
-export type ListConnectorTasksResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-    /**
-     * OK
-     */
-    tasksCursor?: shared.TasksCursor | undefined;
 };
 
 /** @internal */
 export namespace ListConnectorTasksRequest$ {
     export const inboundSchema: z.ZodType<ListConnectorTasksRequest, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
-            cursor: z.string().optional(),
+            connector: shared.Connector$.inboundSchema,
             pageSize: z.number().int().default(15),
+            cursor: z.string().optional(),
         })
         .transform((v) => {
             return {
                 connector: v.connector,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 pageSize: v.pageSize,
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
             };
         });
 
     export type Outbound = {
-        connector: shared.Connector;
-        cursor?: string | undefined;
+        connector: string;
         pageSize: number;
+        cursor?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListConnectorTasksRequest> = z
         .object({
-            connector: shared.Connector$,
-            cursor: z.string().optional(),
+            connector: shared.Connector$.outboundSchema,
             pageSize: z.number().int().default(15),
+            cursor: z.string().optional(),
         })
         .transform((v) => {
             return {
                 connector: v.connector,
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
                 pageSize: v.pageSize,
-            };
-        });
-}
-
-/** @internal */
-export namespace ListConnectorTasksResponse$ {
-    export const inboundSchema: z.ZodType<ListConnectorTasksResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-            TasksCursor: shared.TasksCursor$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-                ...(v.TasksCursor === undefined ? null : { tasksCursor: v.TasksCursor }),
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-        TasksCursor?: shared.TasksCursor$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListConnectorTasksResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-            tasksCursor: shared.TasksCursor$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-                ...(v.tasksCursor === undefined ? null : { TasksCursor: v.tasksCursor }),
+                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
             };
         });
 }

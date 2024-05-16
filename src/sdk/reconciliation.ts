@@ -48,7 +48,7 @@ export class Reconciliation extends ClientSDK {
     async createPolicy(
         request: shared.PolicyRequest,
         options?: RequestOptions
-    ): Promise<operations.CreatePolicyResponse> {
+    ): Promise<shared.PolicyResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -66,18 +66,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createPolicy",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -98,10 +95,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 201, "application/json")) {
@@ -109,10 +106,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePolicyResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PolicyResponse: val$,
-                    });
+                    return shared.PolicyResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -149,7 +143,7 @@ export class Reconciliation extends ClientSDK {
     async deletePolicy(
         request: operations.DeletePolicyRequest,
         options?: RequestOptions
-    ): Promise<operations.DeletePolicyResponse> {
+    ): Promise<operations.DeletePolicyResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -174,18 +168,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deletePolicy",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -206,14 +197,14 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -235,12 +226,6 @@ export class Reconciliation extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeletePolicyResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -249,7 +234,7 @@ export class Reconciliation extends ClientSDK {
     async getPolicy(
         request: operations.GetPolicyRequest,
         options?: RequestOptions
-    ): Promise<operations.GetPolicyResponse> {
+    ): Promise<shared.PolicyResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -274,18 +259,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getPolicy",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -306,10 +288,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -317,10 +299,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPolicyResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PolicyResponse: val$,
-                    });
+                    return shared.PolicyResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -354,7 +333,7 @@ export class Reconciliation extends ClientSDK {
     async getReconciliation(
         request: operations.GetReconciliationRequest,
         options?: RequestOptions
-    ): Promise<operations.GetReconciliationResponse> {
+    ): Promise<shared.ReconciliationResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -379,18 +358,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getReconciliation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -411,10 +387,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -422,10 +398,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetReconciliationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReconciliationResponse: val$,
-                    });
+                    return shared.ReconciliationResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -459,7 +432,7 @@ export class Reconciliation extends ClientSDK {
     async listPolicies(
         request: operations.ListPoliciesRequest,
         options?: RequestOptions
-    ): Promise<operations.ListPoliciesResponse> {
+    ): Promise<shared.PoliciesCursorResponse> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -484,18 +457,15 @@ export class Reconciliation extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listPolicies",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -516,10 +486,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -527,10 +497,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPoliciesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoliciesCursorResponse: val$,
-                    });
+                    return shared.PoliciesCursorResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -564,7 +531,7 @@ export class Reconciliation extends ClientSDK {
     async listReconciliations(
         request: operations.ListReconciliationsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListReconciliationsResponse> {
+    ): Promise<shared.ReconciliationsCursorResponse> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -589,18 +556,15 @@ export class Reconciliation extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listReconciliations",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -621,10 +585,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -632,10 +596,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListReconciliationsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReconciliationsCursorResponse: val$,
-                    });
+                    return shared.ReconciliationsCursorResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -672,7 +633,7 @@ export class Reconciliation extends ClientSDK {
     async reconcile(
         request: operations.ReconcileRequest,
         options?: RequestOptions
-    ): Promise<operations.ReconcileResponse> {
+    ): Promise<shared.ReconciliationResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -698,18 +659,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "reconcile",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -730,10 +688,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -741,10 +699,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReconcileResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReconciliationResponse: val$,
-                    });
+                    return shared.ReconciliationResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -775,9 +730,7 @@ export class Reconciliation extends ClientSDK {
     /**
      * Get server info
      */
-    async reconciliationgetServerInfo(
-        options?: RequestOptions
-    ): Promise<operations.ReconciliationgetServerInfoResponse> {
+    async reconciliationgetServerInfo(options?: RequestOptions): Promise<shared.ServerInfo> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -786,18 +739,15 @@ export class Reconciliation extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "reconciliationgetServerInfo",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -817,10 +767,10 @@ export class Reconciliation extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -828,10 +778,7 @@ export class Reconciliation extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReconciliationgetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServerInfo: val$,
-                    });
+                    return shared.ServerInfo$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );

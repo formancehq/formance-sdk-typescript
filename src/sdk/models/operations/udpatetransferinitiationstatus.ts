@@ -6,27 +6,14 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type UdpateTransferInitiationStatusRequest = {
-    updateTransferInitiationStatusRequest: shared.UpdateTransferInitiationStatusRequest;
     /**
      * The transfer ID.
      */
     transferId: string;
+    updateTransferInitiationStatusRequest: shared.UpdateTransferInitiationStatusRequest;
 };
 
-export type UdpateTransferInitiationStatusResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type UdpateTransferInitiationStatusResponse = {};
 
 /** @internal */
 export namespace UdpateTransferInitiationStatusRequest$ {
@@ -36,20 +23,20 @@ export namespace UdpateTransferInitiationStatusRequest$ {
         unknown
     > = z
         .object({
+            transferId: z.string(),
             UpdateTransferInitiationStatusRequest:
                 shared.UpdateTransferInitiationStatusRequest$.inboundSchema,
-            transferId: z.string(),
         })
         .transform((v) => {
             return {
-                updateTransferInitiationStatusRequest: v.UpdateTransferInitiationStatusRequest,
                 transferId: v.transferId,
+                updateTransferInitiationStatusRequest: v.UpdateTransferInitiationStatusRequest,
             };
         });
 
     export type Outbound = {
-        UpdateTransferInitiationStatusRequest: shared.UpdateTransferInitiationStatusRequest$.Outbound;
         transferId: string;
+        UpdateTransferInitiationStatusRequest: shared.UpdateTransferInitiationStatusRequest$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
@@ -58,14 +45,14 @@ export namespace UdpateTransferInitiationStatusRequest$ {
         UdpateTransferInitiationStatusRequest
     > = z
         .object({
+            transferId: z.string(),
             updateTransferInitiationStatusRequest:
                 shared.UpdateTransferInitiationStatusRequest$.outboundSchema,
-            transferId: z.string(),
         })
         .transform((v) => {
             return {
-                UpdateTransferInitiationStatusRequest: v.updateTransferInitiationStatusRequest,
                 transferId: v.transferId,
+                UpdateTransferInitiationStatusRequest: v.updateTransferInitiationStatusRequest,
             };
         });
 }
@@ -76,43 +63,13 @@ export namespace UdpateTransferInitiationStatusResponse$ {
         UdpateTransferInitiationStatusResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    > = z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         UdpateTransferInitiationStatusResponse
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

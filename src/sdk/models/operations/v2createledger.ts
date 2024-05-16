@@ -6,99 +6,59 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type V2CreateLedgerRequest = {
-    v2CreateLedgerRequest?: shared.V2CreateLedgerRequest | undefined;
     /**
      * Name of the ledger.
      */
     ledger: string;
+    v2CreateLedgerRequest?: shared.V2CreateLedgerRequest | undefined;
 };
 
-export type V2CreateLedgerResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2CreateLedgerResponse = {};
 
 /** @internal */
 export namespace V2CreateLedgerRequest$ {
     export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z
         .object({
-            V2CreateLedgerRequest: shared.V2CreateLedgerRequest$.inboundSchema.optional(),
             ledger: z.string(),
+            V2CreateLedgerRequest: shared.V2CreateLedgerRequest$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                ledger: v.ledger,
                 ...(v.V2CreateLedgerRequest === undefined
                     ? null
                     : { v2CreateLedgerRequest: v.V2CreateLedgerRequest }),
-                ledger: v.ledger,
             };
         });
 
     export type Outbound = {
-        V2CreateLedgerRequest?: shared.V2CreateLedgerRequest$.Outbound | undefined;
         ledger: string;
+        V2CreateLedgerRequest?: shared.V2CreateLedgerRequest$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> = z
         .object({
-            v2CreateLedgerRequest: shared.V2CreateLedgerRequest$.outboundSchema.optional(),
             ledger: z.string(),
+            v2CreateLedgerRequest: shared.V2CreateLedgerRequest$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                ledger: v.ledger,
                 ...(v.v2CreateLedgerRequest === undefined
                     ? null
                     : { V2CreateLedgerRequest: v.v2CreateLedgerRequest }),
-                ledger: v.ledger,
             };
         });
 }
 
 /** @internal */
 export namespace V2CreateLedgerResponse$ {
-    export const inboundSchema: z.ZodType<V2CreateLedgerResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2CreateLedgerResponse, z.ZodTypeDef, unknown> = z.object(
+        {}
+    );
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerResponse> =
+        z.object({});
 }

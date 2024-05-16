@@ -46,7 +46,7 @@ export namespace OrchestrationPaymentAdjustment$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.inboundSchema),
-            status: OrchestrationPaymentStatus$,
+            status: OrchestrationPaymentStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -63,7 +63,7 @@ export namespace OrchestrationPaymentAdjustment$ {
         amount: number;
         date: string;
         raw: OrchestrationPaymentAdjustmentRaw$.Outbound;
-        status: OrchestrationPaymentStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPaymentAdjustment> =
@@ -73,7 +73,7 @@ export namespace OrchestrationPaymentAdjustment$ {
                 amount: z.bigint().transform((v) => Number(v)),
                 date: z.date().transform((v) => v.toISOString()),
                 raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.outboundSchema),
-                status: OrchestrationPaymentStatus$,
+                status: OrchestrationPaymentStatus$.outboundSchema,
             })
             .transform((v) => {
                 return {

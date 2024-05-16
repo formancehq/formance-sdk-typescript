@@ -13,14 +13,17 @@ ElasticSearch query engine
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.search.search({
+  const result = await formance.search.search({
     after: [
       "users:002",
     ],
@@ -54,7 +57,7 @@ run();
 
 ### Response
 
-**Promise<[operations.SearchResponse](../../sdk/models/operations/searchresponse.md)>**
+**Promise<[shared.Response](../../sdk/models/shared/response.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -68,14 +71,17 @@ Get server info
 ### Example Usage
 
 ```typescript
-import { SDK } from "@formance/formance-sdk";
+import { Formance } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+const formance = new Formance({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-  const result = await sdk.search.searchgetServerInfo();
+  const result = await formance.search.searchgetServerInfo();
 
   // Handle the result
   console.log(result)
@@ -94,7 +100,7 @@ run();
 
 ### Response
 
-**Promise<[operations.SearchgetServerInfoResponse](../../sdk/models/operations/searchgetserverinforesponse.md)>**
+**Promise<[shared.ServerInfo](../../sdk/models/shared/serverinfo.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

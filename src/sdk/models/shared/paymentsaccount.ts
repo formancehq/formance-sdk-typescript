@@ -54,7 +54,7 @@ export namespace PaymentsAccount$ {
             provider: z.string().optional(),
             raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.inboundSchema)),
             reference: z.string(),
-            type: AccountType$,
+            type: AccountType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -85,7 +85,7 @@ export namespace PaymentsAccount$ {
         provider?: string | undefined;
         raw: PaymentsAccountRaw$.Outbound | null;
         reference: string;
-        type: AccountType;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentsAccount> = z
@@ -101,7 +101,7 @@ export namespace PaymentsAccount$ {
             provider: z.string().optional(),
             raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.outboundSchema)),
             reference: z.string(),
-            type: AccountType$,
+            type: AccountType$.outboundSchema,
         })
         .transform((v) => {
             return {

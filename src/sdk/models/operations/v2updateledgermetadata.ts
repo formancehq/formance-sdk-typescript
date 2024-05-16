@@ -5,97 +5,55 @@
 import * as z from "zod";
 
 export type V2UpdateLedgerMetadataRequest = {
-    requestBody?: Record<string, string> | undefined;
     /**
      * Name of the ledger.
      */
     ledger: string;
+    requestBody?: Record<string, string> | undefined;
 };
 
-export type V2UpdateLedgerMetadataResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2UpdateLedgerMetadataResponse = {};
 
 /** @internal */
 export namespace V2UpdateLedgerMetadataRequest$ {
     export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataRequest, z.ZodTypeDef, unknown> = z
         .object({
-            RequestBody: z.record(z.string()).optional(),
             ledger: z.string(),
+            RequestBody: z.record(z.string()).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
                 ledger: v.ledger,
+                ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
             };
         });
 
     export type Outbound = {
-        RequestBody?: Record<string, string> | undefined;
         ledger: string;
+        RequestBody?: Record<string, string> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2UpdateLedgerMetadataRequest> =
         z
             .object({
-                requestBody: z.record(z.string()).optional(),
                 ledger: z.string(),
+                requestBody: z.record(z.string()).optional(),
             })
             .transform((v) => {
                 return {
-                    ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                     ledger: v.ledger,
+                    ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
                 };
             });
 }
 
 /** @internal */
 export namespace V2UpdateLedgerMetadataResponse$ {
-    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2UpdateLedgerMetadataResponse, z.ZodTypeDef, unknown> =
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2UpdateLedgerMetadataResponse> =
-        z
-            .object({
-                contentType: z.string(),
-                statusCode: z.number().int(),
-                rawResponse: z.instanceof(Response).transform(() => {
-                    throw new Error("Response cannot be serialized");
-                }),
-            })
-            .transform((v) => {
-                return {
-                    ContentType: v.contentType,
-                    StatusCode: v.statusCode,
-                    RawResponse: v.rawResponse,
-                };
-            });
+        z.object({});
 }

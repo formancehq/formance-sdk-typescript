@@ -6,13 +6,9 @@ import * as z from "zod";
 
 export type V2AddMetadataToAccountRequest = {
     /**
-     * Use an idempotency key
+     * Name of the ledger.
      */
-    idempotencyKey?: string | undefined;
-    /**
-     * metadata
-     */
-    requestBody: Record<string, string>;
+    ledger: string;
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
      *
@@ -28,114 +24,76 @@ export type V2AddMetadataToAccountRequest = {
      */
     dryRun?: boolean | undefined;
     /**
-     * Name of the ledger.
+     * Use an idempotency key
      */
-    ledger: string;
+    idempotencyKey?: string | undefined;
+    /**
+     * metadata
+     */
+    requestBody: Record<string, string>;
 };
 
-export type V2AddMetadataToAccountResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2AddMetadataToAccountResponse = {};
 
 /** @internal */
 export namespace V2AddMetadataToAccountRequest$ {
     export const inboundSchema: z.ZodType<V2AddMetadataToAccountRequest, z.ZodTypeDef, unknown> = z
         .object({
-            "Idempotency-Key": z.string().optional(),
-            RequestBody: z.record(z.string()),
+            ledger: z.string(),
             address: z.string(),
             dryRun: z.boolean().optional(),
-            ledger: z.string(),
+            "Idempotency-Key": z.string().optional(),
+            RequestBody: z.record(z.string()),
         })
         .transform((v) => {
             return {
+                ledger: v.ledger,
+                address: v.address,
+                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
                 ...(v["Idempotency-Key"] === undefined
                     ? null
                     : { idempotencyKey: v["Idempotency-Key"] }),
                 requestBody: v.RequestBody,
-                address: v.address,
-                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
-                ledger: v.ledger,
             };
         });
 
     export type Outbound = {
-        "Idempotency-Key"?: string | undefined;
-        RequestBody: Record<string, string>;
+        ledger: string;
         address: string;
         dryRun?: boolean | undefined;
-        ledger: string;
+        "Idempotency-Key"?: string | undefined;
+        RequestBody: Record<string, string>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AddMetadataToAccountRequest> =
         z
             .object({
-                idempotencyKey: z.string().optional(),
-                requestBody: z.record(z.string()),
+                ledger: z.string(),
                 address: z.string(),
                 dryRun: z.boolean().optional(),
-                ledger: z.string(),
+                idempotencyKey: z.string().optional(),
+                requestBody: z.record(z.string()),
             })
             .transform((v) => {
                 return {
+                    ledger: v.ledger,
+                    address: v.address,
+                    ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
                     ...(v.idempotencyKey === undefined
                         ? null
                         : { "Idempotency-Key": v.idempotencyKey }),
                     RequestBody: v.requestBody,
-                    address: v.address,
-                    ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
-                    ledger: v.ledger,
                 };
             });
 }
 
 /** @internal */
 export namespace V2AddMetadataToAccountResponse$ {
-    export const inboundSchema: z.ZodType<V2AddMetadataToAccountResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2AddMetadataToAccountResponse, z.ZodTypeDef, unknown> =
+        z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AddMetadataToAccountResponse> =
-        z
-            .object({
-                contentType: z.string(),
-                statusCode: z.number().int(),
-                rawResponse: z.instanceof(Response).transform(() => {
-                    throw new Error("Response cannot be serialized");
-                }),
-            })
-            .transform((v) => {
-                return {
-                    ContentType: v.contentType,
-                    StatusCode: v.statusCode,
-                    RawResponse: v.rawResponse,
-                };
-            });
+        z.object({});
 }

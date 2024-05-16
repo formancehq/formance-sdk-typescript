@@ -6,108 +6,45 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type ChangeConfigSecretRequest = {
-    configChangeSecret?: shared.ConfigChangeSecret | undefined;
     /**
      * Config ID
      */
     id: string;
-};
-
-export type ChangeConfigSecretResponse = {
-    /**
-     * Secret successfully changed.
-     */
-    configResponse?: shared.ConfigResponse | undefined;
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
+    configChangeSecret?: shared.ConfigChangeSecret | undefined;
 };
 
 /** @internal */
 export namespace ChangeConfigSecretRequest$ {
     export const inboundSchema: z.ZodType<ChangeConfigSecretRequest, z.ZodTypeDef, unknown> = z
         .object({
-            ConfigChangeSecret: shared.ConfigChangeSecret$.inboundSchema.optional(),
             id: z.string(),
+            ConfigChangeSecret: shared.ConfigChangeSecret$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.ConfigChangeSecret === undefined
                     ? null
                     : { configChangeSecret: v.ConfigChangeSecret }),
-                id: v.id,
             };
         });
 
     export type Outbound = {
-        ConfigChangeSecret?: shared.ConfigChangeSecret$.Outbound | undefined;
         id: string;
+        ConfigChangeSecret?: shared.ConfigChangeSecret$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChangeConfigSecretRequest> = z
         .object({
-            configChangeSecret: shared.ConfigChangeSecret$.outboundSchema.optional(),
             id: z.string(),
+            configChangeSecret: shared.ConfigChangeSecret$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 ...(v.configChangeSecret === undefined
                     ? null
                     : { ConfigChangeSecret: v.configChangeSecret }),
-                id: v.id,
-            };
-        });
-}
-
-/** @internal */
-export namespace ChangeConfigSecretResponse$ {
-    export const inboundSchema: z.ZodType<ChangeConfigSecretResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ConfigResponse: shared.ConfigResponse$.inboundSchema.optional(),
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                ...(v.ConfigResponse === undefined ? null : { configResponse: v.ConfigResponse }),
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
-
-    export type Outbound = {
-        ConfigResponse?: shared.ConfigResponse$.Outbound | undefined;
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ChangeConfigSecretResponse> = z
-        .object({
-            configResponse: shared.ConfigResponse$.outboundSchema.optional(),
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ...(v.configResponse === undefined ? null : { ConfigResponse: v.configResponse }),
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

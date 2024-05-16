@@ -18,7 +18,7 @@ export namespace ScriptResponse$ {
     export const inboundSchema: z.ZodType<ScriptResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
-            errorCode: ErrorsEnum$.optional(),
+            errorCode: ErrorsEnum$.inboundSchema.optional(),
             errorMessage: z.string().optional(),
             transaction: Transaction$.inboundSchema.optional(),
         })
@@ -33,7 +33,7 @@ export namespace ScriptResponse$ {
 
     export type Outbound = {
         details?: string | undefined;
-        errorCode?: ErrorsEnum | undefined;
+        errorCode?: string | undefined;
         errorMessage?: string | undefined;
         transaction?: Transaction$.Outbound | undefined;
     };
@@ -41,7 +41,7 @@ export namespace ScriptResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ScriptResponse> = z
         .object({
             details: z.string().optional(),
-            errorCode: ErrorsEnum$.optional(),
+            errorCode: ErrorsEnum$.outboundSchema.optional(),
             errorMessage: z.string().optional(),
             transaction: Transaction$.outboundSchema.optional(),
         })

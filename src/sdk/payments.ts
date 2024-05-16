@@ -48,7 +48,7 @@ export class Payments extends ClientSDK {
     async addAccountToPool(
         request: operations.AddAccountToPoolRequest,
         options?: RequestOptions
-    ): Promise<operations.AddAccountToPoolResponse> {
+    ): Promise<operations.AddAccountToPoolResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -74,18 +74,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "addAccountToPool",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -106,14 +103,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -135,12 +132,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.AddAccountToPoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -152,7 +143,7 @@ export class Payments extends ClientSDK {
     async connectorsTransfer(
         request: operations.ConnectorsTransferRequest,
         options?: RequestOptions
-    ): Promise<operations.ConnectorsTransferResponse> {
+    ): Promise<shared.TransferResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -178,18 +169,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "connectorsTransfer",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -210,10 +198,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -221,10 +209,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ConnectorsTransferResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferResponse: val$,
-                    });
+                    return shared.TransferResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -261,7 +246,7 @@ export class Payments extends ClientSDK {
     async createAccount(
         request: shared.AccountRequest,
         options?: RequestOptions
-    ): Promise<operations.CreateAccountResponse> {
+    ): Promise<shared.PaymentsAccountResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -279,18 +264,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createAccount",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -311,10 +293,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -322,10 +304,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        paymentsAccountResponse: val$,
-                    });
+                    return shared.PaymentsAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -362,7 +341,7 @@ export class Payments extends ClientSDK {
     async createBankAccount(
         request: shared.BankAccountRequest,
         options?: RequestOptions
-    ): Promise<operations.CreateBankAccountResponse> {
+    ): Promise<shared.BankAccountResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -380,18 +359,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createBankAccount",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -412,10 +388,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -423,10 +399,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
+                    return shared.BankAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -463,7 +436,7 @@ export class Payments extends ClientSDK {
     async createPayment(
         request: shared.PaymentRequest,
         options?: RequestOptions
-    ): Promise<operations.CreatePaymentResponse> {
+    ): Promise<shared.PaymentResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -481,18 +454,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createPayment",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -513,10 +483,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -524,10 +494,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePaymentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentResponse: val$,
-                    });
+                    return shared.PaymentResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -564,7 +531,7 @@ export class Payments extends ClientSDK {
     async createPool(
         request: shared.PoolRequest,
         options?: RequestOptions
-    ): Promise<operations.CreatePoolResponse> {
+    ): Promise<shared.PoolResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -582,18 +549,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createPool",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -614,10 +578,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -625,10 +589,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreatePoolResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolResponse: val$,
-                    });
+                    return shared.PoolResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -665,7 +626,7 @@ export class Payments extends ClientSDK {
     async createTransferInitiation(
         request: shared.TransferInitiationRequest,
         options?: RequestOptions
-    ): Promise<operations.CreateTransferInitiationResponse> {
+    ): Promise<shared.TransferInitiationResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -683,18 +644,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "createTransferInitiation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -715,10 +673,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -726,10 +684,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateTransferInitiationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationResponse: val$,
-                    });
+                    return shared.TransferInitiationResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -766,7 +721,7 @@ export class Payments extends ClientSDK {
     async deletePool(
         request: operations.DeletePoolRequest,
         options?: RequestOptions
-    ): Promise<operations.DeletePoolResponse> {
+    ): Promise<operations.DeletePoolResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -789,18 +744,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deletePool",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -821,14 +773,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -850,12 +802,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeletePoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -867,7 +813,7 @@ export class Payments extends ClientSDK {
     async deleteTransferInitiation(
         request: operations.DeleteTransferInitiationRequest,
         options?: RequestOptions
-    ): Promise<operations.DeleteTransferInitiationResponse> {
+    ): Promise<operations.DeleteTransferInitiationResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -892,18 +838,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "deleteTransferInitiation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -924,14 +867,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -953,12 +896,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -967,7 +904,7 @@ export class Payments extends ClientSDK {
     async forwardBankAccount(
         request: operations.ForwardBankAccountRequest,
         options?: RequestOptions
-    ): Promise<operations.ForwardBankAccountResponse> {
+    ): Promise<shared.BankAccountResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -995,18 +932,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "forwardBankAccount",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1027,10 +961,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1038,10 +972,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ForwardBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
+                    return shared.BankAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1075,7 +1006,7 @@ export class Payments extends ClientSDK {
     async getAccountBalances(
         request: operations.GetAccountBalancesRequest,
         options?: RequestOptions
-    ): Promise<operations.GetAccountBalancesResponse> {
+    ): Promise<shared.BalancesCursor> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1113,18 +1044,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getAccountBalances",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1145,10 +1073,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1156,10 +1084,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetAccountBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BalancesCursor: val$,
-                    });
+                    return shared.BalancesCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1193,7 +1118,7 @@ export class Payments extends ClientSDK {
     async getBankAccount(
         request: operations.GetBankAccountRequest,
         options?: RequestOptions
-    ): Promise<operations.GetBankAccountResponse> {
+    ): Promise<shared.BankAccountResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1218,18 +1143,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getBankAccount",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1250,10 +1172,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1261,10 +1183,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
+                    return shared.BankAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1303,7 +1222,7 @@ export class Payments extends ClientSDK {
     async getConnectorTask(
         request: operations.GetConnectorTaskRequest,
         options?: RequestOptions
-    ): Promise<operations.GetConnectorTaskResponse> {
+    ): Promise<shared.TaskResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1332,18 +1251,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getConnectorTask",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1364,10 +1280,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1375,10 +1291,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetConnectorTaskResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TaskResponse: val$,
-                    });
+                    return shared.TaskResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1415,7 +1328,7 @@ export class Payments extends ClientSDK {
     async getConnectorTaskV1(
         request: operations.GetConnectorTaskV1Request,
         options?: RequestOptions
-    ): Promise<operations.GetConnectorTaskV1Response> {
+    ): Promise<shared.TaskResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1448,18 +1361,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getConnectorTaskV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1480,10 +1390,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1491,10 +1401,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetConnectorTaskV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        TaskResponse: val$,
-                    });
+                    return shared.TaskResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1528,7 +1435,7 @@ export class Payments extends ClientSDK {
     async getPayment(
         request: operations.GetPaymentRequest,
         options?: RequestOptions
-    ): Promise<operations.GetPaymentResponse> {
+    ): Promise<shared.PaymentResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1551,18 +1458,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getPayment",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1583,10 +1487,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1594,10 +1498,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPaymentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentResponse: val$,
-                    });
+                    return shared.PaymentResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1631,7 +1532,7 @@ export class Payments extends ClientSDK {
     async getPool(
         request: operations.GetPoolRequest,
         options?: RequestOptions
-    ): Promise<operations.GetPoolResponse> {
+    ): Promise<shared.PoolResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1654,18 +1555,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getPool",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1686,10 +1584,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1697,10 +1595,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPoolResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolResponse: val$,
-                    });
+                    return shared.PoolResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1734,7 +1629,7 @@ export class Payments extends ClientSDK {
     async getPoolBalances(
         request: operations.GetPoolBalancesRequest,
         options?: RequestOptions
-    ): Promise<operations.GetPoolBalancesResponse> {
+    ): Promise<shared.PoolBalancesResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1763,18 +1658,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getPoolBalances",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1795,10 +1687,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1806,10 +1698,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetPoolBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolBalancesResponse: val$,
-                    });
+                    return shared.PoolBalancesResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1843,7 +1732,7 @@ export class Payments extends ClientSDK {
     async getTransferInitiation(
         request: operations.GetTransferInitiationRequest,
         options?: RequestOptions
-    ): Promise<operations.GetTransferInitiationResponse> {
+    ): Promise<shared.TransferInitiationResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1868,18 +1757,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "getTransferInitiation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -1900,10 +1786,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -1911,10 +1797,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.GetTransferInitiationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationResponse: val$,
-                    });
+                    return shared.TransferInitiationResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -1951,7 +1834,7 @@ export class Payments extends ClientSDK {
     async installConnector(
         request: operations.InstallConnectorRequest,
         options?: RequestOptions
-    ): Promise<operations.InstallConnectorResponse> {
+    ): Promise<shared.ConnectorResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -1977,18 +1860,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "installConnector",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2009,10 +1889,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 201, "application/json")) {
@@ -2020,10 +1900,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.InstallConnectorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorResponse: val$,
-                    });
+                    return shared.ConnectorResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2057,9 +1934,7 @@ export class Payments extends ClientSDK {
      * @remarks
      * List all installed connectors.
      */
-    async listAllConnectors(
-        options?: RequestOptions
-    ): Promise<operations.ListAllConnectorsResponse> {
+    async listAllConnectors(options?: RequestOptions): Promise<shared.ConnectorsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -2068,18 +1943,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listAllConnectors",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2099,10 +1971,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2110,10 +1982,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListAllConnectorsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorsResponse: val$,
-                    });
+                    return shared.ConnectorsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2150,7 +2019,7 @@ export class Payments extends ClientSDK {
     async listBankAccounts(
         request: operations.ListBankAccountsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListBankAccountsResponse> {
+    ): Promise<shared.BankAccountsCursor> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2176,18 +2045,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listBankAccounts",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2208,10 +2074,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2219,10 +2085,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListBankAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountsCursor: val$,
-                    });
+                    return shared.BankAccountsCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2258,7 +2121,7 @@ export class Payments extends ClientSDK {
      */
     async listConfigsAvailableConnectors(
         options?: RequestOptions
-    ): Promise<operations.ListConfigsAvailableConnectorsResponse> {
+    ): Promise<shared.ConnectorsConfigsResponse> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -2267,18 +2130,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listConfigsAvailableConnectors",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2298,10 +2158,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2309,10 +2169,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListConfigsAvailableConnectorsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorsConfigsResponse: val$,
-                    });
+                    return shared.ConnectorsConfigsResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2351,7 +2208,7 @@ export class Payments extends ClientSDK {
     async listConnectorTasks(
         request: operations.ListConnectorTasksRequest,
         options?: RequestOptions
-    ): Promise<operations.ListConnectorTasksResponse> {
+    ): Promise<shared.TasksCursor> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2384,18 +2241,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listConnectorTasks",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2416,10 +2270,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2427,10 +2281,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListConnectorTasksResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TasksCursor: val$,
-                    });
+                    return shared.TasksCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2467,7 +2318,7 @@ export class Payments extends ClientSDK {
     async listConnectorTasksV1(
         request: operations.ListConnectorTasksV1Request,
         options?: RequestOptions
-    ): Promise<operations.ListConnectorTasksV1Response> {
+    ): Promise<shared.TasksCursor> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2504,18 +2355,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listConnectorTasksV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2536,10 +2384,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2547,10 +2395,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListConnectorTasksV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        TasksCursor: val$,
-                    });
+                    return shared.TasksCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2584,7 +2429,7 @@ export class Payments extends ClientSDK {
     async listPayments(
         request: operations.ListPaymentsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListPaymentsResponse> {
+    ): Promise<shared.PaymentsCursor> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2611,18 +2456,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listPayments",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2643,10 +2485,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2654,10 +2496,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPaymentsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentsCursor: val$,
-                    });
+                    return shared.PaymentsCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2691,7 +2530,7 @@ export class Payments extends ClientSDK {
     async listPools(
         request: operations.ListPoolsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListPoolsResponse> {
+    ): Promise<shared.PoolsCursor> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2718,18 +2557,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listPools",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2750,10 +2586,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2761,10 +2597,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListPoolsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolsCursor: val$,
-                    });
+                    return shared.PoolsCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2798,7 +2631,7 @@ export class Payments extends ClientSDK {
     async listTransferInitiations(
         request: operations.ListTransferInitiationsRequest,
         options?: RequestOptions
-    ): Promise<operations.ListTransferInitiationsResponse> {
+    ): Promise<shared.TransferInitiationsCursor> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2825,18 +2658,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "listTransferInitiations",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2857,10 +2687,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2868,10 +2698,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ListTransferInitiationsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationsCursor: val$,
-                    });
+                    return shared.TransferInitiationsCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -2905,7 +2732,7 @@ export class Payments extends ClientSDK {
     async paymentsgetAccount(
         request: operations.PaymentsgetAccountRequest,
         options?: RequestOptions
-    ): Promise<operations.PaymentsgetAccountResponse> {
+    ): Promise<shared.PaymentsAccountResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -2928,18 +2755,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "paymentsgetAccount",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -2960,10 +2784,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -2971,10 +2795,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.PaymentsgetAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        paymentsAccountResponse: val$,
-                    });
+                    return shared.PaymentsAccountResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -3005,9 +2826,7 @@ export class Payments extends ClientSDK {
     /**
      * Get server info
      */
-    async paymentsgetServerInfo(
-        options?: RequestOptions
-    ): Promise<operations.PaymentsgetServerInfoResponse> {
+    async paymentsgetServerInfo(options?: RequestOptions): Promise<shared.ServerInfo> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -3016,18 +2835,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "paymentsgetServerInfo",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3047,10 +2863,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3058,10 +2874,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.PaymentsgetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServerInfo: val$,
-                    });
+                    return shared.ServerInfo$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -3095,7 +2908,7 @@ export class Payments extends ClientSDK {
     async paymentslistAccounts(
         request: operations.PaymentslistAccountsRequest,
         options?: RequestOptions
-    ): Promise<operations.PaymentslistAccountsResponse> {
+    ): Promise<shared.AccountsCursor> {
         const input$ = typeof request === "undefined" ? {} : request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3122,18 +2935,15 @@ export class Payments extends ClientSDK {
             .filter(Boolean)
             .join("&");
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "paymentslistAccounts",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3154,10 +2964,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3165,10 +2975,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.PaymentslistAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AccountsCursor: val$,
-                    });
+                    return shared.AccountsCursor$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -3207,7 +3014,7 @@ export class Payments extends ClientSDK {
     async readConnectorConfig(
         request: operations.ReadConnectorConfigRequest,
         options?: RequestOptions
-    ): Promise<operations.ReadConnectorConfigResponse> {
+    ): Promise<shared.ConnectorConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3232,18 +3039,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "readConnectorConfig",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3264,10 +3068,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3275,10 +3079,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadConnectorConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorConfigResponse: val$,
-                    });
+                    return shared.ConnectorConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -3315,7 +3116,7 @@ export class Payments extends ClientSDK {
     async readConnectorConfigV1(
         request: operations.ReadConnectorConfigV1Request,
         options?: RequestOptions
-    ): Promise<operations.ReadConnectorConfigV1Response> {
+    ): Promise<shared.ConnectorConfigResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3344,18 +3145,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "readConnectorConfigV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3376,10 +3174,10 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchResponse(response, 200, "application/json")) {
@@ -3387,10 +3185,7 @@ export class Payments extends ClientSDK {
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.ReadConnectorConfigV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorConfigResponse: val$,
-                    });
+                    return shared.ConnectorConfigResponse$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -3427,7 +3222,7 @@ export class Payments extends ClientSDK {
     async removeAccountFromPool(
         request: operations.RemoveAccountFromPoolRequest,
         options?: RequestOptions
-    ): Promise<operations.RemoveAccountFromPoolResponse> {
+    ): Promise<operations.RemoveAccountFromPoolResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3456,18 +3251,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "removeAccountFromPool",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3488,14 +3280,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -3517,12 +3309,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.RemoveAccountFromPoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -3538,7 +3324,7 @@ export class Payments extends ClientSDK {
     async resetConnector(
         request: operations.ResetConnectorRequest,
         options?: RequestOptions
-    ): Promise<operations.ResetConnectorResponse> {
+    ): Promise<operations.ResetConnectorResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3563,18 +3349,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "resetConnector",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3595,14 +3378,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -3624,12 +3407,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.ResetConnectorResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -3643,7 +3420,7 @@ export class Payments extends ClientSDK {
     async resetConnectorV1(
         request: operations.ResetConnectorV1Request,
         options?: RequestOptions
-    ): Promise<operations.ResetConnectorV1Response> {
+    ): Promise<operations.ResetConnectorV1Response | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3672,18 +3449,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "resetConnectorV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3704,14 +3478,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -3733,12 +3507,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.ResetConnectorV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -3750,7 +3518,7 @@ export class Payments extends ClientSDK {
     async retryTransferInitiation(
         request: operations.RetryTransferInitiationRequest,
         options?: RequestOptions
-    ): Promise<operations.RetryTransferInitiationResponse> {
+    ): Promise<operations.RetryTransferInitiationResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3775,18 +3543,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "retryTransferInitiation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3807,14 +3572,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -3836,12 +3601,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.RetryTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -3853,7 +3612,7 @@ export class Payments extends ClientSDK {
     async reverseTransferInitiation(
         request: operations.ReverseTransferInitiationRequest,
         options?: RequestOptions
-    ): Promise<operations.ReverseTransferInitiationResponse> {
+    ): Promise<operations.ReverseTransferInitiationResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3881,18 +3640,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "reverseTransferInitiation",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -3913,14 +3669,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -3942,13 +3698,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.ReverseTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -3960,7 +3709,7 @@ export class Payments extends ClientSDK {
     async udpateTransferInitiationStatus(
         request: operations.UdpateTransferInitiationStatusRequest,
         options?: RequestOptions
-    ): Promise<operations.UdpateTransferInitiationStatusResponse> {
+    ): Promise<operations.UdpateTransferInitiationStatusResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -3989,18 +3738,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "udpateTransferInitiationStatus",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4021,14 +3767,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4050,15 +3796,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.UdpateTransferInitiationStatusResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -4072,7 +3809,7 @@ export class Payments extends ClientSDK {
     async uninstallConnector(
         request: operations.UninstallConnectorRequest,
         options?: RequestOptions
-    ): Promise<operations.UninstallConnectorResponse> {
+    ): Promise<operations.UninstallConnectorResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -4097,18 +3834,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "uninstallConnector",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4129,14 +3863,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4158,12 +3892,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.UninstallConnectorResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -4175,7 +3903,7 @@ export class Payments extends ClientSDK {
     async uninstallConnectorV1(
         request: operations.UninstallConnectorV1Request,
         options?: RequestOptions
-    ): Promise<operations.UninstallConnectorV1Response> {
+    ): Promise<operations.UninstallConnectorV1Response | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -4204,18 +3932,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "uninstallConnectorV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4236,14 +3961,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4265,12 +3990,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.UninstallConnectorV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -4279,7 +3998,7 @@ export class Payments extends ClientSDK {
     async updateBankAccountMetadata(
         request: operations.UpdateBankAccountMetadataRequest,
         options?: RequestOptions
-    ): Promise<operations.UpdateBankAccountMetadataResponse> {
+    ): Promise<operations.UpdateBankAccountMetadataResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -4307,18 +4026,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "updateBankAccountMetadata",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4339,14 +4055,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4368,13 +4084,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.UpdateBankAccountMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -4386,7 +4095,7 @@ export class Payments extends ClientSDK {
     async updateConnectorConfigV1(
         request: operations.UpdateConnectorConfigV1Request,
         options?: RequestOptions
-    ): Promise<operations.UpdateConnectorConfigV1Response> {
+    ): Promise<operations.UpdateConnectorConfigV1Response | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -4416,18 +4125,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "updateConnectorConfigV1",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4448,14 +4154,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4477,12 +4183,6 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.UpdateConnectorConfigV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 
     /**
@@ -4491,7 +4191,7 @@ export class Payments extends ClientSDK {
     async updateMetadata(
         request: operations.UpdateMetadataRequest,
         options?: RequestOptions
-    ): Promise<operations.UpdateMetadataResponse> {
+    ): Promise<operations.UpdateMetadataResponse | void> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -4517,18 +4217,15 @@ export class Payments extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "updateMetadata",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -4549,14 +4246,14 @@ export class Payments extends ClientSDK {
         const response = await this.do$(request$, doOptions);
 
         const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
+            HttpMeta: {
+                Response: response,
+                Request: request$,
+            },
         };
 
         if (this.matchStatusCode(response, 204)) {
-            // fallthrough
+            return;
         } else if (this.matchResponse(response, "default", "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
@@ -4578,11 +4275,5 @@ export class Payments extends ClientSDK {
                 responseBody
             );
         }
-
-        return schemas$.parse(
-            undefined,
-            () => operations.UpdateMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
     }
 }

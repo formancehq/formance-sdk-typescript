@@ -6,6 +6,18 @@ import * as z from "zod";
 
 export type V2AddMetadataOnTransactionRequest = {
     /**
+     * Name of the ledger.
+     */
+    ledger: string;
+    /**
+     * Transaction ID.
+     */
+    id: bigint;
+    /**
+     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
+     */
+    dryRun?: boolean | undefined;
+    /**
      * Use an idempotency key
      */
     idempotencyKey?: string | undefined;
@@ -13,34 +25,9 @@ export type V2AddMetadataOnTransactionRequest = {
      * metadata
      */
     requestBody?: Record<string, string> | undefined;
-    /**
-     * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
-     */
-    dryRun?: boolean | undefined;
-    /**
-     * Transaction ID.
-     */
-    id: bigint;
-    /**
-     * Name of the ledger.
-     */
-    ledger: string;
 };
 
-export type V2AddMetadataOnTransactionResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-};
+export type V2AddMetadataOnTransactionResponse = {};
 
 /** @internal */
 export namespace V2AddMetadataOnTransactionRequest$ {
@@ -50,30 +37,30 @@ export namespace V2AddMetadataOnTransactionRequest$ {
         unknown
     > = z
         .object({
+            ledger: z.string(),
+            id: z.number().transform((v) => BigInt(v)),
+            dryRun: z.boolean().optional(),
             "Idempotency-Key": z.string().optional(),
             RequestBody: z.record(z.string()).optional(),
-            dryRun: z.boolean().optional(),
-            id: z.number().transform((v) => BigInt(v)),
-            ledger: z.string(),
         })
         .transform((v) => {
             return {
+                ledger: v.ledger,
+                id: v.id,
+                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
                 ...(v["Idempotency-Key"] === undefined
                     ? null
                     : { idempotencyKey: v["Idempotency-Key"] }),
                 ...(v.RequestBody === undefined ? null : { requestBody: v.RequestBody }),
-                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
-                id: v.id,
-                ledger: v.ledger,
             };
         });
 
     export type Outbound = {
+        ledger: string;
+        id: number;
+        dryRun?: boolean | undefined;
         "Idempotency-Key"?: string | undefined;
         RequestBody?: Record<string, string> | undefined;
-        dryRun?: boolean | undefined;
-        id: number;
-        ledger: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -82,21 +69,21 @@ export namespace V2AddMetadataOnTransactionRequest$ {
         V2AddMetadataOnTransactionRequest
     > = z
         .object({
+            ledger: z.string(),
+            id: z.bigint().transform((v) => Number(v)),
+            dryRun: z.boolean().optional(),
             idempotencyKey: z.string().optional(),
             requestBody: z.record(z.string()).optional(),
-            dryRun: z.boolean().optional(),
-            id: z.bigint().transform((v) => Number(v)),
-            ledger: z.string(),
         })
         .transform((v) => {
             return {
+                ledger: v.ledger,
+                id: v.id,
+                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
                 ...(v.idempotencyKey === undefined
                     ? null
                     : { "Idempotency-Key": v.idempotencyKey }),
                 ...(v.requestBody === undefined ? null : { RequestBody: v.requestBody }),
-                ...(v.dryRun === undefined ? null : { dryRun: v.dryRun }),
-                id: v.id,
-                ledger: v.ledger,
             };
         });
 }
@@ -107,43 +94,13 @@ export namespace V2AddMetadataOnTransactionResponse$ {
         V2AddMetadataOnTransactionResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-            };
-        });
+    > = z.object({});
 
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-    };
+    export type Outbound = {};
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         V2AddMetadataOnTransactionResponse
-    > = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-            };
-        });
+    > = z.object({});
 }

@@ -9,7 +9,6 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as errors from "./models/errors";
-import * as operations from "./models/operations";
 import * as shared from "./models/shared";
 
 export class Search extends ClientSDK {
@@ -45,10 +44,7 @@ export class Search extends ClientSDK {
      * @remarks
      * ElasticSearch query engine
      */
-    async search(
-        request: shared.Query,
-        options?: RequestOptions
-    ): Promise<operations.SearchResponse> {
+    async search(request: shared.Query, options?: RequestOptions): Promise<shared.Response> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -66,18 +62,15 @@ export class Search extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "search",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -97,22 +90,12 @@ export class Search extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.SearchResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Response: val$,
-                    });
+                    return shared.Response$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
@@ -130,9 +113,7 @@ export class Search extends ClientSDK {
     /**
      * Get server info
      */
-    async searchgetServerInfo(
-        options?: RequestOptions
-    ): Promise<operations.SearchgetServerInfoResponse> {
+    async searchgetServerInfo(options?: RequestOptions): Promise<shared.ServerInfo> {
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
         headers$.set("Accept", "application/json");
@@ -141,18 +122,15 @@ export class Search extends ClientSDK {
 
         const query$ = "";
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const security$ =
+            typeof this.options$.security === "function"
+                ? await this.options$.security()
+                : this.options$.security;
+
         const context = {
             operationID: "searchgetServerInfo",
             oAuth2Scopes: [],
-            securitySource: this.options$.authorization,
+            securitySource: this.options$.security,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
@@ -171,22 +149,12 @@ export class Search extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            ContentType: response.headers.get("content-type") ?? "application/octet-stream",
-            StatusCode: response.status,
-            RawResponse: response,
-            Headers: {},
-        };
-
         if (this.matchResponse(response, 200, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.SearchgetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServerInfo: val$,
-                    });
+                    return shared.ServerInfo$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );

@@ -6,13 +6,13 @@ import * as z from "zod";
 
 export type CountAccountsRequest = {
     /**
-     * Filter accounts by address pattern (regular expression placed between ^ and $).
-     */
-    address?: string | undefined;
-    /**
      * Name of the ledger.
      */
     ledger: string;
+    /**
+     * Filter accounts by address pattern (regular expression placed between ^ and $).
+     */
+    address?: string | undefined;
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
      */
@@ -20,53 +20,41 @@ export type CountAccountsRequest = {
 };
 
 export type CountAccountsResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
     headers: Record<string, Array<string>>;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
 };
 
 /** @internal */
 export namespace CountAccountsRequest$ {
     export const inboundSchema: z.ZodType<CountAccountsRequest, z.ZodTypeDef, unknown> = z
         .object({
-            address: z.string().optional(),
             ledger: z.string(),
+            address: z.string().optional(),
             metadata: z.record(z.any()).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.address === undefined ? null : { address: v.address }),
                 ledger: v.ledger,
+                ...(v.address === undefined ? null : { address: v.address }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
 
     export type Outbound = {
-        address?: string | undefined;
         ledger: string;
+        address?: string | undefined;
         metadata?: Record<string, any> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CountAccountsRequest> = z
         .object({
-            address: z.string().optional(),
             ledger: z.string(),
+            address: z.string().optional(),
             metadata: z.record(z.any()).optional(),
         })
         .transform((v) => {
             return {
-                ...(v.address === undefined ? null : { address: v.address }),
                 ledger: v.ledger,
+                ...(v.address === undefined ? null : { address: v.address }),
                 ...(v.metadata === undefined ? null : { metadata: v.metadata }),
             };
         });
@@ -76,42 +64,25 @@ export namespace CountAccountsRequest$ {
 export namespace CountAccountsResponse$ {
     export const inboundSchema: z.ZodType<CountAccountsResponse, z.ZodTypeDef, unknown> = z
         .object({
-            ContentType: z.string(),
             Headers: z.record(z.array(z.string())),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
         })
         .transform((v) => {
             return {
-                contentType: v.ContentType,
                 headers: v.Headers,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
             };
         });
 
     export type Outbound = {
-        ContentType: string;
         Headers: Record<string, Array<string>>;
-        StatusCode: number;
-        RawResponse: never;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CountAccountsResponse> = z
         .object({
-            contentType: z.string(),
             headers: z.record(z.array(z.string())),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
         })
         .transform((v) => {
             return {
-                ContentType: v.contentType,
                 Headers: v.headers,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
             };
         });
 }

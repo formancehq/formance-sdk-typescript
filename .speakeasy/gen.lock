@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 8d7bdbcc690af3ef69375ca5d5487527
-  docVersion: v2.0.0-rc.27
-  speakeasyVersion: 1.286.3
-  generationVersion: 2.329.0
-  releaseVersion: 2.4.0
-  configChecksum: b9583f4dd2b3d1316899dc09bf058bd6
+  docChecksum: 4214f749bd277688af42e223c9d98f43
+  docVersion: v2.0.0-rc.28
+  speakeasyVersion: 1.292.0
+  generationVersion: 2.332.4
+  releaseVersion: 2.5.0
+  configChecksum: 685796d66e205b86e8f9b998c49ca2ae
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -20,11 +20,11 @@ features:
     errors: 2.81.10
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     groups: 2.81.2
     ignores: 2.81.1
     nullables: 0.1.0
+    oauth2ClientCredentials: 0.1.4
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     unions: 2.85.4
@@ -57,18 +57,15 @@ generatedFiles:
   - src/sdk/models/errors/sdkerror.ts
   - src/sdk/models/errors/sdkvalidationerror.ts
   - src/sdk/types/blobs.ts
+  - src/sdk/types/enums.ts
   - src/sdk/types/index.ts
   - src/sdk/types/operations.ts
   - src/sdk/types/rfcdate.ts
   - tsconfig.json
   - src/sdk/models/operations/getoidcwellknowns.ts
-  - src/sdk/models/operations/getversions.ts
-  - src/sdk/models/operations/createclient.ts
   - src/sdk/models/operations/createsecret.ts
   - src/sdk/models/operations/deleteclient.ts
   - src/sdk/models/operations/deletesecret.ts
-  - src/sdk/models/operations/listclients.ts
-  - src/sdk/models/operations/listusers.ts
   - src/sdk/models/operations/readclient.ts
   - src/sdk/models/operations/readuser.ts
   - src/sdk/models/operations/updateclient.ts
@@ -81,7 +78,6 @@ generatedFiles:
   - src/sdk/models/operations/getaccount.ts
   - src/sdk/models/operations/getbalances.ts
   - src/sdk/models/operations/getbalancesaggregated.ts
-  - src/sdk/models/operations/getinfo.ts
   - src/sdk/models/operations/getledgerinfo.ts
   - src/sdk/models/operations/getmapping.ts
   - src/sdk/models/operations/gettransaction.ts
@@ -104,7 +100,6 @@ generatedFiles:
   - src/sdk/models/operations/v2deletetransactionmetadata.ts
   - src/sdk/models/operations/v2getaccount.ts
   - src/sdk/models/operations/v2getbalancesaggregated.ts
-  - src/sdk/models/operations/v2getinfo.ts
   - src/sdk/models/operations/v2getledger.ts
   - src/sdk/models/operations/v2getledgerinfo.ts
   - src/sdk/models/operations/v2gettransaction.ts
@@ -117,8 +112,6 @@ generatedFiles:
   - src/sdk/models/operations/v2reverttransaction.ts
   - src/sdk/models/operations/v2updateledgermetadata.ts
   - src/sdk/models/operations/cancelevent.ts
-  - src/sdk/models/operations/createtrigger.ts
-  - src/sdk/models/operations/createworkflow.ts
   - src/sdk/models/operations/deletetrigger.ts
   - src/sdk/models/operations/deleteworkflow.ts
   - src/sdk/models/operations/getinstance.ts
@@ -128,21 +121,16 @@ generatedFiles:
   - src/sdk/models/operations/listinstances.ts
   - src/sdk/models/operations/listtriggers.ts
   - src/sdk/models/operations/listtriggersoccurrences.ts
-  - src/sdk/models/operations/listworkflows.ts
-  - src/sdk/models/operations/orchestrationgetserverinfo.ts
   - src/sdk/models/operations/readtrigger.ts
   - src/sdk/models/operations/runworkflow.ts
   - src/sdk/models/operations/sendevent.ts
   - src/sdk/models/operations/testtrigger.ts
   - src/sdk/models/operations/v2cancelevent.ts
-  - src/sdk/models/operations/v2createtrigger.ts
-  - src/sdk/models/operations/v2createworkflow.ts
   - src/sdk/models/operations/v2deletetrigger.ts
   - src/sdk/models/operations/v2deleteworkflow.ts
   - src/sdk/models/operations/v2getinstance.ts
   - src/sdk/models/operations/v2getinstancehistory.ts
   - src/sdk/models/operations/v2getinstancestagehistory.ts
-  - src/sdk/models/operations/v2getserverinfo.ts
   - src/sdk/models/operations/v2getworkflow.ts
   - src/sdk/models/operations/v2listinstances.ts
   - src/sdk/models/operations/v2listtriggers.ts
@@ -153,11 +141,6 @@ generatedFiles:
   - src/sdk/models/operations/v2sendevent.ts
   - src/sdk/models/operations/addaccounttopool.ts
   - src/sdk/models/operations/connectorstransfer.ts
-  - src/sdk/models/operations/createaccount.ts
-  - src/sdk/models/operations/createbankaccount.ts
-  - src/sdk/models/operations/createpayment.ts
-  - src/sdk/models/operations/createpool.ts
-  - src/sdk/models/operations/createtransferinitiation.ts
   - src/sdk/models/operations/deletepool.ts
   - src/sdk/models/operations/deletetransferinitiation.ts
   - src/sdk/models/operations/forwardbankaccount.ts
@@ -170,16 +153,13 @@ generatedFiles:
   - src/sdk/models/operations/getpoolbalances.ts
   - src/sdk/models/operations/gettransferinitiation.ts
   - src/sdk/models/operations/installconnector.ts
-  - src/sdk/models/operations/listallconnectors.ts
   - src/sdk/models/operations/listbankaccounts.ts
-  - src/sdk/models/operations/listconfigsavailableconnectors.ts
   - src/sdk/models/operations/listconnectortasks.ts
   - src/sdk/models/operations/listconnectortasksv1.ts
   - src/sdk/models/operations/listpayments.ts
   - src/sdk/models/operations/listpools.ts
   - src/sdk/models/operations/listtransferinitiations.ts
   - src/sdk/models/operations/paymentsgetaccount.ts
-  - src/sdk/models/operations/paymentsgetserverinfo.ts
   - src/sdk/models/operations/paymentslistaccounts.ts
   - src/sdk/models/operations/readconnectorconfig.ts
   - src/sdk/models/operations/readconnectorconfigv1.ts
@@ -194,19 +174,14 @@ generatedFiles:
   - src/sdk/models/operations/updatebankaccountmetadata.ts
   - src/sdk/models/operations/updateconnectorconfigv1.ts
   - src/sdk/models/operations/updatemetadata.ts
-  - src/sdk/models/operations/createpolicy.ts
   - src/sdk/models/operations/deletepolicy.ts
   - src/sdk/models/operations/getpolicy.ts
   - src/sdk/models/operations/getreconciliation.ts
   - src/sdk/models/operations/listpolicies.ts
   - src/sdk/models/operations/listreconciliations.ts
   - src/sdk/models/operations/reconcile.ts
-  - src/sdk/models/operations/reconciliationgetserverinfo.ts
-  - src/sdk/models/operations/search.ts
-  - src/sdk/models/operations/searchgetserverinfo.ts
   - src/sdk/models/operations/confirmhold.ts
   - src/sdk/models/operations/createbalance.ts
-  - src/sdk/models/operations/createwallet.ts
   - src/sdk/models/operations/creditwallet.ts
   - src/sdk/models/operations/debitwallet.ts
   - src/sdk/models/operations/getbalance.ts
@@ -219,13 +194,11 @@ generatedFiles:
   - src/sdk/models/operations/listwallets.ts
   - src/sdk/models/operations/updatewallet.ts
   - src/sdk/models/operations/voidhold.ts
-  - src/sdk/models/operations/walletsgetserverinfo.ts
   - src/sdk/models/operations/activateconfig.ts
   - src/sdk/models/operations/changeconfigsecret.ts
   - src/sdk/models/operations/deactivateconfig.ts
   - src/sdk/models/operations/deleteconfig.ts
   - src/sdk/models/operations/getmanyconfigs.ts
-  - src/sdk/models/operations/insertconfig.ts
   - src/sdk/models/operations/testconfig.ts
   - src/sdk/models/shared/getversionsresponse.ts
   - src/sdk/models/shared/version.ts
@@ -459,8 +432,8 @@ generatedFiles:
   - src/sdk/models/shared/paymentserrorsenum.ts
   - src/sdk/models/shared/addaccounttopoolrequest.ts
   - src/sdk/models/shared/transferresponse.ts
-  - src/sdk/models/shared/connector.ts
   - src/sdk/models/shared/transferrequest.ts
+  - src/sdk/models/shared/connector.ts
   - src/sdk/models/shared/paymentsaccountresponse.ts
   - src/sdk/models/shared/paymentsaccount.ts
   - src/sdk/models/shared/accounttype.ts
@@ -575,24 +548,15 @@ generatedFiles:
   - src/sdk/models/operations/index.ts
   - src/sdk/models/shared/index.ts
   - docs/sdk/models/operations/getoidcwellknownsresponse.md
-  - docs/sdk/models/operations/getversionsresponse.md
-  - docs/sdk/models/operations/createclientresponse.md
   - docs/sdk/models/operations/createsecretrequest.md
-  - docs/sdk/models/operations/createsecretresponse.md
   - docs/sdk/models/operations/deleteclientrequest.md
   - docs/sdk/models/operations/deleteclientresponse.md
   - docs/sdk/models/operations/deletesecretrequest.md
   - docs/sdk/models/operations/deletesecretresponse.md
-  - docs/sdk/models/operations/listclientsresponse.md
-  - docs/sdk/models/operations/listusersresponse.md
   - docs/sdk/models/operations/readclientrequest.md
-  - docs/sdk/models/operations/readclientresponse.md
   - docs/sdk/models/operations/readuserrequest.md
-  - docs/sdk/models/operations/readuserresponse.md
   - docs/sdk/models/operations/updateclientrequest.md
-  - docs/sdk/models/operations/updateclientresponse.md
   - docs/sdk/models/operations/createtransactionsrequest.md
-  - docs/sdk/models/operations/createtransactionsresponse.md
   - docs/sdk/models/operations/addmetadataontransactionrequest.md
   - docs/sdk/models/operations/addmetadataontransactionresponse.md
   - docs/sdk/models/operations/addmetadatatoaccountrequest.md
@@ -603,34 +567,19 @@ generatedFiles:
   - docs/sdk/models/operations/counttransactionsrequest.md
   - docs/sdk/models/operations/counttransactionsresponse.md
   - docs/sdk/models/operations/createtransactionrequest.md
-  - docs/sdk/models/operations/createtransactionresponse.md
   - docs/sdk/models/operations/getaccountrequest.md
-  - docs/sdk/models/operations/getaccountresponse.md
   - docs/sdk/models/operations/getbalancesrequest.md
-  - docs/sdk/models/operations/getbalancesresponse.md
   - docs/sdk/models/operations/getbalancesaggregatedrequest.md
-  - docs/sdk/models/operations/getbalancesaggregatedresponse.md
-  - docs/sdk/models/operations/getinforesponse.md
   - docs/sdk/models/operations/getledgerinforequest.md
-  - docs/sdk/models/operations/getledgerinforesponse.md
   - docs/sdk/models/operations/getmappingrequest.md
-  - docs/sdk/models/operations/getmappingresponse.md
   - docs/sdk/models/operations/gettransactionrequest.md
-  - docs/sdk/models/operations/gettransactionresponse.md
   - docs/sdk/models/operations/listaccountsrequest.md
-  - docs/sdk/models/operations/listaccountsresponse.md
   - docs/sdk/models/operations/listlogsrequest.md
-  - docs/sdk/models/operations/listlogsresponse.md
   - docs/sdk/models/operations/listtransactionsrequest.md
-  - docs/sdk/models/operations/listtransactionsresponse.md
   - docs/sdk/models/operations/readstatsrequest.md
-  - docs/sdk/models/operations/readstatsresponse.md
   - docs/sdk/models/operations/reverttransactionrequest.md
-  - docs/sdk/models/operations/reverttransactionresponse.md
   - docs/sdk/models/operations/runscriptrequest.md
-  - docs/sdk/models/operations/runscriptresponse.md
   - docs/sdk/models/operations/updatemappingrequest.md
-  - docs/sdk/models/operations/updatemappingresponse.md
   - docs/sdk/models/operations/v2addmetadataontransactionrequest.md
   - docs/sdk/models/operations/v2addmetadataontransactionresponse.md
   - docs/sdk/models/operations/v2addmetadatatoaccountrequest.md
@@ -640,11 +589,9 @@ generatedFiles:
   - docs/sdk/models/operations/v2counttransactionsrequest.md
   - docs/sdk/models/operations/v2counttransactionsresponse.md
   - docs/sdk/models/operations/v2createbulkrequest.md
-  - docs/sdk/models/operations/v2createbulkresponse.md
   - docs/sdk/models/operations/v2createledgerrequest.md
   - docs/sdk/models/operations/v2createledgerresponse.md
   - docs/sdk/models/operations/v2createtransactionrequest.md
-  - docs/sdk/models/operations/v2createtransactionresponse.md
   - docs/sdk/models/operations/v2deleteaccountmetadatarequest.md
   - docs/sdk/models/operations/v2deleteaccountmetadataresponse.md
   - docs/sdk/models/operations/v2deleteledgermetadatarequest.md
@@ -652,153 +599,84 @@ generatedFiles:
   - docs/sdk/models/operations/v2deletetransactionmetadatarequest.md
   - docs/sdk/models/operations/v2deletetransactionmetadataresponse.md
   - docs/sdk/models/operations/v2getaccountrequest.md
-  - docs/sdk/models/operations/v2getaccountresponse.md
   - docs/sdk/models/operations/v2getbalancesaggregatedrequest.md
-  - docs/sdk/models/operations/v2getbalancesaggregatedresponse.md
-  - docs/sdk/models/operations/v2getinforesponse.md
   - docs/sdk/models/operations/v2getledgerrequest.md
-  - docs/sdk/models/operations/v2getledgerresponse.md
   - docs/sdk/models/operations/v2getledgerinforequest.md
-  - docs/sdk/models/operations/v2getledgerinforesponse.md
   - docs/sdk/models/operations/v2gettransactionrequest.md
-  - docs/sdk/models/operations/v2gettransactionresponse.md
   - docs/sdk/models/operations/v2getvolumeswithbalancesrequest.md
-  - docs/sdk/models/operations/v2getvolumeswithbalancesresponse.md
   - docs/sdk/models/operations/v2listaccountsrequest.md
-  - docs/sdk/models/operations/v2listaccountsresponse.md
   - docs/sdk/models/operations/v2listledgersrequest.md
-  - docs/sdk/models/operations/v2listledgersresponse.md
   - docs/sdk/models/operations/v2listlogsrequest.md
-  - docs/sdk/models/operations/v2listlogsresponse.md
   - docs/sdk/models/operations/v2listtransactionsrequest.md
-  - docs/sdk/models/operations/v2listtransactionsresponse.md
   - docs/sdk/models/operations/v2readstatsrequest.md
-  - docs/sdk/models/operations/v2readstatsresponse.md
   - docs/sdk/models/operations/v2reverttransactionrequest.md
-  - docs/sdk/models/operations/v2reverttransactionresponse.md
   - docs/sdk/models/operations/v2updateledgermetadatarequest.md
   - docs/sdk/models/operations/v2updateledgermetadataresponse.md
   - docs/sdk/models/operations/canceleventrequest.md
   - docs/sdk/models/operations/canceleventresponse.md
-  - docs/sdk/models/operations/createtriggerresponse.md
-  - docs/sdk/models/operations/createworkflowresponse.md
   - docs/sdk/models/operations/deletetriggerrequest.md
   - docs/sdk/models/operations/deletetriggerresponse.md
   - docs/sdk/models/operations/deleteworkflowrequest.md
   - docs/sdk/models/operations/deleteworkflowresponse.md
   - docs/sdk/models/operations/getinstancerequest.md
-  - docs/sdk/models/operations/getinstanceresponse.md
   - docs/sdk/models/operations/getinstancehistoryrequest.md
-  - docs/sdk/models/operations/getinstancehistoryresponse.md
   - docs/sdk/models/operations/getinstancestagehistoryrequest.md
-  - docs/sdk/models/operations/getinstancestagehistoryresponse.md
   - docs/sdk/models/operations/getworkflowrequest.md
-  - docs/sdk/models/operations/getworkflowresponse.md
   - docs/sdk/models/operations/listinstancesrequest.md
-  - docs/sdk/models/operations/listinstancesresponse.md
   - docs/sdk/models/operations/listtriggersrequest.md
-  - docs/sdk/models/operations/listtriggersresponse.md
   - docs/sdk/models/operations/listtriggersoccurrencesrequest.md
-  - docs/sdk/models/operations/listtriggersoccurrencesresponse.md
-  - docs/sdk/models/operations/listworkflowsresponse.md
-  - docs/sdk/models/operations/orchestrationgetserverinforesponse.md
   - docs/sdk/models/operations/readtriggerrequest.md
-  - docs/sdk/models/operations/readtriggerresponse.md
   - docs/sdk/models/operations/runworkflowrequest.md
-  - docs/sdk/models/operations/runworkflowresponse.md
   - docs/sdk/models/operations/sendeventrequestbody.md
   - docs/sdk/models/operations/sendeventrequest.md
   - docs/sdk/models/operations/sendeventresponse.md
   - docs/sdk/models/operations/testtriggerrequest.md
-  - docs/sdk/models/operations/testtriggerresponse.md
   - docs/sdk/models/operations/v2canceleventrequest.md
   - docs/sdk/models/operations/v2canceleventresponse.md
-  - docs/sdk/models/operations/v2createtriggerresponse.md
-  - docs/sdk/models/operations/v2createworkflowresponse.md
   - docs/sdk/models/operations/v2deletetriggerrequest.md
   - docs/sdk/models/operations/v2deletetriggerresponse.md
   - docs/sdk/models/operations/v2deleteworkflowrequest.md
   - docs/sdk/models/operations/v2deleteworkflowresponse.md
   - docs/sdk/models/operations/v2getinstancerequest.md
-  - docs/sdk/models/operations/v2getinstanceresponse.md
   - docs/sdk/models/operations/v2getinstancehistoryrequest.md
-  - docs/sdk/models/operations/v2getinstancehistoryresponse.md
   - docs/sdk/models/operations/v2getinstancestagehistoryrequest.md
-  - docs/sdk/models/operations/v2getinstancestagehistoryresponse.md
-  - docs/sdk/models/operations/v2getserverinforesponse.md
   - docs/sdk/models/operations/v2getworkflowrequest.md
-  - docs/sdk/models/operations/v2getworkflowresponse.md
   - docs/sdk/models/operations/v2listinstancesrequest.md
-  - docs/sdk/models/operations/v2listinstancesresponse.md
   - docs/sdk/models/operations/v2listtriggersrequest.md
-  - docs/sdk/models/operations/v2listtriggersresponse.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesrequest.md
-  - docs/sdk/models/operations/v2listtriggersoccurrencesresponse.md
   - docs/sdk/models/operations/v2listworkflowsrequest.md
-  - docs/sdk/models/operations/v2listworkflowsresponse.md
   - docs/sdk/models/operations/v2readtriggerrequest.md
-  - docs/sdk/models/operations/v2readtriggerresponse.md
   - docs/sdk/models/operations/v2runworkflowrequest.md
-  - docs/sdk/models/operations/v2runworkflowresponse.md
   - docs/sdk/models/operations/v2sendeventrequestbody.md
   - docs/sdk/models/operations/v2sendeventrequest.md
   - docs/sdk/models/operations/v2sendeventresponse.md
   - docs/sdk/models/operations/addaccounttopoolrequest.md
   - docs/sdk/models/operations/addaccounttopoolresponse.md
   - docs/sdk/models/operations/connectorstransferrequest.md
-  - docs/sdk/models/operations/connectorstransferresponse.md
-  - docs/sdk/models/operations/createaccountresponse.md
-  - docs/sdk/models/operations/createbankaccountresponse.md
-  - docs/sdk/models/operations/createpaymentresponse.md
-  - docs/sdk/models/operations/createpoolresponse.md
-  - docs/sdk/models/operations/createtransferinitiationresponse.md
   - docs/sdk/models/operations/deletepoolrequest.md
   - docs/sdk/models/operations/deletepoolresponse.md
   - docs/sdk/models/operations/deletetransferinitiationrequest.md
   - docs/sdk/models/operations/deletetransferinitiationresponse.md
   - docs/sdk/models/operations/forwardbankaccountrequest.md
-  - docs/sdk/models/operations/forwardbankaccountresponse.md
   - docs/sdk/models/operations/getaccountbalancesrequest.md
-  - docs/sdk/models/operations/getaccountbalancesresponse.md
   - docs/sdk/models/operations/getbankaccountrequest.md
-  - docs/sdk/models/operations/getbankaccountresponse.md
   - docs/sdk/models/operations/getconnectortaskrequest.md
-  - docs/sdk/models/operations/getconnectortaskresponse.md
   - docs/sdk/models/operations/getconnectortaskv1request.md
-  - docs/sdk/models/operations/getconnectortaskv1response.md
   - docs/sdk/models/operations/getpaymentrequest.md
-  - docs/sdk/models/operations/getpaymentresponse.md
   - docs/sdk/models/operations/getpoolrequest.md
-  - docs/sdk/models/operations/getpoolresponse.md
   - docs/sdk/models/operations/getpoolbalancesrequest.md
-  - docs/sdk/models/operations/getpoolbalancesresponse.md
   - docs/sdk/models/operations/gettransferinitiationrequest.md
-  - docs/sdk/models/operations/gettransferinitiationresponse.md
   - docs/sdk/models/operations/installconnectorrequest.md
-  - docs/sdk/models/operations/installconnectorresponse.md
-  - docs/sdk/models/operations/listallconnectorsresponse.md
   - docs/sdk/models/operations/listbankaccountsrequest.md
-  - docs/sdk/models/operations/listbankaccountsresponse.md
-  - docs/sdk/models/operations/listconfigsavailableconnectorsresponse.md
   - docs/sdk/models/operations/listconnectortasksrequest.md
-  - docs/sdk/models/operations/listconnectortasksresponse.md
   - docs/sdk/models/operations/listconnectortasksv1request.md
-  - docs/sdk/models/operations/listconnectortasksv1response.md
   - docs/sdk/models/operations/listpaymentsrequest.md
-  - docs/sdk/models/operations/listpaymentsresponse.md
   - docs/sdk/models/operations/listpoolsrequest.md
-  - docs/sdk/models/operations/listpoolsresponse.md
   - docs/sdk/models/operations/listtransferinitiationsrequest.md
-  - docs/sdk/models/operations/listtransferinitiationsresponse.md
   - docs/sdk/models/operations/paymentsgetaccountrequest.md
-  - docs/sdk/models/operations/paymentsgetaccountresponse.md
-  - docs/sdk/models/operations/paymentsgetserverinforesponse.md
   - docs/sdk/models/operations/paymentslistaccountsrequest.md
-  - docs/sdk/models/operations/paymentslistaccountsresponse.md
   - docs/sdk/models/operations/readconnectorconfigrequest.md
-  - docs/sdk/models/operations/readconnectorconfigresponse.md
   - docs/sdk/models/operations/readconnectorconfigv1request.md
-  - docs/sdk/models/operations/readconnectorconfigv1response.md
   - docs/sdk/models/operations/removeaccountfrompoolrequest.md
   - docs/sdk/models/operations/removeaccountfrompoolresponse.md
   - docs/sdk/models/operations/resetconnectorrequest.md
@@ -821,66 +699,39 @@ generatedFiles:
   - docs/sdk/models/operations/updateconnectorconfigv1response.md
   - docs/sdk/models/operations/updatemetadatarequest.md
   - docs/sdk/models/operations/updatemetadataresponse.md
-  - docs/sdk/models/operations/createpolicyresponse.md
   - docs/sdk/models/operations/deletepolicyrequest.md
   - docs/sdk/models/operations/deletepolicyresponse.md
   - docs/sdk/models/operations/getpolicyrequest.md
-  - docs/sdk/models/operations/getpolicyresponse.md
   - docs/sdk/models/operations/getreconciliationrequest.md
-  - docs/sdk/models/operations/getreconciliationresponse.md
   - docs/sdk/models/operations/listpoliciesrequest.md
-  - docs/sdk/models/operations/listpoliciesresponse.md
   - docs/sdk/models/operations/listreconciliationsrequest.md
-  - docs/sdk/models/operations/listreconciliationsresponse.md
   - docs/sdk/models/operations/reconcilerequest.md
-  - docs/sdk/models/operations/reconcileresponse.md
-  - docs/sdk/models/operations/reconciliationgetserverinforesponse.md
-  - docs/sdk/models/operations/searchresponse.md
-  - docs/sdk/models/operations/searchgetserverinforesponse.md
   - docs/sdk/models/operations/confirmholdrequest.md
   - docs/sdk/models/operations/confirmholdresponse.md
   - docs/sdk/models/operations/createbalancerequest.md
-  - docs/sdk/models/operations/createbalanceresponse.md
-  - docs/sdk/models/operations/createwalletresponse.md
   - docs/sdk/models/operations/creditwalletrequest.md
   - docs/sdk/models/operations/creditwalletresponse.md
   - docs/sdk/models/operations/debitwalletrequest.md
-  - docs/sdk/models/operations/debitwalletresponse.md
   - docs/sdk/models/operations/getbalancerequest.md
-  - docs/sdk/models/operations/getbalanceresponse.md
   - docs/sdk/models/operations/getholdrequest.md
-  - docs/sdk/models/operations/getholdresponse.md
   - docs/sdk/models/operations/getholdsrequest.md
-  - docs/sdk/models/operations/getholdsresponse.md
   - docs/sdk/models/operations/gettransactionsrequest.md
-  - docs/sdk/models/operations/gettransactionsresponse.md
   - docs/sdk/models/operations/getwalletrequest.md
-  - docs/sdk/models/operations/getwalletresponse.md
   - docs/sdk/models/operations/getwalletsummaryrequest.md
-  - docs/sdk/models/operations/getwalletsummaryresponse.md
   - docs/sdk/models/operations/listbalancesrequest.md
-  - docs/sdk/models/operations/listbalancesresponse.md
   - docs/sdk/models/operations/listwalletsrequest.md
-  - docs/sdk/models/operations/listwalletsresponse.md
   - docs/sdk/models/operations/updatewalletrequestbody.md
   - docs/sdk/models/operations/updatewalletrequest.md
   - docs/sdk/models/operations/updatewalletresponse.md
   - docs/sdk/models/operations/voidholdrequest.md
   - docs/sdk/models/operations/voidholdresponse.md
-  - docs/sdk/models/operations/walletsgetserverinforesponse.md
   - docs/sdk/models/operations/activateconfigrequest.md
-  - docs/sdk/models/operations/activateconfigresponse.md
   - docs/sdk/models/operations/changeconfigsecretrequest.md
-  - docs/sdk/models/operations/changeconfigsecretresponse.md
   - docs/sdk/models/operations/deactivateconfigrequest.md
-  - docs/sdk/models/operations/deactivateconfigresponse.md
   - docs/sdk/models/operations/deleteconfigrequest.md
   - docs/sdk/models/operations/deleteconfigresponse.md
   - docs/sdk/models/operations/getmanyconfigsrequest.md
-  - docs/sdk/models/operations/getmanyconfigsresponse.md
-  - docs/sdk/models/operations/insertconfigresponse.md
   - docs/sdk/models/operations/testconfigrequest.md
-  - docs/sdk/models/operations/testconfigresponse.md
   - docs/sdk/models/shared/getversionsresponse.md
   - docs/sdk/models/shared/version.md
   - docs/sdk/models/shared/createclientresponse.md
@@ -940,11 +791,11 @@ generatedFiles:
   - docs/sdk/models/shared/script.md
   - docs/sdk/models/shared/v2errorsenum.md
   - docs/sdk/models/shared/v2bulkresponse.md
-  - docs/sdk/models/shared/v2bulkelementresulterrorschemas.md
-  - docs/sdk/models/shared/v2bulkelementresultdeletemetadataschemas.md
-  - docs/sdk/models/shared/v2bulkelementresultreverttransactionschemas.md
-  - docs/sdk/models/shared/schemas.md
-  - docs/sdk/models/shared/v2bulkelementresultcreatetransactionschemas.md
+  - docs/sdk/models/shared/v2bulkelementresulterror.md
+  - docs/sdk/models/shared/v2bulkelementresultdeletemetadata.md
+  - docs/sdk/models/shared/v2bulkelementresultreverttransaction.md
+  - docs/sdk/models/shared/v2bulkelementresultaddmetadata.md
+  - docs/sdk/models/shared/v2bulkelementresultcreatetransaction.md
   - docs/sdk/models/shared/v2bulkelementresult.md
   - docs/sdk/models/shared/v2transaction.md
   - docs/sdk/models/shared/v2posting.md
@@ -1160,8 +1011,8 @@ generatedFiles:
   - docs/sdk/models/shared/paymentserrorsenum.md
   - docs/sdk/models/shared/addaccounttopoolrequest.md
   - docs/sdk/models/shared/transferresponse.md
-  - docs/sdk/models/shared/connector.md
   - docs/sdk/models/shared/transferrequest.md
+  - docs/sdk/models/shared/connector.md
   - docs/sdk/models/shared/paymentsaccountresponse.md
   - docs/sdk/models/shared/paymentsaccountraw.md
   - docs/sdk/models/shared/paymentsaccount.md
@@ -1314,14 +1165,14 @@ generatedFiles:
   - docs/sdk/models/errors/v2errorresponse.md
   - docs/sdk/models/errors/errorcode.md
   - docs/sdk/models/errors/errort.md
-  - docs/sdk/models/errors/schemaserrorcode.md
+  - docs/sdk/models/errors/v2errorerrorcode.md
   - docs/sdk/models/errors/v2error.md
   - docs/sdk/models/errors/paymentserrorresponse.md
   - docs/sdk/models/errors/reconciliationerrorresponse.md
-  - docs/sdk/models/errors/schemaswalletserrorresponseerrorcode.md
+  - docs/sdk/models/errors/walletserrorresponseerrorcode.md
   - docs/sdk/models/errors/walletserrorresponse.md
   - docs/sdk/models/errors/webhookserrorresponse.md
-  - docs/sdks/sdk/README.md
+  - docs/sdks/formance/README.md
   - docs/sdks/auth/README.md
   - docs/sdks/ledger/README.md
   - docs/sdks/orchestration/README.md
@@ -1335,3 +1186,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - src/hooks/clientcredentials.ts

@@ -174,9 +174,14 @@ export function resolveGlobalSecurity(
 ): SecurityState | null {
     return resolveSecurity([
         {
-            fieldName: "Authorization",
-            type: "oauth2",
-            value: security?.authorization,
+            fieldName: "clientID",
+            type: "oauth2:client_credentials",
+            value: security?.clientID,
+        },
+        {
+            fieldName: "clientSecret",
+            type: "oauth2:client_credentials",
+            value: security?.clientSecret,
         },
     ]);
 }

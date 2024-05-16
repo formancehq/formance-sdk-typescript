@@ -6,108 +6,41 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type ConnectorsTransferRequest = {
-    transferRequest: shared.TransferRequest;
     /**
      * The name of the connector.
      */
     connector: shared.Connector;
-};
-
-export type ConnectorsTransferResponse = {
-    /**
-     * HTTP response content type for this operation
-     */
-    contentType: string;
-    /**
-     * HTTP response status code for this operation
-     */
-    statusCode: number;
-    /**
-     * Raw HTTP response; suitable for custom response parsing
-     */
-    rawResponse: Response;
-    /**
-     * OK
-     */
-    transferResponse?: shared.TransferResponse | undefined;
+    transferRequest: shared.TransferRequest;
 };
 
 /** @internal */
 export namespace ConnectorsTransferRequest$ {
     export const inboundSchema: z.ZodType<ConnectorsTransferRequest, z.ZodTypeDef, unknown> = z
         .object({
+            connector: shared.Connector$.inboundSchema,
             TransferRequest: shared.TransferRequest$.inboundSchema,
-            connector: shared.Connector$,
         })
         .transform((v) => {
             return {
-                transferRequest: v.TransferRequest,
                 connector: v.connector,
+                transferRequest: v.TransferRequest,
             };
         });
 
     export type Outbound = {
+        connector: string;
         TransferRequest: shared.TransferRequest$.Outbound;
-        connector: shared.Connector;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsTransferRequest> = z
         .object({
+            connector: shared.Connector$.outboundSchema,
             transferRequest: shared.TransferRequest$.outboundSchema,
-            connector: shared.Connector$,
         })
         .transform((v) => {
             return {
-                TransferRequest: v.transferRequest,
                 connector: v.connector,
-            };
-        });
-}
-
-/** @internal */
-export namespace ConnectorsTransferResponse$ {
-    export const inboundSchema: z.ZodType<ConnectorsTransferResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ContentType: z.string(),
-            StatusCode: z.number().int(),
-            RawResponse: z.instanceof(Response),
-            TransferResponse: shared.TransferResponse$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                contentType: v.ContentType,
-                statusCode: v.StatusCode,
-                rawResponse: v.RawResponse,
-                ...(v.TransferResponse === undefined
-                    ? null
-                    : { transferResponse: v.TransferResponse }),
-            };
-        });
-
-    export type Outbound = {
-        ContentType: string;
-        StatusCode: number;
-        RawResponse: never;
-        TransferResponse?: shared.TransferResponse$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsTransferResponse> = z
-        .object({
-            contentType: z.string(),
-            statusCode: z.number().int(),
-            rawResponse: z.instanceof(Response).transform(() => {
-                throw new Error("Response cannot be serialized");
-            }),
-            transferResponse: shared.TransferResponse$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ContentType: v.contentType,
-                StatusCode: v.statusCode,
-                RawResponse: v.rawResponse,
-                ...(v.transferResponse === undefined
-                    ? null
-                    : { TransferResponse: v.transferResponse }),
+                TransferRequest: v.transferRequest,
             };
         });
 }

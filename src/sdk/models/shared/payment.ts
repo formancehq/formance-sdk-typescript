@@ -55,13 +55,13 @@ export namespace Payment$ {
             id: z.string(),
             initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(z.record(z.string())),
-            provider: Connector$.optional(),
+            provider: Connector$.inboundSchema.optional(),
             raw: z.nullable(z.lazy(() => Raw$.inboundSchema)),
             reference: z.string(),
-            scheme: PaymentScheme$,
+            scheme: PaymentScheme$.inboundSchema,
             sourceAccountID: z.string(),
-            status: PaymentStatus$,
-            type: PaymentType$,
+            status: PaymentStatus$.inboundSchema,
+            type: PaymentType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -94,13 +94,13 @@ export namespace Payment$ {
         id: string;
         initialAmount: number;
         metadata: Record<string, string> | null;
-        provider?: Connector | undefined;
+        provider?: string | undefined;
         raw: Raw$.Outbound | null;
         reference: string;
-        scheme: PaymentScheme;
+        scheme: string;
         sourceAccountID: string;
-        status: PaymentStatus;
-        type: PaymentType;
+        status: string;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Payment> = z
@@ -114,13 +114,13 @@ export namespace Payment$ {
             id: z.string(),
             initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(z.record(z.string())),
-            provider: Connector$.optional(),
+            provider: Connector$.outboundSchema.optional(),
             raw: z.nullable(z.lazy(() => Raw$.outboundSchema)),
             reference: z.string(),
-            scheme: PaymentScheme$,
+            scheme: PaymentScheme$.outboundSchema,
             sourceAccountID: z.string(),
-            status: PaymentStatus$,
-            type: PaymentType$,
+            status: PaymentStatus$.outboundSchema,
+            type: PaymentType$.outboundSchema,
         })
         .transform((v) => {
             return {

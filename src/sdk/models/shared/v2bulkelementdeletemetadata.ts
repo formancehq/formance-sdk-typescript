@@ -25,7 +25,7 @@ export namespace V2BulkElementDeleteMetadataData$ {
             .object({
                 key: z.string(),
                 targetId: V2TargetId$.inboundSchema,
-                targetType: V2TargetType$,
+                targetType: V2TargetType$.inboundSchema,
             })
             .transform((v) => {
                 return {
@@ -38,7 +38,7 @@ export namespace V2BulkElementDeleteMetadataData$ {
     export type Outbound = {
         key: string;
         targetId: V2TargetId$.Outbound;
-        targetType: V2TargetType;
+        targetType: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -49,7 +49,7 @@ export namespace V2BulkElementDeleteMetadataData$ {
         .object({
             key: z.string(),
             targetId: V2TargetId$.outboundSchema,
-            targetType: V2TargetType$,
+            targetType: V2TargetType$.outboundSchema,
         })
         .transform((v) => {
             return {
