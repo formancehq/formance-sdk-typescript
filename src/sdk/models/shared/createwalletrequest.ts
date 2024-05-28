@@ -8,7 +8,7 @@ export type CreateWalletRequest = {
     /**
      * Custom metadata to attach to this wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     name: string;
 };
 
@@ -27,7 +27,7 @@ export namespace CreateWalletRequest$ {
         });
 
     export type Outbound = {
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         name: string;
     };
 

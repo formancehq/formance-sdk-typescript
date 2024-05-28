@@ -14,5 +14,7 @@ export enum OrchestrationPaymentStatus {
 }
 
 /** @internal */
-export const OrchestrationPaymentStatus$: z.ZodNativeEnum<typeof OrchestrationPaymentStatus> =
-    z.nativeEnum(OrchestrationPaymentStatus);
+export namespace OrchestrationPaymentStatus$ {
+    export const inboundSchema = z.nativeEnum(OrchestrationPaymentStatus);
+    export const outboundSchema = inboundSchema;
+}

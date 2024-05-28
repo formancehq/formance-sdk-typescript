@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type PolicyRequest = {
     ledgerName: string;
-    ledgerQuery: Record<string, any>;
+    ledgerQuery: { [k: string]: any };
     name: string;
     paymentsPoolID: string;
 };
@@ -31,7 +31,7 @@ export namespace PolicyRequest$ {
 
     export type Outbound = {
         ledgerName: string;
-        ledgerQuery: Record<string, any>;
+        ledgerQuery: { [k: string]: any };
         name: string;
         paymentsPoolID: string;
     };

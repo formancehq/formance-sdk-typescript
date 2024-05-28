@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type WorkflowConfig = {
     name?: string | undefined;
-    stages: Array<Record<string, any>>;
+    stages: Array<{ [k: string]: any }>;
 };
 
 /** @internal */
@@ -25,7 +25,7 @@ export namespace WorkflowConfig$ {
 
     export type Outbound = {
         name?: string | undefined;
-        stages: Array<Record<string, any>>;
+        stages: Array<{ [k: string]: any }>;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowConfig> = z

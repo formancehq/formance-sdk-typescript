@@ -36,7 +36,7 @@ export type V2GetVolumesWithBalancesRequest = {
      *
      */
     pageSize?: number | undefined;
-    query?: Record<string, any> | undefined;
+    query?: { [k: string]: any } | undefined;
     startTime?: Date | undefined;
 };
 
@@ -101,7 +101,7 @@ export namespace V2GetVolumesWithBalancesRequest$ {
         insertionDate?: boolean | undefined;
         ledger: string;
         pageSize?: number | undefined;
-        query?: Record<string, any> | undefined;
+        query?: { [k: string]: any } | undefined;
         startTime?: string | undefined;
     };
 

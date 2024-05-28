@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.SearchResponse](../../sdk/models/operations/searchresponse.md)>**
+**Promise\<[operations.SearchResponse](../../sdk/models/operations/searchresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -94,7 +94,7 @@ run();
 
 ### Response
 
-**Promise<[operations.SearchgetServerInfoResponse](../../sdk/models/operations/searchgetserverinforesponse.md)>**
+**Promise\<[operations.SearchgetServerInfoResponse](../../sdk/models/operations/searchgetserverinforesponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

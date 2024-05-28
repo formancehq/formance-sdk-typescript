@@ -10,7 +10,7 @@ export type Trigger = {
     filter?: string | undefined;
     id: string;
     name?: string | undefined;
-    vars?: Record<string, any> | undefined;
+    vars?: { [k: string]: any } | undefined;
     workflowID: string;
 };
 
@@ -47,7 +47,7 @@ export namespace Trigger$ {
         filter?: string | undefined;
         id: string;
         name?: string | undefined;
-        vars?: Record<string, any> | undefined;
+        vars?: { [k: string]: any } | undefined;
         workflowID: string;
     };
 

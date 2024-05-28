@@ -7,7 +7,7 @@ import * as z from "zod";
 export type ClientSecret = {
     id: string;
     lastDigits: string;
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     name: string;
 };
 
@@ -32,7 +32,7 @@ export namespace ClientSecret$ {
     export type Outbound = {
         id: string;
         lastDigits: string;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         name: string;
     };
 

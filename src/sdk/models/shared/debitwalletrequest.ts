@@ -14,7 +14,7 @@ export type DebitWalletRequest = {
     /**
      * Metadata associated with the wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     /**
      * Set to true to create a pending hold. If false, the wallet will be debited immediately.
      */
@@ -58,7 +58,7 @@ export namespace DebitWalletRequest$ {
         balances?: Array<string> | undefined;
         description?: string | undefined;
         destination?: Subject$.Outbound | undefined;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         pending?: boolean | undefined;
         timestamp?: string | undefined;
     };

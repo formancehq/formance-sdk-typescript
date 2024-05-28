@@ -16,7 +16,7 @@ export type TransferInitiationRequest = {
     connectorID?: string | undefined;
     description: string;
     destinationAccountID: string;
-    metadata?: Record<string, string> | null | undefined;
+    metadata?: { [k: string]: string } | null | undefined;
     provider?: Connector | undefined;
     reference: string;
     scheduledAt: Date;
@@ -26,8 +26,10 @@ export type TransferInitiationRequest = {
 };
 
 /** @internal */
-export const TransferInitiationRequestType$: z.ZodNativeEnum<typeof TransferInitiationRequestType> =
-    z.nativeEnum(TransferInitiationRequestType);
+export namespace TransferInitiationRequestType$ {
+    export const inboundSchema = z.nativeEnum(TransferInitiationRequestType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace TransferInitiationRequest$ {
@@ -39,14 +41,14 @@ export namespace TransferInitiationRequest$ {
             description: z.string(),
             destinationAccountID: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
-            provider: Connector$.optional(),
+            provider: Connector$.inboundSchema.optional(),
             reference: z.string(),
             scheduledAt: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             sourceAccountID: z.string(),
-            type: TransferInitiationRequestType$,
+            type: TransferInitiationRequestType$.inboundSchema,
             validated: z.boolean(),
         })
         .transform((v) => {
@@ -72,12 +74,12 @@ export namespace TransferInitiationRequest$ {
         connectorID?: string | undefined;
         description: string;
         destinationAccountID: string;
-        metadata?: Record<string, string> | null | undefined;
-        provider?: Connector | undefined;
+        metadata?: { [k: string]: string } | null | undefined;
+        provider?: string | undefined;
         reference: string;
         scheduledAt: string;
         sourceAccountID: string;
-        type: TransferInitiationRequestType;
+        type: string;
         validated: boolean;
     };
 
@@ -89,11 +91,11 @@ export namespace TransferInitiationRequest$ {
             description: z.string(),
             destinationAccountID: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
-            provider: Connector$.optional(),
+            provider: Connector$.outboundSchema.optional(),
             reference: z.string(),
             scheduledAt: z.date().transform((v) => v.toISOString()),
             sourceAccountID: z.string(),
-            type: TransferInitiationRequestType$,
+            type: TransferInitiationRequestType$.outboundSchema,
             validated: z.boolean(),
         })
         .transform((v) => {

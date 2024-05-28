@@ -19,4 +19,7 @@ export enum V2ErrorsEnum {
 }
 
 /** @internal */
-export const V2ErrorsEnum$: z.ZodNativeEnum<typeof V2ErrorsEnum> = z.nativeEnum(V2ErrorsEnum);
+export namespace V2ErrorsEnum$ {
+    export const inboundSchema = z.nativeEnum(V2ErrorsEnum);
+    export const outboundSchema = inboundSchema;
+}

@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type V2AggregateBalancesResponse = {
-    data: Record<string, bigint>;
+    data: { [k: string]: bigint };
 };
 
 /** @internal */
@@ -21,7 +21,7 @@ export namespace V2AggregateBalancesResponse$ {
         });
 
     export type Outbound = {
-        data: Record<string, number>;
+        data: { [k: string]: number };
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AggregateBalancesResponse> = z

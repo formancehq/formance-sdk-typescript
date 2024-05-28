@@ -7,10 +7,10 @@ import * as z from "zod";
 
 export type AccountWithVolumesAndBalances = {
     address: string;
-    balances?: Record<string, bigint> | undefined;
-    metadata?: Record<string, any> | undefined;
+    balances?: { [k: string]: bigint } | undefined;
+    metadata?: { [k: string]: any } | undefined;
     type?: string | undefined;
-    volumes?: Record<string, Volume> | undefined;
+    volumes?: { [k: string]: Volume } | undefined;
 };
 
 /** @internal */
@@ -35,10 +35,10 @@ export namespace AccountWithVolumesAndBalances$ {
 
     export type Outbound = {
         address: string;
-        balances?: Record<string, number> | undefined;
-        metadata?: Record<string, any> | undefined;
+        balances?: { [k: string]: number } | undefined;
+        metadata?: { [k: string]: any } | undefined;
         type?: string | undefined;
-        volumes?: Record<string, Volume$.Outbound> | undefined;
+        volumes?: { [k: string]: Volume$.Outbound } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountWithVolumesAndBalances> =

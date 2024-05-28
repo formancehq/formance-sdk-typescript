@@ -10,7 +10,7 @@ import * as z from "zod";
 export type StageSend = {
     amount?: Monetary | undefined;
     destination?: StageSendDestination | undefined;
-    metadata?: Record<string, string> | undefined;
+    metadata?: { [k: string]: string } | undefined;
     source?: StageSendSource | undefined;
     timestamp?: Date | undefined;
 };
@@ -42,7 +42,7 @@ export namespace StageSend$ {
     export type Outbound = {
         amount?: Monetary$.Outbound | undefined;
         destination?: StageSendDestination$.Outbound | undefined;
-        metadata?: Record<string, string> | undefined;
+        metadata?: { [k: string]: string } | undefined;
         source?: StageSendSource$.Outbound | undefined;
         timestamp?: string | undefined;
     };

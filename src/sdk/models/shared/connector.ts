@@ -19,4 +19,7 @@ export enum Connector {
 }
 
 /** @internal */
-export const Connector$: z.ZodNativeEnum<typeof Connector> = z.nativeEnum(Connector);
+export namespace Connector$ {
+    export const inboundSchema = z.nativeEnum(Connector);
+    export const outboundSchema = inboundSchema;
+}

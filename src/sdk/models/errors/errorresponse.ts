@@ -49,7 +49,7 @@ export namespace ErrorResponse$ {
     export const inboundSchema: z.ZodType<ErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
             details: z.string().optional(),
-            errorCode: shared.ErrorsEnum$,
+            errorCode: shared.ErrorsEnum$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -62,7 +62,7 @@ export namespace ErrorResponse$ {
 
     export type Outbound = {
         details?: string | undefined;
-        errorCode: shared.ErrorsEnum;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -73,7 +73,7 @@ export namespace ErrorResponse$ {
             z
                 .object({
                     details: z.string().optional(),
-                    errorCode: shared.ErrorsEnum$,
+                    errorCode: shared.ErrorsEnum$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

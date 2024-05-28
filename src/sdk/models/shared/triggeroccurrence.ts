@@ -8,7 +8,7 @@ import * as z from "zod";
 export type TriggerOccurrence = {
     date: Date;
     error?: string | undefined;
-    event: Record<string, any>;
+    event: { [k: string]: any };
     triggerID: string;
     workflowInstance?: WorkflowInstance | undefined;
     workflowInstanceID?: string | undefined;
@@ -46,7 +46,7 @@ export namespace TriggerOccurrence$ {
     export type Outbound = {
         date: string;
         error?: string | undefined;
-        event: Record<string, any>;
+        event: { [k: string]: any };
         triggerID: string;
         workflowInstance?: WorkflowInstance$.Outbound | undefined;
         workflowInstanceID?: string | undefined;

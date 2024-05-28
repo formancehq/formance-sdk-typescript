@@ -7,7 +7,7 @@ import * as z from "zod";
 export type V2Ledger = {
     addedAt: Date;
     bucket: string;
-    metadata?: Record<string, string> | undefined;
+    metadata?: { [k: string]: string } | undefined;
     name: string;
 };
 
@@ -35,7 +35,7 @@ export namespace V2Ledger$ {
     export type Outbound = {
         addedAt: string;
         bucket: string;
-        metadata?: Record<string, string> | undefined;
+        metadata?: { [k: string]: string } | undefined;
         name: string;
     };
 

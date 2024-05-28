@@ -6,7 +6,7 @@ import { V2Posting, V2Posting$ } from "./v2posting";
 import * as z from "zod";
 
 export type OrchestrationV2Transaction = {
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     postings: Array<V2Posting>;
     reference?: string | undefined;
     timestamp: Date;
@@ -37,7 +37,7 @@ export namespace OrchestrationV2Transaction$ {
         });
 
     export type Outbound = {
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         postings: Array<V2Posting$.Outbound>;
         reference?: string | undefined;
         timestamp: string;

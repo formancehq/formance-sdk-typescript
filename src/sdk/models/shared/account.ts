@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type Account = {
     address: string;
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     type?: string | undefined;
 };
 
@@ -28,7 +28,7 @@ export namespace Account$ {
 
     export type Outbound = {
         address: string;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         type?: string | undefined;
     };
 

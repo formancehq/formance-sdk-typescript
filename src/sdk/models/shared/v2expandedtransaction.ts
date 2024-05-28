@@ -8,10 +8,10 @@ import * as z from "zod";
 
 export type V2ExpandedTransaction = {
     id: bigint;
-    metadata: Record<string, string>;
-    postCommitVolumes?: Record<string, Record<string, V2Volume>> | undefined;
+    metadata: { [k: string]: string };
+    postCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
     postings: Array<V2Posting>;
-    preCommitVolumes?: Record<string, Record<string, V2Volume>> | undefined;
+    preCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
     reference?: string | undefined;
     reverted: boolean;
     timestamp: Date;
@@ -52,10 +52,10 @@ export namespace V2ExpandedTransaction$ {
 
     export type Outbound = {
         id: number;
-        metadata: Record<string, string>;
-        postCommitVolumes?: Record<string, Record<string, V2Volume$.Outbound>> | undefined;
+        metadata: { [k: string]: string };
+        postCommitVolumes?: { [k: string]: { [k: string]: V2Volume$.Outbound } } | undefined;
         postings: Array<V2Posting$.Outbound>;
-        preCommitVolumes?: Record<string, Record<string, V2Volume$.Outbound>> | undefined;
+        preCommitVolumes?: { [k: string]: { [k: string]: V2Volume$.Outbound } } | undefined;
         reference?: string | undefined;
         reverted: boolean;
         timestamp: string;

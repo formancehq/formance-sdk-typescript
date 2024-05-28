@@ -8,7 +8,7 @@ export type AddMetadataOnTransactionRequest = {
     /**
      * metadata
      */
-    requestBody?: Record<string, any> | null | undefined;
+    requestBody?: { [k: string]: any } | null | undefined;
     /**
      * Name of the ledger.
      */
@@ -52,7 +52,7 @@ export namespace AddMetadataOnTransactionRequest$ {
             });
 
     export type Outbound = {
-        RequestBody?: Record<string, any> | null | undefined;
+        RequestBody?: { [k: string]: any } | null | undefined;
         ledger: string;
         txid: number;
     };

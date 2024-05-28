@@ -20,7 +20,7 @@ export type WalletWithBalances = {
     /**
      * Metadata associated with the wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     name: string;
 };
 
@@ -81,7 +81,7 @@ export namespace WalletWithBalances$ {
         createdAt: string;
         id: string;
         ledger: string;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         name: string;
     };
 

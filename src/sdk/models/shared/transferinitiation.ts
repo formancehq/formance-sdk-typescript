@@ -28,7 +28,7 @@ export type TransferInitiation = {
     error: string;
     id: string;
     initialAmount: bigint;
-    metadata?: Record<string, string> | null | undefined;
+    metadata?: { [k: string]: string } | null | undefined;
     reference: string;
     relatedAdjustments?: Array<TransferInitiationAdjusments> | undefined;
     relatedPayments?: Array<TransferInitiationPayments> | undefined;
@@ -39,8 +39,10 @@ export type TransferInitiation = {
 };
 
 /** @internal */
-export const TransferInitiationType$: z.ZodNativeEnum<typeof TransferInitiationType> =
-    z.nativeEnum(TransferInitiationType);
+export namespace TransferInitiationType$ {
+    export const inboundSchema = z.nativeEnum(TransferInitiationType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace TransferInitiation$ {
@@ -67,8 +69,8 @@ export namespace TransferInitiation$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             sourceAccountID: z.string(),
-            status: TransferInitiationStatus$,
-            type: TransferInitiationType$,
+            status: TransferInitiationStatus$.inboundSchema,
+            type: TransferInitiationType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -106,14 +108,14 @@ export namespace TransferInitiation$ {
         error: string;
         id: string;
         initialAmount: number;
-        metadata?: Record<string, string> | null | undefined;
+        metadata?: { [k: string]: string } | null | undefined;
         reference: string;
         relatedAdjustments?: Array<TransferInitiationAdjusments$.Outbound> | undefined;
         relatedPayments?: Array<TransferInitiationPayments$.Outbound> | undefined;
         scheduledAt: string;
         sourceAccountID: string;
-        status: TransferInitiationStatus;
-        type: TransferInitiationType;
+        status: string;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiation> = z
@@ -133,8 +135,8 @@ export namespace TransferInitiation$ {
             relatedPayments: z.array(TransferInitiationPayments$.outboundSchema).optional(),
             scheduledAt: z.date().transform((v) => v.toISOString()),
             sourceAccountID: z.string(),
-            status: TransferInitiationStatus$,
-            type: TransferInitiationType$,
+            status: TransferInitiationStatus$.outboundSchema,
+            type: TransferInitiationType$.outboundSchema,
         })
         .transform((v) => {
             return {

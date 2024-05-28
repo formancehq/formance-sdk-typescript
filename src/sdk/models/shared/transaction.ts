@@ -7,10 +7,10 @@ import { Volume, Volume$ } from "./volume";
 import * as z from "zod";
 
 export type Transaction = {
-    metadata?: Record<string, any> | null | undefined;
-    postCommitVolumes?: Record<string, Record<string, Volume>> | undefined;
+    metadata?: { [k: string]: any } | null | undefined;
+    postCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
     postings: Array<Posting>;
-    preCommitVolumes?: Record<string, Record<string, Volume>> | undefined;
+    preCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
     reference?: string | undefined;
     timestamp: Date;
     txid: bigint;
@@ -48,10 +48,10 @@ export namespace Transaction$ {
         });
 
     export type Outbound = {
-        metadata?: Record<string, any> | null | undefined;
-        postCommitVolumes?: Record<string, Record<string, Volume$.Outbound>> | undefined;
+        metadata?: { [k: string]: any } | null | undefined;
+        postCommitVolumes?: { [k: string]: { [k: string]: Volume$.Outbound } } | undefined;
         postings: Array<Posting$.Outbound>;
-        preCommitVolumes?: Record<string, Record<string, Volume$.Outbound>> | undefined;
+        preCommitVolumes?: { [k: string]: { [k: string]: Volume$.Outbound } } | undefined;
         reference?: string | undefined;
         timestamp: string;
         txid: number;

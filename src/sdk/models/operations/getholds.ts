@@ -19,7 +19,7 @@ export type GetHoldsRequest = {
     /**
      * Filter holds by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    metadata?: Record<string, string> | undefined;
+    metadata?: { [k: string]: string } | undefined;
     /**
      * The maximum number of results to return per page
      */
@@ -69,7 +69,7 @@ export namespace GetHoldsRequest$ {
 
     export type Outbound = {
         cursor?: string | undefined;
-        metadata?: Record<string, string> | undefined;
+        metadata?: { [k: string]: string } | undefined;
         pageSize: number;
         walletID?: string | undefined;
     };

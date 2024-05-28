@@ -15,7 +15,7 @@ export type V2CreditWalletRequest = {
     /**
      * Metadata associated with the wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     reference?: string | undefined;
     sources: Array<V2Subject>;
     timestamp?: Date | undefined;
@@ -50,7 +50,7 @@ export namespace V2CreditWalletRequest$ {
     export type Outbound = {
         amount: V2Monetary$.Outbound;
         balance?: string | undefined;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         reference?: string | undefined;
         sources: Array<V2Subject$.Outbound>;
         timestamp?: string | undefined;

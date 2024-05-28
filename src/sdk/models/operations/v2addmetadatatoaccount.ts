@@ -12,7 +12,7 @@ export type V2AddMetadataToAccountRequest = {
     /**
      * metadata
      */
-    requestBody: Record<string, string>;
+    requestBody: { [k: string]: string };
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
      *
@@ -72,7 +72,7 @@ export namespace V2AddMetadataToAccountRequest$ {
 
     export type Outbound = {
         "Idempotency-Key"?: string | undefined;
-        RequestBody: Record<string, string>;
+        RequestBody: { [k: string]: string };
         address: string;
         dryRun?: boolean | undefined;
         ledger: string;

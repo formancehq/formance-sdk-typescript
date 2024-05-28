@@ -8,7 +8,7 @@ export type AddMetadataToAccountRequest = {
     /**
      * metadata
      */
-    requestBody: Record<string, any> | null;
+    requestBody: { [k: string]: any } | null;
     /**
      * Exact address of the account. It must match the following regular expressions pattern:
      *
@@ -57,7 +57,7 @@ export namespace AddMetadataToAccountRequest$ {
         });
 
     export type Outbound = {
-        RequestBody: Record<string, any> | null;
+        RequestBody: { [k: string]: any } | null;
         address: string;
         ledger: string;
     };

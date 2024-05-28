@@ -6,7 +6,7 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type TestTriggerRequest = {
-    requestBody?: Record<string, any> | undefined;
+    requestBody?: { [k: string]: any } | undefined;
     /**
      * The trigger id
      */
@@ -47,7 +47,7 @@ export namespace TestTriggerRequest$ {
         });
 
     export type Outbound = {
-        RequestBody?: Record<string, any> | undefined;
+        RequestBody?: { [k: string]: any } | undefined;
         triggerID: string;
     };
 

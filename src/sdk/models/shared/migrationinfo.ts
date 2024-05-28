@@ -17,7 +17,10 @@ export type MigrationInfo = {
 };
 
 /** @internal */
-export const State$: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
+export namespace State$ {
+    export const inboundSchema = z.nativeEnum(State);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace MigrationInfo$ {
@@ -29,7 +32,7 @@ export namespace MigrationInfo$ {
                 .transform((v) => new Date(v))
                 .optional(),
             name: z.string().optional(),
-            state: State$.optional(),
+            state: State$.inboundSchema.optional(),
             version: z.number().int().optional(),
         })
         .transform((v) => {
@@ -44,7 +47,7 @@ export namespace MigrationInfo$ {
     export type Outbound = {
         date?: string | undefined;
         name?: string | undefined;
-        state?: State | undefined;
+        state?: string | undefined;
         version?: number | undefined;
     };
 
@@ -55,7 +58,7 @@ export namespace MigrationInfo$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             name: z.string().optional(),
-            state: State$.optional(),
+            state: State$.outboundSchema.optional(),
             version: z.number().int().optional(),
         })
         .transform((v) => {

@@ -23,7 +23,7 @@ export namespace ConnectorsResponseData$ {
             connectorID: z.string(),
             enabled: z.boolean().optional(),
             name: z.string(),
-            provider: Connector$,
+            provider: Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -38,7 +38,7 @@ export namespace ConnectorsResponseData$ {
         connectorID: string;
         enabled?: boolean | undefined;
         name: string;
-        provider: Connector;
+        provider: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsResponseData> = z
@@ -46,7 +46,7 @@ export namespace ConnectorsResponseData$ {
             connectorID: z.string(),
             enabled: z.boolean().optional(),
             name: z.string(),
-            provider: Connector$,
+            provider: Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

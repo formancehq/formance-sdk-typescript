@@ -19,7 +19,7 @@ export type ListWalletsRequest = {
     /**
      * Filter wallets by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    metadata?: Record<string, string> | undefined;
+    metadata?: { [k: string]: string } | undefined;
     /**
      * Filter on wallet name
      */
@@ -69,7 +69,7 @@ export namespace ListWalletsRequest$ {
 
     export type Outbound = {
         cursor?: string | undefined;
-        metadata?: Record<string, string> | undefined;
+        metadata?: { [k: string]: string } | undefined;
         name?: string | undefined;
         pageSize: number;
     };

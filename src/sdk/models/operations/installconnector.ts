@@ -37,7 +37,7 @@ export namespace InstallConnectorRequest$ {
     export const inboundSchema: z.ZodType<InstallConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -48,13 +48,13 @@ export namespace InstallConnectorRequest$ {
 
     export type Outbound = {
         ConnectorConfig: shared.ConnectorConfig$.Outbound;
-        connector: shared.Connector;
+        connector: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, InstallConnectorRequest> = z
         .object({
             connectorConfig: shared.ConnectorConfig$.outboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

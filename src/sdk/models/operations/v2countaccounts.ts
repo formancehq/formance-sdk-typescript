@@ -10,7 +10,7 @@ export type V2CountAccountsRequest = {
      */
     ledger: string;
     pit?: Date | undefined;
-    query?: Record<string, any> | undefined;
+    query?: { [k: string]: any } | undefined;
 };
 
 export type V2CountAccountsResponse = {
@@ -18,7 +18,7 @@ export type V2CountAccountsResponse = {
      * HTTP response content type for this operation
      */
     contentType: string;
-    headers: Record<string, Array<string>>;
+    headers: { [k: string]: Array<string> };
     /**
      * HTTP response status code for this operation
      */
@@ -52,7 +52,7 @@ export namespace V2CountAccountsRequest$ {
     export type Outbound = {
         ledger: string;
         pit?: string | undefined;
-        query?: Record<string, any> | undefined;
+        query?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CountAccountsRequest> = z
@@ -93,7 +93,7 @@ export namespace V2CountAccountsResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Headers: Record<string, Array<string>>;
+        Headers: { [k: string]: Array<string> };
         StatusCode: number;
         RawResponse: never;
     };

@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type BalanceWithAssets = {
-    assets: Record<string, bigint>;
+    assets: { [k: string]: bigint };
     expiresAt?: Date | undefined;
     name: string;
     priority?: bigint | undefined;
@@ -37,7 +37,7 @@ export namespace BalanceWithAssets$ {
         });
 
     export type Outbound = {
-        assets: Record<string, number>;
+        assets: { [k: string]: number };
         expiresAt?: string | undefined;
         name: string;
         priority?: number | undefined;

@@ -15,7 +15,7 @@ export type Hold = {
     /**
      * Metadata associated with the hold.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     /**
      * The ID of the wallet the hold is associated with.
      */
@@ -46,7 +46,7 @@ export namespace Hold$ {
         description: string;
         destination?: Subject$.Outbound | undefined;
         id: string;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         walletID: string;
     };
 

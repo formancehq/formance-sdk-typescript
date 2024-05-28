@@ -31,7 +31,7 @@ export type ResetConnectorResponse = {
 export namespace ResetConnectorRequest$ {
     export const inboundSchema: z.ZodType<ResetConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -40,12 +40,12 @@ export namespace ResetConnectorRequest$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResetConnectorRequest> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

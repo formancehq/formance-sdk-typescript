@@ -39,7 +39,7 @@ export type ReadConnectorConfigV1Response = {
 export namespace ReadConnectorConfigV1Request$ {
     export const inboundSchema: z.ZodType<ReadConnectorConfigV1Request, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
         })
         .transform((v) => {
@@ -50,13 +50,13 @@ export namespace ReadConnectorConfigV1Request$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadConnectorConfigV1Request> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
             connectorId: z.string(),
         })
         .transform((v) => {

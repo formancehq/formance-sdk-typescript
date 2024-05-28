@@ -17,8 +17,10 @@ export type V2MigrationInfo = {
 };
 
 /** @internal */
-export const V2MigrationInfoState$: z.ZodNativeEnum<typeof V2MigrationInfoState> =
-    z.nativeEnum(V2MigrationInfoState);
+export namespace V2MigrationInfoState$ {
+    export const inboundSchema = z.nativeEnum(V2MigrationInfoState);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace V2MigrationInfo$ {
@@ -30,7 +32,7 @@ export namespace V2MigrationInfo$ {
                 .transform((v) => new Date(v))
                 .optional(),
             name: z.string().optional(),
-            state: V2MigrationInfoState$.optional(),
+            state: V2MigrationInfoState$.inboundSchema.optional(),
             version: z.number().int().optional(),
         })
         .transform((v) => {
@@ -45,7 +47,7 @@ export namespace V2MigrationInfo$ {
     export type Outbound = {
         date?: string | undefined;
         name?: string | undefined;
-        state?: V2MigrationInfoState | undefined;
+        state?: string | undefined;
         version?: number | undefined;
     };
 
@@ -56,7 +58,7 @@ export namespace V2MigrationInfo$ {
                 .transform((v) => v.toISOString())
                 .optional(),
             name: z.string().optional(),
-            state: V2MigrationInfoState$.optional(),
+            state: V2MigrationInfoState$.outboundSchema.optional(),
             version: z.number().int().optional(),
         })
         .transform((v) => {

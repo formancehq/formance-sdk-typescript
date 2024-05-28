@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 8d7bdbcc690af3ef69375ca5d5487527
-  docVersion: v2.0.0-rc.27
-  speakeasyVersion: 1.286.3
-  generationVersion: 2.329.0
-  releaseVersion: 2.4.0
-  configChecksum: b9583f4dd2b3d1316899dc09bf058bd6
+  docChecksum: bd6950dc66d48923a6e6c0845b94a837
+  docVersion: v2.0.0-rc.30
+  speakeasyVersion: 1.296.1
+  generationVersion: 2.338.1
+  releaseVersion: 2.4.1
+  configChecksum: 215de3275e70135ad7c588a87dd96374
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.4
+    core: 3.9.9
     deprecations: 2.81.1
     errors: 2.81.10
     globalSecurity: 2.82.9
@@ -27,7 +27,7 @@ features:
     nullables: 0.1.0
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
-    unions: 2.85.4
+    unions: 2.85.5
 generatedFiles:
   - src/sdk/auth.ts
   - src/sdk/ledger.ts
@@ -48,6 +48,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
+  - src/lib/is-plain-object.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
   - src/lib/sdks.ts
@@ -57,6 +58,7 @@ generatedFiles:
   - src/sdk/models/errors/sdkerror.ts
   - src/sdk/models/errors/sdkvalidationerror.ts
   - src/sdk/types/blobs.ts
+  - src/sdk/types/enums.ts
   - src/sdk/types/index.ts
   - src/sdk/types/operations.ts
   - src/sdk/types/rfcdate.ts

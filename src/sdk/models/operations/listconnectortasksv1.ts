@@ -56,7 +56,7 @@ export type ListConnectorTasksV1Response = {
 export namespace ListConnectorTasksV1Request$ {
     export const inboundSchema: z.ZodType<ListConnectorTasksV1Request, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),
@@ -71,7 +71,7 @@ export namespace ListConnectorTasksV1Request$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
         cursor?: string | undefined;
         pageSize: number;
@@ -79,7 +79,7 @@ export namespace ListConnectorTasksV1Request$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ListConnectorTasksV1Request> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
             connectorId: z.string(),
             cursor: z.string().optional(),
             pageSize: z.number().int().default(15),

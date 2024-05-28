@@ -32,4 +32,7 @@ export enum PaymentScheme {
 }
 
 /** @internal */
-export const PaymentScheme$: z.ZodNativeEnum<typeof PaymentScheme> = z.nativeEnum(PaymentScheme);
+export namespace PaymentScheme$ {
+    export const inboundSchema = z.nativeEnum(PaymentScheme);
+    export const outboundSchema = inboundSchema;
+}

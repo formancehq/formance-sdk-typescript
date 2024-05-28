@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateClientResponse](../../sdk/models/operations/createclientresponse.md)>**
+**Promise\<[operations.CreateClientResponse](../../sdk/models/operations/createclientresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -92,7 +92,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateSecretResponse](../../sdk/models/operations/createsecretresponse.md)>**
+**Promise\<[operations.CreateSecretResponse](../../sdk/models/operations/createsecretresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -135,7 +135,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteClientResponse](../../sdk/models/operations/deleteclientresponse.md)>**
+**Promise\<[operations.DeleteClientResponse](../../sdk/models/operations/deleteclientresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -179,7 +179,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteSecretResponse](../../sdk/models/operations/deletesecretresponse.md)>**
+**Promise\<[operations.DeleteSecretResponse](../../sdk/models/operations/deletesecretresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -219,7 +219,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListClientsResponse](../../sdk/models/operations/listclientsresponse.md)>**
+**Promise\<[operations.ListClientsResponse](../../sdk/models/operations/listclientsresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -259,7 +259,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListUsersResponse](../../sdk/models/operations/listusersresponse.md)>**
+**Promise\<[operations.ListUsersResponse](../../sdk/models/operations/listusersresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -302,7 +302,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadClientResponse](../../sdk/models/operations/readclientresponse.md)>**
+**Promise\<[operations.ReadClientResponse](../../sdk/models/operations/readclientresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -345,7 +345,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadUserResponse](../../sdk/models/operations/readuserresponse.md)>**
+**Promise\<[operations.ReadUserResponse](../../sdk/models/operations/readuserresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -388,7 +388,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateClientResponse](../../sdk/models/operations/updateclientresponse.md)>**
+**Promise\<[operations.UpdateClientResponse](../../sdk/models/operations/updateclientresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

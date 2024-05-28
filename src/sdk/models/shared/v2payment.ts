@@ -66,10 +66,16 @@ export namespace V2PaymentRaw$ {
 }
 
 /** @internal */
-export const Scheme$: z.ZodNativeEnum<typeof Scheme> = z.nativeEnum(Scheme);
+export namespace Scheme$ {
+    export const inboundSchema = z.nativeEnum(Scheme);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const V2PaymentType$: z.ZodNativeEnum<typeof V2PaymentType> = z.nativeEnum(V2PaymentType);
+export namespace V2PaymentType$ {
+    export const inboundSchema = z.nativeEnum(V2PaymentType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace V2Payment$ {
@@ -86,13 +92,13 @@ export namespace V2Payment$ {
             id: z.string(),
             initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(V2PaymentMetadata$.inboundSchema),
-            provider: V2Connector$.optional(),
+            provider: V2Connector$.inboundSchema.optional(),
             raw: z.nullable(z.lazy(() => V2PaymentRaw$.inboundSchema)),
             reference: z.string(),
-            scheme: Scheme$,
+            scheme: Scheme$.inboundSchema,
             sourceAccountID: z.string(),
-            status: V2PaymentStatus$,
-            type: V2PaymentType$,
+            status: V2PaymentStatus$.inboundSchema,
+            type: V2PaymentType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -123,13 +129,13 @@ export namespace V2Payment$ {
         id: string;
         initialAmount: number;
         metadata: V2PaymentMetadata$.Outbound | null;
-        provider?: V2Connector | undefined;
+        provider?: string | undefined;
         raw: V2PaymentRaw$.Outbound | null;
         reference: string;
-        scheme: Scheme;
+        scheme: string;
         sourceAccountID: string;
-        status: V2PaymentStatus;
-        type: V2PaymentType;
+        status: string;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Payment> = z
@@ -142,13 +148,13 @@ export namespace V2Payment$ {
             id: z.string(),
             initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(V2PaymentMetadata$.outboundSchema),
-            provider: V2Connector$.optional(),
+            provider: V2Connector$.outboundSchema.optional(),
             raw: z.nullable(z.lazy(() => V2PaymentRaw$.outboundSchema)),
             reference: z.string(),
-            scheme: Scheme$,
+            scheme: Scheme$.outboundSchema,
             sourceAccountID: z.string(),
-            status: V2PaymentStatus$,
-            type: V2PaymentType$,
+            status: V2PaymentStatus$.outboundSchema,
+            type: V2PaymentType$.outboundSchema,
         })
         .transform((v) => {
             return {

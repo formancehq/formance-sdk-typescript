@@ -6,7 +6,7 @@ import * as shared from "../shared";
 import * as z from "zod";
 
 export type V2RunWorkflowRequest = {
-    requestBody?: Record<string, string> | undefined;
+    requestBody?: { [k: string]: string } | undefined;
     /**
      * Wait end of the workflow before return
      */
@@ -53,7 +53,7 @@ export namespace V2RunWorkflowRequest$ {
         });
 
     export type Outbound = {
-        RequestBody?: Record<string, string> | undefined;
+        RequestBody?: { [k: string]: string } | undefined;
         wait?: boolean | undefined;
         workflowID: string;
     };

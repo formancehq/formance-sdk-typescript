@@ -7,7 +7,7 @@ import * as z from "zod";
 
 export type OrchestrationTransaction = {
     id: bigint;
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     postings: Array<Posting>;
     reference?: string | undefined;
     reverted: boolean;
@@ -41,7 +41,7 @@ export namespace OrchestrationTransaction$ {
 
     export type Outbound = {
         id: number;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         postings: Array<Posting$.Outbound>;
         reference?: string | undefined;
         reverted: boolean;

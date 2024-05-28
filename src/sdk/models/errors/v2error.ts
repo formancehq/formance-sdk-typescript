@@ -45,14 +45,16 @@ export class V2Error extends Error {
 }
 
 /** @internal */
-export const SchemasErrorCode$: z.ZodNativeEnum<typeof SchemasErrorCode> =
-    z.nativeEnum(SchemasErrorCode);
+export namespace SchemasErrorCode$ {
+    export const inboundSchema = z.nativeEnum(SchemasErrorCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace V2Error$ {
     export const inboundSchema: z.ZodType<V2Error, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: SchemasErrorCode$,
+            errorCode: SchemasErrorCode$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -63,7 +65,7 @@ export namespace V2Error$ {
         });
 
     export type Outbound = {
-        errorCode: SchemasErrorCode;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -73,7 +75,7 @@ export namespace V2Error$ {
         .pipe(
             z
                 .object({
-                    errorCode: SchemasErrorCode$,
+                    errorCode: SchemasErrorCode$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

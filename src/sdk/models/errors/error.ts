@@ -45,13 +45,16 @@ export class ErrorT extends Error {
 }
 
 /** @internal */
-export const ErrorCode$: z.ZodNativeEnum<typeof ErrorCode> = z.nativeEnum(ErrorCode);
+export namespace ErrorCode$ {
+    export const inboundSchema = z.nativeEnum(ErrorCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace ErrorT$ {
     export const inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: ErrorCode$,
+            errorCode: ErrorCode$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -62,7 +65,7 @@ export namespace ErrorT$ {
         });
 
     export type Outbound = {
-        errorCode: ErrorCode;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -72,7 +75,7 @@ export namespace ErrorT$ {
         .pipe(
             z
                 .object({
-                    errorCode: ErrorCode$,
+                    errorCode: ErrorCode$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

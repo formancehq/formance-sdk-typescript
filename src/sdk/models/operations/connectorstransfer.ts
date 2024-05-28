@@ -37,7 +37,7 @@ export namespace ConnectorsTransferRequest$ {
     export const inboundSchema: z.ZodType<ConnectorsTransferRequest, z.ZodTypeDef, unknown> = z
         .object({
             TransferRequest: shared.TransferRequest$.inboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -48,13 +48,13 @@ export namespace ConnectorsTransferRequest$ {
 
     export type Outbound = {
         TransferRequest: shared.TransferRequest$.Outbound;
-        connector: shared.Connector;
+        connector: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsTransferRequest> = z
         .object({
             transferRequest: shared.TransferRequest$.outboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

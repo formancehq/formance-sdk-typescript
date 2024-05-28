@@ -37,7 +37,7 @@ export namespace UpdateConnectorConfigV1Request$ {
     export const inboundSchema: z.ZodType<UpdateConnectorConfigV1Request, z.ZodTypeDef, unknown> = z
         .object({
             ConnectorConfig: shared.ConnectorConfig$.inboundSchema,
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
         })
         .transform((v) => {
@@ -50,7 +50,7 @@ export namespace UpdateConnectorConfigV1Request$ {
 
     export type Outbound = {
         ConnectorConfig: shared.ConnectorConfig$.Outbound;
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
     };
 
@@ -58,7 +58,7 @@ export namespace UpdateConnectorConfigV1Request$ {
         z
             .object({
                 connectorConfig: shared.ConnectorConfig$.outboundSchema,
-                connector: shared.Connector$,
+                connector: shared.Connector$.outboundSchema,
                 connectorId: z.string(),
             })
             .transform((v) => {

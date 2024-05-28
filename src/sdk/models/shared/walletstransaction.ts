@@ -12,10 +12,10 @@ export type WalletsTransaction = {
     /**
      * Metadata associated with the wallet.
      */
-    metadata: Record<string, string>;
-    postCommitVolumes?: Record<string, Record<string, WalletsVolume>> | undefined;
+    metadata: { [k: string]: string };
+    postCommitVolumes?: { [k: string]: { [k: string]: WalletsVolume } } | undefined;
     postings: Array<Posting>;
-    preCommitVolumes?: Record<string, Record<string, WalletsVolume>> | undefined;
+    preCommitVolumes?: { [k: string]: { [k: string]: WalletsVolume } } | undefined;
     reference?: string | undefined;
     timestamp: Date;
 };
@@ -56,10 +56,10 @@ export namespace WalletsTransaction$ {
     export type Outbound = {
         id: number;
         ledger?: string | undefined;
-        metadata: Record<string, string>;
-        postCommitVolumes?: Record<string, Record<string, WalletsVolume$.Outbound>> | undefined;
+        metadata: { [k: string]: string };
+        postCommitVolumes?: { [k: string]: { [k: string]: WalletsVolume$.Outbound } } | undefined;
         postings: Array<Posting$.Outbound>;
-        preCommitVolumes?: Record<string, Record<string, WalletsVolume$.Outbound>> | undefined;
+        preCommitVolumes?: { [k: string]: { [k: string]: WalletsVolume$.Outbound } } | undefined;
         reference?: string | undefined;
         timestamp: string;
     };
