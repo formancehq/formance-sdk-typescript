@@ -11,7 +11,7 @@ export enum V2LogType {
 }
 
 export type V2Log = {
-    data: Record<string, any>;
+    data: { [k: string]: any };
     date: Date;
     hash: string;
     id: bigint;
@@ -19,7 +19,10 @@ export type V2Log = {
 };
 
 /** @internal */
-export const V2LogType$: z.ZodNativeEnum<typeof V2LogType> = z.nativeEnum(V2LogType);
+export namespace V2LogType$ {
+    export const inboundSchema = z.nativeEnum(V2LogType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace V2Log$ {
@@ -32,7 +35,7 @@ export namespace V2Log$ {
                 .transform((v) => new Date(v)),
             hash: z.string(),
             id: z.number().transform((v) => BigInt(v)),
-            type: V2LogType$,
+            type: V2LogType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -45,11 +48,11 @@ export namespace V2Log$ {
         });
 
     export type Outbound = {
-        data: Record<string, any>;
+        data: { [k: string]: any };
         date: string;
         hash: string;
         id: number;
-        type: V2LogType;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Log> = z
@@ -58,7 +61,7 @@ export namespace V2Log$ {
             date: z.date().transform((v) => v.toISOString()),
             hash: z.string(),
             id: z.bigint().transform((v) => Number(v)),
-            type: V2LogType$,
+            type: V2LogType$.outboundSchema,
         })
         .transform((v) => {
             return {

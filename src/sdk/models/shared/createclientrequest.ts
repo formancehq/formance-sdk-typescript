@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type CreateClientRequest = {
     description?: string | undefined;
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     name: string;
     postLogoutRedirectUris?: Array<string> | undefined;
     public?: boolean | undefined;
@@ -45,7 +45,7 @@ export namespace CreateClientRequest$ {
 
     export type Outbound = {
         description?: string | undefined;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         name: string;
         postLogoutRedirectUris?: Array<string> | undefined;
         public?: boolean | undefined;

@@ -16,7 +16,7 @@ export type Variables = {
 
 export type V2TriggerTest = {
     filter?: Filter | undefined;
-    variables?: Record<string, Variables> | undefined;
+    variables?: { [k: string]: Variables } | undefined;
 };
 
 /** @internal */
@@ -99,7 +99,7 @@ export namespace V2TriggerTest$ {
 
     export type Outbound = {
         filter?: Filter$.Outbound | undefined;
-        variables?: Record<string, Variables$.Outbound> | undefined;
+        variables?: { [k: string]: Variables$.Outbound } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TriggerTest> = z

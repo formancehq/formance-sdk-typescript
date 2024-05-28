@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetOIDCWellKnownsResponse](../../sdk/models/operations/getoidcwellknownsresponse.md)>**
+**Promise\<[operations.GetOIDCWellKnownsResponse](../../sdk/models/operations/getoidcwellknownsresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -94,7 +94,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetVersionsResponse](../../sdk/models/operations/getversionsresponse.md)>**
+**Promise\<[operations.GetVersionsResponse](../../sdk/models/operations/getversionsresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

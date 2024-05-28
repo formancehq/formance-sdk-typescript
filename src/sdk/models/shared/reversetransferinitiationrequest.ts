@@ -8,7 +8,7 @@ export type ReverseTransferInitiationRequest = {
     amount: bigint;
     asset: string;
     description: string;
-    metadata: Record<string, string> | null;
+    metadata: { [k: string]: string } | null;
     reference: string;
 };
 
@@ -37,7 +37,7 @@ export namespace ReverseTransferInitiationRequest$ {
         amount: number;
         asset: string;
         description: string;
-        metadata: Record<string, string> | null;
+        metadata: { [k: string]: string } | null;
         reference: string;
     };
 

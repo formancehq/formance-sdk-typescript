@@ -16,4 +16,7 @@ export enum ErrorsEnum {
 }
 
 /** @internal */
-export const ErrorsEnum$: z.ZodNativeEnum<typeof ErrorsEnum> = z.nativeEnum(ErrorsEnum);
+export namespace ErrorsEnum$ {
+    export const inboundSchema = z.nativeEnum(ErrorsEnum);
+    export const outboundSchema = inboundSchema;
+}

@@ -7,9 +7,9 @@ import * as z from "zod";
 
 export type OrchestrationAccount = {
     address: string;
-    effectiveVolumes?: Record<string, Volume> | undefined;
-    metadata: Record<string, string>;
-    volumes?: Record<string, Volume> | undefined;
+    effectiveVolumes?: { [k: string]: Volume } | undefined;
+    metadata: { [k: string]: string };
+    volumes?: { [k: string]: Volume } | undefined;
 };
 
 /** @internal */
@@ -34,9 +34,9 @@ export namespace OrchestrationAccount$ {
 
     export type Outbound = {
         address: string;
-        effectiveVolumes?: Record<string, Volume$.Outbound> | undefined;
-        metadata: Record<string, string>;
-        volumes?: Record<string, Volume$.Outbound> | undefined;
+        effectiveVolumes?: { [k: string]: Volume$.Outbound } | undefined;
+        metadata: { [k: string]: string };
+        volumes?: { [k: string]: Volume$.Outbound } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationAccount> = z

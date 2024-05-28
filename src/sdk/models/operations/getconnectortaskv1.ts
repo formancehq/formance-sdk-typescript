@@ -43,7 +43,7 @@ export type GetConnectorTaskV1Response = {
 export namespace GetConnectorTaskV1Request$ {
     export const inboundSchema: z.ZodType<GetConnectorTaskV1Request, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
             connectorId: z.string(),
             taskId: z.string(),
         })
@@ -56,14 +56,14 @@ export namespace GetConnectorTaskV1Request$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
         connectorId: string;
         taskId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetConnectorTaskV1Request> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
             connectorId: z.string(),
             taskId: z.string(),
         })

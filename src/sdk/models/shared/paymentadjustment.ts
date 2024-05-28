@@ -39,7 +39,7 @@ export namespace PaymentAdjustment$ {
                 .transform((v) => new Date(v)),
             raw: z.lazy(() => PaymentAdjustmentRaw$.inboundSchema),
             reference: z.string(),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -56,7 +56,7 @@ export namespace PaymentAdjustment$ {
         createdAt: string;
         raw: PaymentAdjustmentRaw$.Outbound;
         reference: string;
-        status: PaymentStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentAdjustment> = z
@@ -65,7 +65,7 @@ export namespace PaymentAdjustment$ {
             createdAt: z.date().transform((v) => v.toISOString()),
             raw: z.lazy(() => PaymentAdjustmentRaw$.outboundSchema),
             reference: z.string(),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
         })
         .transform((v) => {
             return {

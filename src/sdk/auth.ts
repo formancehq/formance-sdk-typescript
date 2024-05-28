@@ -8,7 +8,6 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as errors from "./models/errors";
 import * as operations from "./models/operations";
 import * as shared from "./models/shared";
 
@@ -102,27 +101,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateClientResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateClientResponse>()
+            .json(201, operations.CreateClientResponse$, { key: "CreateClientResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -195,27 +179,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateSecretResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateSecretResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateSecretResponse>()
+            .json(200, operations.CreateSecretResponse$, { key: "CreateSecretResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -285,22 +254,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeleteClientResponse>()
+            .void(204, operations.DeleteClientResponse$)
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteClientResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -376,22 +335,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeleteSecretResponse>()
+            .void(204, operations.DeleteSecretResponse$)
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteSecretResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -443,27 +392,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListClientsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListClientsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListClientsResponse>()
+            .json(200, operations.ListClientsResponse$, { key: "ListClientsResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -518,27 +452,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListUsersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListUsersResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListUsersResponse>()
+            .json(200, operations.ListUsersResponse$, { key: "ListUsersResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -608,27 +527,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReadClientResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadClientResponse>()
+            .json(200, operations.ReadClientResponse$, { key: "ReadClientResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -701,27 +605,12 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadUserResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReadUserResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadUserResponse>()
+            .json(200, operations.ReadUserResponse$, { key: "ReadUserResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -792,26 +681,11 @@ export class Auth extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.UpdateClientResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        UpdateClientResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UpdateClientResponse>()
+            .json(200, operations.UpdateClientResponse$, { key: "UpdateClientResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 }

@@ -80,7 +80,7 @@ export namespace TaskBankingCircle$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskBankingCircleState$.inboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
             updatedAt: z
                 .string()
                 .datetime({ offset: true })
@@ -106,7 +106,7 @@ export namespace TaskBankingCircle$ {
         error?: string | undefined;
         id: string;
         state: TaskBankingCircleState$.Outbound;
-        status: PaymentStatus;
+        status: string;
         updatedAt: string;
     };
 
@@ -118,7 +118,7 @@ export namespace TaskBankingCircle$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskBankingCircleState$.outboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
             updatedAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {

@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type UpdateMetadataRequest = {
-    requestBody: Record<string, string> | null;
+    requestBody: { [k: string]: string } | null;
     /**
      * The payment ID.
      */
@@ -42,7 +42,7 @@ export namespace UpdateMetadataRequest$ {
         });
 
     export type Outbound = {
-        RequestBody: Record<string, string> | null;
+        RequestBody: { [k: string]: string } | null;
         paymentId: string;
     };
 

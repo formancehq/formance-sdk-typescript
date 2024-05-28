@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type V2UpdateLedgerMetadataRequest = {
-    requestBody?: Record<string, string> | undefined;
+    requestBody?: { [k: string]: string } | undefined;
     /**
      * Name of the ledger.
      */
@@ -42,7 +42,7 @@ export namespace V2UpdateLedgerMetadataRequest$ {
         });
 
     export type Outbound = {
-        RequestBody?: Record<string, string> | undefined;
+        RequestBody?: { [k: string]: string } | undefined;
         ledger: string;
     };
 

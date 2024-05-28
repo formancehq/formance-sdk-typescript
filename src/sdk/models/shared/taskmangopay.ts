@@ -85,7 +85,7 @@ export namespace TaskMangoPay$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskMangoPayState$.inboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
             updatedAt: z
                 .string()
                 .datetime({ offset: true })
@@ -111,7 +111,7 @@ export namespace TaskMangoPay$ {
         error?: string | undefined;
         id: string;
         state: TaskMangoPayState$.Outbound;
-        status: PaymentStatus;
+        status: string;
         updatedAt: string;
     };
 
@@ -123,7 +123,7 @@ export namespace TaskMangoPay$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskMangoPayState$.outboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
             updatedAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {

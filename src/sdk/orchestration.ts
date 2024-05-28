@@ -111,35 +111,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CancelEventResponse>()
+            .void(204, operations.CancelEventResponse$)
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.CancelEventResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -208,40 +185,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateTriggerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateTriggerResponse>()
+            .json(201, operations.CreateTriggerResponse$, { key: "CreateTriggerResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -310,40 +259,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        CreateWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateWorkflowResponse>()
+            .json(201, operations.CreateWorkflowResponse$, { key: "CreateWorkflowResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -418,35 +339,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeleteTriggerResponse>()
+            .void(204, operations.DeleteTriggerResponse$)
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteTriggerResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -521,35 +419,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeleteWorkflowResponse>()
+            .void(204, operations.DeleteWorkflowResponse$)
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteWorkflowResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -624,40 +499,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetInstanceResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetWorkflowInstanceResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetInstanceResponse>()
+            .json(200, operations.GetInstanceResponse$, { key: "GetWorkflowInstanceResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -732,40 +579,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetInstanceHistoryResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetWorkflowInstanceHistoryResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetInstanceHistoryResponse>()
+            .json(200, operations.GetInstanceHistoryResponse$, {
+                key: "GetWorkflowInstanceHistoryResponse",
+            })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -844,40 +665,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetInstanceStageHistoryResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetWorkflowInstanceHistoryStageResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetInstanceStageHistoryResponse>()
+            .json(200, operations.GetInstanceStageHistoryResponse$, {
+                key: "GetWorkflowInstanceHistoryStageResponse",
+            })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -952,40 +747,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetWorkflowResponse>()
+            .json(200, operations.GetWorkflowResponse$, { key: "GetWorkflowResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1063,40 +830,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListInstancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListRunsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListInstancesResponse>()
+            .json(200, operations.ListInstancesResponse$, { key: "ListRunsResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1167,40 +906,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListTriggersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListTriggersResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListTriggersResponse>()
+            .json(200, operations.ListTriggersResponse$, { key: "ListTriggersResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1275,40 +986,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListTriggersOccurrencesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListTriggersOccurrencesResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListTriggersOccurrencesResponse>()
+            .json(200, operations.ListTriggersOccurrencesResponse$, {
+                key: "ListTriggersOccurrencesResponse",
+            })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1363,40 +1048,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListWorkflowsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ListWorkflowsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListWorkflowsResponse>()
+            .json(200, operations.ListWorkflowsResponse$, { key: "ListWorkflowsResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1450,40 +1107,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.OrchestrationgetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServerInfo: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.OrchestrationgetServerInfoResponse>()
+            .json(200, operations.OrchestrationgetServerInfoResponse$, { key: "ServerInfo" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1558,40 +1187,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ReadTriggerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadTriggerResponse>()
+            .json(200, operations.ReadTriggerResponse$, { key: "ReadTriggerResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1671,40 +1272,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.RunWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        RunWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.RunWorkflowResponse>()
+            .json(201, operations.RunWorkflowResponse$, { key: "RunWorkflowResponse" })
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1780,35 +1353,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorT$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.SendEventResponse>()
+            .void(204, operations.SendEventResponse$)
+            .json("default", errors.ErrorT$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.SendEventResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -1884,40 +1434,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.TestTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2TestTriggerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.TestTriggerResponse>()
+            .json(200, operations.TestTriggerResponse$, { key: "V2TestTriggerResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1992,35 +1514,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CancelEventResponse>()
+            .void(204, operations.V2CancelEventResponse$)
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2CancelEventResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2089,40 +1588,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2CreateTriggerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CreateTriggerResponse>()
+            .json(201, operations.V2CreateTriggerResponse$, { key: "V2CreateTriggerResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2191,40 +1662,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2CreateWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CreateWorkflowResponse>()
+            .json(201, operations.V2CreateWorkflowResponse$, { key: "V2CreateWorkflowResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2299,35 +1742,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2DeleteTriggerResponse>()
+            .void(204, operations.V2DeleteTriggerResponse$)
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2DeleteTriggerResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2402,35 +1822,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2DeleteWorkflowResponse>()
+            .void(204, operations.V2DeleteWorkflowResponse$)
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2DeleteWorkflowResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2505,40 +1902,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetInstanceResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetWorkflowInstanceResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetInstanceResponse>()
+            .json(200, operations.V2GetInstanceResponse$, { key: "V2GetWorkflowInstanceResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2613,40 +1982,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetInstanceHistoryResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetWorkflowInstanceHistoryResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetInstanceHistoryResponse>()
+            .json(200, operations.V2GetInstanceHistoryResponse$, {
+                key: "V2GetWorkflowInstanceHistoryResponse",
+            })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2725,40 +2068,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetInstanceStageHistoryResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetWorkflowInstanceHistoryStageResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetInstanceStageHistoryResponse>()
+            .json(200, operations.V2GetInstanceStageHistoryResponse$, {
+                key: "V2GetWorkflowInstanceHistoryStageResponse",
+            })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2810,40 +2127,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ServerInfo: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetServerInfoResponse>()
+            .json(200, operations.V2GetServerInfoResponse$, { key: "V2ServerInfo" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2918,40 +2207,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetWorkflowResponse>()
+            .json(200, operations.V2GetWorkflowResponse$, { key: "V2GetWorkflowResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3034,40 +2295,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListInstancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ListRunsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListInstancesResponse>()
+            .json(200, operations.V2ListInstancesResponse$, { key: "V2ListRunsResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3143,40 +2376,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListTriggersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ListTriggersResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListTriggersResponse>()
+            .json(200, operations.V2ListTriggersResponse$, { key: "V2ListTriggersResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3259,40 +2464,14 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListTriggersOccurrencesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ListTriggersOccurrencesResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListTriggersOccurrencesResponse>()
+            .json(200, operations.V2ListTriggersOccurrencesResponse$, {
+                key: "V2ListTriggersOccurrencesResponse",
+            })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3367,40 +2546,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListWorkflowsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ListWorkflowsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListWorkflowsResponse>()
+            .json(200, operations.V2ListWorkflowsResponse$, { key: "V2ListWorkflowsResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3475,40 +2626,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ReadTriggerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ReadTriggerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ReadTriggerResponse>()
+            .json(200, operations.V2ReadTriggerResponse$, { key: "V2ReadTriggerResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3588,40 +2711,12 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2RunWorkflowResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2RunWorkflowResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2RunWorkflowResponse>()
+            .json(201, operations.V2RunWorkflowResponse$, { key: "V2RunWorkflowResponse" })
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3697,34 +2792,11 @@ export class Orchestration extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2Error$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2SendEventResponse>()
+            .void(204, operations.V2SendEventResponse$)
+            .json("default", errors.V2Error$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2SendEventResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

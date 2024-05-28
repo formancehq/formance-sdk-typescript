@@ -16,7 +16,7 @@ export type BankAccount = {
     createdAt: Date;
     iban?: string | undefined;
     id: string;
-    metadata?: Record<string, string> | null | undefined;
+    metadata?: { [k: string]: string } | null | undefined;
     name: string;
     provider?: string | undefined;
     relatedAccounts?: Array<BankAccountRelatedAccounts> | undefined;
@@ -70,7 +70,7 @@ export namespace BankAccount$ {
         createdAt: string;
         iban?: string | undefined;
         id: string;
-        metadata?: Record<string, string> | null | undefined;
+        metadata?: { [k: string]: string } | null | undefined;
         name: string;
         provider?: string | undefined;
         relatedAccounts?: Array<BankAccountRelatedAccounts$.Outbound> | undefined;

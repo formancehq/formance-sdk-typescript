@@ -6,7 +6,7 @@ import { Posting, Posting$ } from "./posting";
 import * as z from "zod";
 
 export type TransactionData = {
-    metadata?: Record<string, any> | null | undefined;
+    metadata?: { [k: string]: any } | null | undefined;
     postings: Array<Posting>;
     reference?: string | undefined;
     timestamp?: Date | undefined;
@@ -35,7 +35,7 @@ export namespace TransactionData$ {
         });
 
     export type Outbound = {
-        metadata?: Record<string, any> | null | undefined;
+        metadata?: { [k: string]: any } | null | undefined;
         postings: Array<Posting$.Outbound>;
         reference?: string | undefined;
         timestamp?: string | undefined;

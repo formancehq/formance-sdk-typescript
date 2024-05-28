@@ -108,40 +108,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateTransactionsResponse>()
+            .json(200, operations.CreateTransactionsResponse$, { key: "TransactionsResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -218,35 +190,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.AddMetadataOnTransactionResponse>()
+            .void(204, operations.AddMetadataOnTransactionResponse$)
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.AddMetadataOnTransactionResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -323,35 +272,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.AddMetadataToAccountResponse>()
+            .void(204, operations.AddMetadataToAccountResponse$)
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.AddMetadataToAccountResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -429,37 +355,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            return schemas$.parse(
-                this.unpackHeaders(response.headers),
-                (val$) =>
-                    operations.CountAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Headers: val$,
-                    }),
-                "Response validation failed"
-            );
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CountAccountsResponse>()
+            .void(200, operations.CountAccountsResponse$, { hdrs: true })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -554,37 +455,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            return schemas$.parse(
-                this.unpackHeaders(response.headers),
-                (val$) =>
-                    operations.CountTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Headers: val$,
-                    }),
-                "Response validation failed"
-            );
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CountTransactionsResponse>()
+            .void(200, operations.CountTransactionsResponse$, { hdrs: true })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -662,40 +538,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateTransactionResponse>()
+            .json(200, operations.CreateTransactionResponse$, { key: "TransactionsResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -771,40 +619,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetAccountResponse>()
+            .json(200, operations.GetAccountResponse$, { key: "AccountResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -887,40 +707,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BalancesCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetBalancesResponse>()
+            .json(200, operations.GetBalancesResponse$, { key: "BalancesCursorResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1003,40 +795,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetBalancesAggregatedResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AggregateBalancesResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetBalancesAggregatedResponse>()
+            .json(200, operations.GetBalancesAggregatedResponse$, {
+                key: "AggregateBalancesResponse",
+            })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1088,40 +854,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConfigInfoResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetInfoResponse>()
+            .json(200, operations.GetInfoResponse$, { key: "ConfigInfoResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1191,40 +929,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetLedgerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        LedgerInfoResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetLedgerInfoResponse>()
+            .json(200, operations.GetLedgerInfoResponse$, { key: "LedgerInfoResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1294,40 +1004,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetMappingResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        MappingResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetMappingResponse>()
+            .json(200, operations.GetMappingResponse$, { key: "MappingResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1403,40 +1085,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetTransactionResponse>()
+            .json(200, operations.GetTransactionResponse$, { key: "TransactionResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1531,40 +1185,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AccountsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListAccountsResponse>()
+            .json(200, operations.ListAccountsResponse$, { key: "AccountsCursorResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1654,40 +1280,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListLogsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        LogsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListLogsResponse>()
+            .json(200, operations.ListLogsResponse$, { key: "LogsCursorResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1791,40 +1389,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListTransactionsResponse>()
+            .json(200, operations.ListTransactionsResponse$, { key: "TransactionsCursorResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1898,40 +1468,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadStatsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        StatsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadStatsResponse>()
+            .json(200, operations.ReadStatsResponse$, { key: "StatsResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2014,40 +1556,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.RevertTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransactionResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.RevertTransactionResponse>()
+            .json(201, operations.RevertTransactionResponse$, { key: "TransactionResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2131,27 +1645,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.RunScriptResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ScriptResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.RunScriptResponse>()
+            .json(200, operations.RunScriptResponse$, { key: "ScriptResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2222,40 +1721,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.UpdateMappingResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        MappingResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UpdateMappingResponse>()
+            .json(200, operations.UpdateMappingResponse$, { key: "MappingResponse" })
+            .json("default", errors.ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2341,36 +1812,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2AddMetadataOnTransactionResponse>()
+            .void(204, operations.V2AddMetadataOnTransactionResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.V2AddMetadataOnTransactionResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2459,35 +1906,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2AddMetadataToAccountResponse>()
+            .void(204, operations.V2AddMetadataToAccountResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2AddMetadataToAccountResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2562,37 +1986,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            return schemas$.parse(
-                this.unpackHeaders(response.headers),
-                (val$) =>
-                    operations.V2CountAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Headers: val$,
-                    }),
-                "Response validation failed"
-            );
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CountAccountsResponse>()
+            .void(204, operations.V2CountAccountsResponse$, { hdrs: true })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2669,37 +2068,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            return schemas$.parse(
-                this.unpackHeaders(response.headers),
-                (val$) =>
-                    operations.V2CountTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Headers: val$,
-                    }),
-                "Response validation failed"
-            );
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CountTransactionsResponse>()
+            .void(204, operations.V2CountTransactionsResponse$, { hdrs: true })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2770,40 +2144,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, [200, 400], "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateBulkResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2BulkResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CreateBulkResponse>()
+            .json([200, 400], operations.V2CreateBulkResponse$, { key: "V2BulkResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2874,35 +2220,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CreateLedgerResponse>()
+            .void(204, operations.V2CreateLedgerResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2CreateLedgerResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -2987,40 +2310,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2CreateTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2CreateTransactionResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2CreateTransactionResponse>()
+            .json(200, operations.V2CreateTransactionResponse$, {
+                key: "V2CreateTransactionResponse",
+            })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3103,22 +2400,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, "2XX")) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2DeleteAccountMetadataResponse>()
+            .void("2XX", operations.V2DeleteAccountMetadataResponse$)
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2DeleteAccountMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3194,35 +2481,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2DeleteLedgerMetadataResponse>()
+            .void(204, operations.V2DeleteLedgerMetadataResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2DeleteLedgerMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3302,38 +2566,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, "2XX")) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2DeleteTransactionMetadataResponse>()
+            .void("2XX", operations.V2DeleteTransactionMetadataResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.V2DeleteTransactionMetadataResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3414,40 +2652,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2AccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetAccountResponse>()
+            .json(200, operations.V2GetAccountResponse$, { key: "V2AccountResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3528,40 +2738,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetBalancesAggregatedResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2AggregateBalancesResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetBalancesAggregatedResponse>()
+            .json(200, operations.V2GetBalancesAggregatedResponse$, {
+                key: "V2AggregateBalancesResponse",
+            })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3613,40 +2797,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2ConfigInfoResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetInfoResponse>()
+            .json(200, operations.V2GetInfoResponse$, { key: "V2ConfigInfoResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3716,40 +2872,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetLedgerResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetLedgerResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetLedgerResponse>()
+            .json(200, operations.V2GetLedgerResponse$, { key: "V2GetLedgerResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3819,40 +2947,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetLedgerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2LedgerInfoResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetLedgerInfoResponse>()
+            .json(200, operations.V2GetLedgerInfoResponse$, { key: "V2LedgerInfoResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3930,40 +3030,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2GetTransactionResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetTransactionResponse>()
+            .json(200, operations.V2GetTransactionResponse$, { key: "V2GetTransactionResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4058,40 +3130,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2GetVolumesWithBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2VolumesWithBalanceCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2GetVolumesWithBalancesResponse>()
+            .json(200, operations.V2GetVolumesWithBalancesResponse$, {
+                key: "V2VolumesWithBalanceCursorResponse",
+            })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4175,40 +3221,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2AccountsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListAccountsResponse>()
+            .json(200, operations.V2ListAccountsResponse$, { key: "V2AccountsCursorResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4280,40 +3298,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListLedgersResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2LedgerListResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListLedgersResponse>()
+            .json(200, operations.V2ListLedgersResponse$, { key: "V2LedgerListResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4396,40 +3386,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListLogsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2LogsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListLogsResponse>()
+            .json(200, operations.V2ListLogsResponse$, { key: "V2LogsCursorResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4515,40 +3477,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ListTransactionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2TransactionsCursorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ListTransactionsResponse>()
+            .json(200, operations.V2ListTransactionsResponse$, {
+                key: "V2TransactionsCursorResponse",
+            })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4622,40 +3558,12 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2ReadStatsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2StatsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2ReadStatsResponse>()
+            .json(200, operations.V2ReadStatsResponse$, { key: "V2StatsResponse" })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4736,40 +3644,14 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.V2RevertTransactionResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        V2RevertTransactionResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2RevertTransactionResponse>()
+            .json(201, operations.V2RevertTransactionResponse$, {
+                key: "V2RevertTransactionResponse",
+            })
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -4840,34 +3722,11 @@ export class Ledger extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.V2ErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.V2UpdateLedgerMetadataResponse>()
+            .void(204, operations.V2UpdateLedgerMetadataResponse$)
+            .json("default", errors.V2ErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.V2UpdateLedgerMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

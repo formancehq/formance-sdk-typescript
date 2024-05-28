@@ -31,7 +31,7 @@ export type UninstallConnectorResponse = {
 export namespace UninstallConnectorRequest$ {
     export const inboundSchema: z.ZodType<UninstallConnectorRequest, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -40,12 +40,12 @@ export namespace UninstallConnectorRequest$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UninstallConnectorRequest> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

@@ -29,7 +29,7 @@ export type V2ListTransactionsRequest = {
      */
     pageSize?: number | undefined;
     pit?: Date | undefined;
-    query?: Record<string, any> | undefined;
+    query?: { [k: string]: any } | undefined;
 };
 
 export type V2ListTransactionsResponse = {
@@ -83,7 +83,7 @@ export namespace V2ListTransactionsRequest$ {
         ledger: string;
         pageSize?: number | undefined;
         pit?: string | undefined;
-        query?: Record<string, any> | undefined;
+        query?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListTransactionsRequest> = z

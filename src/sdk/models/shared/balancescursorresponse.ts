@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type BalancesCursorResponseCursor = {
-    data: Array<Record<string, Record<string, number>>>;
+    data: Array<{ [k: string]: { [k: string]: number } }>;
     hasMore: boolean;
     next?: string | undefined;
     pageSize: number;
@@ -37,7 +37,7 @@ export namespace BalancesCursorResponseCursor$ {
         });
 
     export type Outbound = {
-        data: Array<Record<string, Record<string, number>>>;
+        data: Array<{ [k: string]: { [k: string]: number } }>;
         hasMore: boolean;
         next?: string | undefined;
         pageSize: number;

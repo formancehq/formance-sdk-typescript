@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type UpdateBankAccountMetadataRequest = {
-    metadata: Record<string, string> | null;
+    metadata: { [k: string]: string } | null;
 };
 
 /** @internal */
@@ -22,7 +22,7 @@ export namespace UpdateBankAccountMetadataRequest$ {
             });
 
     export type Outbound = {
-        metadata: Record<string, string> | null;
+        metadata: { [k: string]: string } | null;
     };
 
     export const outboundSchema: z.ZodType<

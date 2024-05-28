@@ -16,7 +16,7 @@ export type CountAccountsRequest = {
     /**
      * Filter accounts by metadata key value pairs. The filter can be used like this metadata[key]=value1&metadata[a.nested.key]=value2
      */
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
 };
 
 export type CountAccountsResponse = {
@@ -24,7 +24,7 @@ export type CountAccountsResponse = {
      * HTTP response content type for this operation
      */
     contentType: string;
-    headers: Record<string, Array<string>>;
+    headers: { [k: string]: Array<string> };
     /**
      * HTTP response status code for this operation
      */
@@ -54,7 +54,7 @@ export namespace CountAccountsRequest$ {
     export type Outbound = {
         address?: string | undefined;
         ledger: string;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CountAccountsRequest> = z
@@ -92,7 +92,7 @@ export namespace CountAccountsResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Headers: Record<string, Array<string>>;
+        Headers: { [k: string]: Array<string> };
         StatusCode: number;
         RawResponse: never;
     };

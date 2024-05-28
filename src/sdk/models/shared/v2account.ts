@@ -7,9 +7,9 @@ import * as z from "zod";
 
 export type V2Account = {
     address: string;
-    effectiveVolumes?: Record<string, V2Volume> | undefined;
-    metadata: Record<string, string>;
-    volumes?: Record<string, V2Volume> | undefined;
+    effectiveVolumes?: { [k: string]: V2Volume } | undefined;
+    metadata: { [k: string]: string };
+    volumes?: { [k: string]: V2Volume } | undefined;
 };
 
 /** @internal */
@@ -34,9 +34,9 @@ export namespace V2Account$ {
 
     export type Outbound = {
         address: string;
-        effectiveVolumes?: Record<string, V2Volume$.Outbound> | undefined;
-        metadata: Record<string, string>;
-        volumes?: Record<string, V2Volume$.Outbound> | undefined;
+        effectiveVolumes?: { [k: string]: V2Volume$.Outbound } | undefined;
+        metadata: { [k: string]: string };
+        volumes?: { [k: string]: V2Volume$.Outbound } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Account> = z

@@ -35,7 +35,7 @@ export type ListAccountsRequest = {
     /**
      * Filter accounts by metadata key value pairs. Nested objects can be used as seen in the example below.
      */
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     /**
      * The maximum number of results to return per page.
      *
@@ -111,7 +111,7 @@ export namespace ListAccountsRequest$ {
         balance?: number | undefined;
         cursor?: string | undefined;
         ledger: string;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         pageSize: number;
         pagination_token?: string | undefined;
     };

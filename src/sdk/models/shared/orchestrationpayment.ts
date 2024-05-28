@@ -77,12 +77,16 @@ export namespace OrchestrationPaymentRaw$ {
 }
 
 /** @internal */
-export const OrchestrationPaymentScheme$: z.ZodNativeEnum<typeof OrchestrationPaymentScheme> =
-    z.nativeEnum(OrchestrationPaymentScheme);
+export namespace OrchestrationPaymentScheme$ {
+    export const inboundSchema = z.nativeEnum(OrchestrationPaymentScheme);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
-export const OrchestrationPaymentType$: z.ZodNativeEnum<typeof OrchestrationPaymentType> =
-    z.nativeEnum(OrchestrationPaymentType);
+export namespace OrchestrationPaymentType$ {
+    export const inboundSchema = z.nativeEnum(OrchestrationPaymentType);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace OrchestrationPayment$ {
@@ -99,13 +103,13 @@ export namespace OrchestrationPayment$ {
             id: z.string(),
             initialAmount: z.number().transform((v) => BigInt(v)),
             metadata: z.nullable(OrchestrationPaymentMetadata$.inboundSchema),
-            provider: OrchestrationConnector$.optional(),
+            provider: OrchestrationConnector$.inboundSchema.optional(),
             raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.inboundSchema)),
             reference: z.string(),
-            scheme: OrchestrationPaymentScheme$,
+            scheme: OrchestrationPaymentScheme$.inboundSchema,
             sourceAccountID: z.string(),
-            status: OrchestrationPaymentStatus$,
-            type: OrchestrationPaymentType$,
+            status: OrchestrationPaymentStatus$.inboundSchema,
+            type: OrchestrationPaymentType$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -136,13 +140,13 @@ export namespace OrchestrationPayment$ {
         id: string;
         initialAmount: number;
         metadata: OrchestrationPaymentMetadata$.Outbound | null;
-        provider?: OrchestrationConnector | undefined;
+        provider?: string | undefined;
         raw: OrchestrationPaymentRaw$.Outbound | null;
         reference: string;
-        scheme: OrchestrationPaymentScheme;
+        scheme: string;
         sourceAccountID: string;
-        status: OrchestrationPaymentStatus;
-        type: OrchestrationPaymentType;
+        status: string;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPayment> = z
@@ -155,13 +159,13 @@ export namespace OrchestrationPayment$ {
             id: z.string(),
             initialAmount: z.bigint().transform((v) => Number(v)),
             metadata: z.nullable(OrchestrationPaymentMetadata$.outboundSchema),
-            provider: OrchestrationConnector$.optional(),
+            provider: OrchestrationConnector$.outboundSchema.optional(),
             raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.outboundSchema)),
             reference: z.string(),
-            scheme: OrchestrationPaymentScheme$,
+            scheme: OrchestrationPaymentScheme$.outboundSchema,
             sourceAccountID: z.string(),
-            status: OrchestrationPaymentStatus$,
-            type: OrchestrationPaymentType$,
+            status: OrchestrationPaymentStatus$.outboundSchema,
+            type: OrchestrationPaymentType$.outboundSchema,
         })
         .transform((v) => {
             return {

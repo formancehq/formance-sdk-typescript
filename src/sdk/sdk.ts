@@ -5,11 +5,9 @@
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
-import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import { Auth } from "./auth";
 import { Ledger } from "./ledger";
-import * as errors from "./models/errors";
 import * as operations from "./models/operations";
 import { Orchestration } from "./orchestration";
 import { Payments } from "./payments";
@@ -136,22 +134,12 @@ export class SDK extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 200)) {
-            // fallthrough
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetOIDCWellKnownsResponse>()
+            .void(200, operations.GetOIDCWellKnownsResponse$)
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.GetOIDCWellKnownsResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -203,26 +191,11 @@ export class SDK extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetVersionsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        GetVersionsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetVersionsResponse>()
+            .json(200, operations.GetVersionsResponse$, { key: "GetVersionsResponse" })
+            .fail("default")
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 }

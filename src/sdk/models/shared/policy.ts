@@ -8,7 +8,7 @@ export type Policy = {
     createdAt: Date;
     id: string;
     ledgerName: string;
-    ledgerQuery: Record<string, any>;
+    ledgerQuery: { [k: string]: any };
     name: string;
     paymentsPoolID: string;
 };
@@ -42,7 +42,7 @@ export namespace Policy$ {
         createdAt: string;
         id: string;
         ledgerName: string;
-        ledgerQuery: Record<string, any>;
+        ledgerQuery: { [k: string]: any };
         name: string;
         paymentsPoolID: string;
     };

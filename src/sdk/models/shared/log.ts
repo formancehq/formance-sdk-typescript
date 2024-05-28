@@ -10,7 +10,7 @@ export enum Type {
 }
 
 export type Log = {
-    data: Record<string, any>;
+    data: { [k: string]: any };
     date: Date;
     hash: string;
     id: number;
@@ -18,7 +18,10 @@ export type Log = {
 };
 
 /** @internal */
-export const Type$: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace Log$ {
@@ -31,7 +34,7 @@ export namespace Log$ {
                 .transform((v) => new Date(v)),
             hash: z.string(),
             id: z.number().int(),
-            type: Type$,
+            type: Type$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -44,11 +47,11 @@ export namespace Log$ {
         });
 
     export type Outbound = {
-        data: Record<string, any>;
+        data: { [k: string]: any };
         date: string;
         hash: string;
         id: number;
-        type: Type;
+        type: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Log> = z
@@ -57,7 +60,7 @@ export namespace Log$ {
             date: z.date().transform((v) => v.toISOString()),
             hash: z.string(),
             id: z.number().int(),
-            type: Type$,
+            type: Type$.outboundSchema,
         })
         .transform((v) => {
             return {

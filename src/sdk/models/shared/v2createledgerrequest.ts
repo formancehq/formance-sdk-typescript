@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type V2CreateLedgerRequest = {
     bucket?: string | undefined;
-    metadata?: Record<string, string> | undefined;
+    metadata?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
@@ -25,7 +25,7 @@ export namespace V2CreateLedgerRequest$ {
 
     export type Outbound = {
         bucket?: string | undefined;
-        metadata?: Record<string, string> | undefined;
+        metadata?: { [k: string]: string } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> = z

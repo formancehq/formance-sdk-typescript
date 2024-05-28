@@ -5,13 +5,13 @@
 import * as z from "zod";
 
 export type Script = {
-    metadata?: Record<string, any> | null | undefined;
+    metadata?: { [k: string]: any } | null | undefined;
     plain: string;
     /**
      * Reference to attach to the generated transaction
      */
     reference?: string | undefined;
-    vars?: Record<string, any> | undefined;
+    vars?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -33,10 +33,10 @@ export namespace Script$ {
         });
 
     export type Outbound = {
-        metadata?: Record<string, any> | null | undefined;
+        metadata?: { [k: string]: any } | null | undefined;
         plain: string;
         reference?: string | undefined;
-        vars?: Record<string, any> | undefined;
+        vars?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Script> = z

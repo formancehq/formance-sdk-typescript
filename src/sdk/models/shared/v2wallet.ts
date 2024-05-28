@@ -14,7 +14,7 @@ export type V2Wallet = {
     /**
      * Metadata associated with the wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     name: string;
 };
 
@@ -45,7 +45,7 @@ export namespace V2Wallet$ {
         createdAt: string;
         id: string;
         ledger: string;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         name: string;
     };
 

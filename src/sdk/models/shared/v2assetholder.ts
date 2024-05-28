@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type V2AssetHolder = {
-    assets: Record<string, bigint>;
+    assets: { [k: string]: bigint };
 };
 
 /** @internal */
@@ -21,7 +21,7 @@ export namespace V2AssetHolder$ {
         });
 
     export type Outbound = {
-        assets: Record<string, number>;
+        assets: { [k: string]: number };
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AssetHolder> = z

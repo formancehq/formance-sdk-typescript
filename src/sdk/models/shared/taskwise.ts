@@ -83,7 +83,7 @@ export namespace TaskWise$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskWiseState$.inboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
             updatedAt: z
                 .string()
                 .datetime({ offset: true })
@@ -109,7 +109,7 @@ export namespace TaskWise$ {
         error?: string | undefined;
         id: string;
         state: TaskWiseState$.Outbound;
-        status: PaymentStatus;
+        status: string;
         updatedAt: string;
     };
 
@@ -121,7 +121,7 @@ export namespace TaskWise$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskWiseState$.outboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
             updatedAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {

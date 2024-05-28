@@ -7,11 +7,11 @@ import * as z from "zod";
 
 export type PostTransactionScript = {
     plain: string;
-    vars?: Record<string, any> | undefined;
+    vars?: { [k: string]: any } | undefined;
 };
 
 export type PostTransaction = {
-    metadata?: Record<string, any> | null | undefined;
+    metadata?: { [k: string]: any } | null | undefined;
     postings?: Array<Posting> | undefined;
     reference?: string | undefined;
     script?: PostTransactionScript | undefined;
@@ -34,7 +34,7 @@ export namespace PostTransactionScript$ {
 
     export type Outbound = {
         plain: string;
-        vars?: Record<string, any> | undefined;
+        vars?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PostTransactionScript> = z
@@ -75,7 +75,7 @@ export namespace PostTransaction$ {
         });
 
     export type Outbound = {
-        metadata?: Record<string, any> | null | undefined;
+        metadata?: { [k: string]: any } | null | undefined;
         postings?: Array<Posting$.Outbound> | undefined;
         reference?: string | undefined;
         script?: PostTransactionScript$.Outbound | undefined;

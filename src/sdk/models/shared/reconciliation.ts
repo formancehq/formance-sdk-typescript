@@ -6,11 +6,11 @@ import * as z from "zod";
 
 export type Reconciliation = {
     createdAt: Date;
-    driftBalances: Record<string, bigint>;
+    driftBalances: { [k: string]: bigint };
     error?: string | undefined;
     id: string;
-    ledgerBalances: Record<string, bigint>;
-    paymentsBalances: Record<string, bigint>;
+    ledgerBalances: { [k: string]: bigint };
+    paymentsBalances: { [k: string]: bigint };
     policyID: string;
     reconciledAtLedger: Date;
     reconciledAtPayments: Date;
@@ -58,11 +58,11 @@ export namespace Reconciliation$ {
 
     export type Outbound = {
         createdAt: string;
-        driftBalances: Record<string, number>;
+        driftBalances: { [k: string]: number };
         error?: string | undefined;
         id: string;
-        ledgerBalances: Record<string, number>;
-        paymentsBalances: Record<string, number>;
+        ledgerBalances: { [k: string]: number };
+        paymentsBalances: { [k: string]: number };
         policyID: string;
         reconciledAtLedger: string;
         reconciledAtPayments: string;

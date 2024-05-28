@@ -86,7 +86,7 @@ run();
 
 ### Response
 
-**Promise<[operations.AddAccountToPoolResponse](../../sdk/models/operations/addaccounttopoolresponse.md)>**
+**Promise\<[operations.AddAccountToPoolResponse](../../sdk/models/operations/addaccounttopoolresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -137,7 +137,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ConnectorsTransferResponse](../../sdk/models/operations/connectorstransferresponse.md)>**
+**Promise\<[operations.ConnectorsTransferResponse](../../sdk/models/operations/connectorstransferresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -185,7 +185,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateAccountResponse](../../sdk/models/operations/createaccountresponse.md)>**
+**Promise\<[operations.CreateAccountResponse](../../sdk/models/operations/createaccountresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -231,7 +231,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateBankAccountResponse](../../sdk/models/operations/createbankaccountresponse.md)>**
+**Promise\<[operations.CreateBankAccountResponse](../../sdk/models/operations/createbankaccountresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -283,7 +283,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePaymentResponse](../../sdk/models/operations/createpaymentresponse.md)>**
+**Promise\<[operations.CreatePaymentResponse](../../sdk/models/operations/createpaymentresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -330,7 +330,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePoolResponse](../../sdk/models/operations/createpoolresponse.md)>**
+**Promise\<[operations.CreatePoolResponse](../../sdk/models/operations/createpoolresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -383,7 +383,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransferInitiationResponse](../../sdk/models/operations/createtransferinitiationresponse.md)>**
+**Promise\<[operations.CreateTransferInitiationResponse](../../sdk/models/operations/createtransferinitiationresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -427,7 +427,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeletePoolResponse](../../sdk/models/operations/deletepoolresponse.md)>**
+**Promise\<[operations.DeletePoolResponse](../../sdk/models/operations/deletepoolresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -471,7 +471,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteTransferInitiationResponse](../../sdk/models/operations/deletetransferinitiationresponse.md)>**
+**Promise\<[operations.DeleteTransferInitiationResponse](../../sdk/models/operations/deletetransferinitiationresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -518,7 +518,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ForwardBankAccountResponse](../../sdk/models/operations/forwardbankaccountresponse.md)>**
+**Promise\<[operations.ForwardBankAccountResponse](../../sdk/models/operations/forwardbankaccountresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -568,7 +568,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAccountBalancesResponse](../../sdk/models/operations/getaccountbalancesresponse.md)>**
+**Promise\<[operations.GetAccountBalancesResponse](../../sdk/models/operations/getaccountbalancesresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -612,7 +612,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBankAccountResponse](../../sdk/models/operations/getbankaccountresponse.md)>**
+**Promise\<[operations.GetBankAccountResponse](../../sdk/models/operations/getbankaccountresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -660,7 +660,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskResponse](../../sdk/models/operations/getconnectortaskresponse.md)>**
+**Promise\<[operations.GetConnectorTaskResponse](../../sdk/models/operations/getconnectortaskresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -707,7 +707,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetConnectorTaskV1Response](../../sdk/models/operations/getconnectortaskv1response.md)>**
+**Promise\<[operations.GetConnectorTaskV1Response](../../sdk/models/operations/getconnectortaskv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -751,7 +751,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPaymentResponse](../../sdk/models/operations/getpaymentresponse.md)>**
+**Promise\<[operations.GetPaymentResponse](../../sdk/models/operations/getpaymentresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -795,7 +795,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPoolResponse](../../sdk/models/operations/getpoolresponse.md)>**
+**Promise\<[operations.GetPoolResponse](../../sdk/models/operations/getpoolresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -840,7 +840,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPoolBalancesResponse](../../sdk/models/operations/getpoolbalancesresponse.md)>**
+**Promise\<[operations.GetPoolBalancesResponse](../../sdk/models/operations/getpoolbalancesresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -884,7 +884,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransferInitiationResponse](../../sdk/models/operations/gettransferinitiationresponse.md)>**
+**Promise\<[operations.GetTransferInitiationResponse](../../sdk/models/operations/gettransferinitiationresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -934,7 +934,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InstallConnectorResponse](../../sdk/models/operations/installconnectorresponse.md)>**
+**Promise\<[operations.InstallConnectorResponse](../../sdk/models/operations/installconnectorresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -975,7 +975,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAllConnectorsResponse](../../sdk/models/operations/listallconnectorsresponse.md)>**
+**Promise\<[operations.ListAllConnectorsResponse](../../sdk/models/operations/listallconnectorsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1024,7 +1024,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBankAccountsResponse](../../sdk/models/operations/listbankaccountsresponse.md)>**
+**Promise\<[operations.ListBankAccountsResponse](../../sdk/models/operations/listbankaccountsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1065,7 +1065,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConfigsAvailableConnectorsResponse](../../sdk/models/operations/listconfigsavailableconnectorsresponse.md)>**
+**Promise\<[operations.ListConfigsAvailableConnectorsResponse](../../sdk/models/operations/listconfigsavailableconnectorsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1114,7 +1114,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksResponse](../../sdk/models/operations/listconnectortasksresponse.md)>**
+**Promise\<[operations.ListConnectorTasksResponse](../../sdk/models/operations/listconnectortasksresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1162,7 +1162,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListConnectorTasksV1Response](../../sdk/models/operations/listconnectortasksv1response.md)>**
+**Promise\<[operations.ListConnectorTasksV1Response](../../sdk/models/operations/listconnectortasksv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1211,7 +1211,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPaymentsResponse](../../sdk/models/operations/listpaymentsresponse.md)>**
+**Promise\<[operations.ListPaymentsResponse](../../sdk/models/operations/listpaymentsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1260,7 +1260,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPoolsResponse](../../sdk/models/operations/listpoolsresponse.md)>**
+**Promise\<[operations.ListPoolsResponse](../../sdk/models/operations/listpoolsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1309,7 +1309,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransferInitiationsResponse](../../sdk/models/operations/listtransferinitiationsresponse.md)>**
+**Promise\<[operations.ListTransferInitiationsResponse](../../sdk/models/operations/listtransferinitiationsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1353,7 +1353,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentsgetAccountResponse](../../sdk/models/operations/paymentsgetaccountresponse.md)>**
+**Promise\<[operations.PaymentsgetAccountResponse](../../sdk/models/operations/paymentsgetaccountresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1394,7 +1394,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)>**
+**Promise\<[operations.PaymentsgetServerInfoResponse](../../sdk/models/operations/paymentsgetserverinforesponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1443,7 +1443,7 @@ run();
 
 ### Response
 
-**Promise<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)>**
+**Promise\<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1490,7 +1490,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigResponse](../../sdk/models/operations/readconnectorconfigresponse.md)>**
+**Promise\<[operations.ReadConnectorConfigResponse](../../sdk/models/operations/readconnectorconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1536,7 +1536,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadConnectorConfigV1Response](../../sdk/models/operations/readconnectorconfigv1response.md)>**
+**Promise\<[operations.ReadConnectorConfigV1Response](../../sdk/models/operations/readconnectorconfigv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1581,7 +1581,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RemoveAccountFromPoolResponse](../../sdk/models/operations/removeaccountfrompoolresponse.md)>**
+**Promise\<[operations.RemoveAccountFromPoolResponse](../../sdk/models/operations/removeaccountfrompoolresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1630,7 +1630,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ResetConnectorResponse](../../sdk/models/operations/resetconnectorresponse.md)>**
+**Promise\<[operations.ResetConnectorResponse](../../sdk/models/operations/resetconnectorresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1678,7 +1678,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ResetConnectorV1Response](../../sdk/models/operations/resetconnectorv1response.md)>**
+**Promise\<[operations.ResetConnectorV1Response](../../sdk/models/operations/resetconnectorv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1722,7 +1722,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RetryTransferInitiationResponse](../../sdk/models/operations/retrytransferinitiationresponse.md)>**
+**Promise\<[operations.RetryTransferInitiationResponse](../../sdk/models/operations/retrytransferinitiationresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1775,7 +1775,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReverseTransferInitiationResponse](../../sdk/models/operations/reversetransferinitiationresponse.md)>**
+**Promise\<[operations.ReverseTransferInitiationResponse](../../sdk/models/operations/reversetransferinitiationresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1823,7 +1823,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UdpateTransferInitiationStatusResponse](../../sdk/models/operations/udpatetransferinitiationstatusresponse.md)>**
+**Promise\<[operations.UdpateTransferInitiationStatusResponse](../../sdk/models/operations/udpatetransferinitiationstatusresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1870,7 +1870,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UninstallConnectorResponse](../../sdk/models/operations/uninstallconnectorresponse.md)>**
+**Promise\<[operations.UninstallConnectorResponse](../../sdk/models/operations/uninstallconnectorresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1916,7 +1916,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UninstallConnectorV1Response](../../sdk/models/operations/uninstallconnectorv1response.md)>**
+**Promise\<[operations.UninstallConnectorV1Response](../../sdk/models/operations/uninstallconnectorv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -1965,7 +1965,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateBankAccountMetadataResponse](../../sdk/models/operations/updatebankaccountmetadataresponse.md)>**
+**Promise\<[operations.UpdateBankAccountMetadataResponse](../../sdk/models/operations/updatebankaccountmetadataresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -2017,7 +2017,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateConnectorConfigV1Response](../../sdk/models/operations/updateconnectorconfigv1response.md)>**
+**Promise\<[operations.UpdateConnectorConfigV1Response](../../sdk/models/operations/updateconnectorconfigv1response.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -2064,7 +2064,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateMetadataResponse](../../sdk/models/operations/updatemetadataresponse.md)>**
+**Promise\<[operations.UpdateMetadataResponse](../../sdk/models/operations/updatemetadataresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |

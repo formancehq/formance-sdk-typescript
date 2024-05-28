@@ -43,7 +43,7 @@ export class PaymentsErrorResponse extends Error {
 export namespace PaymentsErrorResponse$ {
     export const inboundSchema: z.ZodType<PaymentsErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: shared.PaymentsErrorsEnum$,
+            errorCode: shared.PaymentsErrorsEnum$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -54,7 +54,7 @@ export namespace PaymentsErrorResponse$ {
         });
 
     export type Outbound = {
-        errorCode: shared.PaymentsErrorsEnum;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -64,7 +64,7 @@ export namespace PaymentsErrorResponse$ {
         .pipe(
             z
                 .object({
-                    errorCode: shared.PaymentsErrorsEnum$,
+                    errorCode: shared.PaymentsErrorsEnum$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

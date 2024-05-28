@@ -57,7 +57,7 @@ export type CountTransactionsResponse = {
      * HTTP response content type for this operation
      */
     contentType: string;
-    headers: Record<string, Array<string>>;
+    headers: { [k: string]: Array<string> };
     /**
      * HTTP response status code for this operation
      */
@@ -173,7 +173,7 @@ export namespace CountTransactionsResponse$ {
 
     export type Outbound = {
         ContentType: string;
-        Headers: Record<string, Array<string>>;
+        Headers: { [k: string]: Array<string> };
         StatusCode: number;
         RawResponse: never;
     };

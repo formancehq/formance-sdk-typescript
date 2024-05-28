@@ -35,7 +35,7 @@ export type ReadConnectorConfigResponse = {
 export namespace ReadConnectorConfigRequest$ {
     export const inboundSchema: z.ZodType<ReadConnectorConfigRequest, z.ZodTypeDef, unknown> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -44,12 +44,12 @@ export namespace ReadConnectorConfigRequest$ {
         });
 
     export type Outbound = {
-        connector: shared.Connector;
+        connector: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadConnectorConfigRequest> = z
         .object({
-            connector: shared.Connector$,
+            connector: shared.Connector$.outboundSchema,
         })
         .transform((v) => {
             return {

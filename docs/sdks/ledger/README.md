@@ -99,7 +99,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransactionsResponse](../../sdk/models/operations/createtransactionsresponse.md)>**
+**Promise\<[operations.CreateTransactionsResponse](../../sdk/models/operations/createtransactionsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -144,7 +144,7 @@ run();
 
 ### Response
 
-**Promise<[operations.AddMetadataOnTransactionResponse](../../sdk/models/operations/addmetadataontransactionresponse.md)>**
+**Promise\<[operations.AddMetadataOnTransactionResponse](../../sdk/models/operations/addmetadataontransactionresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -192,7 +192,7 @@ run();
 
 ### Response
 
-**Promise<[operations.AddMetadataToAccountResponse](../../sdk/models/operations/addmetadatatoaccountresponse.md)>**
+**Promise\<[operations.AddMetadataToAccountResponse](../../sdk/models/operations/addmetadatatoaccountresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -289,7 +289,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CountAccountsResponse](../../sdk/models/operations/countaccountsresponse.md)>**
+**Promise\<[operations.CountAccountsResponse](../../sdk/models/operations/countaccountsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -338,7 +338,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CountTransactionsResponse](../../sdk/models/operations/counttransactionsresponse.md)>**
+**Promise\<[operations.CountTransactionsResponse](../../sdk/models/operations/counttransactionsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -407,7 +407,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateTransactionResponse](../../sdk/models/operations/createtransactionresponse.md)>**
+**Promise\<[operations.CreateTransactionResponse](../../sdk/models/operations/createtransactionresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -452,7 +452,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetAccountResponse](../../sdk/models/operations/getaccountresponse.md)>**
+**Promise\<[operations.GetAccountResponse](../../sdk/models/operations/getaccountresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -499,7 +499,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalancesResponse](../../sdk/models/operations/getbalancesresponse.md)>**
+**Promise\<[operations.GetBalancesResponse](../../sdk/models/operations/getbalancesresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -544,7 +544,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalancesAggregatedResponse](../../sdk/models/operations/getbalancesaggregatedresponse.md)>**
+**Promise\<[operations.GetBalancesAggregatedResponse](../../sdk/models/operations/getbalancesaggregatedresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -585,7 +585,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)>**
+**Promise\<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -629,7 +629,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetLedgerInfoResponse](../../sdk/models/operations/getledgerinforesponse.md)>**
+**Promise\<[operations.GetLedgerInfoResponse](../../sdk/models/operations/getledgerinforesponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -673,7 +673,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetMappingResponse](../../sdk/models/operations/getmappingresponse.md)>**
+**Promise\<[operations.GetMappingResponse](../../sdk/models/operations/getmappingresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -718,7 +718,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionResponse](../../sdk/models/operations/gettransactionresponse.md)>**
+**Promise\<[operations.GetTransactionResponse](../../sdk/models/operations/gettransactionresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -819,7 +819,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListAccountsResponse](../../sdk/models/operations/listaccountsresponse.md)>**
+**Promise\<[operations.ListAccountsResponse](../../sdk/models/operations/listaccountsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -866,7 +866,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListLogsResponse](../../sdk/models/operations/listlogsresponse.md)>**
+**Promise\<[operations.ListLogsResponse](../../sdk/models/operations/listlogsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -917,7 +917,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListTransactionsResponse](../../sdk/models/operations/listtransactionsresponse.md)>**
+**Promise\<[operations.ListTransactionsResponse](../../sdk/models/operations/listtransactionsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -962,7 +962,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReadStatsResponse](../../sdk/models/operations/readstatsresponse.md)>**
+**Promise\<[operations.ReadStatsResponse](../../sdk/models/operations/readstatsresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -1007,7 +1007,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RevertTransactionResponse](../../sdk/models/operations/reverttransactionresponse.md)>**
+**Promise\<[operations.RevertTransactionResponse](../../sdk/models/operations/reverttransactionresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -1069,7 +1069,7 @@ run();
 
 ### Response
 
-**Promise<[operations.RunScriptResponse](../../sdk/models/operations/runscriptresponse.md)>**
+**Promise\<[operations.RunScriptResponse](../../sdk/models/operations/runscriptresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -1120,7 +1120,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateMappingResponse](../../sdk/models/operations/updatemappingresponse.md)>**
+**Promise\<[operations.UpdateMappingResponse](../../sdk/models/operations/updatemappingresponse.md)\>**
 ### Errors
 
 | Error Object         | Status Code          | Content Type         |
@@ -1169,7 +1169,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2AddMetadataOnTransactionResponse](../../sdk/models/operations/v2addmetadataontransactionresponse.md)>**
+**Promise\<[operations.V2AddMetadataOnTransactionResponse](../../sdk/models/operations/v2addmetadataontransactionresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1218,7 +1218,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2AddMetadataToAccountResponse](../../sdk/models/operations/v2addmetadatatoaccountresponse.md)>**
+**Promise\<[operations.V2AddMetadataToAccountResponse](../../sdk/models/operations/v2addmetadatatoaccountresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1262,7 +1262,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CountAccountsResponse](../../sdk/models/operations/v2countaccountsresponse.md)>**
+**Promise\<[operations.V2CountAccountsResponse](../../sdk/models/operations/v2countaccountsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1306,7 +1306,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CountTransactionsResponse](../../sdk/models/operations/v2counttransactionsresponse.md)>**
+**Promise\<[operations.V2CountTransactionsResponse](../../sdk/models/operations/v2counttransactionsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1355,7 +1355,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateBulkResponse](../../sdk/models/operations/v2createbulkresponse.md)>**
+**Promise\<[operations.V2CreateBulkResponse](../../sdk/models/operations/v2createbulkresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1404,7 +1404,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateLedgerResponse](../../sdk/models/operations/v2createledgerresponse.md)>**
+**Promise\<[operations.V2CreateLedgerResponse](../../sdk/models/operations/v2createledgerresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1476,7 +1476,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2CreateTransactionResponse](../../sdk/models/operations/v2createtransactionresponse.md)>**
+**Promise\<[operations.V2CreateTransactionResponse](../../sdk/models/operations/v2createtransactionresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1522,7 +1522,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2DeleteAccountMetadataResponse](../../sdk/models/operations/v2deleteaccountmetadataresponse.md)>**
+**Promise\<[operations.V2DeleteAccountMetadataResponse](../../sdk/models/operations/v2deleteaccountmetadataresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -1566,7 +1566,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2DeleteLedgerMetadataResponse](../../sdk/models/operations/v2deleteledgermetadataresponse.md)>**
+**Promise\<[operations.V2DeleteLedgerMetadataResponse](../../sdk/models/operations/v2deleteledgermetadataresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1612,7 +1612,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2DeleteTransactionMetadataResponse](../../sdk/models/operations/v2deletetransactionmetadataresponse.md)>**
+**Promise\<[operations.V2DeleteTransactionMetadataResponse](../../sdk/models/operations/v2deletetransactionmetadataresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1657,7 +1657,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetAccountResponse](../../sdk/models/operations/v2getaccountresponse.md)>**
+**Promise\<[operations.V2GetAccountResponse](../../sdk/models/operations/v2getaccountresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1701,7 +1701,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetBalancesAggregatedResponse](../../sdk/models/operations/v2getbalancesaggregatedresponse.md)>**
+**Promise\<[operations.V2GetBalancesAggregatedResponse](../../sdk/models/operations/v2getbalancesaggregatedresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1742,7 +1742,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetInfoResponse](../../sdk/models/operations/v2getinforesponse.md)>**
+**Promise\<[operations.V2GetInfoResponse](../../sdk/models/operations/v2getinforesponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1786,7 +1786,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetLedgerResponse](../../sdk/models/operations/v2getledgerresponse.md)>**
+**Promise\<[operations.V2GetLedgerResponse](../../sdk/models/operations/v2getledgerresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1830,7 +1830,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetLedgerInfoResponse](../../sdk/models/operations/v2getledgerinforesponse.md)>**
+**Promise\<[operations.V2GetLedgerInfoResponse](../../sdk/models/operations/v2getledgerinforesponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1875,7 +1875,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetTransactionResponse](../../sdk/models/operations/v2gettransactionresponse.md)>**
+**Promise\<[operations.V2GetTransactionResponse](../../sdk/models/operations/v2gettransactionresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1922,7 +1922,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2GetVolumesWithBalancesResponse](../../sdk/models/operations/v2getvolumeswithbalancesresponse.md)>**
+**Promise\<[operations.V2GetVolumesWithBalancesResponse](../../sdk/models/operations/v2getvolumeswithbalancesresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -1968,7 +1968,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListAccountsResponse](../../sdk/models/operations/v2listaccountsresponse.md)>**
+**Promise\<[operations.V2ListAccountsResponse](../../sdk/models/operations/v2listaccountsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2013,7 +2013,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListLedgersResponse](../../sdk/models/operations/v2listledgersresponse.md)>**
+**Promise\<[operations.V2ListLedgersResponse](../../sdk/models/operations/v2listledgersresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2059,7 +2059,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListLogsResponse](../../sdk/models/operations/v2listlogsresponse.md)>**
+**Promise\<[operations.V2ListLogsResponse](../../sdk/models/operations/v2listlogsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2105,7 +2105,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ListTransactionsResponse](../../sdk/models/operations/v2listtransactionsresponse.md)>**
+**Promise\<[operations.V2ListTransactionsResponse](../../sdk/models/operations/v2listtransactionsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2150,7 +2150,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2ReadStatsResponse](../../sdk/models/operations/v2readstatsresponse.md)>**
+**Promise\<[operations.V2ReadStatsResponse](../../sdk/models/operations/v2readstatsresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2195,7 +2195,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2RevertTransactionResponse](../../sdk/models/operations/v2reverttransactionresponse.md)>**
+**Promise\<[operations.V2RevertTransactionResponse](../../sdk/models/operations/v2reverttransactionresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -2242,7 +2242,7 @@ run();
 
 ### Response
 
-**Promise<[operations.V2UpdateLedgerMetadataResponse](../../sdk/models/operations/v2updateledgermetadataresponse.md)>**
+**Promise\<[operations.V2UpdateLedgerMetadataResponse](../../sdk/models/operations/v2updateledgermetadataresponse.md)\>**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

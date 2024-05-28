@@ -53,7 +53,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreatePolicyResponse](../../sdk/models/operations/createpolicyresponse.md)>**
+**Promise\<[operations.CreatePolicyResponse](../../sdk/models/operations/createpolicyresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -97,7 +97,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeletePolicyResponse](../../sdk/models/operations/deletepolicyresponse.md)>**
+**Promise\<[operations.DeletePolicyResponse](../../sdk/models/operations/deletepolicyresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -141,7 +141,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetPolicyResponse](../../sdk/models/operations/getpolicyresponse.md)>**
+**Promise\<[operations.GetPolicyResponse](../../sdk/models/operations/getpolicyresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -185,7 +185,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetReconciliationResponse](../../sdk/models/operations/getreconciliationresponse.md)>**
+**Promise\<[operations.GetReconciliationResponse](../../sdk/models/operations/getreconciliationresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -230,7 +230,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListPoliciesResponse](../../sdk/models/operations/listpoliciesresponse.md)>**
+**Promise\<[operations.ListPoliciesResponse](../../sdk/models/operations/listpoliciesresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -275,7 +275,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListReconciliationsResponse](../../sdk/models/operations/listreconciliationsresponse.md)>**
+**Promise\<[operations.ListReconciliationsResponse](../../sdk/models/operations/listreconciliationsresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -323,7 +323,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReconcileResponse](../../sdk/models/operations/reconcileresponse.md)>**
+**Promise\<[operations.ReconcileResponse](../../sdk/models/operations/reconcileresponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
@@ -364,7 +364,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ReconciliationgetServerInfoResponse](../../sdk/models/operations/reconciliationgetserverinforesponse.md)>**
+**Promise\<[operations.ReconciliationgetServerInfoResponse](../../sdk/models/operations/reconciliationgetserverinforesponse.md)\>**
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |

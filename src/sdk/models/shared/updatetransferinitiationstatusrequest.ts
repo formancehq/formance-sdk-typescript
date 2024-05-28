@@ -18,7 +18,10 @@ export type UpdateTransferInitiationStatusRequest = {
 };
 
 /** @internal */
-export const Status$: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
+export namespace Status$ {
+    export const inboundSchema = z.nativeEnum(Status);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace UpdateTransferInitiationStatusRequest$ {
@@ -28,7 +31,7 @@ export namespace UpdateTransferInitiationStatusRequest$ {
         unknown
     > = z
         .object({
-            status: Status$,
+            status: Status$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -37,7 +40,7 @@ export namespace UpdateTransferInitiationStatusRequest$ {
         });
 
     export type Outbound = {
-        status: Status;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -46,7 +49,7 @@ export namespace UpdateTransferInitiationStatusRequest$ {
         UpdateTransferInitiationStatusRequest
     > = z
         .object({
-            status: Status$,
+            status: Status$.outboundSchema,
         })
         .transform((v) => {
             return {

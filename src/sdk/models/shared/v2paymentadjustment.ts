@@ -38,7 +38,7 @@ export namespace V2PaymentAdjustment$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             raw: z.lazy(() => V2PaymentAdjustmentRaw$.inboundSchema),
-            status: V2PaymentStatus$,
+            status: V2PaymentStatus$.inboundSchema,
         })
         .transform((v) => {
             return {
@@ -55,7 +55,7 @@ export namespace V2PaymentAdjustment$ {
         amount: number;
         date: string;
         raw: V2PaymentAdjustmentRaw$.Outbound;
-        status: V2PaymentStatus;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentAdjustment> = z
@@ -64,7 +64,7 @@ export namespace V2PaymentAdjustment$ {
             amount: z.bigint().transform((v) => Number(v)),
             date: z.date().transform((v) => v.toISOString()),
             raw: z.lazy(() => V2PaymentAdjustmentRaw$.outboundSchema),
-            status: V2PaymentStatus$,
+            status: V2PaymentStatus$.outboundSchema,
         })
         .transform((v) => {
             return {

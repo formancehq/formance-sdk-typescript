@@ -6,11 +6,11 @@ import { BalanceWithAssets, BalanceWithAssets$ } from "./balancewithassets";
 import * as z from "zod";
 
 export type GetWalletSummaryResponse = {
-    availableFunds: Record<string, bigint>;
+    availableFunds: { [k: string]: bigint };
     balances: Array<BalanceWithAssets>;
-    expirableFunds: Record<string, bigint>;
-    expiredFunds: Record<string, bigint>;
-    holdFunds: Record<string, bigint>;
+    expirableFunds: { [k: string]: bigint };
+    expiredFunds: { [k: string]: bigint };
+    holdFunds: { [k: string]: bigint };
 };
 
 /** @internal */
@@ -34,11 +34,11 @@ export namespace GetWalletSummaryResponse$ {
         });
 
     export type Outbound = {
-        availableFunds: Record<string, number>;
+        availableFunds: { [k: string]: number };
         balances: Array<BalanceWithAssets$.Outbound>;
-        expirableFunds: Record<string, number>;
-        expiredFunds: Record<string, number>;
-        holdFunds: Record<string, number>;
+        expirableFunds: { [k: string]: number };
+        expiredFunds: { [k: string]: number };
+        holdFunds: { [k: string]: number };
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetWalletSummaryResponse> = z

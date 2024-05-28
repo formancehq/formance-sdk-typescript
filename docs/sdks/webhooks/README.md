@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ActivateConfigResponse](../../sdk/models/operations/activateconfigresponse.md)>**
+**Promise\<[operations.ActivateConfigResponse](../../sdk/models/operations/activateconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ChangeConfigSecretResponse](../../sdk/models/operations/changeconfigsecretresponse.md)>**
+**Promise\<[operations.ChangeConfigSecretResponse](../../sdk/models/operations/changeconfigsecretresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -142,7 +142,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeactivateConfigResponse](../../sdk/models/operations/deactivateconfigresponse.md)>**
+**Promise\<[operations.DeactivateConfigResponse](../../sdk/models/operations/deactivateconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -186,7 +186,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DeleteConfigResponse](../../sdk/models/operations/deleteconfigresponse.md)>**
+**Promise\<[operations.DeleteConfigResponse](../../sdk/models/operations/deleteconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -231,7 +231,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetManyConfigsResponse](../../sdk/models/operations/getmanyconfigsresponse.md)>**
+**Promise\<[operations.GetManyConfigsResponse](../../sdk/models/operations/getmanyconfigsresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -290,7 +290,7 @@ run();
 
 ### Response
 
-**Promise<[operations.InsertConfigResponse](../../sdk/models/operations/insertconfigresponse.md)>**
+**Promise\<[operations.InsertConfigResponse](../../sdk/models/operations/insertconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
@@ -334,7 +334,7 @@ run();
 
 ### Response
 
-**Promise<[operations.TestConfigResponse](../../sdk/models/operations/testconfigresponse.md)>**
+**Promise\<[operations.TestConfigResponse](../../sdk/models/operations/testconfigresponse.md)\>**
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |

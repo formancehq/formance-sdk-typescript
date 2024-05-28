@@ -9,7 +9,7 @@ export type BankAccountRequest = {
     connectorID: string;
     country: string;
     iban?: string | undefined;
-    metadata?: Record<string, string> | null | undefined;
+    metadata?: { [k: string]: string } | null | undefined;
     name: string;
     swiftBicCode?: string | undefined;
 };
@@ -43,7 +43,7 @@ export namespace BankAccountRequest$ {
         connectorID: string;
         country: string;
         iban?: string | undefined;
-        metadata?: Record<string, string> | null | undefined;
+        metadata?: { [k: string]: string } | null | undefined;
         name: string;
         swiftBicCode?: string | undefined;
     };

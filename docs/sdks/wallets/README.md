@@ -60,7 +60,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ConfirmHoldResponse](../../sdk/models/operations/confirmholdresponse.md)>**
+**Promise\<[operations.ConfirmHoldResponse](../../sdk/models/operations/confirmholdresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -104,7 +104,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateBalanceResponse](../../sdk/models/operations/createbalanceresponse.md)>**
+**Promise\<[operations.CreateBalanceResponse](../../sdk/models/operations/createbalanceresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -151,7 +151,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateWalletResponse](../../sdk/models/operations/createwalletresponse.md)>**
+**Promise\<[operations.CreateWalletResponse](../../sdk/models/operations/createwalletresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -210,7 +210,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreditWalletResponse](../../sdk/models/operations/creditwalletresponse.md)>**
+**Promise\<[operations.CreditWalletResponse](../../sdk/models/operations/creditwalletresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -264,7 +264,7 @@ run();
 
 ### Response
 
-**Promise<[operations.DebitWalletResponse](../../sdk/models/operations/debitwalletresponse.md)>**
+**Promise\<[operations.DebitWalletResponse](../../sdk/models/operations/debitwalletresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -309,7 +309,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetBalanceResponse](../../sdk/models/operations/getbalanceresponse.md)>**
+**Promise\<[operations.GetBalanceResponse](../../sdk/models/operations/getbalanceresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -353,7 +353,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetHoldResponse](../../sdk/models/operations/getholdresponse.md)>**
+**Promise\<[operations.GetHoldResponse](../../sdk/models/operations/getholdresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -402,7 +402,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetHoldsResponse](../../sdk/models/operations/getholdsresponse.md)>**
+**Promise\<[operations.GetHoldsResponse](../../sdk/models/operations/getholdsresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -446,7 +446,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetTransactionsResponse](../../sdk/models/operations/gettransactionsresponse.md)>**
+**Promise\<[operations.GetTransactionsResponse](../../sdk/models/operations/gettransactionsresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -490,7 +490,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetWalletResponse](../../sdk/models/operations/getwalletresponse.md)>**
+**Promise\<[operations.GetWalletResponse](../../sdk/models/operations/getwalletresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -534,7 +534,7 @@ run();
 
 ### Response
 
-**Promise<[operations.GetWalletSummaryResponse](../../sdk/models/operations/getwalletsummaryresponse.md)>**
+**Promise\<[operations.GetWalletSummaryResponse](../../sdk/models/operations/getwalletsummaryresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -578,7 +578,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListBalancesResponse](../../sdk/models/operations/listbalancesresponse.md)>**
+**Promise\<[operations.ListBalancesResponse](../../sdk/models/operations/listbalancesresponse.md)\>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -626,7 +626,7 @@ run();
 
 ### Response
 
-**Promise<[operations.ListWalletsResponse](../../sdk/models/operations/listwalletsresponse.md)>**
+**Promise\<[operations.ListWalletsResponse](../../sdk/models/operations/listwalletsresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -670,7 +670,7 @@ run();
 
 ### Response
 
-**Promise<[operations.UpdateWalletResponse](../../sdk/models/operations/updatewalletresponse.md)>**
+**Promise\<[operations.UpdateWalletResponse](../../sdk/models/operations/updatewalletresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -714,7 +714,7 @@ run();
 
 ### Response
 
-**Promise<[operations.VoidHoldResponse](../../sdk/models/operations/voidholdresponse.md)>**
+**Promise\<[operations.VoidHoldResponse](../../sdk/models/operations/voidholdresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -755,7 +755,7 @@ run();
 
 ### Response
 
-**Promise<[operations.WalletsgetServerInfoResponse](../../sdk/models/operations/walletsgetserverinforesponse.md)>**
+**Promise\<[operations.WalletsgetServerInfoResponse](../../sdk/models/operations/walletsgetserverinforesponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

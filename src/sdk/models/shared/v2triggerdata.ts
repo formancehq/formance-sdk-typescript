@@ -8,7 +8,7 @@ export type V2TriggerData = {
     event: string;
     filter?: string | undefined;
     name?: string | undefined;
-    vars?: Record<string, any> | undefined;
+    vars?: { [k: string]: any } | undefined;
     workflowID: string;
 };
 
@@ -36,7 +36,7 @@ export namespace V2TriggerData$ {
         event: string;
         filter?: string | undefined;
         name?: string | undefined;
-        vars?: Record<string, any> | undefined;
+        vars?: { [k: string]: any } | undefined;
         workflowID: string;
     };
 

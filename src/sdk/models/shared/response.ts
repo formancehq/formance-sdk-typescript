@@ -10,7 +10,7 @@ export type Total = {
 };
 
 export type ResponseCursor = {
-    data?: Array<Record<string, any>> | undefined;
+    data?: Array<{ [k: string]: any }> | undefined;
     hasMore?: boolean | undefined;
     next?: string | undefined;
     pageSize?: number | undefined;
@@ -23,7 +23,7 @@ export type Response = {
     /**
      * The payload
      */
-    data?: Record<string, any> | undefined;
+    data?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -81,7 +81,7 @@ export namespace ResponseCursor$ {
         });
 
     export type Outbound = {
-        data?: Array<Record<string, any>> | undefined;
+        data?: Array<{ [k: string]: any }> | undefined;
         hasMore?: boolean | undefined;
         next?: string | undefined;
         pageSize?: number | undefined;
@@ -126,7 +126,7 @@ export namespace Response$ {
 
     export type Outbound = {
         cursor?: ResponseCursor$.Outbound | undefined;
-        data?: Record<string, any> | undefined;
+        data?: { [k: string]: any } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Response> = z

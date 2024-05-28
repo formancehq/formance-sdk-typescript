@@ -11,7 +11,7 @@ export type V2GetBalancesAggregatedRequest = {
      */
     ledger: string;
     pit?: Date | undefined;
-    query?: Record<string, any> | undefined;
+    query?: { [k: string]: any } | undefined;
     /**
      * Use insertion date instead of effective date
      */
@@ -64,7 +64,7 @@ export namespace V2GetBalancesAggregatedRequest$ {
     export type Outbound = {
         ledger: string;
         pit?: string | undefined;
-        query?: Record<string, any> | undefined;
+        query?: { [k: string]: any } | undefined;
         useInsertionDate?: boolean | undefined;
     };
 

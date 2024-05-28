@@ -112,35 +112,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.AddAccountToPoolResponse>()
+            .void(204, operations.AddAccountToPoolResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.AddAccountToPoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -216,40 +193,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ConnectorsTransferResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ConnectorsTransferResponse>()
+            .json(200, operations.ConnectorsTransferResponse$, { key: "TransferResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -317,40 +266,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        paymentsAccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateAccountResponse>()
+            .json(200, operations.CreateAccountResponse$, { key: "paymentsAccountResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -418,40 +339,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateBankAccountResponse>()
+            .json(200, operations.CreateBankAccountResponse$, { key: "BankAccountResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -519,40 +412,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreatePaymentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreatePaymentResponse>()
+            .json(200, operations.CreatePaymentResponse$, { key: "PaymentResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -620,40 +485,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreatePoolResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreatePoolResponse>()
+            .json(200, operations.CreatePoolResponse$, { key: "PoolResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -721,40 +558,14 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.CreateTransferInitiationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.CreateTransferInitiationResponse>()
+            .json(200, operations.CreateTransferInitiationResponse$, {
+                key: "TransferInitiationResponse",
+            })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -827,35 +638,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeletePoolResponse>()
+            .void(204, operations.DeletePoolResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeletePoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -930,35 +718,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.DeleteTransferInitiationResponse>()
+            .void(204, operations.DeleteTransferInitiationResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.DeleteTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -1033,40 +798,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ForwardBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ForwardBankAccountResponse>()
+            .json(200, operations.ForwardBankAccountResponse$, { key: "BankAccountResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1151,40 +888,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetAccountBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BalancesCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetAccountBalancesResponse>()
+            .json(200, operations.GetAccountBalancesResponse$, { key: "BalancesCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1256,40 +965,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetBankAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetBankAccountResponse>()
+            .json(200, operations.GetBankAccountResponse$, { key: "BankAccountResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1370,40 +1051,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetConnectorTaskResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TaskResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetConnectorTaskResponse>()
+            .json(200, operations.GetConnectorTaskResponse$, { key: "TaskResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1486,40 +1139,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetConnectorTaskV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        TaskResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetConnectorTaskV1Response>()
+            .json(200, operations.GetConnectorTaskV1Response$, { key: "TaskResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1589,40 +1214,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetPaymentResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetPaymentResponse>()
+            .json(200, operations.GetPaymentResponse$, { key: "PaymentResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1692,40 +1289,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetPoolResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetPoolResponse>()
+            .json(200, operations.GetPoolResponse$, { key: "PoolResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1801,40 +1370,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetPoolBalancesResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolBalancesResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetPoolBalancesResponse>()
+            .json(200, operations.GetPoolBalancesResponse$, { key: "PoolBalancesResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -1906,40 +1447,14 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.GetTransferInitiationResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.GetTransferInitiationResponse>()
+            .json(200, operations.GetTransferInitiationResponse$, {
+                key: "TransferInitiationResponse",
+            })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2015,40 +1530,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 201, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.InstallConnectorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.InstallConnectorResponse>()
+            .json(201, operations.InstallConnectorResponse$, { key: "ConnectorResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2105,40 +1592,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListAllConnectorsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListAllConnectorsResponse>()
+            .json(200, operations.ListAllConnectorsResponse$, { key: "ConnectorsResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2214,40 +1673,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListBankAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        BankAccountsCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListBankAccountsResponse>()
+            .json(200, operations.ListBankAccountsResponse$, { key: "BankAccountsCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2304,40 +1735,14 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListConfigsAvailableConnectorsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorsConfigsResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListConfigsAvailableConnectorsResponse>()
+            .json(200, operations.ListConfigsAvailableConnectorsResponse$, {
+                key: "ConnectorsConfigsResponse",
+            })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2422,40 +1827,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListConnectorTasksResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TasksCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListConnectorTasksResponse>()
+            .json(200, operations.ListConnectorTasksResponse$, { key: "TasksCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2542,40 +1919,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListConnectorTasksV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        TasksCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListConnectorTasksV1Response>()
+            .json(200, operations.ListConnectorTasksV1Response$, { key: "TasksCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2649,40 +1998,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListPaymentsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PaymentsCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListPaymentsResponse>()
+            .json(200, operations.ListPaymentsResponse$, { key: "PaymentsCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2756,40 +2077,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListPoolsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        PoolsCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListPoolsResponse>()
+            .json(200, operations.ListPoolsResponse$, { key: "PoolsCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2863,40 +2156,14 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ListTransferInitiationsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        TransferInitiationsCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ListTransferInitiationsResponse>()
+            .json(200, operations.ListTransferInitiationsResponse$, {
+                key: "TransferInitiationsCursor",
+            })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -2966,40 +2233,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.PaymentsgetAccountResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        paymentsAccountResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.PaymentsgetAccountResponse>()
+            .json(200, operations.PaymentsgetAccountResponse$, { key: "paymentsAccountResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3053,40 +2292,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.PaymentsgetServerInfoResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ServerInfo: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.PaymentsgetServerInfoResponse>()
+            .json(200, operations.PaymentsgetServerInfoResponse$, { key: "ServerInfo" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3160,40 +2371,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.PaymentslistAccountsResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        AccountsCursor: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.PaymentslistAccountsResponse>()
+            .json(200, operations.PaymentslistAccountsResponse$, { key: "AccountsCursor" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3270,40 +2453,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadConnectorConfigResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorConfigResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadConnectorConfigResponse>()
+            .json(200, operations.ReadConnectorConfigResponse$, { key: "ConnectorConfigResponse" })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3382,40 +2537,14 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchResponse(response, 200, "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return operations.ReadConnectorConfigV1Response$.inboundSchema.parse({
-                        ...responseFields$,
-                        ConnectorConfigResponse: val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            return result;
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReadConnectorConfigV1Response>()
+            .json(200, operations.ReadConnectorConfigV1Response$, {
+                key: "ConnectorConfigResponse",
+            })
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
     }
 
     /**
@@ -3494,35 +2623,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.RemoveAccountFromPoolResponse>()
+            .void(204, operations.RemoveAccountFromPoolResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.RemoveAccountFromPoolResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3601,35 +2707,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ResetConnectorResponse>()
+            .void(204, operations.ResetConnectorResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.ResetConnectorResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3710,35 +2793,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ResetConnectorV1Response>()
+            .void(204, operations.ResetConnectorV1Response$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.ResetConnectorV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3813,35 +2873,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.RetryTransferInitiationResponse>()
+            .void(204, operations.RetryTransferInitiationResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.RetryTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -3919,36 +2956,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.ReverseTransferInitiationResponse>()
+            .void(204, operations.ReverseTransferInitiationResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.ReverseTransferInitiationResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4027,38 +3040,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UdpateTransferInitiationStatusResponse>()
+            .void(204, operations.UdpateTransferInitiationStatusResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.UdpateTransferInitiationStatusResponse$.inboundSchema.parse(
-                    responseFields$
-                ),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4135,35 +3122,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UninstallConnectorResponse>()
+            .void(204, operations.UninstallConnectorResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.UninstallConnectorResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4242,35 +3206,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UninstallConnectorV1Response>()
+            .void(204, operations.UninstallConnectorV1Response$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.UninstallConnectorV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4345,36 +3286,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UpdateBankAccountMetadataResponse>()
+            .void(204, operations.UpdateBankAccountMetadataResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () =>
-                operations.UpdateBankAccountMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4454,35 +3371,12 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UpdateConnectorConfigV1Response>()
+            .void(204, operations.UpdateConnectorConfigV1Response$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.UpdateConnectorConfigV1Response$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 
     /**
@@ -4555,34 +3449,11 @@ export class Payments extends ClientSDK {
             Headers: {},
         };
 
-        if (this.matchStatusCode(response, 204)) {
-            // fallthrough
-        } else if (this.matchResponse(response, "default", "application/json")) {
-            const responseBody = await response.json();
-            const result = schemas$.parse(
-                responseBody,
-                (val$) => {
-                    return errors.PaymentsErrorResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        ...val$,
-                    });
-                },
-                "Response validation failed"
-            );
-            throw result;
-        } else {
-            const responseBody = await response.text();
-            throw new errors.SDKError(
-                "Unexpected API response status or content-type",
-                response,
-                responseBody
-            );
-        }
+        const [result$] = await this.matcher<operations.UpdateMetadataResponse>()
+            .void(204, operations.UpdateMetadataResponse$)
+            .json("default", errors.PaymentsErrorResponse$, { err: true })
+            .match(response, { extraFields: responseFields$ });
 
-        return schemas$.parse(
-            undefined,
-            () => operations.UpdateMetadataResponse$.inboundSchema.parse(responseFields$),
-            "Response validation failed"
-        );
+        return result$;
     }
 }

@@ -20,5 +20,7 @@ export enum TransferInitiationStatus {
 }
 
 /** @internal */
-export const TransferInitiationStatus$: z.ZodNativeEnum<typeof TransferInitiationStatus> =
-    z.nativeEnum(TransferInitiationStatus);
+export namespace TransferInitiationStatus$ {
+    export const inboundSchema = z.nativeEnum(TransferInitiationStatus);
+    export const outboundSchema = inboundSchema;
+}

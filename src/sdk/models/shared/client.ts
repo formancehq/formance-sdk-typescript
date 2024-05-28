@@ -8,7 +8,7 @@ import * as z from "zod";
 export type Client = {
     description?: string | undefined;
     id: string;
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     name: string;
     postLogoutRedirectUris?: Array<string> | undefined;
     public?: boolean | undefined;
@@ -53,7 +53,7 @@ export namespace Client$ {
     export type Outbound = {
         description?: string | undefined;
         id: string;
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         name: string;
         postLogoutRedirectUris?: Array<string> | undefined;
         public?: boolean | undefined;

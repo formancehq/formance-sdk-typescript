@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type CreateSecretRequest = {
-    metadata?: Record<string, any> | undefined;
+    metadata?: { [k: string]: any } | undefined;
     name: string;
 };
 
@@ -24,7 +24,7 @@ export namespace CreateSecretRequest$ {
         });
 
     export type Outbound = {
-        metadata?: Record<string, any> | undefined;
+        metadata?: { [k: string]: any } | undefined;
         name: string;
     };
 

@@ -85,7 +85,7 @@ export namespace TaskDummyPay$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskDummyPayState$.inboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.inboundSchema,
             updatedAt: z
                 .string()
                 .datetime({ offset: true })
@@ -111,7 +111,7 @@ export namespace TaskDummyPay$ {
         error?: string | undefined;
         id: string;
         state: TaskDummyPayState$.Outbound;
-        status: PaymentStatus;
+        status: string;
         updatedAt: string;
     };
 
@@ -123,7 +123,7 @@ export namespace TaskDummyPay$ {
             error: z.string().optional(),
             id: z.string(),
             state: z.lazy(() => TaskDummyPayState$.outboundSchema),
-            status: PaymentStatus$,
+            status: PaymentStatus$.outboundSchema,
             updatedAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {

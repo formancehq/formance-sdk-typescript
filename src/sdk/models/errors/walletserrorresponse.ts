@@ -46,15 +46,16 @@ export class WalletsErrorResponse extends Error {
 }
 
 /** @internal */
-export const SchemasWalletsErrorResponseErrorCode$: z.ZodNativeEnum<
-    typeof SchemasWalletsErrorResponseErrorCode
-> = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
+export namespace SchemasWalletsErrorResponseErrorCode$ {
+    export const inboundSchema = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
+    export const outboundSchema = inboundSchema;
+}
 
 /** @internal */
 export namespace WalletsErrorResponse$ {
     export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, unknown> = z
         .object({
-            errorCode: SchemasWalletsErrorResponseErrorCode$,
+            errorCode: SchemasWalletsErrorResponseErrorCode$.inboundSchema,
             errorMessage: z.string(),
         })
         .transform((v) => {
@@ -65,7 +66,7 @@ export namespace WalletsErrorResponse$ {
         });
 
     export type Outbound = {
-        errorCode: SchemasWalletsErrorResponseErrorCode;
+        errorCode: string;
         errorMessage: string;
     };
 
@@ -75,7 +76,7 @@ export namespace WalletsErrorResponse$ {
         .pipe(
             z
                 .object({
-                    errorCode: SchemasWalletsErrorResponseErrorCode$,
+                    errorCode: SchemasWalletsErrorResponseErrorCode$.outboundSchema,
                     errorMessage: z.string(),
                 })
                 .transform((v) => {

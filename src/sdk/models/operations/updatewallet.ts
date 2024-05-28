@@ -8,7 +8,7 @@ export type UpdateWalletRequestBody = {
     /**
      * Custom metadata to attach to this wallet.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
 };
 
 export type UpdateWalletRequest = {
@@ -44,7 +44,7 @@ export namespace UpdateWalletRequestBody$ {
         });
 
     export type Outbound = {
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateWalletRequestBody> = z

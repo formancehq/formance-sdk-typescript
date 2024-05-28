@@ -12,7 +12,7 @@ export type V2AddMetadataOnTransactionRequest = {
     /**
      * metadata
      */
-    requestBody?: Record<string, string> | undefined;
+    requestBody?: { [k: string]: string } | undefined;
     /**
      * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
      */
@@ -70,7 +70,7 @@ export namespace V2AddMetadataOnTransactionRequest$ {
 
     export type Outbound = {
         "Idempotency-Key"?: string | undefined;
-        RequestBody?: Record<string, string> | undefined;
+        RequestBody?: { [k: string]: string } | undefined;
         dryRun?: boolean | undefined;
         id: number;
         ledger: string;

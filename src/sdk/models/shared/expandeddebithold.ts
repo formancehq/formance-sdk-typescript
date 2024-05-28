@@ -15,7 +15,7 @@ export type ExpandedDebitHold = {
     /**
      * Metadata associated with the hold.
      */
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     /**
      * Original amount on hold
      */
@@ -58,7 +58,7 @@ export namespace ExpandedDebitHold$ {
         description: string;
         destination?: Subject$.Outbound | undefined;
         id: string;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         originalAmount: number;
         remaining: number;
         walletID: string;

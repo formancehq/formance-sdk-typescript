@@ -7,7 +7,7 @@ import * as z from "zod";
 
 export type V2Transaction = {
     id: bigint;
-    metadata: Record<string, string>;
+    metadata: { [k: string]: string };
     postings: Array<V2Posting>;
     reference?: string | undefined;
     reverted: boolean;
@@ -41,7 +41,7 @@ export namespace V2Transaction$ {
 
     export type Outbound = {
         id: number;
-        metadata: Record<string, string>;
+        metadata: { [k: string]: string };
         postings: Array<V2Posting$.Outbound>;
         reference?: string | undefined;
         reverted: boolean;
