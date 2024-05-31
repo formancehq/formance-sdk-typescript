@@ -5,24 +5,28 @@
 import { V2StageDelay, V2StageDelay$ } from "./v2stagedelay";
 import { V2StageSend, V2StageSend$ } from "./v2stagesend";
 import { V2StageWaitEvent, V2StageWaitEvent$ } from "./v2stagewaitevent";
+import { V2Update, V2Update$ } from "./v2update";
 import * as z from "zod";
 
-export type V2Stage = V2StageWaitEvent | V2StageDelay | V2StageSend;
+export type V2Stage = V2StageWaitEvent | V2Update | V2StageDelay | V2StageSend;
 
 /** @internal */
 export namespace V2Stage$ {
     export const inboundSchema: z.ZodType<V2Stage, z.ZodTypeDef, unknown> = z.union([
         V2StageWaitEvent$.inboundSchema,
+        V2Update$.inboundSchema,
         V2StageDelay$.inboundSchema,
         V2StageSend$.inboundSchema,
     ]);
 
     export type Outbound =
         | V2StageWaitEvent$.Outbound
+        | V2Update$.Outbound
         | V2StageDelay$.Outbound
         | V2StageSend$.Outbound;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Stage> = z.union([
         V2StageWaitEvent$.outboundSchema,
+        V2Update$.outboundSchema,
         V2StageDelay$.outboundSchema,
         V2StageSend$.outboundSchema,
     ]);

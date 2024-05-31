@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: bd6950dc66d48923a6e6c0845b94a837
-  docVersion: v2.0.0-rc.30
-  speakeasyVersion: 1.296.1
-  generationVersion: 2.338.1
-  releaseVersion: 2.4.1
-  configChecksum: 215de3275e70135ad7c588a87dd96374
+  docChecksum: 6ebecf0b42138e0a08e8036c91c67c99
+  docVersion: v2.0.0-rc.31
+  speakeasyVersion: 1.299.3
+  generationVersion: 2.338.7
+  releaseVersion: 2.4.2
+  configChecksum: 7f0b655a2ec9ec67bdad106b4b61d2fb
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.9
+    core: 3.9.10
     deprecations: 2.81.1
     errors: 2.81.10
     globalSecurity: 2.82.9
@@ -339,6 +339,8 @@ generatedFiles:
   - src/sdk/models/shared/monetary.ts
   - src/sdk/models/shared/stagedelay.ts
   - src/sdk/models/shared/stagewaitevent.ts
+  - src/sdk/models/shared/update.ts
+  - src/sdk/models/shared/updateaccount.ts
   - src/sdk/models/shared/getworkflowinstancehistorystageresponse.ts
   - src/sdk/models/shared/workflowinstancehistorystage.ts
   - src/sdk/models/shared/workflowinstancehistorystageoutput.ts
@@ -378,6 +380,7 @@ generatedFiles:
   - src/sdk/models/shared/activitycreatetransaction.ts
   - src/sdk/models/shared/orchestrationposttransaction.ts
   - src/sdk/models/shared/activityconfirmhold.ts
+  - src/sdk/models/shared/activityaddaccountmetadata.ts
   - src/sdk/models/shared/getworkflowresponse.ts
   - src/sdk/models/shared/listrunsresponse.ts
   - src/sdk/models/shared/listtriggersresponse.ts
@@ -414,6 +417,8 @@ generatedFiles:
   - src/sdk/models/shared/v2monetary.ts
   - src/sdk/models/shared/v2stagedelay.ts
   - src/sdk/models/shared/v2stagewaitevent.ts
+  - src/sdk/models/shared/v2update.ts
+  - src/sdk/models/shared/v2updateaccount.ts
   - src/sdk/models/shared/v2getworkflowinstancehistorystageresponse.ts
   - src/sdk/models/shared/v2workflowinstancehistorystage.ts
   - src/sdk/models/shared/v2workflowinstancehistorystageoutput.ts
@@ -449,6 +454,7 @@ generatedFiles:
   - src/sdk/models/shared/v2creditwalletrequest.ts
   - src/sdk/models/shared/v2activitycreatetransaction.ts
   - src/sdk/models/shared/v2activityconfirmhold.ts
+  - src/sdk/models/shared/v2activityaddaccountmetadata.ts
   - src/sdk/models/shared/v2serverinfo.ts
   - src/sdk/models/shared/v2getworkflowresponse.ts
   - src/sdk/models/shared/v2listrunsresponse.ts
@@ -1019,6 +1025,8 @@ generatedFiles:
   - docs/sdk/models/shared/monetary.md
   - docs/sdk/models/shared/stagedelay.md
   - docs/sdk/models/shared/stagewaitevent.md
+  - docs/sdk/models/shared/update.md
+  - docs/sdk/models/shared/updateaccount.md
   - docs/sdk/models/shared/getworkflowinstancehistorystageresponse.md
   - docs/sdk/models/shared/workflowinstancehistorystage.md
   - docs/sdk/models/shared/workflowinstancehistorystageoutput.md
@@ -1066,6 +1074,7 @@ generatedFiles:
   - docs/sdk/models/shared/orchestrationposttransactionscript.md
   - docs/sdk/models/shared/orchestrationposttransaction.md
   - docs/sdk/models/shared/activityconfirmhold.md
+  - docs/sdk/models/shared/activityaddaccountmetadata.md
   - docs/sdk/models/shared/getworkflowresponse.md
   - docs/sdk/models/shared/listrunsresponse.md
   - docs/sdk/models/shared/listtriggersresponse.md
@@ -1104,6 +1113,8 @@ generatedFiles:
   - docs/sdk/models/shared/v2monetary.md
   - docs/sdk/models/shared/v2stagedelay.md
   - docs/sdk/models/shared/v2stagewaitevent.md
+  - docs/sdk/models/shared/v2update.md
+  - docs/sdk/models/shared/v2updateaccount.md
   - docs/sdk/models/shared/v2getworkflowinstancehistorystageresponse.md
   - docs/sdk/models/shared/v2workflowinstancehistorystage.md
   - docs/sdk/models/shared/v2workflowinstancehistorystageoutput.md
@@ -1146,6 +1157,7 @@ generatedFiles:
   - docs/sdk/models/shared/v2creditwalletrequest.md
   - docs/sdk/models/shared/v2activitycreatetransaction.md
   - docs/sdk/models/shared/v2activityconfirmhold.md
+  - docs/sdk/models/shared/v2activityaddaccountmetadata.md
   - docs/sdk/models/shared/v2serverinfo.md
   - docs/sdk/models/shared/v2getworkflowresponse.md
   - docs/sdk/models/shared/v2listrunsresponsecursor.md
