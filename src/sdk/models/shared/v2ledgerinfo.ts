@@ -16,59 +16,33 @@ export type V2LedgerInfo = {
 
 /** @internal */
 export namespace V2LedgerInfoStorage$ {
-    export const inboundSchema: z.ZodType<V2LedgerInfoStorage, z.ZodTypeDef, unknown> = z
-        .object({
-            migrations: z.array(V2MigrationInfo$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.migrations === undefined ? null : { migrations: v.migrations }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2LedgerInfoStorage, z.ZodTypeDef, unknown> = z.object({
+        migrations: z.array(V2MigrationInfo$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         migrations?: Array<V2MigrationInfo$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerInfoStorage> = z
-        .object({
-            migrations: z.array(V2MigrationInfo$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.migrations === undefined ? null : { migrations: v.migrations }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerInfoStorage> = z.object({
+        migrations: z.array(V2MigrationInfo$.outboundSchema).optional(),
+    });
 }
 
 /** @internal */
 export namespace V2LedgerInfo$ {
-    export const inboundSchema: z.ZodType<V2LedgerInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            name: z.string().optional(),
-            storage: z.lazy(() => V2LedgerInfoStorage$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.storage === undefined ? null : { storage: v.storage }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2LedgerInfo, z.ZodTypeDef, unknown> = z.object({
+        name: z.string().optional(),
+        storage: z.lazy(() => V2LedgerInfoStorage$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         name?: string | undefined;
         storage?: V2LedgerInfoStorage$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerInfo> = z
-        .object({
-            name: z.string().optional(),
-            storage: z.lazy(() => V2LedgerInfoStorage$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.storage === undefined ? null : { storage: v.storage }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerInfo> = z.object({
+        name: z.string().optional(),
+        storage: z.lazy(() => V2LedgerInfoStorage$.outboundSchema).optional(),
+    });
 }

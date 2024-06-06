@@ -11,27 +11,15 @@ export type ReadUserResponse = {
 
 /** @internal */
 export namespace ReadUserResponse$ {
-    export const inboundSchema: z.ZodType<ReadUserResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: User$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ReadUserResponse, z.ZodTypeDef, unknown> = z.object({
+        data: User$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         data?: User$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadUserResponse> = z
-        .object({
-            data: User$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReadUserResponse> = z.object({
+        data: User$.outboundSchema.optional(),
+    });
 }

@@ -15,23 +15,13 @@ export type ReverseTransferInitiationRequest = {
 /** @internal */
 export namespace ReverseTransferInitiationRequest$ {
     export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                amount: z.number().transform((v) => BigInt(v)),
-                asset: z.string(),
-                description: z.string(),
-                metadata: z.nullable(z.record(z.string())),
-                reference: z.string(),
-            })
-            .transform((v) => {
-                return {
-                    amount: v.amount,
-                    asset: v.asset,
-                    description: v.description,
-                    metadata: v.metadata,
-                    reference: v.reference,
-                };
-            });
+        z.object({
+            amount: z.number().transform((v) => BigInt(v)),
+            asset: z.string(),
+            description: z.string(),
+            metadata: z.nullable(z.record(z.string())),
+            reference: z.string(),
+        });
 
     export type Outbound = {
         amount: number;
@@ -45,21 +35,11 @@ export namespace ReverseTransferInitiationRequest$ {
         Outbound,
         z.ZodTypeDef,
         ReverseTransferInitiationRequest
-    > = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            description: z.string(),
-            metadata: z.nullable(z.record(z.string())),
-            reference: z.string(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                description: v.description,
-                metadata: v.metadata,
-                reference: v.reference,
-            };
-        });
+    > = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        description: z.string(),
+        metadata: z.nullable(z.record(z.string())),
+        reference: z.string(),
+    });
 }

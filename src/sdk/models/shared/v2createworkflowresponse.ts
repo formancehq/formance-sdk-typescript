@@ -11,27 +11,17 @@ export type V2CreateWorkflowResponse = {
 
 /** @internal */
 export namespace V2CreateWorkflowResponse$ {
-    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2CreateWorkflowResponse, z.ZodTypeDef, unknown> =
+        z.object({
             data: V2Workflow$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: V2Workflow$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateWorkflowResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateWorkflowResponse> =
+        z.object({
             data: V2Workflow$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

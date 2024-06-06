@@ -18,15 +18,9 @@ export namespace V2ActivityCreateTransactionOutput$ {
         V2ActivityCreateTransactionOutput,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(OrchestrationV2Transaction$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: z.array(OrchestrationV2Transaction$.inboundSchema),
+    });
 
     export type Outbound = {
         data: Array<OrchestrationV2Transaction$.Outbound>;
@@ -36,13 +30,7 @@ export namespace V2ActivityCreateTransactionOutput$ {
         Outbound,
         z.ZodTypeDef,
         V2ActivityCreateTransactionOutput
-    > = z
-        .object({
-            data: z.array(OrchestrationV2Transaction$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: z.array(OrchestrationV2Transaction$.outboundSchema),
+    });
 }

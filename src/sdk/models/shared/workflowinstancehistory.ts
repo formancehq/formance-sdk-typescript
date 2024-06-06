@@ -16,8 +16,8 @@ export type WorkflowInstanceHistory = {
 
 /** @internal */
 export namespace WorkflowInstanceHistory$ {
-    export const inboundSchema: z.ZodType<WorkflowInstanceHistory, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<WorkflowInstanceHistory, z.ZodTypeDef, unknown> =
+        z.object({
             error: z.string().optional(),
             input: Stage$.inboundSchema,
             name: z.string(),
@@ -31,16 +31,6 @@ export namespace WorkflowInstanceHistory$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.error === undefined ? null : { error: v.error }),
-                input: v.input,
-                name: v.name,
-                startedAt: v.startedAt,
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-            };
         });
 
     export type Outbound = {
@@ -52,8 +42,8 @@ export namespace WorkflowInstanceHistory$ {
         terminatedAt?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowInstanceHistory> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowInstanceHistory> =
+        z.object({
             error: z.string().optional(),
             input: Stage$.outboundSchema,
             name: z.string(),
@@ -63,15 +53,5 @@ export namespace WorkflowInstanceHistory$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.error === undefined ? null : { error: v.error }),
-                input: v.input,
-                name: v.name,
-                startedAt: v.startedAt,
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-            };
         });
 }

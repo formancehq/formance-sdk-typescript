@@ -40,21 +40,12 @@ export type V2BulkElementResult =
 /** @internal */
 export namespace V2BulkElementResultErrorSchemas$ {
     export const inboundSchema: z.ZodType<V2BulkElementResultErrorSchemas, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                errorCode: z.string(),
-                errorDescription: z.string(),
-                errorDetails: z.string().optional(),
-                responseType: z.string(),
-            })
-            .transform((v) => {
-                return {
-                    errorCode: v.errorCode,
-                    errorDescription: v.errorDescription,
-                    ...(v.errorDetails === undefined ? null : { errorDetails: v.errorDetails }),
-                    responseType: v.responseType,
-                };
-            });
+        z.object({
+            errorCode: z.string(),
+            errorDescription: z.string(),
+            errorDetails: z.string().optional(),
+            responseType: z.string(),
+        });
 
     export type Outbound = {
         errorCode: string;
@@ -67,21 +58,12 @@ export namespace V2BulkElementResultErrorSchemas$ {
         Outbound,
         z.ZodTypeDef,
         V2BulkElementResultErrorSchemas
-    > = z
-        .object({
-            errorCode: z.string(),
-            errorDescription: z.string(),
-            errorDetails: z.string().optional(),
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                errorCode: v.errorCode,
-                errorDescription: v.errorDescription,
-                ...(v.errorDetails === undefined ? null : { errorDetails: v.errorDetails }),
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        errorCode: z.string(),
+        errorDescription: z.string(),
+        errorDetails: z.string().optional(),
+        responseType: z.string(),
+    });
 }
 
 /** @internal */
@@ -90,15 +72,9 @@ export namespace V2BulkElementResultDeleteMetadataSchemas$ {
         V2BulkElementResultDeleteMetadataSchemas,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        responseType: z.string(),
+    });
 
     export type Outbound = {
         responseType: string;
@@ -108,15 +84,9 @@ export namespace V2BulkElementResultDeleteMetadataSchemas$ {
         Outbound,
         z.ZodTypeDef,
         V2BulkElementResultDeleteMetadataSchemas
-    > = z
-        .object({
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        responseType: z.string(),
+    });
 }
 
 /** @internal */
@@ -125,17 +95,10 @@ export namespace V2BulkElementResultRevertTransactionSchemas$ {
         V2BulkElementResultRevertTransactionSchemas,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: V2Transaction$.inboundSchema,
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        data: V2Transaction$.inboundSchema,
+        responseType: z.string(),
+    });
 
     export type Outbound = {
         data: V2Transaction$.Outbound;
@@ -146,44 +109,25 @@ export namespace V2BulkElementResultRevertTransactionSchemas$ {
         Outbound,
         z.ZodTypeDef,
         V2BulkElementResultRevertTransactionSchemas
-    > = z
-        .object({
-            data: V2Transaction$.outboundSchema,
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        data: V2Transaction$.outboundSchema,
+        responseType: z.string(),
+    });
 }
 
 /** @internal */
 export namespace Schemas$ {
-    export const inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> = z
-        .object({
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                responseType: v.responseType,
-            };
-        });
+    export const inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> = z.object({
+        responseType: z.string(),
+    });
 
     export type Outbound = {
         responseType: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Schemas> = z
-        .object({
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                responseType: v.responseType,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Schemas> = z.object({
+        responseType: z.string(),
+    });
 }
 
 /** @internal */
@@ -192,17 +136,10 @@ export namespace V2BulkElementResultCreateTransactionSchemas$ {
         V2BulkElementResultCreateTransactionSchemas,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: V2Transaction$.inboundSchema,
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        data: V2Transaction$.inboundSchema,
+        responseType: z.string(),
+    });
 
     export type Outbound = {
         data: V2Transaction$.Outbound;
@@ -213,17 +150,10 @@ export namespace V2BulkElementResultCreateTransactionSchemas$ {
         Outbound,
         z.ZodTypeDef,
         V2BulkElementResultCreateTransactionSchemas
-    > = z
-        .object({
-            data: V2Transaction$.outboundSchema,
-            responseType: z.string(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                responseType: v.responseType,
-            };
-        });
+    > = z.object({
+        data: V2Transaction$.outboundSchema,
+        responseType: z.string(),
+    });
 }
 
 /** @internal */

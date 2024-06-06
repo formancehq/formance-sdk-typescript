@@ -11,27 +11,15 @@ export type Config = {
 
 /** @internal */
 export namespace Config$ {
-    export const inboundSchema: z.ZodType<Config, z.ZodTypeDef, unknown> = z
-        .object({
-            storage: LedgerStorage$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                storage: v.storage,
-            };
-        });
+    export const inboundSchema: z.ZodType<Config, z.ZodTypeDef, unknown> = z.object({
+        storage: LedgerStorage$.inboundSchema,
+    });
 
     export type Outbound = {
         storage: LedgerStorage$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Config> = z
-        .object({
-            storage: LedgerStorage$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                storage: v.storage,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Config> = z.object({
+        storage: LedgerStorage$.outboundSchema,
+    });
 }

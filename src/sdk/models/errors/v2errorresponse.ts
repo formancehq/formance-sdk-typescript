@@ -53,11 +53,7 @@ export namespace V2ErrorResponse$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new V2ErrorResponse({
-                ...(v.details === undefined ? null : { details: v.details }),
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new V2ErrorResponse(v);
         });
 
     export type Outbound = {
@@ -70,18 +66,10 @@ export namespace V2ErrorResponse$ {
         .instanceof(V2ErrorResponse)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    details: z.string().optional(),
-                    errorCode: shared.V2ErrorsEnum$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.details === undefined ? null : { details: v.details }),
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                details: z.string().optional(),
+                errorCode: shared.V2ErrorsEnum$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

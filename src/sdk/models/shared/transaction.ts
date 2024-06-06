@@ -18,34 +18,18 @@ export type Transaction = {
 
 /** @internal */
 export namespace Transaction$ {
-    export const inboundSchema: z.ZodType<Transaction, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            postCommitVolumes: z.record(z.record(Volume$.inboundSchema)).optional(),
-            postings: z.array(Posting$.inboundSchema),
-            preCommitVolumes: z.record(z.record(Volume$.inboundSchema)).optional(),
-            reference: z.string().optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            txid: z.number().transform((v) => BigInt(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-                txid: v.txid,
-            };
-        });
+    export const inboundSchema: z.ZodType<Transaction, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        postCommitVolumes: z.record(z.record(Volume$.inboundSchema)).optional(),
+        postings: z.array(Posting$.inboundSchema),
+        preCommitVolumes: z.record(z.record(Volume$.inboundSchema)).optional(),
+        reference: z.string().optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        txid: z.number().transform((v) => BigInt(v)),
+    });
 
     export type Outbound = {
         metadata?: { [k: string]: any } | null | undefined;
@@ -57,29 +41,13 @@ export namespace Transaction$ {
         txid: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Transaction> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            postCommitVolumes: z.record(z.record(Volume$.outboundSchema)).optional(),
-            postings: z.array(Posting$.outboundSchema),
-            preCommitVolumes: z.record(z.record(Volume$.outboundSchema)).optional(),
-            reference: z.string().optional(),
-            timestamp: z.date().transform((v) => v.toISOString()),
-            txid: z.bigint().transform((v) => Number(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-                txid: v.txid,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Transaction> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        postCommitVolumes: z.record(z.record(Volume$.outboundSchema)).optional(),
+        postings: z.array(Posting$.outboundSchema),
+        preCommitVolumes: z.record(z.record(Volume$.outboundSchema)).optional(),
+        reference: z.string().optional(),
+        timestamp: z.date().transform((v) => v.toISOString()),
+        txid: z.bigint().transform((v) => Number(v)),
+    });
 }

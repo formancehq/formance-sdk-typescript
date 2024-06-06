@@ -20,26 +20,16 @@ export type Wallet = {
 
 /** @internal */
 export namespace Wallet$ {
-    export const inboundSchema: z.ZodType<Wallet, z.ZodTypeDef, unknown> = z
-        .object({
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<Wallet, z.ZodTypeDef, unknown> = z.object({
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+        name: z.string(),
+    });
 
     export type Outbound = {
         createdAt: string;
@@ -49,21 +39,11 @@ export namespace Wallet$ {
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Wallet> = z
-        .object({
-            createdAt: z.date().transform((v) => v.toISOString()),
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Wallet> = z.object({
+        createdAt: z.date().transform((v) => v.toISOString()),
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+        name: z.string(),
+    });
 }

@@ -10,27 +10,15 @@ export type V2ActivityVoidHold = {
 
 /** @internal */
 export namespace V2ActivityVoidHold$ {
-    export const inboundSchema: z.ZodType<V2ActivityVoidHold, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ActivityVoidHold, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+    });
 
     export type Outbound = {
         id: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityVoidHold> = z
-        .object({
-            id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityVoidHold> = z.object({
+        id: z.string(),
+    });
 }

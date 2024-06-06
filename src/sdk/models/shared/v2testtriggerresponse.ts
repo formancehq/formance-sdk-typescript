@@ -11,27 +11,16 @@ export type V2TestTriggerResponse = {
 
 /** @internal */
 export namespace V2TestTriggerResponse$ {
-    export const inboundSchema: z.ZodType<V2TestTriggerResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2TriggerTest$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2TestTriggerResponse, z.ZodTypeDef, unknown> = z.object({
+        data: V2TriggerTest$.inboundSchema,
+    });
 
     export type Outbound = {
         data: V2TriggerTest$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TestTriggerResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TestTriggerResponse> =
+        z.object({
             data: V2TriggerTest$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

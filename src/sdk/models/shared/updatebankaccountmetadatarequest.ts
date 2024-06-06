@@ -11,15 +11,9 @@ export type UpdateBankAccountMetadataRequest = {
 /** @internal */
 export namespace UpdateBankAccountMetadataRequest$ {
     export const inboundSchema: z.ZodType<UpdateBankAccountMetadataRequest, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                metadata: z.nullable(z.record(z.string())),
-            })
-            .transform((v) => {
-                return {
-                    metadata: v.metadata,
-                };
-            });
+        z.object({
+            metadata: z.nullable(z.record(z.string())),
+        });
 
     export type Outbound = {
         metadata: { [k: string]: string } | null;
@@ -29,13 +23,7 @@ export namespace UpdateBankAccountMetadataRequest$ {
         Outbound,
         z.ZodTypeDef,
         UpdateBankAccountMetadataRequest
-    > = z
-        .object({
-            metadata: z.nullable(z.record(z.string())),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-            };
-        });
+    > = z.object({
+        metadata: z.nullable(z.record(z.string())),
+    });
 }

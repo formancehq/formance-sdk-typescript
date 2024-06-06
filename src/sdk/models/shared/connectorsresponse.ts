@@ -18,21 +18,14 @@ export type ConnectorsResponse = {
 
 /** @internal */
 export namespace ConnectorsResponseData$ {
-    export const inboundSchema: z.ZodType<ConnectorsResponseData, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ConnectorsResponseData, z.ZodTypeDef, unknown> = z.object(
+        {
             connectorID: z.string(),
             enabled: z.boolean().optional(),
             name: z.string(),
             provider: Connector$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                ...(v.enabled === undefined ? null : { enabled: v.enabled }),
-                name: v.name,
-                provider: v.provider,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         connectorID: string;
@@ -41,46 +34,26 @@ export namespace ConnectorsResponseData$ {
         provider: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsResponseData> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsResponseData> =
+        z.object({
             connectorID: z.string(),
             enabled: z.boolean().optional(),
             name: z.string(),
             provider: Connector$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                ...(v.enabled === undefined ? null : { enabled: v.enabled }),
-                name: v.name,
-                provider: v.provider,
-            };
         });
 }
 
 /** @internal */
 export namespace ConnectorsResponse$ {
-    export const inboundSchema: z.ZodType<ConnectorsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(z.lazy(() => ConnectorsResponseData$.inboundSchema)),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConnectorsResponse, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(z.lazy(() => ConnectorsResponseData$.inboundSchema)),
+    });
 
     export type Outbound = {
         data: Array<ConnectorsResponseData$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsResponse> = z
-        .object({
-            data: z.array(z.lazy(() => ConnectorsResponseData$.outboundSchema)),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsResponse> = z.object({
+        data: z.array(z.lazy(() => ConnectorsResponseData$.outboundSchema)),
+    });
 }

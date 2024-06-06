@@ -11,27 +11,15 @@ export type DebitWalletResponse = {
 
 /** @internal */
 export namespace DebitWalletResponse$ {
-    export const inboundSchema: z.ZodType<DebitWalletResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: Hold$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<DebitWalletResponse, z.ZodTypeDef, unknown> = z.object({
+        data: Hold$.inboundSchema,
+    });
 
     export type Outbound = {
         data: Hold$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DebitWalletResponse> = z
-        .object({
-            data: Hold$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DebitWalletResponse> = z.object({
+        data: Hold$.outboundSchema,
+    });
 }

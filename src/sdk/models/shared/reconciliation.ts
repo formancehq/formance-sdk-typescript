@@ -19,42 +19,27 @@ export type Reconciliation = {
 
 /** @internal */
 export namespace Reconciliation$ {
-    export const inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, unknown> = z
-        .object({
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            driftBalances: z.record(z.number().transform((v) => BigInt(v))),
-            error: z.string().optional(),
-            id: z.string(),
-            ledgerBalances: z.record(z.number().transform((v) => BigInt(v))),
-            paymentsBalances: z.record(z.number().transform((v) => BigInt(v))),
-            policyID: z.string(),
-            reconciledAtLedger: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            reconciledAtPayments: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            status: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                driftBalances: v.driftBalances,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                ledgerBalances: v.ledgerBalances,
-                paymentsBalances: v.paymentsBalances,
-                policyID: v.policyID,
-                reconciledAtLedger: v.reconciledAtLedger,
-                reconciledAtPayments: v.reconciledAtPayments,
-                status: v.status,
-            };
-        });
+    export const inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, unknown> = z.object({
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        driftBalances: z.record(z.number().transform((v) => BigInt(v))),
+        error: z.string().optional(),
+        id: z.string(),
+        ledgerBalances: z.record(z.number().transform((v) => BigInt(v))),
+        paymentsBalances: z.record(z.number().transform((v) => BigInt(v))),
+        policyID: z.string(),
+        reconciledAtLedger: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        reconciledAtPayments: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        status: z.string(),
+    });
 
     export type Outbound = {
         createdAt: string;
@@ -69,31 +54,16 @@ export namespace Reconciliation$ {
         status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Reconciliation> = z
-        .object({
-            createdAt: z.date().transform((v) => v.toISOString()),
-            driftBalances: z.record(z.bigint().transform((v) => Number(v))),
-            error: z.string().optional(),
-            id: z.string(),
-            ledgerBalances: z.record(z.bigint().transform((v) => Number(v))),
-            paymentsBalances: z.record(z.bigint().transform((v) => Number(v))),
-            policyID: z.string(),
-            reconciledAtLedger: z.date().transform((v) => v.toISOString()),
-            reconciledAtPayments: z.date().transform((v) => v.toISOString()),
-            status: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                driftBalances: v.driftBalances,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                ledgerBalances: v.ledgerBalances,
-                paymentsBalances: v.paymentsBalances,
-                policyID: v.policyID,
-                reconciledAtLedger: v.reconciledAtLedger,
-                reconciledAtPayments: v.reconciledAtPayments,
-                status: v.status,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Reconciliation> = z.object({
+        createdAt: z.date().transform((v) => v.toISOString()),
+        driftBalances: z.record(z.bigint().transform((v) => Number(v))),
+        error: z.string().optional(),
+        id: z.string(),
+        ledgerBalances: z.record(z.bigint().transform((v) => Number(v))),
+        paymentsBalances: z.record(z.bigint().transform((v) => Number(v))),
+        policyID: z.string(),
+        reconciledAtLedger: z.date().transform((v) => v.toISOString()),
+        reconciledAtPayments: z.date().transform((v) => v.toISOString()),
+        status: z.string(),
+    });
 }

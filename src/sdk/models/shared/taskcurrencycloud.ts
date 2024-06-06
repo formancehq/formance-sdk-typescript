@@ -24,28 +24,18 @@ export type TaskCurrencyCloud = {
 
 /** @internal */
 export namespace TaskCurrencyCloudDescriptor$ {
-    export const inboundSchema: z.ZodType<TaskCurrencyCloudDescriptor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TaskCurrencyCloudDescriptor, z.ZodTypeDef, unknown> =
+        z.object({
             name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
         });
 
     export type Outbound = {
         name?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskCurrencyCloudDescriptor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskCurrencyCloudDescriptor> =
+        z.object({
             name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
         });
 }
 
@@ -63,35 +53,22 @@ export namespace TaskCurrencyCloudState$ {
 
 /** @internal */
 export namespace TaskCurrencyCloud$ {
-    export const inboundSchema: z.ZodType<TaskCurrencyCloud, z.ZodTypeDef, unknown> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$.inboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskCurrencyCloudState$.inboundSchema),
-            status: PaymentStatus$.inboundSchema,
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskCurrencyCloud, z.ZodTypeDef, unknown> = z.object({
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$.inboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskCurrencyCloudState$.inboundSchema),
+        status: PaymentStatus$.inboundSchema,
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         connectorID: string;
@@ -104,27 +81,14 @@ export namespace TaskCurrencyCloud$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskCurrencyCloud> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$.outboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskCurrencyCloudState$.outboundSchema),
-            status: PaymentStatus$.outboundSchema,
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskCurrencyCloud> = z.object({
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$.outboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskCurrencyCloudState$.outboundSchema),
+        status: PaymentStatus$.outboundSchema,
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

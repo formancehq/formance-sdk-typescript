@@ -13,21 +13,12 @@ export type PolicyRequest = {
 
 /** @internal */
 export namespace PolicyRequest$ {
-    export const inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            ledgerName: z.string(),
-            ledgerQuery: z.record(z.any()),
-            name: z.string(),
-            paymentsPoolID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ledgerName: v.ledgerName,
-                ledgerQuery: v.ledgerQuery,
-                name: v.name,
-                paymentsPoolID: v.paymentsPoolID,
-            };
-        });
+    export const inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, unknown> = z.object({
+        ledgerName: z.string(),
+        ledgerQuery: z.record(z.any()),
+        name: z.string(),
+        paymentsPoolID: z.string(),
+    });
 
     export type Outbound = {
         ledgerName: string;
@@ -36,19 +27,10 @@ export namespace PolicyRequest$ {
         paymentsPoolID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PolicyRequest> = z
-        .object({
-            ledgerName: z.string(),
-            ledgerQuery: z.record(z.any()),
-            name: z.string(),
-            paymentsPoolID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ledgerName: v.ledgerName,
-                ledgerQuery: v.ledgerQuery,
-                name: v.name,
-                paymentsPoolID: v.paymentsPoolID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PolicyRequest> = z.object({
+        ledgerName: z.string(),
+        ledgerQuery: z.record(z.any()),
+        name: z.string(),
+        paymentsPoolID: z.string(),
+    });
 }

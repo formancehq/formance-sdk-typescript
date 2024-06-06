@@ -16,28 +16,17 @@ export type V2Transaction = {
 
 /** @internal */
 export namespace V2Transaction$ {
-    export const inboundSchema: z.ZodType<V2Transaction, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.number().transform((v) => BigInt(v)),
-            metadata: z.record(z.string()),
-            postings: z.array(V2Posting$.inboundSchema),
-            reference: z.string().optional(),
-            reverted: z.boolean(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Transaction, z.ZodTypeDef, unknown> = z.object({
+        id: z.number().transform((v) => BigInt(v)),
+        metadata: z.record(z.string()),
+        postings: z.array(V2Posting$.inboundSchema),
+        reference: z.string().optional(),
+        reverted: z.boolean(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         id: number;
@@ -48,23 +37,12 @@ export namespace V2Transaction$ {
         timestamp: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Transaction> = z
-        .object({
-            id: z.bigint().transform((v) => Number(v)),
-            metadata: z.record(z.string()),
-            postings: z.array(V2Posting$.outboundSchema),
-            reference: z.string().optional(),
-            reverted: z.boolean(),
-            timestamp: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Transaction> = z.object({
+        id: z.bigint().transform((v) => Number(v)),
+        metadata: z.record(z.string()),
+        postings: z.array(V2Posting$.outboundSchema),
+        reference: z.string().optional(),
+        reverted: z.boolean(),
+        timestamp: z.date().transform((v) => v.toISOString()),
+    });
 }

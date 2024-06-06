@@ -12,19 +12,11 @@ export type Account = {
 
 /** @internal */
 export namespace Account$ {
-    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z
-        .object({
-            address: z.string(),
-            metadata: z.record(z.any()).optional(),
-            type: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.type === undefined ? null : { type: v.type }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z.object({
+        address: z.string(),
+        metadata: z.record(z.any()).optional(),
+        type: z.string().optional(),
+    });
 
     export type Outbound = {
         address: string;
@@ -32,17 +24,9 @@ export namespace Account$ {
         type?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Account> = z
-        .object({
-            address: z.string(),
-            metadata: z.record(z.any()).optional(),
-            type: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.type === undefined ? null : { type: v.type }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Account> = z.object({
+        address: z.string(),
+        metadata: z.record(z.any()).optional(),
+        type: z.string().optional(),
+    });
 }

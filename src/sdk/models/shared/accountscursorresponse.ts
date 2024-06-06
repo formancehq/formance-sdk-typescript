@@ -19,22 +19,13 @@ export type AccountsCursorResponse = {
 
 /** @internal */
 export namespace AccountsCursorResponseCursor$ {
-    export const inboundSchema: z.ZodType<AccountsCursorResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AccountsCursorResponseCursor, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.array(Account$.inboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 
     export type Outbound = {
@@ -45,48 +36,30 @@ export namespace AccountsCursorResponseCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponseCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponseCursor> =
+        z.object({
             data: z.array(Account$.outboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 }
 
 /** @internal */
 export namespace AccountsCursorResponse$ {
-    export const inboundSchema: z.ZodType<AccountsCursorResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AccountsCursorResponse, z.ZodTypeDef, unknown> = z.object(
+        {
             cursor: z.lazy(() => AccountsCursorResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         cursor: AccountsCursorResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountsCursorResponse> =
+        z.object({
             cursor: z.lazy(() => AccountsCursorResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

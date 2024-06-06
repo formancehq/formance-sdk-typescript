@@ -15,19 +15,11 @@ export type StageSendSource = {
 
 /** @internal */
 export namespace StageSendSource$ {
-    export const inboundSchema: z.ZodType<StageSendSource, z.ZodTypeDef, unknown> = z
-        .object({
-            account: StageSendSourceAccount$.inboundSchema.optional(),
-            payment: StageSendSourcePayment$.inboundSchema.optional(),
-            wallet: StageSendSourceWallet$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+    export const inboundSchema: z.ZodType<StageSendSource, z.ZodTypeDef, unknown> = z.object({
+        account: StageSendSourceAccount$.inboundSchema.optional(),
+        payment: StageSendSourcePayment$.inboundSchema.optional(),
+        wallet: StageSendSourceWallet$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         account?: StageSendSourceAccount$.Outbound | undefined;
@@ -35,17 +27,9 @@ export namespace StageSendSource$ {
         wallet?: StageSendSourceWallet$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendSource> = z
-        .object({
-            account: StageSendSourceAccount$.outboundSchema.optional(),
-            payment: StageSendSourcePayment$.outboundSchema.optional(),
-            wallet: StageSendSourceWallet$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendSource> = z.object({
+        account: StageSendSourceAccount$.outboundSchema.optional(),
+        payment: StageSendSourcePayment$.outboundSchema.optional(),
+        wallet: StageSendSourceWallet$.outboundSchema.optional(),
+    });
 }

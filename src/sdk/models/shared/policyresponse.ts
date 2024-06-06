@@ -11,27 +11,15 @@ export type PolicyResponse = {
 
 /** @internal */
 export namespace PolicyResponse$ {
-    export const inboundSchema: z.ZodType<PolicyResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: Policy$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<PolicyResponse, z.ZodTypeDef, unknown> = z.object({
+        data: Policy$.inboundSchema,
+    });
 
     export type Outbound = {
         data: Policy$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PolicyResponse> = z
-        .object({
-            data: Policy$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PolicyResponse> = z.object({
+        data: Policy$.outboundSchema,
+    });
 }

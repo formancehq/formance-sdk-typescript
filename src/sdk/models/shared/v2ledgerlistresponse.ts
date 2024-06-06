@@ -19,22 +19,13 @@ export type V2LedgerListResponse = {
 
 /** @internal */
 export namespace V2LedgerListResponseCursor$ {
-    export const inboundSchema: z.ZodType<V2LedgerListResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2LedgerListResponseCursor, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.array(V2Ledger$.inboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 
     export type Outbound = {
@@ -45,48 +36,29 @@ export namespace V2LedgerListResponseCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerListResponseCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerListResponseCursor> =
+        z.object({
             data: z.array(V2Ledger$.outboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 }
 
 /** @internal */
 export namespace V2LedgerListResponse$ {
-    export const inboundSchema: z.ZodType<V2LedgerListResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => V2LedgerListResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2LedgerListResponse, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => V2LedgerListResponseCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: V2LedgerListResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerListResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerListResponse> = z.object(
+        {
             cursor: z.lazy(() => V2LedgerListResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+        }
+    );
 }

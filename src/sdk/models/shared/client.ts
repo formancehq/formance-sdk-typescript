@@ -20,35 +20,18 @@ export type Client = {
 
 /** @internal */
 export namespace Client$ {
-    export const inboundSchema: z.ZodType<Client, z.ZodTypeDef, unknown> = z
-        .object({
-            description: z.string().optional(),
-            id: z.string(),
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-            postLogoutRedirectUris: z.array(z.string()).optional(),
-            public: z.boolean().optional(),
-            redirectUris: z.array(z.string()).optional(),
-            scopes: z.array(z.string()).optional(),
-            secrets: z.array(ClientSecret$.inboundSchema).optional(),
-            trusted: z.boolean().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.description === undefined ? null : { description: v.description }),
-                id: v.id,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.postLogoutRedirectUris === undefined
-                    ? null
-                    : { postLogoutRedirectUris: v.postLogoutRedirectUris }),
-                ...(v.public === undefined ? null : { public: v.public }),
-                ...(v.redirectUris === undefined ? null : { redirectUris: v.redirectUris }),
-                ...(v.scopes === undefined ? null : { scopes: v.scopes }),
-                ...(v.secrets === undefined ? null : { secrets: v.secrets }),
-                ...(v.trusted === undefined ? null : { trusted: v.trusted }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Client, z.ZodTypeDef, unknown> = z.object({
+        description: z.string().optional(),
+        id: z.string(),
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+        postLogoutRedirectUris: z.array(z.string()).optional(),
+        public: z.boolean().optional(),
+        redirectUris: z.array(z.string()).optional(),
+        scopes: z.array(z.string()).optional(),
+        secrets: z.array(ClientSecret$.inboundSchema).optional(),
+        trusted: z.boolean().optional(),
+    });
 
     export type Outbound = {
         description?: string | undefined;
@@ -63,33 +46,16 @@ export namespace Client$ {
         trusted?: boolean | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Client> = z
-        .object({
-            description: z.string().optional(),
-            id: z.string(),
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-            postLogoutRedirectUris: z.array(z.string()).optional(),
-            public: z.boolean().optional(),
-            redirectUris: z.array(z.string()).optional(),
-            scopes: z.array(z.string()).optional(),
-            secrets: z.array(ClientSecret$.outboundSchema).optional(),
-            trusted: z.boolean().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.description === undefined ? null : { description: v.description }),
-                id: v.id,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.postLogoutRedirectUris === undefined
-                    ? null
-                    : { postLogoutRedirectUris: v.postLogoutRedirectUris }),
-                ...(v.public === undefined ? null : { public: v.public }),
-                ...(v.redirectUris === undefined ? null : { redirectUris: v.redirectUris }),
-                ...(v.scopes === undefined ? null : { scopes: v.scopes }),
-                ...(v.secrets === undefined ? null : { secrets: v.secrets }),
-                ...(v.trusted === undefined ? null : { trusted: v.trusted }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Client> = z.object({
+        description: z.string().optional(),
+        id: z.string(),
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+        postLogoutRedirectUris: z.array(z.string()).optional(),
+        public: z.boolean().optional(),
+        redirectUris: z.array(z.string()).optional(),
+        scopes: z.array(z.string()).optional(),
+        secrets: z.array(ClientSecret$.outboundSchema).optional(),
+        trusted: z.boolean().optional(),
+    });
 }

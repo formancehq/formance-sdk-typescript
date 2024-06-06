@@ -18,31 +18,20 @@ export type AccountBalance = {
 
 /** @internal */
 export namespace AccountBalance$ {
-    export const inboundSchema: z.ZodType<AccountBalance, z.ZodTypeDef, unknown> = z
-        .object({
-            accountId: z.string(),
-            asset: z.string(),
-            balance: z.number().transform((v) => BigInt(v)),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            currency: z.string(),
-            lastUpdatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                accountId: v.accountId,
-                asset: v.asset,
-                balance: v.balance,
-                createdAt: v.createdAt,
-                currency: v.currency,
-                lastUpdatedAt: v.lastUpdatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<AccountBalance, z.ZodTypeDef, unknown> = z.object({
+        accountId: z.string(),
+        asset: z.string(),
+        balance: z.number().transform((v) => BigInt(v)),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        currency: z.string(),
+        lastUpdatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         accountId: string;
@@ -53,23 +42,12 @@ export namespace AccountBalance$ {
         lastUpdatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountBalance> = z
-        .object({
-            accountId: z.string(),
-            asset: z.string(),
-            balance: z.bigint().transform((v) => Number(v)),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            currency: z.string(),
-            lastUpdatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                accountId: v.accountId,
-                asset: v.asset,
-                balance: v.balance,
-                createdAt: v.createdAt,
-                currency: v.currency,
-                lastUpdatedAt: v.lastUpdatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountBalance> = z.object({
+        accountId: z.string(),
+        asset: z.string(),
+        balance: z.bigint().transform((v) => Number(v)),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        currency: z.string(),
+        lastUpdatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

@@ -14,23 +14,12 @@ export type OrchestrationAccount = {
 
 /** @internal */
 export namespace OrchestrationAccount$ {
-    export const inboundSchema: z.ZodType<OrchestrationAccount, z.ZodTypeDef, unknown> = z
-        .object({
-            address: z.string(),
-            effectiveVolumes: z.record(Volume$.inboundSchema).optional(),
-            metadata: z.record(z.string()),
-            volumes: z.record(Volume$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.effectiveVolumes === undefined
-                    ? null
-                    : { effectiveVolumes: v.effectiveVolumes }),
-                metadata: v.metadata,
-                ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-            };
-        });
+    export const inboundSchema: z.ZodType<OrchestrationAccount, z.ZodTypeDef, unknown> = z.object({
+        address: z.string(),
+        effectiveVolumes: z.record(Volume$.inboundSchema).optional(),
+        metadata: z.record(z.string()),
+        volumes: z.record(Volume$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         address: string;
@@ -39,21 +28,12 @@ export namespace OrchestrationAccount$ {
         volumes?: { [k: string]: Volume$.Outbound } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationAccount> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationAccount> = z.object(
+        {
             address: z.string(),
             effectiveVolumes: z.record(Volume$.outboundSchema).optional(),
             metadata: z.record(z.string()),
             volumes: z.record(Volume$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.effectiveVolumes === undefined
-                    ? null
-                    : { effectiveVolumes: v.effectiveVolumes }),
-                metadata: v.metadata,
-                ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-            };
-        });
+        }
+    );
 }

@@ -11,27 +11,16 @@ export type V2RunWorkflowResponse = {
 
 /** @internal */
 export namespace V2RunWorkflowResponse$ {
-    export const inboundSchema: z.ZodType<V2RunWorkflowResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2WorkflowInstance$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2RunWorkflowResponse, z.ZodTypeDef, unknown> = z.object({
+        data: V2WorkflowInstance$.inboundSchema,
+    });
 
     export type Outbound = {
         data: V2WorkflowInstance$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2RunWorkflowResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2RunWorkflowResponse> =
+        z.object({
             data: V2WorkflowInstance$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

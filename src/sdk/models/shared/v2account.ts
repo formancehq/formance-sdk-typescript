@@ -14,23 +14,12 @@ export type V2Account = {
 
 /** @internal */
 export namespace V2Account$ {
-    export const inboundSchema: z.ZodType<V2Account, z.ZodTypeDef, unknown> = z
-        .object({
-            address: z.string(),
-            effectiveVolumes: z.record(V2Volume$.inboundSchema).optional(),
-            metadata: z.record(z.string()),
-            volumes: z.record(V2Volume$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.effectiveVolumes === undefined
-                    ? null
-                    : { effectiveVolumes: v.effectiveVolumes }),
-                metadata: v.metadata,
-                ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Account, z.ZodTypeDef, unknown> = z.object({
+        address: z.string(),
+        effectiveVolumes: z.record(V2Volume$.inboundSchema).optional(),
+        metadata: z.record(z.string()),
+        volumes: z.record(V2Volume$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         address: string;
@@ -39,21 +28,10 @@ export namespace V2Account$ {
         volumes?: { [k: string]: V2Volume$.Outbound } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Account> = z
-        .object({
-            address: z.string(),
-            effectiveVolumes: z.record(V2Volume$.outboundSchema).optional(),
-            metadata: z.record(z.string()),
-            volumes: z.record(V2Volume$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.effectiveVolumes === undefined
-                    ? null
-                    : { effectiveVolumes: v.effectiveVolumes }),
-                metadata: v.metadata,
-                ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Account> = z.object({
+        address: z.string(),
+        effectiveVolumes: z.record(V2Volume$.outboundSchema).optional(),
+        metadata: z.record(z.string()),
+        volumes: z.record(V2Volume$.outboundSchema).optional(),
+    });
 }

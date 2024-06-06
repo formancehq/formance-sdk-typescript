@@ -11,27 +11,15 @@ export type GetHoldResponse = {
 
 /** @internal */
 export namespace GetHoldResponse$ {
-    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: ExpandedDebitHold$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<GetHoldResponse, z.ZodTypeDef, unknown> = z.object({
+        data: ExpandedDebitHold$.inboundSchema,
+    });
 
     export type Outbound = {
         data: ExpandedDebitHold$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetHoldResponse> = z
-        .object({
-            data: ExpandedDebitHold$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetHoldResponse> = z.object({
+        data: ExpandedDebitHold$.outboundSchema,
+    });
 }

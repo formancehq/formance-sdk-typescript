@@ -29,31 +29,17 @@ export namespace QueryRaw$ {
 
 /** @internal */
 export namespace Query$ {
-    export const inboundSchema: z.ZodType<Query, z.ZodTypeDef, unknown> = z
-        .object({
-            after: z.array(z.string()).optional(),
-            cursor: z.string().optional(),
-            ledgers: z.array(z.string()).optional(),
-            pageSize: z.number().int().optional(),
-            policy: z.string().optional(),
-            raw: z.lazy(() => QueryRaw$.inboundSchema).optional(),
-            sort: z.string().optional(),
-            target: z.string().optional(),
-            terms: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.after === undefined ? null : { after: v.after }),
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.ledgers === undefined ? null : { ledgers: v.ledgers }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
-                ...(v.policy === undefined ? null : { policy: v.policy }),
-                ...(v.raw === undefined ? null : { raw: v.raw }),
-                ...(v.sort === undefined ? null : { sort: v.sort }),
-                ...(v.target === undefined ? null : { target: v.target }),
-                ...(v.terms === undefined ? null : { terms: v.terms }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Query, z.ZodTypeDef, unknown> = z.object({
+        after: z.array(z.string()).optional(),
+        cursor: z.string().optional(),
+        ledgers: z.array(z.string()).optional(),
+        pageSize: z.number().int().optional(),
+        policy: z.string().optional(),
+        raw: z.lazy(() => QueryRaw$.inboundSchema).optional(),
+        sort: z.string().optional(),
+        target: z.string().optional(),
+        terms: z.array(z.string()).optional(),
+    });
 
     export type Outbound = {
         after?: Array<string> | undefined;
@@ -67,29 +53,15 @@ export namespace Query$ {
         terms?: Array<string> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Query> = z
-        .object({
-            after: z.array(z.string()).optional(),
-            cursor: z.string().optional(),
-            ledgers: z.array(z.string()).optional(),
-            pageSize: z.number().int().optional(),
-            policy: z.string().optional(),
-            raw: z.lazy(() => QueryRaw$.outboundSchema).optional(),
-            sort: z.string().optional(),
-            target: z.string().optional(),
-            terms: z.array(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.after === undefined ? null : { after: v.after }),
-                ...(v.cursor === undefined ? null : { cursor: v.cursor }),
-                ...(v.ledgers === undefined ? null : { ledgers: v.ledgers }),
-                ...(v.pageSize === undefined ? null : { pageSize: v.pageSize }),
-                ...(v.policy === undefined ? null : { policy: v.policy }),
-                ...(v.raw === undefined ? null : { raw: v.raw }),
-                ...(v.sort === undefined ? null : { sort: v.sort }),
-                ...(v.target === undefined ? null : { target: v.target }),
-                ...(v.terms === undefined ? null : { terms: v.terms }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Query> = z.object({
+        after: z.array(z.string()).optional(),
+        cursor: z.string().optional(),
+        ledgers: z.array(z.string()).optional(),
+        pageSize: z.number().int().optional(),
+        policy: z.string().optional(),
+        raw: z.lazy(() => QueryRaw$.outboundSchema).optional(),
+        sort: z.string().optional(),
+        target: z.string().optional(),
+        terms: z.array(z.string()).optional(),
+    });
 }

@@ -46,57 +46,31 @@ export namespace TransferInitiationType$ {
 
 /** @internal */
 export namespace TransferInitiation$ {
-    export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            description: z.string(),
-            destinationAccountID: z.string(),
-            error: z.string(),
-            id: z.string(),
-            initialAmount: z.number().transform((v) => BigInt(v)),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            reference: z.string(),
-            relatedAdjustments: z.array(TransferInitiationAdjusments$.inboundSchema).optional(),
-            relatedPayments: z.array(TransferInitiationPayments$.inboundSchema).optional(),
-            scheduledAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            sourceAccountID: z.string(),
-            status: TransferInitiationStatus$.inboundSchema,
-            type: TransferInitiationType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                description: v.description,
-                destinationAccountID: v.destinationAccountID,
-                error: v.error,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                reference: v.reference,
-                ...(v.relatedAdjustments === undefined
-                    ? null
-                    : { relatedAdjustments: v.relatedAdjustments }),
-                ...(v.relatedPayments === undefined
-                    ? null
-                    : { relatedPayments: v.relatedPayments }),
-                scheduledAt: v.scheduledAt,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, unknown> = z.object({
+        amount: z.number().transform((v) => BigInt(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        description: z.string(),
+        destinationAccountID: z.string(),
+        error: z.string(),
+        id: z.string(),
+        initialAmount: z.number().transform((v) => BigInt(v)),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        reference: z.string(),
+        relatedAdjustments: z.array(TransferInitiationAdjusments$.inboundSchema).optional(),
+        relatedPayments: z.array(TransferInitiationPayments$.inboundSchema).optional(),
+        scheduledAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        sourceAccountID: z.string(),
+        status: TransferInitiationStatus$.inboundSchema,
+        type: TransferInitiationType$.inboundSchema,
+    });
 
     export type Outbound = {
         amount: number;
@@ -118,49 +92,23 @@ export namespace TransferInitiation$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiation> = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            description: z.string(),
-            destinationAccountID: z.string(),
-            error: z.string(),
-            id: z.string(),
-            initialAmount: z.bigint().transform((v) => Number(v)),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            reference: z.string(),
-            relatedAdjustments: z.array(TransferInitiationAdjusments$.outboundSchema).optional(),
-            relatedPayments: z.array(TransferInitiationPayments$.outboundSchema).optional(),
-            scheduledAt: z.date().transform((v) => v.toISOString()),
-            sourceAccountID: z.string(),
-            status: TransferInitiationStatus$.outboundSchema,
-            type: TransferInitiationType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                description: v.description,
-                destinationAccountID: v.destinationAccountID,
-                error: v.error,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                reference: v.reference,
-                ...(v.relatedAdjustments === undefined
-                    ? null
-                    : { relatedAdjustments: v.relatedAdjustments }),
-                ...(v.relatedPayments === undefined
-                    ? null
-                    : { relatedPayments: v.relatedPayments }),
-                scheduledAt: v.scheduledAt,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiation> = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        description: z.string(),
+        destinationAccountID: z.string(),
+        error: z.string(),
+        id: z.string(),
+        initialAmount: z.bigint().transform((v) => Number(v)),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        reference: z.string(),
+        relatedAdjustments: z.array(TransferInitiationAdjusments$.outboundSchema).optional(),
+        relatedPayments: z.array(TransferInitiationPayments$.outboundSchema).optional(),
+        scheduledAt: z.date().transform((v) => v.toISOString()),
+        sourceAccountID: z.string(),
+        status: TransferInitiationStatus$.outboundSchema,
+        type: TransferInitiationType$.outboundSchema,
+    });
 }

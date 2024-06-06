@@ -20,23 +20,13 @@ export type TransactionsCursorResponse = {
 /** @internal */
 export namespace TransactionsCursorResponseCursor$ {
     export const inboundSchema: z.ZodType<TransactionsCursorResponseCursor, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                data: z.array(Transaction$.inboundSchema),
-                hasMore: z.boolean(),
-                next: z.string().optional(),
-                pageSize: z.number().int(),
-                previous: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                    hasMore: v.hasMore,
-                    ...(v.next === undefined ? null : { next: v.next }),
-                    pageSize: v.pageSize,
-                    ...(v.previous === undefined ? null : { previous: v.previous }),
-                };
-            });
+        z.object({
+            data: z.array(Transaction$.inboundSchema),
+            hasMore: z.boolean(),
+            next: z.string().optional(),
+            pageSize: z.number().int(),
+            previous: z.string().optional(),
+        });
 
     export type Outbound = {
         data: Array<Transaction$.Outbound>;
@@ -50,48 +40,28 @@ export namespace TransactionsCursorResponseCursor$ {
         Outbound,
         z.ZodTypeDef,
         TransactionsCursorResponseCursor
-    > = z
-        .object({
-            data: z.array(Transaction$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(Transaction$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace TransactionsCursorResponse$ {
-    export const inboundSchema: z.ZodType<TransactionsCursorResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransactionsCursorResponse, z.ZodTypeDef, unknown> =
+        z.object({
             cursor: z.lazy(() => TransactionsCursorResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 
     export type Outbound = {
         cursor: TransactionsCursorResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionsCursorResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionsCursorResponse> =
+        z.object({
             cursor: z.lazy(() => TransactionsCursorResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

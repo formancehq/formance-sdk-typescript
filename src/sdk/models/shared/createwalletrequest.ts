@@ -14,32 +14,18 @@ export type CreateWalletRequest = {
 
 /** @internal */
 export namespace CreateWalletRequest$ {
-    export const inboundSchema: z.ZodType<CreateWalletRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.record(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateWalletRequest, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.record(z.string()),
+        name: z.string(),
+    });
 
     export type Outbound = {
         metadata: { [k: string]: string };
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWalletRequest> = z
-        .object({
-            metadata: z.record(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWalletRequest> = z.object({
+        metadata: z.record(z.string()),
+        name: z.string(),
+    });
 }

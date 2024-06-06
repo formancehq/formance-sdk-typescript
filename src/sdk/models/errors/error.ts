@@ -58,10 +58,7 @@ export namespace ErrorT$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new ErrorT({
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new ErrorT(v);
         });
 
     export type Outbound = {
@@ -73,16 +70,9 @@ export namespace ErrorT$ {
         .instanceof(ErrorT)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    errorCode: ErrorCode$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                errorCode: ErrorCode$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

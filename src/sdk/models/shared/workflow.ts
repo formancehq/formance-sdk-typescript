@@ -14,27 +14,18 @@ export type Workflow = {
 
 /** @internal */
 export namespace Workflow$ {
-    export const inboundSchema: z.ZodType<Workflow, z.ZodTypeDef, unknown> = z
-        .object({
-            config: WorkflowConfig$.inboundSchema,
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            id: z.string(),
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<Workflow, z.ZodTypeDef, unknown> = z.object({
+        config: WorkflowConfig$.inboundSchema,
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        id: z.string(),
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         config: WorkflowConfig$.Outbound;
@@ -43,19 +34,10 @@ export namespace Workflow$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Workflow> = z
-        .object({
-            config: WorkflowConfig$.outboundSchema,
-            createdAt: z.date().transform((v) => v.toISOString()),
-            id: z.string(),
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Workflow> = z.object({
+        config: WorkflowConfig$.outboundSchema,
+        createdAt: z.date().transform((v) => v.toISOString()),
+        id: z.string(),
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

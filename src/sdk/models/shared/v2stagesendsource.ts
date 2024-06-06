@@ -15,19 +15,11 @@ export type V2StageSendSource = {
 
 /** @internal */
 export namespace V2StageSendSource$ {
-    export const inboundSchema: z.ZodType<V2StageSendSource, z.ZodTypeDef, unknown> = z
-        .object({
-            account: V2StageSendSourceAccount$.inboundSchema.optional(),
-            payment: V2StageSendSourcePayment$.inboundSchema.optional(),
-            wallet: V2StageSendSourceWallet$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2StageSendSource, z.ZodTypeDef, unknown> = z.object({
+        account: V2StageSendSourceAccount$.inboundSchema.optional(),
+        payment: V2StageSendSourcePayment$.inboundSchema.optional(),
+        wallet: V2StageSendSourceWallet$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         account?: V2StageSendSourceAccount$.Outbound | undefined;
@@ -35,17 +27,9 @@ export namespace V2StageSendSource$ {
         wallet?: V2StageSendSourceWallet$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSource> = z
-        .object({
-            account: V2StageSendSourceAccount$.outboundSchema.optional(),
-            payment: V2StageSendSourcePayment$.outboundSchema.optional(),
-            wallet: V2StageSendSourceWallet$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSource> = z.object({
+        account: V2StageSendSourceAccount$.outboundSchema.optional(),
+        payment: V2StageSendSourcePayment$.outboundSchema.optional(),
+        wallet: V2StageSendSourceWallet$.outboundSchema.optional(),
+    });
 }

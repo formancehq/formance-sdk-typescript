@@ -53,11 +53,7 @@ export namespace WebhooksErrorResponse$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new WebhooksErrorResponse({
-                ...(v.details === undefined ? null : { details: v.details }),
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new WebhooksErrorResponse(v);
         });
 
     export type Outbound = {
@@ -70,18 +66,10 @@ export namespace WebhooksErrorResponse$ {
         .instanceof(WebhooksErrorResponse)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    details: z.string().optional(),
-                    errorCode: shared.WebhooksErrorsEnum$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.details === undefined ? null : { details: v.details }),
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                details: z.string().optional(),
+                errorCode: shared.WebhooksErrorsEnum$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

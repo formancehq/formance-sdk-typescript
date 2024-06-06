@@ -26,26 +26,16 @@ export namespace V2LogType$ {
 
 /** @internal */
 export namespace V2Log$ {
-    export const inboundSchema: z.ZodType<V2Log, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.record(z.any()),
-            date: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            hash: z.string(),
-            id: z.number().transform((v) => BigInt(v)),
-            type: V2LogType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                date: v.date,
-                hash: v.hash,
-                id: v.id,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Log, z.ZodTypeDef, unknown> = z.object({
+        data: z.record(z.any()),
+        date: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        hash: z.string(),
+        id: z.number().transform((v) => BigInt(v)),
+        type: V2LogType$.inboundSchema,
+    });
 
     export type Outbound = {
         data: { [k: string]: any };
@@ -55,21 +45,11 @@ export namespace V2Log$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Log> = z
-        .object({
-            data: z.record(z.any()),
-            date: z.date().transform((v) => v.toISOString()),
-            hash: z.string(),
-            id: z.bigint().transform((v) => Number(v)),
-            type: V2LogType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                date: v.date,
-                hash: v.hash,
-                id: v.id,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Log> = z.object({
+        data: z.record(z.any()),
+        date: z.date().transform((v) => v.toISOString()),
+        hash: z.string(),
+        id: z.bigint().transform((v) => Number(v)),
+        type: V2LogType$.outboundSchema,
+    });
 }

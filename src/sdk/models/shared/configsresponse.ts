@@ -16,59 +16,34 @@ export type ConfigsResponse = {
 
 /** @internal */
 export namespace ConfigsResponseCursor$ {
-    export const inboundSchema: z.ZodType<ConfigsResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(WebhooksConfig$.inboundSchema),
-            hasMore: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigsResponseCursor, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(WebhooksConfig$.inboundSchema),
+        hasMore: z.boolean(),
+    });
 
     export type Outbound = {
         data: Array<WebhooksConfig$.Outbound>;
         hasMore: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigsResponseCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigsResponseCursor> =
+        z.object({
             data: z.array(WebhooksConfig$.outboundSchema),
             hasMore: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-            };
         });
 }
 
 /** @internal */
 export namespace ConfigsResponse$ {
-    export const inboundSchema: z.ZodType<ConfigsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => ConfigsResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigsResponse, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => ConfigsResponseCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: ConfigsResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigsResponse> = z
-        .object({
-            cursor: z.lazy(() => ConfigsResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigsResponse> = z.object({
+        cursor: z.lazy(() => ConfigsResponseCursor$.outboundSchema),
+    });
 }

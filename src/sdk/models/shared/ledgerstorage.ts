@@ -11,32 +11,18 @@ export type LedgerStorage = {
 
 /** @internal */
 export namespace LedgerStorage$ {
-    export const inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, unknown> = z
-        .object({
-            driver: z.string(),
-            ledgers: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                driver: v.driver,
-                ledgers: v.ledgers,
-            };
-        });
+    export const inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, unknown> = z.object({
+        driver: z.string(),
+        ledgers: z.array(z.string()),
+    });
 
     export type Outbound = {
         driver: string;
         ledgers: Array<string>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerStorage> = z
-        .object({
-            driver: z.string(),
-            ledgers: z.array(z.string()),
-        })
-        .transform((v) => {
-            return {
-                driver: v.driver,
-                ledgers: v.ledgers,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerStorage> = z.object({
+        driver: z.string(),
+        ledgers: z.array(z.string()),
+    });
 }

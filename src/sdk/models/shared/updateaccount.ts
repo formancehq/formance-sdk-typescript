@@ -12,19 +12,11 @@ export type UpdateAccount = {
 
 /** @internal */
 export namespace UpdateAccount$ {
-    export const inboundSchema: z.ZodType<UpdateAccount, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-            };
-        });
+    export const inboundSchema: z.ZodType<UpdateAccount, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+    });
 
     export type Outbound = {
         id: string;
@@ -32,17 +24,9 @@ export namespace UpdateAccount$ {
         metadata: { [k: string]: string };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateAccount> = z
-        .object({
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateAccount> = z.object({
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+    });
 }

@@ -11,32 +11,18 @@ export type PoolRequest = {
 
 /** @internal */
 export namespace PoolRequest$ {
-    export const inboundSchema: z.ZodType<PoolRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            accountIDs: z.array(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountIDs: v.accountIDs,
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<PoolRequest, z.ZodTypeDef, unknown> = z.object({
+        accountIDs: z.array(z.string()),
+        name: z.string(),
+    });
 
     export type Outbound = {
         accountIDs: Array<string>;
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolRequest> = z
-        .object({
-            accountIDs: z.array(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountIDs: v.accountIDs,
-                name: v.name,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolRequest> = z.object({
+        accountIDs: z.array(z.string()),
+        name: z.string(),
+    });
 }

@@ -19,22 +19,13 @@ export type V2ListWorkflowsResponse = {
 
 /** @internal */
 export namespace V2ListWorkflowsResponseCursor$ {
-    export const inboundSchema: z.ZodType<V2ListWorkflowsResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2ListWorkflowsResponseCursor, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.array(V2Workflow$.inboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 
     export type Outbound = {
@@ -46,48 +37,28 @@ export namespace V2ListWorkflowsResponseCursor$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWorkflowsResponseCursor> =
-        z
-            .object({
-                data: z.array(V2Workflow$.outboundSchema),
-                hasMore: z.boolean(),
-                next: z.string().optional(),
-                pageSize: z.number().int(),
-                previous: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                    hasMore: v.hasMore,
-                    ...(v.next === undefined ? null : { next: v.next }),
-                    pageSize: v.pageSize,
-                    ...(v.previous === undefined ? null : { previous: v.previous }),
-                };
-            });
+        z.object({
+            data: z.array(V2Workflow$.outboundSchema),
+            hasMore: z.boolean(),
+            next: z.string().optional(),
+            pageSize: z.number().int(),
+            previous: z.string().optional(),
+        });
 }
 
 /** @internal */
 export namespace V2ListWorkflowsResponse$ {
-    export const inboundSchema: z.ZodType<V2ListWorkflowsResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2ListWorkflowsResponse, z.ZodTypeDef, unknown> =
+        z.object({
             cursor: z.lazy(() => V2ListWorkflowsResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 
     export type Outbound = {
         cursor: V2ListWorkflowsResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWorkflowsResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWorkflowsResponse> =
+        z.object({
             cursor: z.lazy(() => V2ListWorkflowsResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

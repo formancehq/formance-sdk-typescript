@@ -90,46 +90,26 @@ export namespace OrchestrationPaymentType$ {
 
 /** @internal */
 export namespace OrchestrationPayment$ {
-    export const inboundSchema: z.ZodType<OrchestrationPayment, z.ZodTypeDef, unknown> = z
-        .object({
-            adjustments: z.array(OrchestrationPaymentAdjustment$.inboundSchema),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            destinationAccountID: z.string(),
-            id: z.string(),
-            initialAmount: z.number().transform((v) => BigInt(v)),
-            metadata: z.nullable(OrchestrationPaymentMetadata$.inboundSchema),
-            provider: OrchestrationConnector$.inboundSchema.optional(),
-            raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.inboundSchema)),
-            reference: z.string(),
-            scheme: OrchestrationPaymentScheme$.inboundSchema,
-            sourceAccountID: z.string(),
-            status: OrchestrationPaymentStatus$.inboundSchema,
-            type: OrchestrationPaymentType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustments: v.adjustments,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                destinationAccountID: v.destinationAccountID,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                metadata: v.metadata,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                scheme: v.scheme,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<OrchestrationPayment, z.ZodTypeDef, unknown> = z.object({
+        adjustments: z.array(OrchestrationPaymentAdjustment$.inboundSchema),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        destinationAccountID: z.string(),
+        id: z.string(),
+        initialAmount: z.number().transform((v) => BigInt(v)),
+        metadata: z.nullable(OrchestrationPaymentMetadata$.inboundSchema),
+        provider: OrchestrationConnector$.inboundSchema.optional(),
+        raw: z.nullable(z.lazy(() => OrchestrationPaymentRaw$.inboundSchema)),
+        reference: z.string(),
+        scheme: OrchestrationPaymentScheme$.inboundSchema,
+        sourceAccountID: z.string(),
+        status: OrchestrationPaymentStatus$.inboundSchema,
+        type: OrchestrationPaymentType$.inboundSchema,
+    });
 
     export type Outbound = {
         adjustments: Array<OrchestrationPaymentAdjustment$.Outbound>;
@@ -149,8 +129,8 @@ export namespace OrchestrationPayment$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPayment> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPayment> = z.object(
+        {
             adjustments: z.array(OrchestrationPaymentAdjustment$.outboundSchema),
             asset: z.string(),
             connectorID: z.string(),
@@ -166,24 +146,6 @@ export namespace OrchestrationPayment$ {
             sourceAccountID: z.string(),
             status: OrchestrationPaymentStatus$.outboundSchema,
             type: OrchestrationPaymentType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustments: v.adjustments,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                destinationAccountID: v.destinationAccountID,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                metadata: v.metadata,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                scheme: v.scheme,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+        }
+    );
 }

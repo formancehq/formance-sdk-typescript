@@ -79,34 +79,24 @@ export namespace TasksCursorData$ {
 
 /** @internal */
 export namespace TasksCursorCursor$ {
-    export const inboundSchema: z.ZodType<TasksCursorCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(
-                z.union([
-                    TaskStripe$.inboundSchema,
-                    TaskWise$.inboundSchema,
-                    TaskCurrencyCloud$.inboundSchema,
-                    TaskDummyPay$.inboundSchema,
-                    TaskModulr$.inboundSchema,
-                    TaskBankingCircle$.inboundSchema,
-                    TaskMangoPay$.inboundSchema,
-                    TaskMoneycorp$.inboundSchema,
-                ])
-            ),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    export const inboundSchema: z.ZodType<TasksCursorCursor, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(
+            z.union([
+                TaskStripe$.inboundSchema,
+                TaskWise$.inboundSchema,
+                TaskCurrencyCloud$.inboundSchema,
+                TaskDummyPay$.inboundSchema,
+                TaskModulr$.inboundSchema,
+                TaskBankingCircle$.inboundSchema,
+                TaskMangoPay$.inboundSchema,
+                TaskMoneycorp$.inboundSchema,
+            ])
+        ),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<
@@ -125,59 +115,37 @@ export namespace TasksCursorCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursorCursor> = z
-        .object({
-            data: z.array(
-                z.union([
-                    TaskStripe$.outboundSchema,
-                    TaskWise$.outboundSchema,
-                    TaskCurrencyCloud$.outboundSchema,
-                    TaskDummyPay$.outboundSchema,
-                    TaskModulr$.outboundSchema,
-                    TaskBankingCircle$.outboundSchema,
-                    TaskMangoPay$.outboundSchema,
-                    TaskMoneycorp$.outboundSchema,
-                ])
-            ),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursorCursor> = z.object({
+        data: z.array(
+            z.union([
+                TaskStripe$.outboundSchema,
+                TaskWise$.outboundSchema,
+                TaskCurrencyCloud$.outboundSchema,
+                TaskDummyPay$.outboundSchema,
+                TaskModulr$.outboundSchema,
+                TaskBankingCircle$.outboundSchema,
+                TaskMangoPay$.outboundSchema,
+                TaskMoneycorp$.outboundSchema,
+            ])
+        ),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace TasksCursor$ {
-    export const inboundSchema: z.ZodType<TasksCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => TasksCursorCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<TasksCursor, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => TasksCursorCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: TasksCursorCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursor> = z
-        .object({
-            cursor: z.lazy(() => TasksCursorCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TasksCursor> = z.object({
+        cursor: z.lazy(() => TasksCursorCursor$.outboundSchema),
+    });
 }

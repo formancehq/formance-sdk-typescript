@@ -14,23 +14,13 @@ export type V2TriggerData = {
 
 /** @internal */
 export namespace V2TriggerData$ {
-    export const inboundSchema: z.ZodType<V2TriggerData, z.ZodTypeDef, unknown> = z
-        .object({
-            event: z.string(),
-            filter: z.string().optional(),
-            name: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                event: v.event,
-                ...(v.filter === undefined ? null : { filter: v.filter }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-                workflowID: v.workflowID,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2TriggerData, z.ZodTypeDef, unknown> = z.object({
+        event: z.string(),
+        filter: z.string().optional(),
+        name: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+        workflowID: z.string(),
+    });
 
     export type Outbound = {
         event: string;
@@ -40,21 +30,11 @@ export namespace V2TriggerData$ {
         workflowID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TriggerData> = z
-        .object({
-            event: z.string(),
-            filter: z.string().optional(),
-            name: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                event: v.event,
-                ...(v.filter === undefined ? null : { filter: v.filter }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-                workflowID: v.workflowID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2TriggerData> = z.object({
+        event: z.string(),
+        filter: z.string().optional(),
+        name: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+        workflowID: z.string(),
+    });
 }

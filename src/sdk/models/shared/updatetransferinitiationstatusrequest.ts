@@ -29,15 +29,9 @@ export namespace UpdateTransferInitiationStatusRequest$ {
         UpdateTransferInitiationStatusRequest,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            status: Status$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-            };
-        });
+    > = z.object({
+        status: Status$.inboundSchema,
+    });
 
     export type Outbound = {
         status: string;
@@ -47,13 +41,7 @@ export namespace UpdateTransferInitiationStatusRequest$ {
         Outbound,
         z.ZodTypeDef,
         UpdateTransferInitiationStatusRequest
-    > = z
-        .object({
-            status: Status$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-            };
-        });
+    > = z.object({
+        status: Status$.outboundSchema,
+    });
 }

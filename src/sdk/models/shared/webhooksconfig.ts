@@ -16,33 +16,21 @@ export type WebhooksConfig = {
 
 /** @internal */
 export namespace WebhooksConfig$ {
-    export const inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            active: z.boolean(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            endpoint: z.string(),
-            eventTypes: z.array(z.string()),
-            id: z.string(),
-            secret: z.string(),
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                active: v.active,
-                createdAt: v.createdAt,
-                endpoint: v.endpoint,
-                eventTypes: v.eventTypes,
-                id: v.id,
-                secret: v.secret,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, unknown> = z.object({
+        active: z.boolean(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        endpoint: z.string(),
+        eventTypes: z.array(z.string()),
+        id: z.string(),
+        secret: z.string(),
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         active: boolean;
@@ -54,25 +42,13 @@ export namespace WebhooksConfig$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WebhooksConfig> = z
-        .object({
-            active: z.boolean(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            endpoint: z.string(),
-            eventTypes: z.array(z.string()),
-            id: z.string(),
-            secret: z.string(),
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                active: v.active,
-                createdAt: v.createdAt,
-                endpoint: v.endpoint,
-                eventTypes: v.eventTypes,
-                id: v.id,
-                secret: v.secret,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WebhooksConfig> = z.object({
+        active: z.boolean(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        endpoint: z.string(),
+        eventTypes: z.array(z.string()),
+        id: z.string(),
+        secret: z.string(),
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

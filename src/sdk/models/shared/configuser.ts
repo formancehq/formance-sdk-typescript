@@ -13,21 +13,12 @@ export type ConfigUser = {
 
 /** @internal */
 export namespace ConfigUser$ {
-    export const inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, unknown> = z
-        .object({
-            endpoint: z.string(),
-            eventTypes: z.array(z.string()),
-            name: z.string().optional(),
-            secret: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                endpoint: v.endpoint,
-                eventTypes: v.eventTypes,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.secret === undefined ? null : { secret: v.secret }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, unknown> = z.object({
+        endpoint: z.string(),
+        eventTypes: z.array(z.string()),
+        name: z.string().optional(),
+        secret: z.string().optional(),
+    });
 
     export type Outbound = {
         endpoint: string;
@@ -36,19 +27,10 @@ export namespace ConfigUser$ {
         secret?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigUser> = z
-        .object({
-            endpoint: z.string(),
-            eventTypes: z.array(z.string()),
-            name: z.string().optional(),
-            secret: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                endpoint: v.endpoint,
-                eventTypes: v.eventTypes,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.secret === undefined ? null : { secret: v.secret }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigUser> = z.object({
+        endpoint: z.string(),
+        eventTypes: z.array(z.string()),
+        name: z.string().optional(),
+        secret: z.string().optional(),
+    });
 }

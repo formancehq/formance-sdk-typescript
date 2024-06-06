@@ -14,8 +14,8 @@ export type TransferInitiationPayments = {
 
 /** @internal */
 export namespace TransferInitiationPayments$ {
-    export const inboundSchema: z.ZodType<TransferInitiationPayments, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransferInitiationPayments, z.ZodTypeDef, unknown> =
+        z.object({
             createdAt: z
                 .string()
                 .datetime({ offset: true })
@@ -23,14 +23,6 @@ export namespace TransferInitiationPayments$ {
             error: z.string(),
             paymentID: z.string(),
             status: TransferInitiationStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                error: v.error,
-                paymentID: v.paymentID,
-                status: v.status,
-            };
         });
 
     export type Outbound = {
@@ -40,19 +32,11 @@ export namespace TransferInitiationPayments$ {
         status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationPayments> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationPayments> =
+        z.object({
             createdAt: z.date().transform((v) => v.toISOString()),
             error: z.string(),
             paymentID: z.string(),
             status: TransferInitiationStatus$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                error: v.error,
-                paymentID: v.paymentID,
-                status: v.status,
-            };
         });
 }

@@ -12,19 +12,11 @@ export type User = {
 
 /** @internal */
 export namespace User$ {
-    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z
-        .object({
-            email: z.string().optional(),
-            id: z.string().optional(),
-            subject: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.email === undefined ? null : { email: v.email }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.subject === undefined ? null : { subject: v.subject }),
-            };
-        });
+    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z.object({
+        email: z.string().optional(),
+        id: z.string().optional(),
+        subject: z.string().optional(),
+    });
 
     export type Outbound = {
         email?: string | undefined;
@@ -32,17 +24,9 @@ export namespace User$ {
         subject?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, User> = z
-        .object({
-            email: z.string().optional(),
-            id: z.string().optional(),
-            subject: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.email === undefined ? null : { email: v.email }),
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.subject === undefined ? null : { subject: v.subject }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, User> = z.object({
+        email: z.string().optional(),
+        id: z.string().optional(),
+        subject: z.string().optional(),
+    });
 }

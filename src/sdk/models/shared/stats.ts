@@ -11,32 +11,18 @@ export type Stats = {
 
 /** @internal */
 export namespace Stats$ {
-    export const inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z
-        .object({
-            accounts: z.number().int(),
-            transactions: z.number().int(),
-        })
-        .transform((v) => {
-            return {
-                accounts: v.accounts,
-                transactions: v.transactions,
-            };
-        });
+    export const inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z.object({
+        accounts: z.number().int(),
+        transactions: z.number().int(),
+    });
 
     export type Outbound = {
         accounts: number;
         transactions: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stats> = z
-        .object({
-            accounts: z.number().int(),
-            transactions: z.number().int(),
-        })
-        .transform((v) => {
-            return {
-                accounts: v.accounts,
-                transactions: v.transactions,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stats> = z.object({
+        accounts: z.number().int(),
+        transactions: z.number().int(),
+    });
 }

@@ -11,27 +11,17 @@ export type ConnectorConfigResponse = {
 
 /** @internal */
 export namespace ConnectorConfigResponse$ {
-    export const inboundSchema: z.ZodType<ConnectorConfigResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ConnectorConfigResponse, z.ZodTypeDef, unknown> =
+        z.object({
             data: ConnectorConfig$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: ConnectorConfig$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorConfigResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorConfigResponse> =
+        z.object({
             data: ConnectorConfig$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

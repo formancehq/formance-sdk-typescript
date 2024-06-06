@@ -14,27 +14,18 @@ export type V2Workflow = {
 
 /** @internal */
 export namespace V2Workflow$ {
-    export const inboundSchema: z.ZodType<V2Workflow, z.ZodTypeDef, unknown> = z
-        .object({
-            config: V2WorkflowConfig$.inboundSchema,
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            id: z.string(),
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Workflow, z.ZodTypeDef, unknown> = z.object({
+        config: V2WorkflowConfig$.inboundSchema,
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        id: z.string(),
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         config: V2WorkflowConfig$.Outbound;
@@ -43,19 +34,10 @@ export namespace V2Workflow$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Workflow> = z
-        .object({
-            config: V2WorkflowConfig$.outboundSchema,
-            createdAt: z.date().transform((v) => v.toISOString()),
-            id: z.string(),
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Workflow> = z.object({
+        config: V2WorkflowConfig$.outboundSchema,
+        createdAt: z.date().transform((v) => v.toISOString()),
+        id: z.string(),
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

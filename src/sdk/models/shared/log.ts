@@ -25,26 +25,16 @@ export namespace Type$ {
 
 /** @internal */
 export namespace Log$ {
-    export const inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.record(z.any()),
-            date: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            hash: z.string(),
-            id: z.number().int(),
-            type: Type$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                date: v.date,
-                hash: v.hash,
-                id: v.id,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z.object({
+        data: z.record(z.any()),
+        date: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        hash: z.string(),
+        id: z.number().int(),
+        type: Type$.inboundSchema,
+    });
 
     export type Outbound = {
         data: { [k: string]: any };
@@ -54,21 +44,11 @@ export namespace Log$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Log> = z
-        .object({
-            data: z.record(z.any()),
-            date: z.date().transform((v) => v.toISOString()),
-            hash: z.string(),
-            id: z.number().int(),
-            type: Type$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                date: v.date,
-                hash: v.hash,
-                id: v.id,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Log> = z.object({
+        data: z.record(z.any()),
+        date: z.date().transform((v) => v.toISOString()),
+        hash: z.string(),
+        id: z.number().int(),
+        type: Type$.outboundSchema,
+    });
 }

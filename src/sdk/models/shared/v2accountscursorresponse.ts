@@ -19,22 +19,13 @@ export type V2AccountsCursorResponse = {
 
 /** @internal */
 export namespace V2AccountsCursorResponseCursor$ {
-    export const inboundSchema: z.ZodType<V2AccountsCursorResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2AccountsCursorResponseCursor, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.array(V2Account$.inboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 
     export type Outbound = {
@@ -46,48 +37,28 @@ export namespace V2AccountsCursorResponseCursor$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AccountsCursorResponseCursor> =
-        z
-            .object({
-                data: z.array(V2Account$.outboundSchema),
-                hasMore: z.boolean(),
-                next: z.string().optional(),
-                pageSize: z.number().int(),
-                previous: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                    hasMore: v.hasMore,
-                    ...(v.next === undefined ? null : { next: v.next }),
-                    pageSize: v.pageSize,
-                    ...(v.previous === undefined ? null : { previous: v.previous }),
-                };
-            });
+        z.object({
+            data: z.array(V2Account$.outboundSchema),
+            hasMore: z.boolean(),
+            next: z.string().optional(),
+            pageSize: z.number().int(),
+            previous: z.string().optional(),
+        });
 }
 
 /** @internal */
 export namespace V2AccountsCursorResponse$ {
-    export const inboundSchema: z.ZodType<V2AccountsCursorResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2AccountsCursorResponse, z.ZodTypeDef, unknown> =
+        z.object({
             cursor: z.lazy(() => V2AccountsCursorResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 
     export type Outbound = {
         cursor: V2AccountsCursorResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AccountsCursorResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AccountsCursorResponse> =
+        z.object({
             cursor: z.lazy(() => V2AccountsCursorResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

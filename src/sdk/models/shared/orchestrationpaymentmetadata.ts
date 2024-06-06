@@ -10,27 +10,17 @@ export type OrchestrationPaymentMetadata = {
 
 /** @internal */
 export namespace OrchestrationPaymentMetadata$ {
-    export const inboundSchema: z.ZodType<OrchestrationPaymentMetadata, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<OrchestrationPaymentMetadata, z.ZodTypeDef, unknown> =
+        z.object({
             key: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-            };
         });
 
     export type Outbound = {
         key?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPaymentMetadata> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPaymentMetadata> =
+        z.object({
             key: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-            };
         });
 }

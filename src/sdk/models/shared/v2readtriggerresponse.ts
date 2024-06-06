@@ -11,27 +11,16 @@ export type V2ReadTriggerResponse = {
 
 /** @internal */
 export namespace V2ReadTriggerResponse$ {
-    export const inboundSchema: z.ZodType<V2ReadTriggerResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2Trigger$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ReadTriggerResponse, z.ZodTypeDef, unknown> = z.object({
+        data: V2Trigger$.inboundSchema,
+    });
 
     export type Outbound = {
         data: V2Trigger$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ReadTriggerResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ReadTriggerResponse> =
+        z.object({
             data: V2Trigger$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

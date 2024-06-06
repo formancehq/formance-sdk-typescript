@@ -11,27 +11,17 @@ export type CreateSecretResponse = {
 
 /** @internal */
 export namespace CreateSecretResponse$ {
-    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: Secret$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateSecretResponse, z.ZodTypeDef, unknown> = z.object({
+        data: Secret$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         data?: Secret$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSecretResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSecretResponse> = z.object(
+        {
             data: Secret$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+        }
+    );
 }

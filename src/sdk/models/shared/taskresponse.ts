@@ -70,24 +70,18 @@ export namespace TaskResponseData$ {
 
 /** @internal */
 export namespace TaskResponse$ {
-    export const inboundSchema: z.ZodType<TaskResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.union([
-                TaskStripe$.inboundSchema,
-                TaskWise$.inboundSchema,
-                TaskCurrencyCloud$.inboundSchema,
-                TaskDummyPay$.inboundSchema,
-                TaskModulr$.inboundSchema,
-                TaskBankingCircle$.inboundSchema,
-                TaskMangoPay$.inboundSchema,
-                TaskMoneycorp$.inboundSchema,
-            ]),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskResponse, z.ZodTypeDef, unknown> = z.object({
+        data: z.union([
+            TaskStripe$.inboundSchema,
+            TaskWise$.inboundSchema,
+            TaskCurrencyCloud$.inboundSchema,
+            TaskDummyPay$.inboundSchema,
+            TaskModulr$.inboundSchema,
+            TaskBankingCircle$.inboundSchema,
+            TaskMangoPay$.inboundSchema,
+            TaskMoneycorp$.inboundSchema,
+        ]),
+    });
 
     export type Outbound = {
         data:
@@ -101,22 +95,16 @@ export namespace TaskResponse$ {
             | TaskMoneycorp$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskResponse> = z
-        .object({
-            data: z.union([
-                TaskStripe$.outboundSchema,
-                TaskWise$.outboundSchema,
-                TaskCurrencyCloud$.outboundSchema,
-                TaskDummyPay$.outboundSchema,
-                TaskModulr$.outboundSchema,
-                TaskBankingCircle$.outboundSchema,
-                TaskMangoPay$.outboundSchema,
-                TaskMoneycorp$.outboundSchema,
-            ]),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskResponse> = z.object({
+        data: z.union([
+            TaskStripe$.outboundSchema,
+            TaskWise$.outboundSchema,
+            TaskCurrencyCloud$.outboundSchema,
+            TaskDummyPay$.outboundSchema,
+            TaskModulr$.outboundSchema,
+            TaskBankingCircle$.outboundSchema,
+            TaskMangoPay$.outboundSchema,
+            TaskMoneycorp$.outboundSchema,
+        ]),
+    });
 }

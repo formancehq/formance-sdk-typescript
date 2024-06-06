@@ -11,16 +11,10 @@ export type V2StageSendSourceWallet = {
 
 /** @internal */
 export namespace V2StageSendSourceWallet$ {
-    export const inboundSchema: z.ZodType<V2StageSendSourceWallet, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2StageSendSourceWallet, z.ZodTypeDef, unknown> =
+        z.object({
             balance: z.string().optional(),
             id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                id: v.id,
-            };
         });
 
     export type Outbound = {
@@ -28,15 +22,9 @@ export namespace V2StageSendSourceWallet$ {
         id: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceWallet> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceWallet> =
+        z.object({
             balance: z.string().optional(),
             id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                id: v.id,
-            };
         });
 }

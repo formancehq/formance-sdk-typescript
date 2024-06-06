@@ -19,36 +19,19 @@ export type V2ExpandedTransaction = {
 
 /** @internal */
 export namespace V2ExpandedTransaction$ {
-    export const inboundSchema: z.ZodType<V2ExpandedTransaction, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.number().transform((v) => BigInt(v)),
-            metadata: z.record(z.string()),
-            postCommitVolumes: z.record(z.record(V2Volume$.inboundSchema)).optional(),
-            postings: z.array(V2Posting$.inboundSchema),
-            preCommitVolumes: z.record(z.record(V2Volume$.inboundSchema)).optional(),
-            reference: z.string().optional(),
-            reverted: z.boolean(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ExpandedTransaction, z.ZodTypeDef, unknown> = z.object({
+        id: z.number().transform((v) => BigInt(v)),
+        metadata: z.record(z.string()),
+        postCommitVolumes: z.record(z.record(V2Volume$.inboundSchema)).optional(),
+        postings: z.array(V2Posting$.inboundSchema),
+        preCommitVolumes: z.record(z.record(V2Volume$.inboundSchema)).optional(),
+        reference: z.string().optional(),
+        reverted: z.boolean(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         id: number;
@@ -61,8 +44,8 @@ export namespace V2ExpandedTransaction$ {
         timestamp: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ExpandedTransaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ExpandedTransaction> =
+        z.object({
             id: z.bigint().transform((v) => Number(v)),
             metadata: z.record(z.string()),
             postCommitVolumes: z.record(z.record(V2Volume$.outboundSchema)).optional(),
@@ -71,21 +54,5 @@ export namespace V2ExpandedTransaction$ {
             reference: z.string().optional(),
             reverted: z.boolean(),
             timestamp: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
         });
 }

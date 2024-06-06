@@ -23,23 +23,13 @@ export namespace V2ListTriggersOccurrencesResponseCursor$ {
         V2ListTriggersOccurrencesResponseCursor,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(V2TriggerOccurrence$.inboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(V2TriggerOccurrence$.inboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<V2TriggerOccurrence$.Outbound>;
@@ -53,23 +43,13 @@ export namespace V2ListTriggersOccurrencesResponseCursor$ {
         Outbound,
         z.ZodTypeDef,
         V2ListTriggersOccurrencesResponseCursor
-    > = z
-        .object({
-            data: z.array(V2TriggerOccurrence$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(V2TriggerOccurrence$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
@@ -78,15 +58,9 @@ export namespace V2ListTriggersOccurrencesResponse$ {
         V2ListTriggersOccurrencesResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            cursor: z.lazy(() => V2ListTriggersOccurrencesResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    > = z.object({
+        cursor: z.lazy(() => V2ListTriggersOccurrencesResponseCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: V2ListTriggersOccurrencesResponseCursor$.Outbound;
@@ -96,13 +70,7 @@ export namespace V2ListTriggersOccurrencesResponse$ {
         Outbound,
         z.ZodTypeDef,
         V2ListTriggersOccurrencesResponse
-    > = z
-        .object({
-            cursor: z.lazy(() => V2ListTriggersOccurrencesResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    > = z.object({
+        cursor: z.lazy(() => V2ListTriggersOccurrencesResponseCursor$.outboundSchema),
+    });
 }

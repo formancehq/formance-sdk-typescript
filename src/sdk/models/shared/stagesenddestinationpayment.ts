@@ -10,27 +10,17 @@ export type StageSendDestinationPayment = {
 
 /** @internal */
 export namespace StageSendDestinationPayment$ {
-    export const inboundSchema: z.ZodType<StageSendDestinationPayment, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<StageSendDestinationPayment, z.ZodTypeDef, unknown> =
+        z.object({
             psp: z.string(),
-        })
-        .transform((v) => {
-            return {
-                psp: v.psp,
-            };
         });
 
     export type Outbound = {
         psp: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendDestinationPayment> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendDestinationPayment> =
+        z.object({
             psp: z.string(),
-        })
-        .transform((v) => {
-            return {
-                psp: v.psp,
-            };
         });
 }

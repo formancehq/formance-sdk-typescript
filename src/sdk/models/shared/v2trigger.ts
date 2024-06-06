@@ -16,30 +16,18 @@ export type V2Trigger = {
 
 /** @internal */
 export namespace V2Trigger$ {
-    export const inboundSchema: z.ZodType<V2Trigger, z.ZodTypeDef, unknown> = z
-        .object({
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            event: z.string(),
-            filter: z.string().optional(),
-            id: z.string(),
-            name: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                event: v.event,
-                ...(v.filter === undefined ? null : { filter: v.filter }),
-                id: v.id,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-                workflowID: v.workflowID,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Trigger, z.ZodTypeDef, unknown> = z.object({
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        event: z.string(),
+        filter: z.string().optional(),
+        id: z.string(),
+        name: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+        workflowID: z.string(),
+    });
 
     export type Outbound = {
         createdAt: string;
@@ -51,25 +39,13 @@ export namespace V2Trigger$ {
         workflowID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Trigger> = z
-        .object({
-            createdAt: z.date().transform((v) => v.toISOString()),
-            event: z.string(),
-            filter: z.string().optional(),
-            id: z.string(),
-            name: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                event: v.event,
-                ...(v.filter === undefined ? null : { filter: v.filter }),
-                id: v.id,
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-                workflowID: v.workflowID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Trigger> = z.object({
+        createdAt: z.date().transform((v) => v.toISOString()),
+        event: z.string(),
+        filter: z.string().optional(),
+        id: z.string(),
+        name: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+        workflowID: z.string(),
+    });
 }

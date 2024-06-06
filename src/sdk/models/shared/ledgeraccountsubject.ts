@@ -11,32 +11,20 @@ export type LedgerAccountSubject = {
 
 /** @internal */
 export namespace LedgerAccountSubject$ {
-    export const inboundSchema: z.ZodType<LedgerAccountSubject, z.ZodTypeDef, unknown> = z
-        .object({
-            identifier: z.string(),
-            type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                identifier: v.identifier,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<LedgerAccountSubject, z.ZodTypeDef, unknown> = z.object({
+        identifier: z.string(),
+        type: z.string(),
+    });
 
     export type Outbound = {
         identifier: string;
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerAccountSubject> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerAccountSubject> = z.object(
+        {
             identifier: z.string(),
             type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                identifier: v.identifier,
-                type: v.type,
-            };
-        });
+        }
+    );
 }

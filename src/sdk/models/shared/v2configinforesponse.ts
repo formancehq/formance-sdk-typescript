@@ -11,32 +11,20 @@ export type V2ConfigInfoResponse = {
 
 /** @internal */
 export namespace V2ConfigInfoResponse$ {
-    export const inboundSchema: z.ZodType<V2ConfigInfoResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            server: z.string(),
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                server: v.server,
-                version: v.version,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ConfigInfoResponse, z.ZodTypeDef, unknown> = z.object({
+        server: z.string(),
+        version: z.string(),
+    });
 
     export type Outbound = {
         server: string;
         version: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ConfigInfoResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ConfigInfoResponse> = z.object(
+        {
             server: z.string(),
             version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                server: v.server,
-                version: v.version,
-            };
-        });
+        }
+    );
 }

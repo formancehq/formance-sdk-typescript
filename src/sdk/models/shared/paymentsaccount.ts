@@ -38,40 +38,23 @@ export namespace PaymentsAccountRaw$ {
 
 /** @internal */
 export namespace PaymentsAccount$ {
-    export const inboundSchema: z.ZodType<PaymentsAccount, z.ZodTypeDef, unknown> = z
-        .object({
-            accountName: z.string(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            defaultAsset: z.string(),
-            defaultCurrency: z.string(),
-            id: z.string(),
-            metadata: z.nullable(z.record(z.string())),
-            pools: z.array(z.string()).optional(),
-            provider: z.string().optional(),
-            raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.inboundSchema)),
-            reference: z.string(),
-            type: AccountType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                accountName: v.accountName,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                defaultAsset: v.defaultAsset,
-                defaultCurrency: v.defaultCurrency,
-                id: v.id,
-                metadata: v.metadata,
-                ...(v.pools === undefined ? null : { pools: v.pools }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<PaymentsAccount, z.ZodTypeDef, unknown> = z.object({
+        accountName: z.string(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        defaultAsset: z.string(),
+        defaultCurrency: z.string(),
+        id: z.string(),
+        metadata: z.nullable(z.record(z.string())),
+        pools: z.array(z.string()).optional(),
+        provider: z.string().optional(),
+        raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.inboundSchema)),
+        reference: z.string(),
+        type: AccountType$.inboundSchema,
+    });
 
     export type Outbound = {
         accountName: string;
@@ -88,35 +71,18 @@ export namespace PaymentsAccount$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentsAccount> = z
-        .object({
-            accountName: z.string(),
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            defaultAsset: z.string(),
-            defaultCurrency: z.string(),
-            id: z.string(),
-            metadata: z.nullable(z.record(z.string())),
-            pools: z.array(z.string()).optional(),
-            provider: z.string().optional(),
-            raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.outboundSchema)),
-            reference: z.string(),
-            type: AccountType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                accountName: v.accountName,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                defaultAsset: v.defaultAsset,
-                defaultCurrency: v.defaultCurrency,
-                id: v.id,
-                metadata: v.metadata,
-                ...(v.pools === undefined ? null : { pools: v.pools }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentsAccount> = z.object({
+        accountName: z.string(),
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        defaultAsset: z.string(),
+        defaultCurrency: z.string(),
+        id: z.string(),
+        metadata: z.nullable(z.record(z.string())),
+        pools: z.array(z.string()).optional(),
+        provider: z.string().optional(),
+        raw: z.nullable(z.lazy(() => PaymentsAccountRaw$.outboundSchema)),
+        reference: z.string(),
+        type: AccountType$.outboundSchema,
+    });
 }

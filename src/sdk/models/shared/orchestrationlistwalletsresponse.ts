@@ -23,23 +23,13 @@ export namespace OrchestrationListWalletsResponseCursor$ {
         OrchestrationListWalletsResponseCursor,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(Wallet$.inboundSchema),
-            hasMore: z.boolean().optional(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                ...(v.hasMore === undefined ? null : { hasMore: v.hasMore }),
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(Wallet$.inboundSchema),
+        hasMore: z.boolean().optional(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<Wallet$.Outbound>;
@@ -53,37 +43,21 @@ export namespace OrchestrationListWalletsResponseCursor$ {
         Outbound,
         z.ZodTypeDef,
         OrchestrationListWalletsResponseCursor
-    > = z
-        .object({
-            data: z.array(Wallet$.outboundSchema),
-            hasMore: z.boolean().optional(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                ...(v.hasMore === undefined ? null : { hasMore: v.hasMore }),
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(Wallet$.outboundSchema),
+        hasMore: z.boolean().optional(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace OrchestrationListWalletsResponse$ {
     export const inboundSchema: z.ZodType<OrchestrationListWalletsResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                cursor: z.lazy(() => OrchestrationListWalletsResponseCursor$.inboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    cursor: v.cursor,
-                };
-            });
+        z.object({
+            cursor: z.lazy(() => OrchestrationListWalletsResponseCursor$.inboundSchema),
+        });
 
     export type Outbound = {
         cursor: OrchestrationListWalletsResponseCursor$.Outbound;
@@ -93,13 +67,7 @@ export namespace OrchestrationListWalletsResponse$ {
         Outbound,
         z.ZodTypeDef,
         OrchestrationListWalletsResponse
-    > = z
-        .object({
-            cursor: z.lazy(() => OrchestrationListWalletsResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    > = z.object({
+        cursor: z.lazy(() => OrchestrationListWalletsResponseCursor$.outboundSchema),
+    });
 }

@@ -19,23 +19,13 @@ export type PoolsCursor = {
 
 /** @internal */
 export namespace PoolsCursorCursor$ {
-    export const inboundSchema: z.ZodType<PoolsCursorCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(Pool$.inboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    export const inboundSchema: z.ZodType<PoolsCursorCursor, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(Pool$.inboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<Pool$.Outbound>;
@@ -45,48 +35,26 @@ export namespace PoolsCursorCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolsCursorCursor> = z
-        .object({
-            data: z.array(Pool$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolsCursorCursor> = z.object({
+        data: z.array(Pool$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace PoolsCursor$ {
-    export const inboundSchema: z.ZodType<PoolsCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => PoolsCursorCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<PoolsCursor, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => PoolsCursorCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: PoolsCursorCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolsCursor> = z
-        .object({
-            cursor: z.lazy(() => PoolsCursorCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolsCursor> = z.object({
+        cursor: z.lazy(() => PoolsCursorCursor$.outboundSchema),
+    });
 }

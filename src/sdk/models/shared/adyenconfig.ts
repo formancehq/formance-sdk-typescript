@@ -20,25 +20,13 @@ export type AdyenConfig = {
 
 /** @internal */
 export namespace AdyenConfig$ {
-    export const inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            apiKey: z.string(),
-            hmacKey: z.string(),
-            liveEndpointPrefix: z.string().optional(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                hmacKey: v.hmacKey,
-                ...(v.liveEndpointPrefix === undefined
-                    ? null
-                    : { liveEndpointPrefix: v.liveEndpointPrefix }),
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z.object({
+        apiKey: z.string(),
+        hmacKey: z.string(),
+        liveEndpointPrefix: z.string().optional(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 
     export type Outbound = {
         apiKey: string;
@@ -48,23 +36,11 @@ export namespace AdyenConfig$ {
         pollingPeriod: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AdyenConfig> = z
-        .object({
-            apiKey: z.string(),
-            hmacKey: z.string(),
-            liveEndpointPrefix: z.string().optional(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                hmacKey: v.hmacKey,
-                ...(v.liveEndpointPrefix === undefined
-                    ? null
-                    : { liveEndpointPrefix: v.liveEndpointPrefix }),
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AdyenConfig> = z.object({
+        apiKey: z.string(),
+        hmacKey: z.string(),
+        liveEndpointPrefix: z.string().optional(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 }

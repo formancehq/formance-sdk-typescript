@@ -16,8 +16,8 @@ export type OrchestrationTransaction = {
 
 /** @internal */
 export namespace OrchestrationTransaction$ {
-    export const inboundSchema: z.ZodType<OrchestrationTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<OrchestrationTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             id: z.number().transform((v) => BigInt(v)),
             metadata: z.record(z.string()),
             postings: z.array(Posting$.inboundSchema),
@@ -27,16 +27,6 @@ export namespace OrchestrationTransaction$ {
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
         });
 
     export type Outbound = {
@@ -48,23 +38,13 @@ export namespace OrchestrationTransaction$ {
         timestamp: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationTransaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationTransaction> =
+        z.object({
             id: z.bigint().transform((v) => Number(v)),
             metadata: z.record(z.string()),
             postings: z.array(Posting$.outboundSchema),
             reference: z.string().optional(),
             reverted: z.boolean(),
             timestamp: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                reverted: v.reverted,
-                timestamp: v.timestamp,
-            };
         });
 }

@@ -12,16 +12,10 @@ export type V2ActivityCreateTransaction = {
 
 /** @internal */
 export namespace V2ActivityCreateTransaction$ {
-    export const inboundSchema: z.ZodType<V2ActivityCreateTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2ActivityCreateTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             data: V2PostTransaction$.inboundSchema.optional(),
             ledger: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-            };
         });
 
     export type Outbound = {
@@ -29,15 +23,9 @@ export namespace V2ActivityCreateTransaction$ {
         ledger?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityCreateTransaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityCreateTransaction> =
+        z.object({
             data: V2PostTransaction$.outboundSchema.optional(),
             ledger: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-            };
         });
 }

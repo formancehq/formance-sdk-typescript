@@ -11,27 +11,15 @@ export type V2Update = {
 
 /** @internal */
 export namespace V2Update$ {
-    export const inboundSchema: z.ZodType<V2Update, z.ZodTypeDef, unknown> = z
-        .object({
-            account: V2UpdateAccount$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Update, z.ZodTypeDef, unknown> = z.object({
+        account: V2UpdateAccount$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         account?: V2UpdateAccount$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Update> = z
-        .object({
-            account: V2UpdateAccount$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Update> = z.object({
+        account: V2UpdateAccount$.outboundSchema.optional(),
+    });
 }

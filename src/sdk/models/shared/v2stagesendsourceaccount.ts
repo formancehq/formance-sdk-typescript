@@ -11,16 +11,10 @@ export type V2StageSendSourceAccount = {
 
 /** @internal */
 export namespace V2StageSendSourceAccount$ {
-    export const inboundSchema: z.ZodType<V2StageSendSourceAccount, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2StageSendSourceAccount, z.ZodTypeDef, unknown> =
+        z.object({
             id: z.string(),
             ledger: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-            };
         });
 
     export type Outbound = {
@@ -28,15 +22,9 @@ export namespace V2StageSendSourceAccount$ {
         ledger?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceAccount> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceAccount> =
+        z.object({
             id: z.string(),
             ledger: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-            };
         });
 }

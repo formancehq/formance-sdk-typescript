@@ -11,38 +11,25 @@ export type ReconciliationRequest = {
 
 /** @internal */
 export namespace ReconciliationRequest$ {
-    export const inboundSchema: z.ZodType<ReconciliationRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            reconciledAtLedger: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            reconciledAtPayments: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                reconciledAtLedger: v.reconciledAtLedger,
-                reconciledAtPayments: v.reconciledAtPayments,
-            };
-        });
+    export const inboundSchema: z.ZodType<ReconciliationRequest, z.ZodTypeDef, unknown> = z.object({
+        reconciledAtLedger: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        reconciledAtPayments: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         reconciledAtLedger: string;
         reconciledAtPayments: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReconciliationRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReconciliationRequest> =
+        z.object({
             reconciledAtLedger: z.date().transform((v) => v.toISOString()),
             reconciledAtPayments: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                reconciledAtLedger: v.reconciledAtLedger,
-                reconciledAtPayments: v.reconciledAtPayments,
-            };
         });
 }

@@ -32,27 +32,15 @@ export type ExpandedDebitHold = {
 
 /** @internal */
 export namespace ExpandedDebitHold$ {
-    export const inboundSchema: z.ZodType<ExpandedDebitHold, z.ZodTypeDef, unknown> = z
-        .object({
-            description: z.string(),
-            destination: Subject$.inboundSchema.optional(),
-            id: z.string(),
-            metadata: z.record(z.string()),
-            originalAmount: z.number().transform((v) => BigInt(v)),
-            remaining: z.number().transform((v) => BigInt(v)),
-            walletID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                description: v.description,
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                id: v.id,
-                metadata: v.metadata,
-                originalAmount: v.originalAmount,
-                remaining: v.remaining,
-                walletID: v.walletID,
-            };
-        });
+    export const inboundSchema: z.ZodType<ExpandedDebitHold, z.ZodTypeDef, unknown> = z.object({
+        description: z.string(),
+        destination: Subject$.inboundSchema.optional(),
+        id: z.string(),
+        metadata: z.record(z.string()),
+        originalAmount: z.number().transform((v) => BigInt(v)),
+        remaining: z.number().transform((v) => BigInt(v)),
+        walletID: z.string(),
+    });
 
     export type Outbound = {
         description: string;
@@ -64,25 +52,13 @@ export namespace ExpandedDebitHold$ {
         walletID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExpandedDebitHold> = z
-        .object({
-            description: z.string(),
-            destination: Subject$.outboundSchema.optional(),
-            id: z.string(),
-            metadata: z.record(z.string()),
-            originalAmount: z.bigint().transform((v) => Number(v)),
-            remaining: z.bigint().transform((v) => Number(v)),
-            walletID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                description: v.description,
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                id: v.id,
-                metadata: v.metadata,
-                originalAmount: v.originalAmount,
-                remaining: v.remaining,
-                walletID: v.walletID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExpandedDebitHold> = z.object({
+        description: z.string(),
+        destination: Subject$.outboundSchema.optional(),
+        id: z.string(),
+        metadata: z.record(z.string()),
+        originalAmount: z.bigint().transform((v) => Number(v)),
+        remaining: z.bigint().transform((v) => Number(v)),
+        walletID: z.string(),
+    });
 }

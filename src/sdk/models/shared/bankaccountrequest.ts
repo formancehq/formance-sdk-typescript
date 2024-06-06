@@ -16,27 +16,15 @@ export type BankAccountRequest = {
 
 /** @internal */
 export namespace BankAccountRequest$ {
-    export const inboundSchema: z.ZodType<BankAccountRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            accountNumber: z.string().optional(),
-            connectorID: z.string(),
-            country: z.string(),
-            iban: z.string().optional(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            name: z.string(),
-            swiftBicCode: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountNumber === undefined ? null : { accountNumber: v.accountNumber }),
-                connectorID: v.connectorID,
-                country: v.country,
-                ...(v.iban === undefined ? null : { iban: v.iban }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
-            };
-        });
+    export const inboundSchema: z.ZodType<BankAccountRequest, z.ZodTypeDef, unknown> = z.object({
+        accountNumber: z.string().optional(),
+        connectorID: z.string(),
+        country: z.string(),
+        iban: z.string().optional(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        name: z.string(),
+        swiftBicCode: z.string().optional(),
+    });
 
     export type Outbound = {
         accountNumber?: string | undefined;
@@ -48,25 +36,13 @@ export namespace BankAccountRequest$ {
         swiftBicCode?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountRequest> = z
-        .object({
-            accountNumber: z.string().optional(),
-            connectorID: z.string(),
-            country: z.string(),
-            iban: z.string().optional(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            name: z.string(),
-            swiftBicCode: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountNumber === undefined ? null : { accountNumber: v.accountNumber }),
-                connectorID: v.connectorID,
-                country: v.country,
-                ...(v.iban === undefined ? null : { iban: v.iban }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountRequest> = z.object({
+        accountNumber: z.string().optional(),
+        connectorID: z.string(),
+        country: z.string(),
+        iban: z.string().optional(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        name: z.string(),
+        swiftBicCode: z.string().optional(),
+    });
 }

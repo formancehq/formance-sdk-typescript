@@ -26,19 +26,11 @@ export type TaskStripe = {
 
 /** @internal */
 export namespace TaskStripeDescriptor$ {
-    export const inboundSchema: z.ZodType<TaskStripeDescriptor, z.ZodTypeDef, unknown> = z
-        .object({
-            account: z.string(),
-            main: z.boolean().optional(),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                account: v.account,
-                ...(v.main === undefined ? null : { main: v.main }),
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskStripeDescriptor, z.ZodTypeDef, unknown> = z.object({
+        account: z.string(),
+        main: z.boolean().optional(),
+        name: z.string(),
+    });
 
     export type Outbound = {
         account: string;
@@ -46,19 +38,13 @@ export namespace TaskStripeDescriptor$ {
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskStripeDescriptor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskStripeDescriptor> = z.object(
+        {
             account: z.string(),
             main: z.boolean().optional(),
             name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                account: v.account,
-                ...(v.main === undefined ? null : { main: v.main }),
-                name: v.name,
-            };
-        });
+        }
+    );
 }
 
 /** @internal */
@@ -72,35 +58,22 @@ export namespace TaskStripeState$ {
 
 /** @internal */
 export namespace TaskStripe$ {
-    export const inboundSchema: z.ZodType<TaskStripe, z.ZodTypeDef, unknown> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            descriptor: z.lazy(() => TaskStripeDescriptor$.inboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskStripeState$.inboundSchema),
-            status: PaymentStatus$.inboundSchema,
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskStripe, z.ZodTypeDef, unknown> = z.object({
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        descriptor: z.lazy(() => TaskStripeDescriptor$.inboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskStripeState$.inboundSchema),
+        status: PaymentStatus$.inboundSchema,
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         connectorID: string;
@@ -113,27 +86,14 @@ export namespace TaskStripe$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskStripe> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            descriptor: z.lazy(() => TaskStripeDescriptor$.outboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskStripeState$.outboundSchema),
-            status: PaymentStatus$.outboundSchema,
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskStripe> = z.object({
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        descriptor: z.lazy(() => TaskStripeDescriptor$.outboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskStripeState$.outboundSchema),
+        status: PaymentStatus$.outboundSchema,
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

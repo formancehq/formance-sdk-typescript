@@ -22,32 +22,18 @@ export namespace Expr$ {
 
 /** @internal */
 export namespace Contract$ {
-    export const inboundSchema: z.ZodType<Contract, z.ZodTypeDef, unknown> = z
-        .object({
-            account: z.string().optional(),
-            expr: z.lazy(() => Expr$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                expr: v.expr,
-            };
-        });
+    export const inboundSchema: z.ZodType<Contract, z.ZodTypeDef, unknown> = z.object({
+        account: z.string().optional(),
+        expr: z.lazy(() => Expr$.inboundSchema),
+    });
 
     export type Outbound = {
         account?: string | undefined;
         expr: Expr$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Contract> = z
-        .object({
-            account: z.string().optional(),
-            expr: z.lazy(() => Expr$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                expr: v.expr,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Contract> = z.object({
+        account: z.string().optional(),
+        expr: z.lazy(() => Expr$.outboundSchema),
+    });
 }

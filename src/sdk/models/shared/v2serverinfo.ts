@@ -10,27 +10,15 @@ export type V2ServerInfo = {
 
 /** @internal */
 export namespace V2ServerInfo$ {
-    export const inboundSchema: z.ZodType<V2ServerInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                version: v.version,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ServerInfo, z.ZodTypeDef, unknown> = z.object({
+        version: z.string(),
+    });
 
     export type Outbound = {
         version: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ServerInfo> = z
-        .object({
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                version: v.version,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ServerInfo> = z.object({
+        version: z.string(),
+    });
 }

@@ -11,27 +11,15 @@ export type V2BulkResponse = {
 
 /** @internal */
 export namespace V2BulkResponse$ {
-    export const inboundSchema: z.ZodType<V2BulkResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(V2BulkElementResult$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2BulkResponse, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(V2BulkElementResult$.inboundSchema),
+    });
 
     export type Outbound = {
         data: Array<V2BulkElementResult$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkResponse> = z
-        .object({
-            data: z.array(V2BulkElementResult$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkResponse> = z.object({
+        data: z.array(V2BulkElementResult$.outboundSchema),
+    });
 }

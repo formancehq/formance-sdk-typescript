@@ -17,38 +17,24 @@ export type ConfirmHoldRequest = {
 
 /** @internal */
 export namespace ConfirmHoldRequest$ {
-    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z
-                .number()
-                .transform((v) => BigInt(v))
-                .optional(),
-            final: z.boolean().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.final === undefined ? null : { final: v.final }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfirmHoldRequest, z.ZodTypeDef, unknown> = z.object({
+        amount: z
+            .number()
+            .transform((v) => BigInt(v))
+            .optional(),
+        final: z.boolean().optional(),
+    });
 
     export type Outbound = {
         amount?: number | undefined;
         final?: boolean | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldRequest> = z
-        .object({
-            amount: z
-                .bigint()
-                .transform((v) => Number(v))
-                .optional(),
-            final: z.boolean().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.final === undefined ? null : { final: v.final }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfirmHoldRequest> = z.object({
+        amount: z
+            .bigint()
+            .transform((v) => Number(v))
+            .optional(),
+        final: z.boolean().optional(),
+    });
 }

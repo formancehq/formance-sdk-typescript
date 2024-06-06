@@ -13,19 +13,11 @@ export type GetVersionsResponse = {
 
 /** @internal */
 export namespace GetVersionsResponse$ {
-    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            env: z.string(),
-            region: z.string(),
-            versions: z.array(Version$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                env: v.env,
-                region: v.region,
-                versions: v.versions,
-            };
-        });
+    export const inboundSchema: z.ZodType<GetVersionsResponse, z.ZodTypeDef, unknown> = z.object({
+        env: z.string(),
+        region: z.string(),
+        versions: z.array(Version$.inboundSchema),
+    });
 
     export type Outbound = {
         env: string;
@@ -33,17 +25,9 @@ export namespace GetVersionsResponse$ {
         versions: Array<Version$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetVersionsResponse> = z
-        .object({
-            env: z.string(),
-            region: z.string(),
-            versions: z.array(Version$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                env: v.env,
-                region: v.region,
-                versions: v.versions,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetVersionsResponse> = z.object({
+        env: z.string(),
+        region: z.string(),
+        versions: z.array(Version$.outboundSchema),
+    });
 }

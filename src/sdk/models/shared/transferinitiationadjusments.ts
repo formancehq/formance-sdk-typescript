@@ -15,8 +15,8 @@ export type TransferInitiationAdjusments = {
 
 /** @internal */
 export namespace TransferInitiationAdjusments$ {
-    export const inboundSchema: z.ZodType<TransferInitiationAdjusments, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransferInitiationAdjusments, z.ZodTypeDef, unknown> =
+        z.object({
             adjustmentID: z.string(),
             createdAt: z
                 .string()
@@ -25,15 +25,6 @@ export namespace TransferInitiationAdjusments$ {
             error: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
             status: TransferInitiationStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustmentID: v.adjustmentID,
-                createdAt: v.createdAt,
-                error: v.error,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                status: v.status,
-            };
         });
 
     export type Outbound = {
@@ -44,21 +35,12 @@ export namespace TransferInitiationAdjusments$ {
         status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationAdjusments> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationAdjusments> =
+        z.object({
             adjustmentID: z.string(),
             createdAt: z.date().transform((v) => v.toISOString()),
             error: z.string(),
             metadata: z.nullable(z.record(z.string())).optional(),
             status: TransferInitiationStatus$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustmentID: v.adjustmentID,
-                createdAt: v.createdAt,
-                error: v.error,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                status: v.status,
-            };
         });
 }

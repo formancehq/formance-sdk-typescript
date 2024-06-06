@@ -41,48 +41,27 @@ export namespace Raw$ {
 
 /** @internal */
 export namespace Payment$ {
-    export const inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> = z
-        .object({
-            adjustments: z.array(PaymentAdjustment$.inboundSchema),
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            destinationAccountID: z.string(),
-            id: z.string(),
-            initialAmount: z.number().transform((v) => BigInt(v)),
-            metadata: z.nullable(z.record(z.string())),
-            provider: Connector$.inboundSchema.optional(),
-            raw: z.nullable(z.lazy(() => Raw$.inboundSchema)),
-            reference: z.string(),
-            scheme: PaymentScheme$.inboundSchema,
-            sourceAccountID: z.string(),
-            status: PaymentStatus$.inboundSchema,
-            type: PaymentType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustments: v.adjustments,
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                destinationAccountID: v.destinationAccountID,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                metadata: v.metadata,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                scheme: v.scheme,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> = z.object({
+        adjustments: z.array(PaymentAdjustment$.inboundSchema),
+        amount: z.number().transform((v) => BigInt(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        destinationAccountID: z.string(),
+        id: z.string(),
+        initialAmount: z.number().transform((v) => BigInt(v)),
+        metadata: z.nullable(z.record(z.string())),
+        provider: Connector$.inboundSchema.optional(),
+        raw: z.nullable(z.lazy(() => Raw$.inboundSchema)),
+        reference: z.string(),
+        scheme: PaymentScheme$.inboundSchema,
+        sourceAccountID: z.string(),
+        status: PaymentStatus$.inboundSchema,
+        type: PaymentType$.inboundSchema,
+    });
 
     export type Outbound = {
         adjustments: Array<PaymentAdjustment$.Outbound>;
@@ -103,43 +82,22 @@ export namespace Payment$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Payment> = z
-        .object({
-            adjustments: z.array(PaymentAdjustment$.outboundSchema),
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            destinationAccountID: z.string(),
-            id: z.string(),
-            initialAmount: z.bigint().transform((v) => Number(v)),
-            metadata: z.nullable(z.record(z.string())),
-            provider: Connector$.outboundSchema.optional(),
-            raw: z.nullable(z.lazy(() => Raw$.outboundSchema)),
-            reference: z.string(),
-            scheme: PaymentScheme$.outboundSchema,
-            sourceAccountID: z.string(),
-            status: PaymentStatus$.outboundSchema,
-            type: PaymentType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                adjustments: v.adjustments,
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                destinationAccountID: v.destinationAccountID,
-                id: v.id,
-                initialAmount: v.initialAmount,
-                metadata: v.metadata,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                raw: v.raw,
-                reference: v.reference,
-                scheme: v.scheme,
-                sourceAccountID: v.sourceAccountID,
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Payment> = z.object({
+        adjustments: z.array(PaymentAdjustment$.outboundSchema),
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        destinationAccountID: z.string(),
+        id: z.string(),
+        initialAmount: z.bigint().transform((v) => Number(v)),
+        metadata: z.nullable(z.record(z.string())),
+        provider: Connector$.outboundSchema.optional(),
+        raw: z.nullable(z.lazy(() => Raw$.outboundSchema)),
+        reference: z.string(),
+        scheme: PaymentScheme$.outboundSchema,
+        sourceAccountID: z.string(),
+        status: PaymentStatus$.outboundSchema,
+        type: PaymentType$.outboundSchema,
+    });
 }
