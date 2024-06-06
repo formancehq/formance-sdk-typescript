@@ -11,27 +11,17 @@ export type TransactionsResponse = {
 
 /** @internal */
 export namespace TransactionsResponse$ {
-    export const inboundSchema: z.ZodType<TransactionsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(Transaction$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<TransactionsResponse, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(Transaction$.inboundSchema),
+    });
 
     export type Outbound = {
         data: Array<Transaction$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionsResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionsResponse> = z.object(
+        {
             data: z.array(Transaction$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+        }
+    );
 }

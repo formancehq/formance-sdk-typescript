@@ -23,29 +23,18 @@ export type V2CreditWalletRequest = {
 
 /** @internal */
 export namespace V2CreditWalletRequest$ {
-    export const inboundSchema: z.ZodType<V2CreditWalletRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: V2Monetary$.inboundSchema,
-            balance: z.string().optional(),
-            metadata: z.record(z.string()),
-            reference: z.string().optional(),
-            sources: z.array(V2Subject$.inboundSchema),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                metadata: v.metadata,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                sources: v.sources,
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2CreditWalletRequest, z.ZodTypeDef, unknown> = z.object({
+        amount: V2Monetary$.inboundSchema,
+        balance: z.string().optional(),
+        metadata: z.record(z.string()),
+        reference: z.string().optional(),
+        sources: z.array(V2Subject$.inboundSchema),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+    });
 
     export type Outbound = {
         amount: V2Monetary$.Outbound;
@@ -56,8 +45,8 @@ export namespace V2CreditWalletRequest$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreditWalletRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreditWalletRequest> =
+        z.object({
             amount: V2Monetary$.outboundSchema,
             balance: z.string().optional(),
             metadata: z.record(z.string()),
@@ -67,15 +56,5 @@ export namespace V2CreditWalletRequest$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                metadata: v.metadata,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                sources: v.sources,
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
         });
 }

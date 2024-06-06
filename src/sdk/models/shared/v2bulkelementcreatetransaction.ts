@@ -13,18 +13,11 @@ export type V2BulkElementCreateTransaction = {
 
 /** @internal */
 export namespace V2BulkElementCreateTransaction$ {
-    export const inboundSchema: z.ZodType<V2BulkElementCreateTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2BulkElementCreateTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             action: z.string(),
             data: V2PostTransaction$.inboundSchema.optional(),
             ik: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                action: v.action,
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.ik === undefined ? null : { ik: v.ik }),
-            };
         });
 
     export type Outbound = {
@@ -34,17 +27,9 @@ export namespace V2BulkElementCreateTransaction$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElementCreateTransaction> =
-        z
-            .object({
-                action: z.string(),
-                data: V2PostTransaction$.outboundSchema.optional(),
-                ik: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    action: v.action,
-                    ...(v.data === undefined ? null : { data: v.data }),
-                    ...(v.ik === undefined ? null : { ik: v.ik }),
-                };
-            });
+        z.object({
+            action: z.string(),
+            data: V2PostTransaction$.outboundSchema.optional(),
+            ik: z.string().optional(),
+        });
 }

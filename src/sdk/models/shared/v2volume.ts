@@ -12,22 +12,14 @@ export type V2Volume = {
 
 /** @internal */
 export namespace V2Volume$ {
-    export const inboundSchema: z.ZodType<V2Volume, z.ZodTypeDef, unknown> = z
-        .object({
-            balance: z
-                .number()
-                .transform((v) => BigInt(v))
-                .optional(),
-            input: z.number().transform((v) => BigInt(v)),
-            output: z.number().transform((v) => BigInt(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                input: v.input,
-                output: v.output,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Volume, z.ZodTypeDef, unknown> = z.object({
+        balance: z
+            .number()
+            .transform((v) => BigInt(v))
+            .optional(),
+        input: z.number().transform((v) => BigInt(v)),
+        output: z.number().transform((v) => BigInt(v)),
+    });
 
     export type Outbound = {
         balance?: number | undefined;
@@ -35,20 +27,12 @@ export namespace V2Volume$ {
         output: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Volume> = z
-        .object({
-            balance: z
-                .bigint()
-                .transform((v) => Number(v))
-                .optional(),
-            input: z.bigint().transform((v) => Number(v)),
-            output: z.bigint().transform((v) => Number(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                input: v.input,
-                output: v.output,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Volume> = z.object({
+        balance: z
+            .bigint()
+            .transform((v) => Number(v))
+            .optional(),
+        input: z.bigint().transform((v) => Number(v)),
+        output: z.bigint().transform((v) => Number(v)),
+    });
 }

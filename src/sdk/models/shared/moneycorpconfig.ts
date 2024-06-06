@@ -20,23 +20,13 @@ export type MoneycorpConfig = {
 
 /** @internal */
 export namespace MoneycorpConfig$ {
-    export const inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            apiKey: z.string(),
-            clientID: z.string(),
-            endpoint: z.string(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                clientID: v.clientID,
-                endpoint: v.endpoint,
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> = z.object({
+        apiKey: z.string(),
+        clientID: z.string(),
+        endpoint: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 
     export type Outbound = {
         apiKey: string;
@@ -46,21 +36,11 @@ export namespace MoneycorpConfig$ {
         pollingPeriod: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MoneycorpConfig> = z
-        .object({
-            apiKey: z.string(),
-            clientID: z.string(),
-            endpoint: z.string(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                clientID: v.clientID,
-                endpoint: v.endpoint,
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MoneycorpConfig> = z.object({
+        apiKey: z.string(),
+        clientID: z.string(),
+        endpoint: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 }

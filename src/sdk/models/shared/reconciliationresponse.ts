@@ -11,27 +11,18 @@ export type ReconciliationResponse = {
 
 /** @internal */
 export namespace ReconciliationResponse$ {
-    export const inboundSchema: z.ZodType<ReconciliationResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ReconciliationResponse, z.ZodTypeDef, unknown> = z.object(
+        {
             data: Reconciliation$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         data: Reconciliation$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReconciliationResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReconciliationResponse> =
+        z.object({
             data: Reconciliation$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

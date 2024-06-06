@@ -53,11 +53,7 @@ export namespace ErrorResponse$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new ErrorResponse({
-                ...(v.details === undefined ? null : { details: v.details }),
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new ErrorResponse(v);
         });
 
     export type Outbound = {
@@ -70,18 +66,10 @@ export namespace ErrorResponse$ {
         .instanceof(ErrorResponse)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    details: z.string().optional(),
-                    errorCode: shared.ErrorsEnum$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.details === undefined ? null : { details: v.details }),
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                details: z.string().optional(),
+                errorCode: shared.ErrorsEnum$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

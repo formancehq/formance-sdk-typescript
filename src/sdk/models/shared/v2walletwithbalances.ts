@@ -26,55 +26,32 @@ export type V2WalletWithBalances = {
 
 /** @internal */
 export namespace Balances$ {
-    export const inboundSchema: z.ZodType<Balances, z.ZodTypeDef, unknown> = z
-        .object({
-            main: V2AssetHolder$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                main: v.main,
-            };
-        });
+    export const inboundSchema: z.ZodType<Balances, z.ZodTypeDef, unknown> = z.object({
+        main: V2AssetHolder$.inboundSchema,
+    });
 
     export type Outbound = {
         main: V2AssetHolder$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Balances> = z
-        .object({
-            main: V2AssetHolder$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                main: v.main,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Balances> = z.object({
+        main: V2AssetHolder$.outboundSchema,
+    });
 }
 
 /** @internal */
 export namespace V2WalletWithBalances$ {
-    export const inboundSchema: z.ZodType<V2WalletWithBalances, z.ZodTypeDef, unknown> = z
-        .object({
-            balances: z.lazy(() => Balances$.inboundSchema),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                balances: v.balances,
-                createdAt: v.createdAt,
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2WalletWithBalances, z.ZodTypeDef, unknown> = z.object({
+        balances: z.lazy(() => Balances$.inboundSchema),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+        name: z.string(),
+    });
 
     export type Outbound = {
         balances: Balances$.Outbound;
@@ -85,23 +62,14 @@ export namespace V2WalletWithBalances$ {
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2WalletWithBalances> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2WalletWithBalances> = z.object(
+        {
             balances: z.lazy(() => Balances$.outboundSchema),
             createdAt: z.date().transform((v) => v.toISOString()),
             id: z.string(),
             ledger: z.string(),
             metadata: z.record(z.string()),
             name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                balances: v.balances,
-                createdAt: v.createdAt,
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-                name: v.name,
-            };
-        });
+        }
+    );
 }

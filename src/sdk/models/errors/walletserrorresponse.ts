@@ -59,10 +59,7 @@ export namespace WalletsErrorResponse$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new WalletsErrorResponse({
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new WalletsErrorResponse(v);
         });
 
     export type Outbound = {
@@ -74,16 +71,9 @@ export namespace WalletsErrorResponse$ {
         .instanceof(WalletsErrorResponse)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    errorCode: SchemasWalletsErrorResponseErrorCode$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                errorCode: SchemasWalletsErrorResponseErrorCode$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

@@ -40,8 +40,8 @@ export namespace Metadata$ {
 
 /** @internal */
 export namespace ActivityStripeTransfer$ {
-    export const inboundSchema: z.ZodType<ActivityStripeTransfer, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ActivityStripeTransfer, z.ZodTypeDef, unknown> = z.object(
+        {
             amount: z
                 .number()
                 .transform((v) => BigInt(v))
@@ -51,17 +51,8 @@ export namespace ActivityStripeTransfer$ {
             destination: z.string().optional(),
             metadata: z.lazy(() => Metadata$.inboundSchema).optional(),
             waitingValidation: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.asset === undefined ? null : { asset: v.asset }),
-                ...(v.connectorID === undefined ? null : { connectorID: v.connectorID }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                waitingValidation: v.waitingValidation,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         amount?: number | undefined;
@@ -72,8 +63,8 @@ export namespace ActivityStripeTransfer$ {
         waitingValidation: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityStripeTransfer> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityStripeTransfer> =
+        z.object({
             amount: z
                 .bigint()
                 .transform((v) => Number(v))
@@ -83,15 +74,5 @@ export namespace ActivityStripeTransfer$ {
             destination: z.string().optional(),
             metadata: z.lazy(() => Metadata$.outboundSchema).optional(),
             waitingValidation: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.asset === undefined ? null : { asset: v.asset }),
-                ...(v.connectorID === undefined ? null : { connectorID: v.connectorID }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                waitingValidation: v.waitingValidation,
-            };
         });
 }

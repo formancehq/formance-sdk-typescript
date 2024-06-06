@@ -12,15 +12,9 @@ export type ActivityRevertTransactionOutput = {
 /** @internal */
 export namespace ActivityRevertTransactionOutput$ {
     export const inboundSchema: z.ZodType<ActivityRevertTransactionOutput, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                data: OrchestrationTransaction$.inboundSchema,
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                };
-            });
+        z.object({
+            data: OrchestrationTransaction$.inboundSchema,
+        });
 
     export type Outbound = {
         data: OrchestrationTransaction$.Outbound;
@@ -30,13 +24,7 @@ export namespace ActivityRevertTransactionOutput$ {
         Outbound,
         z.ZodTypeDef,
         ActivityRevertTransactionOutput
-    > = z
-        .object({
-            data: OrchestrationTransaction$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: OrchestrationTransaction$.outboundSchema,
+    });
 }

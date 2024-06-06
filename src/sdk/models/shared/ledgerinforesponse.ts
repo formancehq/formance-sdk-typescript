@@ -11,27 +11,15 @@ export type LedgerInfoResponse = {
 
 /** @internal */
 export namespace LedgerInfoResponse$ {
-    export const inboundSchema: z.ZodType<LedgerInfoResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: LedgerInfo$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const inboundSchema: z.ZodType<LedgerInfoResponse, z.ZodTypeDef, unknown> = z.object({
+        data: LedgerInfo$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         data?: LedgerInfo$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerInfoResponse> = z
-        .object({
-            data: LedgerInfo$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerInfoResponse> = z.object({
+        data: LedgerInfo$.outboundSchema.optional(),
+    });
 }

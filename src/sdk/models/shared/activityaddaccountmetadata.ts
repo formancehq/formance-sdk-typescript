@@ -12,18 +12,11 @@ export type ActivityAddAccountMetadata = {
 
 /** @internal */
 export namespace ActivityAddAccountMetadata$ {
-    export const inboundSchema: z.ZodType<ActivityAddAccountMetadata, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ActivityAddAccountMetadata, z.ZodTypeDef, unknown> =
+        z.object({
             id: z.string(),
             ledger: z.string(),
             metadata: z.record(z.string()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-            };
         });
 
     export type Outbound = {
@@ -32,17 +25,10 @@ export namespace ActivityAddAccountMetadata$ {
         metadata: { [k: string]: string };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityAddAccountMetadata> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityAddAccountMetadata> =
+        z.object({
             id: z.string(),
             ledger: z.string(),
             metadata: z.record(z.string()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-                metadata: v.metadata,
-            };
         });
 }

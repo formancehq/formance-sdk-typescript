@@ -13,21 +13,12 @@ export type TransferRequest = {
 
 /** @internal */
 export namespace TransferRequest$ {
-    export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            destination: z.string(),
-            source: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                destination: v.destination,
-                ...(v.source === undefined ? null : { source: v.source }),
-            };
-        });
+    export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> = z.object({
+        amount: z.number().transform((v) => BigInt(v)),
+        asset: z.string(),
+        destination: z.string(),
+        source: z.string().optional(),
+    });
 
     export type Outbound = {
         amount: number;
@@ -36,19 +27,10 @@ export namespace TransferRequest$ {
         source?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferRequest> = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            destination: z.string(),
-            source: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                destination: v.destination,
-                ...(v.source === undefined ? null : { source: v.source }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferRequest> = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        destination: z.string(),
+        source: z.string().optional(),
+    });
 }

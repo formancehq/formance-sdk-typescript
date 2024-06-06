@@ -11,32 +11,19 @@ export type V2CreateLedgerRequest = {
 
 /** @internal */
 export namespace V2CreateLedgerRequest$ {
-    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            bucket: z.string().optional(),
-            metadata: z.record(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.bucket === undefined ? null : { bucket: v.bucket }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z.object({
+        bucket: z.string().optional(),
+        metadata: z.record(z.string()).optional(),
+    });
 
     export type Outbound = {
         bucket?: string | undefined;
         metadata?: { [k: string]: string } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> =
+        z.object({
             bucket: z.string().optional(),
             metadata: z.record(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.bucket === undefined ? null : { bucket: v.bucket }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
         });
 }

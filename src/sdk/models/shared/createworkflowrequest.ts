@@ -11,32 +11,19 @@ export type CreateWorkflowRequest = {
 
 /** @internal */
 export namespace CreateWorkflowRequest$ {
-    export const inboundSchema: z.ZodType<CreateWorkflowRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            name: z.string().optional(),
-            stages: z.array(z.record(z.any())),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-                stages: v.stages,
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateWorkflowRequest, z.ZodTypeDef, unknown> = z.object({
+        name: z.string().optional(),
+        stages: z.array(z.record(z.any())),
+    });
 
     export type Outbound = {
         name?: string | undefined;
         stages: Array<{ [k: string]: any }>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequest> =
+        z.object({
             name: z.string().optional(),
             stages: z.array(z.record(z.any())),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-                stages: v.stages,
-            };
         });
 }

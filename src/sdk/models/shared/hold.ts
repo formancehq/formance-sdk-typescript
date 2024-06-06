@@ -24,23 +24,13 @@ export type Hold = {
 
 /** @internal */
 export namespace Hold$ {
-    export const inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z
-        .object({
-            description: z.string(),
-            destination: Subject$.inboundSchema.optional(),
-            id: z.string(),
-            metadata: z.record(z.string()),
-            walletID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                description: v.description,
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                id: v.id,
-                metadata: v.metadata,
-                walletID: v.walletID,
-            };
-        });
+    export const inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z.object({
+        description: z.string(),
+        destination: Subject$.inboundSchema.optional(),
+        id: z.string(),
+        metadata: z.record(z.string()),
+        walletID: z.string(),
+    });
 
     export type Outbound = {
         description: string;
@@ -50,21 +40,11 @@ export namespace Hold$ {
         walletID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Hold> = z
-        .object({
-            description: z.string(),
-            destination: Subject$.outboundSchema.optional(),
-            id: z.string(),
-            metadata: z.record(z.string()),
-            walletID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                description: v.description,
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                id: v.id,
-                metadata: v.metadata,
-                walletID: v.walletID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Hold> = z.object({
+        description: z.string(),
+        destination: Subject$.outboundSchema.optional(),
+        id: z.string(),
+        metadata: z.record(z.string()),
+        walletID: z.string(),
+    });
 }

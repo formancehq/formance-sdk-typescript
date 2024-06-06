@@ -22,36 +22,19 @@ export type WalletsTransaction = {
 
 /** @internal */
 export namespace WalletsTransaction$ {
-    export const inboundSchema: z.ZodType<WalletsTransaction, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.number().int(),
-            ledger: z.string().optional(),
-            metadata: z.record(z.string()),
-            postCommitVolumes: z.record(z.record(WalletsVolume$.inboundSchema)).optional(),
-            postings: z.array(Posting$.inboundSchema),
-            preCommitVolumes: z.record(z.record(WalletsVolume$.inboundSchema)).optional(),
-            reference: z.string().optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-                metadata: v.metadata,
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-            };
-        });
+    export const inboundSchema: z.ZodType<WalletsTransaction, z.ZodTypeDef, unknown> = z.object({
+        id: z.number().int(),
+        ledger: z.string().optional(),
+        metadata: z.record(z.string()),
+        postCommitVolumes: z.record(z.record(WalletsVolume$.inboundSchema)).optional(),
+        postings: z.array(Posting$.inboundSchema),
+        preCommitVolumes: z.record(z.record(WalletsVolume$.inboundSchema)).optional(),
+        reference: z.string().optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         id: number;
@@ -64,31 +47,14 @@ export namespace WalletsTransaction$ {
         timestamp: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletsTransaction> = z
-        .object({
-            id: z.number().int(),
-            ledger: z.string().optional(),
-            metadata: z.record(z.string()),
-            postCommitVolumes: z.record(z.record(WalletsVolume$.outboundSchema)).optional(),
-            postings: z.array(Posting$.outboundSchema),
-            preCommitVolumes: z.record(z.record(WalletsVolume$.outboundSchema)).optional(),
-            reference: z.string().optional(),
-            timestamp: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.ledger === undefined ? null : { ledger: v.ledger }),
-                metadata: v.metadata,
-                ...(v.postCommitVolumes === undefined
-                    ? null
-                    : { postCommitVolumes: v.postCommitVolumes }),
-                postings: v.postings,
-                ...(v.preCommitVolumes === undefined
-                    ? null
-                    : { preCommitVolumes: v.preCommitVolumes }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletsTransaction> = z.object({
+        id: z.number().int(),
+        ledger: z.string().optional(),
+        metadata: z.record(z.string()),
+        postCommitVolumes: z.record(z.record(WalletsVolume$.outboundSchema)).optional(),
+        postings: z.array(Posting$.outboundSchema),
+        preCommitVolumes: z.record(z.record(WalletsVolume$.outboundSchema)).optional(),
+        reference: z.string().optional(),
+        timestamp: z.date().transform((v) => v.toISOString()),
+    });
 }

@@ -14,25 +14,16 @@ export type TransactionData = {
 
 /** @internal */
 export namespace TransactionData$ {
-    export const inboundSchema: z.ZodType<TransactionData, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            postings: z.array(Posting$.inboundSchema),
-            reference: z.string().optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const inboundSchema: z.ZodType<TransactionData, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        postings: z.array(Posting$.inboundSchema),
+        reference: z.string().optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+    });
 
     export type Outbound = {
         metadata?: { [k: string]: any } | null | undefined;
@@ -41,22 +32,13 @@ export namespace TransactionData$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionData> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            postings: z.array(Posting$.outboundSchema),
-            reference: z.string().optional(),
-            timestamp: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransactionData> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        postings: z.array(Posting$.outboundSchema),
+        reference: z.string().optional(),
+        timestamp: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+    });
 }

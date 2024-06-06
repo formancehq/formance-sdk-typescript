@@ -26,19 +26,13 @@ export type TaskDummyPay = {
 
 /** @internal */
 export namespace TaskDummyPayDescriptor$ {
-    export const inboundSchema: z.ZodType<TaskDummyPayDescriptor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TaskDummyPayDescriptor, z.ZodTypeDef, unknown> = z.object(
+        {
             fileName: z.string().optional(),
             key: z.string().optional(),
             name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.fileName === undefined ? null : { fileName: v.fileName }),
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         fileName?: string | undefined;
@@ -46,18 +40,11 @@ export namespace TaskDummyPayDescriptor$ {
         name?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskDummyPayDescriptor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskDummyPayDescriptor> =
+        z.object({
             fileName: z.string().optional(),
             key: z.string().optional(),
             name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.fileName === undefined ? null : { fileName: v.fileName }),
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
         });
 }
 
@@ -74,35 +61,22 @@ export namespace TaskDummyPayState$ {
 
 /** @internal */
 export namespace TaskDummyPay$ {
-    export const inboundSchema: z.ZodType<TaskDummyPay, z.ZodTypeDef, unknown> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            descriptor: z.lazy(() => TaskDummyPayDescriptor$.inboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskDummyPayState$.inboundSchema),
-            status: PaymentStatus$.inboundSchema,
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskDummyPay, z.ZodTypeDef, unknown> = z.object({
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        descriptor: z.lazy(() => TaskDummyPayDescriptor$.inboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskDummyPayState$.inboundSchema),
+        status: PaymentStatus$.inboundSchema,
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         connectorID: string;
@@ -115,27 +89,14 @@ export namespace TaskDummyPay$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskDummyPay> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            descriptor: z.lazy(() => TaskDummyPayDescriptor$.outboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskDummyPayState$.outboundSchema),
-            status: PaymentStatus$.outboundSchema,
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskDummyPay> = z.object({
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        descriptor: z.lazy(() => TaskDummyPayDescriptor$.outboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskDummyPayState$.outboundSchema),
+        status: PaymentStatus$.outboundSchema,
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

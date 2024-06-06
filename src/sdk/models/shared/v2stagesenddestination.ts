@@ -24,19 +24,13 @@ export type V2StageSendDestination = {
 
 /** @internal */
 export namespace V2StageSendDestination$ {
-    export const inboundSchema: z.ZodType<V2StageSendDestination, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2StageSendDestination, z.ZodTypeDef, unknown> = z.object(
+        {
             account: V2StageSendDestinationAccount$.inboundSchema.optional(),
             payment: V2StageSendDestinationPayment$.inboundSchema.optional(),
             wallet: V2StageSendDestinationWallet$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         account?: V2StageSendDestinationAccount$.Outbound | undefined;
@@ -44,17 +38,10 @@ export namespace V2StageSendDestination$ {
         wallet?: V2StageSendDestinationWallet$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendDestination> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendDestination> =
+        z.object({
             account: V2StageSendDestinationAccount$.outboundSchema.optional(),
             payment: V2StageSendDestinationPayment$.outboundSchema.optional(),
             wallet: V2StageSendDestinationWallet$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
         });
 }

@@ -27,8 +27,8 @@ export type V2WorkflowInstanceHistoryStage = {
 
 /** @internal */
 export namespace V2WorkflowInstanceHistoryStage$ {
-    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> =
+        z.object({
             attempt: z.number().int(),
             error: z.string().optional(),
             input: V2WorkflowInstanceHistoryStageInput$.inboundSchema,
@@ -50,20 +50,6 @@ export namespace V2WorkflowInstanceHistoryStage$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                attempt: v.attempt,
-                ...(v.error === undefined ? null : { error: v.error }),
-                input: v.input,
-                ...(v.lastFailure === undefined ? null : { lastFailure: v.lastFailure }),
-                name: v.name,
-                ...(v.nextExecution === undefined ? null : { nextExecution: v.nextExecution }),
-                ...(v.output === undefined ? null : { output: v.output }),
-                startedAt: v.startedAt,
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-            };
         });
 
     export type Outbound = {
@@ -80,37 +66,22 @@ export namespace V2WorkflowInstanceHistoryStage$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2WorkflowInstanceHistoryStage> =
-        z
-            .object({
-                attempt: z.number().int(),
-                error: z.string().optional(),
-                input: V2WorkflowInstanceHistoryStageInput$.outboundSchema,
-                lastFailure: z.string().optional(),
-                name: z.string(),
-                nextExecution: z
-                    .date()
-                    .transform((v) => v.toISOString())
-                    .optional(),
-                output: V2WorkflowInstanceHistoryStageOutput$.outboundSchema.optional(),
-                startedAt: z.date().transform((v) => v.toISOString()),
-                terminated: z.boolean(),
-                terminatedAt: z
-                    .date()
-                    .transform((v) => v.toISOString())
-                    .optional(),
-            })
-            .transform((v) => {
-                return {
-                    attempt: v.attempt,
-                    ...(v.error === undefined ? null : { error: v.error }),
-                    input: v.input,
-                    ...(v.lastFailure === undefined ? null : { lastFailure: v.lastFailure }),
-                    name: v.name,
-                    ...(v.nextExecution === undefined ? null : { nextExecution: v.nextExecution }),
-                    ...(v.output === undefined ? null : { output: v.output }),
-                    startedAt: v.startedAt,
-                    terminated: v.terminated,
-                    ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-                };
-            });
+        z.object({
+            attempt: z.number().int(),
+            error: z.string().optional(),
+            input: V2WorkflowInstanceHistoryStageInput$.outboundSchema,
+            lastFailure: z.string().optional(),
+            name: z.string(),
+            nextExecution: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+            output: V2WorkflowInstanceHistoryStageOutput$.outboundSchema.optional(),
+            startedAt: z.date().transform((v) => v.toISOString()),
+            terminated: z.boolean(),
+            terminatedAt: z
+                .date()
+                .transform((v) => v.toISOString())
+                .optional(),
+        });
 }

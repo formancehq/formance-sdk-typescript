@@ -37,8 +37,8 @@ export namespace OrchestrationPaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace OrchestrationPaymentAdjustment$ {
-    export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, unknown> =
+        z.object({
             absolute: z.boolean(),
             amount: z.number().transform((v) => BigInt(v)),
             date: z
@@ -47,15 +47,6 @@ export namespace OrchestrationPaymentAdjustment$ {
                 .transform((v) => new Date(v)),
             raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.inboundSchema),
             status: OrchestrationPaymentStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                absolute: v.absolute,
-                amount: v.amount,
-                date: v.date,
-                raw: v.raw,
-                status: v.status,
-            };
         });
 
     export type Outbound = {
@@ -67,21 +58,11 @@ export namespace OrchestrationPaymentAdjustment$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPaymentAdjustment> =
-        z
-            .object({
-                absolute: z.boolean(),
-                amount: z.bigint().transform((v) => Number(v)),
-                date: z.date().transform((v) => v.toISOString()),
-                raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.outboundSchema),
-                status: OrchestrationPaymentStatus$.outboundSchema,
-            })
-            .transform((v) => {
-                return {
-                    absolute: v.absolute,
-                    amount: v.amount,
-                    date: v.date,
-                    raw: v.raw,
-                    status: v.status,
-                };
-            });
+        z.object({
+            absolute: z.boolean(),
+            amount: z.bigint().transform((v) => Number(v)),
+            date: z.date().transform((v) => v.toISOString()),
+            raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.outboundSchema),
+            status: OrchestrationPaymentStatus$.outboundSchema,
+        });
 }

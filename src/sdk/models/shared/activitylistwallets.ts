@@ -10,27 +10,15 @@ export type ActivityListWallets = {
 
 /** @internal */
 export namespace ActivityListWallets$ {
-    export const inboundSchema: z.ZodType<ActivityListWallets, z.ZodTypeDef, unknown> = z
-        .object({
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const inboundSchema: z.ZodType<ActivityListWallets, z.ZodTypeDef, unknown> = z.object({
+        name: z.string().optional(),
+    });
 
     export type Outbound = {
         name?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityListWallets> = z
-        .object({
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityListWallets> = z.object({
+        name: z.string().optional(),
+    });
 }

@@ -18,15 +18,9 @@ export namespace V2GetWorkflowInstanceHistoryStageResponse$ {
         V2GetWorkflowInstanceHistoryStageResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(V2WorkflowInstanceHistoryStage$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: z.array(V2WorkflowInstanceHistoryStage$.inboundSchema),
+    });
 
     export type Outbound = {
         data: Array<V2WorkflowInstanceHistoryStage$.Outbound>;
@@ -36,13 +30,7 @@ export namespace V2GetWorkflowInstanceHistoryStageResponse$ {
         Outbound,
         z.ZodTypeDef,
         V2GetWorkflowInstanceHistoryStageResponse
-    > = z
-        .object({
-            data: z.array(V2WorkflowInstanceHistoryStage$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: z.array(V2WorkflowInstanceHistoryStage$.outboundSchema),
+    });
 }

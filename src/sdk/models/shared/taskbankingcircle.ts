@@ -25,34 +25,20 @@ export type TaskBankingCircle = {
 
 /** @internal */
 export namespace Descriptor$ {
-    export const inboundSchema: z.ZodType<Descriptor, z.ZodTypeDef, unknown> = z
-        .object({
-            key: z.string().optional(),
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Descriptor, z.ZodTypeDef, unknown> = z.object({
+        key: z.string().optional(),
+        name: z.string().optional(),
+    });
 
     export type Outbound = {
         key?: string | undefined;
         name?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Descriptor> = z
-        .object({
-            key: z.string().optional(),
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Descriptor> = z.object({
+        key: z.string().optional(),
+        name: z.string().optional(),
+    });
 }
 
 /** @internal */
@@ -69,35 +55,22 @@ export namespace TaskBankingCircleState$ {
 
 /** @internal */
 export namespace TaskBankingCircle$ {
-    export const inboundSchema: z.ZodType<TaskBankingCircle, z.ZodTypeDef, unknown> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            descriptor: z.lazy(() => Descriptor$.inboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskBankingCircleState$.inboundSchema),
-            status: PaymentStatus$.inboundSchema,
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskBankingCircle, z.ZodTypeDef, unknown> = z.object({
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        descriptor: z.lazy(() => Descriptor$.inboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskBankingCircleState$.inboundSchema),
+        status: PaymentStatus$.inboundSchema,
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         connectorID: string;
@@ -110,27 +83,14 @@ export namespace TaskBankingCircle$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskBankingCircle> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            descriptor: z.lazy(() => Descriptor$.outboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskBankingCircleState$.outboundSchema),
-            status: PaymentStatus$.outboundSchema,
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskBankingCircle> = z.object({
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        descriptor: z.lazy(() => Descriptor$.outboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskBankingCircleState$.outboundSchema),
+        status: PaymentStatus$.outboundSchema,
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

@@ -10,27 +10,17 @@ export type AddAccountToPoolRequest = {
 
 /** @internal */
 export namespace AddAccountToPoolRequest$ {
-    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AddAccountToPoolRequest, z.ZodTypeDef, unknown> =
+        z.object({
             accountID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountID: v.accountID,
-            };
         });
 
     export type Outbound = {
         accountID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddAccountToPoolRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddAccountToPoolRequest> =
+        z.object({
             accountID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountID: v.accountID,
-            };
         });
 }

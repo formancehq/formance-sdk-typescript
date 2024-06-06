@@ -10,27 +10,16 @@ export type V2ActivityConfirmHold = {
 
 /** @internal */
 export namespace V2ActivityConfirmHold$ {
-    export const inboundSchema: z.ZodType<V2ActivityConfirmHold, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ActivityConfirmHold, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+    });
 
     export type Outbound = {
         id: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityConfirmHold> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityConfirmHold> =
+        z.object({
             id: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-            };
         });
 }

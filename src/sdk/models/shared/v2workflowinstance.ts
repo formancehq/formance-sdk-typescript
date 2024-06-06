@@ -18,39 +18,26 @@ export type V2WorkflowInstance = {
 
 /** @internal */
 export namespace V2WorkflowInstance$ {
-    export const inboundSchema: z.ZodType<V2WorkflowInstance, z.ZodTypeDef, unknown> = z
-        .object({
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            error: z.string().optional(),
-            id: z.string(),
-            status: z.array(V2StageStatus$.inboundSchema).optional(),
-            terminated: z.boolean(),
-            terminatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                ...(v.status === undefined ? null : { status: v.status }),
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-                updatedAt: v.updatedAt,
-                workflowID: v.workflowID,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2WorkflowInstance, z.ZodTypeDef, unknown> = z.object({
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        error: z.string().optional(),
+        id: z.string(),
+        status: z.array(V2StageStatus$.inboundSchema).optional(),
+        terminated: z.boolean(),
+        terminatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        workflowID: z.string(),
+    });
 
     export type Outbound = {
         createdAt: string;
@@ -63,30 +50,17 @@ export namespace V2WorkflowInstance$ {
         workflowID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2WorkflowInstance> = z
-        .object({
-            createdAt: z.date().transform((v) => v.toISOString()),
-            error: z.string().optional(),
-            id: z.string(),
-            status: z.array(V2StageStatus$.outboundSchema).optional(),
-            terminated: z.boolean(),
-            terminatedAt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            updatedAt: z.date().transform((v) => v.toISOString()),
-            workflowID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                createdAt: v.createdAt,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                ...(v.status === undefined ? null : { status: v.status }),
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-                updatedAt: v.updatedAt,
-                workflowID: v.workflowID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2WorkflowInstance> = z.object({
+        createdAt: z.date().transform((v) => v.toISOString()),
+        error: z.string().optional(),
+        id: z.string(),
+        status: z.array(V2StageStatus$.outboundSchema).optional(),
+        terminated: z.boolean(),
+        terminatedAt: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+        updatedAt: z.date().transform((v) => v.toISOString()),
+        workflowID: z.string(),
+    });
 }

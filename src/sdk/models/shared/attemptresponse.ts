@@ -11,27 +11,15 @@ export type AttemptResponse = {
 
 /** @internal */
 export namespace AttemptResponse$ {
-    export const inboundSchema: z.ZodType<AttemptResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: Attempt$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<AttemptResponse, z.ZodTypeDef, unknown> = z.object({
+        data: Attempt$.inboundSchema,
+    });
 
     export type Outbound = {
         data: Attempt$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AttemptResponse> = z
-        .object({
-            data: Attempt$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AttemptResponse> = z.object({
+        data: Attempt$.outboundSchema,
+    });
 }

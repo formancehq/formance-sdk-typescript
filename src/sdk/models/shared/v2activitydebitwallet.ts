@@ -12,32 +12,19 @@ export type V2ActivityDebitWallet = {
 
 /** @internal */
 export namespace V2ActivityDebitWallet$ {
-    export const inboundSchema: z.ZodType<V2ActivityDebitWallet, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2DebitWalletRequest$.inboundSchema.optional(),
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ActivityDebitWallet, z.ZodTypeDef, unknown> = z.object({
+        data: V2DebitWalletRequest$.inboundSchema.optional(),
+        id: z.string().optional(),
+    });
 
     export type Outbound = {
         data?: V2DebitWalletRequest$.Outbound | undefined;
         id?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityDebitWallet> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityDebitWallet> =
+        z.object({
             data: V2DebitWalletRequest$.outboundSchema.optional(),
             id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
         });
 }

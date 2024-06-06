@@ -13,21 +13,12 @@ export type ClientSecret = {
 
 /** @internal */
 export namespace ClientSecret$ {
-    export const inboundSchema: z.ZodType<ClientSecret, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            lastDigits: z.string(),
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                lastDigits: v.lastDigits,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<ClientSecret, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        lastDigits: z.string(),
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+    });
 
     export type Outbound = {
         id: string;
@@ -36,19 +27,10 @@ export namespace ClientSecret$ {
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ClientSecret> = z
-        .object({
-            id: z.string(),
-            lastDigits: z.string(),
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                lastDigits: v.lastDigits,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ClientSecret> = z.object({
+        id: z.string(),
+        lastDigits: z.string(),
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+    });
 }

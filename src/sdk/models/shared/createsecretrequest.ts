@@ -11,32 +11,18 @@ export type CreateSecretRequest = {
 
 /** @internal */
 export namespace CreateSecretRequest$ {
-    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+    });
 
     export type Outbound = {
         metadata?: { [k: string]: any } | undefined;
         name: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSecretRequest> = z
-        .object({
-            metadata: z.record(z.any()).optional(),
-            name: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSecretRequest> = z.object({
+        metadata: z.record(z.any()).optional(),
+        name: z.string(),
+    });
 }

@@ -15,22 +15,13 @@ export type AccountWithVolumesAndBalances = {
 
 /** @internal */
 export namespace AccountWithVolumesAndBalances$ {
-    export const inboundSchema: z.ZodType<AccountWithVolumesAndBalances, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AccountWithVolumesAndBalances, z.ZodTypeDef, unknown> =
+        z.object({
             address: z.string(),
             balances: z.record(z.number().transform((v) => BigInt(v))).optional(),
             metadata: z.record(z.any()).optional(),
             type: z.string().optional(),
             volumes: z.record(Volume$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                address: v.address,
-                ...(v.balances === undefined ? null : { balances: v.balances }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.type === undefined ? null : { type: v.type }),
-                ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-            };
         });
 
     export type Outbound = {
@@ -42,21 +33,11 @@ export namespace AccountWithVolumesAndBalances$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountWithVolumesAndBalances> =
-        z
-            .object({
-                address: z.string(),
-                balances: z.record(z.bigint().transform((v) => Number(v))).optional(),
-                metadata: z.record(z.any()).optional(),
-                type: z.string().optional(),
-                volumes: z.record(Volume$.outboundSchema).optional(),
-            })
-            .transform((v) => {
-                return {
-                    address: v.address,
-                    ...(v.balances === undefined ? null : { balances: v.balances }),
-                    ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                    ...(v.type === undefined ? null : { type: v.type }),
-                    ...(v.volumes === undefined ? null : { volumes: v.volumes }),
-                };
-            });
+        z.object({
+            address: z.string(),
+            balances: z.record(z.bigint().transform((v) => Number(v))).optional(),
+            metadata: z.record(z.any()).optional(),
+            type: z.string().optional(),
+            volumes: z.record(Volume$.outboundSchema).optional(),
+        });
 }

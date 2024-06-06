@@ -20,16 +20,10 @@ export type V2PostTransaction = {
 
 /** @internal */
 export namespace V2PostTransactionScript$ {
-    export const inboundSchema: z.ZodType<V2PostTransactionScript, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2PostTransactionScript, z.ZodTypeDef, unknown> =
+        z.object({
             plain: z.string(),
             vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                plain: v.plain,
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
         });
 
     export type Outbound = {
@@ -37,42 +31,26 @@ export namespace V2PostTransactionScript$ {
         vars?: { [k: string]: any } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PostTransactionScript> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PostTransactionScript> =
+        z.object({
             plain: z.string(),
             vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                plain: v.plain,
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
         });
 }
 
 /** @internal */
 export namespace V2PostTransaction$ {
-    export const inboundSchema: z.ZodType<V2PostTransaction, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.record(z.string()),
-            postings: z.array(V2Posting$.inboundSchema).optional(),
-            reference: z.string().optional(),
-            script: z.lazy(() => V2PostTransactionScript$.inboundSchema).optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                ...(v.postings === undefined ? null : { postings: v.postings }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.script === undefined ? null : { script: v.script }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2PostTransaction, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.record(z.string()),
+        postings: z.array(V2Posting$.inboundSchema).optional(),
+        reference: z.string().optional(),
+        script: z.lazy(() => V2PostTransactionScript$.inboundSchema).optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+    });
 
     export type Outbound = {
         metadata: { [k: string]: string };
@@ -82,24 +60,14 @@ export namespace V2PostTransaction$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PostTransaction> = z
-        .object({
-            metadata: z.record(z.string()),
-            postings: z.array(V2Posting$.outboundSchema).optional(),
-            reference: z.string().optional(),
-            script: z.lazy(() => V2PostTransactionScript$.outboundSchema).optional(),
-            timestamp: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                ...(v.postings === undefined ? null : { postings: v.postings }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.script === undefined ? null : { script: v.script }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PostTransaction> = z.object({
+        metadata: z.record(z.string()),
+        postings: z.array(V2Posting$.outboundSchema).optional(),
+        reference: z.string().optional(),
+        script: z.lazy(() => V2PostTransactionScript$.outboundSchema).optional(),
+        timestamp: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+    });
 }

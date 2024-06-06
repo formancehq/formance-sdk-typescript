@@ -15,8 +15,8 @@ export type OrchestrationV2Transaction = {
 
 /** @internal */
 export namespace OrchestrationV2Transaction$ {
-    export const inboundSchema: z.ZodType<OrchestrationV2Transaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<OrchestrationV2Transaction, z.ZodTypeDef, unknown> =
+        z.object({
             metadata: z.record(z.string()),
             postings: z.array(V2Posting$.inboundSchema),
             reference: z.string().optional(),
@@ -25,15 +25,6 @@ export namespace OrchestrationV2Transaction$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v)),
             txid: z.number().transform((v) => BigInt(v)),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-                txid: v.txid,
-            };
         });
 
     export type Outbound = {
@@ -44,21 +35,12 @@ export namespace OrchestrationV2Transaction$ {
         txid: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationV2Transaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationV2Transaction> =
+        z.object({
             metadata: z.record(z.string()),
             postings: z.array(V2Posting$.outboundSchema),
             reference: z.string().optional(),
             timestamp: z.date().transform((v) => v.toISOString()),
             txid: z.bigint().transform((v) => Number(v)),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                postings: v.postings,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                timestamp: v.timestamp,
-                txid: v.txid,
-            };
         });
 }

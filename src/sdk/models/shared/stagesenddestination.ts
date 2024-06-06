@@ -24,19 +24,11 @@ export type StageSendDestination = {
 
 /** @internal */
 export namespace StageSendDestination$ {
-    export const inboundSchema: z.ZodType<StageSendDestination, z.ZodTypeDef, unknown> = z
-        .object({
-            account: StageSendDestinationAccount$.inboundSchema.optional(),
-            payment: StageSendDestinationPayment$.inboundSchema.optional(),
-            wallet: StageSendDestinationWallet$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+    export const inboundSchema: z.ZodType<StageSendDestination, z.ZodTypeDef, unknown> = z.object({
+        account: StageSendDestinationAccount$.inboundSchema.optional(),
+        payment: StageSendDestinationPayment$.inboundSchema.optional(),
+        wallet: StageSendDestinationWallet$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         account?: StageSendDestinationAccount$.Outbound | undefined;
@@ -44,17 +36,11 @@ export namespace StageSendDestination$ {
         wallet?: StageSendDestinationWallet$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendDestination> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendDestination> = z.object(
+        {
             account: StageSendDestinationAccount$.outboundSchema.optional(),
             payment: StageSendDestinationPayment$.outboundSchema.optional(),
             wallet: StageSendDestinationWallet$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.account === undefined ? null : { account: v.account }),
-                ...(v.payment === undefined ? null : { payment: v.payment }),
-                ...(v.wallet === undefined ? null : { wallet: v.wallet }),
-            };
-        });
+        }
+    );
 }

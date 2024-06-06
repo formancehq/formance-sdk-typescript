@@ -11,27 +11,17 @@ export type ActivityGetAccountOutput = {
 
 /** @internal */
 export namespace ActivityGetAccountOutput$ {
-    export const inboundSchema: z.ZodType<ActivityGetAccountOutput, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ActivityGetAccountOutput, z.ZodTypeDef, unknown> =
+        z.object({
             data: OrchestrationAccount$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: OrchestrationAccount$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityGetAccountOutput> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityGetAccountOutput> =
+        z.object({
             data: OrchestrationAccount$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

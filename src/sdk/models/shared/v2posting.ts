@@ -13,21 +13,12 @@ export type V2Posting = {
 
 /** @internal */
 export namespace V2Posting$ {
-    export const inboundSchema: z.ZodType<V2Posting, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            destination: z.string(),
-            source: z.string(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                destination: v.destination,
-                source: v.source,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2Posting, z.ZodTypeDef, unknown> = z.object({
+        amount: z.number().transform((v) => BigInt(v)),
+        asset: z.string(),
+        destination: z.string(),
+        source: z.string(),
+    });
 
     export type Outbound = {
         amount: number;
@@ -36,19 +27,10 @@ export namespace V2Posting$ {
         source: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Posting> = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            destination: z.string(),
-            source: z.string(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                destination: v.destination,
-                source: v.source,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Posting> = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        destination: z.string(),
+        source: z.string(),
+    });
 }

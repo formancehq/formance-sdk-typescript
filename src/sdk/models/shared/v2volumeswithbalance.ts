@@ -14,23 +14,13 @@ export type V2VolumesWithBalance = {
 
 /** @internal */
 export namespace V2VolumesWithBalance$ {
-    export const inboundSchema: z.ZodType<V2VolumesWithBalance, z.ZodTypeDef, unknown> = z
-        .object({
-            account: z.string(),
-            asset: z.string(),
-            balance: z.number().transform((v) => BigInt(v)),
-            input: z.number().transform((v) => BigInt(v)),
-            output: z.number().transform((v) => BigInt(v)),
-        })
-        .transform((v) => {
-            return {
-                account: v.account,
-                asset: v.asset,
-                balance: v.balance,
-                input: v.input,
-                output: v.output,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2VolumesWithBalance, z.ZodTypeDef, unknown> = z.object({
+        account: z.string(),
+        asset: z.string(),
+        balance: z.number().transform((v) => BigInt(v)),
+        input: z.number().transform((v) => BigInt(v)),
+        output: z.number().transform((v) => BigInt(v)),
+    });
 
     export type Outbound = {
         account: string;
@@ -40,21 +30,13 @@ export namespace V2VolumesWithBalance$ {
         output: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2VolumesWithBalance> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2VolumesWithBalance> = z.object(
+        {
             account: z.string(),
             asset: z.string(),
             balance: z.bigint().transform((v) => Number(v)),
             input: z.bigint().transform((v) => Number(v)),
             output: z.bigint().transform((v) => Number(v)),
-        })
-        .transform((v) => {
-            return {
-                account: v.account,
-                asset: v.asset,
-                balance: v.balance,
-                input: v.input,
-                output: v.output,
-            };
-        });
+        }
+    );
 }

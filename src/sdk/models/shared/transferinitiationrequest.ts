@@ -33,8 +33,8 @@ export namespace TransferInitiationRequestType$ {
 
 /** @internal */
 export namespace TransferInitiationRequest$ {
-    export const inboundSchema: z.ZodType<TransferInitiationRequest, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransferInitiationRequest, z.ZodTypeDef, unknown> =
+        z.object({
             amount: z.number().transform((v) => BigInt(v)),
             asset: z.string(),
             connectorID: z.string().optional(),
@@ -50,22 +50,6 @@ export namespace TransferInitiationRequest$ {
             sourceAccountID: z.string(),
             type: TransferInitiationRequestType$.inboundSchema,
             validated: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                ...(v.connectorID === undefined ? null : { connectorID: v.connectorID }),
-                description: v.description,
-                destinationAccountID: v.destinationAccountID,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                reference: v.reference,
-                scheduledAt: v.scheduledAt,
-                sourceAccountID: v.sourceAccountID,
-                type: v.type,
-                validated: v.validated,
-            };
         });
 
     export type Outbound = {
@@ -83,8 +67,8 @@ export namespace TransferInitiationRequest$ {
         validated: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationRequest> =
+        z.object({
             amount: z.bigint().transform((v) => Number(v)),
             asset: z.string(),
             connectorID: z.string().optional(),
@@ -97,21 +81,5 @@ export namespace TransferInitiationRequest$ {
             sourceAccountID: z.string(),
             type: TransferInitiationRequestType$.outboundSchema,
             validated: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                ...(v.connectorID === undefined ? null : { connectorID: v.connectorID }),
-                description: v.description,
-                destinationAccountID: v.destinationAccountID,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                reference: v.reference,
-                scheduledAt: v.scheduledAt,
-                sourceAccountID: v.sourceAccountID,
-                type: v.type,
-                validated: v.validated,
-            };
         });
 }

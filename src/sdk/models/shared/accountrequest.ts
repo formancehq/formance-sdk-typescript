@@ -17,30 +17,18 @@ export type AccountRequest = {
 
 /** @internal */
 export namespace AccountRequest$ {
-    export const inboundSchema: z.ZodType<AccountRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            accountName: z.string().optional(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            defaultAsset: z.string().optional(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            reference: z.string(),
-            type: AccountType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountName === undefined ? null : { accountName: v.accountName }),
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                ...(v.defaultAsset === undefined ? null : { defaultAsset: v.defaultAsset }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                reference: v.reference,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<AccountRequest, z.ZodTypeDef, unknown> = z.object({
+        accountName: z.string().optional(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        defaultAsset: z.string().optional(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        reference: z.string(),
+        type: AccountType$.inboundSchema,
+    });
 
     export type Outbound = {
         accountName?: string | undefined;
@@ -52,25 +40,13 @@ export namespace AccountRequest$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountRequest> = z
-        .object({
-            accountName: z.string().optional(),
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            defaultAsset: z.string().optional(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            reference: z.string(),
-            type: AccountType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountName === undefined ? null : { accountName: v.accountName }),
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                ...(v.defaultAsset === undefined ? null : { defaultAsset: v.defaultAsset }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                reference: v.reference,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountRequest> = z.object({
+        accountName: z.string().optional(),
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        defaultAsset: z.string().optional(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        reference: z.string(),
+        type: AccountType$.outboundSchema,
+    });
 }

@@ -27,8 +27,8 @@ export type WorkflowInstanceHistoryStage = {
 
 /** @internal */
 export namespace WorkflowInstanceHistoryStage$ {
-    export const inboundSchema: z.ZodType<WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> =
+        z.object({
             attempt: z.number().int(),
             error: z.string().optional(),
             input: WorkflowInstanceHistoryStageInput$.inboundSchema,
@@ -50,20 +50,6 @@ export namespace WorkflowInstanceHistoryStage$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                attempt: v.attempt,
-                ...(v.error === undefined ? null : { error: v.error }),
-                input: v.input,
-                ...(v.lastFailure === undefined ? null : { lastFailure: v.lastFailure }),
-                name: v.name,
-                ...(v.nextExecution === undefined ? null : { nextExecution: v.nextExecution }),
-                ...(v.output === undefined ? null : { output: v.output }),
-                startedAt: v.startedAt,
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-            };
         });
 
     export type Outbound = {
@@ -79,8 +65,8 @@ export namespace WorkflowInstanceHistoryStage$ {
         terminatedAt?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowInstanceHistoryStage> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowInstanceHistoryStage> =
+        z.object({
             attempt: z.number().int(),
             error: z.string().optional(),
             input: WorkflowInstanceHistoryStageInput$.outboundSchema,
@@ -97,19 +83,5 @@ export namespace WorkflowInstanceHistoryStage$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                attempt: v.attempt,
-                ...(v.error === undefined ? null : { error: v.error }),
-                input: v.input,
-                ...(v.lastFailure === undefined ? null : { lastFailure: v.lastFailure }),
-                name: v.name,
-                ...(v.nextExecution === undefined ? null : { nextExecution: v.nextExecution }),
-                ...(v.output === undefined ? null : { output: v.output }),
-                startedAt: v.startedAt,
-                terminated: v.terminated,
-                ...(v.terminatedAt === undefined ? null : { terminatedAt: v.terminatedAt }),
-            };
         });
 }

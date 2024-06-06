@@ -18,19 +18,11 @@ export type WiseConfig = {
 
 /** @internal */
 export namespace WiseConfig$ {
-    export const inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            apiKey: z.string(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, unknown> = z.object({
+        apiKey: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 
     export type Outbound = {
         apiKey: string;
@@ -38,17 +30,9 @@ export namespace WiseConfig$ {
         pollingPeriod: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WiseConfig> = z
-        .object({
-            apiKey: z.string(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WiseConfig> = z.object({
+        apiKey: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 }

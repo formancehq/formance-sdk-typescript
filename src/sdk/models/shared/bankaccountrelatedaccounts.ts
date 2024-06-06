@@ -14,8 +14,8 @@ export type BankAccountRelatedAccounts = {
 
 /** @internal */
 export namespace BankAccountRelatedAccounts$ {
-    export const inboundSchema: z.ZodType<BankAccountRelatedAccounts, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<BankAccountRelatedAccounts, z.ZodTypeDef, unknown> =
+        z.object({
             accountID: z.string(),
             connectorID: z.string(),
             createdAt: z
@@ -24,15 +24,6 @@ export namespace BankAccountRelatedAccounts$ {
                 .transform((v) => new Date(v)),
             id: z.string(),
             provider: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountID: v.accountID,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                id: v.id,
-                provider: v.provider,
-            };
         });
 
     export type Outbound = {
@@ -43,21 +34,12 @@ export namespace BankAccountRelatedAccounts$ {
         provider: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountRelatedAccounts> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccountRelatedAccounts> =
+        z.object({
             accountID: z.string(),
             connectorID: z.string(),
             createdAt: z.date().transform((v) => v.toISOString()),
             id: z.string(),
             provider: z.string(),
-        })
-        .transform((v) => {
-            return {
-                accountID: v.accountID,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                id: v.id,
-                provider: v.provider,
-            };
         });
 }

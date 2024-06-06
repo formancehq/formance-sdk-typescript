@@ -11,27 +11,17 @@ export type UpdateClientResponse = {
 
 /** @internal */
 export namespace UpdateClientResponse$ {
-    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: Client$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const inboundSchema: z.ZodType<UpdateClientResponse, z.ZodTypeDef, unknown> = z.object({
+        data: Client$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         data?: Client$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateClientResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateClientResponse> = z.object(
+        {
             data: Client$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+        }
+    );
 }

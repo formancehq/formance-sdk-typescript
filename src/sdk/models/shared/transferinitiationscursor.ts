@@ -20,23 +20,13 @@ export type TransferInitiationsCursor = {
 /** @internal */
 export namespace TransferInitiationsCursorCursor$ {
     export const inboundSchema: z.ZodType<TransferInitiationsCursorCursor, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                data: z.array(TransferInitiation$.inboundSchema),
-                hasMore: z.boolean(),
-                next: z.string().optional(),
-                pageSize: z.number().int(),
-                previous: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                    hasMore: v.hasMore,
-                    ...(v.next === undefined ? null : { next: v.next }),
-                    pageSize: v.pageSize,
-                    ...(v.previous === undefined ? null : { previous: v.previous }),
-                };
-            });
+        z.object({
+            data: z.array(TransferInitiation$.inboundSchema),
+            hasMore: z.boolean(),
+            next: z.string().optional(),
+            pageSize: z.number().int(),
+            previous: z.string().optional(),
+        });
 
     export type Outbound = {
         data: Array<TransferInitiation$.Outbound>;
@@ -50,48 +40,28 @@ export namespace TransferInitiationsCursorCursor$ {
         Outbound,
         z.ZodTypeDef,
         TransferInitiationsCursorCursor
-    > = z
-        .object({
-            data: z.array(TransferInitiation$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(TransferInitiation$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace TransferInitiationsCursor$ {
-    export const inboundSchema: z.ZodType<TransferInitiationsCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransferInitiationsCursor, z.ZodTypeDef, unknown> =
+        z.object({
             cursor: z.lazy(() => TransferInitiationsCursorCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 
     export type Outbound = {
         cursor: TransferInitiationsCursorCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationsCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationsCursor> =
+        z.object({
             cursor: z.lazy(() => TransferInitiationsCursorCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

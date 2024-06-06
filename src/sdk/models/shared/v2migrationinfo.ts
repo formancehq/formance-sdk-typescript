@@ -24,25 +24,16 @@ export namespace V2MigrationInfoState$ {
 
 /** @internal */
 export namespace V2MigrationInfo$ {
-    export const inboundSchema: z.ZodType<V2MigrationInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            date: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            name: z.string().optional(),
-            state: V2MigrationInfoState$.inboundSchema.optional(),
-            version: z.number().int().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.date === undefined ? null : { date: v.date }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.state === undefined ? null : { state: v.state }),
-                ...(v.version === undefined ? null : { version: v.version }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2MigrationInfo, z.ZodTypeDef, unknown> = z.object({
+        date: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        name: z.string().optional(),
+        state: V2MigrationInfoState$.inboundSchema.optional(),
+        version: z.number().int().optional(),
+    });
 
     export type Outbound = {
         date?: string | undefined;
@@ -51,22 +42,13 @@ export namespace V2MigrationInfo$ {
         version?: number | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2MigrationInfo> = z
-        .object({
-            date: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            name: z.string().optional(),
-            state: V2MigrationInfoState$.outboundSchema.optional(),
-            version: z.number().int().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.date === undefined ? null : { date: v.date }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.state === undefined ? null : { state: v.state }),
-                ...(v.version === undefined ? null : { version: v.version }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2MigrationInfo> = z.object({
+        date: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+        name: z.string().optional(),
+        state: V2MigrationInfoState$.outboundSchema.optional(),
+        version: z.number().int().optional(),
+    });
 }

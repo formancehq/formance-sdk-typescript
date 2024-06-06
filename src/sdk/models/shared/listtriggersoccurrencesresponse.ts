@@ -12,15 +12,9 @@ export type ListTriggersOccurrencesResponse = {
 /** @internal */
 export namespace ListTriggersOccurrencesResponse$ {
     export const inboundSchema: z.ZodType<ListTriggersOccurrencesResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                data: z.array(TriggerOccurrence$.inboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    data: v.data,
-                };
-            });
+        z.object({
+            data: z.array(TriggerOccurrence$.inboundSchema),
+        });
 
     export type Outbound = {
         data: Array<TriggerOccurrence$.Outbound>;
@@ -30,13 +24,7 @@ export namespace ListTriggersOccurrencesResponse$ {
         Outbound,
         z.ZodTypeDef,
         ListTriggersOccurrencesResponse
-    > = z
-        .object({
-            data: z.array(TriggerOccurrence$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    > = z.object({
+        data: z.array(TriggerOccurrence$.outboundSchema),
+    });
 }

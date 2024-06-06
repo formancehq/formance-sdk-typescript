@@ -12,26 +12,18 @@ export type CreateBalanceRequest = {
 
 /** @internal */
 export namespace CreateBalanceRequest$ {
-    export const inboundSchema: z.ZodType<CreateBalanceRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            expiresAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            name: z.string(),
-            priority: z
-                .number()
-                .transform((v) => BigInt(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.expiresAt === undefined ? null : { expiresAt: v.expiresAt }),
-                name: v.name,
-                ...(v.priority === undefined ? null : { priority: v.priority }),
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateBalanceRequest, z.ZodTypeDef, unknown> = z.object({
+        expiresAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        name: z.string(),
+        priority: z
+            .number()
+            .transform((v) => BigInt(v))
+            .optional(),
+    });
 
     export type Outbound = {
         expiresAt?: string | undefined;
@@ -39,8 +31,8 @@ export namespace CreateBalanceRequest$ {
         priority?: number | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateBalanceRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateBalanceRequest> = z.object(
+        {
             expiresAt: z
                 .date()
                 .transform((v) => v.toISOString())
@@ -50,12 +42,6 @@ export namespace CreateBalanceRequest$ {
                 .bigint()
                 .transform((v) => Number(v))
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.expiresAt === undefined ? null : { expiresAt: v.expiresAt }),
-                name: v.name,
-                ...(v.priority === undefined ? null : { priority: v.priority }),
-            };
-        });
+        }
+    );
 }

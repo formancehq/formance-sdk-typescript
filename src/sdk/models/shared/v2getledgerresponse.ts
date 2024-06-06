@@ -11,27 +11,15 @@ export type V2GetLedgerResponse = {
 
 /** @internal */
 export namespace V2GetLedgerResponse$ {
-    export const inboundSchema: z.ZodType<V2GetLedgerResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2Ledger$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2GetLedgerResponse, z.ZodTypeDef, unknown> = z.object({
+        data: V2Ledger$.inboundSchema,
+    });
 
     export type Outbound = {
         data: V2Ledger$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2GetLedgerResponse> = z
-        .object({
-            data: V2Ledger$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2GetLedgerResponse> = z.object({
+        data: V2Ledger$.outboundSchema,
+    });
 }

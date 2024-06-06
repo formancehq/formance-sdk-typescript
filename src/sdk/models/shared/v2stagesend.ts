@@ -17,27 +17,17 @@ export type V2StageSend = {
 
 /** @internal */
 export namespace V2StageSend$ {
-    export const inboundSchema: z.ZodType<V2StageSend, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: V2Monetary$.inboundSchema.optional(),
-            destination: V2StageSendDestination$.inboundSchema.optional(),
-            metadata: z.record(z.string()).optional(),
-            source: V2StageSendSource$.inboundSchema.optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2StageSend, z.ZodTypeDef, unknown> = z.object({
+        amount: V2Monetary$.inboundSchema.optional(),
+        destination: V2StageSendDestination$.inboundSchema.optional(),
+        metadata: z.record(z.string()).optional(),
+        source: V2StageSendSource$.inboundSchema.optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+    });
 
     export type Outbound = {
         amount?: V2Monetary$.Outbound | undefined;
@@ -47,24 +37,14 @@ export namespace V2StageSend$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSend> = z
-        .object({
-            amount: V2Monetary$.outboundSchema.optional(),
-            destination: V2StageSendDestination$.outboundSchema.optional(),
-            metadata: z.record(z.string()).optional(),
-            source: V2StageSendSource$.outboundSchema.optional(),
-            timestamp: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.amount === undefined ? null : { amount: v.amount }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                ...(v.source === undefined ? null : { source: v.source }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSend> = z.object({
+        amount: V2Monetary$.outboundSchema.optional(),
+        destination: V2StageSendDestination$.outboundSchema.optional(),
+        metadata: z.record(z.string()).optional(),
+        source: V2StageSendSource$.outboundSchema.optional(),
+        timestamp: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+    });
 }

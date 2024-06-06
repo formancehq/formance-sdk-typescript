@@ -10,27 +10,15 @@ export type AssetHolder = {
 
 /** @internal */
 export namespace AssetHolder$ {
-    export const inboundSchema: z.ZodType<AssetHolder, z.ZodTypeDef, unknown> = z
-        .object({
-            assets: z.record(z.number().transform((v) => BigInt(v))),
-        })
-        .transform((v) => {
-            return {
-                assets: v.assets,
-            };
-        });
+    export const inboundSchema: z.ZodType<AssetHolder, z.ZodTypeDef, unknown> = z.object({
+        assets: z.record(z.number().transform((v) => BigInt(v))),
+    });
 
     export type Outbound = {
         assets: { [k: string]: number };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AssetHolder> = z
-        .object({
-            assets: z.record(z.bigint().transform((v) => Number(v))),
-        })
-        .transform((v) => {
-            return {
-                assets: v.assets,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AssetHolder> = z.object({
+        assets: z.record(z.bigint().transform((v) => Number(v))),
+    });
 }

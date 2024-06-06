@@ -20,23 +20,13 @@ export type ModulrConfig = {
 
 /** @internal */
 export namespace ModulrConfig$ {
-    export const inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            apiKey: z.string(),
-            apiSecret: z.string(),
-            endpoint: z.string().optional(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                apiSecret: v.apiSecret,
-                ...(v.endpoint === undefined ? null : { endpoint: v.endpoint }),
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z.object({
+        apiKey: z.string(),
+        apiSecret: z.string(),
+        endpoint: z.string().optional(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 
     export type Outbound = {
         apiKey: string;
@@ -46,21 +36,11 @@ export namespace ModulrConfig$ {
         pollingPeriod: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ModulrConfig> = z
-        .object({
-            apiKey: z.string(),
-            apiSecret: z.string(),
-            endpoint: z.string().optional(),
-            name: z.string(),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                apiSecret: v.apiSecret,
-                ...(v.endpoint === undefined ? null : { endpoint: v.endpoint }),
-                name: v.name,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ModulrConfig> = z.object({
+        apiKey: z.string(),
+        apiSecret: z.string(),
+        endpoint: z.string().optional(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
 }

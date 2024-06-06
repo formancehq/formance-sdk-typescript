@@ -24,17 +24,10 @@ export namespace OrchestrationPostTransactionScript$ {
         OrchestrationPostTransactionScript,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            plain: z.string(),
-            vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                plain: v.plain,
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
-        });
+    > = z.object({
+        plain: z.string(),
+        vars: z.record(z.any()).optional(),
+    });
 
     export type Outbound = {
         plain: string;
@@ -45,23 +38,16 @@ export namespace OrchestrationPostTransactionScript$ {
         Outbound,
         z.ZodTypeDef,
         OrchestrationPostTransactionScript
-    > = z
-        .object({
-            plain: z.string(),
-            vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                plain: v.plain,
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
-        });
+    > = z.object({
+        plain: z.string(),
+        vars: z.record(z.any()).optional(),
+    });
 }
 
 /** @internal */
 export namespace OrchestrationPostTransaction$ {
-    export const inboundSchema: z.ZodType<OrchestrationPostTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<OrchestrationPostTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             metadata: z.record(z.string()),
             postings: z.array(Posting$.inboundSchema).optional(),
             reference: z.string().optional(),
@@ -71,15 +57,6 @@ export namespace OrchestrationPostTransaction$ {
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                ...(v.postings === undefined ? null : { postings: v.postings }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.script === undefined ? null : { script: v.script }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
         });
 
     export type Outbound = {
@@ -90,8 +67,8 @@ export namespace OrchestrationPostTransaction$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPostTransaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPostTransaction> =
+        z.object({
             metadata: z.record(z.string()),
             postings: z.array(Posting$.outboundSchema).optional(),
             reference: z.string().optional(),
@@ -100,14 +77,5 @@ export namespace OrchestrationPostTransaction$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                metadata: v.metadata,
-                ...(v.postings === undefined ? null : { postings: v.postings }),
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.script === undefined ? null : { script: v.script }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
         });
 }

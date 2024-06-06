@@ -23,23 +23,13 @@ export namespace V2VolumesWithBalanceCursorResponseCursor$ {
         V2VolumesWithBalanceCursorResponseCursor,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(V2VolumesWithBalance$.inboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(V2VolumesWithBalance$.inboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<V2VolumesWithBalance$.Outbound>;
@@ -53,23 +43,13 @@ export namespace V2VolumesWithBalanceCursorResponseCursor$ {
         Outbound,
         z.ZodTypeDef,
         V2VolumesWithBalanceCursorResponseCursor
-    > = z
-        .object({
-            data: z.array(V2VolumesWithBalance$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(V2VolumesWithBalance$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
@@ -78,15 +58,9 @@ export namespace V2VolumesWithBalanceCursorResponse$ {
         V2VolumesWithBalanceCursorResponse,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            cursor: z.lazy(() => V2VolumesWithBalanceCursorResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    > = z.object({
+        cursor: z.lazy(() => V2VolumesWithBalanceCursorResponseCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: V2VolumesWithBalanceCursorResponseCursor$.Outbound;
@@ -96,13 +70,7 @@ export namespace V2VolumesWithBalanceCursorResponse$ {
         Outbound,
         z.ZodTypeDef,
         V2VolumesWithBalanceCursorResponse
-    > = z
-        .object({
-            cursor: z.lazy(() => V2VolumesWithBalanceCursorResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    > = z.object({
+        cursor: z.lazy(() => V2VolumesWithBalanceCursorResponseCursor$.outboundSchema),
+    });
 }

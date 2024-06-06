@@ -10,27 +10,17 @@ export type ForwardBankAccountRequest = {
 
 /** @internal */
 export namespace ForwardBankAccountRequest$ {
-    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ForwardBankAccountRequest, z.ZodTypeDef, unknown> =
+        z.object({
             connectorID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-            };
         });
 
     export type Outbound = {
         connectorID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ForwardBankAccountRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ForwardBankAccountRequest> =
+        z.object({
             connectorID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-            };
         });
 }

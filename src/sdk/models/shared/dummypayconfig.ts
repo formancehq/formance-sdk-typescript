@@ -18,31 +18,14 @@ export type DummyPayConfig = {
 
 /** @internal */
 export namespace DummyPayConfig$ {
-    export const inboundSchema: z.ZodType<DummyPayConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            directory: z.string(),
-            filePollingPeriod: z.string().default("10s"),
-            name: z.string(),
-            numberOfAccountsPreGenerated: z.number().int().optional(),
-            numberOfPaymentsPreGenerated: z.number().int().optional(),
-            prefixFileToIngest: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                directory: v.directory,
-                filePollingPeriod: v.filePollingPeriod,
-                name: v.name,
-                ...(v.numberOfAccountsPreGenerated === undefined
-                    ? null
-                    : { numberOfAccountsPreGenerated: v.numberOfAccountsPreGenerated }),
-                ...(v.numberOfPaymentsPreGenerated === undefined
-                    ? null
-                    : { numberOfPaymentsPreGenerated: v.numberOfPaymentsPreGenerated }),
-                ...(v.prefixFileToIngest === undefined
-                    ? null
-                    : { prefixFileToIngest: v.prefixFileToIngest }),
-            };
-        });
+    export const inboundSchema: z.ZodType<DummyPayConfig, z.ZodTypeDef, unknown> = z.object({
+        directory: z.string(),
+        filePollingPeriod: z.string().default("10s"),
+        name: z.string(),
+        numberOfAccountsPreGenerated: z.number().int().optional(),
+        numberOfPaymentsPreGenerated: z.number().int().optional(),
+        prefixFileToIngest: z.string().optional(),
+    });
 
     export type Outbound = {
         directory: string;
@@ -53,29 +36,12 @@ export namespace DummyPayConfig$ {
         prefixFileToIngest?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DummyPayConfig> = z
-        .object({
-            directory: z.string(),
-            filePollingPeriod: z.string().default("10s"),
-            name: z.string(),
-            numberOfAccountsPreGenerated: z.number().int().optional(),
-            numberOfPaymentsPreGenerated: z.number().int().optional(),
-            prefixFileToIngest: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                directory: v.directory,
-                filePollingPeriod: v.filePollingPeriod,
-                name: v.name,
-                ...(v.numberOfAccountsPreGenerated === undefined
-                    ? null
-                    : { numberOfAccountsPreGenerated: v.numberOfAccountsPreGenerated }),
-                ...(v.numberOfPaymentsPreGenerated === undefined
-                    ? null
-                    : { numberOfPaymentsPreGenerated: v.numberOfPaymentsPreGenerated }),
-                ...(v.prefixFileToIngest === undefined
-                    ? null
-                    : { prefixFileToIngest: v.prefixFileToIngest }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DummyPayConfig> = z.object({
+        directory: z.string(),
+        filePollingPeriod: z.string().default("10s"),
+        name: z.string(),
+        numberOfAccountsPreGenerated: z.number().int().optional(),
+        numberOfPaymentsPreGenerated: z.number().int().optional(),
+        prefixFileToIngest: z.string().optional(),
+    });
 }

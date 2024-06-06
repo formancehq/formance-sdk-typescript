@@ -10,27 +10,15 @@ export type ServerInfo = {
 
 /** @internal */
 export namespace ServerInfo$ {
-    export const inboundSchema: z.ZodType<ServerInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                version: v.version,
-            };
-        });
+    export const inboundSchema: z.ZodType<ServerInfo, z.ZodTypeDef, unknown> = z.object({
+        version: z.string(),
+    });
 
     export type Outbound = {
         version: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServerInfo> = z
-        .object({
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                version: v.version,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ServerInfo> = z.object({
+        version: z.string(),
+    });
 }

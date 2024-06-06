@@ -10,27 +10,15 @@ export type V2StageWaitEvent = {
 
 /** @internal */
 export namespace V2StageWaitEvent$ {
-    export const inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, unknown> = z
-        .object({
-            event: z.string(),
-        })
-        .transform((v) => {
-            return {
-                event: v.event,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, unknown> = z.object({
+        event: z.string(),
+    });
 
     export type Outbound = {
         event: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageWaitEvent> = z
-        .object({
-            event: z.string(),
-        })
-        .transform((v) => {
-            return {
-                event: v.event,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageWaitEvent> = z.object({
+        event: z.string(),
+    });
 }

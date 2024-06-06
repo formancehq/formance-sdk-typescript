@@ -47,10 +47,7 @@ export namespace PaymentsErrorResponse$ {
             errorMessage: z.string(),
         })
         .transform((v) => {
-            return new PaymentsErrorResponse({
-                errorCode: v.errorCode,
-                errorMessage: v.errorMessage,
-            });
+            return new PaymentsErrorResponse(v);
         });
 
     export type Outbound = {
@@ -62,16 +59,9 @@ export namespace PaymentsErrorResponse$ {
         .instanceof(PaymentsErrorResponse)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    errorCode: shared.PaymentsErrorsEnum$.outboundSchema,
-                    errorMessage: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        errorCode: v.errorCode,
-                        errorMessage: v.errorMessage,
-                    };
-                })
+            z.object({
+                errorCode: shared.PaymentsErrorsEnum$.outboundSchema,
+                errorMessage: z.string(),
+            })
         );
 }

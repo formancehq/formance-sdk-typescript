@@ -11,27 +11,15 @@ export type MappingResponse = {
 
 /** @internal */
 export namespace MappingResponse$ {
-    export const inboundSchema: z.ZodType<MappingResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.nullable(Mapping$.inboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const inboundSchema: z.ZodType<MappingResponse, z.ZodTypeDef, unknown> = z.object({
+        data: z.nullable(Mapping$.inboundSchema).optional(),
+    });
 
     export type Outbound = {
         data?: Mapping$.Outbound | null | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MappingResponse> = z
-        .object({
-            data: z.nullable(Mapping$.outboundSchema).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.data === undefined ? null : { data: v.data }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MappingResponse> = z.object({
+        data: z.nullable(Mapping$.outboundSchema).optional(),
+    });
 }

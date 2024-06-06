@@ -11,16 +11,10 @@ export type ActivityRevertTransaction = {
 
 /** @internal */
 export namespace ActivityRevertTransaction$ {
-    export const inboundSchema: z.ZodType<ActivityRevertTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ActivityRevertTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             id: z.string(),
             ledger: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-            };
         });
 
     export type Outbound = {
@@ -28,15 +22,9 @@ export namespace ActivityRevertTransaction$ {
         ledger: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityRevertTransaction> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityRevertTransaction> =
+        z.object({
             id: z.string(),
             ledger: z.string(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ledger: v.ledger,
-            };
         });
 }

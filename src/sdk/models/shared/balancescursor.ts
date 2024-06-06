@@ -19,23 +19,13 @@ export type BalancesCursor = {
 
 /** @internal */
 export namespace BalancesCursorCursor$ {
-    export const inboundSchema: z.ZodType<BalancesCursorCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            data: z.array(AccountBalance$.inboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    export const inboundSchema: z.ZodType<BalancesCursorCursor, z.ZodTypeDef, unknown> = z.object({
+        data: z.array(AccountBalance$.inboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<AccountBalance$.Outbound>;
@@ -45,48 +35,28 @@ export namespace BalancesCursorCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursorCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursorCursor> = z.object(
+        {
             data: z.array(AccountBalance$.outboundSchema),
             hasMore: z.boolean(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+        }
+    );
 }
 
 /** @internal */
 export namespace BalancesCursor$ {
-    export const inboundSchema: z.ZodType<BalancesCursor, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => BalancesCursorCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<BalancesCursor, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => BalancesCursorCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: BalancesCursorCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursor> = z
-        .object({
-            cursor: z.lazy(() => BalancesCursorCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursor> = z.object({
+        cursor: z.lazy(() => BalancesCursorCursor$.outboundSchema),
+    });
 }

@@ -11,32 +11,21 @@ export type V2LedgerAccountSubject = {
 
 /** @internal */
 export namespace V2LedgerAccountSubject$ {
-    export const inboundSchema: z.ZodType<V2LedgerAccountSubject, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2LedgerAccountSubject, z.ZodTypeDef, unknown> = z.object(
+        {
             identifier: z.string(),
             type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                identifier: v.identifier,
-                type: v.type,
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         identifier: string;
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerAccountSubject> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2LedgerAccountSubject> =
+        z.object({
             identifier: z.string(),
             type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                identifier: v.identifier,
-                type: v.type,
-            };
         });
 }

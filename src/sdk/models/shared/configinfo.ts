@@ -13,19 +13,11 @@ export type ConfigInfo = {
 
 /** @internal */
 export namespace ConfigInfo$ {
-    export const inboundSchema: z.ZodType<ConfigInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            config: Config$.inboundSchema,
-            server: z.string(),
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                server: v.server,
-                version: v.version,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigInfo, z.ZodTypeDef, unknown> = z.object({
+        config: Config$.inboundSchema,
+        server: z.string(),
+        version: z.string(),
+    });
 
     export type Outbound = {
         config: Config$.Outbound;
@@ -33,17 +25,9 @@ export namespace ConfigInfo$ {
         version: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigInfo> = z
-        .object({
-            config: Config$.outboundSchema,
-            server: z.string(),
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                server: v.server,
-                version: v.version,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigInfo> = z.object({
+        config: Config$.outboundSchema,
+        server: z.string(),
+        version: z.string(),
+    });
 }

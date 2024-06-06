@@ -12,19 +12,11 @@ export type Version = {
 
 /** @internal */
 export namespace Version$ {
-    export const inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> = z
-        .object({
-            health: z.boolean(),
-            name: z.string(),
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                health: v.health,
-                name: v.name,
-                version: v.version,
-            };
-        });
+    export const inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> = z.object({
+        health: z.boolean(),
+        name: z.string(),
+        version: z.string(),
+    });
 
     export type Outbound = {
         health: boolean;
@@ -32,17 +24,9 @@ export namespace Version$ {
         version: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Version> = z
-        .object({
-            health: z.boolean(),
-            name: z.string(),
-            version: z.string(),
-        })
-        .transform((v) => {
-            return {
-                health: v.health,
-                name: v.name,
-                version: v.version,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Version> = z.object({
+        health: z.boolean(),
+        name: z.string(),
+        version: z.string(),
+    });
 }

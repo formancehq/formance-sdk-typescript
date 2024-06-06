@@ -10,27 +10,17 @@ export type V2AggregateBalancesResponse = {
 
 /** @internal */
 export namespace V2AggregateBalancesResponse$ {
-    export const inboundSchema: z.ZodType<V2AggregateBalancesResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2AggregateBalancesResponse, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.record(z.number().transform((v) => BigInt(v))),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: { [k: string]: number };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AggregateBalancesResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AggregateBalancesResponse> =
+        z.object({
             data: z.record(z.bigint().transform((v) => Number(v))),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

@@ -22,40 +22,21 @@ export type PaymentRequest = {
 
 /** @internal */
 export namespace PaymentRequest$ {
-    export const inboundSchema: z.ZodType<PaymentRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            destinationAccountID: z.string().optional(),
-            reference: z.string(),
-            scheme: PaymentScheme$.inboundSchema,
-            sourceAccountID: z.string().optional(),
-            status: PaymentStatus$.inboundSchema,
-            type: PaymentType$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                ...(v.destinationAccountID === undefined
-                    ? null
-                    : { destinationAccountID: v.destinationAccountID }),
-                reference: v.reference,
-                scheme: v.scheme,
-                ...(v.sourceAccountID === undefined
-                    ? null
-                    : { sourceAccountID: v.sourceAccountID }),
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<PaymentRequest, z.ZodTypeDef, unknown> = z.object({
+        amount: z.number().transform((v) => BigInt(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        destinationAccountID: z.string().optional(),
+        reference: z.string(),
+        scheme: PaymentScheme$.inboundSchema,
+        sourceAccountID: z.string().optional(),
+        status: PaymentStatus$.inboundSchema,
+        type: PaymentType$.inboundSchema,
+    });
 
     export type Outbound = {
         amount: number;
@@ -70,35 +51,16 @@ export namespace PaymentRequest$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentRequest> = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            asset: z.string(),
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            destinationAccountID: z.string().optional(),
-            reference: z.string(),
-            scheme: PaymentScheme$.outboundSchema,
-            sourceAccountID: z.string().optional(),
-            status: PaymentStatus$.outboundSchema,
-            type: PaymentType$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                asset: v.asset,
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                ...(v.destinationAccountID === undefined
-                    ? null
-                    : { destinationAccountID: v.destinationAccountID }),
-                reference: v.reference,
-                scheme: v.scheme,
-                ...(v.sourceAccountID === undefined
-                    ? null
-                    : { sourceAccountID: v.sourceAccountID }),
-                status: v.status,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentRequest> = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        asset: z.string(),
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        destinationAccountID: z.string().optional(),
+        reference: z.string(),
+        scheme: PaymentScheme$.outboundSchema,
+        sourceAccountID: z.string().optional(),
+        status: PaymentStatus$.outboundSchema,
+        type: PaymentType$.outboundSchema,
+    });
 }

@@ -19,22 +19,13 @@ export type V2ListWalletsResponse = {
 
 /** @internal */
 export namespace V2ListWalletsResponseCursor$ {
-    export const inboundSchema: z.ZodType<V2ListWalletsResponseCursor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2ListWalletsResponseCursor, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.array(V2Wallet$.inboundSchema),
             hasMore: z.boolean().optional(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                ...(v.hasMore === undefined ? null : { hasMore: v.hasMore }),
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 
     export type Outbound = {
@@ -45,48 +36,28 @@ export namespace V2ListWalletsResponseCursor$ {
         previous?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWalletsResponseCursor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWalletsResponseCursor> =
+        z.object({
             data: z.array(V2Wallet$.outboundSchema),
             hasMore: z.boolean().optional(),
             next: z.string().optional(),
             pageSize: z.number().int(),
             previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                ...(v.hasMore === undefined ? null : { hasMore: v.hasMore }),
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
         });
 }
 
 /** @internal */
 export namespace V2ListWalletsResponse$ {
-    export const inboundSchema: z.ZodType<V2ListWalletsResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            cursor: z.lazy(() => V2ListWalletsResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2ListWalletsResponse, z.ZodTypeDef, unknown> = z.object({
+        cursor: z.lazy(() => V2ListWalletsResponseCursor$.inboundSchema),
+    });
 
     export type Outbound = {
         cursor: V2ListWalletsResponseCursor$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWalletsResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ListWalletsResponse> =
+        z.object({
             cursor: z.lazy(() => V2ListWalletsResponseCursor$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 }

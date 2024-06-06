@@ -22,21 +22,11 @@ export namespace V2BulkElementRevertTransactionData$ {
         V2BulkElementRevertTransactionData,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            atEffectiveDate: z.boolean().optional(),
-            force: z.boolean().optional(),
-            id: z.number().transform((v) => BigInt(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.atEffectiveDate === undefined
-                    ? null
-                    : { atEffectiveDate: v.atEffectiveDate }),
-                ...(v.force === undefined ? null : { force: v.force }),
-                id: v.id,
-            };
-        });
+    > = z.object({
+        atEffectiveDate: z.boolean().optional(),
+        force: z.boolean().optional(),
+        id: z.number().transform((v) => BigInt(v)),
+    });
 
     export type Outbound = {
         atEffectiveDate?: boolean | undefined;
@@ -48,37 +38,20 @@ export namespace V2BulkElementRevertTransactionData$ {
         Outbound,
         z.ZodTypeDef,
         V2BulkElementRevertTransactionData
-    > = z
-        .object({
-            atEffectiveDate: z.boolean().optional(),
-            force: z.boolean().optional(),
-            id: z.bigint().transform((v) => Number(v)),
-        })
-        .transform((v) => {
-            return {
-                ...(v.atEffectiveDate === undefined
-                    ? null
-                    : { atEffectiveDate: v.atEffectiveDate }),
-                ...(v.force === undefined ? null : { force: v.force }),
-                id: v.id,
-            };
-        });
+    > = z.object({
+        atEffectiveDate: z.boolean().optional(),
+        force: z.boolean().optional(),
+        id: z.bigint().transform((v) => Number(v)),
+    });
 }
 
 /** @internal */
 export namespace V2BulkElementRevertTransaction$ {
-    export const inboundSchema: z.ZodType<V2BulkElementRevertTransaction, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<V2BulkElementRevertTransaction, z.ZodTypeDef, unknown> =
+        z.object({
             action: z.string(),
             data: z.lazy(() => V2BulkElementRevertTransactionData$.inboundSchema).optional(),
             ik: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                action: v.action,
-                ...(v.data === undefined ? null : { data: v.data }),
-                ...(v.ik === undefined ? null : { ik: v.ik }),
-            };
         });
 
     export type Outbound = {
@@ -88,17 +61,9 @@ export namespace V2BulkElementRevertTransaction$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2BulkElementRevertTransaction> =
-        z
-            .object({
-                action: z.string(),
-                data: z.lazy(() => V2BulkElementRevertTransactionData$.outboundSchema).optional(),
-                ik: z.string().optional(),
-            })
-            .transform((v) => {
-                return {
-                    action: v.action,
-                    ...(v.data === undefined ? null : { data: v.data }),
-                    ...(v.ik === undefined ? null : { ik: v.ik }),
-                };
-            });
+        z.object({
+            action: z.string(),
+            data: z.lazy(() => V2BulkElementRevertTransactionData$.outboundSchema).optional(),
+            ik: z.string().optional(),
+        });
 }

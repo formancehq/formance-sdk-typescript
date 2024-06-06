@@ -16,21 +16,12 @@ export type Script = {
 
 /** @internal */
 export namespace Script$ {
-    export const inboundSchema: z.ZodType<Script, z.ZodTypeDef, unknown> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            plain: z.string(),
-            reference: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                plain: v.plain,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Script, z.ZodTypeDef, unknown> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        plain: z.string(),
+        reference: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+    });
 
     export type Outbound = {
         metadata?: { [k: string]: any } | null | undefined;
@@ -39,19 +30,10 @@ export namespace Script$ {
         vars?: { [k: string]: any } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Script> = z
-        .object({
-            metadata: z.nullable(z.record(z.any())).optional(),
-            plain: z.string(),
-            reference: z.string().optional(),
-            vars: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                plain: v.plain,
-                ...(v.reference === undefined ? null : { reference: v.reference }),
-                ...(v.vars === undefined ? null : { vars: v.vars }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Script> = z.object({
+        metadata: z.nullable(z.record(z.any())).optional(),
+        plain: z.string(),
+        reference: z.string().optional(),
+        vars: z.record(z.any()).optional(),
+    });
 }

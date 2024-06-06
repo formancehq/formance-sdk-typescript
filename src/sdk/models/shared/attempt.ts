@@ -20,43 +20,28 @@ export type Attempt = {
 
 /** @internal */
 export namespace Attempt$ {
-    export const inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> = z
-        .object({
-            config: WebhooksConfig$.inboundSchema,
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            id: z.string(),
-            nextRetryAfter: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            payload: z.string(),
-            retryAttempt: z.number().int(),
-            status: z.string(),
-            statusCode: z.number().int(),
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            webhookID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                ...(v.nextRetryAfter === undefined ? null : { nextRetryAfter: v.nextRetryAfter }),
-                payload: v.payload,
-                retryAttempt: v.retryAttempt,
-                status: v.status,
-                statusCode: v.statusCode,
-                updatedAt: v.updatedAt,
-                webhookID: v.webhookID,
-            };
-        });
+    export const inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> = z.object({
+        config: WebhooksConfig$.inboundSchema,
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        id: z.string(),
+        nextRetryAfter: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        payload: z.string(),
+        retryAttempt: z.number().int(),
+        status: z.string(),
+        statusCode: z.number().int(),
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        webhookID: z.string(),
+    });
 
     export type Outbound = {
         config: WebhooksConfig$.Outbound;
@@ -71,34 +56,19 @@ export namespace Attempt$ {
         webhookID: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Attempt> = z
-        .object({
-            config: WebhooksConfig$.outboundSchema,
-            createdAt: z.date().transform((v) => v.toISOString()),
-            id: z.string(),
-            nextRetryAfter: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            payload: z.string(),
-            retryAttempt: z.number().int(),
-            status: z.string(),
-            statusCode: z.number().int(),
-            updatedAt: z.date().transform((v) => v.toISOString()),
-            webhookID: z.string(),
-        })
-        .transform((v) => {
-            return {
-                config: v.config,
-                createdAt: v.createdAt,
-                id: v.id,
-                ...(v.nextRetryAfter === undefined ? null : { nextRetryAfter: v.nextRetryAfter }),
-                payload: v.payload,
-                retryAttempt: v.retryAttempt,
-                status: v.status,
-                statusCode: v.statusCode,
-                updatedAt: v.updatedAt,
-                webhookID: v.webhookID,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Attempt> = z.object({
+        config: WebhooksConfig$.outboundSchema,
+        createdAt: z.date().transform((v) => v.toISOString()),
+        id: z.string(),
+        nextRetryAfter: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+        payload: z.string(),
+        retryAttempt: z.number().int(),
+        status: z.string(),
+        statusCode: z.number().int(),
+        updatedAt: z.date().transform((v) => v.toISOString()),
+        webhookID: z.string(),
+    });
 }

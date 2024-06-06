@@ -12,19 +12,11 @@ export type WalletSubject = {
 
 /** @internal */
 export namespace WalletSubject$ {
-    export const inboundSchema: z.ZodType<WalletSubject, z.ZodTypeDef, unknown> = z
-        .object({
-            balance: z.string().optional(),
-            identifier: z.string(),
-            type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                identifier: v.identifier,
-                type: v.type,
-            };
-        });
+    export const inboundSchema: z.ZodType<WalletSubject, z.ZodTypeDef, unknown> = z.object({
+        balance: z.string().optional(),
+        identifier: z.string(),
+        type: z.string(),
+    });
 
     export type Outbound = {
         balance?: string | undefined;
@@ -32,17 +24,9 @@ export namespace WalletSubject$ {
         type: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletSubject> = z
-        .object({
-            balance: z.string().optional(),
-            identifier: z.string(),
-            type: z.string(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.balance === undefined ? null : { balance: v.balance }),
-                identifier: v.identifier,
-                type: v.type,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletSubject> = z.object({
+        balance: z.string().optional(),
+        identifier: z.string(),
+        type: z.string(),
+    });
 }

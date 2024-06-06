@@ -15,22 +15,13 @@ export type GetWalletSummaryResponse = {
 
 /** @internal */
 export namespace GetWalletSummaryResponse$ {
-    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<GetWalletSummaryResponse, z.ZodTypeDef, unknown> =
+        z.object({
             availableFunds: z.record(z.number().transform((v) => BigInt(v))),
             balances: z.array(BalanceWithAssets$.inboundSchema),
             expirableFunds: z.record(z.number().transform((v) => BigInt(v))),
             expiredFunds: z.record(z.number().transform((v) => BigInt(v))),
             holdFunds: z.record(z.number().transform((v) => BigInt(v))),
-        })
-        .transform((v) => {
-            return {
-                availableFunds: v.availableFunds,
-                balances: v.balances,
-                expirableFunds: v.expirableFunds,
-                expiredFunds: v.expiredFunds,
-                holdFunds: v.holdFunds,
-            };
         });
 
     export type Outbound = {
@@ -41,21 +32,12 @@ export namespace GetWalletSummaryResponse$ {
         holdFunds: { [k: string]: number };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetWalletSummaryResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetWalletSummaryResponse> =
+        z.object({
             availableFunds: z.record(z.bigint().transform((v) => Number(v))),
             balances: z.array(BalanceWithAssets$.outboundSchema),
             expirableFunds: z.record(z.bigint().transform((v) => Number(v))),
             expiredFunds: z.record(z.bigint().transform((v) => Number(v))),
             holdFunds: z.record(z.bigint().transform((v) => Number(v))),
-        })
-        .transform((v) => {
-            return {
-                availableFunds: v.availableFunds,
-                balances: v.balances,
-                expirableFunds: v.expirableFunds,
-                expiredFunds: v.expiredFunds,
-                holdFunds: v.holdFunds,
-            };
         });
 }

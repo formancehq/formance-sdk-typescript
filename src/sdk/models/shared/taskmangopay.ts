@@ -26,19 +26,13 @@ export type TaskMangoPay = {
 
 /** @internal */
 export namespace TaskMangoPayDescriptor$ {
-    export const inboundSchema: z.ZodType<TaskMangoPayDescriptor, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TaskMangoPayDescriptor, z.ZodTypeDef, unknown> = z.object(
+        {
             key: z.string().optional(),
             name: z.string().optional(),
             userID: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.userID === undefined ? null : { userID: v.userID }),
-            };
-        });
+        }
+    );
 
     export type Outbound = {
         key?: string | undefined;
@@ -46,18 +40,11 @@ export namespace TaskMangoPayDescriptor$ {
         userID?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskMangoPayDescriptor> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskMangoPayDescriptor> =
+        z.object({
             key: z.string().optional(),
             name: z.string().optional(),
             userID: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                ...(v.userID === undefined ? null : { userID: v.userID }),
-            };
         });
 }
 
@@ -74,35 +61,22 @@ export namespace TaskMangoPayState$ {
 
 /** @internal */
 export namespace TaskMangoPay$ {
-    export const inboundSchema: z.ZodType<TaskMangoPay, z.ZodTypeDef, unknown> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            descriptor: z.lazy(() => TaskMangoPayDescriptor$.inboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskMangoPayState$.inboundSchema),
-            status: PaymentStatus$.inboundSchema,
-            updatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<TaskMangoPay, z.ZodTypeDef, unknown> = z.object({
+        connectorID: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        descriptor: z.lazy(() => TaskMangoPayDescriptor$.inboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskMangoPayState$.inboundSchema),
+        status: PaymentStatus$.inboundSchema,
+        updatedAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         connectorID: string;
@@ -115,27 +89,14 @@ export namespace TaskMangoPay$ {
         updatedAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskMangoPay> = z
-        .object({
-            connectorID: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            descriptor: z.lazy(() => TaskMangoPayDescriptor$.outboundSchema),
-            error: z.string().optional(),
-            id: z.string(),
-            state: z.lazy(() => TaskMangoPayState$.outboundSchema),
-            status: PaymentStatus$.outboundSchema,
-            updatedAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                connectorID: v.connectorID,
-                createdAt: v.createdAt,
-                descriptor: v.descriptor,
-                ...(v.error === undefined ? null : { error: v.error }),
-                id: v.id,
-                state: v.state,
-                status: v.status,
-                updatedAt: v.updatedAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TaskMangoPay> = z.object({
+        connectorID: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        descriptor: z.lazy(() => TaskMangoPayDescriptor$.outboundSchema),
+        error: z.string().optional(),
+        id: z.string(),
+        state: z.lazy(() => TaskMangoPayState$.outboundSchema),
+        status: PaymentStatus$.outboundSchema,
+        updatedAt: z.date().transform((v) => v.toISOString()),
+    });
 }

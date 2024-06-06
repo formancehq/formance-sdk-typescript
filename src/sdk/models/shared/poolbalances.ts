@@ -11,27 +11,15 @@ export type PoolBalances = {
 
 /** @internal */
 export namespace PoolBalances$ {
-    export const inboundSchema: z.ZodType<PoolBalances, z.ZodTypeDef, unknown> = z
-        .object({
-            balances: z.array(PoolBalance$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                balances: v.balances,
-            };
-        });
+    export const inboundSchema: z.ZodType<PoolBalances, z.ZodTypeDef, unknown> = z.object({
+        balances: z.array(PoolBalance$.inboundSchema),
+    });
 
     export type Outbound = {
         balances: Array<PoolBalance$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolBalances> = z
-        .object({
-            balances: z.array(PoolBalance$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                balances: v.balances,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolBalances> = z.object({
+        balances: z.array(PoolBalance$.outboundSchema),
+    });
 }

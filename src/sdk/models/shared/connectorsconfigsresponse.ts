@@ -23,34 +23,20 @@ export type ConnectorsConfigsResponse = {
 
 /** @internal */
 export namespace Key$ {
-    export const inboundSchema: z.ZodType<Key, z.ZodTypeDef, unknown> = z
-        .object({
-            dataType: z.string(),
-            required: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                dataType: v.dataType,
-                required: v.required,
-            };
-        });
+    export const inboundSchema: z.ZodType<Key, z.ZodTypeDef, unknown> = z.object({
+        dataType: z.string(),
+        required: z.boolean(),
+    });
 
     export type Outbound = {
         dataType: string;
         required: boolean;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Key> = z
-        .object({
-            dataType: z.string(),
-            required: z.boolean(),
-        })
-        .transform((v) => {
-            return {
-                dataType: v.dataType,
-                required: v.required,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Key> = z.object({
+        dataType: z.string(),
+        required: z.boolean(),
+    });
 }
 
 /** @internal */
@@ -59,15 +45,9 @@ export namespace ConnectorsConfigsResponseConnector$ {
         ConnectorsConfigsResponseConnector,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            key: z.lazy(() => Key$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                key: v.key,
-            };
-        });
+    > = z.object({
+        key: z.lazy(() => Key$.inboundSchema),
+    });
 
     export type Outbound = {
         key: Key$.Outbound;
@@ -77,27 +57,16 @@ export namespace ConnectorsConfigsResponseConnector$ {
         Outbound,
         z.ZodTypeDef,
         ConnectorsConfigsResponseConnector
-    > = z
-        .object({
-            key: z.lazy(() => Key$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                key: v.key,
-            };
-        });
+    > = z.object({
+        key: z.lazy(() => Key$.outboundSchema),
+    });
 }
 
 /** @internal */
 export namespace ConnectorsConfigsResponseData$ {
-    export const inboundSchema: z.ZodType<ConnectorsConfigsResponseData, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ConnectorsConfigsResponseData, z.ZodTypeDef, unknown> =
+        z.object({
             connector: z.lazy(() => ConnectorsConfigsResponseConnector$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                connector: v.connector,
-            };
         });
 
     export type Outbound = {
@@ -105,40 +74,24 @@ export namespace ConnectorsConfigsResponseData$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsConfigsResponseData> =
-        z
-            .object({
-                connector: z.lazy(() => ConnectorsConfigsResponseConnector$.outboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    connector: v.connector,
-                };
-            });
+        z.object({
+            connector: z.lazy(() => ConnectorsConfigsResponseConnector$.outboundSchema),
+        });
 }
 
 /** @internal */
 export namespace ConnectorsConfigsResponse$ {
-    export const inboundSchema: z.ZodType<ConnectorsConfigsResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ConnectorsConfigsResponse, z.ZodTypeDef, unknown> =
+        z.object({
             data: z.lazy(() => ConnectorsConfigsResponseData$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: ConnectorsConfigsResponseData$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsConfigsResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConnectorsConfigsResponse> =
+        z.object({
             data: z.lazy(() => ConnectorsConfigsResponseData$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

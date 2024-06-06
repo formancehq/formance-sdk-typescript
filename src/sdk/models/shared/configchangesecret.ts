@@ -10,27 +10,15 @@ export type ConfigChangeSecret = {
 
 /** @internal */
 export namespace ConfigChangeSecret$ {
-    export const inboundSchema: z.ZodType<ConfigChangeSecret, z.ZodTypeDef, unknown> = z
-        .object({
-            secret: z.string(),
-        })
-        .transform((v) => {
-            return {
-                secret: v.secret,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigChangeSecret, z.ZodTypeDef, unknown> = z.object({
+        secret: z.string(),
+    });
 
     export type Outbound = {
         secret: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigChangeSecret> = z
-        .object({
-            secret: z.string(),
-        })
-        .transform((v) => {
-            return {
-                secret: v.secret,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigChangeSecret> = z.object({
+        secret: z.string(),
+    });
 }

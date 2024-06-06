@@ -11,27 +11,17 @@ export type TransferInitiationResponse = {
 
 /** @internal */
 export namespace TransferInitiationResponse$ {
-    export const inboundSchema: z.ZodType<TransferInitiationResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<TransferInitiationResponse, z.ZodTypeDef, unknown> =
+        z.object({
             data: TransferInitiation$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 
     export type Outbound = {
         data: TransferInitiation$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationResponse> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiationResponse> =
+        z.object({
             data: TransferInitiation$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
         });
 }

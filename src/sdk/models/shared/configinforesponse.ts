@@ -11,27 +11,15 @@ export type ConfigInfoResponse = {
 
 /** @internal */
 export namespace ConfigInfoResponse$ {
-    export const inboundSchema: z.ZodType<ConfigInfoResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: ConfigInfo$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<ConfigInfoResponse, z.ZodTypeDef, unknown> = z.object({
+        data: ConfigInfo$.inboundSchema,
+    });
 
     export type Outbound = {
         data: ConfigInfo$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigInfoResponse> = z
-        .object({
-            data: ConfigInfo$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigInfoResponse> = z.object({
+        data: ConfigInfo$.outboundSchema,
+    });
 }

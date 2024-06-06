@@ -25,21 +25,12 @@ export type StripeConfig = {
 
 /** @internal */
 export namespace StripeConfig$ {
-    export const inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z
-        .object({
-            apiKey: z.string(),
-            name: z.string(),
-            pageSize: z.number().int().default(10),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                name: v.name,
-                pageSize: v.pageSize,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z.object({
+        apiKey: z.string(),
+        name: z.string(),
+        pageSize: z.number().int().default(10),
+        pollingPeriod: z.string().default("120s"),
+    });
 
     export type Outbound = {
         apiKey: string;
@@ -48,19 +39,10 @@ export namespace StripeConfig$ {
         pollingPeriod: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StripeConfig> = z
-        .object({
-            apiKey: z.string(),
-            name: z.string(),
-            pageSize: z.number().int().default(10),
-            pollingPeriod: z.string().default("120s"),
-        })
-        .transform((v) => {
-            return {
-                apiKey: v.apiKey,
-                name: v.name,
-                pageSize: v.pageSize,
-                pollingPeriod: v.pollingPeriod,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StripeConfig> = z.object({
+        apiKey: z.string(),
+        name: z.string(),
+        pageSize: z.number().int().default(10),
+        pollingPeriod: z.string().default("120s"),
+    });
 }

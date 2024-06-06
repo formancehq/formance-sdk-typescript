@@ -29,26 +29,16 @@ export namespace V2PaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace V2PaymentAdjustment$ {
-    export const inboundSchema: z.ZodType<V2PaymentAdjustment, z.ZodTypeDef, unknown> = z
-        .object({
-            absolute: z.boolean(),
-            amount: z.number().transform((v) => BigInt(v)),
-            date: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            raw: z.lazy(() => V2PaymentAdjustmentRaw$.inboundSchema),
-            status: V2PaymentStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                absolute: v.absolute,
-                amount: v.amount,
-                date: v.date,
-                raw: v.raw,
-                status: v.status,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2PaymentAdjustment, z.ZodTypeDef, unknown> = z.object({
+        absolute: z.boolean(),
+        amount: z.number().transform((v) => BigInt(v)),
+        date: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        raw: z.lazy(() => V2PaymentAdjustmentRaw$.inboundSchema),
+        status: V2PaymentStatus$.inboundSchema,
+    });
 
     export type Outbound = {
         absolute: boolean;
@@ -58,21 +48,11 @@ export namespace V2PaymentAdjustment$ {
         status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentAdjustment> = z
-        .object({
-            absolute: z.boolean(),
-            amount: z.bigint().transform((v) => Number(v)),
-            date: z.date().transform((v) => v.toISOString()),
-            raw: z.lazy(() => V2PaymentAdjustmentRaw$.outboundSchema),
-            status: V2PaymentStatus$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                absolute: v.absolute,
-                amount: v.amount,
-                date: v.date,
-                raw: v.raw,
-                status: v.status,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentAdjustment> = z.object({
+        absolute: z.boolean(),
+        amount: z.bigint().transform((v) => Number(v)),
+        date: z.date().transform((v) => v.toISOString()),
+        raw: z.lazy(() => V2PaymentAdjustmentRaw$.outboundSchema),
+        status: V2PaymentStatus$.outboundSchema,
+    });
 }

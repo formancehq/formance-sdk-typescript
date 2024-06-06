@@ -12,26 +12,18 @@ export type Balance = {
 
 /** @internal */
 export namespace Balance$ {
-    export const inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = z
-        .object({
-            expiresAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            name: z.string(),
-            priority: z
-                .number()
-                .transform((v) => BigInt(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.expiresAt === undefined ? null : { expiresAt: v.expiresAt }),
-                name: v.name,
-                ...(v.priority === undefined ? null : { priority: v.priority }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = z.object({
+        expiresAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        name: z.string(),
+        priority: z
+            .number()
+            .transform((v) => BigInt(v))
+            .optional(),
+    });
 
     export type Outbound = {
         expiresAt?: string | undefined;
@@ -39,23 +31,15 @@ export namespace Balance$ {
         priority?: number | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Balance> = z
-        .object({
-            expiresAt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            name: z.string(),
-            priority: z
-                .bigint()
-                .transform((v) => Number(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.expiresAt === undefined ? null : { expiresAt: v.expiresAt }),
-                name: v.name,
-                ...(v.priority === undefined ? null : { priority: v.priority }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Balance> = z.object({
+        expiresAt: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+        name: z.string(),
+        priority: z
+            .bigint()
+            .transform((v) => Number(v))
+            .optional(),
+    });
 }

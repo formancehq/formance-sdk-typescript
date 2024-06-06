@@ -27,31 +27,19 @@ export type V2DebitWalletRequest = {
 
 /** @internal */
 export namespace V2DebitWalletRequest$ {
-    export const inboundSchema: z.ZodType<V2DebitWalletRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: V2Monetary$.inboundSchema,
-            balances: z.array(z.string()).optional(),
-            description: z.string().optional(),
-            destination: V2Subject$.inboundSchema.optional(),
-            metadata: z.record(z.string()),
-            pending: z.boolean().optional(),
-            timestamp: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                ...(v.balances === undefined ? null : { balances: v.balances }),
-                ...(v.description === undefined ? null : { description: v.description }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                metadata: v.metadata,
-                ...(v.pending === undefined ? null : { pending: v.pending }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2DebitWalletRequest, z.ZodTypeDef, unknown> = z.object({
+        amount: V2Monetary$.inboundSchema,
+        balances: z.array(z.string()).optional(),
+        description: z.string().optional(),
+        destination: V2Subject$.inboundSchema.optional(),
+        metadata: z.record(z.string()),
+        pending: z.boolean().optional(),
+        timestamp: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+    });
 
     export type Outbound = {
         amount: V2Monetary$.Outbound;
@@ -63,8 +51,8 @@ export namespace V2DebitWalletRequest$ {
         timestamp?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2DebitWalletRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2DebitWalletRequest> = z.object(
+        {
             amount: V2Monetary$.outboundSchema,
             balances: z.array(z.string()).optional(),
             description: z.string().optional(),
@@ -75,16 +63,6 @@ export namespace V2DebitWalletRequest$ {
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                ...(v.balances === undefined ? null : { balances: v.balances }),
-                ...(v.description === undefined ? null : { description: v.description }),
-                ...(v.destination === undefined ? null : { destination: v.destination }),
-                metadata: v.metadata,
-                ...(v.pending === undefined ? null : { pending: v.pending }),
-                ...(v.timestamp === undefined ? null : { timestamp: v.timestamp }),
-            };
-        });
+        }
+    );
 }

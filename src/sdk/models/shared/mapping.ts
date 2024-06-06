@@ -11,27 +11,15 @@ export type Mapping = {
 
 /** @internal */
 export namespace Mapping$ {
-    export const inboundSchema: z.ZodType<Mapping, z.ZodTypeDef, unknown> = z
-        .object({
-            contracts: z.array(Contract$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                contracts: v.contracts,
-            };
-        });
+    export const inboundSchema: z.ZodType<Mapping, z.ZodTypeDef, unknown> = z.object({
+        contracts: z.array(Contract$.inboundSchema),
+    });
 
     export type Outbound = {
         contracts: Array<Contract$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Mapping> = z
-        .object({
-            contracts: z.array(Contract$.outboundSchema),
-        })
-        .transform((v) => {
-            return {
-                contracts: v.contracts,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Mapping> = z.object({
+        contracts: z.array(Contract$.outboundSchema),
+    });
 }

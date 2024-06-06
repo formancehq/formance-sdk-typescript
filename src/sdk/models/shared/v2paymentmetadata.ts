@@ -10,27 +10,15 @@ export type V2PaymentMetadata = {
 
 /** @internal */
 export namespace V2PaymentMetadata$ {
-    export const inboundSchema: z.ZodType<V2PaymentMetadata, z.ZodTypeDef, unknown> = z
-        .object({
-            key: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-            };
-        });
+    export const inboundSchema: z.ZodType<V2PaymentMetadata, z.ZodTypeDef, unknown> = z.object({
+        key: z.string().optional(),
+    });
 
     export type Outbound = {
         key?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentMetadata> = z
-        .object({
-            key: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.key === undefined ? null : { key: v.key }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2PaymentMetadata> = z.object({
+        key: z.string().optional(),
+    });
 }

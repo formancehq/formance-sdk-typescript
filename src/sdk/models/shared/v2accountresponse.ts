@@ -11,27 +11,15 @@ export type V2AccountResponse = {
 
 /** @internal */
 export namespace V2AccountResponse$ {
-    export const inboundSchema: z.ZodType<V2AccountResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            data: V2Account$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<V2AccountResponse, z.ZodTypeDef, unknown> = z.object({
+        data: V2Account$.inboundSchema,
+    });
 
     export type Outbound = {
         data: V2Account$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AccountResponse> = z
-        .object({
-            data: V2Account$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AccountResponse> = z.object({
+        data: V2Account$.outboundSchema,
+    });
 }

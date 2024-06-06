@@ -25,42 +25,23 @@ export type BankAccount = {
 
 /** @internal */
 export namespace BankAccount$ {
-    export const inboundSchema: z.ZodType<BankAccount, z.ZodTypeDef, unknown> = z
-        .object({
-            accountID: z.string().optional(),
-            accountNumber: z.string().optional(),
-            connectorID: z.string(),
-            country: z.string(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            iban: z.string().optional(),
-            id: z.string(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            name: z.string(),
-            provider: z.string().optional(),
-            relatedAccounts: z.array(BankAccountRelatedAccounts$.inboundSchema).optional(),
-            swiftBicCode: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountID === undefined ? null : { accountID: v.accountID }),
-                ...(v.accountNumber === undefined ? null : { accountNumber: v.accountNumber }),
-                connectorID: v.connectorID,
-                country: v.country,
-                createdAt: v.createdAt,
-                ...(v.iban === undefined ? null : { iban: v.iban }),
-                id: v.id,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                ...(v.relatedAccounts === undefined
-                    ? null
-                    : { relatedAccounts: v.relatedAccounts }),
-                ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
-            };
-        });
+    export const inboundSchema: z.ZodType<BankAccount, z.ZodTypeDef, unknown> = z.object({
+        accountID: z.string().optional(),
+        accountNumber: z.string().optional(),
+        connectorID: z.string(),
+        country: z.string(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        iban: z.string().optional(),
+        id: z.string(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        name: z.string(),
+        provider: z.string().optional(),
+        relatedAccounts: z.array(BankAccountRelatedAccounts$.inboundSchema).optional(),
+        swiftBicCode: z.string().optional(),
+    });
 
     export type Outbound = {
         accountID?: string | undefined;
@@ -77,37 +58,18 @@ export namespace BankAccount$ {
         swiftBicCode?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccount> = z
-        .object({
-            accountID: z.string().optional(),
-            accountNumber: z.string().optional(),
-            connectorID: z.string(),
-            country: z.string(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            iban: z.string().optional(),
-            id: z.string(),
-            metadata: z.nullable(z.record(z.string())).optional(),
-            name: z.string(),
-            provider: z.string().optional(),
-            relatedAccounts: z.array(BankAccountRelatedAccounts$.outboundSchema).optional(),
-            swiftBicCode: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.accountID === undefined ? null : { accountID: v.accountID }),
-                ...(v.accountNumber === undefined ? null : { accountNumber: v.accountNumber }),
-                connectorID: v.connectorID,
-                country: v.country,
-                createdAt: v.createdAt,
-                ...(v.iban === undefined ? null : { iban: v.iban }),
-                id: v.id,
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-                name: v.name,
-                ...(v.provider === undefined ? null : { provider: v.provider }),
-                ...(v.relatedAccounts === undefined
-                    ? null
-                    : { relatedAccounts: v.relatedAccounts }),
-                ...(v.swiftBicCode === undefined ? null : { swiftBicCode: v.swiftBicCode }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BankAccount> = z.object({
+        accountID: z.string().optional(),
+        accountNumber: z.string().optional(),
+        connectorID: z.string(),
+        country: z.string(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        iban: z.string().optional(),
+        id: z.string(),
+        metadata: z.nullable(z.record(z.string())).optional(),
+        name: z.string(),
+        provider: z.string().optional(),
+        relatedAccounts: z.array(BankAccountRelatedAccounts$.outboundSchema).optional(),
+        swiftBicCode: z.string().optional(),
+    });
 }

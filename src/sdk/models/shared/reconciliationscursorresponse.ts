@@ -23,23 +23,13 @@ export namespace ReconciliationsCursorResponseCursor$ {
         ReconciliationsCursorResponseCursor,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            data: z.array(Reconciliation$.inboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(Reconciliation$.inboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 
     export type Outbound = {
         data: Array<Reconciliation$.Outbound>;
@@ -53,35 +43,20 @@ export namespace ReconciliationsCursorResponseCursor$ {
         Outbound,
         z.ZodTypeDef,
         ReconciliationsCursorResponseCursor
-    > = z
-        .object({
-            data: z.array(Reconciliation$.outboundSchema),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                data: v.data,
-                hasMore: v.hasMore,
-                ...(v.next === undefined ? null : { next: v.next }),
-                pageSize: v.pageSize,
-                ...(v.previous === undefined ? null : { previous: v.previous }),
-            };
-        });
+    > = z.object({
+        data: z.array(Reconciliation$.outboundSchema),
+        hasMore: z.boolean(),
+        next: z.string().optional(),
+        pageSize: z.number().int(),
+        previous: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace ReconciliationsCursorResponse$ {
-    export const inboundSchema: z.ZodType<ReconciliationsCursorResponse, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ReconciliationsCursorResponse, z.ZodTypeDef, unknown> =
+        z.object({
             cursor: z.lazy(() => ReconciliationsCursorResponseCursor$.inboundSchema),
-        })
-        .transform((v) => {
-            return {
-                cursor: v.cursor,
-            };
         });
 
     export type Outbound = {
@@ -89,13 +64,7 @@ export namespace ReconciliationsCursorResponse$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ReconciliationsCursorResponse> =
-        z
-            .object({
-                cursor: z.lazy(() => ReconciliationsCursorResponseCursor$.outboundSchema),
-            })
-            .transform((v) => {
-                return {
-                    cursor: v.cursor,
-                };
-            });
+        z.object({
+            cursor: z.lazy(() => ReconciliationsCursorResponseCursor$.outboundSchema),
+        });
 }

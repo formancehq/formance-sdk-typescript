@@ -30,26 +30,16 @@ export namespace PaymentAdjustmentRaw$ {
 
 /** @internal */
 export namespace PaymentAdjustment$ {
-    export const inboundSchema: z.ZodType<PaymentAdjustment, z.ZodTypeDef, unknown> = z
-        .object({
-            amount: z.number().transform((v) => BigInt(v)),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            raw: z.lazy(() => PaymentAdjustmentRaw$.inboundSchema),
-            reference: z.string(),
-            status: PaymentStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                createdAt: v.createdAt,
-                raw: v.raw,
-                reference: v.reference,
-                status: v.status,
-            };
-        });
+    export const inboundSchema: z.ZodType<PaymentAdjustment, z.ZodTypeDef, unknown> = z.object({
+        amount: z.number().transform((v) => BigInt(v)),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+        raw: z.lazy(() => PaymentAdjustmentRaw$.inboundSchema),
+        reference: z.string(),
+        status: PaymentStatus$.inboundSchema,
+    });
 
     export type Outbound = {
         amount: number;
@@ -59,21 +49,11 @@ export namespace PaymentAdjustment$ {
         status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentAdjustment> = z
-        .object({
-            amount: z.bigint().transform((v) => Number(v)),
-            createdAt: z.date().transform((v) => v.toISOString()),
-            raw: z.lazy(() => PaymentAdjustmentRaw$.outboundSchema),
-            reference: z.string(),
-            status: PaymentStatus$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                amount: v.amount,
-                createdAt: v.createdAt,
-                raw: v.raw,
-                reference: v.reference,
-                status: v.status,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PaymentAdjustment> = z.object({
+        amount: z.bigint().transform((v) => Number(v)),
+        createdAt: z.date().transform((v) => v.toISOString()),
+        raw: z.lazy(() => PaymentAdjustmentRaw$.outboundSchema),
+        reference: z.string(),
+        status: PaymentStatus$.outboundSchema,
+    });
 }
