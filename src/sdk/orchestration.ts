@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -62,7 +66,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -141,7 +145,7 @@ export class Orchestration extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/orchestration/triggers")();
 
@@ -215,7 +219,7 @@ export class Orchestration extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/orchestration/workflows")();
 
@@ -290,7 +294,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -370,7 +374,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            flowId: enc$.encodeSimple("flowId", payload$.flowId, {
+            flowId: encodeSimple$("flowId", payload$.flowId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -450,7 +454,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -530,7 +534,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -612,11 +616,11 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            number: enc$.encodeSimple("number", payload$.number, {
+            number: encodeSimple$("number", payload$.number, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -698,7 +702,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            flowId: enc$.encodeSimple("flowId", payload$.flowId, {
+            flowId: encodeSimple$("flowId", payload$.flowId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -779,18 +783,10 @@ export class Orchestration extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/orchestration/instances")();
 
-        const query$ = [
-            enc$.encodeForm("running", payload$.running, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("workflowID", payload$.workflowID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            running: payload$.running,
+            workflowID: payload$.workflowID,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -862,11 +858,9 @@ export class Orchestration extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/orchestration/triggers")();
 
-        const query$ = [
-            enc$.encodeForm("name", payload$.name, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            name: payload$.name,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -937,7 +931,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1138,7 +1132,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1216,10 +1210,10 @@ export class Orchestration extends ClientSDK {
             (value$) => operations.RunWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            workflowID: enc$.encodeSimple("workflowID", payload$.workflowID, {
+            workflowID: encodeSimple$("workflowID", payload$.workflowID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1228,11 +1222,9 @@ export class Orchestration extends ClientSDK {
             "/api/orchestration/workflows/{workflowID}/instances"
         )(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("wait", payload$.wait, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            wait: payload$.wait,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -1301,10 +1293,10 @@ export class Orchestration extends ClientSDK {
             (value$) => operations.SendEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1382,10 +1374,10 @@ export class Orchestration extends ClientSDK {
             (value$) => operations.TestTriggerRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1465,7 +1457,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1544,7 +1536,7 @@ export class Orchestration extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/orchestration/v2/triggers")();
 
@@ -1618,7 +1610,7 @@ export class Orchestration extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/orchestration/v2/workflows")();
 
@@ -1693,7 +1685,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1773,7 +1765,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            flowId: enc$.encodeSimple("flowId", payload$.flowId, {
+            flowId: encodeSimple$("flowId", payload$.flowId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1853,7 +1845,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -1933,7 +1925,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2015,11 +2007,11 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            number: enc$.encodeSimple("number", payload$.number, {
+            number: encodeSimple$("number", payload$.number, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2158,7 +2150,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            flowId: enc$.encodeSimple("flowId", payload$.flowId, {
+            flowId: encodeSimple$("flowId", payload$.flowId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2239,23 +2231,12 @@ export class Orchestration extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/orchestration/v2/instances")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("running", payload$.running, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("workflowID", payload$.workflowID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            cursor: payload$.cursor,
+            pageSize: payload$.pageSize,
+            running: payload$.running,
+            workflowID: payload$.workflowID,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -2327,16 +2308,11 @@ export class Orchestration extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/orchestration/v2/triggers")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("name", payload$.name, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            name: payload$.name,
+            pageSize: payload$.pageSize,
+            cursor: payload$.cursor,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -2407,7 +2383,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2416,15 +2392,10 @@ export class Orchestration extends ClientSDK {
             "/api/orchestration/v2/triggers/{triggerID}/occurrences"
         )(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            pageSize: payload$.pageSize,
+            cursor: payload$.cursor,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -2498,15 +2469,10 @@ export class Orchestration extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/orchestration/v2/workflows")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            cursor: payload$.cursor,
+            pageSize: payload$.pageSize,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -2577,7 +2543,7 @@ export class Orchestration extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            triggerID: enc$.encodeSimple("triggerID", payload$.triggerID, {
+            triggerID: encodeSimple$("triggerID", payload$.triggerID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2655,10 +2621,10 @@ export class Orchestration extends ClientSDK {
             (value$) => operations.V2RunWorkflowRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            workflowID: enc$.encodeSimple("workflowID", payload$.workflowID, {
+            workflowID: encodeSimple$("workflowID", payload$.workflowID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -2667,11 +2633,9 @@ export class Orchestration extends ClientSDK {
             "/api/orchestration/v2/workflows/{workflowID}/instances"
         )(pathParams$);
 
-        const query$ = [
-            enc$.encodeForm("wait", payload$.wait, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            wait: payload$.wait,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -2740,10 +2704,10 @@ export class Orchestration extends ClientSDK {
             (value$) => operations.V2SendEventRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            instanceID: enc$.encodeSimple("instanceID", payload$.instanceID, {
+            instanceID: encodeSimple$("instanceID", payload$.instanceID, {
                 explode: false,
                 charEncoding: "percent",
             }),

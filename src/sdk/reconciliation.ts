@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -60,7 +64,7 @@ export class Reconciliation extends ClientSDK {
             (value$) => shared.PolicyRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/reconciliation/policies")();
 
@@ -135,7 +139,7 @@ export class Reconciliation extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            policyID: enc$.encodeSimple("policyID", payload$.policyID, {
+            policyID: encodeSimple$("policyID", payload$.policyID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -212,7 +216,7 @@ export class Reconciliation extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            policyID: enc$.encodeSimple("policyID", payload$.policyID, {
+            policyID: encodeSimple$("policyID", payload$.policyID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -289,7 +293,7 @@ export class Reconciliation extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            reconciliationID: enc$.encodeSimple("reconciliationID", payload$.reconciliationID, {
+            reconciliationID: encodeSimple$("reconciliationID", payload$.reconciliationID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -367,15 +371,10 @@ export class Reconciliation extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/reconciliation/policies")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            cursor: payload$.cursor,
+            pageSize: payload$.pageSize,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -444,15 +443,10 @@ export class Reconciliation extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/reconciliation/reconciliations")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            cursor: payload$.cursor,
+            pageSize: payload$.pageSize,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -523,10 +517,10 @@ export class Reconciliation extends ClientSDK {
             (value$) => operations.ReconcileRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ReconciliationRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.ReconciliationRequest, { explode: true });
 
         const pathParams$ = {
-            policyID: enc$.encodeSimple("policyID", payload$.policyID, {
+            policyID: encodeSimple$("policyID", payload$.policyID, {
                 explode: false,
                 charEncoding: "percent",
             }),
