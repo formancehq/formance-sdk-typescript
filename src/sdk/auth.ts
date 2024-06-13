@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -57,7 +57,7 @@ export class Auth extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/auth/clients")();
 
@@ -127,10 +127,10 @@ export class Auth extends ClientSDK {
             (value$) => operations.CreateSecretRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CreateSecretRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.CreateSecretRequest, { explode: true });
 
         const pathParams$ = {
-            clientId: enc$.encodeSimple("clientId", payload$.clientId, {
+            clientId: encodeSimple$("clientId", payload$.clientId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -207,7 +207,7 @@ export class Auth extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            clientId: enc$.encodeSimple("clientId", payload$.clientId, {
+            clientId: encodeSimple$("clientId", payload$.clientId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -282,11 +282,11 @@ export class Auth extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            clientId: enc$.encodeSimple("clientId", payload$.clientId, {
+            clientId: encodeSimple$("clientId", payload$.clientId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            secretId: enc$.encodeSimple("secretId", payload$.secretId, {
+            secretId: encodeSimple$("secretId", payload$.secretId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -480,7 +480,7 @@ export class Auth extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            clientId: enc$.encodeSimple("clientId", payload$.clientId, {
+            clientId: encodeSimple$("clientId", payload$.clientId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -558,7 +558,7 @@ export class Auth extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            userId: enc$.encodeSimple("userId", payload$.userId, {
+            userId: encodeSimple$("userId", payload$.userId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -631,10 +631,10 @@ export class Auth extends ClientSDK {
             (value$) => operations.UpdateClientRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.UpdateClientRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.UpdateClientRequest, { explode: true });
 
         const pathParams$ = {
-            clientId: enc$.encodeSimple("clientId", payload$.clientId, {
+            clientId: encodeSimple$("clientId", payload$.clientId, {
                 explode: false,
                 charEncoding: "percent",
             }),

@@ -4,7 +4,11 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -62,7 +66,7 @@ export class Webhooks extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/webhooks/configs/{id}/activate")(pathParams$);
 
@@ -139,10 +143,10 @@ export class Webhooks extends ClientSDK {
             (value$) => operations.ChangeConfigSecretRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ConfigChangeSecret, { explode: true });
+        const body$ = encodeJSON$("body", payload$.ConfigChangeSecret, { explode: true });
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/webhooks/configs/{id}/secret/change")(
             pathParams$
@@ -219,7 +223,7 @@ export class Webhooks extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/webhooks/configs/{id}/deactivate")(
             pathParams$
@@ -296,7 +300,7 @@ export class Webhooks extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/webhooks/configs/{id}")(pathParams$);
 
@@ -372,15 +376,10 @@ export class Webhooks extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/webhooks/configs")();
 
-        const query$ = [
-            enc$.encodeForm("endpoint", payload$.endpoint, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("id", payload$.id, { explode: true, charEncoding: "percent" }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            endpoint: payload$.endpoint,
+            id: payload$.id,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -458,7 +457,7 @@ export class Webhooks extends ClientSDK {
             (value$) => shared.ConfigUser$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/webhooks/configs")();
 
@@ -533,7 +532,7 @@ export class Webhooks extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/webhooks/configs/{id}/test")(pathParams$);
 

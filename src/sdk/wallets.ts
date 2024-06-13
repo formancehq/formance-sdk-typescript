@@ -4,7 +4,13 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import {
+    encodeDeepObjectQuery as encodeDeepObjectQuery$,
+    encodeFormQuery as encodeFormQuery$,
+    encodeJSON as encodeJSON$,
+    encodeSimple as encodeSimple$,
+    queryJoin as queryJoin$,
+} from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -57,10 +63,10 @@ export class Wallets extends ClientSDK {
             (value$) => operations.ConfirmHoldRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.ConfirmHoldRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.ConfirmHoldRequest, { explode: true });
 
         const pathParams$ = {
-            hold_id: enc$.encodeSimple("hold_id", payload$.hold_id, {
+            hold_id: encodeSimple$("hold_id", payload$.hold_id, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -135,10 +141,10 @@ export class Wallets extends ClientSDK {
             (value$) => operations.CreateBalanceRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CreateBalanceRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.CreateBalanceRequest, { explode: true });
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/balances")(pathParams$);
 
@@ -209,7 +215,7 @@ export class Wallets extends ClientSDK {
             "Input validation failed"
         );
         const body$ =
-            payload$ === undefined ? null : enc$.encodeJSON("body", payload$, { explode: true });
+            payload$ === undefined ? null : encodeJSON$("body", payload$, { explode: true });
 
         const path$ = this.templateURLComponent("/api/wallets/wallets")();
 
@@ -279,10 +285,10 @@ export class Wallets extends ClientSDK {
             (value$) => operations.CreditWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.CreditWalletRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.CreditWalletRequest, { explode: true });
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/credit")(pathParams$);
 
@@ -352,10 +358,10 @@ export class Wallets extends ClientSDK {
             (value$) => operations.DebitWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.DebitWalletRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.DebitWalletRequest, { explode: true });
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/debit")(pathParams$);
 
@@ -428,11 +434,11 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            balanceName: enc$.encodeSimple("balanceName", payload$.balanceName, {
+            balanceName: encodeSimple$("balanceName", payload$.balanceName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/balances/{balanceName}")(
             pathParams$
@@ -506,7 +512,7 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            holdID: enc$.encodeSimple("holdID", payload$.holdID, {
+            holdID: encodeSimple$("holdID", payload$.holdID, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -582,20 +588,16 @@ export class Wallets extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/wallets/holds")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeDeepObject("metadata", payload$.metadata, { charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
+        const query$ = queryJoin$(
+            encodeDeepObjectQuery$({
+                metadata: payload$.metadata,
             }),
-            enc$.encodeForm("walletID", payload$.walletID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+            encodeFormQuery$({
+                pageSize: payload$.pageSize,
+                walletID: payload$.walletID,
+                cursor: payload$.cursor,
+            })
+        );
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -661,19 +663,11 @@ export class Wallets extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/wallets/transactions")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-            enc$.encodeForm("walletID", payload$.walletID, {
-                explode: true,
-                charEncoding: "percent",
-            }),
-        ]
-            .filter(Boolean)
-            .join("&");
+        const query$ = encodeFormQuery$({
+            cursor: payload$.cursor,
+            pageSize: payload$.pageSize,
+            walletID: payload$.walletID,
+        });
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -741,7 +735,7 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}")(pathParams$);
 
@@ -814,7 +808,7 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/summary")(pathParams$);
 
@@ -887,7 +881,7 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}/balances")(pathParams$);
 
@@ -960,17 +954,16 @@ export class Wallets extends ClientSDK {
 
         const path$ = this.templateURLComponent("/api/wallets/wallets")();
 
-        const query$ = [
-            enc$.encodeForm("cursor", payload$.cursor, { explode: true, charEncoding: "percent" }),
-            enc$.encodeDeepObject("metadata", payload$.metadata, { charEncoding: "percent" }),
-            enc$.encodeForm("name", payload$.name, { explode: true, charEncoding: "percent" }),
-            enc$.encodeForm("pageSize", payload$.pageSize, {
-                explode: true,
-                charEncoding: "percent",
+        const query$ = queryJoin$(
+            encodeDeepObjectQuery$({
+                metadata: payload$.metadata,
             }),
-        ]
-            .filter(Boolean)
-            .join("&");
+            encodeFormQuery$({
+                name: payload$.name,
+                pageSize: payload$.pageSize,
+                cursor: payload$.cursor,
+            })
+        );
 
         let security$;
         if (typeof this.options$.authorization === "function") {
@@ -1036,10 +1029,10 @@ export class Wallets extends ClientSDK {
             (value$) => operations.UpdateWalletRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RequestBody, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
 
         const pathParams$ = {
-            id: enc$.encodeSimple("id", payload$.id, { explode: false, charEncoding: "percent" }),
+            id: encodeSimple$("id", payload$.id, { explode: false, charEncoding: "percent" }),
         };
         const path$ = this.templateURLComponent("/api/wallets/wallets/{id}")(pathParams$);
 
@@ -1111,7 +1104,7 @@ export class Wallets extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            hold_id: enc$.encodeSimple("hold_id", payload$.hold_id, {
+            hold_id: encodeSimple$("hold_id", payload$.hold_id, {
                 explode: false,
                 charEncoding: "percent",
             }),
