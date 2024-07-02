@@ -5,11 +5,11 @@
 import {
     V2WorkflowInstanceHistoryStageInput,
     V2WorkflowInstanceHistoryStageInput$,
-} from "./v2workflowinstancehistorystageinput";
+} from "./v2workflowinstancehistorystageinput.js";
 import {
     V2WorkflowInstanceHistoryStageOutput,
     V2WorkflowInstanceHistoryStageOutput$,
-} from "./v2workflowinstancehistorystageoutput";
+} from "./v2workflowinstancehistorystageoutput.js";
 import * as z from "zod";
 
 export type V2WorkflowInstanceHistoryStage = {

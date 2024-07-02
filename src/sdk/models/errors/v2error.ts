@@ -46,8 +46,9 @@ export class V2Error extends Error {
 
 /** @internal */
 export namespace SchemasErrorCode$ {
-    export const inboundSchema = z.nativeEnum(SchemasErrorCode);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof SchemasErrorCode> =
+        z.nativeEnum(SchemasErrorCode);
+    export const outboundSchema: z.ZodNativeEnum<typeof SchemasErrorCode> = inboundSchema;
 }
 
 /** @internal */

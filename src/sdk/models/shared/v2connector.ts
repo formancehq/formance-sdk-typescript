@@ -17,6 +17,6 @@ export enum V2Connector {
 
 /** @internal */
 export namespace V2Connector$ {
-    export const inboundSchema = z.nativeEnum(V2Connector);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2Connector> = z.nativeEnum(V2Connector);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2Connector> = inboundSchema;
 }

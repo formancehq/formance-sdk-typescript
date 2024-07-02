@@ -601,6 +601,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.listWallets({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    expand: "balances",
     metadata: {
       "admin": "true",
     },

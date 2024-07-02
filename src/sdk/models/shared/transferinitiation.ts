@@ -5,12 +5,12 @@
 import {
     TransferInitiationAdjusments,
     TransferInitiationAdjusments$,
-} from "./transferinitiationadjusments";
+} from "./transferinitiationadjusments.js";
 import {
     TransferInitiationPayments,
     TransferInitiationPayments$,
-} from "./transferinitiationpayments";
-import { TransferInitiationStatus, TransferInitiationStatus$ } from "./transferinitiationstatus";
+} from "./transferinitiationpayments.js";
+import { TransferInitiationStatus, TransferInitiationStatus$ } from "./transferinitiationstatus.js";
 import * as z from "zod";
 
 export enum TransferInitiationType {
@@ -40,8 +40,9 @@ export type TransferInitiation = {
 
 /** @internal */
 export namespace TransferInitiationType$ {
-    export const inboundSchema = z.nativeEnum(TransferInitiationType);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof TransferInitiationType> =
+        z.nativeEnum(TransferInitiationType);
+    export const outboundSchema: z.ZodNativeEnum<typeof TransferInitiationType> = inboundSchema;
 }
 
 /** @internal */

@@ -12,6 +12,7 @@ export enum PaymentsErrorsEnum {
 
 /** @internal */
 export namespace PaymentsErrorsEnum$ {
-    export const inboundSchema = z.nativeEnum(PaymentsErrorsEnum);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =
+        z.nativeEnum(PaymentsErrorsEnum);
+    export const outboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> = inboundSchema;
 }

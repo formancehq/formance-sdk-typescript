@@ -17,6 +17,7 @@ export enum OrchestrationConnector {
 
 /** @internal */
 export namespace OrchestrationConnector$ {
-    export const inboundSchema = z.nativeEnum(OrchestrationConnector);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> =
+        z.nativeEnum(OrchestrationConnector);
+    export const outboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> = inboundSchema;
 }

@@ -5,7 +5,7 @@
 import {
     BankAccountRelatedAccounts,
     BankAccountRelatedAccounts$,
-} from "./bankaccountrelatedaccounts";
+} from "./bankaccountrelatedaccounts.js";
 import * as z from "zod";
 
 export type BankAccount = {

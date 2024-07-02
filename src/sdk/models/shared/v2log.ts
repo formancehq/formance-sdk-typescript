@@ -20,8 +20,8 @@ export type V2Log = {
 
 /** @internal */
 export namespace V2LogType$ {
-    export const inboundSchema = z.nativeEnum(V2LogType);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2LogType> = z.nativeEnum(V2LogType);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2LogType> = inboundSchema;
 }
 
 /** @internal */

@@ -5,15 +5,15 @@
 import {
     StageSendDestinationAccount,
     StageSendDestinationAccount$,
-} from "./stagesenddestinationaccount";
+} from "./stagesenddestinationaccount.js";
 import {
     StageSendDestinationPayment,
     StageSendDestinationPayment$,
-} from "./stagesenddestinationpayment";
+} from "./stagesenddestinationpayment.js";
 import {
     StageSendDestinationWallet,
     StageSendDestinationWallet$,
-} from "./stagesenddestinationwallet";
+} from "./stagesenddestinationwallet.js";
 import * as z from "zod";
 
 export type StageSendDestination = {

@@ -5,7 +5,7 @@
 import {
     WorkflowInstanceHistoryStage,
     WorkflowInstanceHistoryStage$,
-} from "./workflowinstancehistorystage";
+} from "./workflowinstancehistorystage.js";
 import * as z from "zod";
 
 export type GetWorkflowInstanceHistoryStageResponse = {

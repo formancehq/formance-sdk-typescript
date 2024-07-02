@@ -20,6 +20,6 @@ export enum V2ErrorsEnum {
 
 /** @internal */
 export namespace V2ErrorsEnum$ {
-    export const inboundSchema = z.nativeEnum(V2ErrorsEnum);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2ErrorsEnum> = z.nativeEnum(V2ErrorsEnum);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2ErrorsEnum> = inboundSchema;
 }

@@ -18,8 +18,8 @@ export type MigrationInfo = {
 
 /** @internal */
 export namespace State$ {
-    export const inboundSchema = z.nativeEnum(State);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
+    export const outboundSchema: z.ZodNativeEnum<typeof State> = inboundSchema;
 }
 
 /** @internal */

@@ -15,6 +15,7 @@ export enum V2PaymentStatus {
 
 /** @internal */
 export namespace V2PaymentStatus$ {
-    export const inboundSchema = z.nativeEnum(V2PaymentStatus);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2PaymentStatus> =
+        z.nativeEnum(V2PaymentStatus);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2PaymentStatus> = inboundSchema;
 }

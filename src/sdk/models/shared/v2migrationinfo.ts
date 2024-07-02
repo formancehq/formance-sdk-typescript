@@ -18,8 +18,9 @@ export type V2MigrationInfo = {
 
 /** @internal */
 export namespace V2MigrationInfoState$ {
-    export const inboundSchema = z.nativeEnum(V2MigrationInfoState);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2MigrationInfoState> =
+        z.nativeEnum(V2MigrationInfoState);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2MigrationInfoState> = inboundSchema;
 }
 
 /** @internal */

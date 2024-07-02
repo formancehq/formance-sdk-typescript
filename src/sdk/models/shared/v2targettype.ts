@@ -11,6 +11,6 @@ export enum V2TargetType {
 
 /** @internal */
 export namespace V2TargetType$ {
-    export const inboundSchema = z.nativeEnum(V2TargetType);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof V2TargetType> = z.nativeEnum(V2TargetType);
+    export const outboundSchema: z.ZodNativeEnum<typeof V2TargetType> = inboundSchema;
 }
