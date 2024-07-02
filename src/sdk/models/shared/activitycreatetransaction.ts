@@ -5,7 +5,7 @@
 import {
     OrchestrationPostTransaction,
     OrchestrationPostTransaction$,
-} from "./orchestrationposttransaction";
+} from "./orchestrationposttransaction.js";
 import * as z from "zod";
 
 export type ActivityCreateTransaction = {

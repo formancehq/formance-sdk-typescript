@@ -19,8 +19,8 @@ export type UpdateTransferInitiationStatusRequest = {
 
 /** @internal */
 export namespace Status$ {
-    export const inboundSchema = z.nativeEnum(Status);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
+    export const outboundSchema: z.ZodNativeEnum<typeof Status> = inboundSchema;
 }
 
 /** @internal */

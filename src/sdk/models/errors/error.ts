@@ -46,8 +46,8 @@ export class ErrorT extends Error {
 
 /** @internal */
 export namespace ErrorCode$ {
-    export const inboundSchema = z.nativeEnum(ErrorCode);
-    export const outboundSchema = inboundSchema;
+    export const inboundSchema: z.ZodNativeEnum<typeof ErrorCode> = z.nativeEnum(ErrorCode);
+    export const outboundSchema: z.ZodNativeEnum<typeof ErrorCode> = inboundSchema;
 }
 
 /** @internal */

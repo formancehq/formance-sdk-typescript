@@ -5,7 +5,7 @@
 import {
     AccountWithVolumesAndBalances,
     AccountWithVolumesAndBalances$,
-} from "./accountwithvolumesandbalances";
+} from "./accountwithvolumesandbalances.js";
 import * as z from "zod";
 
 export type AccountResponse = {

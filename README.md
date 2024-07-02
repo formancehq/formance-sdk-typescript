@@ -25,10 +25,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 npm add @formance/formance-sdk
 ```
 
+### PNPM
+
+```bash
+pnpm add @formance/formance-sdk
+```
+
+### Bun
+
+```bash
+bun add @formance/formance-sdk
+```
+
 ### Yarn
 
 ```bash
-yarn add @formance/formance-sdk
+yarn add @formance/formance-sdk zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -274,7 +289,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import * as errors from "@formance/formance-sdk/sdk/models/errors";
+import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
     authorization: "<YOUR_AUTHORIZATION_HERE>",
@@ -303,7 +318,7 @@ async function run() {
         });
     } catch (err) {
         switch (true) {
-            case err instanceof errors.SDKValidationError: {
+            case err instanceof SDKValidationError: {
                 // Validation errors can be pretty-printed
                 console.error(err.pretty());
                 // Raw value may also be inspected
