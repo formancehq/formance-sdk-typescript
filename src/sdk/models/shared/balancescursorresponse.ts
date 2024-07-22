@@ -17,48 +17,85 @@ export type BalancesCursorResponse = {
 };
 
 /** @internal */
+export const BalancesCursorResponseCursor$inboundSchema: z.ZodType<
+    BalancesCursorResponseCursor,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z.array(z.record(z.record(z.number().int()))),
+    hasMore: z.boolean(),
+    next: z.string().optional(),
+    pageSize: z.number().int(),
+    previous: z.string().optional(),
+});
+
+/** @internal */
+export type BalancesCursorResponseCursor$Outbound = {
+    data: Array<{ [k: string]: { [k: string]: number } }>;
+    hasMore: boolean;
+    next?: string | undefined;
+    pageSize: number;
+    previous?: string | undefined;
+};
+
+/** @internal */
+export const BalancesCursorResponseCursor$outboundSchema: z.ZodType<
+    BalancesCursorResponseCursor$Outbound,
+    z.ZodTypeDef,
+    BalancesCursorResponseCursor
+> = z.object({
+    data: z.array(z.record(z.record(z.number().int()))),
+    hasMore: z.boolean(),
+    next: z.string().optional(),
+    pageSize: z.number().int(),
+    previous: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace BalancesCursorResponseCursor$ {
-    export const inboundSchema: z.ZodType<BalancesCursorResponseCursor, z.ZodTypeDef, unknown> =
-        z.object({
-            data: z.array(z.record(z.record(z.number().int()))),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        });
-
-    export type Outbound = {
-        data: Array<{ [k: string]: { [k: string]: number } }>;
-        hasMore: boolean;
-        next?: string | undefined;
-        pageSize: number;
-        previous?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursorResponseCursor> =
-        z.object({
-            data: z.array(z.record(z.record(z.number().int()))),
-            hasMore: z.boolean(),
-            next: z.string().optional(),
-            pageSize: z.number().int(),
-            previous: z.string().optional(),
-        });
+    /** @deprecated use `BalancesCursorResponseCursor$inboundSchema` instead. */
+    export const inboundSchema = BalancesCursorResponseCursor$inboundSchema;
+    /** @deprecated use `BalancesCursorResponseCursor$outboundSchema` instead. */
+    export const outboundSchema = BalancesCursorResponseCursor$outboundSchema;
+    /** @deprecated use `BalancesCursorResponseCursor$Outbound` instead. */
+    export type Outbound = BalancesCursorResponseCursor$Outbound;
 }
 
 /** @internal */
+export const BalancesCursorResponse$inboundSchema: z.ZodType<
+    BalancesCursorResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    cursor: z.lazy(() => BalancesCursorResponseCursor$inboundSchema),
+});
+
+/** @internal */
+export type BalancesCursorResponse$Outbound = {
+    cursor: BalancesCursorResponseCursor$Outbound;
+};
+
+/** @internal */
+export const BalancesCursorResponse$outboundSchema: z.ZodType<
+    BalancesCursorResponse$Outbound,
+    z.ZodTypeDef,
+    BalancesCursorResponse
+> = z.object({
+    cursor: z.lazy(() => BalancesCursorResponseCursor$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace BalancesCursorResponse$ {
-    export const inboundSchema: z.ZodType<BalancesCursorResponse, z.ZodTypeDef, unknown> = z.object(
-        {
-            cursor: z.lazy(() => BalancesCursorResponseCursor$.inboundSchema),
-        }
-    );
-
-    export type Outbound = {
-        cursor: BalancesCursorResponseCursor$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalancesCursorResponse> =
-        z.object({
-            cursor: z.lazy(() => BalancesCursorResponseCursor$.outboundSchema),
-        });
+    /** @deprecated use `BalancesCursorResponse$inboundSchema` instead. */
+    export const inboundSchema = BalancesCursorResponse$inboundSchema;
+    /** @deprecated use `BalancesCursorResponse$outboundSchema` instead. */
+    export const outboundSchema = BalancesCursorResponse$outboundSchema;
+    /** @deprecated use `BalancesCursorResponse$Outbound` instead. */
+    export type Outbound = BalancesCursorResponse$Outbound;
 }

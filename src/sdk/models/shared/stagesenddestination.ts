@@ -4,16 +4,22 @@
 
 import {
     StageSendDestinationAccount,
-    StageSendDestinationAccount$,
-} from "./stagesenddestinationaccount";
+    StageSendDestinationAccount$inboundSchema,
+    StageSendDestinationAccount$Outbound,
+    StageSendDestinationAccount$outboundSchema,
+} from "./stagesenddestinationaccount.js";
 import {
     StageSendDestinationPayment,
-    StageSendDestinationPayment$,
-} from "./stagesenddestinationpayment";
+    StageSendDestinationPayment$inboundSchema,
+    StageSendDestinationPayment$Outbound,
+    StageSendDestinationPayment$outboundSchema,
+} from "./stagesenddestinationpayment.js";
 import {
     StageSendDestinationWallet,
-    StageSendDestinationWallet$,
-} from "./stagesenddestinationwallet";
+    StageSendDestinationWallet$inboundSchema,
+    StageSendDestinationWallet$Outbound,
+    StageSendDestinationWallet$outboundSchema,
+} from "./stagesenddestinationwallet.js";
 import * as z from "zod";
 
 export type StageSendDestination = {
@@ -23,24 +29,43 @@ export type StageSendDestination = {
 };
 
 /** @internal */
+export const StageSendDestination$inboundSchema: z.ZodType<
+    StageSendDestination,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    account: StageSendDestinationAccount$inboundSchema.optional(),
+    payment: StageSendDestinationPayment$inboundSchema.optional(),
+    wallet: StageSendDestinationWallet$inboundSchema.optional(),
+});
+
+/** @internal */
+export type StageSendDestination$Outbound = {
+    account?: StageSendDestinationAccount$Outbound | undefined;
+    payment?: StageSendDestinationPayment$Outbound | undefined;
+    wallet?: StageSendDestinationWallet$Outbound | undefined;
+};
+
+/** @internal */
+export const StageSendDestination$outboundSchema: z.ZodType<
+    StageSendDestination$Outbound,
+    z.ZodTypeDef,
+    StageSendDestination
+> = z.object({
+    account: StageSendDestinationAccount$outboundSchema.optional(),
+    payment: StageSendDestinationPayment$outboundSchema.optional(),
+    wallet: StageSendDestinationWallet$outboundSchema.optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StageSendDestination$ {
-    export const inboundSchema: z.ZodType<StageSendDestination, z.ZodTypeDef, unknown> = z.object({
-        account: StageSendDestinationAccount$.inboundSchema.optional(),
-        payment: StageSendDestinationPayment$.inboundSchema.optional(),
-        wallet: StageSendDestinationWallet$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        account?: StageSendDestinationAccount$.Outbound | undefined;
-        payment?: StageSendDestinationPayment$.Outbound | undefined;
-        wallet?: StageSendDestinationWallet$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendDestination> = z.object(
-        {
-            account: StageSendDestinationAccount$.outboundSchema.optional(),
-            payment: StageSendDestinationPayment$.outboundSchema.optional(),
-            wallet: StageSendDestinationWallet$.outboundSchema.optional(),
-        }
-    );
+    /** @deprecated use `StageSendDestination$inboundSchema` instead. */
+    export const inboundSchema = StageSendDestination$inboundSchema;
+    /** @deprecated use `StageSendDestination$outboundSchema` instead. */
+    export const outboundSchema = StageSendDestination$outboundSchema;
+    /** @deprecated use `StageSendDestination$Outbound` instead. */
+    export type Outbound = StageSendDestination$Outbound;
 }

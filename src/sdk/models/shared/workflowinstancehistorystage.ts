@@ -4,12 +4,16 @@
 
 import {
     WorkflowInstanceHistoryStageInput,
-    WorkflowInstanceHistoryStageInput$,
-} from "./workflowinstancehistorystageinput";
+    WorkflowInstanceHistoryStageInput$inboundSchema,
+    WorkflowInstanceHistoryStageInput$Outbound,
+    WorkflowInstanceHistoryStageInput$outboundSchema,
+} from "./workflowinstancehistorystageinput.js";
 import {
     WorkflowInstanceHistoryStageOutput,
-    WorkflowInstanceHistoryStageOutput$,
-} from "./workflowinstancehistorystageoutput";
+    WorkflowInstanceHistoryStageOutput$inboundSchema,
+    WorkflowInstanceHistoryStageOutput$Outbound,
+    WorkflowInstanceHistoryStageOutput$outboundSchema,
+} from "./workflowinstancehistorystageoutput.js";
 import * as z from "zod";
 
 export type WorkflowInstanceHistoryStage = {
@@ -26,62 +30,81 @@ export type WorkflowInstanceHistoryStage = {
 };
 
 /** @internal */
+export const WorkflowInstanceHistoryStage$inboundSchema: z.ZodType<
+    WorkflowInstanceHistoryStage,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    attempt: z.number().int(),
+    error: z.string().optional(),
+    input: WorkflowInstanceHistoryStageInput$inboundSchema,
+    lastFailure: z.string().optional(),
+    name: z.string(),
+    nextExecution: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v))
+        .optional(),
+    output: WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
+    startedAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    terminated: z.boolean(),
+    terminatedAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v))
+        .optional(),
+});
+
+/** @internal */
+export type WorkflowInstanceHistoryStage$Outbound = {
+    attempt: number;
+    error?: string | undefined;
+    input: WorkflowInstanceHistoryStageInput$Outbound;
+    lastFailure?: string | undefined;
+    name: string;
+    nextExecution?: string | undefined;
+    output?: WorkflowInstanceHistoryStageOutput$Outbound | undefined;
+    startedAt: string;
+    terminated: boolean;
+    terminatedAt?: string | undefined;
+};
+
+/** @internal */
+export const WorkflowInstanceHistoryStage$outboundSchema: z.ZodType<
+    WorkflowInstanceHistoryStage$Outbound,
+    z.ZodTypeDef,
+    WorkflowInstanceHistoryStage
+> = z.object({
+    attempt: z.number().int(),
+    error: z.string().optional(),
+    input: WorkflowInstanceHistoryStageInput$outboundSchema,
+    lastFailure: z.string().optional(),
+    name: z.string(),
+    nextExecution: z
+        .date()
+        .transform((v) => v.toISOString())
+        .optional(),
+    output: WorkflowInstanceHistoryStageOutput$outboundSchema.optional(),
+    startedAt: z.date().transform((v) => v.toISOString()),
+    terminated: z.boolean(),
+    terminatedAt: z
+        .date()
+        .transform((v) => v.toISOString())
+        .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WorkflowInstanceHistoryStage$ {
-    export const inboundSchema: z.ZodType<WorkflowInstanceHistoryStage, z.ZodTypeDef, unknown> =
-        z.object({
-            attempt: z.number().int(),
-            error: z.string().optional(),
-            input: WorkflowInstanceHistoryStageInput$.inboundSchema,
-            lastFailure: z.string().optional(),
-            name: z.string(),
-            nextExecution: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-            output: WorkflowInstanceHistoryStageOutput$.inboundSchema.optional(),
-            startedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            terminated: z.boolean(),
-            terminatedAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v))
-                .optional(),
-        });
-
-    export type Outbound = {
-        attempt: number;
-        error?: string | undefined;
-        input: WorkflowInstanceHistoryStageInput$.Outbound;
-        lastFailure?: string | undefined;
-        name: string;
-        nextExecution?: string | undefined;
-        output?: WorkflowInstanceHistoryStageOutput$.Outbound | undefined;
-        startedAt: string;
-        terminated: boolean;
-        terminatedAt?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowInstanceHistoryStage> =
-        z.object({
-            attempt: z.number().int(),
-            error: z.string().optional(),
-            input: WorkflowInstanceHistoryStageInput$.outboundSchema,
-            lastFailure: z.string().optional(),
-            name: z.string(),
-            nextExecution: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            output: WorkflowInstanceHistoryStageOutput$.outboundSchema.optional(),
-            startedAt: z.date().transform((v) => v.toISOString()),
-            terminated: z.boolean(),
-            terminatedAt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-        });
+    /** @deprecated use `WorkflowInstanceHistoryStage$inboundSchema` instead. */
+    export const inboundSchema = WorkflowInstanceHistoryStage$inboundSchema;
+    /** @deprecated use `WorkflowInstanceHistoryStage$outboundSchema` instead. */
+    export const outboundSchema = WorkflowInstanceHistoryStage$outboundSchema;
+    /** @deprecated use `WorkflowInstanceHistoryStage$Outbound` instead. */
+    export type Outbound = WorkflowInstanceHistoryStage$Outbound;
 }

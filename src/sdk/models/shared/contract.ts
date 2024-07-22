@@ -12,28 +12,55 @@ export type Contract = {
 };
 
 /** @internal */
+export const Expr$inboundSchema: z.ZodType<Expr, z.ZodTypeDef, unknown> = z.object({});
+
+/** @internal */
+export type Expr$Outbound = {};
+
+/** @internal */
+export const Expr$outboundSchema: z.ZodType<Expr$Outbound, z.ZodTypeDef, Expr> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Expr$ {
-    export const inboundSchema: z.ZodType<Expr, z.ZodTypeDef, unknown> = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Expr> = z.object({});
+    /** @deprecated use `Expr$inboundSchema` instead. */
+    export const inboundSchema = Expr$inboundSchema;
+    /** @deprecated use `Expr$outboundSchema` instead. */
+    export const outboundSchema = Expr$outboundSchema;
+    /** @deprecated use `Expr$Outbound` instead. */
+    export type Outbound = Expr$Outbound;
 }
 
 /** @internal */
+export const Contract$inboundSchema: z.ZodType<Contract, z.ZodTypeDef, unknown> = z.object({
+    account: z.string().optional(),
+    expr: z.lazy(() => Expr$inboundSchema),
+});
+
+/** @internal */
+export type Contract$Outbound = {
+    account?: string | undefined;
+    expr: Expr$Outbound;
+};
+
+/** @internal */
+export const Contract$outboundSchema: z.ZodType<Contract$Outbound, z.ZodTypeDef, Contract> =
+    z.object({
+        account: z.string().optional(),
+        expr: z.lazy(() => Expr$outboundSchema),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Contract$ {
-    export const inboundSchema: z.ZodType<Contract, z.ZodTypeDef, unknown> = z.object({
-        account: z.string().optional(),
-        expr: z.lazy(() => Expr$.inboundSchema),
-    });
-
-    export type Outbound = {
-        account?: string | undefined;
-        expr: Expr$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Contract> = z.object({
-        account: z.string().optional(),
-        expr: z.lazy(() => Expr$.outboundSchema),
-    });
+    /** @deprecated use `Contract$inboundSchema` instead. */
+    export const inboundSchema = Contract$inboundSchema;
+    /** @deprecated use `Contract$outboundSchema` instead. */
+    export const outboundSchema = Contract$outboundSchema;
+    /** @deprecated use `Contract$Outbound` instead. */
+    export type Outbound = Contract$Outbound;
 }

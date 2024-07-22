@@ -9,18 +9,37 @@ export type V2AggregateBalancesResponse = {
 };
 
 /** @internal */
+export const V2AggregateBalancesResponse$inboundSchema: z.ZodType<
+    V2AggregateBalancesResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z.record(z.number().transform((v) => BigInt(v))),
+});
+
+/** @internal */
+export type V2AggregateBalancesResponse$Outbound = {
+    data: { [k: string]: number };
+};
+
+/** @internal */
+export const V2AggregateBalancesResponse$outboundSchema: z.ZodType<
+    V2AggregateBalancesResponse$Outbound,
+    z.ZodTypeDef,
+    V2AggregateBalancesResponse
+> = z.object({
+    data: z.record(z.bigint().transform((v) => Number(v))),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2AggregateBalancesResponse$ {
-    export const inboundSchema: z.ZodType<V2AggregateBalancesResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            data: z.record(z.number().transform((v) => BigInt(v))),
-        });
-
-    export type Outbound = {
-        data: { [k: string]: number };
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AggregateBalancesResponse> =
-        z.object({
-            data: z.record(z.bigint().transform((v) => Number(v))),
-        });
+    /** @deprecated use `V2AggregateBalancesResponse$inboundSchema` instead. */
+    export const inboundSchema = V2AggregateBalancesResponse$inboundSchema;
+    /** @deprecated use `V2AggregateBalancesResponse$outboundSchema` instead. */
+    export const outboundSchema = V2AggregateBalancesResponse$outboundSchema;
+    /** @deprecated use `V2AggregateBalancesResponse$Outbound` instead. */
+    export type Outbound = V2AggregateBalancesResponse$Outbound;
 }

@@ -10,19 +10,36 @@ export type PoolBalance = {
 };
 
 /** @internal */
+export const PoolBalance$inboundSchema: z.ZodType<PoolBalance, z.ZodTypeDef, unknown> = z.object({
+    amount: z.number().transform((v) => BigInt(v)),
+    asset: z.string(),
+});
+
+/** @internal */
+export type PoolBalance$Outbound = {
+    amount: number;
+    asset: string;
+};
+
+/** @internal */
+export const PoolBalance$outboundSchema: z.ZodType<
+    PoolBalance$Outbound,
+    z.ZodTypeDef,
+    PoolBalance
+> = z.object({
+    amount: z.bigint().transform((v) => Number(v)),
+    asset: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PoolBalance$ {
-    export const inboundSchema: z.ZodType<PoolBalance, z.ZodTypeDef, unknown> = z.object({
-        amount: z.number().transform((v) => BigInt(v)),
-        asset: z.string(),
-    });
-
-    export type Outbound = {
-        amount: number;
-        asset: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PoolBalance> = z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-    });
+    /** @deprecated use `PoolBalance$inboundSchema` instead. */
+    export const inboundSchema = PoolBalance$inboundSchema;
+    /** @deprecated use `PoolBalance$outboundSchema` instead. */
+    export const outboundSchema = PoolBalance$outboundSchema;
+    /** @deprecated use `PoolBalance$Outbound` instead. */
+    export type Outbound = PoolBalance$Outbound;
 }

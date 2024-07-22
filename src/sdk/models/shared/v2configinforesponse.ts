@@ -10,21 +10,40 @@ export type V2ConfigInfoResponse = {
 };
 
 /** @internal */
+export const V2ConfigInfoResponse$inboundSchema: z.ZodType<
+    V2ConfigInfoResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    server: z.string(),
+    version: z.string(),
+});
+
+/** @internal */
+export type V2ConfigInfoResponse$Outbound = {
+    server: string;
+    version: string;
+};
+
+/** @internal */
+export const V2ConfigInfoResponse$outboundSchema: z.ZodType<
+    V2ConfigInfoResponse$Outbound,
+    z.ZodTypeDef,
+    V2ConfigInfoResponse
+> = z.object({
+    server: z.string(),
+    version: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2ConfigInfoResponse$ {
-    export const inboundSchema: z.ZodType<V2ConfigInfoResponse, z.ZodTypeDef, unknown> = z.object({
-        server: z.string(),
-        version: z.string(),
-    });
-
-    export type Outbound = {
-        server: string;
-        version: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ConfigInfoResponse> = z.object(
-        {
-            server: z.string(),
-            version: z.string(),
-        }
-    );
+    /** @deprecated use `V2ConfigInfoResponse$inboundSchema` instead. */
+    export const inboundSchema = V2ConfigInfoResponse$inboundSchema;
+    /** @deprecated use `V2ConfigInfoResponse$outboundSchema` instead. */
+    export const outboundSchema = V2ConfigInfoResponse$outboundSchema;
+    /** @deprecated use `V2ConfigInfoResponse$Outbound` instead. */
+    export type Outbound = V2ConfigInfoResponse$Outbound;
 }

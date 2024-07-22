@@ -18,8 +18,8 @@ export type Reconciliation = {
 };
 
 /** @internal */
-export namespace Reconciliation$ {
-    export const inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, unknown> = z.object({
+export const Reconciliation$inboundSchema: z.ZodType<Reconciliation, z.ZodTypeDef, unknown> =
+    z.object({
         createdAt: z
             .string()
             .datetime({ offset: true })
@@ -41,29 +41,47 @@ export namespace Reconciliation$ {
         status: z.string(),
     });
 
-    export type Outbound = {
-        createdAt: string;
-        driftBalances: { [k: string]: number };
-        error?: string | undefined;
-        id: string;
-        ledgerBalances: { [k: string]: number };
-        paymentsBalances: { [k: string]: number };
-        policyID: string;
-        reconciledAtLedger: string;
-        reconciledAtPayments: string;
-        status: string;
-    };
+/** @internal */
+export type Reconciliation$Outbound = {
+    createdAt: string;
+    driftBalances: { [k: string]: number };
+    error?: string | undefined;
+    id: string;
+    ledgerBalances: { [k: string]: number };
+    paymentsBalances: { [k: string]: number };
+    policyID: string;
+    reconciledAtLedger: string;
+    reconciledAtPayments: string;
+    status: string;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Reconciliation> = z.object({
-        createdAt: z.date().transform((v) => v.toISOString()),
-        driftBalances: z.record(z.bigint().transform((v) => Number(v))),
-        error: z.string().optional(),
-        id: z.string(),
-        ledgerBalances: z.record(z.bigint().transform((v) => Number(v))),
-        paymentsBalances: z.record(z.bigint().transform((v) => Number(v))),
-        policyID: z.string(),
-        reconciledAtLedger: z.date().transform((v) => v.toISOString()),
-        reconciledAtPayments: z.date().transform((v) => v.toISOString()),
-        status: z.string(),
-    });
+/** @internal */
+export const Reconciliation$outboundSchema: z.ZodType<
+    Reconciliation$Outbound,
+    z.ZodTypeDef,
+    Reconciliation
+> = z.object({
+    createdAt: z.date().transform((v) => v.toISOString()),
+    driftBalances: z.record(z.bigint().transform((v) => Number(v))),
+    error: z.string().optional(),
+    id: z.string(),
+    ledgerBalances: z.record(z.bigint().transform((v) => Number(v))),
+    paymentsBalances: z.record(z.bigint().transform((v) => Number(v))),
+    policyID: z.string(),
+    reconciledAtLedger: z.date().transform((v) => v.toISOString()),
+    reconciledAtPayments: z.date().transform((v) => v.toISOString()),
+    status: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Reconciliation$ {
+    /** @deprecated use `Reconciliation$inboundSchema` instead. */
+    export const inboundSchema = Reconciliation$inboundSchema;
+    /** @deprecated use `Reconciliation$outboundSchema` instead. */
+    export const outboundSchema = Reconciliation$outboundSchema;
+    /** @deprecated use `Reconciliation$Outbound` instead. */
+    export type Outbound = Reconciliation$Outbound;
 }

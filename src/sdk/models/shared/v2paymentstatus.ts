@@ -14,7 +14,20 @@ export enum V2PaymentStatus {
 }
 
 /** @internal */
+export const V2PaymentStatus$inboundSchema: z.ZodNativeEnum<typeof V2PaymentStatus> =
+    z.nativeEnum(V2PaymentStatus);
+
+/** @internal */
+export const V2PaymentStatus$outboundSchema: z.ZodNativeEnum<typeof V2PaymentStatus> =
+    V2PaymentStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2PaymentStatus$ {
-    export const inboundSchema = z.nativeEnum(V2PaymentStatus);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `V2PaymentStatus$inboundSchema` instead. */
+    export const inboundSchema = V2PaymentStatus$inboundSchema;
+    /** @deprecated use `V2PaymentStatus$outboundSchema` instead. */
+    export const outboundSchema = V2PaymentStatus$outboundSchema;
 }

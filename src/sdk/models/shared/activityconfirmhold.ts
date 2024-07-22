@@ -9,16 +9,37 @@ export type ActivityConfirmHold = {
 };
 
 /** @internal */
+export const ActivityConfirmHold$inboundSchema: z.ZodType<
+    ActivityConfirmHold,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+});
+
+/** @internal */
+export type ActivityConfirmHold$Outbound = {
+    id: string;
+};
+
+/** @internal */
+export const ActivityConfirmHold$outboundSchema: z.ZodType<
+    ActivityConfirmHold$Outbound,
+    z.ZodTypeDef,
+    ActivityConfirmHold
+> = z.object({
+    id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ActivityConfirmHold$ {
-    export const inboundSchema: z.ZodType<ActivityConfirmHold, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-    });
-
-    export type Outbound = {
-        id: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityConfirmHold> = z.object({
-        id: z.string(),
-    });
+    /** @deprecated use `ActivityConfirmHold$inboundSchema` instead. */
+    export const inboundSchema = ActivityConfirmHold$inboundSchema;
+    /** @deprecated use `ActivityConfirmHold$outboundSchema` instead. */
+    export const outboundSchema = ActivityConfirmHold$outboundSchema;
+    /** @deprecated use `ActivityConfirmHold$Outbound` instead. */
+    export type Outbound = ActivityConfirmHold$Outbound;
 }

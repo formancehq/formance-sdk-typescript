@@ -19,7 +19,18 @@ export enum Connector {
 }
 
 /** @internal */
+export const Connector$inboundSchema: z.ZodNativeEnum<typeof Connector> = z.nativeEnum(Connector);
+
+/** @internal */
+export const Connector$outboundSchema: z.ZodNativeEnum<typeof Connector> = Connector$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Connector$ {
-    export const inboundSchema = z.nativeEnum(Connector);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `Connector$inboundSchema` instead. */
+    export const inboundSchema = Connector$inboundSchema;
+    /** @deprecated use `Connector$outboundSchema` instead. */
+    export const outboundSchema = Connector$outboundSchema;
 }

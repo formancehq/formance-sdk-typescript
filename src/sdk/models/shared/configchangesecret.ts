@@ -9,16 +9,37 @@ export type ConfigChangeSecret = {
 };
 
 /** @internal */
+export const ConfigChangeSecret$inboundSchema: z.ZodType<
+    ConfigChangeSecret,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    secret: z.string(),
+});
+
+/** @internal */
+export type ConfigChangeSecret$Outbound = {
+    secret: string;
+};
+
+/** @internal */
+export const ConfigChangeSecret$outboundSchema: z.ZodType<
+    ConfigChangeSecret$Outbound,
+    z.ZodTypeDef,
+    ConfigChangeSecret
+> = z.object({
+    secret: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ConfigChangeSecret$ {
-    export const inboundSchema: z.ZodType<ConfigChangeSecret, z.ZodTypeDef, unknown> = z.object({
-        secret: z.string(),
-    });
-
-    export type Outbound = {
-        secret: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigChangeSecret> = z.object({
-        secret: z.string(),
-    });
+    /** @deprecated use `ConfigChangeSecret$inboundSchema` instead. */
+    export const inboundSchema = ConfigChangeSecret$inboundSchema;
+    /** @deprecated use `ConfigChangeSecret$outboundSchema` instead. */
+    export const outboundSchema = ConfigChangeSecret$outboundSchema;
+    /** @deprecated use `ConfigChangeSecret$Outbound` instead. */
+    export type Outbound = ConfigChangeSecret$Outbound;
 }

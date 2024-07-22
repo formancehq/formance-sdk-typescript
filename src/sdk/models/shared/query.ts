@@ -19,49 +19,76 @@ export type Query = {
 };
 
 /** @internal */
+export const QueryRaw$inboundSchema: z.ZodType<QueryRaw, z.ZodTypeDef, unknown> = z.object({});
+
+/** @internal */
+export type QueryRaw$Outbound = {};
+
+/** @internal */
+export const QueryRaw$outboundSchema: z.ZodType<QueryRaw$Outbound, z.ZodTypeDef, QueryRaw> =
+    z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace QueryRaw$ {
-    export const inboundSchema: z.ZodType<QueryRaw, z.ZodTypeDef, unknown> = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueryRaw> = z.object({});
+    /** @deprecated use `QueryRaw$inboundSchema` instead. */
+    export const inboundSchema = QueryRaw$inboundSchema;
+    /** @deprecated use `QueryRaw$outboundSchema` instead. */
+    export const outboundSchema = QueryRaw$outboundSchema;
+    /** @deprecated use `QueryRaw$Outbound` instead. */
+    export type Outbound = QueryRaw$Outbound;
 }
 
 /** @internal */
+export const Query$inboundSchema: z.ZodType<Query, z.ZodTypeDef, unknown> = z.object({
+    after: z.array(z.string()).optional(),
+    cursor: z.string().optional(),
+    ledgers: z.array(z.string()).optional(),
+    pageSize: z.number().int().optional(),
+    policy: z.string().optional(),
+    raw: z.lazy(() => QueryRaw$inboundSchema).optional(),
+    sort: z.string().optional(),
+    target: z.string().optional(),
+    terms: z.array(z.string()).optional(),
+});
+
+/** @internal */
+export type Query$Outbound = {
+    after?: Array<string> | undefined;
+    cursor?: string | undefined;
+    ledgers?: Array<string> | undefined;
+    pageSize?: number | undefined;
+    policy?: string | undefined;
+    raw?: QueryRaw$Outbound | undefined;
+    sort?: string | undefined;
+    target?: string | undefined;
+    terms?: Array<string> | undefined;
+};
+
+/** @internal */
+export const Query$outboundSchema: z.ZodType<Query$Outbound, z.ZodTypeDef, Query> = z.object({
+    after: z.array(z.string()).optional(),
+    cursor: z.string().optional(),
+    ledgers: z.array(z.string()).optional(),
+    pageSize: z.number().int().optional(),
+    policy: z.string().optional(),
+    raw: z.lazy(() => QueryRaw$outboundSchema).optional(),
+    sort: z.string().optional(),
+    target: z.string().optional(),
+    terms: z.array(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Query$ {
-    export const inboundSchema: z.ZodType<Query, z.ZodTypeDef, unknown> = z.object({
-        after: z.array(z.string()).optional(),
-        cursor: z.string().optional(),
-        ledgers: z.array(z.string()).optional(),
-        pageSize: z.number().int().optional(),
-        policy: z.string().optional(),
-        raw: z.lazy(() => QueryRaw$.inboundSchema).optional(),
-        sort: z.string().optional(),
-        target: z.string().optional(),
-        terms: z.array(z.string()).optional(),
-    });
-
-    export type Outbound = {
-        after?: Array<string> | undefined;
-        cursor?: string | undefined;
-        ledgers?: Array<string> | undefined;
-        pageSize?: number | undefined;
-        policy?: string | undefined;
-        raw?: QueryRaw$.Outbound | undefined;
-        sort?: string | undefined;
-        target?: string | undefined;
-        terms?: Array<string> | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Query> = z.object({
-        after: z.array(z.string()).optional(),
-        cursor: z.string().optional(),
-        ledgers: z.array(z.string()).optional(),
-        pageSize: z.number().int().optional(),
-        policy: z.string().optional(),
-        raw: z.lazy(() => QueryRaw$.outboundSchema).optional(),
-        sort: z.string().optional(),
-        target: z.string().optional(),
-        terms: z.array(z.string()).optional(),
-    });
+    /** @deprecated use `Query$inboundSchema` instead. */
+    export const inboundSchema = Query$inboundSchema;
+    /** @deprecated use `Query$outboundSchema` instead. */
+    export const outboundSchema = Query$outboundSchema;
+    /** @deprecated use `Query$Outbound` instead. */
+    export type Outbound = Query$Outbound;
 }

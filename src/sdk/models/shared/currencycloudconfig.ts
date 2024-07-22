@@ -22,28 +22,49 @@ export type CurrencyCloudConfig = {
 };
 
 /** @internal */
+export const CurrencyCloudConfig$inboundSchema: z.ZodType<
+    CurrencyCloudConfig,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    apiKey: z.string(),
+    endpoint: z.string().optional(),
+    loginID: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type CurrencyCloudConfig$Outbound = {
+    apiKey: string;
+    endpoint?: string | undefined;
+    loginID: string;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const CurrencyCloudConfig$outboundSchema: z.ZodType<
+    CurrencyCloudConfig$Outbound,
+    z.ZodTypeDef,
+    CurrencyCloudConfig
+> = z.object({
+    apiKey: z.string(),
+    endpoint: z.string().optional(),
+    loginID: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CurrencyCloudConfig$ {
-    export const inboundSchema: z.ZodType<CurrencyCloudConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        endpoint: z.string().optional(),
-        loginID: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        endpoint?: string | undefined;
-        loginID: string;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CurrencyCloudConfig> = z.object({
-        apiKey: z.string(),
-        endpoint: z.string().optional(),
-        loginID: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `CurrencyCloudConfig$inboundSchema` instead. */
+    export const inboundSchema = CurrencyCloudConfig$inboundSchema;
+    /** @deprecated use `CurrencyCloudConfig$outboundSchema` instead. */
+    export const outboundSchema = CurrencyCloudConfig$outboundSchema;
+    /** @deprecated use `CurrencyCloudConfig$Outbound` instead. */
+    export type Outbound = CurrencyCloudConfig$Outbound;
 }

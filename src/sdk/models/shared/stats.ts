@@ -10,19 +10,32 @@ export type Stats = {
 };
 
 /** @internal */
+export const Stats$inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z.object({
+    accounts: z.number().int(),
+    transactions: z.number().int(),
+});
+
+/** @internal */
+export type Stats$Outbound = {
+    accounts: number;
+    transactions: number;
+};
+
+/** @internal */
+export const Stats$outboundSchema: z.ZodType<Stats$Outbound, z.ZodTypeDef, Stats> = z.object({
+    accounts: z.number().int(),
+    transactions: z.number().int(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Stats$ {
-    export const inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z.object({
-        accounts: z.number().int(),
-        transactions: z.number().int(),
-    });
-
-    export type Outbound = {
-        accounts: number;
-        transactions: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Stats> = z.object({
-        accounts: z.number().int(),
-        transactions: z.number().int(),
-    });
+    /** @deprecated use `Stats$inboundSchema` instead. */
+    export const inboundSchema = Stats$inboundSchema;
+    /** @deprecated use `Stats$outboundSchema` instead. */
+    export const outboundSchema = Stats$outboundSchema;
+    /** @deprecated use `Stats$Outbound` instead. */
+    export type Outbound = Stats$Outbound;
 }

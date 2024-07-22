@@ -11,22 +11,35 @@ export type Pool = {
 };
 
 /** @internal */
+export const Pool$inboundSchema: z.ZodType<Pool, z.ZodTypeDef, unknown> = z.object({
+    accounts: z.array(z.string()),
+    id: z.string(),
+    name: z.string(),
+});
+
+/** @internal */
+export type Pool$Outbound = {
+    accounts: Array<string>;
+    id: string;
+    name: string;
+};
+
+/** @internal */
+export const Pool$outboundSchema: z.ZodType<Pool$Outbound, z.ZodTypeDef, Pool> = z.object({
+    accounts: z.array(z.string()),
+    id: z.string(),
+    name: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Pool$ {
-    export const inboundSchema: z.ZodType<Pool, z.ZodTypeDef, unknown> = z.object({
-        accounts: z.array(z.string()),
-        id: z.string(),
-        name: z.string(),
-    });
-
-    export type Outbound = {
-        accounts: Array<string>;
-        id: string;
-        name: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Pool> = z.object({
-        accounts: z.array(z.string()),
-        id: z.string(),
-        name: z.string(),
-    });
+    /** @deprecated use `Pool$inboundSchema` instead. */
+    export const inboundSchema = Pool$inboundSchema;
+    /** @deprecated use `Pool$outboundSchema` instead. */
+    export const outboundSchema = Pool$outboundSchema;
+    /** @deprecated use `Pool$Outbound` instead. */
+    export type Outbound = Pool$Outbound;
 }

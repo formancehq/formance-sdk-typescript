@@ -10,19 +10,37 @@ export type LedgerStorage = {
 };
 
 /** @internal */
+export const LedgerStorage$inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, unknown> =
+    z.object({
+        driver: z.string(),
+        ledgers: z.array(z.string()),
+    });
+
+/** @internal */
+export type LedgerStorage$Outbound = {
+    driver: string;
+    ledgers: Array<string>;
+};
+
+/** @internal */
+export const LedgerStorage$outboundSchema: z.ZodType<
+    LedgerStorage$Outbound,
+    z.ZodTypeDef,
+    LedgerStorage
+> = z.object({
+    driver: z.string(),
+    ledgers: z.array(z.string()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace LedgerStorage$ {
-    export const inboundSchema: z.ZodType<LedgerStorage, z.ZodTypeDef, unknown> = z.object({
-        driver: z.string(),
-        ledgers: z.array(z.string()),
-    });
-
-    export type Outbound = {
-        driver: string;
-        ledgers: Array<string>;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, LedgerStorage> = z.object({
-        driver: z.string(),
-        ledgers: z.array(z.string()),
-    });
+    /** @deprecated use `LedgerStorage$inboundSchema` instead. */
+    export const inboundSchema = LedgerStorage$inboundSchema;
+    /** @deprecated use `LedgerStorage$outboundSchema` instead. */
+    export const outboundSchema = LedgerStorage$outboundSchema;
+    /** @deprecated use `LedgerStorage$Outbound` instead. */
+    export type Outbound = LedgerStorage$Outbound;
 }

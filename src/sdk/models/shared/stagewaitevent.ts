@@ -9,16 +9,34 @@ export type StageWaitEvent = {
 };
 
 /** @internal */
+export const StageWaitEvent$inboundSchema: z.ZodType<StageWaitEvent, z.ZodTypeDef, unknown> =
+    z.object({
+        event: z.string(),
+    });
+
+/** @internal */
+export type StageWaitEvent$Outbound = {
+    event: string;
+};
+
+/** @internal */
+export const StageWaitEvent$outboundSchema: z.ZodType<
+    StageWaitEvent$Outbound,
+    z.ZodTypeDef,
+    StageWaitEvent
+> = z.object({
+    event: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StageWaitEvent$ {
-    export const inboundSchema: z.ZodType<StageWaitEvent, z.ZodTypeDef, unknown> = z.object({
-        event: z.string(),
-    });
-
-    export type Outbound = {
-        event: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageWaitEvent> = z.object({
-        event: z.string(),
-    });
+    /** @deprecated use `StageWaitEvent$inboundSchema` instead. */
+    export const inboundSchema = StageWaitEvent$inboundSchema;
+    /** @deprecated use `StageWaitEvent$outboundSchema` instead. */
+    export const outboundSchema = StageWaitEvent$outboundSchema;
+    /** @deprecated use `StageWaitEvent$Outbound` instead. */
+    export type Outbound = StageWaitEvent$Outbound;
 }

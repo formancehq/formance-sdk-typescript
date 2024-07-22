@@ -29,50 +29,73 @@ export class ErrorT extends Error {
     data$: ErrorTData;
 
     constructor(err: ErrorTData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.errorCode = err.errorCode;
         this.errorMessage = err.errorMessage;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "ErrorT";
     }
 }
 
 /** @internal */
+export const ErrorCode$inboundSchema: z.ZodNativeEnum<typeof ErrorCode> = z.nativeEnum(ErrorCode);
+
+/** @internal */
+export const ErrorCode$outboundSchema: z.ZodNativeEnum<typeof ErrorCode> = ErrorCode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ErrorCode$ {
-    export const inboundSchema = z.nativeEnum(ErrorCode);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `ErrorCode$inboundSchema` instead. */
+    export const inboundSchema = ErrorCode$inboundSchema;
+    /** @deprecated use `ErrorCode$outboundSchema` instead. */
+    export const outboundSchema = ErrorCode$outboundSchema;
 }
 
 /** @internal */
-export namespace ErrorT$ {
-    export const inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
-        .object({
-            errorCode: ErrorCode$.inboundSchema,
+export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
+    .object({
+        errorCode: ErrorCode$inboundSchema,
+        errorMessage: z.string(),
+    })
+    .transform((v) => {
+        return new ErrorT(v);
+    });
+
+/** @internal */
+export type ErrorT$Outbound = {
+    errorCode: string;
+    errorMessage: string;
+};
+
+/** @internal */
+export const ErrorT$outboundSchema: z.ZodType<ErrorT$Outbound, z.ZodTypeDef, ErrorT> = z
+    .instanceof(ErrorT)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
+            errorCode: ErrorCode$outboundSchema,
             errorMessage: z.string(),
         })
-        .transform((v) => {
-            return new ErrorT(v);
-        });
+    );
 
-    export type Outbound = {
-        errorCode: string;
-        errorMessage: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ErrorT> = z
-        .instanceof(ErrorT)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                errorCode: ErrorCode$.outboundSchema,
-                errorMessage: z.string(),
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ErrorT$ {
+    /** @deprecated use `ErrorT$inboundSchema` instead. */
+    export const inboundSchema = ErrorT$inboundSchema;
+    /** @deprecated use `ErrorT$outboundSchema` instead. */
+    export const outboundSchema = ErrorT$outboundSchema;
+    /** @deprecated use `ErrorT$Outbound` instead. */
+    export type Outbound = ErrorT$Outbound;
 }

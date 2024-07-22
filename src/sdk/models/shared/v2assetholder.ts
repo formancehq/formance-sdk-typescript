@@ -9,16 +9,34 @@ export type V2AssetHolder = {
 };
 
 /** @internal */
-export namespace V2AssetHolder$ {
-    export const inboundSchema: z.ZodType<V2AssetHolder, z.ZodTypeDef, unknown> = z.object({
+export const V2AssetHolder$inboundSchema: z.ZodType<V2AssetHolder, z.ZodTypeDef, unknown> =
+    z.object({
         assets: z.record(z.number().transform((v) => BigInt(v))),
     });
 
-    export type Outbound = {
-        assets: { [k: string]: number };
-    };
+/** @internal */
+export type V2AssetHolder$Outbound = {
+    assets: { [k: string]: number };
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2AssetHolder> = z.object({
-        assets: z.record(z.bigint().transform((v) => Number(v))),
-    });
+/** @internal */
+export const V2AssetHolder$outboundSchema: z.ZodType<
+    V2AssetHolder$Outbound,
+    z.ZodTypeDef,
+    V2AssetHolder
+> = z.object({
+    assets: z.record(z.bigint().transform((v) => Number(v))),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace V2AssetHolder$ {
+    /** @deprecated use `V2AssetHolder$inboundSchema` instead. */
+    export const inboundSchema = V2AssetHolder$inboundSchema;
+    /** @deprecated use `V2AssetHolder$outboundSchema` instead. */
+    export const outboundSchema = V2AssetHolder$outboundSchema;
+    /** @deprecated use `V2AssetHolder$Outbound` instead. */
+    export type Outbound = V2AssetHolder$Outbound;
 }

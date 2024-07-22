@@ -9,16 +9,34 @@ export type V2StageWaitEvent = {
 };
 
 /** @internal */
+export const V2StageWaitEvent$inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, unknown> =
+    z.object({
+        event: z.string(),
+    });
+
+/** @internal */
+export type V2StageWaitEvent$Outbound = {
+    event: string;
+};
+
+/** @internal */
+export const V2StageWaitEvent$outboundSchema: z.ZodType<
+    V2StageWaitEvent$Outbound,
+    z.ZodTypeDef,
+    V2StageWaitEvent
+> = z.object({
+    event: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2StageWaitEvent$ {
-    export const inboundSchema: z.ZodType<V2StageWaitEvent, z.ZodTypeDef, unknown> = z.object({
-        event: z.string(),
-    });
-
-    export type Outbound = {
-        event: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageWaitEvent> = z.object({
-        event: z.string(),
-    });
+    /** @deprecated use `V2StageWaitEvent$inboundSchema` instead. */
+    export const inboundSchema = V2StageWaitEvent$inboundSchema;
+    /** @deprecated use `V2StageWaitEvent$outboundSchema` instead. */
+    export const outboundSchema = V2StageWaitEvent$outboundSchema;
+    /** @deprecated use `V2StageWaitEvent$Outbound` instead. */
+    export type Outbound = V2StageWaitEvent$Outbound;
 }

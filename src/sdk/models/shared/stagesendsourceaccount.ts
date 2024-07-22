@@ -10,22 +10,40 @@ export type StageSendSourceAccount = {
 };
 
 /** @internal */
+export const StageSendSourceAccount$inboundSchema: z.ZodType<
+    StageSendSourceAccount,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+    ledger: z.string().optional(),
+});
+
+/** @internal */
+export type StageSendSourceAccount$Outbound = {
+    id: string;
+    ledger?: string | undefined;
+};
+
+/** @internal */
+export const StageSendSourceAccount$outboundSchema: z.ZodType<
+    StageSendSourceAccount$Outbound,
+    z.ZodTypeDef,
+    StageSendSourceAccount
+> = z.object({
+    id: z.string(),
+    ledger: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StageSendSourceAccount$ {
-    export const inboundSchema: z.ZodType<StageSendSourceAccount, z.ZodTypeDef, unknown> = z.object(
-        {
-            id: z.string(),
-            ledger: z.string().optional(),
-        }
-    );
-
-    export type Outbound = {
-        id: string;
-        ledger?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendSourceAccount> =
-        z.object({
-            id: z.string(),
-            ledger: z.string().optional(),
-        });
+    /** @deprecated use `StageSendSourceAccount$inboundSchema` instead. */
+    export const inboundSchema = StageSendSourceAccount$inboundSchema;
+    /** @deprecated use `StageSendSourceAccount$outboundSchema` instead. */
+    export const outboundSchema = StageSendSourceAccount$outboundSchema;
+    /** @deprecated use `StageSendSourceAccount$Outbound` instead. */
+    export type Outbound = StageSendSourceAccount$Outbound;
 }

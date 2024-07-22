@@ -11,22 +11,35 @@ export type Account = {
 };
 
 /** @internal */
+export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z.object({
+    address: z.string(),
+    metadata: z.record(z.any()).optional(),
+    type: z.string().optional(),
+});
+
+/** @internal */
+export type Account$Outbound = {
+    address: string;
+    metadata?: { [k: string]: any } | undefined;
+    type?: string | undefined;
+};
+
+/** @internal */
+export const Account$outboundSchema: z.ZodType<Account$Outbound, z.ZodTypeDef, Account> = z.object({
+    address: z.string(),
+    metadata: z.record(z.any()).optional(),
+    type: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Account$ {
-    export const inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> = z.object({
-        address: z.string(),
-        metadata: z.record(z.any()).optional(),
-        type: z.string().optional(),
-    });
-
-    export type Outbound = {
-        address: string;
-        metadata?: { [k: string]: any } | undefined;
-        type?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Account> = z.object({
-        address: z.string(),
-        metadata: z.record(z.any()).optional(),
-        type: z.string().optional(),
-    });
+    /** @deprecated use `Account$inboundSchema` instead. */
+    export const inboundSchema = Account$inboundSchema;
+    /** @deprecated use `Account$outboundSchema` instead. */
+    export const outboundSchema = Account$outboundSchema;
+    /** @deprecated use `Account$Outbound` instead. */
+    export type Outbound = Account$Outbound;
 }

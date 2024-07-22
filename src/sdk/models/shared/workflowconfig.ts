@@ -10,19 +10,37 @@ export type WorkflowConfig = {
 };
 
 /** @internal */
+export const WorkflowConfig$inboundSchema: z.ZodType<WorkflowConfig, z.ZodTypeDef, unknown> =
+    z.object({
+        name: z.string().optional(),
+        stages: z.array(z.record(z.any())),
+    });
+
+/** @internal */
+export type WorkflowConfig$Outbound = {
+    name?: string | undefined;
+    stages: Array<{ [k: string]: any }>;
+};
+
+/** @internal */
+export const WorkflowConfig$outboundSchema: z.ZodType<
+    WorkflowConfig$Outbound,
+    z.ZodTypeDef,
+    WorkflowConfig
+> = z.object({
+    name: z.string().optional(),
+    stages: z.array(z.record(z.any())),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WorkflowConfig$ {
-    export const inboundSchema: z.ZodType<WorkflowConfig, z.ZodTypeDef, unknown> = z.object({
-        name: z.string().optional(),
-        stages: z.array(z.record(z.any())),
-    });
-
-    export type Outbound = {
-        name?: string | undefined;
-        stages: Array<{ [k: string]: any }>;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WorkflowConfig> = z.object({
-        name: z.string().optional(),
-        stages: z.array(z.record(z.any())),
-    });
+    /** @deprecated use `WorkflowConfig$inboundSchema` instead. */
+    export const inboundSchema = WorkflowConfig$inboundSchema;
+    /** @deprecated use `WorkflowConfig$outboundSchema` instead. */
+    export const outboundSchema = WorkflowConfig$outboundSchema;
+    /** @deprecated use `WorkflowConfig$Outbound` instead. */
+    export type Outbound = WorkflowConfig$Outbound;
 }

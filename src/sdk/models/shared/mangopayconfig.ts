@@ -19,28 +19,46 @@ export type MangoPayConfig = {
 };
 
 /** @internal */
+export const MangoPayConfig$inboundSchema: z.ZodType<MangoPayConfig, z.ZodTypeDef, unknown> =
+    z.object({
+        apiKey: z.string(),
+        clientID: z.string(),
+        endpoint: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
+
+/** @internal */
+export type MangoPayConfig$Outbound = {
+    apiKey: string;
+    clientID: string;
+    endpoint: string;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const MangoPayConfig$outboundSchema: z.ZodType<
+    MangoPayConfig$Outbound,
+    z.ZodTypeDef,
+    MangoPayConfig
+> = z.object({
+    apiKey: z.string(),
+    clientID: z.string(),
+    endpoint: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MangoPayConfig$ {
-    export const inboundSchema: z.ZodType<MangoPayConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        clientID: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MangoPayConfig> = z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `MangoPayConfig$inboundSchema` instead. */
+    export const inboundSchema = MangoPayConfig$inboundSchema;
+    /** @deprecated use `MangoPayConfig$outboundSchema` instead. */
+    export const outboundSchema = MangoPayConfig$outboundSchema;
+    /** @deprecated use `MangoPayConfig$Outbound` instead. */
+    export type Outbound = MangoPayConfig$Outbound;
 }

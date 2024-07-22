@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 408cf4a96e96e76eaf0f8b23c35b2cb3
-  docVersion: v2.0.0-rc.33
-  speakeasyVersion: 1.306.0
-  generationVersion: 2.340.3
-  releaseVersion: 2.4.4
-  configChecksum: c010a22da550696fd9374cdeb229e252
+  docChecksum: b33f71f21d0e4a446c4e868a3856cdaf
+  docVersion: v2.0.3
+  speakeasyVersion: 1.344.1
+  generationVersion: 2.376.2
+  releaseVersion: 2.5.0
+  configChecksum: 88af1fdee43139de1ea5c7988578c717
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,9 +15,10 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.13
+    core: 3.11.7
+    defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
-    errors: 2.81.10
+    errors: 2.81.12
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -26,8 +27,9 @@ features:
     ignores: 2.81.1
     nullables: 0.1.0
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.5
+    unions: 2.85.6
 generatedFiles:
   - src/sdk/auth.ts
   - src/sdk/ledger.ts
@@ -38,7 +40,7 @@ generatedFiles:
   - src/sdk/wallets.ts
   - src/sdk/webhooks.ts
   - src/sdk/sdk.ts
-  - .eslintrc.js
+  - .eslintrc.cjs
   - .npmignore
   - RUNTIMES.md
   - jsr.json
@@ -348,7 +350,7 @@ generatedFiles:
   - src/sdk/models/shared/activityreverttransactionoutput.ts
   - src/sdk/models/shared/orchestrationtransaction.ts
   - src/sdk/models/shared/orchestrationlistwalletsresponse.ts
-  - src/sdk/models/shared/wallet.ts
+  - src/sdk/models/shared/orchestrationwallet.ts
   - src/sdk/models/shared/activitygetwalletoutput.ts
   - src/sdk/models/shared/walletwithbalances.ts
   - src/sdk/models/shared/assetholder.ts
@@ -377,7 +379,7 @@ generatedFiles:
   - src/sdk/models/shared/activitydebitwallet.ts
   - src/sdk/models/shared/debitwalletrequest.ts
   - src/sdk/models/shared/activitycreditwallet.ts
-  - src/sdk/models/shared/creditwalletrequest.ts
+  - src/sdk/models/shared/orchestrationcreditwalletrequest.ts
   - src/sdk/models/shared/activitycreatetransaction.ts
   - src/sdk/models/shared/orchestrationposttransaction.ts
   - src/sdk/models/shared/activityconfirmhold.ts
@@ -549,7 +551,9 @@ generatedFiles:
   - src/sdk/models/shared/balance.ts
   - src/sdk/models/shared/createbalancerequest.ts
   - src/sdk/models/shared/createwalletresponse.ts
+  - src/sdk/models/shared/wallet.ts
   - src/sdk/models/shared/createwalletrequest.ts
+  - src/sdk/models/shared/creditwalletrequest.ts
   - src/sdk/models/shared/debitwalletresponse.ts
   - src/sdk/models/shared/getbalanceresponse.ts
   - src/sdk/models/shared/balancewithassets.ts
@@ -1035,7 +1039,7 @@ generatedFiles:
   - docs/sdk/models/shared/orchestrationtransaction.md
   - docs/sdk/models/shared/orchestrationlistwalletsresponsecursor.md
   - docs/sdk/models/shared/orchestrationlistwalletsresponse.md
-  - docs/sdk/models/shared/wallet.md
+  - docs/sdk/models/shared/orchestrationwallet.md
   - docs/sdk/models/shared/activitygetwalletoutput.md
   - docs/sdk/models/shared/walletwithbalancesbalances.md
   - docs/sdk/models/shared/walletwithbalances.md
@@ -1070,7 +1074,7 @@ generatedFiles:
   - docs/sdk/models/shared/activitydebitwallet.md
   - docs/sdk/models/shared/debitwalletrequest.md
   - docs/sdk/models/shared/activitycreditwallet.md
-  - docs/sdk/models/shared/creditwalletrequest.md
+  - docs/sdk/models/shared/orchestrationcreditwalletrequest.md
   - docs/sdk/models/shared/activitycreatetransaction.md
   - docs/sdk/models/shared/orchestrationposttransactionscript.md
   - docs/sdk/models/shared/orchestrationposttransaction.md
@@ -1297,7 +1301,10 @@ generatedFiles:
   - docs/sdk/models/shared/balance.md
   - docs/sdk/models/shared/createbalancerequest.md
   - docs/sdk/models/shared/createwalletresponse.md
+  - docs/sdk/models/shared/walletbalances.md
+  - docs/sdk/models/shared/wallet.md
   - docs/sdk/models/shared/createwalletrequest.md
+  - docs/sdk/models/shared/creditwalletrequest.md
   - docs/sdk/models/shared/debitwalletresponse.md
   - docs/sdk/models/shared/getbalanceresponse.md
   - docs/sdk/models/shared/balancewithassets.md
@@ -1336,6 +1343,7 @@ generatedFiles:
   - docs/sdk/models/errors/schemaswalletserrorresponseerrorcode.md
   - docs/sdk/models/errors/walletserrorresponse.md
   - docs/sdk/models/errors/webhookserrorresponse.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/sdk/README.md
   - docs/sdks/auth/README.md
   - docs/sdks/ledger/README.md
@@ -1350,3 +1358,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md

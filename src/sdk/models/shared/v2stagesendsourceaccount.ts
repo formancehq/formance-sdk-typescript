@@ -10,21 +10,40 @@ export type V2StageSendSourceAccount = {
 };
 
 /** @internal */
+export const V2StageSendSourceAccount$inboundSchema: z.ZodType<
+    V2StageSendSourceAccount,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+    ledger: z.string().optional(),
+});
+
+/** @internal */
+export type V2StageSendSourceAccount$Outbound = {
+    id: string;
+    ledger?: string | undefined;
+};
+
+/** @internal */
+export const V2StageSendSourceAccount$outboundSchema: z.ZodType<
+    V2StageSendSourceAccount$Outbound,
+    z.ZodTypeDef,
+    V2StageSendSourceAccount
+> = z.object({
+    id: z.string(),
+    ledger: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2StageSendSourceAccount$ {
-    export const inboundSchema: z.ZodType<V2StageSendSourceAccount, z.ZodTypeDef, unknown> =
-        z.object({
-            id: z.string(),
-            ledger: z.string().optional(),
-        });
-
-    export type Outbound = {
-        id: string;
-        ledger?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceAccount> =
-        z.object({
-            id: z.string(),
-            ledger: z.string().optional(),
-        });
+    /** @deprecated use `V2StageSendSourceAccount$inboundSchema` instead. */
+    export const inboundSchema = V2StageSendSourceAccount$inboundSchema;
+    /** @deprecated use `V2StageSendSourceAccount$outboundSchema` instead. */
+    export const outboundSchema = V2StageSendSourceAccount$outboundSchema;
+    /** @deprecated use `V2StageSendSourceAccount$Outbound` instead. */
+    export type Outbound = V2StageSendSourceAccount$Outbound;
 }

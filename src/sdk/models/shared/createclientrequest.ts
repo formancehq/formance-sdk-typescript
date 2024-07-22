@@ -16,37 +16,58 @@ export type CreateClientRequest = {
 };
 
 /** @internal */
+export const CreateClientRequest$inboundSchema: z.ZodType<
+    CreateClientRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    description: z.string().optional(),
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+    postLogoutRedirectUris: z.array(z.string()).optional(),
+    public: z.boolean().optional(),
+    redirectUris: z.array(z.string()).optional(),
+    scopes: z.array(z.string()).optional(),
+    trusted: z.boolean().optional(),
+});
+
+/** @internal */
+export type CreateClientRequest$Outbound = {
+    description?: string | undefined;
+    metadata?: { [k: string]: any } | undefined;
+    name: string;
+    postLogoutRedirectUris?: Array<string> | undefined;
+    public?: boolean | undefined;
+    redirectUris?: Array<string> | undefined;
+    scopes?: Array<string> | undefined;
+    trusted?: boolean | undefined;
+};
+
+/** @internal */
+export const CreateClientRequest$outboundSchema: z.ZodType<
+    CreateClientRequest$Outbound,
+    z.ZodTypeDef,
+    CreateClientRequest
+> = z.object({
+    description: z.string().optional(),
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+    postLogoutRedirectUris: z.array(z.string()).optional(),
+    public: z.boolean().optional(),
+    redirectUris: z.array(z.string()).optional(),
+    scopes: z.array(z.string()).optional(),
+    trusted: z.boolean().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateClientRequest$ {
-    export const inboundSchema: z.ZodType<CreateClientRequest, z.ZodTypeDef, unknown> = z.object({
-        description: z.string().optional(),
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-        postLogoutRedirectUris: z.array(z.string()).optional(),
-        public: z.boolean().optional(),
-        redirectUris: z.array(z.string()).optional(),
-        scopes: z.array(z.string()).optional(),
-        trusted: z.boolean().optional(),
-    });
-
-    export type Outbound = {
-        description?: string | undefined;
-        metadata?: { [k: string]: any } | undefined;
-        name: string;
-        postLogoutRedirectUris?: Array<string> | undefined;
-        public?: boolean | undefined;
-        redirectUris?: Array<string> | undefined;
-        scopes?: Array<string> | undefined;
-        trusted?: boolean | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateClientRequest> = z.object({
-        description: z.string().optional(),
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-        postLogoutRedirectUris: z.array(z.string()).optional(),
-        public: z.boolean().optional(),
-        redirectUris: z.array(z.string()).optional(),
-        scopes: z.array(z.string()).optional(),
-        trusted: z.boolean().optional(),
-    });
+    /** @deprecated use `CreateClientRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateClientRequest$inboundSchema;
+    /** @deprecated use `CreateClientRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateClientRequest$outboundSchema;
+    /** @deprecated use `CreateClientRequest$Outbound` instead. */
+    export type Outbound = CreateClientRequest$Outbound;
 }

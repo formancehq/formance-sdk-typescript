@@ -10,21 +10,40 @@ export type V2StageSendSourceWallet = {
 };
 
 /** @internal */
+export const V2StageSendSourceWallet$inboundSchema: z.ZodType<
+    V2StageSendSourceWallet,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    balance: z.string().optional(),
+    id: z.string(),
+});
+
+/** @internal */
+export type V2StageSendSourceWallet$Outbound = {
+    balance?: string | undefined;
+    id: string;
+};
+
+/** @internal */
+export const V2StageSendSourceWallet$outboundSchema: z.ZodType<
+    V2StageSendSourceWallet$Outbound,
+    z.ZodTypeDef,
+    V2StageSendSourceWallet
+> = z.object({
+    balance: z.string().optional(),
+    id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2StageSendSourceWallet$ {
-    export const inboundSchema: z.ZodType<V2StageSendSourceWallet, z.ZodTypeDef, unknown> =
-        z.object({
-            balance: z.string().optional(),
-            id: z.string(),
-        });
-
-    export type Outbound = {
-        balance?: string | undefined;
-        id: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2StageSendSourceWallet> =
-        z.object({
-            balance: z.string().optional(),
-            id: z.string(),
-        });
+    /** @deprecated use `V2StageSendSourceWallet$inboundSchema` instead. */
+    export const inboundSchema = V2StageSendSourceWallet$inboundSchema;
+    /** @deprecated use `V2StageSendSourceWallet$outboundSchema` instead. */
+    export const outboundSchema = V2StageSendSourceWallet$outboundSchema;
+    /** @deprecated use `V2StageSendSourceWallet$Outbound` instead. */
+    export type Outbound = V2StageSendSourceWallet$Outbound;
 }

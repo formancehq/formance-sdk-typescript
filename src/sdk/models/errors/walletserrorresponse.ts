@@ -30,50 +30,85 @@ export class WalletsErrorResponse extends Error {
     data$: WalletsErrorResponseData;
 
     constructor(err: WalletsErrorResponseData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.errorCode = err.errorCode;
         this.errorMessage = err.errorMessage;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "WalletsErrorResponse";
     }
 }
 
 /** @internal */
+export const SchemasWalletsErrorResponseErrorCode$inboundSchema: z.ZodNativeEnum<
+    typeof SchemasWalletsErrorResponseErrorCode
+> = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
+
+/** @internal */
+export const SchemasWalletsErrorResponseErrorCode$outboundSchema: z.ZodNativeEnum<
+    typeof SchemasWalletsErrorResponseErrorCode
+> = SchemasWalletsErrorResponseErrorCode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace SchemasWalletsErrorResponseErrorCode$ {
-    export const inboundSchema = z.nativeEnum(SchemasWalletsErrorResponseErrorCode);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `SchemasWalletsErrorResponseErrorCode$inboundSchema` instead. */
+    export const inboundSchema = SchemasWalletsErrorResponseErrorCode$inboundSchema;
+    /** @deprecated use `SchemasWalletsErrorResponseErrorCode$outboundSchema` instead. */
+    export const outboundSchema = SchemasWalletsErrorResponseErrorCode$outboundSchema;
 }
 
 /** @internal */
-export namespace WalletsErrorResponse$ {
-    export const inboundSchema: z.ZodType<WalletsErrorResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            errorCode: SchemasWalletsErrorResponseErrorCode$.inboundSchema,
+export const WalletsErrorResponse$inboundSchema: z.ZodType<
+    WalletsErrorResponse,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        errorCode: SchemasWalletsErrorResponseErrorCode$inboundSchema,
+        errorMessage: z.string(),
+    })
+    .transform((v) => {
+        return new WalletsErrorResponse(v);
+    });
+
+/** @internal */
+export type WalletsErrorResponse$Outbound = {
+    errorCode: string;
+    errorMessage: string;
+};
+
+/** @internal */
+export const WalletsErrorResponse$outboundSchema: z.ZodType<
+    WalletsErrorResponse$Outbound,
+    z.ZodTypeDef,
+    WalletsErrorResponse
+> = z
+    .instanceof(WalletsErrorResponse)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
+            errorCode: SchemasWalletsErrorResponseErrorCode$outboundSchema,
             errorMessage: z.string(),
         })
-        .transform((v) => {
-            return new WalletsErrorResponse(v);
-        });
+    );
 
-    export type Outbound = {
-        errorCode: string;
-        errorMessage: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletsErrorResponse> = z
-        .instanceof(WalletsErrorResponse)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                errorCode: SchemasWalletsErrorResponseErrorCode$.outboundSchema,
-                errorMessage: z.string(),
-            })
-        );
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WalletsErrorResponse$ {
+    /** @deprecated use `WalletsErrorResponse$inboundSchema` instead. */
+    export const inboundSchema = WalletsErrorResponse$inboundSchema;
+    /** @deprecated use `WalletsErrorResponse$outboundSchema` instead. */
+    export const outboundSchema = WalletsErrorResponse$outboundSchema;
+    /** @deprecated use `WalletsErrorResponse$Outbound` instead. */
+    export type Outbound = WalletsErrorResponse$Outbound;
 }

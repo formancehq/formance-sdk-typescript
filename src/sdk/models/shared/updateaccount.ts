@@ -11,22 +11,40 @@ export type UpdateAccount = {
 };
 
 /** @internal */
+export const UpdateAccount$inboundSchema: z.ZodType<UpdateAccount, z.ZodTypeDef, unknown> =
+    z.object({
+        id: z.string(),
+        ledger: z.string(),
+        metadata: z.record(z.string()),
+    });
+
+/** @internal */
+export type UpdateAccount$Outbound = {
+    id: string;
+    ledger: string;
+    metadata: { [k: string]: string };
+};
+
+/** @internal */
+export const UpdateAccount$outboundSchema: z.ZodType<
+    UpdateAccount$Outbound,
+    z.ZodTypeDef,
+    UpdateAccount
+> = z.object({
+    id: z.string(),
+    ledger: z.string(),
+    metadata: z.record(z.string()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace UpdateAccount$ {
-    export const inboundSchema: z.ZodType<UpdateAccount, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-        ledger: z.string(),
-        metadata: z.record(z.string()),
-    });
-
-    export type Outbound = {
-        id: string;
-        ledger: string;
-        metadata: { [k: string]: string };
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateAccount> = z.object({
-        id: z.string(),
-        ledger: z.string(),
-        metadata: z.record(z.string()),
-    });
+    /** @deprecated use `UpdateAccount$inboundSchema` instead. */
+    export const inboundSchema = UpdateAccount$inboundSchema;
+    /** @deprecated use `UpdateAccount$outboundSchema` instead. */
+    export const outboundSchema = UpdateAccount$outboundSchema;
+    /** @deprecated use `UpdateAccount$Outbound` instead. */
+    export type Outbound = UpdateAccount$Outbound;
 }

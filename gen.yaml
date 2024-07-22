@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 2.4.4
+  version: 2.5.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -33,7 +33,9 @@ typescript:
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  moduleFormat: commonjs
   outputModelSuffix: output
   packageName: '@formance/formance-sdk'
   responseFormat: envelope
   templateVersion: v2
+  useIndexModules: true

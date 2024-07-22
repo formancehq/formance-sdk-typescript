@@ -11,23 +11,25 @@ export type V2Volume = {
 };
 
 /** @internal */
-export namespace V2Volume$ {
-    export const inboundSchema: z.ZodType<V2Volume, z.ZodTypeDef, unknown> = z.object({
-        balance: z
-            .number()
-            .transform((v) => BigInt(v))
-            .optional(),
-        input: z.number().transform((v) => BigInt(v)),
-        output: z.number().transform((v) => BigInt(v)),
-    });
+export const V2Volume$inboundSchema: z.ZodType<V2Volume, z.ZodTypeDef, unknown> = z.object({
+    balance: z
+        .number()
+        .transform((v) => BigInt(v))
+        .optional(),
+    input: z.number().transform((v) => BigInt(v)),
+    output: z.number().transform((v) => BigInt(v)),
+});
 
-    export type Outbound = {
-        balance?: number | undefined;
-        input: number;
-        output: number;
-    };
+/** @internal */
+export type V2Volume$Outbound = {
+    balance?: number | undefined;
+    input: number;
+    output: number;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Volume> = z.object({
+/** @internal */
+export const V2Volume$outboundSchema: z.ZodType<V2Volume$Outbound, z.ZodTypeDef, V2Volume> =
+    z.object({
         balance: z
             .bigint()
             .transform((v) => Number(v))
@@ -35,4 +37,16 @@ export namespace V2Volume$ {
         input: z.bigint().transform((v) => Number(v)),
         output: z.bigint().transform((v) => Number(v)),
     });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace V2Volume$ {
+    /** @deprecated use `V2Volume$inboundSchema` instead. */
+    export const inboundSchema = V2Volume$inboundSchema;
+    /** @deprecated use `V2Volume$outboundSchema` instead. */
+    export const outboundSchema = V2Volume$outboundSchema;
+    /** @deprecated use `V2Volume$Outbound` instead. */
+    export type Outbound = V2Volume$Outbound;
 }

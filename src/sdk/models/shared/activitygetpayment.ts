@@ -9,16 +9,37 @@ export type ActivityGetPayment = {
 };
 
 /** @internal */
+export const ActivityGetPayment$inboundSchema: z.ZodType<
+    ActivityGetPayment,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+});
+
+/** @internal */
+export type ActivityGetPayment$Outbound = {
+    id: string;
+};
+
+/** @internal */
+export const ActivityGetPayment$outboundSchema: z.ZodType<
+    ActivityGetPayment$Outbound,
+    z.ZodTypeDef,
+    ActivityGetPayment
+> = z.object({
+    id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ActivityGetPayment$ {
-    export const inboundSchema: z.ZodType<ActivityGetPayment, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-    });
-
-    export type Outbound = {
-        id: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityGetPayment> = z.object({
-        id: z.string(),
-    });
+    /** @deprecated use `ActivityGetPayment$inboundSchema` instead. */
+    export const inboundSchema = ActivityGetPayment$inboundSchema;
+    /** @deprecated use `ActivityGetPayment$outboundSchema` instead. */
+    export const outboundSchema = ActivityGetPayment$outboundSchema;
+    /** @deprecated use `ActivityGetPayment$Outbound` instead. */
+    export type Outbound = ActivityGetPayment$Outbound;
 }

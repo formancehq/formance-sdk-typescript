@@ -9,19 +9,37 @@ export type StageSendSourcePayment = {
 };
 
 /** @internal */
+export const StageSendSourcePayment$inboundSchema: z.ZodType<
+    StageSendSourcePayment,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+});
+
+/** @internal */
+export type StageSendSourcePayment$Outbound = {
+    id: string;
+};
+
+/** @internal */
+export const StageSendSourcePayment$outboundSchema: z.ZodType<
+    StageSendSourcePayment$Outbound,
+    z.ZodTypeDef,
+    StageSendSourcePayment
+> = z.object({
+    id: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StageSendSourcePayment$ {
-    export const inboundSchema: z.ZodType<StageSendSourcePayment, z.ZodTypeDef, unknown> = z.object(
-        {
-            id: z.string(),
-        }
-    );
-
-    export type Outbound = {
-        id: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageSendSourcePayment> =
-        z.object({
-            id: z.string(),
-        });
+    /** @deprecated use `StageSendSourcePayment$inboundSchema` instead. */
+    export const inboundSchema = StageSendSourcePayment$inboundSchema;
+    /** @deprecated use `StageSendSourcePayment$outboundSchema` instead. */
+    export const outboundSchema = StageSendSourcePayment$outboundSchema;
+    /** @deprecated use `StageSendSourcePayment$Outbound` instead. */
+    export type Outbound = StageSendSourcePayment$Outbound;
 }

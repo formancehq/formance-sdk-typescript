@@ -16,7 +16,20 @@ export enum OrchestrationConnector {
 }
 
 /** @internal */
+export const OrchestrationConnector$inboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> =
+    z.nativeEnum(OrchestrationConnector);
+
+/** @internal */
+export const OrchestrationConnector$outboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> =
+    OrchestrationConnector$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace OrchestrationConnector$ {
-    export const inboundSchema = z.nativeEnum(OrchestrationConnector);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `OrchestrationConnector$inboundSchema` instead. */
+    export const inboundSchema = OrchestrationConnector$inboundSchema;
+    /** @deprecated use `OrchestrationConnector$outboundSchema` instead. */
+    export const outboundSchema = OrchestrationConnector$outboundSchema;
 }
