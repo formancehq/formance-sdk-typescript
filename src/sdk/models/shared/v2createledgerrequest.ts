@@ -10,20 +10,40 @@ export type V2CreateLedgerRequest = {
 };
 
 /** @internal */
+export const V2CreateLedgerRequest$inboundSchema: z.ZodType<
+    V2CreateLedgerRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    bucket: z.string().optional(),
+    metadata: z.record(z.string()).optional(),
+});
+
+/** @internal */
+export type V2CreateLedgerRequest$Outbound = {
+    bucket?: string | undefined;
+    metadata?: { [k: string]: string } | undefined;
+};
+
+/** @internal */
+export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
+    V2CreateLedgerRequest$Outbound,
+    z.ZodTypeDef,
+    V2CreateLedgerRequest
+> = z.object({
+    bucket: z.string().optional(),
+    metadata: z.record(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2CreateLedgerRequest$ {
-    export const inboundSchema: z.ZodType<V2CreateLedgerRequest, z.ZodTypeDef, unknown> = z.object({
-        bucket: z.string().optional(),
-        metadata: z.record(z.string()).optional(),
-    });
-
-    export type Outbound = {
-        bucket?: string | undefined;
-        metadata?: { [k: string]: string } | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2CreateLedgerRequest> =
-        z.object({
-            bucket: z.string().optional(),
-            metadata: z.record(z.string()).optional(),
-        });
+    /** @deprecated use `V2CreateLedgerRequest$inboundSchema` instead. */
+    export const inboundSchema = V2CreateLedgerRequest$inboundSchema;
+    /** @deprecated use `V2CreateLedgerRequest$outboundSchema` instead. */
+    export const outboundSchema = V2CreateLedgerRequest$outboundSchema;
+    /** @deprecated use `V2CreateLedgerRequest$Outbound` instead. */
+    export type Outbound = V2CreateLedgerRequest$Outbound;
 }

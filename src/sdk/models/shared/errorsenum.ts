@@ -16,7 +16,20 @@ export enum ErrorsEnum {
 }
 
 /** @internal */
+export const ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> =
+    z.nativeEnum(ErrorsEnum);
+
+/** @internal */
+export const ErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> =
+    ErrorsEnum$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ErrorsEnum$ {
-    export const inboundSchema = z.nativeEnum(ErrorsEnum);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `ErrorsEnum$inboundSchema` instead. */
+    export const inboundSchema = ErrorsEnum$inboundSchema;
+    /** @deprecated use `ErrorsEnum$outboundSchema` instead. */
+    export const outboundSchema = ErrorsEnum$outboundSchema;
 }

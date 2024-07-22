@@ -15,8 +15,8 @@ export type WebhooksConfig = {
 };
 
 /** @internal */
-export namespace WebhooksConfig$ {
-    export const inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, unknown> = z.object({
+export const WebhooksConfig$inboundSchema: z.ZodType<WebhooksConfig, z.ZodTypeDef, unknown> =
+    z.object({
         active: z.boolean(),
         createdAt: z
             .string()
@@ -32,23 +32,41 @@ export namespace WebhooksConfig$ {
             .transform((v) => new Date(v)),
     });
 
-    export type Outbound = {
-        active: boolean;
-        createdAt: string;
-        endpoint: string;
-        eventTypes: Array<string>;
-        id: string;
-        secret: string;
-        updatedAt: string;
-    };
+/** @internal */
+export type WebhooksConfig$Outbound = {
+    active: boolean;
+    createdAt: string;
+    endpoint: string;
+    eventTypes: Array<string>;
+    id: string;
+    secret: string;
+    updatedAt: string;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WebhooksConfig> = z.object({
-        active: z.boolean(),
-        createdAt: z.date().transform((v) => v.toISOString()),
-        endpoint: z.string(),
-        eventTypes: z.array(z.string()),
-        id: z.string(),
-        secret: z.string(),
-        updatedAt: z.date().transform((v) => v.toISOString()),
-    });
+/** @internal */
+export const WebhooksConfig$outboundSchema: z.ZodType<
+    WebhooksConfig$Outbound,
+    z.ZodTypeDef,
+    WebhooksConfig
+> = z.object({
+    active: z.boolean(),
+    createdAt: z.date().transform((v) => v.toISOString()),
+    endpoint: z.string(),
+    eventTypes: z.array(z.string()),
+    id: z.string(),
+    secret: z.string(),
+    updatedAt: z.date().transform((v) => v.toISOString()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WebhooksConfig$ {
+    /** @deprecated use `WebhooksConfig$inboundSchema` instead. */
+    export const inboundSchema = WebhooksConfig$inboundSchema;
+    /** @deprecated use `WebhooksConfig$outboundSchema` instead. */
+    export const outboundSchema = WebhooksConfig$outboundSchema;
+    /** @deprecated use `WebhooksConfig$Outbound` instead. */
+    export type Outbound = WebhooksConfig$Outbound;
 }

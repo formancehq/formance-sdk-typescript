@@ -17,38 +17,67 @@ export type MigrationInfo = {
 };
 
 /** @internal */
+export const State$inboundSchema: z.ZodNativeEnum<typeof State> = z.nativeEnum(State);
+
+/** @internal */
+export const State$outboundSchema: z.ZodNativeEnum<typeof State> = State$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace State$ {
-    export const inboundSchema = z.nativeEnum(State);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `State$inboundSchema` instead. */
+    export const inboundSchema = State$inboundSchema;
+    /** @deprecated use `State$outboundSchema` instead. */
+    export const outboundSchema = State$outboundSchema;
 }
 
 /** @internal */
-export namespace MigrationInfo$ {
-    export const inboundSchema: z.ZodType<MigrationInfo, z.ZodTypeDef, unknown> = z.object({
+export const MigrationInfo$inboundSchema: z.ZodType<MigrationInfo, z.ZodTypeDef, unknown> =
+    z.object({
         date: z
             .string()
             .datetime({ offset: true })
             .transform((v) => new Date(v))
             .optional(),
         name: z.string().optional(),
-        state: State$.inboundSchema.optional(),
+        state: State$inboundSchema.optional(),
         version: z.number().int().optional(),
     });
 
-    export type Outbound = {
-        date?: string | undefined;
-        name?: string | undefined;
-        state?: string | undefined;
-        version?: number | undefined;
-    };
+/** @internal */
+export type MigrationInfo$Outbound = {
+    date?: string | undefined;
+    name?: string | undefined;
+    state?: string | undefined;
+    version?: number | undefined;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MigrationInfo> = z.object({
-        date: z
-            .date()
-            .transform((v) => v.toISOString())
-            .optional(),
-        name: z.string().optional(),
-        state: State$.outboundSchema.optional(),
-        version: z.number().int().optional(),
-    });
+/** @internal */
+export const MigrationInfo$outboundSchema: z.ZodType<
+    MigrationInfo$Outbound,
+    z.ZodTypeDef,
+    MigrationInfo
+> = z.object({
+    date: z
+        .date()
+        .transform((v) => v.toISOString())
+        .optional(),
+    name: z.string().optional(),
+    state: State$outboundSchema.optional(),
+    version: z.number().int().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace MigrationInfo$ {
+    /** @deprecated use `MigrationInfo$inboundSchema` instead. */
+    export const inboundSchema = MigrationInfo$inboundSchema;
+    /** @deprecated use `MigrationInfo$outboundSchema` instead. */
+    export const outboundSchema = MigrationInfo$outboundSchema;
+    /** @deprecated use `MigrationInfo$Outbound` instead. */
+    export type Outbound = MigrationInfo$Outbound;
 }

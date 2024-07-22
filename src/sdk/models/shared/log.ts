@@ -18,37 +18,61 @@ export type Log = {
 };
 
 /** @internal */
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+
+/** @internal */
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = Type$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Type$ {
-    export const inboundSchema = z.nativeEnum(Type);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `Type$inboundSchema` instead. */
+    export const inboundSchema = Type$inboundSchema;
+    /** @deprecated use `Type$outboundSchema` instead. */
+    export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
+export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z.object({
+    data: z.record(z.any()),
+    date: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    hash: z.string(),
+    id: z.number().int(),
+    type: Type$inboundSchema,
+});
+
+/** @internal */
+export type Log$Outbound = {
+    data: { [k: string]: any };
+    date: string;
+    hash: string;
+    id: number;
+    type: string;
+};
+
+/** @internal */
+export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z.object({
+    data: z.record(z.any()),
+    date: z.date().transform((v) => v.toISOString()),
+    hash: z.string(),
+    id: z.number().int(),
+    type: Type$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Log$ {
-    export const inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z.object({
-        data: z.record(z.any()),
-        date: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        hash: z.string(),
-        id: z.number().int(),
-        type: Type$.inboundSchema,
-    });
-
-    export type Outbound = {
-        data: { [k: string]: any };
-        date: string;
-        hash: string;
-        id: number;
-        type: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Log> = z.object({
-        data: z.record(z.any()),
-        date: z.date().transform((v) => v.toISOString()),
-        hash: z.string(),
-        id: z.number().int(),
-        type: Type$.outboundSchema,
-    });
+    /** @deprecated use `Log$inboundSchema` instead. */
+    export const inboundSchema = Log$inboundSchema;
+    /** @deprecated use `Log$outboundSchema` instead. */
+    export const outboundSchema = Log$outboundSchema;
+    /** @deprecated use `Log$Outbound` instead. */
+    export type Outbound = Log$Outbound;
 }

@@ -13,33 +13,49 @@ export type ReverseTransferInitiationRequest = {
 };
 
 /** @internal */
+export const ReverseTransferInitiationRequest$inboundSchema: z.ZodType<
+    ReverseTransferInitiationRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    amount: z.number().transform((v) => BigInt(v)),
+    asset: z.string(),
+    description: z.string(),
+    metadata: z.nullable(z.record(z.string())),
+    reference: z.string(),
+});
+
+/** @internal */
+export type ReverseTransferInitiationRequest$Outbound = {
+    amount: number;
+    asset: string;
+    description: string;
+    metadata: { [k: string]: string } | null;
+    reference: string;
+};
+
+/** @internal */
+export const ReverseTransferInitiationRequest$outboundSchema: z.ZodType<
+    ReverseTransferInitiationRequest$Outbound,
+    z.ZodTypeDef,
+    ReverseTransferInitiationRequest
+> = z.object({
+    amount: z.bigint().transform((v) => Number(v)),
+    asset: z.string(),
+    description: z.string(),
+    metadata: z.nullable(z.record(z.string())),
+    reference: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ReverseTransferInitiationRequest$ {
-    export const inboundSchema: z.ZodType<ReverseTransferInitiationRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            amount: z.number().transform((v) => BigInt(v)),
-            asset: z.string(),
-            description: z.string(),
-            metadata: z.nullable(z.record(z.string())),
-            reference: z.string(),
-        });
-
-    export type Outbound = {
-        amount: number;
-        asset: string;
-        description: string;
-        metadata: { [k: string]: string } | null;
-        reference: string;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        ReverseTransferInitiationRequest
-    > = z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-        description: z.string(),
-        metadata: z.nullable(z.record(z.string())),
-        reference: z.string(),
-    });
+    /** @deprecated use `ReverseTransferInitiationRequest$inboundSchema` instead. */
+    export const inboundSchema = ReverseTransferInitiationRequest$inboundSchema;
+    /** @deprecated use `ReverseTransferInitiationRequest$outboundSchema` instead. */
+    export const outboundSchema = ReverseTransferInitiationRequest$outboundSchema;
+    /** @deprecated use `ReverseTransferInitiationRequest$Outbound` instead. */
+    export type Outbound = ReverseTransferInitiationRequest$Outbound;
 }

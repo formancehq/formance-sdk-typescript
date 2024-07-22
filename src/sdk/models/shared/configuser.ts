@@ -12,25 +12,39 @@ export type ConfigUser = {
 };
 
 /** @internal */
+export const ConfigUser$inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, unknown> = z.object({
+    endpoint: z.string(),
+    eventTypes: z.array(z.string()),
+    name: z.string().optional(),
+    secret: z.string().optional(),
+});
+
+/** @internal */
+export type ConfigUser$Outbound = {
+    endpoint: string;
+    eventTypes: Array<string>;
+    name?: string | undefined;
+    secret?: string | undefined;
+};
+
+/** @internal */
+export const ConfigUser$outboundSchema: z.ZodType<ConfigUser$Outbound, z.ZodTypeDef, ConfigUser> =
+    z.object({
+        endpoint: z.string(),
+        eventTypes: z.array(z.string()),
+        name: z.string().optional(),
+        secret: z.string().optional(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ConfigUser$ {
-    export const inboundSchema: z.ZodType<ConfigUser, z.ZodTypeDef, unknown> = z.object({
-        endpoint: z.string(),
-        eventTypes: z.array(z.string()),
-        name: z.string().optional(),
-        secret: z.string().optional(),
-    });
-
-    export type Outbound = {
-        endpoint: string;
-        eventTypes: Array<string>;
-        name?: string | undefined;
-        secret?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigUser> = z.object({
-        endpoint: z.string(),
-        eventTypes: z.array(z.string()),
-        name: z.string().optional(),
-        secret: z.string().optional(),
-    });
+    /** @deprecated use `ConfigUser$inboundSchema` instead. */
+    export const inboundSchema = ConfigUser$inboundSchema;
+    /** @deprecated use `ConfigUser$outboundSchema` instead. */
+    export const outboundSchema = ConfigUser$outboundSchema;
+    /** @deprecated use `ConfigUser$Outbound` instead. */
+    export type Outbound = ConfigUser$Outbound;
 }

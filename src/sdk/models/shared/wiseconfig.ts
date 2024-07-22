@@ -17,22 +17,36 @@ export type WiseConfig = {
 };
 
 /** @internal */
+export const WiseConfig$inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, unknown> = z.object({
+    apiKey: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type WiseConfig$Outbound = {
+    apiKey: string;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const WiseConfig$outboundSchema: z.ZodType<WiseConfig$Outbound, z.ZodTypeDef, WiseConfig> =
+    z.object({
+        apiKey: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WiseConfig$ {
-    export const inboundSchema: z.ZodType<WiseConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WiseConfig> = z.object({
-        apiKey: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `WiseConfig$inboundSchema` instead. */
+    export const inboundSchema = WiseConfig$inboundSchema;
+    /** @deprecated use `WiseConfig$outboundSchema` instead. */
+    export const outboundSchema = WiseConfig$outboundSchema;
+    /** @deprecated use `WiseConfig$Outbound` instead. */
+    export type Outbound = WiseConfig$Outbound;
 }

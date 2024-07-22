@@ -14,7 +14,22 @@ export enum OrchestrationPaymentStatus {
 }
 
 /** @internal */
+export const OrchestrationPaymentStatus$inboundSchema: z.ZodNativeEnum<
+    typeof OrchestrationPaymentStatus
+> = z.nativeEnum(OrchestrationPaymentStatus);
+
+/** @internal */
+export const OrchestrationPaymentStatus$outboundSchema: z.ZodNativeEnum<
+    typeof OrchestrationPaymentStatus
+> = OrchestrationPaymentStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace OrchestrationPaymentStatus$ {
-    export const inboundSchema = z.nativeEnum(OrchestrationPaymentStatus);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `OrchestrationPaymentStatus$inboundSchema` instead. */
+    export const inboundSchema = OrchestrationPaymentStatus$inboundSchema;
+    /** @deprecated use `OrchestrationPaymentStatus$outboundSchema` instead. */
+    export const outboundSchema = OrchestrationPaymentStatus$outboundSchema;
 }

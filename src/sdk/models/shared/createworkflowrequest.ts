@@ -10,20 +10,40 @@ export type CreateWorkflowRequest = {
 };
 
 /** @internal */
+export const CreateWorkflowRequest$inboundSchema: z.ZodType<
+    CreateWorkflowRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    name: z.string().optional(),
+    stages: z.array(z.record(z.any())),
+});
+
+/** @internal */
+export type CreateWorkflowRequest$Outbound = {
+    name?: string | undefined;
+    stages: Array<{ [k: string]: any }>;
+};
+
+/** @internal */
+export const CreateWorkflowRequest$outboundSchema: z.ZodType<
+    CreateWorkflowRequest$Outbound,
+    z.ZodTypeDef,
+    CreateWorkflowRequest
+> = z.object({
+    name: z.string().optional(),
+    stages: z.array(z.record(z.any())),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateWorkflowRequest$ {
-    export const inboundSchema: z.ZodType<CreateWorkflowRequest, z.ZodTypeDef, unknown> = z.object({
-        name: z.string().optional(),
-        stages: z.array(z.record(z.any())),
-    });
-
-    export type Outbound = {
-        name?: string | undefined;
-        stages: Array<{ [k: string]: any }>;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateWorkflowRequest> =
-        z.object({
-            name: z.string().optional(),
-            stages: z.array(z.record(z.any())),
-        });
+    /** @deprecated use `CreateWorkflowRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateWorkflowRequest$inboundSchema;
+    /** @deprecated use `CreateWorkflowRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateWorkflowRequest$outboundSchema;
+    /** @deprecated use `CreateWorkflowRequest$Outbound` instead. */
+    export type Outbound = CreateWorkflowRequest$Outbound;
 }

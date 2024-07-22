@@ -11,22 +11,35 @@ export type User = {
 };
 
 /** @internal */
+export const User$inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z.object({
+    email: z.string().optional(),
+    id: z.string().optional(),
+    subject: z.string().optional(),
+});
+
+/** @internal */
+export type User$Outbound = {
+    email?: string | undefined;
+    id?: string | undefined;
+    subject?: string | undefined;
+};
+
+/** @internal */
+export const User$outboundSchema: z.ZodType<User$Outbound, z.ZodTypeDef, User> = z.object({
+    email: z.string().optional(),
+    id: z.string().optional(),
+    subject: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace User$ {
-    export const inboundSchema: z.ZodType<User, z.ZodTypeDef, unknown> = z.object({
-        email: z.string().optional(),
-        id: z.string().optional(),
-        subject: z.string().optional(),
-    });
-
-    export type Outbound = {
-        email?: string | undefined;
-        id?: string | undefined;
-        subject?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, User> = z.object({
-        email: z.string().optional(),
-        id: z.string().optional(),
-        subject: z.string().optional(),
-    });
+    /** @deprecated use `User$inboundSchema` instead. */
+    export const inboundSchema = User$inboundSchema;
+    /** @deprecated use `User$outboundSchema` instead. */
+    export const outboundSchema = User$outboundSchema;
+    /** @deprecated use `User$Outbound` instead. */
+    export type Outbound = User$Outbound;
 }

@@ -13,28 +13,41 @@ export type Secret = {
 };
 
 /** @internal */
+export const Secret$inboundSchema: z.ZodType<Secret, z.ZodTypeDef, unknown> = z.object({
+    clear: z.string(),
+    id: z.string(),
+    lastDigits: z.string(),
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+});
+
+/** @internal */
+export type Secret$Outbound = {
+    clear: string;
+    id: string;
+    lastDigits: string;
+    metadata?: { [k: string]: any } | undefined;
+    name: string;
+};
+
+/** @internal */
+export const Secret$outboundSchema: z.ZodType<Secret$Outbound, z.ZodTypeDef, Secret> = z.object({
+    clear: z.string(),
+    id: z.string(),
+    lastDigits: z.string(),
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Secret$ {
-    export const inboundSchema: z.ZodType<Secret, z.ZodTypeDef, unknown> = z.object({
-        clear: z.string(),
-        id: z.string(),
-        lastDigits: z.string(),
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-    });
-
-    export type Outbound = {
-        clear: string;
-        id: string;
-        lastDigits: string;
-        metadata?: { [k: string]: any } | undefined;
-        name: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Secret> = z.object({
-        clear: z.string(),
-        id: z.string(),
-        lastDigits: z.string(),
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-    });
+    /** @deprecated use `Secret$inboundSchema` instead. */
+    export const inboundSchema = Secret$inboundSchema;
+    /** @deprecated use `Secret$outboundSchema` instead. */
+    export const outboundSchema = Secret$outboundSchema;
+    /** @deprecated use `Secret$Outbound` instead. */
+    export type Outbound = Secret$Outbound;
 }

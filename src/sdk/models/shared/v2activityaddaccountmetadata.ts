@@ -11,24 +11,43 @@ export type V2ActivityAddAccountMetadata = {
 };
 
 /** @internal */
+export const V2ActivityAddAccountMetadata$inboundSchema: z.ZodType<
+    V2ActivityAddAccountMetadata,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+    ledger: z.string(),
+    metadata: z.record(z.string()),
+});
+
+/** @internal */
+export type V2ActivityAddAccountMetadata$Outbound = {
+    id: string;
+    ledger: string;
+    metadata: { [k: string]: string };
+};
+
+/** @internal */
+export const V2ActivityAddAccountMetadata$outboundSchema: z.ZodType<
+    V2ActivityAddAccountMetadata$Outbound,
+    z.ZodTypeDef,
+    V2ActivityAddAccountMetadata
+> = z.object({
+    id: z.string(),
+    ledger: z.string(),
+    metadata: z.record(z.string()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2ActivityAddAccountMetadata$ {
-    export const inboundSchema: z.ZodType<V2ActivityAddAccountMetadata, z.ZodTypeDef, unknown> =
-        z.object({
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-        });
-
-    export type Outbound = {
-        id: string;
-        ledger: string;
-        metadata: { [k: string]: string };
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2ActivityAddAccountMetadata> =
-        z.object({
-            id: z.string(),
-            ledger: z.string(),
-            metadata: z.record(z.string()),
-        });
+    /** @deprecated use `V2ActivityAddAccountMetadata$inboundSchema` instead. */
+    export const inboundSchema = V2ActivityAddAccountMetadata$inboundSchema;
+    /** @deprecated use `V2ActivityAddAccountMetadata$outboundSchema` instead. */
+    export const outboundSchema = V2ActivityAddAccountMetadata$outboundSchema;
+    /** @deprecated use `V2ActivityAddAccountMetadata$Outbound` instead. */
+    export type Outbound = V2ActivityAddAccountMetadata$Outbound;
 }

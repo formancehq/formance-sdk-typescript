@@ -4,13 +4,21 @@
 
 import {
     TransferInitiationAdjusments,
-    TransferInitiationAdjusments$,
-} from "./transferinitiationadjusments";
+    TransferInitiationAdjusments$inboundSchema,
+    TransferInitiationAdjusments$Outbound,
+    TransferInitiationAdjusments$outboundSchema,
+} from "./transferinitiationadjusments.js";
 import {
     TransferInitiationPayments,
-    TransferInitiationPayments$,
-} from "./transferinitiationpayments";
-import { TransferInitiationStatus, TransferInitiationStatus$ } from "./transferinitiationstatus";
+    TransferInitiationPayments$inboundSchema,
+    TransferInitiationPayments$Outbound,
+    TransferInitiationPayments$outboundSchema,
+} from "./transferinitiationpayments.js";
+import {
+    TransferInitiationStatus,
+    TransferInitiationStatus$inboundSchema,
+    TransferInitiationStatus$outboundSchema,
+} from "./transferinitiationstatus.js";
 import * as z from "zod";
 
 export enum TransferInitiationType {
@@ -39,76 +47,110 @@ export type TransferInitiation = {
 };
 
 /** @internal */
+export const TransferInitiationType$inboundSchema: z.ZodNativeEnum<typeof TransferInitiationType> =
+    z.nativeEnum(TransferInitiationType);
+
+/** @internal */
+export const TransferInitiationType$outboundSchema: z.ZodNativeEnum<typeof TransferInitiationType> =
+    TransferInitiationType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TransferInitiationType$ {
-    export const inboundSchema = z.nativeEnum(TransferInitiationType);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `TransferInitiationType$inboundSchema` instead. */
+    export const inboundSchema = TransferInitiationType$inboundSchema;
+    /** @deprecated use `TransferInitiationType$outboundSchema` instead. */
+    export const outboundSchema = TransferInitiationType$outboundSchema;
 }
 
 /** @internal */
+export const TransferInitiation$inboundSchema: z.ZodType<
+    TransferInitiation,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    amount: z.number().transform((v) => BigInt(v)),
+    asset: z.string(),
+    connectorID: z.string(),
+    createdAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    description: z.string(),
+    destinationAccountID: z.string(),
+    error: z.string(),
+    id: z.string(),
+    initialAmount: z.number().transform((v) => BigInt(v)),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    reference: z.string(),
+    relatedAdjustments: z.array(TransferInitiationAdjusments$inboundSchema).optional(),
+    relatedPayments: z.array(TransferInitiationPayments$inboundSchema).optional(),
+    scheduledAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    sourceAccountID: z.string(),
+    status: TransferInitiationStatus$inboundSchema,
+    type: TransferInitiationType$inboundSchema,
+});
+
+/** @internal */
+export type TransferInitiation$Outbound = {
+    amount: number;
+    asset: string;
+    connectorID: string;
+    createdAt: string;
+    description: string;
+    destinationAccountID: string;
+    error: string;
+    id: string;
+    initialAmount: number;
+    metadata?: { [k: string]: string } | null | undefined;
+    reference: string;
+    relatedAdjustments?: Array<TransferInitiationAdjusments$Outbound> | undefined;
+    relatedPayments?: Array<TransferInitiationPayments$Outbound> | undefined;
+    scheduledAt: string;
+    sourceAccountID: string;
+    status: string;
+    type: string;
+};
+
+/** @internal */
+export const TransferInitiation$outboundSchema: z.ZodType<
+    TransferInitiation$Outbound,
+    z.ZodTypeDef,
+    TransferInitiation
+> = z.object({
+    amount: z.bigint().transform((v) => Number(v)),
+    asset: z.string(),
+    connectorID: z.string(),
+    createdAt: z.date().transform((v) => v.toISOString()),
+    description: z.string(),
+    destinationAccountID: z.string(),
+    error: z.string(),
+    id: z.string(),
+    initialAmount: z.bigint().transform((v) => Number(v)),
+    metadata: z.nullable(z.record(z.string())).optional(),
+    reference: z.string(),
+    relatedAdjustments: z.array(TransferInitiationAdjusments$outboundSchema).optional(),
+    relatedPayments: z.array(TransferInitiationPayments$outboundSchema).optional(),
+    scheduledAt: z.date().transform((v) => v.toISOString()),
+    sourceAccountID: z.string(),
+    status: TransferInitiationStatus$outboundSchema,
+    type: TransferInitiationType$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TransferInitiation$ {
-    export const inboundSchema: z.ZodType<TransferInitiation, z.ZodTypeDef, unknown> = z.object({
-        amount: z.number().transform((v) => BigInt(v)),
-        asset: z.string(),
-        connectorID: z.string(),
-        createdAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        description: z.string(),
-        destinationAccountID: z.string(),
-        error: z.string(),
-        id: z.string(),
-        initialAmount: z.number().transform((v) => BigInt(v)),
-        metadata: z.nullable(z.record(z.string())).optional(),
-        reference: z.string(),
-        relatedAdjustments: z.array(TransferInitiationAdjusments$.inboundSchema).optional(),
-        relatedPayments: z.array(TransferInitiationPayments$.inboundSchema).optional(),
-        scheduledAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        sourceAccountID: z.string(),
-        status: TransferInitiationStatus$.inboundSchema,
-        type: TransferInitiationType$.inboundSchema,
-    });
-
-    export type Outbound = {
-        amount: number;
-        asset: string;
-        connectorID: string;
-        createdAt: string;
-        description: string;
-        destinationAccountID: string;
-        error: string;
-        id: string;
-        initialAmount: number;
-        metadata?: { [k: string]: string } | null | undefined;
-        reference: string;
-        relatedAdjustments?: Array<TransferInitiationAdjusments$.Outbound> | undefined;
-        relatedPayments?: Array<TransferInitiationPayments$.Outbound> | undefined;
-        scheduledAt: string;
-        sourceAccountID: string;
-        status: string;
-        type: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferInitiation> = z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-        connectorID: z.string(),
-        createdAt: z.date().transform((v) => v.toISOString()),
-        description: z.string(),
-        destinationAccountID: z.string(),
-        error: z.string(),
-        id: z.string(),
-        initialAmount: z.bigint().transform((v) => Number(v)),
-        metadata: z.nullable(z.record(z.string())).optional(),
-        reference: z.string(),
-        relatedAdjustments: z.array(TransferInitiationAdjusments$.outboundSchema).optional(),
-        relatedPayments: z.array(TransferInitiationPayments$.outboundSchema).optional(),
-        scheduledAt: z.date().transform((v) => v.toISOString()),
-        sourceAccountID: z.string(),
-        status: TransferInitiationStatus$.outboundSchema,
-        type: TransferInitiationType$.outboundSchema,
-    });
+    /** @deprecated use `TransferInitiation$inboundSchema` instead. */
+    export const inboundSchema = TransferInitiation$inboundSchema;
+    /** @deprecated use `TransferInitiation$outboundSchema` instead. */
+    export const outboundSchema = TransferInitiation$outboundSchema;
+    /** @deprecated use `TransferInitiation$Outbound` instead. */
+    export type Outbound = TransferInitiation$Outbound;
 }

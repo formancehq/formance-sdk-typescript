@@ -3,9 +3,9 @@
  */
 
 import { never as znever } from "zod";
-import { parse } from "./schemas";
-import { isPlainObject } from "./is-plain-object";
-import * as errors from "../sdk/models/errors";
+import { parse } from "./schemas.js";
+import { isPlainObject } from "./is-plain-object.js";
+import { SDKError } from "../sdk/models/errors/sdkerror.js";
 
 export type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
@@ -284,6 +284,7 @@ type ResponsePredicateMatch<Result> = {
     key: string | undefined;
     err: boolean;
     fail: boolean;
+    sseSentinel?: string | undefined;
 };
 
 type ResponsePredicateOptions = {
@@ -291,6 +292,8 @@ type ResponsePredicateOptions = {
     ctype?: string;
     /** Pass HTTP headers to deserializer. */
     hdrs?: boolean;
+    /** A value for an SSE event's data field that indicates a stream should be terminated. */
+    sseSentinel?: string;
 } & (
     | {
           /** The result key to store the deserialized value into. */
@@ -326,6 +329,7 @@ export class ResponseMatcher<Result> {
         const key = opts?.key;
         const err = !!opts?.err;
         const fail = !!opts?.fail;
+        const sseSentinel = opts?.sseSentinel;
         this.predicates.push({
             method,
             codes,
@@ -335,6 +339,7 @@ export class ResponseMatcher<Result> {
             key,
             err,
             fail,
+            sseSentinel,
         });
         return this;
     }
@@ -406,7 +411,7 @@ export class ResponseMatcher<Result> {
         }
         if (pred == null) {
             const responseBody = await response.text();
-            throw new errors.SDKError(
+            throw new SDKError(
                 "Unexpected API response status or content-type",
                 response,
                 responseBody
@@ -446,11 +451,7 @@ export class ResponseMatcher<Result> {
         const resultKey = pred.key || options?.resultKey;
         let data: unknown;
         if (pred.fail) {
-            throw new errors.SDKError(
-                "API error occurred",
-                response,
-                typeof raw === "string" ? raw : ""
-            );
+            throw new SDKError("API error occurred", response, typeof raw === "string" ? raw : "");
         } else if (pred.err) {
             data = {
                 ...options?.extraFields,

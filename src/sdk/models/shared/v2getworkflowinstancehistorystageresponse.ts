@@ -4,8 +4,10 @@
 
 import {
     V2WorkflowInstanceHistoryStage,
-    V2WorkflowInstanceHistoryStage$,
-} from "./v2workflowinstancehistorystage";
+    V2WorkflowInstanceHistoryStage$inboundSchema,
+    V2WorkflowInstanceHistoryStage$Outbound,
+    V2WorkflowInstanceHistoryStage$outboundSchema,
+} from "./v2workflowinstancehistorystage.js";
 import * as z from "zod";
 
 export type V2GetWorkflowInstanceHistoryStageResponse = {
@@ -13,24 +15,37 @@ export type V2GetWorkflowInstanceHistoryStageResponse = {
 };
 
 /** @internal */
+export const V2GetWorkflowInstanceHistoryStageResponse$inboundSchema: z.ZodType<
+    V2GetWorkflowInstanceHistoryStageResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z.array(V2WorkflowInstanceHistoryStage$inboundSchema),
+});
+
+/** @internal */
+export type V2GetWorkflowInstanceHistoryStageResponse$Outbound = {
+    data: Array<V2WorkflowInstanceHistoryStage$Outbound>;
+};
+
+/** @internal */
+export const V2GetWorkflowInstanceHistoryStageResponse$outboundSchema: z.ZodType<
+    V2GetWorkflowInstanceHistoryStageResponse$Outbound,
+    z.ZodTypeDef,
+    V2GetWorkflowInstanceHistoryStageResponse
+> = z.object({
+    data: z.array(V2WorkflowInstanceHistoryStage$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2GetWorkflowInstanceHistoryStageResponse$ {
-    export const inboundSchema: z.ZodType<
-        V2GetWorkflowInstanceHistoryStageResponse,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        data: z.array(V2WorkflowInstanceHistoryStage$.inboundSchema),
-    });
-
-    export type Outbound = {
-        data: Array<V2WorkflowInstanceHistoryStage$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        V2GetWorkflowInstanceHistoryStageResponse
-    > = z.object({
-        data: z.array(V2WorkflowInstanceHistoryStage$.outboundSchema),
-    });
+    /** @deprecated use `V2GetWorkflowInstanceHistoryStageResponse$inboundSchema` instead. */
+    export const inboundSchema = V2GetWorkflowInstanceHistoryStageResponse$inboundSchema;
+    /** @deprecated use `V2GetWorkflowInstanceHistoryStageResponse$outboundSchema` instead. */
+    export const outboundSchema = V2GetWorkflowInstanceHistoryStageResponse$outboundSchema;
+    /** @deprecated use `V2GetWorkflowInstanceHistoryStageResponse$Outbound` instead. */
+    export type Outbound = V2GetWorkflowInstanceHistoryStageResponse$Outbound;
 }

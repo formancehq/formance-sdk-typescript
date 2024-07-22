@@ -4,8 +4,10 @@
 
 import {
     AccountWithVolumesAndBalances,
-    AccountWithVolumesAndBalances$,
-} from "./accountwithvolumesandbalances";
+    AccountWithVolumesAndBalances$inboundSchema,
+    AccountWithVolumesAndBalances$Outbound,
+    AccountWithVolumesAndBalances$outboundSchema,
+} from "./accountwithvolumesandbalances.js";
 import * as z from "zod";
 
 export type AccountResponse = {
@@ -13,16 +15,34 @@ export type AccountResponse = {
 };
 
 /** @internal */
+export const AccountResponse$inboundSchema: z.ZodType<AccountResponse, z.ZodTypeDef, unknown> =
+    z.object({
+        data: AccountWithVolumesAndBalances$inboundSchema,
+    });
+
+/** @internal */
+export type AccountResponse$Outbound = {
+    data: AccountWithVolumesAndBalances$Outbound;
+};
+
+/** @internal */
+export const AccountResponse$outboundSchema: z.ZodType<
+    AccountResponse$Outbound,
+    z.ZodTypeDef,
+    AccountResponse
+> = z.object({
+    data: AccountWithVolumesAndBalances$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AccountResponse$ {
-    export const inboundSchema: z.ZodType<AccountResponse, z.ZodTypeDef, unknown> = z.object({
-        data: AccountWithVolumesAndBalances$.inboundSchema,
-    });
-
-    export type Outbound = {
-        data: AccountWithVolumesAndBalances$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AccountResponse> = z.object({
-        data: AccountWithVolumesAndBalances$.outboundSchema,
-    });
+    /** @deprecated use `AccountResponse$inboundSchema` instead. */
+    export const inboundSchema = AccountResponse$inboundSchema;
+    /** @deprecated use `AccountResponse$outboundSchema` instead. */
+    export const outboundSchema = AccountResponse$outboundSchema;
+    /** @deprecated use `AccountResponse$Outbound` instead. */
+    export type Outbound = AccountResponse$Outbound;
 }

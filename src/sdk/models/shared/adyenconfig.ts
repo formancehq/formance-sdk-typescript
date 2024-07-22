@@ -19,28 +19,45 @@ export type AdyenConfig = {
 };
 
 /** @internal */
+export const AdyenConfig$inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z.object({
+    apiKey: z.string(),
+    hmacKey: z.string(),
+    liveEndpointPrefix: z.string().optional(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type AdyenConfig$Outbound = {
+    apiKey: string;
+    hmacKey: string;
+    liveEndpointPrefix?: string | undefined;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const AdyenConfig$outboundSchema: z.ZodType<
+    AdyenConfig$Outbound,
+    z.ZodTypeDef,
+    AdyenConfig
+> = z.object({
+    apiKey: z.string(),
+    hmacKey: z.string(),
+    liveEndpointPrefix: z.string().optional(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AdyenConfig$ {
-    export const inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        hmacKey: z.string(),
-        liveEndpointPrefix: z.string().optional(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        hmacKey: string;
-        liveEndpointPrefix?: string | undefined;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AdyenConfig> = z.object({
-        apiKey: z.string(),
-        hmacKey: z.string(),
-        liveEndpointPrefix: z.string().optional(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `AdyenConfig$inboundSchema` instead. */
+    export const inboundSchema = AdyenConfig$inboundSchema;
+    /** @deprecated use `AdyenConfig$outboundSchema` instead. */
+    export const outboundSchema = AdyenConfig$outboundSchema;
+    /** @deprecated use `AdyenConfig$Outbound` instead. */
+    export type Outbound = AdyenConfig$Outbound;
 }

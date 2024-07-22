@@ -25,10 +25,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 npm add @formance/formance-sdk
 ```
 
+### PNPM
+
+```bash
+pnpm add @formance/formance-sdk
+```
+
+### Bun
+
+```bash
+bun add @formance/formance-sdk
+```
+
 ### Yarn
 
 ```bash
-yarn add @formance/formance-sdk
+yarn add @formance/formance-sdk zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -274,7 +289,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import * as errors from "@formance/formance-sdk/sdk/models/errors";
+import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
     authorization: "<YOUR_AUTHORIZATION_HERE>",
@@ -303,7 +318,7 @@ async function run() {
         });
     } catch (err) {
         switch (true) {
-            case err instanceof errors.SDKValidationError: {
+            case err instanceof SDKValidationError: {
                 // Validation errors can be pretty-printed
                 console.error(err.pretty());
                 // Raw value may also be inspected
@@ -463,6 +478,71 @@ run();
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+    const result = await sdk.getOIDCWellKnowns({
+        retries: {
+            strategy: "backoff",
+            backoff: {
+                initialInterval: 1,
+                maxInterval: 50,
+                exponent: 1.1,
+                maxElapsedTime: 100,
+            },
+            retryConnectionErrors: false,
+        },
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+    const result = await sdk.getOIDCWellKnowns();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

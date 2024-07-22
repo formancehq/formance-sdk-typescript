@@ -19,7 +19,20 @@ export enum V2ErrorsEnum {
 }
 
 /** @internal */
+export const V2ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof V2ErrorsEnum> =
+    z.nativeEnum(V2ErrorsEnum);
+
+/** @internal */
+export const V2ErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof V2ErrorsEnum> =
+    V2ErrorsEnum$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2ErrorsEnum$ {
-    export const inboundSchema = z.nativeEnum(V2ErrorsEnum);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `V2ErrorsEnum$inboundSchema` instead. */
+    export const inboundSchema = V2ErrorsEnum$inboundSchema;
+    /** @deprecated use `V2ErrorsEnum$outboundSchema` instead. */
+    export const outboundSchema = V2ErrorsEnum$outboundSchema;
 }

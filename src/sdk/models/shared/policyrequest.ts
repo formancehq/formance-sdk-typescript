@@ -12,25 +12,43 @@ export type PolicyRequest = {
 };
 
 /** @internal */
+export const PolicyRequest$inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        ledgerName: z.string(),
+        ledgerQuery: z.record(z.any()),
+        name: z.string(),
+        paymentsPoolID: z.string(),
+    });
+
+/** @internal */
+export type PolicyRequest$Outbound = {
+    ledgerName: string;
+    ledgerQuery: { [k: string]: any };
+    name: string;
+    paymentsPoolID: string;
+};
+
+/** @internal */
+export const PolicyRequest$outboundSchema: z.ZodType<
+    PolicyRequest$Outbound,
+    z.ZodTypeDef,
+    PolicyRequest
+> = z.object({
+    ledgerName: z.string(),
+    ledgerQuery: z.record(z.any()),
+    name: z.string(),
+    paymentsPoolID: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PolicyRequest$ {
-    export const inboundSchema: z.ZodType<PolicyRequest, z.ZodTypeDef, unknown> = z.object({
-        ledgerName: z.string(),
-        ledgerQuery: z.record(z.any()),
-        name: z.string(),
-        paymentsPoolID: z.string(),
-    });
-
-    export type Outbound = {
-        ledgerName: string;
-        ledgerQuery: { [k: string]: any };
-        name: string;
-        paymentsPoolID: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PolicyRequest> = z.object({
-        ledgerName: z.string(),
-        ledgerQuery: z.record(z.any()),
-        name: z.string(),
-        paymentsPoolID: z.string(),
-    });
+    /** @deprecated use `PolicyRequest$inboundSchema` instead. */
+    export const inboundSchema = PolicyRequest$inboundSchema;
+    /** @deprecated use `PolicyRequest$outboundSchema` instead. */
+    export const outboundSchema = PolicyRequest$outboundSchema;
+    /** @deprecated use `PolicyRequest$Outbound` instead. */
+    export type Outbound = PolicyRequest$Outbound;
 }

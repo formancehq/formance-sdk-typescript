@@ -4,8 +4,9 @@
 
 import {
     OrchestrationPaymentStatus,
-    OrchestrationPaymentStatus$,
-} from "./orchestrationpaymentstatus";
+    OrchestrationPaymentStatus$inboundSchema,
+    OrchestrationPaymentStatus$outboundSchema,
+} from "./orchestrationpaymentstatus.js";
 import * as z from "zod";
 
 export type OrchestrationPaymentAdjustmentRaw = {};
@@ -19,50 +20,82 @@ export type OrchestrationPaymentAdjustment = {
 };
 
 /** @internal */
+export const OrchestrationPaymentAdjustmentRaw$inboundSchema: z.ZodType<
+    OrchestrationPaymentAdjustmentRaw,
+    z.ZodTypeDef,
+    unknown
+> = z.object({});
+
+/** @internal */
+export type OrchestrationPaymentAdjustmentRaw$Outbound = {};
+
+/** @internal */
+export const OrchestrationPaymentAdjustmentRaw$outboundSchema: z.ZodType<
+    OrchestrationPaymentAdjustmentRaw$Outbound,
+    z.ZodTypeDef,
+    OrchestrationPaymentAdjustmentRaw
+> = z.object({});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace OrchestrationPaymentAdjustmentRaw$ {
-    export const inboundSchema: z.ZodType<
-        OrchestrationPaymentAdjustmentRaw,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({});
-
-    export type Outbound = {};
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        OrchestrationPaymentAdjustmentRaw
-    > = z.object({});
+    /** @deprecated use `OrchestrationPaymentAdjustmentRaw$inboundSchema` instead. */
+    export const inboundSchema = OrchestrationPaymentAdjustmentRaw$inboundSchema;
+    /** @deprecated use `OrchestrationPaymentAdjustmentRaw$outboundSchema` instead. */
+    export const outboundSchema = OrchestrationPaymentAdjustmentRaw$outboundSchema;
+    /** @deprecated use `OrchestrationPaymentAdjustmentRaw$Outbound` instead. */
+    export type Outbound = OrchestrationPaymentAdjustmentRaw$Outbound;
 }
 
 /** @internal */
+export const OrchestrationPaymentAdjustment$inboundSchema: z.ZodType<
+    OrchestrationPaymentAdjustment,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    absolute: z.boolean(),
+    amount: z.number().transform((v) => BigInt(v)),
+    date: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$inboundSchema),
+    status: OrchestrationPaymentStatus$inboundSchema,
+});
+
+/** @internal */
+export type OrchestrationPaymentAdjustment$Outbound = {
+    absolute: boolean;
+    amount: number;
+    date: string;
+    raw: OrchestrationPaymentAdjustmentRaw$Outbound;
+    status: string;
+};
+
+/** @internal */
+export const OrchestrationPaymentAdjustment$outboundSchema: z.ZodType<
+    OrchestrationPaymentAdjustment$Outbound,
+    z.ZodTypeDef,
+    OrchestrationPaymentAdjustment
+> = z.object({
+    absolute: z.boolean(),
+    amount: z.bigint().transform((v) => Number(v)),
+    date: z.date().transform((v) => v.toISOString()),
+    raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$outboundSchema),
+    status: OrchestrationPaymentStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace OrchestrationPaymentAdjustment$ {
-    export const inboundSchema: z.ZodType<OrchestrationPaymentAdjustment, z.ZodTypeDef, unknown> =
-        z.object({
-            absolute: z.boolean(),
-            amount: z.number().transform((v) => BigInt(v)),
-            date: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-            raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.inboundSchema),
-            status: OrchestrationPaymentStatus$.inboundSchema,
-        });
-
-    export type Outbound = {
-        absolute: boolean;
-        amount: number;
-        date: string;
-        raw: OrchestrationPaymentAdjustmentRaw$.Outbound;
-        status: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, OrchestrationPaymentAdjustment> =
-        z.object({
-            absolute: z.boolean(),
-            amount: z.bigint().transform((v) => Number(v)),
-            date: z.date().transform((v) => v.toISOString()),
-            raw: z.lazy(() => OrchestrationPaymentAdjustmentRaw$.outboundSchema),
-            status: OrchestrationPaymentStatus$.outboundSchema,
-        });
+    /** @deprecated use `OrchestrationPaymentAdjustment$inboundSchema` instead. */
+    export const inboundSchema = OrchestrationPaymentAdjustment$inboundSchema;
+    /** @deprecated use `OrchestrationPaymentAdjustment$outboundSchema` instead. */
+    export const outboundSchema = OrchestrationPaymentAdjustment$outboundSchema;
+    /** @deprecated use `OrchestrationPaymentAdjustment$Outbound` instead. */
+    export type Outbound = OrchestrationPaymentAdjustment$Outbound;
 }

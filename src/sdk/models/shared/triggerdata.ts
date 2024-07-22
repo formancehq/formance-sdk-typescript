@@ -13,28 +13,45 @@ export type TriggerData = {
 };
 
 /** @internal */
+export const TriggerData$inboundSchema: z.ZodType<TriggerData, z.ZodTypeDef, unknown> = z.object({
+    event: z.string(),
+    filter: z.string().optional(),
+    name: z.string().optional(),
+    vars: z.record(z.any()).optional(),
+    workflowID: z.string(),
+});
+
+/** @internal */
+export type TriggerData$Outbound = {
+    event: string;
+    filter?: string | undefined;
+    name?: string | undefined;
+    vars?: { [k: string]: any } | undefined;
+    workflowID: string;
+};
+
+/** @internal */
+export const TriggerData$outboundSchema: z.ZodType<
+    TriggerData$Outbound,
+    z.ZodTypeDef,
+    TriggerData
+> = z.object({
+    event: z.string(),
+    filter: z.string().optional(),
+    name: z.string().optional(),
+    vars: z.record(z.any()).optional(),
+    workflowID: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TriggerData$ {
-    export const inboundSchema: z.ZodType<TriggerData, z.ZodTypeDef, unknown> = z.object({
-        event: z.string(),
-        filter: z.string().optional(),
-        name: z.string().optional(),
-        vars: z.record(z.any()).optional(),
-        workflowID: z.string(),
-    });
-
-    export type Outbound = {
-        event: string;
-        filter?: string | undefined;
-        name?: string | undefined;
-        vars?: { [k: string]: any } | undefined;
-        workflowID: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerData> = z.object({
-        event: z.string(),
-        filter: z.string().optional(),
-        name: z.string().optional(),
-        vars: z.record(z.any()).optional(),
-        workflowID: z.string(),
-    });
+    /** @deprecated use `TriggerData$inboundSchema` instead. */
+    export const inboundSchema = TriggerData$inboundSchema;
+    /** @deprecated use `TriggerData$outboundSchema` instead. */
+    export const outboundSchema = TriggerData$outboundSchema;
+    /** @deprecated use `TriggerData$Outbound` instead. */
+    export type Outbound = TriggerData$Outbound;
 }

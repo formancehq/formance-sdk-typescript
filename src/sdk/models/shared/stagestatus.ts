@@ -13,38 +13,55 @@ export type StageStatus = {
 };
 
 /** @internal */
+export const StageStatus$inboundSchema: z.ZodType<StageStatus, z.ZodTypeDef, unknown> = z.object({
+    error: z.string().optional(),
+    instanceID: z.string(),
+    stage: z.number(),
+    startedAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    terminatedAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v))
+        .optional(),
+});
+
+/** @internal */
+export type StageStatus$Outbound = {
+    error?: string | undefined;
+    instanceID: string;
+    stage: number;
+    startedAt: string;
+    terminatedAt?: string | undefined;
+};
+
+/** @internal */
+export const StageStatus$outboundSchema: z.ZodType<
+    StageStatus$Outbound,
+    z.ZodTypeDef,
+    StageStatus
+> = z.object({
+    error: z.string().optional(),
+    instanceID: z.string(),
+    stage: z.number(),
+    startedAt: z.date().transform((v) => v.toISOString()),
+    terminatedAt: z
+        .date()
+        .transform((v) => v.toISOString())
+        .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StageStatus$ {
-    export const inboundSchema: z.ZodType<StageStatus, z.ZodTypeDef, unknown> = z.object({
-        error: z.string().optional(),
-        instanceID: z.string(),
-        stage: z.number(),
-        startedAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        terminatedAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v))
-            .optional(),
-    });
-
-    export type Outbound = {
-        error?: string | undefined;
-        instanceID: string;
-        stage: number;
-        startedAt: string;
-        terminatedAt?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StageStatus> = z.object({
-        error: z.string().optional(),
-        instanceID: z.string(),
-        stage: z.number(),
-        startedAt: z.date().transform((v) => v.toISOString()),
-        terminatedAt: z
-            .date()
-            .transform((v) => v.toISOString())
-            .optional(),
-    });
+    /** @deprecated use `StageStatus$inboundSchema` instead. */
+    export const inboundSchema = StageStatus$inboundSchema;
+    /** @deprecated use `StageStatus$outboundSchema` instead. */
+    export const outboundSchema = StageStatus$outboundSchema;
+    /** @deprecated use `StageStatus$Outbound` instead. */
+    export type Outbound = StageStatus$Outbound;
 }

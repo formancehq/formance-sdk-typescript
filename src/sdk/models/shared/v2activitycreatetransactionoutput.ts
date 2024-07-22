@@ -4,8 +4,10 @@
 
 import {
     OrchestrationV2Transaction,
-    OrchestrationV2Transaction$,
-} from "./orchestrationv2transaction";
+    OrchestrationV2Transaction$inboundSchema,
+    OrchestrationV2Transaction$Outbound,
+    OrchestrationV2Transaction$outboundSchema,
+} from "./orchestrationv2transaction.js";
 import * as z from "zod";
 
 export type V2ActivityCreateTransactionOutput = {
@@ -13,24 +15,37 @@ export type V2ActivityCreateTransactionOutput = {
 };
 
 /** @internal */
+export const V2ActivityCreateTransactionOutput$inboundSchema: z.ZodType<
+    V2ActivityCreateTransactionOutput,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z.array(OrchestrationV2Transaction$inboundSchema),
+});
+
+/** @internal */
+export type V2ActivityCreateTransactionOutput$Outbound = {
+    data: Array<OrchestrationV2Transaction$Outbound>;
+};
+
+/** @internal */
+export const V2ActivityCreateTransactionOutput$outboundSchema: z.ZodType<
+    V2ActivityCreateTransactionOutput$Outbound,
+    z.ZodTypeDef,
+    V2ActivityCreateTransactionOutput
+> = z.object({
+    data: z.array(OrchestrationV2Transaction$outboundSchema),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace V2ActivityCreateTransactionOutput$ {
-    export const inboundSchema: z.ZodType<
-        V2ActivityCreateTransactionOutput,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        data: z.array(OrchestrationV2Transaction$.inboundSchema),
-    });
-
-    export type Outbound = {
-        data: Array<OrchestrationV2Transaction$.Outbound>;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        V2ActivityCreateTransactionOutput
-    > = z.object({
-        data: z.array(OrchestrationV2Transaction$.outboundSchema),
-    });
+    /** @deprecated use `V2ActivityCreateTransactionOutput$inboundSchema` instead. */
+    export const inboundSchema = V2ActivityCreateTransactionOutput$inboundSchema;
+    /** @deprecated use `V2ActivityCreateTransactionOutput$outboundSchema` instead. */
+    export const outboundSchema = V2ActivityCreateTransactionOutput$outboundSchema;
+    /** @deprecated use `V2ActivityCreateTransactionOutput$Outbound` instead. */
+    export type Outbound = V2ActivityCreateTransactionOutput$Outbound;
 }

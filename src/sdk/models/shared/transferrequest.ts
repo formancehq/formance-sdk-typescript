@@ -12,25 +12,43 @@ export type TransferRequest = {
 };
 
 /** @internal */
-export namespace TransferRequest$ {
-    export const inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> = z.object({
+export const TransferRequest$inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> =
+    z.object({
         amount: z.number().transform((v) => BigInt(v)),
         asset: z.string(),
         destination: z.string(),
         source: z.string().optional(),
     });
 
-    export type Outbound = {
-        amount: number;
-        asset: string;
-        destination: string;
-        source?: string | undefined;
-    };
+/** @internal */
+export type TransferRequest$Outbound = {
+    amount: number;
+    asset: string;
+    destination: string;
+    source?: string | undefined;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TransferRequest> = z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-        destination: z.string(),
-        source: z.string().optional(),
-    });
+/** @internal */
+export const TransferRequest$outboundSchema: z.ZodType<
+    TransferRequest$Outbound,
+    z.ZodTypeDef,
+    TransferRequest
+> = z.object({
+    amount: z.bigint().transform((v) => Number(v)),
+    asset: z.string(),
+    destination: z.string(),
+    source: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace TransferRequest$ {
+    /** @deprecated use `TransferRequest$inboundSchema` instead. */
+    export const inboundSchema = TransferRequest$inboundSchema;
+    /** @deprecated use `TransferRequest$outboundSchema` instead. */
+    export const outboundSchema = TransferRequest$outboundSchema;
+    /** @deprecated use `TransferRequest$Outbound` instead. */
+    export type Outbound = TransferRequest$Outbound;
 }

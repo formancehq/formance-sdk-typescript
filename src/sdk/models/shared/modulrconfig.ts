@@ -19,28 +19,45 @@ export type ModulrConfig = {
 };
 
 /** @internal */
+export const ModulrConfig$inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z.object({
+    apiKey: z.string(),
+    apiSecret: z.string(),
+    endpoint: z.string().optional(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type ModulrConfig$Outbound = {
+    apiKey: string;
+    apiSecret: string;
+    endpoint?: string | undefined;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const ModulrConfig$outboundSchema: z.ZodType<
+    ModulrConfig$Outbound,
+    z.ZodTypeDef,
+    ModulrConfig
+> = z.object({
+    apiKey: z.string(),
+    apiSecret: z.string(),
+    endpoint: z.string().optional(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ModulrConfig$ {
-    export const inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        apiSecret: z.string(),
-        endpoint: z.string().optional(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        apiSecret: string;
-        endpoint?: string | undefined;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ModulrConfig> = z.object({
-        apiKey: z.string(),
-        apiSecret: z.string(),
-        endpoint: z.string().optional(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `ModulrConfig$inboundSchema` instead. */
+    export const inboundSchema = ModulrConfig$inboundSchema;
+    /** @deprecated use `ModulrConfig$outboundSchema` instead. */
+    export const outboundSchema = ModulrConfig$outboundSchema;
+    /** @deprecated use `ModulrConfig$Outbound` instead. */
+    export type Outbound = ModulrConfig$Outbound;
 }

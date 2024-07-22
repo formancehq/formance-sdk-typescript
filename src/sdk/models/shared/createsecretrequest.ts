@@ -10,19 +10,40 @@ export type CreateSecretRequest = {
 };
 
 /** @internal */
+export const CreateSecretRequest$inboundSchema: z.ZodType<
+    CreateSecretRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+});
+
+/** @internal */
+export type CreateSecretRequest$Outbound = {
+    metadata?: { [k: string]: any } | undefined;
+    name: string;
+};
+
+/** @internal */
+export const CreateSecretRequest$outboundSchema: z.ZodType<
+    CreateSecretRequest$Outbound,
+    z.ZodTypeDef,
+    CreateSecretRequest
+> = z.object({
+    metadata: z.record(z.any()).optional(),
+    name: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateSecretRequest$ {
-    export const inboundSchema: z.ZodType<CreateSecretRequest, z.ZodTypeDef, unknown> = z.object({
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-    });
-
-    export type Outbound = {
-        metadata?: { [k: string]: any } | undefined;
-        name: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateSecretRequest> = z.object({
-        metadata: z.record(z.any()).optional(),
-        name: z.string(),
-    });
+    /** @deprecated use `CreateSecretRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateSecretRequest$inboundSchema;
+    /** @deprecated use `CreateSecretRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateSecretRequest$outboundSchema;
+    /** @deprecated use `CreateSecretRequest$Outbound` instead. */
+    export type Outbound = CreateSecretRequest$Outbound;
 }

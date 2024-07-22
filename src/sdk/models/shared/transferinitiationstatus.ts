@@ -20,7 +20,22 @@ export enum TransferInitiationStatus {
 }
 
 /** @internal */
+export const TransferInitiationStatus$inboundSchema: z.ZodNativeEnum<
+    typeof TransferInitiationStatus
+> = z.nativeEnum(TransferInitiationStatus);
+
+/** @internal */
+export const TransferInitiationStatus$outboundSchema: z.ZodNativeEnum<
+    typeof TransferInitiationStatus
+> = TransferInitiationStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TransferInitiationStatus$ {
-    export const inboundSchema = z.nativeEnum(TransferInitiationStatus);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `TransferInitiationStatus$inboundSchema` instead. */
+    export const inboundSchema = TransferInitiationStatus$inboundSchema;
+    /** @deprecated use `TransferInitiationStatus$outboundSchema` instead. */
+    export const outboundSchema = TransferInitiationStatus$outboundSchema;
 }

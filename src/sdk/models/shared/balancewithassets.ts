@@ -12,8 +12,8 @@ export type BalanceWithAssets = {
 };
 
 /** @internal */
-export namespace BalanceWithAssets$ {
-    export const inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, unknown> = z.object({
+export const BalanceWithAssets$inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, unknown> =
+    z.object({
         assets: z.record(z.number().transform((v) => BigInt(v))),
         expiresAt: z
             .string()
@@ -27,23 +27,41 @@ export namespace BalanceWithAssets$ {
             .optional(),
     });
 
-    export type Outbound = {
-        assets: { [k: string]: number };
-        expiresAt?: string | undefined;
-        name: string;
-        priority?: number | undefined;
-    };
+/** @internal */
+export type BalanceWithAssets$Outbound = {
+    assets: { [k: string]: number };
+    expiresAt?: string | undefined;
+    name: string;
+    priority?: number | undefined;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, BalanceWithAssets> = z.object({
-        assets: z.record(z.bigint().transform((v) => Number(v))),
-        expiresAt: z
-            .date()
-            .transform((v) => v.toISOString())
-            .optional(),
-        name: z.string(),
-        priority: z
-            .bigint()
-            .transform((v) => Number(v))
-            .optional(),
-    });
+/** @internal */
+export const BalanceWithAssets$outboundSchema: z.ZodType<
+    BalanceWithAssets$Outbound,
+    z.ZodTypeDef,
+    BalanceWithAssets
+> = z.object({
+    assets: z.record(z.bigint().transform((v) => Number(v))),
+    expiresAt: z
+        .date()
+        .transform((v) => v.toISOString())
+        .optional(),
+    name: z.string(),
+    priority: z
+        .bigint()
+        .transform((v) => Number(v))
+        .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace BalanceWithAssets$ {
+    /** @deprecated use `BalanceWithAssets$inboundSchema` instead. */
+    export const inboundSchema = BalanceWithAssets$inboundSchema;
+    /** @deprecated use `BalanceWithAssets$outboundSchema` instead. */
+    export const outboundSchema = BalanceWithAssets$outboundSchema;
+    /** @deprecated use `BalanceWithAssets$Outbound` instead. */
+    export type Outbound = BalanceWithAssets$Outbound;
 }

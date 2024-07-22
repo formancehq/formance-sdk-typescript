@@ -10,19 +10,40 @@ export type ActivityGetAccount = {
 };
 
 /** @internal */
+export const ActivityGetAccount$inboundSchema: z.ZodType<
+    ActivityGetAccount,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+    ledger: z.string(),
+});
+
+/** @internal */
+export type ActivityGetAccount$Outbound = {
+    id: string;
+    ledger: string;
+};
+
+/** @internal */
+export const ActivityGetAccount$outboundSchema: z.ZodType<
+    ActivityGetAccount$Outbound,
+    z.ZodTypeDef,
+    ActivityGetAccount
+> = z.object({
+    id: z.string(),
+    ledger: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ActivityGetAccount$ {
-    export const inboundSchema: z.ZodType<ActivityGetAccount, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-        ledger: z.string(),
-    });
-
-    export type Outbound = {
-        id: string;
-        ledger: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ActivityGetAccount> = z.object({
-        id: z.string(),
-        ledger: z.string(),
-    });
+    /** @deprecated use `ActivityGetAccount$inboundSchema` instead. */
+    export const inboundSchema = ActivityGetAccount$inboundSchema;
+    /** @deprecated use `ActivityGetAccount$outboundSchema` instead. */
+    export const outboundSchema = ActivityGetAccount$outboundSchema;
+    /** @deprecated use `ActivityGetAccount$Outbound` instead. */
+    export type Outbound = ActivityGetAccount$Outbound;
 }

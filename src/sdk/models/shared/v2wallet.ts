@@ -19,31 +19,45 @@ export type V2Wallet = {
 };
 
 /** @internal */
-export namespace V2Wallet$ {
-    export const inboundSchema: z.ZodType<V2Wallet, z.ZodTypeDef, unknown> = z.object({
-        createdAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        id: z.string(),
-        ledger: z.string(),
-        metadata: z.record(z.string()),
-        name: z.string(),
-    });
+export const V2Wallet$inboundSchema: z.ZodType<V2Wallet, z.ZodTypeDef, unknown> = z.object({
+    createdAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    id: z.string(),
+    ledger: z.string(),
+    metadata: z.record(z.string()),
+    name: z.string(),
+});
 
-    export type Outbound = {
-        createdAt: string;
-        id: string;
-        ledger: string;
-        metadata: { [k: string]: string };
-        name: string;
-    };
+/** @internal */
+export type V2Wallet$Outbound = {
+    createdAt: string;
+    id: string;
+    ledger: string;
+    metadata: { [k: string]: string };
+    name: string;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, V2Wallet> = z.object({
+/** @internal */
+export const V2Wallet$outboundSchema: z.ZodType<V2Wallet$Outbound, z.ZodTypeDef, V2Wallet> =
+    z.object({
         createdAt: z.date().transform((v) => v.toISOString()),
         id: z.string(),
         ledger: z.string(),
         metadata: z.record(z.string()),
         name: z.string(),
     });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace V2Wallet$ {
+    /** @deprecated use `V2Wallet$inboundSchema` instead. */
+    export const inboundSchema = V2Wallet$inboundSchema;
+    /** @deprecated use `V2Wallet$outboundSchema` instead. */
+    export const outboundSchema = V2Wallet$outboundSchema;
+    /** @deprecated use `V2Wallet$Outbound` instead. */
+    export type Outbound = V2Wallet$Outbound;
 }

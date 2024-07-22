@@ -11,22 +11,40 @@ export type WalletsVolume = {
 };
 
 /** @internal */
-export namespace WalletsVolume$ {
-    export const inboundSchema: z.ZodType<WalletsVolume, z.ZodTypeDef, unknown> = z.object({
+export const WalletsVolume$inboundSchema: z.ZodType<WalletsVolume, z.ZodTypeDef, unknown> =
+    z.object({
         balance: z.number().transform((v) => BigInt(v)),
         input: z.number().transform((v) => BigInt(v)),
         output: z.number().transform((v) => BigInt(v)),
     });
 
-    export type Outbound = {
-        balance: number;
-        input: number;
-        output: number;
-    };
+/** @internal */
+export type WalletsVolume$Outbound = {
+    balance: number;
+    input: number;
+    output: number;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WalletsVolume> = z.object({
-        balance: z.bigint().transform((v) => Number(v)),
-        input: z.bigint().transform((v) => Number(v)),
-        output: z.bigint().transform((v) => Number(v)),
-    });
+/** @internal */
+export const WalletsVolume$outboundSchema: z.ZodType<
+    WalletsVolume$Outbound,
+    z.ZodTypeDef,
+    WalletsVolume
+> = z.object({
+    balance: z.bigint().transform((v) => Number(v)),
+    input: z.bigint().transform((v) => Number(v)),
+    output: z.bigint().transform((v) => Number(v)),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace WalletsVolume$ {
+    /** @deprecated use `WalletsVolume$inboundSchema` instead. */
+    export const inboundSchema = WalletsVolume$inboundSchema;
+    /** @deprecated use `WalletsVolume$outboundSchema` instead. */
+    export const outboundSchema = WalletsVolume$outboundSchema;
+    /** @deprecated use `WalletsVolume$Outbound` instead. */
+    export type Outbound = WalletsVolume$Outbound;
 }

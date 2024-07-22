@@ -18,25 +18,43 @@ export type GenericConfig = {
 };
 
 /** @internal */
+export const GenericConfig$inboundSchema: z.ZodType<GenericConfig, z.ZodTypeDef, unknown> =
+    z.object({
+        apiKey: z.string(),
+        endpoint: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
+
+/** @internal */
+export type GenericConfig$Outbound = {
+    apiKey: string;
+    endpoint: string;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const GenericConfig$outboundSchema: z.ZodType<
+    GenericConfig$Outbound,
+    z.ZodTypeDef,
+    GenericConfig
+> = z.object({
+    apiKey: z.string(),
+    endpoint: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GenericConfig$ {
-    export const inboundSchema: z.ZodType<GenericConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GenericConfig> = z.object({
-        apiKey: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `GenericConfig$inboundSchema` instead. */
+    export const inboundSchema = GenericConfig$inboundSchema;
+    /** @deprecated use `GenericConfig$outboundSchema` instead. */
+    export const outboundSchema = GenericConfig$outboundSchema;
+    /** @deprecated use `GenericConfig$Outbound` instead. */
+    export type Outbound = GenericConfig$Outbound;
 }

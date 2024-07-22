@@ -15,37 +15,50 @@ export type Trigger = {
 };
 
 /** @internal */
+export const Trigger$inboundSchema: z.ZodType<Trigger, z.ZodTypeDef, unknown> = z.object({
+    createdAt: z
+        .string()
+        .datetime({ offset: true })
+        .transform((v) => new Date(v)),
+    event: z.string(),
+    filter: z.string().optional(),
+    id: z.string(),
+    name: z.string().optional(),
+    vars: z.record(z.any()).optional(),
+    workflowID: z.string(),
+});
+
+/** @internal */
+export type Trigger$Outbound = {
+    createdAt: string;
+    event: string;
+    filter?: string | undefined;
+    id: string;
+    name?: string | undefined;
+    vars?: { [k: string]: any } | undefined;
+    workflowID: string;
+};
+
+/** @internal */
+export const Trigger$outboundSchema: z.ZodType<Trigger$Outbound, z.ZodTypeDef, Trigger> = z.object({
+    createdAt: z.date().transform((v) => v.toISOString()),
+    event: z.string(),
+    filter: z.string().optional(),
+    id: z.string(),
+    name: z.string().optional(),
+    vars: z.record(z.any()).optional(),
+    workflowID: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Trigger$ {
-    export const inboundSchema: z.ZodType<Trigger, z.ZodTypeDef, unknown> = z.object({
-        createdAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        event: z.string(),
-        filter: z.string().optional(),
-        id: z.string(),
-        name: z.string().optional(),
-        vars: z.record(z.any()).optional(),
-        workflowID: z.string(),
-    });
-
-    export type Outbound = {
-        createdAt: string;
-        event: string;
-        filter?: string | undefined;
-        id: string;
-        name?: string | undefined;
-        vars?: { [k: string]: any } | undefined;
-        workflowID: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Trigger> = z.object({
-        createdAt: z.date().transform((v) => v.toISOString()),
-        event: z.string(),
-        filter: z.string().optional(),
-        id: z.string(),
-        name: z.string().optional(),
-        vars: z.record(z.any()).optional(),
-        workflowID: z.string(),
-    });
+    /** @deprecated use `Trigger$inboundSchema` instead. */
+    export const inboundSchema = Trigger$inboundSchema;
+    /** @deprecated use `Trigger$outboundSchema` instead. */
+    export const outboundSchema = Trigger$outboundSchema;
+    /** @deprecated use `Trigger$Outbound` instead. */
+    export type Outbound = Trigger$Outbound;
 }

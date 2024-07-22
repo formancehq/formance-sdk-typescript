@@ -19,28 +19,46 @@ export type MoneycorpConfig = {
 };
 
 /** @internal */
+export const MoneycorpConfig$inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> =
+    z.object({
+        apiKey: z.string(),
+        clientID: z.string(),
+        endpoint: z.string(),
+        name: z.string(),
+        pollingPeriod: z.string().default("120s"),
+    });
+
+/** @internal */
+export type MoneycorpConfig$Outbound = {
+    apiKey: string;
+    clientID: string;
+    endpoint: string;
+    name: string;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const MoneycorpConfig$outboundSchema: z.ZodType<
+    MoneycorpConfig$Outbound,
+    z.ZodTypeDef,
+    MoneycorpConfig
+> = z.object({
+    apiKey: z.string(),
+    clientID: z.string(),
+    endpoint: z.string(),
+    name: z.string(),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MoneycorpConfig$ {
-    export const inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        clientID: string;
-        endpoint: string;
-        name: string;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MoneycorpConfig> = z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `MoneycorpConfig$inboundSchema` instead. */
+    export const inboundSchema = MoneycorpConfig$inboundSchema;
+    /** @deprecated use `MoneycorpConfig$outboundSchema` instead. */
+    export const outboundSchema = MoneycorpConfig$outboundSchema;
+    /** @deprecated use `MoneycorpConfig$Outbound` instead. */
+    export type Outbound = MoneycorpConfig$Outbound;
 }

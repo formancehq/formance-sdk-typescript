@@ -11,7 +11,20 @@ export enum PaymentsErrorsEnum {
 }
 
 /** @internal */
+export const PaymentsErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =
+    z.nativeEnum(PaymentsErrorsEnum);
+
+/** @internal */
+export const PaymentsErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =
+    PaymentsErrorsEnum$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PaymentsErrorsEnum$ {
-    export const inboundSchema = z.nativeEnum(PaymentsErrorsEnum);
-    export const outboundSchema = inboundSchema;
+    /** @deprecated use `PaymentsErrorsEnum$inboundSchema` instead. */
+    export const inboundSchema = PaymentsErrorsEnum$inboundSchema;
+    /** @deprecated use `PaymentsErrorsEnum$outboundSchema` instead. */
+    export const outboundSchema = PaymentsErrorsEnum$outboundSchema;
 }

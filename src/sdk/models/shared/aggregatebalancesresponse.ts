@@ -9,18 +9,37 @@ export type AggregateBalancesResponse = {
 };
 
 /** @internal */
+export const AggregateBalancesResponse$inboundSchema: z.ZodType<
+    AggregateBalancesResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    data: z.record(z.number().int()),
+});
+
+/** @internal */
+export type AggregateBalancesResponse$Outbound = {
+    data: { [k: string]: number };
+};
+
+/** @internal */
+export const AggregateBalancesResponse$outboundSchema: z.ZodType<
+    AggregateBalancesResponse$Outbound,
+    z.ZodTypeDef,
+    AggregateBalancesResponse
+> = z.object({
+    data: z.record(z.number().int()),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AggregateBalancesResponse$ {
-    export const inboundSchema: z.ZodType<AggregateBalancesResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            data: z.record(z.number().int()),
-        });
-
-    export type Outbound = {
-        data: { [k: string]: number };
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AggregateBalancesResponse> =
-        z.object({
-            data: z.record(z.number().int()),
-        });
+    /** @deprecated use `AggregateBalancesResponse$inboundSchema` instead. */
+    export const inboundSchema = AggregateBalancesResponse$inboundSchema;
+    /** @deprecated use `AggregateBalancesResponse$outboundSchema` instead. */
+    export const outboundSchema = AggregateBalancesResponse$outboundSchema;
+    /** @deprecated use `AggregateBalancesResponse$Outbound` instead. */
+    export type Outbound = AggregateBalancesResponse$Outbound;
 }

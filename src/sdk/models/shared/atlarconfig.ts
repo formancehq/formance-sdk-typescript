@@ -53,34 +53,51 @@ export type AtlarConfig = {
 };
 
 /** @internal */
+export const AtlarConfig$inboundSchema: z.ZodType<AtlarConfig, z.ZodTypeDef, unknown> = z.object({
+    accessKey: z.string(),
+    baseUrl: z.string().default("https://api.atlar.com"),
+    name: z.string(),
+    pageSize: z.number().int().default(25),
+    pollingPeriod: z.string().default("120s"),
+    secret: z.string(),
+    transferInitiationStatusPollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type AtlarConfig$Outbound = {
+    accessKey: string;
+    baseUrl: string;
+    name: string;
+    pageSize: number;
+    pollingPeriod: string;
+    secret: string;
+    transferInitiationStatusPollingPeriod: string;
+};
+
+/** @internal */
+export const AtlarConfig$outboundSchema: z.ZodType<
+    AtlarConfig$Outbound,
+    z.ZodTypeDef,
+    AtlarConfig
+> = z.object({
+    accessKey: z.string(),
+    baseUrl: z.string().default("https://api.atlar.com"),
+    name: z.string(),
+    pageSize: z.number().int().default(25),
+    pollingPeriod: z.string().default("120s"),
+    secret: z.string(),
+    transferInitiationStatusPollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AtlarConfig$ {
-    export const inboundSchema: z.ZodType<AtlarConfig, z.ZodTypeDef, unknown> = z.object({
-        accessKey: z.string(),
-        baseUrl: z.string().default("https://api.atlar.com"),
-        name: z.string(),
-        pageSize: z.number().int().default(25),
-        pollingPeriod: z.string().default("120s"),
-        secret: z.string(),
-        transferInitiationStatusPollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        accessKey: string;
-        baseUrl: string;
-        name: string;
-        pageSize: number;
-        pollingPeriod: string;
-        secret: string;
-        transferInitiationStatusPollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AtlarConfig> = z.object({
-        accessKey: z.string(),
-        baseUrl: z.string().default("https://api.atlar.com"),
-        name: z.string(),
-        pageSize: z.number().int().default(25),
-        pollingPeriod: z.string().default("120s"),
-        secret: z.string(),
-        transferInitiationStatusPollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `AtlarConfig$inboundSchema` instead. */
+    export const inboundSchema = AtlarConfig$inboundSchema;
+    /** @deprecated use `AtlarConfig$outboundSchema` instead. */
+    export const outboundSchema = AtlarConfig$outboundSchema;
+    /** @deprecated use `AtlarConfig$Outbound` instead. */
+    export type Outbound = AtlarConfig$Outbound;
 }

@@ -24,25 +24,42 @@ export type StripeConfig = {
 };
 
 /** @internal */
+export const StripeConfig$inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z.object({
+    apiKey: z.string(),
+    name: z.string(),
+    pageSize: z.number().int().default(10),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/** @internal */
+export type StripeConfig$Outbound = {
+    apiKey: string;
+    name: string;
+    pageSize: number;
+    pollingPeriod: string;
+};
+
+/** @internal */
+export const StripeConfig$outboundSchema: z.ZodType<
+    StripeConfig$Outbound,
+    z.ZodTypeDef,
+    StripeConfig
+> = z.object({
+    apiKey: z.string(),
+    name: z.string(),
+    pageSize: z.number().int().default(10),
+    pollingPeriod: z.string().default("120s"),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StripeConfig$ {
-    export const inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z.object({
-        apiKey: z.string(),
-        name: z.string(),
-        pageSize: z.number().int().default(10),
-        pollingPeriod: z.string().default("120s"),
-    });
-
-    export type Outbound = {
-        apiKey: string;
-        name: string;
-        pageSize: number;
-        pollingPeriod: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, StripeConfig> = z.object({
-        apiKey: z.string(),
-        name: z.string(),
-        pageSize: z.number().int().default(10),
-        pollingPeriod: z.string().default("120s"),
-    });
+    /** @deprecated use `StripeConfig$inboundSchema` instead. */
+    export const inboundSchema = StripeConfig$inboundSchema;
+    /** @deprecated use `StripeConfig$outboundSchema` instead. */
+    export const outboundSchema = StripeConfig$outboundSchema;
+    /** @deprecated use `StripeConfig$Outbound` instead. */
+    export type Outbound = StripeConfig$Outbound;
 }

@@ -11,22 +11,35 @@ export type Version = {
 };
 
 /** @internal */
+export const Version$inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> = z.object({
+    health: z.boolean(),
+    name: z.string(),
+    version: z.string(),
+});
+
+/** @internal */
+export type Version$Outbound = {
+    health: boolean;
+    name: string;
+    version: string;
+};
+
+/** @internal */
+export const Version$outboundSchema: z.ZodType<Version$Outbound, z.ZodTypeDef, Version> = z.object({
+    health: z.boolean(),
+    name: z.string(),
+    version: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Version$ {
-    export const inboundSchema: z.ZodType<Version, z.ZodTypeDef, unknown> = z.object({
-        health: z.boolean(),
-        name: z.string(),
-        version: z.string(),
-    });
-
-    export type Outbound = {
-        health: boolean;
-        name: string;
-        version: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Version> = z.object({
-        health: z.boolean(),
-        name: z.string(),
-        version: z.string(),
-    });
+    /** @deprecated use `Version$inboundSchema` instead. */
+    export const inboundSchema = Version$inboundSchema;
+    /** @deprecated use `Version$outboundSchema` instead. */
+    export const outboundSchema = Version$outboundSchema;
+    /** @deprecated use `Version$Outbound` instead. */
+    export type Outbound = Version$Outbound;
 }
