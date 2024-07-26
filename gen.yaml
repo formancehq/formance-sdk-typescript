@@ -12,7 +12,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 2.5.0
+  version: 2.5.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
