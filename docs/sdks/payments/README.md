@@ -57,7 +57,7 @@ Add an account to a pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -106,7 +106,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -158,7 +158,7 @@ import { SDK } from "@formance/formance-sdk";
 import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -206,7 +206,7 @@ Create a bank account in Payments and on the PSP.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -254,7 +254,7 @@ import { SDK } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -306,7 +306,7 @@ Create a Pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -355,7 +355,7 @@ import { SDK } from "@formance/formance-sdk";
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -408,7 +408,7 @@ Delete a pool by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -453,7 +453,7 @@ Delete a transfer initiation by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -498,7 +498,7 @@ Forward a bank account to a connector
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -546,7 +546,7 @@ Get account balances
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -597,7 +597,7 @@ Get a bank account created by user on Formance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -645,7 +645,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -692,7 +692,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -739,7 +739,7 @@ Get a payment
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -784,7 +784,7 @@ Get a Pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -829,7 +829,7 @@ Get pool balances
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -875,7 +875,7 @@ Get a transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -921,7 +921,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -971,7 +971,7 @@ List all installed connectors.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1013,7 +1013,7 @@ List all bank accounts created by user on Formance.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1063,7 +1063,7 @@ List the configs of each available connector.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1108,7 +1108,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1156,7 +1156,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1204,7 +1204,7 @@ List payments
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1254,7 +1254,7 @@ List Pools
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1304,7 +1304,7 @@ List Transfer Initiations
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1354,7 +1354,7 @@ Get an account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1399,7 +1399,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1441,7 +1441,7 @@ List accounts
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1494,7 +1494,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1540,7 +1540,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1586,7 +1586,7 @@ Remove an account from a pool by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1637,7 +1637,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1685,7 +1685,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1731,7 +1731,7 @@ Retry a failed transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1776,7 +1776,7 @@ Reverse transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1831,7 +1831,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1882,7 +1882,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1928,7 +1928,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -1974,7 +1974,7 @@ Update metadata of a bank account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -2025,7 +2025,7 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -2077,7 +2077,7 @@ Update metadata
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {

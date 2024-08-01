@@ -23,13 +23,11 @@ Create client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
-  const result = await sdk.auth.createClient({
-    name: "<value>",
-  });
+  const result = await sdk.auth.createClient();
 
   // Handle the result
   console.log(result)
@@ -67,7 +65,7 @@ Add a secret to a client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -111,7 +109,7 @@ Delete client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -155,7 +153,7 @@ Delete a secret from a client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -200,7 +198,7 @@ List clients
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -241,7 +239,7 @@ List users
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -282,7 +280,7 @@ Read client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -326,7 +324,7 @@ Read user
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -370,7 +368,7 @@ Update client
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: b33f71f21d0e4a446c4e868a3856cdaf
-  docVersion: v2.0.3
-  speakeasyVersion: 1.346.1
-  generationVersion: 2.379.5
-  releaseVersion: 2.5.1
-  configChecksum: 92b6b6e82542b64891afd66a2a13d596
+  docChecksum: ae52ad4cdee45faea7f5da2ab690073e
+  docVersion: v2.0.4
+  speakeasyVersion: 1.350.0
+  generationVersion: 2.384.1
+  releaseVersion: 2.6.0
+  configChecksum: 8b4ffe3d5be8d89ec315a0bc48d7c074
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,9 +15,10 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.11.10
+    core: 3.11.11
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
+    envVarSecurityUsage: 0.1.0
     errors: 2.81.12
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -48,6 +49,7 @@ generatedFiles:
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts

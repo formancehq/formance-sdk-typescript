@@ -31,7 +31,7 @@ Retrieve OpenID connect well-knowns.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -72,7 +72,7 @@ Show stack version information
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {

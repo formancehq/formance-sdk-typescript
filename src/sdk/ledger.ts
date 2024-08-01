@@ -15,6 +15,7 @@ import {
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import { extractSecurity } from "../lib/security.js";
 import * as errors from "./models/errors/index.js";
 import * as operations from "./models/operations/index.js";
 
@@ -78,14 +79,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "CreateTransactions",
             oAuth2Scopes: [],
@@ -165,14 +160,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "addMetadataOnTransaction",
             oAuth2Scopes: [],
@@ -253,14 +242,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "addMetadataToAccount",
             oAuth2Scopes: [],
@@ -341,14 +324,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "countAccounts",
             oAuth2Scopes: [],
@@ -434,14 +411,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "countTransactions",
             oAuth2Scopes: [],
@@ -518,14 +489,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createTransaction",
             oAuth2Scopes: [],
@@ -607,14 +572,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getAccount",
             oAuth2Scopes: [],
@@ -693,14 +652,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getBalances",
             oAuth2Scopes: [],
@@ -781,14 +734,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getBalancesAggregated",
             oAuth2Scopes: [],
@@ -846,14 +793,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getInfo",
             oAuth2Scopes: [],
@@ -926,14 +867,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getLedgerInfo",
             oAuth2Scopes: [],
@@ -1009,14 +944,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getMapping",
             oAuth2Scopes: [],
@@ -1093,14 +1022,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getTransaction",
             oAuth2Scopes: [],
@@ -1191,14 +1114,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listAccounts",
             oAuth2Scopes: [],
@@ -1284,14 +1201,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listLogs",
             oAuth2Scopes: [],
@@ -1383,14 +1294,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listTransactions",
             oAuth2Scopes: [],
@@ -1470,14 +1375,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "readStats",
             oAuth2Scopes: [],
@@ -1556,14 +1455,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "revertTransaction",
             oAuth2Scopes: [],
@@ -1648,14 +1541,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "runScript",
             oAuth2Scopes: [],
@@ -1730,14 +1617,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "updateMapping",
             oAuth2Scopes: [],
@@ -1821,14 +1702,8 @@ export class Ledger extends ClientSDK {
             }),
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2AddMetadataOnTransaction",
             oAuth2Scopes: [],
@@ -1915,14 +1790,8 @@ export class Ledger extends ClientSDK {
             }),
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2AddMetadataToAccount",
             oAuth2Scopes: [],
@@ -2006,14 +1875,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CountAccounts",
             oAuth2Scopes: [],
@@ -2099,14 +1962,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CountTransactions",
             oAuth2Scopes: [],
@@ -2181,14 +2038,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CreateBulk",
             oAuth2Scopes: [],
@@ -2265,14 +2116,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CreateLedger",
             oAuth2Scopes: [],
@@ -2355,14 +2200,8 @@ export class Ledger extends ClientSDK {
             }),
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CreateTransaction",
             oAuth2Scopes: [],
@@ -2448,14 +2287,8 @@ export class Ledger extends ClientSDK {
             Accept: "*/*",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2DeleteAccountMetadata",
             oAuth2Scopes: [],
@@ -2532,14 +2365,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2DeleteLedgerMetadata",
             oAuth2Scopes: [],
@@ -2620,14 +2447,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2DeleteTransactionMetadata",
             oAuth2Scopes: [],
@@ -2710,14 +2531,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetAccount",
             oAuth2Scopes: [],
@@ -2804,14 +2619,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetBalancesAggregated",
             oAuth2Scopes: [],
@@ -2869,14 +2678,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetInfo",
             oAuth2Scopes: [],
@@ -2949,14 +2752,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetLedger",
             oAuth2Scopes: [],
@@ -3030,14 +2827,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetLedgerInfo",
             oAuth2Scopes: [],
@@ -3119,14 +2910,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetTransaction",
             oAuth2Scopes: [],
@@ -3217,14 +3002,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetVolumesWithBalances",
             oAuth2Scopes: [],
@@ -3316,14 +3095,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListAccounts",
             oAuth2Scopes: [],
@@ -3396,14 +3169,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListLedgers",
             oAuth2Scopes: [],
@@ -3494,14 +3261,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListLogs",
             oAuth2Scopes: [],
@@ -3593,14 +3354,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListTransactions",
             oAuth2Scopes: [],
@@ -3680,14 +3435,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ReadStats",
             oAuth2Scopes: [],
@@ -3767,14 +3516,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2RevertTransaction",
             oAuth2Scopes: [],
@@ -3851,14 +3594,8 @@ export class Ledger extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2UpdateLedgerMetadata",
             oAuth2Scopes: [],

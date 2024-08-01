@@ -12,6 +12,7 @@ import {
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import { extractSecurity } from "../lib/security.js";
 import * as errors from "./models/errors/index.js";
 import * as operations from "./models/operations/index.js";
 import * as shared from "./models/shared/index.js";
@@ -71,14 +72,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createPolicy",
             oAuth2Scopes: [],
@@ -157,14 +152,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "deletePolicy",
             oAuth2Scopes: [],
@@ -240,14 +229,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getPolicy",
             oAuth2Scopes: [],
@@ -323,14 +306,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getReconciliation",
             oAuth2Scopes: [],
@@ -403,14 +380,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listPolicies",
             oAuth2Scopes: [],
@@ -483,14 +454,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listReconciliations",
             oAuth2Scopes: [],
@@ -572,14 +537,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "reconcile",
             oAuth2Scopes: [],
@@ -639,14 +598,8 @@ export class Reconciliation extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "reconciliationgetServerInfo",
             oAuth2Scopes: [],

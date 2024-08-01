@@ -12,6 +12,7 @@ import {
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import { extractSecurity } from "../lib/security.js";
 import * as errors from "./models/errors/index.js";
 import * as operations from "./models/operations/index.js";
 import * as shared from "./models/shared/index.js";
@@ -79,14 +80,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "addAccountToPool",
             oAuth2Scopes: [],
@@ -166,14 +161,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "connectorsTransfer",
             oAuth2Scopes: [],
@@ -247,14 +236,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createAccount",
             oAuth2Scopes: [],
@@ -328,14 +311,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createBankAccount",
             oAuth2Scopes: [],
@@ -409,14 +386,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createPayment",
             oAuth2Scopes: [],
@@ -488,14 +459,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createPool",
             oAuth2Scopes: [],
@@ -567,14 +532,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createTransferInitiation",
             oAuth2Scopes: [],
@@ -653,14 +612,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "deletePool",
             oAuth2Scopes: [],
@@ -739,14 +692,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "deleteTransferInitiation",
             oAuth2Scopes: [],
@@ -823,14 +770,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "forwardBankAccount",
             oAuth2Scopes: [],
@@ -916,14 +857,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getAccountBalances",
             oAuth2Scopes: [],
@@ -1001,14 +936,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getBankAccount",
             oAuth2Scopes: [],
@@ -1095,14 +1024,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getConnectorTask",
             oAuth2Scopes: [],
@@ -1189,14 +1112,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getConnectorTaskV1",
             oAuth2Scopes: [],
@@ -1270,14 +1187,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getPayment",
             oAuth2Scopes: [],
@@ -1351,14 +1262,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getPool",
             oAuth2Scopes: [],
@@ -1436,14 +1341,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getPoolBalances",
             oAuth2Scopes: [],
@@ -1521,14 +1420,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getTransferInitiation",
             oAuth2Scopes: [],
@@ -1610,14 +1503,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "installConnector",
             oAuth2Scopes: [],
@@ -1680,14 +1567,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listAllConnectors",
             oAuth2Scopes: [],
@@ -1763,14 +1644,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listBankAccounts",
             oAuth2Scopes: [],
@@ -1833,14 +1708,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listConfigsAvailableConnectors",
             oAuth2Scopes: [],
@@ -1925,14 +1794,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listConnectorTasks",
             oAuth2Scopes: [],
@@ -2018,14 +1881,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listConnectorTasksV1",
             oAuth2Scopes: [],
@@ -2100,14 +1957,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listPayments",
             oAuth2Scopes: [],
@@ -2180,14 +2031,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listPools",
             oAuth2Scopes: [],
@@ -2260,14 +2105,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listTransferInitiations",
             oAuth2Scopes: [],
@@ -2343,14 +2182,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "paymentsgetAccount",
             oAuth2Scopes: [],
@@ -2410,14 +2243,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "paymentsgetServerInfo",
             oAuth2Scopes: [],
@@ -2491,14 +2318,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "paymentslistAccounts",
             oAuth2Scopes: [],
@@ -2581,14 +2402,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "readConnectorConfig",
             oAuth2Scopes: [],
@@ -2673,14 +2488,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "readConnectorConfigV1",
             oAuth2Scopes: [],
@@ -2765,14 +2574,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "removeAccountFromPool",
             oAuth2Scopes: [],
@@ -2855,14 +2658,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "resetConnector",
             oAuth2Scopes: [],
@@ -2947,14 +2744,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "resetConnectorV1",
             oAuth2Scopes: [],
@@ -3033,14 +2824,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "retryTransferInitiation",
             oAuth2Scopes: [],
@@ -3122,14 +2907,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "reverseTransferInitiation",
             oAuth2Scopes: [],
@@ -3212,14 +2991,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "udpateTransferInitiationStatus",
             oAuth2Scopes: [],
@@ -3300,14 +3073,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "uninstallConnector",
             oAuth2Scopes: [],
@@ -3390,14 +3157,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "uninstallConnectorV1",
             oAuth2Scopes: [],
@@ -3476,14 +3237,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "updateBankAccountMetadata",
             oAuth2Scopes: [],
@@ -3567,14 +3322,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "updateConnectorConfigV1",
             oAuth2Scopes: [],
@@ -3651,14 +3400,8 @@ export class Payments extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "updateMetadata",
             oAuth2Scopes: [],

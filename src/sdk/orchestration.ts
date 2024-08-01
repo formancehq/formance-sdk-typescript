@@ -12,6 +12,7 @@ import {
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import { extractSecurity } from "../lib/security.js";
 import * as errors from "./models/errors/index.js";
 import * as operations from "./models/operations/index.js";
 import * as shared from "./models/shared/index.js";
@@ -78,14 +79,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "cancelEvent",
             oAuth2Scopes: [],
@@ -158,14 +153,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createTrigger",
             oAuth2Scopes: [],
@@ -240,14 +229,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "createWorkflow",
             oAuth2Scopes: [],
@@ -328,14 +311,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "deleteTrigger",
             oAuth2Scopes: [],
@@ -414,14 +391,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "deleteWorkflow",
             oAuth2Scopes: [],
@@ -500,14 +471,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getInstance",
             oAuth2Scopes: [],
@@ -588,14 +553,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getInstanceHistory",
             oAuth2Scopes: [],
@@ -680,14 +639,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getInstanceStageHistory",
             oAuth2Scopes: [],
@@ -768,14 +721,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "getWorkflow",
             oAuth2Scopes: [],
@@ -849,14 +796,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listInstances",
             oAuth2Scopes: [],
@@ -929,14 +870,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listTriggers",
             oAuth2Scopes: [],
@@ -1017,14 +952,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listTriggersOccurrences",
             oAuth2Scopes: [],
@@ -1085,14 +1014,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "listWorkflows",
             oAuth2Scopes: [],
@@ -1151,14 +1074,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "orchestrationgetServerInfo",
             oAuth2Scopes: [],
@@ -1238,14 +1155,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "readTrigger",
             oAuth2Scopes: [],
@@ -1327,14 +1238,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "runWorkflow",
             oAuth2Scopes: [],
@@ -1414,14 +1319,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "sendEvent",
             oAuth2Scopes: [],
@@ -1501,14 +1400,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "testTrigger",
             oAuth2Scopes: [],
@@ -1589,14 +1482,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CancelEvent",
             oAuth2Scopes: [],
@@ -1669,14 +1556,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CreateTrigger",
             oAuth2Scopes: [],
@@ -1751,14 +1632,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2CreateWorkflow",
             oAuth2Scopes: [],
@@ -1839,14 +1714,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2DeleteTrigger",
             oAuth2Scopes: [],
@@ -1925,14 +1794,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2DeleteWorkflow",
             oAuth2Scopes: [],
@@ -2011,14 +1874,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetInstance",
             oAuth2Scopes: [],
@@ -2099,14 +1956,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetInstanceHistory",
             oAuth2Scopes: [],
@@ -2191,14 +2042,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetInstanceStageHistory",
             oAuth2Scopes: [],
@@ -2256,14 +2101,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetServerInfo",
             oAuth2Scopes: [],
@@ -2341,14 +2180,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2GetWorkflow",
             oAuth2Scopes: [],
@@ -2426,14 +2259,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListInstances",
             oAuth2Scopes: [],
@@ -2510,14 +2337,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListTriggers",
             oAuth2Scopes: [],
@@ -2601,14 +2422,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListTriggersOccurrences",
             oAuth2Scopes: [],
@@ -2684,14 +2499,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ListWorkflows",
             oAuth2Scopes: [],
@@ -2772,14 +2581,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2ReadTrigger",
             oAuth2Scopes: [],
@@ -2863,14 +2666,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2RunWorkflow",
             oAuth2Scopes: [],
@@ -2952,14 +2749,8 @@ export class Orchestration extends ClientSDK {
             Accept: "application/json",
         });
 
-        let security$;
-        if (typeof this.options$.authorization === "function") {
-            security$ = { authorization: await this.options$.authorization() };
-        } else if (this.options$.authorization) {
-            security$ = { authorization: this.options$.authorization };
-        } else {
-            security$ = {};
-        }
+        const authorization$ = await extractSecurity(this.options$.authorization);
+        const security$ = authorization$ == null ? {} : { authorization: authorization$ };
         const context = {
             operationID: "v2SendEvent",
             oAuth2Scopes: [],

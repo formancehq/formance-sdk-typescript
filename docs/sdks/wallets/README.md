@@ -30,7 +30,7 @@ Confirm a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -79,7 +79,7 @@ Create a balance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -124,16 +124,11 @@ Create a new wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
-  const result = await sdk.wallets.createWallet({
-    metadata: {
-      "key": "<value>",
-    },
-    name: "<value>",
-  });
+  const result = await sdk.wallets.createWallet();
 
   // Handle the result
   console.log(result)
@@ -172,7 +167,7 @@ Credit a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -232,7 +227,7 @@ Debit a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -287,7 +282,7 @@ Get detailed balance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -333,7 +328,7 @@ Get a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -378,7 +373,7 @@ Get all holds for a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -426,7 +421,7 @@ run();
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -473,7 +468,7 @@ Get a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -518,7 +513,7 @@ Get wallet summary
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -563,7 +558,7 @@ List balances of a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -607,7 +602,7 @@ List all wallets
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -658,7 +653,7 @@ Update a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -703,7 +698,7 @@ Cancel a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -748,7 +743,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {

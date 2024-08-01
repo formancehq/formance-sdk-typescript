@@ -16,7 +16,7 @@ ElasticSearch query engine
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -72,7 +72,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: AUTHORIZATION,
 });
 
 async function run() {
