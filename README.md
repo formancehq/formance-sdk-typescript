@@ -62,7 +62,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -292,7 +292,7 @@ import { SDK } from "@formance/formance-sdk";
 import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -360,7 +360,7 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
     serverIdx: 0,
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -384,7 +384,7 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
     serverURL: "http://localhost",
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -464,7 +464,7 @@ To authenticate with the API the `authorization` parameter must be set when init
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -489,7 +489,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
@@ -529,7 +529,7 @@ const sdk = new SDK({
         },
         retryConnectionErrors: false,
     },
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    authorization: AUTHORIZATION,
 });
 
 async function run() {
