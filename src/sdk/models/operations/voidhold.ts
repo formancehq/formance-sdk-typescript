@@ -6,6 +6,10 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import * as z from "zod";
 
 export type VoidHoldRequest = {
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
     holdId: string;
 };
 
@@ -27,16 +31,19 @@ export type VoidHoldResponse = {
 /** @internal */
 export const VoidHoldRequest$inboundSchema: z.ZodType<VoidHoldRequest, z.ZodTypeDef, unknown> = z
     .object({
+        "Idempotency-Key": z.string().optional(),
         hold_id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
+            "Idempotency-Key": "idempotencyKey",
             hold_id: "holdId",
         });
     });
 
 /** @internal */
 export type VoidHoldRequest$Outbound = {
+    "Idempotency-Key"?: string | undefined;
     hold_id: string;
 };
 
@@ -47,10 +54,12 @@ export const VoidHoldRequest$outboundSchema: z.ZodType<
     VoidHoldRequest
 > = z
     .object({
+        idempotencyKey: z.string().optional(),
         holdId: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
+            idempotencyKey: "Idempotency-Key",
             holdId: "hold_id",
         });
     });

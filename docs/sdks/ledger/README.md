@@ -58,7 +58,7 @@ Create a new batch of transactions to a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -118,7 +118,7 @@ Set the metadata of a transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -164,7 +164,7 @@ Add metadata to an account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -213,7 +213,7 @@ Count the accounts from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -311,7 +311,7 @@ Count the transactions from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -361,7 +361,7 @@ Create a new transaction to a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -431,7 +431,7 @@ Get account by its address
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -477,7 +477,7 @@ Get the balances from a ledger's account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -525,7 +525,7 @@ Get the aggregated balances from selected accounts
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -571,7 +571,7 @@ Show server information
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -613,7 +613,7 @@ Get information about a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -658,7 +658,7 @@ Get the mapping of a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -703,7 +703,7 @@ Get transaction from a ledger by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -749,7 +749,7 @@ List accounts from a ledger, sorted by address in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -851,7 +851,7 @@ List the logs from a ledger, sorted by ID in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -899,7 +899,7 @@ List transactions from a ledger, sorted by txid in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -952,7 +952,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -997,7 +997,7 @@ Revert a ledger transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1046,7 +1046,7 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1105,7 +1105,7 @@ Update the mapping of a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1158,7 +1158,7 @@ Set the metadata of a transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1208,7 +1208,7 @@ Add metadata to an account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1258,7 +1258,7 @@ Count the accounts from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1303,7 +1303,7 @@ Count the transactions from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1348,7 +1348,7 @@ Bulk request
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1398,7 +1398,7 @@ Create a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1448,7 +1448,7 @@ Create a new transaction to a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1521,7 +1521,7 @@ Delete metadata by key
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1567,7 +1567,7 @@ Delete ledger metadata by key
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1613,7 +1613,7 @@ Delete metadata by key
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1660,7 +1660,7 @@ Get account by its address
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1706,7 +1706,7 @@ Get the aggregated balances from selected accounts
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1751,7 +1751,7 @@ Show server information
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1793,7 +1793,7 @@ Get a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1838,7 +1838,7 @@ Get information about a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1883,7 +1883,7 @@ Get transaction from a ledger by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1929,7 +1929,7 @@ Get list of volumes with balances for (account/asset)
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -1977,7 +1977,7 @@ List accounts from a ledger, sorted by address in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2024,7 +2024,7 @@ List ledgers
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2070,7 +2070,7 @@ List the logs from a ledger, sorted by ID in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2117,7 +2117,7 @@ List transactions from a ledger, sorted by id in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2165,7 +2165,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2210,7 +2210,7 @@ Revert a ledger transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -2256,7 +2256,7 @@ Update ledger metadata
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

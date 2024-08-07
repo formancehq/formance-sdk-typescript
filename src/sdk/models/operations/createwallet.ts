@@ -6,6 +6,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import * as shared from "../shared/index.js";
 import * as z from "zod";
 
+export type CreateWalletRequest = {
+    createWalletRequest?: shared.CreateWalletRequest | undefined;
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
+};
+
 export type CreateWalletResponse = {
     /**
      * HTTP response content type for this operation
@@ -24,6 +32,59 @@ export type CreateWalletResponse = {
      */
     rawResponse: Response;
 };
+
+/** @internal */
+export const CreateWalletRequest$inboundSchema: z.ZodType<
+    CreateWalletRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        CreateWalletRequest: shared.CreateWalletRequest$inboundSchema.optional(),
+        "Idempotency-Key": z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            CreateWalletRequest: "createWalletRequest",
+            "Idempotency-Key": "idempotencyKey",
+        });
+    });
+
+/** @internal */
+export type CreateWalletRequest$Outbound = {
+    CreateWalletRequest?: shared.CreateWalletRequest$Outbound | undefined;
+    "Idempotency-Key"?: string | undefined;
+};
+
+/** @internal */
+export const CreateWalletRequest$outboundSchema: z.ZodType<
+    CreateWalletRequest$Outbound,
+    z.ZodTypeDef,
+    CreateWalletRequest
+> = z
+    .object({
+        createWalletRequest: shared.CreateWalletRequest$outboundSchema.optional(),
+        idempotencyKey: z.string().optional(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            createWalletRequest: "CreateWalletRequest",
+            idempotencyKey: "Idempotency-Key",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateWalletRequest$ {
+    /** @deprecated use `CreateWalletRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateWalletRequest$inboundSchema;
+    /** @deprecated use `CreateWalletRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateWalletRequest$outboundSchema;
+    /** @deprecated use `CreateWalletRequest$Outbound` instead. */
+    export type Outbound = CreateWalletRequest$Outbound;
+}
 
 /** @internal */
 export const CreateWalletResponse$inboundSchema: z.ZodType<

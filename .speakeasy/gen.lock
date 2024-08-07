@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: ae52ad4cdee45faea7f5da2ab690073e
-  docVersion: v2.0.4
-  speakeasyVersion: 1.350.0
-  generationVersion: 2.384.1
-  releaseVersion: 2.6.0
-  configChecksum: 8b4ffe3d5be8d89ec315a0bc48d7c074
+  docChecksum: 82416abb1acf2b172db0a31569f080a1
+  docVersion: v2.0.9
+  speakeasyVersion: 1.355.0
+  generationVersion: 2.387.0
+  releaseVersion: 2.7.0
+  configChecksum: 08c5bfa48aeb32e6d8624acf425bebe4
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -14,13 +14,13 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.5
-    core: 3.11.11
+    constsAndDefaults: 0.1.6
+    core: 3.12.1
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.1.0
-    errors: 2.81.12
-    globalSecurity: 2.82.9
+    envVarSecurityUsage: 0.1.1
+    errors: 2.82.0
+    globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -32,6 +32,172 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.6
 generatedFiles:
+  - src/funcs/getOIDCWellKnowns.ts
+  - src/funcs/getVersions.ts
+  - src/funcs/authCreateClient.ts
+  - src/funcs/authCreateSecret.ts
+  - src/funcs/authDeleteClient.ts
+  - src/funcs/authDeleteSecret.ts
+  - src/funcs/authListClients.ts
+  - src/funcs/authListUsers.ts
+  - src/funcs/authReadClient.ts
+  - src/funcs/authReadUser.ts
+  - src/funcs/authUpdateClient.ts
+  - src/funcs/ledgerCreateTransactions.ts
+  - src/funcs/ledgerAddMetadataOnTransaction.ts
+  - src/funcs/ledgerAddMetadataToAccount.ts
+  - src/funcs/ledgerCountAccounts.ts
+  - src/funcs/ledgerCountTransactions.ts
+  - src/funcs/ledgerCreateTransaction.ts
+  - src/funcs/ledgerGetAccount.ts
+  - src/funcs/ledgerGetBalances.ts
+  - src/funcs/ledgerGetBalancesAggregated.ts
+  - src/funcs/ledgerGetInfo.ts
+  - src/funcs/ledgerGetLedgerInfo.ts
+  - src/funcs/ledgerGetMapping.ts
+  - src/funcs/ledgerGetTransaction.ts
+  - src/funcs/ledgerListAccounts.ts
+  - src/funcs/ledgerListLogs.ts
+  - src/funcs/ledgerListTransactions.ts
+  - src/funcs/ledgerReadStats.ts
+  - src/funcs/ledgerRevertTransaction.ts
+  - src/funcs/ledgerRunScript.ts
+  - src/funcs/ledgerUpdateMapping.ts
+  - src/funcs/ledgerV2AddMetadataOnTransaction.ts
+  - src/funcs/ledgerV2AddMetadataToAccount.ts
+  - src/funcs/ledgerV2CountAccounts.ts
+  - src/funcs/ledgerV2CountTransactions.ts
+  - src/funcs/ledgerV2CreateBulk.ts
+  - src/funcs/ledgerV2CreateLedger.ts
+  - src/funcs/ledgerV2CreateTransaction.ts
+  - src/funcs/ledgerV2DeleteAccountMetadata.ts
+  - src/funcs/ledgerV2DeleteLedgerMetadata.ts
+  - src/funcs/ledgerV2DeleteTransactionMetadata.ts
+  - src/funcs/ledgerV2GetAccount.ts
+  - src/funcs/ledgerV2GetBalancesAggregated.ts
+  - src/funcs/ledgerV2GetInfo.ts
+  - src/funcs/ledgerV2GetLedger.ts
+  - src/funcs/ledgerV2GetLedgerInfo.ts
+  - src/funcs/ledgerV2GetTransaction.ts
+  - src/funcs/ledgerV2GetVolumesWithBalances.ts
+  - src/funcs/ledgerV2ListAccounts.ts
+  - src/funcs/ledgerV2ListLedgers.ts
+  - src/funcs/ledgerV2ListLogs.ts
+  - src/funcs/ledgerV2ListTransactions.ts
+  - src/funcs/ledgerV2ReadStats.ts
+  - src/funcs/ledgerV2RevertTransaction.ts
+  - src/funcs/ledgerV2UpdateLedgerMetadata.ts
+  - src/funcs/orchestrationCancelEvent.ts
+  - src/funcs/orchestrationCreateTrigger.ts
+  - src/funcs/orchestrationCreateWorkflow.ts
+  - src/funcs/orchestrationDeleteTrigger.ts
+  - src/funcs/orchestrationDeleteWorkflow.ts
+  - src/funcs/orchestrationGetInstance.ts
+  - src/funcs/orchestrationGetInstanceHistory.ts
+  - src/funcs/orchestrationGetInstanceStageHistory.ts
+  - src/funcs/orchestrationGetWorkflow.ts
+  - src/funcs/orchestrationListInstances.ts
+  - src/funcs/orchestrationListTriggers.ts
+  - src/funcs/orchestrationListTriggersOccurrences.ts
+  - src/funcs/orchestrationListWorkflows.ts
+  - src/funcs/orchestrationOrchestrationgetServerInfo.ts
+  - src/funcs/orchestrationReadTrigger.ts
+  - src/funcs/orchestrationRunWorkflow.ts
+  - src/funcs/orchestrationSendEvent.ts
+  - src/funcs/orchestrationTestTrigger.ts
+  - src/funcs/orchestrationV2CancelEvent.ts
+  - src/funcs/orchestrationV2CreateTrigger.ts
+  - src/funcs/orchestrationV2CreateWorkflow.ts
+  - src/funcs/orchestrationV2DeleteTrigger.ts
+  - src/funcs/orchestrationV2DeleteWorkflow.ts
+  - src/funcs/orchestrationV2GetInstance.ts
+  - src/funcs/orchestrationV2GetInstanceHistory.ts
+  - src/funcs/orchestrationV2GetInstanceStageHistory.ts
+  - src/funcs/orchestrationV2GetServerInfo.ts
+  - src/funcs/orchestrationV2GetWorkflow.ts
+  - src/funcs/orchestrationV2ListInstances.ts
+  - src/funcs/orchestrationV2ListTriggers.ts
+  - src/funcs/orchestrationV2ListTriggersOccurrences.ts
+  - src/funcs/orchestrationV2ListWorkflows.ts
+  - src/funcs/orchestrationV2ReadTrigger.ts
+  - src/funcs/orchestrationV2RunWorkflow.ts
+  - src/funcs/orchestrationV2SendEvent.ts
+  - src/funcs/paymentsAddAccountToPool.ts
+  - src/funcs/paymentsConnectorsTransfer.ts
+  - src/funcs/paymentsCreateAccount.ts
+  - src/funcs/paymentsCreateBankAccount.ts
+  - src/funcs/paymentsCreatePayment.ts
+  - src/funcs/paymentsCreatePool.ts
+  - src/funcs/paymentsCreateTransferInitiation.ts
+  - src/funcs/paymentsDeletePool.ts
+  - src/funcs/paymentsDeleteTransferInitiation.ts
+  - src/funcs/paymentsForwardBankAccount.ts
+  - src/funcs/paymentsGetAccountBalances.ts
+  - src/funcs/paymentsGetBankAccount.ts
+  - src/funcs/paymentsGetConnectorTask.ts
+  - src/funcs/paymentsGetConnectorTaskV1.ts
+  - src/funcs/paymentsGetPayment.ts
+  - src/funcs/paymentsGetPool.ts
+  - src/funcs/paymentsGetPoolBalances.ts
+  - src/funcs/paymentsGetTransferInitiation.ts
+  - src/funcs/paymentsInstallConnector.ts
+  - src/funcs/paymentsListAllConnectors.ts
+  - src/funcs/paymentsListBankAccounts.ts
+  - src/funcs/paymentsListConfigsAvailableConnectors.ts
+  - src/funcs/paymentsListConnectorTasks.ts
+  - src/funcs/paymentsListConnectorTasksV1.ts
+  - src/funcs/paymentsListPayments.ts
+  - src/funcs/paymentsListPools.ts
+  - src/funcs/paymentsListTransferInitiations.ts
+  - src/funcs/paymentsPaymentsgetAccount.ts
+  - src/funcs/paymentsPaymentsgetServerInfo.ts
+  - src/funcs/paymentsPaymentslistAccounts.ts
+  - src/funcs/paymentsReadConnectorConfig.ts
+  - src/funcs/paymentsReadConnectorConfigV1.ts
+  - src/funcs/paymentsRemoveAccountFromPool.ts
+  - src/funcs/paymentsResetConnector.ts
+  - src/funcs/paymentsResetConnectorV1.ts
+  - src/funcs/paymentsRetryTransferInitiation.ts
+  - src/funcs/paymentsReverseTransferInitiation.ts
+  - src/funcs/paymentsUdpateTransferInitiationStatus.ts
+  - src/funcs/paymentsUninstallConnector.ts
+  - src/funcs/paymentsUninstallConnectorV1.ts
+  - src/funcs/paymentsUpdateBankAccountMetadata.ts
+  - src/funcs/paymentsUpdateConnectorConfigV1.ts
+  - src/funcs/paymentsUpdateMetadata.ts
+  - src/funcs/reconciliationCreatePolicy.ts
+  - src/funcs/reconciliationDeletePolicy.ts
+  - src/funcs/reconciliationGetPolicy.ts
+  - src/funcs/reconciliationGetReconciliation.ts
+  - src/funcs/reconciliationListPolicies.ts
+  - src/funcs/reconciliationListReconciliations.ts
+  - src/funcs/reconciliationReconcile.ts
+  - src/funcs/reconciliationReconciliationgetServerInfo.ts
+  - src/funcs/searchSearch.ts
+  - src/funcs/searchSearchgetServerInfo.ts
+  - src/funcs/walletsConfirmHold.ts
+  - src/funcs/walletsCreateBalance.ts
+  - src/funcs/walletsCreateWallet.ts
+  - src/funcs/walletsCreditWallet.ts
+  - src/funcs/walletsDebitWallet.ts
+  - src/funcs/walletsGetBalance.ts
+  - src/funcs/walletsGetHold.ts
+  - src/funcs/walletsGetHolds.ts
+  - src/funcs/walletsGetTransactions.ts
+  - src/funcs/walletsGetWallet.ts
+  - src/funcs/walletsGetWalletSummary.ts
+  - src/funcs/walletsListBalances.ts
+  - src/funcs/walletsListWallets.ts
+  - src/funcs/walletsUpdateWallet.ts
+  - src/funcs/walletsVoidHold.ts
+  - src/funcs/walletsWalletsgetServerInfo.ts
+  - src/funcs/webhooksActivateConfig.ts
+  - src/funcs/webhooksChangeConfigSecret.ts
+  - src/funcs/webhooksDeactivateConfig.ts
+  - src/funcs/webhooksDeleteConfig.ts
+  - src/funcs/webhooksGetManyConfigs.ts
+  - src/funcs/webhooksInsertConfig.ts
+  - src/funcs/webhooksTestConfig.ts
   - src/sdk/auth.ts
   - src/sdk/ledger.ts
   - src/sdk/orchestration.ts
@@ -46,6 +212,7 @@ generatedFiles:
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
@@ -53,6 +220,7 @@ generatedFiles:
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -60,10 +228,12 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/sdk/models/errors/httpclienterrors.ts
   - src/sdk/models/errors/sdkerror.ts
   - src/sdk/models/errors/sdkvalidationerror.ts
   - src/sdk/types/blobs.ts
   - src/sdk/types/enums.ts
+  - src/sdk/types/fp.ts
   - src/sdk/types/index.ts
   - src/sdk/types/operations.ts
   - src/sdk/types/rfcdate.ts
@@ -856,6 +1026,7 @@ generatedFiles:
   - docs/sdk/models/operations/confirmholdresponse.md
   - docs/sdk/models/operations/createbalancerequest.md
   - docs/sdk/models/operations/createbalanceresponse.md
+  - docs/sdk/models/operations/createwalletrequest.md
   - docs/sdk/models/operations/createwalletresponse.md
   - docs/sdk/models/operations/creditwalletrequest.md
   - docs/sdk/models/operations/creditwalletresponse.md
