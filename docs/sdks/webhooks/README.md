@@ -21,7 +21,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -70,7 +70,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -118,7 +118,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -163,7 +163,7 @@ Delete a webhooks config by ID.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -208,7 +208,7 @@ Sorted by updated date descending
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -263,7 +263,7 @@ All eventTypes are converted to lower-case when inserted.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -314,7 +314,7 @@ Test a config by sending a webhook to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

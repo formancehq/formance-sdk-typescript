@@ -8,6 +8,10 @@ import * as z from "zod";
 
 export type CreateBalanceRequest = {
     createBalanceRequest?: shared.CreateBalanceRequest | undefined;
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
     id: string;
 };
 
@@ -38,17 +42,20 @@ export const CreateBalanceRequest$inboundSchema: z.ZodType<
 > = z
     .object({
         CreateBalanceRequest: shared.CreateBalanceRequest$inboundSchema.optional(),
+        "Idempotency-Key": z.string().optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             CreateBalanceRequest: "createBalanceRequest",
+            "Idempotency-Key": "idempotencyKey",
         });
     });
 
 /** @internal */
 export type CreateBalanceRequest$Outbound = {
     CreateBalanceRequest?: shared.CreateBalanceRequest$Outbound | undefined;
+    "Idempotency-Key"?: string | undefined;
     id: string;
 };
 
@@ -60,11 +67,13 @@ export const CreateBalanceRequest$outboundSchema: z.ZodType<
 > = z
     .object({
         createBalanceRequest: shared.CreateBalanceRequest$outboundSchema.optional(),
+        idempotencyKey: z.string().optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             createBalanceRequest: "CreateBalanceRequest",
+            idempotencyKey: "Idempotency-Key",
         });
     });
 

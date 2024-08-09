@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type Balance = {
-    expiresAt?: Date | undefined;
+    expiresAt?: Date | null | undefined;
     name: string;
     priority?: bigint | undefined;
 };
@@ -13,9 +13,12 @@ export type Balance = {
 /** @internal */
 export const Balance$inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = z.object({
     expiresAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
+        .nullable(
+            z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+        )
         .optional(),
     name: z.string(),
     priority: z
@@ -26,17 +29,14 @@ export const Balance$inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = 
 
 /** @internal */
 export type Balance$Outbound = {
-    expiresAt?: string | undefined;
+    expiresAt?: string | null | undefined;
     name: string;
     priority?: number | undefined;
 };
 
 /** @internal */
 export const Balance$outboundSchema: z.ZodType<Balance$Outbound, z.ZodTypeDef, Balance> = z.object({
-    expiresAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
+    expiresAt: z.nullable(z.date().transform((v) => v.toISOString())).optional(),
     name: z.string(),
     priority: z
         .bigint()
