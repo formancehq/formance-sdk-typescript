@@ -13,6 +13,10 @@ export type UpdateWalletRequestBody = {
 };
 
 export type UpdateWalletRequest = {
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
     requestBody?: UpdateWalletRequestBody | undefined;
     id: string;
 };
@@ -75,17 +79,20 @@ export const UpdateWalletRequest$inboundSchema: z.ZodType<
     unknown
 > = z
     .object({
+        "Idempotency-Key": z.string().optional(),
         RequestBody: z.lazy(() => UpdateWalletRequestBody$inboundSchema).optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
+            "Idempotency-Key": "idempotencyKey",
             RequestBody: "requestBody",
         });
     });
 
 /** @internal */
 export type UpdateWalletRequest$Outbound = {
+    "Idempotency-Key"?: string | undefined;
     RequestBody?: UpdateWalletRequestBody$Outbound | undefined;
     id: string;
 };
@@ -97,11 +104,13 @@ export const UpdateWalletRequest$outboundSchema: z.ZodType<
     UpdateWalletRequest
 > = z
     .object({
+        idempotencyKey: z.string().optional(),
         requestBody: z.lazy(() => UpdateWalletRequestBody$outboundSchema).optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
+            idempotencyKey: "Idempotency-Key",
             requestBody: "RequestBody",
         });
     });

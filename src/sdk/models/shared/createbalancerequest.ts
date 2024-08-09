@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 export type CreateBalanceRequest = {
-    expiresAt?: Date | undefined;
+    expiresAt?: Date | null | undefined;
     name: string;
     priority?: bigint | undefined;
 };
@@ -17,9 +17,12 @@ export const CreateBalanceRequest$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     expiresAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
+        .nullable(
+            z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+        )
         .optional(),
     name: z.string(),
     priority: z
@@ -30,7 +33,7 @@ export const CreateBalanceRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type CreateBalanceRequest$Outbound = {
-    expiresAt?: string | undefined;
+    expiresAt?: string | null | undefined;
     name: string;
     priority?: number | undefined;
 };
@@ -41,10 +44,7 @@ export const CreateBalanceRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateBalanceRequest
 > = z.object({
-    expiresAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
+    expiresAt: z.nullable(z.date().transform((v) => v.toISOString())).optional(),
     name: z.string(),
     priority: z
         .bigint()

@@ -8,6 +8,10 @@ import * as z from "zod";
 
 export type ConfirmHoldRequest = {
     confirmHoldRequest?: shared.ConfirmHoldRequest | undefined;
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
     holdId: string;
 };
 
@@ -34,11 +38,13 @@ export const ConfirmHoldRequest$inboundSchema: z.ZodType<
 > = z
     .object({
         ConfirmHoldRequest: shared.ConfirmHoldRequest$inboundSchema.optional(),
+        "Idempotency-Key": z.string().optional(),
         hold_id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             ConfirmHoldRequest: "confirmHoldRequest",
+            "Idempotency-Key": "idempotencyKey",
             hold_id: "holdId",
         });
     });
@@ -46,6 +52,7 @@ export const ConfirmHoldRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type ConfirmHoldRequest$Outbound = {
     ConfirmHoldRequest?: shared.ConfirmHoldRequest$Outbound | undefined;
+    "Idempotency-Key"?: string | undefined;
     hold_id: string;
 };
 
@@ -57,11 +64,13 @@ export const ConfirmHoldRequest$outboundSchema: z.ZodType<
 > = z
     .object({
         confirmHoldRequest: shared.ConfirmHoldRequest$outboundSchema.optional(),
+        idempotencyKey: z.string().optional(),
         holdId: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             confirmHoldRequest: "ConfirmHoldRequest",
+            idempotencyKey: "Idempotency-Key",
             holdId: "hold_id",
         });
     });

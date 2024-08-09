@@ -30,7 +30,7 @@ Confirm a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -79,7 +79,7 @@ Create a balance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -124,11 +124,11 @@ Create a new wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-  const result = await sdk.wallets.createWallet();
+  const result = await sdk.wallets.createWallet({});
 
   // Handle the result
   console.log(result)
@@ -141,7 +141,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [shared.CreateWalletRequest](../../sdk/models/shared/createwalletrequest.md)                                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateWalletRequest](../../sdk/models/operations/createwalletrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -167,7 +167,7 @@ Credit a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -227,7 +227,7 @@ Debit a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -282,7 +282,7 @@ Get detailed balance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -328,7 +328,7 @@ Get a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -373,7 +373,7 @@ Get all holds for a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -421,7 +421,7 @@ run();
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -468,7 +468,7 @@ Get a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -513,7 +513,7 @@ Get wallet summary
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -558,7 +558,7 @@ List balances of a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -602,7 +602,7 @@ List all wallets
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -653,7 +653,7 @@ Update a wallet
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -698,7 +698,7 @@ Cancel a hold
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
@@ -743,7 +743,7 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {

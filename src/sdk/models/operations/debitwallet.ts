@@ -8,6 +8,10 @@ import * as z from "zod";
 
 export type DebitWalletRequest = {
     debitWalletRequest?: shared.DebitWalletRequest | undefined;
+    /**
+     * Use an idempotency key
+     */
+    idempotencyKey?: string | undefined;
     id: string;
 };
 
@@ -38,17 +42,20 @@ export const DebitWalletRequest$inboundSchema: z.ZodType<
 > = z
     .object({
         DebitWalletRequest: shared.DebitWalletRequest$inboundSchema.optional(),
+        "Idempotency-Key": z.string().optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             DebitWalletRequest: "debitWalletRequest",
+            "Idempotency-Key": "idempotencyKey",
         });
     });
 
 /** @internal */
 export type DebitWalletRequest$Outbound = {
     DebitWalletRequest?: shared.DebitWalletRequest$Outbound | undefined;
+    "Idempotency-Key"?: string | undefined;
     id: string;
 };
 
@@ -60,11 +67,13 @@ export const DebitWalletRequest$outboundSchema: z.ZodType<
 > = z
     .object({
         debitWalletRequest: shared.DebitWalletRequest$outboundSchema.optional(),
+        idempotencyKey: z.string().optional(),
         id: z.string(),
     })
     .transform((v) => {
         return remap$(v, {
             debitWalletRequest: "DebitWalletRequest",
+            idempotencyKey: "Idempotency-Key",
         });
     });
 

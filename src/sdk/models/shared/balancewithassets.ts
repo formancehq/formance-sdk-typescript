@@ -6,7 +6,7 @@ import * as z from "zod";
 
 export type BalanceWithAssets = {
     assets: { [k: string]: bigint };
-    expiresAt?: Date | undefined;
+    expiresAt?: Date | null | undefined;
     name: string;
     priority?: bigint | undefined;
 };
@@ -16,9 +16,12 @@ export const BalanceWithAssets$inboundSchema: z.ZodType<BalanceWithAssets, z.Zod
     z.object({
         assets: z.record(z.number().transform((v) => BigInt(v))),
         expiresAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v))
+            .nullable(
+                z
+                    .string()
+                    .datetime({ offset: true })
+                    .transform((v) => new Date(v))
+            )
             .optional(),
         name: z.string(),
         priority: z
@@ -30,7 +33,7 @@ export const BalanceWithAssets$inboundSchema: z.ZodType<BalanceWithAssets, z.Zod
 /** @internal */
 export type BalanceWithAssets$Outbound = {
     assets: { [k: string]: number };
-    expiresAt?: string | undefined;
+    expiresAt?: string | null | undefined;
     name: string;
     priority?: number | undefined;
 };
@@ -42,10 +45,7 @@ export const BalanceWithAssets$outboundSchema: z.ZodType<
     BalanceWithAssets
 > = z.object({
     assets: z.record(z.bigint().transform((v) => Number(v))),
-    expiresAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
+    expiresAt: z.nullable(z.date().transform((v) => v.toISOString())).optional(),
     name: z.string(),
     priority: z
         .bigint()
