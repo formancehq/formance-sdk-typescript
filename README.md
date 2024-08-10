@@ -544,6 +544,21 @@ run();
 ```
 <!-- End Retries [retries] -->
 
+<!-- Start Debugging [debug] -->
+## Debugging
+
+To log HTTP requests and responses, you can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development
