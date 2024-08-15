@@ -49,6 +49,43 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsConfirmHold } from "@formance/formance-sdk/funcs/walletsConfirmHold.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsConfirmHold(sdk, {
+    confirmHoldRequest: {
+      amount: BigInt("100"),
+      final: true,
+    },
+    holdId: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -94,6 +131,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsCreateBalance } from "@formance/formance-sdk/funcs/walletsCreateBalance.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsCreateBalance(sdk, {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -129,6 +199,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.createWallet({});
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsCreateWallet } from "@formance/formance-sdk/funcs/walletsCreateWallet.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsCreateWallet(sdk, {});
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -197,6 +298,54 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsCreditWallet } from "@formance/formance-sdk/funcs/walletsCreditWallet.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsCreditWallet(sdk, {
+    creditWalletRequest: {
+      amount: {
+        amount: BigInt("100"),
+        asset: "USD/2",
+      },
+      metadata: {
+        "key": "",
+      },
+      sources: [
+          {
+            identifier: "<value>",
+            type: "<value>",
+          },
+      ],
+    },
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -252,6 +401,49 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsDebitWallet } from "@formance/formance-sdk/funcs/walletsDebitWallet.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsDebitWallet(sdk, {
+    debitWalletRequest: {
+      amount: {
+        amount: BigInt("100"),
+        asset: "USD/2",
+      },
+      metadata: {
+        "key": "",
+      },
+      pending: true,
+    },
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -298,6 +490,40 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetBalance } from "@formance/formance-sdk/funcs/walletsGetBalance.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetBalance(sdk, {
+    balanceName: "<value>",
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -335,6 +561,39 @@ async function run() {
   const result = await sdk.wallets.getHold({
     holdID: "<value>",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetHold } from "@formance/formance-sdk/funcs/walletsGetHold.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetHold(sdk, {
+    holdID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -393,6 +652,44 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetHolds } from "@formance/formance-sdk/funcs/walletsGetHolds.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetHolds(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    metadata: {
+      "admin": "true",
+    },
+    pageSize: 100,
+    walletID: "wallet1",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -430,6 +727,41 @@ async function run() {
     pageSize: 100,
     walletID: "wallet1",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetTransactions } from "@formance/formance-sdk/funcs/walletsGetTransactions.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetTransactions(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    walletID: "wallet1",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -483,6 +815,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetWallet } from "@formance/formance-sdk/funcs/walletsGetWallet.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetWallet(sdk, {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -528,6 +893,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsGetWalletSummary } from "@formance/formance-sdk/funcs/walletsGetWalletSummary.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsGetWalletSummary(sdk, {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -565,6 +963,39 @@ async function run() {
   const result = await sdk.wallets.listBalances({
     id: "<id>",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsListBalances } from "@formance/formance-sdk/funcs/walletsListBalances.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsListBalances(sdk, {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -623,6 +1054,45 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsListWallets } from "@formance/formance-sdk/funcs/walletsListWallets.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsListWallets(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    expand: "balances",
+    metadata: {
+      "admin": "true",
+    },
+    name: "wallet1",
+    pageSize: 100,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -660,6 +1130,39 @@ async function run() {
   const result = await sdk.wallets.updateWallet({
     id: "<id>",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsUpdateWallet } from "@formance/formance-sdk/funcs/walletsUpdateWallet.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsUpdateWallet(sdk, {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -713,6 +1216,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsVoidHold } from "@formance/formance-sdk/funcs/walletsVoidHold.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsVoidHold(sdk, {
+    holdId: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -748,6 +1284,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.walletsgetServerInfo();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { walletsWalletsgetServerInfo } from "@formance/formance-sdk/funcs/walletsWalletsgetServerInfo.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await walletsWalletsgetServerInfo(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

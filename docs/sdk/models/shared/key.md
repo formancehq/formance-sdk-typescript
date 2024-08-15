@@ -1,5 +1,15 @@
 # Key
 
+## Example Usage
+
+```typescript
+import { Key } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Key = {
+    dataType: "timestamp",
+    required: false,
+};
+```
 
 ## Fields
 

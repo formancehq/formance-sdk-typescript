@@ -1,5 +1,17 @@
 # TransferInitiationPayments
 
+## Example Usage
+
+```typescript
+import { TransferInitiationPayments, TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferInitiationPayments = {
+    createdAt: new Date("2024-01-11T13:19:38.282Z"),
+    error: "<value>",
+    paymentID: "<value>",
+    status: TransferInitiationStatus.Processed,
+};
+```
 
 ## Fields
 

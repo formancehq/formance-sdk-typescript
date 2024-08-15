@@ -1,5 +1,14 @@
 # V2BulkElementRevertTransaction
 
+## Example Usage
+
+```typescript
+import { V2BulkElementRevertTransaction } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElementRevertTransaction = {
+    action: "<value>",
+};
+```
 
 ## Fields
 

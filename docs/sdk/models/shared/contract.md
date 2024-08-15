@@ -1,5 +1,15 @@
 # Contract
 
+## Example Usage
+
+```typescript
+import { Contract } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Contract = {
+    account: "users:001",
+    expr: {},
+};
+```
 
 ## Fields
 

@@ -1,5 +1,27 @@
 # V2ListTransactionsResponse
 
+## Example Usage
+
+```typescript
+import { V2ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListTransactionsResponse = {
+    contentType: "<value>",
+    statusCode: 697631,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2TransactionsCursorResponse: {
+        cursor: {
+            data: [],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # CreateClientRequest
 
+## Example Usage
+
+```typescript
+import { CreateClientRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateClientRequest = {
+    name: "<value>",
+};
+```
 
 ## Fields
 

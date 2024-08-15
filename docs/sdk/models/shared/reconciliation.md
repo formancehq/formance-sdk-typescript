@@ -1,5 +1,28 @@
 # Reconciliation
 
+## Example Usage
+
+```typescript
+import { Reconciliation } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Reconciliation = {
+    createdAt: new Date("2021-01-01T00:00:00.000Z"),
+    driftBalances: {
+        key: BigInt("32055"),
+    },
+    id: "XXX",
+    ledgerBalances: {
+        key: BigInt("322829"),
+    },
+    paymentsBalances: {
+        key: BigInt("60995"),
+    },
+    policyID: "XXX",
+    reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
+    reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
+    status: "COMPLETED",
+};
+```
 
 ## Fields
 

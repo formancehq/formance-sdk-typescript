@@ -1,5 +1,15 @@
 # UninstallConnectorRequest
 
+## Example Usage
+
+```typescript
+import { UninstallConnectorRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UninstallConnectorRequest = {
+    connector: Connector.Modulr,
+};
+```
 
 ## Fields
 

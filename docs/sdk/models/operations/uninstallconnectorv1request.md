@@ -1,5 +1,16 @@
 # UninstallConnectorV1Request
 
+## Example Usage
+
+```typescript
+import { UninstallConnectorV1Request } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UninstallConnectorV1Request = {
+    connector: Connector.Atlar,
+    connectorId: "XXX",
+};
+```
 
 ## Fields
 

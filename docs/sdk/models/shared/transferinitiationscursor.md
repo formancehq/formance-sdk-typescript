@@ -1,5 +1,20 @@
 # TransferInitiationsCursor
 
+## Example Usage
+
+```typescript
+import { TransferInitiationsCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferInitiationsCursor = {
+    cursor: {
+        data: [],
+        hasMore: false,
+        next: "",
+        pageSize: 15,
+        previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+    },
+};
+```
 
 ## Fields
 

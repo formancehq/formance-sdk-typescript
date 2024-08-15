@@ -1,5 +1,18 @@
 # RetryTransferInitiationResponse
 
+## Example Usage
+
+```typescript
+import { RetryTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: RetryTransferInitiationResponse = {
+    contentType: "<value>",
+    statusCode: 952749,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

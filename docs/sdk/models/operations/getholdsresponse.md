@@ -1,5 +1,36 @@
 # GetHoldsResponse
 
+## Example Usage
+
+```typescript
+import { GetHoldsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetHoldsResponse = {
+    contentType: "<value>",
+    getHoldsResponse: {
+        cursor: {
+            data: [
+                {
+                    description: "Realigned holistic workforce",
+                    id: "d2ed0289-21cd-4dc6-9260-1fb576b0d5f0",
+                    metadata: {
+                        key: "<value>",
+                    },
+                    walletID: "<value>",
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+    statusCode: 855804,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,21 @@
 # V2GetInstanceStageHistoryResponse
 
+## Example Usage
+
+```typescript
+import { V2GetInstanceStageHistoryResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetInstanceStageHistoryResponse = {
+    contentType: "<value>",
+    statusCode: 414369,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2GetWorkflowInstanceHistoryStageResponse: {
+        data: [],
+    },
+};
+```
 
 ## Fields
 

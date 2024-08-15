@@ -1,5 +1,12 @@
 # StageSendSource
 
+## Example Usage
+
+```typescript
+import { StageSendSource } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageSendSource = {};
+```
 
 ## Fields
 

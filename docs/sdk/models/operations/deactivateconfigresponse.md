@@ -1,5 +1,29 @@
 # DeactivateConfigResponse
 
+## Example Usage
+
+```typescript
+import { DeactivateConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeactivateConfigResponse = {
+    configResponse: {
+        data: {
+            active: true,
+            createdAt: new Date("2023-07-24T14:28:59.522Z"),
+            endpoint: "https://example.com",
+            eventTypes: ["TYPE1", "TYPE2"],
+            id: "a0d446ce-2af7-4a73-8f3b-e453f870b326",
+            secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+            updatedAt: new Date("2024-03-11T13:33:04.020Z"),
+        },
+    },
+    contentType: "<value>",
+    statusCode: 374170,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

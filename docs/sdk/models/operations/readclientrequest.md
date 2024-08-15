@@ -1,5 +1,14 @@
 # ReadClientRequest
 
+## Example Usage
+
+```typescript
+import { ReadClientRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ReadClientRequest = {
+    clientId: "<value>",
+};
+```
 
 ## Fields
 

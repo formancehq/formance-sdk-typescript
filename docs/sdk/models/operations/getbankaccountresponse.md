@@ -1,5 +1,18 @@
 # GetBankAccountResponse
 
+## Example Usage
+
+```typescript
+import { GetBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetBankAccountResponse = {
+    contentType: "<value>",
+    statusCode: 414263,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

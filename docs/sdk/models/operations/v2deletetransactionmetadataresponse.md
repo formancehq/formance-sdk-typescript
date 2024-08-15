@@ -1,5 +1,18 @@
 # V2DeleteTransactionMetadataResponse
 
+## Example Usage
+
+```typescript
+import { V2DeleteTransactionMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2DeleteTransactionMetadataResponse = {
+    contentType: "<value>",
+    statusCode: 521848,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

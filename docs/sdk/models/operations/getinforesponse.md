@@ -1,5 +1,18 @@
 # GetInfoResponse
 
+## Example Usage
+
+```typescript
+import { GetInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetInfoResponse = {
+    contentType: "<value>",
+    statusCode: 791725,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

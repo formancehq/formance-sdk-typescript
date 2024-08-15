@@ -1,5 +1,12 @@
 # OrchestrationPaymentMetadata
 
+## Example Usage
+
+```typescript
+import { OrchestrationPaymentMetadata } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationPaymentMetadata = {};
+```
 
 ## Fields
 

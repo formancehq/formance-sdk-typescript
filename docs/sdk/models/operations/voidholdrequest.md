@@ -1,5 +1,14 @@
 # VoidHoldRequest
 
+## Example Usage
+
+```typescript
+import { VoidHoldRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: VoidHoldRequest = {
+    holdId: "<value>",
+};
+```
 
 ## Fields
 

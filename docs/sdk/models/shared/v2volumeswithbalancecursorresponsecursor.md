@@ -1,5 +1,26 @@
 # V2VolumesWithBalanceCursorResponseCursor
 
+## Example Usage
+
+```typescript
+import { V2VolumesWithBalanceCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2VolumesWithBalanceCursorResponseCursor = {
+    data: [
+        {
+            account: "49077404",
+            asset: "<value>",
+            balance: BigInt("518835"),
+            input: BigInt("882710"),
+            output: BigInt("306810"),
+        },
+    ],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

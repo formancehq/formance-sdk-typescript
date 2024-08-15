@@ -1,5 +1,14 @@
 # V2BulkElementDeleteMetadata
 
+## Example Usage
+
+```typescript
+import { V2BulkElementDeleteMetadata } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElementDeleteMetadata = {
+    action: "<value>",
+};
+```
 
 ## Fields
 

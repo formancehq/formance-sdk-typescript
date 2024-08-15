@@ -1,5 +1,15 @@
 # ReadConnectorConfigRequest
 
+## Example Usage
+
+```typescript
+import { ReadConnectorConfigRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ReadConnectorConfigRequest = {
+    connector: Connector.CurrencyCloud,
+};
+```
 
 ## Fields
 

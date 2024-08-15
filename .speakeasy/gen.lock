@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 82416abb1acf2b172db0a31569f080a1
   docVersion: v2.0.9
-  speakeasyVersion: 1.361.1
-  generationVersion: 2.393.4
-  releaseVersion: 2.8.1
-  configChecksum: e570f6e28fe7187f002c7646c37e3f93
+  speakeasyVersion: 1.368.0
+  generationVersion: 2.399.0
+  releaseVersion: 2.8.2
+  configChecksum: e3e381bddad65bc79f459621a56ab693
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -14,8 +14,8 @@ management:
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.7
-    core: 3.13.1
+    constsAndDefaults: 0.1.8
+    core: 3.13.2
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.1
@@ -209,6 +209,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json

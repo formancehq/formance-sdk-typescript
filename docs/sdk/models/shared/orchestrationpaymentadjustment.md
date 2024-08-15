@@ -1,5 +1,18 @@
 # OrchestrationPaymentAdjustment
 
+## Example Usage
+
+```typescript
+import { OrchestrationPaymentAdjustment, OrchestrationPaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationPaymentAdjustment = {
+    absolute: false,
+    amount: BigInt("100"),
+    date: new Date("2023-07-16T15:31:42.506Z"),
+    raw: {},
+    status: OrchestrationPaymentStatus.Terminated,
+};
+```
 
 ## Fields
 

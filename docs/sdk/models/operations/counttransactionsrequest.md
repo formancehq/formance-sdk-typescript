@@ -1,5 +1,19 @@
 # CountTransactionsRequest
 
+## Example Usage
+
+```typescript
+import { CountTransactionsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CountTransactionsRequest = {
+    account: "users:001",
+    destination: "users:001",
+    ledger: "ledger001",
+    metadata: {},
+    reference: "ref:001",
+    source: "users:001",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # DeletePoolRequest
 
+## Example Usage
+
+```typescript
+import { DeletePoolRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeletePoolRequest = {
+    poolId: "XXX",
+};
+```
 
 ## Fields
 

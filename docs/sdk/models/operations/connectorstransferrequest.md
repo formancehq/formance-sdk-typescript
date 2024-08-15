@@ -1,5 +1,21 @@
 # ConnectorsTransferRequest
 
+## Example Usage
+
+```typescript
+import { ConnectorsTransferRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConnectorsTransferRequest = {
+    transferRequest: {
+        amount: BigInt("100"),
+        asset: "USD",
+        destination: "acct_1Gqj58KZcSIg2N2q",
+        source: "acct_1Gqj58KZcSIg2N2q",
+    },
+    connector: Connector.Adyen,
+};
+```
 
 ## Fields
 

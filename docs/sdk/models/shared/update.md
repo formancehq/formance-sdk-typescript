@@ -1,5 +1,12 @@
 # Update
 
+## Example Usage
+
+```typescript
+import { Update } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Update = {};
+```
 
 ## Fields
 

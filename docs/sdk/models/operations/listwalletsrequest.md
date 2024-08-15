@@ -1,5 +1,20 @@
 # ListWalletsRequest
 
+## Example Usage
+
+```typescript
+import { ListWalletsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListWalletsRequest = {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    expand: "balances",
+    metadata: {
+        admin: "true",
+    },
+    name: "wallet1",
+    pageSize: 100,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # LedgerAccountSubject
 
+## Example Usage
+
+```typescript
+import { LedgerAccountSubject } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: LedgerAccountSubject = {
+    identifier: "<value>",
+    type: "<value>",
+};
+```
 
 ## Fields
 

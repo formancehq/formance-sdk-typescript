@@ -1,5 +1,17 @@
 # GetAccountBalancesRequest
 
+## Example Usage
+
+```typescript
+import { GetAccountBalancesRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetAccountBalancesRequest = {
+    accountId: "XXX",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: ["date:asc", "status:desc"],
+};
+```
 
 ## Fields
 

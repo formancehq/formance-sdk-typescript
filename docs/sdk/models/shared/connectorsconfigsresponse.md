@@ -1,5 +1,21 @@
 # ConnectorsConfigsResponse
 
+## Example Usage
+
+```typescript
+import { ConnectorsConfigsResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConnectorsConfigsResponse = {
+    data: {
+        connector: {
+            key: {
+                dataType: "point",
+                required: false,
+            },
+        },
+    },
+};
+```
 
 ## Fields
 

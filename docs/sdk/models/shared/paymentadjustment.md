@@ -1,5 +1,18 @@
 # PaymentAdjustment
 
+## Example Usage
+
+```typescript
+import { PaymentAdjustment, PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentAdjustment = {
+    amount: BigInt("100"),
+    createdAt: new Date("2022-01-02T12:23:15.961Z"),
+    raw: {},
+    reference: "<value>",
+    status: PaymentStatus.Succeeded,
+};
+```
 
 ## Fields
 

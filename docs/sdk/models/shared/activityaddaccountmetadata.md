@@ -1,5 +1,18 @@
 # ActivityAddAccountMetadata
 
+## Example Usage
+
+```typescript
+import { ActivityAddAccountMetadata } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ActivityAddAccountMetadata = {
+    id: "<id>",
+    ledger: "<value>",
+    metadata: {
+        key: "<value>",
+    },
+};
+```
 
 ## Fields
 

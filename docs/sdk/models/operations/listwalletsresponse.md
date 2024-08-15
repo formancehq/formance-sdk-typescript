@@ -1,5 +1,37 @@
 # ListWalletsResponse
 
+## Example Usage
+
+```typescript
+import { ListWalletsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListWalletsResponse = {
+    contentType: "<value>",
+    listWalletsResponse: {
+        cursor: {
+            data: [
+                {
+                    createdAt: new Date("2024-10-31T18:13:30.324Z"),
+                    id: "bb258705-3202-4c73-95fe-9b90c28909b3",
+                    ledger: "<value>",
+                    metadata: {
+                        key: "<value>",
+                    },
+                    name: "<value>",
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+    statusCode: 992397,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

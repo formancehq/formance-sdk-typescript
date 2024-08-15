@@ -1,5 +1,14 @@
 # GetWorkflowInstanceHistoryStageResponse
 
+## Example Usage
+
+```typescript
+import { GetWorkflowInstanceHistoryStageResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: GetWorkflowInstanceHistoryStageResponse = {
+    data: [],
+};
+```
 
 ## Fields
 

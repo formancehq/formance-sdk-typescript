@@ -1,5 +1,15 @@
 # GetTransactionRequest
 
+## Example Usage
+
+```typescript
+import { GetTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetTransactionRequest = {
+    ledger: "ledger001",
+    txid: BigInt("1234"),
+};
+```
 
 ## Fields
 

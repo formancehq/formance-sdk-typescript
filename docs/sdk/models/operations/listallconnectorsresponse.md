@@ -1,5 +1,18 @@
 # ListAllConnectorsResponse
 
+## Example Usage
+
+```typescript
+import { ListAllConnectorsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListAllConnectorsResponse = {
+    contentType: "<value>",
+    statusCode: 183191,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

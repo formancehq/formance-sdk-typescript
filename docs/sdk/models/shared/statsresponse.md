@@ -1,5 +1,17 @@
 # StatsResponse
 
+## Example Usage
+
+```typescript
+import { StatsResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StatsResponse = {
+    data: {
+        accounts: 683282,
+        transactions: 442015,
+    },
+};
+```
 
 ## Fields
 

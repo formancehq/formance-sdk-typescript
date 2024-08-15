@@ -1,5 +1,14 @@
 # UpdateClientRequest
 
+## Example Usage
+
+```typescript
+import { UpdateClientRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UpdateClientRequest = {
+    name: "<value>",
+};
+```
 
 ## Fields
 

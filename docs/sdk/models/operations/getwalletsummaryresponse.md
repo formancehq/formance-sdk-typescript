@@ -1,5 +1,18 @@
 # GetWalletSummaryResponse
 
+## Example Usage
+
+```typescript
+import { GetWalletSummaryResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetWalletSummaryResponse = {
+    contentType: "<value>",
+    statusCode: 764912,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

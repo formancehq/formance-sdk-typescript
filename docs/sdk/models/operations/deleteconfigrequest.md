@@ -1,5 +1,14 @@
 # DeleteConfigRequest
 
+## Example Usage
+
+```typescript
+import { DeleteConfigRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeleteConfigRequest = {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+};
+```
 
 ## Fields
 

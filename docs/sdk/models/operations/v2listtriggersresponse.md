@@ -1,5 +1,34 @@
 # V2ListTriggersResponse
 
+## Example Usage
+
+```typescript
+import { V2ListTriggersResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListTriggersResponse = {
+    contentType: "<value>",
+    statusCode: 338007,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2ListTriggersResponse: {
+        cursor: {
+            data: [
+                {
+                    createdAt: new Date("2022-05-01T23:18:27.578Z"),
+                    event: "<value>",
+                    id: "<id>",
+                    workflowID: "<value>",
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

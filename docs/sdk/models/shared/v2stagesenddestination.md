@@ -1,5 +1,12 @@
 # V2StageSendDestination
 
+## Example Usage
+
+```typescript
+import { V2StageSendDestination } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StageSendDestination = {};
+```
 
 ## Fields
 

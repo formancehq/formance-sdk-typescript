@@ -1,5 +1,18 @@
 # PaymentsCursorCursor
 
+## Example Usage
+
+```typescript
+import { PaymentsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentsCursorCursor = {
+    data: [],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

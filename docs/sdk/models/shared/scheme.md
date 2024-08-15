@@ -1,5 +1,12 @@
 # Scheme
 
+## Example Usage
+
+```typescript
+import { Scheme } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Scheme = Scheme.Rtp;
+```
 
 ## Values
 

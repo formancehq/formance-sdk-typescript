@@ -1,5 +1,24 @@
 # OrchestrationPostTransactionScript
 
+## Example Usage
+
+```typescript
+import { OrchestrationPostTransactionScript } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationPostTransactionScript = {
+  plain: "vars {
+account $user
+}
+send [COIN 10] (
+	source = @world
+	destination = $user
+)
+",
+  vars: {
+    "user": "users:042",
+  },
+};
+```
 
 ## Fields
 

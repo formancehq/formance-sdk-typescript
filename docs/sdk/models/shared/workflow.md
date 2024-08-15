@@ -1,5 +1,23 @@
 # Workflow
 
+## Example Usage
+
+```typescript
+import { Workflow } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Workflow = {
+    config: {
+        stages: [
+            {
+                key: "<value>",
+            },
+        ],
+    },
+    createdAt: new Date("2024-09-17T19:59:01.544Z"),
+    id: "<id>",
+    updatedAt: new Date("2023-04-13T05:32:59.331Z"),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # V2DeleteAccountMetadataResponse
 
+## Example Usage
+
+```typescript
+import { V2DeleteAccountMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2DeleteAccountMetadataResponse = {
+    contentType: "<value>",
+    statusCode: 944669,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,16 @@
 # GetConnectorTaskRequest
 
+## Example Usage
+
+```typescript
+import { GetConnectorTaskRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: GetConnectorTaskRequest = {
+    connector: Connector.Generic,
+    taskId: "task1",
+};
+```
 
 ## Fields
 

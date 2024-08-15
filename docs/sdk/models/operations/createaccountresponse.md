@@ -1,5 +1,18 @@
 # CreateAccountResponse
 
+## Example Usage
+
+```typescript
+import { CreateAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateAccountResponse = {
+    contentType: "<value>",
+    statusCode: 97101,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

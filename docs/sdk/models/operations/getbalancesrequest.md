@@ -1,5 +1,17 @@
 # GetBalancesRequest
 
+## Example Usage
+
+```typescript
+import { GetBalancesRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetBalancesRequest = {
+    address: "users:001",
+    after: "users:003",
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # CreateWalletRequest
 
+## Example Usage
+
+```typescript
+import { CreateWalletRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateWalletRequest = {};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # V2BulkElementRevertTransactionData
 
+## Example Usage
+
+```typescript
+import { V2BulkElementRevertTransactionData } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElementRevertTransactionData = {
+    id: BigInt("259422"),
+};
+```
 
 ## Fields
 

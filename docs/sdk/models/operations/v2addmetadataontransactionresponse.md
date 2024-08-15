@@ -1,5 +1,18 @@
 # V2AddMetadataOnTransactionResponse
 
+## Example Usage
+
+```typescript
+import { V2AddMetadataOnTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2AddMetadataOnTransactionResponse = {
+    contentType: "<value>",
+    statusCode: 870013,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

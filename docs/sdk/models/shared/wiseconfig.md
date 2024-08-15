@@ -1,5 +1,16 @@
 # WiseConfig
 
+## Example Usage
+
+```typescript
+import { WiseConfig } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: WiseConfig = {
+    apiKey: "XXX",
+    name: "My Wise Account",
+    pollingPeriod: "60s",
+};
+```
 
 ## Fields
 

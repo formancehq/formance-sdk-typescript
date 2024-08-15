@@ -1,5 +1,16 @@
 # CreateBalanceResponse
 
+## Example Usage
+
+```typescript
+import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateBalanceResponse = {
+    data: {
+        name: "<value>",
+    },
+};
+```
 
 ## Fields
 

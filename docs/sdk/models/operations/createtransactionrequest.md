@@ -1,5 +1,39 @@
 # CreateTransactionRequest
 
+## Example Usage
+
+```typescript
+import { CreateTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateTransactionRequest = {
+  postTransaction: {
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    script: {
+      plain: "vars {
+    account $user
+    }
+    send [COIN 10] (
+    	source = @world
+    	destination = $user
+    )
+    ",
+      vars: {
+        "user": "users:042",
+      },
+    },
+  },
+  ledger: "ledger001",
+  preview: true,
+};
+```
 
 ## Fields
 

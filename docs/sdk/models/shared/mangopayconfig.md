@@ -1,5 +1,18 @@
 # MangoPayConfig
 
+## Example Usage
+
+```typescript
+import { MangoPayConfig } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: MangoPayConfig = {
+    apiKey: "XXX",
+    clientID: "XXX",
+    endpoint: "XXX",
+    name: "My MangoPay Account",
+    pollingPeriod: "60s",
+};
+```
 
 ## Fields
 

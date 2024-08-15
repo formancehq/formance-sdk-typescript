@@ -1,5 +1,15 @@
 # V2ListLedgersRequest
 
+## Example Usage
+
+```typescript
+import { V2ListLedgersRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListLedgersRequest = {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+};
+```
 
 ## Fields
 

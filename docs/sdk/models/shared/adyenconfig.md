@@ -1,5 +1,18 @@
 # AdyenConfig
 
+## Example Usage
+
+```typescript
+import { AdyenConfig } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: AdyenConfig = {
+    apiKey: "XXX",
+    hmacKey: "XXX",
+    liveEndpointPrefix: "XXX",
+    name: "My Adyen Account",
+    pollingPeriod: "60s",
+};
+```
 
 ## Fields
 

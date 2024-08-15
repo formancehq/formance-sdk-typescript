@@ -1,5 +1,14 @@
 # DeletePolicyRequest
 
+## Example Usage
+
+```typescript
+import { DeletePolicyRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeletePolicyRequest = {
+    policyID: "XXX",
+};
+```
 
 ## Fields
 

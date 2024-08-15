@@ -1,5 +1,27 @@
 # BalancesCursorCursor
 
+## Example Usage
+
+```typescript
+import { BalancesCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: BalancesCursorCursor = {
+    data: [
+        {
+            accountId: "<value>",
+            asset: "<value>",
+            balance: BigInt("482892"),
+            createdAt: new Date("2023-05-12T14:11:28.020Z"),
+            currency: "Cuban Peso Convertible",
+            lastUpdatedAt: new Date("2023-06-26T09:04:00.570Z"),
+        },
+    ],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

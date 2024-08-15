@@ -1,5 +1,19 @@
 # Mapping
 
+## Example Usage
+
+```typescript
+import { Mapping } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Mapping = {
+    contracts: [
+        {
+            account: "users:001",
+            expr: {},
+        },
+    ],
+};
+```
 
 ## Fields
 

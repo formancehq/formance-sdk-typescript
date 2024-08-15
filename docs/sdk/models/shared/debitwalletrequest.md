@@ -1,5 +1,21 @@
 # DebitWalletRequest
 
+## Example Usage
+
+```typescript
+import { DebitWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: DebitWalletRequest = {
+    amount: {
+        amount: BigInt("100"),
+        asset: "USD/2",
+    },
+    metadata: {
+        key: "",
+    },
+    pending: true,
+};
+```
 
 ## Fields
 

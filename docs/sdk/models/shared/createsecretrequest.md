@@ -1,5 +1,14 @@
 # CreateSecretRequest
 
+## Example Usage
+
+```typescript
+import { CreateSecretRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateSecretRequest = {
+    name: "<value>",
+};
+```
 
 ## Fields
 

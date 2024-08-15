@@ -1,5 +1,28 @@
 # ListWalletsResponseCursor
 
+## Example Usage
+
+```typescript
+import { ListWalletsResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ListWalletsResponseCursor = {
+    data: [
+        {
+            createdAt: new Date("2023-12-01T16:12:48.178Z"),
+            id: "944f3b75-6c11-4f6c-b7a5-126243835bbc",
+            ledger: "<value>",
+            metadata: {
+                key: "<value>",
+            },
+            name: "<value>",
+        },
+    ],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

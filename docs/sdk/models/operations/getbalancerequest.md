@@ -1,5 +1,15 @@
 # GetBalanceRequest
 
+## Example Usage
+
+```typescript
+import { GetBalanceRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetBalanceRequest = {
+    balanceName: "<value>",
+    id: "<id>",
+};
+```
 
 ## Fields
 

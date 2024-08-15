@@ -1,5 +1,43 @@
 # PaymentslistAccountsResponse
 
+## Example Usage
+
+```typescript
+import { PaymentslistAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
+import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentslistAccountsResponse = {
+    accountsCursor: {
+        cursor: {
+            data: [
+                {
+                    accountName: "<value>",
+                    connectorID: "<value>",
+                    createdAt: new Date("2024-03-16T18:32:36.649Z"),
+                    defaultAsset: "<value>",
+                    defaultCurrency: "<value>",
+                    id: "<id>",
+                    metadata: {
+                        key: "<value>",
+                    },
+                    raw: {},
+                    reference: "<value>",
+                    type: AccountType.Unknown,
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+    contentType: "<value>",
+    statusCode: 962189,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

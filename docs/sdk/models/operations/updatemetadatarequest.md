@@ -1,5 +1,17 @@
 # UpdateMetadataRequest
 
+## Example Usage
+
+```typescript
+import { UpdateMetadataRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: UpdateMetadataRequest = {
+    requestBody: {
+        key: "<value>",
+    },
+    paymentId: "XXX",
+};
+```
 
 ## Fields
 

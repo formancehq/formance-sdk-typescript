@@ -1,5 +1,12 @@
 # Stage
 
+## Example Usage
+
+```typescript
+import { Stage } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Stage = {};
+```
 
 ## Supported Types
 

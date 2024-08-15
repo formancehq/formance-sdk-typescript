@@ -1,5 +1,18 @@
 # V2CreateWorkflowRequest
 
+## Example Usage
+
+```typescript
+import { V2CreateWorkflowRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2CreateWorkflowRequest = {
+    stages: [
+        {
+            key: "<value>",
+        },
+    ],
+};
+```
 
 ## Fields
 

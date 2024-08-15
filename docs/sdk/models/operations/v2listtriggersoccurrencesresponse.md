@@ -1,5 +1,35 @@
 # V2ListTriggersOccurrencesResponse
 
+## Example Usage
+
+```typescript
+import { V2ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListTriggersOccurrencesResponse = {
+    contentType: "<value>",
+    statusCode: 674752,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2ListTriggersOccurrencesResponse: {
+        cursor: {
+            data: [
+                {
+                    date: new Date("2023-12-21T08:05:36.916Z"),
+                    event: {
+                        key: "<value>",
+                    },
+                    triggerID: "<value>",
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

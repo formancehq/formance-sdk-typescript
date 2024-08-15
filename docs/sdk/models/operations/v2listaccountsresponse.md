@@ -1,5 +1,27 @@
 # V2ListAccountsResponse
 
+## Example Usage
+
+```typescript
+import { V2ListAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListAccountsResponse = {
+    contentType: "<value>",
+    statusCode: 681820,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2AccountsCursorResponse: {
+        cursor: {
+            data: [],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

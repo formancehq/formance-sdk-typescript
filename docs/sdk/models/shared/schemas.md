@@ -1,5 +1,14 @@
 # Schemas
 
+## Example Usage
+
+```typescript
+import { Schemas } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Schemas = {
+    responseType: "<value>",
+};
+```
 
 ## Fields
 

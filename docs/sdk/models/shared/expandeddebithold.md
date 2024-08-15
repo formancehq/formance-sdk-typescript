@@ -1,5 +1,21 @@
 # ExpandedDebitHold
 
+## Example Usage
+
+```typescript
+import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ExpandedDebitHold = {
+    description: "Advanced intermediate instruction set",
+    id: "d100efad-a200-4ef0-822e-b2164cf9ab83",
+    metadata: {
+        key: "<value>",
+    },
+    originalAmount: BigInt("100"),
+    remaining: BigInt("10"),
+    walletID: "<value>",
+};
+```
 
 ## Fields
 

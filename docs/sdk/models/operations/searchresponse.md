@@ -1,5 +1,28 @@
 # SearchResponse
 
+## Example Usage
+
+```typescript
+import { SearchResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: SearchResponse = {
+    contentType: "<value>",
+    response: {
+        cursor: {
+            next: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+            total: {
+                relation: "eq",
+                value: 1,
+            },
+        },
+    },
+    statusCode: 19193,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

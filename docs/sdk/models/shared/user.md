@@ -1,5 +1,16 @@
 # User
 
+## Example Usage
+
+```typescript
+import { User } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: User = {
+    email: "user1@orga1.com",
+    id: "3bb03708-312f-48a0-821a-e765837dc2c4",
+    subject: "Jane Doe",
+};
+```
 
 ## Fields
 

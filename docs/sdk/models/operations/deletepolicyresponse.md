@@ -1,5 +1,18 @@
 # DeletePolicyResponse
 
+## Example Usage
+
+```typescript
+import { DeletePolicyResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeletePolicyResponse = {
+    contentType: "<value>",
+    statusCode: 881736,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

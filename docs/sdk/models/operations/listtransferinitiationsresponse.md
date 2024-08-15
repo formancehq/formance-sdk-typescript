@@ -1,5 +1,27 @@
 # ListTransferInitiationsResponse
 
+## Example Usage
+
+```typescript
+import { ListTransferInitiationsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListTransferInitiationsResponse = {
+    contentType: "<value>",
+    statusCode: 569618,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    transferInitiationsCursor: {
+        cursor: {
+            data: [],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

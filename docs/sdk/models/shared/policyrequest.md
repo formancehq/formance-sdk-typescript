@@ -1,5 +1,19 @@
 # PolicyRequest
 
+## Example Usage
+
+```typescript
+import { PolicyRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PolicyRequest = {
+    ledgerName: "default",
+    ledgerQuery: {
+        key: "<value>",
+    },
+    name: "XXX",
+    paymentsPoolID: "XXX",
+};
+```
 
 ## Fields
 

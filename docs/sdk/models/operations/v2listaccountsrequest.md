@@ -1,5 +1,16 @@
 # V2ListAccountsRequest
 
+## Example Usage
+
+```typescript
+import { V2ListAccountsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListAccountsRequest = {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    ledger: "ledger001",
+    pageSize: 100,
+};
+```
 
 ## Fields
 

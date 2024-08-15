@@ -1,5 +1,12 @@
 # Connector
 
+## Example Usage
+
+```typescript
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Connector = Connector.DummyPay;
+```
 
 ## Values
 

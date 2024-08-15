@@ -1,5 +1,12 @@
 # TaskWiseDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskWiseDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskWiseDescriptor = {};
+```
 
 ## Fields
 

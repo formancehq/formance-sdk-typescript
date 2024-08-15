@@ -1,5 +1,19 @@
 # ConnectorsConfigsResponseData
 
+## Example Usage
+
+```typescript
+import { ConnectorsConfigsResponseData } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConnectorsConfigsResponseData = {
+    connector: {
+        key: {
+            dataType: "timestamp",
+            required: false,
+        },
+    },
+};
+```
 
 ## Fields
 

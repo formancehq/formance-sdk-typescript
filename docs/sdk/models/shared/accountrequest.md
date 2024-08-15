@@ -1,5 +1,17 @@
 # AccountRequest
 
+## Example Usage
+
+```typescript
+import { AccountRequest, AccountType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: AccountRequest = {
+    connectorID: "<value>",
+    createdAt: new Date("2024-08-24T13:24:19.997Z"),
+    reference: "<value>",
+    type: AccountType.External,
+};
+```
 
 ## Fields
 

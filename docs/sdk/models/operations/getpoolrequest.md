@@ -1,5 +1,14 @@
 # GetPoolRequest
 
+## Example Usage
+
+```typescript
+import { GetPoolRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetPoolRequest = {
+    poolId: "XXX",
+};
+```
 
 ## Fields
 

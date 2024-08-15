@@ -1,5 +1,15 @@
 # ConfirmHoldRequest
 
+## Example Usage
+
+```typescript
+import { ConfirmHoldRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConfirmHoldRequest = {
+    amount: BigInt("100"),
+    final: true,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # V2ReadTriggerRequest
 
+## Example Usage
+
+```typescript
+import { V2ReadTriggerRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ReadTriggerRequest = {
+    triggerID: "<value>",
+};
+```
 
 ## Fields
 

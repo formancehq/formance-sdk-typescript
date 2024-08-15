@@ -1,5 +1,12 @@
 # TaskDummyPayDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskDummyPayDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskDummyPayDescriptor = {};
+```
 
 ## Fields
 

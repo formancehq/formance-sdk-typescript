@@ -1,5 +1,18 @@
 # V2DeleteWorkflowResponse
 
+## Example Usage
+
+```typescript
+import { V2DeleteWorkflowResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2DeleteWorkflowResponse = {
+    contentType: "<value>",
+    statusCode: 653108,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

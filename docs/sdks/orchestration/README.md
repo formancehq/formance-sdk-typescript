@@ -64,6 +64,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationCancelEvent } from "@formance/formance-sdk/funcs/orchestrationCancelEvent.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationCancelEvent(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -107,6 +140,37 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationCreateTrigger } from "@formance/formance-sdk/funcs/orchestrationCreateTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationCreateTrigger(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -142,6 +206,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.createWorkflow();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationCreateWorkflow } from "@formance/formance-sdk/funcs/orchestrationCreateWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationCreateWorkflow(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -195,6 +290,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationDeleteTrigger } from "@formance/formance-sdk/funcs/orchestrationDeleteTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationDeleteTrigger(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -232,6 +360,39 @@ async function run() {
   const result = await sdk.orchestration.deleteWorkflow({
     flowId: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationDeleteWorkflow } from "@formance/formance-sdk/funcs/orchestrationDeleteWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationDeleteWorkflow(sdk, {
+    flowId: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -285,6 +446,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationGetInstance } from "@formance/formance-sdk/funcs/orchestrationGetInstance.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationGetInstance(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -322,6 +516,39 @@ async function run() {
   const result = await sdk.orchestration.getInstanceHistory({
     instanceID: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationGetInstanceHistory } from "@formance/formance-sdk/funcs/orchestrationGetInstanceHistory.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationGetInstanceHistory(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -376,6 +603,40 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationGetInstanceStageHistory } from "@formance/formance-sdk/funcs/orchestrationGetInstanceStageHistory.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationGetInstanceStageHistory(sdk, {
+    instanceID: "xxx",
+    number: 0,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -413,6 +674,39 @@ async function run() {
   const result = await sdk.orchestration.getWorkflow({
     flowId: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationGetWorkflow } from "@formance/formance-sdk/funcs/orchestrationGetWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationGetWorkflow(sdk, {
+    flowId: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -467,6 +761,40 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationListInstances } from "@formance/formance-sdk/funcs/orchestrationListInstances.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationListInstances(sdk, {
+    running: true,
+    workflowID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -502,6 +830,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.listTriggers({});
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationListTriggers } from "@formance/formance-sdk/funcs/orchestrationListTriggers.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationListTriggers(sdk, {});
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -555,6 +914,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationListTriggersOccurrences } from "@formance/formance-sdk/funcs/orchestrationListTriggersOccurrences.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationListTriggersOccurrences(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -590,6 +982,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.listWorkflows();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationListWorkflows } from "@formance/formance-sdk/funcs/orchestrationListWorkflows.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationListWorkflows(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -640,6 +1063,37 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationOrchestrationgetServerInfo } from "@formance/formance-sdk/funcs/orchestrationOrchestrationgetServerInfo.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationOrchestrationgetServerInfo(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -676,6 +1130,39 @@ async function run() {
   const result = await sdk.orchestration.readTrigger({
     triggerID: "<value>",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationReadTrigger } from "@formance/formance-sdk/funcs/orchestrationReadTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationReadTrigger(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -729,6 +1216,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationRunWorkflow } from "@formance/formance-sdk/funcs/orchestrationRunWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationRunWorkflow(sdk, {
+    workflowID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -766,6 +1286,39 @@ async function run() {
   const result = await sdk.orchestration.sendEvent({
     instanceID: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationSendEvent } from "@formance/formance-sdk/funcs/orchestrationSendEvent.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationSendEvent(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -819,6 +1372,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationTestTrigger } from "@formance/formance-sdk/funcs/orchestrationTestTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationTestTrigger(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -856,6 +1442,39 @@ async function run() {
   const result = await sdk.orchestration.v2CancelEvent({
     instanceID: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2CancelEvent } from "@formance/formance-sdk/funcs/orchestrationV2CancelEvent.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2CancelEvent(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -907,6 +1526,37 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2CreateTrigger } from "@formance/formance-sdk/funcs/orchestrationV2CreateTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2CreateTrigger(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -942,6 +1592,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2CreateWorkflow();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2CreateWorkflow } from "@formance/formance-sdk/funcs/orchestrationV2CreateWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2CreateWorkflow(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -995,6 +1676,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2DeleteTrigger } from "@formance/formance-sdk/funcs/orchestrationV2DeleteTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2DeleteTrigger(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1032,6 +1746,39 @@ async function run() {
   const result = await sdk.orchestration.v2DeleteWorkflow({
     flowId: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2DeleteWorkflow } from "@formance/formance-sdk/funcs/orchestrationV2DeleteWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2DeleteWorkflow(sdk, {
+    flowId: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1085,6 +1832,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2GetInstance } from "@formance/formance-sdk/funcs/orchestrationV2GetInstance.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2GetInstance(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1122,6 +1902,39 @@ async function run() {
   const result = await sdk.orchestration.v2GetInstanceHistory({
     instanceID: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2GetInstanceHistory } from "@formance/formance-sdk/funcs/orchestrationV2GetInstanceHistory.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2GetInstanceHistory(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1176,6 +1989,40 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2GetInstanceStageHistory } from "@formance/formance-sdk/funcs/orchestrationV2GetInstanceStageHistory.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2GetInstanceStageHistory(sdk, {
+    instanceID: "xxx",
+    number: 0,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1211,6 +2058,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2GetServerInfo();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2GetServerInfo } from "@formance/formance-sdk/funcs/orchestrationV2GetServerInfo.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2GetServerInfo(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1255,6 +2133,39 @@ async function run() {
   const result = await sdk.orchestration.v2GetWorkflow({
     flowId: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2GetWorkflow } from "@formance/formance-sdk/funcs/orchestrationV2GetWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2GetWorkflow(sdk, {
+    flowId: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1311,6 +2222,42 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2ListInstances } from "@formance/formance-sdk/funcs/orchestrationV2ListInstances.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2ListInstances(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    running: true,
+    workflowID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1349,6 +2296,40 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2ListTriggers } from "@formance/formance-sdk/funcs/orchestrationV2ListTriggers.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2ListTriggers(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1404,6 +2385,41 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2ListTriggersOccurrences } from "@formance/formance-sdk/funcs/orchestrationV2ListTriggersOccurrences.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2ListTriggersOccurrences(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1442,6 +2458,40 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2ListWorkflows } from "@formance/formance-sdk/funcs/orchestrationV2ListWorkflows.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2ListWorkflows(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -1495,6 +2545,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2ReadTrigger } from "@formance/formance-sdk/funcs/orchestrationV2ReadTrigger.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2ReadTrigger(sdk, {
+    triggerID: "<value>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1540,6 +2623,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2RunWorkflow } from "@formance/formance-sdk/funcs/orchestrationV2RunWorkflow.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2RunWorkflow(sdk, {
+    workflowID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -1577,6 +2693,39 @@ async function run() {
   const result = await sdk.orchestration.v2SendEvent({
     instanceID: "xxx",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { orchestrationV2SendEvent } from "@formance/formance-sdk/funcs/orchestrationV2SendEvent.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await orchestrationV2SendEvent(sdk, {
+    instanceID: "xxx",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

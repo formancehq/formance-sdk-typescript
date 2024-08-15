@@ -1,5 +1,18 @@
 # V2SendEventResponse
 
+## Example Usage
+
+```typescript
+import { V2SendEventResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2SendEventResponse = {
+    contentType: "<value>",
+    statusCode: 368725,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

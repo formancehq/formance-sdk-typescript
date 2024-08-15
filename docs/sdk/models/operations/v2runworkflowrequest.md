@@ -1,5 +1,14 @@
 # V2RunWorkflowRequest
 
+## Example Usage
+
+```typescript
+import { V2RunWorkflowRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2RunWorkflowRequest = {
+    workflowID: "xxx",
+};
+```
 
 ## Fields
 

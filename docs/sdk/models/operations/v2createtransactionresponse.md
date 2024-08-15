@@ -1,5 +1,37 @@
 # V2CreateTransactionResponse
 
+## Example Usage
+
+```typescript
+import { V2CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2CreateTransactionResponse = {
+    contentType: "<value>",
+    statusCode: 461479,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2CreateTransactionResponse: {
+        data: {
+            id: BigInt("520478"),
+            metadata: {
+                admin: "true",
+            },
+            postings: [
+                {
+                    amount: BigInt("100"),
+                    asset: "COIN",
+                    destination: "users:002",
+                    source: "users:001",
+                },
+            ],
+            reference: "ref:001",
+            reverted: false,
+            timestamp: new Date("2024-05-05T11:02:21.971Z"),
+        },
+    },
+};
+```
 
 ## Fields
 

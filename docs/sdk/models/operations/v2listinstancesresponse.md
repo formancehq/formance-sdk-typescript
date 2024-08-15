@@ -1,5 +1,35 @@
 # V2ListInstancesResponse
 
+## Example Usage
+
+```typescript
+import { V2ListInstancesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListInstancesResponse = {
+    contentType: "<value>",
+    statusCode: 244425,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2ListRunsResponse: {
+        cursor: {
+            data: [
+                {
+                    createdAt: new Date("2023-11-15T08:48:35.382Z"),
+                    id: "<id>",
+                    terminated: false,
+                    updatedAt: new Date("2022-06-24T05:32:09.610Z"),
+                    workflowID: "<value>",
+                },
+            ],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

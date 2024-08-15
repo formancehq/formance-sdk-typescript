@@ -1,5 +1,28 @@
 # V2GetLedgerResponse
 
+## Example Usage
+
+```typescript
+import { V2GetLedgerResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetLedgerResponse = {
+    contentType: "<value>",
+    statusCode: 264555,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    v2GetLedgerResponse: {
+        data: {
+            addedAt: new Date("2022-07-24T05:17:09.567Z"),
+            bucket: "<value>",
+            metadata: {
+                admin: "true",
+            },
+            name: "<value>",
+        },
+    },
+};
+```
 
 ## Fields
 

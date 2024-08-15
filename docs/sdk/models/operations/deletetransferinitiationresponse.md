@@ -1,5 +1,18 @@
 # DeleteTransferInitiationResponse
 
+## Example Usage
+
+```typescript
+import { DeleteTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeleteTransferInitiationResponse = {
+    contentType: "<value>",
+    statusCode: 359444,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

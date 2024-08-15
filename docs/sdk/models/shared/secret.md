@@ -1,5 +1,17 @@
 # Secret
 
+## Example Usage
+
+```typescript
+import { Secret } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Secret = {
+    clear: "<value>",
+    id: "<id>",
+    lastDigits: "<value>",
+    name: "<value>",
+};
+```
 
 ## Fields
 

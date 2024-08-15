@@ -1,5 +1,17 @@
 # CreateWalletRequest
 
+## Example Usage
+
+```typescript
+import { CreateWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateWalletRequest = {
+    metadata: {
+        key: "<value>",
+    },
+    name: "<value>",
+};
+```
 
 ## Fields
 

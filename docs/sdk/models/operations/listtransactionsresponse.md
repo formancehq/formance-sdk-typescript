@@ -1,5 +1,27 @@
 # ListTransactionsResponse
 
+## Example Usage
+
+```typescript
+import { ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListTransactionsResponse = {
+    contentType: "<value>",
+    statusCode: 337396,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    transactionsCursorResponse: {
+        cursor: {
+            data: [],
+            hasMore: false,
+            next: "",
+            pageSize: 15,
+            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        },
+    },
+};
+```
 
 ## Fields
 

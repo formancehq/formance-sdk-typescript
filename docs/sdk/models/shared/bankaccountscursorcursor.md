@@ -1,5 +1,26 @@
 # BankAccountsCursorCursor
 
+## Example Usage
+
+```typescript
+import { BankAccountsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: BankAccountsCursorCursor = {
+    data: [
+        {
+            connectorID: "<value>",
+            country: "Botswana",
+            createdAt: new Date("2023-06-23T18:49:15.358Z"),
+            id: "<id>",
+            name: "<value>",
+        },
+    ],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

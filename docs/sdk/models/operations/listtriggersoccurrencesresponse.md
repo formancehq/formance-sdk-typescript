@@ -1,5 +1,18 @@
 # ListTriggersOccurrencesResponse
 
+## Example Usage
+
+```typescript
+import { ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListTriggersOccurrencesResponse = {
+    contentType: "<value>",
+    statusCode: 38425,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

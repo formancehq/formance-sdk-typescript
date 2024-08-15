@@ -43,6 +43,51 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { searchSearch } from "@formance/formance-sdk/funcs/searchSearch.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await searchSearch(sdk, {
+    after: [
+      "users:002",
+    ],
+    cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+    ledgers: [
+      "quickstart",
+    ],
+    policy: "OR",
+    raw: {},
+    sort: "id:asc",
+    terms: [
+      "destination=central_bank1",
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -77,6 +122,37 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.search.searchgetServerInfo();
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { searchSearchgetServerInfo } from "@formance/formance-sdk/funcs/searchSearchgetServerInfo.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await searchSearchgetServerInfo(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

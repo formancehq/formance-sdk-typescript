@@ -1,5 +1,26 @@
 # V2ListTriggersOccurrencesResponseCursor
 
+## Example Usage
+
+```typescript
+import { V2ListTriggersOccurrencesResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ListTriggersOccurrencesResponseCursor = {
+    data: [
+        {
+            date: new Date("2022-05-09T15:34:16.734Z"),
+            event: {
+                key: "<value>",
+            },
+            triggerID: "<value>",
+        },
+    ],
+    hasMore: false,
+    next: "",
+    pageSize: 15,
+    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

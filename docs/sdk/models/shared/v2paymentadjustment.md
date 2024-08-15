@@ -1,5 +1,18 @@
 # V2PaymentAdjustment
 
+## Example Usage
+
+```typescript
+import { V2PaymentAdjustment, V2PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2PaymentAdjustment = {
+    absolute: false,
+    amount: BigInt("100"),
+    date: new Date("2023-02-05T03:35:13.671Z"),
+    raw: {},
+    status: V2PaymentStatus.Cancelled,
+};
+```
 
 ## Fields
 

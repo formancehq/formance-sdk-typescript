@@ -1,5 +1,12 @@
 # ErrorsEnum
 
+## Example Usage
+
+```typescript
+import { ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ErrorsEnum = ErrorsEnum.InsufficientFund;
+```
 
 ## Values
 

@@ -1,5 +1,14 @@
 # StageSendSourceAccount
 
+## Example Usage
+
+```typescript
+import { StageSendSourceAccount } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageSendSourceAccount = {
+    id: "<id>",
+};
+```
 
 ## Fields
 

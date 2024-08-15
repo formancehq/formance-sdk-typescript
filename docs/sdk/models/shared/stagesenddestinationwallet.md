@@ -1,5 +1,14 @@
 # StageSendDestinationWallet
 
+## Example Usage
+
+```typescript
+import { StageSendDestinationWallet } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageSendDestinationWallet = {
+    id: "<id>",
+};
+```
 
 ## Fields
 

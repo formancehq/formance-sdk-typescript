@@ -1,5 +1,21 @@
 # BankingCircleConfig
 
+## Example Usage
+
+```typescript
+import { BankingCircleConfig } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: BankingCircleConfig = {
+    authorizationEndpoint: "XXX",
+    endpoint: "XXX",
+    name: "My Banking Circle Account",
+    password: "XXX",
+    pollingPeriod: "60s",
+    userCertificate: "XXX",
+    userCertificateKey: "XXX",
+    username: "XXX",
+};
+```
 
 ## Fields
 

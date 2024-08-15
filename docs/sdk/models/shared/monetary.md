@@ -1,5 +1,15 @@
 # Monetary
 
+## Example Usage
+
+```typescript
+import { Monetary } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Monetary = {
+    amount: BigInt("766964"),
+    asset: "<value>",
+};
+```
 
 ## Fields
 

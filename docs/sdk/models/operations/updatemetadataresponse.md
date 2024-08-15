@@ -1,5 +1,18 @@
 # UpdateMetadataResponse
 
+## Example Usage
+
+```typescript
+import { UpdateMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: UpdateMetadataResponse = {
+    contentType: "<value>",
+    statusCode: 581273,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

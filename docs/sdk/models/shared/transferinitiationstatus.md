@@ -1,5 +1,12 @@
 # TransferInitiationStatus
 
+## Example Usage
+
+```typescript
+import { TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferInitiationStatus = TransferInitiationStatus.ReverseProcessing;
+```
 
 ## Values
 

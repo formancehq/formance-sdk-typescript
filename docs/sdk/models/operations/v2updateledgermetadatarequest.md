@@ -1,5 +1,17 @@
 # V2UpdateLedgerMetadataRequest
 
+## Example Usage
+
+```typescript
+import { V2UpdateLedgerMetadataRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2UpdateLedgerMetadataRequest = {
+    requestBody: {
+        admin: "true",
+    },
+    ledger: "ledger001",
+};
+```
 
 ## Fields
 

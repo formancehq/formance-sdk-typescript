@@ -1,5 +1,29 @@
 # RunScriptRequest
 
+## Example Usage
+
+```typescript
+import { RunScriptRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: RunScriptRequest = {
+  script: {
+    plain: "vars {
+  account $user
+  }
+  send [COIN 10] (
+  	source = @world
+  	destination = $user
+  )
+  ",
+    reference: "order_1234",
+    vars: {
+      "user": "users:042",
+    },
+  },
+  ledger: "ledger001",
+  preview: true,
+};
+```
 
 ## Fields
 

@@ -36,6 +36,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksActivateConfig } from "@formance/formance-sdk/funcs/webhooksActivateConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksActivateConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -80,6 +113,42 @@ async function run() {
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksChangeConfigSecret } from "@formance/formance-sdk/funcs/webhooksChangeConfigSecret.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksChangeConfigSecret(sdk, {
+    configChangeSecret: {
+      secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+    },
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -133,6 +202,39 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksDeactivateConfig } from "@formance/formance-sdk/funcs/webhooksDeactivateConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksDeactivateConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -170,6 +272,39 @@ async function run() {
   const result = await sdk.webhooks.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksDeleteConfig } from "@formance/formance-sdk/funcs/webhooksDeleteConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksDeleteConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -216,6 +351,40 @@ async function run() {
     endpoint: "https://example.com",
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksGetManyConfigs } from "@formance/formance-sdk/funcs/webhooksGetManyConfigs.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksGetManyConfigs(sdk, {
+    endpoint: "https://example.com",
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -284,6 +453,45 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksInsertConfig } from "@formance/formance-sdk/funcs/webhooksInsertConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksInsertConfig(sdk, {
+    endpoint: "https://example.com",
+    eventTypes: [
+      "TYPE1",
+      "TYPE2",
+    ],
+    name: "customer_payment",
+    secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
@@ -321,6 +529,39 @@ async function run() {
   const result = await sdk.webhooks.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksTestConfig } from "@formance/formance-sdk/funcs/webhooksTestConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
+});
+
+async function run() {
+  const res = await webhooksTestConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

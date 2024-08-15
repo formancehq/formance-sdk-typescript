@@ -1,5 +1,18 @@
 # PoolResponse
 
+## Example Usage
+
+```typescript
+import { PoolResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PoolResponse = {
+    data: {
+        accounts: ["<value>"],
+        id: "<id>",
+        name: "<value>",
+    },
+};
+```
 
 ## Fields
 

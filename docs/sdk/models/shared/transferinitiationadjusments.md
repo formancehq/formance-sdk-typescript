@@ -1,5 +1,17 @@
 # TransferInitiationAdjusments
 
+## Example Usage
+
+```typescript
+import { TransferInitiationAdjusments, TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferInitiationAdjusments = {
+    adjustmentID: "<value>",
+    createdAt: new Date("2022-09-26T09:34:22.314Z"),
+    error: "<value>",
+    status: TransferInitiationStatus.AskRetried,
+};
+```
 
 ## Fields
 

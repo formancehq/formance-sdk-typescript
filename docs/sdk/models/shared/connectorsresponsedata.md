@@ -1,5 +1,16 @@
 # ConnectorsResponseData
 
+## Example Usage
+
+```typescript
+import { Connector, ConnectorsResponseData } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConnectorsResponseData = {
+    connectorID: "<value>",
+    name: "<value>",
+    provider: Connector.Mangopay,
+};
+```
 
 ## Fields
 

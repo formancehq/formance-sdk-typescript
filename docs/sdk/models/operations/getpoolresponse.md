@@ -1,5 +1,18 @@
 # GetPoolResponse
 
+## Example Usage
+
+```typescript
+import { GetPoolResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetPoolResponse = {
+    contentType: "<value>",
+    statusCode: 93940,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

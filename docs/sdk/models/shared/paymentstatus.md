@@ -1,5 +1,12 @@
 # PaymentStatus
 
+## Example Usage
+
+```typescript
+import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentStatus = PaymentStatus.Expired;
+```
 
 ## Values
 

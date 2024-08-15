@@ -1,5 +1,24 @@
 # PostTransactionScript
 
+## Example Usage
+
+```typescript
+import { PostTransactionScript } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PostTransactionScript = {
+  plain: "vars {
+account $user
+}
+send [COIN 10] (
+	source = @world
+	destination = $user
+)
+",
+  vars: {
+    "user": "users:042",
+  },
+};
+```
 
 ## Fields
 

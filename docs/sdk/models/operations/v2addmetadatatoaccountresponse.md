@@ -1,5 +1,18 @@
 # V2AddMetadataToAccountResponse
 
+## Example Usage
+
+```typescript
+import { V2AddMetadataToAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2AddMetadataToAccountResponse = {
+    contentType: "<value>",
+    statusCode: 870088,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

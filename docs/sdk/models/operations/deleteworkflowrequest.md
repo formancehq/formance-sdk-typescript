@@ -1,5 +1,14 @@
 # DeleteWorkflowRequest
 
+## Example Usage
+
+```typescript
+import { DeleteWorkflowRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: DeleteWorkflowRequest = {
+    flowId: "xxx",
+};
+```
 
 ## Fields
 

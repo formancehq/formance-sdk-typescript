@@ -1,5 +1,14 @@
 # UpdateTransferInitiationStatusRequest
 
+## Example Usage
+
+```typescript
+import { Status, UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UpdateTransferInitiationStatusRequest = {
+    status: Status.Processed,
+};
+```
 
 ## Fields
 

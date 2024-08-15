@@ -1,5 +1,21 @@
 # Response
 
+## Example Usage
+
+```typescript
+import { Response } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Response = {
+    cursor: {
+        next: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        total: {
+            relation: "eq",
+            value: 1,
+        },
+    },
+};
+```
 
 ## Fields
 

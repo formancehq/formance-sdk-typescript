@@ -1,5 +1,18 @@
 # CreateClientResponse
 
+## Example Usage
+
+```typescript
+import { CreateClientResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateClientResponse = {
+    contentType: "<value>",
+    statusCode: 715190,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+};
+```
 
 ## Fields
 

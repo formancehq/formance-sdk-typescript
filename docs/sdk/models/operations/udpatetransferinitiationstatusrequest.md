@@ -1,5 +1,18 @@
 # UdpateTransferInitiationStatusRequest
 
+## Example Usage
+
+```typescript
+import { UdpateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Status } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UdpateTransferInitiationStatusRequest = {
+    updateTransferInitiationStatusRequest: {
+        status: Status.Rejected,
+    },
+    transferId: "XXX",
+};
+```
 
 ## Fields
 

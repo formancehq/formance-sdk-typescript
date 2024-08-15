@@ -1,5 +1,14 @@
 # Security
 
+## Example Usage
+
+```typescript
+import { Security } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Security = {
+    authorization: "<value>",
+};
+```
 
 ## Fields
 

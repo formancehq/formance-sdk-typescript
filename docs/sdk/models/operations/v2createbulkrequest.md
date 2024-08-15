@@ -1,5 +1,15 @@
 # V2CreateBulkRequest
 
+## Example Usage
+
+```typescript
+import { V2CreateBulkRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2CreateBulkRequest = {
+    requestBody: [],
+    ledger: "ledger001",
+};
+```
 
 ## Fields
 

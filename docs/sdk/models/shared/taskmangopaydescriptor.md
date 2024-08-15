@@ -1,5 +1,12 @@
 # TaskMangoPayDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskMangoPayDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskMangoPayDescriptor = {};
+```
 
 ## Fields
 

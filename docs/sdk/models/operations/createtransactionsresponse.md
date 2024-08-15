@@ -1,5 +1,21 @@
 # CreateTransactionsResponse
 
+## Example Usage
+
+```typescript
+import { CreateTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateTransactionsResponse = {
+    contentType: "<value>",
+    statusCode: 384382,
+    rawResponse: new Response('{"message": "hello world"}', {
+        headers: { "Content-Type": "application/json" },
+    }),
+    transactionsResponse: {
+        data: [],
+    },
+};
+```
 
 ## Fields
 

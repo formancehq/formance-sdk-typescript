@@ -1,5 +1,15 @@
 # V2GetInstanceStageHistoryRequest
 
+## Example Usage
+
+```typescript
+import { V2GetInstanceStageHistoryRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetInstanceStageHistoryRequest = {
+    instanceID: "xxx",
+    number: 0,
+};
+```
 
 ## Fields
 
