@@ -52,10 +52,10 @@ let value: WorkflowInstanceHistoryStage = {
           "key": "",
         },
         sources: [
-            {
-              identifier: "<value>",
-              type: "<value>",
-            },
+          {
+            identifier: "<value>",
+            type: "<value>",
+          },
         ],
       },
     },

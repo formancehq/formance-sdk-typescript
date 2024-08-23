@@ -1,6 +1,8 @@
 # Reconciliation
 (*reconciliation*)
 
+## Overview
+
 ### Available Operations
 
 * [createPolicy](#createpolicy) - Create a policy
@@ -41,7 +43,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -89,16 +90,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.CreatePolicyResponse](../../sdk/models/operations/createpolicyresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## deletePolicy
 
@@ -124,7 +126,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -167,16 +168,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.DeletePolicyResponse](../../sdk/models/operations/deletepolicyresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## getPolicy
 
@@ -202,7 +204,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -245,16 +246,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.GetPolicyResponse](../../sdk/models/operations/getpolicyresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## getReconciliation
 
@@ -280,7 +282,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -323,16 +324,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.GetReconciliationResponse](../../sdk/models/operations/getreconciliationresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## listPolicies
 
@@ -359,7 +361,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -403,16 +404,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ListPoliciesResponse](../../sdk/models/operations/listpoliciesresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## listReconciliations
 
@@ -439,7 +441,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -483,16 +484,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ListReconciliationsResponse](../../sdk/models/operations/listreconciliationsresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## reconcile
 
@@ -522,7 +524,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -569,16 +570,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ReconcileResponse](../../sdk/models/operations/reconcileresponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | errors.ReconciliationErrorResponse | default                            | application/json                   |
 | errors.SDKError                    | 4xx-5xx                            | */*                                |
+
 
 ## reconciliationgetServerInfo
 
@@ -602,7 +604,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -642,10 +643,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ReconciliationgetServerInfoResponse](../../sdk/models/operations/reconciliationgetserverinforesponse.md)\>**
+
 ### Errors
 
 | Error Object                       | Status Code                        | Content Type                       |
