@@ -66,7 +66,7 @@ export const ActivityStripeTransfer$inboundSchema: z.ZodType<
     connectorID: z.string().optional(),
     destination: z.string().optional(),
     metadata: z.lazy(() => Metadata$inboundSchema).optional(),
-    waitingValidation: z.boolean(),
+    waitingValidation: z.boolean().default(false),
 });
 
 /** @internal */

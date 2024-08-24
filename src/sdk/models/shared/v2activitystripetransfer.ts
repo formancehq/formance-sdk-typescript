@@ -73,7 +73,7 @@ export const V2ActivityStripeTransfer$inboundSchema: z.ZodType<
     connectorID: z.string().optional(),
     destination: z.string().optional(),
     metadata: z.lazy(() => V2ActivityStripeTransferMetadata$inboundSchema).optional(),
-    waitingValidation: z.boolean(),
+    waitingValidation: z.boolean().default(false),
 });
 
 /** @internal */
