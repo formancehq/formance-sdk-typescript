@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 1b5f9197ad4c796f880e7b9b895685fd
-  docVersion: v2.0.15
-  speakeasyVersion: 1.378.0
-  generationVersion: 2.404.3
-  releaseVersion: 2.9.2
-  configChecksum: 305549f78aeb8c7641b51d23b0fac90c
+  docChecksum: 4a62d43befffe55605a3d0b24f39879b
+  docVersion: v2.0.17
+  speakeasyVersion: 1.383.2
+  generationVersion: 2.407.0
+  releaseVersion: 2.9.3
+  configChecksum: 172d0507997efd60404bd9514c0d0ea4
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -19,7 +19,7 @@ features:
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.1
-    errors: 2.82.1
+    errors: 2.82.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0

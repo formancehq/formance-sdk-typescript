@@ -19,6 +19,8 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
 ### NPM
 
 ```bash
@@ -289,7 +291,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
+import { ErrorResponse, SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
     authorization: "<YOUR_AUTHORIZATION_HERE>",
@@ -325,8 +327,9 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.ErrorResponse: {
-                console.error(err); // handle exception
+            case err instanceof ErrorResponse: {
+                // Handle err.data$: ErrorResponseData
+                console.error(err);
                 return;
             }
             default: {
@@ -746,6 +749,38 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Formance Stack API: Open, modular foundation for unique payments flows
+
+# Introduction
+This API is documented in **OpenAPI format**.
+
+# Authentication
+Formance Stack offers one forms of authentication:
+  - OAuth2
+OAuth2 - an open protocol to allow secure authorization in a simple
+and standard method from web, mobile and desktop applications.
+<SecurityDefinitions />
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
