@@ -30,7 +30,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.createClient();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -105,7 +105,7 @@ async function run() {
   const result = await sdk.auth.createSecret({
     clientId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -182,7 +182,7 @@ async function run() {
   const result = await sdk.auth.deleteClient({
     clientId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -260,7 +260,7 @@ async function run() {
     clientId: "<value>",
     secretId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -336,7 +336,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.listClients();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -408,7 +408,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.listUsers();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -482,7 +482,7 @@ async function run() {
   const result = await sdk.auth.readClient({
     clientId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -559,7 +559,7 @@ async function run() {
   const result = await sdk.auth.readUser({
     userId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -636,7 +636,7 @@ async function run() {
   const result = await sdk.auth.updateClient({
     clientId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }

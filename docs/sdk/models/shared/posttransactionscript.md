@@ -6,17 +6,18 @@
 import { PostTransactionScript } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PostTransactionScript = {
-  plain: "vars {
-account $user
-}
-send [COIN 10] (
-	source = @world
-	destination = $user
-)
-",
-  vars: {
-    "user": "users:042",
-  },
+    plain:
+        "vars {\n" +
+        "account $user\n" +
+        "}\n" +
+        "send [COIN 10] (\n" +
+        "	source = @world\n" +
+        "	destination = $user\n" +
+        ")\n" +
+        "",
+    vars: {
+        user: "users:042",
+    },
 };
 ```
 

@@ -37,7 +37,7 @@ async function run() {
       "destination=central_bank1",
     ],
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -124,7 +124,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.search.searchgetServerInfo();
-
+  
   // Handle the result
   console.log(result)
 }

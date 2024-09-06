@@ -6,71 +6,72 @@
 import { WorkflowInstanceHistoryStageInput } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WorkflowInstanceHistoryStageInput = {
-  createTransaction: {
-    data: {
-      metadata: {
-        "admin": "true",
-      },
-      postings: [
-        {
-          amount: BigInt("100"),
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
+    createTransaction: {
+        data: {
+            metadata: {
+                admin: "true",
+            },
+            postings: [
+                {
+                    amount: BigInt("100"),
+                    asset: "COIN",
+                    destination: "users:002",
+                    source: "users:001",
+                },
+            ],
+            reference: "ref:001",
+            script: {
+                plain:
+                    "vars {\n" +
+                    "account $user\n" +
+                    "}\n" +
+                    "send [COIN 10] (\n" +
+                    "	source = @world\n" +
+                    "	destination = $user\n" +
+                    ")\n" +
+                    "",
+                vars: {
+                    user: "users:042",
+                },
+            },
         },
-      ],
-      reference: "ref:001",
-      script: {
-        plain: "vars {
-      account $user
-      }
-      send [COIN 10] (
-      	source = @world
-      	destination = $user
-      )
-      ",
-        vars: {
-          "user": "users:042",
-        },
-      },
     },
-  },
-  creditWallet: {
-    data: {
-      amount: {
+    creditWallet: {
+        data: {
+            amount: {
+                amount: BigInt("100"),
+                asset: "USD/2",
+            },
+            metadata: {
+                key: "",
+            },
+            sources: [
+                {
+                    identifier: "<value>",
+                    type: "<value>",
+                },
+            ],
+        },
+    },
+    debitWallet: {
+        data: {
+            amount: {
+                amount: BigInt("100"),
+                asset: "USD/2",
+            },
+            metadata: {
+                key: "",
+            },
+            pending: true,
+        },
+    },
+    stripeTransfer: {
         amount: BigInt("100"),
-        asset: "USD/2",
-      },
-      metadata: {
-        "key": "",
-      },
-      sources: [
-        {
-          identifier: "<value>",
-          type: "<value>",
-        },
-      ],
+        asset: "USD",
+        destination: "acct_1Gqj58KZcSIg2N2q",
+        metadata: {},
+        waitingValidation: false,
     },
-  },
-  debitWallet: {
-    data: {
-      amount: {
-        amount: BigInt("100"),
-        asset: "USD/2",
-      },
-      metadata: {
-        "key": "",
-      },
-      pending: true,
-    },
-  },
-  stripeTransfer: {
-    amount: BigInt("100"),
-    asset: "USD",
-    destination: "acct_1Gqj58KZcSIg2N2q",
-    metadata: {},
-    waitingValidation: false,
-  },
 };
 ```
 

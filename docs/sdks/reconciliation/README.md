@@ -36,7 +36,7 @@ async function run() {
     name: "XXX",
     paymentsPoolID: "XXX",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -119,7 +119,7 @@ async function run() {
   const result = await sdk.reconciliation.deletePolicy({
     policyID: "XXX",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -197,7 +197,7 @@ async function run() {
   const result = await sdk.reconciliation.getPolicy({
     policyID: "XXX",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -275,7 +275,7 @@ async function run() {
   const result = await sdk.reconciliation.getReconciliation({
     reconciliationID: "XXX",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -354,7 +354,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -434,7 +434,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -517,7 +517,7 @@ async function run() {
     },
     policyID: "XXX",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -597,7 +597,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.reconciliation.reconciliationgetServerInfo();
-
+  
   // Handle the result
   console.log(result)
 }

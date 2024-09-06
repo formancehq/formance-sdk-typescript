@@ -6,31 +6,32 @@
 import { OrchestrationPostTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: OrchestrationPostTransaction = {
-  metadata: {
-    "admin": "true",
-  },
-  postings: [
-    {
-      amount: BigInt("100"),
-      asset: "COIN",
-      destination: "users:002",
-      source: "users:001",
+    metadata: {
+        admin: "true",
     },
-  ],
-  reference: "ref:001",
-  script: {
-    plain: "vars {
-  account $user
-  }
-  send [COIN 10] (
-  	source = @world
-  	destination = $user
-  )
-  ",
-    vars: {
-      "user": "users:042",
+    postings: [
+        {
+            amount: BigInt("100"),
+            asset: "COIN",
+            destination: "users:002",
+            source: "users:001",
+        },
+    ],
+    reference: "ref:001",
+    script: {
+        plain:
+            "vars {\n" +
+            "account $user\n" +
+            "}\n" +
+            "send [COIN 10] (\n" +
+            "	source = @world\n" +
+            "	destination = $user\n" +
+            ")\n" +
+            "",
+        vars: {
+            user: "users:042",
+        },
     },
-  },
 };
 ```
 

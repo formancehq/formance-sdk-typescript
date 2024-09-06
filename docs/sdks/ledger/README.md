@@ -82,7 +82,7 @@ async function run() {
     },
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -176,7 +176,7 @@ async function run() {
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -259,7 +259,7 @@ async function run() {
     address: "users:001",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -394,7 +394,7 @@ async function run() {
       "49": "2",
     },
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -530,7 +530,7 @@ async function run() {
     reference: "ref:001",
     source: "users:001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -622,14 +622,14 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {
-      account $user
-      }
-      send [COIN 10] (
-      	source = @world
-      	destination = $user
-      )
-      ",
+        plain: "vars {\n" +
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
         vars: {
           "user": "users:042",
         },
@@ -638,7 +638,7 @@ async function run() {
     ledger: "ledger001",
     preview: true,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -673,14 +673,14 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {
-      account $user
-      }
-      send [COIN 10] (
-      	source = @world
-      	destination = $user
-      )
-      ",
+        plain: "vars {\n" +
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
         vars: {
           "user": "users:042",
         },
@@ -742,7 +742,7 @@ async function run() {
     address: "users:001",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -824,7 +824,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -906,7 +906,7 @@ async function run() {
     address: "users:001",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -983,7 +983,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.getInfo();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1058,7 +1058,7 @@ async function run() {
   const result = await sdk.ledger.getLedgerInfo({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1136,7 +1136,7 @@ async function run() {
   const result = await sdk.ledger.getMapping({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1215,7 +1215,7 @@ async function run() {
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1351,7 +1351,7 @@ async function run() {
     },
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1489,7 +1489,7 @@ async function run() {
     ledger: "ledger001",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1577,7 +1577,7 @@ async function run() {
     reference: "ref:001",
     source: "users:001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1663,7 +1663,7 @@ async function run() {
   const result = await sdk.ledger.readStats({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1742,7 +1742,7 @@ async function run() {
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1823,14 +1823,14 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.runScript({
     script: {
-      plain: "vars {
-    account $user
-    }
-    send [COIN 10] (
-    	source = @world
-    	destination = $user
-    )
-    ",
+      plain: "vars {\n" +
+    "account $user\n" +
+    "}\n" +
+    "send [COIN 10] (\n" +
+    "	source = @world\n" +
+    "	destination = $user\n" +
+    ")\n" +
+    "",
       reference: "order_1234",
       vars: {
         "user": "users:042",
@@ -1839,7 +1839,7 @@ async function run() {
     ledger: "ledger001",
     preview: true,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1864,14 +1864,14 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerRunScript(sdk, {
     script: {
-      plain: "vars {
-    account $user
-    }
-    send [COIN 10] (
-    	source = @world
-    	destination = $user
-    )
-    ",
+      plain: "vars {\n" +
+    "account $user\n" +
+    "}\n" +
+    "send [COIN 10] (\n" +
+    "	source = @world\n" +
+    "	destination = $user\n" +
+    ")\n" +
+    "",
       reference: "order_1234",
       vars: {
         "user": "users:042",
@@ -1939,7 +1939,7 @@ async function run() {
     },
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2030,7 +2030,7 @@ async function run() {
     id: BigInt("1234"),
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2118,7 +2118,7 @@ async function run() {
     dryRun: true,
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2201,7 +2201,7 @@ async function run() {
   const result = await sdk.ledger.v2CountAccounts({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2279,7 +2279,7 @@ async function run() {
   const result = await sdk.ledger.v2CountTransactions({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2360,7 +2360,7 @@ async function run() {
     ],
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2446,7 +2446,7 @@ async function run() {
     },
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2541,14 +2541,14 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {
-      account $user
-      }
-      send [COIN 10] (
-      	source = @world
-      	destination = $user
-      )
-      ",
+        plain: "vars {\n" +
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
         vars: {
           "user": "users:042",
         },
@@ -2557,7 +2557,7 @@ async function run() {
     dryRun: true,
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2595,14 +2595,14 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {
-      account $user
-      }
-      send [COIN 10] (
-      	source = @world
-      	destination = $user
-      )
-      ",
+        plain: "vars {\n" +
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
         vars: {
           "user": "users:042",
         },
@@ -2665,7 +2665,7 @@ async function run() {
     key: "foo",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2745,7 +2745,7 @@ async function run() {
     key: "foo",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2826,7 +2826,7 @@ async function run() {
     key: "foo",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2907,7 +2907,7 @@ async function run() {
     address: "users:001",
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -2986,7 +2986,7 @@ async function run() {
   const result = await sdk.ledger.v2GetBalancesAggregated({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3062,7 +3062,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2GetInfo();
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3137,7 +3137,7 @@ async function run() {
   const result = await sdk.ledger.v2GetLedger({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3215,7 +3215,7 @@ async function run() {
   const result = await sdk.ledger.v2GetLedgerInfo({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3294,7 +3294,7 @@ async function run() {
     id: BigInt("1234"),
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3376,7 +3376,7 @@ async function run() {
     ledger: "ledger001",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3459,7 +3459,7 @@ async function run() {
     ledger: "ledger001",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3540,7 +3540,7 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3621,7 +3621,7 @@ async function run() {
     ledger: "ledger001",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3703,7 +3703,7 @@ async function run() {
     ledger: "ledger001",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3784,7 +3784,7 @@ async function run() {
   const result = await sdk.ledger.v2ReadStats({
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3863,7 +3863,7 @@ async function run() {
     id: BigInt("1234"),
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -3945,7 +3945,7 @@ async function run() {
     },
     ledger: "ledger001",
   });
-
+  
   // Handle the result
   console.log(result)
 }

@@ -43,7 +43,7 @@ async function run() {
     },
     holdId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -125,7 +125,7 @@ async function run() {
   const result = await sdk.wallets.createBalance({
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -201,7 +201,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.createWallet({});
-
+  
   // Handle the result
   console.log(result)
 }
@@ -292,7 +292,7 @@ async function run() {
     },
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -395,7 +395,7 @@ async function run() {
     },
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -484,7 +484,7 @@ async function run() {
     balanceName: "<value>",
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -563,7 +563,7 @@ async function run() {
   const result = await sdk.wallets.getHold({
     holdID: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -646,7 +646,7 @@ async function run() {
     pageSize: 100,
     walletID: "wallet1",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -729,7 +729,7 @@ async function run() {
     pageSize: 100,
     walletID: "wallet1",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -809,7 +809,7 @@ async function run() {
   const result = await sdk.wallets.getWallet({
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -887,7 +887,7 @@ async function run() {
   const result = await sdk.wallets.getWalletSummary({
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -965,7 +965,7 @@ async function run() {
   const result = await sdk.wallets.listBalances({
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1048,7 +1048,7 @@ async function run() {
     name: "wallet1",
     pageSize: 100,
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1132,7 +1132,7 @@ async function run() {
   const result = await sdk.wallets.updateWallet({
     id: "<id>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1210,7 +1210,7 @@ async function run() {
   const result = await sdk.wallets.voidHold({
     holdId: "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -1286,7 +1286,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.walletsgetServerInfo();
-
+  
   // Handle the result
   console.log(result)
 }

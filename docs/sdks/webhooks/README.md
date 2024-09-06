@@ -30,7 +30,7 @@ async function run() {
   const result = await sdk.webhooks.activateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -115,7 +115,7 @@ async function run() {
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -196,7 +196,7 @@ async function run() {
   const result = await sdk.webhooks.deactivateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -274,7 +274,7 @@ async function run() {
   const result = await sdk.webhooks.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -353,7 +353,7 @@ async function run() {
     endpoint: "https://example.com",
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -447,7 +447,7 @@ async function run() {
     name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
-
+  
   // Handle the result
   console.log(result)
 }
@@ -531,7 +531,7 @@ async function run() {
   const result = await sdk.webhooks.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-
+  
   // Handle the result
   console.log(result)
 }

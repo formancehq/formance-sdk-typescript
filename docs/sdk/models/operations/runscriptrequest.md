@@ -6,22 +6,23 @@
 import { RunScriptRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: RunScriptRequest = {
-  script: {
-    plain: "vars {
-  account $user
-  }
-  send [COIN 10] (
-  	source = @world
-  	destination = $user
-  )
-  ",
-    reference: "order_1234",
-    vars: {
-      "user": "users:042",
+    script: {
+        plain:
+            "vars {\n" +
+            "account $user\n" +
+            "}\n" +
+            "send [COIN 10] (\n" +
+            "	source = @world\n" +
+            "	destination = $user\n" +
+            ")\n" +
+            "",
+        reference: "order_1234",
+        vars: {
+            user: "users:042",
+        },
     },
-  },
-  ledger: "ledger001",
-  preview: true,
+    ledger: "ledger001",
+    preview: true,
 };
 ```
 
