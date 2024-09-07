@@ -188,7 +188,7 @@ async function run() {
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
     },
-    connector: Connector.Moneycorp,
+    connector: Connector.BankingCircle,
   });
 
   if (!res.ok) {
@@ -272,9 +272,9 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsCreateAccount(sdk, {
     connectorID: "<value>",
-    createdAt: new Date("2022-04-28T00:06:23.115Z"),
+    createdAt: new Date("2024-08-19T02:15:08.668Z"),
     reference: "<value>",
-    type: AccountType.External,
+    type: AccountType.Unknown,
   });
 
   if (!res.ok) {
@@ -446,11 +446,11 @@ async function run() {
     amount: BigInt("100"),
     asset: "USD",
     connectorID: "<value>",
-    createdAt: new Date("2022-07-15T22:57:19.356Z"),
+    createdAt: new Date("2024-11-09T01:03:21.153Z"),
     reference: "<value>",
-    scheme: PaymentScheme.Cup,
-    status: PaymentStatus.Pending,
-    type: PaymentType.PayIn,
+    scheme: PaymentScheme.GooglePay,
+    status: PaymentStatus.DisputeWon,
+    type: PaymentType.Transfer,
   });
 
   if (!res.ok) {
@@ -622,14 +622,14 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsCreateTransferInitiation(sdk, {
-    amount: BigInt("681211"),
+    amount: BigInt("256698"),
     asset: "USD",
-    description: "Devolved multi-tasking Graphic Interface",
+    description: "Multi-tiered incremental methodology",
     destinationAccountID: "<value>",
     reference: "XXX",
-    scheduledAt: new Date("2024-12-15T17:54:39.138Z"),
+    scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
     sourceAccountID: "<value>",
-    type: TransferInitiationRequestType.Payout,
+    type: TransferInitiationRequestType.Transfer,
     validated: false,
   });
 
@@ -1121,7 +1121,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsGetConnectorTask(sdk, {
-    connector: Connector.Wise,
+    connector: Connector.Adyen,
     taskId: "task1",
   });
 
@@ -1441,7 +1441,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsGetPoolBalances(sdk, {
-    at: new Date("2022-01-08T00:54:24.954Z"),
+    at: new Date("2023-05-05T06:40:23.018Z"),
     poolId: "XXX",
   });
 
@@ -1576,6 +1576,7 @@ async function run() {
     connectorConfig: {
       apiKey: "XXX",
       name: "My Wise Account",
+      pageSize: 50,
       pollingPeriod: "60s",
     },
     connector: Connector.Adyen,
@@ -1607,12 +1608,11 @@ async function run() {
   const res = await paymentsInstallConnector(sdk, {
     connectorConfig: {
       apiKey: "XXX",
-      clientID: "XXX",
-      endpoint: "XXX",
-      name: "My MangoPay Account",
+      name: "My Wise Account",
+      pageSize: 50,
       pollingPeriod: "60s",
     },
-    connector: Connector.Moneycorp,
+    connector: Connector.Adyen,
   });
 
   if (!res.ok) {
@@ -1930,7 +1930,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsListConnectorTasks(sdk, {
-    connector: Connector.Mangopay,
+    connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
@@ -2015,7 +2015,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsListConnectorTasksV1(sdk, {
-    connector: Connector.Adyen,
+    connector: Connector.BankingCircle,
     connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
@@ -2603,7 +2603,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsReadConnectorConfig(sdk, {
-    connector: Connector.Atlar,
+    connector: Connector.Generic,
   });
 
   if (!res.ok) {
@@ -2684,7 +2684,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsReadConnectorConfigV1(sdk, {
-    connector: Connector.Modulr,
+    connector: Connector.CurrencyCloud,
     connectorId: "XXX",
   });
 
@@ -2849,7 +2849,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsResetConnector(sdk, {
-    connector: Connector.Generic,
+    connector: Connector.Atlar,
   });
 
   if (!res.ok) {
@@ -2932,7 +2932,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsResetConnectorV1(sdk, {
-    connector: Connector.Wise,
+    connector: Connector.Generic,
     connectorId: "XXX",
   });
 
@@ -3069,6 +3069,8 @@ async function run() {
       description: "Streamlined high-level local area network",
       metadata: {
         "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
       },
       reference: "XXX",
     },
@@ -3099,11 +3101,13 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsReverseTransferInitiation(sdk, {
     reverseTransferInitiationRequest: {
-      amount: BigInt("634369"),
+      amount: BigInt("327549"),
       asset: "USD",
-      description: "Future-proofed background adapter",
+      description: "Streamlined high-level local area network",
       metadata: {
         "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
       },
       reference: "XXX",
     },
@@ -3191,7 +3195,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsUdpateTransferInitiationStatus(sdk, {
     updateTransferInitiationStatusRequest: {
-      status: Status.Failed,
+      status: Status.Validated,
     },
     transferId: "XXX",
   });
@@ -3275,7 +3279,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsUninstallConnector(sdk, {
-    connector: Connector.DummyPay,
+    connector: Connector.Modulr,
   });
 
   if (!res.ok) {
@@ -3411,7 +3415,7 @@ async function run() {
   const result = await sdk.payments.updateBankAccountMetadata({
     updateBankAccountMetadataRequest: {
       metadata: {
-        "key": "<value>",
+  
       },
     },
     bankAccountId: "XXX",
@@ -3442,7 +3446,7 @@ async function run() {
   const res = await paymentsUpdateBankAccountMetadata(sdk, {
     updateBankAccountMetadataRequest: {
       metadata: {
-        "key": "<value>",
+  
       },
     },
     bankAccountId: "XXX",
@@ -3533,15 +3537,12 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsUpdateConnectorConfigV1(sdk, {
     connectorConfig: {
-      accessKey: "XXX",
-      baseUrl: "https://api.example.com",
-      name: "My Atlar Account",
+      apiKey: "XXX",
+      name: "My Stripe Account",
       pageSize: 50,
       pollingPeriod: "60s",
-      secret: "XXX",
-      transferInitiationStatusPollingPeriod: "60s",
     },
-    connector: Connector.DummyPay,
+    connector: Connector.Stripe,
     connectorId: "XXX",
   });
 
@@ -3596,6 +3597,7 @@ async function run() {
   const result = await sdk.payments.updateMetadata({
     requestBody: {
       "key": "<value>",
+      "key1": "<value>",
     },
     paymentId: "XXX",
   });
@@ -3625,6 +3627,7 @@ async function run() {
   const res = await paymentsUpdateMetadata(sdk, {
     requestBody: {
       "key": "<value>",
+      "key1": "<value>",
     },
     paymentId: "XXX",
   });

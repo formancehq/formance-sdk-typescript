@@ -254,7 +254,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.addMetadataToAccount({
     requestBody: {
-      "key": "<value>",
+  
     },
     address: "users:001",
     ledger: "ledger001",
@@ -284,7 +284,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerAddMetadataToAccount(sdk, {
     requestBody: {
-      "key": "<value>",
+  
     },
     address: "users:001",
     ledger: "ledger001",
@@ -2689,7 +2689,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV2DeleteAccountMetadata(sdk, {
-    address: "180 Walter Drive",
+    address: "3680 Emile Grove",
     key: "foo",
     ledger: "ledger001",
   });
