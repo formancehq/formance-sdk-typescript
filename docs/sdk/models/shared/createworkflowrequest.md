@@ -6,11 +6,11 @@
 import { CreateWorkflowRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateWorkflowRequest = {
-    stages: [
-        {
-            key: "<value>",
-        },
-    ],
+  stages: [
+    {
+      "key": "<value>",
+    },
+  ],
 };
 ```
 

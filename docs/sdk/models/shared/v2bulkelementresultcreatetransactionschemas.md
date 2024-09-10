@@ -6,24 +6,24 @@
 import { V2BulkElementResultCreateTransactionSchemas } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementResultCreateTransactionSchemas = {
-    data: {
-        id: BigInt("181151"),
-        metadata: {
-            admin: "true",
-        },
-        postings: [
-            {
-                amount: BigInt("100"),
-                asset: "COIN",
-                destination: "users:002",
-                source: "users:001",
-            },
-        ],
-        reference: "ref:001",
-        reverted: false,
-        timestamp: new Date("2023-07-13T05:44:01.314Z"),
+  data: {
+    id: BigInt("181151"),
+    metadata: {
+      "admin": "true",
     },
-    responseType: "<value>",
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    reverted: false,
+    timestamp: new Date("2023-07-13T05:44:01.314Z"),
+  },
+  responseType: "<value>",
 };
 ```
 

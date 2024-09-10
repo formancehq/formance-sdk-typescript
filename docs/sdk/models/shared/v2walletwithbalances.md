@@ -6,20 +6,20 @@
 import { V2WalletWithBalances } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WalletWithBalances = {
-    balances: {
-        main: {
-            assets: {
-                key: BigInt("399161"),
-            },
-        },
+  balances: {
+    main: {
+      assets: {
+        "key": BigInt("399161"),
+      },
     },
-    createdAt: new Date("2022-01-25T01:59:40.254Z"),
-    id: "659a1ade-aab5-4851-96c6-45b08b61891b",
-    ledger: "<value>",
-    metadata: {
-        key: "<value>",
-    },
-    name: "<value>",
+  },
+  createdAt: new Date("2022-01-25T01:59:40.254Z"),
+  id: "659a1ade-aab5-4851-96c6-45b08b61891b",
+  ledger: "<value>",
+  metadata: {
+    "key": "<value>",
+  },
+  name: "<value>",
 };
 ```
 

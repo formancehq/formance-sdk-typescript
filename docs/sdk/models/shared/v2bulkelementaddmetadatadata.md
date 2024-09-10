@@ -6,11 +6,11 @@
 import { V2BulkElementAddMetadataData, V2TargetType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementAddMetadataData = {
-    metadata: {
-        key: "<value>",
-    },
-    targetId: BigInt("206594"),
-    targetType: V2TargetType.Account,
+  metadata: {
+    "key": "<value>",
+  },
+  targetId: BigInt("206594"),
+  targetType: V2TargetType.Account,
 };
 ```
 

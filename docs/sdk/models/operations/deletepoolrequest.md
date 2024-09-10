@@ -6,7 +6,7 @@
 import { DeletePoolRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeletePoolRequest = {
-    poolId: "XXX",
+  poolId: "XXX",
 };
 ```
 

@@ -16,91 +16,122 @@ import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Reconciliation extends ClientSDK {
-    /**
-     * Create a policy
-     *
-     * @remarks
-     * Create a policy
-     */
-    async createPolicy(
-        request: shared.PolicyRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreatePolicyResponse> {
-        return unwrapAsync(reconciliationCreatePolicy(this, request, options));
-    }
+  /**
+   * Create a policy
+   *
+   * @remarks
+   * Create a policy
+   */
+  async createPolicy(
+    request: shared.PolicyRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreatePolicyResponse> {
+    return unwrapAsync(reconciliationCreatePolicy(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete a policy
-     *
-     * @remarks
-     * Delete a policy by its id.
-     */
-    async deletePolicy(
-        request: operations.DeletePolicyRequest,
-        options?: RequestOptions
-    ): Promise<operations.DeletePolicyResponse> {
-        return unwrapAsync(reconciliationDeletePolicy(this, request, options));
-    }
+  /**
+   * Delete a policy
+   *
+   * @remarks
+   * Delete a policy by its id.
+   */
+  async deletePolicy(
+    request: operations.DeletePolicyRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeletePolicyResponse> {
+    return unwrapAsync(reconciliationDeletePolicy(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get a policy
-     */
-    async getPolicy(
-        request: operations.GetPolicyRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetPolicyResponse> {
-        return unwrapAsync(reconciliationGetPolicy(this, request, options));
-    }
+  /**
+   * Get a policy
+   */
+  async getPolicy(
+    request: operations.GetPolicyRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetPolicyResponse> {
+    return unwrapAsync(reconciliationGetPolicy(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get a reconciliation
-     */
-    async getReconciliation(
-        request: operations.GetReconciliationRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetReconciliationResponse> {
-        return unwrapAsync(reconciliationGetReconciliation(this, request, options));
-    }
+  /**
+   * Get a reconciliation
+   */
+  async getReconciliation(
+    request: operations.GetReconciliationRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetReconciliationResponse> {
+    return unwrapAsync(reconciliationGetReconciliation(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List policies
-     */
-    async listPolicies(
-        request: operations.ListPoliciesRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListPoliciesResponse> {
-        return unwrapAsync(reconciliationListPolicies(this, request, options));
-    }
+  /**
+   * List policies
+   */
+  async listPolicies(
+    request: operations.ListPoliciesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListPoliciesResponse> {
+    return unwrapAsync(reconciliationListPolicies(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List reconciliations
-     */
-    async listReconciliations(
-        request: operations.ListReconciliationsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListReconciliationsResponse> {
-        return unwrapAsync(reconciliationListReconciliations(this, request, options));
-    }
+  /**
+   * List reconciliations
+   */
+  async listReconciliations(
+    request: operations.ListReconciliationsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListReconciliationsResponse> {
+    return unwrapAsync(reconciliationListReconciliations(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Reconcile using a policy
-     *
-     * @remarks
-     * Reconcile using a policy
-     */
-    async reconcile(
-        request: operations.ReconcileRequest,
-        options?: RequestOptions
-    ): Promise<operations.ReconcileResponse> {
-        return unwrapAsync(reconciliationReconcile(this, request, options));
-    }
+  /**
+   * Reconcile using a policy
+   *
+   * @remarks
+   * Reconcile using a policy
+   */
+  async reconcile(
+    request: operations.ReconcileRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReconcileResponse> {
+    return unwrapAsync(reconciliationReconcile(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get server info
-     */
-    async reconciliationgetServerInfo(
-        options?: RequestOptions
-    ): Promise<operations.ReconciliationgetServerInfoResponse> {
-        return unwrapAsync(reconciliationReconciliationgetServerInfo(this, options));
-    }
+  /**
+   * Get server info
+   */
+  async reconciliationgetServerInfo(
+    options?: RequestOptions,
+  ): Promise<operations.ReconciliationgetServerInfoResponse> {
+    return unwrapAsync(reconciliationReconciliationgetServerInfo(
+      this,
+      options,
+    ));
+  }
 }

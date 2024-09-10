@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type StageSendDestinationPayment = {
-    psp: string;
+  psp: string;
 };
 
 /** @internal */
 export const StageSendDestinationPayment$inboundSchema: z.ZodType<
-    StageSendDestinationPayment,
-    z.ZodTypeDef,
-    unknown
+  StageSendDestinationPayment,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    psp: z.string(),
+  psp: z.string(),
 });
 
 /** @internal */
 export type StageSendDestinationPayment$Outbound = {
-    psp: string;
+  psp: string;
 };
 
 /** @internal */
 export const StageSendDestinationPayment$outboundSchema: z.ZodType<
-    StageSendDestinationPayment$Outbound,
-    z.ZodTypeDef,
-    StageSendDestinationPayment
+  StageSendDestinationPayment$Outbound,
+  z.ZodTypeDef,
+  StageSendDestinationPayment
 > = z.object({
-    psp: z.string(),
+  psp: z.string(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const StageSendDestinationPayment$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace StageSendDestinationPayment$ {
-    /** @deprecated use `StageSendDestinationPayment$inboundSchema` instead. */
-    export const inboundSchema = StageSendDestinationPayment$inboundSchema;
-    /** @deprecated use `StageSendDestinationPayment$outboundSchema` instead. */
-    export const outboundSchema = StageSendDestinationPayment$outboundSchema;
-    /** @deprecated use `StageSendDestinationPayment$Outbound` instead. */
-    export type Outbound = StageSendDestinationPayment$Outbound;
+  /** @deprecated use `StageSendDestinationPayment$inboundSchema` instead. */
+  export const inboundSchema = StageSendDestinationPayment$inboundSchema;
+  /** @deprecated use `StageSendDestinationPayment$outboundSchema` instead. */
+  export const outboundSchema = StageSendDestinationPayment$outboundSchema;
+  /** @deprecated use `StageSendDestinationPayment$Outbound` instead. */
+  export type Outbound = StageSendDestinationPayment$Outbound;
 }

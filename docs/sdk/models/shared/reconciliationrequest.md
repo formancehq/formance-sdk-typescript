@@ -6,8 +6,8 @@
 import { ReconciliationRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ReconciliationRequest = {
-    reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-    reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
+  reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
+  reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
 };
 ```
 

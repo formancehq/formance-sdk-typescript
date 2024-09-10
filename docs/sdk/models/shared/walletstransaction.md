@@ -6,48 +6,48 @@
 import { WalletsTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletsTransaction = {
-    id: 441374,
-    metadata: {
-        key: "<value>",
+  id: 441374,
+  metadata: {
+    "key": "<value>",
+  },
+  postCommitVolumes: {
+    "key": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
+      "EUR": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
     },
-    postCommitVolumes: {
-        key: {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-            EUR: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
+  },
+  postings: [
+    {
+      amount: BigInt("100"),
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
     },
-    postings: [
-        {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-        },
-    ],
-    preCommitVolumes: {
-        key: {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-            EUR: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
+  ],
+  preCommitVolumes: {
+    "key": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
+      "EUR": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
     },
-    reference: "ref:001",
-    timestamp: new Date("2024-02-24T18:31:21.982Z"),
+  },
+  reference: "ref:001",
+  timestamp: new Date("2024-02-24T18:31:21.982Z"),
 };
 ```
 

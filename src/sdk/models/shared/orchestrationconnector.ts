@@ -5,31 +5,33 @@
 import * as z from "zod";
 
 export enum OrchestrationConnector {
-    Stripe = "STRIPE",
-    DummyPay = "DUMMY-PAY",
-    Wise = "WISE",
-    Modulr = "MODULR",
-    CurrencyCloud = "CURRENCY-CLOUD",
-    BankingCircle = "BANKING-CIRCLE",
-    Mangopay = "MANGOPAY",
-    Moneycorp = "MONEYCORP",
+  Stripe = "STRIPE",
+  DummyPay = "DUMMY-PAY",
+  Wise = "WISE",
+  Modulr = "MODULR",
+  CurrencyCloud = "CURRENCY-CLOUD",
+  BankingCircle = "BANKING-CIRCLE",
+  Mangopay = "MANGOPAY",
+  Moneycorp = "MONEYCORP",
 }
 
 /** @internal */
-export const OrchestrationConnector$inboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> =
-    z.nativeEnum(OrchestrationConnector);
+export const OrchestrationConnector$inboundSchema: z.ZodNativeEnum<
+  typeof OrchestrationConnector
+> = z.nativeEnum(OrchestrationConnector);
 
 /** @internal */
-export const OrchestrationConnector$outboundSchema: z.ZodNativeEnum<typeof OrchestrationConnector> =
-    OrchestrationConnector$inboundSchema;
+export const OrchestrationConnector$outboundSchema: z.ZodNativeEnum<
+  typeof OrchestrationConnector
+> = OrchestrationConnector$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace OrchestrationConnector$ {
-    /** @deprecated use `OrchestrationConnector$inboundSchema` instead. */
-    export const inboundSchema = OrchestrationConnector$inboundSchema;
-    /** @deprecated use `OrchestrationConnector$outboundSchema` instead. */
-    export const outboundSchema = OrchestrationConnector$outboundSchema;
+  /** @deprecated use `OrchestrationConnector$inboundSchema` instead. */
+  export const inboundSchema = OrchestrationConnector$inboundSchema;
+  /** @deprecated use `OrchestrationConnector$outboundSchema` instead. */
+  export const outboundSchema = OrchestrationConnector$outboundSchema;
 }

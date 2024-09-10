@@ -6,7 +6,7 @@
 import { V2BulkElement } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElement = {
-    action: "<value>",
+  action: "<value>",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { SendEventRequestBody } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: SendEventRequestBody = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

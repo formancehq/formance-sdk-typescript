@@ -6,7 +6,7 @@
 import { GetWalletSummaryRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetWalletSummaryRequest = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

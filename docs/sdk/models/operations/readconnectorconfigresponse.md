@@ -6,18 +6,18 @@
 import { ReadConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReadConnectorConfigResponse = {
-    connectorConfigResponse: {
-        data: {
-            apiKey: "XXX",
-            name: "My Wise Account",
-            pollingPeriod: "60s",
-        },
+  connectorConfigResponse: {
+    data: {
+      apiKey: "XXX",
+      name: "My Wise Account",
+      pollingPeriod: "60s",
     },
-    contentType: "<value>",
-    statusCode: 756107,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  contentType: "<value>",
+  statusCode: 756107,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

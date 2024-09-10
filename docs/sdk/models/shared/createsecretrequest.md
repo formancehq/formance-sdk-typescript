@@ -6,7 +6,7 @@
 import { CreateSecretRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateSecretRequest = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

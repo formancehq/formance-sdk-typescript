@@ -6,9 +6,9 @@
 import { ClientSecret } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ClientSecret = {
-    id: "<id>",
-    lastDigits: "<value>",
-    name: "<value>",
+  id: "<id>",
+  lastDigits: "<value>",
+  name: "<value>",
 };
 ```
 

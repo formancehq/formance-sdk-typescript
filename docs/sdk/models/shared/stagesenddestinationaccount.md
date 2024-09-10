@@ -6,7 +6,7 @@
 import { StageSendDestinationAccount } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: StageSendDestinationAccount = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

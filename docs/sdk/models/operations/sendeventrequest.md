@@ -6,7 +6,7 @@
 import { SendEventRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: SendEventRequest = {
-    instanceID: "xxx",
+  instanceID: "xxx",
 };
 ```
 

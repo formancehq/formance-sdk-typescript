@@ -6,33 +6,33 @@
 import { V2ListWorkflowsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ListWorkflowsResponse = {
-    contentType: "<value>",
-    statusCode: 317202,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    v2ListWorkflowsResponse: {
-        cursor: {
-            data: [
-                {
-                    config: {
-                        stages: [
-                            {
-                                key: "<value>",
-                            },
-                        ],
-                    },
-                    createdAt: new Date("2022-06-01T10:45:51.493Z"),
-                    id: "<id>",
-                    updatedAt: new Date("2024-05-03T01:35:58.385Z"),
-                },
+  contentType: "<value>",
+  statusCode: 317202,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  v2ListWorkflowsResponse: {
+    cursor: {
+      data: [
+        {
+          config: {
+            stages: [
+              {
+                "key": "<value>",
+              },
             ],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+          },
+          createdAt: new Date("2022-06-01T10:45:51.493Z"),
+          id: "<id>",
+          updatedAt: new Date("2024-05-03T01:35:58.385Z"),
         },
+      ],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
+  },
 };
 ```
 

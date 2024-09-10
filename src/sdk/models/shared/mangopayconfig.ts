@@ -5,49 +5,51 @@
 import * as z from "zod";
 
 export type MangoPayConfig = {
-    apiKey: string;
-    clientID: string;
-    endpoint: string;
-    name: string;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  clientID: string;
+  endpoint: string;
+  name: string;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const MangoPayConfig$inboundSchema: z.ZodType<MangoPayConfig, z.ZodTypeDef, unknown> =
-    z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+export const MangoPayConfig$inboundSchema: z.ZodType<
+  MangoPayConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  clientID: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
+});
 
 /** @internal */
 export type MangoPayConfig$Outbound = {
-    apiKey: string;
-    clientID: string;
-    endpoint: string;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  clientID: string;
+  endpoint: string;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const MangoPayConfig$outboundSchema: z.ZodType<
-    MangoPayConfig$Outbound,
-    z.ZodTypeDef,
-    MangoPayConfig
+  MangoPayConfig$Outbound,
+  z.ZodTypeDef,
+  MangoPayConfig
 > = z.object({
-    apiKey: z.string(),
-    clientID: z.string(),
-    endpoint: z.string(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  clientID: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -55,10 +57,10 @@ export const MangoPayConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace MangoPayConfig$ {
-    /** @deprecated use `MangoPayConfig$inboundSchema` instead. */
-    export const inboundSchema = MangoPayConfig$inboundSchema;
-    /** @deprecated use `MangoPayConfig$outboundSchema` instead. */
-    export const outboundSchema = MangoPayConfig$outboundSchema;
-    /** @deprecated use `MangoPayConfig$Outbound` instead. */
-    export type Outbound = MangoPayConfig$Outbound;
+  /** @deprecated use `MangoPayConfig$inboundSchema` instead. */
+  export const inboundSchema = MangoPayConfig$inboundSchema;
+  /** @deprecated use `MangoPayConfig$outboundSchema` instead. */
+  export const outboundSchema = MangoPayConfig$outboundSchema;
+  /** @deprecated use `MangoPayConfig$Outbound` instead. */
+  export type Outbound = MangoPayConfig$Outbound;
 }

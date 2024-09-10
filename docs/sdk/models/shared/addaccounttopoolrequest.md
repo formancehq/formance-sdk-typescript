@@ -6,7 +6,7 @@
 import { AddAccountToPoolRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AddAccountToPoolRequest = {
-    accountID: "<value>",
+  accountID: "<value>",
 };
 ```
 

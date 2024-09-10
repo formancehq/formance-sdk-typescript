@@ -6,9 +6,9 @@
 import { V2ListLogsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ListLogsRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    ledger: "ledger001",
-    pageSize: 100,
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  ledger: "ledger001",
+  pageSize: 100,
 };
 ```
 

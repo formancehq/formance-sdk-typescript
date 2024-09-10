@@ -6,7 +6,7 @@
 import { ListTriggersOccurrencesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListTriggersOccurrencesRequest = {
-    triggerID: "<value>",
+  triggerID: "<value>",
 };
 ```
 

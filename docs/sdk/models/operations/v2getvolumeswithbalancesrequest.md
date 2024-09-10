@@ -6,10 +6,10 @@
 import { V2GetVolumesWithBalancesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetVolumesWithBalancesRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    groupBy: 3,
-    ledger: "ledger001",
-    pageSize: 100,
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  groupBy: 3,
+  ledger: "ledger001",
+  pageSize: 100,
 };
 ```
 

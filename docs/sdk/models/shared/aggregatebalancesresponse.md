@@ -6,10 +6,10 @@
 import { AggregateBalancesResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AggregateBalancesResponse = {
-    data: {
-        USD: 100,
-        EUR: 12,
-    },
+  data: {
+    "USD": 100,
+    "EUR": 12,
+  },
 };
 ```
 

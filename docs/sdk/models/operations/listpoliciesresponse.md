@@ -6,31 +6,31 @@
 import { ListPoliciesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListPoliciesResponse = {
-    contentType: "<value>",
-    policiesCursorResponse: {
-        cursor: {
-            data: [
-                {
-                    createdAt: new Date("2021-01-01T00:00:00.000Z"),
-                    id: "XXX",
-                    ledgerName: "default",
-                    ledgerQuery: {
-                        key: "<value>",
-                    },
-                    name: "XXX",
-                    paymentsPoolID: "XXX",
-                },
-            ],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  contentType: "<value>",
+  policiesCursorResponse: {
+    cursor: {
+      data: [
+        {
+          createdAt: new Date("2021-01-01T00:00:00.000Z"),
+          id: "XXX",
+          ledgerName: "default",
+          ledgerQuery: {
+            "key": "<value>",
+          },
+          name: "XXX",
+          paymentsPoolID: "XXX",
         },
+      ],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
-    statusCode: 501324,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 501324,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

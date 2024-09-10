@@ -6,11 +6,11 @@
 import { CurrencyCloudConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CurrencyCloudConfig = {
-    apiKey: "XXX",
-    endpoint: "XXX",
-    loginID: "XXX",
-    name: "My CurrencyCloud Account",
-    pollingPeriod: "60s",
+  apiKey: "XXX",
+  endpoint: "XXX",
+  loginID: "XXX",
+  name: "My CurrencyCloud Account",
+  pollingPeriod: "60s",
 };
 ```
 

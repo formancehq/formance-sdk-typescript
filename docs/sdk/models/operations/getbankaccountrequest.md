@@ -6,7 +6,7 @@
 import { GetBankAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetBankAccountRequest = {
-    bankAccountId: "XXX",
+  bankAccountId: "XXX",
 };
 ```
 

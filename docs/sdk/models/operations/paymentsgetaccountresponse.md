@@ -6,11 +6,11 @@
 import { PaymentsgetAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: PaymentsgetAccountResponse = {
-    contentType: "<value>",
-    statusCode: 270008,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 270008,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

@@ -6,7 +6,7 @@
 import { CreateClientRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateClientRequest = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

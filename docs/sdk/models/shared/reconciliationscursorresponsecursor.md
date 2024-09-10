@@ -6,29 +6,29 @@
 import { ReconciliationsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ReconciliationsCursorResponseCursor = {
-    data: [
-        {
-            createdAt: new Date("2021-01-01T00:00:00.000Z"),
-            driftBalances: {
-                key: BigInt("229567"),
-            },
-            id: "XXX",
-            ledgerBalances: {
-                key: BigInt("849320"),
-            },
-            paymentsBalances: {
-                key: BigInt("506863"),
-            },
-            policyID: "XXX",
-            reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-            reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
-            status: "COMPLETED",
-        },
-    ],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [
+    {
+      createdAt: new Date("2021-01-01T00:00:00.000Z"),
+      driftBalances: {
+        "key": BigInt("229567"),
+      },
+      id: "XXX",
+      ledgerBalances: {
+        "key": BigInt("849320"),
+      },
+      paymentsBalances: {
+        "key": BigInt("506863"),
+      },
+      policyID: "XXX",
+      reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
+      reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
+      status: "COMPLETED",
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

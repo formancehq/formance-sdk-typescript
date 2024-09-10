@@ -6,11 +6,11 @@
 import { MoneycorpConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: MoneycorpConfig = {
-    apiKey: "XXX",
-    clientID: "XXX",
-    endpoint: "XXX",
-    name: "My Moneycorp Account",
-    pollingPeriod: "60s",
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My Moneycorp Account",
+  pollingPeriod: "60s",
 };
 ```
 

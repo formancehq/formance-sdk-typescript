@@ -6,11 +6,11 @@
 import { V2ReadTriggerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ReadTriggerResponse = {
-    contentType: "<value>",
-    statusCode: 196582,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 196582,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

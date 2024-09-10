@@ -6,11 +6,11 @@
 import { ModulrConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ModulrConfig = {
-    apiKey: "XXX",
-    apiSecret: "XXX",
-    endpoint: "XXX",
-    name: "My Modulr Account",
-    pollingPeriod: "60s",
+  apiKey: "XXX",
+  apiSecret: "XXX",
+  endpoint: "XXX",
+  name: "My Modulr Account",
+  pollingPeriod: "60s",
 };
 ```
 

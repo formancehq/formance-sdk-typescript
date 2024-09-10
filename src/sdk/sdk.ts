@@ -17,59 +17,67 @@ import { Wallets } from "./wallets.js";
 import { Webhooks } from "./webhooks.js";
 
 export class SDK extends ClientSDK {
-    private _auth?: Auth;
-    get auth(): Auth {
-        return (this._auth ??= new Auth(this.options$));
-    }
+  private _auth?: Auth;
+  get auth(): Auth {
+    return (this._auth ??= new Auth(this.options$));
+  }
 
-    private _ledger?: Ledger;
-    get ledger(): Ledger {
-        return (this._ledger ??= new Ledger(this.options$));
-    }
+  private _ledger?: Ledger;
+  get ledger(): Ledger {
+    return (this._ledger ??= new Ledger(this.options$));
+  }
 
-    private _orchestration?: Orchestration;
-    get orchestration(): Orchestration {
-        return (this._orchestration ??= new Orchestration(this.options$));
-    }
+  private _orchestration?: Orchestration;
+  get orchestration(): Orchestration {
+    return (this._orchestration ??= new Orchestration(this.options$));
+  }
 
-    private _payments?: Payments;
-    get payments(): Payments {
-        return (this._payments ??= new Payments(this.options$));
-    }
+  private _payments?: Payments;
+  get payments(): Payments {
+    return (this._payments ??= new Payments(this.options$));
+  }
 
-    private _reconciliation?: Reconciliation;
-    get reconciliation(): Reconciliation {
-        return (this._reconciliation ??= new Reconciliation(this.options$));
-    }
+  private _reconciliation?: Reconciliation;
+  get reconciliation(): Reconciliation {
+    return (this._reconciliation ??= new Reconciliation(this.options$));
+  }
 
-    private _search?: Search;
-    get search(): Search {
-        return (this._search ??= new Search(this.options$));
-    }
+  private _search?: Search;
+  get search(): Search {
+    return (this._search ??= new Search(this.options$));
+  }
 
-    private _wallets?: Wallets;
-    get wallets(): Wallets {
-        return (this._wallets ??= new Wallets(this.options$));
-    }
+  private _wallets?: Wallets;
+  get wallets(): Wallets {
+    return (this._wallets ??= new Wallets(this.options$));
+  }
 
-    private _webhooks?: Webhooks;
-    get webhooks(): Webhooks {
-        return (this._webhooks ??= new Webhooks(this.options$));
-    }
+  private _webhooks?: Webhooks;
+  get webhooks(): Webhooks {
+    return (this._webhooks ??= new Webhooks(this.options$));
+  }
 
-    /**
-     * Retrieve OpenID connect well-knowns.
-     */
-    async getOIDCWellKnowns(
-        options?: RequestOptions
-    ): Promise<operations.GetOIDCWellKnownsResponse> {
-        return unwrapAsync(getOIDCWellKnowns(this, options));
-    }
+  /**
+   * Retrieve OpenID connect well-knowns.
+   */
+  async getOIDCWellKnowns(
+    options?: RequestOptions,
+  ): Promise<operations.GetOIDCWellKnownsResponse> {
+    return unwrapAsync(getOIDCWellKnowns(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Show stack version information
-     */
-    async getVersions(options?: RequestOptions): Promise<operations.GetVersionsResponse> {
-        return unwrapAsync(getVersions(this, options));
-    }
+  /**
+   * Show stack version information
+   */
+  async getVersions(
+    options?: RequestOptions,
+  ): Promise<operations.GetVersionsResponse> {
+    return unwrapAsync(getVersions(
+      this,
+      options,
+    ));
+  }
 }

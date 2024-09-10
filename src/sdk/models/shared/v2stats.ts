@@ -5,26 +5,31 @@
 import * as z from "zod";
 
 export type V2Stats = {
-    accounts: number;
-    transactions: bigint;
+  accounts: number;
+  transactions: bigint;
 };
 
 /** @internal */
-export const V2Stats$inboundSchema: z.ZodType<V2Stats, z.ZodTypeDef, unknown> = z.object({
+export const V2Stats$inboundSchema: z.ZodType<V2Stats, z.ZodTypeDef, unknown> =
+  z.object({
     accounts: z.number().int(),
-    transactions: z.number().transform((v) => BigInt(v)),
-});
+    transactions: z.number().transform(v => BigInt(v)),
+  });
 
 /** @internal */
 export type V2Stats$Outbound = {
-    accounts: number;
-    transactions: number;
+  accounts: number;
+  transactions: number;
 };
 
 /** @internal */
-export const V2Stats$outboundSchema: z.ZodType<V2Stats$Outbound, z.ZodTypeDef, V2Stats> = z.object({
-    accounts: z.number().int(),
-    transactions: z.bigint().transform((v) => Number(v)),
+export const V2Stats$outboundSchema: z.ZodType<
+  V2Stats$Outbound,
+  z.ZodTypeDef,
+  V2Stats
+> = z.object({
+  accounts: z.number().int(),
+  transactions: z.bigint().transform(v => Number(v)),
 });
 
 /**
@@ -32,10 +37,10 @@ export const V2Stats$outboundSchema: z.ZodType<V2Stats$Outbound, z.ZodTypeDef, V
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2Stats$ {
-    /** @deprecated use `V2Stats$inboundSchema` instead. */
-    export const inboundSchema = V2Stats$inboundSchema;
-    /** @deprecated use `V2Stats$outboundSchema` instead. */
-    export const outboundSchema = V2Stats$outboundSchema;
-    /** @deprecated use `V2Stats$Outbound` instead. */
-    export type Outbound = V2Stats$Outbound;
+  /** @deprecated use `V2Stats$inboundSchema` instead. */
+  export const inboundSchema = V2Stats$inboundSchema;
+  /** @deprecated use `V2Stats$outboundSchema` instead. */
+  export const outboundSchema = V2Stats$outboundSchema;
+  /** @deprecated use `V2Stats$Outbound` instead. */
+  export type Outbound = V2Stats$Outbound;
 }

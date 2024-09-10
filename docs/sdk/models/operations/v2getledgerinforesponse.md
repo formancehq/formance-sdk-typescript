@@ -6,24 +6,24 @@
 import { V2GetLedgerInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetLedgerInfoResponse = {
-    contentType: "<value>",
-    statusCode: 774234,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    v2LedgerInfoResponse: {
-        data: {
-            name: "ledger001",
-            storage: {
-                migrations: [
-                    {
-                        name: "migrations:001",
-                        version: 11,
-                    },
-                ],
-            },
-        },
+  contentType: "<value>",
+  statusCode: 774234,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  v2LedgerInfoResponse: {
+    data: {
+      name: "ledger001",
+      storage: {
+        migrations: [
+          {
+            name: "migrations:001",
+            version: 11,
+          },
+        ],
+      },
     },
+  },
 };
 ```
 

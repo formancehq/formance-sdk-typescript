@@ -5,50 +5,50 @@
 import * as z from "zod";
 
 export type BalancesCursorResponseCursor = {
-    data: Array<{ [k: string]: { [k: string]: number } }>;
-    hasMore: boolean;
-    next?: string | undefined;
-    pageSize: number;
-    previous?: string | undefined;
+  data: Array<{ [k: string]: { [k: string]: number } }>;
+  hasMore: boolean;
+  next?: string | undefined;
+  pageSize: number;
+  previous?: string | undefined;
 };
 
 export type BalancesCursorResponse = {
-    cursor: BalancesCursorResponseCursor;
+  cursor: BalancesCursorResponseCursor;
 };
 
 /** @internal */
 export const BalancesCursorResponseCursor$inboundSchema: z.ZodType<
-    BalancesCursorResponseCursor,
-    z.ZodTypeDef,
-    unknown
+  BalancesCursorResponseCursor,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    data: z.array(z.record(z.record(z.number().int()))),
-    hasMore: z.boolean(),
-    next: z.string().optional(),
-    pageSize: z.number().int(),
-    previous: z.string().optional(),
+  data: z.array(z.record(z.record(z.number().int()))),
+  hasMore: z.boolean(),
+  next: z.string().optional(),
+  pageSize: z.number().int(),
+  previous: z.string().optional(),
 });
 
 /** @internal */
 export type BalancesCursorResponseCursor$Outbound = {
-    data: Array<{ [k: string]: { [k: string]: number } }>;
-    hasMore: boolean;
-    next?: string | undefined;
-    pageSize: number;
-    previous?: string | undefined;
+  data: Array<{ [k: string]: { [k: string]: number } }>;
+  hasMore: boolean;
+  next?: string | undefined;
+  pageSize: number;
+  previous?: string | undefined;
 };
 
 /** @internal */
 export const BalancesCursorResponseCursor$outboundSchema: z.ZodType<
-    BalancesCursorResponseCursor$Outbound,
-    z.ZodTypeDef,
-    BalancesCursorResponseCursor
+  BalancesCursorResponseCursor$Outbound,
+  z.ZodTypeDef,
+  BalancesCursorResponseCursor
 > = z.object({
-    data: z.array(z.record(z.record(z.number().int()))),
-    hasMore: z.boolean(),
-    next: z.string().optional(),
-    pageSize: z.number().int(),
-    previous: z.string().optional(),
+  data: z.array(z.record(z.record(z.number().int()))),
+  hasMore: z.boolean(),
+  next: z.string().optional(),
+  pageSize: z.number().int(),
+  previous: z.string().optional(),
 });
 
 /**
@@ -56,35 +56,35 @@ export const BalancesCursorResponseCursor$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace BalancesCursorResponseCursor$ {
-    /** @deprecated use `BalancesCursorResponseCursor$inboundSchema` instead. */
-    export const inboundSchema = BalancesCursorResponseCursor$inboundSchema;
-    /** @deprecated use `BalancesCursorResponseCursor$outboundSchema` instead. */
-    export const outboundSchema = BalancesCursorResponseCursor$outboundSchema;
-    /** @deprecated use `BalancesCursorResponseCursor$Outbound` instead. */
-    export type Outbound = BalancesCursorResponseCursor$Outbound;
+  /** @deprecated use `BalancesCursorResponseCursor$inboundSchema` instead. */
+  export const inboundSchema = BalancesCursorResponseCursor$inboundSchema;
+  /** @deprecated use `BalancesCursorResponseCursor$outboundSchema` instead. */
+  export const outboundSchema = BalancesCursorResponseCursor$outboundSchema;
+  /** @deprecated use `BalancesCursorResponseCursor$Outbound` instead. */
+  export type Outbound = BalancesCursorResponseCursor$Outbound;
 }
 
 /** @internal */
 export const BalancesCursorResponse$inboundSchema: z.ZodType<
-    BalancesCursorResponse,
-    z.ZodTypeDef,
-    unknown
+  BalancesCursorResponse,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    cursor: z.lazy(() => BalancesCursorResponseCursor$inboundSchema),
+  cursor: z.lazy(() => BalancesCursorResponseCursor$inboundSchema),
 });
 
 /** @internal */
 export type BalancesCursorResponse$Outbound = {
-    cursor: BalancesCursorResponseCursor$Outbound;
+  cursor: BalancesCursorResponseCursor$Outbound;
 };
 
 /** @internal */
 export const BalancesCursorResponse$outboundSchema: z.ZodType<
-    BalancesCursorResponse$Outbound,
-    z.ZodTypeDef,
-    BalancesCursorResponse
+  BalancesCursorResponse$Outbound,
+  z.ZodTypeDef,
+  BalancesCursorResponse
 > = z.object({
-    cursor: z.lazy(() => BalancesCursorResponseCursor$outboundSchema),
+  cursor: z.lazy(() => BalancesCursorResponseCursor$outboundSchema),
 });
 
 /**
@@ -92,10 +92,10 @@ export const BalancesCursorResponse$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace BalancesCursorResponse$ {
-    /** @deprecated use `BalancesCursorResponse$inboundSchema` instead. */
-    export const inboundSchema = BalancesCursorResponse$inboundSchema;
-    /** @deprecated use `BalancesCursorResponse$outboundSchema` instead. */
-    export const outboundSchema = BalancesCursorResponse$outboundSchema;
-    /** @deprecated use `BalancesCursorResponse$Outbound` instead. */
-    export type Outbound = BalancesCursorResponse$Outbound;
+  /** @deprecated use `BalancesCursorResponse$inboundSchema` instead. */
+  export const inboundSchema = BalancesCursorResponse$inboundSchema;
+  /** @deprecated use `BalancesCursorResponse$outboundSchema` instead. */
+  export const outboundSchema = BalancesCursorResponse$outboundSchema;
+  /** @deprecated use `BalancesCursorResponse$Outbound` instead. */
+  export type Outbound = BalancesCursorResponse$Outbound;
 }

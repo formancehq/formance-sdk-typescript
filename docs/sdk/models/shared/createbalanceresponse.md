@@ -6,9 +6,9 @@
 import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateBalanceResponse = {
-    data: {
-        name: "<value>",
-    },
+  data: {
+    name: "<value>",
+  },
 };
 ```
 

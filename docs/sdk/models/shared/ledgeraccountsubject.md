@@ -6,8 +6,8 @@
 import { LedgerAccountSubject } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: LedgerAccountSubject = {
-    identifier: "<value>",
-    type: "<value>",
+  identifier: "<value>",
+  type: "<value>",
 };
 ```
 

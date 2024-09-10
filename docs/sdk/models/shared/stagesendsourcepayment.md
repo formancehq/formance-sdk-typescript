@@ -6,7 +6,7 @@
 import { StageSendSourcePayment } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: StageSendSourcePayment = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

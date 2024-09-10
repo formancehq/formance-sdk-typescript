@@ -6,7 +6,7 @@
 import { V2GetInstanceRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetInstanceRequest = {
-    instanceID: "xxx",
+  instanceID: "xxx",
 };
 ```
 

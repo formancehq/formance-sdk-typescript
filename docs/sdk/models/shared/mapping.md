@@ -6,12 +6,12 @@
 import { Mapping } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Mapping = {
-    contracts: [
-        {
-            account: "users:001",
-            expr: {},
-        },
-    ],
+  contracts: [
+    {
+      account: "users:001",
+      expr: {},
+    },
+  ],
 };
 ```
 

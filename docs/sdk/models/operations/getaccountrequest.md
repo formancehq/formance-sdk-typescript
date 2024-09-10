@@ -6,8 +6,8 @@
 import { GetAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetAccountRequest = {
-    address: "users:001",
-    ledger: "ledger001",
+  address: "users:001",
+  ledger: "ledger001",
 };
 ```
 

@@ -6,11 +6,11 @@
 import { GetConnectorTaskV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetConnectorTaskV1Response = {
-    contentType: "<value>",
-    statusCode: 692472,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 692472,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

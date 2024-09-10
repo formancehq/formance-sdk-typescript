@@ -6,7 +6,7 @@
 import { Balance } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Balance = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

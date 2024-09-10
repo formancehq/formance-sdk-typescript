@@ -6,17 +6,19 @@
 import { PoolsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PoolsCursorCursor = {
-    data: [
-        {
-            accounts: ["<value>"],
-            id: "<id>",
-            name: "<value>",
-        },
-    ],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [
+    {
+      accounts: [
+        "<value>",
+      ],
+      id: "<id>",
+      name: "<value>",
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

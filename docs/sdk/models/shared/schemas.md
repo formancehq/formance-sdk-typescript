@@ -6,7 +6,7 @@
 import { Schemas } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Schemas = {
-    responseType: "<value>",
+  responseType: "<value>",
 };
 ```
 

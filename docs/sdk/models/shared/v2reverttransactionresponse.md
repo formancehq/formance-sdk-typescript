@@ -6,23 +6,23 @@
 import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2RevertTransactionResponse = {
-    data: {
-        id: BigInt("458604"),
-        metadata: {
-            admin: "true",
-        },
-        postings: [
-            {
-                amount: BigInt("100"),
-                asset: "COIN",
-                destination: "users:002",
-                source: "users:001",
-            },
-        ],
-        reference: "ref:001",
-        reverted: false,
-        timestamp: new Date("2024-05-27T05:09:17.930Z"),
+  data: {
+    id: BigInt("458604"),
+    metadata: {
+      "admin": "true",
     },
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    reverted: false,
+    timestamp: new Date("2024-05-27T05:09:17.930Z"),
+  },
 };
 ```
 

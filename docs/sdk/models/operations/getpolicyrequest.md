@@ -6,7 +6,7 @@
 import { GetPolicyRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetPolicyRequest = {
-    policyID: "XXX",
+  policyID: "XXX",
 };
 ```
 

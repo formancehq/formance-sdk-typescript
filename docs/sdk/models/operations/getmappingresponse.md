@@ -6,21 +6,21 @@
 import { GetMappingResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetMappingResponse = {
-    contentType: "<value>",
-    mappingResponse: {
-        data: {
-            contracts: [
-                {
-                    account: "users:001",
-                    expr: {},
-                },
-            ],
+  contentType: "<value>",
+  mappingResponse: {
+    data: {
+      contracts: [
+        {
+          account: "users:001",
+          expr: {},
         },
+      ],
     },
-    statusCode: 528895,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 528895,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

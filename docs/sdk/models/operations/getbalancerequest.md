@@ -6,8 +6,8 @@
 import { GetBalanceRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetBalanceRequest = {
-    balanceName: "<value>",
-    id: "<id>",
+  balanceName: "<value>",
+  id: "<id>",
 };
 ```
 

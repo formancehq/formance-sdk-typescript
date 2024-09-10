@@ -15,107 +15,133 @@ import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Webhooks extends ClientSDK {
-    /**
-     * Activate one config
-     *
-     * @remarks
-     * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
-     */
-    async activateConfig(
-        request: operations.ActivateConfigRequest,
-        options?: RequestOptions
-    ): Promise<operations.ActivateConfigResponse> {
-        return unwrapAsync(webhooksActivateConfig(this, request, options));
-    }
+  /**
+   * Activate one config
+   *
+   * @remarks
+   * Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
+   */
+  async activateConfig(
+    request: operations.ActivateConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ActivateConfigResponse> {
+    return unwrapAsync(webhooksActivateConfig(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Change the signing secret of a config
-     *
-     * @remarks
-     * Change the signing secret of the endpoint of a webhooks config.
-     *
-     * If not passed or empty, a secret is automatically generated.
-     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-     *
-     */
-    async changeConfigSecret(
-        request: operations.ChangeConfigSecretRequest,
-        options?: RequestOptions
-    ): Promise<operations.ChangeConfigSecretResponse> {
-        return unwrapAsync(webhooksChangeConfigSecret(this, request, options));
-    }
+  /**
+   * Change the signing secret of a config
+   *
+   * @remarks
+   * Change the signing secret of the endpoint of a webhooks config.
+   *
+   * If not passed or empty, a secret is automatically generated.
+   * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+   */
+  async changeConfigSecret(
+    request: operations.ChangeConfigSecretRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ChangeConfigSecretResponse> {
+    return unwrapAsync(webhooksChangeConfigSecret(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Deactivate one config
-     *
-     * @remarks
-     * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
-     */
-    async deactivateConfig(
-        request: operations.DeactivateConfigRequest,
-        options?: RequestOptions
-    ): Promise<operations.DeactivateConfigResponse> {
-        return unwrapAsync(webhooksDeactivateConfig(this, request, options));
-    }
+  /**
+   * Deactivate one config
+   *
+   * @remarks
+   * Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
+   */
+  async deactivateConfig(
+    request: operations.DeactivateConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeactivateConfigResponse> {
+    return unwrapAsync(webhooksDeactivateConfig(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete one config
-     *
-     * @remarks
-     * Delete a webhooks config by ID.
-     */
-    async deleteConfig(
-        request: operations.DeleteConfigRequest,
-        options?: RequestOptions
-    ): Promise<operations.DeleteConfigResponse> {
-        return unwrapAsync(webhooksDeleteConfig(this, request, options));
-    }
+  /**
+   * Delete one config
+   *
+   * @remarks
+   * Delete a webhooks config by ID.
+   */
+  async deleteConfig(
+    request: operations.DeleteConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeleteConfigResponse> {
+    return unwrapAsync(webhooksDeleteConfig(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get many configs
-     *
-     * @remarks
-     * Sorted by updated date descending
-     */
-    async getManyConfigs(
-        request: operations.GetManyConfigsRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetManyConfigsResponse> {
-        return unwrapAsync(webhooksGetManyConfigs(this, request, options));
-    }
+  /**
+   * Get many configs
+   *
+   * @remarks
+   * Sorted by updated date descending
+   */
+  async getManyConfigs(
+    request: operations.GetManyConfigsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetManyConfigsResponse> {
+    return unwrapAsync(webhooksGetManyConfigs(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Insert a new config
-     *
-     * @remarks
-     * Insert a new webhooks config.
-     *
-     * The endpoint should be a valid https URL and be unique.
-     *
-     * The secret is the endpoint's verification secret.
-     * If not passed or empty, a secret is automatically generated.
-     * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
-     *
-     * All eventTypes are converted to lower-case when inserted.
-     *
-     */
-    async insertConfig(
-        request: shared.ConfigUser,
-        options?: RequestOptions
-    ): Promise<operations.InsertConfigResponse> {
-        return unwrapAsync(webhooksInsertConfig(this, request, options));
-    }
+  /**
+   * Insert a new config
+   *
+   * @remarks
+   * Insert a new webhooks config.
+   *
+   * The endpoint should be a valid https URL and be unique.
+   *
+   * The secret is the endpoint's verification secret.
+   * If not passed or empty, a secret is automatically generated.
+   * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
+   *
+   * All eventTypes are converted to lower-case when inserted.
+   */
+  async insertConfig(
+    request: shared.ConfigUser,
+    options?: RequestOptions,
+  ): Promise<operations.InsertConfigResponse> {
+    return unwrapAsync(webhooksInsertConfig(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Test one config
-     *
-     * @remarks
-     * Test a config by sending a webhook to its endpoint.
-     */
-    async testConfig(
-        request: operations.TestConfigRequest,
-        options?: RequestOptions
-    ): Promise<operations.TestConfigResponse> {
-        return unwrapAsync(webhooksTestConfig(this, request, options));
-    }
+  /**
+   * Test one config
+   *
+   * @remarks
+   * Test a config by sending a webhook to its endpoint.
+   */
+  async testConfig(
+    request: operations.TestConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.TestConfigResponse> {
+    return unwrapAsync(webhooksTestConfig(
+      this,
+      request,
+      options,
+    ));
+  }
 }

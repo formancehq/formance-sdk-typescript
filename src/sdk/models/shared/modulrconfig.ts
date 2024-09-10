@@ -5,48 +5,51 @@
 import * as z from "zod";
 
 export type ModulrConfig = {
-    apiKey: string;
-    apiSecret: string;
-    endpoint?: string | undefined;
-    name: string;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  apiSecret: string;
+  endpoint?: string | undefined;
+  name: string;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const ModulrConfig$inboundSchema: z.ZodType<ModulrConfig, z.ZodTypeDef, unknown> = z.object({
-    apiKey: z.string(),
-    apiSecret: z.string(),
-    endpoint: z.string().optional(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+export const ModulrConfig$inboundSchema: z.ZodType<
+  ModulrConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  apiSecret: z.string(),
+  endpoint: z.string().optional(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /** @internal */
 export type ModulrConfig$Outbound = {
-    apiKey: string;
-    apiSecret: string;
-    endpoint?: string | undefined;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  apiSecret: string;
+  endpoint?: string | undefined;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const ModulrConfig$outboundSchema: z.ZodType<
-    ModulrConfig$Outbound,
-    z.ZodTypeDef,
-    ModulrConfig
+  ModulrConfig$Outbound,
+  z.ZodTypeDef,
+  ModulrConfig
 > = z.object({
-    apiKey: z.string(),
-    apiSecret: z.string(),
-    endpoint: z.string().optional(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  apiSecret: z.string(),
+  endpoint: z.string().optional(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -54,10 +57,10 @@ export const ModulrConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ModulrConfig$ {
-    /** @deprecated use `ModulrConfig$inboundSchema` instead. */
-    export const inboundSchema = ModulrConfig$inboundSchema;
-    /** @deprecated use `ModulrConfig$outboundSchema` instead. */
-    export const outboundSchema = ModulrConfig$outboundSchema;
-    /** @deprecated use `ModulrConfig$Outbound` instead. */
-    export type Outbound = ModulrConfig$Outbound;
+  /** @deprecated use `ModulrConfig$inboundSchema` instead. */
+  export const inboundSchema = ModulrConfig$inboundSchema;
+  /** @deprecated use `ModulrConfig$outboundSchema` instead. */
+  export const outboundSchema = ModulrConfig$outboundSchema;
+  /** @deprecated use `ModulrConfig$Outbound` instead. */
+  export type Outbound = ModulrConfig$Outbound;
 }

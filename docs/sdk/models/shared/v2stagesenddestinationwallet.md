@@ -6,7 +6,7 @@
 import { V2StageSendDestinationWallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2StageSendDestinationWallet = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

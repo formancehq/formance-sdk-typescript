@@ -6,13 +6,19 @@
 import { Query } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Query = {
-    after: ["users:002"],
-    cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    ledgers: ["quickstart"],
-    policy: "OR",
-    raw: {},
-    sort: "id:asc",
-    terms: ["destination=central_bank1"],
+  after: [
+    "users:002",
+  ],
+  cursor: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  ledgers: [
+    "quickstart",
+  ],
+  policy: "OR",
+  raw: {},
+  sort: "id:asc",
+  terms: [
+    "destination=central_bank1",
+  ],
 };
 ```
 

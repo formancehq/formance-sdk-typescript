@@ -6,15 +6,15 @@
 import { LedgerInfo } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: LedgerInfo = {
-    name: "ledger001",
-    storage: {
-        migrations: [
-            {
-                name: "migrations:001",
-                version: 11,
-            },
-        ],
-    },
+  name: "ledger001",
+  storage: {
+    migrations: [
+      {
+        name: "migrations:001",
+        version: 11,
+      },
+    ],
+  },
 };
 ```
 

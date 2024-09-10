@@ -6,7 +6,7 @@
 import { GetMappingRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetMappingRequest = {
-    ledger: "ledger001",
+  ledger: "ledger001",
 };
 ```
 

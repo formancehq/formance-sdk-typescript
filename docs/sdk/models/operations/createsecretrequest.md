@@ -6,7 +6,7 @@
 import { CreateSecretRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CreateSecretRequest = {
-    clientId: "<value>",
+  clientId: "<value>",
 };
 ```
 

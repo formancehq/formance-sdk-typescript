@@ -6,14 +6,14 @@
 import { MappingResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: MappingResponse = {
-    data: {
-        contracts: [
-            {
-                account: "users:001",
-                expr: {},
-            },
-        ],
-    },
+  data: {
+    contracts: [
+      {
+        account: "users:001",
+        expr: {},
+      },
+    ],
+  },
 };
 ```
 

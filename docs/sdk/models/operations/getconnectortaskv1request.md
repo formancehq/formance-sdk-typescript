@@ -7,9 +7,9 @@ import { GetConnectorTaskV1Request } from "@formance/formance-sdk/sdk/models/ope
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetConnectorTaskV1Request = {
-    connector: Connector.Wise,
-    connectorId: "XXX",
-    taskId: "task1",
+  connector: Connector.Wise,
+  connectorId: "XXX",
+  taskId: "task1",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { DeactivateConfigRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeactivateConfigRequest = {
-    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 ```
 

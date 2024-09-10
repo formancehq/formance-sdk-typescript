@@ -6,7 +6,7 @@
 import { CreateBalanceRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateBalanceRequest = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

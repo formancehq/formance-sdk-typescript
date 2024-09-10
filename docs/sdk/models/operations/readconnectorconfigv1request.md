@@ -7,8 +7,8 @@ import { ReadConnectorConfigV1Request } from "@formance/formance-sdk/sdk/models/
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ReadConnectorConfigV1Request = {
-    connector: Connector.Mangopay,
-    connectorId: "XXX",
+  connector: Connector.Mangopay,
+  connectorId: "XXX",
 };
 ```
 

@@ -5,46 +5,46 @@
 import * as z from "zod";
 
 export type V2VolumesWithBalance = {
-    account: string;
-    asset: string;
-    balance: bigint;
-    input: bigint;
-    output: bigint;
+  account: string;
+  asset: string;
+  balance: bigint;
+  input: bigint;
+  output: bigint;
 };
 
 /** @internal */
 export const V2VolumesWithBalance$inboundSchema: z.ZodType<
-    V2VolumesWithBalance,
-    z.ZodTypeDef,
-    unknown
+  V2VolumesWithBalance,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    account: z.string(),
-    asset: z.string(),
-    balance: z.number().transform((v) => BigInt(v)),
-    input: z.number().transform((v) => BigInt(v)),
-    output: z.number().transform((v) => BigInt(v)),
+  account: z.string(),
+  asset: z.string(),
+  balance: z.number().transform(v => BigInt(v)),
+  input: z.number().transform(v => BigInt(v)),
+  output: z.number().transform(v => BigInt(v)),
 });
 
 /** @internal */
 export type V2VolumesWithBalance$Outbound = {
-    account: string;
-    asset: string;
-    balance: number;
-    input: number;
-    output: number;
+  account: string;
+  asset: string;
+  balance: number;
+  input: number;
+  output: number;
 };
 
 /** @internal */
 export const V2VolumesWithBalance$outboundSchema: z.ZodType<
-    V2VolumesWithBalance$Outbound,
-    z.ZodTypeDef,
-    V2VolumesWithBalance
+  V2VolumesWithBalance$Outbound,
+  z.ZodTypeDef,
+  V2VolumesWithBalance
 > = z.object({
-    account: z.string(),
-    asset: z.string(),
-    balance: z.bigint().transform((v) => Number(v)),
-    input: z.bigint().transform((v) => Number(v)),
-    output: z.bigint().transform((v) => Number(v)),
+  account: z.string(),
+  asset: z.string(),
+  balance: z.bigint().transform(v => Number(v)),
+  input: z.bigint().transform(v => Number(v)),
+  output: z.bigint().transform(v => Number(v)),
 });
 
 /**
@@ -52,10 +52,10 @@ export const V2VolumesWithBalance$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2VolumesWithBalance$ {
-    /** @deprecated use `V2VolumesWithBalance$inboundSchema` instead. */
-    export const inboundSchema = V2VolumesWithBalance$inboundSchema;
-    /** @deprecated use `V2VolumesWithBalance$outboundSchema` instead. */
-    export const outboundSchema = V2VolumesWithBalance$outboundSchema;
-    /** @deprecated use `V2VolumesWithBalance$Outbound` instead. */
-    export type Outbound = V2VolumesWithBalance$Outbound;
+  /** @deprecated use `V2VolumesWithBalance$inboundSchema` instead. */
+  export const inboundSchema = V2VolumesWithBalance$inboundSchema;
+  /** @deprecated use `V2VolumesWithBalance$outboundSchema` instead. */
+  export const outboundSchema = V2VolumesWithBalance$outboundSchema;
+  /** @deprecated use `V2VolumesWithBalance$Outbound` instead. */
+  export type Outbound = V2VolumesWithBalance$Outbound;
 }

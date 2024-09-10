@@ -6,7 +6,7 @@
 import { V2BulkElementAddMetadata } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementAddMetadata = {
-    action: "<value>",
+  action: "<value>",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { V2DeleteTriggerRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2DeleteTriggerRequest = {
-    triggerID: "<value>",
+  triggerID: "<value>",
 };
 ```
 

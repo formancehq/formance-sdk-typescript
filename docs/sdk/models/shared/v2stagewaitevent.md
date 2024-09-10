@@ -6,7 +6,7 @@
 import { V2StageWaitEvent } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2StageWaitEvent = {
-    event: "<value>",
+  event: "<value>",
 };
 ```
 

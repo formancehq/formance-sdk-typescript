@@ -6,7 +6,7 @@
 import { ReadStatsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReadStatsRequest = {
-    ledger: "ledger001",
+  ledger: "ledger001",
 };
 ```
 

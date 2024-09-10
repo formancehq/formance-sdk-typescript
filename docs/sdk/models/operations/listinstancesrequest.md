@@ -6,8 +6,8 @@
 import { ListInstancesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListInstancesRequest = {
-    running: true,
-    workflowID: "xxx",
+  running: true,
+  workflowID: "xxx",
 };
 ```
 

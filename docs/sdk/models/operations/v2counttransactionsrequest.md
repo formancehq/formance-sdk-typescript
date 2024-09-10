@@ -6,7 +6,7 @@
 import { V2CountTransactionsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2CountTransactionsRequest = {
-    ledger: "ledger001",
+  ledger: "ledger001",
 };
 ```
 

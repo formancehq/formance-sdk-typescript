@@ -6,7 +6,7 @@
 import { V2GetInstanceHistoryRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetInstanceHistoryRequest = {
-    instanceID: "xxx",
+  instanceID: "xxx",
 };
 ```
 

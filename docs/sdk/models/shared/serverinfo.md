@@ -6,7 +6,7 @@
 import { ServerInfo } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ServerInfo = {
-    version: "<value>",
+  version: "<value>",
 };
 ```
 

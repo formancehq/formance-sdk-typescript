@@ -11,28 +11,28 @@ import {
 } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: OrchestrationPayment = {
-    adjustments: [
-        {
-            absolute: false,
-            amount: BigInt("100"),
-            date: new Date("2022-07-04T18:14:01.540Z"),
-            raw: {},
-            status: OrchestrationPaymentStatus.Pending,
-        },
-    ],
-    asset: "USD",
-    connectorID: "<value>",
-    createdAt: new Date("2024-09-15T00:36:30.916Z"),
-    destinationAccountID: "<value>",
-    id: "XXX",
-    initialAmount: BigInt("100"),
-    metadata: {},
-    raw: {},
-    reference: "<value>",
-    scheme: OrchestrationPaymentScheme.Discover,
-    sourceAccountID: "<value>",
-    status: OrchestrationPaymentStatus.Active,
-    type: OrchestrationPaymentType.Payout,
+  adjustments: [
+    {
+      absolute: false,
+      amount: BigInt("100"),
+      date: new Date("2022-07-04T18:14:01.540Z"),
+      raw: {},
+      status: OrchestrationPaymentStatus.Pending,
+    },
+  ],
+  asset: "USD",
+  connectorID: "<value>",
+  createdAt: new Date("2024-09-15T00:36:30.916Z"),
+  destinationAccountID: "<value>",
+  id: "XXX",
+  initialAmount: BigInt("100"),
+  metadata: {},
+  raw: {},
+  reference: "<value>",
+  scheme: OrchestrationPaymentScheme.Discover,
+  sourceAccountID: "<value>",
+  status: OrchestrationPaymentStatus.Active,
+  type: OrchestrationPaymentType.Payout,
 };
 ```
 

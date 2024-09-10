@@ -5,49 +5,53 @@
 import * as z from "zod";
 
 export type V2Ledger = {
-    addedAt: Date;
-    bucket: string;
-    metadata?: { [k: string]: string } | undefined;
-    name: string;
+  addedAt: Date;
+  bucket: string;
+  metadata?: { [k: string]: string } | undefined;
+  name: string;
 };
 
 /** @internal */
-export const V2Ledger$inboundSchema: z.ZodType<V2Ledger, z.ZodTypeDef, unknown> = z.object({
-    addedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v)),
-    bucket: z.string(),
-    metadata: z.record(z.string()).optional(),
-    name: z.string(),
+export const V2Ledger$inboundSchema: z.ZodType<
+  V2Ledger,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  addedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  bucket: z.string(),
+  metadata: z.record(z.string()).optional(),
+  name: z.string(),
 });
 
 /** @internal */
 export type V2Ledger$Outbound = {
-    addedAt: string;
-    bucket: string;
-    metadata?: { [k: string]: string } | undefined;
-    name: string;
+  addedAt: string;
+  bucket: string;
+  metadata?: { [k: string]: string } | undefined;
+  name: string;
 };
 
 /** @internal */
-export const V2Ledger$outboundSchema: z.ZodType<V2Ledger$Outbound, z.ZodTypeDef, V2Ledger> =
-    z.object({
-        addedAt: z.date().transform((v) => v.toISOString()),
-        bucket: z.string(),
-        metadata: z.record(z.string()).optional(),
-        name: z.string(),
-    });
+export const V2Ledger$outboundSchema: z.ZodType<
+  V2Ledger$Outbound,
+  z.ZodTypeDef,
+  V2Ledger
+> = z.object({
+  addedAt: z.date().transform(v => v.toISOString()),
+  bucket: z.string(),
+  metadata: z.record(z.string()).optional(),
+  name: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2Ledger$ {
-    /** @deprecated use `V2Ledger$inboundSchema` instead. */
-    export const inboundSchema = V2Ledger$inboundSchema;
-    /** @deprecated use `V2Ledger$outboundSchema` instead. */
-    export const outboundSchema = V2Ledger$outboundSchema;
-    /** @deprecated use `V2Ledger$Outbound` instead. */
-    export type Outbound = V2Ledger$Outbound;
+  /** @deprecated use `V2Ledger$inboundSchema` instead. */
+  export const inboundSchema = V2Ledger$inboundSchema;
+  /** @deprecated use `V2Ledger$outboundSchema` instead. */
+  export const outboundSchema = V2Ledger$outboundSchema;
+  /** @deprecated use `V2Ledger$Outbound` instead. */
+  export type Outbound = V2Ledger$Outbound;
 }

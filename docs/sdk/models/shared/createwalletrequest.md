@@ -6,10 +6,10 @@
 import { CreateWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateWalletRequest = {
-    metadata: {
-        key: "<value>",
-    },
-    name: "<value>",
+  metadata: {
+    "key": "<value>",
+  },
+  name: "<value>",
 };
 ```
 

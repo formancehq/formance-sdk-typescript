@@ -6,7 +6,7 @@
 import { StageSendDestinationPayment } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: StageSendDestinationPayment = {
-    psp: "<value>",
+  psp: "<value>",
 };
 ```
 

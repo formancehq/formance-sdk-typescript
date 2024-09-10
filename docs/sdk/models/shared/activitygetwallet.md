@@ -6,7 +6,7 @@
 import { ActivityGetWallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ActivityGetWallet = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

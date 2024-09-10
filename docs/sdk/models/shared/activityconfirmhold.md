@@ -6,7 +6,7 @@
 import { ActivityConfirmHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ActivityConfirmHold = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

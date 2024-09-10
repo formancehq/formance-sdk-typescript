@@ -6,10 +6,10 @@
 import { ConnectorsConfigsResponseConnector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorsConfigsResponseConnector = {
-    key: {
-        dataType: "date",
-        required: false,
-    },
+  key: {
+    dataType: "date",
+    required: false,
+  },
 };
 ```
 

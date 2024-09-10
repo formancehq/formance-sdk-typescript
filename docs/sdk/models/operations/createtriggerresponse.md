@@ -6,11 +6,11 @@
 import { CreateTriggerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CreateTriggerResponse = {
-    contentType: "<value>",
-    statusCode: 170909,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 170909,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

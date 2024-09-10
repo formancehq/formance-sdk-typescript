@@ -6,11 +6,11 @@
 import { V2DeleteTriggerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2DeleteTriggerResponse = {
-    contentType: "<value>",
-    statusCode: 995300,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 995300,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

@@ -6,14 +6,14 @@
 import { CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CreateTransactionResponse = {
-    contentType: "<value>",
-    statusCode: 963663,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    transactionsResponse: {
-        data: [],
-    },
+  contentType: "<value>",
+  statusCode: 963663,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  transactionsResponse: {
+    data: [],
+  },
 };
 ```
 

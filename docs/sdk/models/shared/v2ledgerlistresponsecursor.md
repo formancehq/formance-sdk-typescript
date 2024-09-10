@@ -6,20 +6,20 @@
 import { V2LedgerListResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2LedgerListResponseCursor = {
-    data: [
-        {
-            addedAt: new Date("2022-06-11T03:03:12.224Z"),
-            bucket: "<value>",
-            metadata: {
-                admin: "true",
-            },
-            name: "<value>",
-        },
-    ],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [
+    {
+      addedAt: new Date("2022-06-11T03:03:12.224Z"),
+      bucket: "<value>",
+      metadata: {
+        "admin": "true",
+      },
+      name: "<value>",
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

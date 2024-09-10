@@ -5,88 +5,86 @@
 import * as z from "zod";
 
 export type AtlarConfig = {
-    /**
-     * The access key used by the connector for authorizing requests to the Atlar API.
-     *
-     * @remarks
-     * You can obtain it along with the associated secret from the Atlar dashboard.
-     *
-     */
-    accessKey: string;
-    /**
-     * The base URL the client uses for making requests towards the Atlar API.
-     *
-     * @remarks
-     *
-     */
-    baseUrl?: string | undefined;
-    name: string;
-    /**
-     * Number of items to fetch when querying paginated APIs.
-     *
-     * @remarks
-     *
-     */
-    pageSize?: number | undefined;
-    /**
-     * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
-    /**
-     * The secret used by the connector for authorizing requests to the Atlar API.
-     *
-     * @remarks
-     * You can obtain it along with the associated access key from the Atlar dashboard.
-     *
-     */
-    secret: string;
-    /**
-     * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
-     *
-     * @remarks
-     *
-     */
-    transferInitiationStatusPollingPeriod?: string | undefined;
+  /**
+   * The access key used by the connector for authorizing requests to the Atlar API.
+   *
+   * @remarks
+   * You can obtain it along with the associated secret from the Atlar dashboard.
+   */
+  accessKey: string;
+  /**
+   * The base URL the client uses for making requests towards the Atlar API.
+   *
+   * @remarks
+   */
+  baseUrl?: string | undefined;
+  name: string;
+  /**
+   * Number of items to fetch when querying paginated APIs.
+   *
+   * @remarks
+   */
+  pageSize?: number | undefined;
+  /**
+   * The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
+  /**
+   * The secret used by the connector for authorizing requests to the Atlar API.
+   *
+   * @remarks
+   * You can obtain it along with the associated access key from the Atlar dashboard.
+   */
+  secret: string;
+  /**
+   * The frequency at which the connector tries to fetch the status of payment initiations from the Atlar API.
+   *
+   * @remarks
+   */
+  transferInitiationStatusPollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const AtlarConfig$inboundSchema: z.ZodType<AtlarConfig, z.ZodTypeDef, unknown> = z.object({
-    accessKey: z.string(),
-    baseUrl: z.string().default("https://api.atlar.com"),
-    name: z.string(),
-    pageSize: z.number().int().default(25),
-    pollingPeriod: z.string().default("120s"),
-    secret: z.string(),
-    transferInitiationStatusPollingPeriod: z.string().default("120s"),
+export const AtlarConfig$inboundSchema: z.ZodType<
+  AtlarConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accessKey: z.string(),
+  baseUrl: z.string().default("https://api.atlar.com"),
+  name: z.string(),
+  pageSize: z.number().int().default(25),
+  pollingPeriod: z.string().default("120s"),
+  secret: z.string(),
+  transferInitiationStatusPollingPeriod: z.string().default("120s"),
 });
 
 /** @internal */
 export type AtlarConfig$Outbound = {
-    accessKey: string;
-    baseUrl: string;
-    name: string;
-    pageSize: number;
-    pollingPeriod: string;
-    secret: string;
-    transferInitiationStatusPollingPeriod: string;
+  accessKey: string;
+  baseUrl: string;
+  name: string;
+  pageSize: number;
+  pollingPeriod: string;
+  secret: string;
+  transferInitiationStatusPollingPeriod: string;
 };
 
 /** @internal */
 export const AtlarConfig$outboundSchema: z.ZodType<
-    AtlarConfig$Outbound,
-    z.ZodTypeDef,
-    AtlarConfig
+  AtlarConfig$Outbound,
+  z.ZodTypeDef,
+  AtlarConfig
 > = z.object({
-    accessKey: z.string(),
-    baseUrl: z.string().default("https://api.atlar.com"),
-    name: z.string(),
-    pageSize: z.number().int().default(25),
-    pollingPeriod: z.string().default("120s"),
-    secret: z.string(),
-    transferInitiationStatusPollingPeriod: z.string().default("120s"),
+  accessKey: z.string(),
+  baseUrl: z.string().default("https://api.atlar.com"),
+  name: z.string(),
+  pageSize: z.number().int().default(25),
+  pollingPeriod: z.string().default("120s"),
+  secret: z.string(),
+  transferInitiationStatusPollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -94,10 +92,10 @@ export const AtlarConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace AtlarConfig$ {
-    /** @deprecated use `AtlarConfig$inboundSchema` instead. */
-    export const inboundSchema = AtlarConfig$inboundSchema;
-    /** @deprecated use `AtlarConfig$outboundSchema` instead. */
-    export const outboundSchema = AtlarConfig$outboundSchema;
-    /** @deprecated use `AtlarConfig$Outbound` instead. */
-    export type Outbound = AtlarConfig$Outbound;
+  /** @deprecated use `AtlarConfig$inboundSchema` instead. */
+  export const inboundSchema = AtlarConfig$inboundSchema;
+  /** @deprecated use `AtlarConfig$outboundSchema` instead. */
+  export const outboundSchema = AtlarConfig$outboundSchema;
+  /** @deprecated use `AtlarConfig$Outbound` instead. */
+  export type Outbound = AtlarConfig$Outbound;
 }

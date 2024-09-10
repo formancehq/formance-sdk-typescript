@@ -6,7 +6,7 @@
 import { GetReconciliationRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetReconciliationRequest = {
-    reconciliationID: "XXX",
+  reconciliationID: "XXX",
 };
 ```
 

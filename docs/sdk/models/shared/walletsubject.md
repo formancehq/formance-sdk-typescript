@@ -6,8 +6,8 @@
 import { WalletSubject } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletSubject = {
-    identifier: "<value>",
-    type: "<value>",
+  identifier: "<value>",
+  type: "<value>",
 };
 ```
 

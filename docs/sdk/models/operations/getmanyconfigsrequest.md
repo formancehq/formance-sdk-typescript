@@ -6,8 +6,8 @@
 import { GetManyConfigsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetManyConfigsRequest = {
-    endpoint: "https://example.com",
-    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  endpoint: "https://example.com",
+  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
 };
 ```
 

@@ -6,9 +6,9 @@
 import { V2ListTriggersOccurrencesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ListTriggersOccurrencesRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
-    triggerID: "<value>",
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
+  triggerID: "<value>",
 };
 ```
 

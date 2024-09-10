@@ -6,8 +6,8 @@
 import { V2MigrationInfo } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2MigrationInfo = {
-    name: "migrations:001",
-    version: 11,
+  name: "migrations:001",
+  version: 11,
 };
 ```
 

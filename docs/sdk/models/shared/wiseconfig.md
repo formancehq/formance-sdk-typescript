@@ -6,9 +6,9 @@
 import { WiseConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WiseConfig = {
-    apiKey: "XXX",
-    name: "My Wise Account",
-    pollingPeriod: "60s",
+  apiKey: "XXX",
+  name: "My Wise Account",
+  pollingPeriod: "60s",
 };
 ```
 

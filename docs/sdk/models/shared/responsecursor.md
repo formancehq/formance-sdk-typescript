@@ -6,12 +6,12 @@
 import { ResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ResponseCursor = {
-    next: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    total: {
-        relation: "eq",
-        value: 1,
-    },
+  next: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  total: {
+    relation: "eq",
+    value: 1,
+  },
 };
 ```
 

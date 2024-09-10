@@ -6,9 +6,9 @@
 import { V2BulkElementDeleteMetadataData, V2TargetType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementDeleteMetadataData = {
-    key: "<key>",
-    targetId: "<value>",
-    targetType: V2TargetType.Transaction,
+  key: "<key>",
+  targetId: "<value>",
+  targetType: V2TargetType.Transaction,
 };
 ```
 

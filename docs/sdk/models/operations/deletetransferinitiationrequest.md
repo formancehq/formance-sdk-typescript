@@ -6,7 +6,7 @@
 import { DeleteTransferInitiationRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeleteTransferInitiationRequest = {
-    transferId: "XXX",
+  transferId: "XXX",
 };
 ```
 

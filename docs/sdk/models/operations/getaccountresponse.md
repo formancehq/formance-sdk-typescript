@@ -6,40 +6,40 @@
 import { GetAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetAccountResponse = {
-    accountResponse: {
-        data: {
-            address: "users:001",
-            balances: {
-                COIN: BigInt("100"),
-            },
-            metadata: {
-                admin: true,
-                a: {
-                    nested: {
-                        key: "value",
-                    },
-                },
-            },
-            type: "virtual",
-            volumes: {
-                USD: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-                EUR: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-            },
+  accountResponse: {
+    data: {
+      address: "users:001",
+      balances: {
+        "COIN": BigInt("100"),
+      },
+      metadata: {
+        "admin": true,
+        "a": {
+          "nested": {
+            "key": "value",
+          },
         },
+      },
+      type: "virtual",
+      volumes: {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+        "EUR": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
-    contentType: "<value>",
-    statusCode: 272656,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  contentType: "<value>",
+  statusCode: 272656,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

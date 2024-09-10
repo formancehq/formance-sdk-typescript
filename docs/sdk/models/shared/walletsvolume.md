@@ -6,9 +6,9 @@
 import { WalletsVolume } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletsVolume = {
-    balance: BigInt("80"),
-    input: BigInt("100"),
-    output: BigInt("20"),
+  balance: BigInt("80"),
+  input: BigInt("100"),
+  output: BigInt("20"),
 };
 ```
 

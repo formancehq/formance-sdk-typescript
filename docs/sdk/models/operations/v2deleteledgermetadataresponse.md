@@ -6,11 +6,11 @@
 import { V2DeleteLedgerMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2DeleteLedgerMetadataResponse = {
-    contentType: "<value>",
-    statusCode: 758616,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 758616,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

@@ -5,31 +5,34 @@
 import * as z from "zod";
 
 export type WorkflowConfig = {
-    name?: string | undefined;
-    stages: Array<{ [k: string]: any }>;
+  name?: string | undefined;
+  stages: Array<{ [k: string]: any }>;
 };
 
 /** @internal */
-export const WorkflowConfig$inboundSchema: z.ZodType<WorkflowConfig, z.ZodTypeDef, unknown> =
-    z.object({
-        name: z.string().optional(),
-        stages: z.array(z.record(z.any())),
-    });
+export const WorkflowConfig$inboundSchema: z.ZodType<
+  WorkflowConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  name: z.string().optional(),
+  stages: z.array(z.record(z.any())),
+});
 
 /** @internal */
 export type WorkflowConfig$Outbound = {
-    name?: string | undefined;
-    stages: Array<{ [k: string]: any }>;
+  name?: string | undefined;
+  stages: Array<{ [k: string]: any }>;
 };
 
 /** @internal */
 export const WorkflowConfig$outboundSchema: z.ZodType<
-    WorkflowConfig$Outbound,
-    z.ZodTypeDef,
-    WorkflowConfig
+  WorkflowConfig$Outbound,
+  z.ZodTypeDef,
+  WorkflowConfig
 > = z.object({
-    name: z.string().optional(),
-    stages: z.array(z.record(z.any())),
+  name: z.string().optional(),
+  stages: z.array(z.record(z.any())),
 });
 
 /**
@@ -37,10 +40,10 @@ export const WorkflowConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WorkflowConfig$ {
-    /** @deprecated use `WorkflowConfig$inboundSchema` instead. */
-    export const inboundSchema = WorkflowConfig$inboundSchema;
-    /** @deprecated use `WorkflowConfig$outboundSchema` instead. */
-    export const outboundSchema = WorkflowConfig$outboundSchema;
-    /** @deprecated use `WorkflowConfig$Outbound` instead. */
-    export type Outbound = WorkflowConfig$Outbound;
+  /** @deprecated use `WorkflowConfig$inboundSchema` instead. */
+  export const inboundSchema = WorkflowConfig$inboundSchema;
+  /** @deprecated use `WorkflowConfig$outboundSchema` instead. */
+  export const outboundSchema = WorkflowConfig$outboundSchema;
+  /** @deprecated use `WorkflowConfig$Outbound` instead. */
+  export type Outbound = WorkflowConfig$Outbound;
 }

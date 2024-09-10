@@ -6,8 +6,8 @@
 import { GetBalancesAggregatedRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetBalancesAggregatedRequest = {
-    address: "users:001",
-    ledger: "ledger001",
+  address: "users:001",
+  ledger: "ledger001",
 };
 ```
 

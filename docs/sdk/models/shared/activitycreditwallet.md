@@ -6,21 +6,21 @@
 import { ActivityCreditWallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ActivityCreditWallet = {
-    data: {
-        amount: {
-            amount: BigInt("100"),
-            asset: "USD/2",
-        },
-        metadata: {
-            key: "",
-        },
-        sources: [
-            {
-                identifier: "<value>",
-                type: "<value>",
-            },
-        ],
+  data: {
+    amount: {
+      amount: BigInt("100"),
+      asset: "USD/2",
     },
+    metadata: {
+      "key": "",
+    },
+    sources: [
+      {
+        identifier: "<value>",
+        type: "<value>",
+      },
+    ],
+  },
 };
 ```
 

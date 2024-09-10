@@ -6,11 +6,11 @@
 import { GetWalletResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetWalletResponse = {
-    contentType: "<value>",
-    statusCode: 11714,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 11714,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

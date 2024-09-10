@@ -6,7 +6,7 @@
 import { GetWorkflowRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetWorkflowRequest = {
-    flowId: "xxx",
+  flowId: "xxx",
 };
 ```
 

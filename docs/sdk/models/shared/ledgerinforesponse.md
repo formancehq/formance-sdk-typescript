@@ -6,17 +6,17 @@
 import { LedgerInfoResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: LedgerInfoResponse = {
-    data: {
-        name: "ledger001",
-        storage: {
-            migrations: [
-                {
-                    name: "migrations:001",
-                    version: 11,
-                },
-            ],
+  data: {
+    name: "ledger001",
+    storage: {
+      migrations: [
+        {
+          name: "migrations:001",
+          version: 11,
         },
+      ],
     },
+  },
 };
 ```
 

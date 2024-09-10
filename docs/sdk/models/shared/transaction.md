@@ -6,49 +6,49 @@
 import { Transaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Transaction = {
-    postCommitVolumes: {
-        "orders:1": {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
-        "orders:2": {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
+  postCommitVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
     },
-    postings: [
-        {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-        },
-    ],
-    preCommitVolumes: {
-        "orders:1": {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
-        "orders:2": {
-            USD: {
-                balance: BigInt("90"),
-                input: BigInt("100"),
-                output: BigInt("10"),
-            },
-        },
+    "orders:2": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
     },
-    reference: "ref:001",
-    timestamp: new Date("2022-10-24T06:42:18.631Z"),
-    txid: BigInt("256139"),
+  },
+  postings: [
+    {
+      amount: BigInt("100"),
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+  ],
+  preCommitVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
+    },
+    "orders:2": {
+      "USD": {
+        balance: BigInt("90"),
+        input: BigInt("100"),
+        output: BigInt("10"),
+      },
+    },
+  },
+  reference: "ref:001",
+  timestamp: new Date("2022-10-24T06:42:18.631Z"),
+  txid: BigInt("256139"),
 };
 ```
 

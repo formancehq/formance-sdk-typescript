@@ -6,8 +6,8 @@
 import { V2ListTriggersRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ListTriggersRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
 };
 ```
 

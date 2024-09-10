@@ -6,20 +6,20 @@
 import { ListUsersResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListUsersResponse = {
-    contentType: "<value>",
-    listUsersResponse: {
-        data: [
-            {
-                email: "user1@orga1.com",
-                id: "3bb03708-312f-48a0-821a-e765837dc2c4",
-                subject: "Jane Doe",
-            },
-        ],
-    },
-    statusCode: 847252,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  listUsersResponse: {
+    data: [
+      {
+        email: "user1@orga1.com",
+        id: "3bb03708-312f-48a0-821a-e765837dc2c4",
+        subject: "Jane Doe",
+      },
+    ],
+  },
+  statusCode: 847252,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

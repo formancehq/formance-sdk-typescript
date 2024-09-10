@@ -6,7 +6,7 @@
 import { Security } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Security = {
-    authorization: "<value>",
+  authorization: "<value>",
 };
 ```
 

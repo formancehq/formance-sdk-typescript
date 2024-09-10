@@ -6,43 +6,43 @@
 import { V2GetAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetAccountResponse = {
-    contentType: "<value>",
-    statusCode: 105907,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    v2AccountResponse: {
-        data: {
-            address: "users:001",
-            effectiveVolumes: {
-                USD: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-                EUR: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-            },
-            metadata: {
-                admin: "true",
-            },
-            volumes: {
-                USD: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-                EUR: {
-                    balance: BigInt("90"),
-                    input: BigInt("100"),
-                    output: BigInt("10"),
-                },
-            },
+  contentType: "<value>",
+  statusCode: 105907,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  v2AccountResponse: {
+    data: {
+      address: "users:001",
+      effectiveVolumes: {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
         },
+        "EUR": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      metadata: {
+        "admin": "true",
+      },
+      volumes: {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+        "EUR": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
+  },
 };
 ```
 

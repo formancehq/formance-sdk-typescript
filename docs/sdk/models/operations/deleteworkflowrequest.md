@@ -6,7 +6,7 @@
 import { DeleteWorkflowRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeleteWorkflowRequest = {
-    flowId: "xxx",
+  flowId: "xxx",
 };
 ```
 

@@ -6,8 +6,8 @@
 import { V2Subject } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Subject = {
-    identifier: "<value>",
-    type: "<value>",
+  identifier: "<value>",
+  type: "<value>",
 };
 ```
 

@@ -6,10 +6,10 @@
 import { TransferRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferRequest = {
-    amount: BigInt("100"),
-    asset: "USD",
-    destination: "acct_1Gqj58KZcSIg2N2q",
-    source: "acct_1Gqj58KZcSIg2N2q",
+  amount: BigInt("100"),
+  asset: "USD",
+  destination: "acct_1Gqj58KZcSIg2N2q",
+  source: "acct_1Gqj58KZcSIg2N2q",
 };
 ```
 

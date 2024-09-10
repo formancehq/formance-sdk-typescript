@@ -6,11 +6,11 @@
 import { V2UpdateAccount } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2UpdateAccount = {
-    id: "<id>",
-    ledger: "<value>",
-    metadata: {
-        key: "<value>",
-    },
+  id: "<id>",
+  ledger: "<value>",
+  metadata: {
+    "key": "<value>",
+  },
 };
 ```
 

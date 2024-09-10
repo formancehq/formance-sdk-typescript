@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type V2CreateLedgerRequest = {
-    bucket?: string | undefined;
-    metadata?: { [k: string]: string } | undefined;
+  bucket?: string | undefined;
+  metadata?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
 export const V2CreateLedgerRequest$inboundSchema: z.ZodType<
-    V2CreateLedgerRequest,
-    z.ZodTypeDef,
-    unknown
+  V2CreateLedgerRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    bucket: z.string().optional(),
-    metadata: z.record(z.string()).optional(),
+  bucket: z.string().optional(),
+  metadata: z.record(z.string()).optional(),
 });
 
 /** @internal */
 export type V2CreateLedgerRequest$Outbound = {
-    bucket?: string | undefined;
-    metadata?: { [k: string]: string } | undefined;
+  bucket?: string | undefined;
+  metadata?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
 export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
-    V2CreateLedgerRequest$Outbound,
-    z.ZodTypeDef,
-    V2CreateLedgerRequest
+  V2CreateLedgerRequest$Outbound,
+  z.ZodTypeDef,
+  V2CreateLedgerRequest
 > = z.object({
-    bucket: z.string().optional(),
-    metadata: z.record(z.string()).optional(),
+  bucket: z.string().optional(),
+  metadata: z.record(z.string()).optional(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2CreateLedgerRequest$ {
-    /** @deprecated use `V2CreateLedgerRequest$inboundSchema` instead. */
-    export const inboundSchema = V2CreateLedgerRequest$inboundSchema;
-    /** @deprecated use `V2CreateLedgerRequest$outboundSchema` instead. */
-    export const outboundSchema = V2CreateLedgerRequest$outboundSchema;
-    /** @deprecated use `V2CreateLedgerRequest$Outbound` instead. */
-    export type Outbound = V2CreateLedgerRequest$Outbound;
+  /** @deprecated use `V2CreateLedgerRequest$inboundSchema` instead. */
+  export const inboundSchema = V2CreateLedgerRequest$inboundSchema;
+  /** @deprecated use `V2CreateLedgerRequest$outboundSchema` instead. */
+  export const outboundSchema = V2CreateLedgerRequest$outboundSchema;
+  /** @deprecated use `V2CreateLedgerRequest$Outbound` instead. */
+  export type Outbound = V2CreateLedgerRequest$Outbound;
 }

@@ -6,11 +6,11 @@
 import { DeleteClientResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeleteClientResponse = {
-    contentType: "<value>",
-    statusCode: 602763,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 602763,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

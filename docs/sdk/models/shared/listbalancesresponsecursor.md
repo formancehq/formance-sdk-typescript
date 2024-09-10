@@ -6,15 +6,15 @@
 import { ListBalancesResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListBalancesResponseCursor = {
-    data: [
-        {
-            name: "<value>",
-        },
-    ],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [
+    {
+      name: "<value>",
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

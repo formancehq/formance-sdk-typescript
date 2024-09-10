@@ -6,10 +6,10 @@
 import { AddAccountToPoolRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: AddAccountToPoolRequest = {
-    addAccountToPoolRequest: {
-        accountID: "<value>",
-    },
-    poolId: "XXX",
+  addAccountToPoolRequest: {
+    accountID: "<value>",
+  },
+  poolId: "XXX",
 };
 ```
 

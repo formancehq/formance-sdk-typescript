@@ -6,7 +6,7 @@
 import { UpdateClientRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateClientRequest = {
-    name: "<value>",
+  name: "<value>",
 };
 ```
 

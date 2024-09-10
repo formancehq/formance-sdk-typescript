@@ -6,24 +6,24 @@
 import { ListBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListBalancesResponse = {
-    contentType: "<value>",
-    listBalancesResponse: {
-        cursor: {
-            data: [
-                {
-                    name: "<value>",
-                },
-            ],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  contentType: "<value>",
+  listBalancesResponse: {
+    cursor: {
+      data: [
+        {
+          name: "<value>",
         },
+      ],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
-    statusCode: 359978,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 359978,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

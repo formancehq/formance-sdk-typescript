@@ -6,20 +6,20 @@
 import { GetTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetTransactionsResponse = {
-    contentType: "<value>",
-    getTransactionsResponse: {
-        cursor: {
-            data: [],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-        },
+  contentType: "<value>",
+  getTransactionsResponse: {
+    cursor: {
+      data: [],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
-    statusCode: 230742,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 230742,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

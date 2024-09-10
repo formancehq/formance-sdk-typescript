@@ -6,7 +6,7 @@
 import { ListBalancesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListBalancesRequest = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

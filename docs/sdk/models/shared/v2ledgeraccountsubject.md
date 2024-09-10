@@ -6,8 +6,8 @@
 import { V2LedgerAccountSubject } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2LedgerAccountSubject = {
-    identifier: "<value>",
-    type: "<value>",
+  identifier: "<value>",
+  type: "<value>",
 };
 ```
 

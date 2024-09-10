@@ -5,26 +5,28 @@
 import * as z from "zod";
 
 export enum WebhooksErrorsEnum {
-    Internal = "INTERNAL",
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
+  Internal = "INTERNAL",
+  Validation = "VALIDATION",
+  NotFound = "NOT_FOUND",
 }
 
 /** @internal */
-export const WebhooksErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof WebhooksErrorsEnum> =
-    z.nativeEnum(WebhooksErrorsEnum);
+export const WebhooksErrorsEnum$inboundSchema: z.ZodNativeEnum<
+  typeof WebhooksErrorsEnum
+> = z.nativeEnum(WebhooksErrorsEnum);
 
 /** @internal */
-export const WebhooksErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof WebhooksErrorsEnum> =
-    WebhooksErrorsEnum$inboundSchema;
+export const WebhooksErrorsEnum$outboundSchema: z.ZodNativeEnum<
+  typeof WebhooksErrorsEnum
+> = WebhooksErrorsEnum$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WebhooksErrorsEnum$ {
-    /** @deprecated use `WebhooksErrorsEnum$inboundSchema` instead. */
-    export const inboundSchema = WebhooksErrorsEnum$inboundSchema;
-    /** @deprecated use `WebhooksErrorsEnum$outboundSchema` instead. */
-    export const outboundSchema = WebhooksErrorsEnum$outboundSchema;
+  /** @deprecated use `WebhooksErrorsEnum$inboundSchema` instead. */
+  export const inboundSchema = WebhooksErrorsEnum$inboundSchema;
+  /** @deprecated use `WebhooksErrorsEnum$outboundSchema` instead. */
+  export const outboundSchema = WebhooksErrorsEnum$outboundSchema;
 }

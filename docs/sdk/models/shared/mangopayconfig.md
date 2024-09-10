@@ -6,11 +6,11 @@
 import { MangoPayConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: MangoPayConfig = {
-    apiKey: "XXX",
-    clientID: "XXX",
-    endpoint: "XXX",
-    name: "My MangoPay Account",
-    pollingPeriod: "60s",
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My MangoPay Account",
+  pollingPeriod: "60s",
 };
 ```
 

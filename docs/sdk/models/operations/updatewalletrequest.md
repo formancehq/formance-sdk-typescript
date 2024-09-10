@@ -6,7 +6,7 @@
 import { UpdateWalletRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: UpdateWalletRequest = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

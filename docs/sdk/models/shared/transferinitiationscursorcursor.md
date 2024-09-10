@@ -6,11 +6,11 @@
 import { TransferInitiationsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationsCursorCursor = {
-    data: [],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

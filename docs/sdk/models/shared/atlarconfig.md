@@ -6,13 +6,13 @@
 import { AtlarConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AtlarConfig = {
-    accessKey: "XXX",
-    baseUrl: "https://api.example.com",
-    name: "My Atlar Account",
-    pageSize: 50,
-    pollingPeriod: "60s",
-    secret: "XXX",
-    transferInitiationStatusPollingPeriod: "60s",
+  accessKey: "XXX",
+  baseUrl: "https://api.example.com",
+  name: "My Atlar Account",
+  pageSize: 50,
+  pollingPeriod: "60s",
+  secret: "XXX",
+  transferInitiationStatusPollingPeriod: "60s",
 };
 ```
 

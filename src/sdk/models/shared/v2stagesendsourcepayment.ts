@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type V2StageSendSourcePayment = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
 export const V2StageSendSourcePayment$inboundSchema: z.ZodType<
-    V2StageSendSourcePayment,
-    z.ZodTypeDef,
-    unknown
+  V2StageSendSourcePayment,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    id: z.string(),
+  id: z.string(),
 });
 
 /** @internal */
 export type V2StageSendSourcePayment$Outbound = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
 export const V2StageSendSourcePayment$outboundSchema: z.ZodType<
-    V2StageSendSourcePayment$Outbound,
-    z.ZodTypeDef,
-    V2StageSendSourcePayment
+  V2StageSendSourcePayment$Outbound,
+  z.ZodTypeDef,
+  V2StageSendSourcePayment
 > = z.object({
-    id: z.string(),
+  id: z.string(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const V2StageSendSourcePayment$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2StageSendSourcePayment$ {
-    /** @deprecated use `V2StageSendSourcePayment$inboundSchema` instead. */
-    export const inboundSchema = V2StageSendSourcePayment$inboundSchema;
-    /** @deprecated use `V2StageSendSourcePayment$outboundSchema` instead. */
-    export const outboundSchema = V2StageSendSourcePayment$outboundSchema;
-    /** @deprecated use `V2StageSendSourcePayment$Outbound` instead. */
-    export type Outbound = V2StageSendSourcePayment$Outbound;
+  /** @deprecated use `V2StageSendSourcePayment$inboundSchema` instead. */
+  export const inboundSchema = V2StageSendSourcePayment$inboundSchema;
+  /** @deprecated use `V2StageSendSourcePayment$outboundSchema` instead. */
+  export const outboundSchema = V2StageSendSourcePayment$outboundSchema;
+  /** @deprecated use `V2StageSendSourcePayment$Outbound` instead. */
+  export type Outbound = V2StageSendSourcePayment$Outbound;
 }

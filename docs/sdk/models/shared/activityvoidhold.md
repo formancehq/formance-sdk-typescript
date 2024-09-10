@@ -6,7 +6,7 @@
 import { ActivityVoidHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ActivityVoidHold = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

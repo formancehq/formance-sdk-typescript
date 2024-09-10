@@ -6,8 +6,8 @@
 import { RemoveAccountFromPoolRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: RemoveAccountFromPoolRequest = {
-    accountId: "XXX",
-    poolId: "XXX",
+  accountId: "XXX",
+  poolId: "XXX",
 };
 ```
 

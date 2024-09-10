@@ -23,159 +23,222 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Wallets extends ClientSDK {
-    /**
-     * Confirm a hold
-     */
-    async confirmHold(
-        request: operations.ConfirmHoldRequest,
-        options?: RequestOptions
-    ): Promise<operations.ConfirmHoldResponse> {
-        return unwrapAsync(walletsConfirmHold(this, request, options));
-    }
+  /**
+   * Confirm a hold
+   */
+  async confirmHold(
+    request: operations.ConfirmHoldRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ConfirmHoldResponse> {
+    return unwrapAsync(walletsConfirmHold(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Create a balance
-     */
-    async createBalance(
-        request: operations.CreateBalanceRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreateBalanceResponse> {
-        return unwrapAsync(walletsCreateBalance(this, request, options));
-    }
+  /**
+   * Create a balance
+   */
+  async createBalance(
+    request: operations.CreateBalanceRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateBalanceResponse> {
+    return unwrapAsync(walletsCreateBalance(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Create a new wallet
-     */
-    async createWallet(
-        request: operations.CreateWalletRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreateWalletResponse> {
-        return unwrapAsync(walletsCreateWallet(this, request, options));
-    }
+  /**
+   * Create a new wallet
+   */
+  async createWallet(
+    request: operations.CreateWalletRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateWalletResponse> {
+    return unwrapAsync(walletsCreateWallet(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Credit a wallet
-     */
-    async creditWallet(
-        request: operations.CreditWalletRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreditWalletResponse> {
-        return unwrapAsync(walletsCreditWallet(this, request, options));
-    }
+  /**
+   * Credit a wallet
+   */
+  async creditWallet(
+    request: operations.CreditWalletRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreditWalletResponse> {
+    return unwrapAsync(walletsCreditWallet(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Debit a wallet
-     */
-    async debitWallet(
-        request: operations.DebitWalletRequest,
-        options?: RequestOptions
-    ): Promise<operations.DebitWalletResponse> {
-        return unwrapAsync(walletsDebitWallet(this, request, options));
-    }
+  /**
+   * Debit a wallet
+   */
+  async debitWallet(
+    request: operations.DebitWalletRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DebitWalletResponse> {
+    return unwrapAsync(walletsDebitWallet(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get detailed balance
-     */
-    async getBalance(
-        request: operations.GetBalanceRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetBalanceResponse> {
-        return unwrapAsync(walletsGetBalance(this, request, options));
-    }
+  /**
+   * Get detailed balance
+   */
+  async getBalance(
+    request: operations.GetBalanceRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetBalanceResponse> {
+    return unwrapAsync(walletsGetBalance(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get a hold
-     */
-    async getHold(
-        request: operations.GetHoldRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetHoldResponse> {
-        return unwrapAsync(walletsGetHold(this, request, options));
-    }
+  /**
+   * Get a hold
+   */
+  async getHold(
+    request: operations.GetHoldRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetHoldResponse> {
+    return unwrapAsync(walletsGetHold(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get all holds for a wallet
-     */
-    async getHolds(
-        request: operations.GetHoldsRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetHoldsResponse> {
-        return unwrapAsync(walletsGetHolds(this, request, options));
-    }
+  /**
+   * Get all holds for a wallet
+   */
+  async getHolds(
+    request: operations.GetHoldsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetHoldsResponse> {
+    return unwrapAsync(walletsGetHolds(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    async getTransactions(
-        request: operations.GetTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetTransactionsResponse> {
-        return unwrapAsync(walletsGetTransactions(this, request, options));
-    }
+  async getTransactions(
+    request: operations.GetTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetTransactionsResponse> {
+    return unwrapAsync(walletsGetTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get a wallet
-     */
-    async getWallet(
-        request: operations.GetWalletRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetWalletResponse> {
-        return unwrapAsync(walletsGetWallet(this, request, options));
-    }
+  /**
+   * Get a wallet
+   */
+  async getWallet(
+    request: operations.GetWalletRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetWalletResponse> {
+    return unwrapAsync(walletsGetWallet(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get wallet summary
-     */
-    async getWalletSummary(
-        request: operations.GetWalletSummaryRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetWalletSummaryResponse> {
-        return unwrapAsync(walletsGetWalletSummary(this, request, options));
-    }
+  /**
+   * Get wallet summary
+   */
+  async getWalletSummary(
+    request: operations.GetWalletSummaryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetWalletSummaryResponse> {
+    return unwrapAsync(walletsGetWalletSummary(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List balances of a wallet
-     */
-    async listBalances(
-        request: operations.ListBalancesRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListBalancesResponse> {
-        return unwrapAsync(walletsListBalances(this, request, options));
-    }
+  /**
+   * List balances of a wallet
+   */
+  async listBalances(
+    request: operations.ListBalancesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListBalancesResponse> {
+    return unwrapAsync(walletsListBalances(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List all wallets
-     */
-    async listWallets(
-        request: operations.ListWalletsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListWalletsResponse> {
-        return unwrapAsync(walletsListWallets(this, request, options));
-    }
+  /**
+   * List all wallets
+   */
+  async listWallets(
+    request: operations.ListWalletsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListWalletsResponse> {
+    return unwrapAsync(walletsListWallets(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Update a wallet
-     */
-    async updateWallet(
-        request: operations.UpdateWalletRequest,
-        options?: RequestOptions
-    ): Promise<operations.UpdateWalletResponse> {
-        return unwrapAsync(walletsUpdateWallet(this, request, options));
-    }
+  /**
+   * Update a wallet
+   */
+  async updateWallet(
+    request: operations.UpdateWalletRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateWalletResponse> {
+    return unwrapAsync(walletsUpdateWallet(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Cancel a hold
-     */
-    async voidHold(
-        request: operations.VoidHoldRequest,
-        options?: RequestOptions
-    ): Promise<operations.VoidHoldResponse> {
-        return unwrapAsync(walletsVoidHold(this, request, options));
-    }
+  /**
+   * Cancel a hold
+   */
+  async voidHold(
+    request: operations.VoidHoldRequest,
+    options?: RequestOptions,
+  ): Promise<operations.VoidHoldResponse> {
+    return unwrapAsync(walletsVoidHold(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get server info
-     */
-    async walletsgetServerInfo(
-        options?: RequestOptions
-    ): Promise<operations.WalletsgetServerInfoResponse> {
-        return unwrapAsync(walletsWalletsgetServerInfo(this, options));
-    }
+  /**
+   * Get server info
+   */
+  async walletsgetServerInfo(
+    options?: RequestOptions,
+  ): Promise<operations.WalletsgetServerInfoResponse> {
+    return unwrapAsync(walletsWalletsgetServerInfo(
+      this,
+      options,
+    ));
+  }
 }

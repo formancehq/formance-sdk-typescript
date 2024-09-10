@@ -6,11 +6,11 @@
 import { ConfirmHoldRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ConfirmHoldRequest = {
-    confirmHoldRequest: {
-        amount: BigInt("100"),
-        final: true,
-    },
-    holdId: "<value>",
+  confirmHoldRequest: {
+    amount: BigInt("100"),
+    final: true,
+  },
+  holdId: "<value>",
 };
 ```
 

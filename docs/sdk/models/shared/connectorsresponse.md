@@ -6,13 +6,13 @@
 import { Connector, ConnectorsResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorsResponse = {
-    data: [
-        {
-            connectorID: "<value>",
-            name: "<value>",
-            provider: Connector.Atlar,
-        },
-    ],
+  data: [
+    {
+      connectorID: "<value>",
+      name: "<value>",
+      provider: Connector.Atlar,
+    },
+  ],
 };
 ```
 

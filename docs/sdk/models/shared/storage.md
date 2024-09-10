@@ -6,12 +6,12 @@
 import { Storage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Storage = {
-    migrations: [
-        {
-            name: "migrations:001",
-            version: 11,
-        },
-    ],
+  migrations: [
+    {
+      name: "migrations:001",
+      version: 11,
+    },
+  ],
 };
 ```
 

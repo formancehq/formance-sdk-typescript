@@ -6,7 +6,7 @@
 import { ReadUserRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReadUserRequest = {
-    userId: "<value>",
+  userId: "<value>",
 };
 ```
 

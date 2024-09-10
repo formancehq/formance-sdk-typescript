@@ -5,25 +5,25 @@
 import * as z from "zod";
 
 export enum V2TargetType {
-    Transaction = "TRANSACTION",
-    Account = "ACCOUNT",
+  Transaction = "TRANSACTION",
+  Account = "ACCOUNT",
 }
 
 /** @internal */
 export const V2TargetType$inboundSchema: z.ZodNativeEnum<typeof V2TargetType> =
-    z.nativeEnum(V2TargetType);
+  z.nativeEnum(V2TargetType);
 
 /** @internal */
 export const V2TargetType$outboundSchema: z.ZodNativeEnum<typeof V2TargetType> =
-    V2TargetType$inboundSchema;
+  V2TargetType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2TargetType$ {
-    /** @deprecated use `V2TargetType$inboundSchema` instead. */
-    export const inboundSchema = V2TargetType$inboundSchema;
-    /** @deprecated use `V2TargetType$outboundSchema` instead. */
-    export const outboundSchema = V2TargetType$outboundSchema;
+  /** @deprecated use `V2TargetType$inboundSchema` instead. */
+  export const inboundSchema = V2TargetType$inboundSchema;
+  /** @deprecated use `V2TargetType$outboundSchema` instead. */
+  export const outboundSchema = V2TargetType$outboundSchema;
 }

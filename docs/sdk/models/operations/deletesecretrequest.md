@@ -6,8 +6,8 @@
 import { DeleteSecretRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DeleteSecretRequest = {
-    clientId: "<value>",
-    secretId: "<value>",
+  clientId: "<value>",
+  secretId: "<value>",
 };
 ```
 

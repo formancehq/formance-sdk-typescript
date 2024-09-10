@@ -6,9 +6,9 @@
 import { V2CreateLedgerRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2CreateLedgerRequest = {
-    metadata: {
-        admin: "true",
-    },
+  metadata: {
+    "admin": "true",
+  },
 };
 ```
 

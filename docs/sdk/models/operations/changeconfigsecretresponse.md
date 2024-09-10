@@ -6,22 +6,25 @@
 import { ChangeConfigSecretResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ChangeConfigSecretResponse = {
-    configResponse: {
-        data: {
-            active: true,
-            createdAt: new Date("2023-11-08T22:52:26.062Z"),
-            endpoint: "https://example.com",
-            eventTypes: ["TYPE1", "TYPE2"],
-            id: "280d1ba7-7a89-4ebf-b37a-e4203ce5e6a9",
-            secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-            updatedAt: new Date("2022-12-22T20:27:39.283Z"),
-        },
+  configResponse: {
+    data: {
+      active: true,
+      createdAt: new Date("2023-11-08T22:52:26.062Z"),
+      endpoint: "https://example.com",
+      eventTypes: [
+        "TYPE1",
+        "TYPE2",
+      ],
+      id: "280d1ba7-7a89-4ebf-b37a-e4203ce5e6a9",
+      secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+      updatedAt: new Date("2022-12-22T20:27:39.283Z"),
     },
-    contentType: "<value>",
-    statusCode: 831049,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  contentType: "<value>",
+  statusCode: 831049,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

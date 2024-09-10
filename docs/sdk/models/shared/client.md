@@ -6,8 +6,8 @@
 import { Client } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Client = {
-    id: "<id>",
-    name: "<value>",
+  id: "<id>",
+  name: "<value>",
 };
 ```
 

@@ -6,14 +6,14 @@
 import { GetWorkflowInstanceHistoryResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetWorkflowInstanceHistoryResponse = {
-    data: [
-        {
-            input: {},
-            name: "<value>",
-            startedAt: new Date("2022-01-30T16:01:21.462Z"),
-            terminated: false,
-        },
-    ],
+  data: [
+    {
+      input: {},
+      name: "<value>",
+      startedAt: new Date("2022-01-30T16:01:21.462Z"),
+      terminated: false,
+    },
+  ],
 };
 ```
 

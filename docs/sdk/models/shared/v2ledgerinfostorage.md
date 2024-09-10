@@ -6,12 +6,12 @@
 import { V2LedgerInfoStorage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2LedgerInfoStorage = {
-    migrations: [
-        {
-            name: "migrations:001",
-            version: 11,
-        },
-    ],
+  migrations: [
+    {
+      name: "migrations:001",
+      version: 11,
+    },
+  ],
 };
 ```
 

@@ -6,12 +6,12 @@
 import { ConnectorsConfigsResponseData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorsConfigsResponseData = {
-    connector: {
-        key: {
-            dataType: "timestamp",
-            required: false,
-        },
+  connector: {
+    key: {
+      dataType: "timestamp",
+      required: false,
     },
+  },
 };
 ```
 

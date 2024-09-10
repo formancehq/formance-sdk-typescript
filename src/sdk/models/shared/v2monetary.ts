@@ -5,44 +5,51 @@
 import * as z from "zod";
 
 export type V2Monetary = {
-    /**
-     * The amount of the monetary value.
-     */
-    amount: bigint;
-    /**
-     * The asset of the monetary value.
-     */
-    asset: string;
+  /**
+   * The amount of the monetary value.
+   */
+  amount: bigint;
+  /**
+   * The asset of the monetary value.
+   */
+  asset: string;
 };
 
 /** @internal */
-export const V2Monetary$inboundSchema: z.ZodType<V2Monetary, z.ZodTypeDef, unknown> = z.object({
-    amount: z.number().transform((v) => BigInt(v)),
-    asset: z.string(),
+export const V2Monetary$inboundSchema: z.ZodType<
+  V2Monetary,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  amount: z.number().transform(v => BigInt(v)),
+  asset: z.string(),
 });
 
 /** @internal */
 export type V2Monetary$Outbound = {
-    amount: number;
-    asset: string;
+  amount: number;
+  asset: string;
 };
 
 /** @internal */
-export const V2Monetary$outboundSchema: z.ZodType<V2Monetary$Outbound, z.ZodTypeDef, V2Monetary> =
-    z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-    });
+export const V2Monetary$outboundSchema: z.ZodType<
+  V2Monetary$Outbound,
+  z.ZodTypeDef,
+  V2Monetary
+> = z.object({
+  amount: z.bigint().transform(v => Number(v)),
+  asset: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2Monetary$ {
-    /** @deprecated use `V2Monetary$inboundSchema` instead. */
-    export const inboundSchema = V2Monetary$inboundSchema;
-    /** @deprecated use `V2Monetary$outboundSchema` instead. */
-    export const outboundSchema = V2Monetary$outboundSchema;
-    /** @deprecated use `V2Monetary$Outbound` instead. */
-    export type Outbound = V2Monetary$Outbound;
+  /** @deprecated use `V2Monetary$inboundSchema` instead. */
+  export const inboundSchema = V2Monetary$inboundSchema;
+  /** @deprecated use `V2Monetary$outboundSchema` instead. */
+  export const outboundSchema = V2Monetary$outboundSchema;
+  /** @deprecated use `V2Monetary$Outbound` instead. */
+  export type Outbound = V2Monetary$Outbound;
 }

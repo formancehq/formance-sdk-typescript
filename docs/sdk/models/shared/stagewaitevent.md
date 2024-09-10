@@ -6,7 +6,7 @@
 import { StageWaitEvent } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: StageWaitEvent = {
-    event: "<value>",
+  event: "<value>",
 };
 ```
 

@@ -6,58 +6,58 @@
 import { RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: RevertTransactionResponse = {
-    contentType: "<value>",
-    statusCode: 648172,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    transactionResponse: {
-        data: {
-            postCommitVolumes: {
-                "orders:1": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-                "orders:2": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-            },
-            postings: [
-                {
-                    amount: BigInt("100"),
-                    asset: "COIN",
-                    destination: "users:002",
-                    source: "users:001",
-                },
-            ],
-            preCommitVolumes: {
-                "orders:1": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-                "orders:2": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-            },
-            reference: "ref:001",
-            timestamp: new Date("2022-01-23T03:49:29.173Z"),
-            txid: BigInt("368241"),
+  contentType: "<value>",
+  statusCode: 648172,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  transactionResponse: {
+    data: {
+      postCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
         },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+      ],
+      preCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      reference: "ref:001",
+      timestamp: new Date("2022-01-23T03:49:29.173Z"),
+      txid: BigInt("368241"),
     },
+  },
 };
 ```
 

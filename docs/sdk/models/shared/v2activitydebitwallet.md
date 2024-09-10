@@ -6,16 +6,16 @@
 import { V2ActivityDebitWallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ActivityDebitWallet = {
-    data: {
-        amount: {
-            amount: BigInt("100"),
-            asset: "USD/2",
-        },
-        metadata: {
-            key: "",
-        },
-        pending: true,
+  data: {
+    amount: {
+      amount: BigInt("100"),
+      asset: "USD/2",
     },
+    metadata: {
+      "key": "",
+    },
+    pending: true,
+  },
 };
 ```
 

@@ -7,14 +7,14 @@ import { InstallConnectorRequest } from "@formance/formance-sdk/sdk/models/opera
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: InstallConnectorRequest = {
-    connectorConfig: {
-        apiKey: "XXX",
-        hmacKey: "XXX",
-        liveEndpointPrefix: "XXX",
-        name: "My Adyen Account",
-        pollingPeriod: "60s",
-    },
-    connector: Connector.Modulr,
+  connectorConfig: {
+    apiKey: "XXX",
+    hmacKey: "XXX",
+    liveEndpointPrefix: "XXX",
+    name: "My Adyen Account",
+    pollingPeriod: "60s",
+  },
+  connector: Connector.Modulr,
 };
 ```
 

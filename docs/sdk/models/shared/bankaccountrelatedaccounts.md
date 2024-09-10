@@ -6,11 +6,11 @@
 import { BankAccountRelatedAccounts } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BankAccountRelatedAccounts = {
-    accountID: "<value>",
-    connectorID: "<value>",
-    createdAt: new Date("2023-07-11T08:50:43.395Z"),
-    id: "<id>",
-    provider: "<value>",
+  accountID: "<value>",
+  connectorID: "<value>",
+  createdAt: new Date("2023-07-11T08:50:43.395Z"),
+  id: "<id>",
+  provider: "<value>",
 };
 ```
 

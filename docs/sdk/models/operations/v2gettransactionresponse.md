@@ -6,62 +6,62 @@
 import { V2GetTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetTransactionResponse = {
-    contentType: "<value>",
-    statusCode: 736918,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    v2GetTransactionResponse: {
-        data: {
-            id: BigInt("456150"),
-            metadata: {
-                admin: "true",
-            },
-            postCommitVolumes: {
-                "orders:1": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-                "orders:2": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-            },
-            postings: [
-                {
-                    amount: BigInt("100"),
-                    asset: "COIN",
-                    destination: "users:002",
-                    source: "users:001",
-                },
-            ],
-            preCommitVolumes: {
-                "orders:1": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-                "orders:2": {
-                    USD: {
-                        balance: BigInt("90"),
-                        input: BigInt("100"),
-                        output: BigInt("10"),
-                    },
-                },
-            },
-            reference: "ref:001",
-            reverted: false,
-            timestamp: new Date("2022-08-26T08:08:26.098Z"),
+  contentType: "<value>",
+  statusCode: 736918,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  v2GetTransactionResponse: {
+    data: {
+      id: BigInt("456150"),
+      metadata: {
+        "admin": "true",
+      },
+      postCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
         },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+      ],
+      preCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      reference: "ref:001",
+      reverted: false,
+      timestamp: new Date("2022-08-26T08:08:26.098Z"),
     },
+  },
 };
 ```
 

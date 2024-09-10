@@ -6,9 +6,9 @@
 import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorConfig = {
-    directory: "/tmp/dummypay",
-    filePollingPeriod: "60s",
-    name: "My DummyPay Account",
+  directory: "/tmp/dummypay",
+  filePollingPeriod: "60s",
+  name: "My DummyPay Account",
 };
 ```
 

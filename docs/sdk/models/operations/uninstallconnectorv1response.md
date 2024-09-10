@@ -6,11 +6,11 @@
 import { UninstallConnectorV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: UninstallConnectorV1Response = {
-    contentType: "<value>",
-    statusCode: 411820,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 411820,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

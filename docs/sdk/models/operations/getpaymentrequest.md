@@ -6,7 +6,7 @@
 import { GetPaymentRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetPaymentRequest = {
-    paymentId: "XXX",
+  paymentId: "XXX",
 };
 ```
 

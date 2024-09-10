@@ -6,7 +6,7 @@
 import { GetWorkflowInstanceHistoryStageResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetWorkflowInstanceHistoryStageResponse = {
-    data: [],
+  data: [],
 };
 ```
 

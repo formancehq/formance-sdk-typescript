@@ -3,14 +3,14 @@
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

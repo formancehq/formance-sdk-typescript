@@ -6,9 +6,11 @@
 import { Pool } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Pool = {
-    accounts: ["<value>"],
-    id: "<id>",
-    name: "<value>",
+  accounts: [
+    "<value>",
+  ],
+  id: "<id>",
+  name: "<value>",
 };
 ```
 

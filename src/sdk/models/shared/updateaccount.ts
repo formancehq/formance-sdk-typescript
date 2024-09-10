@@ -5,35 +5,38 @@
 import * as z from "zod";
 
 export type UpdateAccount = {
-    id: string;
-    ledger: string;
-    metadata: { [k: string]: string };
+  id: string;
+  ledger: string;
+  metadata: { [k: string]: string };
 };
 
 /** @internal */
-export const UpdateAccount$inboundSchema: z.ZodType<UpdateAccount, z.ZodTypeDef, unknown> =
-    z.object({
-        id: z.string(),
-        ledger: z.string(),
-        metadata: z.record(z.string()),
-    });
+export const UpdateAccount$inboundSchema: z.ZodType<
+  UpdateAccount,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  ledger: z.string(),
+  metadata: z.record(z.string()),
+});
 
 /** @internal */
 export type UpdateAccount$Outbound = {
-    id: string;
-    ledger: string;
-    metadata: { [k: string]: string };
+  id: string;
+  ledger: string;
+  metadata: { [k: string]: string };
 };
 
 /** @internal */
 export const UpdateAccount$outboundSchema: z.ZodType<
-    UpdateAccount$Outbound,
-    z.ZodTypeDef,
-    UpdateAccount
+  UpdateAccount$Outbound,
+  z.ZodTypeDef,
+  UpdateAccount
 > = z.object({
-    id: z.string(),
-    ledger: z.string(),
-    metadata: z.record(z.string()),
+  id: z.string(),
+  ledger: z.string(),
+  metadata: z.record(z.string()),
 });
 
 /**
@@ -41,10 +44,10 @@ export const UpdateAccount$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateAccount$ {
-    /** @deprecated use `UpdateAccount$inboundSchema` instead. */
-    export const inboundSchema = UpdateAccount$inboundSchema;
-    /** @deprecated use `UpdateAccount$outboundSchema` instead. */
-    export const outboundSchema = UpdateAccount$outboundSchema;
-    /** @deprecated use `UpdateAccount$Outbound` instead. */
-    export type Outbound = UpdateAccount$Outbound;
+  /** @deprecated use `UpdateAccount$inboundSchema` instead. */
+  export const inboundSchema = UpdateAccount$inboundSchema;
+  /** @deprecated use `UpdateAccount$outboundSchema` instead. */
+  export const outboundSchema = UpdateAccount$outboundSchema;
+  /** @deprecated use `UpdateAccount$Outbound` instead. */
+  export type Outbound = UpdateAccount$Outbound;
 }

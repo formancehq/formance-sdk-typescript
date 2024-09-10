@@ -6,16 +6,18 @@
 import { ConfigInfoResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConfigInfoResponse = {
-    data: {
-        config: {
-            storage: {
-                driver: "<value>",
-                ledgers: ["<value>"],
-            },
-        },
-        server: "<value>",
-        version: "<value>",
+  data: {
+    config: {
+      storage: {
+        driver: "<value>",
+        ledgers: [
+          "<value>",
+        ],
+      },
     },
+    server: "<value>",
+    version: "<value>",
+  },
 };
 ```
 

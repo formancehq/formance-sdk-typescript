@@ -6,9 +6,9 @@
 import { UpdateWalletRequestBody } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: UpdateWalletRequestBody = {
-    metadata: {
-        key: "<value>",
-    },
+  metadata: {
+    "key": "<value>",
+  },
 };
 ```
 

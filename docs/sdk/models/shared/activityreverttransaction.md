@@ -6,8 +6,8 @@
 import { ActivityRevertTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ActivityRevertTransaction = {
-    id: "<id>",
-    ledger: "<value>",
+  id: "<id>",
+  ledger: "<value>",
 };
 ```
 

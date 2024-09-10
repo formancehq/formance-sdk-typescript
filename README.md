@@ -64,14 +64,14 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -291,55 +291,58 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { ErrorResponse, SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
+import {
+  ErrorResponse,
+  SDKValidationError,
+} from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await sdk.ledger.createTransactions({
-            transactions: {
-                transactions: [
-                    {
-                        postings: [
-                            {
-                                amount: BigInt("100"),
-                                asset: "COIN",
-                                destination: "users:002",
-                                source: "users:001",
-                            },
-                        ],
-                        reference: "ref:001",
-                    },
-                ],
-            },
-            ledger: "ledger001",
-        });
+  let result;
+  try {
+    result = await sdk.ledger.createTransactions({
+      transactions: {
+        transactions: [
+          {
+            postings: [
+              {
+                amount: BigInt("100"),
+                asset: "COIN",
+                destination: "users:002",
+                source: "users:001",
+              },
+            ],
+            reference: "ref:001",
+          },
+        ],
+      },
+      ledger: "ledger001",
+    });
 
-        // Handle the result
-        console.log(result);
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof ErrorResponse: {
-                // Handle err.data$: ErrorResponseData
-                console.error(err);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
+    // Handle the result
+    console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof ErrorResponse): {
+        // Handle err.data$: ErrorResponseData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
     }
+  }
 }
 
 run();
@@ -362,15 +365,15 @@ You can override the default server globally by passing a server index to the `s
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    serverIdx: 0,
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  serverIdx: 0,
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -386,15 +389,15 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    serverURL: "http://localhost",
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  serverURL: "http://localhost",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -467,14 +470,14 @@ To authenticate with the API the `authorization` parameter must be set when init
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -492,25 +495,25 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
-        },
-    });
+  const result = await sdk.getOIDCWellKnowns({
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -522,24 +525,24 @@ If you'd like to override the default retry strategy for all operations that sup
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    authorization: "<YOUR_AUTHORIZATION_HERE>",
+    retryConnectionErrors: false,
+  },
+  authorization: "<YOUR_AUTHORIZATION_HERE>",
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

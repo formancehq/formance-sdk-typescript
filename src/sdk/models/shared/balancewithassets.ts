@@ -5,52 +5,44 @@
 import * as z from "zod";
 
 export type BalanceWithAssets = {
-    assets: { [k: string]: bigint };
-    expiresAt?: Date | null | undefined;
-    name: string;
-    priority?: bigint | undefined;
+  assets: { [k: string]: bigint };
+  expiresAt?: Date | null | undefined;
+  name: string;
+  priority?: bigint | undefined;
 };
 
 /** @internal */
-export const BalanceWithAssets$inboundSchema: z.ZodType<BalanceWithAssets, z.ZodTypeDef, unknown> =
-    z.object({
-        assets: z.record(z.number().transform((v) => BigInt(v))),
-        expiresAt: z
-            .nullable(
-                z
-                    .string()
-                    .datetime({ offset: true })
-                    .transform((v) => new Date(v))
-            )
-            .optional(),
-        name: z.string(),
-        priority: z
-            .number()
-            .transform((v) => BigInt(v))
-            .optional(),
-    });
+export const BalanceWithAssets$inboundSchema: z.ZodType<
+  BalanceWithAssets,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  assets: z.record(z.number().transform(v => BigInt(v))),
+  expiresAt: z.nullable(
+    z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  ).optional(),
+  name: z.string(),
+  priority: z.number().transform(v => BigInt(v)).optional(),
+});
 
 /** @internal */
 export type BalanceWithAssets$Outbound = {
-    assets: { [k: string]: number };
-    expiresAt?: string | null | undefined;
-    name: string;
-    priority?: number | undefined;
+  assets: { [k: string]: number };
+  expiresAt?: string | null | undefined;
+  name: string;
+  priority?: number | undefined;
 };
 
 /** @internal */
 export const BalanceWithAssets$outboundSchema: z.ZodType<
-    BalanceWithAssets$Outbound,
-    z.ZodTypeDef,
-    BalanceWithAssets
+  BalanceWithAssets$Outbound,
+  z.ZodTypeDef,
+  BalanceWithAssets
 > = z.object({
-    assets: z.record(z.bigint().transform((v) => Number(v))),
-    expiresAt: z.nullable(z.date().transform((v) => v.toISOString())).optional(),
-    name: z.string(),
-    priority: z
-        .bigint()
-        .transform((v) => Number(v))
-        .optional(),
+  assets: z.record(z.bigint().transform(v => Number(v))),
+  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  name: z.string(),
+  priority: z.bigint().transform(v => Number(v)).optional(),
 });
 
 /**
@@ -58,10 +50,10 @@ export const BalanceWithAssets$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace BalanceWithAssets$ {
-    /** @deprecated use `BalanceWithAssets$inboundSchema` instead. */
-    export const inboundSchema = BalanceWithAssets$inboundSchema;
-    /** @deprecated use `BalanceWithAssets$outboundSchema` instead. */
-    export const outboundSchema = BalanceWithAssets$outboundSchema;
-    /** @deprecated use `BalanceWithAssets$Outbound` instead. */
-    export type Outbound = BalanceWithAssets$Outbound;
+  /** @deprecated use `BalanceWithAssets$inboundSchema` instead. */
+  export const inboundSchema = BalanceWithAssets$inboundSchema;
+  /** @deprecated use `BalanceWithAssets$outboundSchema` instead. */
+  export const outboundSchema = BalanceWithAssets$outboundSchema;
+  /** @deprecated use `BalanceWithAssets$Outbound` instead. */
+  export type Outbound = BalanceWithAssets$Outbound;
 }

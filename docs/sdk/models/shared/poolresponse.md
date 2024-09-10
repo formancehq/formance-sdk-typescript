@@ -6,11 +6,13 @@
 import { PoolResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PoolResponse = {
-    data: {
-        accounts: ["<value>"],
-        id: "<id>",
-        name: "<value>",
-    },
+  data: {
+    accounts: [
+      "<value>",
+    ],
+    id: "<id>",
+    name: "<value>",
+  },
 };
 ```
 

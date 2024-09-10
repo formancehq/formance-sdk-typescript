@@ -6,22 +6,22 @@
 import { BalancesCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BalancesCursorResponseCursor = {
-    data: [
-        {
-            account1: {
-                USD: 100,
-                EUR: 23,
-            },
-            account2: {
-                CAD: 20,
-                JPY: 21,
-            },
-        },
-    ],
-    hasMore: false,
-    next: "",
-    pageSize: 15,
-    previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  data: [
+    {
+      "account1": {
+        "USD": 100,
+        "EUR": 23,
+      },
+      "account2": {
+        "CAD": 20,
+        "JPY": 21,
+      },
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
 ```
 

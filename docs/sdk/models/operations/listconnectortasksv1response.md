@@ -6,20 +6,20 @@
 import { ListConnectorTasksV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListConnectorTasksV1Response = {
-    contentType: "<value>",
-    statusCode: 4695,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
-    tasksCursor: {
-        cursor: {
-            data: [],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-        },
+  contentType: "<value>",
+  statusCode: 4695,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  tasksCursor: {
+    cursor: {
+      data: [],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
+  },
 };
 ```
 

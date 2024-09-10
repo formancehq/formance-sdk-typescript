@@ -6,10 +6,12 @@
 import { Config } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Config = {
-    storage: {
-        driver: "<value>",
-        ledgers: ["<value>"],
-    },
+  storage: {
+    driver: "<value>",
+    ledgers: [
+      "<value>",
+    ],
+  },
 };
 ```
 

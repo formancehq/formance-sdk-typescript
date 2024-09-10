@@ -5,50 +5,52 @@
 import * as z from "zod";
 
 export type StripeConfig = {
-    apiKey: string;
-    name: string;
-    /**
-     * Number of BalanceTransaction to fetch at each polling interval.
-     *
-     * @remarks
-     *
-     */
-    pageSize?: number | undefined;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  name: string;
+  /**
+   * Number of BalanceTransaction to fetch at each polling interval.
+   *
+   * @remarks
+   */
+  pageSize?: number | undefined;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const StripeConfig$inboundSchema: z.ZodType<StripeConfig, z.ZodTypeDef, unknown> = z.object({
-    apiKey: z.string(),
-    name: z.string(),
-    pageSize: z.number().int().default(10),
-    pollingPeriod: z.string().default("120s"),
+export const StripeConfig$inboundSchema: z.ZodType<
+  StripeConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  name: z.string(),
+  pageSize: z.number().int().default(10),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /** @internal */
 export type StripeConfig$Outbound = {
-    apiKey: string;
-    name: string;
-    pageSize: number;
-    pollingPeriod: string;
+  apiKey: string;
+  name: string;
+  pageSize: number;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const StripeConfig$outboundSchema: z.ZodType<
-    StripeConfig$Outbound,
-    z.ZodTypeDef,
-    StripeConfig
+  StripeConfig$Outbound,
+  z.ZodTypeDef,
+  StripeConfig
 > = z.object({
-    apiKey: z.string(),
-    name: z.string(),
-    pageSize: z.number().int().default(10),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  name: z.string(),
+  pageSize: z.number().int().default(10),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -56,10 +58,10 @@ export const StripeConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace StripeConfig$ {
-    /** @deprecated use `StripeConfig$inboundSchema` instead. */
-    export const inboundSchema = StripeConfig$inboundSchema;
-    /** @deprecated use `StripeConfig$outboundSchema` instead. */
-    export const outboundSchema = StripeConfig$outboundSchema;
-    /** @deprecated use `StripeConfig$Outbound` instead. */
-    export type Outbound = StripeConfig$Outbound;
+  /** @deprecated use `StripeConfig$inboundSchema` instead. */
+  export const inboundSchema = StripeConfig$inboundSchema;
+  /** @deprecated use `StripeConfig$outboundSchema` instead. */
+  export const outboundSchema = StripeConfig$outboundSchema;
+  /** @deprecated use `StripeConfig$Outbound` instead. */
+  export type Outbound = StripeConfig$Outbound;
 }

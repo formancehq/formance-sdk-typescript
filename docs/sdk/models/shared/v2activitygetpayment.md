@@ -6,7 +6,7 @@
 import { V2ActivityGetPayment } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ActivityGetPayment = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

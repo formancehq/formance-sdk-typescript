@@ -6,8 +6,8 @@
 import { Contract } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Contract = {
-    account: "users:001",
-    expr: {},
+  account: "users:001",
+  expr: {},
 };
 ```
 

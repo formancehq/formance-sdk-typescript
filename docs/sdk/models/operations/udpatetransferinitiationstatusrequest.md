@@ -7,10 +7,10 @@ import { UdpateTransferInitiationStatusRequest } from "@formance/formance-sdk/sd
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UdpateTransferInitiationStatusRequest = {
-    updateTransferInitiationStatusRequest: {
-        status: Status.Rejected,
-    },
-    transferId: "XXX",
+  updateTransferInitiationStatusRequest: {
+    status: Status.Rejected,
+  },
+  transferId: "XXX",
 };
 ```
 

@@ -6,10 +6,10 @@
 import { UpdateMetadataRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: UpdateMetadataRequest = {
-    requestBody: {
-        key: "<value>",
-    },
-    paymentId: "XXX",
+  requestBody: {
+    "key": "<value>",
+  },
+  paymentId: "XXX",
 };
 ```
 

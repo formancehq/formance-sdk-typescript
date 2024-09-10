@@ -6,38 +6,38 @@
 import { ListReconciliationsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ListReconciliationsResponse = {
-    contentType: "<value>",
-    reconciliationsCursorResponse: {
-        cursor: {
-            data: [
-                {
-                    createdAt: new Date("2021-01-01T00:00:00.000Z"),
-                    driftBalances: {
-                        key: BigInt("533206"),
-                    },
-                    id: "XXX",
-                    ledgerBalances: {
-                        key: BigInt("956084"),
-                    },
-                    paymentsBalances: {
-                        key: BigInt("230533"),
-                    },
-                    policyID: "XXX",
-                    reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-                    reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
-                    status: "COMPLETED",
-                },
-            ],
-            hasMore: false,
-            next: "",
-            pageSize: 15,
-            previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+  contentType: "<value>",
+  reconciliationsCursorResponse: {
+    cursor: {
+      data: [
+        {
+          createdAt: new Date("2021-01-01T00:00:00.000Z"),
+          driftBalances: {
+            "key": BigInt("533206"),
+          },
+          id: "XXX",
+          ledgerBalances: {
+            "key": BigInt("956084"),
+          },
+          paymentsBalances: {
+            "key": BigInt("230533"),
+          },
+          policyID: "XXX",
+          reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
+          reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
+          status: "COMPLETED",
         },
+      ],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
-    statusCode: 643990,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 643990,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

@@ -6,16 +6,16 @@
 import { ReverseTransferInitiationRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReverseTransferInitiationRequest = {
-    reverseTransferInitiationRequest: {
-        amount: BigInt("680056"),
-        asset: "USD",
-        description: "Monitored heuristic solution",
-        metadata: {
-            key: "<value>",
-        },
-        reference: "XXX",
+  reverseTransferInitiationRequest: {
+    amount: BigInt("680056"),
+    asset: "USD",
+    description: "Monitored heuristic solution",
+    metadata: {
+      "key": "<value>",
     },
-    transferId: "XXX",
+    reference: "XXX",
+  },
+  transferId: "XXX",
 };
 ```
 

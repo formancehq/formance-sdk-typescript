@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 4a62d43befffe55605a3d0b24f39879b
   docVersion: v2.0.17
-  speakeasyVersion: 1.392.1
-  generationVersion: 2.411.9
-  releaseVersion: 2.10.2
-  configChecksum: b1df9423cd3af5032e07212b7311f135
+  speakeasyVersion: 1.394.0
+  generationVersion: 2.413.0
+  releaseVersion: 2.11.0
+  configChecksum: c77ce0aa903d45bbed1444d33c7cc00b
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.16.4
+    core: 3.17.0
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.1.1
@@ -1541,7 +1541,10 @@ examples:
   getOIDCWellKnowns:
     speakeasy-default-get-OIDC-well-knowns: {}
   getVersions:
-    speakeasy-default-get-versions: {}
+    speakeasy-default-get-versions:
+      responses:
+        "200":
+          application/json: {"env": "<value>", "region": "<value>", "versions": []}
   createClient:
     speakeasy-default-create-client: {}
   createSecret:
@@ -1698,6 +1701,8 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
+        "200":
+          application/json: {"data": {"config": {"storage": {"driver": "<value>", "ledgers": []}}, "server": "<value>", "version": "<value>"}}
   getLedgerInfo:
     speakeasy-default-get-ledger-info:
       parameters:
@@ -1788,6 +1793,8 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
+        "200":
+          application/json: {"data": {"accounts": 939446, "transactions": 258177}}
   revertTransaction:
     speakeasy-default-revert-transaction:
       parameters:
@@ -1961,6 +1968,8 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        "200":
+          application/json: {"server": "<value>", "version": "<value>"}
   v2GetLedger:
     speakeasy-default-v2-get-ledger:
       parameters:
@@ -2065,6 +2074,8 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        "200":
+          application/json: {"data": {"accounts": 477489, "transactions": 917860}}
   v2RevertTransaction:
     speakeasy-default-v2-revert-transaction:
       parameters:
@@ -2092,30 +2103,59 @@ examples:
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   createTrigger:
-    speakeasy-default-create-trigger: {}
+    speakeasy-default-create-trigger:
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2023-01-13T03:40:57.924Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   createWorkflow:
-    speakeasy-default-create-workflow: {}
+    speakeasy-default-create-workflow:
+      responses:
+        "201":
+          application/json: {"data": {"config": {"stages": []}, "createdAt": "2024-09-23T06:17:11.189Z", "id": "<id>", "updatedAt": "2024-12-01T16:37:43.064Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   deleteTrigger:
     speakeasy-default-delete-trigger:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   deleteWorkflow:
     "":
       parameters:
         path:
           flowId: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   getInstance:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2024-12-22T05:06:37.329Z", "id": "<id>", "terminated": false, "updatedAt": "2022-08-04T14:20:35.498Z", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getInstanceHistory:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getInstanceStageHistory:
     "":
       parameters:
@@ -2125,79 +2165,157 @@ examples:
       responses:
         "200":
           application/json: {"data": []}
-        default: {}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   getWorkflow:
     "":
       parameters:
         path:
           flowId: "xxx"
+      responses:
+        "200":
+          application/json: {"data": {"config": {"stages": []}, "createdAt": "2023-06-10T21:32:19.694Z", "id": "<id>", "updatedAt": "2023-11-29T15:42:27.994Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   listInstances:
     "":
       parameters:
         query:
           workflowID: "xxx"
           running: true
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   listTriggers:
-    speakeasy-default-list-triggers: {}
+    speakeasy-default-list-triggers:
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   listTriggersOccurrences:
     speakeasy-default-list-triggers-occurrences:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   listWorkflows:
-    speakeasy-default-list-workflows: {}
+    speakeasy-default-list-workflows:
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   orchestrationgetServerInfo:
-    speakeasy-default-orchestrationget-server-info: {}
+    speakeasy-default-orchestrationget-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   readTrigger:
     speakeasy-default-read-trigger:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2023-08-28T14:30:14.785Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   runWorkflow:
     "":
       parameters:
         path:
           workflowID: "xxx"
         query: {}
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2024-11-19T22:37:09.946Z", "id": "<id>", "terminated": true, "updatedAt": "2024-08-17T18:05:13.843Z", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   sendEvent:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   testTrigger:
     speakeasy-default-test-trigger:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        "200":
+          application/json: {}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2CancelEvent:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2CreateTrigger:
-    speakeasy-default-v2-create-trigger: {}
+    speakeasy-default-v2-create-trigger:
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2022-11-04T03:41:44.372Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2CreateWorkflow:
-    speakeasy-default-v2-create-workflow: {}
+    speakeasy-default-v2-create-workflow:
+      responses:
+        "201":
+          application/json: {"data": {"config": {"stages": []}, "createdAt": "2023-07-25T20:34:34.643Z", "id": "<id>", "updatedAt": "2023-04-16T19:20:26.928Z"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2DeleteTrigger:
     speakeasy-default-v2-delete-trigger:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2DeleteWorkflow:
     "":
       parameters:
         path:
           flowId: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2GetInstance:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2022-04-08T17:02:59.795Z", "id": "<id>", "terminated": false, "updatedAt": "2022-03-25T15:36:35.638Z", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2GetInstanceHistory:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        "200":
+          application/json: {"data": []}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2GetInstanceStageHistory:
     "":
       parameters:
@@ -2207,14 +2325,25 @@ examples:
       responses:
         "200":
           application/json: {"data": []}
-        default: {}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2GetServerInfo:
-    speakeasy-default-v2-get-server-info: {}
+    speakeasy-default-v2-get-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2GetWorkflow:
     "":
       parameters:
         path:
           flowId: "xxx"
+      responses:
+        "200":
+          application/json: {"data": {"config": {"stages": []}, "createdAt": "2024-07-11T21:55:16.068Z", "id": "<id>", "updatedAt": "2024-05-02T05:24:34.577Z"}}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2ListInstances:
     "":
       parameters:
@@ -2226,7 +2355,8 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "NOT_FOUND", "errorMessage": "<value>"}
   v2ListTriggers:
     "":
       parameters:
@@ -2236,7 +2366,8 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2ListTriggersOccurrences:
     "":
       parameters:
@@ -2248,7 +2379,8 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2ListWorkflows:
     "":
       parameters:
@@ -2258,23 +2390,37 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2ReadTrigger:
     speakeasy-default-v2-read-trigger:
       parameters:
         path:
           triggerID: "<value>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2024-07-19T18:33:02.586Z", "event": "<value>", "id": "<id>", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   v2RunWorkflow:
     "":
       parameters:
         path:
           workflowID: "xxx"
         query: {}
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2022-09-25T14:53:09.533Z", "id": "<id>", "terminated": false, "updatedAt": "2022-01-11T23:11:19.232Z", "workflowID": "<value>"}}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   v2SendEvent:
     "":
       parameters:
         path:
           instanceID: "xxx"
+      responses:
+        default:
+          application/json: {"errorCode": "INTERNAL", "errorMessage": "<value>"}
   addAccountToPool:
     "":
       parameters:
@@ -2295,6 +2441,7 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200": {}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
@@ -2302,6 +2449,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<value>", "createdAt": "2024-08-19T02:15:08.668Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {}, "reference": "<value>", "type": "INTERNAL"}}
   createBankAccount:
     speakeasy-default-create-bank-account:
       requestBody:
@@ -2309,6 +2458,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "country": "Hungary", "createdAt": "2023-06-29T15:08:48.496Z", "id": "<id>", "name": "<value>"}}
   createPayment:
     speakeasy-default-create-payment:
       requestBody:
@@ -2325,6 +2476,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"accounts": [], "id": "<id>", "name": "<value>"}}
   createTransferInitiation:
     speakeasy-default-create-transfer-initiation:
       requestBody:
@@ -2360,6 +2513,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "country": "Benin", "createdAt": "2022-08-16T05:17:29.653Z", "id": "<id>", "name": "<value>"}}
   getAccountBalances:
     "":
       parameters:
@@ -2382,6 +2537,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "country": "Comoros", "createdAt": "2024-05-02T03:08:39.354Z", "id": "<id>", "name": "<value>"}}
   getConnectorTask:
     "":
       parameters:
@@ -2391,6 +2548,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-03-04T09:03:44.079Z", "id": "37bc89db-43a4-47f1-bb9a-24050795f422", "status": "PENDING", "updatedAt": "2023-12-20T20:12:51.365Z"}}
   getConnectorTaskV1:
     "":
       parameters:
@@ -2401,6 +2560,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-08-05T22:20:59.377Z", "id": "752d569d-25c8-43ca-a84b-5a32c806dcf9", "status": "SUCCEEDED", "updatedAt": "2022-06-02T20:15:28.566Z"}}
   getPayment:
     "":
       parameters:
@@ -2419,6 +2580,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"accounts": [], "id": "<id>", "name": "<value>"}}
   getPoolBalances:
     "":
       parameters:
@@ -2447,15 +2610,19 @@ examples:
         path:
           connector: "ADYEN"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "201":
+          application/json: {"data": {"connectorID": "<value>"}}
   listAllConnectors:
     speakeasy-default-list-all-connectors:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": []}
   listBankAccounts:
     "":
       parameters:
@@ -2473,6 +2640,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"connector": {"key": {"dataType": "bit", "required": false}}}}
   listConnectorTasks:
     "":
       parameters:
@@ -2544,11 +2713,15 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<value>", "createdAt": "2023-11-13T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "reference": "<value>", "type": "UNKNOWN"}}
   paymentsgetServerInfo:
     speakeasy-default-paymentsget-server-info:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200":
+          application/json: {"version": "<value>"}
   paymentslistAccounts:
     "":
       parameters:
@@ -2579,7 +2752,7 @@ examples:
           connectorId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}}
+          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   removeAccountFromPool:
@@ -2760,6 +2933,8 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
+        "200":
+          application/json: {"version": "<value>"}
   search:
     speakeasy-default-search:
       requestBody:
@@ -2768,7 +2943,10 @@ examples:
         "200":
           application/json: {"cursor": {"next": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=", "total": {"relation": "eq", "value": 1}}}
   searchgetServerInfo:
-    speakeasy-default-searchget-server-info: {}
+    speakeasy-default-searchget-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
   confirmHold:
     speakeasy-default-confirm-hold:
       parameters:
@@ -2777,14 +2955,27 @@ examples:
         header: {}
       requestBody:
         application/json: {"amount": 100, "final": true}
+      responses:
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   createBalance:
     speakeasy-default-create-balance:
       parameters:
         path:
           id: "<id>"
         header: {}
+      responses:
+        "201":
+          application/json: {"data": {"name": "<value>"}}
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   createWallet:
-    speakeasy-default-create-wallet: {}
+    speakeasy-default-create-wallet:
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2023-08-08T07:13:48.721Z", "id": "52c86df5-feb2-4ab8-acb7-593029eaab9b", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>"}}
+        default:
+          application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   creditWallet:
     speakeasy-default-credit-wallet:
       parameters:
@@ -2793,6 +2984,9 @@ examples:
         header: {}
       requestBody:
         application/json: {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "sources": []}
+      responses:
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   debitWallet:
     speakeasy-default-debit-wallet:
       parameters:
@@ -2801,12 +2995,22 @@ examples:
         header: {}
       requestBody:
         application/json: {"amount": {"amount": 100, "asset": "USD/2"}, "metadata": {"key": ""}, "pending": true}
+      responses:
+        "201":
+          application/json: {"data": {"description": "Ergonomic context-sensitive productivity", "id": "e3fe0331-4c99-4e79-ae47-a2f3f501e73d", "metadata": {}, "walletID": "<value>"}}
+        default:
+          application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   getBalance:
     speakeasy-default-get-balance:
       parameters:
         path:
           id: "<id>"
           balanceName: "<value>"
+      responses:
+        "200":
+          application/json: {"data": {"assets": {"key": 191836, "key1": 623534, "key2": 435350}, "name": "<value>"}}
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   getHold:
     speakeasy-default-get-hold:
       parameters:
@@ -2815,7 +3019,8 @@ examples:
       responses:
         "200":
           application/json: {"data": {"description": "Configurable zero tolerance superstructure", "id": "6e42f973-1a23-4fc7-bfce-5629a86b5072", "metadata": {"key": "<value>"}, "originalAmount": 100, "remaining": 10, "walletID": "<value>"}}
-        default: {}
+        default:
+          application/json: {"errorCode": "VALIDATION", "errorMessage": "<value>"}
   getHolds:
     "":
       parameters:
@@ -2827,7 +3032,8 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   getTransactions:
     "":
       parameters:
@@ -2838,17 +3044,28 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   getWallet:
     speakeasy-default-get-wallet:
       parameters:
         path:
           id: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"balances": {"main": {"assets": {"key": 712763}}}, "createdAt": "2023-09-19T18:18:29.327Z", "id": "c94bdefc-9346-480f-8a91-9139cfb68640", "ledger": "<value>", "metadata": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "name": "<value>"}}
+        default:
+          application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   getWalletSummary:
     speakeasy-default-get-wallet-summary:
       parameters:
         path:
           id: "<id>"
+      responses:
+        "200":
+          application/json: {"availableFunds": {"key": 615155, "key1": 265270}, "balances": [], "expirableFunds": {"key": 425645, "key1": 574283, "key2": 311650}, "expiredFunds": {"key": 2769, "key1": 737742, "key2": 53674}, "holdFunds": {"key": 830082}}
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   listBalances:
     speakeasy-default-list-balances:
       parameters:
@@ -2869,21 +3086,33 @@ examples:
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
-        default: {}
+        default:
+          application/json: {"errorCode": "INTERNAL_ERROR", "errorMessage": "<value>"}
   updateWallet:
     speakeasy-default-update-wallet:
       parameters:
         path:
           id: "<id>"
         header: {}
+      responses:
+        default:
+          application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   voidHold:
     speakeasy-default-void-hold:
       parameters:
         path:
           hold_id: "<value>"
         header: {}
+      responses:
+        default:
+          application/json: {"errorCode": "HOLD_CLOSED", "errorMessage": "<value>"}
   walletsgetServerInfo:
-    speakeasy-default-walletsget-server-info: {}
+    speakeasy-default-walletsget-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+        default:
+          application/json: {"errorCode": "INTERNAL_ERROR", "errorMessage": "<value>"}
   activateConfig:
     speakeasy-default-activate-config:
       parameters:

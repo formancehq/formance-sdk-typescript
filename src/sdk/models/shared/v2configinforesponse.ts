@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type V2ConfigInfoResponse = {
-    server: string;
-    version: string;
+  server: string;
+  version: string;
 };
 
 /** @internal */
 export const V2ConfigInfoResponse$inboundSchema: z.ZodType<
-    V2ConfigInfoResponse,
-    z.ZodTypeDef,
-    unknown
+  V2ConfigInfoResponse,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    server: z.string(),
-    version: z.string(),
+  server: z.string(),
+  version: z.string(),
 });
 
 /** @internal */
 export type V2ConfigInfoResponse$Outbound = {
-    server: string;
-    version: string;
+  server: string;
+  version: string;
 };
 
 /** @internal */
 export const V2ConfigInfoResponse$outboundSchema: z.ZodType<
-    V2ConfigInfoResponse$Outbound,
-    z.ZodTypeDef,
-    V2ConfigInfoResponse
+  V2ConfigInfoResponse$Outbound,
+  z.ZodTypeDef,
+  V2ConfigInfoResponse
 > = z.object({
-    server: z.string(),
-    version: z.string(),
+  server: z.string(),
+  version: z.string(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const V2ConfigInfoResponse$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2ConfigInfoResponse$ {
-    /** @deprecated use `V2ConfigInfoResponse$inboundSchema` instead. */
-    export const inboundSchema = V2ConfigInfoResponse$inboundSchema;
-    /** @deprecated use `V2ConfigInfoResponse$outboundSchema` instead. */
-    export const outboundSchema = V2ConfigInfoResponse$outboundSchema;
-    /** @deprecated use `V2ConfigInfoResponse$Outbound` instead. */
-    export type Outbound = V2ConfigInfoResponse$Outbound;
+  /** @deprecated use `V2ConfigInfoResponse$inboundSchema` instead. */
+  export const inboundSchema = V2ConfigInfoResponse$inboundSchema;
+  /** @deprecated use `V2ConfigInfoResponse$outboundSchema` instead. */
+  export const outboundSchema = V2ConfigInfoResponse$outboundSchema;
+  /** @deprecated use `V2ConfigInfoResponse$Outbound` instead. */
+  export type Outbound = V2ConfigInfoResponse$Outbound;
 }

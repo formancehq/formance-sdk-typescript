@@ -51,475 +51,650 @@ import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Ledger extends ClientSDK {
-    /**
-     * Create a new batch of transactions to a ledger
-     */
-    async createTransactions(
-        request: operations.CreateTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreateTransactionsResponse> {
-        return unwrapAsync(ledgerCreateTransactions(this, request, options));
-    }
+  /**
+   * Create a new batch of transactions to a ledger
+   */
+  async createTransactions(
+    request: operations.CreateTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateTransactionsResponse> {
+    return unwrapAsync(ledgerCreateTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Set the metadata of a transaction by its ID
-     */
-    async addMetadataOnTransaction(
-        request: operations.AddMetadataOnTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.AddMetadataOnTransactionResponse> {
-        return unwrapAsync(ledgerAddMetadataOnTransaction(this, request, options));
-    }
+  /**
+   * Set the metadata of a transaction by its ID
+   */
+  async addMetadataOnTransaction(
+    request: operations.AddMetadataOnTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AddMetadataOnTransactionResponse> {
+    return unwrapAsync(ledgerAddMetadataOnTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Add metadata to an account
-     */
-    async addMetadataToAccount(
-        request: operations.AddMetadataToAccountRequest,
-        options?: RequestOptions
-    ): Promise<operations.AddMetadataToAccountResponse> {
-        return unwrapAsync(ledgerAddMetadataToAccount(this, request, options));
-    }
+  /**
+   * Add metadata to an account
+   */
+  async addMetadataToAccount(
+    request: operations.AddMetadataToAccountRequest,
+    options?: RequestOptions,
+  ): Promise<operations.AddMetadataToAccountResponse> {
+    return unwrapAsync(ledgerAddMetadataToAccount(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Count the accounts from a ledger
-     */
-    async countAccounts(
-        request: operations.CountAccountsRequest,
-        options?: RequestOptions
-    ): Promise<operations.CountAccountsResponse> {
-        return unwrapAsync(ledgerCountAccounts(this, request, options));
-    }
+  /**
+   * Count the accounts from a ledger
+   */
+  async countAccounts(
+    request: operations.CountAccountsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CountAccountsResponse> {
+    return unwrapAsync(ledgerCountAccounts(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Count the transactions from a ledger
-     */
-    async countTransactions(
-        request: operations.CountTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.CountTransactionsResponse> {
-        return unwrapAsync(ledgerCountTransactions(this, request, options));
-    }
+  /**
+   * Count the transactions from a ledger
+   */
+  async countTransactions(
+    request: operations.CountTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CountTransactionsResponse> {
+    return unwrapAsync(ledgerCountTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Create a new transaction to a ledger
-     */
-    async createTransaction(
-        request: operations.CreateTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreateTransactionResponse> {
-        return unwrapAsync(ledgerCreateTransaction(this, request, options));
-    }
+  /**
+   * Create a new transaction to a ledger
+   */
+  async createTransaction(
+    request: operations.CreateTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateTransactionResponse> {
+    return unwrapAsync(ledgerCreateTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get account by its address
-     */
-    async getAccount(
-        request: operations.GetAccountRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetAccountResponse> {
-        return unwrapAsync(ledgerGetAccount(this, request, options));
-    }
+  /**
+   * Get account by its address
+   */
+  async getAccount(
+    request: operations.GetAccountRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetAccountResponse> {
+    return unwrapAsync(ledgerGetAccount(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get the balances from a ledger's account
-     */
-    async getBalances(
-        request: operations.GetBalancesRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetBalancesResponse> {
-        return unwrapAsync(ledgerGetBalances(this, request, options));
-    }
+  /**
+   * Get the balances from a ledger's account
+   */
+  async getBalances(
+    request: operations.GetBalancesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetBalancesResponse> {
+    return unwrapAsync(ledgerGetBalances(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get the aggregated balances from selected accounts
-     */
-    async getBalancesAggregated(
-        request: operations.GetBalancesAggregatedRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetBalancesAggregatedResponse> {
-        return unwrapAsync(ledgerGetBalancesAggregated(this, request, options));
-    }
+  /**
+   * Get the aggregated balances from selected accounts
+   */
+  async getBalancesAggregated(
+    request: operations.GetBalancesAggregatedRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetBalancesAggregatedResponse> {
+    return unwrapAsync(ledgerGetBalancesAggregated(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Show server information
-     */
-    async getInfo(options?: RequestOptions): Promise<operations.GetInfoResponse> {
-        return unwrapAsync(ledgerGetInfo(this, options));
-    }
+  /**
+   * Show server information
+   */
+  async getInfo(
+    options?: RequestOptions,
+  ): Promise<operations.GetInfoResponse> {
+    return unwrapAsync(ledgerGetInfo(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get information about a ledger
-     */
-    async getLedgerInfo(
-        request: operations.GetLedgerInfoRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetLedgerInfoResponse> {
-        return unwrapAsync(ledgerGetLedgerInfo(this, request, options));
-    }
+  /**
+   * Get information about a ledger
+   */
+  async getLedgerInfo(
+    request: operations.GetLedgerInfoRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetLedgerInfoResponse> {
+    return unwrapAsync(ledgerGetLedgerInfo(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get the mapping of a ledger
-     */
-    async getMapping(
-        request: operations.GetMappingRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetMappingResponse> {
-        return unwrapAsync(ledgerGetMapping(this, request, options));
-    }
+  /**
+   * Get the mapping of a ledger
+   */
+  async getMapping(
+    request: operations.GetMappingRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetMappingResponse> {
+    return unwrapAsync(ledgerGetMapping(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get transaction from a ledger by its ID
-     */
-    async getTransaction(
-        request: operations.GetTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.GetTransactionResponse> {
-        return unwrapAsync(ledgerGetTransaction(this, request, options));
-    }
+  /**
+   * Get transaction from a ledger by its ID
+   */
+  async getTransaction(
+    request: operations.GetTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetTransactionResponse> {
+    return unwrapAsync(ledgerGetTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List accounts from a ledger
-     *
-     * @remarks
-     * List accounts from a ledger, sorted by address in descending order.
-     */
-    async listAccounts(
-        request: operations.ListAccountsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListAccountsResponse> {
-        return unwrapAsync(ledgerListAccounts(this, request, options));
-    }
+  /**
+   * List accounts from a ledger
+   *
+   * @remarks
+   * List accounts from a ledger, sorted by address in descending order.
+   */
+  async listAccounts(
+    request: operations.ListAccountsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListAccountsResponse> {
+    return unwrapAsync(ledgerListAccounts(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List the logs from a ledger
-     *
-     * @remarks
-     * List the logs from a ledger, sorted by ID in descending order.
-     */
-    async listLogs(
-        request: operations.ListLogsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListLogsResponse> {
-        return unwrapAsync(ledgerListLogs(this, request, options));
-    }
+  /**
+   * List the logs from a ledger
+   *
+   * @remarks
+   * List the logs from a ledger, sorted by ID in descending order.
+   */
+  async listLogs(
+    request: operations.ListLogsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListLogsResponse> {
+    return unwrapAsync(ledgerListLogs(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List transactions from a ledger
-     *
-     * @remarks
-     * List transactions from a ledger, sorted by txid in descending order.
-     */
-    async listTransactions(
-        request: operations.ListTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ListTransactionsResponse> {
-        return unwrapAsync(ledgerListTransactions(this, request, options));
-    }
+  /**
+   * List transactions from a ledger
+   *
+   * @remarks
+   * List transactions from a ledger, sorted by txid in descending order.
+   */
+  async listTransactions(
+    request: operations.ListTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListTransactionsResponse> {
+    return unwrapAsync(ledgerListTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get statistics from a ledger
-     *
-     * @remarks
-     * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-     *
-     */
-    async readStats(
-        request: operations.ReadStatsRequest,
-        options?: RequestOptions
-    ): Promise<operations.ReadStatsResponse> {
-        return unwrapAsync(ledgerReadStats(this, request, options));
-    }
+  /**
+   * Get statistics from a ledger
+   *
+   * @remarks
+   * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+   */
+  async readStats(
+    request: operations.ReadStatsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReadStatsResponse> {
+    return unwrapAsync(ledgerReadStats(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Revert a ledger transaction by its ID
-     */
-    async revertTransaction(
-        request: operations.RevertTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.RevertTransactionResponse> {
-        return unwrapAsync(ledgerRevertTransaction(this, request, options));
-    }
+  /**
+   * Revert a ledger transaction by its ID
+   */
+  async revertTransaction(
+    request: operations.RevertTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.RevertTransactionResponse> {
+    return unwrapAsync(ledgerRevertTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Execute a Numscript
-     *
-     * @remarks
-     * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
-     *
-     *
-     * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    async runScript(
-        request: operations.RunScriptRequest,
-        options?: RequestOptions
-    ): Promise<operations.RunScriptResponse> {
-        return unwrapAsync(ledgerRunScript(this, request, options));
-    }
+  /**
+   * Execute a Numscript
+   *
+   * @remarks
+   * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  async runScript(
+    request: operations.RunScriptRequest,
+    options?: RequestOptions,
+  ): Promise<operations.RunScriptResponse> {
+    return unwrapAsync(ledgerRunScript(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Update the mapping of a ledger
-     */
-    async updateMapping(
-        request: operations.UpdateMappingRequest,
-        options?: RequestOptions
-    ): Promise<operations.UpdateMappingResponse> {
-        return unwrapAsync(ledgerUpdateMapping(this, request, options));
-    }
+  /**
+   * Update the mapping of a ledger
+   */
+  async updateMapping(
+    request: operations.UpdateMappingRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateMappingResponse> {
+    return unwrapAsync(ledgerUpdateMapping(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Set the metadata of a transaction by its ID
-     */
-    async v2AddMetadataOnTransaction(
-        request: operations.V2AddMetadataOnTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2AddMetadataOnTransactionResponse> {
-        return unwrapAsync(ledgerV2AddMetadataOnTransaction(this, request, options));
-    }
+  /**
+   * Set the metadata of a transaction by its ID
+   */
+  async v2AddMetadataOnTransaction(
+    request: operations.V2AddMetadataOnTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2AddMetadataOnTransactionResponse> {
+    return unwrapAsync(ledgerV2AddMetadataOnTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Add metadata to an account
-     */
-    async v2AddMetadataToAccount(
-        request: operations.V2AddMetadataToAccountRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2AddMetadataToAccountResponse> {
-        return unwrapAsync(ledgerV2AddMetadataToAccount(this, request, options));
-    }
+  /**
+   * Add metadata to an account
+   */
+  async v2AddMetadataToAccount(
+    request: operations.V2AddMetadataToAccountRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2AddMetadataToAccountResponse> {
+    return unwrapAsync(ledgerV2AddMetadataToAccount(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Count the accounts from a ledger
-     */
-    async v2CountAccounts(
-        request: operations.V2CountAccountsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2CountAccountsResponse> {
-        return unwrapAsync(ledgerV2CountAccounts(this, request, options));
-    }
+  /**
+   * Count the accounts from a ledger
+   */
+  async v2CountAccounts(
+    request: operations.V2CountAccountsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CountAccountsResponse> {
+    return unwrapAsync(ledgerV2CountAccounts(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Count the transactions from a ledger
-     */
-    async v2CountTransactions(
-        request: operations.V2CountTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2CountTransactionsResponse> {
-        return unwrapAsync(ledgerV2CountTransactions(this, request, options));
-    }
+  /**
+   * Count the transactions from a ledger
+   */
+  async v2CountTransactions(
+    request: operations.V2CountTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CountTransactionsResponse> {
+    return unwrapAsync(ledgerV2CountTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Bulk request
-     */
-    async v2CreateBulk(
-        request: operations.V2CreateBulkRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2CreateBulkResponse> {
-        return unwrapAsync(ledgerV2CreateBulk(this, request, options));
-    }
+  /**
+   * Bulk request
+   */
+  async v2CreateBulk(
+    request: operations.V2CreateBulkRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CreateBulkResponse> {
+    return unwrapAsync(ledgerV2CreateBulk(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Create a ledger
-     */
-    async v2CreateLedger(
-        request: operations.V2CreateLedgerRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2CreateLedgerResponse> {
-        return unwrapAsync(ledgerV2CreateLedger(this, request, options));
-    }
+  /**
+   * Create a ledger
+   */
+  async v2CreateLedger(
+    request: operations.V2CreateLedgerRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CreateLedgerResponse> {
+    return unwrapAsync(ledgerV2CreateLedger(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Create a new transaction to a ledger
-     */
-    async v2CreateTransaction(
-        request: operations.V2CreateTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2CreateTransactionResponse> {
-        return unwrapAsync(ledgerV2CreateTransaction(this, request, options));
-    }
+  /**
+   * Create a new transaction to a ledger
+   */
+  async v2CreateTransaction(
+    request: operations.V2CreateTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CreateTransactionResponse> {
+    return unwrapAsync(ledgerV2CreateTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete metadata by key
-     *
-     * @remarks
-     * Delete metadata by key
-     */
-    async v2DeleteAccountMetadata(
-        request: operations.V2DeleteAccountMetadataRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2DeleteAccountMetadataResponse> {
-        return unwrapAsync(ledgerV2DeleteAccountMetadata(this, request, options));
-    }
+  /**
+   * Delete metadata by key
+   *
+   * @remarks
+   * Delete metadata by key
+   */
+  async v2DeleteAccountMetadata(
+    request: operations.V2DeleteAccountMetadataRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeleteAccountMetadataResponse> {
+    return unwrapAsync(ledgerV2DeleteAccountMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete ledger metadata by key
-     */
-    async v2DeleteLedgerMetadata(
-        request: operations.V2DeleteLedgerMetadataRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2DeleteLedgerMetadataResponse> {
-        return unwrapAsync(ledgerV2DeleteLedgerMetadata(this, request, options));
-    }
+  /**
+   * Delete ledger metadata by key
+   */
+  async v2DeleteLedgerMetadata(
+    request: operations.V2DeleteLedgerMetadataRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeleteLedgerMetadataResponse> {
+    return unwrapAsync(ledgerV2DeleteLedgerMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete metadata by key
-     *
-     * @remarks
-     * Delete metadata by key
-     */
-    async v2DeleteTransactionMetadata(
-        request: operations.V2DeleteTransactionMetadataRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2DeleteTransactionMetadataResponse> {
-        return unwrapAsync(ledgerV2DeleteTransactionMetadata(this, request, options));
-    }
+  /**
+   * Delete metadata by key
+   *
+   * @remarks
+   * Delete metadata by key
+   */
+  async v2DeleteTransactionMetadata(
+    request: operations.V2DeleteTransactionMetadataRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeleteTransactionMetadataResponse> {
+    return unwrapAsync(ledgerV2DeleteTransactionMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get account by its address
-     */
-    async v2GetAccount(
-        request: operations.V2GetAccountRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetAccountResponse> {
-        return unwrapAsync(ledgerV2GetAccount(this, request, options));
-    }
+  /**
+   * Get account by its address
+   */
+  async v2GetAccount(
+    request: operations.V2GetAccountRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetAccountResponse> {
+    return unwrapAsync(ledgerV2GetAccount(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get the aggregated balances from selected accounts
-     */
-    async v2GetBalancesAggregated(
-        request: operations.V2GetBalancesAggregatedRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetBalancesAggregatedResponse> {
-        return unwrapAsync(ledgerV2GetBalancesAggregated(this, request, options));
-    }
+  /**
+   * Get the aggregated balances from selected accounts
+   */
+  async v2GetBalancesAggregated(
+    request: operations.V2GetBalancesAggregatedRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetBalancesAggregatedResponse> {
+    return unwrapAsync(ledgerV2GetBalancesAggregated(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Show server information
-     */
-    async v2GetInfo(options?: RequestOptions): Promise<operations.V2GetInfoResponse> {
-        return unwrapAsync(ledgerV2GetInfo(this, options));
-    }
+  /**
+   * Show server information
+   */
+  async v2GetInfo(
+    options?: RequestOptions,
+  ): Promise<operations.V2GetInfoResponse> {
+    return unwrapAsync(ledgerV2GetInfo(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Get a ledger
-     */
-    async v2GetLedger(
-        request: operations.V2GetLedgerRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetLedgerResponse> {
-        return unwrapAsync(ledgerV2GetLedger(this, request, options));
-    }
+  /**
+   * Get a ledger
+   */
+  async v2GetLedger(
+    request: operations.V2GetLedgerRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetLedgerResponse> {
+    return unwrapAsync(ledgerV2GetLedger(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get information about a ledger
-     */
-    async v2GetLedgerInfo(
-        request: operations.V2GetLedgerInfoRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetLedgerInfoResponse> {
-        return unwrapAsync(ledgerV2GetLedgerInfo(this, request, options));
-    }
+  /**
+   * Get information about a ledger
+   */
+  async v2GetLedgerInfo(
+    request: operations.V2GetLedgerInfoRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetLedgerInfoResponse> {
+    return unwrapAsync(ledgerV2GetLedgerInfo(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get transaction from a ledger by its ID
-     */
-    async v2GetTransaction(
-        request: operations.V2GetTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetTransactionResponse> {
-        return unwrapAsync(ledgerV2GetTransaction(this, request, options));
-    }
+  /**
+   * Get transaction from a ledger by its ID
+   */
+  async v2GetTransaction(
+    request: operations.V2GetTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetTransactionResponse> {
+    return unwrapAsync(ledgerV2GetTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get list of volumes with balances for (account/asset)
-     */
-    async v2GetVolumesWithBalances(
-        request: operations.V2GetVolumesWithBalancesRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2GetVolumesWithBalancesResponse> {
-        return unwrapAsync(ledgerV2GetVolumesWithBalances(this, request, options));
-    }
+  /**
+   * Get list of volumes with balances for (account/asset)
+   */
+  async v2GetVolumesWithBalances(
+    request: operations.V2GetVolumesWithBalancesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetVolumesWithBalancesResponse> {
+    return unwrapAsync(ledgerV2GetVolumesWithBalances(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List accounts from a ledger
-     *
-     * @remarks
-     * List accounts from a ledger, sorted by address in descending order.
-     */
-    async v2ListAccounts(
-        request: operations.V2ListAccountsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2ListAccountsResponse> {
-        return unwrapAsync(ledgerV2ListAccounts(this, request, options));
-    }
+  /**
+   * List accounts from a ledger
+   *
+   * @remarks
+   * List accounts from a ledger, sorted by address in descending order.
+   */
+  async v2ListAccounts(
+    request: operations.V2ListAccountsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListAccountsResponse> {
+    return unwrapAsync(ledgerV2ListAccounts(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List ledgers
-     */
-    async v2ListLedgers(
-        request: operations.V2ListLedgersRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2ListLedgersResponse> {
-        return unwrapAsync(ledgerV2ListLedgers(this, request, options));
-    }
+  /**
+   * List ledgers
+   */
+  async v2ListLedgers(
+    request: operations.V2ListLedgersRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListLedgersResponse> {
+    return unwrapAsync(ledgerV2ListLedgers(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List the logs from a ledger
-     *
-     * @remarks
-     * List the logs from a ledger, sorted by ID in descending order.
-     */
-    async v2ListLogs(
-        request: operations.V2ListLogsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2ListLogsResponse> {
-        return unwrapAsync(ledgerV2ListLogs(this, request, options));
-    }
+  /**
+   * List the logs from a ledger
+   *
+   * @remarks
+   * List the logs from a ledger, sorted by ID in descending order.
+   */
+  async v2ListLogs(
+    request: operations.V2ListLogsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListLogsResponse> {
+    return unwrapAsync(ledgerV2ListLogs(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List transactions from a ledger
-     *
-     * @remarks
-     * List transactions from a ledger, sorted by id in descending order.
-     */
-    async v2ListTransactions(
-        request: operations.V2ListTransactionsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2ListTransactionsResponse> {
-        return unwrapAsync(ledgerV2ListTransactions(this, request, options));
-    }
+  /**
+   * List transactions from a ledger
+   *
+   * @remarks
+   * List transactions from a ledger, sorted by id in descending order.
+   */
+  async v2ListTransactions(
+    request: operations.V2ListTransactionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListTransactionsResponse> {
+    return unwrapAsync(ledgerV2ListTransactions(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Get statistics from a ledger
-     *
-     * @remarks
-     * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
-     *
-     */
-    async v2ReadStats(
-        request: operations.V2ReadStatsRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2ReadStatsResponse> {
-        return unwrapAsync(ledgerV2ReadStats(this, request, options));
-    }
+  /**
+   * Get statistics from a ledger
+   *
+   * @remarks
+   * Get statistics from a ledger. (aggregate metrics on accounts and transactions)
+   */
+  async v2ReadStats(
+    request: operations.V2ReadStatsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ReadStatsResponse> {
+    return unwrapAsync(ledgerV2ReadStats(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Revert a ledger transaction by its ID
-     */
-    async v2RevertTransaction(
-        request: operations.V2RevertTransactionRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2RevertTransactionResponse> {
-        return unwrapAsync(ledgerV2RevertTransaction(this, request, options));
-    }
+  /**
+   * Revert a ledger transaction by its ID
+   */
+  async v2RevertTransaction(
+    request: operations.V2RevertTransactionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2RevertTransactionResponse> {
+    return unwrapAsync(ledgerV2RevertTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Update ledger metadata
-     */
-    async v2UpdateLedgerMetadata(
-        request: operations.V2UpdateLedgerMetadataRequest,
-        options?: RequestOptions
-    ): Promise<operations.V2UpdateLedgerMetadataResponse> {
-        return unwrapAsync(ledgerV2UpdateLedgerMetadata(this, request, options));
-    }
+  /**
+   * Update ledger metadata
+   */
+  async v2UpdateLedgerMetadata(
+    request: operations.V2UpdateLedgerMetadataRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2UpdateLedgerMetadataResponse> {
+    return unwrapAsync(ledgerV2UpdateLedgerMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
 }

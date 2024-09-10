@@ -6,7 +6,7 @@
 import { CancelEventRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CancelEventRequest = {
-    instanceID: "xxx",
+  instanceID: "xxx",
 };
 ```
 

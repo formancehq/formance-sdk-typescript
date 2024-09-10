@@ -6,7 +6,7 @@
 import { TransactionsResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransactionsResponse = {
-    data: [],
+  data: [],
 };
 ```
 

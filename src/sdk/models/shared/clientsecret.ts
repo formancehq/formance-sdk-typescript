@@ -5,38 +5,42 @@
 import * as z from "zod";
 
 export type ClientSecret = {
-    id: string;
-    lastDigits: string;
-    metadata?: { [k: string]: any } | undefined;
-    name: string;
+  id: string;
+  lastDigits: string;
+  metadata?: { [k: string]: any } | undefined;
+  name: string;
 };
 
 /** @internal */
-export const ClientSecret$inboundSchema: z.ZodType<ClientSecret, z.ZodTypeDef, unknown> = z.object({
-    id: z.string(),
-    lastDigits: z.string(),
-    metadata: z.record(z.any()).optional(),
-    name: z.string(),
+export const ClientSecret$inboundSchema: z.ZodType<
+  ClientSecret,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+  lastDigits: z.string(),
+  metadata: z.record(z.any()).optional(),
+  name: z.string(),
 });
 
 /** @internal */
 export type ClientSecret$Outbound = {
-    id: string;
-    lastDigits: string;
-    metadata?: { [k: string]: any } | undefined;
-    name: string;
+  id: string;
+  lastDigits: string;
+  metadata?: { [k: string]: any } | undefined;
+  name: string;
 };
 
 /** @internal */
 export const ClientSecret$outboundSchema: z.ZodType<
-    ClientSecret$Outbound,
-    z.ZodTypeDef,
-    ClientSecret
+  ClientSecret$Outbound,
+  z.ZodTypeDef,
+  ClientSecret
 > = z.object({
-    id: z.string(),
-    lastDigits: z.string(),
-    metadata: z.record(z.any()).optional(),
-    name: z.string(),
+  id: z.string(),
+  lastDigits: z.string(),
+  metadata: z.record(z.any()).optional(),
+  name: z.string(),
 });
 
 /**
@@ -44,10 +48,10 @@ export const ClientSecret$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ClientSecret$ {
-    /** @deprecated use `ClientSecret$inboundSchema` instead. */
-    export const inboundSchema = ClientSecret$inboundSchema;
-    /** @deprecated use `ClientSecret$outboundSchema` instead. */
-    export const outboundSchema = ClientSecret$outboundSchema;
-    /** @deprecated use `ClientSecret$Outbound` instead. */
-    export type Outbound = ClientSecret$Outbound;
+  /** @deprecated use `ClientSecret$inboundSchema` instead. */
+  export const inboundSchema = ClientSecret$inboundSchema;
+  /** @deprecated use `ClientSecret$outboundSchema` instead. */
+  export const outboundSchema = ClientSecret$outboundSchema;
+  /** @deprecated use `ClientSecret$Outbound` instead. */
+  export type Outbound = ClientSecret$Outbound;
 }

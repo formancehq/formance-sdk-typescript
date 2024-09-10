@@ -6,14 +6,16 @@
 import { ConfigInfo } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConfigInfo = {
-    config: {
-        storage: {
-            driver: "<value>",
-            ledgers: ["<value>"],
-        },
+  config: {
+    storage: {
+      driver: "<value>",
+      ledgers: [
+        "<value>",
+      ],
     },
-    server: "<value>",
-    version: "<value>",
+  },
+  server: "<value>",
+  version: "<value>",
 };
 ```
 

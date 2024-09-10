@@ -6,34 +6,34 @@
 import { V2Account } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Account = {
-    address: "users:001",
-    effectiveVolumes: {
-        USD: {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
-        },
-        EUR: {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
-        },
+  address: "users:001",
+  effectiveVolumes: {
+    "USD": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
     },
-    metadata: {
-        admin: "true",
+    "EUR": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
     },
-    volumes: {
-        USD: {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
-        },
-        EUR: {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
-        },
+  },
+  metadata: {
+    "admin": "true",
+  },
+  volumes: {
+    "USD": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
     },
+    "EUR": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+  },
 };
 ```
 

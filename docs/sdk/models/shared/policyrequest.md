@@ -6,12 +6,12 @@
 import { PolicyRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PolicyRequest = {
-    ledgerName: "default",
-    ledgerQuery: {
-        key: "<value>",
-    },
-    name: "XXX",
-    paymentsPoolID: "XXX",
+  ledgerName: "default",
+  ledgerQuery: {
+    "key": "<value>",
+  },
+  name: "XXX",
+  paymentsPoolID: "XXX",
 };
 ```
 

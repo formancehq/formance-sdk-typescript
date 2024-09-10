@@ -6,12 +6,12 @@
 import { GetHoldsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetHoldsRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    metadata: {
-        admin: "true",
-    },
-    pageSize: 100,
-    walletID: "wallet1",
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  metadata: {
+    "admin": "true",
+  },
+  pageSize: 100,
+  walletID: "wallet1",
 };
 ```
 

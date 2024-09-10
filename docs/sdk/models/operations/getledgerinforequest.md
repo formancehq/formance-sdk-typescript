@@ -6,7 +6,7 @@
 import { GetLedgerInfoRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetLedgerInfoRequest = {
-    ledger: "ledger001",
+  ledger: "ledger001",
 };
 ```
 

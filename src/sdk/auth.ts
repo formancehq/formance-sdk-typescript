@@ -17,93 +17,131 @@ import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class Auth extends ClientSDK {
-    /**
-     * Create client
-     */
-    async createClient(
-        request?: shared.CreateClientRequest | undefined,
-        options?: RequestOptions
-    ): Promise<operations.CreateClientResponse> {
-        return unwrapAsync(authCreateClient(this, request, options));
-    }
+  /**
+   * Create client
+   */
+  async createClient(
+    request?: shared.CreateClientRequest | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.CreateClientResponse> {
+    return unwrapAsync(authCreateClient(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Add a secret to a client
-     */
-    async createSecret(
-        request: operations.CreateSecretRequest,
-        options?: RequestOptions
-    ): Promise<operations.CreateSecretResponse> {
-        return unwrapAsync(authCreateSecret(this, request, options));
-    }
+  /**
+   * Add a secret to a client
+   */
+  async createSecret(
+    request: operations.CreateSecretRequest,
+    options?: RequestOptions,
+  ): Promise<operations.CreateSecretResponse> {
+    return unwrapAsync(authCreateSecret(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete client
-     */
-    async deleteClient(
-        request: operations.DeleteClientRequest,
-        options?: RequestOptions
-    ): Promise<operations.DeleteClientResponse> {
-        return unwrapAsync(authDeleteClient(this, request, options));
-    }
+  /**
+   * Delete client
+   */
+  async deleteClient(
+    request: operations.DeleteClientRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeleteClientResponse> {
+    return unwrapAsync(authDeleteClient(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Delete a secret from a client
-     */
-    async deleteSecret(
-        request: operations.DeleteSecretRequest,
-        options?: RequestOptions
-    ): Promise<operations.DeleteSecretResponse> {
-        return unwrapAsync(authDeleteSecret(this, request, options));
-    }
+  /**
+   * Delete a secret from a client
+   */
+  async deleteSecret(
+    request: operations.DeleteSecretRequest,
+    options?: RequestOptions,
+  ): Promise<operations.DeleteSecretResponse> {
+    return unwrapAsync(authDeleteSecret(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * List clients
-     */
-    async listClients(options?: RequestOptions): Promise<operations.ListClientsResponse> {
-        return unwrapAsync(authListClients(this, options));
-    }
+  /**
+   * List clients
+   */
+  async listClients(
+    options?: RequestOptions,
+  ): Promise<operations.ListClientsResponse> {
+    return unwrapAsync(authListClients(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * List users
-     *
-     * @remarks
-     * List users
-     */
-    async listUsers(options?: RequestOptions): Promise<operations.ListUsersResponse> {
-        return unwrapAsync(authListUsers(this, options));
-    }
+  /**
+   * List users
+   *
+   * @remarks
+   * List users
+   */
+  async listUsers(
+    options?: RequestOptions,
+  ): Promise<operations.ListUsersResponse> {
+    return unwrapAsync(authListUsers(
+      this,
+      options,
+    ));
+  }
 
-    /**
-     * Read client
-     */
-    async readClient(
-        request: operations.ReadClientRequest,
-        options?: RequestOptions
-    ): Promise<operations.ReadClientResponse> {
-        return unwrapAsync(authReadClient(this, request, options));
-    }
+  /**
+   * Read client
+   */
+  async readClient(
+    request: operations.ReadClientRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReadClientResponse> {
+    return unwrapAsync(authReadClient(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Read user
-     *
-     * @remarks
-     * Read user
-     */
-    async readUser(
-        request: operations.ReadUserRequest,
-        options?: RequestOptions
-    ): Promise<operations.ReadUserResponse> {
-        return unwrapAsync(authReadUser(this, request, options));
-    }
+  /**
+   * Read user
+   *
+   * @remarks
+   * Read user
+   */
+  async readUser(
+    request: operations.ReadUserRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReadUserResponse> {
+    return unwrapAsync(authReadUser(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Update client
-     */
-    async updateClient(
-        request: operations.UpdateClientRequest,
-        options?: RequestOptions
-    ): Promise<operations.UpdateClientResponse> {
-        return unwrapAsync(authUpdateClient(this, request, options));
-    }
+  /**
+   * Update client
+   */
+  async updateClient(
+    request: operations.UpdateClientRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateClientResponse> {
+    return unwrapAsync(authUpdateClient(
+      this,
+      request,
+      options,
+    ));
+  }
 }

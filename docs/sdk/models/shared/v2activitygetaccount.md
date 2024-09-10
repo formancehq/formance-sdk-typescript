@@ -6,8 +6,8 @@
 import { V2ActivityGetAccount } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ActivityGetAccount = {
-    id: "<id>",
-    ledger: "<value>",
+  id: "<id>",
+  ledger: "<value>",
 };
 ```
 

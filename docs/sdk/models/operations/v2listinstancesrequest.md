@@ -6,10 +6,10 @@
 import { V2ListInstancesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2ListInstancesRequest = {
-    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
-    running: true,
-    workflowID: "xxx",
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
+  running: true,
+  workflowID: "xxx",
 };
 ```
 

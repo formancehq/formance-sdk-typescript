@@ -5,35 +5,38 @@
 import * as z from "zod";
 
 export type WalletSubject = {
-    balance?: string | undefined;
-    identifier: string;
-    type: string;
+  balance?: string | undefined;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
-export const WalletSubject$inboundSchema: z.ZodType<WalletSubject, z.ZodTypeDef, unknown> =
-    z.object({
-        balance: z.string().optional(),
-        identifier: z.string(),
-        type: z.string(),
-    });
+export const WalletSubject$inboundSchema: z.ZodType<
+  WalletSubject,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  balance: z.string().optional(),
+  identifier: z.string(),
+  type: z.string(),
+});
 
 /** @internal */
 export type WalletSubject$Outbound = {
-    balance?: string | undefined;
-    identifier: string;
-    type: string;
+  balance?: string | undefined;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const WalletSubject$outboundSchema: z.ZodType<
-    WalletSubject$Outbound,
-    z.ZodTypeDef,
-    WalletSubject
+  WalletSubject$Outbound,
+  z.ZodTypeDef,
+  WalletSubject
 > = z.object({
-    balance: z.string().optional(),
-    identifier: z.string(),
-    type: z.string(),
+  balance: z.string().optional(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /**
@@ -41,10 +44,10 @@ export const WalletSubject$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace WalletSubject$ {
-    /** @deprecated use `WalletSubject$inboundSchema` instead. */
-    export const inboundSchema = WalletSubject$inboundSchema;
-    /** @deprecated use `WalletSubject$outboundSchema` instead. */
-    export const outboundSchema = WalletSubject$outboundSchema;
-    /** @deprecated use `WalletSubject$Outbound` instead. */
-    export type Outbound = WalletSubject$Outbound;
+  /** @deprecated use `WalletSubject$inboundSchema` instead. */
+  export const inboundSchema = WalletSubject$inboundSchema;
+  /** @deprecated use `WalletSubject$outboundSchema` instead. */
+  export const outboundSchema = WalletSubject$outboundSchema;
+  /** @deprecated use `WalletSubject$Outbound` instead. */
+  export type Outbound = WalletSubject$Outbound;
 }

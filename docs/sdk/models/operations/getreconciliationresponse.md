@@ -6,30 +6,30 @@
 import { GetReconciliationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetReconciliationResponse = {
-    contentType: "<value>",
-    reconciliationResponse: {
-        data: {
-            createdAt: new Date("2021-01-01T00:00:00.000Z"),
-            driftBalances: {
-                key: BigInt("692532"),
-            },
-            id: "XXX",
-            ledgerBalances: {
-                key: BigInt("588465"),
-            },
-            paymentsBalances: {
-                key: BigInt("725255"),
-            },
-            policyID: "XXX",
-            reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-            reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
-            status: "COMPLETED",
-        },
+  contentType: "<value>",
+  reconciliationResponse: {
+    data: {
+      createdAt: new Date("2021-01-01T00:00:00.000Z"),
+      driftBalances: {
+        "key": BigInt("692532"),
+      },
+      id: "XXX",
+      ledgerBalances: {
+        "key": BigInt("588465"),
+      },
+      paymentsBalances: {
+        "key": BigInt("725255"),
+      },
+      policyID: "XXX",
+      reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
+      reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
+      status: "COMPLETED",
     },
-    statusCode: 659669,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  },
+  statusCode: 659669,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

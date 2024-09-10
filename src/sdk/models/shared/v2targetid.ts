@@ -7,27 +7,31 @@ import * as z from "zod";
 export type V2TargetId = string | bigint;
 
 /** @internal */
-export const V2TargetId$inboundSchema: z.ZodType<V2TargetId, z.ZodTypeDef, unknown> = z.union([
-    z.string(),
-    z.number().transform((v) => BigInt(v)),
-]);
+export const V2TargetId$inboundSchema: z.ZodType<
+  V2TargetId,
+  z.ZodTypeDef,
+  unknown
+> = z.union([z.string(), z.number().transform(v => BigInt(v))]);
 
 /** @internal */
 export type V2TargetId$Outbound = string | number;
 
 /** @internal */
-export const V2TargetId$outboundSchema: z.ZodType<V2TargetId$Outbound, z.ZodTypeDef, V2TargetId> =
-    z.union([z.string(), z.bigint().transform((v) => Number(v))]);
+export const V2TargetId$outboundSchema: z.ZodType<
+  V2TargetId$Outbound,
+  z.ZodTypeDef,
+  V2TargetId
+> = z.union([z.string(), z.bigint().transform(v => Number(v))]);
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2TargetId$ {
-    /** @deprecated use `V2TargetId$inboundSchema` instead. */
-    export const inboundSchema = V2TargetId$inboundSchema;
-    /** @deprecated use `V2TargetId$outboundSchema` instead. */
-    export const outboundSchema = V2TargetId$outboundSchema;
-    /** @deprecated use `V2TargetId$Outbound` instead. */
-    export type Outbound = V2TargetId$Outbound;
+  /** @deprecated use `V2TargetId$inboundSchema` instead. */
+  export const inboundSchema = V2TargetId$inboundSchema;
+  /** @deprecated use `V2TargetId$outboundSchema` instead. */
+  export const outboundSchema = V2TargetId$outboundSchema;
+  /** @deprecated use `V2TargetId$Outbound` instead. */
+  export type Outbound = V2TargetId$Outbound;
 }
