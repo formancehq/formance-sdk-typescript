@@ -15,11 +15,11 @@ let value: ListLogsResponse = {
           data: {
             "key": "<value>",
           },
-          date: new Date("2024-10-11T10:53:37.826Z"),
+          date: new Date("2024-07-05T08:12:57.367Z"),
           hash:
             "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
           id: 1234,
-          type: Type.SetMetadata,
+          type: Type.NewTransaction,
         },
       ],
       hasMore: false,
@@ -28,7 +28,7 @@ let value: ListLogsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 71036,
+  statusCode: 337396,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

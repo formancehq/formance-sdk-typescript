@@ -6,7 +6,7 @@
 import { Key } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Key = {
-  dataType: "timestamp",
+  dataType: "set",
   required: false,
 };
 ```

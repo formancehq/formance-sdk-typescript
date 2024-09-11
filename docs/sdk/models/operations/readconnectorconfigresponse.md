@@ -9,12 +9,14 @@ let value: ReadConnectorConfigResponse = {
   connectorConfigResponse: {
     data: {
       apiKey: "XXX",
-      name: "My Wise Account",
+      endpoint: "XXX",
+      loginID: "XXX",
+      name: "My CurrencyCloud Account",
       pollingPeriod: "60s",
     },
   },
   contentType: "<value>",
-  statusCode: 756107,
+  statusCode: 592042,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

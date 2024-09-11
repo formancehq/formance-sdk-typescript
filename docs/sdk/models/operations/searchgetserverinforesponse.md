@@ -7,7 +7,7 @@ import { SearchgetServerInfoResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: SearchgetServerInfoResponse = {
   contentType: "<value>",
-  statusCode: 470132,
+  statusCode: 660174,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

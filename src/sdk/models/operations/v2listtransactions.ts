@@ -6,6 +6,10 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import * as shared from "../shared/index.js";
 
+export enum Order {
+  Effective = "effective",
+}
+
 export type V2ListTransactionsRequest = {
   /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -21,6 +25,7 @@ export type V2ListTransactionsRequest = {
    * Name of the ledger.
    */
   ledger: string;
+  order?: Order | undefined;
   /**
    * The maximum number of results to return per page.
    *
@@ -29,6 +34,7 @@ export type V2ListTransactionsRequest = {
   pageSize?: number | undefined;
   pit?: Date | undefined;
   query?: { [k: string]: any } | undefined;
+  reverse?: boolean | undefined;
 };
 
 export type V2ListTransactionsResponse = {
@@ -53,6 +59,26 @@ export type V2ListTransactionsResponse = {
 };
 
 /** @internal */
+export const Order$inboundSchema: z.ZodNativeEnum<typeof Order> = z.nativeEnum(
+  Order,
+);
+
+/** @internal */
+export const Order$outboundSchema: z.ZodNativeEnum<typeof Order> =
+  Order$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Order$ {
+  /** @deprecated use `Order$inboundSchema` instead. */
+  export const inboundSchema = Order$inboundSchema;
+  /** @deprecated use `Order$outboundSchema` instead. */
+  export const outboundSchema = Order$outboundSchema;
+}
+
+/** @internal */
 export const V2ListTransactionsRequest$inboundSchema: z.ZodType<
   V2ListTransactionsRequest,
   z.ZodTypeDef,
@@ -61,10 +87,12 @@ export const V2ListTransactionsRequest$inboundSchema: z.ZodType<
   cursor: z.string().optional(),
   expand: z.string().optional(),
   ledger: z.string(),
+  order: Order$inboundSchema.optional(),
   pageSize: z.number().int().optional(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   query: z.record(z.any()).optional(),
+  reverse: z.boolean().optional(),
 });
 
 /** @internal */
@@ -72,9 +100,11 @@ export type V2ListTransactionsRequest$Outbound = {
   cursor?: string | undefined;
   expand?: string | undefined;
   ledger: string;
+  order?: string | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
   query?: { [k: string]: any } | undefined;
+  reverse?: boolean | undefined;
 };
 
 /** @internal */
@@ -86,9 +116,11 @@ export const V2ListTransactionsRequest$outboundSchema: z.ZodType<
   cursor: z.string().optional(),
   expand: z.string().optional(),
   ledger: z.string(),
+  order: Order$outboundSchema.optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
   query: z.record(z.any()).optional(),
+  reverse: z.boolean().optional(),
 });
 
 /**

@@ -6,8 +6,8 @@
 import { Wallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Wallet = {
-  createdAt: new Date("2024-08-09T14:34:45.201Z"),
-  id: "4c700b60-7f3c-493c-b3b9-da3f2ceda7e2",
+  createdAt: new Date("2024-12-29T20:03:44.429Z"),
+  id: "3c93c73b-9da3-4f2c-ada7-e23f2257411f",
   ledger: "<value>",
   metadata: {
     "key": "<value>",

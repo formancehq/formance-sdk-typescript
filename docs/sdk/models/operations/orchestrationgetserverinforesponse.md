@@ -7,7 +7,7 @@ import { OrchestrationgetServerInfoResponse } from "@formance/formance-sdk/sdk/m
 
 let value: OrchestrationgetServerInfoResponse = {
   contentType: "<value>",
-  statusCode: 634274,
+  statusCode: 102044,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

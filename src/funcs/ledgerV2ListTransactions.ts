@@ -77,8 +77,10 @@ export async function ledgerV2ListTransactions(
     encodeFormQuery$({
       "cursor": payload$.cursor,
       "expand": payload$.expand,
+      "order": payload$.order,
       "pageSize": payload$.pageSize,
       "pit": payload$.pit,
+      "reverse": payload$.reverse,
     }),
     encodeJSONQuery$({
       "query": payload$.query,

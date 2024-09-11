@@ -7,7 +7,7 @@ import { ListInstancesResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: ListInstancesResponse = {
   contentType: "<value>",
-  statusCode: 325047,
+  statusCode: 438601,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

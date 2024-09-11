@@ -9,8 +9,8 @@ let value: GetHoldResponse = {
   contentType: "<value>",
   getHoldResponse: {
     data: {
-      description: "Reduced global structure",
-      id: "21419598-90af-4a56-be25-16fe4c8b711e",
+      description: "Customer-focused attitude-oriented encryption",
+      id: "1959890a-fa56-43e2-916f-e4c8b711e5b7",
       metadata: {
         "key": "<value>",
       },
@@ -19,7 +19,7 @@ let value: GetHoldResponse = {
       walletID: "<value>",
     },
   },
-  statusCode: 352312,
+  statusCode: 998848,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

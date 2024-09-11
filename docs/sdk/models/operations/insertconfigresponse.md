@@ -9,19 +9,19 @@ let value: InsertConfigResponse = {
   configResponse: {
     data: {
       active: true,
-      createdAt: new Date("2024-09-17T11:26:38.503Z"),
+      createdAt: new Date("2024-04-01T04:23:17.435Z"),
       endpoint: "https://example.com",
       eventTypes: [
         "TYPE1",
         "TYPE2",
       ],
-      id: "31b8b90f-3443-4a11-88e0-adcf4b921879",
+      id: "8b90f344-3a11-408e-8adc-f4b921879fce",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2024-12-07T08:01:55.338Z"),
+      updatedAt: new Date("2023-10-27T16:43:50.008Z"),
     },
   },
   contentType: "<value>",
-  statusCode: 787542,
+  statusCode: 338159,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -6,8 +6,8 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "Multi-channelled tertiary capability",
-  id: "53b66845-1c6c-46e2-85e1-6deab3fec957",
+  description: "Decentralized empowering complexity",
+  id: "b668451c-6c6e-4205-a16d-eab3fec9578a",
   metadata: {
     "key": "<value>",
   },

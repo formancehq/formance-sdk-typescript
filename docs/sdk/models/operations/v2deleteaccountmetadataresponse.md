@@ -7,7 +7,7 @@ import { V2DeleteAccountMetadataResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: V2DeleteAccountMetadataResponse = {
   contentType: "<value>",
-  statusCode: 944669,
+  statusCode: 105907,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

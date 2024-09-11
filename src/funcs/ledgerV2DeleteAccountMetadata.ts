@@ -16,6 +16,7 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
+import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
@@ -34,6 +35,7 @@ export async function ledgerV2DeleteAccountMetadata(
 ): Promise<
   Result<
     operations.V2DeleteAccountMetadataResponse,
+    | errors.V2ErrorResponse
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -77,7 +79,7 @@ export async function ledgerV2DeleteAccountMetadata(
   )(pathParams$);
 
   const headers$ = new Headers({
-    Accept: "*/*",
+    Accept: "application/json",
   });
 
   const authorization$ = await extractSecurity(client$.options$.authorization);
@@ -126,6 +128,7 @@ export async function ledgerV2DeleteAccountMetadata(
 
   const [result$] = await m$.match<
     operations.V2DeleteAccountMetadataResponse,
+    | errors.V2ErrorResponse
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -135,7 +138,7 @@ export async function ledgerV2DeleteAccountMetadata(
     | ConnectionError
   >(
     m$.nil("2XX", operations.V2DeleteAccountMetadataResponse$inboundSchema),
-    m$.fail("default"),
+    m$.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields$ });
   if (!result$.ok) {
     return result$;

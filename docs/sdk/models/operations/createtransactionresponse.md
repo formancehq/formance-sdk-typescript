@@ -7,7 +7,7 @@ import { CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: CreateTransactionResponse = {
   contentType: "<value>",
-  statusCode: 963663,
+  statusCode: 272656,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

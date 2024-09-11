@@ -8,9 +8,9 @@ import { V2PaymentAdjustment, V2PaymentStatus } from "@formance/formance-sdk/sdk
 let value: V2PaymentAdjustment = {
   absolute: false,
   amount: BigInt("100"),
-  date: new Date("2023-02-05T03:35:13.671Z"),
+  date: new Date("2022-07-28T20:40:19.948Z"),
   raw: {},
-  status: V2PaymentStatus.Cancelled,
+  status: V2PaymentStatus.Terminated,
 };
 ```
 

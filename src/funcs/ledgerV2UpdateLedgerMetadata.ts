@@ -129,6 +129,9 @@ export async function ledgerV2UpdateLedgerMetadata(
     | ConnectionError
   >(
     m$.nil(204, operations.V2UpdateLedgerMetadataResponse$inboundSchema),
+    m$.json("5XX", operations.V2UpdateLedgerMetadataResponse$inboundSchema, {
+      key: "V2ErrorResponse",
+    }),
     m$.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields$ });
   if (!result$.ok) {

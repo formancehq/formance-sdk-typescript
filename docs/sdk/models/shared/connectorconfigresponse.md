@@ -8,9 +8,8 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 let value: ConnectorConfigResponse = {
   data: {
     apiKey: "XXX",
-    apiSecret: "XXX",
-    endpoint: "XXX",
-    name: "My Modulr Account",
+    name: "My Stripe Account",
+    pageSize: 50,
     pollingPeriod: "60s",
   },
 };

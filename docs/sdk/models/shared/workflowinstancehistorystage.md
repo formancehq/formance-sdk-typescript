@@ -11,7 +11,7 @@ import {
 } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WorkflowInstanceHistoryStage = {
-  attempt: 160538,
+  attempt: 796392,
   input: {
     createTransaction: {
       data: {
@@ -83,7 +83,7 @@ let value: WorkflowInstanceHistoryStage = {
   output: {
     createTransaction: {
       data: {
-        id: BigInt("796392"),
+        id: BigInt("959167"),
         metadata: {
           "admin": "true",
         },
@@ -97,7 +97,7 @@ let value: WorkflowInstanceHistoryStage = {
         ],
         reference: "ref:001",
         reverted: false,
-        timestamp: new Date("2022-12-04T21:09:33.258Z"),
+        timestamp: new Date("2022-09-13T05:17:36.403Z"),
       },
     },
     getAccount: {
@@ -138,32 +138,32 @@ let value: WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2024-11-17T05:55:05.965Z"),
+            date: new Date("2023-05-18T02:53:01.141Z"),
             raw: {},
-            status: OrchestrationPaymentStatus.Active,
+            status: OrchestrationPaymentStatus.Failed,
           },
         ],
         asset: "USD",
         connectorID: "<value>",
-        createdAt: new Date("2023-05-18T02:53:01.141Z"),
+        createdAt: new Date("2023-10-10T17:14:50.735Z"),
         destinationAccountID: "<value>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: OrchestrationPaymentScheme.Sepa,
+        scheme: OrchestrationPaymentScheme.Other,
         sourceAccountID: "<value>",
-        status: OrchestrationPaymentStatus.Failed,
-        type: OrchestrationPaymentType.Other,
+        status: OrchestrationPaymentStatus.Cancelled,
+        type: OrchestrationPaymentType.Transfer,
       },
     },
     listWallets: {
       cursor: {
         data: [
           {
-            createdAt: new Date("2024-07-29T01:32:11.096Z"),
-            id: "871f99dd-2efd-4121-aa6f-1e674bdb04f1",
+            createdAt: new Date("2023-05-17T02:48:20.645Z"),
+            id: "1f99dd2e-fd12-41aa-af1e-674bdb04f157",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -179,7 +179,7 @@ let value: WorkflowInstanceHistoryStage = {
     },
     revertTransaction: {
       data: {
-        id: BigInt("355369"),
+        id: BigInt("356707"),
         metadata: {
           "admin": "true",
         },
@@ -193,11 +193,11 @@ let value: WorkflowInstanceHistoryStage = {
         ],
         reference: "ref:001",
         reverted: false,
-        timestamp: new Date("2023-05-02T11:47:05.253Z"),
+        timestamp: new Date("2023-03-06T09:13:54.436Z"),
       },
     },
   },
-  startedAt: new Date("2023-01-26T22:49:04.906Z"),
+  startedAt: new Date("2022-01-18T21:30:17.962Z"),
   terminated: false,
 };
 ```

@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Object-based fresh-thinking capability",
-  id: "065e904f-3b11-494b-8abf-603a79f9dfe0",
+  description: "Decentralized 3rd generation hardware",
+  id: "5e904f3b-1194-4b8a-bf60-3a79f9dfe0ab",
   metadata: {
     "key": "<value>",
   },

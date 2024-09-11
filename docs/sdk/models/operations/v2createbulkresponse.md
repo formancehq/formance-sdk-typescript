@@ -7,7 +7,7 @@ import { V2CreateBulkResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: V2CreateBulkResponse = {
   contentType: "<value>",
-  statusCode: 799159,
+  statusCode: 800911,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

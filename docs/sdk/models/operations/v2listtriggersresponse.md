@@ -7,7 +7,7 @@ import { V2ListTriggersResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: V2ListTriggersResponse = {
   contentType: "<value>",
-  statusCode: 338007,
+  statusCode: 674752,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V2ListTriggersResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2022-05-01T23:18:27.578Z"),
+          createdAt: new Date("2023-12-21T08:05:36.916Z"),
           event: "<value>",
           id: "<id>",
           workflowID: "<value>",

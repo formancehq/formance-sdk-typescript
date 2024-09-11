@@ -5,7 +5,7 @@
 ```typescript
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Connector = Connector.DummyPay;
+let value: Connector = Connector.Mangopay;
 ```
 
 ## Values

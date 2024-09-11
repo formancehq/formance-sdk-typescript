@@ -23,3 +23,4 @@ let value: V2ErrorsEnum = V2ErrorsEnum.Validation;
 | `AlreadyRevert`     | ALREADY_REVERT      |
 | `NoPostings`        | NO_POSTINGS         |
 | `LedgerNotFound`    | LEDGER_NOT_FOUND    |
+| `Import`            | IMPORT              |

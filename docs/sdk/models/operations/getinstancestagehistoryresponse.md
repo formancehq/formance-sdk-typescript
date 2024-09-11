@@ -10,7 +10,7 @@ let value: GetInstanceStageHistoryResponse = {
   getWorkflowInstanceHistoryStageResponse: {
     data: [],
   },
-  statusCode: 607831,
+  statusCode: 570197,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

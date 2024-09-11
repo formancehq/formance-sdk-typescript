@@ -7,13 +7,13 @@ import { V2GetLedgerResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: V2GetLedgerResponse = {
   contentType: "<value>",
-  statusCode: 264555,
+  statusCode: 736918,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetLedgerResponse: {
     data: {
-      addedAt: new Date("2022-07-24T05:17:09.567Z"),
+      addedAt: new Date("2023-05-15T22:34:42.373Z"),
       bucket: "<value>",
       metadata: {
         "admin": "true",

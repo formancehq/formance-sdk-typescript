@@ -5,7 +5,7 @@
 ```typescript
 import { V2LogType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2LogType = V2LogType.SetMetadata;
+let value: V2LogType = V2LogType.NewTransaction;
 ```
 
 ## Values

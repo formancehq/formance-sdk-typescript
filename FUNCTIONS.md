@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
-import { getOIDCWellKnowns } from "@formance/formance-sdk/funcs/getOIDCWellKnowns.js";
+import { getVersions } from "@formance/formance-sdk/funcs/getVersions.js";
 import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors/sdkvalidationerror.js";
 
 // Use `SDKCore` for best tree-shaking performance.
@@ -30,7 +30,7 @@ const sdk = new SDKCore({
 });
 
 async function run() {
-  const res = await getOIDCWellKnowns(sdk);
+  const res = await getVersions(sdk);
 
   switch (true) {
     case res.ok:
