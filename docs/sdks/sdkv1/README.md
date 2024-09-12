@@ -599,13 +599,13 @@ async function run() {
       reference: "ref:001",
       script: {
         plain: "vars {\n" +
-      "account $user\n" +
-      "}\n" +
-      "send [COIN 10] (\n" +
-      "	source = @world\n" +
-      "	destination = $user\n" +
-      ")\n" +
-      "",
+        "account $user\n" +
+        "}\n" +
+        "send [COIN 10] (\n" +
+        "	source = @world\n" +
+        "	destination = $user\n" +
+        ")\n" +
+        "",
         vars: {
           "user": "users:042",
         },
@@ -650,13 +650,13 @@ async function run() {
       reference: "ref:001",
       script: {
         plain: "vars {\n" +
-      "account $user\n" +
-      "}\n" +
-      "send [COIN 10] (\n" +
-      "	source = @world\n" +
-      "	destination = $user\n" +
-      ")\n" +
-      "",
+        "account $user\n" +
+        "}\n" +
+        "send [COIN 10] (\n" +
+        "	source = @world\n" +
+        "	destination = $user\n" +
+        ")\n" +
+        "",
         vars: {
           "user": "users:042",
         },
@@ -1800,13 +1800,13 @@ async function run() {
   const result = await sdk.ledger.v1.runScript({
     script: {
       plain: "vars {\n" +
-    "account $user\n" +
-    "}\n" +
-    "send [COIN 10] (\n" +
-    "	source = @world\n" +
-    "	destination = $user\n" +
-    ")\n" +
-    "",
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
       reference: "order_1234",
       vars: {
         "user": "users:042",
@@ -1841,13 +1841,13 @@ async function run() {
   const res = await ledgerV1RunScript(sdk, {
     script: {
       plain: "vars {\n" +
-    "account $user\n" +
-    "}\n" +
-    "send [COIN 10] (\n" +
-    "	source = @world\n" +
-    "	destination = $user\n" +
-    ")\n" +
-    "",
+      "account $user\n" +
+      "}\n" +
+      "send [COIN 10] (\n" +
+      "	source = @world\n" +
+      "	destination = $user\n" +
+      ")\n" +
+      "",
       reference: "order_1234",
       vars: {
         "user": "users:042",

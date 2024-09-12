@@ -39,7 +39,7 @@ export async function walletsV1GetTransactions(
     | ConnectionError
   >
 > {
-  const input$ = typeof request === "undefined" ? {} : request;
+  const input$ = request;
 
   const parsed$ = schemas$.safeParse(
     input$,

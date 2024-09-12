@@ -82,12 +82,13 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+### [auth](docs/sdks/auth/README.md)
 
 
-### [auth.v1](docs/sdks/v1/README.md)
+#### [auth.v1](docs/sdks/v1/README.md)
 
 * [createClient](docs/sdks/v1/README.md#createclient) - Create client
 * [createSecret](docs/sdks/v1/README.md#createsecret) - Add a secret to a client
@@ -101,8 +102,10 @@ run();
 * [readUser](docs/sdks/v1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/v1/README.md#updateclient) - Update client
 
+### [ledger](docs/sdks/ledger/README.md)
 
-### [ledger.v1](docs/sdks/sdkv1/README.md)
+
+#### [ledger.v1](docs/sdks/sdkv1/README.md)
 
 * [createTransactions](docs/sdks/sdkv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/sdkv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -125,7 +128,7 @@ run();
 * [~~runScript~~](docs/sdks/sdkv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/sdkv1/README.md#updatemapping) - Update the mapping of a ledger
 
-### [ledger.v2](docs/sdks/v2/README.md)
+#### [ledger.v2](docs/sdks/v2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/v2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/v2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -154,8 +157,10 @@ run();
 * [revertTransaction](docs/sdks/v2/README.md#reverttransaction) - Revert a ledger transaction by its ID
 * [updateLedgerMetadata](docs/sdks/v2/README.md#updateledgermetadata) - Update ledger metadata
 
+### [orchestration](docs/sdks/orchestration/README.md)
 
-### [orchestration.v1](docs/sdks/sdkorchestrationv1/README.md)
+
+#### [orchestration.v1](docs/sdks/sdkorchestrationv1/README.md)
 
 * [cancelEvent](docs/sdks/sdkorchestrationv1/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/sdkorchestrationv1/README.md#createtrigger) - Create trigger
@@ -175,7 +180,7 @@ run();
 * [runWorkflow](docs/sdks/sdkorchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/sdkorchestrationv1/README.md#sendevent) - Send an event to a running workflow
 
-### [orchestration.v2](docs/sdks/sdkv2/README.md)
+#### [orchestration.v2](docs/sdks/sdkv2/README.md)
 
 * [cancelEvent](docs/sdks/sdkv2/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/sdkv2/README.md#createtrigger) - Create trigger
@@ -196,8 +201,10 @@ run();
 * [sendEvent](docs/sdks/sdkv2/README.md#sendevent) - Send an event to a running workflow
 * [testTrigger](docs/sdks/sdkv2/README.md#testtrigger) - Test trigger
 
+### [payments](docs/sdks/payments/README.md)
 
-### [payments.v1](docs/sdks/sdkpaymentsv1/README.md)
+
+#### [payments.v1](docs/sdks/sdkpaymentsv1/README.md)
 
 * [addAccountToPool](docs/sdks/sdkpaymentsv1/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/sdkpaymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -243,8 +250,10 @@ run();
 * [updateConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/sdkpaymentsv1/README.md#updatemetadata) - Update metadata
 
+### [reconciliation](docs/sdks/reconciliation/README.md)
 
-### [reconciliation.v1](docs/sdks/sdkreconciliationv1/README.md)
+
+#### [reconciliation.v1](docs/sdks/sdkreconciliationv1/README.md)
 
 * [createPolicy](docs/sdks/sdkreconciliationv1/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/sdkreconciliationv1/README.md#deletepolicy) - Delete a policy
@@ -255,14 +264,22 @@ run();
 * [reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/sdkreconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
+### [SDK](docs/sdks/sdk/README.md)
 
-### [search.v1](docs/sdks/sdksearchv1/README.md)
+* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+
+### [search](docs/sdks/search/README.md)
+
+
+#### [search.v1](docs/sdks/sdksearchv1/README.md)
 
 * [search](docs/sdks/sdksearchv1/README.md#search) - search.v1
 * [searchgetServerInfo](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info
 
+### [wallets](docs/sdks/wallets/README.md)
 
-### [wallets.v1](docs/sdks/sdkwalletsv1/README.md)
+
+#### [wallets.v1](docs/sdks/sdkwalletsv1/README.md)
 
 * [confirmHold](docs/sdks/sdkwalletsv1/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/sdkwalletsv1/README.md#createbalance) - Create a balance
@@ -281,8 +298,10 @@ run();
 * [voidHold](docs/sdks/sdkwalletsv1/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/sdkwalletsv1/README.md#walletsgetserverinfo) - Get server info
 
+### [webhooks](docs/sdks/webhooks/README.md)
 
-### [webhooks.v1](docs/sdks/sdkwebhooksv1/README.md)
+
+#### [webhooks.v1](docs/sdks/sdkwebhooksv1/README.md)
 
 * [activateConfig](docs/sdks/sdkwebhooksv1/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/sdkwebhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -291,6 +310,8 @@ run();
 * [getManyConfigs](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->

@@ -45,7 +45,7 @@ export async function orchestrationV1ListInstances(
     | ConnectionError
   >
 > {
-  const input$ = typeof request === "undefined" ? {} : request;
+  const input$ = request;
 
   const parsed$ = schemas$.safeParse(
     input$,

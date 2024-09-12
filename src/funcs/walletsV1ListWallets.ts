@@ -46,7 +46,7 @@ export async function walletsV1ListWallets(
     | ConnectionError
   >
 > {
-  const input$ = typeof request === "undefined" ? {} : request;
+  const input$ = request;
 
   const parsed$ = schemas$.safeParse(
     input$,

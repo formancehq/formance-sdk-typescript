@@ -566,13 +566,13 @@ async function run() {
       reference: "ref:001",
       script: {
         plain: "vars {\n" +
-      "account $user\n" +
-      "}\n" +
-      "send [COIN 10] (\n" +
-      "	source = @world\n" +
-      "	destination = $user\n" +
-      ")\n" +
-      "",
+        "account $user\n" +
+        "}\n" +
+        "send [COIN 10] (\n" +
+        "	source = @world\n" +
+        "	destination = $user\n" +
+        ")\n" +
+        "",
         vars: {
           "user": "users:042",
         },
@@ -620,13 +620,13 @@ async function run() {
       reference: "ref:001",
       script: {
         plain: "vars {\n" +
-      "account $user\n" +
-      "}\n" +
-      "send [COIN 10] (\n" +
-      "	source = @world\n" +
-      "	destination = $user\n" +
-      ")\n" +
-      "",
+        "account $user\n" +
+        "}\n" +
+        "send [COIN 10] (\n" +
+        "	source = @world\n" +
+        "	destination = $user\n" +
+        ")\n" +
+        "",
         vars: {
           "user": "users:042",
         },
