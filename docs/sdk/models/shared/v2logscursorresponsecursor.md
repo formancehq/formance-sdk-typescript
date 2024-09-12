@@ -1,5 +1,28 @@
 # V2LogsCursorResponseCursor
 
+## Example Usage
+
+```typescript
+import { V2LogsCursorResponseCursor, V2LogType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2LogsCursorResponseCursor = {
+  data: [
+    {
+      data: {
+        "key": "<value>",
+      },
+      date: new Date("2022-06-25T05:13:20.042Z"),
+      hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
+      id: BigInt("1234"),
+      type: V2LogType.NewTransaction,
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

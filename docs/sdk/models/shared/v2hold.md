@@ -1,5 +1,19 @@
 # V2Hold
 
+## Example Usage
+
+```typescript
+import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Hold = {
+  description: "Multi-channelled tertiary capability",
+  id: "53b66845-1c6c-46e2-85e1-6deab3fec957",
+  metadata: {
+    "key": "<value>",
+  },
+  walletID: "<value>",
+};
+```
 
 ## Fields
 

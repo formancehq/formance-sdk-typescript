@@ -1,5 +1,19 @@
 # WorkflowInstanceHistory
 
+## Example Usage
+
+```typescript
+import { WorkflowInstanceHistory } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: WorkflowInstanceHistory = {
+  input: {
+    event: "<value>",
+  },
+  name: "<value>",
+  startedAt: new Date("2024-03-12T14:40:32.434Z"),
+  terminated: false,
+};
+```
 
 ## Fields
 

@@ -1,5 +1,20 @@
 # TaskModulr
 
+## Example Usage
+
+```typescript
+import { PaymentStatus, TaskModulr } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskModulr = {
+  connectorID: "<value>",
+  createdAt: new Date("2023-06-29T14:50:43.901Z"),
+  descriptor: {},
+  id: "929177de-ac64-46ec-b573-409e3eb1e5a2",
+  state: {},
+  status: PaymentStatus.Dispute,
+  updatedAt: new Date("2022-05-08T00:35:36.269Z"),
+};
+```
 
 ## Fields
 

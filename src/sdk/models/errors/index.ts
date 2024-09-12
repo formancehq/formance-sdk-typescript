@@ -4,6 +4,7 @@
 
 export * from "./error.js";
 export * from "./errorresponse.js";
+export * from "./httpclienterrors.js";
 export * from "./paymentserrorresponse.js";
 export * from "./reconciliationerrorresponse.js";
 export * from "./sdkerror.js";

@@ -1,5 +1,14 @@
 # PaymentsgetAccountRequest
 
+## Example Usage
+
+```typescript
+import { PaymentsgetAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: PaymentsgetAccountRequest = {
+  accountId: "XXX",
+};
+```
 
 ## Fields
 

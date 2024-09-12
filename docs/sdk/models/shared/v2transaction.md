@@ -1,5 +1,28 @@
 # V2Transaction
 
+## Example Usage
+
+```typescript
+import { V2Transaction } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Transaction = {
+  id: BigInt("86377"),
+  metadata: {
+    "admin": "true",
+  },
+  postings: [
+    {
+      amount: BigInt("100"),
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+  ],
+  reference: "ref:001",
+  reverted: false,
+  timestamp: new Date("2022-03-04T07:19:54.155Z"),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # UpdateClientResponse
 
+## Example Usage
+
+```typescript
+import { UpdateClientResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UpdateClientResponse = {};
+```
 
 ## Fields
 

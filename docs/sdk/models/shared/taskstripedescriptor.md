@@ -1,5 +1,15 @@
 # TaskStripeDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskStripeDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskStripeDescriptor = {
+  account: "64377564",
+  name: "<value>",
+};
+```
 
 ## Fields
 

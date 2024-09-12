@@ -1,5 +1,18 @@
 # ReconciliationgetServerInfoResponse
 
+## Example Usage
+
+```typescript
+import { ReconciliationgetServerInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ReconciliationgetServerInfoResponse = {
+  contentType: "<value>",
+  statusCode: 474867,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

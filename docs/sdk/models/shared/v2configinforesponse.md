@@ -1,5 +1,15 @@
 # V2ConfigInfoResponse
 
+## Example Usage
+
+```typescript
+import { V2ConfigInfoResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ConfigInfoResponse = {
+  server: "<value>",
+  version: "<value>",
+};
+```
 
 ## Fields
 

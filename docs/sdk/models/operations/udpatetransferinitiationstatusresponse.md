@@ -1,5 +1,18 @@
 # UdpateTransferInitiationStatusResponse
 
+## Example Usage
+
+```typescript
+import { UdpateTransferInitiationStatusResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: UdpateTransferInitiationStatusResponse = {
+  contentType: "<value>",
+  statusCode: 116202,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

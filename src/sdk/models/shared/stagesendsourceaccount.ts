@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type StageSendSourceAccount = {
-    id: string;
-    ledger?: string | undefined;
+  id: string;
+  ledger?: string | undefined;
 };
 
 /** @internal */
 export const StageSendSourceAccount$inboundSchema: z.ZodType<
-    StageSendSourceAccount,
-    z.ZodTypeDef,
-    unknown
+  StageSendSourceAccount,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    id: z.string(),
-    ledger: z.string().optional(),
+  id: z.string(),
+  ledger: z.string().optional(),
 });
 
 /** @internal */
 export type StageSendSourceAccount$Outbound = {
-    id: string;
-    ledger?: string | undefined;
+  id: string;
+  ledger?: string | undefined;
 };
 
 /** @internal */
 export const StageSendSourceAccount$outboundSchema: z.ZodType<
-    StageSendSourceAccount$Outbound,
-    z.ZodTypeDef,
-    StageSendSourceAccount
+  StageSendSourceAccount$Outbound,
+  z.ZodTypeDef,
+  StageSendSourceAccount
 > = z.object({
-    id: z.string(),
-    ledger: z.string().optional(),
+  id: z.string(),
+  ledger: z.string().optional(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const StageSendSourceAccount$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace StageSendSourceAccount$ {
-    /** @deprecated use `StageSendSourceAccount$inboundSchema` instead. */
-    export const inboundSchema = StageSendSourceAccount$inboundSchema;
-    /** @deprecated use `StageSendSourceAccount$outboundSchema` instead. */
-    export const outboundSchema = StageSendSourceAccount$outboundSchema;
-    /** @deprecated use `StageSendSourceAccount$Outbound` instead. */
-    export type Outbound = StageSendSourceAccount$Outbound;
+  /** @deprecated use `StageSendSourceAccount$inboundSchema` instead. */
+  export const inboundSchema = StageSendSourceAccount$inboundSchema;
+  /** @deprecated use `StageSendSourceAccount$outboundSchema` instead. */
+  export const outboundSchema = StageSendSourceAccount$outboundSchema;
+  /** @deprecated use `StageSendSourceAccount$Outbound` instead. */
+  export type Outbound = StageSendSourceAccount$Outbound;
 }

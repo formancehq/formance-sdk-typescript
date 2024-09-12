@@ -1,5 +1,14 @@
 # V2StageSendSourceWallet
 
+## Example Usage
+
+```typescript
+import { V2StageSendSourceWallet } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StageSendSourceWallet = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

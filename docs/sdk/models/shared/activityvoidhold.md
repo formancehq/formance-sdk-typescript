@@ -1,5 +1,14 @@
 # ActivityVoidHold
 
+## Example Usage
+
+```typescript
+import { ActivityVoidHold } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ActivityVoidHold = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

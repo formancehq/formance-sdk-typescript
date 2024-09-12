@@ -1,5 +1,27 @@
 # ListConnectorTasksResponse
 
+## Example Usage
+
+```typescript
+import { ListConnectorTasksResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListConnectorTasksResponse = {
+  contentType: "<value>",
+  statusCode: 828940,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  tasksCursor: {
+    cursor: {
+      data: [],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+    },
+  },
+};
+```
 
 ## Fields
 

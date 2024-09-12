@@ -5,61 +5,65 @@
 import * as z from "zod";
 
 export type V2Trigger = {
-    createdAt: Date;
-    event: string;
-    filter?: string | undefined;
-    id: string;
-    name?: string | undefined;
-    vars?: { [k: string]: any } | undefined;
-    workflowID: string;
+  createdAt: Date;
+  event: string;
+  filter?: string | undefined;
+  id: string;
+  name?: string | undefined;
+  vars?: { [k: string]: any } | undefined;
+  workflowID: string;
 };
 
 /** @internal */
-export const V2Trigger$inboundSchema: z.ZodType<V2Trigger, z.ZodTypeDef, unknown> = z.object({
-    createdAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v)),
-    event: z.string(),
-    filter: z.string().optional(),
-    id: z.string(),
-    name: z.string().optional(),
-    vars: z.record(z.any()).optional(),
-    workflowID: z.string(),
+export const V2Trigger$inboundSchema: z.ZodType<
+  V2Trigger,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  event: z.string(),
+  filter: z.string().optional(),
+  id: z.string(),
+  name: z.string().optional(),
+  vars: z.record(z.any()).optional(),
+  workflowID: z.string(),
 });
 
 /** @internal */
 export type V2Trigger$Outbound = {
-    createdAt: string;
-    event: string;
-    filter?: string | undefined;
-    id: string;
-    name?: string | undefined;
-    vars?: { [k: string]: any } | undefined;
-    workflowID: string;
+  createdAt: string;
+  event: string;
+  filter?: string | undefined;
+  id: string;
+  name?: string | undefined;
+  vars?: { [k: string]: any } | undefined;
+  workflowID: string;
 };
 
 /** @internal */
-export const V2Trigger$outboundSchema: z.ZodType<V2Trigger$Outbound, z.ZodTypeDef, V2Trigger> =
-    z.object({
-        createdAt: z.date().transform((v) => v.toISOString()),
-        event: z.string(),
-        filter: z.string().optional(),
-        id: z.string(),
-        name: z.string().optional(),
-        vars: z.record(z.any()).optional(),
-        workflowID: z.string(),
-    });
+export const V2Trigger$outboundSchema: z.ZodType<
+  V2Trigger$Outbound,
+  z.ZodTypeDef,
+  V2Trigger
+> = z.object({
+  createdAt: z.date().transform(v => v.toISOString()),
+  event: z.string(),
+  filter: z.string().optional(),
+  id: z.string(),
+  name: z.string().optional(),
+  vars: z.record(z.any()).optional(),
+  workflowID: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2Trigger$ {
-    /** @deprecated use `V2Trigger$inboundSchema` instead. */
-    export const inboundSchema = V2Trigger$inboundSchema;
-    /** @deprecated use `V2Trigger$outboundSchema` instead. */
-    export const outboundSchema = V2Trigger$outboundSchema;
-    /** @deprecated use `V2Trigger$Outbound` instead. */
-    export type Outbound = V2Trigger$Outbound;
+  /** @deprecated use `V2Trigger$inboundSchema` instead. */
+  export const inboundSchema = V2Trigger$inboundSchema;
+  /** @deprecated use `V2Trigger$outboundSchema` instead. */
+  export const outboundSchema = V2Trigger$outboundSchema;
+  /** @deprecated use `V2Trigger$Outbound` instead. */
+  export type Outbound = V2Trigger$Outbound;
 }

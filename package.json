@@ -1,6 +1,6 @@
 {
   "name": "@formance/formance-sdk",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "author": "Formance",
   "main": "./index.js",
   "sideEffects": false,
@@ -12,12 +12,13 @@
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "zod": ">= 3"
   },
   "devDependencies": {
+    "@types/node": "^18.19.3",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint": "^8.57.0",

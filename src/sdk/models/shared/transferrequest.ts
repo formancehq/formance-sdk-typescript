@@ -5,39 +5,42 @@
 import * as z from "zod";
 
 export type TransferRequest = {
-    amount: bigint;
-    asset: string;
-    destination: string;
-    source?: string | undefined;
+  amount: bigint;
+  asset: string;
+  destination: string;
+  source?: string | undefined;
 };
 
 /** @internal */
-export const TransferRequest$inboundSchema: z.ZodType<TransferRequest, z.ZodTypeDef, unknown> =
-    z.object({
-        amount: z.number().transform((v) => BigInt(v)),
-        asset: z.string(),
-        destination: z.string(),
-        source: z.string().optional(),
-    });
+export const TransferRequest$inboundSchema: z.ZodType<
+  TransferRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  amount: z.number().transform(v => BigInt(v)),
+  asset: z.string(),
+  destination: z.string(),
+  source: z.string().optional(),
+});
 
 /** @internal */
 export type TransferRequest$Outbound = {
-    amount: number;
-    asset: string;
-    destination: string;
-    source?: string | undefined;
+  amount: number;
+  asset: string;
+  destination: string;
+  source?: string | undefined;
 };
 
 /** @internal */
 export const TransferRequest$outboundSchema: z.ZodType<
-    TransferRequest$Outbound,
-    z.ZodTypeDef,
-    TransferRequest
+  TransferRequest$Outbound,
+  z.ZodTypeDef,
+  TransferRequest
 > = z.object({
-    amount: z.bigint().transform((v) => Number(v)),
-    asset: z.string(),
-    destination: z.string(),
-    source: z.string().optional(),
+  amount: z.bigint().transform(v => Number(v)),
+  asset: z.string(),
+  destination: z.string(),
+  source: z.string().optional(),
 });
 
 /**
@@ -45,10 +48,10 @@ export const TransferRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TransferRequest$ {
-    /** @deprecated use `TransferRequest$inboundSchema` instead. */
-    export const inboundSchema = TransferRequest$inboundSchema;
-    /** @deprecated use `TransferRequest$outboundSchema` instead. */
-    export const outboundSchema = TransferRequest$outboundSchema;
-    /** @deprecated use `TransferRequest$Outbound` instead. */
-    export type Outbound = TransferRequest$Outbound;
+  /** @deprecated use `TransferRequest$inboundSchema` instead. */
+  export const inboundSchema = TransferRequest$inboundSchema;
+  /** @deprecated use `TransferRequest$outboundSchema` instead. */
+  export const outboundSchema = TransferRequest$outboundSchema;
+  /** @deprecated use `TransferRequest$Outbound` instead. */
+  export type Outbound = TransferRequest$Outbound;
 }

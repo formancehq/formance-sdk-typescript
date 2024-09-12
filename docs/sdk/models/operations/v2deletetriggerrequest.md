@@ -1,5 +1,14 @@
 # V2DeleteTriggerRequest
 
+## Example Usage
+
+```typescript
+import { V2DeleteTriggerRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2DeleteTriggerRequest = {
+  triggerID: "<value>",
+};
+```
 
 ## Fields
 

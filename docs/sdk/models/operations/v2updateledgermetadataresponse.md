@@ -1,5 +1,18 @@
 # V2UpdateLedgerMetadataResponse
 
+## Example Usage
+
+```typescript
+import { V2UpdateLedgerMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2UpdateLedgerMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 653140,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

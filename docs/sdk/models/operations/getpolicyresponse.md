@@ -1,5 +1,30 @@
 # GetPolicyResponse
 
+## Example Usage
+
+```typescript
+import { GetPolicyResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetPolicyResponse = {
+  contentType: "<value>",
+  policyResponse: {
+    data: {
+      createdAt: new Date("2021-01-01T00:00:00.000Z"),
+      id: "XXX",
+      ledgerName: "default",
+      ledgerQuery: {
+        "key": "<value>",
+      },
+      name: "XXX",
+      paymentsPoolID: "XXX",
+    },
+  },
+  statusCode: 965417,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,17 @@
 # PoolRequest
 
+## Example Usage
+
+```typescript
+import { PoolRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PoolRequest = {
+  accountIDs: [
+    "<value>",
+  ],
+  name: "<value>",
+};
+```
 
 ## Fields
 

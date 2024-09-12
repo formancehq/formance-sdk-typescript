@@ -1,5 +1,22 @@
 # UpdateMappingRequest
 
+## Example Usage
+
+```typescript
+import { UpdateMappingRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: UpdateMappingRequest = {
+  mapping: {
+    contracts: [
+      {
+        account: "users:001",
+        expr: {},
+      },
+    ],
+  },
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

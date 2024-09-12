@@ -5,34 +5,39 @@
 import * as z from "zod";
 
 export type Posting = {
-    amount: bigint;
-    asset: string;
-    destination: string;
-    source: string;
+  amount: bigint;
+  asset: string;
+  destination: string;
+  source: string;
 };
 
 /** @internal */
-export const Posting$inboundSchema: z.ZodType<Posting, z.ZodTypeDef, unknown> = z.object({
-    amount: z.number().transform((v) => BigInt(v)),
+export const Posting$inboundSchema: z.ZodType<Posting, z.ZodTypeDef, unknown> =
+  z.object({
+    amount: z.number().transform(v => BigInt(v)),
     asset: z.string(),
     destination: z.string(),
     source: z.string(),
-});
+  });
 
 /** @internal */
 export type Posting$Outbound = {
-    amount: number;
-    asset: string;
-    destination: string;
-    source: string;
+  amount: number;
+  asset: string;
+  destination: string;
+  source: string;
 };
 
 /** @internal */
-export const Posting$outboundSchema: z.ZodType<Posting$Outbound, z.ZodTypeDef, Posting> = z.object({
-    amount: z.bigint().transform((v) => Number(v)),
-    asset: z.string(),
-    destination: z.string(),
-    source: z.string(),
+export const Posting$outboundSchema: z.ZodType<
+  Posting$Outbound,
+  z.ZodTypeDef,
+  Posting
+> = z.object({
+  amount: z.bigint().transform(v => Number(v)),
+  asset: z.string(),
+  destination: z.string(),
+  source: z.string(),
 });
 
 /**
@@ -40,10 +45,10 @@ export const Posting$outboundSchema: z.ZodType<Posting$Outbound, z.ZodTypeDef, P
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Posting$ {
-    /** @deprecated use `Posting$inboundSchema` instead. */
-    export const inboundSchema = Posting$inboundSchema;
-    /** @deprecated use `Posting$outboundSchema` instead. */
-    export const outboundSchema = Posting$outboundSchema;
-    /** @deprecated use `Posting$Outbound` instead. */
-    export type Outbound = Posting$Outbound;
+  /** @deprecated use `Posting$inboundSchema` instead. */
+  export const inboundSchema = Posting$inboundSchema;
+  /** @deprecated use `Posting$outboundSchema` instead. */
+  export const outboundSchema = Posting$outboundSchema;
+  /** @deprecated use `Posting$Outbound` instead. */
+  export type Outbound = Posting$Outbound;
 }

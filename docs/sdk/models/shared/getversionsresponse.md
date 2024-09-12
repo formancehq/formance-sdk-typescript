@@ -1,5 +1,22 @@
 # GetVersionsResponse
 
+## Example Usage
+
+```typescript
+import { GetVersionsResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: GetVersionsResponse = {
+  env: "<value>",
+  region: "<value>",
+  versions: [
+    {
+      health: false,
+      name: "<value>",
+      version: "<value>",
+    },
+  ],
+};
+```
 
 ## Fields
 

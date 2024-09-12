@@ -1,5 +1,12 @@
 # PaymentsErrorsEnum
 
+## Example Usage
+
+```typescript
+import { PaymentsErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentsErrorsEnum = PaymentsErrorsEnum.Validation;
+```
 
 ## Values
 

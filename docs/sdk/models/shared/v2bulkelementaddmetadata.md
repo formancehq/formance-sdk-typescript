@@ -1,5 +1,14 @@
 # V2BulkElementAddMetadata
 
+## Example Usage
+
+```typescript
+import { V2BulkElementAddMetadata } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElementAddMetadata = {
+  action: "<value>",
+};
+```
 
 ## Fields
 

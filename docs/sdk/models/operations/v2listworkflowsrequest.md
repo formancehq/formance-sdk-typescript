@@ -1,5 +1,15 @@
 # V2ListWorkflowsRequest
 
+## Example Usage
+
+```typescript
+import { V2ListWorkflowsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ListWorkflowsRequest = {
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
+};
+```
 
 ## Fields
 

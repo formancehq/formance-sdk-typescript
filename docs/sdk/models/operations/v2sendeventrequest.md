@@ -1,5 +1,14 @@
 # V2SendEventRequest
 
+## Example Usage
+
+```typescript
+import { V2SendEventRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2SendEventRequest = {
+  instanceID: "xxx",
+};
+```
 
 ## Fields
 

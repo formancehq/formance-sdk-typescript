@@ -1,5 +1,15 @@
 # V2Subject
 
+## Example Usage
+
+```typescript
+import { V2Subject } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Subject = {
+  identifier: "<value>",
+  type: "<value>",
+};
+```
 
 ## Supported Types
 

@@ -1,5 +1,12 @@
 # V2Update
 
+## Example Usage
+
+```typescript
+import { V2Update } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Update = {};
+```
 
 ## Fields
 

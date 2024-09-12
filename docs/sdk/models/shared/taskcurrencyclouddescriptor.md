@@ -1,5 +1,12 @@
 # TaskCurrencyCloudDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskCurrencyCloudDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskCurrencyCloudDescriptor = {};
+```
 
 ## Fields
 

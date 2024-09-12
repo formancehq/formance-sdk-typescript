@@ -9,91 +9,90 @@ import * as z from "zod";
  *
  * @remarks
  * It can be useful for storing additional information about the transfer in a structured format.
- *
  */
 export type Metadata = {};
 
 export type ActivityStripeTransfer = {
-    amount?: bigint | undefined;
-    asset?: string | undefined;
-    connectorID?: string | undefined;
-    destination?: string | undefined;
-    /**
-     * A set of key/value pairs that you can attach to a transfer object.
-     *
-     * @remarks
-     * It can be useful for storing additional information about the transfer in a structured format.
-     *
-     */
-    metadata?: Metadata | undefined;
-    waitingValidation?: boolean | undefined;
+  amount?: bigint | undefined;
+  asset?: string | undefined;
+  connectorID?: string | undefined;
+  destination?: string | undefined;
+  /**
+   * A set of key/value pairs that you can attach to a transfer object.
+   *
+   * @remarks
+   * It can be useful for storing additional information about the transfer in a structured format.
+   */
+  metadata?: Metadata | undefined;
+  waitingValidation?: boolean | undefined;
 };
 
 /** @internal */
-export const Metadata$inboundSchema: z.ZodType<Metadata, z.ZodTypeDef, unknown> = z.object({});
+export const Metadata$inboundSchema: z.ZodType<
+  Metadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
 export type Metadata$Outbound = {};
 
 /** @internal */
-export const Metadata$outboundSchema: z.ZodType<Metadata$Outbound, z.ZodTypeDef, Metadata> =
-    z.object({});
+export const Metadata$outboundSchema: z.ZodType<
+  Metadata$Outbound,
+  z.ZodTypeDef,
+  Metadata
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Metadata$ {
-    /** @deprecated use `Metadata$inboundSchema` instead. */
-    export const inboundSchema = Metadata$inboundSchema;
-    /** @deprecated use `Metadata$outboundSchema` instead. */
-    export const outboundSchema = Metadata$outboundSchema;
-    /** @deprecated use `Metadata$Outbound` instead. */
-    export type Outbound = Metadata$Outbound;
+  /** @deprecated use `Metadata$inboundSchema` instead. */
+  export const inboundSchema = Metadata$inboundSchema;
+  /** @deprecated use `Metadata$outboundSchema` instead. */
+  export const outboundSchema = Metadata$outboundSchema;
+  /** @deprecated use `Metadata$Outbound` instead. */
+  export type Outbound = Metadata$Outbound;
 }
 
 /** @internal */
 export const ActivityStripeTransfer$inboundSchema: z.ZodType<
-    ActivityStripeTransfer,
-    z.ZodTypeDef,
-    unknown
+  ActivityStripeTransfer,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    amount: z
-        .number()
-        .transform((v) => BigInt(v))
-        .optional(),
-    asset: z.string().optional(),
-    connectorID: z.string().optional(),
-    destination: z.string().optional(),
-    metadata: z.lazy(() => Metadata$inboundSchema).optional(),
-    waitingValidation: z.boolean().default(false),
+  amount: z.number().transform(v => BigInt(v)).optional(),
+  asset: z.string().optional(),
+  connectorID: z.string().optional(),
+  destination: z.string().optional(),
+  metadata: z.lazy(() => Metadata$inboundSchema).optional(),
+  waitingValidation: z.boolean().default(false),
 });
 
 /** @internal */
 export type ActivityStripeTransfer$Outbound = {
-    amount?: number | undefined;
-    asset?: string | undefined;
-    connectorID?: string | undefined;
-    destination?: string | undefined;
-    metadata?: Metadata$Outbound | undefined;
-    waitingValidation: boolean;
+  amount?: number | undefined;
+  asset?: string | undefined;
+  connectorID?: string | undefined;
+  destination?: string | undefined;
+  metadata?: Metadata$Outbound | undefined;
+  waitingValidation: boolean;
 };
 
 /** @internal */
 export const ActivityStripeTransfer$outboundSchema: z.ZodType<
-    ActivityStripeTransfer$Outbound,
-    z.ZodTypeDef,
-    ActivityStripeTransfer
+  ActivityStripeTransfer$Outbound,
+  z.ZodTypeDef,
+  ActivityStripeTransfer
 > = z.object({
-    amount: z
-        .bigint()
-        .transform((v) => Number(v))
-        .optional(),
-    asset: z.string().optional(),
-    connectorID: z.string().optional(),
-    destination: z.string().optional(),
-    metadata: z.lazy(() => Metadata$outboundSchema).optional(),
-    waitingValidation: z.boolean().default(false),
+  amount: z.bigint().transform(v => Number(v)).optional(),
+  asset: z.string().optional(),
+  connectorID: z.string().optional(),
+  destination: z.string().optional(),
+  metadata: z.lazy(() => Metadata$outboundSchema).optional(),
+  waitingValidation: z.boolean().default(false),
 });
 
 /**
@@ -101,10 +100,10 @@ export const ActivityStripeTransfer$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ActivityStripeTransfer$ {
-    /** @deprecated use `ActivityStripeTransfer$inboundSchema` instead. */
-    export const inboundSchema = ActivityStripeTransfer$inboundSchema;
-    /** @deprecated use `ActivityStripeTransfer$outboundSchema` instead. */
-    export const outboundSchema = ActivityStripeTransfer$outboundSchema;
-    /** @deprecated use `ActivityStripeTransfer$Outbound` instead. */
-    export type Outbound = ActivityStripeTransfer$Outbound;
+  /** @deprecated use `ActivityStripeTransfer$inboundSchema` instead. */
+  export const inboundSchema = ActivityStripeTransfer$inboundSchema;
+  /** @deprecated use `ActivityStripeTransfer$outboundSchema` instead. */
+  export const outboundSchema = ActivityStripeTransfer$outboundSchema;
+  /** @deprecated use `ActivityStripeTransfer$Outbound` instead. */
+  export type Outbound = ActivityStripeTransfer$Outbound;
 }

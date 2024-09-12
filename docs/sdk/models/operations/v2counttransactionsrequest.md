@@ -1,5 +1,14 @@
 # V2CountTransactionsRequest
 
+## Example Usage
+
+```typescript
+import { V2CountTransactionsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2CountTransactionsRequest = {
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

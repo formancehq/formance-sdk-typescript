@@ -5,37 +5,35 @@
 import * as z from "zod";
 
 export type V2StageDelay = {
-    duration?: string | undefined;
-    until?: Date | undefined;
+  duration?: string | undefined;
+  until?: Date | undefined;
 };
 
 /** @internal */
-export const V2StageDelay$inboundSchema: z.ZodType<V2StageDelay, z.ZodTypeDef, unknown> = z.object({
-    duration: z.string().optional(),
-    until: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
+export const V2StageDelay$inboundSchema: z.ZodType<
+  V2StageDelay,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  duration: z.string().optional(),
+  until: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
 });
 
 /** @internal */
 export type V2StageDelay$Outbound = {
-    duration?: string | undefined;
-    until?: string | undefined;
+  duration?: string | undefined;
+  until?: string | undefined;
 };
 
 /** @internal */
 export const V2StageDelay$outboundSchema: z.ZodType<
-    V2StageDelay$Outbound,
-    z.ZodTypeDef,
-    V2StageDelay
+  V2StageDelay$Outbound,
+  z.ZodTypeDef,
+  V2StageDelay
 > = z.object({
-    duration: z.string().optional(),
-    until: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
+  duration: z.string().optional(),
+  until: z.date().transform(v => v.toISOString()).optional(),
 });
 
 /**
@@ -43,10 +41,10 @@ export const V2StageDelay$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2StageDelay$ {
-    /** @deprecated use `V2StageDelay$inboundSchema` instead. */
-    export const inboundSchema = V2StageDelay$inboundSchema;
-    /** @deprecated use `V2StageDelay$outboundSchema` instead. */
-    export const outboundSchema = V2StageDelay$outboundSchema;
-    /** @deprecated use `V2StageDelay$Outbound` instead. */
-    export type Outbound = V2StageDelay$Outbound;
+  /** @deprecated use `V2StageDelay$inboundSchema` instead. */
+  export const inboundSchema = V2StageDelay$inboundSchema;
+  /** @deprecated use `V2StageDelay$outboundSchema` instead. */
+  export const outboundSchema = V2StageDelay$outboundSchema;
+  /** @deprecated use `V2StageDelay$Outbound` instead. */
+  export type Outbound = V2StageDelay$Outbound;
 }

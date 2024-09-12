@@ -2,6 +2,13 @@
 
 General error
 
+## Example Usage
+
+```typescript
+import { V2Error } from "@formance/formance-sdk/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

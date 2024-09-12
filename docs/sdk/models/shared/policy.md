@@ -1,5 +1,21 @@
 # Policy
 
+## Example Usage
+
+```typescript
+import { Policy } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Policy = {
+  createdAt: new Date("2021-01-01T00:00:00.000Z"),
+  id: "XXX",
+  ledgerName: "default",
+  ledgerQuery: {
+    "key": "<value>",
+  },
+  name: "XXX",
+  paymentsPoolID: "XXX",
+};
+```
 
 ## Fields
 

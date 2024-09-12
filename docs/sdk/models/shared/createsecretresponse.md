@@ -1,5 +1,12 @@
 # CreateSecretResponse
 
+## Example Usage
+
+```typescript
+import { CreateSecretResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateSecretResponse = {};
+```
 
 ## Fields
 

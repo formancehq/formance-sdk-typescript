@@ -1,5 +1,18 @@
 # GetInstanceResponse
 
+## Example Usage
+
+```typescript
+import { GetInstanceResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetInstanceResponse = {
+  contentType: "<value>",
+  statusCode: 750686,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

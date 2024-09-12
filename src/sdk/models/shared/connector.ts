@@ -5,32 +5,34 @@
 import * as z from "zod";
 
 export enum Connector {
-    Stripe = "STRIPE",
-    DummyPay = "DUMMY-PAY",
-    Wise = "WISE",
-    Modulr = "MODULR",
-    CurrencyCloud = "CURRENCY-CLOUD",
-    BankingCircle = "BANKING-CIRCLE",
-    Mangopay = "MANGOPAY",
-    Moneycorp = "MONEYCORP",
-    Atlar = "ATLAR",
-    Adyen = "ADYEN",
-    Generic = "GENERIC",
+  Stripe = "STRIPE",
+  DummyPay = "DUMMY-PAY",
+  Wise = "WISE",
+  Modulr = "MODULR",
+  CurrencyCloud = "CURRENCY-CLOUD",
+  BankingCircle = "BANKING-CIRCLE",
+  Mangopay = "MANGOPAY",
+  Moneycorp = "MONEYCORP",
+  Atlar = "ATLAR",
+  Adyen = "ADYEN",
+  Generic = "GENERIC",
 }
 
 /** @internal */
-export const Connector$inboundSchema: z.ZodNativeEnum<typeof Connector> = z.nativeEnum(Connector);
+export const Connector$inboundSchema: z.ZodNativeEnum<typeof Connector> = z
+  .nativeEnum(Connector);
 
 /** @internal */
-export const Connector$outboundSchema: z.ZodNativeEnum<typeof Connector> = Connector$inboundSchema;
+export const Connector$outboundSchema: z.ZodNativeEnum<typeof Connector> =
+  Connector$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Connector$ {
-    /** @deprecated use `Connector$inboundSchema` instead. */
-    export const inboundSchema = Connector$inboundSchema;
-    /** @deprecated use `Connector$outboundSchema` instead. */
-    export const outboundSchema = Connector$outboundSchema;
+  /** @deprecated use `Connector$inboundSchema` instead. */
+  export const inboundSchema = Connector$inboundSchema;
+  /** @deprecated use `Connector$outboundSchema` instead. */
+  export const outboundSchema = Connector$outboundSchema;
 }

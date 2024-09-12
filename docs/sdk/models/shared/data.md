@@ -1,5 +1,14 @@
 # Data
 
+## Example Usage
+
+```typescript
+import { Data } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Data = {
+  connectorID: "<value>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,18 @@
 # V2ActivityAddAccountMetadata
 
+## Example Usage
+
+```typescript
+import { V2ActivityAddAccountMetadata } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ActivityAddAccountMetadata = {
+  id: "<id>",
+  ledger: "<value>",
+  metadata: {
+    "key": "<value>",
+  },
+};
+```
 
 ## Fields
 

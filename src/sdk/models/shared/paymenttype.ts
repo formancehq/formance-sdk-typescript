@@ -5,27 +5,27 @@
 import * as z from "zod";
 
 export enum PaymentType {
-    PayIn = "PAY-IN",
-    Payout = "PAYOUT",
-    Transfer = "TRANSFER",
-    Other = "OTHER",
+  PayIn = "PAY-IN",
+  Payout = "PAYOUT",
+  Transfer = "TRANSFER",
+  Other = "OTHER",
 }
 
 /** @internal */
-export const PaymentType$inboundSchema: z.ZodNativeEnum<typeof PaymentType> =
-    z.nativeEnum(PaymentType);
+export const PaymentType$inboundSchema: z.ZodNativeEnum<typeof PaymentType> = z
+  .nativeEnum(PaymentType);
 
 /** @internal */
 export const PaymentType$outboundSchema: z.ZodNativeEnum<typeof PaymentType> =
-    PaymentType$inboundSchema;
+  PaymentType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PaymentType$ {
-    /** @deprecated use `PaymentType$inboundSchema` instead. */
-    export const inboundSchema = PaymentType$inboundSchema;
-    /** @deprecated use `PaymentType$outboundSchema` instead. */
-    export const outboundSchema = PaymentType$outboundSchema;
+  /** @deprecated use `PaymentType$inboundSchema` instead. */
+  export const inboundSchema = PaymentType$inboundSchema;
+  /** @deprecated use `PaymentType$outboundSchema` instead. */
+  export const outboundSchema = PaymentType$outboundSchema;
 }

@@ -1,5 +1,18 @@
 # Pool
 
+## Example Usage
+
+```typescript
+import { Pool } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Pool = {
+  accounts: [
+    "<value>",
+  ],
+  id: "<id>",
+  name: "<value>",
+};
+```
 
 ## Fields
 

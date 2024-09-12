@@ -1,5 +1,12 @@
 # V2StageSend
 
+## Example Usage
+
+```typescript
+import { V2StageSend } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StageSend = {};
+```
 
 ## Fields
 

@@ -5,59 +5,64 @@
 import * as z from "zod";
 
 export type Data = {
-    connectorID: string;
+  connectorID: string;
 };
 
 export type ConnectorResponse = {
-    data: Data;
+  data: Data;
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z.object({
+export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
+  .object({
     connectorID: z.string(),
-});
+  });
 
 /** @internal */
 export type Data$Outbound = {
-    connectorID: string;
+  connectorID: string;
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> = z.object({
+export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
+  z.object({
     connectorID: z.string(),
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Data$ {
-    /** @deprecated use `Data$inboundSchema` instead. */
-    export const inboundSchema = Data$inboundSchema;
-    /** @deprecated use `Data$outboundSchema` instead. */
-    export const outboundSchema = Data$outboundSchema;
-    /** @deprecated use `Data$Outbound` instead. */
-    export type Outbound = Data$Outbound;
+  /** @deprecated use `Data$inboundSchema` instead. */
+  export const inboundSchema = Data$inboundSchema;
+  /** @deprecated use `Data$outboundSchema` instead. */
+  export const outboundSchema = Data$outboundSchema;
+  /** @deprecated use `Data$Outbound` instead. */
+  export type Outbound = Data$Outbound;
 }
 
 /** @internal */
-export const ConnectorResponse$inboundSchema: z.ZodType<ConnectorResponse, z.ZodTypeDef, unknown> =
-    z.object({
-        data: z.lazy(() => Data$inboundSchema),
-    });
+export const ConnectorResponse$inboundSchema: z.ZodType<
+  ConnectorResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.lazy(() => Data$inboundSchema),
+});
 
 /** @internal */
 export type ConnectorResponse$Outbound = {
-    data: Data$Outbound;
+  data: Data$Outbound;
 };
 
 /** @internal */
 export const ConnectorResponse$outboundSchema: z.ZodType<
-    ConnectorResponse$Outbound,
-    z.ZodTypeDef,
-    ConnectorResponse
+  ConnectorResponse$Outbound,
+  z.ZodTypeDef,
+  ConnectorResponse
 > = z.object({
-    data: z.lazy(() => Data$outboundSchema),
+  data: z.lazy(() => Data$outboundSchema),
 });
 
 /**
@@ -65,10 +70,10 @@ export const ConnectorResponse$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ConnectorResponse$ {
-    /** @deprecated use `ConnectorResponse$inboundSchema` instead. */
-    export const inboundSchema = ConnectorResponse$inboundSchema;
-    /** @deprecated use `ConnectorResponse$outboundSchema` instead. */
-    export const outboundSchema = ConnectorResponse$outboundSchema;
-    /** @deprecated use `ConnectorResponse$Outbound` instead. */
-    export type Outbound = ConnectorResponse$Outbound;
+  /** @deprecated use `ConnectorResponse$inboundSchema` instead. */
+  export const inboundSchema = ConnectorResponse$inboundSchema;
+  /** @deprecated use `ConnectorResponse$outboundSchema` instead. */
+  export const outboundSchema = ConnectorResponse$outboundSchema;
+  /** @deprecated use `ConnectorResponse$Outbound` instead. */
+  export type Outbound = ConnectorResponse$Outbound;
 }

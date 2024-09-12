@@ -1,5 +1,20 @@
 # TaskDummyPay
 
+## Example Usage
+
+```typescript
+import { PaymentStatus, TaskDummyPay } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskDummyPay = {
+  connectorID: "<value>",
+  createdAt: new Date("2024-05-22T20:25:13.971Z"),
+  descriptor: {},
+  id: "6454efb0-b348-496c-bca5-acfbe2fd5707",
+  state: {},
+  status: PaymentStatus.Failed,
+  updatedAt: new Date("2023-05-07T09:54:10.222Z"),
+};
+```
 
 ## Fields
 

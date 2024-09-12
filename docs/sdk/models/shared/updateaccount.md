@@ -1,5 +1,18 @@
 # UpdateAccount
 
+## Example Usage
+
+```typescript
+import { UpdateAccount } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UpdateAccount = {
+  id: "<id>",
+  ledger: "<value>",
+  metadata: {
+    "key": "<value>",
+  },
+};
+```
 
 ## Fields
 

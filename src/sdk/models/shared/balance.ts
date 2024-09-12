@@ -5,43 +5,37 @@
 import * as z from "zod";
 
 export type Balance = {
-    expiresAt?: Date | undefined;
-    name: string;
-    priority?: bigint | undefined;
+  expiresAt?: Date | null | undefined;
+  name: string;
+  priority?: bigint | undefined;
 };
 
 /** @internal */
-export const Balance$inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> = z.object({
-    expiresAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
+export const Balance$inboundSchema: z.ZodType<Balance, z.ZodTypeDef, unknown> =
+  z.object({
+    expiresAt: z.nullable(
+      z.string().datetime({ offset: true }).transform(v => new Date(v)),
+    ).optional(),
     name: z.string(),
-    priority: z
-        .number()
-        .transform((v) => BigInt(v))
-        .optional(),
-});
+    priority: z.number().transform(v => BigInt(v)).optional(),
+  });
 
 /** @internal */
 export type Balance$Outbound = {
-    expiresAt?: string | undefined;
-    name: string;
-    priority?: number | undefined;
+  expiresAt?: string | null | undefined;
+  name: string;
+  priority?: number | undefined;
 };
 
 /** @internal */
-export const Balance$outboundSchema: z.ZodType<Balance$Outbound, z.ZodTypeDef, Balance> = z.object({
-    expiresAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    name: z.string(),
-    priority: z
-        .bigint()
-        .transform((v) => Number(v))
-        .optional(),
+export const Balance$outboundSchema: z.ZodType<
+  Balance$Outbound,
+  z.ZodTypeDef,
+  Balance
+> = z.object({
+  expiresAt: z.nullable(z.date().transform(v => v.toISOString())).optional(),
+  name: z.string(),
+  priority: z.bigint().transform(v => Number(v)).optional(),
 });
 
 /**
@@ -49,10 +43,10 @@ export const Balance$outboundSchema: z.ZodType<Balance$Outbound, z.ZodTypeDef, B
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Balance$ {
-    /** @deprecated use `Balance$inboundSchema` instead. */
-    export const inboundSchema = Balance$inboundSchema;
-    /** @deprecated use `Balance$outboundSchema` instead. */
-    export const outboundSchema = Balance$outboundSchema;
-    /** @deprecated use `Balance$Outbound` instead. */
-    export type Outbound = Balance$Outbound;
+  /** @deprecated use `Balance$inboundSchema` instead. */
+  export const inboundSchema = Balance$inboundSchema;
+  /** @deprecated use `Balance$outboundSchema` instead. */
+  export const outboundSchema = Balance$outboundSchema;
+  /** @deprecated use `Balance$Outbound` instead. */
+  export type Outbound = Balance$Outbound;
 }

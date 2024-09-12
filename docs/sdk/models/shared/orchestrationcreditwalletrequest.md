@@ -1,5 +1,26 @@
 # OrchestrationCreditWalletRequest
 
+## Example Usage
+
+```typescript
+import { OrchestrationCreditWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationCreditWalletRequest = {
+  amount: {
+    amount: BigInt("100"),
+    asset: "USD/2",
+  },
+  metadata: {
+    "key": "",
+  },
+  sources: [
+    {
+      identifier: "<value>",
+      type: "<value>",
+    },
+  ],
+};
+```
 
 ## Fields
 

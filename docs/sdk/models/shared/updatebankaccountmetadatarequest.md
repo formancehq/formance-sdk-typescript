@@ -1,5 +1,16 @@
 # UpdateBankAccountMetadataRequest
 
+## Example Usage
+
+```typescript
+import { UpdateBankAccountMetadataRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: UpdateBankAccountMetadataRequest = {
+  metadata: {
+    "key": "<value>",
+  },
+};
+```
 
 ## Fields
 

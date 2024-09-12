@@ -1,5 +1,18 @@
 # ActivityStripeTransfer
 
+## Example Usage
+
+```typescript
+import { ActivityStripeTransfer } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ActivityStripeTransfer = {
+  amount: BigInt("100"),
+  asset: "USD",
+  destination: "acct_1Gqj58KZcSIg2N2q",
+  metadata: {},
+  waitingValidation: false,
+};
+```
 
 ## Fields
 

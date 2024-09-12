@@ -1,5 +1,14 @@
 # StageSendDestinationPayment
 
+## Example Usage
+
+```typescript
+import { StageSendDestinationPayment } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageSendDestinationPayment = {
+  psp: "<value>",
+};
+```
 
 ## Fields
 

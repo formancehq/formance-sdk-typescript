@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type ActivityGetWallet = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
-export const ActivityGetWallet$inboundSchema: z.ZodType<ActivityGetWallet, z.ZodTypeDef, unknown> =
-    z.object({
-        id: z.string(),
-    });
+export const ActivityGetWallet$inboundSchema: z.ZodType<
+  ActivityGetWallet,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
 
 /** @internal */
 export type ActivityGetWallet$Outbound = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
 export const ActivityGetWallet$outboundSchema: z.ZodType<
-    ActivityGetWallet$Outbound,
-    z.ZodTypeDef,
-    ActivityGetWallet
+  ActivityGetWallet$Outbound,
+  z.ZodTypeDef,
+  ActivityGetWallet
 > = z.object({
-    id: z.string(),
+  id: z.string(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const ActivityGetWallet$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ActivityGetWallet$ {
-    /** @deprecated use `ActivityGetWallet$inboundSchema` instead. */
-    export const inboundSchema = ActivityGetWallet$inboundSchema;
-    /** @deprecated use `ActivityGetWallet$outboundSchema` instead. */
-    export const outboundSchema = ActivityGetWallet$outboundSchema;
-    /** @deprecated use `ActivityGetWallet$Outbound` instead. */
-    export type Outbound = ActivityGetWallet$Outbound;
+  /** @deprecated use `ActivityGetWallet$inboundSchema` instead. */
+  export const inboundSchema = ActivityGetWallet$inboundSchema;
+  /** @deprecated use `ActivityGetWallet$outboundSchema` instead. */
+  export const outboundSchema = ActivityGetWallet$outboundSchema;
+  /** @deprecated use `ActivityGetWallet$Outbound` instead. */
+  export type Outbound = ActivityGetWallet$Outbound;
 }

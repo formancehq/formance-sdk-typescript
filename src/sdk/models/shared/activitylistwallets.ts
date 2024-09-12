@@ -5,30 +5,30 @@
 import * as z from "zod";
 
 export type ActivityListWallets = {
-    name?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const ActivityListWallets$inboundSchema: z.ZodType<
-    ActivityListWallets,
-    z.ZodTypeDef,
-    unknown
+  ActivityListWallets,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    name: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /** @internal */
 export type ActivityListWallets$Outbound = {
-    name?: string | undefined;
+  name?: string | undefined;
 };
 
 /** @internal */
 export const ActivityListWallets$outboundSchema: z.ZodType<
-    ActivityListWallets$Outbound,
-    z.ZodTypeDef,
-    ActivityListWallets
+  ActivityListWallets$Outbound,
+  z.ZodTypeDef,
+  ActivityListWallets
 > = z.object({
-    name: z.string().optional(),
+  name: z.string().optional(),
 });
 
 /**
@@ -36,10 +36,10 @@ export const ActivityListWallets$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ActivityListWallets$ {
-    /** @deprecated use `ActivityListWallets$inboundSchema` instead. */
-    export const inboundSchema = ActivityListWallets$inboundSchema;
-    /** @deprecated use `ActivityListWallets$outboundSchema` instead. */
-    export const outboundSchema = ActivityListWallets$outboundSchema;
-    /** @deprecated use `ActivityListWallets$Outbound` instead. */
-    export type Outbound = ActivityListWallets$Outbound;
+  /** @deprecated use `ActivityListWallets$inboundSchema` instead. */
+  export const inboundSchema = ActivityListWallets$inboundSchema;
+  /** @deprecated use `ActivityListWallets$outboundSchema` instead. */
+  export const outboundSchema = ActivityListWallets$outboundSchema;
+  /** @deprecated use `ActivityListWallets$Outbound` instead. */
+  export type Outbound = ActivityListWallets$Outbound;
 }

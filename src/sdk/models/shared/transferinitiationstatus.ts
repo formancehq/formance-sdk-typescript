@@ -5,28 +5,28 @@
 import * as z from "zod";
 
 export enum TransferInitiationStatus {
-    WaitingForValidation = "WAITING_FOR_VALIDATION",
-    Processing = "PROCESSING",
-    Processed = "PROCESSED",
-    Failed = "FAILED",
-    Rejected = "REJECTED",
-    Validated = "VALIDATED",
-    AskRetried = "ASK_RETRIED",
-    AskReversed = "ASK_REVERSED",
-    ReverseProcessing = "REVERSE_PROCESSING",
-    ReverseFailed = "REVERSE_FAILED",
-    PartiallyReversed = "PARTIALLY_REVERSED",
-    Reversed = "REVERSED",
+  WaitingForValidation = "WAITING_FOR_VALIDATION",
+  Processing = "PROCESSING",
+  Processed = "PROCESSED",
+  Failed = "FAILED",
+  Rejected = "REJECTED",
+  Validated = "VALIDATED",
+  AskRetried = "ASK_RETRIED",
+  AskReversed = "ASK_REVERSED",
+  ReverseProcessing = "REVERSE_PROCESSING",
+  ReverseFailed = "REVERSE_FAILED",
+  PartiallyReversed = "PARTIALLY_REVERSED",
+  Reversed = "REVERSED",
 }
 
 /** @internal */
 export const TransferInitiationStatus$inboundSchema: z.ZodNativeEnum<
-    typeof TransferInitiationStatus
+  typeof TransferInitiationStatus
 > = z.nativeEnum(TransferInitiationStatus);
 
 /** @internal */
 export const TransferInitiationStatus$outboundSchema: z.ZodNativeEnum<
-    typeof TransferInitiationStatus
+  typeof TransferInitiationStatus
 > = TransferInitiationStatus$inboundSchema;
 
 /**
@@ -34,8 +34,8 @@ export const TransferInitiationStatus$outboundSchema: z.ZodNativeEnum<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace TransferInitiationStatus$ {
-    /** @deprecated use `TransferInitiationStatus$inboundSchema` instead. */
-    export const inboundSchema = TransferInitiationStatus$inboundSchema;
-    /** @deprecated use `TransferInitiationStatus$outboundSchema` instead. */
-    export const outboundSchema = TransferInitiationStatus$outboundSchema;
+  /** @deprecated use `TransferInitiationStatus$inboundSchema` instead. */
+  export const inboundSchema = TransferInitiationStatus$inboundSchema;
+  /** @deprecated use `TransferInitiationStatus$outboundSchema` instead. */
+  export const outboundSchema = TransferInitiationStatus$outboundSchema;
 }

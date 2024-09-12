@@ -1,5 +1,32 @@
 # InsertConfigResponse
 
+## Example Usage
+
+```typescript
+import { InsertConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: InsertConfigResponse = {
+  configResponse: {
+    data: {
+      active: true,
+      createdAt: new Date("2024-09-17T11:26:38.503Z"),
+      endpoint: "https://example.com",
+      eventTypes: [
+        "TYPE1",
+        "TYPE2",
+      ],
+      id: "31b8b90f-3443-4a11-88e0-adcf4b921879",
+      secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+      updatedAt: new Date("2024-12-07T08:01:55.338Z"),
+    },
+  },
+  contentType: "<value>",
+  statusCode: 787542,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

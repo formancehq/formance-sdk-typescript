@@ -5,56 +5,55 @@
 import * as z from "zod";
 
 export type AccountBalance = {
-    accountId: string;
-    asset: string;
-    balance: bigint;
-    createdAt: Date;
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    currency: string;
-    lastUpdatedAt: Date;
+  accountId: string;
+  asset: string;
+  balance: bigint;
+  createdAt: Date;
+  /**
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
+  currency: string;
+  lastUpdatedAt: Date;
 };
 
 /** @internal */
-export const AccountBalance$inboundSchema: z.ZodType<AccountBalance, z.ZodTypeDef, unknown> =
-    z.object({
-        accountId: z.string(),
-        asset: z.string(),
-        balance: z.number().transform((v) => BigInt(v)),
-        createdAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-        currency: z.string(),
-        lastUpdatedAt: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v)),
-    });
+export const AccountBalance$inboundSchema: z.ZodType<
+  AccountBalance,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  accountId: z.string(),
+  asset: z.string(),
+  balance: z.number().transform(v => BigInt(v)),
+  createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  currency: z.string(),
+  lastUpdatedAt: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ),
+});
 
 /** @internal */
 export type AccountBalance$Outbound = {
-    accountId: string;
-    asset: string;
-    balance: number;
-    createdAt: string;
-    currency: string;
-    lastUpdatedAt: string;
+  accountId: string;
+  asset: string;
+  balance: number;
+  createdAt: string;
+  currency: string;
+  lastUpdatedAt: string;
 };
 
 /** @internal */
 export const AccountBalance$outboundSchema: z.ZodType<
-    AccountBalance$Outbound,
-    z.ZodTypeDef,
-    AccountBalance
+  AccountBalance$Outbound,
+  z.ZodTypeDef,
+  AccountBalance
 > = z.object({
-    accountId: z.string(),
-    asset: z.string(),
-    balance: z.bigint().transform((v) => Number(v)),
-    createdAt: z.date().transform((v) => v.toISOString()),
-    currency: z.string(),
-    lastUpdatedAt: z.date().transform((v) => v.toISOString()),
+  accountId: z.string(),
+  asset: z.string(),
+  balance: z.bigint().transform(v => Number(v)),
+  createdAt: z.date().transform(v => v.toISOString()),
+  currency: z.string(),
+  lastUpdatedAt: z.date().transform(v => v.toISOString()),
 });
 
 /**
@@ -62,10 +61,10 @@ export const AccountBalance$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace AccountBalance$ {
-    /** @deprecated use `AccountBalance$inboundSchema` instead. */
-    export const inboundSchema = AccountBalance$inboundSchema;
-    /** @deprecated use `AccountBalance$outboundSchema` instead. */
-    export const outboundSchema = AccountBalance$outboundSchema;
-    /** @deprecated use `AccountBalance$Outbound` instead. */
-    export type Outbound = AccountBalance$Outbound;
+  /** @deprecated use `AccountBalance$inboundSchema` instead. */
+  export const inboundSchema = AccountBalance$inboundSchema;
+  /** @deprecated use `AccountBalance$outboundSchema` instead. */
+  export const outboundSchema = AccountBalance$outboundSchema;
+  /** @deprecated use `AccountBalance$Outbound` instead. */
+  export type Outbound = AccountBalance$Outbound;
 }

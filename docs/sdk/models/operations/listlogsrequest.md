@@ -1,5 +1,17 @@
 # ListLogsRequest
 
+## Example Usage
+
+```typescript
+import { ListLogsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListLogsRequest = {
+  after: "1234",
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  ledger: "ledger001",
+  pageSize: 100,
+};
+```
 
 ## Fields
 

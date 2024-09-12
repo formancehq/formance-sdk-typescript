@@ -1,5 +1,37 @@
 # V2RevertTransactionResponse
 
+## Example Usage
+
+```typescript
+import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2RevertTransactionResponse = {
+  contentType: "<value>",
+  statusCode: 60225,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+  v2RevertTransactionResponse: {
+    data: {
+      id: BigInt("969810"),
+      metadata: {
+        "admin": "true",
+      },
+      postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+      ],
+      reference: "ref:001",
+      reverted: false,
+      timestamp: new Date("2024-01-01T18:37:53.665Z"),
+    },
+  },
+};
+```
 
 ## Fields
 

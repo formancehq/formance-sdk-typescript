@@ -1,5 +1,18 @@
 # UpdateBankAccountMetadataResponse
 
+## Example Usage
+
+```typescript
+import { UpdateBankAccountMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: UpdateBankAccountMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 396506,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 
