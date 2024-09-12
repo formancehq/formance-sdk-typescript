@@ -5,8 +5,8 @@ management:
   docVersion: v2.1.0-beta.1
   speakeasyVersion: 1.396.4
   generationVersion: 2.415.6
-  releaseVersion: 2.13.0
-  configChecksum: 5e714bc2743dd2fad8f9aa2724d504bd
+  releaseVersion: 2.14.0
+  configChecksum: 95b4e1cb49aea4702af106d10d3e7821
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -24,11 +24,11 @@ features:
     errors: 2.82.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
-    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
     ignores: 2.81.1
     nameOverrides: 2.81.2
     nullables: 0.1.0
+    oauth2ClientCredentials: 0.2.0
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -996,6 +996,7 @@ generatedFiles:
   - src/funcs/webhooksV1GetManyConfigs.ts
   - src/funcs/webhooksV1InsertConfig.ts
   - src/funcs/webhooksV1TestConfig.ts
+  - src/hooks/clientcredentials.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
   - src/hooks/types.ts

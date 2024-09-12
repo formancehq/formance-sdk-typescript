@@ -29,7 +29,10 @@ Show stack version information
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -53,7 +56,10 @@ import { getVersions } from "@formance/formance-sdk/funcs/getVersions.js";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {

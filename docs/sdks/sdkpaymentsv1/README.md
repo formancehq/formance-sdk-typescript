@@ -59,7 +59,10 @@ Add an account to a pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -88,7 +91,10 @@ import { paymentsV1AddAccountToPool } from "@formance/formance-sdk/funcs/payment
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -144,7 +150,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -177,7 +186,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -236,7 +248,10 @@ import { SDK } from "@formance/formance-sdk";
 import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -266,7 +281,10 @@ import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -321,7 +339,10 @@ Create a bank account in Payments and on the PSP.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -349,7 +370,10 @@ import { paymentsV1CreateBankAccount } from "@formance/formance-sdk/funcs/paymen
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -404,7 +428,10 @@ import { SDK } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -438,7 +465,10 @@ import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sd
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -497,7 +527,10 @@ Create a Pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -526,7 +559,10 @@ import { paymentsV1CreatePool } from "@formance/formance-sdk/funcs/paymentsV1Cre
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -582,7 +618,10 @@ import { SDK } from "@formance/formance-sdk";
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -617,7 +656,10 @@ import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -677,7 +719,10 @@ Delete a pool by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -703,7 +748,10 @@ import { paymentsV1DeletePool } from "@formance/formance-sdk/funcs/paymentsV1Del
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -755,7 +803,10 @@ Delete a transfer initiation by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -781,7 +832,10 @@ import { paymentsV1DeleteTransferInitiation } from "@formance/formance-sdk/funcs
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -833,7 +887,10 @@ Forward a bank account to a connector
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -862,7 +919,10 @@ import { paymentsV1ForwardBankAccount } from "@formance/formance-sdk/funcs/payme
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -917,7 +977,10 @@ Get account balances
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -949,7 +1012,10 @@ import { paymentsV1GetAccountBalances } from "@formance/formance-sdk/funcs/payme
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1007,7 +1073,10 @@ Get a bank account created by user on Formance
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1033,7 +1102,10 @@ import { paymentsV1GetBankAccount } from "@formance/formance-sdk/funcs/paymentsV
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1088,7 +1160,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1116,7 +1191,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1170,7 +1248,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1199,7 +1280,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1253,7 +1337,10 @@ Get a payment
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1279,7 +1366,10 @@ import { paymentsV1GetPayment } from "@formance/formance-sdk/funcs/paymentsV1Get
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1331,7 +1421,10 @@ Get a Pool
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1357,7 +1450,10 @@ import { paymentsV1GetPool } from "@formance/formance-sdk/funcs/paymentsV1GetPoo
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1409,7 +1505,10 @@ Get pool balances
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1436,7 +1535,10 @@ import { paymentsV1GetPoolBalances } from "@formance/formance-sdk/funcs/payments
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1489,7 +1591,10 @@ Get a transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1515,7 +1620,10 @@ import { paymentsV1GetTransferInitiation } from "@formance/formance-sdk/funcs/pa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1568,7 +1676,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1601,7 +1712,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1659,7 +1773,10 @@ List all installed connectors.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1683,7 +1800,10 @@ import { paymentsV1ListAllConnectors } from "@formance/formance-sdk/funcs/paymen
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1732,7 +1852,10 @@ List all bank accounts created by user on Formance.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1763,7 +1886,10 @@ import { paymentsV1ListBankAccounts } from "@formance/formance-sdk/funcs/payment
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1820,7 +1946,10 @@ List the configs of each available connector.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1844,7 +1973,10 @@ import { paymentsV1ListConfigsAvailableConnectors } from "@formance/formance-sdk
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1896,7 +2028,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1925,7 +2060,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1980,7 +2118,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2010,7 +2151,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2065,7 +2209,10 @@ List payments
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2096,7 +2243,10 @@ import { paymentsV1ListPayments } from "@formance/formance-sdk/funcs/paymentsV1L
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2153,7 +2303,10 @@ List Pools
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2184,7 +2337,10 @@ import { paymentsV1ListPools } from "@formance/formance-sdk/funcs/paymentsV1List
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2241,7 +2397,10 @@ List Transfer Initiations
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2272,7 +2431,10 @@ import { paymentsV1ListTransferInitiations } from "@formance/formance-sdk/funcs/
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2329,7 +2491,10 @@ Get an account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2355,7 +2520,10 @@ import { paymentsV1PaymentsgetAccount } from "@formance/formance-sdk/funcs/payme
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2407,7 +2575,10 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2431,7 +2602,10 @@ import { paymentsV1PaymentsgetServerInfo } from "@formance/formance-sdk/funcs/pa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2480,7 +2654,10 @@ List accounts
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2511,7 +2688,10 @@ import { paymentsV1PaymentslistAccounts } from "@formance/formance-sdk/funcs/pay
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2571,7 +2751,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2598,7 +2781,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2651,7 +2837,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2679,7 +2868,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2732,7 +2924,10 @@ Remove an account from a pool by its id.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2759,7 +2954,10 @@ import { paymentsV1RemoveAccountFromPool } from "@formance/formance-sdk/funcs/pa
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2817,7 +3015,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2844,7 +3045,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2899,7 +3103,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2927,7 +3134,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -2980,7 +3190,10 @@ Retry a failed transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3006,7 +3219,10 @@ import { paymentsV1RetryTransferInitiation } from "@formance/formance-sdk/funcs/
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3058,7 +3274,10 @@ Reverse transfer initiation
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3095,7 +3314,10 @@ import { paymentsV1ReverseTransferInitiation } from "@formance/formance-sdk/func
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3159,7 +3381,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3189,7 +3414,10 @@ import { Status } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3247,7 +3475,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3274,7 +3505,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3327,7 +3561,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3355,7 +3592,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3408,7 +3648,10 @@ Update metadata of a bank account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3439,7 +3682,10 @@ import { paymentsV1UpdateBankAccountMetadata } from "@formance/formance-sdk/func
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3497,7 +3743,10 @@ import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3531,7 +3780,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3590,7 +3842,10 @@ Update metadata
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -3620,7 +3875,10 @@ import { paymentsV1UpdateMetadata } from "@formance/formance-sdk/funcs/paymentsV
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {

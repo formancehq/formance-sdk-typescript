@@ -33,7 +33,10 @@ Cancel a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -59,7 +62,10 @@ import { orchestrationV1CancelEvent } from "@formance/formance-sdk/funcs/orchest
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -111,7 +117,10 @@ Create trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -135,7 +144,10 @@ import { orchestrationV1CreateTrigger } from "@formance/formance-sdk/funcs/orche
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -185,7 +197,10 @@ Create a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -209,7 +224,10 @@ import { orchestrationV1CreateWorkflow } from "@formance/formance-sdk/funcs/orch
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -259,7 +277,10 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -285,7 +306,10 @@ import { orchestrationV1DeleteTrigger } from "@formance/formance-sdk/funcs/orche
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -337,7 +361,10 @@ Delete a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -363,7 +390,10 @@ import { orchestrationV1DeleteWorkflow } from "@formance/formance-sdk/funcs/orch
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -415,7 +445,10 @@ Get a workflow instance by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -441,7 +474,10 @@ import { orchestrationV1GetInstance } from "@formance/formance-sdk/funcs/orchest
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -493,7 +529,10 @@ Get a workflow instance history by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -519,7 +558,10 @@ import { orchestrationV1GetInstanceHistory } from "@formance/formance-sdk/funcs/
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -571,7 +613,10 @@ Get a workflow instance stage history
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -598,7 +643,10 @@ import { orchestrationV1GetInstanceStageHistory } from "@formance/formance-sdk/f
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -651,7 +699,10 @@ Get a flow by id
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -677,7 +728,10 @@ import { orchestrationV1GetWorkflow } from "@formance/formance-sdk/funcs/orchest
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -729,7 +783,10 @@ List instances of a workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -756,7 +813,10 @@ import { orchestrationV1ListInstances } from "@formance/formance-sdk/funcs/orche
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -809,7 +869,10 @@ List triggers
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -833,7 +896,10 @@ import { orchestrationV1ListTriggers } from "@formance/formance-sdk/funcs/orches
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -883,7 +949,10 @@ List triggers occurrences
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -909,7 +978,10 @@ import { orchestrationV1ListTriggersOccurrences } from "@formance/formance-sdk/f
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -961,7 +1033,10 @@ List registered workflows
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -985,7 +1060,10 @@ import { orchestrationV1ListWorkflows } from "@formance/formance-sdk/funcs/orche
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1034,7 +1112,10 @@ Get server info
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1058,7 +1139,10 @@ import { orchestrationV1OrchestrationgetServerInfo } from "@formance/formance-sd
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1107,7 +1191,10 @@ Read trigger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1133,7 +1220,10 @@ import { orchestrationV1ReadTrigger } from "@formance/formance-sdk/funcs/orchest
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1185,7 +1275,10 @@ Run workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1211,7 +1304,10 @@ import { orchestrationV1RunWorkflow } from "@formance/formance-sdk/funcs/orchest
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1263,7 +1359,10 @@ Send an event to a running workflow
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1289,7 +1388,10 @@ import { orchestrationV1SendEvent } from "@formance/formance-sdk/funcs/orchestra
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {

@@ -36,7 +36,10 @@ Create a new batch of transactions to a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -77,7 +80,10 @@ import { ledgerV1CreateTransactions } from "@formance/formance-sdk/funcs/ledgerV
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -144,7 +150,10 @@ Set the metadata of a transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -171,7 +180,10 @@ import { ledgerV1AddMetadataOnTransaction } from "@formance/formance-sdk/funcs/l
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -224,7 +236,10 @@ Add metadata to an account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -254,7 +269,10 @@ import { ledgerV1AddMetadataToAccount } from "@formance/formance-sdk/funcs/ledge
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -310,7 +328,10 @@ Count the accounts from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -389,7 +410,10 @@ import { ledgerV1CountAccounts } from "@formance/formance-sdk/funcs/ledgerV1Coun
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -494,7 +518,10 @@ Count the transactions from a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -525,7 +552,10 @@ import { ledgerV1CountTransactions } from "@formance/formance-sdk/funcs/ledgerV1
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -582,7 +612,10 @@ Create a new transaction to a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -633,7 +666,10 @@ import { ledgerV1CreateTransaction } from "@formance/formance-sdk/funcs/ledgerV1
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -710,7 +746,10 @@ Get account by its address
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -737,7 +776,10 @@ import { ledgerV1GetAccount } from "@formance/formance-sdk/funcs/ledgerV1GetAcco
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -790,7 +832,10 @@ Get the balances from a ledger's account
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -819,7 +864,10 @@ import { ledgerV1GetBalances } from "@formance/formance-sdk/funcs/ledgerV1GetBal
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -874,7 +922,10 @@ Get the aggregated balances from selected accounts
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -901,7 +952,10 @@ import { ledgerV1GetBalancesAggregated } from "@formance/formance-sdk/funcs/ledg
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -954,7 +1008,10 @@ Show server information
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -978,7 +1035,10 @@ import { ledgerV1GetInfo } from "@formance/formance-sdk/funcs/ledgerV1GetInfo.js
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1027,7 +1087,10 @@ Get information about a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1053,7 +1116,10 @@ import { ledgerV1GetLedgerInfo } from "@formance/formance-sdk/funcs/ledgerV1GetL
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1105,7 +1171,10 @@ Get the mapping of a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1131,7 +1200,10 @@ import { ledgerV1GetMapping } from "@formance/formance-sdk/funcs/ledgerV1GetMapp
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1183,7 +1255,10 @@ Get transaction from a ledger by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1210,7 +1285,10 @@ import { ledgerV1GetTransaction } from "@formance/formance-sdk/funcs/ledgerV1Get
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1263,7 +1341,10 @@ List accounts from a ledger, sorted by address in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1346,7 +1427,10 @@ import { ledgerV1ListAccounts } from "@formance/formance-sdk/funcs/ledgerV1ListA
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1455,7 +1539,10 @@ List the logs from a ledger, sorted by ID in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1484,7 +1571,10 @@ import { ledgerV1ListLogs } from "@formance/formance-sdk/funcs/ledgerV1ListLogs.
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1539,7 +1629,10 @@ List transactions from a ledger, sorted by txid in descending order.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1572,7 +1665,10 @@ import { ledgerV1ListTransactions } from "@formance/formance-sdk/funcs/ledgerV1L
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1632,7 +1728,10 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1658,7 +1757,10 @@ import { ledgerV1ReadStats } from "@formance/formance-sdk/funcs/ledgerV1ReadStat
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1710,7 +1812,10 @@ Revert a ledger transaction by its ID
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1737,7 +1842,10 @@ import { ledgerV1RevertTransaction } from "@formance/formance-sdk/funcs/ledgerV1
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1793,7 +1901,10 @@ This route is deprecated, and has been merged into `POST /{ledger}/transactions`
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1834,7 +1945,10 @@ import { ledgerV1RunScript } from "@formance/formance-sdk/funcs/ledgerV1RunScrip
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1900,7 +2014,10 @@ Update the mapping of a ledger
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -1934,7 +2051,10 @@ import { ledgerV1UpdateMapping } from "@formance/formance-sdk/funcs/ledgerV1Upda
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {

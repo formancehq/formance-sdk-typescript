@@ -3,10 +3,11 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type Security = {
-  authorization: string;
+  clientID: string;
+  clientSecret: string;
+  tokenURL?: string | undefined;
 };
 
 /** @internal */
@@ -15,16 +16,16 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  Authorization: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "Authorization": "authorization",
-  });
+  clientID: z.string(),
+  clientSecret: z.string(),
+  tokenURL: z.string().default("/api/auth/oauth/token"),
 });
 
 /** @internal */
 export type Security$Outbound = {
-  Authorization: string;
+  clientID: string;
+  clientSecret: string;
+  tokenURL: string;
 };
 
 /** @internal */
@@ -33,11 +34,9 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  authorization: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    authorization: "Authorization",
-  });
+  clientID: z.string(),
+  clientSecret: z.string(),
+  tokenURL: z.string().default("/api/auth/oauth/token"),
 });
 
 /**

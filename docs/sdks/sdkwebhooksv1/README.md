@@ -23,7 +23,10 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -49,7 +52,10 @@ import { webhooksV1ActivateConfig } from "@formance/formance-sdk/funcs/webhooksV
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -105,7 +111,10 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -134,7 +143,10 @@ import { webhooksV1ChangeConfigSecret } from "@formance/formance-sdk/funcs/webho
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -189,7 +201,10 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -215,7 +230,10 @@ import { webhooksV1DeactivateConfig } from "@formance/formance-sdk/funcs/webhook
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -267,7 +285,10 @@ Delete a webhooks config by ID.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -293,7 +314,10 @@ import { webhooksV1DeleteConfig } from "@formance/formance-sdk/funcs/webhooksV1D
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -345,7 +369,10 @@ Sorted by updated date descending
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -372,7 +399,10 @@ import { webhooksV1GetManyConfigs } from "@formance/formance-sdk/funcs/webhooksV
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -434,7 +464,10 @@ All eventTypes are converted to lower-case when inserted.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -466,7 +499,10 @@ import { webhooksV1InsertConfig } from "@formance/formance-sdk/funcs/webhooksV1I
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -524,7 +560,10 @@ Test a config by sending a webhook to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -550,7 +589,10 @@ import { webhooksV1TestConfig } from "@formance/formance-sdk/funcs/webhooksV1Tes
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const sdk = new SDKCore({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {

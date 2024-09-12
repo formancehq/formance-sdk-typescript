@@ -71,14 +71,11 @@ export async function webhooksV1TestConfig(
     Accept: "application/json",
   });
 
-  const authorization$ = await extractSecurity(client$.options$.authorization);
-  const security$ = authorization$ == null
-    ? {}
-    : { authorization: authorization$ };
+  const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "testConfig",
     oAuth2Scopes: [],
-    securitySource: client$.options$.authorization,
+    securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);
 

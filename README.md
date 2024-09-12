@@ -64,7 +64,10 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -335,7 +338,10 @@ import {
 } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -404,7 +410,10 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
   serverIdx: 0,
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -428,7 +437,10 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
   serverURL: "http://localhost",
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -499,16 +511,19 @@ const sdk = new SDK({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name            | Type            | Scheme          |
-| --------------- | --------------- | --------------- |
-| `authorization` | oauth2          | OAuth2 token    |
+| Name                           | Type                           | Scheme                         |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
 
-To authenticate with the API the `authorization` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -533,7 +548,10 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -573,7 +591,10 @@ const sdk = new SDK({
     },
     retryConnectionErrors: false,
   },
-  authorization: "<YOUR_AUTHORIZATION_HERE>",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
