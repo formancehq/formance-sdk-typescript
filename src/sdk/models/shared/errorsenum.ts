@@ -5,31 +5,31 @@
 import * as z from "zod";
 
 export enum ErrorsEnum {
-    Internal = "INTERNAL",
-    InsufficientFund = "INSUFFICIENT_FUND",
-    Validation = "VALIDATION",
-    Conflict = "CONFLICT",
-    NoScript = "NO_SCRIPT",
-    CompilationFailed = "COMPILATION_FAILED",
-    MetadataOverride = "METADATA_OVERRIDE",
-    NotFound = "NOT_FOUND",
+  Internal = "INTERNAL",
+  InsufficientFund = "INSUFFICIENT_FUND",
+  Validation = "VALIDATION",
+  Conflict = "CONFLICT",
+  NoScript = "NO_SCRIPT",
+  CompilationFailed = "COMPILATION_FAILED",
+  MetadataOverride = "METADATA_OVERRIDE",
+  NotFound = "NOT_FOUND",
 }
 
 /** @internal */
-export const ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> =
-    z.nativeEnum(ErrorsEnum);
+export const ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> = z
+  .nativeEnum(ErrorsEnum);
 
 /** @internal */
 export const ErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> =
-    ErrorsEnum$inboundSchema;
+  ErrorsEnum$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ErrorsEnum$ {
-    /** @deprecated use `ErrorsEnum$inboundSchema` instead. */
-    export const inboundSchema = ErrorsEnum$inboundSchema;
-    /** @deprecated use `ErrorsEnum$outboundSchema` instead. */
-    export const outboundSchema = ErrorsEnum$outboundSchema;
+  /** @deprecated use `ErrorsEnum$inboundSchema` instead. */
+  export const inboundSchema = ErrorsEnum$inboundSchema;
+  /** @deprecated use `ErrorsEnum$outboundSchema` instead. */
+  export const outboundSchema = ErrorsEnum$outboundSchema;
 }

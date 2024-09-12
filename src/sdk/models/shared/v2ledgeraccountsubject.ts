@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type V2LedgerAccountSubject = {
-    identifier: string;
-    type: string;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const V2LedgerAccountSubject$inboundSchema: z.ZodType<
-    V2LedgerAccountSubject,
-    z.ZodTypeDef,
-    unknown
+  V2LedgerAccountSubject,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    identifier: z.string(),
-    type: z.string(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /** @internal */
 export type V2LedgerAccountSubject$Outbound = {
-    identifier: string;
-    type: string;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const V2LedgerAccountSubject$outboundSchema: z.ZodType<
-    V2LedgerAccountSubject$Outbound,
-    z.ZodTypeDef,
-    V2LedgerAccountSubject
+  V2LedgerAccountSubject$Outbound,
+  z.ZodTypeDef,
+  V2LedgerAccountSubject
 > = z.object({
-    identifier: z.string(),
-    type: z.string(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const V2LedgerAccountSubject$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2LedgerAccountSubject$ {
-    /** @deprecated use `V2LedgerAccountSubject$inboundSchema` instead. */
-    export const inboundSchema = V2LedgerAccountSubject$inboundSchema;
-    /** @deprecated use `V2LedgerAccountSubject$outboundSchema` instead. */
-    export const outboundSchema = V2LedgerAccountSubject$outboundSchema;
-    /** @deprecated use `V2LedgerAccountSubject$Outbound` instead. */
-    export type Outbound = V2LedgerAccountSubject$Outbound;
+  /** @deprecated use `V2LedgerAccountSubject$inboundSchema` instead. */
+  export const inboundSchema = V2LedgerAccountSubject$inboundSchema;
+  /** @deprecated use `V2LedgerAccountSubject$outboundSchema` instead. */
+  export const outboundSchema = V2LedgerAccountSubject$outboundSchema;
+  /** @deprecated use `V2LedgerAccountSubject$Outbound` instead. */
+  export type Outbound = V2LedgerAccountSubject$Outbound;
 }

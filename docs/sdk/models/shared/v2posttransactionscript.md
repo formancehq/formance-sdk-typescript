@@ -1,5 +1,24 @@
 # V2PostTransactionScript
 
+## Example Usage
+
+```typescript
+import { V2PostTransactionScript } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2PostTransactionScript = {
+  plain: "vars {\n"
+    + "account $user\n"
+    + "}\n"
+    + "send [COIN 10] (\n"
+    + "	source = @world\n"
+    + "	destination = $user\n"
+    + ")\n"
+    + "",
+  vars: {
+    "user": "users:042",
+  },
+};
+```
 
 ## Fields
 

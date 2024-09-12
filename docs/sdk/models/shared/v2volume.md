@@ -1,5 +1,16 @@
 # V2Volume
 
+## Example Usage
+
+```typescript
+import { V2Volume } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Volume = {
+  balance: BigInt("80"),
+  input: BigInt("100"),
+  output: BigInt("20"),
+};
+```
 
 ## Fields
 

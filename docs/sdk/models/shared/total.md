@@ -1,5 +1,15 @@
 # Total
 
+## Example Usage
+
+```typescript
+import { Total } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Total = {
+  relation: "eq",
+  value: 1,
+};
+```
 
 ## Fields
 

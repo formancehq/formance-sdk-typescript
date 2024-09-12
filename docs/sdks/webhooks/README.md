@@ -1,6 +1,8 @@
 # Webhooks
 (*webhooks*)
 
+## Overview
+
 ### Available Operations
 
 * [activateConfig](#activateconfig) - Activate one config
@@ -21,13 +23,51 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
   const result = await sdk.webhooks.activateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksActivateConfig } from "@formance/formance-sdk/funcs/webhooksActivateConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksActivateConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -45,16 +85,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ActivateConfigResponse](../../sdk/models/operations/activateconfigresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## changeConfigSecret
 
@@ -70,7 +111,10 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -80,6 +124,44 @@ async function run() {
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksChangeConfigSecret } from "@formance/formance-sdk/funcs/webhooksChangeConfigSecret.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksChangeConfigSecret(sdk, {
+    configChangeSecret: {
+      secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+    },
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -97,16 +179,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ChangeConfigSecretResponse](../../sdk/models/operations/changeconfigsecretresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## deactivateConfig
 
@@ -118,13 +201,51 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
   const result = await sdk.webhooks.deactivateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksDeactivateConfig } from "@formance/formance-sdk/funcs/webhooksDeactivateConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksDeactivateConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -142,16 +263,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.DeactivateConfigResponse](../../sdk/models/operations/deactivateconfigresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## deleteConfig
 
@@ -163,13 +285,51 @@ Delete a webhooks config by ID.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
   const result = await sdk.webhooks.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksDeleteConfig } from "@formance/formance-sdk/funcs/webhooksDeleteConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksDeleteConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -187,16 +347,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.DeleteConfigResponse](../../sdk/models/operations/deleteconfigresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## getManyConfigs
 
@@ -208,7 +369,10 @@ Sorted by updated date descending
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -216,6 +380,42 @@ async function run() {
     endpoint: "https://example.com",
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksGetManyConfigs } from "@formance/formance-sdk/funcs/webhooksGetManyConfigs.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksGetManyConfigs(sdk, {
+    endpoint: "https://example.com",
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -233,16 +433,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.GetManyConfigsResponse](../../sdk/models/operations/getmanyconfigsresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## insertConfig
 
@@ -263,7 +464,10 @@ All eventTypes are converted to lower-case when inserted.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
@@ -276,6 +480,47 @@ async function run() {
     name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksInsertConfig } from "@formance/formance-sdk/funcs/webhooksInsertConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksInsertConfig(sdk, {
+    endpoint: "https://example.com",
+    eventTypes: [
+      "TYPE1",
+      "TYPE2",
+    ],
+    name: "customer_payment",
+    secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -293,16 +538,17 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.InsertConfigResponse](../../sdk/models/operations/insertconfigresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.WebhooksErrorResponse | default                      | application/json             |
 | errors.SDKError              | 4xx-5xx                      | */*                          |
+
 
 ## testConfig
 
@@ -314,13 +560,51 @@ Test a config by sending a webhook to its endpoint.
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
   const result = await sdk.webhooks.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
+  
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksTestConfig } from "@formance/formance-sdk/funcs/webhooksTestConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksTestConfig(sdk, {
+    id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -338,10 +622,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.TestConfigResponse](../../sdk/models/operations/testconfigresponse.md)\>**
+
 ### Errors
 
 | Error Object                 | Status Code                  | Content Type                 |

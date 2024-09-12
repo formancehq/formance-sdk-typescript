@@ -1,5 +1,14 @@
 # V2StageSendDestinationAccount
 
+## Example Usage
+
+```typescript
+import { V2StageSendDestinationAccount } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StageSendDestinationAccount = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # Variables
 
+## Example Usage
+
+```typescript
+import { Variables } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Variables = {};
+```
 
 ## Fields
 

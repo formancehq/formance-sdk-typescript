@@ -1,5 +1,26 @@
 # V2CreditWalletRequest
 
+## Example Usage
+
+```typescript
+import { V2CreditWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2CreditWalletRequest = {
+  amount: {
+    amount: BigInt("100"),
+    asset: "USD/2",
+  },
+  metadata: {
+    "key": "",
+  },
+  sources: [
+    {
+      identifier: "<value>",
+      type: "<value>",
+    },
+  ],
+};
+```
 
 ## Fields
 

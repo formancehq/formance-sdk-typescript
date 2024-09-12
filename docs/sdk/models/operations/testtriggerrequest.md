@@ -1,5 +1,14 @@
 # TestTriggerRequest
 
+## Example Usage
+
+```typescript
+import { TestTriggerRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: TestTriggerRequest = {
+  triggerID: "<value>",
+};
+```
 
 ## Fields
 

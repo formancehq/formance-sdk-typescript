@@ -1,5 +1,15 @@
 # V2MigrationInfo
 
+## Example Usage
+
+```typescript
+import { V2MigrationInfo } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2MigrationInfo = {
+  name: "migrations:001",
+  version: 11,
+};
+```
 
 ## Fields
 

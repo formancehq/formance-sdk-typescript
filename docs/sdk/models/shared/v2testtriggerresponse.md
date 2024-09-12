@@ -1,5 +1,14 @@
 # V2TestTriggerResponse
 
+## Example Usage
+
+```typescript
+import { V2TestTriggerResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2TestTriggerResponse = {
+  data: {},
+};
+```
 
 ## Fields
 

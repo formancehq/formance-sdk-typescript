@@ -1,5 +1,12 @@
 # ListAccountsResponse
 
+## Example Usage
+
+```typescript
+import { ListAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+// No examples available for this model
+```
 
 ## Fields
 

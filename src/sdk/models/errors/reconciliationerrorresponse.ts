@@ -8,87 +8,80 @@ import * as z from "zod";
  * Error response
  */
 export type ReconciliationErrorResponseData = {
-    details?: string | undefined;
-    errorCode: string;
-    errorMessage: string;
+  details?: string | undefined;
+  errorCode: string;
+  errorMessage: string;
 };
 
 /**
  * Error response
  */
 export class ReconciliationErrorResponse extends Error {
-    details?: string | undefined;
-    errorCode: string;
-    errorMessage: string;
+  details?: string | undefined;
+  errorCode: string;
+  errorMessage: string;
 
-    /** The original data that was passed to this error instance. */
-    data$: ReconciliationErrorResponseData;
+  /** The original data that was passed to this error instance. */
+  data$: ReconciliationErrorResponseData;
 
-    constructor(err: ReconciliationErrorResponseData) {
-        const message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : `API error occurred: ${JSON.stringify(err)}`;
-        super(message);
-        this.data$ = err;
+  constructor(err: ReconciliationErrorResponseData) {
+    const message = "message" in err && typeof err.message === "string"
+      ? err.message
+      : `API error occurred: ${JSON.stringify(err)}`;
+    super(message);
+    this.data$ = err;
 
-        if (err.details != null) {
-            this.details = err.details;
-        }
-        this.errorCode = err.errorCode;
-        this.errorMessage = err.errorMessage;
+    if (err.details != null) this.details = err.details;
+    this.errorCode = err.errorCode;
+    this.errorMessage = err.errorMessage;
 
-        this.name = "ReconciliationErrorResponse";
-    }
+    this.name = "ReconciliationErrorResponse";
+  }
 }
 
 /** @internal */
 export const ReconciliationErrorResponse$inboundSchema: z.ZodType<
-    ReconciliationErrorResponse,
-    z.ZodTypeDef,
-    unknown
-> = z
-    .object({
-        details: z.string().optional(),
-        errorCode: z.string(),
-        errorMessage: z.string(),
-    })
-    .transform((v) => {
-        return new ReconciliationErrorResponse(v);
-    });
+  ReconciliationErrorResponse,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  details: z.string().optional(),
+  errorCode: z.string(),
+  errorMessage: z.string(),
+})
+  .transform((v) => {
+    return new ReconciliationErrorResponse(v);
+  });
 
 /** @internal */
 export type ReconciliationErrorResponse$Outbound = {
-    details?: string | undefined;
-    errorCode: string;
-    errorMessage: string;
+  details?: string | undefined;
+  errorCode: string;
+  errorMessage: string;
 };
 
 /** @internal */
 export const ReconciliationErrorResponse$outboundSchema: z.ZodType<
-    ReconciliationErrorResponse$Outbound,
-    z.ZodTypeDef,
-    ReconciliationErrorResponse
-> = z
-    .instanceof(ReconciliationErrorResponse)
-    .transform((v) => v.data$)
-    .pipe(
-        z.object({
-            details: z.string().optional(),
-            errorCode: z.string(),
-            errorMessage: z.string(),
-        })
-    );
+  ReconciliationErrorResponse$Outbound,
+  z.ZodTypeDef,
+  ReconciliationErrorResponse
+> = z.instanceof(ReconciliationErrorResponse)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    details: z.string().optional(),
+    errorCode: z.string(),
+    errorMessage: z.string(),
+  }));
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ReconciliationErrorResponse$ {
-    /** @deprecated use `ReconciliationErrorResponse$inboundSchema` instead. */
-    export const inboundSchema = ReconciliationErrorResponse$inboundSchema;
-    /** @deprecated use `ReconciliationErrorResponse$outboundSchema` instead. */
-    export const outboundSchema = ReconciliationErrorResponse$outboundSchema;
-    /** @deprecated use `ReconciliationErrorResponse$Outbound` instead. */
-    export type Outbound = ReconciliationErrorResponse$Outbound;
+  /** @deprecated use `ReconciliationErrorResponse$inboundSchema` instead. */
+  export const inboundSchema = ReconciliationErrorResponse$inboundSchema;
+  /** @deprecated use `ReconciliationErrorResponse$outboundSchema` instead. */
+  export const outboundSchema = ReconciliationErrorResponse$outboundSchema;
+  /** @deprecated use `ReconciliationErrorResponse$Outbound` instead. */
+  export type Outbound = ReconciliationErrorResponse$Outbound;
 }

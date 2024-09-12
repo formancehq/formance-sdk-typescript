@@ -1,5 +1,22 @@
 # TransferInitiationRequest
 
+## Example Usage
+
+```typescript
+import { TransferInitiationRequest, TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferInitiationRequest = {
+  amount: BigInt("773035"),
+  asset: "USD",
+  description: "De-engineered optimizing synergy",
+  destinationAccountID: "<value>",
+  reference: "XXX",
+  scheduledAt: new Date("2024-03-01T16:29:51.259Z"),
+  sourceAccountID: "<value>",
+  type: TransferInitiationRequestType.Transfer,
+  validated: false,
+};
+```
 
 ## Fields
 

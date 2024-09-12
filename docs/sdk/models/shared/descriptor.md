@@ -1,5 +1,12 @@
 # Descriptor
 
+## Example Usage
+
+```typescript
+import { Descriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Descriptor = {};
+```
 
 ## Fields
 

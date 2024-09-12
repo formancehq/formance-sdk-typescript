@@ -1,5 +1,15 @@
 # V2Stats
 
+## Example Usage
+
+```typescript
+import { V2Stats } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Stats = {
+  accounts: 882042,
+  transactions: BigInt("82971"),
+};
+```
 
 ## Fields
 

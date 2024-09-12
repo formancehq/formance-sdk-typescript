@@ -1,5 +1,18 @@
 # ListClientsResponse
 
+## Example Usage
+
+```typescript
+import { ListClientsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListClientsResponse = {
+  contentType: "<value>",
+  statusCode: 544883,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

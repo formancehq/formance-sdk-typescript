@@ -1,5 +1,17 @@
 # ListConnectorTasksRequest
 
+## Example Usage
+
+```typescript
+import { ListConnectorTasksRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ListConnectorTasksRequest = {
+  connector: Connector.DummyPay,
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
+};
+```
 
 ## Fields
 

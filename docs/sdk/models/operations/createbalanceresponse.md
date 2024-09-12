@@ -1,5 +1,18 @@
 # CreateBalanceResponse
 
+## Example Usage
+
+```typescript
+import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateBalanceResponse = {
+  contentType: "<value>",
+  statusCode: 716075,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

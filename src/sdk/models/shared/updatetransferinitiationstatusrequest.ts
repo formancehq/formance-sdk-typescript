@@ -5,56 +5,58 @@
 import * as z from "zod";
 
 export enum Status {
-    WaitingForValidation = "WAITING_FOR_VALIDATION",
-    Processing = "PROCESSING",
-    Processed = "PROCESSED",
-    Failed = "FAILED",
-    Rejected = "REJECTED",
-    Validated = "VALIDATED",
+  WaitingForValidation = "WAITING_FOR_VALIDATION",
+  Processing = "PROCESSING",
+  Processed = "PROCESSED",
+  Failed = "FAILED",
+  Rejected = "REJECTED",
+  Validated = "VALIDATED",
 }
 
 export type UpdateTransferInitiationStatusRequest = {
-    status: Status;
+  status: Status;
 };
 
 /** @internal */
-export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
+export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
+  .nativeEnum(Status);
 
 /** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> = Status$inboundSchema;
+export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
+  Status$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Status$ {
-    /** @deprecated use `Status$inboundSchema` instead. */
-    export const inboundSchema = Status$inboundSchema;
-    /** @deprecated use `Status$outboundSchema` instead. */
-    export const outboundSchema = Status$outboundSchema;
+  /** @deprecated use `Status$inboundSchema` instead. */
+  export const inboundSchema = Status$inboundSchema;
+  /** @deprecated use `Status$outboundSchema` instead. */
+  export const outboundSchema = Status$outboundSchema;
 }
 
 /** @internal */
 export const UpdateTransferInitiationStatusRequest$inboundSchema: z.ZodType<
-    UpdateTransferInitiationStatusRequest,
-    z.ZodTypeDef,
-    unknown
+  UpdateTransferInitiationStatusRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    status: Status$inboundSchema,
+  status: Status$inboundSchema,
 });
 
 /** @internal */
 export type UpdateTransferInitiationStatusRequest$Outbound = {
-    status: string;
+  status: string;
 };
 
 /** @internal */
 export const UpdateTransferInitiationStatusRequest$outboundSchema: z.ZodType<
-    UpdateTransferInitiationStatusRequest$Outbound,
-    z.ZodTypeDef,
-    UpdateTransferInitiationStatusRequest
+  UpdateTransferInitiationStatusRequest$Outbound,
+  z.ZodTypeDef,
+  UpdateTransferInitiationStatusRequest
 > = z.object({
-    status: Status$outboundSchema,
+  status: Status$outboundSchema,
 });
 
 /**
@@ -62,10 +64,12 @@ export const UpdateTransferInitiationStatusRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace UpdateTransferInitiationStatusRequest$ {
-    /** @deprecated use `UpdateTransferInitiationStatusRequest$inboundSchema` instead. */
-    export const inboundSchema = UpdateTransferInitiationStatusRequest$inboundSchema;
-    /** @deprecated use `UpdateTransferInitiationStatusRequest$outboundSchema` instead. */
-    export const outboundSchema = UpdateTransferInitiationStatusRequest$outboundSchema;
-    /** @deprecated use `UpdateTransferInitiationStatusRequest$Outbound` instead. */
-    export type Outbound = UpdateTransferInitiationStatusRequest$Outbound;
+  /** @deprecated use `UpdateTransferInitiationStatusRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    UpdateTransferInitiationStatusRequest$inboundSchema;
+  /** @deprecated use `UpdateTransferInitiationStatusRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    UpdateTransferInitiationStatusRequest$outboundSchema;
+  /** @deprecated use `UpdateTransferInitiationStatusRequest$Outbound` instead. */
+  export type Outbound = UpdateTransferInitiationStatusRequest$Outbound;
 }

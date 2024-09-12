@@ -1,5 +1,14 @@
 # GetInstanceRequest
 
+## Example Usage
+
+```typescript
+import { GetInstanceRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetInstanceRequest = {
+  instanceID: "xxx",
+};
+```
 
 ## Fields
 

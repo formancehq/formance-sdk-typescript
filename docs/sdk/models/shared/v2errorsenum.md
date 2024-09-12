@@ -1,5 +1,12 @@
 # V2ErrorsEnum
 
+## Example Usage
+
+```typescript
+import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ErrorsEnum = V2ErrorsEnum.Validation;
+```
 
 ## Values
 

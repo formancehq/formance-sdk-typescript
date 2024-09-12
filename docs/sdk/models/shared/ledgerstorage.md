@@ -1,5 +1,17 @@
 # LedgerStorage
 
+## Example Usage
+
+```typescript
+import { LedgerStorage } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: LedgerStorage = {
+  driver: "<value>",
+  ledgers: [
+    "<value>",
+  ],
+};
+```
 
 ## Fields
 

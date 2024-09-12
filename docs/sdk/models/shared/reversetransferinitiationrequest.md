@@ -1,5 +1,20 @@
 # ReverseTransferInitiationRequest
 
+## Example Usage
+
+```typescript
+import { ReverseTransferInitiationRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ReverseTransferInitiationRequest = {
+  amount: BigInt("873833"),
+  asset: "USD",
+  description: "Pre-emptive stable help-desk",
+  metadata: {
+    "key": "<value>",
+  },
+  reference: "XXX",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetLedgerInfoRequest
 
+## Example Usage
+
+```typescript
+import { GetLedgerInfoRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetLedgerInfoRequest = {
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

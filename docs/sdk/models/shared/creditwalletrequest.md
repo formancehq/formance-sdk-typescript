@@ -1,5 +1,26 @@
 # CreditWalletRequest
 
+## Example Usage
+
+```typescript
+import { CreditWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreditWalletRequest = {
+  amount: {
+    amount: BigInt("100"),
+    asset: "USD/2",
+  },
+  metadata: {
+    "key": "",
+  },
+  sources: [
+    {
+      identifier: "<value>",
+      type: "<value>",
+    },
+  ],
+};
+```
 
 ## Fields
 

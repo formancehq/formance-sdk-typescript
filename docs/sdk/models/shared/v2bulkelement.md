@@ -1,5 +1,14 @@
 # V2BulkElement
 
+## Example Usage
+
+```typescript
+import { V2BulkElement } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElement = {
+  action: "<value>",
+};
+```
 
 ## Supported Types
 

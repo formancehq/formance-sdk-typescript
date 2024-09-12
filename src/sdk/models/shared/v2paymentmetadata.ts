@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type V2PaymentMetadata = {
-    key?: string | undefined;
+  key?: string | undefined;
 };
 
 /** @internal */
-export const V2PaymentMetadata$inboundSchema: z.ZodType<V2PaymentMetadata, z.ZodTypeDef, unknown> =
-    z.object({
-        key: z.string().optional(),
-    });
+export const V2PaymentMetadata$inboundSchema: z.ZodType<
+  V2PaymentMetadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  key: z.string().optional(),
+});
 
 /** @internal */
 export type V2PaymentMetadata$Outbound = {
-    key?: string | undefined;
+  key?: string | undefined;
 };
 
 /** @internal */
 export const V2PaymentMetadata$outboundSchema: z.ZodType<
-    V2PaymentMetadata$Outbound,
-    z.ZodTypeDef,
-    V2PaymentMetadata
+  V2PaymentMetadata$Outbound,
+  z.ZodTypeDef,
+  V2PaymentMetadata
 > = z.object({
-    key: z.string().optional(),
+  key: z.string().optional(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const V2PaymentMetadata$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2PaymentMetadata$ {
-    /** @deprecated use `V2PaymentMetadata$inboundSchema` instead. */
-    export const inboundSchema = V2PaymentMetadata$inboundSchema;
-    /** @deprecated use `V2PaymentMetadata$outboundSchema` instead. */
-    export const outboundSchema = V2PaymentMetadata$outboundSchema;
-    /** @deprecated use `V2PaymentMetadata$Outbound` instead. */
-    export type Outbound = V2PaymentMetadata$Outbound;
+  /** @deprecated use `V2PaymentMetadata$inboundSchema` instead. */
+  export const inboundSchema = V2PaymentMetadata$inboundSchema;
+  /** @deprecated use `V2PaymentMetadata$outboundSchema` instead. */
+  export const outboundSchema = V2PaymentMetadata$outboundSchema;
+  /** @deprecated use `V2PaymentMetadata$Outbound` instead. */
+  export type Outbound = V2PaymentMetadata$Outbound;
 }

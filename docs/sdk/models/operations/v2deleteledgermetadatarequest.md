@@ -1,5 +1,15 @@
 # V2DeleteLedgerMetadataRequest
 
+## Example Usage
+
+```typescript
+import { V2DeleteLedgerMetadataRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2DeleteLedgerMetadataRequest = {
+  key: "foo",
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

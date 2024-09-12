@@ -1,5 +1,12 @@
 # TaskMoneycorpDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskMoneycorpDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskMoneycorpDescriptor = {};
+```
 
 ## Fields
 

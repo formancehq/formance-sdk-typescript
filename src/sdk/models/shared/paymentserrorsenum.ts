@@ -5,26 +5,28 @@
 import * as z from "zod";
 
 export enum PaymentsErrorsEnum {
-    Internal = "INTERNAL",
-    Validation = "VALIDATION",
-    NotFound = "NOT_FOUND",
+  Internal = "INTERNAL",
+  Validation = "VALIDATION",
+  NotFound = "NOT_FOUND",
 }
 
 /** @internal */
-export const PaymentsErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =
-    z.nativeEnum(PaymentsErrorsEnum);
+export const PaymentsErrorsEnum$inboundSchema: z.ZodNativeEnum<
+  typeof PaymentsErrorsEnum
+> = z.nativeEnum(PaymentsErrorsEnum);
 
 /** @internal */
-export const PaymentsErrorsEnum$outboundSchema: z.ZodNativeEnum<typeof PaymentsErrorsEnum> =
-    PaymentsErrorsEnum$inboundSchema;
+export const PaymentsErrorsEnum$outboundSchema: z.ZodNativeEnum<
+  typeof PaymentsErrorsEnum
+> = PaymentsErrorsEnum$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PaymentsErrorsEnum$ {
-    /** @deprecated use `PaymentsErrorsEnum$inboundSchema` instead. */
-    export const inboundSchema = PaymentsErrorsEnum$inboundSchema;
-    /** @deprecated use `PaymentsErrorsEnum$outboundSchema` instead. */
-    export const outboundSchema = PaymentsErrorsEnum$outboundSchema;
+  /** @deprecated use `PaymentsErrorsEnum$inboundSchema` instead. */
+  export const inboundSchema = PaymentsErrorsEnum$inboundSchema;
+  /** @deprecated use `PaymentsErrorsEnum$outboundSchema` instead. */
+  export const outboundSchema = PaymentsErrorsEnum$outboundSchema;
 }

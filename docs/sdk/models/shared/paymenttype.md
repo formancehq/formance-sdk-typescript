@@ -1,5 +1,12 @@
 # PaymentType
 
+## Example Usage
+
+```typescript
+import { PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentType = PaymentType.PayIn;
+```
 
 ## Values
 

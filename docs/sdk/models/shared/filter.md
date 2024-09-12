@@ -1,5 +1,12 @@
 # Filter
 
+## Example Usage
+
+```typescript
+import { Filter } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Filter = {};
+```
 
 ## Fields
 

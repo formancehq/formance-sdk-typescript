@@ -16,8 +16,42 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 - [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/productionize-sdks/publish-sdks)
 - [ ] ✨ When ready to productionize, delete this section from the README
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Formance Stack API: Open, modular foundation for unique payments flows
+
+# Introduction
+This API is documented in **OpenAPI format**.
+
+# Authentication
+Formance Stack offers one forms of authentication:
+  - OAuth2
+OAuth2 - an open protocol to allow secure authorization in a simple
+and standard method from web, mobile and desktop applications.
+<SecurityDefinitions />
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -62,14 +96,17 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -80,10 +117,8 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SDK](docs/sdks/sdk/README.md)
-
-* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+<details open>
+<summary>Available methods</summary>
 
 ### [auth](docs/sdks/auth/README.md)
 
@@ -239,6 +274,11 @@ run();
 * [reconcile](docs/sdks/reconciliation/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliation/README.md#reconciliationgetserverinfo) - Get server info
 
+### [SDK](docs/sdks/sdk/README.md)
+
+* [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
+* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
+
 ### [search](docs/sdks/search/README.md)
 
 * [search](docs/sdks/search/README.md#search) - Search
@@ -272,6 +312,8 @@ run();
 * [getManyConfigs](docs/sdks/webhooks/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/webhooks/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/webhooks/README.md#testconfig) - Test one config
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -289,54 +331,61 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { SDKValidationError } from "@formance/formance-sdk/sdk/models/errors";
+import {
+  ErrorResponse,
+  SDKValidationError,
+} from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
-    authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    let result;
-    try {
-        result = await sdk.ledger.createTransactions({
-            transactions: {
-                transactions: [
-                    {
-                        postings: [
-                            {
-                                amount: BigInt("100"),
-                                asset: "COIN",
-                                destination: "users:002",
-                                source: "users:001",
-                            },
-                        ],
-                        reference: "ref:001",
-                    },
-                ],
-            },
-            ledger: "ledger001",
-        });
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof errors.ErrorResponse: {
-                console.error(err); // handle exception
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await sdk.ledger.createTransactions({
+      transactions: {
+        transactions: [
+          {
+            postings: [
+              {
+                amount: BigInt("100"),
+                asset: "COIN",
+                destination: "users:002",
+                source: "users:001",
+              },
+            ],
+            reference: "ref:001",
+          },
+        ],
+      },
+      ledger: "ledger001",
+    });
 
     // Handle the result
     console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof ErrorResponse): {
+        // Handle err.data$: ErrorResponseData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
+    }
+  }
 }
 
 run();
@@ -359,15 +408,18 @@ You can override the default server globally by passing a server index to the `s
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    serverIdx: 0,
-    authorization: AUTHORIZATION,
+  serverIdx: 0,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -383,15 +435,18 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    serverURL: "http://localhost",
-    authorization: AUTHORIZATION,
+  serverURL: "http://localhost",
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -455,29 +510,218 @@ const sdk = new SDK({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name            | Type            | Scheme          |
-| --------------- | --------------- | --------------- |
-| `authorization` | oauth2          | OAuth2 token    |
+| Name                           | Type                           | Scheme                         |
+| ------------------------------ | ------------------------------ | ------------------------------ |
+| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
 
-To authenticate with the API the `authorization` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
 
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [authCreateClient](docs/sdks/auth/README.md#createclient)
+- [authCreateSecret](docs/sdks/auth/README.md#createsecret)
+- [authDeleteClient](docs/sdks/auth/README.md#deleteclient)
+- [authDeleteSecret](docs/sdks/auth/README.md#deletesecret)
+- [authListClients](docs/sdks/auth/README.md#listclients)
+- [authListUsers](docs/sdks/auth/README.md#listusers)
+- [authReadClient](docs/sdks/auth/README.md#readclient)
+- [authReadUser](docs/sdks/auth/README.md#readuser)
+- [authUpdateClient](docs/sdks/auth/README.md#updateclient)
+- [getOIDCWellKnowns](docs/sdks/sdk/README.md#getoidcwellknowns)
+- [getVersions](docs/sdks/sdk/README.md#getversions)
+- [ledgerAddMetadataOnTransaction](docs/sdks/ledger/README.md#addmetadataontransaction)
+- [ledgerAddMetadataToAccount](docs/sdks/ledger/README.md#addmetadatatoaccount)
+- [ledgerCountAccounts](docs/sdks/ledger/README.md#countaccounts)
+- [ledgerCountTransactions](docs/sdks/ledger/README.md#counttransactions)
+- [ledgerCreateTransaction](docs/sdks/ledger/README.md#createtransaction)
+- [ledgerCreateTransactions](docs/sdks/ledger/README.md#createtransactions)
+- [ledgerGetAccount](docs/sdks/ledger/README.md#getaccount)
+- [ledgerGetBalancesAggregated](docs/sdks/ledger/README.md#getbalancesaggregated)
+- [ledgerGetBalances](docs/sdks/ledger/README.md#getbalances)
+- [ledgerGetInfo](docs/sdks/ledger/README.md#getinfo)
+- [ledgerGetLedgerInfo](docs/sdks/ledger/README.md#getledgerinfo)
+- [ledgerGetMapping](docs/sdks/ledger/README.md#getmapping)
+- [ledgerGetTransaction](docs/sdks/ledger/README.md#gettransaction)
+- [ledgerListAccounts](docs/sdks/ledger/README.md#listaccounts)
+- [ledgerListLogs](docs/sdks/ledger/README.md#listlogs)
+- [ledgerListTransactions](docs/sdks/ledger/README.md#listtransactions)
+- [ledgerReadStats](docs/sdks/ledger/README.md#readstats)
+- [ledgerRevertTransaction](docs/sdks/ledger/README.md#reverttransaction)
+- [ledgerRunScript](docs/sdks/ledger/README.md#runscript)
+- [ledgerUpdateMapping](docs/sdks/ledger/README.md#updatemapping)
+- [ledgerV2AddMetadataOnTransaction](docs/sdks/ledger/README.md#v2addmetadataontransaction)
+- [ledgerV2AddMetadataToAccount](docs/sdks/ledger/README.md#v2addmetadatatoaccount)
+- [ledgerV2CountAccounts](docs/sdks/ledger/README.md#v2countaccounts)
+- [ledgerV2CountTransactions](docs/sdks/ledger/README.md#v2counttransactions)
+- [ledgerV2CreateBulk](docs/sdks/ledger/README.md#v2createbulk)
+- [ledgerV2CreateLedger](docs/sdks/ledger/README.md#v2createledger)
+- [ledgerV2CreateTransaction](docs/sdks/ledger/README.md#v2createtransaction)
+- [ledgerV2DeleteAccountMetadata](docs/sdks/ledger/README.md#v2deleteaccountmetadata)
+- [ledgerV2DeleteLedgerMetadata](docs/sdks/ledger/README.md#v2deleteledgermetadata)
+- [ledgerV2DeleteTransactionMetadata](docs/sdks/ledger/README.md#v2deletetransactionmetadata)
+- [ledgerV2GetAccount](docs/sdks/ledger/README.md#v2getaccount)
+- [ledgerV2GetBalancesAggregated](docs/sdks/ledger/README.md#v2getbalancesaggregated)
+- [ledgerV2GetInfo](docs/sdks/ledger/README.md#v2getinfo)
+- [ledgerV2GetLedgerInfo](docs/sdks/ledger/README.md#v2getledgerinfo)
+- [ledgerV2GetLedger](docs/sdks/ledger/README.md#v2getledger)
+- [ledgerV2GetTransaction](docs/sdks/ledger/README.md#v2gettransaction)
+- [ledgerV2GetVolumesWithBalances](docs/sdks/ledger/README.md#v2getvolumeswithbalances)
+- [ledgerV2ListAccounts](docs/sdks/ledger/README.md#v2listaccounts)
+- [ledgerV2ListLedgers](docs/sdks/ledger/README.md#v2listledgers)
+- [ledgerV2ListLogs](docs/sdks/ledger/README.md#v2listlogs)
+- [ledgerV2ListTransactions](docs/sdks/ledger/README.md#v2listtransactions)
+- [ledgerV2ReadStats](docs/sdks/ledger/README.md#v2readstats)
+- [ledgerV2RevertTransaction](docs/sdks/ledger/README.md#v2reverttransaction)
+- [ledgerV2UpdateLedgerMetadata](docs/sdks/ledger/README.md#v2updateledgermetadata)
+- [orchestrationCancelEvent](docs/sdks/orchestration/README.md#cancelevent)
+- [orchestrationCreateTrigger](docs/sdks/orchestration/README.md#createtrigger)
+- [orchestrationCreateWorkflow](docs/sdks/orchestration/README.md#createworkflow)
+- [orchestrationDeleteTrigger](docs/sdks/orchestration/README.md#deletetrigger)
+- [orchestrationDeleteWorkflow](docs/sdks/orchestration/README.md#deleteworkflow)
+- [orchestrationGetInstanceHistory](docs/sdks/orchestration/README.md#getinstancehistory)
+- [orchestrationGetInstanceStageHistory](docs/sdks/orchestration/README.md#getinstancestagehistory)
+- [orchestrationGetInstance](docs/sdks/orchestration/README.md#getinstance)
+- [orchestrationGetWorkflow](docs/sdks/orchestration/README.md#getworkflow)
+- [orchestrationListInstances](docs/sdks/orchestration/README.md#listinstances)
+- [orchestrationListTriggersOccurrences](docs/sdks/orchestration/README.md#listtriggersoccurrences)
+- [orchestrationListTriggers](docs/sdks/orchestration/README.md#listtriggers)
+- [orchestrationListWorkflows](docs/sdks/orchestration/README.md#listworkflows)
+- [orchestrationOrchestrationgetServerInfo](docs/sdks/orchestration/README.md#orchestrationgetserverinfo)
+- [orchestrationReadTrigger](docs/sdks/orchestration/README.md#readtrigger)
+- [orchestrationRunWorkflow](docs/sdks/orchestration/README.md#runworkflow)
+- [orchestrationSendEvent](docs/sdks/orchestration/README.md#sendevent)
+- [orchestrationTestTrigger](docs/sdks/orchestration/README.md#testtrigger)
+- [orchestrationV2CancelEvent](docs/sdks/orchestration/README.md#v2cancelevent)
+- [orchestrationV2CreateTrigger](docs/sdks/orchestration/README.md#v2createtrigger)
+- [orchestrationV2CreateWorkflow](docs/sdks/orchestration/README.md#v2createworkflow)
+- [orchestrationV2DeleteTrigger](docs/sdks/orchestration/README.md#v2deletetrigger)
+- [orchestrationV2DeleteWorkflow](docs/sdks/orchestration/README.md#v2deleteworkflow)
+- [orchestrationV2GetInstanceHistory](docs/sdks/orchestration/README.md#v2getinstancehistory)
+- [orchestrationV2GetInstanceStageHistory](docs/sdks/orchestration/README.md#v2getinstancestagehistory)
+- [orchestrationV2GetInstance](docs/sdks/orchestration/README.md#v2getinstance)
+- [orchestrationV2GetServerInfo](docs/sdks/orchestration/README.md#v2getserverinfo)
+- [orchestrationV2GetWorkflow](docs/sdks/orchestration/README.md#v2getworkflow)
+- [orchestrationV2ListInstances](docs/sdks/orchestration/README.md#v2listinstances)
+- [orchestrationV2ListTriggersOccurrences](docs/sdks/orchestration/README.md#v2listtriggersoccurrences)
+- [orchestrationV2ListTriggers](docs/sdks/orchestration/README.md#v2listtriggers)
+- [orchestrationV2ListWorkflows](docs/sdks/orchestration/README.md#v2listworkflows)
+- [orchestrationV2ReadTrigger](docs/sdks/orchestration/README.md#v2readtrigger)
+- [orchestrationV2RunWorkflow](docs/sdks/orchestration/README.md#v2runworkflow)
+- [orchestrationV2SendEvent](docs/sdks/orchestration/README.md#v2sendevent)
+- [paymentsAddAccountToPool](docs/sdks/payments/README.md#addaccounttopool)
+- [paymentsConnectorsTransfer](docs/sdks/payments/README.md#connectorstransfer)
+- [paymentsCreateAccount](docs/sdks/payments/README.md#createaccount)
+- [paymentsCreateBankAccount](docs/sdks/payments/README.md#createbankaccount)
+- [paymentsCreatePayment](docs/sdks/payments/README.md#createpayment)
+- [paymentsCreatePool](docs/sdks/payments/README.md#createpool)
+- [paymentsCreateTransferInitiation](docs/sdks/payments/README.md#createtransferinitiation)
+- [paymentsDeletePool](docs/sdks/payments/README.md#deletepool)
+- [paymentsDeleteTransferInitiation](docs/sdks/payments/README.md#deletetransferinitiation)
+- [paymentsForwardBankAccount](docs/sdks/payments/README.md#forwardbankaccount)
+- [paymentsGetAccountBalances](docs/sdks/payments/README.md#getaccountbalances)
+- [paymentsGetBankAccount](docs/sdks/payments/README.md#getbankaccount)
+- [paymentsGetConnectorTaskV1](docs/sdks/payments/README.md#getconnectortaskv1)
+- [paymentsGetConnectorTask](docs/sdks/payments/README.md#getconnectortask)
+- [paymentsGetPayment](docs/sdks/payments/README.md#getpayment)
+- [paymentsGetPoolBalances](docs/sdks/payments/README.md#getpoolbalances)
+- [paymentsGetPool](docs/sdks/payments/README.md#getpool)
+- [paymentsGetTransferInitiation](docs/sdks/payments/README.md#gettransferinitiation)
+- [paymentsInstallConnector](docs/sdks/payments/README.md#installconnector)
+- [paymentsListAllConnectors](docs/sdks/payments/README.md#listallconnectors)
+- [paymentsListBankAccounts](docs/sdks/payments/README.md#listbankaccounts)
+- [paymentsListConfigsAvailableConnectors](docs/sdks/payments/README.md#listconfigsavailableconnectors)
+- [paymentsListConnectorTasksV1](docs/sdks/payments/README.md#listconnectortasksv1)
+- [paymentsListConnectorTasks](docs/sdks/payments/README.md#listconnectortasks)
+- [paymentsListPayments](docs/sdks/payments/README.md#listpayments)
+- [paymentsListPools](docs/sdks/payments/README.md#listpools)
+- [paymentsListTransferInitiations](docs/sdks/payments/README.md#listtransferinitiations)
+- [paymentsPaymentsgetAccount](docs/sdks/payments/README.md#paymentsgetaccount)
+- [paymentsPaymentsgetServerInfo](docs/sdks/payments/README.md#paymentsgetserverinfo)
+- [paymentsPaymentslistAccounts](docs/sdks/payments/README.md#paymentslistaccounts)
+- [paymentsReadConnectorConfigV1](docs/sdks/payments/README.md#readconnectorconfigv1)
+- [paymentsReadConnectorConfig](docs/sdks/payments/README.md#readconnectorconfig)
+- [paymentsRemoveAccountFromPool](docs/sdks/payments/README.md#removeaccountfrompool)
+- [paymentsResetConnectorV1](docs/sdks/payments/README.md#resetconnectorv1)
+- [paymentsResetConnector](docs/sdks/payments/README.md#resetconnector)
+- [paymentsRetryTransferInitiation](docs/sdks/payments/README.md#retrytransferinitiation)
+- [paymentsReverseTransferInitiation](docs/sdks/payments/README.md#reversetransferinitiation)
+- [paymentsUdpateTransferInitiationStatus](docs/sdks/payments/README.md#udpatetransferinitiationstatus)
+- [paymentsUninstallConnectorV1](docs/sdks/payments/README.md#uninstallconnectorv1)
+- [paymentsUninstallConnector](docs/sdks/payments/README.md#uninstallconnector)
+- [paymentsUpdateBankAccountMetadata](docs/sdks/payments/README.md#updatebankaccountmetadata)
+- [paymentsUpdateConnectorConfigV1](docs/sdks/payments/README.md#updateconnectorconfigv1)
+- [paymentsUpdateMetadata](docs/sdks/payments/README.md#updatemetadata)
+- [reconciliationCreatePolicy](docs/sdks/reconciliation/README.md#createpolicy)
+- [reconciliationDeletePolicy](docs/sdks/reconciliation/README.md#deletepolicy)
+- [reconciliationGetPolicy](docs/sdks/reconciliation/README.md#getpolicy)
+- [reconciliationGetReconciliation](docs/sdks/reconciliation/README.md#getreconciliation)
+- [reconciliationListPolicies](docs/sdks/reconciliation/README.md#listpolicies)
+- [reconciliationListReconciliations](docs/sdks/reconciliation/README.md#listreconciliations)
+- [reconciliationReconcile](docs/sdks/reconciliation/README.md#reconcile)
+- [reconciliationReconciliationgetServerInfo](docs/sdks/reconciliation/README.md#reconciliationgetserverinfo)
+- [searchSearch](docs/sdks/search/README.md#search)
+- [searchSearchgetServerInfo](docs/sdks/search/README.md#searchgetserverinfo)
+- [walletsConfirmHold](docs/sdks/wallets/README.md#confirmhold)
+- [walletsCreateBalance](docs/sdks/wallets/README.md#createbalance)
+- [walletsCreateWallet](docs/sdks/wallets/README.md#createwallet)
+- [walletsCreditWallet](docs/sdks/wallets/README.md#creditwallet)
+- [walletsDebitWallet](docs/sdks/wallets/README.md#debitwallet)
+- [walletsGetBalance](docs/sdks/wallets/README.md#getbalance)
+- [walletsGetHold](docs/sdks/wallets/README.md#gethold)
+- [walletsGetHolds](docs/sdks/wallets/README.md#getholds)
+- [walletsGetTransactions](docs/sdks/wallets/README.md#gettransactions)
+- [walletsGetWalletSummary](docs/sdks/wallets/README.md#getwalletsummary)
+- [walletsGetWallet](docs/sdks/wallets/README.md#getwallet)
+- [walletsListBalances](docs/sdks/wallets/README.md#listbalances)
+- [walletsListWallets](docs/sdks/wallets/README.md#listwallets)
+- [walletsUpdateWallet](docs/sdks/wallets/README.md#updatewallet)
+- [walletsVoidHold](docs/sdks/wallets/README.md#voidhold)
+- [walletsWalletsgetServerInfo](docs/sdks/wallets/README.md#walletsgetserverinfo)
+- [webhooksActivateConfig](docs/sdks/webhooks/README.md#activateconfig)
+- [webhooksChangeConfigSecret](docs/sdks/webhooks/README.md#changeconfigsecret)
+- [webhooksDeactivateConfig](docs/sdks/webhooks/README.md#deactivateconfig)
+- [webhooksDeleteConfig](docs/sdks/webhooks/README.md#deleteconfig)
+- [webhooksGetManyConfigs](docs/sdks/webhooks/README.md#getmanyconfigs)
+- [webhooksInsertConfig](docs/sdks/webhooks/README.md#insertconfig)
+- [webhooksTestConfig](docs/sdks/webhooks/README.md#testconfig)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -489,25 +733,28 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    authorization: AUTHORIZATION,
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns({
-        retries: {
-            strategy: "backoff",
-            backoff: {
-                initialInterval: 1,
-                maxInterval: 50,
-                exponent: 1.1,
-                maxElapsedTime: 100,
-            },
-            retryConnectionErrors: false,
-        },
-    });
+  const result = await sdk.getOIDCWellKnowns({
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -519,30 +766,50 @@ If you'd like to override the default retry strategy for all operations that sup
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    authorization: AUTHORIZATION,
+    retryConnectionErrors: false,
+  },
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
 });
 
 async function run() {
-    const result = await sdk.getOIDCWellKnowns();
+  const result = await sdk.getOIDCWellKnowns();
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+You can setup your SDK to emit debug logs for SDK requests and responses.
+
+You can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

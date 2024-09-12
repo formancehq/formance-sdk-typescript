@@ -1,5 +1,20 @@
 # TasksCursorData
 
+## Example Usage
+
+```typescript
+import { PaymentStatus, TasksCursorData } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TasksCursorData = {
+  connectorID: "<value>",
+  createdAt: new Date("2023-06-23T08:33:07.992Z"),
+  descriptor: {},
+  id: "b114eeb5-2ff7-485f-8378-14d4c98e0c2b",
+  state: {},
+  status: PaymentStatus.Dispute,
+  updatedAt: new Date("2023-09-05T20:30:25.728Z"),
+};
+```
 
 ## Supported Types
 

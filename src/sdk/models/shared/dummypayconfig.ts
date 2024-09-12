@@ -5,50 +5,53 @@
 import * as z from "zod";
 
 export type DummyPayConfig = {
-    directory: string;
-    /**
-     * The frequency at which the connector will try to fetch new payment objects from the directory
-     */
-    filePollingPeriod?: string | undefined;
-    name: string;
-    numberOfAccountsPreGenerated?: number | undefined;
-    numberOfPaymentsPreGenerated?: number | undefined;
-    prefixFileToIngest?: string | undefined;
+  directory: string;
+  /**
+   * The frequency at which the connector will try to fetch new payment objects from the directory
+   */
+  filePollingPeriod?: string | undefined;
+  name: string;
+  numberOfAccountsPreGenerated?: number | undefined;
+  numberOfPaymentsPreGenerated?: number | undefined;
+  prefixFileToIngest?: string | undefined;
 };
 
 /** @internal */
-export const DummyPayConfig$inboundSchema: z.ZodType<DummyPayConfig, z.ZodTypeDef, unknown> =
-    z.object({
-        directory: z.string(),
-        filePollingPeriod: z.string().default("10s"),
-        name: z.string(),
-        numberOfAccountsPreGenerated: z.number().int().optional(),
-        numberOfPaymentsPreGenerated: z.number().int().optional(),
-        prefixFileToIngest: z.string().optional(),
-    });
+export const DummyPayConfig$inboundSchema: z.ZodType<
+  DummyPayConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  directory: z.string(),
+  filePollingPeriod: z.string().default("10s"),
+  name: z.string(),
+  numberOfAccountsPreGenerated: z.number().int().optional(),
+  numberOfPaymentsPreGenerated: z.number().int().optional(),
+  prefixFileToIngest: z.string().optional(),
+});
 
 /** @internal */
 export type DummyPayConfig$Outbound = {
-    directory: string;
-    filePollingPeriod: string;
-    name: string;
-    numberOfAccountsPreGenerated?: number | undefined;
-    numberOfPaymentsPreGenerated?: number | undefined;
-    prefixFileToIngest?: string | undefined;
+  directory: string;
+  filePollingPeriod: string;
+  name: string;
+  numberOfAccountsPreGenerated?: number | undefined;
+  numberOfPaymentsPreGenerated?: number | undefined;
+  prefixFileToIngest?: string | undefined;
 };
 
 /** @internal */
 export const DummyPayConfig$outboundSchema: z.ZodType<
-    DummyPayConfig$Outbound,
-    z.ZodTypeDef,
-    DummyPayConfig
+  DummyPayConfig$Outbound,
+  z.ZodTypeDef,
+  DummyPayConfig
 > = z.object({
-    directory: z.string(),
-    filePollingPeriod: z.string().default("10s"),
-    name: z.string(),
-    numberOfAccountsPreGenerated: z.number().int().optional(),
-    numberOfPaymentsPreGenerated: z.number().int().optional(),
-    prefixFileToIngest: z.string().optional(),
+  directory: z.string(),
+  filePollingPeriod: z.string().default("10s"),
+  name: z.string(),
+  numberOfAccountsPreGenerated: z.number().int().optional(),
+  numberOfPaymentsPreGenerated: z.number().int().optional(),
+  prefixFileToIngest: z.string().optional(),
 });
 
 /**
@@ -56,10 +59,10 @@ export const DummyPayConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace DummyPayConfig$ {
-    /** @deprecated use `DummyPayConfig$inboundSchema` instead. */
-    export const inboundSchema = DummyPayConfig$inboundSchema;
-    /** @deprecated use `DummyPayConfig$outboundSchema` instead. */
-    export const outboundSchema = DummyPayConfig$outboundSchema;
-    /** @deprecated use `DummyPayConfig$Outbound` instead. */
-    export type Outbound = DummyPayConfig$Outbound;
+  /** @deprecated use `DummyPayConfig$inboundSchema` instead. */
+  export const inboundSchema = DummyPayConfig$inboundSchema;
+  /** @deprecated use `DummyPayConfig$outboundSchema` instead. */
+  export const outboundSchema = DummyPayConfig$outboundSchema;
+  /** @deprecated use `DummyPayConfig$Outbound` instead. */
+  export type Outbound = DummyPayConfig$Outbound;
 }

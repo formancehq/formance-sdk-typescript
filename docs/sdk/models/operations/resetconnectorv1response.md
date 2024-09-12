@@ -1,5 +1,18 @@
 # ResetConnectorV1Response
 
+## Example Usage
+
+```typescript
+import { ResetConnectorV1Response } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ResetConnectorV1Response = {
+  contentType: "<value>",
+  statusCode: 891555,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

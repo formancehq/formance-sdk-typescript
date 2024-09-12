@@ -1,5 +1,21 @@
 # PaymentRequest
 
+## Example Usage
+
+```typescript
+import { PaymentRequest, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PaymentRequest = {
+  amount: BigInt("100"),
+  asset: "USD",
+  connectorID: "<value>",
+  createdAt: new Date("2022-09-29T11:06:24.190Z"),
+  reference: "<value>",
+  scheme: PaymentScheme.Rtp,
+  status: PaymentStatus.Failed,
+  type: PaymentType.Transfer,
+};
+```
 
 ## Fields
 

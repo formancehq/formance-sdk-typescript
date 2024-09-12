@@ -1,5 +1,12 @@
 # Status
 
+## Example Usage
+
+```typescript
+import { Status } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Status = Status.Processing;
+```
 
 ## Values
 

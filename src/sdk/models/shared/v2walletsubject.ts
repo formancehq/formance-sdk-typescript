@@ -5,35 +5,38 @@
 import * as z from "zod";
 
 export type V2WalletSubject = {
-    balance?: string | undefined;
-    identifier: string;
-    type: string;
+  balance?: string | undefined;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
-export const V2WalletSubject$inboundSchema: z.ZodType<V2WalletSubject, z.ZodTypeDef, unknown> =
-    z.object({
-        balance: z.string().optional(),
-        identifier: z.string(),
-        type: z.string(),
-    });
+export const V2WalletSubject$inboundSchema: z.ZodType<
+  V2WalletSubject,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  balance: z.string().optional(),
+  identifier: z.string(),
+  type: z.string(),
+});
 
 /** @internal */
 export type V2WalletSubject$Outbound = {
-    balance?: string | undefined;
-    identifier: string;
-    type: string;
+  balance?: string | undefined;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const V2WalletSubject$outboundSchema: z.ZodType<
-    V2WalletSubject$Outbound,
-    z.ZodTypeDef,
-    V2WalletSubject
+  V2WalletSubject$Outbound,
+  z.ZodTypeDef,
+  V2WalletSubject
 > = z.object({
-    balance: z.string().optional(),
-    identifier: z.string(),
-    type: z.string(),
+  balance: z.string().optional(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /**
@@ -41,10 +44,10 @@ export const V2WalletSubject$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2WalletSubject$ {
-    /** @deprecated use `V2WalletSubject$inboundSchema` instead. */
-    export const inboundSchema = V2WalletSubject$inboundSchema;
-    /** @deprecated use `V2WalletSubject$outboundSchema` instead. */
-    export const outboundSchema = V2WalletSubject$outboundSchema;
-    /** @deprecated use `V2WalletSubject$Outbound` instead. */
-    export type Outbound = V2WalletSubject$Outbound;
+  /** @deprecated use `V2WalletSubject$inboundSchema` instead. */
+  export const inboundSchema = V2WalletSubject$inboundSchema;
+  /** @deprecated use `V2WalletSubject$outboundSchema` instead. */
+  export const outboundSchema = V2WalletSubject$outboundSchema;
+  /** @deprecated use `V2WalletSubject$Outbound` instead. */
+  export type Outbound = V2WalletSubject$Outbound;
 }

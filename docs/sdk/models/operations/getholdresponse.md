@@ -1,5 +1,30 @@
 # GetHoldResponse
 
+## Example Usage
+
+```typescript
+import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetHoldResponse = {
+  contentType: "<value>",
+  getHoldResponse: {
+    data: {
+      description: "Reduced global structure",
+      id: "21419598-90af-4a56-be25-16fe4c8b711e",
+      metadata: {
+        "key": "<value>",
+      },
+      originalAmount: BigInt("100"),
+      remaining: BigInt("10"),
+      walletID: "<value>",
+    },
+  },
+  statusCode: 352312,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

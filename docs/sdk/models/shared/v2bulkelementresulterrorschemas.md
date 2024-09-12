@@ -1,5 +1,16 @@
 # V2BulkElementResultErrorSchemas
 
+## Example Usage
+
+```typescript
+import { V2BulkElementResultErrorSchemas } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2BulkElementResultErrorSchemas = {
+  errorCode: "<value>",
+  errorDescription: "<value>",
+  responseType: "<value>",
+};
+```
 
 ## Fields
 

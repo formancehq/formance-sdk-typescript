@@ -5,70 +5,69 @@
 import * as z from "zod";
 
 export enum V2MigrationInfoState {
-    ToDo = "TO DO",
-    Done = "DONE",
+  ToDo = "TO DO",
+  Done = "DONE",
 }
 
 export type V2MigrationInfo = {
-    date?: Date | undefined;
-    name?: string | undefined;
-    state?: V2MigrationInfoState | undefined;
-    version?: number | undefined;
+  date?: Date | undefined;
+  name?: string | undefined;
+  state?: V2MigrationInfoState | undefined;
+  version?: number | undefined;
 };
 
 /** @internal */
-export const V2MigrationInfoState$inboundSchema: z.ZodNativeEnum<typeof V2MigrationInfoState> =
-    z.nativeEnum(V2MigrationInfoState);
+export const V2MigrationInfoState$inboundSchema: z.ZodNativeEnum<
+  typeof V2MigrationInfoState
+> = z.nativeEnum(V2MigrationInfoState);
 
 /** @internal */
-export const V2MigrationInfoState$outboundSchema: z.ZodNativeEnum<typeof V2MigrationInfoState> =
-    V2MigrationInfoState$inboundSchema;
+export const V2MigrationInfoState$outboundSchema: z.ZodNativeEnum<
+  typeof V2MigrationInfoState
+> = V2MigrationInfoState$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2MigrationInfoState$ {
-    /** @deprecated use `V2MigrationInfoState$inboundSchema` instead. */
-    export const inboundSchema = V2MigrationInfoState$inboundSchema;
-    /** @deprecated use `V2MigrationInfoState$outboundSchema` instead. */
-    export const outboundSchema = V2MigrationInfoState$outboundSchema;
+  /** @deprecated use `V2MigrationInfoState$inboundSchema` instead. */
+  export const inboundSchema = V2MigrationInfoState$inboundSchema;
+  /** @deprecated use `V2MigrationInfoState$outboundSchema` instead. */
+  export const outboundSchema = V2MigrationInfoState$outboundSchema;
 }
 
 /** @internal */
-export const V2MigrationInfo$inboundSchema: z.ZodType<V2MigrationInfo, z.ZodTypeDef, unknown> =
-    z.object({
-        date: z
-            .string()
-            .datetime({ offset: true })
-            .transform((v) => new Date(v))
-            .optional(),
-        name: z.string().optional(),
-        state: V2MigrationInfoState$inboundSchema.optional(),
-        version: z.number().int().optional(),
-    });
+export const V2MigrationInfo$inboundSchema: z.ZodType<
+  V2MigrationInfo,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  date: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  name: z.string().optional(),
+  state: V2MigrationInfoState$inboundSchema.optional(),
+  version: z.number().int().optional(),
+});
 
 /** @internal */
 export type V2MigrationInfo$Outbound = {
-    date?: string | undefined;
-    name?: string | undefined;
-    state?: string | undefined;
-    version?: number | undefined;
+  date?: string | undefined;
+  name?: string | undefined;
+  state?: string | undefined;
+  version?: number | undefined;
 };
 
 /** @internal */
 export const V2MigrationInfo$outboundSchema: z.ZodType<
-    V2MigrationInfo$Outbound,
-    z.ZodTypeDef,
-    V2MigrationInfo
+  V2MigrationInfo$Outbound,
+  z.ZodTypeDef,
+  V2MigrationInfo
 > = z.object({
-    date: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
-    name: z.string().optional(),
-    state: V2MigrationInfoState$outboundSchema.optional(),
-    version: z.number().int().optional(),
+  date: z.date().transform(v => v.toISOString()).optional(),
+  name: z.string().optional(),
+  state: V2MigrationInfoState$outboundSchema.optional(),
+  version: z.number().int().optional(),
 });
 
 /**
@@ -76,10 +75,10 @@ export const V2MigrationInfo$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2MigrationInfo$ {
-    /** @deprecated use `V2MigrationInfo$inboundSchema` instead. */
-    export const inboundSchema = V2MigrationInfo$inboundSchema;
-    /** @deprecated use `V2MigrationInfo$outboundSchema` instead. */
-    export const outboundSchema = V2MigrationInfo$outboundSchema;
-    /** @deprecated use `V2MigrationInfo$Outbound` instead. */
-    export type Outbound = V2MigrationInfo$Outbound;
+  /** @deprecated use `V2MigrationInfo$inboundSchema` instead. */
+  export const inboundSchema = V2MigrationInfo$inboundSchema;
+  /** @deprecated use `V2MigrationInfo$outboundSchema` instead. */
+  export const outboundSchema = V2MigrationInfo$outboundSchema;
+  /** @deprecated use `V2MigrationInfo$Outbound` instead. */
+  export type Outbound = V2MigrationInfo$Outbound;
 }

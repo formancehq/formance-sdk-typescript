@@ -1,5 +1,18 @@
 # ListConnectorTasksV1Request
 
+## Example Usage
+
+```typescript
+import { ListConnectorTasksV1Request } from "@formance/formance-sdk/sdk/models/operations";
+import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ListConnectorTasksV1Request = {
+  connector: Connector.CurrencyCloud,
+  connectorId: "XXX",
+  cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
+};
+```
 
 ## Fields
 

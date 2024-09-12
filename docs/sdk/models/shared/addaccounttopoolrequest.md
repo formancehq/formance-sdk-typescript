@@ -1,5 +1,14 @@
 # AddAccountToPoolRequest
 
+## Example Usage
+
+```typescript
+import { AddAccountToPoolRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: AddAccountToPoolRequest = {
+  accountID: "<value>",
+};
+```
 
 ## Fields
 

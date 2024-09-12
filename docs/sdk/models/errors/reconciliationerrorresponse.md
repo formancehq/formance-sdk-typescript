@@ -2,6 +2,13 @@
 
 Error response
 
+## Example Usage
+
+```typescript
+import { ReconciliationErrorResponse } from "@formance/formance-sdk/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

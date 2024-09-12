@@ -1,5 +1,14 @@
 # V2ActivityConfirmHold
 
+## Example Usage
+
+```typescript
+import { V2ActivityConfirmHold } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ActivityConfirmHold = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

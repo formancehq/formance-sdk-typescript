@@ -1,5 +1,18 @@
 # CreateWalletResponse
 
+## Example Usage
+
+```typescript
+import { CreateWalletResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CreateWalletResponse = {
+  contentType: "<value>",
+  statusCode: 660174,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

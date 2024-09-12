@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type V2StageSendDestinationWallet = {
-    balance?: string | undefined;
-    id: string;
+  balance?: string | undefined;
+  id: string;
 };
 
 /** @internal */
 export const V2StageSendDestinationWallet$inboundSchema: z.ZodType<
-    V2StageSendDestinationWallet,
-    z.ZodTypeDef,
-    unknown
+  V2StageSendDestinationWallet,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    balance: z.string().optional(),
-    id: z.string(),
+  balance: z.string().optional(),
+  id: z.string(),
 });
 
 /** @internal */
 export type V2StageSendDestinationWallet$Outbound = {
-    balance?: string | undefined;
-    id: string;
+  balance?: string | undefined;
+  id: string;
 };
 
 /** @internal */
 export const V2StageSendDestinationWallet$outboundSchema: z.ZodType<
-    V2StageSendDestinationWallet$Outbound,
-    z.ZodTypeDef,
-    V2StageSendDestinationWallet
+  V2StageSendDestinationWallet$Outbound,
+  z.ZodTypeDef,
+  V2StageSendDestinationWallet
 > = z.object({
-    balance: z.string().optional(),
-    id: z.string(),
+  balance: z.string().optional(),
+  id: z.string(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const V2StageSendDestinationWallet$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace V2StageSendDestinationWallet$ {
-    /** @deprecated use `V2StageSendDestinationWallet$inboundSchema` instead. */
-    export const inboundSchema = V2StageSendDestinationWallet$inboundSchema;
-    /** @deprecated use `V2StageSendDestinationWallet$outboundSchema` instead. */
-    export const outboundSchema = V2StageSendDestinationWallet$outboundSchema;
-    /** @deprecated use `V2StageSendDestinationWallet$Outbound` instead. */
-    export type Outbound = V2StageSendDestinationWallet$Outbound;
+  /** @deprecated use `V2StageSendDestinationWallet$inboundSchema` instead. */
+  export const inboundSchema = V2StageSendDestinationWallet$inboundSchema;
+  /** @deprecated use `V2StageSendDestinationWallet$outboundSchema` instead. */
+  export const outboundSchema = V2StageSendDestinationWallet$outboundSchema;
+  /** @deprecated use `V2StageSendDestinationWallet$Outbound` instead. */
+  export type Outbound = V2StageSendDestinationWallet$Outbound;
 }
