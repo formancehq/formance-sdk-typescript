@@ -1,5 +1,15 @@
 # V2GetTransactionRequest
 
+## Example Usage
+
+```typescript
+import { V2GetTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetTransactionRequest = {
+  id: BigInt("1234"),
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

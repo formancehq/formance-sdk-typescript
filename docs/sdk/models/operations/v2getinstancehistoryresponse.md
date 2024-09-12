@@ -1,5 +1,18 @@
 # V2GetInstanceHistoryResponse
 
+## Example Usage
+
+```typescript
+import { V2GetInstanceHistoryResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetInstanceHistoryResponse = {
+  contentType: "<value>",
+  statusCode: 253291,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

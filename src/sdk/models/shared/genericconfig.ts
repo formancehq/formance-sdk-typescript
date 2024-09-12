@@ -5,45 +5,47 @@
 import * as z from "zod";
 
 export type GenericConfig = {
-    apiKey: string;
-    endpoint: string;
-    name: string;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  endpoint: string;
+  name: string;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const GenericConfig$inboundSchema: z.ZodType<GenericConfig, z.ZodTypeDef, unknown> =
-    z.object({
-        apiKey: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+export const GenericConfig$inboundSchema: z.ZodType<
+  GenericConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
+});
 
 /** @internal */
 export type GenericConfig$Outbound = {
-    apiKey: string;
-    endpoint: string;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  endpoint: string;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const GenericConfig$outboundSchema: z.ZodType<
-    GenericConfig$Outbound,
-    z.ZodTypeDef,
-    GenericConfig
+  GenericConfig$Outbound,
+  z.ZodTypeDef,
+  GenericConfig
 > = z.object({
-    apiKey: z.string(),
-    endpoint: z.string(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -51,10 +53,10 @@ export const GenericConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GenericConfig$ {
-    /** @deprecated use `GenericConfig$inboundSchema` instead. */
-    export const inboundSchema = GenericConfig$inboundSchema;
-    /** @deprecated use `GenericConfig$outboundSchema` instead. */
-    export const outboundSchema = GenericConfig$outboundSchema;
-    /** @deprecated use `GenericConfig$Outbound` instead. */
-    export type Outbound = GenericConfig$Outbound;
+  /** @deprecated use `GenericConfig$inboundSchema` instead. */
+  export const inboundSchema = GenericConfig$inboundSchema;
+  /** @deprecated use `GenericConfig$outboundSchema` instead. */
+  export const outboundSchema = GenericConfig$outboundSchema;
+  /** @deprecated use `GenericConfig$Outbound` instead. */
+  export type Outbound = GenericConfig$Outbound;
 }

@@ -5,55 +5,55 @@
 import * as z from "zod";
 
 export type CurrencyCloudConfig = {
-    apiKey: string;
-    /**
-     * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
-     */
-    endpoint?: string | undefined;
-    /**
-     * Username of the API Key holder
-     */
-    loginID: string;
-    name: string;
-    /**
-     * The frequency at which the connector will fetch transactions
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  /**
+   * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
+   */
+  endpoint?: string | undefined;
+  /**
+   * Username of the API Key holder
+   */
+  loginID: string;
+  name: string;
+  /**
+   * The frequency at which the connector will fetch transactions
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
 export const CurrencyCloudConfig$inboundSchema: z.ZodType<
-    CurrencyCloudConfig,
-    z.ZodTypeDef,
-    unknown
+  CurrencyCloudConfig,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    apiKey: z.string(),
-    endpoint: z.string().optional(),
-    loginID: z.string(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  endpoint: z.string().optional(),
+  loginID: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /** @internal */
 export type CurrencyCloudConfig$Outbound = {
-    apiKey: string;
-    endpoint?: string | undefined;
-    loginID: string;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  endpoint?: string | undefined;
+  loginID: string;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const CurrencyCloudConfig$outboundSchema: z.ZodType<
-    CurrencyCloudConfig$Outbound,
-    z.ZodTypeDef,
-    CurrencyCloudConfig
+  CurrencyCloudConfig$Outbound,
+  z.ZodTypeDef,
+  CurrencyCloudConfig
 > = z.object({
-    apiKey: z.string(),
-    endpoint: z.string().optional(),
-    loginID: z.string(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  endpoint: z.string().optional(),
+  loginID: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -61,10 +61,10 @@ export const CurrencyCloudConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CurrencyCloudConfig$ {
-    /** @deprecated use `CurrencyCloudConfig$inboundSchema` instead. */
-    export const inboundSchema = CurrencyCloudConfig$inboundSchema;
-    /** @deprecated use `CurrencyCloudConfig$outboundSchema` instead. */
-    export const outboundSchema = CurrencyCloudConfig$outboundSchema;
-    /** @deprecated use `CurrencyCloudConfig$Outbound` instead. */
-    export type Outbound = CurrencyCloudConfig$Outbound;
+  /** @deprecated use `CurrencyCloudConfig$inboundSchema` instead. */
+  export const inboundSchema = CurrencyCloudConfig$inboundSchema;
+  /** @deprecated use `CurrencyCloudConfig$outboundSchema` instead. */
+  export const outboundSchema = CurrencyCloudConfig$outboundSchema;
+  /** @deprecated use `CurrencyCloudConfig$Outbound` instead. */
+  export type Outbound = CurrencyCloudConfig$Outbound;
 }

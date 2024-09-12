@@ -1,5 +1,18 @@
 # ListInstancesResponse
 
+## Example Usage
+
+```typescript
+import { ListInstancesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListInstancesResponse = {
+  contentType: "<value>",
+  statusCode: 325047,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

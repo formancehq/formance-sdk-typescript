@@ -1,5 +1,12 @@
 # WebhooksErrorsEnum
 
+## Example Usage
+
+```typescript
+import { WebhooksErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: WebhooksErrorsEnum = WebhooksErrorsEnum.Validation;
+```
 
 ## Values
 

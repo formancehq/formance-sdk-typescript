@@ -1,5 +1,16 @@
 # ConnectorResponse
 
+## Example Usage
+
+```typescript
+import { ConnectorResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ConnectorResponse = {
+  data: {
+    connectorID: "<value>",
+  },
+};
+```
 
 ## Fields
 

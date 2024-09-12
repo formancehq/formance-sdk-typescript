@@ -5,26 +5,31 @@
 import * as z from "zod";
 
 export type Stats = {
-    accounts: number;
-    transactions: number;
+  accounts: number;
+  transactions: number;
 };
 
 /** @internal */
-export const Stats$inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z.object({
+export const Stats$inboundSchema: z.ZodType<Stats, z.ZodTypeDef, unknown> = z
+  .object({
     accounts: z.number().int(),
     transactions: z.number().int(),
-});
+  });
 
 /** @internal */
 export type Stats$Outbound = {
-    accounts: number;
-    transactions: number;
+  accounts: number;
+  transactions: number;
 };
 
 /** @internal */
-export const Stats$outboundSchema: z.ZodType<Stats$Outbound, z.ZodTypeDef, Stats> = z.object({
-    accounts: z.number().int(),
-    transactions: z.number().int(),
+export const Stats$outboundSchema: z.ZodType<
+  Stats$Outbound,
+  z.ZodTypeDef,
+  Stats
+> = z.object({
+  accounts: z.number().int(),
+  transactions: z.number().int(),
 });
 
 /**
@@ -32,10 +37,10 @@ export const Stats$outboundSchema: z.ZodType<Stats$Outbound, z.ZodTypeDef, Stats
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Stats$ {
-    /** @deprecated use `Stats$inboundSchema` instead. */
-    export const inboundSchema = Stats$inboundSchema;
-    /** @deprecated use `Stats$outboundSchema` instead. */
-    export const outboundSchema = Stats$outboundSchema;
-    /** @deprecated use `Stats$Outbound` instead. */
-    export type Outbound = Stats$Outbound;
+  /** @deprecated use `Stats$inboundSchema` instead. */
+  export const inboundSchema = Stats$inboundSchema;
+  /** @deprecated use `Stats$outboundSchema` instead. */
+  export const outboundSchema = Stats$outboundSchema;
+  /** @deprecated use `Stats$Outbound` instead. */
+  export type Outbound = Stats$Outbound;
 }

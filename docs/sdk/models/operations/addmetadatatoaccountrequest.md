@@ -1,5 +1,18 @@
 # AddMetadataToAccountRequest
 
+## Example Usage
+
+```typescript
+import { AddMetadataToAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: AddMetadataToAccountRequest = {
+  requestBody: {
+    "key": "<value>",
+  },
+  address: "users:001",
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

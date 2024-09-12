@@ -1,5 +1,15 @@
 # Client
 
+## Example Usage
+
+```typescript
+import { Client } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Client = {
+  id: "<id>",
+  name: "<value>",
+};
+```
 
 ## Fields
 

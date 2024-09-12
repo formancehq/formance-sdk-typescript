@@ -1,5 +1,12 @@
 # StageDelay
 
+## Example Usage
+
+```typescript
+import { StageDelay } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageDelay = {};
+```
 
 ## Fields
 

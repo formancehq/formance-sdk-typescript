@@ -1,5 +1,14 @@
 # TestConfigRequest
 
+## Example Usage
+
+```typescript
+import { TestConfigRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: TestConfigRequest = {
+  id: "4997257d-dfb6-445b-929c-cbe2ab182818",
+};
+```
 
 ## Fields
 

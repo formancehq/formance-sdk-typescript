@@ -1,5 +1,18 @@
 # ConfirmHoldResponse
 
+## Example Usage
+
+```typescript
+import { ConfirmHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ConfirmHoldResponse = {
+  contentType: "<value>",
+  statusCode: 301575,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

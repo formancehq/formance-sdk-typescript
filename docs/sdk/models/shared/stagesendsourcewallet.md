@@ -1,5 +1,14 @@
 # StageSendSourceWallet
 
+## Example Usage
+
+```typescript
+import { StageSendSourceWallet } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: StageSendSourceWallet = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # V2ActivityGetPayment
 
+## Example Usage
+
+```typescript
+import { V2ActivityGetPayment } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ActivityGetPayment = {
+  id: "<id>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # V2Monetary
 
+## Example Usage
+
+```typescript
+import { V2Monetary } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Monetary = {
+  amount: BigInt("871786"),
+  asset: "<value>",
+};
+```
 
 ## Fields
 

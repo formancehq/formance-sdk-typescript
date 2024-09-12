@@ -1,5 +1,18 @@
 # ListConfigsAvailableConnectorsResponse
 
+## Example Usage
+
+```typescript
+import { ListConfigsAvailableConnectorsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListConfigsAvailableConnectorsResponse = {
+  contentType: "<value>",
+  statusCode: 20107,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

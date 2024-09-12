@@ -2,6 +2,13 @@
 
 Error
 
+## Example Usage
+
+```typescript
+import { WebhooksErrorResponse } from "@formance/formance-sdk/sdk/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

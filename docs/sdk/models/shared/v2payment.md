@@ -1,5 +1,35 @@
 # V2Payment
 
+## Example Usage
+
+```typescript
+import { Scheme, V2Payment, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2Payment = {
+  adjustments: [
+    {
+      absolute: false,
+      amount: BigInt("100"),
+      date: new Date("2022-02-01T23:49:12.325Z"),
+      raw: {},
+      status: V2PaymentStatus.Pending,
+    },
+  ],
+  asset: "USD",
+  connectorID: "<value>",
+  createdAt: new Date("2023-08-10T06:27:10.605Z"),
+  destinationAccountID: "<value>",
+  id: "XXX",
+  initialAmount: BigInt("100"),
+  metadata: {},
+  raw: {},
+  reference: "<value>",
+  scheme: Scheme.Unknown,
+  sourceAccountID: "<value>",
+  status: V2PaymentStatus.Terminated,
+  type: V2PaymentType.Other,
+};
+```
 
 ## Fields
 

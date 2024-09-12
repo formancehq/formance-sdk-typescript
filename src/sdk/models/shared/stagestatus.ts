@@ -5,52 +5,48 @@
 import * as z from "zod";
 
 export type StageStatus = {
-    error?: string | undefined;
-    instanceID: string;
-    stage: number;
-    startedAt: Date;
-    terminatedAt?: Date | undefined;
+  error?: string | undefined;
+  instanceID: string;
+  stage: number;
+  startedAt: Date;
+  terminatedAt?: Date | undefined;
 };
 
 /** @internal */
-export const StageStatus$inboundSchema: z.ZodType<StageStatus, z.ZodTypeDef, unknown> = z.object({
-    error: z.string().optional(),
-    instanceID: z.string(),
-    stage: z.number(),
-    startedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v)),
-    terminatedAt: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v))
-        .optional(),
+export const StageStatus$inboundSchema: z.ZodType<
+  StageStatus,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  error: z.string().optional(),
+  instanceID: z.string(),
+  stage: z.number(),
+  startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  terminatedAt: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
 });
 
 /** @internal */
 export type StageStatus$Outbound = {
-    error?: string | undefined;
-    instanceID: string;
-    stage: number;
-    startedAt: string;
-    terminatedAt?: string | undefined;
+  error?: string | undefined;
+  instanceID: string;
+  stage: number;
+  startedAt: string;
+  terminatedAt?: string | undefined;
 };
 
 /** @internal */
 export const StageStatus$outboundSchema: z.ZodType<
-    StageStatus$Outbound,
-    z.ZodTypeDef,
-    StageStatus
+  StageStatus$Outbound,
+  z.ZodTypeDef,
+  StageStatus
 > = z.object({
-    error: z.string().optional(),
-    instanceID: z.string(),
-    stage: z.number(),
-    startedAt: z.date().transform((v) => v.toISOString()),
-    terminatedAt: z
-        .date()
-        .transform((v) => v.toISOString())
-        .optional(),
+  error: z.string().optional(),
+  instanceID: z.string(),
+  stage: z.number(),
+  startedAt: z.date().transform(v => v.toISOString()),
+  terminatedAt: z.date().transform(v => v.toISOString()).optional(),
 });
 
 /**
@@ -58,10 +54,10 @@ export const StageStatus$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace StageStatus$ {
-    /** @deprecated use `StageStatus$inboundSchema` instead. */
-    export const inboundSchema = StageStatus$inboundSchema;
-    /** @deprecated use `StageStatus$outboundSchema` instead. */
-    export const outboundSchema = StageStatus$outboundSchema;
-    /** @deprecated use `StageStatus$Outbound` instead. */
-    export type Outbound = StageStatus$Outbound;
+  /** @deprecated use `StageStatus$inboundSchema` instead. */
+  export const inboundSchema = StageStatus$inboundSchema;
+  /** @deprecated use `StageStatus$outboundSchema` instead. */
+  export const outboundSchema = StageStatus$outboundSchema;
+  /** @deprecated use `StageStatus$Outbound` instead. */
+  export type Outbound = StageStatus$Outbound;
 }

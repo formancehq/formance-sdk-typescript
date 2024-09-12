@@ -1,5 +1,12 @@
 # V2StageDelay
 
+## Example Usage
+
+```typescript
+import { V2StageDelay } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StageDelay = {};
+```
 
 ## Fields
 

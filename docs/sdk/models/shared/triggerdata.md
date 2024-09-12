@@ -1,5 +1,15 @@
 # TriggerData
 
+## Example Usage
+
+```typescript
+import { TriggerData } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TriggerData = {
+  event: "<value>",
+  workflowID: "<value>",
+};
+```
 
 ## Fields
 

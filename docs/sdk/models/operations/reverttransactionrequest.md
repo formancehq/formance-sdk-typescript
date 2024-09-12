@@ -1,5 +1,15 @@
 # RevertTransactionRequest
 
+## Example Usage
+
+```typescript
+import { RevertTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: RevertTransactionRequest = {
+  ledger: "ledger001",
+  txid: BigInt("1234"),
+};
+```
 
 ## Fields
 

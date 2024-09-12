@@ -1,5 +1,23 @@
 # CountAccountsResponse
 
+## Example Usage
+
+```typescript
+import { CountAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: CountAccountsResponse = {
+  contentType: "<value>",
+  headers: {
+    "key": [
+      "<value>",
+    ],
+  },
+  statusCode: 891773,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # GetHoldRequest
 
+## Example Usage
+
+```typescript
+import { GetHoldRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetHoldRequest = {
+  holdID: "<value>",
+};
+```
 
 ## Fields
 

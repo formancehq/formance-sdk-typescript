@@ -1,5 +1,38 @@
 # GetBalancesResponse
 
+## Example Usage
+
+```typescript
+import { GetBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetBalancesResponse = {
+  balancesCursorResponse: {
+    cursor: {
+      data: [
+        {
+          "account1": {
+            "USD": 100,
+            "EUR": 23,
+          },
+          "account2": {
+            "CAD": 20,
+            "JPY": 21,
+          },
+        },
+      ],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+    },
+  },
+  contentType: "<value>",
+  statusCode: 383441,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

@@ -5,74 +5,76 @@
 import * as z from "zod";
 
 export enum Type {
-    NewTransaction = "NEW_TRANSACTION",
-    SetMetadata = "SET_METADATA",
+  NewTransaction = "NEW_TRANSACTION",
+  SetMetadata = "SET_METADATA",
 }
 
 export type Log = {
-    data: { [k: string]: any };
-    date: Date;
-    hash: string;
-    id: number;
-    type: Type;
+  data: { [k: string]: any };
+  date: Date;
+  hash: string;
+  id: number;
+  type: Type;
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+  Type,
+);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = Type$inboundSchema;
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
+  Type$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Type$ {
-    /** @deprecated use `Type$inboundSchema` instead. */
-    export const inboundSchema = Type$inboundSchema;
-    /** @deprecated use `Type$outboundSchema` instead. */
-    export const outboundSchema = Type$outboundSchema;
+  /** @deprecated use `Type$inboundSchema` instead. */
+  export const inboundSchema = Type$inboundSchema;
+  /** @deprecated use `Type$outboundSchema` instead. */
+  export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
-export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z.object({
+export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
+  .object({
     data: z.record(z.any()),
-    date: z
-        .string()
-        .datetime({ offset: true })
-        .transform((v) => new Date(v)),
+    date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
     hash: z.string(),
     id: z.number().int(),
     type: Type$inboundSchema,
-});
+  });
 
 /** @internal */
 export type Log$Outbound = {
-    data: { [k: string]: any };
-    date: string;
-    hash: string;
-    id: number;
-    type: string;
+  data: { [k: string]: any };
+  date: string;
+  hash: string;
+  id: number;
+  type: string;
 };
 
 /** @internal */
-export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z.object({
+export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z
+  .object({
     data: z.record(z.any()),
-    date: z.date().transform((v) => v.toISOString()),
+    date: z.date().transform(v => v.toISOString()),
     hash: z.string(),
     id: z.number().int(),
     type: Type$outboundSchema,
-});
+  });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Log$ {
-    /** @deprecated use `Log$inboundSchema` instead. */
-    export const inboundSchema = Log$inboundSchema;
-    /** @deprecated use `Log$outboundSchema` instead. */
-    export const outboundSchema = Log$outboundSchema;
-    /** @deprecated use `Log$Outbound` instead. */
-    export type Outbound = Log$Outbound;
+  /** @deprecated use `Log$inboundSchema` instead. */
+  export const inboundSchema = Log$inboundSchema;
+  /** @deprecated use `Log$outboundSchema` instead. */
+  export const outboundSchema = Log$outboundSchema;
+  /** @deprecated use `Log$Outbound` instead. */
+  export type Outbound = Log$Outbound;
 }

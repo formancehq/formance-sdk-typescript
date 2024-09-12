@@ -1,5 +1,20 @@
 # TaskWise
 
+## Example Usage
+
+```typescript
+import { PaymentStatus, TaskWise } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskWise = {
+  connectorID: "<value>",
+  createdAt: new Date("2024-06-22T23:28:44.132Z"),
+  descriptor: {},
+  id: "1ad879ee-b966-45b8-9efb-d02bae0be2d7",
+  state: {},
+  status: PaymentStatus.Refunded,
+  updatedAt: new Date("2022-06-03T18:52:21.655Z"),
+};
+```
 
 ## Fields
 

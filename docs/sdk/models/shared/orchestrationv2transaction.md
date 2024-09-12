@@ -1,5 +1,27 @@
 # OrchestrationV2Transaction
 
+## Example Usage
+
+```typescript
+import { OrchestrationV2Transaction } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationV2Transaction = {
+  metadata: {
+    "admin": "true",
+  },
+  postings: [
+    {
+      amount: BigInt("100"),
+      asset: "COIN",
+      destination: "users:002",
+      source: "users:001",
+    },
+  ],
+  reference: "ref:001",
+  timestamp: new Date("2022-10-06T09:52:46.603Z"),
+  txid: BigInt("364912"),
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # TaskModulrDescriptor
 
+## Example Usage
+
+```typescript
+import { TaskModulrDescriptor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TaskModulrDescriptor = {};
+```
 
 ## Fields
 

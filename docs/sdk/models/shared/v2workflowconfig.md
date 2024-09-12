@@ -1,5 +1,18 @@
 # V2WorkflowConfig
 
+## Example Usage
+
+```typescript
+import { V2WorkflowConfig } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2WorkflowConfig = {
+  stages: [
+    {
+      "key": "<value>",
+    },
+  ],
+};
+```
 
 ## Fields
 

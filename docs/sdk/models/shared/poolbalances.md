@@ -1,5 +1,19 @@
 # PoolBalances
 
+## Example Usage
+
+```typescript
+import { PoolBalances } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: PoolBalances = {
+  balances: [
+    {
+      amount: BigInt("100"),
+      asset: "USD",
+    },
+  ],
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # V2PaymentType
 
+## Example Usage
+
+```typescript
+import { V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2PaymentType = V2PaymentType.Other;
+```
 
 ## Values
 

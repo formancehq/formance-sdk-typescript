@@ -1,5 +1,14 @@
 # GetPolicyRequest
 
+## Example Usage
+
+```typescript
+import { GetPolicyRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetPolicyRequest = {
+  policyID: "XXX",
+};
+```
 
 ## Fields
 

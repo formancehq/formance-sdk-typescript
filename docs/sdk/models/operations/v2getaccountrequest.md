@@ -1,5 +1,15 @@
 # V2GetAccountRequest
 
+## Example Usage
+
+```typescript
+import { V2GetAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetAccountRequest = {
+  address: "users:001",
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

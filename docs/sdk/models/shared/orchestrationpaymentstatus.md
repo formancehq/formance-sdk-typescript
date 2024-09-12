@@ -1,5 +1,12 @@
 # OrchestrationPaymentStatus
 
+## Example Usage
+
+```typescript
+import { OrchestrationPaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationPaymentStatus = OrchestrationPaymentStatus.Cancelled;
+```
 
 ## Values
 

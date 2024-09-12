@@ -1,5 +1,41 @@
 # OrchestrationAccount
 
+## Example Usage
+
+```typescript
+import { OrchestrationAccount } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationAccount = {
+  address: "users:001",
+  effectiveVolumes: {
+    "USD": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+    "EUR": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+  },
+  metadata: {
+    "admin": "true",
+  },
+  volumes: {
+    "USD": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+    "EUR": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+  },
+};
+```
 
 ## Fields
 

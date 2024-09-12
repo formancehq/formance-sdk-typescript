@@ -1,5 +1,25 @@
 # V2ListTriggersResponseCursor
 
+## Example Usage
+
+```typescript
+import { V2ListTriggersResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2ListTriggersResponseCursor = {
+  data: [
+    {
+      createdAt: new Date("2023-07-29T17:17:11.069Z"),
+      event: "<value>",
+      id: "<id>",
+      workflowID: "<value>",
+    },
+  ],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

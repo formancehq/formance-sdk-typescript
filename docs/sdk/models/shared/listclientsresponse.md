@@ -1,5 +1,12 @@
 # ListClientsResponse
 
+## Example Usage
+
+```typescript
+import { ListClientsResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ListClientsResponse = {};
+```
 
 ## Fields
 

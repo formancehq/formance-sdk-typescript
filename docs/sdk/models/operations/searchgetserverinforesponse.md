@@ -1,5 +1,18 @@
 # SearchgetServerInfoResponse
 
+## Example Usage
+
+```typescript
+import { SearchgetServerInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: SearchgetServerInfoResponse = {
+  contentType: "<value>",
+  statusCode: 470132,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

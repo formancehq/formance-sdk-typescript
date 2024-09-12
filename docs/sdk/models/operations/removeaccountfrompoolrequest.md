@@ -1,5 +1,15 @@
 # RemoveAccountFromPoolRequest
 
+## Example Usage
+
+```typescript
+import { RemoveAccountFromPoolRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: RemoveAccountFromPoolRequest = {
+  accountId: "XXX",
+  poolId: "XXX",
+};
+```
 
 ## Fields
 

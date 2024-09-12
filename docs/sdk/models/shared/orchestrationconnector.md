@@ -1,5 +1,12 @@
 # OrchestrationConnector
 
+## Example Usage
+
+```typescript
+import { OrchestrationConnector } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationConnector = OrchestrationConnector.Stripe;
+```
 
 ## Values
 

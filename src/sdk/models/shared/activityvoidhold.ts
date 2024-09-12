@@ -5,27 +5,30 @@
 import * as z from "zod";
 
 export type ActivityVoidHold = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
-export const ActivityVoidHold$inboundSchema: z.ZodType<ActivityVoidHold, z.ZodTypeDef, unknown> =
-    z.object({
-        id: z.string(),
-    });
+export const ActivityVoidHold$inboundSchema: z.ZodType<
+  ActivityVoidHold,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
+});
 
 /** @internal */
 export type ActivityVoidHold$Outbound = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
 export const ActivityVoidHold$outboundSchema: z.ZodType<
-    ActivityVoidHold$Outbound,
-    z.ZodTypeDef,
-    ActivityVoidHold
+  ActivityVoidHold$Outbound,
+  z.ZodTypeDef,
+  ActivityVoidHold
 > = z.object({
-    id: z.string(),
+  id: z.string(),
 });
 
 /**
@@ -33,10 +36,10 @@ export const ActivityVoidHold$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ActivityVoidHold$ {
-    /** @deprecated use `ActivityVoidHold$inboundSchema` instead. */
-    export const inboundSchema = ActivityVoidHold$inboundSchema;
-    /** @deprecated use `ActivityVoidHold$outboundSchema` instead. */
-    export const outboundSchema = ActivityVoidHold$outboundSchema;
-    /** @deprecated use `ActivityVoidHold$Outbound` instead. */
-    export type Outbound = ActivityVoidHold$Outbound;
+  /** @deprecated use `ActivityVoidHold$inboundSchema` instead. */
+  export const inboundSchema = ActivityVoidHold$inboundSchema;
+  /** @deprecated use `ActivityVoidHold$outboundSchema` instead. */
+  export const outboundSchema = ActivityVoidHold$outboundSchema;
+  /** @deprecated use `ActivityVoidHold$Outbound` instead. */
+  export type Outbound = ActivityVoidHold$Outbound;
 }

@@ -1,5 +1,12 @@
 # ListTriggersRequest
 
+## Example Usage
+
+```typescript
+import { ListTriggersRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: ListTriggersRequest = {};
+```
 
 ## Fields
 

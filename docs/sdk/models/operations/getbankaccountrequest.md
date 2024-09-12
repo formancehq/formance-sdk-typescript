@@ -1,5 +1,14 @@
 # GetBankAccountRequest
 
+## Example Usage
+
+```typescript
+import { GetBankAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetBankAccountRequest = {
+  bankAccountId: "XXX",
+};
+```
 
 ## Fields
 

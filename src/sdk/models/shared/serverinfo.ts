@@ -5,34 +5,41 @@
 import * as z from "zod";
 
 export type ServerInfo = {
-    version: string;
+  version: string;
 };
 
 /** @internal */
-export const ServerInfo$inboundSchema: z.ZodType<ServerInfo, z.ZodTypeDef, unknown> = z.object({
-    version: z.string(),
+export const ServerInfo$inboundSchema: z.ZodType<
+  ServerInfo,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  version: z.string(),
 });
 
 /** @internal */
 export type ServerInfo$Outbound = {
-    version: string;
+  version: string;
 };
 
 /** @internal */
-export const ServerInfo$outboundSchema: z.ZodType<ServerInfo$Outbound, z.ZodTypeDef, ServerInfo> =
-    z.object({
-        version: z.string(),
-    });
+export const ServerInfo$outboundSchema: z.ZodType<
+  ServerInfo$Outbound,
+  z.ZodTypeDef,
+  ServerInfo
+> = z.object({
+  version: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ServerInfo$ {
-    /** @deprecated use `ServerInfo$inboundSchema` instead. */
-    export const inboundSchema = ServerInfo$inboundSchema;
-    /** @deprecated use `ServerInfo$outboundSchema` instead. */
-    export const outboundSchema = ServerInfo$outboundSchema;
-    /** @deprecated use `ServerInfo$Outbound` instead. */
-    export type Outbound = ServerInfo$Outbound;
+  /** @deprecated use `ServerInfo$inboundSchema` instead. */
+  export const inboundSchema = ServerInfo$inboundSchema;
+  /** @deprecated use `ServerInfo$outboundSchema` instead. */
+  export const outboundSchema = ServerInfo$outboundSchema;
+  /** @deprecated use `ServerInfo$Outbound` instead. */
+  export type Outbound = ServerInfo$Outbound;
 }

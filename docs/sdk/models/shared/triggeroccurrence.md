@@ -1,5 +1,18 @@
 # TriggerOccurrence
 
+## Example Usage
+
+```typescript
+import { TriggerOccurrence } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TriggerOccurrence = {
+  date: new Date("2023-08-18T12:47:20.725Z"),
+  event: {
+    "key": "<value>",
+  },
+  triggerID: "<value>",
+};
+```
 
 ## Fields
 

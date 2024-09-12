@@ -1,5 +1,12 @@
 # TransferResponse
 
+## Example Usage
+
+```typescript
+import { TransferResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransferResponse = {};
+```
 
 ## Fields
 

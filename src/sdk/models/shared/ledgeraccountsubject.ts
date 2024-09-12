@@ -5,34 +5,34 @@
 import * as z from "zod";
 
 export type LedgerAccountSubject = {
-    identifier: string;
-    type: string;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const LedgerAccountSubject$inboundSchema: z.ZodType<
-    LedgerAccountSubject,
-    z.ZodTypeDef,
-    unknown
+  LedgerAccountSubject,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    identifier: z.string(),
-    type: z.string(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /** @internal */
 export type LedgerAccountSubject$Outbound = {
-    identifier: string;
-    type: string;
+  identifier: string;
+  type: string;
 };
 
 /** @internal */
 export const LedgerAccountSubject$outboundSchema: z.ZodType<
-    LedgerAccountSubject$Outbound,
-    z.ZodTypeDef,
-    LedgerAccountSubject
+  LedgerAccountSubject$Outbound,
+  z.ZodTypeDef,
+  LedgerAccountSubject
 > = z.object({
-    identifier: z.string(),
-    type: z.string(),
+  identifier: z.string(),
+  type: z.string(),
 });
 
 /**
@@ -40,10 +40,10 @@ export const LedgerAccountSubject$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace LedgerAccountSubject$ {
-    /** @deprecated use `LedgerAccountSubject$inboundSchema` instead. */
-    export const inboundSchema = LedgerAccountSubject$inboundSchema;
-    /** @deprecated use `LedgerAccountSubject$outboundSchema` instead. */
-    export const outboundSchema = LedgerAccountSubject$outboundSchema;
-    /** @deprecated use `LedgerAccountSubject$Outbound` instead. */
-    export type Outbound = LedgerAccountSubject$Outbound;
+  /** @deprecated use `LedgerAccountSubject$inboundSchema` instead. */
+  export const inboundSchema = LedgerAccountSubject$inboundSchema;
+  /** @deprecated use `LedgerAccountSubject$outboundSchema` instead. */
+  export const outboundSchema = LedgerAccountSubject$outboundSchema;
+  /** @deprecated use `LedgerAccountSubject$Outbound` instead. */
+  export type Outbound = LedgerAccountSubject$Outbound;
 }

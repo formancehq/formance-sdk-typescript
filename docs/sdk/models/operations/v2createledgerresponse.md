@@ -1,5 +1,18 @@
 # V2CreateLedgerResponse
 
+## Example Usage
+
+```typescript
+import { V2CreateLedgerResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2CreateLedgerResponse = {
+  contentType: "<value>",
+  statusCode: 800911,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

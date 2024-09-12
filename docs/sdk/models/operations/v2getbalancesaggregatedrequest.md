@@ -1,5 +1,14 @@
 # V2GetBalancesAggregatedRequest
 
+## Example Usage
+
+```typescript
+import { V2GetBalancesAggregatedRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2GetBalancesAggregatedRequest = {
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

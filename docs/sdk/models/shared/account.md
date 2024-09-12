@@ -1,5 +1,23 @@
 # Account
 
+## Example Usage
+
+```typescript
+import { Account } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Account = {
+  address: "users:001",
+  metadata: {
+    "admin": true,
+    "a": {
+      "nested": {
+        "key": "value",
+      },
+    },
+  },
+  type: "virtual",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # ForwardBankAccountRequest
 
+## Example Usage
+
+```typescript
+import { ForwardBankAccountRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ForwardBankAccountRequest = {
+  connectorID: "<value>",
+};
+```
 
 ## Fields
 

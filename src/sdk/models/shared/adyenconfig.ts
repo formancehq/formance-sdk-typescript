@@ -5,48 +5,51 @@
 import * as z from "zod";
 
 export type AdyenConfig = {
-    apiKey: string;
-    hmacKey: string;
-    liveEndpointPrefix?: string | undefined;
-    name: string;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  hmacKey: string;
+  liveEndpointPrefix?: string | undefined;
+  name: string;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const AdyenConfig$inboundSchema: z.ZodType<AdyenConfig, z.ZodTypeDef, unknown> = z.object({
-    apiKey: z.string(),
-    hmacKey: z.string(),
-    liveEndpointPrefix: z.string().optional(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+export const AdyenConfig$inboundSchema: z.ZodType<
+  AdyenConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  hmacKey: z.string(),
+  liveEndpointPrefix: z.string().optional(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /** @internal */
 export type AdyenConfig$Outbound = {
-    apiKey: string;
-    hmacKey: string;
-    liveEndpointPrefix?: string | undefined;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  hmacKey: string;
+  liveEndpointPrefix?: string | undefined;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const AdyenConfig$outboundSchema: z.ZodType<
-    AdyenConfig$Outbound,
-    z.ZodTypeDef,
-    AdyenConfig
+  AdyenConfig$Outbound,
+  z.ZodTypeDef,
+  AdyenConfig
 > = z.object({
-    apiKey: z.string(),
-    hmacKey: z.string(),
-    liveEndpointPrefix: z.string().optional(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  hmacKey: z.string(),
+  liveEndpointPrefix: z.string().optional(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -54,10 +57,10 @@ export const AdyenConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace AdyenConfig$ {
-    /** @deprecated use `AdyenConfig$inboundSchema` instead. */
-    export const inboundSchema = AdyenConfig$inboundSchema;
-    /** @deprecated use `AdyenConfig$outboundSchema` instead. */
-    export const outboundSchema = AdyenConfig$outboundSchema;
-    /** @deprecated use `AdyenConfig$Outbound` instead. */
-    export type Outbound = AdyenConfig$Outbound;
+  /** @deprecated use `AdyenConfig$inboundSchema` instead. */
+  export const inboundSchema = AdyenConfig$inboundSchema;
+  /** @deprecated use `AdyenConfig$outboundSchema` instead. */
+  export const outboundSchema = AdyenConfig$outboundSchema;
+  /** @deprecated use `AdyenConfig$Outbound` instead. */
+  export type Outbound = AdyenConfig$Outbound;
 }

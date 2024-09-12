@@ -1,5 +1,18 @@
 # TransactionsCursorResponseCursor
 
+## Example Usage
+
+```typescript
+import { TransactionsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: TransactionsCursorResponseCursor = {
+  data: [],
+  hasMore: false,
+  next: "",
+  pageSize: 15,
+  previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+};
+```
 
 ## Fields
 

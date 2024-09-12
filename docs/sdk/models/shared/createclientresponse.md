@@ -1,5 +1,12 @@
 # CreateClientResponse
 
+## Example Usage
+
+```typescript
+import { CreateClientResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: CreateClientResponse = {};
+```
 
 ## Fields
 

@@ -1,5 +1,14 @@
 # V2ReadStatsRequest
 
+## Example Usage
+
+```typescript
+import { V2ReadStatsRequest } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ReadStatsRequest = {
+  ledger: "ledger001",
+};
+```
 
 ## Fields
 

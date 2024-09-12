@@ -1,5 +1,28 @@
 # GetPoolBalancesResponse
 
+## Example Usage
+
+```typescript
+import { GetPoolBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: GetPoolBalancesResponse = {
+  contentType: "<value>",
+  poolBalancesResponse: {
+    data: {
+      balances: [
+        {
+          amount: BigInt("100"),
+          asset: "USD",
+        },
+      ],
+    },
+  },
+  statusCode: 575947,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

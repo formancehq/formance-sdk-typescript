@@ -1,5 +1,12 @@
 # ErrorCode
 
+## Example Usage
+
+```typescript
+import { ErrorCode } from "@formance/formance-sdk/sdk/models/errors";
+
+let value: ErrorCode = ErrorCode.Internal;
+```
 
 ## Values
 

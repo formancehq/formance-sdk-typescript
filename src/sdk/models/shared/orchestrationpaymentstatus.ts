@@ -5,22 +5,22 @@
 import * as z from "zod";
 
 export enum OrchestrationPaymentStatus {
-    Pending = "PENDING",
-    Active = "ACTIVE",
-    Terminated = "TERMINATED",
-    Failed = "FAILED",
-    Succeeded = "SUCCEEDED",
-    Cancelled = "CANCELLED",
+  Pending = "PENDING",
+  Active = "ACTIVE",
+  Terminated = "TERMINATED",
+  Failed = "FAILED",
+  Succeeded = "SUCCEEDED",
+  Cancelled = "CANCELLED",
 }
 
 /** @internal */
 export const OrchestrationPaymentStatus$inboundSchema: z.ZodNativeEnum<
-    typeof OrchestrationPaymentStatus
+  typeof OrchestrationPaymentStatus
 > = z.nativeEnum(OrchestrationPaymentStatus);
 
 /** @internal */
 export const OrchestrationPaymentStatus$outboundSchema: z.ZodNativeEnum<
-    typeof OrchestrationPaymentStatus
+  typeof OrchestrationPaymentStatus
 > = OrchestrationPaymentStatus$inboundSchema;
 
 /**
@@ -28,8 +28,8 @@ export const OrchestrationPaymentStatus$outboundSchema: z.ZodNativeEnum<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace OrchestrationPaymentStatus$ {
-    /** @deprecated use `OrchestrationPaymentStatus$inboundSchema` instead. */
-    export const inboundSchema = OrchestrationPaymentStatus$inboundSchema;
-    /** @deprecated use `OrchestrationPaymentStatus$outboundSchema` instead. */
-    export const outboundSchema = OrchestrationPaymentStatus$outboundSchema;
+  /** @deprecated use `OrchestrationPaymentStatus$inboundSchema` instead. */
+  export const inboundSchema = OrchestrationPaymentStatus$inboundSchema;
+  /** @deprecated use `OrchestrationPaymentStatus$outboundSchema` instead. */
+  export const outboundSchema = OrchestrationPaymentStatus$outboundSchema;
 }

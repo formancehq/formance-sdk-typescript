@@ -1,5 +1,17 @@
 # V2StatsResponse
 
+## Example Usage
+
+```typescript
+import { V2StatsResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V2StatsResponse = {
+  data: {
+    accounts: 456911,
+    transactions: BigInt("910545"),
+  },
+};
+```
 
 ## Fields
 

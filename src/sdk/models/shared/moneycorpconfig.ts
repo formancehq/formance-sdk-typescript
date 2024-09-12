@@ -5,49 +5,51 @@
 import * as z from "zod";
 
 export type MoneycorpConfig = {
-    apiKey: string;
-    clientID: string;
-    endpoint: string;
-    name: string;
-    /**
-     * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
-     *
-     * @remarks
-     *
-     */
-    pollingPeriod?: string | undefined;
+  apiKey: string;
+  clientID: string;
+  endpoint: string;
+  name: string;
+  /**
+   * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
+   *
+   * @remarks
+   */
+  pollingPeriod?: string | undefined;
 };
 
 /** @internal */
-export const MoneycorpConfig$inboundSchema: z.ZodType<MoneycorpConfig, z.ZodTypeDef, unknown> =
-    z.object({
-        apiKey: z.string(),
-        clientID: z.string(),
-        endpoint: z.string(),
-        name: z.string(),
-        pollingPeriod: z.string().default("120s"),
-    });
+export const MoneycorpConfig$inboundSchema: z.ZodType<
+  MoneycorpConfig,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  apiKey: z.string(),
+  clientID: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
+});
 
 /** @internal */
 export type MoneycorpConfig$Outbound = {
-    apiKey: string;
-    clientID: string;
-    endpoint: string;
-    name: string;
-    pollingPeriod: string;
+  apiKey: string;
+  clientID: string;
+  endpoint: string;
+  name: string;
+  pollingPeriod: string;
 };
 
 /** @internal */
 export const MoneycorpConfig$outboundSchema: z.ZodType<
-    MoneycorpConfig$Outbound,
-    z.ZodTypeDef,
-    MoneycorpConfig
+  MoneycorpConfig$Outbound,
+  z.ZodTypeDef,
+  MoneycorpConfig
 > = z.object({
-    apiKey: z.string(),
-    clientID: z.string(),
-    endpoint: z.string(),
-    name: z.string(),
-    pollingPeriod: z.string().default("120s"),
+  apiKey: z.string(),
+  clientID: z.string(),
+  endpoint: z.string(),
+  name: z.string(),
+  pollingPeriod: z.string().default("120s"),
 });
 
 /**
@@ -55,10 +57,10 @@ export const MoneycorpConfig$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace MoneycorpConfig$ {
-    /** @deprecated use `MoneycorpConfig$inboundSchema` instead. */
-    export const inboundSchema = MoneycorpConfig$inboundSchema;
-    /** @deprecated use `MoneycorpConfig$outboundSchema` instead. */
-    export const outboundSchema = MoneycorpConfig$outboundSchema;
-    /** @deprecated use `MoneycorpConfig$Outbound` instead. */
-    export type Outbound = MoneycorpConfig$Outbound;
+  /** @deprecated use `MoneycorpConfig$inboundSchema` instead. */
+  export const inboundSchema = MoneycorpConfig$inboundSchema;
+  /** @deprecated use `MoneycorpConfig$outboundSchema` instead. */
+  export const outboundSchema = MoneycorpConfig$outboundSchema;
+  /** @deprecated use `MoneycorpConfig$Outbound` instead. */
+  export type Outbound = MoneycorpConfig$Outbound;
 }

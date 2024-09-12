@@ -1,5 +1,38 @@
 # Payment
 
+## Example Usage
+
+```typescript
+import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: Payment = {
+  adjustments: [
+    {
+      amount: BigInt("100"),
+      createdAt: new Date("2023-04-01T12:09:35.022Z"),
+      raw: {},
+      reference: "<value>",
+      status: PaymentStatus.Refunded,
+    },
+  ],
+  amount: BigInt("100"),
+  asset: "USD",
+  connectorID: "<value>",
+  createdAt: new Date("2024-10-23T12:46:35.232Z"),
+  destinationAccountID: "<value>",
+  id: "XXX",
+  initialAmount: BigInt("100"),
+  metadata: {
+    "key": "<value>",
+  },
+  raw: {},
+  reference: "<value>",
+  scheme: PaymentScheme.Discover,
+  sourceAccountID: "<value>",
+  status: PaymentStatus.Dispute,
+  type: PaymentType.Other,
+};
+```
 
 ## Fields
 

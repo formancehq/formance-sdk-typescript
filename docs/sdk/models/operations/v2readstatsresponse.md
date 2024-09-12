@@ -1,5 +1,18 @@
 # V2ReadStatsResponse
 
+## Example Usage
+
+```typescript
+import { V2ReadStatsResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2ReadStatsResponse = {
+  contentType: "<value>",
+  statusCode: 99280,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

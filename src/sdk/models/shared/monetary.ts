@@ -5,44 +5,51 @@
 import * as z from "zod";
 
 export type Monetary = {
-    /**
-     * The amount of the monetary value.
-     */
-    amount: bigint;
-    /**
-     * The asset of the monetary value.
-     */
-    asset: string;
+  /**
+   * The amount of the monetary value.
+   */
+  amount: bigint;
+  /**
+   * The asset of the monetary value.
+   */
+  asset: string;
 };
 
 /** @internal */
-export const Monetary$inboundSchema: z.ZodType<Monetary, z.ZodTypeDef, unknown> = z.object({
-    amount: z.number().transform((v) => BigInt(v)),
-    asset: z.string(),
+export const Monetary$inboundSchema: z.ZodType<
+  Monetary,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  amount: z.number().transform(v => BigInt(v)),
+  asset: z.string(),
 });
 
 /** @internal */
 export type Monetary$Outbound = {
-    amount: number;
-    asset: string;
+  amount: number;
+  asset: string;
 };
 
 /** @internal */
-export const Monetary$outboundSchema: z.ZodType<Monetary$Outbound, z.ZodTypeDef, Monetary> =
-    z.object({
-        amount: z.bigint().transform((v) => Number(v)),
-        asset: z.string(),
-    });
+export const Monetary$outboundSchema: z.ZodType<
+  Monetary$Outbound,
+  z.ZodTypeDef,
+  Monetary
+> = z.object({
+  amount: z.bigint().transform(v => Number(v)),
+  asset: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace Monetary$ {
-    /** @deprecated use `Monetary$inboundSchema` instead. */
-    export const inboundSchema = Monetary$inboundSchema;
-    /** @deprecated use `Monetary$outboundSchema` instead. */
-    export const outboundSchema = Monetary$outboundSchema;
-    /** @deprecated use `Monetary$Outbound` instead. */
-    export type Outbound = Monetary$Outbound;
+  /** @deprecated use `Monetary$inboundSchema` instead. */
+  export const inboundSchema = Monetary$inboundSchema;
+  /** @deprecated use `Monetary$outboundSchema` instead. */
+  export const outboundSchema = Monetary$outboundSchema;
+  /** @deprecated use `Monetary$Outbound` instead. */
+  export type Outbound = Monetary$Outbound;
 }

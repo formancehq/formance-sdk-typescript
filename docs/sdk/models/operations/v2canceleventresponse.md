@@ -1,5 +1,18 @@
 # V2CancelEventResponse
 
+## Example Usage
+
+```typescript
+import { V2CancelEventResponse } from "@formance/formance-sdk/sdk/models/operations";
+
+let value: V2CancelEventResponse = {
+  contentType: "<value>",
+  statusCode: 208876,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
+};
+```
 
 ## Fields
 

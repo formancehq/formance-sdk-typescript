@@ -1,5 +1,38 @@
 # AccountWithVolumesAndBalances
 
+## Example Usage
+
+```typescript
+import { AccountWithVolumesAndBalances } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: AccountWithVolumesAndBalances = {
+  address: "users:001",
+  balances: {
+    "COIN": BigInt("100"),
+  },
+  metadata: {
+    "admin": true,
+    "a": {
+      "nested": {
+        "key": "value",
+      },
+    },
+  },
+  type: "virtual",
+  volumes: {
+    "USD": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+    "EUR": {
+      balance: BigInt("90"),
+      input: BigInt("100"),
+      output: BigInt("10"),
+    },
+  },
+};
+```
 
 ## Fields
 

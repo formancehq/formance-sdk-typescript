@@ -1,5 +1,12 @@
 # ActivityListWallets
 
+## Example Usage
+
+```typescript
+import { ActivityListWallets } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ActivityListWallets = {};
+```
 
 ## Fields
 

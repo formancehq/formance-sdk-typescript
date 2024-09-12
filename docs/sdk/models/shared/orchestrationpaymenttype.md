@@ -1,5 +1,12 @@
 # OrchestrationPaymentType
 
+## Example Usage
+
+```typescript
+import { OrchestrationPaymentType } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: OrchestrationPaymentType = OrchestrationPaymentType.Other;
+```
 
 ## Values
 

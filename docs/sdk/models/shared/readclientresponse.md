@@ -1,5 +1,12 @@
 # ReadClientResponse
 
+## Example Usage
+
+```typescript
+import { ReadClientResponse } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: ReadClientResponse = {};
+```
 
 ## Fields
 

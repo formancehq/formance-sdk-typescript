@@ -1,5 +1,18 @@
 # BankAccount
 
+## Example Usage
+
+```typescript
+import { BankAccount } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: BankAccount = {
+  connectorID: "<value>",
+  country: "Venezuela",
+  createdAt: new Date("2022-12-26T21:40:47.247Z"),
+  id: "<id>",
+  name: "<value>",
+};
+```
 
 ## Fields
 
