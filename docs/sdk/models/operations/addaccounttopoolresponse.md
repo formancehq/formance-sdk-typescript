@@ -7,7 +7,7 @@ import { AddAccountToPoolResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: AddAccountToPoolResponse = {
   contentType: "<value>",
-  statusCode: 662527,
+  statusCode: 466311,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

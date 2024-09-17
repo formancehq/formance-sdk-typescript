@@ -6,7 +6,7 @@
 import { V2Transaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Transaction = {
-  id: BigInt("86377"),
+  id: BigInt("476477"),
   metadata: {
     "admin": "true",
   },
@@ -20,7 +20,7 @@ let value: V2Transaction = {
   ],
   reference: "ref:001",
   reverted: false,
-  timestamp: new Date("2022-03-04T07:19:54.155Z"),
+  timestamp: new Date("2022-11-27T13:15:01.675Z"),
 };
 ```
 

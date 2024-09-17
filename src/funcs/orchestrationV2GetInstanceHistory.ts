@@ -77,7 +77,7 @@ export async function orchestrationV2GetInstanceHistory(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2GetInstanceHistory",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["orchestration:read"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

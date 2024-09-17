@@ -6,8 +6,8 @@
 import { Stats } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Stats = {
-  accounts: 695626,
-  transactions: 852635,
+  accounts: 860552,
+  transactions: 379034,
 };
 ```
 

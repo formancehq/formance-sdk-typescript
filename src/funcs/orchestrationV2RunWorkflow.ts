@@ -85,7 +85,7 @@ export async function orchestrationV2RunWorkflow(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2RunWorkflow",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["orchestration:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

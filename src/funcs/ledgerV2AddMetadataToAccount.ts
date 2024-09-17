@@ -92,7 +92,7 @@ export async function ledgerV2AddMetadataToAccount(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2AddMetadataToAccount",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

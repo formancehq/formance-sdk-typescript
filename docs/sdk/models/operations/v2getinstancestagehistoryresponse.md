@@ -7,7 +7,7 @@ import { V2GetInstanceStageHistoryResponse } from "@formance/formance-sdk/sdk/mo
 
 let value: V2GetInstanceStageHistoryResponse = {
   contentType: "<value>",
-  statusCode: 414369,
+  statusCode: 325047,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

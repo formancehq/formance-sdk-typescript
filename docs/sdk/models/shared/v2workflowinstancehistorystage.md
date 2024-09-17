@@ -6,7 +6,7 @@
 import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 621693,
+  attempt: 690894,
   input: {
     createTransaction: {
       data: {
@@ -91,8 +91,8 @@ let value: V2WorkflowInstanceHistoryStage = {
             },
           ],
           reference: "ref:001",
-          timestamp: new Date("2023-02-20T18:34:55.894Z"),
-          txid: BigInt("922348"),
+          timestamp: new Date("2022-04-19T23:02:55.671Z"),
+          txid: BigInt("577140"),
         },
       ],
     },
@@ -134,21 +134,21 @@ let value: V2WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2023-08-18T04:10:23.565Z"),
+            date: new Date("2022-11-14T14:15:52.743Z"),
             raw: {},
-            status: V2PaymentStatus.Failed,
+            status: V2PaymentStatus.Succeeded,
           },
         ],
         asset: "USD",
         connectorID: "<value>",
-        createdAt: new Date("2022-05-13T12:39:46.339Z"),
+        createdAt: new Date("2023-08-14T19:47:26.144Z"),
         destinationAccountID: "<value>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.Unknown,
+        scheme: Scheme.A2a,
         sourceAccountID: "<value>",
         status: V2PaymentStatus.Succeeded,
         type: V2PaymentType.Other,
@@ -158,8 +158,8 @@ let value: V2WorkflowInstanceHistoryStage = {
       cursor: {
         data: [
           {
-            createdAt: new Date("2022-11-11T16:23:05.729Z"),
-            id: "f0e10125-63f9-44e2-9e97-3e922a57a15b",
+            createdAt: new Date("2023-03-03T04:46:08.265Z"),
+            id: "03a79f9d-fe0a-4b7d-a8a5-0ce187f86bc1",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -174,7 +174,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2024-09-25T10:47:09.377Z"),
+  startedAt: new Date("2023-05-21T06:19:25.029Z"),
   terminated: false,
 };
 ```

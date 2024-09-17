@@ -75,7 +75,7 @@ export async function ledgerV2CreateBulk(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2CreateBulk",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

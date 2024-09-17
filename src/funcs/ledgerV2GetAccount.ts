@@ -85,7 +85,7 @@ export async function ledgerV2GetAccount(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2GetAccount",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:read"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

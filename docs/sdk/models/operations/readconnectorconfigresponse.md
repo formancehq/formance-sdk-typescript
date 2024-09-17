@@ -14,7 +14,7 @@ let value: ReadConnectorConfigResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 756107,
+  statusCode: 397821,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ import { ListTransferInitiationsResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: ListTransferInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 569618,
+  statusCode: 716327,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

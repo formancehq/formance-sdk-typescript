@@ -7,7 +7,7 @@ import { V2ReadTriggerResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2ReadTriggerResponse = {
   contentType: "<value>",
-  statusCode: 196582,
+  statusCode: 653108,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

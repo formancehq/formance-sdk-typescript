@@ -16,6 +16,7 @@ export enum V2ErrorsEnum {
   AlreadyRevert = "ALREADY_REVERT",
   NoPostings = "NO_POSTINGS",
   LedgerNotFound = "LEDGER_NOT_FOUND",
+  Import = "IMPORT",
 }
 
 /** @internal */

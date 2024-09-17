@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 4a62d43befffe55605a3d0b24f39879b
-  docVersion: v2.0.17
-  speakeasyVersion: 1.396.4
-  generationVersion: 2.415.6
-  releaseVersion: 2.7.0
-  configChecksum: b1a5f715aba43bc18067d9cc28208b66
+  docChecksum: 168e11618829dc1c3d9efa172e32b1f7
+  docVersion: v0.0.0
+  speakeasyVersion: 1.398.0
+  generationVersion: 2.415.8
+  releaseVersion: 3.0.0-beta.1
+  configChecksum: a3c225fb87ba745533e51da8cce2b890
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,17 +15,18 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.2
+    core: 3.17.3
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
+    downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.1
     errors: 2.82.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
-    groups: 2.81.2
     ignores: 2.81.1
+    nameOverrides: 2.81.2
     nullables: 0.1.0
     oauth2ClientCredentials: 0.2.0
     responseFormat: 0.2.3
@@ -159,6 +160,7 @@ generatedFiles:
   - docs/sdk/models/operations/getpoolresponse.md
   - docs/sdk/models/operations/getreconciliationrequest.md
   - docs/sdk/models/operations/getreconciliationresponse.md
+  - docs/sdk/models/operations/getserverinforesponse.md
   - docs/sdk/models/operations/gettransactionrequest.md
   - docs/sdk/models/operations/gettransactionresponse.md
   - docs/sdk/models/operations/gettransactionsrequest.md
@@ -217,8 +219,6 @@ generatedFiles:
   - docs/sdk/models/operations/paymentsgetaccountrequest.md
   - docs/sdk/models/operations/paymentsgetaccountresponse.md
   - docs/sdk/models/operations/paymentsgetserverinforesponse.md
-  - docs/sdk/models/operations/paymentslistaccountsrequest.md
-  - docs/sdk/models/operations/paymentslistaccountsresponse.md
   - docs/sdk/models/operations/readclientrequest.md
   - docs/sdk/models/operations/readclientresponse.md
   - docs/sdk/models/operations/readconnectorconfigrequest.md
@@ -306,10 +306,10 @@ generatedFiles:
   - docs/sdk/models/operations/v2deletetriggerresponse.md
   - docs/sdk/models/operations/v2deleteworkflowrequest.md
   - docs/sdk/models/operations/v2deleteworkflowresponse.md
+  - docs/sdk/models/operations/v2exportlogsrequest.md
+  - docs/sdk/models/operations/v2exportlogsresponse.md
   - docs/sdk/models/operations/v2getaccountrequest.md
   - docs/sdk/models/operations/v2getaccountresponse.md
-  - docs/sdk/models/operations/v2getbalancesaggregatedrequest.md
-  - docs/sdk/models/operations/v2getbalancesaggregatedresponse.md
   - docs/sdk/models/operations/v2getinforesponse.md
   - docs/sdk/models/operations/v2getinstancehistoryrequest.md
   - docs/sdk/models/operations/v2getinstancehistoryresponse.md
@@ -324,20 +324,14 @@ generatedFiles:
   - docs/sdk/models/operations/v2getserverinforesponse.md
   - docs/sdk/models/operations/v2gettransactionrequest.md
   - docs/sdk/models/operations/v2gettransactionresponse.md
-  - docs/sdk/models/operations/v2getvolumeswithbalancesrequest.md
-  - docs/sdk/models/operations/v2getvolumeswithbalancesresponse.md
   - docs/sdk/models/operations/v2getworkflowrequest.md
   - docs/sdk/models/operations/v2getworkflowresponse.md
-  - docs/sdk/models/operations/v2listaccountsrequest.md
-  - docs/sdk/models/operations/v2listaccountsresponse.md
+  - docs/sdk/models/operations/v2importlogsrequest.md
+  - docs/sdk/models/operations/v2importlogsresponse.md
   - docs/sdk/models/operations/v2listinstancesrequest.md
   - docs/sdk/models/operations/v2listinstancesresponse.md
   - docs/sdk/models/operations/v2listledgersrequest.md
   - docs/sdk/models/operations/v2listledgersresponse.md
-  - docs/sdk/models/operations/v2listlogsrequest.md
-  - docs/sdk/models/operations/v2listlogsresponse.md
-  - docs/sdk/models/operations/v2listtransactionsrequest.md
-  - docs/sdk/models/operations/v2listtransactionsresponse.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesrequest.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesresponse.md
   - docs/sdk/models/operations/v2listtriggersrequest.md
@@ -364,9 +358,7 @@ generatedFiles:
   - docs/sdk/models/shared/accountbalance.md
   - docs/sdk/models/shared/accountrequest.md
   - docs/sdk/models/shared/accountresponse.md
-  - docs/sdk/models/shared/accountscursor.md
   - docs/sdk/models/shared/accountscursorresponse.md
-  - docs/sdk/models/shared/accountscursorresponsecursor.md
   - docs/sdk/models/shared/accounttype.md
   - docs/sdk/models/shared/accountwithvolumesandbalances.md
   - docs/sdk/models/shared/activityaddaccountmetadata.md
@@ -645,8 +637,6 @@ generatedFiles:
   - docs/sdk/models/shared/user.md
   - docs/sdk/models/shared/v2account.md
   - docs/sdk/models/shared/v2accountresponse.md
-  - docs/sdk/models/shared/v2accountscursorresponse.md
-  - docs/sdk/models/shared/v2accountscursorresponsecursor.md
   - docs/sdk/models/shared/v2activityaddaccountmetadata.md
   - docs/sdk/models/shared/v2activityconfirmhold.md
   - docs/sdk/models/shared/v2activitycreatetransaction.md
@@ -664,7 +654,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2activitystripetransfer.md
   - docs/sdk/models/shared/v2activitystripetransfermetadata.md
   - docs/sdk/models/shared/v2activityvoidhold.md
-  - docs/sdk/models/shared/v2aggregatebalancesresponse.md
   - docs/sdk/models/shared/v2assetholder.md
   - docs/sdk/models/shared/v2bulkelement.md
   - docs/sdk/models/shared/v2bulkelementaddmetadata.md
@@ -715,10 +704,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2listwalletsresponsecursor.md
   - docs/sdk/models/shared/v2listworkflowsresponse.md
   - docs/sdk/models/shared/v2listworkflowsresponsecursor.md
-  - docs/sdk/models/shared/v2log.md
-  - docs/sdk/models/shared/v2logscursorresponse.md
-  - docs/sdk/models/shared/v2logscursorresponsecursor.md
-  - docs/sdk/models/shared/v2logtype.md
   - docs/sdk/models/shared/v2migrationinfo.md
   - docs/sdk/models/shared/v2migrationinfostate.md
   - docs/sdk/models/shared/v2monetary.md
@@ -756,8 +741,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2targettype.md
   - docs/sdk/models/shared/v2testtriggerresponse.md
   - docs/sdk/models/shared/v2transaction.md
-  - docs/sdk/models/shared/v2transactionscursorresponse.md
-  - docs/sdk/models/shared/v2transactionscursorresponsecursor.md
   - docs/sdk/models/shared/v2trigger.md
   - docs/sdk/models/shared/v2triggerdata.md
   - docs/sdk/models/shared/v2triggeroccurrence.md
@@ -765,9 +748,6 @@ generatedFiles:
   - docs/sdk/models/shared/v2update.md
   - docs/sdk/models/shared/v2updateaccount.md
   - docs/sdk/models/shared/v2volume.md
-  - docs/sdk/models/shared/v2volumeswithbalance.md
-  - docs/sdk/models/shared/v2volumeswithbalancecursorresponse.md
-  - docs/sdk/models/shared/v2volumeswithbalancecursorresponsecursor.md
   - docs/sdk/models/shared/v2wallet.md
   - docs/sdk/models/shared/v2walletsubject.md
   - docs/sdk/models/shared/v2walletwithbalances.md
@@ -804,43 +784,54 @@ generatedFiles:
   - docs/sdks/payments/README.md
   - docs/sdks/reconciliation/README.md
   - docs/sdks/sdk/README.md
+  - docs/sdks/sdkorchestrationv1/README.md
+  - docs/sdks/sdkpaymentsv1/README.md
+  - docs/sdks/sdkreconciliationv1/README.md
+  - docs/sdks/sdksearchv1/README.md
+  - docs/sdks/sdkv1/README.md
+  - docs/sdks/sdkv2/README.md
+  - docs/sdks/sdkwalletsv1/README.md
+  - docs/sdks/sdkwebhooksv1/README.md
   - docs/sdks/search/README.md
+  - docs/sdks/v1/README.md
+  - docs/sdks/v2/README.md
   - docs/sdks/wallets/README.md
   - docs/sdks/webhooks/README.md
   - jsr.json
   - package.json
   - src/core.ts
-  - src/funcs/authCreateClient.ts
-  - src/funcs/authCreateSecret.ts
-  - src/funcs/authDeleteClient.ts
-  - src/funcs/authDeleteSecret.ts
-  - src/funcs/authListClients.ts
-  - src/funcs/authListUsers.ts
-  - src/funcs/authReadClient.ts
-  - src/funcs/authReadUser.ts
-  - src/funcs/authUpdateClient.ts
-  - src/funcs/getOIDCWellKnowns.ts
+  - src/funcs/authV1CreateClient.ts
+  - src/funcs/authV1CreateSecret.ts
+  - src/funcs/authV1DeleteClient.ts
+  - src/funcs/authV1DeleteSecret.ts
+  - src/funcs/authV1GetOIDCWellKnowns.ts
+  - src/funcs/authV1GetServerInfo.ts
+  - src/funcs/authV1ListClients.ts
+  - src/funcs/authV1ListUsers.ts
+  - src/funcs/authV1ReadClient.ts
+  - src/funcs/authV1ReadUser.ts
+  - src/funcs/authV1UpdateClient.ts
   - src/funcs/getVersions.ts
-  - src/funcs/ledgerAddMetadataOnTransaction.ts
-  - src/funcs/ledgerAddMetadataToAccount.ts
-  - src/funcs/ledgerCountAccounts.ts
-  - src/funcs/ledgerCountTransactions.ts
-  - src/funcs/ledgerCreateTransaction.ts
-  - src/funcs/ledgerCreateTransactions.ts
-  - src/funcs/ledgerGetAccount.ts
-  - src/funcs/ledgerGetBalances.ts
-  - src/funcs/ledgerGetBalancesAggregated.ts
-  - src/funcs/ledgerGetInfo.ts
-  - src/funcs/ledgerGetLedgerInfo.ts
-  - src/funcs/ledgerGetMapping.ts
-  - src/funcs/ledgerGetTransaction.ts
-  - src/funcs/ledgerListAccounts.ts
-  - src/funcs/ledgerListLogs.ts
-  - src/funcs/ledgerListTransactions.ts
-  - src/funcs/ledgerReadStats.ts
-  - src/funcs/ledgerRevertTransaction.ts
-  - src/funcs/ledgerRunScript.ts
-  - src/funcs/ledgerUpdateMapping.ts
+  - src/funcs/ledgerV1AddMetadataOnTransaction.ts
+  - src/funcs/ledgerV1AddMetadataToAccount.ts
+  - src/funcs/ledgerV1CountAccounts.ts
+  - src/funcs/ledgerV1CountTransactions.ts
+  - src/funcs/ledgerV1CreateTransaction.ts
+  - src/funcs/ledgerV1CreateTransactions.ts
+  - src/funcs/ledgerV1GetAccount.ts
+  - src/funcs/ledgerV1GetBalances.ts
+  - src/funcs/ledgerV1GetBalancesAggregated.ts
+  - src/funcs/ledgerV1GetInfo.ts
+  - src/funcs/ledgerV1GetLedgerInfo.ts
+  - src/funcs/ledgerV1GetMapping.ts
+  - src/funcs/ledgerV1GetTransaction.ts
+  - src/funcs/ledgerV1ListAccounts.ts
+  - src/funcs/ledgerV1ListLogs.ts
+  - src/funcs/ledgerV1ListTransactions.ts
+  - src/funcs/ledgerV1ReadStats.ts
+  - src/funcs/ledgerV1RevertTransaction.ts
+  - src/funcs/ledgerV1RunScript.ts
+  - src/funcs/ledgerV1UpdateMapping.ts
   - src/funcs/ledgerV2AddMetadataOnTransaction.ts
   - src/funcs/ledgerV2AddMetadataToAccount.ts
   - src/funcs/ledgerV2CountAccounts.ts
@@ -851,38 +842,34 @@ generatedFiles:
   - src/funcs/ledgerV2DeleteAccountMetadata.ts
   - src/funcs/ledgerV2DeleteLedgerMetadata.ts
   - src/funcs/ledgerV2DeleteTransactionMetadata.ts
+  - src/funcs/ledgerV2ExportLogs.ts
   - src/funcs/ledgerV2GetAccount.ts
-  - src/funcs/ledgerV2GetBalancesAggregated.ts
   - src/funcs/ledgerV2GetInfo.ts
   - src/funcs/ledgerV2GetLedger.ts
   - src/funcs/ledgerV2GetLedgerInfo.ts
   - src/funcs/ledgerV2GetTransaction.ts
-  - src/funcs/ledgerV2GetVolumesWithBalances.ts
-  - src/funcs/ledgerV2ListAccounts.ts
+  - src/funcs/ledgerV2ImportLogs.ts
   - src/funcs/ledgerV2ListLedgers.ts
-  - src/funcs/ledgerV2ListLogs.ts
-  - src/funcs/ledgerV2ListTransactions.ts
   - src/funcs/ledgerV2ReadStats.ts
   - src/funcs/ledgerV2RevertTransaction.ts
   - src/funcs/ledgerV2UpdateLedgerMetadata.ts
-  - src/funcs/orchestrationCancelEvent.ts
-  - src/funcs/orchestrationCreateTrigger.ts
-  - src/funcs/orchestrationCreateWorkflow.ts
-  - src/funcs/orchestrationDeleteTrigger.ts
-  - src/funcs/orchestrationDeleteWorkflow.ts
-  - src/funcs/orchestrationGetInstance.ts
-  - src/funcs/orchestrationGetInstanceHistory.ts
-  - src/funcs/orchestrationGetInstanceStageHistory.ts
-  - src/funcs/orchestrationGetWorkflow.ts
-  - src/funcs/orchestrationListInstances.ts
-  - src/funcs/orchestrationListTriggers.ts
-  - src/funcs/orchestrationListTriggersOccurrences.ts
-  - src/funcs/orchestrationListWorkflows.ts
-  - src/funcs/orchestrationOrchestrationgetServerInfo.ts
-  - src/funcs/orchestrationReadTrigger.ts
-  - src/funcs/orchestrationRunWorkflow.ts
-  - src/funcs/orchestrationSendEvent.ts
-  - src/funcs/orchestrationTestTrigger.ts
+  - src/funcs/orchestrationV1CancelEvent.ts
+  - src/funcs/orchestrationV1CreateTrigger.ts
+  - src/funcs/orchestrationV1CreateWorkflow.ts
+  - src/funcs/orchestrationV1DeleteTrigger.ts
+  - src/funcs/orchestrationV1DeleteWorkflow.ts
+  - src/funcs/orchestrationV1GetInstance.ts
+  - src/funcs/orchestrationV1GetInstanceHistory.ts
+  - src/funcs/orchestrationV1GetInstanceStageHistory.ts
+  - src/funcs/orchestrationV1GetWorkflow.ts
+  - src/funcs/orchestrationV1ListInstances.ts
+  - src/funcs/orchestrationV1ListTriggers.ts
+  - src/funcs/orchestrationV1ListTriggersOccurrences.ts
+  - src/funcs/orchestrationV1ListWorkflows.ts
+  - src/funcs/orchestrationV1OrchestrationgetServerInfo.ts
+  - src/funcs/orchestrationV1ReadTrigger.ts
+  - src/funcs/orchestrationV1RunWorkflow.ts
+  - src/funcs/orchestrationV1SendEvent.ts
   - src/funcs/orchestrationV2CancelEvent.ts
   - src/funcs/orchestrationV2CreateTrigger.ts
   - src/funcs/orchestrationV2CreateWorkflow.ts
@@ -900,82 +887,82 @@ generatedFiles:
   - src/funcs/orchestrationV2ReadTrigger.ts
   - src/funcs/orchestrationV2RunWorkflow.ts
   - src/funcs/orchestrationV2SendEvent.ts
-  - src/funcs/paymentsAddAccountToPool.ts
-  - src/funcs/paymentsConnectorsTransfer.ts
-  - src/funcs/paymentsCreateAccount.ts
-  - src/funcs/paymentsCreateBankAccount.ts
-  - src/funcs/paymentsCreatePayment.ts
-  - src/funcs/paymentsCreatePool.ts
-  - src/funcs/paymentsCreateTransferInitiation.ts
-  - src/funcs/paymentsDeletePool.ts
-  - src/funcs/paymentsDeleteTransferInitiation.ts
-  - src/funcs/paymentsForwardBankAccount.ts
-  - src/funcs/paymentsGetAccountBalances.ts
-  - src/funcs/paymentsGetBankAccount.ts
-  - src/funcs/paymentsGetConnectorTask.ts
-  - src/funcs/paymentsGetConnectorTaskV1.ts
-  - src/funcs/paymentsGetPayment.ts
-  - src/funcs/paymentsGetPool.ts
-  - src/funcs/paymentsGetPoolBalances.ts
-  - src/funcs/paymentsGetTransferInitiation.ts
-  - src/funcs/paymentsInstallConnector.ts
-  - src/funcs/paymentsListAllConnectors.ts
-  - src/funcs/paymentsListBankAccounts.ts
-  - src/funcs/paymentsListConfigsAvailableConnectors.ts
-  - src/funcs/paymentsListConnectorTasks.ts
-  - src/funcs/paymentsListConnectorTasksV1.ts
-  - src/funcs/paymentsListPayments.ts
-  - src/funcs/paymentsListPools.ts
-  - src/funcs/paymentsListTransferInitiations.ts
-  - src/funcs/paymentsPaymentsgetAccount.ts
-  - src/funcs/paymentsPaymentsgetServerInfo.ts
-  - src/funcs/paymentsPaymentslistAccounts.ts
-  - src/funcs/paymentsReadConnectorConfig.ts
-  - src/funcs/paymentsReadConnectorConfigV1.ts
-  - src/funcs/paymentsRemoveAccountFromPool.ts
-  - src/funcs/paymentsResetConnector.ts
-  - src/funcs/paymentsResetConnectorV1.ts
-  - src/funcs/paymentsRetryTransferInitiation.ts
-  - src/funcs/paymentsReverseTransferInitiation.ts
-  - src/funcs/paymentsUdpateTransferInitiationStatus.ts
-  - src/funcs/paymentsUninstallConnector.ts
-  - src/funcs/paymentsUninstallConnectorV1.ts
-  - src/funcs/paymentsUpdateBankAccountMetadata.ts
-  - src/funcs/paymentsUpdateConnectorConfigV1.ts
-  - src/funcs/paymentsUpdateMetadata.ts
-  - src/funcs/reconciliationCreatePolicy.ts
-  - src/funcs/reconciliationDeletePolicy.ts
-  - src/funcs/reconciliationGetPolicy.ts
-  - src/funcs/reconciliationGetReconciliation.ts
-  - src/funcs/reconciliationListPolicies.ts
-  - src/funcs/reconciliationListReconciliations.ts
-  - src/funcs/reconciliationReconcile.ts
-  - src/funcs/reconciliationReconciliationgetServerInfo.ts
-  - src/funcs/searchSearch.ts
-  - src/funcs/searchSearchgetServerInfo.ts
-  - src/funcs/walletsConfirmHold.ts
-  - src/funcs/walletsCreateBalance.ts
-  - src/funcs/walletsCreateWallet.ts
-  - src/funcs/walletsCreditWallet.ts
-  - src/funcs/walletsDebitWallet.ts
-  - src/funcs/walletsGetBalance.ts
-  - src/funcs/walletsGetHold.ts
-  - src/funcs/walletsGetHolds.ts
-  - src/funcs/walletsGetTransactions.ts
-  - src/funcs/walletsGetWallet.ts
-  - src/funcs/walletsGetWalletSummary.ts
-  - src/funcs/walletsListBalances.ts
-  - src/funcs/walletsListWallets.ts
-  - src/funcs/walletsUpdateWallet.ts
-  - src/funcs/walletsVoidHold.ts
-  - src/funcs/walletsWalletsgetServerInfo.ts
-  - src/funcs/webhooksActivateConfig.ts
-  - src/funcs/webhooksChangeConfigSecret.ts
-  - src/funcs/webhooksDeactivateConfig.ts
-  - src/funcs/webhooksDeleteConfig.ts
-  - src/funcs/webhooksGetManyConfigs.ts
-  - src/funcs/webhooksInsertConfig.ts
-  - src/funcs/webhooksTestConfig.ts
+  - src/funcs/orchestrationV2TestTrigger.ts
+  - src/funcs/paymentsV1AddAccountToPool.ts
+  - src/funcs/paymentsV1ConnectorsTransfer.ts
+  - src/funcs/paymentsV1CreateAccount.ts
+  - src/funcs/paymentsV1CreateBankAccount.ts
+  - src/funcs/paymentsV1CreatePayment.ts
+  - src/funcs/paymentsV1CreatePool.ts
+  - src/funcs/paymentsV1CreateTransferInitiation.ts
+  - src/funcs/paymentsV1DeletePool.ts
+  - src/funcs/paymentsV1DeleteTransferInitiation.ts
+  - src/funcs/paymentsV1ForwardBankAccount.ts
+  - src/funcs/paymentsV1GetAccountBalances.ts
+  - src/funcs/paymentsV1GetBankAccount.ts
+  - src/funcs/paymentsV1GetConnectorTask.ts
+  - src/funcs/paymentsV1GetConnectorTaskV1.ts
+  - src/funcs/paymentsV1GetPayment.ts
+  - src/funcs/paymentsV1GetPool.ts
+  - src/funcs/paymentsV1GetPoolBalances.ts
+  - src/funcs/paymentsV1GetTransferInitiation.ts
+  - src/funcs/paymentsV1InstallConnector.ts
+  - src/funcs/paymentsV1ListAllConnectors.ts
+  - src/funcs/paymentsV1ListBankAccounts.ts
+  - src/funcs/paymentsV1ListConfigsAvailableConnectors.ts
+  - src/funcs/paymentsV1ListConnectorTasks.ts
+  - src/funcs/paymentsV1ListConnectorTasksV1.ts
+  - src/funcs/paymentsV1ListPayments.ts
+  - src/funcs/paymentsV1ListPools.ts
+  - src/funcs/paymentsV1ListTransferInitiations.ts
+  - src/funcs/paymentsV1PaymentsgetAccount.ts
+  - src/funcs/paymentsV1PaymentsgetServerInfo.ts
+  - src/funcs/paymentsV1ReadConnectorConfig.ts
+  - src/funcs/paymentsV1ReadConnectorConfigV1.ts
+  - src/funcs/paymentsV1RemoveAccountFromPool.ts
+  - src/funcs/paymentsV1ResetConnector.ts
+  - src/funcs/paymentsV1ResetConnectorV1.ts
+  - src/funcs/paymentsV1RetryTransferInitiation.ts
+  - src/funcs/paymentsV1ReverseTransferInitiation.ts
+  - src/funcs/paymentsV1UdpateTransferInitiationStatus.ts
+  - src/funcs/paymentsV1UninstallConnector.ts
+  - src/funcs/paymentsV1UninstallConnectorV1.ts
+  - src/funcs/paymentsV1UpdateBankAccountMetadata.ts
+  - src/funcs/paymentsV1UpdateConnectorConfigV1.ts
+  - src/funcs/paymentsV1UpdateMetadata.ts
+  - src/funcs/reconciliationV1CreatePolicy.ts
+  - src/funcs/reconciliationV1DeletePolicy.ts
+  - src/funcs/reconciliationV1GetPolicy.ts
+  - src/funcs/reconciliationV1GetReconciliation.ts
+  - src/funcs/reconciliationV1ListPolicies.ts
+  - src/funcs/reconciliationV1ListReconciliations.ts
+  - src/funcs/reconciliationV1Reconcile.ts
+  - src/funcs/reconciliationV1ReconciliationgetServerInfo.ts
+  - src/funcs/searchV1Search.ts
+  - src/funcs/searchV1SearchgetServerInfo.ts
+  - src/funcs/walletsV1ConfirmHold.ts
+  - src/funcs/walletsV1CreateBalance.ts
+  - src/funcs/walletsV1CreateWallet.ts
+  - src/funcs/walletsV1CreditWallet.ts
+  - src/funcs/walletsV1DebitWallet.ts
+  - src/funcs/walletsV1GetBalance.ts
+  - src/funcs/walletsV1GetHold.ts
+  - src/funcs/walletsV1GetHolds.ts
+  - src/funcs/walletsV1GetTransactions.ts
+  - src/funcs/walletsV1GetWallet.ts
+  - src/funcs/walletsV1GetWalletSummary.ts
+  - src/funcs/walletsV1ListBalances.ts
+  - src/funcs/walletsV1ListWallets.ts
+  - src/funcs/walletsV1UpdateWallet.ts
+  - src/funcs/walletsV1VoidHold.ts
+  - src/funcs/walletsV1WalletsgetServerInfo.ts
+  - src/funcs/webhooksV1ActivateConfig.ts
+  - src/funcs/webhooksV1ChangeConfigSecret.ts
+  - src/funcs/webhooksV1DeactivateConfig.ts
+  - src/funcs/webhooksV1DeleteConfig.ts
+  - src/funcs/webhooksV1GetManyConfigs.ts
+  - src/funcs/webhooksV1InsertConfig.ts
+  - src/funcs/webhooksV1TestConfig.ts
   - src/hooks/clientcredentials.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -1070,6 +1057,7 @@ generatedFiles:
   - src/sdk/models/operations/getpool.ts
   - src/sdk/models/operations/getpoolbalances.ts
   - src/sdk/models/operations/getreconciliation.ts
+  - src/sdk/models/operations/getserverinfo.ts
   - src/sdk/models/operations/gettransaction.ts
   - src/sdk/models/operations/gettransactions.ts
   - src/sdk/models/operations/gettransferinitiation.ts
@@ -1104,7 +1092,6 @@ generatedFiles:
   - src/sdk/models/operations/orchestrationgetserverinfo.ts
   - src/sdk/models/operations/paymentsgetaccount.ts
   - src/sdk/models/operations/paymentsgetserverinfo.ts
-  - src/sdk/models/operations/paymentslistaccounts.ts
   - src/sdk/models/operations/readclient.ts
   - src/sdk/models/operations/readconnectorconfig.ts
   - src/sdk/models/operations/readconnectorconfigv1.ts
@@ -1150,8 +1137,8 @@ generatedFiles:
   - src/sdk/models/operations/v2deletetransactionmetadata.ts
   - src/sdk/models/operations/v2deletetrigger.ts
   - src/sdk/models/operations/v2deleteworkflow.ts
+  - src/sdk/models/operations/v2exportlogs.ts
   - src/sdk/models/operations/v2getaccount.ts
-  - src/sdk/models/operations/v2getbalancesaggregated.ts
   - src/sdk/models/operations/v2getinfo.ts
   - src/sdk/models/operations/v2getinstance.ts
   - src/sdk/models/operations/v2getinstancehistory.ts
@@ -1160,13 +1147,10 @@ generatedFiles:
   - src/sdk/models/operations/v2getledgerinfo.ts
   - src/sdk/models/operations/v2getserverinfo.ts
   - src/sdk/models/operations/v2gettransaction.ts
-  - src/sdk/models/operations/v2getvolumeswithbalances.ts
   - src/sdk/models/operations/v2getworkflow.ts
-  - src/sdk/models/operations/v2listaccounts.ts
+  - src/sdk/models/operations/v2importlogs.ts
   - src/sdk/models/operations/v2listinstances.ts
   - src/sdk/models/operations/v2listledgers.ts
-  - src/sdk/models/operations/v2listlogs.ts
-  - src/sdk/models/operations/v2listtransactions.ts
   - src/sdk/models/operations/v2listtriggers.ts
   - src/sdk/models/operations/v2listtriggersoccurrences.ts
   - src/sdk/models/operations/v2listworkflows.ts
@@ -1182,7 +1166,6 @@ generatedFiles:
   - src/sdk/models/shared/accountbalance.ts
   - src/sdk/models/shared/accountrequest.ts
   - src/sdk/models/shared/accountresponse.ts
-  - src/sdk/models/shared/accountscursor.ts
   - src/sdk/models/shared/accountscursorresponse.ts
   - src/sdk/models/shared/accounttype.ts
   - src/sdk/models/shared/accountwithvolumesandbalances.ts
@@ -1398,7 +1381,6 @@ generatedFiles:
   - src/sdk/models/shared/user.ts
   - src/sdk/models/shared/v2account.ts
   - src/sdk/models/shared/v2accountresponse.ts
-  - src/sdk/models/shared/v2accountscursorresponse.ts
   - src/sdk/models/shared/v2activityaddaccountmetadata.ts
   - src/sdk/models/shared/v2activityconfirmhold.ts
   - src/sdk/models/shared/v2activitycreatetransaction.ts
@@ -1415,7 +1397,6 @@ generatedFiles:
   - src/sdk/models/shared/v2activitylistwallets.ts
   - src/sdk/models/shared/v2activitystripetransfer.ts
   - src/sdk/models/shared/v2activityvoidhold.ts
-  - src/sdk/models/shared/v2aggregatebalancesresponse.ts
   - src/sdk/models/shared/v2assetholder.ts
   - src/sdk/models/shared/v2bulkelement.ts
   - src/sdk/models/shared/v2bulkelementaddmetadata.ts
@@ -1452,8 +1433,6 @@ generatedFiles:
   - src/sdk/models/shared/v2listtriggersresponse.ts
   - src/sdk/models/shared/v2listwalletsresponse.ts
   - src/sdk/models/shared/v2listworkflowsresponse.ts
-  - src/sdk/models/shared/v2log.ts
-  - src/sdk/models/shared/v2logscursorresponse.ts
   - src/sdk/models/shared/v2migrationinfo.ts
   - src/sdk/models/shared/v2monetary.ts
   - src/sdk/models/shared/v2payment.ts
@@ -1486,7 +1465,6 @@ generatedFiles:
   - src/sdk/models/shared/v2targettype.ts
   - src/sdk/models/shared/v2testtriggerresponse.ts
   - src/sdk/models/shared/v2transaction.ts
-  - src/sdk/models/shared/v2transactionscursorresponse.ts
   - src/sdk/models/shared/v2trigger.ts
   - src/sdk/models/shared/v2triggerdata.ts
   - src/sdk/models/shared/v2triggeroccurrence.ts
@@ -1494,8 +1472,6 @@ generatedFiles:
   - src/sdk/models/shared/v2update.ts
   - src/sdk/models/shared/v2updateaccount.ts
   - src/sdk/models/shared/v2volume.ts
-  - src/sdk/models/shared/v2volumeswithbalance.ts
-  - src/sdk/models/shared/v2volumeswithbalancecursorresponse.ts
   - src/sdk/models/shared/v2wallet.ts
   - src/sdk/models/shared/v2walletsubject.ts
   - src/sdk/models/shared/v2walletwithbalances.ts
@@ -1527,6 +1503,14 @@ generatedFiles:
   - src/sdk/payments.ts
   - src/sdk/reconciliation.ts
   - src/sdk/sdk.ts
+  - src/sdk/sdkorchestrationv1.ts
+  - src/sdk/sdkpaymentsv1.ts
+  - src/sdk/sdkreconciliationv1.ts
+  - src/sdk/sdksearchv1.ts
+  - src/sdk/sdkv1.ts
+  - src/sdk/sdkv2.ts
+  - src/sdk/sdkwalletsv1.ts
+  - src/sdk/sdkwebhooksv1.ts
   - src/sdk/search.ts
   - src/sdk/types/blobs.ts
   - src/sdk/types/constdatetime.ts
@@ -1536,6 +1520,8 @@ generatedFiles:
   - src/sdk/types/operations.ts
   - src/sdk/types/rfcdate.ts
   - src/sdk/types/streams.ts
+  - src/sdk/v1.ts
+  - src/sdk/v2.ts
   - src/sdk/wallets.ts
   - src/sdk/webhooks.ts
   - tsconfig.json
@@ -1923,6 +1909,9 @@ examples:
           ledger: "ledger001"
           address: "3680 Emile Grove"
           key: "foo"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2DeleteLedgerMetadata:
     speakeasy-default-v2-delete-ledger-metadata:
       parameters:
@@ -1971,6 +1960,8 @@ examples:
         "200":
           application/json: {"server": "<value>", "version": "<value>"}
         default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        5XX:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetLedger:
     speakeasy-default-v2-get-ledger:
@@ -2099,6 +2090,8 @@ examples:
         application/json: {"admin": "true"}
       responses:
         default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+        5XX:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   cancelEvent:
     "":
@@ -2443,6 +2436,7 @@ examples:
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
+        "200": {}
   createAccount:
     speakeasy-default-create-account:
       requestBody:
@@ -2548,7 +2542,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.220Z", "id": "7bc89db4-3a47-4f1b-b9a2-4050795f4220", "status": "DISPUTE", "updatedAt": "2024-08-25T09:44:07.045Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-03-04T09:03:44.079Z", "id": "37bc89db-43a4-47f1-bb9a-24050795f422", "status": "PENDING", "updatedAt": "2023-12-20T20:12:51.365Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2560,7 +2554,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.771Z", "id": "52d569d2-5c83-4cae-84b5-a32c806dcf92", "status": "SUCCEEDED", "updatedAt": "2024-11-07T12:10:00.076Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-08-05T22:20:59.377Z", "id": "752d569d-25c8-43ca-a84b-5a32c806dcf9", "status": "SUCCEEDED", "updatedAt": "2022-06-02T20:15:28.566Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:
@@ -2611,7 +2605,7 @@ examples:
         path:
           connector: "ADYEN"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<value>"}}
@@ -2753,7 +2747,7 @@ examples:
           connectorId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}}
+          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   removeAccountFromPool:
@@ -3182,5 +3176,23 @@ examples:
       responses:
         "200":
           application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:59.199Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "2846f0d5-34bb-4964-967d-fe71e6ffb881", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-12-01T05:22:46.116Z"}, "createdAt": "2024-09-28T21:02:11.496Z", "id": "21fdbd6d-a78d-45b5-9c0e-4a204cb7c2a1", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2024-07-05T23:45:46.439Z", "webhookID": "dec67687-2f74-4eed-b324-86395f8c9408"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  getServerInfo:
+    speakeasy-default-get-server-info:
+      responses:
+        "200":
+          application/json: {"version": "<value>"}
+  v2ExportLogs:
+    speakeasy-default-v2-export-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+  v2ImportLogs:
+    speakeasy-default-v2-import-logs:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}

@@ -7,19 +7,19 @@ import { TransferInitiationResponse, TransferInitiationStatus, TransferInitiatio
 
 let value: TransferInitiationResponse = {
   data: {
-    amount: BigInt("858778"),
+    amount: BigInt("376389"),
     asset: "USD",
     connectorID: "<value>",
-    createdAt: new Date("2023-12-07T11:18:30.114Z"),
-    description: "Multi-channelled executive hierarchy",
+    createdAt: new Date("2022-10-06T09:52:46.603Z"),
+    description: "Horizontal intermediate data-warehouse",
     destinationAccountID: "<value>",
     error: "<value>",
     id: "XXX",
-    initialAmount: BigInt("667715"),
+    initialAmount: BigInt("131903"),
     reference: "<value>",
-    scheduledAt: new Date("2023-01-04T08:50:02.647Z"),
+    scheduledAt: new Date("2023-06-28T14:00:09.683Z"),
     sourceAccountID: "<value>",
-    status: TransferInitiationStatus.AskRetried,
+    status: TransferInitiationStatus.Processed,
     type: TransferInitiationType.Payout,
   },
 };

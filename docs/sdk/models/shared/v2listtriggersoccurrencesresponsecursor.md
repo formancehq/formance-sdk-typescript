@@ -8,7 +8,7 @@ import { V2ListTriggersOccurrencesResponseCursor } from "@formance/formance-sdk/
 let value: V2ListTriggersOccurrencesResponseCursor = {
   data: [
     {
-      date: new Date("2022-05-09T15:34:16.734Z"),
+      date: new Date("2024-07-27T11:29:19.399Z"),
       event: {
         "key": "<value>",
       },

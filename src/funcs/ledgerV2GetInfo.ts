@@ -48,7 +48,7 @@ export async function ledgerV2GetInfo(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2GetInfo",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:read"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);
@@ -98,6 +98,9 @@ export async function ledgerV2GetInfo(
   >(
     m$.json(200, operations.V2GetInfoResponse$inboundSchema, {
       key: "V2ConfigInfoResponse",
+    }),
+    m$.json("5XX", operations.V2GetInfoResponse$inboundSchema, {
+      key: "V2ErrorResponse",
     }),
     m$.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields$ });

@@ -7,7 +7,7 @@ import { ListConnectorTasksV1Response } from "@formance/formance-sdk/sdk/models/
 
 let value: ListConnectorTasksV1Response = {
   contentType: "<value>",
-  statusCode: 4695,
+  statusCode: 842342,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

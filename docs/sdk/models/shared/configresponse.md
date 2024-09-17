@@ -8,15 +8,15 @@ import { ConfigResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: ConfigResponse = {
   data: {
     active: true,
-    createdAt: new Date("2023-10-10T06:45:27.974Z"),
+    createdAt: new Date("2022-11-04T19:43:41.147Z"),
     endpoint: "https://example.com",
     eventTypes: [
       "TYPE1",
       "TYPE2",
     ],
-    id: "c6dc5e34-7627-499b-bbbe-6949fb2bb4ec",
+    id: "4f3b756c-11f6-4c37-a512-6243835bbc05",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-    updatedAt: new Date("2023-12-30T11:21:48.919Z"),
+    updatedAt: new Date("2023-11-26T20:23:31.494Z"),
   },
 };
 ```

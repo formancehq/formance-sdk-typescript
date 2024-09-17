@@ -13,14 +13,14 @@ let value: ListReconciliationsResponse = {
         {
           createdAt: new Date("2021-01-01T00:00:00.000Z"),
           driftBalances: {
-            "key": BigInt("533206"),
+            "key": BigInt("116202"),
           },
           id: "XXX",
           ledgerBalances: {
-            "key": BigInt("956084"),
+            "key": BigInt("297437"),
           },
           paymentsBalances: {
-            "key": BigInt("230533"),
+            "key": BigInt("767024"),
           },
           policyID: "XXX",
           reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
@@ -34,7 +34,7 @@ let value: ListReconciliationsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 643990,
+  statusCode: 813798,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

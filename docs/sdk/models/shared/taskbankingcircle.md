@@ -7,12 +7,12 @@ import { PaymentStatus, TaskBankingCircle } from "@formance/formance-sdk/sdk/mod
 
 let value: TaskBankingCircle = {
   connectorID: "<value>",
-  createdAt: new Date("2022-06-30T06:42:11.302Z"),
+  createdAt: new Date("2022-07-27T23:16:45.079Z"),
   descriptor: {},
-  id: "eb07f116-db99-4545-bc95-fa88970e189d",
+  id: "4896c3ca-5acf-4be2-bd57-07577929177d",
   state: {},
-  status: PaymentStatus.DisputeWon,
-  updatedAt: new Date("2024-03-06T05:29:10.472Z"),
+  status: PaymentStatus.Other,
+  updatedAt: new Date("2023-11-19T23:56:05.934Z"),
 };
 ```
 

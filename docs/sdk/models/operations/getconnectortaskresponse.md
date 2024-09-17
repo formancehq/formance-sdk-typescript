@@ -7,7 +7,7 @@ import { GetConnectorTaskResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: GetConnectorTaskResponse = {
   contentType: "<value>",
-  statusCode: 64147,
+  statusCode: 19987,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

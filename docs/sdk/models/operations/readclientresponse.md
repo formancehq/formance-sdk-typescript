@@ -7,7 +7,7 @@ import { ReadClientResponse } from "@formance/formance-sdk/sdk/models/operations
 
 let value: ReadClientResponse = {
   contentType: "<value>",
-  statusCode: 423655,
+  statusCode: 623564,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

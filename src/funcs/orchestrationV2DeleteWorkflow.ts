@@ -76,7 +76,7 @@ export async function orchestrationV2DeleteWorkflow(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2DeleteWorkflow",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["orchestration:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

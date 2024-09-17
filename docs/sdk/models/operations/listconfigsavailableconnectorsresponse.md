@@ -7,7 +7,7 @@ import { ListConfigsAvailableConnectorsResponse } from "@formance/formance-sdk/s
 
 let value: ListConfigsAvailableConnectorsResponse = {
   contentType: "<value>",
-  statusCode: 20107,
+  statusCode: 277718,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

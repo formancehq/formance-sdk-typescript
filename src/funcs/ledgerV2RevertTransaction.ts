@@ -86,7 +86,7 @@ export async function ledgerV2RevertTransaction(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2RevertTransaction",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

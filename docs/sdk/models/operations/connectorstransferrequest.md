@@ -13,7 +13,7 @@ let value: ConnectorsTransferRequest = {
     destination: "acct_1Gqj58KZcSIg2N2q",
     source: "acct_1Gqj58KZcSIg2N2q",
   },
-  connector: Connector.Adyen,
+  connector: Connector.BankingCircle,
 };
 ```
 

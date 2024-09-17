@@ -12,10 +12,10 @@ let value: GetAccountBalancesResponse = {
         {
           accountId: "<value>",
           asset: "<value>",
-          balance: BigInt("480894"),
-          createdAt: new Date("2022-05-11T03:00:49.668Z"),
-          currency: "Saudi Riyal",
-          lastUpdatedAt: new Date("2022-12-15T12:13:45.806Z"),
+          balance: BigInt("468651"),
+          createdAt: new Date("2023-07-13T13:09:34.110Z"),
+          currency: "Lesotho Loti",
+          lastUpdatedAt: new Date("2022-03-03T01:31:09.417Z"),
         },
       ],
       hasMore: false,
@@ -25,7 +25,7 @@ let value: GetAccountBalancesResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 880476,
+  statusCode: 604846,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

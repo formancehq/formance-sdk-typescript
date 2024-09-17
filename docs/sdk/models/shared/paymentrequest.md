@@ -9,10 +9,10 @@ let value: PaymentRequest = {
   amount: BigInt("100"),
   asset: "USD",
   connectorID: "<value>",
-  createdAt: new Date("2022-09-29T11:06:24.190Z"),
+  createdAt: new Date("2023-02-04T12:58:54.972Z"),
   reference: "<value>",
-  scheme: PaymentScheme.Rtp,
-  status: PaymentStatus.Failed,
+  scheme: PaymentScheme.Cup,
+  status: PaymentStatus.Refunded,
   type: PaymentType.Transfer,
 };
 ```

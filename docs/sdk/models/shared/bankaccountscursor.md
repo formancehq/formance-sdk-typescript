@@ -10,8 +10,8 @@ let value: BankAccountsCursor = {
     data: [
       {
         connectorID: "<value>",
-        country: "Kenya",
-        createdAt: new Date("2024-07-25T02:38:16.388Z"),
+        country: "Kyrgyz Republic",
+        createdAt: new Date("2024-04-09T07:01:09.697Z"),
         id: "<id>",
         name: "<value>",
       },

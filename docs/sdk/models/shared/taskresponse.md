@@ -8,12 +8,12 @@ import { PaymentStatus, TaskResponse } from "@formance/formance-sdk/sdk/models/s
 let value: TaskResponse = {
   data: {
     connectorID: "<value>",
-    createdAt: new Date("2022-01-28T03:06:17.946Z"),
+    createdAt: new Date("2022-09-11T06:04:00.033Z"),
     descriptor: {},
-    id: "00ae6b6b-c9b8-4f75-9eac-55a9741d3113",
+    id: "383c2beb-4773-473c-8d72-f64d1db1f2c4",
     state: {},
-    status: PaymentStatus.Failed,
-    updatedAt: new Date("2022-07-20T14:30:27.937Z"),
+    status: PaymentStatus.Cancelled,
+    updatedAt: new Date("2022-03-24T14:14:41.960Z"),
   },
 };
 ```

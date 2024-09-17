@@ -8,9 +8,9 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 let value: ConnectorConfigResponse = {
   data: {
     apiKey: "XXX",
-    apiSecret: "XXX",
     endpoint: "XXX",
-    name: "My Modulr Account",
+    loginID: "XXX",
+    name: "My CurrencyCloud Account",
     pollingPeriod: "60s",
   },
 };

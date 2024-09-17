@@ -2,7 +2,7 @@
 
 {
   "name": "@formance/formance-sdk",
-  "version": "2.7.0",
+  "version": "3.0.0-beta.1",
   "exports": {
     ".": "./src/index.ts",    
     "./sdk/models/errors": "./src/sdk/models/errors/index.ts",    

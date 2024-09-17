@@ -7,7 +7,7 @@ import { V2ListInstancesResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2ListInstancesResponse = {
   contentType: "<value>",
-  statusCode: 244425,
+  statusCode: 438601,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,10 +15,10 @@ let value: V2ListInstancesResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2023-11-15T08:48:35.382Z"),
+          createdAt: new Date("2023-11-27T03:56:40.899Z"),
           id: "<id>",
           terminated: false,
-          updatedAt: new Date("2022-06-24T05:32:09.610Z"),
+          updatedAt: new Date("2024-12-19T06:11:06.983Z"),
           workflowID: "<value>",
         },
       ],

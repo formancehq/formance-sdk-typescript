@@ -74,7 +74,7 @@ export async function orchestrationV2ListInstances(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2ListInstances",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["orchestration:read"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

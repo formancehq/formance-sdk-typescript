@@ -78,7 +78,7 @@ export async function ledgerV2DeleteLedgerMetadata(
   const security$ = await extractSecurity(client$.options$.security);
   const context = {
     operationID: "v2DeleteLedgerMetadata",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["ledger:write"],
     securitySource: client$.options$.security,
   };
   const securitySettings$ = resolveGlobalSecurity(security$);

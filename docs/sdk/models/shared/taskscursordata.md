@@ -7,12 +7,12 @@ import { PaymentStatus, TasksCursorData } from "@formance/formance-sdk/sdk/model
 
 let value: TasksCursorData = {
   connectorID: "<value>",
-  createdAt: new Date("2023-06-23T08:33:07.992Z"),
+  createdAt: new Date("2024-12-24T07:54:23.551Z"),
   descriptor: {},
-  id: "b114eeb5-2ff7-485f-8378-14d4c98e0c2b",
+  id: "52d82d35-13bb-46f4-8b65-6bcdb35ff2e4",
   state: {},
   status: PaymentStatus.Dispute,
-  updatedAt: new Date("2023-09-05T20:30:25.728Z"),
+  updatedAt: new Date("2022-07-17T01:20:06.877Z"),
 };
 ```
 
