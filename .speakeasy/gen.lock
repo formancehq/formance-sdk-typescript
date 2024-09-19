@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 4a62d43befffe55605a3d0b24f39879b
   docVersion: v2.0.17
-  speakeasyVersion: 1.396.9
-  generationVersion: 2.415.7
-  releaseVersion: 2.7.1
-  configChecksum: 808d2bb7aa5e6a87381cee6b8ca3e88b
+  speakeasyVersion: 1.399.2
+  generationVersion: 2.416.6
+  releaseVersion: 2.7.2
+  configChecksum: c2507f9dde4a132525bb45fd106be9d6
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.3
+    core: 3.17.4
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -1748,6 +1748,7 @@ examples:
           metadata: {"0": "m", "1": "e", "2": "t", "3": "a", "4": "d", "5": "a", "6": "t", "7": "a", "8": "[", "9": "k", "10": "e", "11": "y", "12": "]", "13": "=", "14": "v", "15": "a", "16": "l", "17": "u", "18": "e", "19": "1", "20": "&", "21": "m", "22": "e", "23": "t", "24": "a", "25": "d", "26": "a", "27": "t", "28": "a", "29": "[", "30": "a", "31": ".", "32": "n", "33": "e", "34": "s", "35": "t", "36": "e", "37": "d", "38": ".", "39": "k", "40": "e", "41": "y", "42": "]", "43": "=", "44": "v", "45": "a", "46": "l", "47": "u", "48": "e", "49": "2"}
           balance: 2400
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          pagination_token: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
