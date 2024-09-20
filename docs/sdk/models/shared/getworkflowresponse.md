@@ -14,9 +14,9 @@ let value: GetWorkflowResponse = {
         },
       ],
     },
-    createdAt: new Date("2023-12-12T20:43:47.769Z"),
+    createdAt: new Date("2024-09-28T17:37:29.749Z"),
     id: "<id>",
-    updatedAt: new Date("2023-01-02T00:36:43.280Z"),
+    updatedAt: new Date("2023-12-18T03:35:24.347Z"),
   },
 };
 ```

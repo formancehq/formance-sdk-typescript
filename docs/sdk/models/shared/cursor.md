@@ -10,7 +10,7 @@ let value: Cursor = {
     {
       accountName: "<value>",
       connectorID: "<value>",
-      createdAt: new Date("2023-10-10T13:55:01.054Z"),
+      createdAt: new Date("2024-10-11T05:35:26.804Z"),
       defaultAsset: "<value>",
       defaultCurrency: "<value>",
       id: "<id>",

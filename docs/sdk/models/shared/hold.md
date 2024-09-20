@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Object-based fresh-thinking capability",
-  id: "065e904f-3b11-494b-8abf-603a79f9dfe0",
+  description: "Total 6th generation definition",
+  id: "771778ff-61d0-4174-b636-0a15db6a6606",
   metadata: {
     "key": "<value>",
   },

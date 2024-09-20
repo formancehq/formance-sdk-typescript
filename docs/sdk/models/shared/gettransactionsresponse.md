@@ -7,7 +7,52 @@ import { GetTransactionsResponse } from "@formance/formance-sdk/sdk/models/share
 
 let value: GetTransactionsResponse = {
   cursor: {
-    data: [],
+    data: [
+      {
+        id: 570423,
+        metadata: {
+          "key": "<value>",
+        },
+        postCommitVolumes: {
+          "key": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+            "EUR": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+        },
+        postings: [
+          {
+            amount: BigInt("100"),
+            asset: "COIN",
+            destination: "users:002",
+            source: "users:001",
+          },
+        ],
+        preCommitVolumes: {
+          "key": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+            "EUR": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+        },
+        reference: "ref:001",
+        timestamp: new Date("2022-07-03T12:13:54.335Z"),
+      },
+    ],
     hasMore: false,
     next: "",
     pageSize: 15,

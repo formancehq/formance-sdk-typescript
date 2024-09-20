@@ -7,7 +7,7 @@ import { V2DeleteTransactionMetadataResponse } from "@formance/formance-sdk/sdk/
 
 let value: V2DeleteTransactionMetadataResponse = {
   contentType: "<value>",
-  statusCode: 521848,
+  statusCode: 456150,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

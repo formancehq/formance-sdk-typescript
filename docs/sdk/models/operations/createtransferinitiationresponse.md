@@ -8,26 +8,26 @@ import { TransferInitiationStatus, TransferInitiationType } from "@formance/form
 
 let value: CreateTransferInitiationResponse = {
   contentType: "<value>",
-  statusCode: 976762,
+  statusCode: 501324,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   transferInitiationResponse: {
     data: {
-      amount: BigInt("55714"),
+      amount: BigInt("533206"),
       asset: "USD",
       connectorID: "<value>",
-      createdAt: new Date("2023-10-25T21:51:23.421Z"),
-      description: "Multi-channelled optimal adapter",
+      createdAt: new Date("2024-11-13T20:49:26.617Z"),
+      description: "Enterprise-wide multimedia Graphic Interface",
       destinationAccountID: "<value>",
       error: "<value>",
       id: "XXX",
-      initialAmount: BigInt("39187"),
+      initialAmount: BigInt("423855"),
       reference: "<value>",
-      scheduledAt: new Date("2023-04-30T02:45:50.682Z"),
+      scheduledAt: new Date("2023-11-10T05:08:25.399Z"),
       sourceAccountID: "<value>",
-      status: TransferInitiationStatus.Failed,
-      type: TransferInitiationType.Payout,
+      status: TransferInitiationStatus.AskReversed,
+      type: TransferInitiationType.Transfer,
     },
   },
 };

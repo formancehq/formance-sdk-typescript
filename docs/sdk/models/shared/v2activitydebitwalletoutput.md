@@ -7,8 +7,8 @@ import { V2ActivityDebitWalletOutput } from "@formance/formance-sdk/sdk/models/s
 
 let value: V2ActivityDebitWalletOutput = {
   data: {
-    description: "Distributed even-keeled access",
-    id: "d8cdb5a3-4181-4430-9042-1813d5208ece",
+    description: "Optimized holistic matrices",
+    id: "eeb9665b-85ef-4bd0-abae-0be2d782259e",
     metadata: {
       "key": "<value>",
     },

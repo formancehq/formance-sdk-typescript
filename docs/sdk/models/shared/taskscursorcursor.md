@@ -3,10 +3,20 @@
 ## Example Usage
 
 ```typescript
-import { TasksCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
+import { PaymentStatus, TasksCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TasksCursorCursor = {
-  data: [],
+  data: [
+    {
+      connectorID: "<value>",
+      createdAt: new Date("2023-03-29T00:39:07.490Z"),
+      descriptor: {},
+      id: "f25ea944-f3b7-456c-91f6-c37a51262438",
+      state: {},
+      status: PaymentStatus.Cancelled,
+      updatedAt: new Date("2023-01-19T11:42:30.438Z"),
+    },
+  ],
   hasMore: false,
   next: "",
   pageSize: 15,

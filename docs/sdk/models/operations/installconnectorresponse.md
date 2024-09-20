@@ -7,7 +7,7 @@ import { InstallConnectorResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: InstallConnectorResponse = {
   contentType: "<value>",
-  statusCode: 264730,
+  statusCode: 260341,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

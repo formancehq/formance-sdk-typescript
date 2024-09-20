@@ -8,8 +8,8 @@ import { BankAccountResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: BankAccountResponse = {
   data: {
     connectorID: "<value>",
-    country: "Puerto Rico",
-    createdAt: new Date("2023-10-30T00:26:17.739Z"),
+    country: "Belgium",
+    createdAt: new Date("2023-07-01T00:06:54.973Z"),
     id: "<id>",
     name: "<value>",
   },

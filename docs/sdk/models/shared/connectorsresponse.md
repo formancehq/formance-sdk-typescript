@@ -10,7 +10,7 @@ let value: ConnectorsResponse = {
     {
       connectorID: "<value>",
       name: "<value>",
-      provider: Connector.Atlar,
+      provider: Connector.CurrencyCloud,
     },
   ],
 };

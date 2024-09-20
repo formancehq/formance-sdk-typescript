@@ -7,7 +7,7 @@ import { V2GetInstanceResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2GetInstanceResponse = {
   contentType: "<value>",
-  statusCode: 581850,
+  statusCode: 566602,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

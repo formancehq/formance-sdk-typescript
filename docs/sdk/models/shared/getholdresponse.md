@@ -7,8 +7,8 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "Profound human-resource solution",
-    id: "575f1400-e764-4ad7-b34e-c1b781b36a08",
+    description: "Diverse scalable focus group",
+    id: "949f83f3-50cf-4876-bfb9-01c6ecbb4e24",
     metadata: {
       "key": "<value>",
     },

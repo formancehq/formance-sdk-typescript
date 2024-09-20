@@ -9,12 +9,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 let value: InstallConnectorRequest = {
   connectorConfig: {
     apiKey: "XXX",
-    hmacKey: "XXX",
-    liveEndpointPrefix: "XXX",
-    name: "My Adyen Account",
+    endpoint: "XXX",
+    name: "My Generic Account",
     pollingPeriod: "60s",
   },
-  connector: Connector.Modulr,
+  connector: Connector.Adyen,
 };
 ```
 

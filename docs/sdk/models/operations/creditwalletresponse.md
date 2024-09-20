@@ -7,7 +7,7 @@ import { CreditWalletResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: CreditWalletResponse = {
   contentType: "<value>",
-  statusCode: 290077,
+  statusCode: 679880,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

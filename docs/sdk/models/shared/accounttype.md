@@ -5,7 +5,7 @@
 ```typescript
 import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: AccountType = AccountType.External;
+let value: AccountType = AccountType.Internal;
 ```
 
 ## Values

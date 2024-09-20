@@ -2505,7 +2505,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2CreateBulk({
     requestBody: [
-  
+      {
+        action: "<value>",
+      },
     ],
     ledger: "ledger001",
   });
@@ -2537,7 +2539,9 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2CreateBulk(sdk, {
     requestBody: [
-  
+      {
+        action: "<value>",
+      },
     ],
     ledger: "ledger001",
   });

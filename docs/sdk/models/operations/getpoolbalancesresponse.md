@@ -17,7 +17,7 @@ let value: GetPoolBalancesResponse = {
       ],
     },
   },
-  statusCode: 575947,
+  statusCode: 653201,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -11,8 +11,8 @@ let value: GetHoldsResponse = {
     cursor: {
       data: [
         {
-          description: "Realigned holistic workforce",
-          id: "d2ed0289-21cd-4dc6-9260-1fb576b0d5f0",
+          description: "Devolved non-volatile orchestration",
+          id: "679d2322-715b-4f0c-bb1e-31b8b90f3443",
           metadata: {
             "key": "<value>",
           },
@@ -25,7 +25,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 855804,
+  statusCode: 677263,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -13,7 +13,7 @@ let value: PaymentslistAccountsResponse = {
         {
           accountName: "<value>",
           connectorID: "<value>",
-          createdAt: new Date("2024-03-16T18:32:36.649Z"),
+          createdAt: new Date("2022-04-04T11:36:52.545Z"),
           defaultAsset: "<value>",
           defaultCurrency: "<value>",
           id: "<id>",
@@ -32,7 +32,7 @@ let value: PaymentslistAccountsResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 962189,
+  statusCode: 56418,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

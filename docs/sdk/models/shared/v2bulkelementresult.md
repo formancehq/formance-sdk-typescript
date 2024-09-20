@@ -6,8 +6,23 @@
 import { V2BulkElementResult } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementResult = {
-  errorCode: "<value>",
-  errorDescription: "<value>",
+  data: {
+    id: BigInt("633931"),
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    reverted: false,
+    timestamp: new Date("2023-12-31T18:45:29.299Z"),
+  },
   responseType: "<value>",
 };
 ```

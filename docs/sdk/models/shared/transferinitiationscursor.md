@@ -3,11 +3,28 @@
 ## Example Usage
 
 ```typescript
-import { TransferInitiationsCursor } from "@formance/formance-sdk/sdk/models/shared";
+import { TransferInitiationsCursor, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationsCursor = {
   cursor: {
-    data: [],
+    data: [
+      {
+        amount: BigInt("601714"),
+        asset: "USD",
+        connectorID: "<value>",
+        createdAt: new Date("2022-10-17T02:08:42.851Z"),
+        description: "Persistent value-added policy",
+        destinationAccountID: "<value>",
+        error: "<value>",
+        id: "XXX",
+        initialAmount: BigInt("135548"),
+        reference: "<value>",
+        scheduledAt: new Date("2024-03-06T11:00:53.005Z"),
+        sourceAccountID: "<value>",
+        status: TransferInitiationStatus.ReverseProcessing,
+        type: TransferInitiationType.Transfer,
+      },
+    ],
     hasMore: false,
     next: "",
     pageSize: 15,

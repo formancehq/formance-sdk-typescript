@@ -7,7 +7,7 @@ import { GetWorkflowResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: GetWorkflowResponse = {
   contentType: "<value>",
-  statusCode: 363711,
+  statusCode: 979587,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

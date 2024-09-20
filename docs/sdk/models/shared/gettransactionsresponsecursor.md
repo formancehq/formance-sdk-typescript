@@ -6,7 +6,52 @@
 import { GetTransactionsResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetTransactionsResponseCursor = {
-  data: [],
+  data: [
+    {
+      id: 643199,
+      metadata: {
+        "key": "<value>",
+      },
+      postCommitVolumes: {
+        "key": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+          "EUR": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+      ],
+      preCommitVolumes: {
+        "key": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+          "EUR": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      reference: "ref:001",
+      timestamp: new Date("2023-03-11T06:14:34.868Z"),
+    },
+  ],
   hasMore: false,
   next: "",
   pageSize: 15,

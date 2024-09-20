@@ -7,13 +7,59 @@ import { ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: ListTransactionsResponse = {
   contentType: "<value>",
-  statusCode: 337396,
+  statusCode: 368241,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   transactionsCursorResponse: {
     cursor: {
-      data: [],
+      data: [
+        {
+          postCommitVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+          },
+          postings: [
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
+          ],
+          preCommitVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+          },
+          reference: "ref:001",
+          timestamp: new Date("2024-07-01T13:13:56.446Z"),
+          txid: BigInt("957156"),
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,

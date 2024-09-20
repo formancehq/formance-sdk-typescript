@@ -11,14 +11,14 @@ let value: V2ActivityGetPaymentOutput = {
       {
         absolute: false,
         amount: BigInt("100"),
-        date: new Date("2023-11-27T17:25:10.266Z"),
+        date: new Date("2022-01-29T05:29:52.473Z"),
         raw: {},
-        status: V2PaymentStatus.Pending,
+        status: V2PaymentStatus.Terminated,
       },
     ],
     asset: "USD",
     connectorID: "<value>",
-    createdAt: new Date("2024-11-17T05:16:39.880Z"),
+    createdAt: new Date("2022-03-04T19:45:41.602Z"),
     destinationAccountID: "<value>",
     id: "XXX",
     initialAmount: BigInt("100"),
@@ -28,7 +28,7 @@ let value: V2ActivityGetPaymentOutput = {
     scheme: Scheme.Unknown,
     sourceAccountID: "<value>",
     status: V2PaymentStatus.Pending,
-    type: V2PaymentType.Transfer,
+    type: V2PaymentType.PayIn,
   },
 };
 ```

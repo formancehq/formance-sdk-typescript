@@ -6,9 +6,14 @@
 import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorConfig = {
-  directory: "/tmp/dummypay",
-  filePollingPeriod: "60s",
-  name: "My DummyPay Account",
+  authorizationEndpoint: "XXX",
+  endpoint: "XXX",
+  name: "My Banking Circle Account",
+  password: "XXX",
+  pollingPeriod: "60s",
+  userCertificate: "XXX",
+  userCertificateKey: "XXX",
+  username: "XXX",
 };
 ```
 

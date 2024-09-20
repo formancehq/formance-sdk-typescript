@@ -7,24 +7,24 @@ import { GetWalletSummaryResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: GetWalletSummaryResponse = {
   availableFunds: {
-    "key": BigInt("412433"),
+    "key": BigInt("557987"),
   },
   balances: [
     {
       assets: {
-        "key": BigInt("956124"),
+        "key": BigInt("162450"),
       },
       name: "<value>",
     },
   ],
   expirableFunds: {
-    "key": BigInt("164319"),
+    "key": BigInt("982445"),
   },
   expiredFunds: {
-    "key": BigInt("330440"),
+    "key": BigInt("81581"),
   },
   holdFunds: {
-    "key": BigInt("893773"),
+    "key": BigInt("400448"),
   },
 };
 ```

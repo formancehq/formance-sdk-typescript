@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 4a62d43befffe55605a3d0b24f39879b
   docVersion: v2.0.17
-  speakeasyVersion: 1.399.2
-  generationVersion: 2.416.6
-  releaseVersion: 2.7.2
-  configChecksum: c2507f9dde4a132525bb45fd106be9d6
+  speakeasyVersion: 1.400.0
+  generationVersion: 2.420.2
+  releaseVersion: 2.7.3
+  configChecksum: 40be95f9369166211cb4ef37a7d8480f
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.4
+    core: 3.17.5
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -1669,7 +1669,7 @@ examples:
           address: "users:001"
       responses:
         "200":
-          application/json: {"data": {"address": "users:001", "balances": {"COIN": 100}, "metadata": {"admin": true, "a": {"nested": {"key": "value"}}}, "type": "virtual", "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
+          application/json: {"data": {"address": "users:001", "balances": {"COIN": 100}, "metadata": {"admin": true, "a": {"nested": {"key": "value"}}}, "type": "virtual", "volumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   getBalances:
@@ -1733,7 +1733,7 @@ examples:
           txid: 1234
       responses:
         "200":
-          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2023-05-17T19:16:55.376Z", "txid": 926212}}
+          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2023-05-17T19:16:55.376Z", "txid": 926212}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   listAccounts:
@@ -1807,7 +1807,7 @@ examples:
         query: {}
       responses:
         "201":
-          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2024-07-14T12:09:08.629Z", "txid": 281842}}
+          application/json: {"data": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2024-07-14T12:09:08.629Z", "txid": 281842}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}
   runScript:
@@ -1821,7 +1821,7 @@ examples:
         application/json: {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "reference": "order_1234", "vars": {"user": "users:042"}}
       responses:
         "200":
-          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "account had insufficient funds", "transaction": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "timestamp": "2022-02-26T16:55:50.834Z", "txid": 60261}}
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "account had insufficient funds", "transaction": {"postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "timestamp": "2022-02-26T16:55:50.834Z", "txid": 60261}}
   updateMapping:
     speakeasy-default-update-mapping:
       parameters:
@@ -1952,7 +1952,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
+          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetBalancesAggregated:
@@ -2002,7 +2002,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"data": {"id": 425550, "metadata": {"admin": "true"}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "reverted": true, "timestamp": "2022-09-17T11:37:23.045Z"}}
+          application/json: {"data": {"id": 425550, "metadata": {"admin": "true"}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "postings": [], "preCommitVolumes": {"orders:1": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}, "orders:2": {"USD": {"balance": 80, "input": 100, "output": 20}, "EUR": {"balance": 80, "input": 100, "output": 20}}}, "reference": "ref:001", "reverted": true, "timestamp": "2022-09-17T11:37:23.045Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetVolumesWithBalances:
@@ -2613,7 +2613,7 @@ examples:
         path:
           connector: "ADYEN"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pageSize": 50, "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<value>"}}
@@ -3123,7 +3123,7 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2024-04-13T00:54:15.008Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "86a164ca-5578-4c31-8bbe-d7a3036b8904", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-05-05T09:06:40.232Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2024-04-13T00:54:15.008Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "86a164ca-5578-4c31-8bbe-d7a3036b8904", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2022-05-05T09:06:40.232Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   changeConfigSecret:
@@ -3135,7 +3135,7 @@ examples:
         application/json: {"secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2022-12-07T06:10:52.900Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "d8a42700-0fa2-4c26-8b7f-a17a0cecf878", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-02-17T09:48:07.043Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2022-12-07T06:10:52.900Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "d8a42700-0fa2-4c26-8b7f-a17a0cecf878", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-02-17T09:48:07.043Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   deactivateConfig:
@@ -3145,7 +3145,7 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2022-11-29T11:20:56.914Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "d845cef5-5b72-475c-b106-2229b7b1da74", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-05-02T19:19:44.391Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2022-11-29T11:20:56.914Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "d845cef5-5b72-475c-b106-2229b7b1da74", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-05-02T19:19:44.391Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   deleteConfig:
@@ -3170,10 +3170,10 @@ examples:
   insertConfig:
     speakeasy-default-insert-config:
       requestBody:
-        application/json: {"endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "name": "customer_payment", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
+        application/json: {"endpoint": "https://example.com", "eventTypes": ["TYPE1"], "name": "customer_payment", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"}
       responses:
         "200":
-          application/json: {"data": {"active": true, "createdAt": "2024-08-30T14:01:19.794Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "a05fe7f5-f67b-4b07-9b5b-ba3484665cb1", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-09-02T22:23:51.459Z"}}
+          application/json: {"data": {"active": true, "createdAt": "2024-08-30T14:01:19.794Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "a05fe7f5-f67b-4b07-9b5b-ba3484665cb1", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2023-09-02T22:23:51.459Z"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   testConfig:
@@ -3183,6 +3183,6 @@ examples:
           id: "4997257d-dfb6-445b-929c-cbe2ab182818"
       responses:
         "200":
-          application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:59.199Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1", "TYPE2"], "id": "2846f0d5-34bb-4964-967d-fe71e6ffb881", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-12-01T05:22:46.116Z"}, "createdAt": "2024-09-28T21:02:11.496Z", "id": "21fdbd6d-a78d-45b5-9c0e-4a204cb7c2a1", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2024-07-05T23:45:46.439Z", "webhookID": "dec67687-2f74-4eed-b324-86395f8c9408"}}
+          application/json: {"data": {"config": {"active": true, "createdAt": "2023-05-30T09:53:59.199Z", "endpoint": "https://example.com", "eventTypes": ["TYPE1"], "id": "2846f0d5-34bb-4964-967d-fe71e6ffb881", "secret": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3", "updatedAt": "2024-12-01T05:22:46.116Z"}, "createdAt": "2024-09-28T21:02:11.496Z", "id": "21fdbd6d-a78d-45b5-9c0e-4a204cb7c2a1", "payload": "{\"data\":\"test\"}", "retryAttempt": 1, "status": "success", "statusCode": 200, "updatedAt": "2024-07-05T23:45:46.439Z", "webhookID": "dec67687-2f74-4eed-b324-86395f8c9408"}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
