@@ -8,11 +8,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
-    apiKey: "XXX",
-    name: "My Wise Account",
-    pollingPeriod: "60s",
+    directory: "/tmp/dummypay",
+    filePollingPeriod: "60s",
+    name: "My DummyPay Account",
   },
-  connector: Connector.BankingCircle,
+  connector: Connector.Stripe,
   connectorId: "XXX",
 };
 ```

@@ -5,7 +5,7 @@
 ```typescript
 import { V2MigrationInfoState } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2MigrationInfoState = V2MigrationInfoState.Done;
+let value: V2MigrationInfoState = V2MigrationInfoState.ToDo;
 ```
 
 ## Values

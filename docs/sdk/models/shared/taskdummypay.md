@@ -7,12 +7,12 @@ import { PaymentStatus, TaskDummyPay } from "@formance/formance-sdk/sdk/models/s
 
 let value: TaskDummyPay = {
   connectorID: "<value>",
-  createdAt: new Date("2024-11-05T14:24:14.707Z"),
+  createdAt: new Date("2023-08-12T13:13:07.788Z"),
   descriptor: {},
-  id: "2ceda7e2-3f22-4574-91fa-f4b7544e472e",
+  id: "f6916b3f-a4c1-4f0e-b4c0-4b81669ad762",
   state: {},
-  status: PaymentStatus.Refunded,
-  updatedAt: new Date("2022-02-18T05:48:22.961Z"),
+  status: PaymentStatus.Dispute,
+  updatedAt: new Date("2023-03-24T21:51:00.945Z"),
 };
 ```
 

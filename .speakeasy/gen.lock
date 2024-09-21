@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 4a62d43befffe55605a3d0b24f39879b
   docVersion: v2.0.17
-  speakeasyVersion: 1.400.0
-  generationVersion: 2.420.2
-  releaseVersion: 2.7.3
-  configChecksum: 40be95f9369166211cb4ef37a7d8480f
+  speakeasyVersion: 1.401.2
+  generationVersion: 2.421.3
+  releaseVersion: 2.7.4
+  configChecksum: cbb978bc306e0fe4e179b8a92ae5e250
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -15,7 +15,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.5
+    core: 3.17.6
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     enumUnions: 0.1.0
@@ -2550,7 +2550,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-03-04T09:03:44.079Z", "id": "37bc89db-43a4-47f1-bb9a-24050795f422", "status": "PENDING", "updatedAt": "2023-12-20T20:12:51.365Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2022-09-14T18:08:36.551Z", "id": "b8d4a71b-a457-4542-9afd-b17eed3b13ec", "status": "EXPIRED", "updatedAt": "2022-08-01T16:40:57.832Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getConnectorTaskV1:
@@ -2562,7 +2562,7 @@ examples:
           taskId: "task1"
       responses:
         "200":
-          application/json: {"data": {"connectorID": "<value>", "createdAt": "2024-08-05T22:20:59.377Z", "id": "752d569d-25c8-43ca-a84b-5a32c806dcf9", "status": "SUCCEEDED", "updatedAt": "2022-06-02T20:15:28.566Z"}}
+          application/json: {"data": {"connectorID": "<value>", "createdAt": "2023-05-15T09:04:44.604Z", "id": "2592c3a8-ba28-46c9-923f-e1c798f795cd", "status": "CANCELLED", "updatedAt": "2022-05-07T01:38:27.888Z"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   getPayment:

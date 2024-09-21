@@ -17,7 +17,7 @@ let value: UpdateMappingResponse = {
       ],
     },
   },
-  statusCode: 800911,
+  statusCode: 60225,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

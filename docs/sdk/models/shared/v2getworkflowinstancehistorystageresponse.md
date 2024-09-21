@@ -13,7 +13,7 @@ import {
 let value: V2GetWorkflowInstanceHistoryStageResponse = {
   data: [
     {
-      attempt: 682119,
+      attempt: 580238,
       input: {
         createTransaction: {
           data: {
@@ -98,8 +98,8 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
                 },
               ],
               reference: "ref:001",
-              timestamp: new Date("2024-09-03T21:07:57.724Z"),
-              txid: BigInt("29190"),
+              timestamp: new Date("2024-10-31T15:49:47.989Z"),
+              txid: BigInt("36691"),
             },
           ],
         },
@@ -141,32 +141,32 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
               {
                 absolute: false,
                 amount: BigInt("100"),
-                date: new Date("2022-01-02T07:45:50.322Z"),
+                date: new Date("2022-06-11T13:12:44.267Z"),
                 raw: {},
-                status: V2PaymentStatus.Failed,
+                status: V2PaymentStatus.Succeeded,
               },
             ],
             asset: "USD",
             connectorID: "<value>",
-            createdAt: new Date("2024-10-24T04:36:14.577Z"),
+            createdAt: new Date("2022-04-02T20:02:51.889Z"),
             destinationAccountID: "<value>",
             id: "XXX",
             initialAmount: BigInt("100"),
             metadata: {},
             raw: {},
             reference: "<value>",
-            scheme: Scheme.SepaDebit,
+            scheme: Scheme.Sepa,
             sourceAccountID: "<value>",
-            status: V2PaymentStatus.Cancelled,
-            type: V2PaymentType.Transfer,
+            status: V2PaymentStatus.Active,
+            type: V2PaymentType.Payout,
           },
         },
         listWallets: {
           cursor: {
             data: [
               {
-                createdAt: new Date("2024-05-22T18:23:09.045Z"),
-                id: "5f350d8c-db5a-4341-8143-010421813d52",
+                createdAt: new Date("2024-02-09T05:12:43.428Z"),
+                id: "0d788a51-5285-4ff9-a9fe-c5537fe10e83",
                 ledger: "<value>",
                 metadata: {
                   "key": "<value>",
@@ -181,7 +181,7 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
           },
         },
       },
-      startedAt: new Date("2022-03-02T09:32:30.763Z"),
+      startedAt: new Date("2023-12-08T01:38:47.300Z"),
       terminated: false,
     },
   ],

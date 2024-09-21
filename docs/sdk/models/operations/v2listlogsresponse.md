@@ -8,7 +8,7 @@ import { V2LogType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ListLogsResponse = {
   contentType: "<value>",
-  statusCode: 653140,
+  statusCode: 667411,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -19,11 +19,11 @@ let value: V2ListLogsResponse = {
           data: {
             "key": "<value>",
           },
-          date: new Date("2024-01-06T00:27:31.067Z"),
+          date: new Date("2022-05-25T10:48:39.501Z"),
           hash:
             "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
           id: BigInt("1234"),
-          type: V2LogType.NewTransaction,
+          type: V2LogType.RevertedTransaction,
         },
       ],
       hasMore: false,

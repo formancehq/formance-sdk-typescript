@@ -9,8 +9,8 @@ let value: GetHoldsResponse = {
   cursor: {
     data: [
       {
-        description: "Quality-focused solution-oriented access",
-        id: "af2dfe13-db4f-462c-ba3f-8941aebc0b80",
+        description: "Intuitive fresh-thinking architecture",
+        id: "81e0742c-b2ac-4c1a-abd8-7fc85d717d70",
         metadata: {
           "key": "<value>",
         },

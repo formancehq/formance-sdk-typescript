@@ -11,8 +11,8 @@ let value: ListBankAccountsResponse = {
       data: [
         {
           connectorID: "<value>",
-          country: "Maldives",
-          createdAt: new Date("2024-02-11T11:05:07.276Z"),
+          country: "Bulgaria",
+          createdAt: new Date("2024-06-20T00:59:05.475Z"),
           id: "<id>",
           name: "<value>",
         },
@@ -24,7 +24,7 @@ let value: ListBankAccountsResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 447926,
+  statusCode: 189848,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

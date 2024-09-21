@@ -7,8 +7,8 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "Diverse scalable focus group",
-    id: "949f83f3-50cf-4876-bfb9-01c6ecbb4e24",
+    description: "Reduced tertiary frame",
+    id: "9b0c6a7b-b3ad-43ca-9f42-44cba3df8a84",
     metadata: {
       "key": "<value>",
     },

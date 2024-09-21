@@ -5,7 +5,7 @@
 ```typescript
 import { OrchestrationPaymentScheme } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: OrchestrationPaymentScheme = OrchestrationPaymentScheme.Amex;
+let value: OrchestrationPaymentScheme = OrchestrationPaymentScheme.ApplePay;
 ```
 
 ## Values

@@ -3,12 +3,9 @@
  */
 
 import { SDKCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +26,7 @@ import { Result } from "../sdk/types/fp.js";
  * Confirm a hold
  */
 export async function walletsConfirmHold(
-  client$: SDKCore,
+  client: SDKCore,
   request: operations.ConfirmHoldRequest,
   options?: RequestOptions,
 ): Promise<
@@ -45,66 +42,66 @@ export async function walletsConfirmHold(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.ConfirmHoldRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.ConfirmHoldRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.ConfirmHoldRequest, {
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.ConfirmHoldRequest, {
     explode: true,
   });
 
-  const pathParams$ = {
-    hold_id: encodeSimple$("hold_id", payload$.hold_id, {
+  const pathParams = {
+    hold_id: encodeSimple("hold_id", payload.hold_id, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/api/wallets/holds/{hold_id}/confirm")(pathParams$);
+  const path = pathToFunc("/api/wallets/holds/{hold_id}/confirm")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Idempotency-Key": encodeSimple$(
+    "Idempotency-Key": encodeSimple(
       "Idempotency-Key",
-      payload$["Idempotency-Key"],
+      payload["Idempotency-Key"],
       { explode: false, charEncoding: "none" },
     ),
   });
 
-  const security$ = await extractSecurity(client$.options$.security);
+  const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "confirmHold",
     oAuth2Scopes: [],
-    securitySource: client$.options$.security,
+    securitySource: client._options.security,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -112,7 +109,7 @@ export async function walletsConfirmHold(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -120,7 +117,7 @@ export async function walletsConfirmHold(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.ConfirmHoldResponse,
     | errors.WalletsErrorResponse
     | SDKError
@@ -131,12 +128,12 @@ export async function walletsConfirmHold(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.nil(204, operations.ConfirmHoldResponse$inboundSchema),
-    m$.jsonErr("default", errors.WalletsErrorResponse$inboundSchema),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.nil(204, operations.ConfirmHoldResponse$inboundSchema),
+    M.jsonErr("default", errors.WalletsErrorResponse$inboundSchema),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

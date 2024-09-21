@@ -7,7 +7,7 @@ import { V2UpdateLedgerMetadataResponse } from "@formance/formance-sdk/sdk/model
 
 let value: V2UpdateLedgerMetadataResponse = {
   contentType: "<value>",
-  statusCode: 325047,
+  statusCode: 270008,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

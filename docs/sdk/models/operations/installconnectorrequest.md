@@ -8,12 +8,16 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: InstallConnectorRequest = {
   connectorConfig: {
-    apiKey: "XXX",
+    authorizationEndpoint: "XXX",
     endpoint: "XXX",
-    name: "My Generic Account",
+    name: "My Banking Circle Account",
+    password: "XXX",
     pollingPeriod: "60s",
+    userCertificate: "XXX",
+    userCertificateKey: "XXX",
+    username: "XXX",
   },
-  connector: Connector.Adyen,
+  connector: Connector.BankingCircle,
 };
 ```
 

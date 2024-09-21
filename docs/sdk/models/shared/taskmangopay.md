@@ -7,12 +7,12 @@ import { PaymentStatus, TaskMangoPay } from "@formance/formance-sdk/sdk/models/s
 
 let value: TaskMangoPay = {
   connectorID: "<value>",
-  createdAt: new Date("2024-01-28T21:25:45.652Z"),
+  createdAt: new Date("2022-12-17T12:12:43.741Z"),
   descriptor: {},
-  id: "2164cf9a-b836-46c7-a3ff-da9e06bee482",
+  id: "d807a893-d8bf-46e0-8094-345b9cdd66ea",
   state: {},
-  status: PaymentStatus.Failed,
-  updatedAt: new Date("2024-05-12T09:33:58.747Z"),
+  status: PaymentStatus.Refunded,
+  updatedAt: new Date("2023-01-26T04:24:53.847Z"),
 };
 ```
 

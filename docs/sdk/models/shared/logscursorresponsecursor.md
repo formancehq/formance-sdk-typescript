@@ -11,7 +11,7 @@ let value: LogsCursorResponseCursor = {
       data: {
         "key": "<value>",
       },
-      date: new Date("2024-12-03T18:50:07.917Z"),
+      date: new Date("2024-06-08T21:13:54.937Z"),
       hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
       id: 1234,
       type: Type.NewTransaction,

@@ -5,7 +5,7 @@
 ```typescript
 import { V2TargetId } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2TargetId = "<value>";
+let value: V2TargetId = BigInt("963198");
 ```
 
 ## Supported Types

@@ -9,7 +9,7 @@ let value: V2TransactionsCursorResponse = {
   cursor: {
     data: [
       {
-        id: BigInt("503934"),
+        id: BigInt("484966"),
         metadata: {
           "admin": "true",
         },
@@ -55,7 +55,7 @@ let value: V2TransactionsCursorResponse = {
         },
         reference: "ref:001",
         reverted: false,
-        timestamp: new Date("2023-05-08T10:10:03.043Z"),
+        timestamp: new Date("2024-09-14T16:10:11.053Z"),
       },
     ],
     hasMore: false,

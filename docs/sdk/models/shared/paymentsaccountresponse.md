@@ -9,7 +9,7 @@ let value: PaymentsAccountResponse = {
   data: {
     accountName: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2023-06-18T02:32:25.845Z"),
+    createdAt: new Date("2024-04-12T08:34:45.892Z"),
     defaultAsset: "<value>",
     defaultCurrency: "<value>",
     id: "<id>",

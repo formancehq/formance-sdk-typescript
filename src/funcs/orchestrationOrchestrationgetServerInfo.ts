@@ -3,7 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import * as m$ from "../lib/matchers.js";
+import * as M from "../lib/matchers.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -24,7 +24,7 @@ import { Result } from "../sdk/types/fp.js";
  * Get server info
  */
 export async function orchestrationOrchestrationgetServerInfo(
-  client$: SDKCore,
+  client: SDKCore,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -39,37 +39,37 @@ export async function orchestrationOrchestrationgetServerInfo(
     | ConnectionError
   >
 > {
-  const path$ = pathToFunc("/api/orchestration/_info")();
+  const path = pathToFunc("/api/orchestration/_info")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const security$ = await extractSecurity(client$.options$.security);
+  const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "orchestrationgetServerInfo",
     oAuth2Scopes: [],
-    securitySource: client$.options$.security,
+    securitySource: client._options.security,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -77,7 +77,7 @@ export async function orchestrationOrchestrationgetServerInfo(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -85,7 +85,7 @@ export async function orchestrationOrchestrationgetServerInfo(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.OrchestrationgetServerInfoResponse,
     | errors.ErrorT
     | SDKError
@@ -96,14 +96,14 @@ export async function orchestrationOrchestrationgetServerInfo(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.OrchestrationgetServerInfoResponse$inboundSchema, {
+    M.json(200, operations.OrchestrationgetServerInfoResponse$inboundSchema, {
       key: "ServerInfo",
     }),
-    m$.jsonErr("default", errors.ErrorT$inboundSchema),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr("default", errors.ErrorT$inboundSchema),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

@@ -5,7 +5,7 @@
 ```typescript
 import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: PaymentStatus = PaymentStatus.RefundedFailure;
+let value: PaymentStatus = PaymentStatus.DisputeLost;
 ```
 
 ## Values

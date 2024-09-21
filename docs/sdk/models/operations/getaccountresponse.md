@@ -36,7 +36,7 @@ let value: GetAccountResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 812169,
+  statusCode: 799159,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -5,7 +5,7 @@
 ```typescript
 import { OrchestrationPaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: OrchestrationPaymentType = OrchestrationPaymentType.Payout;
+let value: OrchestrationPaymentType = OrchestrationPaymentType.PayIn;
 ```
 
 ## Values

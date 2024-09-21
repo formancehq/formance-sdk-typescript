@@ -8,7 +8,7 @@ import { AccountType, PaymentsAccount } from "@formance/formance-sdk/sdk/models/
 let value: PaymentsAccount = {
   accountName: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2023-05-07T09:54:10.222Z"),
+  createdAt: new Date("2022-07-07T14:30:34.396Z"),
   defaultAsset: "<value>",
   defaultCurrency: "<value>",
   id: "<id>",

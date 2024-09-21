@@ -6,8 +6,8 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "Enterprise-wide upward-trending migration",
-  id: "4b5197f9-2443-4da7-8e52-b895c537c645",
+  description: "Adaptive static budgetary management",
+  id: "34e3cce1-3b34-4227-b156-0617dd19d3ce",
   metadata: {
     "key": "<value>",
   },

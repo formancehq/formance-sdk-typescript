@@ -10,12 +10,12 @@ let value: V2ActivityGetWalletOutput = {
     balances: {
       main: {
         assets: {
-          "key": BigInt("7468"),
+          "key": BigInt("373054"),
         },
       },
     },
-    createdAt: new Date("2023-12-03T02:48:10.719Z"),
-    id: "e6b6bc9b-8f75-49ea-855a-9741d3113529",
+    createdAt: new Date("2022-08-04T17:59:47.205Z"),
+    id: "1b7be2e6-4ff3-4a1a-ada6-669ee021358a",
     ledger: "<value>",
     metadata: {
       "key": "<value>",

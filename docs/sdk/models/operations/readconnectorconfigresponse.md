@@ -8,18 +8,15 @@ import { ReadConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/o
 let value: ReadConnectorConfigResponse = {
   connectorConfigResponse: {
     data: {
-      authorizationEndpoint: "XXX",
-      endpoint: "XXX",
-      name: "My Banking Circle Account",
-      password: "XXX",
+      apiKey: "XXX",
+      hmacKey: "XXX",
+      liveEndpointPrefix: "XXX",
+      name: "My Adyen Account",
       pollingPeriod: "60s",
-      userCertificate: "XXX",
-      userCertificateKey: "XXX",
-      username: "XXX",
     },
   },
   contentType: "<value>",
-  statusCode: 311796,
+  statusCode: 33304,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

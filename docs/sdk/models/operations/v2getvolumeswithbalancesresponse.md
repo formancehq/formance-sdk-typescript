@@ -7,7 +7,7 @@ import { V2GetVolumesWithBalancesResponse } from "@formance/formance-sdk/sdk/mod
 
 let value: V2GetVolumesWithBalancesResponse = {
   contentType: "<value>",
-  statusCode: 616934,
+  statusCode: 282807,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,11 +15,11 @@ let value: V2GetVolumesWithBalancesResponse = {
     cursor: {
       data: [
         {
-          account: "39964364",
+          account: "12134065",
           asset: "<value>",
-          balance: BigInt("902349"),
-          input: BigInt("697631"),
-          output: BigInt("99280"),
+          balance: BigInt("265389"),
+          input: BigInt("523248"),
+          output: BigInt("93940"),
         },
       ],
       hasMore: false,

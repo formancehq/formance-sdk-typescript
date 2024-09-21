@@ -19,42 +19,42 @@ import { Webhooks } from "./webhooks.js";
 export class SDK extends ClientSDK {
   private _auth?: Auth;
   get auth(): Auth {
-    return (this._auth ??= new Auth(this.options$));
+    return (this._auth ??= new Auth(this._options));
   }
 
   private _ledger?: Ledger;
   get ledger(): Ledger {
-    return (this._ledger ??= new Ledger(this.options$));
+    return (this._ledger ??= new Ledger(this._options));
   }
 
   private _orchestration?: Orchestration;
   get orchestration(): Orchestration {
-    return (this._orchestration ??= new Orchestration(this.options$));
+    return (this._orchestration ??= new Orchestration(this._options));
   }
 
   private _payments?: Payments;
   get payments(): Payments {
-    return (this._payments ??= new Payments(this.options$));
+    return (this._payments ??= new Payments(this._options));
   }
 
   private _reconciliation?: Reconciliation;
   get reconciliation(): Reconciliation {
-    return (this._reconciliation ??= new Reconciliation(this.options$));
+    return (this._reconciliation ??= new Reconciliation(this._options));
   }
 
   private _search?: Search;
   get search(): Search {
-    return (this._search ??= new Search(this.options$));
+    return (this._search ??= new Search(this._options));
   }
 
   private _wallets?: Wallets;
   get wallets(): Wallets {
-    return (this._wallets ??= new Wallets(this.options$));
+    return (this._wallets ??= new Wallets(this._options));
   }
 
   private _webhooks?: Webhooks;
   get webhooks(): Webhooks {
-    return (this._webhooks ??= new Webhooks(this.options$));
+    return (this._webhooks ??= new Webhooks(this._options));
   }
 
   /**

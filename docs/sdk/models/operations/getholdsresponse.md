@@ -11,8 +11,8 @@ let value: GetHoldsResponse = {
     cursor: {
       data: [
         {
-          description: "Devolved non-volatile orchestration",
-          id: "679d2322-715b-4f0c-bb1e-31b8b90f3443",
+          description: "Focused bottom-line groupware",
+          id: "296ef849-e684-4763-a845-8c5ed04715ba",
           metadata: {
             "key": "<value>",
           },
@@ -25,7 +25,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 677263,
+  statusCode: 710529,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

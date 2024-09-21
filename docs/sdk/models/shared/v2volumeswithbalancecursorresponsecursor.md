@@ -8,11 +8,11 @@ import { V2VolumesWithBalanceCursorResponseCursor } from "@formance/formance-sdk
 let value: V2VolumesWithBalanceCursorResponseCursor = {
   data: [
     {
-      account: "72439829",
+      account: "97725773",
       asset: "<value>",
-      balance: BigInt("381760"),
-      input: BigInt("968972"),
-      output: BigInt("697142"),
+      balance: BigInt("770873"),
+      input: BigInt("735894"),
+      output: BigInt("141506"),
     },
   ],
   hasMore: false,

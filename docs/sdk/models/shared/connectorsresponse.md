@@ -10,7 +10,7 @@ let value: ConnectorsResponse = {
     {
       connectorID: "<value>",
       name: "<value>",
-      provider: Connector.CurrencyCloud,
+      provider: Connector.Mangopay,
     },
   ],
 };

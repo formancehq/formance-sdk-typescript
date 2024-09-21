@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Total 6th generation definition",
-  id: "771778ff-61d0-4174-b636-0a15db6a6606",
+  description: "Synergistic discrete help-desk",
+  id: "caf91ecb-062d-4bef-9cf9-005ddf10e48f",
   metadata: {
     "key": "<value>",
   },

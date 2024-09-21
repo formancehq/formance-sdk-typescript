@@ -8,10 +8,10 @@ import { AccountBalance } from "@formance/formance-sdk/sdk/models/shared";
 let value: AccountBalance = {
   accountId: "<value>",
   asset: "<value>",
-  balance: BigInt("38557"),
-  createdAt: new Date("2024-11-22T12:25:02.431Z"),
-  currency: "Baht",
-  lastUpdatedAt: new Date("2024-03-23T09:31:34.975Z"),
+  balance: BigInt("779154"),
+  createdAt: new Date("2023-06-22T15:24:08.414Z"),
+  currency: "Metical",
+  lastUpdatedAt: new Date("2022-08-22T02:23:53.093Z"),
 };
 ```
 

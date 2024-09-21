@@ -8,8 +8,8 @@ import { OrchestrationListWalletsResponseCursor } from "@formance/formance-sdk/s
 let value: OrchestrationListWalletsResponseCursor = {
   data: [
     {
-      createdAt: new Date("2023-04-28T23:16:51.301Z"),
-      id: "da8a50ce-187f-486b-8173-d689eee9526f",
+      createdAt: new Date("2024-08-01T18:58:46.575Z"),
+      id: "90be851c-e1c0-4f98-94e4-dfc817736527",
       ledger: "<value>",
       metadata: {
         "key": "<value>",

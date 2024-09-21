@@ -7,7 +7,7 @@ import { V2ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: V2ListTransactionsResponse = {
   contentType: "<value>",
-  statusCode: 210382,
+  statusCode: 289406,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V2ListTransactionsResponse = {
     cursor: {
       data: [
         {
-          id: BigInt("358152"),
+          id: BigInt("183191"),
           metadata: {
             "admin": "true",
           },
@@ -61,7 +61,7 @@ let value: V2ListTransactionsResponse = {
           },
           reference: "ref:001",
           reverted: false,
-          timestamp: new Date("2022-05-22T07:16:38.466Z"),
+          timestamp: new Date("2023-10-05T19:38:10.454Z"),
         },
       ],
       hasMore: false,

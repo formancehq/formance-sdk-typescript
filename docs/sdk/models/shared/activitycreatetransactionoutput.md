@@ -7,7 +7,7 @@ import { ActivityCreateTransactionOutput } from "@formance/formance-sdk/sdk/mode
 
 let value: ActivityCreateTransactionOutput = {
   data: {
-    id: BigInt("614528"),
+    id: BigInt("400879"),
     metadata: {
       "admin": "true",
     },
@@ -21,7 +21,7 @@ let value: ActivityCreateTransactionOutput = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2023-12-27T02:55:05.178Z"),
+    timestamp: new Date("2024-04-21T22:35:32.835Z"),
   },
 };
 ```

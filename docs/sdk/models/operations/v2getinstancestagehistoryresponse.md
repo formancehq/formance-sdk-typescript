@@ -8,14 +8,14 @@ import { Scheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/s
 
 let value: V2GetInstanceStageHistoryResponse = {
   contentType: "<value>",
-  statusCode: 265389,
+  statusCode: 199996,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetWorkflowInstanceHistoryStageResponse: {
     data: [
       {
-        attempt: 508969,
+        attempt: 18521,
         input: {
           createTransaction: {
             data: {
@@ -100,8 +100,8 @@ let value: V2GetInstanceStageHistoryResponse = {
                   },
                 ],
                 reference: "ref:001",
-                timestamp: new Date("2024-10-01T17:28:50.340Z"),
-                txid: BigInt("93940"),
+                timestamp: new Date("2022-09-03T10:06:53.981Z"),
+                txid: BigInt("345352"),
               },
             ],
           },
@@ -143,32 +143,32 @@ let value: V2GetInstanceStageHistoryResponse = {
                 {
                   absolute: false,
                   amount: BigInt("100"),
-                  date: new Date("2024-10-06T14:07:47.374Z"),
+                  date: new Date("2024-10-14T04:15:01.236Z"),
                   raw: {},
-                  status: V2PaymentStatus.Failed,
+                  status: V2PaymentStatus.Succeeded,
                 },
               ],
               asset: "USD",
               connectorID: "<value>",
-              createdAt: new Date("2022-04-02T02:11:27.054Z"),
+              createdAt: new Date("2022-02-04T21:29:28.328Z"),
               destinationAccountID: "<value>",
               id: "XXX",
               initialAmount: BigInt("100"),
               metadata: {},
               raw: {},
               reference: "<value>",
-              scheme: Scheme.Unknown,
+              scheme: Scheme.Amex,
               sourceAccountID: "<value>",
-              status: V2PaymentStatus.Active,
-              type: V2PaymentType.Payout,
+              status: V2PaymentStatus.Failed,
+              type: V2PaymentType.Transfer,
             },
           },
           listWallets: {
             cursor: {
               data: [
                 {
-                  createdAt: new Date("2022-01-11T06:07:07.257Z"),
-                  id: "ad2abd44-2698-402d-902a-94bb4f63c969",
+                  createdAt: new Date("2022-09-18T17:31:57.984Z"),
+                  id: "e989b463-2fb7-4340-864b-6201a78ef3a4",
                   ledger: "<value>",
                   metadata: {
                     "key": "<value>",
@@ -183,7 +183,7 @@ let value: V2GetInstanceStageHistoryResponse = {
             },
           },
         },
-        startedAt: new Date("2024-09-09T01:23:37.652Z"),
+        startedAt: new Date("2024-04-11T04:23:31.598Z"),
         terminated: false,
       },
     ],

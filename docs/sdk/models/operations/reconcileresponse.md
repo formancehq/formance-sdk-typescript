@@ -11,14 +11,14 @@ let value: ReconcileResponse = {
     data: {
       createdAt: new Date("2021-01-01T00:00:00.000Z"),
       driftBalances: {
-        "key": BigInt("831049"),
+        "key": BigInt("246063"),
       },
       id: "XXX",
       ledgerBalances: {
-        "key": BigInt("519711"),
+        "key": BigInt("665859"),
       },
       paymentsBalances: {
-        "key": BigInt("628982"),
+        "key": BigInt("517309"),
       },
       policyID: "XXX",
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
@@ -26,7 +26,7 @@ let value: ReconcileResponse = {
       status: "COMPLETED",
     },
   },
-  statusCode: 55,
+  statusCode: 424089,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
