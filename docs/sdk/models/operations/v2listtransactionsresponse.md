@@ -7,13 +7,63 @@ import { V2ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: V2ListTransactionsResponse = {
   contentType: "<value>",
-  statusCode: 697631,
+  statusCode: 289406,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2TransactionsCursorResponse: {
     cursor: {
-      data: [],
+      data: [
+        {
+          id: BigInt("183191"),
+          metadata: {
+            "admin": "true",
+          },
+          postCommitVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+          },
+          postings: [
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
+          ],
+          preCommitVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+          },
+          reference: "ref:001",
+          reverted: false,
+          timestamp: new Date("2023-10-05T19:38:10.454Z"),
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,

@@ -3,9 +3,9 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -31,7 +31,7 @@ import { Result } from "../sdk/types/fp.js";
  * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export async function paymentsGetConnectorTask(
-  client$: SDKCore,
+  client: SDKCore,
   request: operations.GetConnectorTaskRequest,
   options?: RequestOptions,
 ): Promise<
@@ -47,64 +47,64 @@ export async function paymentsGetConnectorTask(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.GetConnectorTaskRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.GetConnectorTaskRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const pathParams$ = {
-    connector: encodeSimple$("connector", payload$.connector, {
+  const pathParams = {
+    connector: encodeSimple("connector", payload.connector, {
       explode: false,
       charEncoding: "percent",
     }),
-    taskId: encodeSimple$("taskId", payload$.taskId, {
+    taskId: encodeSimple("taskId", payload.taskId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc(
+  const path = pathToFunc(
     "/api/payments/connectors/{connector}/tasks/{taskId}",
-  )(pathParams$);
+  )(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const security$ = await extractSecurity(client$.options$.security);
+  const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getConnectorTask",
     oAuth2Scopes: [],
-    securitySource: client$.options$.security,
+    securitySource: client._options.security,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -112,7 +112,7 @@ export async function paymentsGetConnectorTask(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -120,7 +120,7 @@ export async function paymentsGetConnectorTask(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GetConnectorTaskResponse,
     | errors.PaymentsErrorResponse
     | SDKError
@@ -131,14 +131,14 @@ export async function paymentsGetConnectorTask(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GetConnectorTaskResponse$inboundSchema, {
+    M.json(200, operations.GetConnectorTaskResponse$inboundSchema, {
       key: "TaskResponse",
     }),
-    m$.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

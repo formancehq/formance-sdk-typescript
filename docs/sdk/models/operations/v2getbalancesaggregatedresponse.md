@@ -7,7 +7,7 @@ import { V2GetBalancesAggregatedResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: V2GetBalancesAggregatedResponse = {
   contentType: "<value>",
-  statusCode: 414662,
+  statusCode: 837945,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

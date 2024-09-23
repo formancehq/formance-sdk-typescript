@@ -7,9 +7,9 @@ import { ReverseTransferInitiationRequest } from "@formance/formance-sdk/sdk/mod
 
 let value: ReverseTransferInitiationRequest = {
   reverseTransferInitiationRequest: {
-    amount: BigInt("680056"),
+    amount: BigInt("869489"),
     asset: "USD",
-    description: "Monitored heuristic solution",
+    description: "Multi-channelled eco-centric conglomeration",
     metadata: {
       "key": "<value>",
     },

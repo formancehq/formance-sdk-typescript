@@ -7,7 +7,7 @@ import { GetTransactionResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: GetTransactionResponse = {
   contentType: "<value>",
-  statusCode: 479977,
+  statusCode: 944669,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -54,8 +54,8 @@ let value: GetTransactionResponse = {
         },
       },
       reference: "ref:001",
-      timestamp: new Date("2023-09-15T13:50:39.138Z"),
-      txid: BigInt("392785"),
+      timestamp: new Date("2023-07-26T22:41:53.719Z"),
+      txid: BigInt("414662"),
     },
   },
 };

@@ -7,7 +7,7 @@ import { V2ListWorkflowsResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2ListWorkflowsResponse = {
   contentType: "<value>",
-  statusCode: 317202,
+  statusCode: 952792,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -22,9 +22,9 @@ let value: V2ListWorkflowsResponse = {
               },
             ],
           },
-          createdAt: new Date("2022-06-01T10:45:51.493Z"),
+          createdAt: new Date("2024-01-24T11:41:29.840Z"),
           id: "<id>",
-          updatedAt: new Date("2024-05-03T01:35:58.385Z"),
+          updatedAt: new Date("2022-08-25T04:42:50.179Z"),
         },
       ],
       hasMore: false,

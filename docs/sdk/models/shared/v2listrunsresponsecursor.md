@@ -8,10 +8,10 @@ import { V2ListRunsResponseCursor } from "@formance/formance-sdk/sdk/models/shar
 let value: V2ListRunsResponseCursor = {
   data: [
     {
-      createdAt: new Date("2024-01-18T04:29:15.111Z"),
+      createdAt: new Date("2024-08-27T05:15:52.024Z"),
       id: "<id>",
       terminated: false,
-      updatedAt: new Date("2023-07-18T09:41:19.979Z"),
+      updatedAt: new Date("2024-11-16T13:14:05.219Z"),
       workflowID: "<value>",
     },
   ],

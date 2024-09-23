@@ -3,12 +3,9 @@
  */
 
 import { SDKCore } from "../core.js";
-import {
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +29,7 @@ import { Result } from "../sdk/types/fp.js";
  * Install a connector by its name and config.
  */
 export async function paymentsInstallConnector(
-  client$: SDKCore,
+  client: SDKCore,
   request: operations.InstallConnectorRequest,
   options?: RequestOptions,
 ): Promise<
@@ -48,61 +45,59 @@ export async function paymentsInstallConnector(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.InstallConnectorRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.InstallConnectorRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.ConnectorConfig, {
-    explode: true,
-  });
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.ConnectorConfig, { explode: true });
 
-  const pathParams$ = {
-    connector: encodeSimple$("connector", payload$.connector, {
+  const pathParams = {
+    connector: encodeSimple("connector", payload.connector, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/api/payments/connectors/{connector}")(pathParams$);
+  const path = pathToFunc("/api/payments/connectors/{connector}")(pathParams);
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const security$ = await extractSecurity(client$.options$.security);
+  const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "installConnector",
     oAuth2Scopes: [],
-    securitySource: client$.options$.security,
+    securitySource: client._options.security,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -110,7 +105,7 @@ export async function paymentsInstallConnector(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -118,7 +113,7 @@ export async function paymentsInstallConnector(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.InstallConnectorResponse,
     | errors.PaymentsErrorResponse
     | SDKError
@@ -129,14 +124,14 @@ export async function paymentsInstallConnector(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(201, operations.InstallConnectorResponse$inboundSchema, {
+    M.json(201, operations.InstallConnectorResponse$inboundSchema, {
       key: "ConnectorResponse",
     }),
-    m$.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

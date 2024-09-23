@@ -5,7 +5,7 @@
 ```typescript
 import { PaymentScheme } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: PaymentScheme = PaymentScheme.Cup;
+let value: PaymentScheme = PaymentScheme.Discover;
 ```
 
 ## Values

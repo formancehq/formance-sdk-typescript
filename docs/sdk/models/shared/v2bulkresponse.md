@@ -6,7 +6,13 @@
 import { V2BulkResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkResponse = {
-  data: [],
+  data: [
+    {
+      errorCode: "<value>",
+      errorDescription: "<value>",
+      responseType: "<value>",
+    },
+  ],
 };
 ```
 

@@ -7,7 +7,7 @@ import { V2CreateLedgerResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: V2CreateLedgerResponse = {
   contentType: "<value>",
-  statusCode: 800911,
+  statusCode: 438601,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

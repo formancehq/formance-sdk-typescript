@@ -6,7 +6,7 @@
 import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 621693,
+  attempt: 122085,
   input: {
     createTransaction: {
       data: {
@@ -91,8 +91,8 @@ let value: V2WorkflowInstanceHistoryStage = {
             },
           ],
           reference: "ref:001",
-          timestamp: new Date("2023-02-20T18:34:55.894Z"),
-          txid: BigInt("922348"),
+          timestamp: new Date("2022-03-07T20:17:26.783Z"),
+          txid: BigInt("209860"),
         },
       ],
     },
@@ -134,32 +134,32 @@ let value: V2WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2023-08-18T04:10:23.565Z"),
+            date: new Date("2022-05-26T00:10:06.496Z"),
             raw: {},
-            status: V2PaymentStatus.Failed,
+            status: V2PaymentStatus.Active,
           },
         ],
         asset: "USD",
         connectorID: "<value>",
-        createdAt: new Date("2022-05-13T12:39:46.339Z"),
+        createdAt: new Date("2024-01-22T06:31:40.102Z"),
         destinationAccountID: "<value>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.Unknown,
+        scheme: Scheme.Visa,
         sourceAccountID: "<value>",
-        status: V2PaymentStatus.Succeeded,
-        type: V2PaymentType.Other,
+        status: V2PaymentStatus.Pending,
+        type: V2PaymentType.PayIn,
       },
     },
     listWallets: {
       cursor: {
         data: [
           {
-            createdAt: new Date("2022-11-11T16:23:05.729Z"),
-            id: "f0e10125-63f9-44e2-9e97-3e922a57a15b",
+            createdAt: new Date("2022-12-13T22:17:51.524Z"),
+            id: "44cf8f61-647a-47ee-9b72-6b41eb9cd7ee",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -174,7 +174,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2024-09-25T10:47:09.377Z"),
+  startedAt: new Date("2023-10-28T20:52:23.318Z"),
   terminated: false,
 };
 ```

@@ -9,11 +9,11 @@ let value: V2VolumesWithBalanceCursorResponse = {
   cursor: {
     data: [
       {
-        account: "45491640",
+        account: "84445648",
         asset: "<value>",
-        balance: BigInt("783648"),
-        input: BigInt("430402"),
-        output: BigInt("556429"),
+        balance: BigInt("627735"),
+        input: BigInt("401428"),
+        output: BigInt("416692"),
       },
     ],
     hasMore: false,

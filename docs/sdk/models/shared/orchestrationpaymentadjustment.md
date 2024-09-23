@@ -8,9 +8,9 @@ import { OrchestrationPaymentAdjustment, OrchestrationPaymentStatus } from "@for
 let value: OrchestrationPaymentAdjustment = {
   absolute: false,
   amount: BigInt("100"),
-  date: new Date("2023-07-16T15:31:42.506Z"),
+  date: new Date("2024-11-12T17:32:52.430Z"),
   raw: {},
-  status: OrchestrationPaymentStatus.Terminated,
+  status: OrchestrationPaymentStatus.Cancelled,
 };
 ```
 

@@ -6,9 +6,11 @@
 import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorConfig = {
-  directory: "/tmp/dummypay",
-  filePollingPeriod: "60s",
-  name: "My DummyPay Account",
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My Moneycorp Account",
+  pollingPeriod: "60s",
 };
 ```
 
