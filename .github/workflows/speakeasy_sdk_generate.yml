@@ -1,30 +1,21 @@
 name: Generate
-
-on:
-  workflow_dispatch: # Allows manual triggering of the workflow to generate SDK
-    inputs:
-      force:
-        description: "Force generation of SDKs"
-        type: boolean
-        default: false
-  schedule:
-    - cron: 0 0 * * * # Runs every day at midnight
-
+"on":
+    workflow_dispatch:
+        inputs:
+            force:
+                description: Force generation of SDKs
+                type: boolean
+                default: false
+    schedule:
+        - cron: 0 0 * * *
 jobs:
-  generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14
-    with:
-      speakeasy_version: latest
-      openapi_docs: |
-        - https://github.com/formancehq/stack/releases/download/v2.0.17/generate.json
-      overlay_docs: |
-        - overlay.yaml
-      languages: |-
-        - typescript
-      publish_typescript: true
-      mode: pr
-      force: ${{ github.event.inputs.force }}
-    secrets:
-      speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-      github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      npm_token:  ${{ secrets.NPM_TOKEN }}
+    generate:
+        uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
+        with:
+            force: ${{ github.event.inputs.force }}
+            mode: pr
+            speakeasy_version: latest
+        secrets:
+            github_access_token: ${{ secrets.GITHUB_TOKEN }}
+            npm_token: ${{ secrets.NPM_TOKEN }}
+            speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

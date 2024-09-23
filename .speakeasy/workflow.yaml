@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+sources:
+    my-source:
+        inputs:
+            - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.1/generate.json
+targets:
+    formance-sdk-typescript:
+        target: typescript
+        source: my-source
+        publish:
+            npm:
+                token: $NPM_TOKEN
