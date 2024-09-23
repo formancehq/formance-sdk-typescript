@@ -1431,6 +1431,7 @@ async function run() {
       "49": "2",
     },
     pageSize: 100,
+    paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
   
   // Handle the result
@@ -1517,6 +1518,7 @@ async function run() {
       "49": "2",
     },
     pageSize: 100,
+    paginationToken: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   });
 
   if (!res.ok) {
@@ -2503,7 +2505,9 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2CreateBulk({
     requestBody: [
-  
+      {
+        action: "<value>",
+      },
     ],
     ledger: "ledger001",
   });
@@ -2535,7 +2539,36 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2CreateBulk(sdk, {
     requestBody: [
-  
+      {
+        action: "<value>",
+        data: {
+          metadata: {
+            "admin": "true",
+          },
+          postings: [
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
+          ],
+          reference: "ref:001",
+          script: {
+            plain: "vars {\n" +
+            "account $user\n" +
+            "}\n" +
+            "send [COIN 10] (\n" +
+            "	source = @world\n" +
+            "	destination = $user\n" +
+            ")\n" +
+            "",
+            vars: {
+              "user": "users:042",
+            },
+          },
+        },
+      },
     ],
     ledger: "ledger001",
   });

@@ -3,10 +3,38 @@
 ## Example Usage
 
 ```typescript
-import { PaymentsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
+import { PaymentScheme, PaymentsCursorCursor, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PaymentsCursorCursor = {
-  data: [],
+  data: [
+    {
+      adjustments: [
+        {
+          amount: BigInt("100"),
+          createdAt: new Date("2022-09-15T01:36:02.246Z"),
+          raw: {},
+          reference: "<value>",
+          status: PaymentStatus.Failed,
+        },
+      ],
+      amount: BigInt("100"),
+      asset: "USD",
+      connectorID: "<value>",
+      createdAt: new Date("2022-07-28T12:36:44.736Z"),
+      destinationAccountID: "<value>",
+      id: "XXX",
+      initialAmount: BigInt("100"),
+      metadata: {
+        "key": "<value>",
+      },
+      raw: {},
+      reference: "<value>",
+      scheme: PaymentScheme.Rtp,
+      sourceAccountID: "<value>",
+      status: PaymentStatus.RefundedFailure,
+      type: PaymentType.Transfer,
+    },
+  ],
   hasMore: false,
   next: "",
   pageSize: 15,

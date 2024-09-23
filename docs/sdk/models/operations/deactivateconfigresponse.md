@@ -9,19 +9,19 @@ let value: DeactivateConfigResponse = {
   configResponse: {
     data: {
       active: true,
-      createdAt: new Date("2023-07-24T14:28:59.522Z"),
+      createdAt: new Date("2024-04-17T23:02:17.425Z"),
       endpoint: "https://example.com",
       eventTypes: [
         "TYPE1",
         "TYPE2",
       ],
-      id: "a0d446ce-2af7-4a73-8f3b-e453f870b326",
+      id: "b521368c-f119-4bde-8f66-2aad17932d07",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2024-03-11T13:33:04.020Z"),
+      updatedAt: new Date("2023-05-16T22:28:25.169Z"),
     },
   },
   contentType: "<value>",
-  statusCode: 374170,
+  statusCode: 979963,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

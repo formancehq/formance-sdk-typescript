@@ -4,16 +4,34 @@
 
 ```typescript
 import { ListTransferInitiationsResponse } from "@formance/formance-sdk/sdk/models/operations";
+import { TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListTransferInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 569618,
+  statusCode: 959167,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   transferInitiationsCursor: {
     cursor: {
-      data: [],
+      data: [
+        {
+          amount: BigInt("458139"),
+          asset: "USD",
+          connectorID: "<value>",
+          createdAt: new Date("2023-10-10T17:14:50.945Z"),
+          description: "Synchronised high-level throughput",
+          destinationAccountID: "<value>",
+          error: "<value>",
+          id: "XXX",
+          initialAmount: BigInt("575751"),
+          reference: "<value>",
+          scheduledAt: new Date("2024-06-18T13:27:30.035Z"),
+          sourceAccountID: "<value>",
+          status: TransferInitiationStatus.PartiallyReversed,
+          type: TransferInitiationType.Payout,
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,

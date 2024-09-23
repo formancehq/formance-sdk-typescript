@@ -8,9 +8,9 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 let value: ConnectorConfigResponse = {
   data: {
     apiKey: "XXX",
-    apiSecret: "XXX",
+    clientID: "XXX",
     endpoint: "XXX",
-    name: "My Modulr Account",
+    name: "My MangoPay Account",
     pollingPeriod: "60s",
   },
 };

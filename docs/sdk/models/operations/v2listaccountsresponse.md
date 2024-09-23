@@ -7,13 +7,44 @@ import { V2ListAccountsResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: V2ListAccountsResponse = {
   contentType: "<value>",
-  statusCode: 681820,
+  statusCode: 575947,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2AccountsCursorResponse: {
     cursor: {
-      data: [],
+      data: [
+        {
+          address: "users:001",
+          effectiveVolumes: {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+            "EUR": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+          metadata: {
+            "admin": "true",
+          },
+          volumes: {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+            "EUR": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,

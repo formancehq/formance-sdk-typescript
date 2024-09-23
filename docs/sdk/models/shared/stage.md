@@ -5,7 +5,9 @@
 ```typescript
 import { Stage } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Stage = {};
+let value: Stage = {
+  event: "<value>",
+};
 ```
 
 ## Supported Types

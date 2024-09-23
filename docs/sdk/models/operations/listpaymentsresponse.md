@@ -4,19 +4,48 @@
 
 ```typescript
 import { ListPaymentsResponse } from "@formance/formance-sdk/sdk/models/operations";
+import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListPaymentsResponse = {
   contentType: "<value>",
   paymentsCursor: {
     cursor: {
-      data: [],
+      data: [
+        {
+          adjustments: [
+            {
+              amount: BigInt("100"),
+              createdAt: new Date("2024-01-27T06:25:05.272Z"),
+              raw: {},
+              reference: "<value>",
+              status: PaymentStatus.Dispute,
+            },
+          ],
+          amount: BigInt("100"),
+          asset: "USD",
+          connectorID: "<value>",
+          createdAt: new Date("2022-12-26T04:21:26.793Z"),
+          destinationAccountID: "<value>",
+          id: "XXX",
+          initialAmount: BigInt("100"),
+          metadata: {
+            "key": "<value>",
+          },
+          raw: {},
+          reference: "<value>",
+          scheme: PaymentScheme.Maestro,
+          sourceAccountID: "<value>",
+          status: PaymentStatus.RefundedFailure,
+          type: PaymentType.PayIn,
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 146441,
+  statusCode: 160538,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

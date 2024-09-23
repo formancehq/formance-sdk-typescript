@@ -6,8 +6,8 @@
 import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ExpandedDebitHold = {
-  description: "Advanced intermediate instruction set",
-  id: "d100efad-a200-4ef0-822e-b2164cf9ab83",
+  description: "Fully-configurable coherent superstructure",
+  id: "d75f3803-9a9d-4fc7-bd1a-82f59e81d5fe",
   metadata: {
     "key": "<value>",
   },

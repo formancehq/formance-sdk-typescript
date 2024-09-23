@@ -3,9 +3,9 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery as encodeFormQuery$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -29,7 +29,7 @@ import { Result } from "../sdk/types/fp.js";
  * List all bank accounts created by user on Formance.
  */
 export async function paymentsListBankAccounts(
-  client$: SDKCore,
+  client: SDKCore,
   request: operations.ListBankAccountsRequest,
   options?: RequestOptions,
 ): Promise<
@@ -45,58 +45,58 @@ export async function paymentsListBankAccounts(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => operations.ListBankAccountsRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => operations.ListBankAccountsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = null;
+  const payload = parsed.value;
+  const body = null;
 
-  const path$ = pathToFunc("/api/payments/bank-accounts")();
+  const path = pathToFunc("/api/payments/bank-accounts")();
 
-  const query$ = encodeFormQuery$({
-    "cursor": payload$.cursor,
-    "pageSize": payload$.pageSize,
-    "sort": payload$.sort,
+  const query = encodeFormQuery({
+    "cursor": payload.cursor,
+    "pageSize": payload.pageSize,
+    "sort": payload.sort,
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const security$ = await extractSecurity(client$.options$.security);
+  const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "listBankAccounts",
     oAuth2Scopes: [],
-    securitySource: client$.options$.security,
+    securitySource: client._options.security,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "GET",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -104,7 +104,7 @@ export async function paymentsListBankAccounts(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -112,7 +112,7 @@ export async function paymentsListBankAccounts(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.ListBankAccountsResponse,
     | errors.PaymentsErrorResponse
     | SDKError
@@ -123,14 +123,14 @@ export async function paymentsListBankAccounts(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.ListBankAccountsResponse$inboundSchema, {
+    M.json(200, operations.ListBankAccountsResponse$inboundSchema, {
       key: "BankAccountsCursor",
     }),
-    m$.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

@@ -9,19 +9,19 @@ let value: ChangeConfigSecretResponse = {
   configResponse: {
     data: {
       active: true,
-      createdAt: new Date("2023-11-08T22:52:26.062Z"),
+      createdAt: new Date("2024-01-08T03:36:18.419Z"),
       endpoint: "https://example.com",
       eventTypes: [
         "TYPE1",
         "TYPE2",
       ],
-      id: "280d1ba7-7a89-4ebf-b37a-e4203ce5e6a9",
+      id: "84f576f2-5a19-4743-b857-5f2159a6f5ba",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2022-12-22T20:27:39.283Z"),
+      updatedAt: new Date("2024-12-05T22:38:23.466Z"),
     },
   },
   contentType: "<value>",
-  statusCode: 831049,
+  statusCode: 889794,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

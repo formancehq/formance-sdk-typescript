@@ -4,16 +4,27 @@
 
 ```typescript
 import { ListConnectorTasksResponse } from "@formance/formance-sdk/sdk/models/operations";
+import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksResponse = {
   contentType: "<value>",
-  statusCode: 828940,
+  statusCode: 97844,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   tasksCursor: {
     cursor: {
-      data: [],
+      data: [
+        {
+          connectorID: "<value>",
+          createdAt: new Date("2024-12-02T07:40:27.262Z"),
+          descriptor: {},
+          id: "fec51632-0b0c-4211-9a36-8db420447ab4",
+          state: {},
+          status: PaymentStatus.Succeeded,
+          updatedAt: new Date("2024-05-14T05:54:04.161Z"),
+        },
+      ],
       hasMore: false,
       next: "",
       pageSize: 15,

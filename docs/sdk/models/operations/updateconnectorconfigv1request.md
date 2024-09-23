@@ -8,13 +8,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
-    apiKey: "XXX",
-    clientID: "XXX",
-    endpoint: "XXX",
-    name: "My Moneycorp Account",
-    pollingPeriod: "60s",
+    directory: "/tmp/dummypay",
+    filePollingPeriod: "60s",
+    name: "My DummyPay Account",
   },
-  connector: Connector.Adyen,
+  connector: Connector.Stripe,
   connectorId: "XXX",
 };
 ```
