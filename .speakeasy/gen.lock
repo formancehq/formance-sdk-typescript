@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: 4a62d43befffe55605a3d0b24f39879b
   docVersion: v2.0.17
-  speakeasyVersion: 1.401.2
+  speakeasyVersion: 1.401.3
   generationVersion: 2.421.3
-  releaseVersion: 2.7.4
-  configChecksum: cbb978bc306e0fe4e179b8a92ae5e250
+  releaseVersion: 2.7.5
+  configChecksum: 14903f370cc4e0dd00717c2fae5cd1ca
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
