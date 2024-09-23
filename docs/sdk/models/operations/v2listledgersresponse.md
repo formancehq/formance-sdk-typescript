@@ -7,7 +7,7 @@ import { V2ListLedgersResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2ListLedgersResponse = {
   contentType: "<value>",
-  statusCode: 929297,
+  statusCode: 282807,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V2ListLedgersResponse = {
     cursor: {
       data: [
         {
-          addedAt: new Date("2022-12-16T03:38:15.811Z"),
+          addedAt: new Date("2022-05-12T17:39:01.246Z"),
           bucket: "<value>",
           metadata: {
             "admin": "true",

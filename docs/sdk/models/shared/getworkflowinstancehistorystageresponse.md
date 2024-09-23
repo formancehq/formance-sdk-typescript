@@ -13,7 +13,7 @@ import {
 let value: GetWorkflowInstanceHistoryStageResponse = {
   data: [
     {
-      attempt: 727772,
+      attempt: 795591,
       input: {
         createTransaction: {
           data: {
@@ -85,7 +85,7 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
       output: {
         createTransaction: {
           data: {
-            id: BigInt("217663"),
+            id: BigInt("770873"),
             metadata: {
               "admin": "true",
             },
@@ -99,7 +99,7 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
             ],
             reference: "ref:001",
             reverted: false,
-            timestamp: new Date("2024-12-03T07:19:37.207Z"),
+            timestamp: new Date("2024-03-17T12:57:11.022Z"),
           },
         },
         getAccount: {
@@ -140,21 +140,21 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
               {
                 absolute: false,
                 amount: BigInt("100"),
-                date: new Date("2022-06-27T22:39:48.462Z"),
+                date: new Date("2022-06-05T02:11:11.752Z"),
                 raw: {},
-                status: OrchestrationPaymentStatus.Active,
+                status: OrchestrationPaymentStatus.Cancelled,
               },
             ],
             asset: "USD",
             connectorID: "<value>",
-            createdAt: new Date("2022-07-17T01:20:07.188Z"),
+            createdAt: new Date("2023-04-29T16:31:11.826Z"),
             destinationAccountID: "<value>",
             id: "XXX",
             initialAmount: BigInt("100"),
             metadata: {},
             raw: {},
             reference: "<value>",
-            scheme: OrchestrationPaymentScheme.Unionpay,
+            scheme: OrchestrationPaymentScheme.SepaCredit,
             sourceAccountID: "<value>",
             status: OrchestrationPaymentStatus.Terminated,
             type: OrchestrationPaymentType.Transfer,
@@ -164,8 +164,8 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
           cursor: {
             data: [
               {
-                createdAt: new Date("2024-07-24T13:15:12.012Z"),
-                id: "e3917557-b1eb-42f8-bf38-449ecb8e7dd3",
+                createdAt: new Date("2023-11-12T19:14:09.178Z"),
+                id: "7da66c53-0ee1-4521-be0f-1d955c5a87e8",
                 ledger: "<value>",
                 metadata: {
                   "key": "<value>",
@@ -181,7 +181,7 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
         },
         revertTransaction: {
           data: {
-            id: BigInt("12171"),
+            id: BigInt("725574"),
             metadata: {
               "admin": "true",
             },
@@ -195,11 +195,11 @@ let value: GetWorkflowInstanceHistoryStageResponse = {
             ],
             reference: "ref:001",
             reverted: false,
-            timestamp: new Date("2022-12-20T19:42:29.360Z"),
+            timestamp: new Date("2022-02-12T06:12:35.281Z"),
           },
         },
       },
-      startedAt: new Date("2022-09-09T14:32:31.434Z"),
+      startedAt: new Date("2024-04-27T07:53:12.556Z"),
       terminated: false,
     },
   ],

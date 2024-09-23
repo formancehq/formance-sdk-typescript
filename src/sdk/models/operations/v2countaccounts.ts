@@ -6,12 +6,12 @@ import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type V2CountAccountsRequest = {
+  requestBody?: { [k: string]: any } | undefined;
   /**
    * Name of the ledger.
    */
   ledger: string;
   pit?: Date | undefined;
-  query?: { [k: string]: any } | undefined;
 };
 
 export type V2CountAccountsResponse = {
@@ -36,17 +36,21 @@ export const V2CountAccountsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  RequestBody: z.record(z.any()).optional(),
   ledger: z.string(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  query: z.record(z.any()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    "RequestBody": "requestBody",
+  });
 });
 
 /** @internal */
 export type V2CountAccountsRequest$Outbound = {
+  RequestBody?: { [k: string]: any } | undefined;
   ledger: string;
   pit?: string | undefined;
-  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -55,9 +59,13 @@ export const V2CountAccountsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CountAccountsRequest
 > = z.object({
+  requestBody: z.record(z.any()).optional(),
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
-  query: z.record(z.any()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    requestBody: "RequestBody",
+  });
 });
 
 /**

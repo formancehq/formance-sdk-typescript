@@ -7,7 +7,7 @@ import { V2AddMetadataOnTransactionResponse } from "@formance/formance-sdk/sdk/m
 
 let value: V2AddMetadataOnTransactionResponse = {
   contentType: "<value>",
-  statusCode: 666767,
+  statusCode: 670638,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

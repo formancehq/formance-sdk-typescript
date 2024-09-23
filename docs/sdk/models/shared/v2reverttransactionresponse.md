@@ -7,7 +7,7 @@ import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/s
 
 let value: V2RevertTransactionResponse = {
   data: {
-    id: BigInt("773110"),
+    id: BigInt("600213"),
     metadata: {
       "admin": "true",
     },
@@ -21,7 +21,7 @@ let value: V2RevertTransactionResponse = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2022-08-26T16:33:18.210Z"),
+    timestamp: new Date("2024-11-21T15:56:29.957Z"),
   },
 };
 ```

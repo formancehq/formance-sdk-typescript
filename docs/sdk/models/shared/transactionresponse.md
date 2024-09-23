@@ -48,8 +48,8 @@ let value: TransactionResponse = {
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2024-03-08T18:22:12.424Z"),
-    txid: BigInt("637462"),
+    timestamp: new Date("2024-04-23T21:13:00.722Z"),
+    txid: BigInt("357425"),
   },
 };
 ```

@@ -9,14 +9,14 @@ let value: ReconciliationResponse = {
   data: {
     createdAt: new Date("2021-01-01T00:00:00.000Z"),
     driftBalances: {
-      "key": BigInt("359810"),
+      "key": BigInt("124796"),
     },
     id: "XXX",
     ledgerBalances: {
-      "key": BigInt("887865"),
+      "key": BigInt("580248"),
     },
     paymentsBalances: {
-      "key": BigInt("298590"),
+      "key": BigInt("897434"),
     },
     policyID: "XXX",
     reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),

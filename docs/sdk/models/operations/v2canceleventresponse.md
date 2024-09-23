@@ -7,7 +7,7 @@ import { V2CancelEventResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2CancelEventResponse = {
   contentType: "<value>",
-  statusCode: 855804,
+  statusCode: 806194,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

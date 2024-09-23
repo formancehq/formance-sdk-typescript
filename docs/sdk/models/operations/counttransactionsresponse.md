@@ -12,7 +12,7 @@ let value: CountTransactionsResponse = {
       "<value>",
     ],
   },
-  statusCode: 832620,
+  statusCode: 778157,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

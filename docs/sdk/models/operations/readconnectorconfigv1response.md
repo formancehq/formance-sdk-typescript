@@ -9,14 +9,14 @@ let value: ReadConnectorConfigV1Response = {
   connectorConfigResponse: {
     data: {
       apiKey: "XXX",
-      apiSecret: "XXX",
+      clientID: "XXX",
       endpoint: "XXX",
-      name: "My Modulr Account",
+      name: "My MangoPay Account",
       pollingPeriod: "60s",
     },
   },
   contentType: "<value>",
-  statusCode: 356707,
+  statusCode: 240020,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

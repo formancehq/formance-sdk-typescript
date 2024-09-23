@@ -7,7 +7,7 @@ import { V2SendEventResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: V2SendEventResponse = {
   contentType: "<value>",
-  statusCode: 253941,
+  statusCode: 896672,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

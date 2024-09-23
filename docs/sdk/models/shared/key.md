@@ -6,7 +6,7 @@
 import { Key } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Key = {
-  dataType: "text",
+  dataType: "set",
   required: false,
 };
 ```

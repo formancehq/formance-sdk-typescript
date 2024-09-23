@@ -7,9 +7,9 @@ import { AccountRequest, AccountType } from "@formance/formance-sdk/sdk/models/s
 
 let value: AccountRequest = {
   connectorID: "<value>",
-  createdAt: new Date("2022-03-23T05:46:16.749Z"),
+  createdAt: new Date("2022-06-19T16:55:47.504Z"),
   reference: "<value>",
-  type: AccountType.External,
+  type: AccountType.Unknown,
 };
 ```
 

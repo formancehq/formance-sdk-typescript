@@ -6,8 +6,8 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "Adaptive static budgetary management",
-  id: "34e3cce1-3b34-4227-b156-0617dd19d3ce",
+  description: "Self-enabling actuating conglomeration",
+  id: "238a7f3c-d879-4686-b6b1-2dc46ed9306a",
   metadata: {
     "key": "<value>",
   },

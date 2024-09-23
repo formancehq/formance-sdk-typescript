@@ -6,9 +6,9 @@
 import { ReverseTransferInitiationRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ReverseTransferInitiationRequest = {
-  amount: BigInt("996101"),
+  amount: BigInt("821672"),
   asset: "USD",
-  description: "Enterprise-wide even-keeled customer loyalty",
+  description: "Optimized national projection",
   metadata: {
     "key": "<value>",
   },

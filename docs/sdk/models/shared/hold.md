@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Synergistic discrete help-desk",
-  id: "caf91ecb-062d-4bef-9cf9-005ddf10e48f",
+  description: "Programmable foreground application",
+  id: "142f2c99-8f5c-486f-a916-cbe4c79ffd5e",
   metadata: {
     "key": "<value>",
   },

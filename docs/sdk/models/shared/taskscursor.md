@@ -10,12 +10,12 @@ let value: TasksCursor = {
     data: [
       {
         connectorID: "<value>",
-        createdAt: new Date("2022-12-24T23:48:47.088Z"),
+        createdAt: new Date("2024-09-11T02:43:05.010Z"),
         descriptor: {},
-        id: "d8aca619-e6e8-49d9-b1f3-b873b1fd8648",
+        id: "723417ea-1045-4cf6-8afb-a15e3db588b8",
         state: {},
-        status: PaymentStatus.Failed,
-        updatedAt: new Date("2023-07-03T14:08:14.339Z"),
+        status: PaymentStatus.DisputeWon,
+        updatedAt: new Date("2023-03-22T06:35:30.331Z"),
       },
     ],
     hasMore: false,

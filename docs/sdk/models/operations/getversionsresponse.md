@@ -7,7 +7,7 @@ import { GetVersionsResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: GetVersionsResponse = {
   contentType: "<value>",
-  statusCode: 715190,
+  statusCode: 548814,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

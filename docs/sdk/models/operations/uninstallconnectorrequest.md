@@ -7,7 +7,7 @@ import { UninstallConnectorRequest } from "@formance/formance-sdk/sdk/models/ope
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UninstallConnectorRequest = {
-  connector: Connector.CurrencyCloud,
+  connector: Connector.Mangopay,
 };
 ```
 

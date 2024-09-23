@@ -9,7 +9,7 @@ let value: V2BulkElementAddMetadataData = {
   metadata: {
     "key": "<value>",
   },
-  targetId: BigInt("923306"),
+  targetId: BigInt("418109"),
   targetType: V2TargetType.Transaction,
 };
 ```

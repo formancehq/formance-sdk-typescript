@@ -8,7 +8,7 @@ import { WalletBalances } from "@formance/formance-sdk/sdk/models/shared";
 let value: WalletBalances = {
   main: {
     assets: {
-      "key": BigInt("247838"),
+      "key": BigInt("427461"),
     },
   },
 };

@@ -7,7 +7,7 @@ import { CreateSecretResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: CreateSecretResponse = {
   contentType: "<value>",
-  statusCode: 544883,
+  statusCode: 602763,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

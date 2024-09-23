@@ -3,12 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import {
-  encodeFormQuery,
-  encodeJSONQuery,
-  encodeSimple,
-  queryJoin,
-} from "../lib/encodings.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -59,7 +54,7 @@ export async function ledgerV2CountTransactions(
     return parsed;
   }
   const payload = parsed.value;
-  const body = null;
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {
@@ -70,16 +65,12 @@ export async function ledgerV2CountTransactions(
 
   const path = pathToFunc("/api/ledger/v2/{ledger}/transactions")(pathParams);
 
-  const query = queryJoin(
-    encodeFormQuery({
-      "pit": payload.pit,
-    }),
-    encodeJSONQuery({
-      "query": payload.query,
-    }, { explode: false }),
-  );
+  const query = encodeFormQuery({
+    "pit": payload.pit,
+  });
 
   const headers = new Headers({
+    "Content-Type": "application/json",
     Accept: "application/json",
   });
 

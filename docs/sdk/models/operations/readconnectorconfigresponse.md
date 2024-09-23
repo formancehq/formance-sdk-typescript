@@ -9,14 +9,14 @@ let value: ReadConnectorConfigResponse = {
   connectorConfigResponse: {
     data: {
       apiKey: "XXX",
-      hmacKey: "XXX",
-      liveEndpointPrefix: "XXX",
-      name: "My Adyen Account",
+      clientID: "XXX",
+      endpoint: "XXX",
+      name: "My Moneycorp Account",
       pollingPeriod: "60s",
     },
   },
   contentType: "<value>",
-  statusCode: 33304,
+  statusCode: 327720,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
