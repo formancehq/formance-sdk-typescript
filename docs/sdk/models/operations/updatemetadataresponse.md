@@ -7,7 +7,7 @@ import { UpdateMetadataResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: UpdateMetadataResponse = {
   contentType: "<value>",
-  statusCode: 618480,
+  statusCode: 355369,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

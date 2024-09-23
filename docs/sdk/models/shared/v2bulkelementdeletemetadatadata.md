@@ -7,8 +7,8 @@ import { V2BulkElementDeleteMetadataData, V2TargetType } from "@formance/formanc
 
 let value: V2BulkElementDeleteMetadataData = {
   key: "<key>",
-  targetId: "<value>",
-  targetType: V2TargetType.Account,
+  targetId: BigInt("409726"),
+  targetType: V2TargetType.Transaction,
 };
 ```
 

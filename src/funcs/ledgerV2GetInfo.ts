@@ -99,6 +99,9 @@ export async function ledgerV2GetInfo(
     M.json(200, operations.V2GetInfoResponse$inboundSchema, {
       key: "V2ConfigInfoResponse",
     }),
+    M.json("5XX", operations.V2GetInfoResponse$inboundSchema, {
+      key: "V2ErrorResponse",
+    }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {

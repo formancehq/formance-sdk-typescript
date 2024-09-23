@@ -7,7 +7,7 @@ import { V2GetTransactionResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: V2GetTransactionResponse = {
   data: {
-    id: BigInt("316542"),
+    id: BigInt("919508"),
     metadata: {
       "admin": "true",
     },
@@ -53,7 +53,7 @@ let value: V2GetTransactionResponse = {
     },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2023-05-05T18:39:05.975Z"),
+    timestamp: new Date("2024-02-18T15:49:41.873Z"),
   },
 };
 ```

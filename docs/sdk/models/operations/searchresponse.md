@@ -17,7 +17,7 @@ let value: SearchResponse = {
       },
     },
   },
-  statusCode: 287051,
+  statusCode: 221161,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

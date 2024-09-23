@@ -7,7 +7,7 @@ import { ActivityRevertTransactionOutput } from "@formance/formance-sdk/sdk/mode
 
 let value: ActivityRevertTransactionOutput = {
   data: {
-    id: BigInt("397919"),
+    id: BigInt("489459"),
     metadata: {
       "admin": "true",
     },
@@ -21,7 +21,7 @@ let value: ActivityRevertTransactionOutput = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2024-04-28T20:28:23.222Z"),
+    timestamp: new Date("2022-09-25T01:42:10.193Z"),
   },
 };
 ```

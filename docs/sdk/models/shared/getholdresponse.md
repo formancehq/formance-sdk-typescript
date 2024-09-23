@@ -7,8 +7,8 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "Reduced tertiary frame",
-    id: "9b0c6a7b-b3ad-43ca-9f42-44cba3df8a84",
+    description: "Down-sized encompassing data-warehouse",
+    id: "f5e2c070-cf0e-4c5e-9461-a07ad2cb8919",
     metadata: {
       "key": "<value>",
     },

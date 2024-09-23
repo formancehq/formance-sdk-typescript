@@ -5,7 +5,7 @@
 ```typescript
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Connector = Connector.BankingCircle;
+let value: Connector = Connector.Modulr;
 ```
 
 ## Values

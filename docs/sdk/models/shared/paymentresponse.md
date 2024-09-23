@@ -10,16 +10,16 @@ let value: PaymentResponse = {
     adjustments: [
       {
         amount: BigInt("100"),
-        createdAt: new Date("2022-10-19T22:36:24.411Z"),
+        createdAt: new Date("2024-10-13T00:20:56.549Z"),
         raw: {},
         reference: "<value>",
-        status: PaymentStatus.Expired,
+        status: PaymentStatus.Succeeded,
       },
     ],
     amount: BigInt("100"),
     asset: "USD",
     connectorID: "<value>",
-    createdAt: new Date("2022-08-29T07:55:29.814Z"),
+    createdAt: new Date("2022-08-27T03:18:21.918Z"),
     destinationAccountID: "<value>",
     id: "XXX",
     initialAmount: BigInt("100"),
@@ -28,10 +28,10 @@ let value: PaymentResponse = {
     },
     raw: {},
     reference: "<value>",
-    scheme: PaymentScheme.Maestro,
+    scheme: PaymentScheme.Dragonpay,
     sourceAccountID: "<value>",
-    status: PaymentStatus.Succeeded,
-    type: PaymentType.Other,
+    status: PaymentStatus.Cancelled,
+    type: PaymentType.Payout,
   },
 };
 ```

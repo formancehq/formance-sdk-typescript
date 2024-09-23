@@ -7,7 +7,7 @@ import { RemoveAccountFromPoolResponse } from "@formance/formance-sdk/sdk/models
 
 let value: RemoveAccountFromPoolResponse = {
   contentType: "<value>",
-  statusCode: 16328,
+  statusCode: 160538,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

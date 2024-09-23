@@ -20,7 +20,7 @@ let value: GetLedgerInfoResponse = {
       },
     },
   },
-  statusCode: 639921,
+  statusCode: 143353,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

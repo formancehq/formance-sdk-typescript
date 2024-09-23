@@ -8,11 +8,9 @@ import { V2GetWorkflowInstanceHistoryResponse } from "@formance/formance-sdk/sdk
 let value: V2GetWorkflowInstanceHistoryResponse = {
   data: [
     {
-      input: {
-        event: "<value>",
-      },
+      input: {},
       name: "<value>",
-      startedAt: new Date("2024-03-21T15:17:35.920Z"),
+      startedAt: new Date("2022-11-19T12:22:37.852Z"),
       terminated: false,
     },
   ],

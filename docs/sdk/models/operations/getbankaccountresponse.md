@@ -7,7 +7,7 @@ import { GetBankAccountResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: GetBankAccountResponse = {
   contentType: "<value>",
-  statusCode: 16429,
+  statusCode: 517379,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

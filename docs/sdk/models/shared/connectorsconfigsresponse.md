@@ -9,7 +9,7 @@ let value: ConnectorsConfigsResponse = {
   data: {
     connector: {
       key: {
-        dataType: "datetime",
+        dataType: "timestamp",
         required: false,
       },
     },

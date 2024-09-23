@@ -10,7 +10,7 @@ import {
   Account$outboundSchema,
 } from "./account.js";
 
-export type AccountsCursorResponseCursor = {
+export type Cursor = {
   data: Array<Account>;
   hasMore: boolean;
   next?: string | undefined;
@@ -19,24 +19,21 @@ export type AccountsCursorResponseCursor = {
 };
 
 export type AccountsCursorResponse = {
-  cursor: AccountsCursorResponseCursor;
+  cursor: Cursor;
 };
 
 /** @internal */
-export const AccountsCursorResponseCursor$inboundSchema: z.ZodType<
-  AccountsCursorResponseCursor,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: z.array(Account$inboundSchema),
-  hasMore: z.boolean(),
-  next: z.string().optional(),
-  pageSize: z.number().int(),
-  previous: z.string().optional(),
-});
+export const Cursor$inboundSchema: z.ZodType<Cursor, z.ZodTypeDef, unknown> = z
+  .object({
+    data: z.array(Account$inboundSchema),
+    hasMore: z.boolean(),
+    next: z.string().optional(),
+    pageSize: z.number().int(),
+    previous: z.string().optional(),
+  });
 
 /** @internal */
-export type AccountsCursorResponseCursor$Outbound = {
+export type Cursor$Outbound = {
   data: Array<Account$Outbound>;
   hasMore: boolean;
   next?: string | undefined;
@@ -45,10 +42,10 @@ export type AccountsCursorResponseCursor$Outbound = {
 };
 
 /** @internal */
-export const AccountsCursorResponseCursor$outboundSchema: z.ZodType<
-  AccountsCursorResponseCursor$Outbound,
+export const Cursor$outboundSchema: z.ZodType<
+  Cursor$Outbound,
   z.ZodTypeDef,
-  AccountsCursorResponseCursor
+  Cursor
 > = z.object({
   data: z.array(Account$outboundSchema),
   hasMore: z.boolean(),
@@ -61,13 +58,13 @@ export const AccountsCursorResponseCursor$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace AccountsCursorResponseCursor$ {
-  /** @deprecated use `AccountsCursorResponseCursor$inboundSchema` instead. */
-  export const inboundSchema = AccountsCursorResponseCursor$inboundSchema;
-  /** @deprecated use `AccountsCursorResponseCursor$outboundSchema` instead. */
-  export const outboundSchema = AccountsCursorResponseCursor$outboundSchema;
-  /** @deprecated use `AccountsCursorResponseCursor$Outbound` instead. */
-  export type Outbound = AccountsCursorResponseCursor$Outbound;
+export namespace Cursor$ {
+  /** @deprecated use `Cursor$inboundSchema` instead. */
+  export const inboundSchema = Cursor$inboundSchema;
+  /** @deprecated use `Cursor$outboundSchema` instead. */
+  export const outboundSchema = Cursor$outboundSchema;
+  /** @deprecated use `Cursor$Outbound` instead. */
+  export type Outbound = Cursor$Outbound;
 }
 
 /** @internal */
@@ -76,12 +73,12 @@ export const AccountsCursorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => AccountsCursorResponseCursor$inboundSchema),
+  cursor: z.lazy(() => Cursor$inboundSchema),
 });
 
 /** @internal */
 export type AccountsCursorResponse$Outbound = {
-  cursor: AccountsCursorResponseCursor$Outbound;
+  cursor: Cursor$Outbound;
 };
 
 /** @internal */
@@ -90,7 +87,7 @@ export const AccountsCursorResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountsCursorResponse
 > = z.object({
-  cursor: z.lazy(() => AccountsCursorResponseCursor$outboundSchema),
+  cursor: z.lazy(() => Cursor$outboundSchema),
 });
 
 /**

@@ -8,9 +8,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
-    directory: "/tmp/dummypay",
-    filePollingPeriod: "60s",
-    name: "My DummyPay Account",
+    apiKey: "XXX",
+    hmacKey: "XXX",
+    liveEndpointPrefix: "XXX",
+    name: "My Adyen Account",
+    pollingPeriod: "60s",
   },
   connector: Connector.Stripe,
   connectorId: "XXX",

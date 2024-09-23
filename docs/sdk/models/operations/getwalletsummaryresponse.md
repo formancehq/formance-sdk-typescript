@@ -7,7 +7,7 @@ import { GetWalletSummaryResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: GetWalletSummaryResponse = {
   contentType: "<value>",
-  statusCode: 543678,
+  statusCode: 401713,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

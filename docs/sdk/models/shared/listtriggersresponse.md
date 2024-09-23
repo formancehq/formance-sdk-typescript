@@ -8,7 +8,7 @@ import { ListTriggersResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: ListTriggersResponse = {
   data: [
     {
-      createdAt: new Date("2024-01-31T17:16:27.531Z"),
+      createdAt: new Date("2023-06-03T18:22:20.556Z"),
       event: "<value>",
       id: "<id>",
       workflowID: "<value>",

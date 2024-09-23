@@ -6,11 +6,14 @@
 import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorConfig = {
-  apiKey: "XXX",
-  clientID: "XXX",
+  authorizationEndpoint: "XXX",
   endpoint: "XXX",
-  name: "My Moneycorp Account",
+  name: "My Banking Circle Account",
+  password: "XXX",
   pollingPeriod: "60s",
+  userCertificate: "XXX",
+  userCertificateKey: "XXX",
+  username: "XXX",
 };
 ```
 

@@ -7,8 +7,8 @@ import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: DebitWalletResponse = {
   data: {
-    description: "Phased exuding strategy",
-    id: "596e41b6-90fe-4906-bfa2-7f8094168088",
+    description: "Cross-group context-sensitive attitude",
+    id: "56f47cdc-4723-46b8-8ed0-99f08309cc06",
     metadata: {
       "key": "<value>",
     },

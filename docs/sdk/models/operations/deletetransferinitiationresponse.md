@@ -7,7 +7,7 @@ import { DeleteTransferInitiationResponse } from "@formance/formance-sdk/sdk/mod
 
 let value: DeleteTransferInitiationResponse = {
   contentType: "<value>",
-  statusCode: 83422,
+  statusCode: 424685,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

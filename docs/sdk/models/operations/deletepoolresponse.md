@@ -7,7 +7,7 @@ import { DeletePoolResponse } from "@formance/formance-sdk/sdk/models/operations
 
 let value: DeletePoolResponse = {
   contentType: "<value>",
-  statusCode: 903720,
+  statusCode: 207470,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

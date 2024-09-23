@@ -7,7 +7,7 @@ import { DeletePolicyResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: DeletePolicyResponse = {
   contentType: "<value>",
-  statusCode: 990345,
+  statusCode: 16328,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

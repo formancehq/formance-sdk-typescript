@@ -8,16 +8,13 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: InstallConnectorRequest = {
   connectorConfig: {
-    authorizationEndpoint: "XXX",
+    apiKey: "XXX",
+    clientID: "XXX",
     endpoint: "XXX",
-    name: "My Banking Circle Account",
-    password: "XXX",
+    name: "My MangoPay Account",
     pollingPeriod: "60s",
-    userCertificate: "XXX",
-    userCertificateKey: "XXX",
-    username: "XXX",
   },
-  connector: Connector.BankingCircle,
+  connector: Connector.Stripe,
 };
 ```
 

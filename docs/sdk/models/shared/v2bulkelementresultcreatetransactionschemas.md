@@ -7,7 +7,7 @@ import { V2BulkElementResultCreateTransactionSchemas } from "@formance/formance-
 
 let value: V2BulkElementResultCreateTransactionSchemas = {
   data: {
-    id: BigInt("919508"),
+    id: BigInt("637462"),
     metadata: {
       "admin": "true",
     },
@@ -21,7 +21,7 @@ let value: V2BulkElementResultCreateTransactionSchemas = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2024-02-18T15:49:41.873Z"),
+    timestamp: new Date("2024-06-08T21:13:54.937Z"),
   },
   responseType: "<value>",
 };

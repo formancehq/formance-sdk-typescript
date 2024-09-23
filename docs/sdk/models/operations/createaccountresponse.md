@@ -7,7 +7,7 @@ import { CreateAccountResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: CreateAccountResponse = {
   contentType: "<value>",
-  statusCode: 207470,
+  statusCode: 20651,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

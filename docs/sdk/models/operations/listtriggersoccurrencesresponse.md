@@ -7,7 +7,7 @@ import { ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: ListTriggersOccurrencesResponse = {
   contentType: "<value>",
-  statusCode: 407183,
+  statusCode: 652103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

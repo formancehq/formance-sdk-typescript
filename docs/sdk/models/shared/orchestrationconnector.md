@@ -5,7 +5,7 @@
 ```typescript
 import { OrchestrationConnector } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: OrchestrationConnector = OrchestrationConnector.CurrencyCloud;
+let value: OrchestrationConnector = OrchestrationConnector.Modulr;
 ```
 
 ## Values

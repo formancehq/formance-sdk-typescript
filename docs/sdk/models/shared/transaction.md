@@ -47,8 +47,8 @@ let value: Transaction = {
     },
   },
   reference: "ref:001",
-  timestamp: new Date("2022-06-24T10:10:57.419Z"),
-  txid: BigInt("605712"),
+  timestamp: new Date("2024-11-11T22:47:48.049Z"),
+  txid: BigInt("351936"),
 };
 ```
 
