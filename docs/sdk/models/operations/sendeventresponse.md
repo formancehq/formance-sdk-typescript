@@ -7,7 +7,7 @@ import { SendEventResponse } from "@formance/formance-sdk/sdk/models/operations"
 
 let value: SendEventResponse = {
   contentType: "<value>",
-  statusCode: 891924,
+  statusCode: 511,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

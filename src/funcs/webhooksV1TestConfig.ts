@@ -74,7 +74,7 @@ export async function webhooksV1TestConfig(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "testConfig",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "webhooks:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

@@ -67,7 +67,7 @@ export async function authV1CreateClient(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "createClient",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "auth:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

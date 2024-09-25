@@ -7,10 +7,10 @@ import { GetWorkflowInstanceResponse } from "@formance/formance-sdk/sdk/models/s
 
 let value: GetWorkflowInstanceResponse = {
   data: {
-    createdAt: new Date("2023-08-07T19:18:52.289Z"),
+    createdAt: new Date("2024-10-31T11:03:10.627Z"),
     id: "<id>",
     terminated: false,
-    updatedAt: new Date("2022-12-24T14:11:47.102Z"),
+    updatedAt: new Date("2024-11-23T13:23:08.319Z"),
     workflowID: "<value>",
   },
 };

@@ -11,8 +11,8 @@ let value: GetHoldsResponse = {
     cursor: {
       data: [
         {
-          description: "Realigned tangible data-warehouse",
-          id: "65b3274d-38fa-4dfc-abff-71426296ef84",
+          description: "Public-key actuating methodology",
+          id: "7438575f-2159-4a6f-b5ba-dfecb521368c",
           metadata: {
             "key": "<value>",
           },
@@ -25,7 +25,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 896762,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

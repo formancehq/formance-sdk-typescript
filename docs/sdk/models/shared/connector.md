@@ -5,7 +5,7 @@
 ```typescript
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Connector = Connector.Modulr;
+let value: Connector = Connector.Generic;
 ```
 
 ## Values

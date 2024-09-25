@@ -79,7 +79,7 @@ export async function reconciliationV1Reconcile(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "reconcile",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "reconciliation:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

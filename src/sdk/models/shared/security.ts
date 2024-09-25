@@ -5,8 +5,8 @@
 import * as z from "zod";
 
 export type Security = {
-  clientID: string;
-  clientSecret: string;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
   tokenURL?: string | undefined;
 };
 
@@ -16,15 +16,15 @@ export const Security$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  clientID: z.string(),
-  clientSecret: z.string(),
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
   tokenURL: z.string().default("/api/auth/oauth/token"),
 });
 
 /** @internal */
 export type Security$Outbound = {
-  clientID: string;
-  clientSecret: string;
+  clientID?: string | undefined;
+  clientSecret?: string | undefined;
   tokenURL: string;
 };
 
@@ -34,8 +34,8 @@ export const Security$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Security
 > = z.object({
-  clientID: z.string(),
-  clientSecret: z.string(),
+  clientID: z.string().optional(),
+  clientSecret: z.string().optional(),
   tokenURL: z.string().default("/api/auth/oauth/token"),
 });
 

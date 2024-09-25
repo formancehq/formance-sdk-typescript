@@ -74,7 +74,7 @@ export async function webhooksV1DeactivateConfig(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "deactivateConfig",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "webhooks:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

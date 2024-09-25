@@ -85,7 +85,7 @@ export async function ledgerV1CountAccounts(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "countAccounts",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "ledger:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

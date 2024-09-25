@@ -9,7 +9,7 @@ let value: PaymentsAccountResponse = {
   data: {
     accountName: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2024-11-02T04:36:58.483Z"),
+    createdAt: new Date("2023-07-23T17:49:15.783Z"),
     defaultAsset: "<value>",
     defaultCurrency: "<value>",
     id: "<id>",
@@ -18,7 +18,7 @@ let value: PaymentsAccountResponse = {
     },
     raw: {},
     reference: "<value>",
-    type: AccountType.Unknown,
+    type: AccountType.External,
   },
 };
 ```

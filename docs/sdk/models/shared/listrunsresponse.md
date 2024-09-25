@@ -8,10 +8,10 @@ import { ListRunsResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: ListRunsResponse = {
   data: [
     {
-      createdAt: new Date("2024-05-27T16:12:22.860Z"),
+      createdAt: new Date("2024-08-27T16:51:13.989Z"),
       id: "<id>",
       terminated: false,
-      updatedAt: new Date("2023-08-25T12:51:13.766Z"),
+      updatedAt: new Date("2024-02-09T08:49:07.188Z"),
       workflowID: "<value>",
     },
   ],

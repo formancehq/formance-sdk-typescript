@@ -11,10 +11,10 @@ let value: LogsCursorResponseCursor = {
       data: {
         "key": "<value>",
       },
-      date: new Date("2023-11-13T08:17:15.506Z"),
+      date: new Date("2022-07-13T10:38:23.731Z"),
       hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
       id: 1234,
-      type: Type.NewTransaction,
+      type: Type.SetMetadata,
     },
   ],
   hasMore: false,

@@ -77,7 +77,7 @@ export async function paymentsV1DeleteTransferInitiation(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "deleteTransferInitiation",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

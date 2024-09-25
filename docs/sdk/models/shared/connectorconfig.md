@@ -6,14 +6,11 @@
 import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorConfig = {
-  authorizationEndpoint: "XXX",
+  apiKey: "XXX",
   endpoint: "XXX",
-  name: "My Banking Circle Account",
-  password: "XXX",
+  loginID: "XXX",
+  name: "My CurrencyCloud Account",
   pollingPeriod: "60s",
-  userCertificate: "XXX",
-  userCertificateKey: "XXX",
-  username: "XXX",
 };
 ```
 

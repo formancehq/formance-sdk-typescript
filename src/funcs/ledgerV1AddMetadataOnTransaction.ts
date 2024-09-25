@@ -79,7 +79,7 @@ export async function ledgerV1AddMetadataOnTransaction(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "addMetadataOnTransaction",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "ledger:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

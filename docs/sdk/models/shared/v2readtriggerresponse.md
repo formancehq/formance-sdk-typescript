@@ -7,7 +7,7 @@ import { V2ReadTriggerResponse } from "@formance/formance-sdk/sdk/models/shared"
 
 let value: V2ReadTriggerResponse = {
   data: {
-    createdAt: new Date("2023-07-19T21:57:06.884Z"),
+    createdAt: new Date("2023-01-16T19:34:44.796Z"),
     event: "<value>",
     id: "<id>",
     workflowID: "<value>",

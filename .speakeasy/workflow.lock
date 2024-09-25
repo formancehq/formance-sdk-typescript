@@ -1,9 +1,9 @@
-speakeasyVersion: 1.401.4
+speakeasyVersion: 1.402.14
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:3aa9ce38efea064554b6af4dc2f3071c8a8640697239c3c9aad6341fa5cccf76
-        sourceBlobDigest: sha256:47299016bce509dc3728c141f91fb9718011367d7f90e54fe159d7785f78257b
+        sourceRevisionDigest: sha256:5a57b23b42afa92a045e32ec20dd053789d61d9578753da903ed632678f740cf
+        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
         tags:
             - latest
             - main
@@ -11,15 +11,15 @@ targets:
     formance-sdk-typescript:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:3aa9ce38efea064554b6af4dc2f3071c8a8640697239c3c9aad6341fa5cccf76
-        sourceBlobDigest: sha256:47299016bce509dc3728c141f91fb9718011367d7f90e54fe159d7785f78257b
+        sourceRevisionDigest: sha256:5a57b23b42afa92a045e32ec20dd053789d61d9578753da903ed632678f740cf
+        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         my-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.1/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.3/generate.json
             registry:
                 location: registry.speakeasyapi.dev/formance/formance/my-source
     targets:

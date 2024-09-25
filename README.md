@@ -430,12 +430,13 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `http://localhost` | None |
+| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  serverIdx: 0,
+  serverIdx: 1,
   security: {
     clientID: "<YOUR_CLIENT_ID_HERE>",
     clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
@@ -453,6 +454,11 @@ run();
 
 ```
 
+#### Variables
+
+Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
+ * `environment: models.ServerEnvironment`
+ * `organization: string`
 
 ### Override Server URL Per-Client
 

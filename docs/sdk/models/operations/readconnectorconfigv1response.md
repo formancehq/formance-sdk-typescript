@@ -9,14 +9,13 @@ let value: ReadConnectorConfigV1Response = {
   connectorConfigResponse: {
     data: {
       apiKey: "XXX",
-      clientID: "XXX",
       endpoint: "XXX",
-      name: "My MangoPay Account",
+      name: "My Generic Account",
       pollingPeriod: "60s",
     },
   },
   contentType: "<value>",
-  statusCode: 240020,
+  statusCode: 302,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

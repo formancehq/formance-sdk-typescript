@@ -81,7 +81,7 @@ export async function paymentsV1RemoveAccountFromPool(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "removeAccountFromPool",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

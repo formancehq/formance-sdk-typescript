@@ -6,8 +6,8 @@
 import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ExpandedDebitHold = {
-  description: "Synergistic dynamic leverage",
-  id: "6e41b690-fe90-46fa-a27f-8094168088c6",
+  description: "Optional empowering software",
+  id: "717d709f-d9ed-479b-9d0c-7ac8261bfc69",
   metadata: {
     "key": "<value>",
   },

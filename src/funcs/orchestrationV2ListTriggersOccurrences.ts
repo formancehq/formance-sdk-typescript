@@ -82,7 +82,7 @@ export async function orchestrationV2ListTriggersOccurrences(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "v2ListTriggersOccurrences",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "orchestration:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

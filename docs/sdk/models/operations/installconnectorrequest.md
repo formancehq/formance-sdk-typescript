@@ -11,10 +11,10 @@ let value: InstallConnectorRequest = {
     apiKey: "XXX",
     clientID: "XXX",
     endpoint: "XXX",
-    name: "My MangoPay Account",
+    name: "My Moneycorp Account",
     pollingPeriod: "60s",
   },
-  connector: Connector.Stripe,
+  connector: Connector.Modulr,
 };
 ```
 

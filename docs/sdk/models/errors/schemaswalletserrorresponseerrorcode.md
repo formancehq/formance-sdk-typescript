@@ -6,7 +6,7 @@
 import { SchemasWalletsErrorResponseErrorCode } from "@formance/formance-sdk/sdk/models/errors";
 
 let value: SchemasWalletsErrorResponseErrorCode =
-  SchemasWalletsErrorResponseErrorCode.Validation;
+  SchemasWalletsErrorResponseErrorCode.InsufficientFund;
 ```
 
 ## Values

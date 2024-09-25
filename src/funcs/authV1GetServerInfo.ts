@@ -46,7 +46,7 @@ export async function authV1GetServerInfo(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getServerInfo",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "auth:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

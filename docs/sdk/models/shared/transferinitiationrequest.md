@@ -6,12 +6,12 @@
 import { TransferInitiationRequest, TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationRequest = {
-  amount: BigInt("841816"),
+  amount: BigInt("842921"),
   asset: "USD",
-  description: "Organic homogeneous middleware",
+  description: "Vision-oriented heuristic adapter",
   destinationAccountID: "<value>",
   reference: "XXX",
-  scheduledAt: new Date("2023-08-03T12:01:00.206Z"),
+  scheduledAt: new Date("2022-05-09T19:55:42.332Z"),
   sourceAccountID: "<value>",
   type: TransferInitiationRequestType.Transfer,
   validated: false,

@@ -3,6 +3,7 @@
  */
 
 import * as shared from "../sdk/models/shared/index.js";
+import { ClosedEnum } from "../sdk/types/enums.js";
 import { HTTPClient } from "./http.js";
 import { Logger } from "./logger.js";
 import { RetryConfig } from "./retries.js";
@@ -16,7 +17,24 @@ export const ServerList = [
    * local server
    */
   "http://localhost",
+  /**
+   * A per-organization and per-environment API
+   */
+  "https://{organization}.{environment}.formance.cloud",
 ] as const;
+
+/**
+ * The environment name. Defaults to the production environment.
+ */
+export const ServerEnvironment = {
+  Sandbox: "sandbox",
+  EuWest1: "eu-west-1",
+  UsEast1: "us-east-1",
+} as const;
+/**
+ * The environment name. Defaults to the production environment.
+ */
+export type ServerEnvironment = ClosedEnum<typeof ServerEnvironment>;
 
 export type SDKOptions = {
   /**
@@ -29,6 +47,14 @@ export type SDKOptions = {
    * Allows overriding the default server used by the SDK
    */
   serverIdx?: number;
+  /**
+   * Sets the environment variable for url substitution
+   */
+  environment?: ServerEnvironment;
+  /**
+   * Sets the organization variable for url substitution
+   */
+  organization?: string;
   /**
    * Allows overriding the default server URL used by the SDK
    */
@@ -44,7 +70,14 @@ export type SDKOptions = {
 export function serverURLFromOptions(options: SDKOptions): URL | null {
   let serverURL = options.serverURL;
 
-  const params: Params = {};
+  const serverParams: Params[] = [
+    {},
+    {
+      "environment": options.environment ?? "sandbox",
+      "organization": options.organization ?? "orgID-stackID",
+    },
+  ];
+  let params: Params = {};
 
   if (!serverURL) {
     const serverIdx = options.serverIdx ?? 0;
@@ -52,6 +85,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
       throw new Error(`Invalid server index ${serverIdx}`);
     }
     serverURL = ServerList[serverIdx] || "";
+    params = serverParams[serverIdx] || {};
   }
 
   const u = pathToFunc(serverURL)(params);
@@ -60,9 +94,9 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
 export const SDK_METADATA = {
   language: "typescript",
-  openapiDocVersion: "v2.1.0-beta.1",
-  sdkVersion: "3.1.0",
-  genVersion: "2.421.3",
+  openapiDocVersion: "v2.1.0-beta.3",
+  sdkVersion: "3.1.1",
+  genVersion: "2.422.22",
   userAgent:
-    "speakeasy-sdk/typescript 3.1.0 2.421.3 v2.1.0-beta.1 @formance/formance-sdk",
+    "speakeasy-sdk/typescript 3.1.1 2.422.22 v2.1.0-beta.3 @formance/formance-sdk",
 } as const;

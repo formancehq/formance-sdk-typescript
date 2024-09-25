@@ -43,9 +43,9 @@ async function run() {
   const result = await sdk.orchestration.v1.cancelEvent({
     instanceID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -80,7 +80,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -125,9 +125,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.createTrigger();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -160,7 +160,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -205,9 +205,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.createWorkflow();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -240,7 +240,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -287,9 +287,9 @@ async function run() {
   const result = await sdk.orchestration.v1.deleteTrigger({
     triggerID: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -324,7 +324,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -371,9 +371,9 @@ async function run() {
   const result = await sdk.orchestration.v1.deleteWorkflow({
     flowId: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -408,7 +408,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -455,9 +455,9 @@ async function run() {
   const result = await sdk.orchestration.v1.getInstance({
     instanceID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -492,7 +492,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -539,9 +539,9 @@ async function run() {
   const result = await sdk.orchestration.v1.getInstanceHistory({
     instanceID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -576,7 +576,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -624,9 +624,9 @@ async function run() {
     instanceID: "xxx",
     number: 0,
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -662,7 +662,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -709,9 +709,9 @@ async function run() {
   const result = await sdk.orchestration.v1.getWorkflow({
     flowId: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -746,7 +746,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -794,9 +794,9 @@ async function run() {
     running: true,
     workflowID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -832,7 +832,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -877,9 +877,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.listTriggers({});
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -912,7 +912,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -959,9 +959,9 @@ async function run() {
   const result = await sdk.orchestration.v1.listTriggersOccurrences({
     triggerID: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -996,7 +996,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1041,9 +1041,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.listWorkflows();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1076,7 +1076,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1120,9 +1120,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.orchestrationgetServerInfo();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1155,7 +1155,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1201,9 +1201,9 @@ async function run() {
   const result = await sdk.orchestration.v1.readTrigger({
     triggerID: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1238,7 +1238,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1285,9 +1285,9 @@ async function run() {
   const result = await sdk.orchestration.v1.runWorkflow({
     workflowID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1322,7 +1322,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1369,9 +1369,9 @@ async function run() {
   const result = await sdk.orchestration.v1.sendEvent({
     instanceID: "xxx",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -1406,7 +1406,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

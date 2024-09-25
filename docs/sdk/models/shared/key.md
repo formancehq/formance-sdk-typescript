@@ -6,7 +6,7 @@
 import { Key } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Key = {
-  dataType: "set",
+  dataType: "point",
   required: false,
 };
 ```

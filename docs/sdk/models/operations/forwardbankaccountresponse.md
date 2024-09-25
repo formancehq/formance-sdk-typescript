@@ -7,7 +7,7 @@ import { ForwardBankAccountResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: ForwardBankAccountResponse = {
   contentType: "<value>",
-  statusCode: 374170,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -75,7 +75,7 @@ export async function authV1DeleteSecret(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "deleteSecret",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "auth:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

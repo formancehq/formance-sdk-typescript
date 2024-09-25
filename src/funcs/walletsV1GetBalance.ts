@@ -77,7 +77,7 @@ export async function walletsV1GetBalance(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getBalance",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "wallets:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

@@ -72,7 +72,7 @@ export async function webhooksV1GetManyConfigs(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getManyConfigs",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "webhooks:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

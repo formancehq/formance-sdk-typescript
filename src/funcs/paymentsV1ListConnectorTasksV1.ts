@@ -86,7 +86,7 @@ export async function paymentsV1ListConnectorTasksV1(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "listConnectorTasksV1",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

@@ -9,8 +9,8 @@ let value: V2ListWalletsResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2024-04-22T21:00:43.699Z"),
-        id: "a53ad0a7-e578-42bd-8040-faf8c556a5ef",
+        createdAt: new Date("2024-03-13T10:16:08.156Z"),
+        id: "efadc4e0-047a-41ac-9268-7cfc1c13238a",
         ledger: "<value>",
         metadata: {
           "key": "<value>",

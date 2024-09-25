@@ -77,7 +77,7 @@ export async function webhooksV1InsertConfig(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "insertConfig",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "webhooks:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);
