@@ -5,7 +5,7 @@
 ```typescript
 import { Scheme } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Scheme = Scheme.Jcb;
+let value: Scheme = Scheme.Amex;
 ```
 
 ## Values

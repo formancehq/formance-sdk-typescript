@@ -14,9 +14,9 @@ let value: V2CreateWorkflowResponse = {
         },
       ],
     },
-    createdAt: new Date("2022-12-18T01:51:45.505Z"),
+    createdAt: new Date("2024-07-04T20:50:00.142Z"),
     id: "<id>",
-    updatedAt: new Date("2024-11-03T16:48:56.969Z"),
+    updatedAt: new Date("2023-06-14T20:54:19.756Z"),
   },
 };
 ```

@@ -71,7 +71,7 @@ export async function paymentsV1GetPayment(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getPayment",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

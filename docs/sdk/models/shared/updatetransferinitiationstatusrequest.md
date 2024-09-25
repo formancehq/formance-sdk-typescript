@@ -6,7 +6,7 @@
 import { Status, UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateTransferInitiationStatusRequest = {
-  status: Status.Processed,
+  status: Status.Validated,
 };
 ```
 

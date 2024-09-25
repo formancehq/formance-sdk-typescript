@@ -46,7 +46,7 @@ export async function searchV1SearchgetServerInfo(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "searchgetServerInfo",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "search:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

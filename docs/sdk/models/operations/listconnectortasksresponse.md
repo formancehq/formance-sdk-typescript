@@ -8,7 +8,7 @@ import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksResponse = {
   contentType: "<value>",
-  statusCode: 941378,
+  statusCode: 307,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,12 +17,12 @@ let value: ListConnectorTasksResponse = {
       data: [
         {
           connectorID: "<value>",
-          createdAt: new Date("2023-11-22T23:18:09.113Z"),
+          createdAt: new Date("2024-06-12T19:32:18.704Z"),
           descriptor: {},
-          id: "d4d9052f-77a5-42d3-8831-dffec516320b",
+          id: "2a6164d0-f550-426e-81fd-753900614342",
           state: {},
-          status: PaymentStatus.DisputeWon,
-          updatedAt: new Date("2022-06-11T01:17:04.418Z"),
+          status: PaymentStatus.Succeeded,
+          updatedAt: new Date("2023-11-09T20:30:17.087Z"),
         },
       ],
       hasMore: false,

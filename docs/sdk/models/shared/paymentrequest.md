@@ -9,11 +9,11 @@ let value: PaymentRequest = {
   amount: BigInt("100"),
   asset: "USD",
   connectorID: "<value>",
-  createdAt: new Date("2024-06-15T23:46:35.595Z"),
+  createdAt: new Date("2022-01-29T20:21:23.051Z"),
   reference: "<value>",
-  scheme: PaymentScheme.Other,
-  status: PaymentStatus.RefundedFailure,
-  type: PaymentType.Other,
+  scheme: PaymentScheme.Dragonpay,
+  status: PaymentStatus.DisputeLost,
+  type: PaymentType.Transfer,
 };
 ```
 

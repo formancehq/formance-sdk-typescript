@@ -96,7 +96,7 @@ export async function ledgerV1ListTransactions(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "listTransactions",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "ledger:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

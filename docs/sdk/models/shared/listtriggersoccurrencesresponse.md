@@ -8,7 +8,7 @@ import { ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/mode
 let value: ListTriggersOccurrencesResponse = {
   data: [
     {
-      date: new Date("2024-01-10T22:30:43.334Z"),
+      date: new Date("2022-05-25T07:54:08.139Z"),
       event: {
         "key": "<value>",
       },

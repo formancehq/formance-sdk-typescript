@@ -76,7 +76,7 @@ export async function walletsV1VoidHold(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "voidHold",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "wallets:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

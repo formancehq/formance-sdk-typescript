@@ -8,14 +8,14 @@ import { Scheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/s
 
 let value: V2GetInstanceStageHistoryResponse = {
   contentType: "<value>",
-  statusCode: 868126,
+  statusCode: 507,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetWorkflowInstanceHistoryStageResponse: {
     data: [
       {
-        attempt: 162493,
+        attempt: 215507,
         input: {
           createTransaction: {
             data: {
@@ -100,8 +100,8 @@ let value: V2GetInstanceStageHistoryResponse = {
                   },
                 ],
                 reference: "ref:001",
-                timestamp: new Date("2022-05-16T16:57:38.984Z"),
-                txid: BigInt("848009"),
+                timestamp: new Date("2024-03-12T00:25:52.109Z"),
+                txid: BigInt("253941"),
               },
             ],
           },
@@ -143,23 +143,23 @@ let value: V2GetInstanceStageHistoryResponse = {
                 {
                   absolute: false,
                   amount: BigInt("100"),
-                  date: new Date("2024-06-03T19:43:04.405Z"),
+                  date: new Date("2022-08-22T18:57:29.709Z"),
                   raw: {},
                   status: V2PaymentStatus.Failed,
                 },
               ],
               asset: "USD",
               connectorID: "<value>",
-              createdAt: new Date("2023-03-23T06:32:58.021Z"),
+              createdAt: new Date("2022-01-29T03:01:55.688Z"),
               destinationAccountID: "<value>",
               id: "XXX",
               initialAmount: BigInt("100"),
               metadata: {},
               raw: {},
               reference: "<value>",
-              scheme: Scheme.Mastercard,
+              scheme: Scheme.Diners,
               sourceAccountID: "<value>",
-              status: V2PaymentStatus.Succeeded,
+              status: V2PaymentStatus.Terminated,
               type: V2PaymentType.Payout,
             },
           },
@@ -167,8 +167,8 @@ let value: V2GetInstanceStageHistoryResponse = {
             cursor: {
               data: [
                 {
-                  createdAt: new Date("2024-03-02T08:57:01.759Z"),
-                  id: "dfd05b28-030c-435e-bb02-993e989b4632",
+                  createdAt: new Date("2023-05-24T01:53:16.665Z"),
+                  id: "49d182b6-9227-45fc-8be1-89f4310eac49",
                   ledger: "<value>",
                   metadata: {
                     "key": "<value>",
@@ -183,7 +183,7 @@ let value: V2GetInstanceStageHistoryResponse = {
             },
           },
         },
-        startedAt: new Date("2024-03-21T13:08:38.807Z"),
+        startedAt: new Date("2023-06-17T05:56:53.820Z"),
         terminated: false,
       },
     ],

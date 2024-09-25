@@ -77,7 +77,7 @@ export async function walletsV1UpdateWallet(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "updateWallet",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "wallets:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

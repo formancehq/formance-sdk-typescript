@@ -7,7 +7,7 @@ import { V2DeleteWorkflowResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: V2DeleteWorkflowResponse = {
   contentType: "<value>",
-  statusCode: 714242,
+  statusCode: 506,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

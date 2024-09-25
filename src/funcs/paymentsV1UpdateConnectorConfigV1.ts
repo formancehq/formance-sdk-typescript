@@ -82,7 +82,7 @@ export async function paymentsV1UpdateConnectorConfigV1(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "updateConnectorConfigV1",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

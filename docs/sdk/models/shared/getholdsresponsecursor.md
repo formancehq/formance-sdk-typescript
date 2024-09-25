@@ -8,8 +8,8 @@ import { GetHoldsResponseCursor } from "@formance/formance-sdk/sdk/models/shared
 let value: GetHoldsResponseCursor = {
   data: [
     {
-      description: "Reduced tertiary frame",
-      id: "9b0c6a7b-b3ad-43ca-9f42-44cba3df8a84",
+      description: "Optimized disintermediate policy",
+      id: "4fa10f35-3ea8-4859-a63a-5c68c7fcdf69",
       metadata: {
         "key": "<value>",
       },

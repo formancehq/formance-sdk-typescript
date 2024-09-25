@@ -73,7 +73,7 @@ export async function ledgerV2UpdateLedgerMetadata(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "v2UpdateLedgerMetadata",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "ledger:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

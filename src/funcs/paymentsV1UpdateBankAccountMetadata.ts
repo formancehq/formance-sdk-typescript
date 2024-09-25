@@ -77,7 +77,7 @@ export async function paymentsV1UpdateBankAccountMetadata(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "updateBankAccountMetadata",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:write"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

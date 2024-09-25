@@ -7,7 +7,7 @@ import { CreatePoolResponse } from "@formance/formance-sdk/sdk/models/operations
 
 let value: CreatePoolResponse = {
   contentType: "<value>",
-  statusCode: 798047,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

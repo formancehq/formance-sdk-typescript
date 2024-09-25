@@ -8,7 +8,7 @@ import { BankAccountRelatedAccounts } from "@formance/formance-sdk/sdk/models/sh
 let value: BankAccountRelatedAccounts = {
   accountID: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2024-06-04T14:55:47.453Z"),
+  createdAt: new Date("2024-07-06T17:01:58.788Z"),
   id: "<id>",
   provider: "<value>",
 };

@@ -5,7 +5,7 @@
 ```typescript
 import { TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: TransferInitiationType = TransferInitiationType.Transfer;
+let value: TransferInitiationType = TransferInitiationType.Payout;
 ```
 
 ## Values

@@ -7,12 +7,12 @@ import { PaymentStatus, TaskWise } from "@formance/formance-sdk/sdk/models/share
 
 let value: TaskWise = {
   connectorID: "<value>",
-  createdAt: new Date("2024-02-12T06:56:52.274Z"),
+  createdAt: new Date("2023-06-29T23:10:28.798Z"),
   descriptor: {},
-  id: "e9eb1844-559a-4420-8920-e81df7016e2d",
+  id: "62cb68a2-0597-4bd7-a2d9-bbf4b5635f43",
   state: {},
-  status: PaymentStatus.Refunded,
-  updatedAt: new Date("2023-12-08T06:13:20.624Z"),
+  status: PaymentStatus.Cancelled,
+  updatedAt: new Date("2023-06-03T19:56:17.254Z"),
 };
 ```
 

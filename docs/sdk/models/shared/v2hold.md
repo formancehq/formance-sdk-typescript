@@ -6,8 +6,8 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "Self-enabling actuating conglomeration",
-  id: "238a7f3c-d879-4686-b6b1-2dc46ed9306a",
+  description: "Optional systemic orchestration",
+  id: "9ffd9709-fd52-4cbf-bd81-7584dd596e2b",
   metadata: {
     "key": "<value>",
   },

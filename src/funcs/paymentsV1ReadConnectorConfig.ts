@@ -79,7 +79,7 @@ export async function paymentsV1ReadConnectorConfig(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "readConnectorConfig",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "payments:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

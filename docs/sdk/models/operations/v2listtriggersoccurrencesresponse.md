@@ -7,7 +7,7 @@ import { V2ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/mo
 
 let value: V2ListTriggersOccurrencesResponse = {
   contentType: "<value>",
-  statusCode: 377752,
+  statusCode: 506,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V2ListTriggersOccurrencesResponse = {
     cursor: {
       data: [
         {
-          date: new Date("2022-07-16T20:17:42.484Z"),
+          date: new Date("2022-01-15T12:10:56.303Z"),
           event: {
             "key": "<value>",
           },

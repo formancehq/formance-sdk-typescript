@@ -8,7 +8,7 @@ import { GetTransactionsResponseCursor } from "@formance/formance-sdk/sdk/models
 let value: GetTransactionsResponseCursor = {
   data: [
     {
-      id: 356253,
+      id: 154117,
       metadata: {
         "key": "<value>",
       },
@@ -49,7 +49,7 @@ let value: GetTransactionsResponseCursor = {
         },
       },
       reference: "ref:001",
-      timestamp: new Date("2024-04-09T19:32:30.032Z"),
+      timestamp: new Date("2022-09-26T12:13:20.933Z"),
     },
   ],
   hasMore: false,

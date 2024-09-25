@@ -15,7 +15,7 @@ let value: ListLogsResponse = {
           data: {
             "key": "<value>",
           },
-          date: new Date("2024-04-28T13:26:34.681Z"),
+          date: new Date("2023-12-17T19:21:41.015Z"),
           hash:
             "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
           id: 1234,
@@ -28,7 +28,7 @@ let value: ListLogsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 568434,
+  statusCode: 302,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

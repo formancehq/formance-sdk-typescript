@@ -46,7 +46,7 @@ export async function authV1GetOIDCWellKnowns(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "getOIDCWellKnowns",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "auth:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

@@ -7,7 +7,7 @@ import { V2DeleteTriggerResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2DeleteTriggerResponse = {
   contentType: "<value>",
-  statusCode: 919483,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

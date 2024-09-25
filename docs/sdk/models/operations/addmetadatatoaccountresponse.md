@@ -7,7 +7,7 @@ import { AddMetadataToAccountResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: AddMetadataToAccountResponse = {
   contentType: "<value>",
-  statusCode: 20218,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

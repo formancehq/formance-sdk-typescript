@@ -69,7 +69,7 @@ export async function authV1ReadClient(
   const securityInput = await extractSecurity(client._options.security);
   const context = {
     operationID: "readClient",
-    oAuth2Scopes: [],
+    oAuth2Scopes: ["auth:read", "auth:read"],
     securitySource: client._options.security,
   };
   const requestSecurity = resolveGlobalSecurity(securityInput);

@@ -33,9 +33,9 @@ async function run() {
   const result = await sdk.webhooks.v1.activateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -70,7 +70,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -124,9 +124,9 @@ async function run() {
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -164,7 +164,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -211,9 +211,9 @@ async function run() {
   const result = await sdk.webhooks.v1.deactivateConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -248,7 +248,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -295,9 +295,9 @@ async function run() {
   const result = await sdk.webhooks.v1.deleteConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -332,7 +332,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -380,9 +380,9 @@ async function run() {
     endpoint: "https://example.com",
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -418,7 +418,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -479,9 +479,9 @@ async function run() {
     name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -521,7 +521,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -568,9 +568,9 @@ async function run() {
   const result = await sdk.webhooks.v1.testConfig({
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -605,7 +605,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

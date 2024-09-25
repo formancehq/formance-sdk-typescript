@@ -6,10 +6,10 @@
 import { TransferInitiationPayments, TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationPayments = {
-  createdAt: new Date("2022-07-01T10:30:42.476Z"),
+  createdAt: new Date("2022-07-23T23:58:04.422Z"),
   error: "<value>",
   paymentID: "<value>",
-  status: TransferInitiationStatus.AskReversed,
+  status: TransferInitiationStatus.WaitingForValidation,
 };
 ```
 

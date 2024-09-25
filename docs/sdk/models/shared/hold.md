@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Programmable foreground application",
-  id: "142f2c99-8f5c-486f-a916-cbe4c79ffd5e",
+  description: "Polarised zero defect success",
+  id: "c5537fe1-0e83-4aa1-b403-23a012544cf8",
   metadata: {
     "key": "<value>",
   },

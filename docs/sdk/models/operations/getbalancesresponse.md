@@ -27,7 +27,7 @@ let value: GetBalancesResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 780529,
+  statusCode: 401,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

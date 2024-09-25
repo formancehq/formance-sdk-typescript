@@ -35,9 +35,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.createClient();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -70,7 +70,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -116,9 +116,9 @@ async function run() {
   const result = await sdk.auth.v1.createSecret({
     clientId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -153,7 +153,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -199,9 +199,9 @@ async function run() {
   const result = await sdk.auth.v1.deleteClient({
     clientId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -236,7 +236,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -283,9 +283,9 @@ async function run() {
     clientId: "<value>",
     secretId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -321,7 +321,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -365,9 +365,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.getOIDCWellKnowns();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -400,7 +400,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -443,9 +443,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.getServerInfo();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -478,7 +478,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -521,9 +521,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.listClients();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -556,7 +556,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -599,9 +599,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.listUsers();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -634,7 +634,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -679,9 +679,9 @@ async function run() {
   const result = await sdk.auth.v1.readClient({
     clientId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -716,7 +716,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -762,9 +762,9 @@ async function run() {
   const result = await sdk.auth.v1.readUser({
     userId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -799,7 +799,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -845,9 +845,9 @@ async function run() {
   const result = await sdk.auth.v1.updateClient({
     clientId: "<value>",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -882,7 +882,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

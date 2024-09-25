@@ -8,7 +8,7 @@ import { ConnectorsConfigsResponseData } from "@formance/formance-sdk/sdk/models
 let value: ConnectorsConfigsResponseData = {
   connector: {
     key: {
-      dataType: "float",
+      dataType: "mediumint",
       required: false,
     },
   },

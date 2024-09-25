@@ -11,22 +11,22 @@ let value: GetManyConfigsResponse = {
       data: [
         {
           active: true,
-          createdAt: new Date("2023-10-09T07:19:47.979Z"),
+          createdAt: new Date("2024-10-19T02:05:23.663Z"),
           endpoint: "https://example.com",
           eventTypes: [
             "TYPE1",
             "TYPE2",
           ],
-          id: "bdef662a-ad17-4932-ad07-17f6d1466a5b",
+          id: "63470a66-cbf5-4ec5-894d-1326b870613e",
           secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-          updatedAt: new Date("2023-03-14T11:32:05.153Z"),
+          updatedAt: new Date("2024-07-29T17:42:47.688Z"),
         },
       ],
       hasMore: false,
     },
   },
   contentType: "<value>",
-  statusCode: 431760,
+  statusCode: 501,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
