@@ -1,7 +1,5 @@
 # V2ErrorResponse
 
-Error
-
 ## Example Usage
 
 ```typescript

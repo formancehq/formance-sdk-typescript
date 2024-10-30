@@ -46,10 +46,8 @@ export async function paymentsV1CreatePayment(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => shared.PaymentRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

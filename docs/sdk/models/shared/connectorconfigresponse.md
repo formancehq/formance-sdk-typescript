@@ -1,5 +1,7 @@
 # ConnectorConfigResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -7,9 +9,9 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 
 let value: ConnectorConfigResponse = {
   data: {
-    apiKey: "XXX",
-    name: "My Wise Account",
-    pollingPeriod: "60s",
+    directory: "/tmp/dummypay",
+    filePollingPeriod: "60s",
+    name: "My DummyPay Account",
   },
 };
 ```

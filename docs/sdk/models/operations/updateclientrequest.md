@@ -6,7 +6,7 @@
 import { UpdateClientRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: UpdateClientRequest = {
-  clientId: "<value>",
+  clientId: "<id>",
 };
 ```
 

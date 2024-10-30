@@ -8,12 +8,12 @@ import { PaymentRequest, PaymentScheme, PaymentStatus, PaymentType } from "@form
 let value: PaymentRequest = {
   amount: BigInt("100"),
   asset: "USD",
-  connectorID: "<value>",
-  createdAt: new Date("2022-01-29T20:21:23.051Z"),
+  connectorID: "<id>",
+  createdAt: new Date("2024-01-04T23:23:29.876Z"),
   reference: "<value>",
-  scheme: PaymentScheme.Dragonpay,
+  scheme: PaymentScheme.Diners,
   status: PaymentStatus.DisputeLost,
-  type: PaymentType.Transfer,
+  type: PaymentType.Other,
 };
 ```
 

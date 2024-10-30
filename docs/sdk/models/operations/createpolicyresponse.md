@@ -19,7 +19,7 @@ let value: CreatePolicyResponse = {
       paymentsPoolID: "XXX",
     },
   },
-  statusCode: 101,
+  statusCode: 306,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

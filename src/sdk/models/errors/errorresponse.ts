@@ -5,18 +5,12 @@
 import * as z from "zod";
 import * as shared from "../shared/index.js";
 
-/**
- * Error
- */
 export type ErrorResponseData = {
   details?: string | undefined;
   errorCode: shared.ErrorsEnum;
   errorMessage: string;
 };
 
-/**
- * Error
- */
 export class ErrorResponse extends Error {
   details?: string | undefined;
   errorCode: shared.ErrorsEnum;

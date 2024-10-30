@@ -10,7 +10,7 @@ let value: ConfirmHoldRequest = {
     amount: BigInt("100"),
     final: true,
   },
-  holdId: "<value>",
+  holdId: "<id>",
 };
 ```
 

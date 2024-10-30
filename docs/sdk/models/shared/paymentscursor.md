@@ -1,5 +1,7 @@
 # PaymentsCursor
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -12,17 +14,17 @@ let value: PaymentsCursor = {
         adjustments: [
           {
             amount: BigInt("100"),
-            createdAt: new Date("2024-04-28T03:27:09.943Z"),
+            createdAt: new Date("2024-06-28T14:08:46.947Z"),
             raw: {},
             reference: "<value>",
-            status: PaymentStatus.Failed,
+            status: PaymentStatus.Dispute,
           },
         ],
         amount: BigInt("100"),
         asset: "USD",
-        connectorID: "<value>",
-        createdAt: new Date("2024-09-23T03:05:19.693Z"),
-        destinationAccountID: "<value>",
+        connectorID: "<id>",
+        createdAt: new Date("2024-04-23T20:01:53.080Z"),
+        destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {
@@ -30,9 +32,9 @@ let value: PaymentsCursor = {
         },
         raw: {},
         reference: "<value>",
-        scheme: PaymentScheme.Jcb,
-        sourceAccountID: "<value>",
-        status: PaymentStatus.Expired,
+        scheme: PaymentScheme.SepaDebit,
+        sourceAccountID: "<id>",
+        status: PaymentStatus.Other,
         type: PaymentType.PayIn,
       },
     ],

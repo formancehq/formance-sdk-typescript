@@ -18,6 +18,9 @@ export type BankAccountsCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type BankAccountsCursor = {
   cursor: BankAccountsCursorCursor;
 };

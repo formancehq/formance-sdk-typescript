@@ -9,15 +9,15 @@ let value: ConfigsResponseCursor = {
   data: [
     {
       active: true,
-      createdAt: new Date("2024-03-17T02:09:56.964Z"),
+      createdAt: new Date("2022-05-01T20:48:13.554Z"),
       endpoint: "https://example.com",
       eventTypes: [
         "TYPE1",
         "TYPE2",
       ],
-      id: "194fb9b7-5e50-46ca-bf1e-57613b020d92",
+      id: "22c1272b-7e0d-42e5-b80b-3ea442c74fc9",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2024-11-25T14:43:22.496Z"),
+      updatedAt: new Date("2022-05-12T15:48:49.943Z"),
     },
   ],
   hasMore: false,

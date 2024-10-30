@@ -27,6 +27,8 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * Elasticsearch.v1 query engine
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export async function searchV1Search(
   client: SDKCore,
@@ -44,10 +46,8 @@ export async function searchV1Search(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => shared.Query$outboundSchema.parse(value),
     "Input validation failed",
   );

@@ -79,6 +79,9 @@ export type TasksCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type TasksCursor = {
   cursor: TasksCursorCursor;
 };

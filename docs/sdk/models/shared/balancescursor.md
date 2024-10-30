@@ -1,5 +1,7 @@
 # BalancesCursor
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,12 +11,12 @@ let value: BalancesCursor = {
   cursor: {
     data: [
       {
-        accountId: "<value>",
+        accountId: "<id>",
         asset: "<value>",
-        balance: BigInt("457389"),
-        createdAt: new Date("2023-12-08T06:13:20.624Z"),
-        currency: "Azerbaijanian Manat",
-        lastUpdatedAt: new Date("2023-11-05T18:43:09.812Z"),
+        balance: BigInt("775959"),
+        createdAt: new Date("2022-03-25T10:55:20.447Z"),
+        currency: "Canadian Dollar",
+        lastUpdatedAt: new Date("2023-12-30T22:18:25.349Z"),
       },
     ],
     hasMore: false,

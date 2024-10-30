@@ -45,10 +45,8 @@ export async function orchestrationV1GetInstance(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetInstanceRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

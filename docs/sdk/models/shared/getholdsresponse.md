@@ -9,12 +9,12 @@ let value: GetHoldsResponse = {
   cursor: {
     data: [
       {
-        description: "Progressive web-enabled database",
-        id: "4ec39b56-97c0-4659-8c12-ab9f72a998f2",
+        description: "huzzah crazy between um atop",
+        id: "2e5766ce-af39-4abc-b5e2-4794e71df589",
         metadata: {
           "key": "<value>",
         },
-        walletID: "<value>",
+        walletID: "<id>",
       },
     ],
     hasMore: false,

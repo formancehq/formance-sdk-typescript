@@ -18,6 +18,9 @@ export type PaymentsCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type PaymentsCursor = {
   cursor: PaymentsCursorCursor;
 };

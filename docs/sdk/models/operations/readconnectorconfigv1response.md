@@ -8,14 +8,18 @@ import { ReadConnectorConfigV1Response } from "@formance/formance-sdk/sdk/models
 let value: ReadConnectorConfigV1Response = {
   connectorConfigResponse: {
     data: {
-      apiKey: "XXX",
+      authorizationEndpoint: "XXX",
       endpoint: "XXX",
-      name: "My Generic Account",
+      name: "My Banking Circle Account",
+      password: "XXX",
       pollingPeriod: "60s",
+      userCertificate: "XXX",
+      userCertificateKey: "XXX",
+      username: "XXX",
     },
   },
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ import { ConnectorsTransferResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: ConnectorsTransferResponse = {
   contentType: "<value>",
-  statusCode: 510,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

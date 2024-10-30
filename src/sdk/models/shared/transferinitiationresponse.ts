@@ -10,6 +10,9 @@ import {
   TransferInitiation$outboundSchema,
 } from "./transferinitiation.js";
 
+/**
+ * OK
+ */
 export type TransferInitiationResponse = {
   data: TransferInitiation;
 };

@@ -45,10 +45,8 @@ export async function webhooksV1TestConfig(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.TestConfigRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

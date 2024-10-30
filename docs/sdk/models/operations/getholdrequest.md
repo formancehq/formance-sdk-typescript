@@ -6,7 +6,7 @@
 import { GetHoldRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetHoldRequest = {
-  holdID: "<value>",
+  holdID: "<id>",
 };
 ```
 

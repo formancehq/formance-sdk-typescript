@@ -134,11 +134,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## addMetadataOnTransaction
 
@@ -220,11 +219,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## addMetadataToAccount
 
@@ -312,11 +310,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## countAccounts
 
@@ -502,11 +499,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## countTransactions
 
@@ -596,11 +592,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## createTransaction
 
@@ -730,11 +725,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getAccount
 
@@ -816,11 +810,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getBalances
 
@@ -906,11 +899,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getBalancesAggregated
 
@@ -992,11 +984,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getInfo
 
@@ -1071,11 +1062,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getLedgerInfo
 
@@ -1155,11 +1145,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getMapping
 
@@ -1239,11 +1228,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## getTransaction
 
@@ -1325,11 +1313,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## listAccounts
 
@@ -1525,11 +1512,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## listLogs
 
@@ -1615,11 +1601,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## listTransactions
 
@@ -1713,11 +1698,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## readStats
 
@@ -1798,11 +1782,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## revertTransaction
 
@@ -1884,11 +1867,10 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ## ~~runScript~~
 
@@ -2001,10 +1983,9 @@ run();
 
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## updateMapping
 
@@ -2100,7 +2081,7 @@ run();
 
 ### Errors
 
-| Error Object         | Status Code          | Content Type         |
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |

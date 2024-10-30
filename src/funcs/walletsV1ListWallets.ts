@@ -46,10 +46,8 @@ export async function walletsV1ListWallets(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ListWalletsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

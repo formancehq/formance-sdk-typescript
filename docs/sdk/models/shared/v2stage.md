@@ -1,36 +1,31 @@
 # V2Stage
 
-## Example Usage
-
-```typescript
-import { V2Stage } from "@formance/formance-sdk/sdk/models/shared";
-
-let value: V2Stage = {};
-```
 
 ## Supported Types
 
 ### `shared.V2StageSend`
 
 ```typescript
-const value: shared.V2StageSend = /* values here */
+const value: shared.V2StageSend = {};
 ```
 
 ### `shared.V2StageDelay`
 
 ```typescript
-const value: shared.V2StageDelay = /* values here */
+const value: shared.V2StageDelay = {};
 ```
 
 ### `shared.V2StageWaitEvent`
 
 ```typescript
-const value: shared.V2StageWaitEvent = /* values here */
+const value: shared.V2StageWaitEvent = {
+  event: "<value>",
+};
 ```
 
 ### `shared.V2Update`
 
 ```typescript
-const value: shared.V2Update = /* values here */
+const value: shared.V2Update = {};
 ```
 

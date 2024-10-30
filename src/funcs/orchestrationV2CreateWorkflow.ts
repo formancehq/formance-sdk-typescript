@@ -46,10 +46,8 @@ export async function orchestrationV2CreateWorkflow(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       shared.V2CreateWorkflowRequest$outboundSchema.optional().parse(value),
     "Input validation failed",

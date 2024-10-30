@@ -1,24 +1,17 @@
 # V2TargetId
 
-## Example Usage
-
-```typescript
-import { V2TargetId } from "@formance/formance-sdk/sdk/models/shared";
-
-let value: V2TargetId = BigInt("43975");
-```
 
 ## Supported Types
 
 ### `string`
 
 ```typescript
-const value: string = /* values here */
+const value: string = "<value>";
 ```
 
 ### `BigInt`
 
 ```typescript
-const value: BigInt = /* values here */
+const value: BigInt = BigInt("168142");
 ```
 

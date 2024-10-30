@@ -45,10 +45,8 @@ export async function orchestrationV1SendEvent(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.SendEventRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

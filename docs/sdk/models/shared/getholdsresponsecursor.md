@@ -8,12 +8,12 @@ import { GetHoldsResponseCursor } from "@formance/formance-sdk/sdk/models/shared
 let value: GetHoldsResponseCursor = {
   data: [
     {
-      description: "Optimized disintermediate policy",
-      id: "4fa10f35-3ea8-4859-a63a-5c68c7fcdf69",
+      description: "unethically farmer or",
+      id: "db87e31a-b944-4947-8583-3b63d61b499f",
       metadata: {
         "key": "<value>",
       },
-      walletID: "<value>",
+      walletID: "<id>",
     },
   ],
   hasMore: false,

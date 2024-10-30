@@ -177,12 +177,17 @@ run();
 * [deleteTransactionMetadata](docs/sdks/v2/README.md#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](docs/sdks/v2/README.md#exportlogs) - Export logs
 * [getAccount](docs/sdks/v2/README.md#getaccount) - Get account by its address
+* [getBalancesAggregated](docs/sdks/v2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](docs/sdks/v2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
 * [getTransaction](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
+* [getVolumesWithBalances](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/v2/README.md#importlogs)
+* [listAccounts](docs/sdks/v2/README.md#listaccounts) - List accounts from a ledger
 * [listLedgers](docs/sdks/v2/README.md#listledgers) - List ledgers
+* [listLogs](docs/sdks/v2/README.md#listlogs) - List the logs from a ledger
+* [listTransactions](docs/sdks/v2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/v2/README.md#readstats) - Get statistics from a ledger
 * [revertTransaction](docs/sdks/v2/README.md#reverttransaction) - Revert a ledger transaction by its ID
 * [updateLedgerMetadata](docs/sdks/v2/README.md#updateledgermetadata) - Update ledger metadata
@@ -265,6 +270,7 @@ run();
 * [listTransferInitiations](docs/sdks/sdkpaymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](docs/sdks/sdkpaymentsv1/README.md#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](docs/sdks/sdkpaymentsv1/README.md#paymentsgetserverinfo) - Get server info
+* [paymentslistAccounts](docs/sdks/sdkpaymentsv1/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/sdkpaymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -297,13 +303,13 @@ run();
 
 * [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 
-### [search](docs/sdks/search/README.md)
+### [~~search~~](docs/sdks/search/README.md)
 
 
-#### [search.v1](docs/sdks/sdksearchv1/README.md)
+#### [~~search.v1~~](docs/sdks/sdksearchv1/README.md)
 
-* [search](docs/sdks/sdksearchv1/README.md#search) - search.v1
-* [searchgetServerInfo](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info
+* [~~search~~](docs/sdks/sdksearchv1/README.md#search) - search.v1 :warning: **Deprecated**
+* [~~searchgetServerInfo~~](docs/sdks/sdksearchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
 ### [wallets](docs/sdks/wallets/README.md)
 
@@ -346,15 +352,24 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
+All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
 
-| Error Object         | Status Code          | Content Type         |
+If a HTTP request fails, an operation my also throw an error from the `sdk/models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
+
+In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `createTransactions` method may throw the following errors:
+
+| Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4xx-5xx              | */*                  |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+| errors.SDKError      | 4XX, 5XX             | \*/\*                |
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
@@ -418,6 +433,8 @@ async function run() {
 run();
 
 ```
+
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -585,170 +602,175 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [authV1CreateClient](docs/sdks/v1/README.md#createclient)
-- [authV1CreateSecret](docs/sdks/v1/README.md#createsecret)
-- [authV1DeleteClient](docs/sdks/v1/README.md#deleteclient)
-- [authV1DeleteSecret](docs/sdks/v1/README.md#deletesecret)
-- [authV1GetOIDCWellKnowns](docs/sdks/v1/README.md#getoidcwellknowns)
-- [authV1GetServerInfo](docs/sdks/v1/README.md#getserverinfo)
-- [authV1ListClients](docs/sdks/v1/README.md#listclients)
-- [authV1ListUsers](docs/sdks/v1/README.md#listusers)
-- [authV1ReadClient](docs/sdks/v1/README.md#readclient)
-- [authV1ReadUser](docs/sdks/v1/README.md#readuser)
-- [authV1UpdateClient](docs/sdks/v1/README.md#updateclient)
-- [getVersions](docs/sdks/sdk/README.md#getversions)
-- [ledgerV1AddMetadataOnTransaction](docs/sdks/sdkv1/README.md#addmetadataontransaction)
-- [ledgerV1AddMetadataToAccount](docs/sdks/sdkv1/README.md#addmetadatatoaccount)
-- [ledgerV1CountAccounts](docs/sdks/sdkv1/README.md#countaccounts)
-- [ledgerV1CountTransactions](docs/sdks/sdkv1/README.md#counttransactions)
-- [ledgerV1CreateTransaction](docs/sdks/sdkv1/README.md#createtransaction)
-- [ledgerV1CreateTransactions](docs/sdks/sdkv1/README.md#createtransactions)
-- [ledgerV1GetAccount](docs/sdks/sdkv1/README.md#getaccount)
-- [ledgerV1GetBalancesAggregated](docs/sdks/sdkv1/README.md#getbalancesaggregated)
-- [ledgerV1GetBalances](docs/sdks/sdkv1/README.md#getbalances)
-- [ledgerV1GetInfo](docs/sdks/sdkv1/README.md#getinfo)
-- [ledgerV1GetLedgerInfo](docs/sdks/sdkv1/README.md#getledgerinfo)
-- [ledgerV1GetMapping](docs/sdks/sdkv1/README.md#getmapping)
-- [ledgerV1GetTransaction](docs/sdks/sdkv1/README.md#gettransaction)
-- [ledgerV1ListAccounts](docs/sdks/sdkv1/README.md#listaccounts)
-- [ledgerV1ListLogs](docs/sdks/sdkv1/README.md#listlogs)
-- [ledgerV1ListTransactions](docs/sdks/sdkv1/README.md#listtransactions)
-- [ledgerV1ReadStats](docs/sdks/sdkv1/README.md#readstats)
-- [ledgerV1RevertTransaction](docs/sdks/sdkv1/README.md#reverttransaction)
-- [ledgerV1RunScript](docs/sdks/sdkv1/README.md#runscript)
-- [ledgerV1UpdateMapping](docs/sdks/sdkv1/README.md#updatemapping)
-- [ledgerV2AddMetadataOnTransaction](docs/sdks/v2/README.md#addmetadataontransaction)
-- [ledgerV2AddMetadataToAccount](docs/sdks/v2/README.md#addmetadatatoaccount)
-- [ledgerV2CountAccounts](docs/sdks/v2/README.md#countaccounts)
-- [ledgerV2CountTransactions](docs/sdks/v2/README.md#counttransactions)
-- [ledgerV2CreateBulk](docs/sdks/v2/README.md#createbulk)
-- [ledgerV2CreateLedger](docs/sdks/v2/README.md#createledger)
-- [ledgerV2CreateTransaction](docs/sdks/v2/README.md#createtransaction)
-- [ledgerV2DeleteAccountMetadata](docs/sdks/v2/README.md#deleteaccountmetadata)
-- [ledgerV2DeleteLedgerMetadata](docs/sdks/v2/README.md#deleteledgermetadata)
-- [ledgerV2DeleteTransactionMetadata](docs/sdks/v2/README.md#deletetransactionmetadata)
-- [ledgerV2ExportLogs](docs/sdks/v2/README.md#exportlogs)
-- [ledgerV2GetAccount](docs/sdks/v2/README.md#getaccount)
-- [ledgerV2GetInfo](docs/sdks/v2/README.md#getinfo)
-- [ledgerV2GetLedgerInfo](docs/sdks/v2/README.md#getledgerinfo)
-- [ledgerV2GetLedger](docs/sdks/v2/README.md#getledger)
-- [ledgerV2GetTransaction](docs/sdks/v2/README.md#gettransaction)
-- [ledgerV2ImportLogs](docs/sdks/v2/README.md#importlogs)
-- [ledgerV2ListLedgers](docs/sdks/v2/README.md#listledgers)
-- [ledgerV2ReadStats](docs/sdks/v2/README.md#readstats)
-- [ledgerV2RevertTransaction](docs/sdks/v2/README.md#reverttransaction)
-- [ledgerV2UpdateLedgerMetadata](docs/sdks/v2/README.md#updateledgermetadata)
-- [orchestrationV1CancelEvent](docs/sdks/sdkorchestrationv1/README.md#cancelevent)
-- [orchestrationV1CreateTrigger](docs/sdks/sdkorchestrationv1/README.md#createtrigger)
-- [orchestrationV1CreateWorkflow](docs/sdks/sdkorchestrationv1/README.md#createworkflow)
-- [orchestrationV1DeleteTrigger](docs/sdks/sdkorchestrationv1/README.md#deletetrigger)
-- [orchestrationV1DeleteWorkflow](docs/sdks/sdkorchestrationv1/README.md#deleteworkflow)
-- [orchestrationV1GetInstanceHistory](docs/sdks/sdkorchestrationv1/README.md#getinstancehistory)
-- [orchestrationV1GetInstanceStageHistory](docs/sdks/sdkorchestrationv1/README.md#getinstancestagehistory)
-- [orchestrationV1GetInstance](docs/sdks/sdkorchestrationv1/README.md#getinstance)
-- [orchestrationV1GetWorkflow](docs/sdks/sdkorchestrationv1/README.md#getworkflow)
-- [orchestrationV1ListInstances](docs/sdks/sdkorchestrationv1/README.md#listinstances)
-- [orchestrationV1ListTriggersOccurrences](docs/sdks/sdkorchestrationv1/README.md#listtriggersoccurrences)
-- [orchestrationV1ListTriggers](docs/sdks/sdkorchestrationv1/README.md#listtriggers)
-- [orchestrationV1ListWorkflows](docs/sdks/sdkorchestrationv1/README.md#listworkflows)
-- [orchestrationV1OrchestrationgetServerInfo](docs/sdks/sdkorchestrationv1/README.md#orchestrationgetserverinfo)
-- [orchestrationV1ReadTrigger](docs/sdks/sdkorchestrationv1/README.md#readtrigger)
-- [orchestrationV1RunWorkflow](docs/sdks/sdkorchestrationv1/README.md#runworkflow)
-- [orchestrationV1SendEvent](docs/sdks/sdkorchestrationv1/README.md#sendevent)
-- [orchestrationV2CancelEvent](docs/sdks/sdkv2/README.md#cancelevent)
-- [orchestrationV2CreateTrigger](docs/sdks/sdkv2/README.md#createtrigger)
-- [orchestrationV2CreateWorkflow](docs/sdks/sdkv2/README.md#createworkflow)
-- [orchestrationV2DeleteTrigger](docs/sdks/sdkv2/README.md#deletetrigger)
-- [orchestrationV2DeleteWorkflow](docs/sdks/sdkv2/README.md#deleteworkflow)
-- [orchestrationV2GetInstanceHistory](docs/sdks/sdkv2/README.md#getinstancehistory)
-- [orchestrationV2GetInstanceStageHistory](docs/sdks/sdkv2/README.md#getinstancestagehistory)
-- [orchestrationV2GetInstance](docs/sdks/sdkv2/README.md#getinstance)
-- [orchestrationV2GetServerInfo](docs/sdks/sdkv2/README.md#getserverinfo)
-- [orchestrationV2GetWorkflow](docs/sdks/sdkv2/README.md#getworkflow)
-- [orchestrationV2ListInstances](docs/sdks/sdkv2/README.md#listinstances)
-- [orchestrationV2ListTriggersOccurrences](docs/sdks/sdkv2/README.md#listtriggersoccurrences)
-- [orchestrationV2ListTriggers](docs/sdks/sdkv2/README.md#listtriggers)
-- [orchestrationV2ListWorkflows](docs/sdks/sdkv2/README.md#listworkflows)
-- [orchestrationV2ReadTrigger](docs/sdks/sdkv2/README.md#readtrigger)
-- [orchestrationV2RunWorkflow](docs/sdks/sdkv2/README.md#runworkflow)
-- [orchestrationV2SendEvent](docs/sdks/sdkv2/README.md#sendevent)
-- [orchestrationV2TestTrigger](docs/sdks/sdkv2/README.md#testtrigger)
-- [paymentsV1AddAccountToPool](docs/sdks/sdkpaymentsv1/README.md#addaccounttopool)
-- [paymentsV1ConnectorsTransfer](docs/sdks/sdkpaymentsv1/README.md#connectorstransfer)
-- [paymentsV1CreateAccount](docs/sdks/sdkpaymentsv1/README.md#createaccount)
-- [paymentsV1CreateBankAccount](docs/sdks/sdkpaymentsv1/README.md#createbankaccount)
-- [paymentsV1CreatePayment](docs/sdks/sdkpaymentsv1/README.md#createpayment)
-- [paymentsV1CreatePool](docs/sdks/sdkpaymentsv1/README.md#createpool)
-- [paymentsV1CreateTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#createtransferinitiation)
-- [paymentsV1DeletePool](docs/sdks/sdkpaymentsv1/README.md#deletepool)
-- [paymentsV1DeleteTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#deletetransferinitiation)
-- [paymentsV1ForwardBankAccount](docs/sdks/sdkpaymentsv1/README.md#forwardbankaccount)
-- [paymentsV1GetAccountBalances](docs/sdks/sdkpaymentsv1/README.md#getaccountbalances)
-- [paymentsV1GetBankAccount](docs/sdks/sdkpaymentsv1/README.md#getbankaccount)
-- [paymentsV1GetConnectorTaskV1](docs/sdks/sdkpaymentsv1/README.md#getconnectortaskv1)
-- [paymentsV1GetConnectorTask](docs/sdks/sdkpaymentsv1/README.md#getconnectortask)
-- [paymentsV1GetPayment](docs/sdks/sdkpaymentsv1/README.md#getpayment)
-- [paymentsV1GetPoolBalances](docs/sdks/sdkpaymentsv1/README.md#getpoolbalances)
-- [paymentsV1GetPool](docs/sdks/sdkpaymentsv1/README.md#getpool)
-- [paymentsV1GetTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#gettransferinitiation)
-- [paymentsV1InstallConnector](docs/sdks/sdkpaymentsv1/README.md#installconnector)
-- [paymentsV1ListAllConnectors](docs/sdks/sdkpaymentsv1/README.md#listallconnectors)
-- [paymentsV1ListBankAccounts](docs/sdks/sdkpaymentsv1/README.md#listbankaccounts)
-- [paymentsV1ListConfigsAvailableConnectors](docs/sdks/sdkpaymentsv1/README.md#listconfigsavailableconnectors)
-- [paymentsV1ListConnectorTasksV1](docs/sdks/sdkpaymentsv1/README.md#listconnectortasksv1)
-- [paymentsV1ListConnectorTasks](docs/sdks/sdkpaymentsv1/README.md#listconnectortasks)
-- [paymentsV1ListPayments](docs/sdks/sdkpaymentsv1/README.md#listpayments)
-- [paymentsV1ListPools](docs/sdks/sdkpaymentsv1/README.md#listpools)
-- [paymentsV1ListTransferInitiations](docs/sdks/sdkpaymentsv1/README.md#listtransferinitiations)
-- [paymentsV1PaymentsgetAccount](docs/sdks/sdkpaymentsv1/README.md#paymentsgetaccount)
-- [paymentsV1PaymentsgetServerInfo](docs/sdks/sdkpaymentsv1/README.md#paymentsgetserverinfo)
-- [paymentsV1ReadConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfigv1)
-- [paymentsV1ReadConnectorConfig](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfig)
-- [paymentsV1RemoveAccountFromPool](docs/sdks/sdkpaymentsv1/README.md#removeaccountfrompool)
-- [paymentsV1ResetConnectorV1](docs/sdks/sdkpaymentsv1/README.md#resetconnectorv1)
-- [paymentsV1ResetConnector](docs/sdks/sdkpaymentsv1/README.md#resetconnector)
-- [paymentsV1RetryTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#retrytransferinitiation)
-- [paymentsV1ReverseTransferInitiation](docs/sdks/sdkpaymentsv1/README.md#reversetransferinitiation)
-- [paymentsV1UdpateTransferInitiationStatus](docs/sdks/sdkpaymentsv1/README.md#udpatetransferinitiationstatus)
-- [paymentsV1UninstallConnectorV1](docs/sdks/sdkpaymentsv1/README.md#uninstallconnectorv1)
-- [paymentsV1UninstallConnector](docs/sdks/sdkpaymentsv1/README.md#uninstallconnector)
-- [paymentsV1UpdateBankAccountMetadata](docs/sdks/sdkpaymentsv1/README.md#updatebankaccountmetadata)
-- [paymentsV1UpdateConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1)
-- [paymentsV1UpdateMetadata](docs/sdks/sdkpaymentsv1/README.md#updatemetadata)
-- [reconciliationV1CreatePolicy](docs/sdks/sdkreconciliationv1/README.md#createpolicy)
-- [reconciliationV1DeletePolicy](docs/sdks/sdkreconciliationv1/README.md#deletepolicy)
-- [reconciliationV1GetPolicy](docs/sdks/sdkreconciliationv1/README.md#getpolicy)
-- [reconciliationV1GetReconciliation](docs/sdks/sdkreconciliationv1/README.md#getreconciliation)
-- [reconciliationV1ListPolicies](docs/sdks/sdkreconciliationv1/README.md#listpolicies)
-- [reconciliationV1ListReconciliations](docs/sdks/sdkreconciliationv1/README.md#listreconciliations)
-- [reconciliationV1Reconcile](docs/sdks/sdkreconciliationv1/README.md#reconcile)
-- [reconciliationV1ReconciliationgetServerInfo](docs/sdks/sdkreconciliationv1/README.md#reconciliationgetserverinfo)
-- [searchV1Search](docs/sdks/sdksearchv1/README.md#search)
-- [searchV1SearchgetServerInfo](docs/sdks/sdksearchv1/README.md#searchgetserverinfo)
-- [walletsV1ConfirmHold](docs/sdks/sdkwalletsv1/README.md#confirmhold)
-- [walletsV1CreateBalance](docs/sdks/sdkwalletsv1/README.md#createbalance)
-- [walletsV1CreateWallet](docs/sdks/sdkwalletsv1/README.md#createwallet)
-- [walletsV1CreditWallet](docs/sdks/sdkwalletsv1/README.md#creditwallet)
-- [walletsV1DebitWallet](docs/sdks/sdkwalletsv1/README.md#debitwallet)
-- [walletsV1GetBalance](docs/sdks/sdkwalletsv1/README.md#getbalance)
-- [walletsV1GetHold](docs/sdks/sdkwalletsv1/README.md#gethold)
-- [walletsV1GetHolds](docs/sdks/sdkwalletsv1/README.md#getholds)
-- [walletsV1GetTransactions](docs/sdks/sdkwalletsv1/README.md#gettransactions)
-- [walletsV1GetWalletSummary](docs/sdks/sdkwalletsv1/README.md#getwalletsummary)
-- [walletsV1GetWallet](docs/sdks/sdkwalletsv1/README.md#getwallet)
-- [walletsV1ListBalances](docs/sdks/sdkwalletsv1/README.md#listbalances)
-- [walletsV1ListWallets](docs/sdks/sdkwalletsv1/README.md#listwallets)
-- [walletsV1UpdateWallet](docs/sdks/sdkwalletsv1/README.md#updatewallet)
-- [walletsV1VoidHold](docs/sdks/sdkwalletsv1/README.md#voidhold)
-- [walletsV1WalletsgetServerInfo](docs/sdks/sdkwalletsv1/README.md#walletsgetserverinfo)
-- [webhooksV1ActivateConfig](docs/sdks/sdkwebhooksv1/README.md#activateconfig)
-- [webhooksV1ChangeConfigSecret](docs/sdks/sdkwebhooksv1/README.md#changeconfigsecret)
-- [webhooksV1DeactivateConfig](docs/sdks/sdkwebhooksv1/README.md#deactivateconfig)
-- [webhooksV1DeleteConfig](docs/sdks/sdkwebhooksv1/README.md#deleteconfig)
-- [webhooksV1GetManyConfigs](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs)
-- [webhooksV1InsertConfig](docs/sdks/sdkwebhooksv1/README.md#insertconfig)
-- [webhooksV1TestConfig](docs/sdks/sdkwebhooksv1/README.md#testconfig)
-
+- [`authV1CreateClient`](docs/sdks/v1/README.md#createclient) - Create client
+- [`authV1CreateSecret`](docs/sdks/v1/README.md#createsecret) - Add a secret to a client
+- [`authV1DeleteClient`](docs/sdks/v1/README.md#deleteclient) - Delete client
+- [`authV1DeleteSecret`](docs/sdks/v1/README.md#deletesecret) - Delete a secret from a client
+- [`authV1GetOIDCWellKnowns`](docs/sdks/v1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
+- [`authV1GetServerInfo`](docs/sdks/v1/README.md#getserverinfo) - Get server info
+- [`authV1ListClients`](docs/sdks/v1/README.md#listclients) - List clients
+- [`authV1ListUsers`](docs/sdks/v1/README.md#listusers) - List users
+- [`authV1ReadClient`](docs/sdks/v1/README.md#readclient) - Read client
+- [`authV1ReadUser`](docs/sdks/v1/README.md#readuser) - Read user
+- [`authV1UpdateClient`](docs/sdks/v1/README.md#updateclient) - Update client
+- [`getVersions`](docs/sdks/sdk/README.md#getversions) - Show stack version information
+- [`ledgerV1AddMetadataOnTransaction`](docs/sdks/sdkv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
+- [`ledgerV1AddMetadataToAccount`](docs/sdks/sdkv1/README.md#addmetadatatoaccount) - Add metadata to an account
+- [`ledgerV1CountAccounts`](docs/sdks/sdkv1/README.md#countaccounts) - Count the accounts from a ledger
+- [`ledgerV1CountTransactions`](docs/sdks/sdkv1/README.md#counttransactions) - Count the transactions from a ledger
+- [`ledgerV1CreateTransaction`](docs/sdks/sdkv1/README.md#createtransaction) - Create a new transaction to a ledger
+- [`ledgerV1CreateTransactions`](docs/sdks/sdkv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
+- [`ledgerV1GetAccount`](docs/sdks/sdkv1/README.md#getaccount) - Get account by its address
+- [`ledgerV1GetBalances`](docs/sdks/sdkv1/README.md#getbalances) - Get the balances from a ledger's account
+- [`ledgerV1GetBalancesAggregated`](docs/sdks/sdkv1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
+- [`ledgerV1GetInfo`](docs/sdks/sdkv1/README.md#getinfo) - Show server information
+- [`ledgerV1GetLedgerInfo`](docs/sdks/sdkv1/README.md#getledgerinfo) - Get information about a ledger
+- [`ledgerV1GetMapping`](docs/sdks/sdkv1/README.md#getmapping) - Get the mapping of a ledger
+- [`ledgerV1GetTransaction`](docs/sdks/sdkv1/README.md#gettransaction) - Get transaction from a ledger by its ID
+- [`ledgerV1ListAccounts`](docs/sdks/sdkv1/README.md#listaccounts) - List accounts from a ledger
+- [`ledgerV1ListLogs`](docs/sdks/sdkv1/README.md#listlogs) - List the logs from a ledger
+- [`ledgerV1ListTransactions`](docs/sdks/sdkv1/README.md#listtransactions) - List transactions from a ledger
+- [`ledgerV1ReadStats`](docs/sdks/sdkv1/README.md#readstats) - Get statistics from a ledger
+- [`ledgerV1RevertTransaction`](docs/sdks/sdkv1/README.md#reverttransaction) - Revert a ledger transaction by its ID
+- [`ledgerV1UpdateMapping`](docs/sdks/sdkv1/README.md#updatemapping) - Update the mapping of a ledger
+- [`ledgerV2AddMetadataOnTransaction`](docs/sdks/v2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
+- [`ledgerV2AddMetadataToAccount`](docs/sdks/v2/README.md#addmetadatatoaccount) - Add metadata to an account
+- [`ledgerV2CountAccounts`](docs/sdks/v2/README.md#countaccounts) - Count the accounts from a ledger
+- [`ledgerV2CountTransactions`](docs/sdks/v2/README.md#counttransactions) - Count the transactions from a ledger
+- [`ledgerV2CreateBulk`](docs/sdks/v2/README.md#createbulk) - Bulk request
+- [`ledgerV2CreateLedger`](docs/sdks/v2/README.md#createledger) - Create a ledger
+- [`ledgerV2CreateTransaction`](docs/sdks/v2/README.md#createtransaction) - Create a new transaction to a ledger
+- [`ledgerV2DeleteAccountMetadata`](docs/sdks/v2/README.md#deleteaccountmetadata) - Delete metadata by key
+- [`ledgerV2DeleteLedgerMetadata`](docs/sdks/v2/README.md#deleteledgermetadata) - Delete ledger metadata by key
+- [`ledgerV2DeleteTransactionMetadata`](docs/sdks/v2/README.md#deletetransactionmetadata) - Delete metadata by key
+- [`ledgerV2ExportLogs`](docs/sdks/v2/README.md#exportlogs) - Export logs
+- [`ledgerV2GetAccount`](docs/sdks/v2/README.md#getaccount) - Get account by its address
+- [`ledgerV2GetBalancesAggregated`](docs/sdks/v2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
+- [`ledgerV2GetInfo`](docs/sdks/v2/README.md#getinfo) - Show server information
+- [`ledgerV2GetLedger`](docs/sdks/v2/README.md#getledger) - Get a ledger
+- [`ledgerV2GetLedgerInfo`](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
+- [`ledgerV2GetTransaction`](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
+- [`ledgerV2GetVolumesWithBalances`](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
+- [`ledgerV2ImportLogs`](docs/sdks/v2/README.md#importlogs)
+- [`ledgerV2ListAccounts`](docs/sdks/v2/README.md#listaccounts) - List accounts from a ledger
+- [`ledgerV2ListLedgers`](docs/sdks/v2/README.md#listledgers) - List ledgers
+- [`ledgerV2ListLogs`](docs/sdks/v2/README.md#listlogs) - List the logs from a ledger
+- [`ledgerV2ListTransactions`](docs/sdks/v2/README.md#listtransactions) - List transactions from a ledger
+- [`ledgerV2ReadStats`](docs/sdks/v2/README.md#readstats) - Get statistics from a ledger
+- [`ledgerV2RevertTransaction`](docs/sdks/v2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+- [`ledgerV2UpdateLedgerMetadata`](docs/sdks/v2/README.md#updateledgermetadata) - Update ledger metadata
+- [`orchestrationV1CancelEvent`](docs/sdks/sdkorchestrationv1/README.md#cancelevent) - Cancel a running workflow
+- [`orchestrationV1CreateTrigger`](docs/sdks/sdkorchestrationv1/README.md#createtrigger) - Create trigger
+- [`orchestrationV1CreateWorkflow`](docs/sdks/sdkorchestrationv1/README.md#createworkflow) - Create workflow
+- [`orchestrationV1DeleteTrigger`](docs/sdks/sdkorchestrationv1/README.md#deletetrigger) - Delete trigger
+- [`orchestrationV1DeleteWorkflow`](docs/sdks/sdkorchestrationv1/README.md#deleteworkflow) - Delete a flow by id
+- [`orchestrationV1GetInstance`](docs/sdks/sdkorchestrationv1/README.md#getinstance) - Get a workflow instance by id
+- [`orchestrationV1GetInstanceHistory`](docs/sdks/sdkorchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
+- [`orchestrationV1GetInstanceStageHistory`](docs/sdks/sdkorchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
+- [`orchestrationV1GetWorkflow`](docs/sdks/sdkorchestrationv1/README.md#getworkflow) - Get a flow by id
+- [`orchestrationV1ListInstances`](docs/sdks/sdkorchestrationv1/README.md#listinstances) - List instances of a workflow
+- [`orchestrationV1ListTriggers`](docs/sdks/sdkorchestrationv1/README.md#listtriggers) - List triggers
+- [`orchestrationV1ListTriggersOccurrences`](docs/sdks/sdkorchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
+- [`orchestrationV1ListWorkflows`](docs/sdks/sdkorchestrationv1/README.md#listworkflows) - List registered workflows
+- [`orchestrationV1OrchestrationgetServerInfo`](docs/sdks/sdkorchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
+- [`orchestrationV1ReadTrigger`](docs/sdks/sdkorchestrationv1/README.md#readtrigger) - Read trigger
+- [`orchestrationV1RunWorkflow`](docs/sdks/sdkorchestrationv1/README.md#runworkflow) - Run workflow
+- [`orchestrationV1SendEvent`](docs/sdks/sdkorchestrationv1/README.md#sendevent) - Send an event to a running workflow
+- [`orchestrationV2CancelEvent`](docs/sdks/sdkv2/README.md#cancelevent) - Cancel a running workflow
+- [`orchestrationV2CreateTrigger`](docs/sdks/sdkv2/README.md#createtrigger) - Create trigger
+- [`orchestrationV2CreateWorkflow`](docs/sdks/sdkv2/README.md#createworkflow) - Create workflow
+- [`orchestrationV2DeleteTrigger`](docs/sdks/sdkv2/README.md#deletetrigger) - Delete trigger
+- [`orchestrationV2DeleteWorkflow`](docs/sdks/sdkv2/README.md#deleteworkflow) - Delete a flow by id
+- [`orchestrationV2GetInstance`](docs/sdks/sdkv2/README.md#getinstance) - Get a workflow instance by id
+- [`orchestrationV2GetInstanceHistory`](docs/sdks/sdkv2/README.md#getinstancehistory) - Get a workflow instance history by id
+- [`orchestrationV2GetInstanceStageHistory`](docs/sdks/sdkv2/README.md#getinstancestagehistory) - Get a workflow instance stage history
+- [`orchestrationV2GetServerInfo`](docs/sdks/sdkv2/README.md#getserverinfo) - Get server info
+- [`orchestrationV2GetWorkflow`](docs/sdks/sdkv2/README.md#getworkflow) - Get a flow by id
+- [`orchestrationV2ListInstances`](docs/sdks/sdkv2/README.md#listinstances) - List instances of a workflow
+- [`orchestrationV2ListTriggers`](docs/sdks/sdkv2/README.md#listtriggers) - List triggers
+- [`orchestrationV2ListTriggersOccurrences`](docs/sdks/sdkv2/README.md#listtriggersoccurrences) - List triggers occurrences
+- [`orchestrationV2ListWorkflows`](docs/sdks/sdkv2/README.md#listworkflows) - List registered workflows
+- [`orchestrationV2ReadTrigger`](docs/sdks/sdkv2/README.md#readtrigger) - Read trigger
+- [`orchestrationV2RunWorkflow`](docs/sdks/sdkv2/README.md#runworkflow) - Run workflow
+- [`orchestrationV2SendEvent`](docs/sdks/sdkv2/README.md#sendevent) - Send an event to a running workflow
+- [`orchestrationV2TestTrigger`](docs/sdks/sdkv2/README.md#testtrigger) - Test trigger
+- [`paymentsV1AddAccountToPool`](docs/sdks/sdkpaymentsv1/README.md#addaccounttopool) - Add an account to a pool
+- [`paymentsV1ConnectorsTransfer`](docs/sdks/sdkpaymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
+- [`paymentsV1CreateAccount`](docs/sdks/sdkpaymentsv1/README.md#createaccount) - Create an account
+- [`paymentsV1CreateBankAccount`](docs/sdks/sdkpaymentsv1/README.md#createbankaccount) - Create a BankAccount in Payments and on the PSP
+- [`paymentsV1CreatePayment`](docs/sdks/sdkpaymentsv1/README.md#createpayment) - Create a payment
+- [`paymentsV1CreatePool`](docs/sdks/sdkpaymentsv1/README.md#createpool) - Create a Pool
+- [`paymentsV1CreateTransferInitiation`](docs/sdks/sdkpaymentsv1/README.md#createtransferinitiation) - Create a TransferInitiation
+- [`paymentsV1DeletePool`](docs/sdks/sdkpaymentsv1/README.md#deletepool) - Delete a Pool
+- [`paymentsV1DeleteTransferInitiation`](docs/sdks/sdkpaymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
+- [`paymentsV1ForwardBankAccount`](docs/sdks/sdkpaymentsv1/README.md#forwardbankaccount) - Forward a bank account to a connector
+- [`paymentsV1GetAccountBalances`](docs/sdks/sdkpaymentsv1/README.md#getaccountbalances) - Get account balances
+- [`paymentsV1GetBankAccount`](docs/sdks/sdkpaymentsv1/README.md#getbankaccount) - Get a bank account created by user on Formance
+- [`paymentsV1GetConnectorTaskV1`](docs/sdks/sdkpaymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
+- [`paymentsV1GetPayment`](docs/sdks/sdkpaymentsv1/README.md#getpayment) - Get a payment
+- [`paymentsV1GetPool`](docs/sdks/sdkpaymentsv1/README.md#getpool) - Get a Pool
+- [`paymentsV1GetPoolBalances`](docs/sdks/sdkpaymentsv1/README.md#getpoolbalances) - Get pool balances
+- [`paymentsV1GetTransferInitiation`](docs/sdks/sdkpaymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
+- [`paymentsV1InstallConnector`](docs/sdks/sdkpaymentsv1/README.md#installconnector) - Install a connector
+- [`paymentsV1ListAllConnectors`](docs/sdks/sdkpaymentsv1/README.md#listallconnectors) - List all installed connectors
+- [`paymentsV1ListBankAccounts`](docs/sdks/sdkpaymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
+- [`paymentsV1ListConfigsAvailableConnectors`](docs/sdks/sdkpaymentsv1/README.md#listconfigsavailableconnectors) - List the configs of each available connector
+- [`paymentsV1ListConnectorTasksV1`](docs/sdks/sdkpaymentsv1/README.md#listconnectortasksv1) - List tasks from a connector
+- [`paymentsV1ListPayments`](docs/sdks/sdkpaymentsv1/README.md#listpayments) - List payments
+- [`paymentsV1ListPools`](docs/sdks/sdkpaymentsv1/README.md#listpools) - List Pools
+- [`paymentsV1ListTransferInitiations`](docs/sdks/sdkpaymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
+- [`paymentsV1PaymentsgetAccount`](docs/sdks/sdkpaymentsv1/README.md#paymentsgetaccount) - Get an account
+- [`paymentsV1PaymentsgetServerInfo`](docs/sdks/sdkpaymentsv1/README.md#paymentsgetserverinfo) - Get server info
+- [`paymentsV1PaymentslistAccounts`](docs/sdks/sdkpaymentsv1/README.md#paymentslistaccounts) - List accounts
+- [`paymentsV1ReadConnectorConfigV1`](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
+- [`paymentsV1RemoveAccountFromPool`](docs/sdks/sdkpaymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
+- [`paymentsV1ResetConnectorV1`](docs/sdks/sdkpaymentsv1/README.md#resetconnectorv1) - Reset a connector
+- [`paymentsV1RetryTransferInitiation`](docs/sdks/sdkpaymentsv1/README.md#retrytransferinitiation) - Retry a failed transfer initiation
+- [`paymentsV1ReverseTransferInitiation`](docs/sdks/sdkpaymentsv1/README.md#reversetransferinitiation) - Reverse a transfer initiation
+- [`paymentsV1UdpateTransferInitiationStatus`](docs/sdks/sdkpaymentsv1/README.md#udpatetransferinitiationstatus) - Update the status of a transfer initiation
+- [`paymentsV1UninstallConnectorV1`](docs/sdks/sdkpaymentsv1/README.md#uninstallconnectorv1) - Uninstall a connector
+- [`paymentsV1UpdateBankAccountMetadata`](docs/sdks/sdkpaymentsv1/README.md#updatebankaccountmetadata) - Update metadata of a bank account
+- [`paymentsV1UpdateConnectorConfigV1`](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
+- [`paymentsV1UpdateMetadata`](docs/sdks/sdkpaymentsv1/README.md#updatemetadata) - Update metadata
+- [`reconciliationV1CreatePolicy`](docs/sdks/sdkreconciliationv1/README.md#createpolicy) - Create a policy
+- [`reconciliationV1DeletePolicy`](docs/sdks/sdkreconciliationv1/README.md#deletepolicy) - Delete a policy
+- [`reconciliationV1GetPolicy`](docs/sdks/sdkreconciliationv1/README.md#getpolicy) - Get a policy
+- [`reconciliationV1GetReconciliation`](docs/sdks/sdkreconciliationv1/README.md#getreconciliation) - Get a reconciliation
+- [`reconciliationV1ListPolicies`](docs/sdks/sdkreconciliationv1/README.md#listpolicies) - List policies
+- [`reconciliationV1ListReconciliations`](docs/sdks/sdkreconciliationv1/README.md#listreconciliations) - List reconciliations
+- [`reconciliationV1Reconcile`](docs/sdks/sdkreconciliationv1/README.md#reconcile) - Reconcile using a policy
+- [`reconciliationV1ReconciliationgetServerInfo`](docs/sdks/sdkreconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
+- [`walletsV1ConfirmHold`](docs/sdks/sdkwalletsv1/README.md#confirmhold) - Confirm a hold
+- [`walletsV1CreateBalance`](docs/sdks/sdkwalletsv1/README.md#createbalance) - Create a balance
+- [`walletsV1CreateWallet`](docs/sdks/sdkwalletsv1/README.md#createwallet) - Create a new wallet
+- [`walletsV1CreditWallet`](docs/sdks/sdkwalletsv1/README.md#creditwallet) - Credit a wallet
+- [`walletsV1DebitWallet`](docs/sdks/sdkwalletsv1/README.md#debitwallet) - Debit a wallet
+- [`walletsV1GetBalance`](docs/sdks/sdkwalletsv1/README.md#getbalance) - Get detailed balance
+- [`walletsV1GetHold`](docs/sdks/sdkwalletsv1/README.md#gethold) - Get a hold
+- [`walletsV1GetHolds`](docs/sdks/sdkwalletsv1/README.md#getholds) - Get all holds for a wallet
+- [`walletsV1GetTransactions`](docs/sdks/sdkwalletsv1/README.md#gettransactions)
+- [`walletsV1GetWallet`](docs/sdks/sdkwalletsv1/README.md#getwallet) - Get a wallet
+- [`walletsV1GetWalletSummary`](docs/sdks/sdkwalletsv1/README.md#getwalletsummary) - Get wallet summary
+- [`walletsV1ListBalances`](docs/sdks/sdkwalletsv1/README.md#listbalances) - List balances of a wallet
+- [`walletsV1ListWallets`](docs/sdks/sdkwalletsv1/README.md#listwallets) - List all wallets
+- [`walletsV1UpdateWallet`](docs/sdks/sdkwalletsv1/README.md#updatewallet) - Update a wallet
+- [`walletsV1VoidHold`](docs/sdks/sdkwalletsv1/README.md#voidhold) - Cancel a hold
+- [`walletsV1WalletsgetServerInfo`](docs/sdks/sdkwalletsv1/README.md#walletsgetserverinfo) - Get server info
+- [`webhooksV1ActivateConfig`](docs/sdks/sdkwebhooksv1/README.md#activateconfig) - Activate one config
+- [`webhooksV1ChangeConfigSecret`](docs/sdks/sdkwebhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
+- [`webhooksV1DeactivateConfig`](docs/sdks/sdkwebhooksv1/README.md#deactivateconfig) - Deactivate one config
+- [`webhooksV1DeleteConfig`](docs/sdks/sdkwebhooksv1/README.md#deleteconfig) - Delete one config
+- [`webhooksV1GetManyConfigs`](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
+- [`webhooksV1InsertConfig`](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
+- [`webhooksV1TestConfig`](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
+- ~~[`ledgerV1RunScript`](docs/sdks/sdkv1/README.md#runscript)~~ - Execute a Numscript :warning: **Deprecated**
+- ~~[`paymentsV1GetConnectorTask`](docs/sdks/sdkpaymentsv1/README.md#getconnectortask)~~ - Read a specific task of the connector :warning: **Deprecated**
+- ~~[`paymentsV1ListConnectorTasks`](docs/sdks/sdkpaymentsv1/README.md#listconnectortasks)~~ - List tasks from a connector :warning: **Deprecated**
+- ~~[`paymentsV1ReadConnectorConfig`](docs/sdks/sdkpaymentsv1/README.md#readconnectorconfig)~~ - Read the config of a connector :warning: **Deprecated**
+- ~~[`paymentsV1ResetConnector`](docs/sdks/sdkpaymentsv1/README.md#resetconnector)~~ - Reset a connector :warning: **Deprecated**
+- ~~[`paymentsV1UninstallConnector`](docs/sdks/sdkpaymentsv1/README.md#uninstallconnector)~~ - Uninstall a connector :warning: **Deprecated**
+- ~~[`searchV1Search`](docs/sdks/sdksearchv1/README.md#search)~~ - search.v1 :warning: **Deprecated**
+- ~~[`searchV1SearchgetServerInfo`](docs/sdks/sdksearchv1/README.md#searchgetserverinfo)~~ - Get server info :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

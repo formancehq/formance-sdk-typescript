@@ -41,10 +41,8 @@ export async function authV1CreateClient(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       shared.CreateClientRequest$outboundSchema.optional().parse(value),
     "Input validation failed",

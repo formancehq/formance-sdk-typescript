@@ -9,17 +9,17 @@ let value: GetHoldResponse = {
   contentType: "<value>",
   getHoldResponse: {
     data: {
-      description: "Optimized upward-trending service-desk",
-      id: "fe026f42-e7e2-4a71-bb30-00ebea84f576",
+      description: "crazy ferret shabby shocked pluck",
+      id: "7da66c53-0ee1-4521-be0f-1d955c5a87e8",
       metadata: {
         "key": "<value>",
       },
       originalAmount: BigInt("100"),
       remaining: BigInt("10"),
-      walletID: "<value>",
+      walletID: "<id>",
     },
   },
-  statusCode: 101,
+  statusCode: 401,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

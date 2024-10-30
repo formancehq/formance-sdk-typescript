@@ -7,7 +7,7 @@ import { AddAccountToPoolRequest } from "@formance/formance-sdk/sdk/models/opera
 
 let value: AddAccountToPoolRequest = {
   addAccountToPoolRequest: {
-    accountID: "<value>",
+    accountID: "<id>",
   },
   poolId: "XXX",
 };

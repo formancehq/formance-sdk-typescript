@@ -34,6 +34,7 @@
 * [listTransferInitiations](#listtransferinitiations) - List Transfer Initiations
 * [paymentsgetAccount](#paymentsgetaccount) - Get an account
 * [paymentsgetServerInfo](#paymentsgetserverinfo) - Get server info
+* [paymentslistAccounts](#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](#removeaccountfrompool) - Remove an account from a pool
@@ -132,11 +133,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## connectorsTransfer
 
@@ -230,11 +230,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## createAccount
 
@@ -322,11 +321,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## createBankAccount
 
@@ -410,11 +408,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## createPayment
 
@@ -510,11 +507,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## createPool
 
@@ -600,11 +596,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## createTransferInitiation
 
@@ -702,11 +697,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## deletePool
 
@@ -786,11 +780,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## deleteTransferInitiation
 
@@ -870,11 +863,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## forwardBankAccount
 
@@ -960,11 +952,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getAccountBalances
 
@@ -1056,11 +1047,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getBankAccount
 
@@ -1140,11 +1130,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~getConnectorTask~~
 
@@ -1230,11 +1219,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getConnectorTaskV1
 
@@ -1320,11 +1308,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getPayment
 
@@ -1404,11 +1391,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getPool
 
@@ -1488,11 +1474,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getPoolBalances
 
@@ -1574,11 +1559,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## getTransferInitiation
 
@@ -1658,11 +1642,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## installConnector
 
@@ -1756,11 +1739,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listAllConnectors
 
@@ -1835,11 +1817,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listBankAccounts
 
@@ -1929,11 +1910,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listConfigsAvailableConnectors
 
@@ -2008,11 +1988,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~listConnectorTasks~~
 
@@ -2100,11 +2079,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listConnectorTasksV1
 
@@ -2192,11 +2170,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listPayments
 
@@ -2286,11 +2263,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listPools
 
@@ -2380,11 +2356,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## listTransferInitiations
 
@@ -2474,11 +2449,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## paymentsgetAccount
 
@@ -2558,11 +2532,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## paymentsgetServerInfo
 
@@ -2637,11 +2610,103 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
+## paymentslistAccounts
+
+List accounts
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v1.paymentslistAccounts({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
+  });
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV1PaymentslistAccounts } from "@formance/formance-sdk/funcs/paymentsV1PaymentslistAccounts.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV1PaymentslistAccounts(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+    sort: [
+      "date:asc",
+      "status:desc",
+    ],
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.PaymentslistAccountsRequest](../../sdk/models/operations/paymentslistaccountsrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.PaymentslistAccountsResponse](../../sdk/models/operations/paymentslistaccountsresponse.md)\>**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~readConnectorConfig~~
 
@@ -2725,11 +2790,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## readConnectorConfigV1
 
@@ -2813,11 +2877,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## removeAccountFromPool
 
@@ -2899,11 +2962,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~resetConnector~~
 
@@ -2989,11 +3051,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## resetConnectorV1
 
@@ -3079,11 +3140,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## retryTransferInitiation
 
@@ -3163,11 +3223,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## reverseTransferInitiation
 
@@ -3269,11 +3328,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## udpateTransferInitiationStatus
 
@@ -3361,11 +3419,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## ~~uninstallConnector~~
 
@@ -3449,11 +3506,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## uninstallConnectorV1
 
@@ -3537,11 +3593,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## updateBankAccountMetadata
 
@@ -3631,11 +3686,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## updateConnectorConfigV1
 
@@ -3731,11 +3785,10 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
-
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
 
 ## updateMetadata
 
@@ -3823,7 +3876,7 @@ run();
 
 ### Errors
 
-| Error Object                 | Status Code                  | Content Type                 |
+| Error Type                   | Status Code                  | Content Type                 |
 | ---------------------------- | ---------------------------- | ---------------------------- |
 | errors.PaymentsErrorResponse | default                      | application/json             |
-| errors.SDKError              | 4xx-5xx                      | */*                          |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

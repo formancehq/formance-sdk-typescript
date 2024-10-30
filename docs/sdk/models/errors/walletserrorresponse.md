@@ -1,7 +1,5 @@
 # WalletsErrorResponse
 
-Error
-
 ## Example Usage
 
 ```typescript

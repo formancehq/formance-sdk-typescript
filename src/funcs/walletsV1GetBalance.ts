@@ -42,10 +42,8 @@ export async function walletsV1GetBalance(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetBalanceRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

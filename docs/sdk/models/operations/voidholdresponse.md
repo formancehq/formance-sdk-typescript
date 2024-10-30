@@ -7,7 +7,7 @@ import { VoidHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: VoidHoldResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 503,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -18,6 +18,9 @@ export type ReconciliationsCursorResponseCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type ReconciliationsCursorResponse = {
   cursor: ReconciliationsCursorResponseCursor;
 };

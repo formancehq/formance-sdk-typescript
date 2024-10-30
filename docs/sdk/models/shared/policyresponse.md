@@ -1,5 +1,7 @@
 # PolicyResponse
 
+OK
+
 ## Example Usage
 
 ```typescript

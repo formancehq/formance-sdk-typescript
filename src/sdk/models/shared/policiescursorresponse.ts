@@ -18,6 +18,9 @@ export type PoliciesCursorResponseCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type PoliciesCursorResponse = {
   cursor: PoliciesCursorResponseCursor;
 };

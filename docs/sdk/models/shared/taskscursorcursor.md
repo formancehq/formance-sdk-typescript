@@ -8,16 +8,13 @@ import { PaymentStatus, TasksCursorCursor } from "@formance/formance-sdk/sdk/mod
 let value: TasksCursorCursor = {
   data: [
     {
-      connectorID: "<value>",
-      createdAt: new Date("2022-03-18T12:23:43.530Z"),
-      descriptor: {
-        account: "24283994",
-        name: "<value>",
-      },
-      id: "34c4679f-3545-415e-945f-b8c1713256f4",
+      connectorID: "<id>",
+      createdAt: new Date("2022-10-10T04:23:53.662Z"),
+      descriptor: {},
+      id: "fdb76c8a-9b16-4233-880f-80a41d310ba0",
       state: {},
-      status: PaymentStatus.DisputeWon,
-      updatedAt: new Date("2024-06-12T22:00:17.977Z"),
+      status: PaymentStatus.Dispute,
+      updatedAt: new Date("2022-06-16T17:54:46.951Z"),
     },
   ],
   hasMore: false,

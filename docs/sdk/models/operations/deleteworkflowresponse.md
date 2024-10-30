@@ -7,7 +7,7 @@ import { DeleteWorkflowResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: DeleteWorkflowResponse = {
   contentType: "<value>",
-  statusCode: 504,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

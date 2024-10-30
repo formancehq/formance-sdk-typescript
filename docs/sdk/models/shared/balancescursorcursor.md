@@ -8,12 +8,12 @@ import { BalancesCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 let value: BalancesCursorCursor = {
   data: [
     {
-      accountId: "<value>",
+      accountId: "<id>",
       asset: "<value>",
-      balance: BigInt("885523"),
-      createdAt: new Date("2022-06-12T06:00:33.911Z"),
-      currency: "Baht",
-      lastUpdatedAt: new Date("2022-01-17T09:56:07.975Z"),
+      balance: BigInt("5938"),
+      createdAt: new Date("2023-04-22T08:34:26.118Z"),
+      currency: "Guyana Dollar",
+      lastUpdatedAt: new Date("2023-10-30T15:27:04.484Z"),
     },
   ],
   hasMore: false,

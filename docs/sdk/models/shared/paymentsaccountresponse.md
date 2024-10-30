@@ -1,5 +1,7 @@
 # PaymentsAccountResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -8,8 +10,8 @@ import { AccountType, PaymentsAccountResponse } from "@formance/formance-sdk/sdk
 let value: PaymentsAccountResponse = {
   data: {
     accountName: "<value>",
-    connectorID: "<value>",
-    createdAt: new Date("2023-07-23T17:49:15.783Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2023-07-15T06:41:15.268Z"),
     defaultAsset: "<value>",
     defaultCurrency: "<value>",
     id: "<id>",

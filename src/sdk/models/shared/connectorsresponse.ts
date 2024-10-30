@@ -16,6 +16,9 @@ export type ConnectorsResponseData = {
   provider: Connector;
 };
 
+/**
+ * OK
+ */
 export type ConnectorsResponse = {
   data: Array<ConnectorsResponseData>;
 };

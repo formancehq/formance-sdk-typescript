@@ -1,5 +1,7 @@
 # BankAccountsCursor
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,9 +11,9 @@ let value: BankAccountsCursor = {
   cursor: {
     data: [
       {
-        connectorID: "<value>",
-        country: "Tunisia",
-        createdAt: new Date("2023-07-06T20:47:44.778Z"),
+        connectorID: "<id>",
+        country: "Japan",
+        createdAt: new Date("2024-12-09T17:05:31.658Z"),
         id: "<id>",
         name: "<value>",
       },

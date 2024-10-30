@@ -46,10 +46,8 @@ export async function paymentsV1CreateAccount(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => shared.AccountRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

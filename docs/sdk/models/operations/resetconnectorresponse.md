@@ -7,7 +7,7 @@ import { ResetConnectorResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: ResetConnectorResponse = {
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 423,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

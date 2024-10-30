@@ -6,9 +6,9 @@
 import { Connector, ConnectorsResponseData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConnectorsResponseData = {
-  connectorID: "<value>",
+  connectorID: "<id>",
   name: "<value>",
-  provider: Connector.DummyPay,
+  provider: Connector.Mangopay,
 };
 ```
 

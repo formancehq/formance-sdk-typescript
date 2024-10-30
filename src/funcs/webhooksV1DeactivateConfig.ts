@@ -45,10 +45,8 @@ export async function webhooksV1DeactivateConfig(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeactivateConfigRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

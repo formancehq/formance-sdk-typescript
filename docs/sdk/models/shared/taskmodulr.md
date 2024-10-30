@@ -6,13 +6,13 @@
 import { PaymentStatus, TaskModulr } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskModulr = {
-  connectorID: "<value>",
-  createdAt: new Date("2023-04-07T17:10:31.500Z"),
+  connectorID: "<id>",
+  createdAt: new Date("2022-07-10T19:03:58.934Z"),
   descriptor: {},
-  id: "ea185f09-b4fd-4e09-84da-818af9ffa87e",
+  id: "72766324-3bb9-4191-9053-9ebcfa99d6ca",
   state: {},
-  status: PaymentStatus.Succeeded,
-  updatedAt: new Date("2022-04-22T20:53:41.146Z"),
+  status: PaymentStatus.Pending,
+  updatedAt: new Date("2022-08-19T01:44:07.509Z"),
 };
 ```
 

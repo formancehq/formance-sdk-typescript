@@ -45,10 +45,8 @@ export async function orchestrationV2ListInstances(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.V2ListInstancesRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

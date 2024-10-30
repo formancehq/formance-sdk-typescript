@@ -15,3 +15,7 @@ targets:
         publish:
             npm:
                 token: $NPM_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+            blocking: false

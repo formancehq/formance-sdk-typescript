@@ -42,10 +42,8 @@ export async function paymentsV1UpdateBankAccountMetadata(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.UpdateBankAccountMetadataRequest$outboundSchema.parse(value),
     "Input validation failed",

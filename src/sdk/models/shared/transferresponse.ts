@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 
+/**
+ * OK
+ */
 export type TransferResponse = {
   id?: string | undefined;
 };

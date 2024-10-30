@@ -7,14 +7,14 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "Horizontal optimizing hardware",
-    id: "cbf8c556-6181-4e07-b42c-b2acc1abd87f",
+    description: "before inside anticodon digitize tribe glider weakly atop",
+    id: "8eaa84f7-4b95-4431-ba83-00b3402d3f24",
     metadata: {
       "key": "<value>",
     },
     originalAmount: BigInt("100"),
     remaining: BigInt("10"),
-    walletID: "<value>",
+    walletID: "<id>",
   },
 };
 ```

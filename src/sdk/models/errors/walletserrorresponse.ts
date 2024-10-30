@@ -11,17 +11,11 @@ export enum SchemasWalletsErrorResponseErrorCode {
   HoldClosed = "HOLD_CLOSED",
 }
 
-/**
- * Error
- */
 export type WalletsErrorResponseData = {
   errorCode: SchemasWalletsErrorResponseErrorCode;
   errorMessage: string;
 };
 
-/**
- * Error
- */
 export class WalletsErrorResponse extends Error {
   errorCode: SchemasWalletsErrorResponseErrorCode;
   errorMessage: string;

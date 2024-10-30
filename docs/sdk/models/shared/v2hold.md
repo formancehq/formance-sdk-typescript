@@ -6,12 +6,13 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "Optional systemic orchestration",
-  id: "9ffd9709-fd52-4cbf-bd81-7584dd596e2b",
+  description:
+    "phew founder yahoo coaxingly gah finally painfully politely boohoo delirious",
+  id: "c070cf0e-c5e4-461a-907a-d2cb89196d59",
   metadata: {
     "key": "<value>",
   },
-  walletID: "<value>",
+  walletID: "<id>",
 };
 ```
 

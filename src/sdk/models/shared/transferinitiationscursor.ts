@@ -18,6 +18,9 @@ export type TransferInitiationsCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type TransferInitiationsCursor = {
   cursor: TransferInitiationsCursorCursor;
 };

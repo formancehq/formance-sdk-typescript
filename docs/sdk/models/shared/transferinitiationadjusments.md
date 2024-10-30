@@ -6,10 +6,10 @@
 import { TransferInitiationAdjusments, TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationAdjusments = {
-  adjustmentID: "<value>",
-  createdAt: new Date("2024-10-13T19:37:01.195Z"),
+  adjustmentID: "<id>",
+  createdAt: new Date("2022-03-17T09:07:57.019Z"),
   error: "<value>",
-  status: TransferInitiationStatus.AskRetried,
+  status: TransferInitiationStatus.WaitingForValidation,
 };
 ```
 

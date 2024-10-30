@@ -3,7 +3,12 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import {
+  encodeFormQuery,
+  encodeJSONQuery,
+  encodeSimple,
+  queryJoin,
+} from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -42,10 +47,8 @@ export async function ledgerV2CountTransactions(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.V2CountTransactionsRequest$outboundSchema.parse(value),
     "Input validation failed",
@@ -54,7 +57,7 @@ export async function ledgerV2CountTransactions(
     return parsed;
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.RequestBody, { explode: true });
+  const body = null;
 
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {
@@ -65,12 +68,16 @@ export async function ledgerV2CountTransactions(
 
   const path = pathToFunc("/api/ledger/v2/{ledger}/transactions")(pathParams);
 
-  const query = encodeFormQuery({
-    "pit": payload.pit,
-  });
+  const query = queryJoin(
+    encodeFormQuery({
+      "pit": payload.pit,
+    }),
+    encodeJSONQuery({
+      "query": payload.query,
+    }, { explode: false }),
+  );
 
   const headers = new Headers({
-    "Content-Type": "application/json",
     Accept: "application/json",
   });
 

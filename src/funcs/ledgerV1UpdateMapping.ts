@@ -42,10 +42,8 @@ export async function ledgerV1UpdateMapping(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.UpdateMappingRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

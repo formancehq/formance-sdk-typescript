@@ -21,6 +21,8 @@ import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get server info
+ *
+ * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
 export async function searchV1SearchgetServerInfo(
   client: SDKCore,

@@ -40,10 +40,8 @@ export async function authV1CreateSecret(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.CreateSecretRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

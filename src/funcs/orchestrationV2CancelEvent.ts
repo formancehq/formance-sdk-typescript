@@ -45,10 +45,8 @@ export async function orchestrationV2CancelEvent(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.V2CancelEventRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

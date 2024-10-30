@@ -40,10 +40,8 @@ export async function authV1ReadClient(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ReadClientRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

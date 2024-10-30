@@ -47,10 +47,8 @@ export async function ledgerV1CountAccounts(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.CountAccountsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

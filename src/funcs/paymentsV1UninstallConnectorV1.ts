@@ -45,10 +45,8 @@ export async function paymentsV1UninstallConnectorV1(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.UninstallConnectorV1Request$outboundSchema.parse(value),
     "Input validation failed",

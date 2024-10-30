@@ -7,7 +7,7 @@ import { RetryTransferInitiationResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: RetryTransferInitiationResponse = {
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 208,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

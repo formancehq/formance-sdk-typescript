@@ -6,14 +6,14 @@
 import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ExpandedDebitHold = {
-  description: "Optional empowering software",
-  id: "717d709f-d9ed-479b-9d0c-7ac8261bfc69",
+  description: "shanghai gah punctually midst gee supposing",
+  id: "365a6138-c091-49d3-b7c2-2ebbd878b612",
   metadata: {
     "key": "<value>",
   },
   originalAmount: BigInt("100"),
   remaining: BigInt("10"),
-  walletID: "<value>",
+  walletID: "<id>",
 };
 ```
 

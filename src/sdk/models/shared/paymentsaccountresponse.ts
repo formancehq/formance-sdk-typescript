@@ -10,6 +10,9 @@ import {
   PaymentsAccount$outboundSchema,
 } from "./paymentsaccount.js";
 
+/**
+ * OK
+ */
 export type PaymentsAccountResponse = {
   data: PaymentsAccount;
 };

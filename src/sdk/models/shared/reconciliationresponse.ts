@@ -10,6 +10,9 @@ import {
   Reconciliation$outboundSchema,
 } from "./reconciliation.js";
 
+/**
+ * OK
+ */
 export type ReconciliationResponse = {
   data: Reconciliation;
 };

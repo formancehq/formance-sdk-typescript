@@ -42,10 +42,8 @@ export async function walletsV1DebitWallet(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DebitWalletRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

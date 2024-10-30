@@ -45,10 +45,8 @@ export async function ledgerV1ListLogs(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ListLogsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

@@ -7,7 +7,7 @@ import { V2TriggerData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2TriggerData = {
   event: "<value>",
-  workflowID: "<value>",
+  workflowID: "<id>",
 };
 ```
 

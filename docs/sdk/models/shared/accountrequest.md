@@ -6,8 +6,8 @@
 import { AccountRequest, AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AccountRequest = {
-  connectorID: "<value>",
-  createdAt: new Date("2023-03-29T19:05:49.333Z"),
+  connectorID: "<id>",
+  createdAt: new Date("2024-09-10T06:31:30.041Z"),
   reference: "<value>",
   type: AccountType.Internal,
 };

@@ -6,12 +6,12 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "Polarised zero defect success",
-  id: "c5537fe1-0e83-4aa1-b403-23a012544cf8",
+  description: "vacation separately utter",
+  id: "9eb18445-59a4-4209-920e-81df7016e2d0",
   metadata: {
     "key": "<value>",
   },
-  walletID: "<value>",
+  walletID: "<id>",
 };
 ```
 

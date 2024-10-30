@@ -42,10 +42,8 @@ export async function ledgerV2CreateLedger(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.V2CreateLedgerRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

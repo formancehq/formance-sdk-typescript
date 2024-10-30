@@ -10,6 +10,9 @@ import {
   Policy$outboundSchema,
 } from "./policy.js";
 
+/**
+ * OK
+ */
 export type PolicyResponse = {
   data: Policy;
 };

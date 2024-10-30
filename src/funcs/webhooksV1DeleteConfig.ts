@@ -45,10 +45,8 @@ export async function webhooksV1DeleteConfig(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeleteConfigRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

@@ -45,10 +45,8 @@ export async function ledgerV2DeleteAccountMetadata(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.V2DeleteAccountMetadataRequest$outboundSchema.parse(value),
     "Input validation failed",

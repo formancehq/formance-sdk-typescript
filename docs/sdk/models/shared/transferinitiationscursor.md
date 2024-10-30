@@ -1,5 +1,7 @@
 # TransferInitiationsCursor
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,19 +11,20 @@ let value: TransferInitiationsCursor = {
   cursor: {
     data: [
       {
-        amount: BigInt("584645"),
+        amount: BigInt("620421"),
         asset: "USD",
-        connectorID: "<value>",
-        createdAt: new Date("2022-04-11T00:47:06.149Z"),
-        description: "Phased exuding strategy",
-        destinationAccountID: "<value>",
+        connectorID: "<id>",
+        createdAt: new Date("2023-08-08T15:17:18.675Z"),
+        description:
+          "helpfully chasuble defiantly rightfully behind tuxedo enchanting free humidity",
+        destinationAccountID: "<id>",
         error: "<value>",
         id: "XXX",
-        initialAmount: BigInt("313099"),
+        initialAmount: BigInt("208224"),
         reference: "<value>",
-        scheduledAt: new Date("2023-09-24T22:45:24.894Z"),
-        sourceAccountID: "<value>",
-        status: TransferInitiationStatus.Validated,
+        scheduledAt: new Date("2023-08-30T01:07:14.865Z"),
+        sourceAccountID: "<id>",
+        status: TransferInitiationStatus.Failed,
         type: TransferInitiationType.Payout,
       },
     ],

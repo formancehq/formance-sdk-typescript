@@ -1,5 +1,7 @@
 # TasksCursor
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,13 +11,13 @@ let value: TasksCursor = {
   cursor: {
     data: [
       {
-        connectorID: "<value>",
-        createdAt: new Date("2022-11-12T11:10:45.405Z"),
+        connectorID: "<id>",
+        createdAt: new Date("2022-08-22T14:52:03.725Z"),
         descriptor: {},
-        id: "7236b8ed-099f-4083-809c-c06033354f5e",
+        id: "7d4a715d-fd25-4d8c-8c15-7fe6168e44a8",
         state: {},
-        status: PaymentStatus.DisputeWon,
-        updatedAt: new Date("2022-03-09T05:37:58.726Z"),
+        status: PaymentStatus.Succeeded,
+        updatedAt: new Date("2023-06-21T11:44:04.584Z"),
       },
     ],
     hasMore: false,
