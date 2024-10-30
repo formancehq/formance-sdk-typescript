@@ -1,5 +1,7 @@
 # ConnectorsResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -8,9 +10,9 @@ import { Connector, ConnectorsResponse } from "@formance/formance-sdk/sdk/models
 let value: ConnectorsResponse = {
   data: [
     {
-      connectorID: "<value>",
+      connectorID: "<id>",
       name: "<value>",
-      provider: Connector.Mangopay,
+      provider: Connector.Moneycorp,
     },
   ],
 };

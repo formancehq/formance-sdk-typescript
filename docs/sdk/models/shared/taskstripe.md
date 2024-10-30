@@ -6,16 +6,16 @@
 import { PaymentStatus, TaskStripe } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskStripe = {
-  connectorID: "<value>",
-  createdAt: new Date("2023-09-25T22:27:35.031Z"),
+  connectorID: "<id>",
+  createdAt: new Date("2024-09-18T19:37:34.618Z"),
   descriptor: {
-    account: "83208359",
+    account: "46021610",
     name: "<value>",
   },
-  id: "02ccc8f6-916b-43fa-a4c1-f0e4c04b8166",
+  id: "4a95d448-7728-446b-aec6-9b652bd5c9c6",
   state: {},
-  status: PaymentStatus.Dispute,
-  updatedAt: new Date("2024-07-10T13:11:55.307Z"),
+  status: PaymentStatus.Expired,
+  updatedAt: new Date("2022-04-08T06:41:24.174Z"),
 };
 ```
 

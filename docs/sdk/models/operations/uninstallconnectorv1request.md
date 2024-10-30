@@ -7,7 +7,7 @@ import { UninstallConnectorV1Request } from "@formance/formance-sdk/sdk/models/o
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UninstallConnectorV1Request = {
-  connector: Connector.Moneycorp,
+  connector: Connector.Generic,
   connectorId: "XXX",
 };
 ```

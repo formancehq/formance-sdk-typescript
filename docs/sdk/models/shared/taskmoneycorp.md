@@ -6,13 +6,13 @@
 import { PaymentStatus, TaskMoneycorp } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskMoneycorp = {
-  connectorID: "<value>",
-  createdAt: new Date("2022-10-16T08:01:27.253Z"),
+  connectorID: "<id>",
+  createdAt: new Date("2024-04-28T22:11:42.800Z"),
   descriptor: {},
-  id: "59e24977-de7a-4c84-aa9e-0e805b7f65d8",
+  id: "7abb0150-66e9-4be7-a04d-e54e5a418e93",
   state: {},
   status: PaymentStatus.DisputeWon,
-  updatedAt: new Date("2024-01-06T21:13:48.624Z"),
+  updatedAt: new Date("2022-12-18T13:17:08.954Z"),
 };
 ```
 

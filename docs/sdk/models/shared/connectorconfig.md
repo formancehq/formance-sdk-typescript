@@ -1,11 +1,55 @@
 # ConnectorConfig
 
-## Example Usage
+
+## Supported Types
+
+### `shared.StripeConfig`
 
 ```typescript
-import { ConnectorConfig } from "@formance/formance-sdk/sdk/models/shared";
+const value: shared.StripeConfig = {
+  apiKey: "XXX",
+  name: "My Stripe Account",
+  pageSize: 50,
+  pollingPeriod: "60s",
+};
+```
 
-let value: ConnectorConfig = {
+### `shared.DummyPayConfig`
+
+```typescript
+const value: shared.DummyPayConfig = {
+  directory: "/tmp/dummypay",
+  filePollingPeriod: "60s",
+  name: "My DummyPay Account",
+};
+```
+
+### `shared.WiseConfig`
+
+```typescript
+const value: shared.WiseConfig = {
+  apiKey: "XXX",
+  name: "My Wise Account",
+  pollingPeriod: "60s",
+};
+```
+
+### `shared.ModulrConfig`
+
+```typescript
+const value: shared.ModulrConfig = {
+  apiKey: "XXX",
+  apiSecret: "XXX",
+  endpoint: "XXX",
+  name: "My Modulr Account",
+  pollingPeriod: "60s",
+};
+```
+
+### `shared.CurrencyCloudConfig`
+
+```typescript
+const value: shared.CurrencyCloudConfig = {
   apiKey: "XXX",
   endpoint: "XXX",
   loginID: "XXX",
@@ -14,71 +58,79 @@ let value: ConnectorConfig = {
 };
 ```
 
-## Supported Types
-
-### `shared.StripeConfig`
-
-```typescript
-const value: shared.StripeConfig = /* values here */
-```
-
-### `shared.DummyPayConfig`
-
-```typescript
-const value: shared.DummyPayConfig = /* values here */
-```
-
-### `shared.WiseConfig`
-
-```typescript
-const value: shared.WiseConfig = /* values here */
-```
-
-### `shared.ModulrConfig`
-
-```typescript
-const value: shared.ModulrConfig = /* values here */
-```
-
-### `shared.CurrencyCloudConfig`
-
-```typescript
-const value: shared.CurrencyCloudConfig = /* values here */
-```
-
 ### `shared.BankingCircleConfig`
 
 ```typescript
-const value: shared.BankingCircleConfig = /* values here */
+const value: shared.BankingCircleConfig = {
+  authorizationEndpoint: "XXX",
+  endpoint: "XXX",
+  name: "My Banking Circle Account",
+  password: "XXX",
+  pollingPeriod: "60s",
+  userCertificate: "XXX",
+  userCertificateKey: "XXX",
+  username: "XXX",
+};
 ```
 
 ### `shared.MangoPayConfig`
 
 ```typescript
-const value: shared.MangoPayConfig = /* values here */
+const value: shared.MangoPayConfig = {
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My MangoPay Account",
+  pollingPeriod: "60s",
+};
 ```
 
 ### `shared.MoneycorpConfig`
 
 ```typescript
-const value: shared.MoneycorpConfig = /* values here */
+const value: shared.MoneycorpConfig = {
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My Moneycorp Account",
+  pollingPeriod: "60s",
+};
 ```
 
 ### `shared.AtlarConfig`
 
 ```typescript
-const value: shared.AtlarConfig = /* values here */
+const value: shared.AtlarConfig = {
+  accessKey: "XXX",
+  baseUrl: "https://api.example.com",
+  name: "My Atlar Account",
+  pageSize: 50,
+  pollingPeriod: "60s",
+  secret: "XXX",
+  transferInitiationStatusPollingPeriod: "60s",
+};
 ```
 
 ### `shared.AdyenConfig`
 
 ```typescript
-const value: shared.AdyenConfig = /* values here */
+const value: shared.AdyenConfig = {
+  apiKey: "XXX",
+  hmacKey: "XXX",
+  liveEndpointPrefix: "XXX",
+  name: "My Adyen Account",
+  pollingPeriod: "60s",
+};
 ```
 
 ### `shared.GenericConfig`
 
 ```typescript
-const value: shared.GenericConfig = /* values here */
+const value: shared.GenericConfig = {
+  apiKey: "XXX",
+  endpoint: "XXX",
+  name: "My Generic Account",
+  pollingPeriod: "60s",
+};
 ```
 

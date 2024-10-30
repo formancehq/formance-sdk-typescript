@@ -45,10 +45,8 @@ export async function reconciliationV1DeletePolicy(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeletePolicyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

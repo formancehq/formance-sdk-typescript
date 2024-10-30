@@ -5,7 +5,7 @@
 ```typescript
 import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: PaymentStatus = PaymentStatus.Succeeded;
+let value: PaymentStatus = PaymentStatus.Failed;
 ```
 
 ## Values

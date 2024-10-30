@@ -7,7 +7,7 @@ import { DeleteTriggerResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: DeleteTriggerResponse = {
   contentType: "<value>",
-  statusCode: 412,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

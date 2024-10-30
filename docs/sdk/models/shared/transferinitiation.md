@@ -6,20 +6,21 @@
 import { TransferInitiation, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiation = {
-  amount: BigInt("286486"),
+  amount: BigInt("944260"),
   asset: "USD",
-  connectorID: "<value>",
-  createdAt: new Date("2022-11-09T13:14:28.714Z"),
-  description: "Grass-roots dynamic local area network",
-  destinationAccountID: "<value>",
+  connectorID: "<id>",
+  createdAt: new Date("2022-06-03T03:27:42.862Z"),
+  description:
+    "the keenly loftily seafood jive boo singe that condense playfully",
+  destinationAccountID: "<id>",
   error: "<value>",
   id: "XXX",
-  initialAmount: BigInt("683602"),
+  initialAmount: BigInt("304200"),
   reference: "<value>",
-  scheduledAt: new Date("2022-10-22T13:11:01.959Z"),
-  sourceAccountID: "<value>",
-  status: TransferInitiationStatus.Processing,
-  type: TransferInitiationType.Transfer,
+  scheduledAt: new Date("2023-08-16T23:39:48.423Z"),
+  sourceAccountID: "<id>",
+  status: TransferInitiationStatus.Failed,
+  type: TransferInitiationType.Payout,
 };
 ```
 

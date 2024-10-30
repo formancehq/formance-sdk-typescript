@@ -7,7 +7,7 @@ import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: CreateBalanceResponse = {
   contentType: "<value>",
-  statusCode: 100,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

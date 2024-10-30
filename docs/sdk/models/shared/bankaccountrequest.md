@@ -6,7 +6,7 @@
 import { BankAccountRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BankAccountRequest = {
-  connectorID: "<value>",
+  connectorID: "<id>",
   country: "GB",
   name: "My account",
 };

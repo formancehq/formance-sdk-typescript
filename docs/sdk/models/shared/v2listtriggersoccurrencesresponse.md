@@ -9,11 +9,11 @@ let value: V2ListTriggersOccurrencesResponse = {
   cursor: {
     data: [
       {
-        date: new Date("2022-05-26T22:19:48.108Z"),
+        date: new Date("2024-11-25T13:04:10.611Z"),
         event: {
           "key": "<value>",
         },
-        triggerID: "<value>",
+        triggerID: "<id>",
       },
     ],
     hasMore: false,

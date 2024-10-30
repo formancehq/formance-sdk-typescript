@@ -10,6 +10,9 @@ import {
   BankAccount$outboundSchema,
 } from "./bankaccount.js";
 
+/**
+ * OK
+ */
 export type BankAccountResponse = {
   data: BankAccount;
 };

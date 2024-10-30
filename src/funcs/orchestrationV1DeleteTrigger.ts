@@ -45,10 +45,8 @@ export async function orchestrationV1DeleteTrigger(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeleteTriggerRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

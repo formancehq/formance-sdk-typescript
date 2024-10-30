@@ -101,11 +101,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## createTrigger
 
@@ -181,11 +180,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## createWorkflow
 
@@ -261,11 +259,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteTrigger
 
@@ -345,11 +342,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## deleteWorkflow
 
@@ -429,11 +425,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getInstance
 
@@ -513,11 +508,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getInstanceHistory
 
@@ -597,11 +591,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getInstanceStageHistory
 
@@ -683,11 +676,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## getWorkflow
 
@@ -767,11 +759,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listInstances
 
@@ -853,11 +844,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listTriggers
 
@@ -933,11 +923,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listTriggersOccurrences
 
@@ -1017,11 +1006,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## listWorkflows
 
@@ -1096,11 +1084,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## orchestrationgetServerInfo
 
@@ -1175,11 +1162,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## readTrigger
 
@@ -1259,11 +1245,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## runWorkflow
 
@@ -1343,11 +1328,10 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |
 
 ## sendEvent
 
@@ -1427,7 +1411,7 @@ run();
 
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
+| Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.ErrorT    | default          | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
+| errors.SDKError  | 4XX, 5XX         | \*/\*            |

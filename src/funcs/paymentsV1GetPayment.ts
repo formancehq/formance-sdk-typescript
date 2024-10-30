@@ -42,10 +42,8 @@ export async function paymentsV1GetPayment(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetPaymentRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

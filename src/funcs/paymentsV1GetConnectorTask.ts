@@ -47,10 +47,8 @@ export async function paymentsV1GetConnectorTask(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetConnectorTaskRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

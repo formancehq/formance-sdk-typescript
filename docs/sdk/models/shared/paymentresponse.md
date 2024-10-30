@@ -1,5 +1,7 @@
 # PaymentResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -10,17 +12,17 @@ let value: PaymentResponse = {
     adjustments: [
       {
         amount: BigInt("100"),
-        createdAt: new Date("2022-12-25T07:53:20.177Z"),
+        createdAt: new Date("2024-01-05T13:57:54.417Z"),
         raw: {},
         reference: "<value>",
-        status: PaymentStatus.Succeeded,
+        status: PaymentStatus.Refunded,
       },
     ],
     amount: BigInt("100"),
     asset: "USD",
-    connectorID: "<value>",
-    createdAt: new Date("2022-04-02T13:11:18.964Z"),
-    destinationAccountID: "<value>",
+    connectorID: "<id>",
+    createdAt: new Date("2024-02-09T18:19:43.714Z"),
+    destinationAccountID: "<id>",
     id: "XXX",
     initialAmount: BigInt("100"),
     metadata: {
@@ -28,10 +30,10 @@ let value: PaymentResponse = {
     },
     raw: {},
     reference: "<value>",
-    scheme: PaymentScheme.Ach,
-    sourceAccountID: "<value>",
-    status: PaymentStatus.Succeeded,
-    type: PaymentType.PayIn,
+    scheme: PaymentScheme.Dragonpay,
+    sourceAccountID: "<id>",
+    status: PaymentStatus.Cancelled,
+    type: PaymentType.Transfer,
   },
 };
 ```

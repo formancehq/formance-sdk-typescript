@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
-import * as errors from "../errors/index.js";
+import * as shared from "../shared/index.js";
 
 export type V2UpdateLedgerMetadataRequest = {
   requestBody?: { [k: string]: string } | undefined;
@@ -30,7 +30,7 @@ export type V2UpdateLedgerMetadataResponse = {
   /**
    * Error
    */
-  v2ErrorResponse?: errors.V2ErrorResponse | undefined;
+  v2ErrorResponse?: shared.V2ErrorResponse | undefined;
 };
 
 /** @internal */
@@ -89,7 +89,7 @@ export const V2UpdateLedgerMetadataResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2ErrorResponse: errors.V2ErrorResponse$inboundSchema.optional(),
+  V2ErrorResponse: shared.V2ErrorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
@@ -104,7 +104,7 @@ export type V2UpdateLedgerMetadataResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
-  V2ErrorResponse?: errors.V2ErrorResponse$Outbound | undefined;
+  V2ErrorResponse?: shared.V2ErrorResponse$Outbound | undefined;
 };
 
 /** @internal */
@@ -118,7 +118,7 @@ export const V2UpdateLedgerMetadataResponse$outboundSchema: z.ZodType<
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
-  v2ErrorResponse: errors.V2ErrorResponse$outboundSchema.optional(),
+  v2ErrorResponse: shared.V2ErrorResponse$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",

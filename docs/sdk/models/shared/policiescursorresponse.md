@@ -1,5 +1,7 @@
 # PoliciesCursorResponse
 
+OK
+
 ## Example Usage
 
 ```typescript

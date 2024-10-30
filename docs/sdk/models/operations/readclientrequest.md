@@ -6,7 +6,7 @@
 import { ReadClientRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReadClientRequest = {
-  clientId: "<value>",
+  clientId: "<id>",
 };
 ```
 

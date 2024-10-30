@@ -1,44 +1,81 @@
 # V2BulkElementResult
 
-## Example Usage
-
-```typescript
-import { V2BulkElementResult } from "@formance/formance-sdk/sdk/models/shared";
-
-let value: V2BulkElementResult = {
-  responseType: "<value>",
-};
-```
 
 ## Supported Types
 
 ### `shared.Schemas`
 
 ```typescript
-const value: shared.Schemas = /* values here */
+const value: shared.Schemas = {
+  responseType: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementResultCreateTransactionSchemas`
 
 ```typescript
-const value: shared.V2BulkElementResultCreateTransactionSchemas = /* values here */
+const value: shared.V2BulkElementResultCreateTransactionSchemas = {
+  data: {
+    id: BigInt("701841"),
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    reverted: false,
+    timestamp: new Date("2022-02-03T02:11:26.549Z"),
+  },
+  responseType: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementResultDeleteMetadataSchemas`
 
 ```typescript
-const value: shared.V2BulkElementResultDeleteMetadataSchemas = /* values here */
+const value: shared.V2BulkElementResultDeleteMetadataSchemas = {
+  responseType: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementResultErrorSchemas`
 
 ```typescript
-const value: shared.V2BulkElementResultErrorSchemas = /* values here */
+const value: shared.V2BulkElementResultErrorSchemas = {
+  errorCode: "<value>",
+  errorDescription: "<value>",
+  responseType: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementResultRevertTransactionSchemas`
 
 ```typescript
-const value: shared.V2BulkElementResultRevertTransactionSchemas = /* values here */
+const value: shared.V2BulkElementResultRevertTransactionSchemas = {
+  data: {
+    id: BigInt("873320"),
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    reverted: false,
+    timestamp: new Date("2023-05-03T03:34:27.990Z"),
+  },
+  responseType: "<value>",
+};
 ```
 

@@ -10,6 +10,9 @@ import {
   PoolBalances$outboundSchema,
 } from "./poolbalances.js";
 
+/**
+ * OK
+ */
 export type PoolBalancesResponse = {
   data: PoolBalances;
 };

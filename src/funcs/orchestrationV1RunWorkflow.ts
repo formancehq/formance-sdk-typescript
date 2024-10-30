@@ -45,10 +45,8 @@ export async function orchestrationV1RunWorkflow(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.RunWorkflowRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

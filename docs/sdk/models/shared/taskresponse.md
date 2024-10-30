@@ -1,5 +1,7 @@
 # TaskResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -7,13 +9,13 @@ import { PaymentStatus, TaskResponse } from "@formance/formance-sdk/sdk/models/s
 
 let value: TaskResponse = {
   data: {
-    connectorID: "<value>",
-    createdAt: new Date("2024-03-01T06:19:32.936Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2022-01-29T05:00:23.216Z"),
     descriptor: {},
-    id: "4bb5659e-2e0a-46cb-87a8-c78494922664",
+    id: "c8174e4f-85db-46ac-add2-d0391946518f",
     state: {},
-    status: PaymentStatus.Pending,
-    updatedAt: new Date("2022-01-28T15:41:52.745Z"),
+    status: PaymentStatus.Failed,
+    updatedAt: new Date("2024-11-13T22:33:54.853Z"),
   },
 };
 ```

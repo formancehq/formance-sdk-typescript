@@ -7,7 +7,7 @@ import { CreateBankAccountResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: CreateBankAccountResponse = {
   contentType: "<value>",
-  statusCode: 101,
+  statusCode: 424,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

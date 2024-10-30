@@ -45,10 +45,8 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.UdpateTransferInitiationStatusRequest$outboundSchema.parse(
         value,

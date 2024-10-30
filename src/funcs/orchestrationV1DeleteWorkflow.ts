@@ -45,10 +45,8 @@ export async function orchestrationV1DeleteWorkflow(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeleteWorkflowRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

@@ -7,7 +7,7 @@ import { ForwardBankAccountRequest } from "@formance/formance-sdk/sdk/models/ope
 
 let value: ForwardBankAccountRequest = {
   forwardBankAccountRequest: {
-    connectorID: "<value>",
+    connectorID: "<id>",
   },
   bankAccountId: "XXX",
 };

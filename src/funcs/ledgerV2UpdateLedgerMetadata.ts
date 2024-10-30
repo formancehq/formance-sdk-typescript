@@ -42,10 +42,8 @@ export async function ledgerV2UpdateLedgerMetadata(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.V2UpdateLedgerMetadataRequest$outboundSchema.parse(value),
     "Input validation failed",

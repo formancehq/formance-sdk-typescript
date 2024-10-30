@@ -39,10 +39,8 @@ export async function walletsV1GetTransactions(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetTransactionsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

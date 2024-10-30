@@ -5,7 +5,7 @@
 ```typescript
 import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Status = Status.WaitingForValidation;
+let value: Status = Status.Rejected;
 ```
 
 ## Values

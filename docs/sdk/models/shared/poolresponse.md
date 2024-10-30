@@ -1,5 +1,7 @@
 # PoolResponse
 
+OK
+
 ## Example Usage
 
 ```typescript

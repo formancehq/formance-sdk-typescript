@@ -5,7 +5,7 @@
 ```typescript
 import { V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2PaymentType = V2PaymentType.Transfer;
+let value: V2PaymentType = V2PaymentType.Payout;
 ```
 
 ## Values

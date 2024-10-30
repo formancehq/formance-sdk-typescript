@@ -42,10 +42,8 @@ export async function ledgerV1AddMetadataToAccount(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.AddMetadataToAccountRequest$outboundSchema.parse(value),
     "Input validation failed",

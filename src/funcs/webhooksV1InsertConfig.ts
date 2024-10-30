@@ -54,10 +54,8 @@ export async function webhooksV1InsertConfig(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => shared.ConfigUser$outboundSchema.parse(value),
     "Input validation failed",
   );

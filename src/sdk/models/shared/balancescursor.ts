@@ -18,6 +18,9 @@ export type BalancesCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type BalancesCursor = {
   cursor: BalancesCursorCursor;
 };

@@ -5,18 +5,12 @@
 import * as z from "zod";
 import * as shared from "../shared/index.js";
 
-/**
- * Error
- */
 export type WebhooksErrorResponseData = {
   details?: string | undefined;
   errorCode: shared.WebhooksErrorsEnum;
   errorMessage: string;
 };
 
-/**
- * Error
- */
 export class WebhooksErrorResponse extends Error {
   details?: string | undefined;
   errorCode: shared.WebhooksErrorsEnum;

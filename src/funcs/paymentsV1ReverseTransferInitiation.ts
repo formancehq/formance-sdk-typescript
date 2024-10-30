@@ -45,10 +45,8 @@ export async function paymentsV1ReverseTransferInitiation(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ReverseTransferInitiationRequest$outboundSchema.parse(value),
     "Input validation failed",

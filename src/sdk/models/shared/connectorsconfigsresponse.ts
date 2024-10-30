@@ -17,6 +17,9 @@ export type ConnectorsConfigsResponseData = {
   connector: ConnectorsConfigsResponseConnector;
 };
 
+/**
+ * OK
+ */
 export type ConnectorsConfigsResponse = {
   data: ConnectorsConfigsResponseData;
 };

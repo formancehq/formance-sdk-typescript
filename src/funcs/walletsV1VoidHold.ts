@@ -42,10 +42,8 @@ export async function walletsV1VoidHold(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.VoidHoldRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

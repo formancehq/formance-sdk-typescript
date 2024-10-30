@@ -1,9 +1,9 @@
-speakeasyVersion: 1.402.14
+speakeasyVersion: 1.423.2
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:5a57b23b42afa92a045e32ec20dd053789d61d9578753da903ed632678f740cf
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:f7d12f6c5cf7d4194f89dfd4988c48f12d8c34cf5902bbe96dfb886229b3f1b3
+        sourceBlobDigest: sha256:27a152e061a648cc77e2c103a656a64e8d4b64a319df8d5af09c5ec798094f3e
         tags:
             - latest
             - main
@@ -11,15 +11,19 @@ targets:
     formance-sdk-typescript:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:5a57b23b42afa92a045e32ec20dd053789d61d9578753da903ed632678f740cf
-        sourceBlobDigest: sha256:289baef68db829be9ab3b7d551c2c8f06c9adf872c08c55eb3d4fb8cc570d555
+        sourceRevisionDigest: sha256:f7d12f6c5cf7d4194f89dfd4988c48f12d8c34cf5902bbe96dfb886229b3f1b3
+        sourceBlobDigest: sha256:27a152e061a648cc77e2c103a656a64e8d4b64a319df8d5af09c5ec798094f3e
+        codeSamplesNamespace: my-source-code-samples
+        codeSamplesRevisionDigest: sha256:11ba30e10ccf413d0785a74ac758ebee32553f88bf8b3509f26df212a821e84a
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         my-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.0-beta.3/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v2.1.0/generate.json
+            overlays:
+                - location: ./overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/formance/formance/my-source
     targets:
@@ -29,3 +33,7 @@ workflow:
             publish:
                 npm:
                     token: $NPM_TOKEN
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                blocking: false

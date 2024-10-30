@@ -7,7 +7,7 @@ import { UdpateTransferInitiationStatusResponse } from "@formance/formance-sdk/s
 
 let value: UdpateTransferInitiationStatusResponse = {
   contentType: "<value>",
-  statusCode: 204,
+  statusCode: 411,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

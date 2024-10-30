@@ -1,5 +1,7 @@
 # ReconciliationResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,14 +11,14 @@ let value: ReconciliationResponse = {
   data: {
     createdAt: new Date("2021-01-01T00:00:00.000Z"),
     driftBalances: {
-      "key": BigInt("877619"),
+      "key": BigInt("676140"),
     },
     id: "XXX",
     ledgerBalances: {
-      "key": BigInt("623868"),
+      "key": BigInt("278231"),
     },
     paymentsBalances: {
-      "key": BigInt("17029"),
+      "key": BigInt("406914"),
     },
     policyID: "XXX",
     reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),

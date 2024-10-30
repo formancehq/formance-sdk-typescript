@@ -48,10 +48,8 @@ export async function paymentsV1ResetConnector(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ResetConnectorRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

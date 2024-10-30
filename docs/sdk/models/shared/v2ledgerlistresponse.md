@@ -9,7 +9,7 @@ let value: V2LedgerListResponse = {
   cursor: {
     data: [
       {
-        addedAt: new Date("2024-04-05T13:13:41.181Z"),
+        addedAt: new Date("2024-10-21T22:27:43.595Z"),
         bucket: "<value>",
         metadata: {
           "admin": "true",

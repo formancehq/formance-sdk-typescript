@@ -1,5 +1,7 @@
 # TransferResponse
 
+OK
+
 ## Example Usage
 
 ```typescript

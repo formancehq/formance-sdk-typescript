@@ -46,10 +46,8 @@ export async function reconciliationV1CreatePolicy(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => shared.PolicyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

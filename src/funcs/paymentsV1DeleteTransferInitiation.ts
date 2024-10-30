@@ -45,10 +45,8 @@ export async function paymentsV1DeleteTransferInitiation(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.DeleteTransferInitiationRequest$outboundSchema.parse(value),
     "Input validation failed",

@@ -48,10 +48,8 @@ export async function webhooksV1ChangeConfigSecret(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ChangeConfigSecretRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

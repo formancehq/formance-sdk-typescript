@@ -1,38 +1,64 @@
 # V2BulkElement
 
-## Example Usage
-
-```typescript
-import { V2BulkElement } from "@formance/formance-sdk/sdk/models/shared";
-
-let value: V2BulkElement = {
-  action: "<value>",
-};
-```
 
 ## Supported Types
 
 ### `shared.V2BulkElementAddMetadata`
 
 ```typescript
-const value: shared.V2BulkElementAddMetadata = /* values here */
+const value: shared.V2BulkElementAddMetadata = {
+  action: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementCreateTransaction`
 
 ```typescript
-const value: shared.V2BulkElementCreateTransaction = /* values here */
+const value: shared.V2BulkElementCreateTransaction = {
+  action: "<value>",
+  data: {
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: BigInt("100"),
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    script: {
+      plain: "vars {\n"
+        + "account $user\n"
+        + "}\n"
+        + "send [COIN 10] (\n"
+        + "	source = @world\n"
+        + "	destination = $user\n"
+        + ")\n"
+        + "",
+      vars: {
+        "user": "users:042",
+      },
+    },
+  },
+};
 ```
 
 ### `shared.V2BulkElementDeleteMetadata`
 
 ```typescript
-const value: shared.V2BulkElementDeleteMetadata = /* values here */
+const value: shared.V2BulkElementDeleteMetadata = {
+  action: "<value>",
+};
 ```
 
 ### `shared.V2BulkElementRevertTransaction`
 
 ```typescript
-const value: shared.V2BulkElementRevertTransaction = /* values here */
+const value: shared.V2BulkElementRevertTransaction = {
+  action: "<value>",
+};
 ```
 

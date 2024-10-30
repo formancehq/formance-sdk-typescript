@@ -11,10 +11,10 @@ let value: UpdateConnectorConfigV1Request = {
     apiKey: "XXX",
     clientID: "XXX",
     endpoint: "XXX",
-    name: "My Moneycorp Account",
+    name: "My MangoPay Account",
     pollingPeriod: "60s",
   },
-  connector: Connector.Adyen,
+  connector: Connector.Modulr,
   connectorId: "XXX",
 };
 ```

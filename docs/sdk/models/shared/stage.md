@@ -1,38 +1,31 @@
 # Stage
 
-## Example Usage
-
-```typescript
-import { Stage } from "@formance/formance-sdk/sdk/models/shared";
-
-let value: Stage = {
-  event: "<value>",
-};
-```
 
 ## Supported Types
 
 ### `shared.StageSend`
 
 ```typescript
-const value: shared.StageSend = /* values here */
+const value: shared.StageSend = {};
 ```
 
 ### `shared.StageDelay`
 
 ```typescript
-const value: shared.StageDelay = /* values here */
+const value: shared.StageDelay = {};
 ```
 
 ### `shared.StageWaitEvent`
 
 ```typescript
-const value: shared.StageWaitEvent = /* values here */
+const value: shared.StageWaitEvent = {
+  event: "<value>",
+};
 ```
 
 ### `shared.Update`
 
 ```typescript
-const value: shared.Update = /* values here */
+const value: shared.Update = {};
 ```
 

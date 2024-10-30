@@ -8,6 +8,9 @@ export type Data = {
   connectorID: string;
 };
 
+/**
+ * OK
+ */
 export type ConnectorResponse = {
   data: Data;
 };

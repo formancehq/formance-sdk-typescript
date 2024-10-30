@@ -45,10 +45,8 @@ export async function paymentsV1DeletePool(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.DeletePoolRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

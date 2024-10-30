@@ -7,7 +7,7 @@ import { ConnectorsConfigsResponseConnector } from "@formance/formance-sdk/sdk/m
 
 let value: ConnectorsConfigsResponseConnector = {
   key: {
-    dataType: "text",
+    dataType: "geometry",
     required: false,
   },
 };

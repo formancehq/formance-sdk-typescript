@@ -1,5 +1,7 @@
 # ConnectorsConfigsResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -9,7 +11,7 @@ let value: ConnectorsConfigsResponse = {
   data: {
     connector: {
       key: {
-        dataType: "bit",
+        dataType: "bigint",
         required: false,
       },
     },

@@ -45,10 +45,8 @@ export async function orchestrationV1GetInstanceStageHistory(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.GetInstanceStageHistoryRequest$outboundSchema.parse(value),
     "Input validation failed",

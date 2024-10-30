@@ -45,10 +45,8 @@ export async function webhooksV1GetManyConfigs(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.GetManyConfigsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

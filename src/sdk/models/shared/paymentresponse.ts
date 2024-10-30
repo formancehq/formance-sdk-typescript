@@ -10,6 +10,9 @@ import {
   Payment$outboundSchema,
 } from "./payment.js";
 
+/**
+ * OK
+ */
 export type PaymentResponse = {
   data: Payment;
 };

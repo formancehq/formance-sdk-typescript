@@ -11,12 +11,13 @@ let value: GetHoldsResponse = {
     cursor: {
       data: [
         {
-          description: "Public-key actuating methodology",
-          id: "7438575f-2159-4a6f-b5ba-dfecb521368c",
+          description:
+            "uh-huh bathrobe submissive meh nor mmm elevator utter heavily",
+          id: "38b18f3a-907b-40e8-a03f-914706739c39",
           metadata: {
             "key": "<value>",
           },
-          walletID: "<value>",
+          walletID: "<id>",
         },
       ],
       hasMore: false,
@@ -25,7 +26,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 100,
+  statusCode: 508,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,12 +7,12 @@ import { V2ActivityDebitWalletOutput } from "@formance/formance-sdk/sdk/models/s
 
 let value: V2ActivityDebitWalletOutput = {
   data: {
-    description: "Devolved client-driven hardware",
-    id: "51dc8f1c-453c-42da-80ca-eb8d484f3058",
+    description: "unselfish meh strange vaguely athwart yearningly",
+    id: "d8648e48-353f-49b1-95e1-2a9de2460137",
     metadata: {
       "key": "<value>",
     },
-    walletID: "<value>",
+    walletID: "<id>",
   },
 };
 ```

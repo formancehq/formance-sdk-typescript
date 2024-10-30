@@ -42,10 +42,8 @@ export async function ledgerV1RevertTransaction(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.RevertTransactionRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

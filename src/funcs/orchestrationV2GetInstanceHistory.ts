@@ -45,10 +45,8 @@ export async function orchestrationV2GetInstanceHistory(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.V2GetInstanceHistoryRequest$outboundSchema.parse(value),
     "Input validation failed",

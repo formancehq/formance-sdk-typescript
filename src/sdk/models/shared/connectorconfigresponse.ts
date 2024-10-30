@@ -10,6 +10,9 @@ import {
   ConnectorConfig$outboundSchema,
 } from "./connectorconfig.js";
 
+/**
+ * OK
+ */
 export type ConnectorConfigResponse = {
   data: ConnectorConfig;
 };

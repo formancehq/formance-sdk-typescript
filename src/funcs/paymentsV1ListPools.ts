@@ -42,10 +42,8 @@ export async function paymentsV1ListPools(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ListPoolsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

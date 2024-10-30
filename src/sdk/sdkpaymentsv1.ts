@@ -31,6 +31,7 @@ import { paymentsV1ListPools } from "../funcs/paymentsV1ListPools.js";
 import { paymentsV1ListTransferInitiations } from "../funcs/paymentsV1ListTransferInitiations.js";
 import { paymentsV1PaymentsgetAccount } from "../funcs/paymentsV1PaymentsgetAccount.js";
 import { paymentsV1PaymentsgetServerInfo } from "../funcs/paymentsV1PaymentsgetServerInfo.js";
+import { paymentsV1PaymentslistAccounts } from "../funcs/paymentsV1PaymentslistAccounts.js";
 import { paymentsV1ReadConnectorConfig } from "../funcs/paymentsV1ReadConnectorConfig.js";
 import { paymentsV1ReadConnectorConfigV1 } from "../funcs/paymentsV1ReadConnectorConfigV1.js";
 import { paymentsV1RemoveAccountFromPool } from "../funcs/paymentsV1RemoveAccountFromPool.js";
@@ -501,6 +502,20 @@ export class SDKPaymentsV1 extends ClientSDK {
   ): Promise<operations.PaymentsgetServerInfoResponse> {
     return unwrapAsync(paymentsV1PaymentsgetServerInfo(
       this,
+      options,
+    ));
+  }
+
+  /**
+   * List accounts
+   */
+  async paymentslistAccounts(
+    request: operations.PaymentslistAccountsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.PaymentslistAccountsResponse> {
+    return unwrapAsync(paymentsV1PaymentslistAccounts(
+      this,
+      request,
       options,
     ));
   }

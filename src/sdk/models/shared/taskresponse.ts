@@ -62,6 +62,9 @@ export type TaskResponseData =
   | TaskMangoPay
   | TaskMoneycorp;
 
+/**
+ * OK
+ */
 export type TaskResponse = {
   data:
     | TaskStripe

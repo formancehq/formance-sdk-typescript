@@ -15,6 +15,8 @@ export class SDKSearchV1 extends ClientSDK {
    *
    * @remarks
    * Elasticsearch.v1 query engine
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async search(
     request: shared.Query,
@@ -29,6 +31,8 @@ export class SDKSearchV1 extends ClientSDK {
 
   /**
    * Get server info
+   *
+   * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   async searchgetServerInfo(
     options?: RequestOptions,

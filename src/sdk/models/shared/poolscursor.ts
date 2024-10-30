@@ -18,6 +18,9 @@ export type PoolsCursorCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * OK
+ */
 export type PoolsCursor = {
   cursor: PoolsCursorCursor;
 };

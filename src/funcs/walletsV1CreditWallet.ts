@@ -42,10 +42,8 @@ export async function walletsV1CreditWallet(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.CreditWalletRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

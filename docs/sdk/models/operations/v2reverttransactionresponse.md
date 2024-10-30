@@ -7,13 +7,13 @@ import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: V2RevertTransactionResponse = {
   contentType: "<value>",
-  statusCode: 408,
+  statusCode: 303,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2RevertTransactionResponse: {
     data: {
-      id: BigInt("618016"),
+      id: BigInt("69167"),
       metadata: {
         "admin": "true",
       },
@@ -27,7 +27,7 @@ let value: V2RevertTransactionResponse = {
       ],
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2023-04-15T22:19:54.875Z"),
+      timestamp: new Date("2024-02-04T09:09:59.216Z"),
     },
   },
 };

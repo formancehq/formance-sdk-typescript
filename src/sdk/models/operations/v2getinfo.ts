@@ -4,7 +4,6 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
-import * as errors from "../errors/index.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetInfoResponse = {
@@ -27,7 +26,7 @@ export type V2GetInfoResponse = {
   /**
    * Error
    */
-  v2ErrorResponse?: errors.V2ErrorResponse | undefined;
+  v2ErrorResponse?: shared.V2ErrorResponse | undefined;
 };
 
 /** @internal */
@@ -40,7 +39,7 @@ export const V2GetInfoResponse$inboundSchema: z.ZodType<
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
   V2ConfigInfoResponse: shared.V2ConfigInfoResponse$inboundSchema.optional(),
-  V2ErrorResponse: errors.V2ErrorResponse$inboundSchema.optional(),
+  V2ErrorResponse: shared.V2ErrorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
@@ -57,7 +56,7 @@ export type V2GetInfoResponse$Outbound = {
   StatusCode: number;
   RawResponse: never;
   V2ConfigInfoResponse?: shared.V2ConfigInfoResponse$Outbound | undefined;
-  V2ErrorResponse?: errors.V2ErrorResponse$Outbound | undefined;
+  V2ErrorResponse?: shared.V2ErrorResponse$Outbound | undefined;
 };
 
 /** @internal */
@@ -72,7 +71,7 @@ export const V2GetInfoResponse$outboundSchema: z.ZodType<
     throw new Error("Response cannot be serialized");
   }),
   v2ConfigInfoResponse: shared.V2ConfigInfoResponse$outboundSchema.optional(),
-  v2ErrorResponse: errors.V2ErrorResponse$outboundSchema.optional(),
+  v2ErrorResponse: shared.V2ErrorResponse$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",

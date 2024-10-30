@@ -42,10 +42,8 @@ export async function paymentsV1ListTransferInitiations(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListTransferInitiationsRequest$outboundSchema.parse(value),
     "Input validation failed",

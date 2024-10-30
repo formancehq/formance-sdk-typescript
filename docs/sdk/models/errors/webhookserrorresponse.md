@@ -1,7 +1,5 @@
 # WebhooksErrorResponse
 
-Error
-
 ## Example Usage
 
 ```typescript

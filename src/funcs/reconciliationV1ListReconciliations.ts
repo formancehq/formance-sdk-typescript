@@ -42,10 +42,8 @@ export async function reconciliationV1ListReconciliations(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ListReconciliationsRequest$outboundSchema.parse(value),
     "Input validation failed",

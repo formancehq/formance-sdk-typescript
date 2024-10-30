@@ -45,10 +45,8 @@ export async function orchestrationV2ReadTrigger(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.V2ReadTriggerRequest$outboundSchema.parse(value),
     "Input validation failed",
   );

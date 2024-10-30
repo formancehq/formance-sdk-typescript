@@ -1,5 +1,7 @@
 # TransferInitiationResponse
 
+OK
+
 ## Example Usage
 
 ```typescript
@@ -7,19 +9,19 @@ import { TransferInitiationResponse, TransferInitiationStatus, TransferInitiatio
 
 let value: TransferInitiationResponse = {
   data: {
-    amount: BigInt("512349"),
+    amount: BigInt("531606"),
     asset: "USD",
-    connectorID: "<value>",
-    createdAt: new Date("2023-05-17T23:47:00.287Z"),
-    description: "Optimized next generation synergy",
-    destinationAccountID: "<value>",
+    connectorID: "<id>",
+    createdAt: new Date("2023-12-13T17:06:01.103Z"),
+    description: "gah newsstand truly queasily switch adjourn because",
+    destinationAccountID: "<id>",
     error: "<value>",
     id: "XXX",
-    initialAmount: BigInt("617035"),
+    initialAmount: BigInt("421111"),
     reference: "<value>",
-    scheduledAt: new Date("2024-08-31T01:35:36.933Z"),
-    sourceAccountID: "<value>",
-    status: TransferInitiationStatus.ReverseProcessing,
+    scheduledAt: new Date("2022-10-14T07:06:11.995Z"),
+    sourceAccountID: "<id>",
+    status: TransferInitiationStatus.Rejected,
     type: TransferInitiationType.Transfer,
   },
 };

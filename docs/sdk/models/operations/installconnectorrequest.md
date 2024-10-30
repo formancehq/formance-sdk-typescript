@@ -14,7 +14,7 @@ let value: InstallConnectorRequest = {
     name: "My Moneycorp Account",
     pollingPeriod: "60s",
   },
-  connector: Connector.Modulr,
+  connector: Connector.Stripe,
 };
 ```
 

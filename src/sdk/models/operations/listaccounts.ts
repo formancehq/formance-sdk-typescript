@@ -4,7 +4,6 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
-import * as errors from "../errors/index.js";
 import * as shared from "../shared/index.js";
 
 export type ListAccountsRequest = {
@@ -69,7 +68,7 @@ export type ListAccountsResponse = {
   /**
    * Not found
    */
-  errorResponse?: errors.ErrorResponse | undefined;
+  errorResponse?: shared.ErrorResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -154,7 +153,7 @@ export const ListAccountsResponse$inboundSchema: z.ZodType<
   AccountsCursorResponse: shared.AccountsCursorResponse$inboundSchema
     .optional(),
   ContentType: z.string(),
-  ErrorResponse: errors.ErrorResponse$inboundSchema.optional(),
+  ErrorResponse: shared.ErrorResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {
@@ -171,7 +170,7 @@ export const ListAccountsResponse$inboundSchema: z.ZodType<
 export type ListAccountsResponse$Outbound = {
   AccountsCursorResponse?: shared.AccountsCursorResponse$Outbound | undefined;
   ContentType: string;
-  ErrorResponse?: errors.ErrorResponse$Outbound | undefined;
+  ErrorResponse?: shared.ErrorResponse$Outbound | undefined;
   StatusCode: number;
   RawResponse: never;
 };
@@ -185,7 +184,7 @@ export const ListAccountsResponse$outboundSchema: z.ZodType<
   accountsCursorResponse: shared.AccountsCursorResponse$outboundSchema
     .optional(),
   contentType: z.string(),
-  errorResponse: errors.ErrorResponse$outboundSchema.optional(),
+  errorResponse: shared.ErrorResponse$outboundSchema.optional(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");

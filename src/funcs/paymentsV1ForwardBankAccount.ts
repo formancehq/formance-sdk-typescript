@@ -42,10 +42,8 @@ export async function paymentsV1ForwardBankAccount(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ForwardBankAccountRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
