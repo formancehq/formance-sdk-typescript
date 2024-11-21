@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetBankAccountRequest = {
@@ -68,6 +71,24 @@ export namespace GetBankAccountRequest$ {
   export type Outbound = GetBankAccountRequest$Outbound;
 }
 
+export function getBankAccountRequestToJSON(
+  getBankAccountRequest: GetBankAccountRequest,
+): string {
+  return JSON.stringify(
+    GetBankAccountRequest$outboundSchema.parse(getBankAccountRequest),
+  );
+}
+
+export function getBankAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBankAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBankAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBankAccountRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBankAccountResponse$inboundSchema: z.ZodType<
   GetBankAccountResponse,
@@ -127,4 +148,22 @@ export namespace GetBankAccountResponse$ {
   export const outboundSchema = GetBankAccountResponse$outboundSchema;
   /** @deprecated use `GetBankAccountResponse$Outbound` instead. */
   export type Outbound = GetBankAccountResponse$Outbound;
+}
+
+export function getBankAccountResponseToJSON(
+  getBankAccountResponse: GetBankAccountResponse,
+): string {
+  return JSON.stringify(
+    GetBankAccountResponse$outboundSchema.parse(getBankAccountResponse),
+  );
+}
+
+export function getBankAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBankAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBankAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBankAccountResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2CountTransactionsRequest = {
   /**
@@ -73,6 +76,24 @@ export namespace V2CountTransactionsRequest$ {
   export type Outbound = V2CountTransactionsRequest$Outbound;
 }
 
+export function v2CountTransactionsRequestToJSON(
+  v2CountTransactionsRequest: V2CountTransactionsRequest,
+): string {
+  return JSON.stringify(
+    V2CountTransactionsRequest$outboundSchema.parse(v2CountTransactionsRequest),
+  );
+}
+
+export function v2CountTransactionsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CountTransactionsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CountTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CountTransactionsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2CountTransactionsResponse$inboundSchema: z.ZodType<
   V2CountTransactionsResponse,
@@ -132,4 +153,24 @@ export namespace V2CountTransactionsResponse$ {
   export const outboundSchema = V2CountTransactionsResponse$outboundSchema;
   /** @deprecated use `V2CountTransactionsResponse$Outbound` instead. */
   export type Outbound = V2CountTransactionsResponse$Outbound;
+}
+
+export function v2CountTransactionsResponseToJSON(
+  v2CountTransactionsResponse: V2CountTransactionsResponse,
+): string {
+  return JSON.stringify(
+    V2CountTransactionsResponse$outboundSchema.parse(
+      v2CountTransactionsResponse,
+    ),
+  );
+}
+
+export function v2CountTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CountTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CountTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CountTransactionsResponse' from JSON`,
+  );
 }

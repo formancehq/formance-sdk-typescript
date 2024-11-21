@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Attempt,
   Attempt$inboundSchema,
@@ -48,4 +51,20 @@ export namespace AttemptResponse$ {
   export const outboundSchema = AttemptResponse$outboundSchema;
   /** @deprecated use `AttemptResponse$Outbound` instead. */
   export type Outbound = AttemptResponse$Outbound;
+}
+
+export function attemptResponseToJSON(
+  attemptResponse: AttemptResponse,
+): string {
+  return JSON.stringify(AttemptResponse$outboundSchema.parse(attemptResponse));
+}
+
+export function attemptResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AttemptResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AttemptResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AttemptResponse' from JSON`,
+  );
 }

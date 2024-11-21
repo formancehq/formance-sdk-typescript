@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConnectorConfig,
   ConnectorConfig$inboundSchema,
@@ -51,4 +54,22 @@ export namespace ConnectorConfigResponse$ {
   export const outboundSchema = ConnectorConfigResponse$outboundSchema;
   /** @deprecated use `ConnectorConfigResponse$Outbound` instead. */
   export type Outbound = ConnectorConfigResponse$Outbound;
+}
+
+export function connectorConfigResponseToJSON(
+  connectorConfigResponse: ConnectorConfigResponse,
+): string {
+  return JSON.stringify(
+    ConnectorConfigResponse$outboundSchema.parse(connectorConfigResponse),
+  );
+}
+
+export function connectorConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConfigResponse' from JSON`,
+  );
 }

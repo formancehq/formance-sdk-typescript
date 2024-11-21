@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2AddMetadataToAccountRequest = {
   /**
@@ -106,6 +109,26 @@ export namespace V2AddMetadataToAccountRequest$ {
   export type Outbound = V2AddMetadataToAccountRequest$Outbound;
 }
 
+export function v2AddMetadataToAccountRequestToJSON(
+  v2AddMetadataToAccountRequest: V2AddMetadataToAccountRequest,
+): string {
+  return JSON.stringify(
+    V2AddMetadataToAccountRequest$outboundSchema.parse(
+      v2AddMetadataToAccountRequest,
+    ),
+  );
+}
+
+export function v2AddMetadataToAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AddMetadataToAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AddMetadataToAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AddMetadataToAccountRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2AddMetadataToAccountResponse$inboundSchema: z.ZodType<
   V2AddMetadataToAccountResponse,
@@ -160,4 +183,24 @@ export namespace V2AddMetadataToAccountResponse$ {
   export const outboundSchema = V2AddMetadataToAccountResponse$outboundSchema;
   /** @deprecated use `V2AddMetadataToAccountResponse$Outbound` instead. */
   export type Outbound = V2AddMetadataToAccountResponse$Outbound;
+}
+
+export function v2AddMetadataToAccountResponseToJSON(
+  v2AddMetadataToAccountResponse: V2AddMetadataToAccountResponse,
+): string {
+  return JSON.stringify(
+    V2AddMetadataToAccountResponse$outboundSchema.parse(
+      v2AddMetadataToAccountResponse,
+    ),
+  );
+}
+
+export function v2AddMetadataToAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AddMetadataToAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AddMetadataToAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AddMetadataToAccountResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListTransactionsRequest = {
@@ -153,6 +156,24 @@ export namespace ListTransactionsRequest$ {
   export type Outbound = ListTransactionsRequest$Outbound;
 }
 
+export function listTransactionsRequestToJSON(
+  listTransactionsRequest: ListTransactionsRequest,
+): string {
+  return JSON.stringify(
+    ListTransactionsRequest$outboundSchema.parse(listTransactionsRequest),
+  );
+}
+
+export function listTransactionsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransactionsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListTransactionsResponse$inboundSchema: z.ZodType<
   ListTransactionsResponse,
@@ -216,4 +237,22 @@ export namespace ListTransactionsResponse$ {
   export const outboundSchema = ListTransactionsResponse$outboundSchema;
   /** @deprecated use `ListTransactionsResponse$Outbound` instead. */
   export type Outbound = ListTransactionsResponse$Outbound;
+}
+
+export function listTransactionsResponseToJSON(
+  listTransactionsResponse: ListTransactionsResponse,
+): string {
+  return JSON.stringify(
+    ListTransactionsResponse$outboundSchema.parse(listTransactionsResponse),
+  );
+}
+
+export function listTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransactionsResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListPoliciesRequest = {
@@ -82,6 +85,24 @@ export namespace ListPoliciesRequest$ {
   export type Outbound = ListPoliciesRequest$Outbound;
 }
 
+export function listPoliciesRequestToJSON(
+  listPoliciesRequest: ListPoliciesRequest,
+): string {
+  return JSON.stringify(
+    ListPoliciesRequest$outboundSchema.parse(listPoliciesRequest),
+  );
+}
+
+export function listPoliciesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPoliciesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPoliciesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPoliciesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListPoliciesResponse$inboundSchema: z.ZodType<
   ListPoliciesResponse,
@@ -143,4 +164,22 @@ export namespace ListPoliciesResponse$ {
   export const outboundSchema = ListPoliciesResponse$outboundSchema;
   /** @deprecated use `ListPoliciesResponse$Outbound` instead. */
   export type Outbound = ListPoliciesResponse$Outbound;
+}
+
+export function listPoliciesResponseToJSON(
+  listPoliciesResponse: ListPoliciesResponse,
+): string {
+  return JSON.stringify(
+    ListPoliciesResponse$outboundSchema.parse(listPoliciesResponse),
+  );
+}
+
+export function listPoliciesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListPoliciesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListPoliciesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListPoliciesResponse' from JSON`,
+  );
 }

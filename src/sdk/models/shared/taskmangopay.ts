@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskMangoPayDescriptor$ {
   export type Outbound = TaskMangoPayDescriptor$Outbound;
 }
 
+export function taskMangoPayDescriptorToJSON(
+  taskMangoPayDescriptor: TaskMangoPayDescriptor,
+): string {
+  return JSON.stringify(
+    TaskMangoPayDescriptor$outboundSchema.parse(taskMangoPayDescriptor),
+  );
+}
+
+export function taskMangoPayDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMangoPayDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMangoPayDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMangoPayDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskMangoPayState$inboundSchema: z.ZodType<
   TaskMangoPayState,
@@ -98,6 +119,24 @@ export namespace TaskMangoPayState$ {
   export const outboundSchema = TaskMangoPayState$outboundSchema;
   /** @deprecated use `TaskMangoPayState$Outbound` instead. */
   export type Outbound = TaskMangoPayState$Outbound;
+}
+
+export function taskMangoPayStateToJSON(
+  taskMangoPayState: TaskMangoPayState,
+): string {
+  return JSON.stringify(
+    TaskMangoPayState$outboundSchema.parse(taskMangoPayState),
+  );
+}
+
+export function taskMangoPayStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMangoPayState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMangoPayState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMangoPayState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +194,18 @@ export namespace TaskMangoPay$ {
   export const outboundSchema = TaskMangoPay$outboundSchema;
   /** @deprecated use `TaskMangoPay$Outbound` instead. */
   export type Outbound = TaskMangoPay$Outbound;
+}
+
+export function taskMangoPayToJSON(taskMangoPay: TaskMangoPay): string {
+  return JSON.stringify(TaskMangoPay$outboundSchema.parse(taskMangoPay));
+}
+
+export function taskMangoPayFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMangoPay, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMangoPay$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMangoPay' from JSON`,
+  );
 }

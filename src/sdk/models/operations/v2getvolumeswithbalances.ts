@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetVolumesWithBalancesRequest = {
@@ -119,6 +122,26 @@ export namespace V2GetVolumesWithBalancesRequest$ {
   export type Outbound = V2GetVolumesWithBalancesRequest$Outbound;
 }
 
+export function v2GetVolumesWithBalancesRequestToJSON(
+  v2GetVolumesWithBalancesRequest: V2GetVolumesWithBalancesRequest,
+): string {
+  return JSON.stringify(
+    V2GetVolumesWithBalancesRequest$outboundSchema.parse(
+      v2GetVolumesWithBalancesRequest,
+    ),
+  );
+}
+
+export function v2GetVolumesWithBalancesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetVolumesWithBalancesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetVolumesWithBalancesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetVolumesWithBalancesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetVolumesWithBalancesResponse$inboundSchema: z.ZodType<
   V2GetVolumesWithBalancesResponse,
@@ -182,4 +205,24 @@ export namespace V2GetVolumesWithBalancesResponse$ {
   export const outboundSchema = V2GetVolumesWithBalancesResponse$outboundSchema;
   /** @deprecated use `V2GetVolumesWithBalancesResponse$Outbound` instead. */
   export type Outbound = V2GetVolumesWithBalancesResponse$Outbound;
+}
+
+export function v2GetVolumesWithBalancesResponseToJSON(
+  v2GetVolumesWithBalancesResponse: V2GetVolumesWithBalancesResponse,
+): string {
+  return JSON.stringify(
+    V2GetVolumesWithBalancesResponse$outboundSchema.parse(
+      v2GetVolumesWithBalancesResponse,
+    ),
+  );
+}
+
+export function v2GetVolumesWithBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetVolumesWithBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetVolumesWithBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetVolumesWithBalancesResponse' from JSON`,
+  );
 }

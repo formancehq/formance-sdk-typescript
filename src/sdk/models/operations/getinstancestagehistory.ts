@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetInstanceStageHistoryRequest = {
@@ -77,6 +80,26 @@ export namespace GetInstanceStageHistoryRequest$ {
   export type Outbound = GetInstanceStageHistoryRequest$Outbound;
 }
 
+export function getInstanceStageHistoryRequestToJSON(
+  getInstanceStageHistoryRequest: GetInstanceStageHistoryRequest,
+): string {
+  return JSON.stringify(
+    GetInstanceStageHistoryRequest$outboundSchema.parse(
+      getInstanceStageHistoryRequest,
+    ),
+  );
+}
+
+export function getInstanceStageHistoryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceStageHistoryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceStageHistoryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceStageHistoryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetInstanceStageHistoryResponse$inboundSchema: z.ZodType<
   GetInstanceStageHistoryResponse,
@@ -142,4 +165,24 @@ export namespace GetInstanceStageHistoryResponse$ {
   export const outboundSchema = GetInstanceStageHistoryResponse$outboundSchema;
   /** @deprecated use `GetInstanceStageHistoryResponse$Outbound` instead. */
   export type Outbound = GetInstanceStageHistoryResponse$Outbound;
+}
+
+export function getInstanceStageHistoryResponseToJSON(
+  getInstanceStageHistoryResponse: GetInstanceStageHistoryResponse,
+): string {
+  return JSON.stringify(
+    GetInstanceStageHistoryResponse$outboundSchema.parse(
+      getInstanceStageHistoryResponse,
+    ),
+  );
+}
+
+export function getInstanceStageHistoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceStageHistoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceStageHistoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceStageHistoryResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UpdateBankAccountMetadataRequest = {
@@ -79,6 +82,26 @@ export namespace UpdateBankAccountMetadataRequest$ {
   export type Outbound = UpdateBankAccountMetadataRequest$Outbound;
 }
 
+export function updateBankAccountMetadataRequestToJSON(
+  updateBankAccountMetadataRequest: UpdateBankAccountMetadataRequest,
+): string {
+  return JSON.stringify(
+    UpdateBankAccountMetadataRequest$outboundSchema.parse(
+      updateBankAccountMetadataRequest,
+    ),
+  );
+}
+
+export function updateBankAccountMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateBankAccountMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateBankAccountMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateBankAccountMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateBankAccountMetadataResponse$inboundSchema: z.ZodType<
   UpdateBankAccountMetadataResponse,
@@ -134,4 +157,24 @@ export namespace UpdateBankAccountMetadataResponse$ {
     UpdateBankAccountMetadataResponse$outboundSchema;
   /** @deprecated use `UpdateBankAccountMetadataResponse$Outbound` instead. */
   export type Outbound = UpdateBankAccountMetadataResponse$Outbound;
+}
+
+export function updateBankAccountMetadataResponseToJSON(
+  updateBankAccountMetadataResponse: UpdateBankAccountMetadataResponse,
+): string {
+  return JSON.stringify(
+    UpdateBankAccountMetadataResponse$outboundSchema.parse(
+      updateBankAccountMetadataResponse,
+    ),
+  );
+}
+
+export function updateBankAccountMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateBankAccountMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateBankAccountMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateBankAccountMetadataResponse' from JSON`,
+  );
 }

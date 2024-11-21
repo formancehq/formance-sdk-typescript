@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReadConnectorConfigV1Request = {
@@ -75,6 +78,26 @@ export namespace ReadConnectorConfigV1Request$ {
   export type Outbound = ReadConnectorConfigV1Request$Outbound;
 }
 
+export function readConnectorConfigV1RequestToJSON(
+  readConnectorConfigV1Request: ReadConnectorConfigV1Request,
+): string {
+  return JSON.stringify(
+    ReadConnectorConfigV1Request$outboundSchema.parse(
+      readConnectorConfigV1Request,
+    ),
+  );
+}
+
+export function readConnectorConfigV1RequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadConnectorConfigV1Request, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadConnectorConfigV1Request$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadConnectorConfigV1Request' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReadConnectorConfigV1Response$inboundSchema: z.ZodType<
   ReadConnectorConfigV1Response,
@@ -136,4 +159,24 @@ export namespace ReadConnectorConfigV1Response$ {
   export const outboundSchema = ReadConnectorConfigV1Response$outboundSchema;
   /** @deprecated use `ReadConnectorConfigV1Response$Outbound` instead. */
   export type Outbound = ReadConnectorConfigV1Response$Outbound;
+}
+
+export function readConnectorConfigV1ResponseToJSON(
+  readConnectorConfigV1Response: ReadConnectorConfigV1Response,
+): string {
+  return JSON.stringify(
+    ReadConnectorConfigV1Response$outboundSchema.parse(
+      readConnectorConfigV1Response,
+    ),
+  );
+}
+
+export function readConnectorConfigV1ResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadConnectorConfigV1Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadConnectorConfigV1Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadConnectorConfigV1Response' from JSON`,
+  );
 }

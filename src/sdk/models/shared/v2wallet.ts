@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Wallet = {
   createdAt: Date;
@@ -64,4 +67,18 @@ export namespace V2Wallet$ {
   export const outboundSchema = V2Wallet$outboundSchema;
   /** @deprecated use `V2Wallet$Outbound` instead. */
   export type Outbound = V2Wallet$Outbound;
+}
+
+export function v2WalletToJSON(v2Wallet: V2Wallet): string {
+  return JSON.stringify(V2Wallet$outboundSchema.parse(v2Wallet));
+}
+
+export function v2WalletFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Wallet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Wallet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Wallet' from JSON`,
+  );
 }

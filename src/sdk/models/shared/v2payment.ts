@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Connector,
   V2Connector$inboundSchema,
@@ -102,6 +105,20 @@ export namespace V2PaymentRaw$ {
   export const outboundSchema = V2PaymentRaw$outboundSchema;
   /** @deprecated use `V2PaymentRaw$Outbound` instead. */
   export type Outbound = V2PaymentRaw$Outbound;
+}
+
+export function v2PaymentRawToJSON(v2PaymentRaw: V2PaymentRaw): string {
+  return JSON.stringify(V2PaymentRaw$outboundSchema.parse(v2PaymentRaw));
+}
+
+export function v2PaymentRawFromJSON(
+  jsonString: string,
+): SafeParseResult<V2PaymentRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2PaymentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2PaymentRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -220,4 +237,18 @@ export namespace V2Payment$ {
   export const outboundSchema = V2Payment$outboundSchema;
   /** @deprecated use `V2Payment$Outbound` instead. */
   export type Outbound = V2Payment$Outbound;
+}
+
+export function v2PaymentToJSON(v2Payment: V2Payment): string {
+  return JSON.stringify(V2Payment$outboundSchema.parse(v2Payment));
+}
+
+export function v2PaymentFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Payment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Payment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Payment' from JSON`,
+  );
 }

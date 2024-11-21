@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddAccountToPoolRequest = {
   accountID: string;
@@ -42,4 +45,22 @@ export namespace AddAccountToPoolRequest$ {
   export const outboundSchema = AddAccountToPoolRequest$outboundSchema;
   /** @deprecated use `AddAccountToPoolRequest$Outbound` instead. */
   export type Outbound = AddAccountToPoolRequest$Outbound;
+}
+
+export function addAccountToPoolRequestToJSON(
+  addAccountToPoolRequest: AddAccountToPoolRequest,
+): string {
+  return JSON.stringify(
+    AddAccountToPoolRequest$outboundSchema.parse(addAccountToPoolRequest),
+  );
+}
+
+export function addAccountToPoolRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddAccountToPoolRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddAccountToPoolRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddAccountToPoolRequest' from JSON`,
+  );
 }

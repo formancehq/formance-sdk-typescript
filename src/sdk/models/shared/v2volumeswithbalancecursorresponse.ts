@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2VolumesWithBalance,
   V2VolumesWithBalance$inboundSchema,
@@ -72,6 +75,33 @@ export namespace V2VolumesWithBalanceCursorResponseCursor$ {
   export type Outbound = V2VolumesWithBalanceCursorResponseCursor$Outbound;
 }
 
+export function v2VolumesWithBalanceCursorResponseCursorToJSON(
+  v2VolumesWithBalanceCursorResponseCursor:
+    V2VolumesWithBalanceCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    V2VolumesWithBalanceCursorResponseCursor$outboundSchema.parse(
+      v2VolumesWithBalanceCursorResponseCursor,
+    ),
+  );
+}
+
+export function v2VolumesWithBalanceCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  V2VolumesWithBalanceCursorResponseCursor,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2VolumesWithBalanceCursorResponseCursor$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'V2VolumesWithBalanceCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2VolumesWithBalanceCursorResponse$inboundSchema: z.ZodType<
   V2VolumesWithBalanceCursorResponse,
@@ -107,4 +137,25 @@ export namespace V2VolumesWithBalanceCursorResponse$ {
     V2VolumesWithBalanceCursorResponse$outboundSchema;
   /** @deprecated use `V2VolumesWithBalanceCursorResponse$Outbound` instead. */
   export type Outbound = V2VolumesWithBalanceCursorResponse$Outbound;
+}
+
+export function v2VolumesWithBalanceCursorResponseToJSON(
+  v2VolumesWithBalanceCursorResponse: V2VolumesWithBalanceCursorResponse,
+): string {
+  return JSON.stringify(
+    V2VolumesWithBalanceCursorResponse$outboundSchema.parse(
+      v2VolumesWithBalanceCursorResponse,
+    ),
+  );
+}
+
+export function v2VolumesWithBalanceCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2VolumesWithBalanceCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2VolumesWithBalanceCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2VolumesWithBalanceCursorResponse' from JSON`,
+  );
 }

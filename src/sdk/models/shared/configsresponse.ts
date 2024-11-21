@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebhooksConfig,
   WebhooksConfig$inboundSchema,
@@ -58,6 +61,24 @@ export namespace ConfigsResponseCursor$ {
   export type Outbound = ConfigsResponseCursor$Outbound;
 }
 
+export function configsResponseCursorToJSON(
+  configsResponseCursor: ConfigsResponseCursor,
+): string {
+  return JSON.stringify(
+    ConfigsResponseCursor$outboundSchema.parse(configsResponseCursor),
+  );
+}
+
+export function configsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConfigsResponse$inboundSchema: z.ZodType<
   ConfigsResponse,
@@ -92,4 +113,20 @@ export namespace ConfigsResponse$ {
   export const outboundSchema = ConfigsResponse$outboundSchema;
   /** @deprecated use `ConfigsResponse$Outbound` instead. */
   export type Outbound = ConfigsResponse$Outbound;
+}
+
+export function configsResponseToJSON(
+  configsResponse: ConfigsResponse,
+): string {
+  return JSON.stringify(ConfigsResponse$outboundSchema.parse(configsResponse));
+}
+
+export function configsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigsResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2LedgerInfo,
   V2LedgerInfo$inboundSchema,
@@ -48,4 +51,22 @@ export namespace V2LedgerInfoResponse$ {
   export const outboundSchema = V2LedgerInfoResponse$outboundSchema;
   /** @deprecated use `V2LedgerInfoResponse$Outbound` instead. */
   export type Outbound = V2LedgerInfoResponse$Outbound;
+}
+
+export function v2LedgerInfoResponseToJSON(
+  v2LedgerInfoResponse: V2LedgerInfoResponse,
+): string {
+  return JSON.stringify(
+    V2LedgerInfoResponse$outboundSchema.parse(v2LedgerInfoResponse),
+  );
+}
+
+export function v2LedgerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2LedgerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2LedgerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2LedgerInfoResponse' from JSON`,
+  );
 }

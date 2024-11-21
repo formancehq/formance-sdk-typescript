@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Workflow,
   V2Workflow$inboundSchema,
@@ -70,6 +73,26 @@ export namespace V2ListWorkflowsResponseCursor$ {
   export type Outbound = V2ListWorkflowsResponseCursor$Outbound;
 }
 
+export function v2ListWorkflowsResponseCursorToJSON(
+  v2ListWorkflowsResponseCursor: V2ListWorkflowsResponseCursor,
+): string {
+  return JSON.stringify(
+    V2ListWorkflowsResponseCursor$outboundSchema.parse(
+      v2ListWorkflowsResponseCursor,
+    ),
+  );
+}
+
+export function v2ListWorkflowsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWorkflowsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWorkflowsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWorkflowsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListWorkflowsResponse$inboundSchema: z.ZodType<
   V2ListWorkflowsResponse,
@@ -104,4 +127,22 @@ export namespace V2ListWorkflowsResponse$ {
   export const outboundSchema = V2ListWorkflowsResponse$outboundSchema;
   /** @deprecated use `V2ListWorkflowsResponse$Outbound` instead. */
   export type Outbound = V2ListWorkflowsResponse$Outbound;
+}
+
+export function v2ListWorkflowsResponseToJSON(
+  v2ListWorkflowsResponse: V2ListWorkflowsResponse,
+): string {
+  return JSON.stringify(
+    V2ListWorkflowsResponse$outboundSchema.parse(v2ListWorkflowsResponse),
+  );
+}
+
+export function v2ListWorkflowsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWorkflowsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWorkflowsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWorkflowsResponse' from JSON`,
+  );
 }

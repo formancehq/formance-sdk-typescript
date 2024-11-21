@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConfigUser = {
   endpoint: string;
@@ -54,4 +57,18 @@ export namespace ConfigUser$ {
   export const outboundSchema = ConfigUser$outboundSchema;
   /** @deprecated use `ConfigUser$Outbound` instead. */
   export type Outbound = ConfigUser$Outbound;
+}
+
+export function configUserToJSON(configUser: ConfigUser): string {
+  return JSON.stringify(ConfigUser$outboundSchema.parse(configUser));
+}
+
+export function configUserFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigUser, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigUser$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigUser' from JSON`,
+  );
 }

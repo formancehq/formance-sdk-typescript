@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreateAccountResponse = {
@@ -84,4 +87,22 @@ export namespace CreateAccountResponse$ {
   export const outboundSchema = CreateAccountResponse$outboundSchema;
   /** @deprecated use `CreateAccountResponse$Outbound` instead. */
   export type Outbound = CreateAccountResponse$Outbound;
+}
+
+export function createAccountResponseToJSON(
+  createAccountResponse: CreateAccountResponse,
+): string {
+  return JSON.stringify(
+    CreateAccountResponse$outboundSchema.parse(createAccountResponse),
+  );
+}
+
+export function createAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateAccountResponse' from JSON`,
+  );
 }

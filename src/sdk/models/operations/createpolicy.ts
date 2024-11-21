@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreatePolicyResponse = {
@@ -84,4 +87,22 @@ export namespace CreatePolicyResponse$ {
   export const outboundSchema = CreatePolicyResponse$outboundSchema;
   /** @deprecated use `CreatePolicyResponse$Outbound` instead. */
   export type Outbound = CreatePolicyResponse$Outbound;
+}
+
+export function createPolicyResponseToJSON(
+  createPolicyResponse: CreatePolicyResponse,
+): string {
+  return JSON.stringify(
+    CreatePolicyResponse$outboundSchema.parse(createPolicyResponse),
+  );
+}
+
+export function createPolicyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePolicyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePolicyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePolicyResponse' from JSON`,
+  );
 }

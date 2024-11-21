@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2PostTransaction,
   V2PostTransaction$inboundSchema,
@@ -56,4 +59,24 @@ export namespace V2BulkElementCreateTransaction$ {
   export const outboundSchema = V2BulkElementCreateTransaction$outboundSchema;
   /** @deprecated use `V2BulkElementCreateTransaction$Outbound` instead. */
   export type Outbound = V2BulkElementCreateTransaction$Outbound;
+}
+
+export function v2BulkElementCreateTransactionToJSON(
+  v2BulkElementCreateTransaction: V2BulkElementCreateTransaction,
+): string {
+  return JSON.stringify(
+    V2BulkElementCreateTransaction$outboundSchema.parse(
+      v2BulkElementCreateTransaction,
+    ),
+  );
+}
+
+export function v2BulkElementCreateTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementCreateTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementCreateTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementCreateTransaction' from JSON`,
+  );
 }

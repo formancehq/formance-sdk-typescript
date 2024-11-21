@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenericConfig = {
   apiKey: string;
@@ -59,4 +62,18 @@ export namespace GenericConfig$ {
   export const outboundSchema = GenericConfig$outboundSchema;
   /** @deprecated use `GenericConfig$Outbound` instead. */
   export type Outbound = GenericConfig$Outbound;
+}
+
+export function genericConfigToJSON(genericConfig: GenericConfig): string {
+  return JSON.stringify(GenericConfig$outboundSchema.parse(genericConfig));
+}
+
+export function genericConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<GenericConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenericConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenericConfig' from JSON`,
+  );
 }

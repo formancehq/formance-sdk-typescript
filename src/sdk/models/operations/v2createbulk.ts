@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateBulkRequest = {
@@ -80,6 +83,24 @@ export namespace V2CreateBulkRequest$ {
   export type Outbound = V2CreateBulkRequest$Outbound;
 }
 
+export function v2CreateBulkRequestToJSON(
+  v2CreateBulkRequest: V2CreateBulkRequest,
+): string {
+  return JSON.stringify(
+    V2CreateBulkRequest$outboundSchema.parse(v2CreateBulkRequest),
+  );
+}
+
+export function v2CreateBulkRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateBulkRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateBulkRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateBulkRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2CreateBulkResponse$inboundSchema: z.ZodType<
   V2CreateBulkResponse,
@@ -139,4 +160,22 @@ export namespace V2CreateBulkResponse$ {
   export const outboundSchema = V2CreateBulkResponse$outboundSchema;
   /** @deprecated use `V2CreateBulkResponse$Outbound` instead. */
   export type Outbound = V2CreateBulkResponse$Outbound;
+}
+
+export function v2CreateBulkResponseToJSON(
+  v2CreateBulkResponse: V2CreateBulkResponse,
+): string {
+  return JSON.stringify(
+    V2CreateBulkResponse$outboundSchema.parse(v2CreateBulkResponse),
+  );
+}
+
+export function v2CreateBulkResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateBulkResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateBulkResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateBulkResponse' from JSON`,
+  );
 }

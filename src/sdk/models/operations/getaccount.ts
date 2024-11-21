@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetAccountRequest = {
@@ -80,6 +83,24 @@ export namespace GetAccountRequest$ {
   export type Outbound = GetAccountRequest$Outbound;
 }
 
+export function getAccountRequestToJSON(
+  getAccountRequest: GetAccountRequest,
+): string {
+  return JSON.stringify(
+    GetAccountRequest$outboundSchema.parse(getAccountRequest),
+  );
+}
+
+export function getAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAccountRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAccountResponse$inboundSchema: z.ZodType<
   GetAccountResponse,
@@ -139,4 +160,22 @@ export namespace GetAccountResponse$ {
   export const outboundSchema = GetAccountResponse$outboundSchema;
   /** @deprecated use `GetAccountResponse$Outbound` instead. */
   export type Outbound = GetAccountResponse$Outbound;
+}
+
+export function getAccountResponseToJSON(
+  getAccountResponse: GetAccountResponse,
+): string {
+  return JSON.stringify(
+    GetAccountResponse$outboundSchema.parse(getAccountResponse),
+  );
+}
+
+export function getAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAccountResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StripeConfig = {
   apiKey: string;
@@ -64,4 +67,18 @@ export namespace StripeConfig$ {
   export const outboundSchema = StripeConfig$outboundSchema;
   /** @deprecated use `StripeConfig$Outbound` instead. */
   export type Outbound = StripeConfig$Outbound;
+}
+
+export function stripeConfigToJSON(stripeConfig: StripeConfig): string {
+  return JSON.stringify(StripeConfig$outboundSchema.parse(stripeConfig));
+}
+
+export function stripeConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<StripeConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StripeConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StripeConfig' from JSON`,
+  );
 }

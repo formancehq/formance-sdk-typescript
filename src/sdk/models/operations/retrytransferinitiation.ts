@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RetryTransferInitiationRequest = {
   /**
@@ -63,6 +66,26 @@ export namespace RetryTransferInitiationRequest$ {
   export type Outbound = RetryTransferInitiationRequest$Outbound;
 }
 
+export function retryTransferInitiationRequestToJSON(
+  retryTransferInitiationRequest: RetryTransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    RetryTransferInitiationRequest$outboundSchema.parse(
+      retryTransferInitiationRequest,
+    ),
+  );
+}
+
+export function retryTransferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RetryTransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RetryTransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RetryTransferInitiationRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RetryTransferInitiationResponse$inboundSchema: z.ZodType<
   RetryTransferInitiationResponse,
@@ -117,4 +140,24 @@ export namespace RetryTransferInitiationResponse$ {
   export const outboundSchema = RetryTransferInitiationResponse$outboundSchema;
   /** @deprecated use `RetryTransferInitiationResponse$Outbound` instead. */
   export type Outbound = RetryTransferInitiationResponse$Outbound;
+}
+
+export function retryTransferInitiationResponseToJSON(
+  retryTransferInitiationResponse: RetryTransferInitiationResponse,
+): string {
+  return JSON.stringify(
+    RetryTransferInitiationResponse$outboundSchema.parse(
+      retryTransferInitiationResponse,
+    ),
+  );
+}
+
+export function retryTransferInitiationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<RetryTransferInitiationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RetryTransferInitiationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RetryTransferInitiationResponse' from JSON`,
+  );
 }

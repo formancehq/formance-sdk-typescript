@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -62,6 +65,26 @@ export namespace TaskCurrencyCloudDescriptor$ {
   export type Outbound = TaskCurrencyCloudDescriptor$Outbound;
 }
 
+export function taskCurrencyCloudDescriptorToJSON(
+  taskCurrencyCloudDescriptor: TaskCurrencyCloudDescriptor,
+): string {
+  return JSON.stringify(
+    TaskCurrencyCloudDescriptor$outboundSchema.parse(
+      taskCurrencyCloudDescriptor,
+    ),
+  );
+}
+
+export function taskCurrencyCloudDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskCurrencyCloudDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskCurrencyCloudDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskCurrencyCloudDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskCurrencyCloudState$inboundSchema: z.ZodType<
   TaskCurrencyCloudState,
@@ -90,6 +113,24 @@ export namespace TaskCurrencyCloudState$ {
   export const outboundSchema = TaskCurrencyCloudState$outboundSchema;
   /** @deprecated use `TaskCurrencyCloudState$Outbound` instead. */
   export type Outbound = TaskCurrencyCloudState$Outbound;
+}
+
+export function taskCurrencyCloudStateToJSON(
+  taskCurrencyCloudState: TaskCurrencyCloudState,
+): string {
+  return JSON.stringify(
+    TaskCurrencyCloudState$outboundSchema.parse(taskCurrencyCloudState),
+  );
+}
+
+export function taskCurrencyCloudStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskCurrencyCloudState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskCurrencyCloudState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskCurrencyCloudState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -147,4 +188,22 @@ export namespace TaskCurrencyCloud$ {
   export const outboundSchema = TaskCurrencyCloud$outboundSchema;
   /** @deprecated use `TaskCurrencyCloud$Outbound` instead. */
   export type Outbound = TaskCurrencyCloud$Outbound;
+}
+
+export function taskCurrencyCloudToJSON(
+  taskCurrencyCloud: TaskCurrencyCloud,
+): string {
+  return JSON.stringify(
+    TaskCurrencyCloud$outboundSchema.parse(taskCurrencyCloud),
+  );
+}
+
+export function taskCurrencyCloudFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskCurrencyCloud, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskCurrencyCloud$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskCurrencyCloud' from JSON`,
+  );
 }

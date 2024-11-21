@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ActivityAddAccountMetadata,
   ActivityAddAccountMetadata$inboundSchema,
@@ -190,4 +193,24 @@ export namespace WorkflowInstanceHistoryStageInput$ {
     WorkflowInstanceHistoryStageInput$outboundSchema;
   /** @deprecated use `WorkflowInstanceHistoryStageInput$Outbound` instead. */
   export type Outbound = WorkflowInstanceHistoryStageInput$Outbound;
+}
+
+export function workflowInstanceHistoryStageInputToJSON(
+  workflowInstanceHistoryStageInput: WorkflowInstanceHistoryStageInput,
+): string {
+  return JSON.stringify(
+    WorkflowInstanceHistoryStageInput$outboundSchema.parse(
+      workflowInstanceHistoryStageInput,
+    ),
+  );
+}
+
+export function workflowInstanceHistoryStageInputFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowInstanceHistoryStageInput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowInstanceHistoryStageInput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowInstanceHistoryStageInput' from JSON`,
+  );
 }

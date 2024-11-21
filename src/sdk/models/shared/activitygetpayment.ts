@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityGetPayment = {
   id: string;
@@ -42,4 +45,22 @@ export namespace ActivityGetPayment$ {
   export const outboundSchema = ActivityGetPayment$outboundSchema;
   /** @deprecated use `ActivityGetPayment$Outbound` instead. */
   export type Outbound = ActivityGetPayment$Outbound;
+}
+
+export function activityGetPaymentToJSON(
+  activityGetPayment: ActivityGetPayment,
+): string {
+  return JSON.stringify(
+    ActivityGetPayment$outboundSchema.parse(activityGetPayment),
+  );
+}
+
+export function activityGetPaymentFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityGetPayment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityGetPayment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityGetPayment' from JSON`,
+  );
 }

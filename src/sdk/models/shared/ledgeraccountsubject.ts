@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LedgerAccountSubject = {
   identifier: string;
@@ -46,4 +49,22 @@ export namespace LedgerAccountSubject$ {
   export const outboundSchema = LedgerAccountSubject$outboundSchema;
   /** @deprecated use `LedgerAccountSubject$Outbound` instead. */
   export type Outbound = LedgerAccountSubject$Outbound;
+}
+
+export function ledgerAccountSubjectToJSON(
+  ledgerAccountSubject: LedgerAccountSubject,
+): string {
+  return JSON.stringify(
+    LedgerAccountSubject$outboundSchema.parse(ledgerAccountSubject),
+  );
+}
+
+export function ledgerAccountSubjectFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerAccountSubject, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerAccountSubject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerAccountSubject' from JSON`,
+  );
 }

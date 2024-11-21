@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebhooksConfig,
   WebhooksConfig$inboundSchema,
@@ -87,4 +90,18 @@ export namespace Attempt$ {
   export const outboundSchema = Attempt$outboundSchema;
   /** @deprecated use `Attempt$Outbound` instead. */
   export type Outbound = Attempt$Outbound;
+}
+
+export function attemptToJSON(attempt: Attempt): string {
+  return JSON.stringify(Attempt$outboundSchema.parse(attempt));
+}
+
+export function attemptFromJSON(
+  jsonString: string,
+): SafeParseResult<Attempt, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Attempt$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Attempt' from JSON`,
+  );
 }

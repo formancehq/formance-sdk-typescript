@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2ExpandedTransaction,
   V2ExpandedTransaction$inboundSchema,
@@ -71,6 +74,27 @@ export namespace V2TransactionsCursorResponseCursor$ {
   export type Outbound = V2TransactionsCursorResponseCursor$Outbound;
 }
 
+export function v2TransactionsCursorResponseCursorToJSON(
+  v2TransactionsCursorResponseCursor: V2TransactionsCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    V2TransactionsCursorResponseCursor$outboundSchema.parse(
+      v2TransactionsCursorResponseCursor,
+    ),
+  );
+}
+
+export function v2TransactionsCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TransactionsCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2TransactionsCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TransactionsCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2TransactionsCursorResponse$inboundSchema: z.ZodType<
   V2TransactionsCursorResponse,
@@ -105,4 +129,24 @@ export namespace V2TransactionsCursorResponse$ {
   export const outboundSchema = V2TransactionsCursorResponse$outboundSchema;
   /** @deprecated use `V2TransactionsCursorResponse$Outbound` instead. */
   export type Outbound = V2TransactionsCursorResponse$Outbound;
+}
+
+export function v2TransactionsCursorResponseToJSON(
+  v2TransactionsCursorResponse: V2TransactionsCursorResponse,
+): string {
+  return JSON.stringify(
+    V2TransactionsCursorResponse$outboundSchema.parse(
+      v2TransactionsCursorResponse,
+    ),
+  );
+}
+
+export function v2TransactionsCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TransactionsCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TransactionsCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TransactionsCursorResponse' from JSON`,
+  );
 }

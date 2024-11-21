@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ConfigInfoResponse = {
   server: string;
@@ -46,4 +49,22 @@ export namespace V2ConfigInfoResponse$ {
   export const outboundSchema = V2ConfigInfoResponse$outboundSchema;
   /** @deprecated use `V2ConfigInfoResponse$Outbound` instead. */
   export type Outbound = V2ConfigInfoResponse$Outbound;
+}
+
+export function v2ConfigInfoResponseToJSON(
+  v2ConfigInfoResponse: V2ConfigInfoResponse,
+): string {
+  return JSON.stringify(
+    V2ConfigInfoResponse$outboundSchema.parse(v2ConfigInfoResponse),
+  );
+}
+
+export function v2ConfigInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ConfigInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ConfigInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ConfigInfoResponse' from JSON`,
+  );
 }

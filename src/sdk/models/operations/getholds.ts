@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetHoldsRequest = {
@@ -94,6 +97,22 @@ export namespace GetHoldsRequest$ {
   export type Outbound = GetHoldsRequest$Outbound;
 }
 
+export function getHoldsRequestToJSON(
+  getHoldsRequest: GetHoldsRequest,
+): string {
+  return JSON.stringify(GetHoldsRequest$outboundSchema.parse(getHoldsRequest));
+}
+
+export function getHoldsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHoldsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHoldsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHoldsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetHoldsResponse$inboundSchema: z.ZodType<
   GetHoldsResponse,
@@ -153,4 +172,22 @@ export namespace GetHoldsResponse$ {
   export const outboundSchema = GetHoldsResponse$outboundSchema;
   /** @deprecated use `GetHoldsResponse$Outbound` instead. */
   export type Outbound = GetHoldsResponse$Outbound;
+}
+
+export function getHoldsResponseToJSON(
+  getHoldsResponse: GetHoldsResponse,
+): string {
+  return JSON.stringify(
+    GetHoldsResponse$outboundSchema.parse(getHoldsResponse),
+  );
+}
+
+export function getHoldsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHoldsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHoldsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHoldsResponse' from JSON`,
+  );
 }

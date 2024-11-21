@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AssetHolder = {
   assets: { [k: string]: bigint };
@@ -42,4 +45,18 @@ export namespace AssetHolder$ {
   export const outboundSchema = AssetHolder$outboundSchema;
   /** @deprecated use `AssetHolder$Outbound` instead. */
   export type Outbound = AssetHolder$Outbound;
+}
+
+export function assetHolderToJSON(assetHolder: AssetHolder): string {
+  return JSON.stringify(AssetHolder$outboundSchema.parse(assetHolder));
+}
+
+export function assetHolderFromJSON(
+  jsonString: string,
+): SafeParseResult<AssetHolder, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AssetHolder$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AssetHolder' from JSON`,
+  );
 }

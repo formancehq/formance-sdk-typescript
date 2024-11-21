@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ActivityListWallets = {
   name?: string | undefined;
@@ -42,4 +45,22 @@ export namespace V2ActivityListWallets$ {
   export const outboundSchema = V2ActivityListWallets$outboundSchema;
   /** @deprecated use `V2ActivityListWallets$Outbound` instead. */
   export type Outbound = V2ActivityListWallets$Outbound;
+}
+
+export function v2ActivityListWalletsToJSON(
+  v2ActivityListWallets: V2ActivityListWallets,
+): string {
+  return JSON.stringify(
+    V2ActivityListWallets$outboundSchema.parse(v2ActivityListWallets),
+  );
+}
+
+export function v2ActivityListWalletsFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityListWallets, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityListWallets$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityListWallets' from JSON`,
+  );
 }

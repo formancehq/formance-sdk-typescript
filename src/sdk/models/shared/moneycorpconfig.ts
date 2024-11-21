@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MoneycorpConfig = {
   apiKey: string;
@@ -63,4 +66,20 @@ export namespace MoneycorpConfig$ {
   export const outboundSchema = MoneycorpConfig$outboundSchema;
   /** @deprecated use `MoneycorpConfig$Outbound` instead. */
   export type Outbound = MoneycorpConfig$Outbound;
+}
+
+export function moneycorpConfigToJSON(
+  moneycorpConfig: MoneycorpConfig,
+): string {
+  return JSON.stringify(MoneycorpConfig$outboundSchema.parse(moneycorpConfig));
+}
+
+export function moneycorpConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<MoneycorpConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MoneycorpConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MoneycorpConfig' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Policy,
   Policy$inboundSchema,
@@ -73,6 +76,26 @@ export namespace PoliciesCursorResponseCursor$ {
   export type Outbound = PoliciesCursorResponseCursor$Outbound;
 }
 
+export function policiesCursorResponseCursorToJSON(
+  policiesCursorResponseCursor: PoliciesCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    PoliciesCursorResponseCursor$outboundSchema.parse(
+      policiesCursorResponseCursor,
+    ),
+  );
+}
+
+export function policiesCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<PoliciesCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PoliciesCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PoliciesCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const PoliciesCursorResponse$inboundSchema: z.ZodType<
   PoliciesCursorResponse,
@@ -107,4 +130,22 @@ export namespace PoliciesCursorResponse$ {
   export const outboundSchema = PoliciesCursorResponse$outboundSchema;
   /** @deprecated use `PoliciesCursorResponse$Outbound` instead. */
   export type Outbound = PoliciesCursorResponse$Outbound;
+}
+
+export function policiesCursorResponseToJSON(
+  policiesCursorResponse: PoliciesCursorResponse,
+): string {
+  return JSON.stringify(
+    PoliciesCursorResponse$outboundSchema.parse(policiesCursorResponse),
+  );
+}
+
+export function policiesCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PoliciesCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PoliciesCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PoliciesCursorResponse' from JSON`,
+  );
 }

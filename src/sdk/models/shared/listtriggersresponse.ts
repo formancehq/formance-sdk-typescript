@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Trigger,
   Trigger$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ListTriggersResponse$ {
   export const outboundSchema = ListTriggersResponse$outboundSchema;
   /** @deprecated use `ListTriggersResponse$Outbound` instead. */
   export type Outbound = ListTriggersResponse$Outbound;
+}
+
+export function listTriggersResponseToJSON(
+  listTriggersResponse: ListTriggersResponse,
+): string {
+  return JSON.stringify(
+    ListTriggersResponse$outboundSchema.parse(listTriggersResponse),
+  );
+}
+
+export function listTriggersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTriggersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTriggersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTriggersResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransferInitiationAdjusments,
   TransferInitiationAdjusments$inboundSchema,
@@ -154,4 +157,22 @@ export namespace TransferInitiation$ {
   export const outboundSchema = TransferInitiation$outboundSchema;
   /** @deprecated use `TransferInitiation$Outbound` instead. */
   export type Outbound = TransferInitiation$Outbound;
+}
+
+export function transferInitiationToJSON(
+  transferInitiation: TransferInitiation,
+): string {
+  return JSON.stringify(
+    TransferInitiation$outboundSchema.parse(transferInitiation),
+  );
+}
+
+export function transferInitiationFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiation, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiation$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiation' from JSON`,
+  );
 }

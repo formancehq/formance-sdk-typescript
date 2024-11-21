@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2WalletWithBalances,
   V2WalletWithBalances$inboundSchema,
@@ -48,4 +51,22 @@ export namespace V2ActivityGetWalletOutput$ {
   export const outboundSchema = V2ActivityGetWalletOutput$outboundSchema;
   /** @deprecated use `V2ActivityGetWalletOutput$Outbound` instead. */
   export type Outbound = V2ActivityGetWalletOutput$Outbound;
+}
+
+export function v2ActivityGetWalletOutputToJSON(
+  v2ActivityGetWalletOutput: V2ActivityGetWalletOutput,
+): string {
+  return JSON.stringify(
+    V2ActivityGetWalletOutput$outboundSchema.parse(v2ActivityGetWalletOutput),
+  );
+}
+
+export function v2ActivityGetWalletOutputFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityGetWalletOutput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityGetWalletOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityGetWalletOutput' from JSON`,
+  );
 }

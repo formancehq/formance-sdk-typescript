@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Connector,
   Connector$inboundSchema,
@@ -73,6 +76,20 @@ export namespace Raw$ {
   export const outboundSchema = Raw$outboundSchema;
   /** @deprecated use `Raw$Outbound` instead. */
   export type Outbound = Raw$Outbound;
+}
+
+export function rawToJSON(raw: Raw): string {
+  return JSON.stringify(Raw$outboundSchema.parse(raw));
+}
+
+export function rawFromJSON(
+  jsonString: string,
+): SafeParseResult<Raw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Raw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Raw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -153,4 +170,18 @@ export namespace Payment$ {
   export const outboundSchema = Payment$outboundSchema;
   /** @deprecated use `Payment$Outbound` instead. */
   export type Outbound = Payment$Outbound;
+}
+
+export function paymentToJSON(payment: Payment): string {
+  return JSON.stringify(Payment$outboundSchema.parse(payment));
+}
+
+export function paymentFromJSON(
+  jsonString: string,
+): SafeParseResult<Payment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Payment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Payment' from JSON`,
+  );
 }

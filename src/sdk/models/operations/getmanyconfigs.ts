@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetManyConfigsRequest = {
@@ -75,6 +78,24 @@ export namespace GetManyConfigsRequest$ {
   export type Outbound = GetManyConfigsRequest$Outbound;
 }
 
+export function getManyConfigsRequestToJSON(
+  getManyConfigsRequest: GetManyConfigsRequest,
+): string {
+  return JSON.stringify(
+    GetManyConfigsRequest$outboundSchema.parse(getManyConfigsRequest),
+  );
+}
+
+export function getManyConfigsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetManyConfigsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetManyConfigsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetManyConfigsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetManyConfigsResponse$inboundSchema: z.ZodType<
   GetManyConfigsResponse,
@@ -134,4 +155,22 @@ export namespace GetManyConfigsResponse$ {
   export const outboundSchema = GetManyConfigsResponse$outboundSchema;
   /** @deprecated use `GetManyConfigsResponse$Outbound` instead. */
   export type Outbound = GetManyConfigsResponse$Outbound;
+}
+
+export function getManyConfigsResponseToJSON(
+  getManyConfigsResponse: GetManyConfigsResponse,
+): string {
+  return JSON.stringify(
+    GetManyConfigsResponse$outboundSchema.parse(getManyConfigsResponse),
+  );
+}
+
+export function getManyConfigsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetManyConfigsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetManyConfigsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetManyConfigsResponse' from JSON`,
+  );
 }

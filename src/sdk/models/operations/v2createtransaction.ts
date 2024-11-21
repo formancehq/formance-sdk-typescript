@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateTransactionRequest = {
@@ -103,6 +106,24 @@ export namespace V2CreateTransactionRequest$ {
   export type Outbound = V2CreateTransactionRequest$Outbound;
 }
 
+export function v2CreateTransactionRequestToJSON(
+  v2CreateTransactionRequest: V2CreateTransactionRequest,
+): string {
+  return JSON.stringify(
+    V2CreateTransactionRequest$outboundSchema.parse(v2CreateTransactionRequest),
+  );
+}
+
+export function v2CreateTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2CreateTransactionResponse$inboundSchema: z.ZodType<
   V2CreateTransactionResponse,
@@ -166,4 +187,24 @@ export namespace V2CreateTransactionResponse$ {
   export const outboundSchema = V2CreateTransactionResponse$outboundSchema;
   /** @deprecated use `V2CreateTransactionResponse$Outbound` instead. */
   export type Outbound = V2CreateTransactionResponse$Outbound;
+}
+
+export function v2CreateTransactionResponseToJSON(
+  v2CreateTransactionResponse: V2CreateTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2CreateTransactionResponse$outboundSchema.parse(
+      v2CreateTransactionResponse,
+    ),
+  );
+}
+
+export function v2CreateTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateTransactionResponse' from JSON`,
+  );
 }

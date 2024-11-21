@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Monetary,
   V2Monetary$inboundSchema,
@@ -77,4 +80,18 @@ export namespace V2StageSend$ {
   export const outboundSchema = V2StageSend$outboundSchema;
   /** @deprecated use `V2StageSend$Outbound` instead. */
   export type Outbound = V2StageSend$Outbound;
+}
+
+export function v2StageSendToJSON(v2StageSend: V2StageSend): string {
+  return JSON.stringify(V2StageSend$outboundSchema.parse(v2StageSend));
+}
+
+export function v2StageSendFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StageSend, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StageSend$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StageSend' from JSON`,
+  );
 }

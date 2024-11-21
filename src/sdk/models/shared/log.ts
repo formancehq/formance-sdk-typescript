@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum Type {
   NewTransaction = "NEW_TRANSACTION",
@@ -77,4 +80,18 @@ export namespace Log$ {
   export const outboundSchema = Log$outboundSchema;
   /** @deprecated use `Log$Outbound` instead. */
   export type Outbound = Log$Outbound;
+}
+
+export function logToJSON(log: Log): string {
+  return JSON.stringify(Log$outboundSchema.parse(log));
+}
+
+export function logFromJSON(
+  jsonString: string,
+): SafeParseResult<Log, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Log$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Log' from JSON`,
+  );
 }

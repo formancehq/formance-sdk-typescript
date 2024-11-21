@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type RevertTransactionRequest = {
@@ -82,6 +85,24 @@ export namespace RevertTransactionRequest$ {
   export type Outbound = RevertTransactionRequest$Outbound;
 }
 
+export function revertTransactionRequestToJSON(
+  revertTransactionRequest: RevertTransactionRequest,
+): string {
+  return JSON.stringify(
+    RevertTransactionRequest$outboundSchema.parse(revertTransactionRequest),
+  );
+}
+
+export function revertTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RevertTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RevertTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RevertTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RevertTransactionResponse$inboundSchema: z.ZodType<
   RevertTransactionResponse,
@@ -141,4 +162,22 @@ export namespace RevertTransactionResponse$ {
   export const outboundSchema = RevertTransactionResponse$outboundSchema;
   /** @deprecated use `RevertTransactionResponse$Outbound` instead. */
   export type Outbound = RevertTransactionResponse$Outbound;
+}
+
+export function revertTransactionResponseToJSON(
+  revertTransactionResponse: RevertTransactionResponse,
+): string {
+  return JSON.stringify(
+    RevertTransactionResponse$outboundSchema.parse(revertTransactionResponse),
+  );
+}
+
+export function revertTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<RevertTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RevertTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RevertTransactionResponse' from JSON`,
+  );
 }

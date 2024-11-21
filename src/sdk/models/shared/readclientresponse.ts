@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Client,
   Client$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ReadClientResponse$ {
   export const outboundSchema = ReadClientResponse$outboundSchema;
   /** @deprecated use `ReadClientResponse$Outbound` instead. */
   export type Outbound = ReadClientResponse$Outbound;
+}
+
+export function readClientResponseToJSON(
+  readClientResponse: ReadClientResponse,
+): string {
+  return JSON.stringify(
+    ReadClientResponse$outboundSchema.parse(readClientResponse),
+  );
+}
+
+export function readClientResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadClientResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadClientResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadClientResponse' from JSON`,
+  );
 }

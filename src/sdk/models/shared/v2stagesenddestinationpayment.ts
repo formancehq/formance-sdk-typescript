@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2StageSendDestinationPayment = {
   psp: string;
@@ -42,4 +45,24 @@ export namespace V2StageSendDestinationPayment$ {
   export const outboundSchema = V2StageSendDestinationPayment$outboundSchema;
   /** @deprecated use `V2StageSendDestinationPayment$Outbound` instead. */
   export type Outbound = V2StageSendDestinationPayment$Outbound;
+}
+
+export function v2StageSendDestinationPaymentToJSON(
+  v2StageSendDestinationPayment: V2StageSendDestinationPayment,
+): string {
+  return JSON.stringify(
+    V2StageSendDestinationPayment$outboundSchema.parse(
+      v2StageSendDestinationPayment,
+    ),
+  );
+}
+
+export function v2StageSendDestinationPaymentFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StageSendDestinationPayment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StageSendDestinationPayment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StageSendDestinationPayment' from JSON`,
+  );
 }

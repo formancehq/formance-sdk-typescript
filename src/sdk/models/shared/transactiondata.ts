@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Posting,
   Posting$inboundSchema,
@@ -61,4 +64,20 @@ export namespace TransactionData$ {
   export const outboundSchema = TransactionData$outboundSchema;
   /** @deprecated use `TransactionData$Outbound` instead. */
   export type Outbound = TransactionData$Outbound;
+}
+
+export function transactionDataToJSON(
+  transactionData: TransactionData,
+): string {
+  return JSON.stringify(TransactionData$outboundSchema.parse(transactionData));
+}
+
+export function transactionDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionData' from JSON`,
+  );
 }

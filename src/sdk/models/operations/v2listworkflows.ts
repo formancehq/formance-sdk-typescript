@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2ListWorkflowsRequest = {
@@ -82,6 +85,24 @@ export namespace V2ListWorkflowsRequest$ {
   export type Outbound = V2ListWorkflowsRequest$Outbound;
 }
 
+export function v2ListWorkflowsRequestToJSON(
+  v2ListWorkflowsRequest: V2ListWorkflowsRequest,
+): string {
+  return JSON.stringify(
+    V2ListWorkflowsRequest$outboundSchema.parse(v2ListWorkflowsRequest),
+  );
+}
+
+export function v2ListWorkflowsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWorkflowsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWorkflowsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWorkflowsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListWorkflowsResponse$inboundSchema: z.ZodType<
   V2ListWorkflowsResponse,
@@ -143,4 +164,22 @@ export namespace V2ListWorkflowsResponse$ {
   export const outboundSchema = V2ListWorkflowsResponse$outboundSchema;
   /** @deprecated use `V2ListWorkflowsResponse$Outbound` instead. */
   export type Outbound = V2ListWorkflowsResponse$Outbound;
+}
+
+export function v2ListWorkflowsResponseToJSON(
+  v2ListWorkflowsResponse: V2ListWorkflowsResponse,
+): string {
+  return JSON.stringify(
+    V2ListWorkflowsResponse$outboundSchema.parse(v2ListWorkflowsResponse),
+  );
+}
+
+export function v2ListWorkflowsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWorkflowsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWorkflowsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWorkflowsResponse' from JSON`,
+  );
 }

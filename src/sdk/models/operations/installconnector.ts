@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type InstallConnectorRequest = {
@@ -80,6 +83,24 @@ export namespace InstallConnectorRequest$ {
   export type Outbound = InstallConnectorRequest$Outbound;
 }
 
+export function installConnectorRequestToJSON(
+  installConnectorRequest: InstallConnectorRequest,
+): string {
+  return JSON.stringify(
+    InstallConnectorRequest$outboundSchema.parse(installConnectorRequest),
+  );
+}
+
+export function installConnectorRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<InstallConnectorRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InstallConnectorRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InstallConnectorRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const InstallConnectorResponse$inboundSchema: z.ZodType<
   InstallConnectorResponse,
@@ -139,4 +160,22 @@ export namespace InstallConnectorResponse$ {
   export const outboundSchema = InstallConnectorResponse$outboundSchema;
   /** @deprecated use `InstallConnectorResponse$Outbound` instead. */
   export type Outbound = InstallConnectorResponse$Outbound;
+}
+
+export function installConnectorResponseToJSON(
+  installConnectorResponse: InstallConnectorResponse,
+): string {
+  return JSON.stringify(
+    InstallConnectorResponse$outboundSchema.parse(installConnectorResponse),
+  );
+}
+
+export function installConnectorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<InstallConnectorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InstallConnectorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InstallConnectorResponse' from JSON`,
+  );
 }

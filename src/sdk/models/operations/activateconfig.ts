@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ActivateConfigRequest = {
@@ -68,6 +71,24 @@ export namespace ActivateConfigRequest$ {
   export type Outbound = ActivateConfigRequest$Outbound;
 }
 
+export function activateConfigRequestToJSON(
+  activateConfigRequest: ActivateConfigRequest,
+): string {
+  return JSON.stringify(
+    ActivateConfigRequest$outboundSchema.parse(activateConfigRequest),
+  );
+}
+
+export function activateConfigRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivateConfigRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivateConfigRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivateConfigRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ActivateConfigResponse$inboundSchema: z.ZodType<
   ActivateConfigResponse,
@@ -127,4 +148,22 @@ export namespace ActivateConfigResponse$ {
   export const outboundSchema = ActivateConfigResponse$outboundSchema;
   /** @deprecated use `ActivateConfigResponse$Outbound` instead. */
   export type Outbound = ActivateConfigResponse$Outbound;
+}
+
+export function activateConfigResponseToJSON(
+  activateConfigResponse: ActivateConfigResponse,
+): string {
+  return JSON.stringify(
+    ActivateConfigResponse$outboundSchema.parse(activateConfigResponse),
+  );
+}
+
+export function activateConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivateConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivateConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivateConfigResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Transaction,
   V2Transaction$inboundSchema,
@@ -93,6 +96,26 @@ export namespace V2BulkElementResultErrorSchemas$ {
   export type Outbound = V2BulkElementResultErrorSchemas$Outbound;
 }
 
+export function v2BulkElementResultErrorSchemasToJSON(
+  v2BulkElementResultErrorSchemas: V2BulkElementResultErrorSchemas,
+): string {
+  return JSON.stringify(
+    V2BulkElementResultErrorSchemas$outboundSchema.parse(
+      v2BulkElementResultErrorSchemas,
+    ),
+  );
+}
+
+export function v2BulkElementResultErrorSchemasFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementResultErrorSchemas, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementResultErrorSchemas$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultErrorSchemas' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2BulkElementResultDeleteMetadataSchemas$inboundSchema: z.ZodType<
   V2BulkElementResultDeleteMetadataSchemas,
@@ -129,6 +152,33 @@ export namespace V2BulkElementResultDeleteMetadataSchemas$ {
     V2BulkElementResultDeleteMetadataSchemas$outboundSchema;
   /** @deprecated use `V2BulkElementResultDeleteMetadataSchemas$Outbound` instead. */
   export type Outbound = V2BulkElementResultDeleteMetadataSchemas$Outbound;
+}
+
+export function v2BulkElementResultDeleteMetadataSchemasToJSON(
+  v2BulkElementResultDeleteMetadataSchemas:
+    V2BulkElementResultDeleteMetadataSchemas,
+): string {
+  return JSON.stringify(
+    V2BulkElementResultDeleteMetadataSchemas$outboundSchema.parse(
+      v2BulkElementResultDeleteMetadataSchemas,
+    ),
+  );
+}
+
+export function v2BulkElementResultDeleteMetadataSchemasFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  V2BulkElementResultDeleteMetadataSchemas,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2BulkElementResultDeleteMetadataSchemas$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'V2BulkElementResultDeleteMetadataSchemas' from JSON`,
+  );
 }
 
 /** @internal */
@@ -174,6 +224,33 @@ export namespace V2BulkElementResultRevertTransactionSchemas$ {
   export type Outbound = V2BulkElementResultRevertTransactionSchemas$Outbound;
 }
 
+export function v2BulkElementResultRevertTransactionSchemasToJSON(
+  v2BulkElementResultRevertTransactionSchemas:
+    V2BulkElementResultRevertTransactionSchemas,
+): string {
+  return JSON.stringify(
+    V2BulkElementResultRevertTransactionSchemas$outboundSchema.parse(
+      v2BulkElementResultRevertTransactionSchemas,
+    ),
+  );
+}
+
+export function v2BulkElementResultRevertTransactionSchemasFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  V2BulkElementResultRevertTransactionSchemas,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2BulkElementResultRevertTransactionSchemas$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'V2BulkElementResultRevertTransactionSchemas' from JSON`,
+  );
+}
+
 /** @internal */
 export const Schemas$inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> =
   z.object({
@@ -205,6 +282,20 @@ export namespace Schemas$ {
   export const outboundSchema = Schemas$outboundSchema;
   /** @deprecated use `Schemas$Outbound` instead. */
   export type Outbound = Schemas$Outbound;
+}
+
+export function schemasToJSON(schemas: Schemas): string {
+  return JSON.stringify(Schemas$outboundSchema.parse(schemas));
+}
+
+export function schemasFromJSON(
+  jsonString: string,
+): SafeParseResult<Schemas, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Schemas$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Schemas' from JSON`,
+  );
 }
 
 /** @internal */
@@ -248,6 +339,33 @@ export namespace V2BulkElementResultCreateTransactionSchemas$ {
     V2BulkElementResultCreateTransactionSchemas$outboundSchema;
   /** @deprecated use `V2BulkElementResultCreateTransactionSchemas$Outbound` instead. */
   export type Outbound = V2BulkElementResultCreateTransactionSchemas$Outbound;
+}
+
+export function v2BulkElementResultCreateTransactionSchemasToJSON(
+  v2BulkElementResultCreateTransactionSchemas:
+    V2BulkElementResultCreateTransactionSchemas,
+): string {
+  return JSON.stringify(
+    V2BulkElementResultCreateTransactionSchemas$outboundSchema.parse(
+      v2BulkElementResultCreateTransactionSchemas,
+    ),
+  );
+}
+
+export function v2BulkElementResultCreateTransactionSchemasFromJSON(
+  jsonString: string,
+): SafeParseResult<
+  V2BulkElementResultCreateTransactionSchemas,
+  SDKValidationError
+> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2BulkElementResultCreateTransactionSchemas$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'V2BulkElementResultCreateTransactionSchemas' from JSON`,
+  );
 }
 
 /** @internal */
@@ -341,4 +459,22 @@ export namespace V2BulkElementResult$ {
   export const outboundSchema = V2BulkElementResult$outboundSchema;
   /** @deprecated use `V2BulkElementResult$Outbound` instead. */
   export type Outbound = V2BulkElementResult$Outbound;
+}
+
+export function v2BulkElementResultToJSON(
+  v2BulkElementResult: V2BulkElementResult,
+): string {
+  return JSON.stringify(
+    V2BulkElementResult$outboundSchema.parse(v2BulkElementResult),
+  );
+}
+
+export function v2BulkElementResultFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementResult, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementResult$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResult' from JSON`,
+  );
 }

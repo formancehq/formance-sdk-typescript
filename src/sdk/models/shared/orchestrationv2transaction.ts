@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Posting,
   V2Posting$inboundSchema,
@@ -64,4 +67,22 @@ export namespace OrchestrationV2Transaction$ {
   export const outboundSchema = OrchestrationV2Transaction$outboundSchema;
   /** @deprecated use `OrchestrationV2Transaction$Outbound` instead. */
   export type Outbound = OrchestrationV2Transaction$Outbound;
+}
+
+export function orchestrationV2TransactionToJSON(
+  orchestrationV2Transaction: OrchestrationV2Transaction,
+): string {
+  return JSON.stringify(
+    OrchestrationV2Transaction$outboundSchema.parse(orchestrationV2Transaction),
+  );
+}
+
+export function orchestrationV2TransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationV2Transaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationV2Transaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationV2Transaction' from JSON`,
+  );
 }

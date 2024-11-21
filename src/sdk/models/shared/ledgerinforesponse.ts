@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LedgerInfo,
   LedgerInfo$inboundSchema,
@@ -48,4 +51,22 @@ export namespace LedgerInfoResponse$ {
   export const outboundSchema = LedgerInfoResponse$outboundSchema;
   /** @deprecated use `LedgerInfoResponse$Outbound` instead. */
   export type Outbound = LedgerInfoResponse$Outbound;
+}
+
+export function ledgerInfoResponseToJSON(
+  ledgerInfoResponse: LedgerInfoResponse,
+): string {
+  return JSON.stringify(
+    LedgerInfoResponse$outboundSchema.parse(ledgerInfoResponse),
+  );
+}
+
+export function ledgerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerInfoResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ConfirmHoldRequest = {
@@ -84,6 +87,24 @@ export namespace ConfirmHoldRequest$ {
   export type Outbound = ConfirmHoldRequest$Outbound;
 }
 
+export function confirmHoldRequestToJSON(
+  confirmHoldRequest: ConfirmHoldRequest,
+): string {
+  return JSON.stringify(
+    ConfirmHoldRequest$outboundSchema.parse(confirmHoldRequest),
+  );
+}
+
+export function confirmHoldRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfirmHoldRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfirmHoldRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfirmHoldRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConfirmHoldResponse$inboundSchema: z.ZodType<
   ConfirmHoldResponse,
@@ -138,4 +159,22 @@ export namespace ConfirmHoldResponse$ {
   export const outboundSchema = ConfirmHoldResponse$outboundSchema;
   /** @deprecated use `ConfirmHoldResponse$Outbound` instead. */
   export type Outbound = ConfirmHoldResponse$Outbound;
+}
+
+export function confirmHoldResponseToJSON(
+  confirmHoldResponse: ConfirmHoldResponse,
+): string {
+  return JSON.stringify(
+    ConfirmHoldResponse$outboundSchema.parse(confirmHoldResponse),
+  );
+}
+
+export function confirmHoldResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfirmHoldResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfirmHoldResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfirmHoldResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TaskBankingCircle,
   TaskBankingCircle$inboundSchema,
@@ -142,6 +145,22 @@ export namespace TasksCursorData$ {
   export type Outbound = TasksCursorData$Outbound;
 }
 
+export function tasksCursorDataToJSON(
+  tasksCursorData: TasksCursorData,
+): string {
+  return JSON.stringify(TasksCursorData$outboundSchema.parse(tasksCursorData));
+}
+
+export function tasksCursorDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TasksCursorData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TasksCursorData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TasksCursorData' from JSON`,
+  );
+}
+
 /** @internal */
 export const TasksCursorCursor$inboundSchema: z.ZodType<
   TasksCursorCursor,
@@ -221,6 +240,24 @@ export namespace TasksCursorCursor$ {
   export type Outbound = TasksCursorCursor$Outbound;
 }
 
+export function tasksCursorCursorToJSON(
+  tasksCursorCursor: TasksCursorCursor,
+): string {
+  return JSON.stringify(
+    TasksCursorCursor$outboundSchema.parse(tasksCursorCursor),
+  );
+}
+
+export function tasksCursorCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<TasksCursorCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TasksCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TasksCursorCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TasksCursor$inboundSchema: z.ZodType<
   TasksCursor,
@@ -255,4 +292,18 @@ export namespace TasksCursor$ {
   export const outboundSchema = TasksCursor$outboundSchema;
   /** @deprecated use `TasksCursor$Outbound` instead. */
   export type Outbound = TasksCursor$Outbound;
+}
+
+export function tasksCursorToJSON(tasksCursor: TasksCursor): string {
+  return JSON.stringify(TasksCursor$outboundSchema.parse(tasksCursor));
+}
+
+export function tasksCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<TasksCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TasksCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TasksCursor' from JSON`,
+  );
 }

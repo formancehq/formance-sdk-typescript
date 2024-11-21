@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Contract,
   Contract$inboundSchema,
@@ -45,4 +48,18 @@ export namespace Mapping$ {
   export const outboundSchema = Mapping$outboundSchema;
   /** @deprecated use `Mapping$Outbound` instead. */
   export type Outbound = Mapping$Outbound;
+}
+
+export function mappingToJSON(mapping: Mapping): string {
+  return JSON.stringify(Mapping$outboundSchema.parse(mapping));
+}
+
+export function mappingFromJSON(
+  jsonString: string,
+): SafeParseResult<Mapping, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Mapping$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Mapping' from JSON`,
+  );
 }

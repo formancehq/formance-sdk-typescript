@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AdyenConfig,
   AdyenConfig$inboundSchema,
@@ -146,4 +149,20 @@ export namespace ConnectorConfig$ {
   export const outboundSchema = ConnectorConfig$outboundSchema;
   /** @deprecated use `ConnectorConfig$Outbound` instead. */
   export type Outbound = ConnectorConfig$Outbound;
+}
+
+export function connectorConfigToJSON(
+  connectorConfig: ConnectorConfig,
+): string {
+  return JSON.stringify(ConnectorConfig$outboundSchema.parse(connectorConfig));
+}
+
+export function connectorConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorConfig' from JSON`,
+  );
 }

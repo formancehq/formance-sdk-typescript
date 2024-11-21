@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2ActivityCreateTransactionOutput,
   V2ActivityCreateTransactionOutput$inboundSchema,
@@ -120,4 +123,25 @@ export namespace V2WorkflowInstanceHistoryStageOutput$ {
     V2WorkflowInstanceHistoryStageOutput$outboundSchema;
   /** @deprecated use `V2WorkflowInstanceHistoryStageOutput$Outbound` instead. */
   export type Outbound = V2WorkflowInstanceHistoryStageOutput$Outbound;
+}
+
+export function v2WorkflowInstanceHistoryStageOutputToJSON(
+  v2WorkflowInstanceHistoryStageOutput: V2WorkflowInstanceHistoryStageOutput,
+): string {
+  return JSON.stringify(
+    V2WorkflowInstanceHistoryStageOutput$outboundSchema.parse(
+      v2WorkflowInstanceHistoryStageOutput,
+    ),
+  );
+}
+
+export function v2WorkflowInstanceHistoryStageOutputFromJSON(
+  jsonString: string,
+): SafeParseResult<V2WorkflowInstanceHistoryStageOutput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2WorkflowInstanceHistoryStageOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2WorkflowInstanceHistoryStageOutput' from JSON`,
+  );
 }

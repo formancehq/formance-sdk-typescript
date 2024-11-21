@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Script = {
   metadata?: { [k: string]: any } | null | undefined;
@@ -54,4 +57,18 @@ export namespace Script$ {
   export const outboundSchema = Script$outboundSchema;
   /** @deprecated use `Script$Outbound` instead. */
   export type Outbound = Script$Outbound;
+}
+
+export function scriptToJSON(script: Script): string {
+  return JSON.stringify(Script$outboundSchema.parse(script));
+}
+
+export function scriptFromJSON(
+  jsonString: string,
+): SafeParseResult<Script, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Script$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Script' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.
@@ -97,6 +100,20 @@ export namespace Metadata$ {
   export type Outbound = Metadata$Outbound;
 }
 
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+}
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const CountTransactionsRequest$inboundSchema: z.ZodType<
   CountTransactionsRequest,
@@ -154,6 +171,24 @@ export namespace CountTransactionsRequest$ {
   export const outboundSchema = CountTransactionsRequest$outboundSchema;
   /** @deprecated use `CountTransactionsRequest$Outbound` instead. */
   export type Outbound = CountTransactionsRequest$Outbound;
+}
+
+export function countTransactionsRequestToJSON(
+  countTransactionsRequest: CountTransactionsRequest,
+): string {
+  return JSON.stringify(
+    CountTransactionsRequest$outboundSchema.parse(countTransactionsRequest),
+  );
+}
+
+export function countTransactionsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CountTransactionsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CountTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CountTransactionsRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -215,4 +250,22 @@ export namespace CountTransactionsResponse$ {
   export const outboundSchema = CountTransactionsResponse$outboundSchema;
   /** @deprecated use `CountTransactionsResponse$Outbound` instead. */
   export type Outbound = CountTransactionsResponse$Outbound;
+}
+
+export function countTransactionsResponseToJSON(
+  countTransactionsResponse: CountTransactionsResponse,
+): string {
+  return JSON.stringify(
+    CountTransactionsResponse$outboundSchema.parse(countTransactionsResponse),
+  );
+}
+
+export function countTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CountTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CountTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CountTransactionsResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetBalanceRequest = {
@@ -69,6 +72,24 @@ export namespace GetBalanceRequest$ {
   export type Outbound = GetBalanceRequest$Outbound;
 }
 
+export function getBalanceRequestToJSON(
+  getBalanceRequest: GetBalanceRequest,
+): string {
+  return JSON.stringify(
+    GetBalanceRequest$outboundSchema.parse(getBalanceRequest),
+  );
+}
+
+export function getBalanceRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalanceRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalanceRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalanceRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBalanceResponse$inboundSchema: z.ZodType<
   GetBalanceResponse,
@@ -128,4 +149,22 @@ export namespace GetBalanceResponse$ {
   export const outboundSchema = GetBalanceResponse$outboundSchema;
   /** @deprecated use `GetBalanceResponse$Outbound` instead. */
   export type Outbound = GetBalanceResponse$Outbound;
+}
+
+export function getBalanceResponseToJSON(
+  getBalanceResponse: GetBalanceResponse,
+): string {
+  return JSON.stringify(
+    GetBalanceResponse$outboundSchema.parse(getBalanceResponse),
+  );
+}
+
+export function getBalanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalanceResponse' from JSON`,
+  );
 }

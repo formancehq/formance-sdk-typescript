@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BankAccountRelatedAccounts = {
   accountID: string;
@@ -58,4 +61,22 @@ export namespace BankAccountRelatedAccounts$ {
   export const outboundSchema = BankAccountRelatedAccounts$outboundSchema;
   /** @deprecated use `BankAccountRelatedAccounts$Outbound` instead. */
   export type Outbound = BankAccountRelatedAccounts$Outbound;
+}
+
+export function bankAccountRelatedAccountsToJSON(
+  bankAccountRelatedAccounts: BankAccountRelatedAccounts,
+): string {
+  return JSON.stringify(
+    BankAccountRelatedAccounts$outboundSchema.parse(bankAccountRelatedAccounts),
+  );
+}
+
+export function bankAccountRelatedAccountsFromJSON(
+  jsonString: string,
+): SafeParseResult<BankAccountRelatedAccounts, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankAccountRelatedAccounts$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccountRelatedAccounts' from JSON`,
+  );
 }

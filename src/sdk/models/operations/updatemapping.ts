@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UpdateMappingRequest = {
@@ -80,6 +83,24 @@ export namespace UpdateMappingRequest$ {
   export type Outbound = UpdateMappingRequest$Outbound;
 }
 
+export function updateMappingRequestToJSON(
+  updateMappingRequest: UpdateMappingRequest,
+): string {
+  return JSON.stringify(
+    UpdateMappingRequest$outboundSchema.parse(updateMappingRequest),
+  );
+}
+
+export function updateMappingRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateMappingRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateMappingRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateMappingRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateMappingResponse$inboundSchema: z.ZodType<
   UpdateMappingResponse,
@@ -139,4 +160,22 @@ export namespace UpdateMappingResponse$ {
   export const outboundSchema = UpdateMappingResponse$outboundSchema;
   /** @deprecated use `UpdateMappingResponse$Outbound` instead. */
   export type Outbound = UpdateMappingResponse$Outbound;
+}
+
+export function updateMappingResponseToJSON(
+  updateMappingResponse: UpdateMappingResponse,
+): string {
+  return JSON.stringify(
+    UpdateMappingResponse$outboundSchema.parse(updateMappingResponse),
+  );
+}
+
+export function updateMappingResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateMappingResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateMappingResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateMappingResponse' from JSON`,
+  );
 }

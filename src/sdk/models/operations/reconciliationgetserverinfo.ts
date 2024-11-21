@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReconciliationgetServerInfoResponse = {
@@ -86,4 +89,25 @@ export namespace ReconciliationgetServerInfoResponse$ {
     ReconciliationgetServerInfoResponse$outboundSchema;
   /** @deprecated use `ReconciliationgetServerInfoResponse$Outbound` instead. */
   export type Outbound = ReconciliationgetServerInfoResponse$Outbound;
+}
+
+export function reconciliationgetServerInfoResponseToJSON(
+  reconciliationgetServerInfoResponse: ReconciliationgetServerInfoResponse,
+): string {
+  return JSON.stringify(
+    ReconciliationgetServerInfoResponse$outboundSchema.parse(
+      reconciliationgetServerInfoResponse,
+    ),
+  );
+}
+
+export function reconciliationgetServerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconciliationgetServerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ReconciliationgetServerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconciliationgetServerInfoResponse' from JSON`,
+  );
 }

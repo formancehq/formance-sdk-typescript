@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreateTransactionsRequest = {
@@ -80,6 +83,24 @@ export namespace CreateTransactionsRequest$ {
   export type Outbound = CreateTransactionsRequest$Outbound;
 }
 
+export function createTransactionsRequestToJSON(
+  createTransactionsRequest: CreateTransactionsRequest,
+): string {
+  return JSON.stringify(
+    CreateTransactionsRequest$outboundSchema.parse(createTransactionsRequest),
+  );
+}
+
+export function createTransactionsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateTransactionsResponse$inboundSchema: z.ZodType<
   CreateTransactionsResponse,
@@ -139,4 +160,22 @@ export namespace CreateTransactionsResponse$ {
   export const outboundSchema = CreateTransactionsResponse$outboundSchema;
   /** @deprecated use `CreateTransactionsResponse$Outbound` instead. */
   export type Outbound = CreateTransactionsResponse$Outbound;
+}
+
+export function createTransactionsResponseToJSON(
+  createTransactionsResponse: CreateTransactionsResponse,
+): string {
+  return JSON.stringify(
+    CreateTransactionsResponse$outboundSchema.parse(createTransactionsResponse),
+  );
+}
+
+export function createTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionsResponse' from JSON`,
+  );
 }

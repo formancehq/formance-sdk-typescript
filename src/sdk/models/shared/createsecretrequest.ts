@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSecretRequest = {
   metadata?: { [k: string]: any } | undefined;
@@ -46,4 +49,22 @@ export namespace CreateSecretRequest$ {
   export const outboundSchema = CreateSecretRequest$outboundSchema;
   /** @deprecated use `CreateSecretRequest$Outbound` instead. */
   export type Outbound = CreateSecretRequest$Outbound;
+}
+
+export function createSecretRequestToJSON(
+  createSecretRequest: CreateSecretRequest,
+): string {
+  return JSON.stringify(
+    CreateSecretRequest$outboundSchema.parse(createSecretRequest),
+  );
+}
+
+export function createSecretRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSecretRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSecretRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSecretRequest' from JSON`,
+  );
 }

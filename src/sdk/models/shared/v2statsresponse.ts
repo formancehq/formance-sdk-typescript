@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Stats,
   V2Stats$inboundSchema,
@@ -48,4 +51,20 @@ export namespace V2StatsResponse$ {
   export const outboundSchema = V2StatsResponse$outboundSchema;
   /** @deprecated use `V2StatsResponse$Outbound` instead. */
   export type Outbound = V2StatsResponse$Outbound;
+}
+
+export function v2StatsResponseToJSON(
+  v2StatsResponse: V2StatsResponse,
+): string {
+  return JSON.stringify(V2StatsResponse$outboundSchema.parse(v2StatsResponse));
+}
+
+export function v2StatsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StatsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StatsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StatsResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReverseTransferInitiationRequest = {
@@ -79,6 +82,26 @@ export namespace ReverseTransferInitiationRequest$ {
   export type Outbound = ReverseTransferInitiationRequest$Outbound;
 }
 
+export function reverseTransferInitiationRequestToJSON(
+  reverseTransferInitiationRequest: ReverseTransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    ReverseTransferInitiationRequest$outboundSchema.parse(
+      reverseTransferInitiationRequest,
+    ),
+  );
+}
+
+export function reverseTransferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReverseTransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReverseTransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReverseTransferInitiationRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReverseTransferInitiationResponse$inboundSchema: z.ZodType<
   ReverseTransferInitiationResponse,
@@ -134,4 +157,24 @@ export namespace ReverseTransferInitiationResponse$ {
     ReverseTransferInitiationResponse$outboundSchema;
   /** @deprecated use `ReverseTransferInitiationResponse$Outbound` instead. */
   export type Outbound = ReverseTransferInitiationResponse$Outbound;
+}
+
+export function reverseTransferInitiationResponseToJSON(
+  reverseTransferInitiationResponse: ReverseTransferInitiationResponse,
+): string {
+  return JSON.stringify(
+    ReverseTransferInitiationResponse$outboundSchema.parse(
+      reverseTransferInitiationResponse,
+    ),
+  );
+}
+
+export function reverseTransferInitiationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReverseTransferInitiationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReverseTransferInitiationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReverseTransferInitiationResponse' from JSON`,
+  );
 }

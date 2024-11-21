@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateBalanceRequest = {
   expiresAt?: Date | null | undefined;
@@ -52,4 +55,22 @@ export namespace CreateBalanceRequest$ {
   export const outboundSchema = CreateBalanceRequest$outboundSchema;
   /** @deprecated use `CreateBalanceRequest$Outbound` instead. */
   export type Outbound = CreateBalanceRequest$Outbound;
+}
+
+export function createBalanceRequestToJSON(
+  createBalanceRequest: CreateBalanceRequest,
+): string {
+  return JSON.stringify(
+    CreateBalanceRequest$outboundSchema.parse(createBalanceRequest),
+  );
+}
+
+export function createBalanceRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateBalanceRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateBalanceRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateBalanceRequest' from JSON`,
+  );
 }

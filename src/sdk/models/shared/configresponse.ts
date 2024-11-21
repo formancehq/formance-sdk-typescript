@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WebhooksConfig,
   WebhooksConfig$inboundSchema,
@@ -48,4 +51,18 @@ export namespace ConfigResponse$ {
   export const outboundSchema = ConfigResponse$outboundSchema;
   /** @deprecated use `ConfigResponse$Outbound` instead. */
   export type Outbound = ConfigResponse$Outbound;
+}
+
+export function configResponseToJSON(configResponse: ConfigResponse): string {
+  return JSON.stringify(ConfigResponse$outboundSchema.parse(configResponse));
+}
+
+export function configResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigResponse' from JSON`,
+  );
 }

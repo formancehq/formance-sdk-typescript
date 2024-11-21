@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Transaction,
   Transaction$inboundSchema,
@@ -70,6 +73,26 @@ export namespace TransactionsCursorResponseCursor$ {
   export type Outbound = TransactionsCursorResponseCursor$Outbound;
 }
 
+export function transactionsCursorResponseCursorToJSON(
+  transactionsCursorResponseCursor: TransactionsCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    TransactionsCursorResponseCursor$outboundSchema.parse(
+      transactionsCursorResponseCursor,
+    ),
+  );
+}
+
+export function transactionsCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionsCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionsCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionsCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TransactionsCursorResponse$inboundSchema: z.ZodType<
   TransactionsCursorResponse,
@@ -104,4 +127,22 @@ export namespace TransactionsCursorResponse$ {
   export const outboundSchema = TransactionsCursorResponse$outboundSchema;
   /** @deprecated use `TransactionsCursorResponse$Outbound` instead. */
   export type Outbound = TransactionsCursorResponse$Outbound;
+}
+
+export function transactionsCursorResponseToJSON(
+  transactionsCursorResponse: TransactionsCursorResponse,
+): string {
+  return JSON.stringify(
+    TransactionsCursorResponse$outboundSchema.parse(transactionsCursorResponse),
+  );
+}
+
+export function transactionsCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TransactionsCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransactionsCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransactionsCursorResponse' from JSON`,
+  );
 }

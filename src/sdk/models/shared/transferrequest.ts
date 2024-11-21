@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TransferRequest = {
   amount: bigint;
@@ -54,4 +57,20 @@ export namespace TransferRequest$ {
   export const outboundSchema = TransferRequest$outboundSchema;
   /** @deprecated use `TransferRequest$Outbound` instead. */
   export type Outbound = TransferRequest$Outbound;
+}
+
+export function transferRequestToJSON(
+  transferRequest: TransferRequest,
+): string {
+  return JSON.stringify(TransferRequest$outboundSchema.parse(transferRequest));
+}
+
+export function transferRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferRequest' from JSON`,
+  );
 }

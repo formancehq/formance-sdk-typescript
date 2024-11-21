@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WalletSubject = {
   balance?: string | undefined;
@@ -50,4 +53,18 @@ export namespace WalletSubject$ {
   export const outboundSchema = WalletSubject$outboundSchema;
   /** @deprecated use `WalletSubject$Outbound` instead. */
   export type Outbound = WalletSubject$Outbound;
+}
+
+export function walletSubjectToJSON(walletSubject: WalletSubject): string {
+  return JSON.stringify(WalletSubject$outboundSchema.parse(walletSubject));
+}
+
+export function walletSubjectFromJSON(
+  jsonString: string,
+): SafeParseResult<WalletSubject, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WalletSubject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WalletSubject' from JSON`,
+  );
 }

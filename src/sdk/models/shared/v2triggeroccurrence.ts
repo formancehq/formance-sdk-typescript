@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2WorkflowInstance,
   V2WorkflowInstance$inboundSchema,
@@ -68,4 +71,22 @@ export namespace V2TriggerOccurrence$ {
   export const outboundSchema = V2TriggerOccurrence$outboundSchema;
   /** @deprecated use `V2TriggerOccurrence$Outbound` instead. */
   export type Outbound = V2TriggerOccurrence$Outbound;
+}
+
+export function v2TriggerOccurrenceToJSON(
+  v2TriggerOccurrence: V2TriggerOccurrence,
+): string {
+  return JSON.stringify(
+    V2TriggerOccurrence$outboundSchema.parse(v2TriggerOccurrence),
+  );
+}
+
+export function v2TriggerOccurrenceFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TriggerOccurrence, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TriggerOccurrence$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TriggerOccurrence' from JSON`,
+  );
 }

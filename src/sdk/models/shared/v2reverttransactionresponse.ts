@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Transaction,
   V2Transaction$inboundSchema,
@@ -48,4 +51,24 @@ export namespace V2RevertTransactionResponse$ {
   export const outboundSchema = V2RevertTransactionResponse$outboundSchema;
   /** @deprecated use `V2RevertTransactionResponse$Outbound` instead. */
   export type Outbound = V2RevertTransactionResponse$Outbound;
+}
+
+export function v2RevertTransactionResponseToJSON(
+  v2RevertTransactionResponse: V2RevertTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2RevertTransactionResponse$outboundSchema.parse(
+      v2RevertTransactionResponse,
+    ),
+  );
+}
+
+export function v2RevertTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2RevertTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2RevertTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2RevertTransactionResponse' from JSON`,
+  );
 }

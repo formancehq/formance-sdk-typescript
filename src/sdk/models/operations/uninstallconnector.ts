@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UninstallConnectorRequest = {
@@ -64,6 +67,24 @@ export namespace UninstallConnectorRequest$ {
   export type Outbound = UninstallConnectorRequest$Outbound;
 }
 
+export function uninstallConnectorRequestToJSON(
+  uninstallConnectorRequest: UninstallConnectorRequest,
+): string {
+  return JSON.stringify(
+    UninstallConnectorRequest$outboundSchema.parse(uninstallConnectorRequest),
+  );
+}
+
+export function uninstallConnectorRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UninstallConnectorRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UninstallConnectorRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UninstallConnectorRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UninstallConnectorResponse$inboundSchema: z.ZodType<
   UninstallConnectorResponse,
@@ -118,4 +139,22 @@ export namespace UninstallConnectorResponse$ {
   export const outboundSchema = UninstallConnectorResponse$outboundSchema;
   /** @deprecated use `UninstallConnectorResponse$Outbound` instead. */
   export type Outbound = UninstallConnectorResponse$Outbound;
+}
+
+export function uninstallConnectorResponseToJSON(
+  uninstallConnectorResponse: UninstallConnectorResponse,
+): string {
+  return JSON.stringify(
+    UninstallConnectorResponse$outboundSchema.parse(uninstallConnectorResponse),
+  );
+}
+
+export function uninstallConnectorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UninstallConnectorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UninstallConnectorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UninstallConnectorResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreateSecretRequest = {
@@ -80,6 +83,24 @@ export namespace CreateSecretRequest$ {
   export type Outbound = CreateSecretRequest$Outbound;
 }
 
+export function createSecretRequestToJSON(
+  createSecretRequest: CreateSecretRequest,
+): string {
+  return JSON.stringify(
+    CreateSecretRequest$outboundSchema.parse(createSecretRequest),
+  );
+}
+
+export function createSecretRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSecretRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSecretRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSecretRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateSecretResponse$inboundSchema: z.ZodType<
   CreateSecretResponse,
@@ -139,4 +160,22 @@ export namespace CreateSecretResponse$ {
   export const outboundSchema = CreateSecretResponse$outboundSchema;
   /** @deprecated use `CreateSecretResponse$Outbound` instead. */
   export type Outbound = CreateSecretResponse$Outbound;
+}
+
+export function createSecretResponseToJSON(
+  createSecretResponse: CreateSecretResponse,
+): string {
+  return JSON.stringify(
+    CreateSecretResponse$outboundSchema.parse(createSecretResponse),
+  );
+}
+
+export function createSecretResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSecretResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSecretResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSecretResponse' from JSON`,
+  );
 }

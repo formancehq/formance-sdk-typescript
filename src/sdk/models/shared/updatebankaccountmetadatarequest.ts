@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateBankAccountMetadataRequest = {
   metadata: { [k: string]: string } | null;
@@ -42,4 +45,24 @@ export namespace UpdateBankAccountMetadataRequest$ {
   export const outboundSchema = UpdateBankAccountMetadataRequest$outboundSchema;
   /** @deprecated use `UpdateBankAccountMetadataRequest$Outbound` instead. */
   export type Outbound = UpdateBankAccountMetadataRequest$Outbound;
+}
+
+export function updateBankAccountMetadataRequestToJSON(
+  updateBankAccountMetadataRequest: UpdateBankAccountMetadataRequest,
+): string {
+  return JSON.stringify(
+    UpdateBankAccountMetadataRequest$outboundSchema.parse(
+      updateBankAccountMetadataRequest,
+    ),
+  );
+}
+
+export function updateBankAccountMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateBankAccountMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateBankAccountMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateBankAccountMetadataRequest' from JSON`,
+  );
 }

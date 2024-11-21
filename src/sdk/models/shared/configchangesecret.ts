@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConfigChangeSecret = {
   secret: string;
@@ -42,4 +45,22 @@ export namespace ConfigChangeSecret$ {
   export const outboundSchema = ConfigChangeSecret$outboundSchema;
   /** @deprecated use `ConfigChangeSecret$Outbound` instead. */
   export type Outbound = ConfigChangeSecret$Outbound;
+}
+
+export function configChangeSecretToJSON(
+  configChangeSecret: ConfigChangeSecret,
+): string {
+  return JSON.stringify(
+    ConfigChangeSecret$outboundSchema.parse(configChangeSecret),
+  );
+}
+
+export function configChangeSecretFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigChangeSecret, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigChangeSecret$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigChangeSecret' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationWallet,
   OrchestrationWallet$inboundSchema,
@@ -72,6 +75,28 @@ export namespace OrchestrationListWalletsResponseCursor$ {
   export type Outbound = OrchestrationListWalletsResponseCursor$Outbound;
 }
 
+export function orchestrationListWalletsResponseCursorToJSON(
+  orchestrationListWalletsResponseCursor:
+    OrchestrationListWalletsResponseCursor,
+): string {
+  return JSON.stringify(
+    OrchestrationListWalletsResponseCursor$outboundSchema.parse(
+      orchestrationListWalletsResponseCursor,
+    ),
+  );
+}
+
+export function orchestrationListWalletsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationListWalletsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      OrchestrationListWalletsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationListWalletsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const OrchestrationListWalletsResponse$inboundSchema: z.ZodType<
   OrchestrationListWalletsResponse,
@@ -106,4 +131,24 @@ export namespace OrchestrationListWalletsResponse$ {
   export const outboundSchema = OrchestrationListWalletsResponse$outboundSchema;
   /** @deprecated use `OrchestrationListWalletsResponse$Outbound` instead. */
   export type Outbound = OrchestrationListWalletsResponse$Outbound;
+}
+
+export function orchestrationListWalletsResponseToJSON(
+  orchestrationListWalletsResponse: OrchestrationListWalletsResponse,
+): string {
+  return JSON.stringify(
+    OrchestrationListWalletsResponse$outboundSchema.parse(
+      orchestrationListWalletsResponse,
+    ),
+  );
+}
+
+export function orchestrationListWalletsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationListWalletsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationListWalletsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationListWalletsResponse' from JSON`,
+  );
 }

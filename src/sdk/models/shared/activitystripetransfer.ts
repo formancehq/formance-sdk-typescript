@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * A set of key/value pairs that you can attach to a transfer object.
@@ -57,6 +60,20 @@ export namespace Metadata$ {
   export type Outbound = Metadata$Outbound;
 }
 
+export function metadataToJSON(metadata: Metadata): string {
+  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+}
+
+export function metadataFromJSON(
+  jsonString: string,
+): SafeParseResult<Metadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Metadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const ActivityStripeTransfer$inboundSchema: z.ZodType<
   ActivityStripeTransfer,
@@ -106,4 +123,22 @@ export namespace ActivityStripeTransfer$ {
   export const outboundSchema = ActivityStripeTransfer$outboundSchema;
   /** @deprecated use `ActivityStripeTransfer$Outbound` instead. */
   export type Outbound = ActivityStripeTransfer$Outbound;
+}
+
+export function activityStripeTransferToJSON(
+  activityStripeTransfer: ActivityStripeTransfer,
+): string {
+  return JSON.stringify(
+    ActivityStripeTransfer$outboundSchema.parse(activityStripeTransfer),
+  );
+}
+
+export function activityStripeTransferFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityStripeTransfer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityStripeTransfer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityStripeTransfer' from JSON`,
+  );
 }

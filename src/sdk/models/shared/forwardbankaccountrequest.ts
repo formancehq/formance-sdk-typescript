@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ForwardBankAccountRequest = {
   connectorID: string;
@@ -42,4 +45,22 @@ export namespace ForwardBankAccountRequest$ {
   export const outboundSchema = ForwardBankAccountRequest$outboundSchema;
   /** @deprecated use `ForwardBankAccountRequest$Outbound` instead. */
   export type Outbound = ForwardBankAccountRequest$Outbound;
+}
+
+export function forwardBankAccountRequestToJSON(
+  forwardBankAccountRequest: ForwardBankAccountRequest,
+): string {
+  return JSON.stringify(
+    ForwardBankAccountRequest$outboundSchema.parse(forwardBankAccountRequest),
+  );
+}
+
+export function forwardBankAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ForwardBankAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ForwardBankAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ForwardBankAccountRequest' from JSON`,
+  );
 }

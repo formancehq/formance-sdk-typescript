@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2AggregateBalancesResponse = {
   data: { [k: string]: bigint };
@@ -42,4 +45,24 @@ export namespace V2AggregateBalancesResponse$ {
   export const outboundSchema = V2AggregateBalancesResponse$outboundSchema;
   /** @deprecated use `V2AggregateBalancesResponse$Outbound` instead. */
   export type Outbound = V2AggregateBalancesResponse$Outbound;
+}
+
+export function v2AggregateBalancesResponseToJSON(
+  v2AggregateBalancesResponse: V2AggregateBalancesResponse,
+): string {
+  return JSON.stringify(
+    V2AggregateBalancesResponse$outboundSchema.parse(
+      v2AggregateBalancesResponse,
+    ),
+  );
+}
+
+export function v2AggregateBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AggregateBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AggregateBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AggregateBalancesResponse' from JSON`,
+  );
 }

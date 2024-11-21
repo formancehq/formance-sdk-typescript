@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ServerInfo = {
   version: string;
@@ -42,4 +45,18 @@ export namespace ServerInfo$ {
   export const outboundSchema = ServerInfo$outboundSchema;
   /** @deprecated use `ServerInfo$Outbound` instead. */
   export type Outbound = ServerInfo$Outbound;
+}
+
+export function serverInfoToJSON(serverInfo: ServerInfo): string {
+  return JSON.stringify(ServerInfo$outboundSchema.parse(serverInfo));
+}
+
+export function serverInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<ServerInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ServerInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ServerInfo' from JSON`,
+  );
 }

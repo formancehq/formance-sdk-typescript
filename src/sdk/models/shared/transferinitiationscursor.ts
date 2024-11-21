@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransferInitiation,
   TransferInitiation$inboundSchema,
@@ -73,6 +76,26 @@ export namespace TransferInitiationsCursorCursor$ {
   export type Outbound = TransferInitiationsCursorCursor$Outbound;
 }
 
+export function transferInitiationsCursorCursorToJSON(
+  transferInitiationsCursorCursor: TransferInitiationsCursorCursor,
+): string {
+  return JSON.stringify(
+    TransferInitiationsCursorCursor$outboundSchema.parse(
+      transferInitiationsCursorCursor,
+    ),
+  );
+}
+
+export function transferInitiationsCursorCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiationsCursorCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiationsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationsCursorCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TransferInitiationsCursor$inboundSchema: z.ZodType<
   TransferInitiationsCursor,
@@ -107,4 +130,22 @@ export namespace TransferInitiationsCursor$ {
   export const outboundSchema = TransferInitiationsCursor$outboundSchema;
   /** @deprecated use `TransferInitiationsCursor$Outbound` instead. */
   export type Outbound = TransferInitiationsCursor$Outbound;
+}
+
+export function transferInitiationsCursorToJSON(
+  transferInitiationsCursor: TransferInitiationsCursor,
+): string {
+  return JSON.stringify(
+    TransferInitiationsCursor$outboundSchema.parse(transferInitiationsCursor),
+  );
+}
+
+export function transferInitiationsCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiationsCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiationsCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationsCursor' from JSON`,
+  );
 }

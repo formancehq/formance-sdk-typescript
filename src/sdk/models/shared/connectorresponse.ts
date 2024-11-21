@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Data = {
   connectorID: string;
@@ -45,6 +48,20 @@ export namespace Data$ {
   export type Outbound = Data$Outbound;
 }
 
+export function dataToJSON(data: Data): string {
+  return JSON.stringify(Data$outboundSchema.parse(data));
+}
+
+export function dataFromJSON(
+  jsonString: string,
+): SafeParseResult<Data, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Data$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Data' from JSON`,
+  );
+}
+
 /** @internal */
 export const ConnectorResponse$inboundSchema: z.ZodType<
   ConnectorResponse,
@@ -79,4 +96,22 @@ export namespace ConnectorResponse$ {
   export const outboundSchema = ConnectorResponse$outboundSchema;
   /** @deprecated use `ConnectorResponse$Outbound` instead. */
   export type Outbound = ConnectorResponse$Outbound;
+}
+
+export function connectorResponseToJSON(
+  connectorResponse: ConnectorResponse,
+): string {
+  return JSON.stringify(
+    ConnectorResponse$outboundSchema.parse(connectorResponse),
+  );
+}
+
+export function connectorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConnectorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConnectorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorResponse' from JSON`,
+  );
 }

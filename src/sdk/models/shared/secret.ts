@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Secret = {
   clear: string;
@@ -55,4 +58,18 @@ export namespace Secret$ {
   export const outboundSchema = Secret$outboundSchema;
   /** @deprecated use `Secret$Outbound` instead. */
   export type Outbound = Secret$Outbound;
+}
+
+export function secretToJSON(secret: Secret): string {
+  return JSON.stringify(Secret$outboundSchema.parse(secret));
+}
+
+export function secretFromJSON(
+  jsonString: string,
+): SafeParseResult<Secret, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Secret$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Secret' from JSON`,
+  );
 }

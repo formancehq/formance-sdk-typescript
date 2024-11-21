@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateLedgerRequest = {
@@ -76,6 +79,24 @@ export namespace V2CreateLedgerRequest$ {
   export type Outbound = V2CreateLedgerRequest$Outbound;
 }
 
+export function v2CreateLedgerRequestToJSON(
+  v2CreateLedgerRequest: V2CreateLedgerRequest,
+): string {
+  return JSON.stringify(
+    V2CreateLedgerRequest$outboundSchema.parse(v2CreateLedgerRequest),
+  );
+}
+
+export function v2CreateLedgerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateLedgerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateLedgerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateLedgerRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2CreateLedgerResponse$inboundSchema: z.ZodType<
   V2CreateLedgerResponse,
@@ -130,4 +151,22 @@ export namespace V2CreateLedgerResponse$ {
   export const outboundSchema = V2CreateLedgerResponse$outboundSchema;
   /** @deprecated use `V2CreateLedgerResponse$Outbound` instead. */
   export type Outbound = V2CreateLedgerResponse$Outbound;
+}
+
+export function v2CreateLedgerResponseToJSON(
+  v2CreateLedgerResponse: V2CreateLedgerResponse,
+): string {
+  return JSON.stringify(
+    V2CreateLedgerResponse$outboundSchema.parse(v2CreateLedgerResponse),
+  );
+}
+
+export function v2CreateLedgerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateLedgerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateLedgerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateLedgerResponse' from JSON`,
+  );
 }

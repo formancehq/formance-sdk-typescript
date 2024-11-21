@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetMappingRequest = {
@@ -68,6 +71,24 @@ export namespace GetMappingRequest$ {
   export type Outbound = GetMappingRequest$Outbound;
 }
 
+export function getMappingRequestToJSON(
+  getMappingRequest: GetMappingRequest,
+): string {
+  return JSON.stringify(
+    GetMappingRequest$outboundSchema.parse(getMappingRequest),
+  );
+}
+
+export function getMappingRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMappingRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMappingRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMappingRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetMappingResponse$inboundSchema: z.ZodType<
   GetMappingResponse,
@@ -127,4 +148,22 @@ export namespace GetMappingResponse$ {
   export const outboundSchema = GetMappingResponse$outboundSchema;
   /** @deprecated use `GetMappingResponse$Outbound` instead. */
   export type Outbound = GetMappingResponse$Outbound;
+}
+
+export function getMappingResponseToJSON(
+  getMappingResponse: GetMappingResponse,
+): string {
+  return JSON.stringify(
+    GetMappingResponse$outboundSchema.parse(getMappingResponse),
+  );
+}
+
+export function getMappingResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetMappingResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetMappingResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetMappingResponse' from JSON`,
+  );
 }

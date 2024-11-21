@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceWithAssets,
   BalanceWithAssets$inboundSchema,
@@ -48,4 +51,22 @@ export namespace GetBalanceResponse$ {
   export const outboundSchema = GetBalanceResponse$outboundSchema;
   /** @deprecated use `GetBalanceResponse$Outbound` instead. */
   export type Outbound = GetBalanceResponse$Outbound;
+}
+
+export function getBalanceResponseToJSON(
+  getBalanceResponse: GetBalanceResponse,
+): string {
+  return JSON.stringify(
+    GetBalanceResponse$outboundSchema.parse(getBalanceResponse),
+  );
+}
+
+export function getBalanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalanceResponse' from JSON`,
+  );
 }

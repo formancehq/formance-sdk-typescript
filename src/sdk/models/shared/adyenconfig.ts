@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AdyenConfig = {
   apiKey: string;
@@ -63,4 +66,18 @@ export namespace AdyenConfig$ {
   export const outboundSchema = AdyenConfig$outboundSchema;
   /** @deprecated use `AdyenConfig$Outbound` instead. */
   export type Outbound = AdyenConfig$Outbound;
+}
+
+export function adyenConfigToJSON(adyenConfig: AdyenConfig): string {
+  return JSON.stringify(AdyenConfig$outboundSchema.parse(adyenConfig));
+}
+
+export function adyenConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<AdyenConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AdyenConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AdyenConfig' from JSON`,
+  );
 }

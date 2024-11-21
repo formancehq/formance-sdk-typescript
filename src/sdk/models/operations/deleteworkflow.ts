@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteWorkflowRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace DeleteWorkflowRequest$ {
   export type Outbound = DeleteWorkflowRequest$Outbound;
 }
 
+export function deleteWorkflowRequestToJSON(
+  deleteWorkflowRequest: DeleteWorkflowRequest,
+): string {
+  return JSON.stringify(
+    DeleteWorkflowRequest$outboundSchema.parse(deleteWorkflowRequest),
+  );
+}
+
+export function deleteWorkflowRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWorkflowRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWorkflowRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWorkflowRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteWorkflowResponse$inboundSchema: z.ZodType<
   DeleteWorkflowResponse,
@@ -117,4 +138,22 @@ export namespace DeleteWorkflowResponse$ {
   export const outboundSchema = DeleteWorkflowResponse$outboundSchema;
   /** @deprecated use `DeleteWorkflowResponse$Outbound` instead. */
   export type Outbound = DeleteWorkflowResponse$Outbound;
+}
+
+export function deleteWorkflowResponseToJSON(
+  deleteWorkflowResponse: DeleteWorkflowResponse,
+): string {
+  return JSON.stringify(
+    DeleteWorkflowResponse$outboundSchema.parse(deleteWorkflowResponse),
+  );
+}
+
+export function deleteWorkflowResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteWorkflowResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteWorkflowResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteWorkflowResponse' from JSON`,
+  );
 }

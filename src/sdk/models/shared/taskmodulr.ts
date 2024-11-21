@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskModulrDescriptor$ {
   export type Outbound = TaskModulrDescriptor$Outbound;
 }
 
+export function taskModulrDescriptorToJSON(
+  taskModulrDescriptor: TaskModulrDescriptor,
+): string {
+  return JSON.stringify(
+    TaskModulrDescriptor$outboundSchema.parse(taskModulrDescriptor),
+  );
+}
+
+export function taskModulrDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskModulrDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskModulrDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskModulrDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskModulrState$inboundSchema: z.ZodType<
   TaskModulrState,
@@ -98,6 +119,22 @@ export namespace TaskModulrState$ {
   export const outboundSchema = TaskModulrState$outboundSchema;
   /** @deprecated use `TaskModulrState$Outbound` instead. */
   export type Outbound = TaskModulrState$Outbound;
+}
+
+export function taskModulrStateToJSON(
+  taskModulrState: TaskModulrState,
+): string {
+  return JSON.stringify(TaskModulrState$outboundSchema.parse(taskModulrState));
+}
+
+export function taskModulrStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskModulrState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskModulrState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskModulrState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +192,18 @@ export namespace TaskModulr$ {
   export const outboundSchema = TaskModulr$outboundSchema;
   /** @deprecated use `TaskModulr$Outbound` instead. */
   export type Outbound = TaskModulr$Outbound;
+}
+
+export function taskModulrToJSON(taskModulr: TaskModulr): string {
+  return JSON.stringify(TaskModulr$outboundSchema.parse(taskModulr));
+}
+
+export function taskModulrFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskModulr, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskModulr$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskModulr' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ReconciliationRequest = {
   reconciledAtLedger: Date;
@@ -50,4 +53,22 @@ export namespace ReconciliationRequest$ {
   export const outboundSchema = ReconciliationRequest$outboundSchema;
   /** @deprecated use `ReconciliationRequest$Outbound` instead. */
   export type Outbound = ReconciliationRequest$Outbound;
+}
+
+export function reconciliationRequestToJSON(
+  reconciliationRequest: ReconciliationRequest,
+): string {
+  return JSON.stringify(
+    ReconciliationRequest$outboundSchema.parse(reconciliationRequest),
+  );
+}
+
+export function reconciliationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconciliationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReconciliationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconciliationRequest' from JSON`,
+  );
 }

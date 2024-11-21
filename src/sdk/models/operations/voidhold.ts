@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type VoidHoldRequest = {
   /**
@@ -77,6 +80,22 @@ export namespace VoidHoldRequest$ {
   export type Outbound = VoidHoldRequest$Outbound;
 }
 
+export function voidHoldRequestToJSON(
+  voidHoldRequest: VoidHoldRequest,
+): string {
+  return JSON.stringify(VoidHoldRequest$outboundSchema.parse(voidHoldRequest));
+}
+
+export function voidHoldRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<VoidHoldRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VoidHoldRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VoidHoldRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const VoidHoldResponse$inboundSchema: z.ZodType<
   VoidHoldResponse,
@@ -131,4 +150,22 @@ export namespace VoidHoldResponse$ {
   export const outboundSchema = VoidHoldResponse$outboundSchema;
   /** @deprecated use `VoidHoldResponse$Outbound` instead. */
   export type Outbound = VoidHoldResponse$Outbound;
+}
+
+export function voidHoldResponseToJSON(
+  voidHoldResponse: VoidHoldResponse,
+): string {
+  return JSON.stringify(
+    VoidHoldResponse$outboundSchema.parse(voidHoldResponse),
+  );
+}
+
+export function voidHoldResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<VoidHoldResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => VoidHoldResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'VoidHoldResponse' from JSON`,
+  );
 }

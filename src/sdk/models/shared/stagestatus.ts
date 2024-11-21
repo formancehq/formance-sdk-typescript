@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StageStatus = {
   error?: string | undefined;
@@ -60,4 +63,18 @@ export namespace StageStatus$ {
   export const outboundSchema = StageStatus$outboundSchema;
   /** @deprecated use `StageStatus$Outbound` instead. */
   export type Outbound = StageStatus$Outbound;
+}
+
+export function stageStatusToJSON(stageStatus: StageStatus): string {
+  return JSON.stringify(StageStatus$outboundSchema.parse(stageStatus));
+}
+
+export function stageStatusFromJSON(
+  jsonString: string,
+): SafeParseResult<StageStatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StageStatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StageStatus' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ExpandedDebitHold,
   ExpandedDebitHold$inboundSchema,
@@ -48,4 +51,20 @@ export namespace GetHoldResponse$ {
   export const outboundSchema = GetHoldResponse$outboundSchema;
   /** @deprecated use `GetHoldResponse$Outbound` instead. */
   export type Outbound = GetHoldResponse$Outbound;
+}
+
+export function getHoldResponseToJSON(
+  getHoldResponse: GetHoldResponse,
+): string {
+  return JSON.stringify(GetHoldResponse$outboundSchema.parse(getHoldResponse));
+}
+
+export function getHoldResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetHoldResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetHoldResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetHoldResponse' from JSON`,
+  );
 }

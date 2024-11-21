@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetTransactionRequest = {
@@ -84,6 +87,24 @@ export namespace V2GetTransactionRequest$ {
   export type Outbound = V2GetTransactionRequest$Outbound;
 }
 
+export function v2GetTransactionRequestToJSON(
+  v2GetTransactionRequest: V2GetTransactionRequest,
+): string {
+  return JSON.stringify(
+    V2GetTransactionRequest$outboundSchema.parse(v2GetTransactionRequest),
+  );
+}
+
+export function v2GetTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetTransactionResponse$inboundSchema: z.ZodType<
   V2GetTransactionResponse,
@@ -147,4 +168,22 @@ export namespace V2GetTransactionResponse$ {
   export const outboundSchema = V2GetTransactionResponse$outboundSchema;
   /** @deprecated use `V2GetTransactionResponse$Outbound` instead. */
   export type Outbound = V2GetTransactionResponse$Outbound;
+}
+
+export function v2GetTransactionResponseToJSON(
+  v2GetTransactionResponse: V2GetTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2GetTransactionResponse$outboundSchema.parse(v2GetTransactionResponse),
+  );
+}
+
+export function v2GetTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetTransactionResponse' from JSON`,
+  );
 }

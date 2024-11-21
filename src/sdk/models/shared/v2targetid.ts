@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2TargetId = string | bigint;
 
@@ -34,4 +37,18 @@ export namespace V2TargetId$ {
   export const outboundSchema = V2TargetId$outboundSchema;
   /** @deprecated use `V2TargetId$Outbound` instead. */
   export type Outbound = V2TargetId$Outbound;
+}
+
+export function v2TargetIdToJSON(v2TargetId: V2TargetId): string {
+  return JSON.stringify(V2TargetId$outboundSchema.parse(v2TargetId));
+}
+
+export function v2TargetIdFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TargetId, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TargetId$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TargetId' from JSON`,
+  );
 }

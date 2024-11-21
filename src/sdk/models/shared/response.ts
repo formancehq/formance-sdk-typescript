@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Total = {
   relation?: string | undefined;
@@ -62,6 +65,20 @@ export namespace Total$ {
   export type Outbound = Total$Outbound;
 }
 
+export function totalToJSON(total: Total): string {
+  return JSON.stringify(Total$outboundSchema.parse(total));
+}
+
+export function totalFromJSON(
+  jsonString: string,
+): SafeParseResult<Total, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Total$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Total' from JSON`,
+  );
+}
+
 /** @internal */
 export const ResponseCursor$inboundSchema: z.ZodType<
   ResponseCursor,
@@ -113,6 +130,20 @@ export namespace ResponseCursor$ {
   export type Outbound = ResponseCursor$Outbound;
 }
 
+export function responseCursorToJSON(responseCursor: ResponseCursor): string {
+  return JSON.stringify(ResponseCursor$outboundSchema.parse(responseCursor));
+}
+
+export function responseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<ResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const Response$inboundSchema: z.ZodType<
   Response,
@@ -150,4 +181,18 @@ export namespace Response$ {
   export const outboundSchema = Response$outboundSchema;
   /** @deprecated use `Response$Outbound` instead. */
   export type Outbound = Response$Outbound;
+}
+
+export function responseToJSON(response: Response): string {
+  return JSON.stringify(Response$outboundSchema.parse(response));
+}
+
+export function responseFromJSON(
+  jsonString: string,
+): SafeParseResult<Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Response' from JSON`,
+  );
 }

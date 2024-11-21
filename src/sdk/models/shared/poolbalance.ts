@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PoolBalance = {
   amount: bigint;
@@ -46,4 +49,18 @@ export namespace PoolBalance$ {
   export const outboundSchema = PoolBalance$outboundSchema;
   /** @deprecated use `PoolBalance$Outbound` instead. */
   export type Outbound = PoolBalance$Outbound;
+}
+
+export function poolBalanceToJSON(poolBalance: PoolBalance): string {
+  return JSON.stringify(PoolBalance$outboundSchema.parse(poolBalance));
+}
+
+export function poolBalanceFromJSON(
+  jsonString: string,
+): SafeParseResult<PoolBalance, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PoolBalance$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PoolBalance' from JSON`,
+  );
 }

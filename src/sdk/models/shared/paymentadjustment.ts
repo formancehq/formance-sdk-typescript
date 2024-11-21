@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -47,6 +50,24 @@ export namespace PaymentAdjustmentRaw$ {
   export const outboundSchema = PaymentAdjustmentRaw$outboundSchema;
   /** @deprecated use `PaymentAdjustmentRaw$Outbound` instead. */
   export type Outbound = PaymentAdjustmentRaw$Outbound;
+}
+
+export function paymentAdjustmentRawToJSON(
+  paymentAdjustmentRaw: PaymentAdjustmentRaw,
+): string {
+  return JSON.stringify(
+    PaymentAdjustmentRaw$outboundSchema.parse(paymentAdjustmentRaw),
+  );
+}
+
+export function paymentAdjustmentRawFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentAdjustmentRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentAdjustmentRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -95,4 +116,22 @@ export namespace PaymentAdjustment$ {
   export const outboundSchema = PaymentAdjustment$outboundSchema;
   /** @deprecated use `PaymentAdjustment$Outbound` instead. */
   export type Outbound = PaymentAdjustment$Outbound;
+}
+
+export function paymentAdjustmentToJSON(
+  paymentAdjustment: PaymentAdjustment,
+): string {
+  return JSON.stringify(
+    PaymentAdjustment$outboundSchema.parse(paymentAdjustment),
+  );
+}
+
+export function paymentAdjustmentFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentAdjustment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentAdjustment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentAdjustment' from JSON`,
+  );
 }

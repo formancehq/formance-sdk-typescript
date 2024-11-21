@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DummyPayConfig = {
   directory: string;
@@ -65,4 +68,18 @@ export namespace DummyPayConfig$ {
   export const outboundSchema = DummyPayConfig$outboundSchema;
   /** @deprecated use `DummyPayConfig$Outbound` instead. */
   export type Outbound = DummyPayConfig$Outbound;
+}
+
+export function dummyPayConfigToJSON(dummyPayConfig: DummyPayConfig): string {
+  return JSON.stringify(DummyPayConfig$outboundSchema.parse(dummyPayConfig));
+}
+
+export function dummyPayConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<DummyPayConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DummyPayConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DummyPayConfig' from JSON`,
+  );
 }

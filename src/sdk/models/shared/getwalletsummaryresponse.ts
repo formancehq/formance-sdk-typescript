@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BalanceWithAssets,
   BalanceWithAssets$inboundSchema,
@@ -64,4 +67,22 @@ export namespace GetWalletSummaryResponse$ {
   export const outboundSchema = GetWalletSummaryResponse$outboundSchema;
   /** @deprecated use `GetWalletSummaryResponse$Outbound` instead. */
   export type Outbound = GetWalletSummaryResponse$Outbound;
+}
+
+export function getWalletSummaryResponseToJSON(
+  getWalletSummaryResponse: GetWalletSummaryResponse,
+): string {
+  return JSON.stringify(
+    GetWalletSummaryResponse$outboundSchema.parse(getWalletSummaryResponse),
+  );
+}
+
+export function getWalletSummaryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWalletSummaryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWalletSummaryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWalletSummaryResponse' from JSON`,
+  );
 }

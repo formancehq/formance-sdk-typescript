@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationConnector,
   OrchestrationConnector$inboundSchema,
@@ -102,6 +105,24 @@ export namespace OrchestrationPaymentRaw$ {
   export const outboundSchema = OrchestrationPaymentRaw$outboundSchema;
   /** @deprecated use `OrchestrationPaymentRaw$Outbound` instead. */
   export type Outbound = OrchestrationPaymentRaw$Outbound;
+}
+
+export function orchestrationPaymentRawToJSON(
+  orchestrationPaymentRaw: OrchestrationPaymentRaw,
+): string {
+  return JSON.stringify(
+    OrchestrationPaymentRaw$outboundSchema.parse(orchestrationPaymentRaw),
+  );
+}
+
+export function orchestrationPaymentRawFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPaymentRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPaymentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPaymentRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -222,4 +243,22 @@ export namespace OrchestrationPayment$ {
   export const outboundSchema = OrchestrationPayment$outboundSchema;
   /** @deprecated use `OrchestrationPayment$Outbound` instead. */
   export type Outbound = OrchestrationPayment$Outbound;
+}
+
+export function orchestrationPaymentToJSON(
+  orchestrationPayment: OrchestrationPayment,
+): string {
+  return JSON.stringify(
+    OrchestrationPayment$outboundSchema.parse(orchestrationPayment),
+  );
+}
+
+export function orchestrationPaymentFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPayment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPayment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPayment' from JSON`,
+  );
 }

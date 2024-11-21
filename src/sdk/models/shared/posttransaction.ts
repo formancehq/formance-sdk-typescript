@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Posting,
   Posting$inboundSchema,
@@ -62,6 +65,24 @@ export namespace PostTransactionScript$ {
   export type Outbound = PostTransactionScript$Outbound;
 }
 
+export function postTransactionScriptToJSON(
+  postTransactionScript: PostTransactionScript,
+): string {
+  return JSON.stringify(
+    PostTransactionScript$outboundSchema.parse(postTransactionScript),
+  );
+}
+
+export function postTransactionScriptFromJSON(
+  jsonString: string,
+): SafeParseResult<PostTransactionScript, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostTransactionScript$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostTransactionScript' from JSON`,
+  );
+}
+
 /** @internal */
 export const PostTransaction$inboundSchema: z.ZodType<
   PostTransaction,
@@ -109,4 +130,20 @@ export namespace PostTransaction$ {
   export const outboundSchema = PostTransaction$outboundSchema;
   /** @deprecated use `PostTransaction$Outbound` instead. */
   export type Outbound = PostTransaction$Outbound;
+}
+
+export function postTransactionToJSON(
+  postTransaction: PostTransaction,
+): string {
+  return JSON.stringify(PostTransaction$outboundSchema.parse(postTransaction));
+}
+
+export function postTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<PostTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PostTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PostTransaction' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type SearchResponse = {
@@ -84,4 +87,18 @@ export namespace SearchResponse$ {
   export const outboundSchema = SearchResponse$outboundSchema;
   /** @deprecated use `SearchResponse$Outbound` instead. */
   export type Outbound = SearchResponse$Outbound;
+}
+
+export function searchResponseToJSON(searchResponse: SearchResponse): string {
+  return JSON.stringify(SearchResponse$outboundSchema.parse(searchResponse));
+}
+
+export function searchResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SearchResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SearchResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SearchResponse' from JSON`,
+  );
 }

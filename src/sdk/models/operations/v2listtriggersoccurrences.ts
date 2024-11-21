@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2ListTriggersOccurrencesRequest = {
@@ -91,6 +94,26 @@ export namespace V2ListTriggersOccurrencesRequest$ {
   export type Outbound = V2ListTriggersOccurrencesRequest$Outbound;
 }
 
+export function v2ListTriggersOccurrencesRequestToJSON(
+  v2ListTriggersOccurrencesRequest: V2ListTriggersOccurrencesRequest,
+): string {
+  return JSON.stringify(
+    V2ListTriggersOccurrencesRequest$outboundSchema.parse(
+      v2ListTriggersOccurrencesRequest,
+    ),
+  );
+}
+
+export function v2ListTriggersOccurrencesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListTriggersOccurrencesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListTriggersOccurrencesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListTriggersOccurrencesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListTriggersOccurrencesResponse$inboundSchema: z.ZodType<
   V2ListTriggersOccurrencesResponse,
@@ -155,4 +178,24 @@ export namespace V2ListTriggersOccurrencesResponse$ {
     V2ListTriggersOccurrencesResponse$outboundSchema;
   /** @deprecated use `V2ListTriggersOccurrencesResponse$Outbound` instead. */
   export type Outbound = V2ListTriggersOccurrencesResponse$Outbound;
+}
+
+export function v2ListTriggersOccurrencesResponseToJSON(
+  v2ListTriggersOccurrencesResponse: V2ListTriggersOccurrencesResponse,
+): string {
+  return JSON.stringify(
+    V2ListTriggersOccurrencesResponse$outboundSchema.parse(
+      v2ListTriggersOccurrencesResponse,
+    ),
+  );
+}
+
+export function v2ListTriggersOccurrencesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListTriggersOccurrencesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListTriggersOccurrencesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListTriggersOccurrencesResponse' from JSON`,
+  );
 }

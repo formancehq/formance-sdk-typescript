@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListConnectorTasksV1Request = {
@@ -96,6 +99,26 @@ export namespace ListConnectorTasksV1Request$ {
   export type Outbound = ListConnectorTasksV1Request$Outbound;
 }
 
+export function listConnectorTasksV1RequestToJSON(
+  listConnectorTasksV1Request: ListConnectorTasksV1Request,
+): string {
+  return JSON.stringify(
+    ListConnectorTasksV1Request$outboundSchema.parse(
+      listConnectorTasksV1Request,
+    ),
+  );
+}
+
+export function listConnectorTasksV1RequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListConnectorTasksV1Request, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListConnectorTasksV1Request$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectorTasksV1Request' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListConnectorTasksV1Response$inboundSchema: z.ZodType<
   ListConnectorTasksV1Response,
@@ -155,4 +178,24 @@ export namespace ListConnectorTasksV1Response$ {
   export const outboundSchema = ListConnectorTasksV1Response$outboundSchema;
   /** @deprecated use `ListConnectorTasksV1Response$Outbound` instead. */
   export type Outbound = ListConnectorTasksV1Response$Outbound;
+}
+
+export function listConnectorTasksV1ResponseToJSON(
+  listConnectorTasksV1Response: ListConnectorTasksV1Response,
+): string {
+  return JSON.stringify(
+    ListConnectorTasksV1Response$outboundSchema.parse(
+      listConnectorTasksV1Response,
+    ),
+  );
+}
+
+export function listConnectorTasksV1ResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListConnectorTasksV1Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListConnectorTasksV1Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConnectorTasksV1Response' from JSON`,
+  );
 }

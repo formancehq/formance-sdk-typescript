@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Stats = {
   accounts: number;
@@ -43,4 +46,18 @@ export namespace Stats$ {
   export const outboundSchema = Stats$outboundSchema;
   /** @deprecated use `Stats$Outbound` instead. */
   export type Outbound = Stats$Outbound;
+}
+
+export function statsToJSON(stats: Stats): string {
+  return JSON.stringify(Stats$outboundSchema.parse(stats));
+}
+
+export function statsFromJSON(
+  jsonString: string,
+): SafeParseResult<Stats, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Stats$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Stats' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WorkflowInstance,
   WorkflowInstance$inboundSchema,
@@ -48,4 +51,24 @@ export namespace GetWorkflowInstanceResponse$ {
   export const outboundSchema = GetWorkflowInstanceResponse$outboundSchema;
   /** @deprecated use `GetWorkflowInstanceResponse$Outbound` instead. */
   export type Outbound = GetWorkflowInstanceResponse$Outbound;
+}
+
+export function getWorkflowInstanceResponseToJSON(
+  getWorkflowInstanceResponse: GetWorkflowInstanceResponse,
+): string {
+  return JSON.stringify(
+    GetWorkflowInstanceResponse$outboundSchema.parse(
+      getWorkflowInstanceResponse,
+    ),
+  );
+}
+
+export function getWorkflowInstanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWorkflowInstanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWorkflowInstanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWorkflowInstanceResponse' from JSON`,
+  );
 }

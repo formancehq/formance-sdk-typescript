@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetBalancesAggregatedRequest = {
@@ -84,6 +87,26 @@ export namespace V2GetBalancesAggregatedRequest$ {
   export type Outbound = V2GetBalancesAggregatedRequest$Outbound;
 }
 
+export function v2GetBalancesAggregatedRequestToJSON(
+  v2GetBalancesAggregatedRequest: V2GetBalancesAggregatedRequest,
+): string {
+  return JSON.stringify(
+    V2GetBalancesAggregatedRequest$outboundSchema.parse(
+      v2GetBalancesAggregatedRequest,
+    ),
+  );
+}
+
+export function v2GetBalancesAggregatedRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetBalancesAggregatedRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetBalancesAggregatedRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetBalancesAggregatedRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetBalancesAggregatedResponse$inboundSchema: z.ZodType<
   V2GetBalancesAggregatedResponse,
@@ -147,4 +170,24 @@ export namespace V2GetBalancesAggregatedResponse$ {
   export const outboundSchema = V2GetBalancesAggregatedResponse$outboundSchema;
   /** @deprecated use `V2GetBalancesAggregatedResponse$Outbound` instead. */
   export type Outbound = V2GetBalancesAggregatedResponse$Outbound;
+}
+
+export function v2GetBalancesAggregatedResponseToJSON(
+  v2GetBalancesAggregatedResponse: V2GetBalancesAggregatedResponse,
+): string {
+  return JSON.stringify(
+    V2GetBalancesAggregatedResponse$outboundSchema.parse(
+      v2GetBalancesAggregatedResponse,
+    ),
+  );
+}
+
+export function v2GetBalancesAggregatedResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetBalancesAggregatedResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetBalancesAggregatedResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetBalancesAggregatedResponse' from JSON`,
+  );
 }

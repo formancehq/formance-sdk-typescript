@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Volume,
   Volume$inboundSchema,
@@ -60,4 +63,22 @@ export namespace OrchestrationAccount$ {
   export const outboundSchema = OrchestrationAccount$outboundSchema;
   /** @deprecated use `OrchestrationAccount$Outbound` instead. */
   export type Outbound = OrchestrationAccount$Outbound;
+}
+
+export function orchestrationAccountToJSON(
+  orchestrationAccount: OrchestrationAccount,
+): string {
+  return JSON.stringify(
+    OrchestrationAccount$outboundSchema.parse(orchestrationAccount),
+  );
+}
+
+export function orchestrationAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationAccount' from JSON`,
+  );
 }

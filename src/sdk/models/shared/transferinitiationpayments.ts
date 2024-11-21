@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransferInitiationStatus,
   TransferInitiationStatus$inboundSchema,
@@ -59,4 +62,22 @@ export namespace TransferInitiationPayments$ {
   export const outboundSchema = TransferInitiationPayments$outboundSchema;
   /** @deprecated use `TransferInitiationPayments$Outbound` instead. */
   export type Outbound = TransferInitiationPayments$Outbound;
+}
+
+export function transferInitiationPaymentsToJSON(
+  transferInitiationPayments: TransferInitiationPayments,
+): string {
+  return JSON.stringify(
+    TransferInitiationPayments$outboundSchema.parse(transferInitiationPayments),
+  );
+}
+
+export function transferInitiationPaymentsFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiationPayments, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiationPayments$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationPayments' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OrchestrationWallet = {
   createdAt: Date;
@@ -64,4 +67,22 @@ export namespace OrchestrationWallet$ {
   export const outboundSchema = OrchestrationWallet$outboundSchema;
   /** @deprecated use `OrchestrationWallet$Outbound` instead. */
   export type Outbound = OrchestrationWallet$Outbound;
+}
+
+export function orchestrationWalletToJSON(
+  orchestrationWallet: OrchestrationWallet,
+): string {
+  return JSON.stringify(
+    OrchestrationWallet$outboundSchema.parse(orchestrationWallet),
+  );
+}
+
+export function orchestrationWalletFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationWallet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationWallet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationWallet' from JSON`,
+  );
 }

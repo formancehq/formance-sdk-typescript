@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskDummyPayDescriptor$ {
   export type Outbound = TaskDummyPayDescriptor$Outbound;
 }
 
+export function taskDummyPayDescriptorToJSON(
+  taskDummyPayDescriptor: TaskDummyPayDescriptor,
+): string {
+  return JSON.stringify(
+    TaskDummyPayDescriptor$outboundSchema.parse(taskDummyPayDescriptor),
+  );
+}
+
+export function taskDummyPayDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskDummyPayDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskDummyPayDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskDummyPayDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskDummyPayState$inboundSchema: z.ZodType<
   TaskDummyPayState,
@@ -98,6 +119,24 @@ export namespace TaskDummyPayState$ {
   export const outboundSchema = TaskDummyPayState$outboundSchema;
   /** @deprecated use `TaskDummyPayState$Outbound` instead. */
   export type Outbound = TaskDummyPayState$Outbound;
+}
+
+export function taskDummyPayStateToJSON(
+  taskDummyPayState: TaskDummyPayState,
+): string {
+  return JSON.stringify(
+    TaskDummyPayState$outboundSchema.parse(taskDummyPayState),
+  );
+}
+
+export function taskDummyPayStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskDummyPayState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskDummyPayState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskDummyPayState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +194,18 @@ export namespace TaskDummyPay$ {
   export const outboundSchema = TaskDummyPay$outboundSchema;
   /** @deprecated use `TaskDummyPay$Outbound` instead. */
   export type Outbound = TaskDummyPay$Outbound;
+}
+
+export function taskDummyPayToJSON(taskDummyPay: TaskDummyPay): string {
+  return JSON.stringify(TaskDummyPay$outboundSchema.parse(taskDummyPay));
+}
+
+export function taskDummyPayFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskDummyPay, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskDummyPay$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskDummyPay' from JSON`,
+  );
 }

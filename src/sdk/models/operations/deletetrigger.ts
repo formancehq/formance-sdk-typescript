@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteTriggerRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace DeleteTriggerRequest$ {
   export type Outbound = DeleteTriggerRequest$Outbound;
 }
 
+export function deleteTriggerRequestToJSON(
+  deleteTriggerRequest: DeleteTriggerRequest,
+): string {
+  return JSON.stringify(
+    DeleteTriggerRequest$outboundSchema.parse(deleteTriggerRequest),
+  );
+}
+
+export function deleteTriggerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteTriggerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteTriggerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteTriggerRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteTriggerResponse$inboundSchema: z.ZodType<
   DeleteTriggerResponse,
@@ -117,4 +138,22 @@ export namespace DeleteTriggerResponse$ {
   export const outboundSchema = DeleteTriggerResponse$outboundSchema;
   /** @deprecated use `DeleteTriggerResponse$Outbound` instead. */
   export type Outbound = DeleteTriggerResponse$Outbound;
+}
+
+export function deleteTriggerResponseToJSON(
+  deleteTriggerResponse: DeleteTriggerResponse,
+): string {
+  return JSON.stringify(
+    DeleteTriggerResponse$outboundSchema.parse(deleteTriggerResponse),
+  );
+}
+
+export function deleteTriggerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteTriggerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteTriggerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteTriggerResponse' from JSON`,
+  );
 }

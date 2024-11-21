@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ReverseTransferInitiationRequest = {
   amount: bigint;
@@ -58,4 +61,24 @@ export namespace ReverseTransferInitiationRequest$ {
   export const outboundSchema = ReverseTransferInitiationRequest$outboundSchema;
   /** @deprecated use `ReverseTransferInitiationRequest$Outbound` instead. */
   export type Outbound = ReverseTransferInitiationRequest$Outbound;
+}
+
+export function reverseTransferInitiationRequestToJSON(
+  reverseTransferInitiationRequest: ReverseTransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    ReverseTransferInitiationRequest$outboundSchema.parse(
+      reverseTransferInitiationRequest,
+    ),
+  );
+}
+
+export function reverseTransferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReverseTransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReverseTransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReverseTransferInitiationRequest' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export enum Order {
@@ -136,6 +139,24 @@ export namespace V2ListTransactionsRequest$ {
   export type Outbound = V2ListTransactionsRequest$Outbound;
 }
 
+export function v2ListTransactionsRequestToJSON(
+  v2ListTransactionsRequest: V2ListTransactionsRequest,
+): string {
+  return JSON.stringify(
+    V2ListTransactionsRequest$outboundSchema.parse(v2ListTransactionsRequest),
+  );
+}
+
+export function v2ListTransactionsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListTransactionsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListTransactionsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListTransactionsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListTransactionsResponse$inboundSchema: z.ZodType<
   V2ListTransactionsResponse,
@@ -199,4 +220,22 @@ export namespace V2ListTransactionsResponse$ {
   export const outboundSchema = V2ListTransactionsResponse$outboundSchema;
   /** @deprecated use `V2ListTransactionsResponse$Outbound` instead. */
   export type Outbound = V2ListTransactionsResponse$Outbound;
+}
+
+export function v2ListTransactionsResponseToJSON(
+  v2ListTransactionsResponse: V2ListTransactionsResponse,
+): string {
+  return JSON.stringify(
+    V2ListTransactionsResponse$outboundSchema.parse(v2ListTransactionsResponse),
+  );
+}
+
+export function v2ListTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListTransactionsResponse' from JSON`,
+  );
 }

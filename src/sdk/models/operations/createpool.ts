@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreatePoolResponse = {
@@ -84,4 +87,22 @@ export namespace CreatePoolResponse$ {
   export const outboundSchema = CreatePoolResponse$outboundSchema;
   /** @deprecated use `CreatePoolResponse$Outbound` instead. */
   export type Outbound = CreatePoolResponse$Outbound;
+}
+
+export function createPoolResponseToJSON(
+  createPoolResponse: CreatePoolResponse,
+): string {
+  return JSON.stringify(
+    CreatePoolResponse$outboundSchema.parse(createPoolResponse),
+  );
+}
+
+export function createPoolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreatePoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreatePoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreatePoolResponse' from JSON`,
+  );
 }

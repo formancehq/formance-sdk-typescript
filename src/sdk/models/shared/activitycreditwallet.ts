@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationCreditWalletRequest,
   OrchestrationCreditWalletRequest$inboundSchema,
@@ -52,4 +55,22 @@ export namespace ActivityCreditWallet$ {
   export const outboundSchema = ActivityCreditWallet$outboundSchema;
   /** @deprecated use `ActivityCreditWallet$Outbound` instead. */
   export type Outbound = ActivityCreditWallet$Outbound;
+}
+
+export function activityCreditWalletToJSON(
+  activityCreditWallet: ActivityCreditWallet,
+): string {
+  return JSON.stringify(
+    ActivityCreditWallet$outboundSchema.parse(activityCreditWallet),
+  );
+}
+
+export function activityCreditWalletFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityCreditWallet, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityCreditWallet$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityCreditWallet' from JSON`,
+  );
 }

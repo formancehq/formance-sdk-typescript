@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Monetary = {
   /**
@@ -52,4 +55,18 @@ export namespace Monetary$ {
   export const outboundSchema = Monetary$outboundSchema;
   /** @deprecated use `Monetary$Outbound` instead. */
   export type Outbound = Monetary$Outbound;
+}
+
+export function monetaryToJSON(monetary: Monetary): string {
+  return JSON.stringify(Monetary$outboundSchema.parse(monetary));
+}
+
+export function monetaryFromJSON(
+  jsonString: string,
+): SafeParseResult<Monetary, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Monetary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Monetary' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetPoolRequest = {
@@ -68,6 +71,20 @@ export namespace GetPoolRequest$ {
   export type Outbound = GetPoolRequest$Outbound;
 }
 
+export function getPoolRequestToJSON(getPoolRequest: GetPoolRequest): string {
+  return JSON.stringify(GetPoolRequest$outboundSchema.parse(getPoolRequest));
+}
+
+export function getPoolRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPoolRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPoolRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPoolRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPoolResponse$inboundSchema: z.ZodType<
   GetPoolResponse,
@@ -127,4 +144,20 @@ export namespace GetPoolResponse$ {
   export const outboundSchema = GetPoolResponse$outboundSchema;
   /** @deprecated use `GetPoolResponse$Outbound` instead. */
   export type Outbound = GetPoolResponse$Outbound;
+}
+
+export function getPoolResponseToJSON(
+  getPoolResponse: GetPoolResponse,
+): string {
+  return JSON.stringify(GetPoolResponse$outboundSchema.parse(getPoolResponse));
+}
+
+export function getPoolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPoolResponse' from JSON`,
+  );
 }

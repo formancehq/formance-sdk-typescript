@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2BulkElementRevertTransactionData = {
   atEffectiveDate?: boolean | undefined;
@@ -59,6 +62,27 @@ export namespace V2BulkElementRevertTransactionData$ {
   export type Outbound = V2BulkElementRevertTransactionData$Outbound;
 }
 
+export function v2BulkElementRevertTransactionDataToJSON(
+  v2BulkElementRevertTransactionData: V2BulkElementRevertTransactionData,
+): string {
+  return JSON.stringify(
+    V2BulkElementRevertTransactionData$outboundSchema.parse(
+      v2BulkElementRevertTransactionData,
+    ),
+  );
+}
+
+export function v2BulkElementRevertTransactionDataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementRevertTransactionData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2BulkElementRevertTransactionData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementRevertTransactionData' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2BulkElementRevertTransaction$inboundSchema: z.ZodType<
   V2BulkElementRevertTransaction,
@@ -101,4 +125,24 @@ export namespace V2BulkElementRevertTransaction$ {
   export const outboundSchema = V2BulkElementRevertTransaction$outboundSchema;
   /** @deprecated use `V2BulkElementRevertTransaction$Outbound` instead. */
   export type Outbound = V2BulkElementRevertTransaction$Outbound;
+}
+
+export function v2BulkElementRevertTransactionToJSON(
+  v2BulkElementRevertTransaction: V2BulkElementRevertTransaction,
+): string {
+  return JSON.stringify(
+    V2BulkElementRevertTransaction$outboundSchema.parse(
+      v2BulkElementRevertTransaction,
+    ),
+  );
+}
+
+export function v2BulkElementRevertTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementRevertTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementRevertTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementRevertTransaction' from JSON`,
+  );
 }

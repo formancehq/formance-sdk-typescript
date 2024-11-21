@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationTransaction,
   OrchestrationTransaction$inboundSchema,
@@ -48,4 +51,24 @@ export namespace ActivityCreateTransactionOutput$ {
   export const outboundSchema = ActivityCreateTransactionOutput$outboundSchema;
   /** @deprecated use `ActivityCreateTransactionOutput$Outbound` instead. */
   export type Outbound = ActivityCreateTransactionOutput$Outbound;
+}
+
+export function activityCreateTransactionOutputToJSON(
+  activityCreateTransactionOutput: ActivityCreateTransactionOutput,
+): string {
+  return JSON.stringify(
+    ActivityCreateTransactionOutput$outboundSchema.parse(
+      activityCreateTransactionOutput,
+    ),
+  );
+}
+
+export function activityCreateTransactionOutputFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityCreateTransactionOutput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityCreateTransactionOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityCreateTransactionOutput' from JSON`,
+  );
 }

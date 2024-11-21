@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type DebitWalletRequest = {
@@ -86,6 +89,24 @@ export namespace DebitWalletRequest$ {
   export type Outbound = DebitWalletRequest$Outbound;
 }
 
+export function debitWalletRequestToJSON(
+  debitWalletRequest: DebitWalletRequest,
+): string {
+  return JSON.stringify(
+    DebitWalletRequest$outboundSchema.parse(debitWalletRequest),
+  );
+}
+
+export function debitWalletRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DebitWalletRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DebitWalletRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DebitWalletRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DebitWalletResponse$inboundSchema: z.ZodType<
   DebitWalletResponse,
@@ -145,4 +166,22 @@ export namespace DebitWalletResponse$ {
   export const outboundSchema = DebitWalletResponse$outboundSchema;
   /** @deprecated use `DebitWalletResponse$Outbound` instead. */
   export type Outbound = DebitWalletResponse$Outbound;
+}
+
+export function debitWalletResponseToJSON(
+  debitWalletResponse: DebitWalletResponse,
+): string {
+  return JSON.stringify(
+    DebitWalletResponse$outboundSchema.parse(debitWalletResponse),
+  );
+}
+
+export function debitWalletResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DebitWalletResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DebitWalletResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DebitWalletResponse' from JSON`,
+  );
 }

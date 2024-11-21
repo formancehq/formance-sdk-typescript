@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2AssetHolder,
   V2AssetHolder$inboundSchema,
@@ -65,6 +68,20 @@ export namespace Balances$ {
   export type Outbound = Balances$Outbound;
 }
 
+export function balancesToJSON(balances: Balances): string {
+  return JSON.stringify(Balances$outboundSchema.parse(balances));
+}
+
+export function balancesFromJSON(
+  jsonString: string,
+): SafeParseResult<Balances, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Balances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Balances' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2WalletWithBalances$inboundSchema: z.ZodType<
   V2WalletWithBalances,
@@ -114,4 +131,22 @@ export namespace V2WalletWithBalances$ {
   export const outboundSchema = V2WalletWithBalances$outboundSchema;
   /** @deprecated use `V2WalletWithBalances$Outbound` instead. */
   export type Outbound = V2WalletWithBalances$Outbound;
+}
+
+export function v2WalletWithBalancesToJSON(
+  v2WalletWithBalances: V2WalletWithBalances,
+): string {
+  return JSON.stringify(
+    V2WalletWithBalances$outboundSchema.parse(v2WalletWithBalances),
+  );
+}
+
+export function v2WalletWithBalancesFromJSON(
+  jsonString: string,
+): SafeParseResult<V2WalletWithBalances, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2WalletWithBalances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2WalletWithBalances' from JSON`,
+  );
 }

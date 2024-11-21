@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteSecretRequest = {
   /**
@@ -70,6 +73,24 @@ export namespace DeleteSecretRequest$ {
   export type Outbound = DeleteSecretRequest$Outbound;
 }
 
+export function deleteSecretRequestToJSON(
+  deleteSecretRequest: DeleteSecretRequest,
+): string {
+  return JSON.stringify(
+    DeleteSecretRequest$outboundSchema.parse(deleteSecretRequest),
+  );
+}
+
+export function deleteSecretRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteSecretRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteSecretRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteSecretRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteSecretResponse$inboundSchema: z.ZodType<
   DeleteSecretResponse,
@@ -124,4 +145,22 @@ export namespace DeleteSecretResponse$ {
   export const outboundSchema = DeleteSecretResponse$outboundSchema;
   /** @deprecated use `DeleteSecretResponse$Outbound` instead. */
   export type Outbound = DeleteSecretResponse$Outbound;
+}
+
+export function deleteSecretResponseToJSON(
+  deleteSecretResponse: DeleteSecretResponse,
+): string {
+  return JSON.stringify(
+    DeleteSecretResponse$outboundSchema.parse(deleteSecretResponse),
+  );
+}
+
+export function deleteSecretResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteSecretResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteSecretResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteSecretResponse' from JSON`,
+  );
 }

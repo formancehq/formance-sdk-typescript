@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListWorkflowsResponse = {
@@ -84,4 +87,22 @@ export namespace ListWorkflowsResponse$ {
   export const outboundSchema = ListWorkflowsResponse$outboundSchema;
   /** @deprecated use `ListWorkflowsResponse$Outbound` instead. */
   export type Outbound = ListWorkflowsResponse$Outbound;
+}
+
+export function listWorkflowsResponseToJSON(
+  listWorkflowsResponse: ListWorkflowsResponse,
+): string {
+  return JSON.stringify(
+    ListWorkflowsResponse$outboundSchema.parse(listWorkflowsResponse),
+  );
+}
+
+export function listWorkflowsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWorkflowsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWorkflowsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWorkflowsResponse' from JSON`,
+  );
 }

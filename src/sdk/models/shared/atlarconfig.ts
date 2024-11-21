@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AtlarConfig = {
   /**
@@ -98,4 +101,18 @@ export namespace AtlarConfig$ {
   export const outboundSchema = AtlarConfig$outboundSchema;
   /** @deprecated use `AtlarConfig$Outbound` instead. */
   export type Outbound = AtlarConfig$Outbound;
+}
+
+export function atlarConfigToJSON(atlarConfig: AtlarConfig): string {
+  return JSON.stringify(AtlarConfig$outboundSchema.parse(atlarConfig));
+}
+
+export function atlarConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<AtlarConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AtlarConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AtlarConfig' from JSON`,
+  );
 }

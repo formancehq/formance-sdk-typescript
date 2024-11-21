@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UdpateTransferInitiationStatusRequest = {
@@ -84,6 +87,27 @@ export namespace UdpateTransferInitiationStatusRequest$ {
   export type Outbound = UdpateTransferInitiationStatusRequest$Outbound;
 }
 
+export function udpateTransferInitiationStatusRequestToJSON(
+  udpateTransferInitiationStatusRequest: UdpateTransferInitiationStatusRequest,
+): string {
+  return JSON.stringify(
+    UdpateTransferInitiationStatusRequest$outboundSchema.parse(
+      udpateTransferInitiationStatusRequest,
+    ),
+  );
+}
+
+export function udpateTransferInitiationStatusRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UdpateTransferInitiationStatusRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UdpateTransferInitiationStatusRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UdpateTransferInitiationStatusRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UdpateTransferInitiationStatusResponse$inboundSchema: z.ZodType<
   UdpateTransferInitiationStatusResponse,
@@ -140,4 +164,26 @@ export namespace UdpateTransferInitiationStatusResponse$ {
     UdpateTransferInitiationStatusResponse$outboundSchema;
   /** @deprecated use `UdpateTransferInitiationStatusResponse$Outbound` instead. */
   export type Outbound = UdpateTransferInitiationStatusResponse$Outbound;
+}
+
+export function udpateTransferInitiationStatusResponseToJSON(
+  udpateTransferInitiationStatusResponse:
+    UdpateTransferInitiationStatusResponse,
+): string {
+  return JSON.stringify(
+    UdpateTransferInitiationStatusResponse$outboundSchema.parse(
+      udpateTransferInitiationStatusResponse,
+    ),
+  );
+}
+
+export function udpateTransferInitiationStatusResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UdpateTransferInitiationStatusResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UdpateTransferInitiationStatusResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UdpateTransferInitiationStatusResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StageSendDestinationAccount = {
   id: string;
@@ -46,4 +49,24 @@ export namespace StageSendDestinationAccount$ {
   export const outboundSchema = StageSendDestinationAccount$outboundSchema;
   /** @deprecated use `StageSendDestinationAccount$Outbound` instead. */
   export type Outbound = StageSendDestinationAccount$Outbound;
+}
+
+export function stageSendDestinationAccountToJSON(
+  stageSendDestinationAccount: StageSendDestinationAccount,
+): string {
+  return JSON.stringify(
+    StageSendDestinationAccount$outboundSchema.parse(
+      stageSendDestinationAccount,
+    ),
+  );
+}
+
+export function stageSendDestinationAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<StageSendDestinationAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StageSendDestinationAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StageSendDestinationAccount' from JSON`,
+  );
 }

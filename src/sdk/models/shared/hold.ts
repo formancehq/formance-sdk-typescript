@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Subject,
   Subject$inboundSchema,
@@ -67,4 +70,18 @@ export namespace Hold$ {
   export const outboundSchema = Hold$outboundSchema;
   /** @deprecated use `Hold$Outbound` instead. */
   export type Outbound = Hold$Outbound;
+}
+
+export function holdToJSON(hold: Hold): string {
+  return JSON.stringify(Hold$outboundSchema.parse(hold));
+}
+
+export function holdFromJSON(
+  jsonString: string,
+): SafeParseResult<Hold, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Hold$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Hold' from JSON`,
+  );
 }

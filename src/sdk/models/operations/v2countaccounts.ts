@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2CountAccountsRequest = {
   /**
@@ -73,6 +76,24 @@ export namespace V2CountAccountsRequest$ {
   export type Outbound = V2CountAccountsRequest$Outbound;
 }
 
+export function v2CountAccountsRequestToJSON(
+  v2CountAccountsRequest: V2CountAccountsRequest,
+): string {
+  return JSON.stringify(
+    V2CountAccountsRequest$outboundSchema.parse(v2CountAccountsRequest),
+  );
+}
+
+export function v2CountAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CountAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CountAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CountAccountsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2CountAccountsResponse$inboundSchema: z.ZodType<
   V2CountAccountsResponse,
@@ -132,4 +153,22 @@ export namespace V2CountAccountsResponse$ {
   export const outboundSchema = V2CountAccountsResponse$outboundSchema;
   /** @deprecated use `V2CountAccountsResponse$Outbound` instead. */
   export type Outbound = V2CountAccountsResponse$Outbound;
+}
+
+export function v2CountAccountsResponseToJSON(
+  v2CountAccountsResponse: V2CountAccountsResponse,
+): string {
+  return JSON.stringify(
+    V2CountAccountsResponse$outboundSchema.parse(v2CountAccountsResponse),
+  );
+}
+
+export function v2CountAccountsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CountAccountsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CountAccountsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CountAccountsResponse' from JSON`,
+  );
 }

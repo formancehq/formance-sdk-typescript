@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateWorkflowResponse = {
@@ -88,4 +91,22 @@ export namespace V2CreateWorkflowResponse$ {
   export const outboundSchema = V2CreateWorkflowResponse$outboundSchema;
   /** @deprecated use `V2CreateWorkflowResponse$Outbound` instead. */
   export type Outbound = V2CreateWorkflowResponse$Outbound;
+}
+
+export function v2CreateWorkflowResponseToJSON(
+  v2CreateWorkflowResponse: V2CreateWorkflowResponse,
+): string {
+  return JSON.stringify(
+    V2CreateWorkflowResponse$outboundSchema.parse(v2CreateWorkflowResponse),
+  );
+}
+
+export function v2CreateWorkflowResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateWorkflowResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateWorkflowResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateWorkflowResponse' from JSON`,
+  );
 }

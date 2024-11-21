@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   LedgerStorage,
   LedgerStorage$inboundSchema,
@@ -45,4 +48,18 @@ export namespace Config$ {
   export const outboundSchema = Config$outboundSchema;
   /** @deprecated use `Config$Outbound` instead. */
   export type Outbound = Config$Outbound;
+}
+
+export function configToJSON(config: Config): string {
+  return JSON.stringify(Config$outboundSchema.parse(config));
+}
+
+export function configFromJSON(
+  jsonString: string,
+): SafeParseResult<Config, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Config$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Config' from JSON`,
+  );
 }

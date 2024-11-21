@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateAccount = {
   id: string;
@@ -50,4 +53,18 @@ export namespace UpdateAccount$ {
   export const outboundSchema = UpdateAccount$outboundSchema;
   /** @deprecated use `UpdateAccount$Outbound` instead. */
   export type Outbound = UpdateAccount$Outbound;
+}
+
+export function updateAccountToJSON(updateAccount: UpdateAccount): string {
+  return JSON.stringify(UpdateAccount$outboundSchema.parse(updateAccount));
+}
+
+export function updateAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateAccount' from JSON`,
+  );
 }
