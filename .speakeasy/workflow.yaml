@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     my-source:
         inputs:
-            - location: https://github.com/formancehq/stack/releases/download/v2.1.0/generate.json
+            - location: https://github.com/formancehq/stack/releases/download/v2.1.1/generate.json
         overlays:
             - location: ./overlay.yaml
         registry:
