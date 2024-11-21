@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetLedgerInfoRequest = {
@@ -68,6 +71,24 @@ export namespace GetLedgerInfoRequest$ {
   export type Outbound = GetLedgerInfoRequest$Outbound;
 }
 
+export function getLedgerInfoRequestToJSON(
+  getLedgerInfoRequest: GetLedgerInfoRequest,
+): string {
+  return JSON.stringify(
+    GetLedgerInfoRequest$outboundSchema.parse(getLedgerInfoRequest),
+  );
+}
+
+export function getLedgerInfoRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLedgerInfoRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLedgerInfoRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLedgerInfoRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetLedgerInfoResponse$inboundSchema: z.ZodType<
   GetLedgerInfoResponse,
@@ -127,4 +148,22 @@ export namespace GetLedgerInfoResponse$ {
   export const outboundSchema = GetLedgerInfoResponse$outboundSchema;
   /** @deprecated use `GetLedgerInfoResponse$Outbound` instead. */
   export type Outbound = GetLedgerInfoResponse$Outbound;
+}
+
+export function getLedgerInfoResponseToJSON(
+  getLedgerInfoResponse: GetLedgerInfoResponse,
+): string {
+  return JSON.stringify(
+    GetLedgerInfoResponse$outboundSchema.parse(getLedgerInfoResponse),
+  );
+}
+
+export function getLedgerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetLedgerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetLedgerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetLedgerInfoResponse' from JSON`,
+  );
 }

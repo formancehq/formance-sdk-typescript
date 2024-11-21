@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StageDelay = {
   duration?: string | undefined;
@@ -47,4 +50,18 @@ export namespace StageDelay$ {
   export const outboundSchema = StageDelay$outboundSchema;
   /** @deprecated use `StageDelay$Outbound` instead. */
   export type Outbound = StageDelay$Outbound;
+}
+
+export function stageDelayToJSON(stageDelay: StageDelay): string {
+  return JSON.stringify(StageDelay$outboundSchema.parse(stageDelay));
+}
+
+export function stageDelayFromJSON(
+  jsonString: string,
+): SafeParseResult<StageDelay, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StageDelay$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StageDelay' from JSON`,
+  );
 }

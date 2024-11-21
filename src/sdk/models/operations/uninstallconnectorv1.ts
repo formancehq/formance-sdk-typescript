@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UninstallConnectorV1Request = {
@@ -71,6 +74,26 @@ export namespace UninstallConnectorV1Request$ {
   export type Outbound = UninstallConnectorV1Request$Outbound;
 }
 
+export function uninstallConnectorV1RequestToJSON(
+  uninstallConnectorV1Request: UninstallConnectorV1Request,
+): string {
+  return JSON.stringify(
+    UninstallConnectorV1Request$outboundSchema.parse(
+      uninstallConnectorV1Request,
+    ),
+  );
+}
+
+export function uninstallConnectorV1RequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UninstallConnectorV1Request, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UninstallConnectorV1Request$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UninstallConnectorV1Request' from JSON`,
+  );
+}
+
 /** @internal */
 export const UninstallConnectorV1Response$inboundSchema: z.ZodType<
   UninstallConnectorV1Response,
@@ -125,4 +148,24 @@ export namespace UninstallConnectorV1Response$ {
   export const outboundSchema = UninstallConnectorV1Response$outboundSchema;
   /** @deprecated use `UninstallConnectorV1Response$Outbound` instead. */
   export type Outbound = UninstallConnectorV1Response$Outbound;
+}
+
+export function uninstallConnectorV1ResponseToJSON(
+  uninstallConnectorV1Response: UninstallConnectorV1Response,
+): string {
+  return JSON.stringify(
+    UninstallConnectorV1Response$outboundSchema.parse(
+      uninstallConnectorV1Response,
+    ),
+  );
+}
+
+export function uninstallConnectorV1ResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UninstallConnectorV1Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UninstallConnectorV1Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UninstallConnectorV1Response' from JSON`,
+  );
 }

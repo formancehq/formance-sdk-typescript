@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type AddAccountToPoolRequest = {
@@ -76,6 +79,24 @@ export namespace AddAccountToPoolRequest$ {
   export type Outbound = AddAccountToPoolRequest$Outbound;
 }
 
+export function addAccountToPoolRequestToJSON(
+  addAccountToPoolRequest: AddAccountToPoolRequest,
+): string {
+  return JSON.stringify(
+    AddAccountToPoolRequest$outboundSchema.parse(addAccountToPoolRequest),
+  );
+}
+
+export function addAccountToPoolRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddAccountToPoolRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddAccountToPoolRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddAccountToPoolRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddAccountToPoolResponse$inboundSchema: z.ZodType<
   AddAccountToPoolResponse,
@@ -130,4 +151,22 @@ export namespace AddAccountToPoolResponse$ {
   export const outboundSchema = AddAccountToPoolResponse$outboundSchema;
   /** @deprecated use `AddAccountToPoolResponse$Outbound` instead. */
   export type Outbound = AddAccountToPoolResponse$Outbound;
+}
+
+export function addAccountToPoolResponseToJSON(
+  addAccountToPoolResponse: AddAccountToPoolResponse,
+): string {
+  return JSON.stringify(
+    AddAccountToPoolResponse$outboundSchema.parse(addAccountToPoolResponse),
+  );
+}
+
+export function addAccountToPoolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AddAccountToPoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddAccountToPoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddAccountToPoolResponse' from JSON`,
+  );
 }

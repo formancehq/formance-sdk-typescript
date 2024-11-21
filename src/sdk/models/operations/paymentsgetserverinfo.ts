@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type PaymentsgetServerInfoResponse = {
@@ -84,4 +87,24 @@ export namespace PaymentsgetServerInfoResponse$ {
   export const outboundSchema = PaymentsgetServerInfoResponse$outboundSchema;
   /** @deprecated use `PaymentsgetServerInfoResponse$Outbound` instead. */
   export type Outbound = PaymentsgetServerInfoResponse$Outbound;
+}
+
+export function paymentsgetServerInfoResponseToJSON(
+  paymentsgetServerInfoResponse: PaymentsgetServerInfoResponse,
+): string {
+  return JSON.stringify(
+    PaymentsgetServerInfoResponse$outboundSchema.parse(
+      paymentsgetServerInfoResponse,
+    ),
+  );
+}
+
+export function paymentsgetServerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsgetServerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsgetServerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsgetServerInfoResponse' from JSON`,
+  );
 }

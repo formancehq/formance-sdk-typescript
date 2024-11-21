@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Volume = {
   balance?: bigint | undefined;
@@ -50,4 +53,18 @@ export namespace V2Volume$ {
   export const outboundSchema = V2Volume$outboundSchema;
   /** @deprecated use `V2Volume$Outbound` instead. */
   export type Outbound = V2Volume$Outbound;
+}
+
+export function v2VolumeToJSON(v2Volume: V2Volume): string {
+  return JSON.stringify(V2Volume$outboundSchema.parse(v2Volume));
+}
+
+export function v2VolumeFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Volume, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Volume$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Volume' from JSON`,
+  );
 }

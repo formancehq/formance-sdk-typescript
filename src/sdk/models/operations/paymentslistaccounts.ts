@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type PaymentslistAccountsRequest = {
@@ -98,6 +101,26 @@ export namespace PaymentslistAccountsRequest$ {
   export type Outbound = PaymentslistAccountsRequest$Outbound;
 }
 
+export function paymentslistAccountsRequestToJSON(
+  paymentslistAccountsRequest: PaymentslistAccountsRequest,
+): string {
+  return JSON.stringify(
+    PaymentslistAccountsRequest$outboundSchema.parse(
+      paymentslistAccountsRequest,
+    ),
+  );
+}
+
+export function paymentslistAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentslistAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentslistAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentslistAccountsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const PaymentslistAccountsResponse$inboundSchema: z.ZodType<
   PaymentslistAccountsResponse,
@@ -157,4 +180,24 @@ export namespace PaymentslistAccountsResponse$ {
   export const outboundSchema = PaymentslistAccountsResponse$outboundSchema;
   /** @deprecated use `PaymentslistAccountsResponse$Outbound` instead. */
   export type Outbound = PaymentslistAccountsResponse$Outbound;
+}
+
+export function paymentslistAccountsResponseToJSON(
+  paymentslistAccountsResponse: PaymentslistAccountsResponse,
+): string {
+  return JSON.stringify(
+    PaymentslistAccountsResponse$outboundSchema.parse(
+      paymentslistAccountsResponse,
+    ),
+  );
+}
+
+export function paymentslistAccountsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentslistAccountsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentslistAccountsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentslistAccountsResponse' from JSON`,
+  );
 }

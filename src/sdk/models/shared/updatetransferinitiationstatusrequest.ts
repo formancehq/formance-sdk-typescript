@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum Status {
   WaitingForValidation = "WAITING_FOR_VALIDATION",
@@ -72,4 +75,25 @@ export namespace UpdateTransferInitiationStatusRequest$ {
     UpdateTransferInitiationStatusRequest$outboundSchema;
   /** @deprecated use `UpdateTransferInitiationStatusRequest$Outbound` instead. */
   export type Outbound = UpdateTransferInitiationStatusRequest$Outbound;
+}
+
+export function updateTransferInitiationStatusRequestToJSON(
+  updateTransferInitiationStatusRequest: UpdateTransferInitiationStatusRequest,
+): string {
+  return JSON.stringify(
+    UpdateTransferInitiationStatusRequest$outboundSchema.parse(
+      updateTransferInitiationStatusRequest,
+    ),
+  );
+}
+
+export function updateTransferInitiationStatusRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateTransferInitiationStatusRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      UpdateTransferInitiationStatusRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateTransferInitiationStatusRequest' from JSON`,
+  );
 }

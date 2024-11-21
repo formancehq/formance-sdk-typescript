@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Balance,
   Balance$inboundSchema,
@@ -70,6 +73,24 @@ export namespace ListBalancesResponseCursor$ {
   export type Outbound = ListBalancesResponseCursor$Outbound;
 }
 
+export function listBalancesResponseCursorToJSON(
+  listBalancesResponseCursor: ListBalancesResponseCursor,
+): string {
+  return JSON.stringify(
+    ListBalancesResponseCursor$outboundSchema.parse(listBalancesResponseCursor),
+  );
+}
+
+export function listBalancesResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBalancesResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBalancesResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBalancesResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListBalancesResponse$inboundSchema: z.ZodType<
   ListBalancesResponse,
@@ -104,4 +125,22 @@ export namespace ListBalancesResponse$ {
   export const outboundSchema = ListBalancesResponse$outboundSchema;
   /** @deprecated use `ListBalancesResponse$Outbound` instead. */
   export type Outbound = ListBalancesResponse$Outbound;
+}
+
+export function listBalancesResponseToJSON(
+  listBalancesResponse: ListBalancesResponse,
+): string {
+  return JSON.stringify(
+    ListBalancesResponse$outboundSchema.parse(listBalancesResponse),
+  );
+}
+
+export function listBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBalancesResponse' from JSON`,
+  );
 }

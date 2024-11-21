@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Volume,
   Volume$inboundSchema,
@@ -64,4 +67,24 @@ export namespace AccountWithVolumesAndBalances$ {
   export const outboundSchema = AccountWithVolumesAndBalances$outboundSchema;
   /** @deprecated use `AccountWithVolumesAndBalances$Outbound` instead. */
   export type Outbound = AccountWithVolumesAndBalances$Outbound;
+}
+
+export function accountWithVolumesAndBalancesToJSON(
+  accountWithVolumesAndBalances: AccountWithVolumesAndBalances,
+): string {
+  return JSON.stringify(
+    AccountWithVolumesAndBalances$outboundSchema.parse(
+      accountWithVolumesAndBalances,
+    ),
+  );
+}
+
+export function accountWithVolumesAndBalancesFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountWithVolumesAndBalances, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountWithVolumesAndBalances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountWithVolumesAndBalances' from JSON`,
+  );
 }

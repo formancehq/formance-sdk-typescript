@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ConfigInfo,
   ConfigInfo$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ConfigInfoResponse$ {
   export const outboundSchema = ConfigInfoResponse$outboundSchema;
   /** @deprecated use `ConfigInfoResponse$Outbound` instead. */
   export type Outbound = ConfigInfoResponse$Outbound;
+}
+
+export function configInfoResponseToJSON(
+  configInfoResponse: ConfigInfoResponse,
+): string {
+  return JSON.stringify(
+    ConfigInfoResponse$outboundSchema.parse(configInfoResponse),
+  );
+}
+
+export function configInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfigInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfigInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigInfoResponse' from JSON`,
+  );
 }

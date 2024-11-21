@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListTriggersRequest = {
@@ -68,6 +71,24 @@ export namespace ListTriggersRequest$ {
   export type Outbound = ListTriggersRequest$Outbound;
 }
 
+export function listTriggersRequestToJSON(
+  listTriggersRequest: ListTriggersRequest,
+): string {
+  return JSON.stringify(
+    ListTriggersRequest$outboundSchema.parse(listTriggersRequest),
+  );
+}
+
+export function listTriggersRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTriggersRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTriggersRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTriggersRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListTriggersResponse$inboundSchema: z.ZodType<
   ListTriggersResponse,
@@ -127,4 +148,22 @@ export namespace ListTriggersResponse$ {
   export const outboundSchema = ListTriggersResponse$outboundSchema;
   /** @deprecated use `ListTriggersResponse$Outbound` instead. */
   export type Outbound = ListTriggersResponse$Outbound;
+}
+
+export function listTriggersResponseToJSON(
+  listTriggersResponse: ListTriggersResponse,
+): string {
+  return JSON.stringify(
+    ListTriggersResponse$outboundSchema.parse(listTriggersResponse),
+  );
+}
+
+export function listTriggersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTriggersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTriggersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTriggersResponse' from JSON`,
+  );
 }

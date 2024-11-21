@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 44df9207611e89976d823f6df231ee2b
-  docVersion: v2.1.0
-  speakeasyVersion: 1.423.2
-  generationVersion: 2.442.11
-  releaseVersion: 3.2.0
-  configChecksum: 575d7b5c8980c281c3fabe5cea2df460
+  docChecksum: 1cad063828c35998ccfdb3484f3caab0
+  docVersion: v2.1.1
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 3.3.0
+  configChecksum: d24e401f87ab901cffa5338c63b86c93
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -16,13 +16,13 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.2
     constsAndDefaults: 0.1.11
-    core: 3.18.2
+    core: 3.18.6
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
-    envVarSecurityUsage: 0.1.1
-    errors: 2.82.3
+    envVarSecurityUsage: 0.1.2
+    errors: 2.84.0
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
@@ -32,9 +32,9 @@ features:
     oauth2ClientCredentials: 0.2.0
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.1.0
+    sdkHooks: 0.2.0
     tests: 0.7.0
-    unions: 2.85.7
+    unions: 2.85.8
 generatedFiles:
   - .eslintrc.cjs
   - .gitattributes

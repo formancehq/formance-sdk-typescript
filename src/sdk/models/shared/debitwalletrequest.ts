@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Monetary,
   Monetary$inboundSchema,
@@ -88,4 +91,22 @@ export namespace DebitWalletRequest$ {
   export const outboundSchema = DebitWalletRequest$outboundSchema;
   /** @deprecated use `DebitWalletRequest$Outbound` instead. */
   export type Outbound = DebitWalletRequest$Outbound;
+}
+
+export function debitWalletRequestToJSON(
+  debitWalletRequest: DebitWalletRequest,
+): string {
+  return JSON.stringify(
+    DebitWalletRequest$outboundSchema.parse(debitWalletRequest),
+  );
+}
+
+export function debitWalletRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DebitWalletRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DebitWalletRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DebitWalletRequest' from JSON`,
+  );
 }

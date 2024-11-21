@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetWalletSummaryRequest = {
@@ -63,6 +66,24 @@ export namespace GetWalletSummaryRequest$ {
   export const outboundSchema = GetWalletSummaryRequest$outboundSchema;
   /** @deprecated use `GetWalletSummaryRequest$Outbound` instead. */
   export type Outbound = GetWalletSummaryRequest$Outbound;
+}
+
+export function getWalletSummaryRequestToJSON(
+  getWalletSummaryRequest: GetWalletSummaryRequest,
+): string {
+  return JSON.stringify(
+    GetWalletSummaryRequest$outboundSchema.parse(getWalletSummaryRequest),
+  );
+}
+
+export function getWalletSummaryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWalletSummaryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWalletSummaryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWalletSummaryRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -128,4 +149,22 @@ export namespace GetWalletSummaryResponse$ {
   export const outboundSchema = GetWalletSummaryResponse$outboundSchema;
   /** @deprecated use `GetWalletSummaryResponse$Outbound` instead. */
   export type Outbound = GetWalletSummaryResponse$Outbound;
+}
+
+export function getWalletSummaryResponseToJSON(
+  getWalletSummaryResponse: GetWalletSummaryResponse,
+): string {
+  return JSON.stringify(
+    GetWalletSummaryResponse$outboundSchema.parse(getWalletSummaryResponse),
+  );
+}
+
+export function getWalletSummaryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetWalletSummaryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetWalletSummaryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetWalletSummaryResponse' from JSON`,
+  );
 }

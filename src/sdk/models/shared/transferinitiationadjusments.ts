@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TransferInitiationStatus,
   TransferInitiationStatus$inboundSchema,
@@ -63,4 +66,24 @@ export namespace TransferInitiationAdjusments$ {
   export const outboundSchema = TransferInitiationAdjusments$outboundSchema;
   /** @deprecated use `TransferInitiationAdjusments$Outbound` instead. */
   export type Outbound = TransferInitiationAdjusments$Outbound;
+}
+
+export function transferInitiationAdjusmentsToJSON(
+  transferInitiationAdjusments: TransferInitiationAdjusments,
+): string {
+  return JSON.stringify(
+    TransferInitiationAdjusments$outboundSchema.parse(
+      transferInitiationAdjusments,
+    ),
+  );
+}
+
+export function transferInitiationAdjusmentsFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiationAdjusments, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiationAdjusments$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationAdjusments' from JSON`,
+  );
 }

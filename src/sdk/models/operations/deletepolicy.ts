@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePolicyRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace DeletePolicyRequest$ {
   export type Outbound = DeletePolicyRequest$Outbound;
 }
 
+export function deletePolicyRequestToJSON(
+  deletePolicyRequest: DeletePolicyRequest,
+): string {
+  return JSON.stringify(
+    DeletePolicyRequest$outboundSchema.parse(deletePolicyRequest),
+  );
+}
+
+export function deletePolicyRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeletePolicyRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeletePolicyRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeletePolicyRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeletePolicyResponse$inboundSchema: z.ZodType<
   DeletePolicyResponse,
@@ -117,4 +138,22 @@ export namespace DeletePolicyResponse$ {
   export const outboundSchema = DeletePolicyResponse$outboundSchema;
   /** @deprecated use `DeletePolicyResponse$Outbound` instead. */
   export type Outbound = DeletePolicyResponse$Outbound;
+}
+
+export function deletePolicyResponseToJSON(
+  deletePolicyResponse: DeletePolicyResponse,
+): string {
+  return JSON.stringify(
+    DeletePolicyResponse$outboundSchema.parse(deletePolicyResponse),
+  );
+}
+
+export function deletePolicyResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeletePolicyResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeletePolicyResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeletePolicyResponse' from JSON`,
+  );
 }

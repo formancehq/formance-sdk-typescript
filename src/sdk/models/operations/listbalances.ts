@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListBalancesRequest = {
@@ -65,6 +68,24 @@ export namespace ListBalancesRequest$ {
   export type Outbound = ListBalancesRequest$Outbound;
 }
 
+export function listBalancesRequestToJSON(
+  listBalancesRequest: ListBalancesRequest,
+): string {
+  return JSON.stringify(
+    ListBalancesRequest$outboundSchema.parse(listBalancesRequest),
+  );
+}
+
+export function listBalancesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBalancesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBalancesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBalancesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListBalancesResponse$inboundSchema: z.ZodType<
   ListBalancesResponse,
@@ -124,4 +145,22 @@ export namespace ListBalancesResponse$ {
   export const outboundSchema = ListBalancesResponse$outboundSchema;
   /** @deprecated use `ListBalancesResponse$Outbound` instead. */
   export type Outbound = ListBalancesResponse$Outbound;
+}
+
+export function listBalancesResponseToJSON(
+  listBalancesResponse: ListBalancesResponse,
+): string {
+  return JSON.stringify(
+    ListBalancesResponse$outboundSchema.parse(listBalancesResponse),
+  );
+}
+
+export function listBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListBalancesResponse' from JSON`,
+  );
 }

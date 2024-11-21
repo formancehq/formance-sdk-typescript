@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UpdateClientRequest = {
@@ -80,6 +83,24 @@ export namespace UpdateClientRequest$ {
   export type Outbound = UpdateClientRequest$Outbound;
 }
 
+export function updateClientRequestToJSON(
+  updateClientRequest: UpdateClientRequest,
+): string {
+  return JSON.stringify(
+    UpdateClientRequest$outboundSchema.parse(updateClientRequest),
+  );
+}
+
+export function updateClientRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateClientRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateClientRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateClientRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateClientResponse$inboundSchema: z.ZodType<
   UpdateClientResponse,
@@ -139,4 +160,22 @@ export namespace UpdateClientResponse$ {
   export const outboundSchema = UpdateClientResponse$outboundSchema;
   /** @deprecated use `UpdateClientResponse$Outbound` instead. */
   export type Outbound = UpdateClientResponse$Outbound;
+}
+
+export function updateClientResponseToJSON(
+  updateClientResponse: UpdateClientResponse,
+): string {
+  return JSON.stringify(
+    UpdateClientResponse$outboundSchema.parse(updateClientResponse),
+  );
+}
+
+export function updateClientResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateClientResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateClientResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateClientResponse' from JSON`,
+  );
 }

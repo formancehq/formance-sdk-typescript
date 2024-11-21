@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type OrchestrationPaymentMetadata = {
   key?: string | undefined;
@@ -42,4 +45,24 @@ export namespace OrchestrationPaymentMetadata$ {
   export const outboundSchema = OrchestrationPaymentMetadata$outboundSchema;
   /** @deprecated use `OrchestrationPaymentMetadata$Outbound` instead. */
   export type Outbound = OrchestrationPaymentMetadata$Outbound;
+}
+
+export function orchestrationPaymentMetadataToJSON(
+  orchestrationPaymentMetadata: OrchestrationPaymentMetadata,
+): string {
+  return JSON.stringify(
+    OrchestrationPaymentMetadata$outboundSchema.parse(
+      orchestrationPaymentMetadata,
+    ),
+  );
+}
+
+export function orchestrationPaymentMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPaymentMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPaymentMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPaymentMetadata' from JSON`,
+  );
 }

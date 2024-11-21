@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Expr = {};
 
@@ -33,6 +36,20 @@ export namespace Expr$ {
   export const outboundSchema = Expr$outboundSchema;
   /** @deprecated use `Expr$Outbound` instead. */
   export type Outbound = Expr$Outbound;
+}
+
+export function exprToJSON(expr: Expr): string {
+  return JSON.stringify(Expr$outboundSchema.parse(expr));
+}
+
+export function exprFromJSON(
+  jsonString: string,
+): SafeParseResult<Expr, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Expr$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Expr' from JSON`,
+  );
 }
 
 /** @internal */
@@ -72,4 +89,18 @@ export namespace Contract$ {
   export const outboundSchema = Contract$outboundSchema;
   /** @deprecated use `Contract$Outbound` instead. */
   export type Outbound = Contract$Outbound;
+}
+
+export function contractToJSON(contract: Contract): string {
+  return JSON.stringify(Contract$outboundSchema.parse(contract));
+}
+
+export function contractFromJSON(
+  jsonString: string,
+): SafeParseResult<Contract, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Contract$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Contract' from JSON`,
+  );
 }

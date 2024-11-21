@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Subject,
   Subject$inboundSchema,
@@ -87,4 +90,22 @@ export namespace ExpandedDebitHold$ {
   export const outboundSchema = ExpandedDebitHold$outboundSchema;
   /** @deprecated use `ExpandedDebitHold$Outbound` instead. */
   export type Outbound = ExpandedDebitHold$Outbound;
+}
+
+export function expandedDebitHoldToJSON(
+  expandedDebitHold: ExpandedDebitHold,
+): string {
+  return JSON.stringify(
+    ExpandedDebitHold$outboundSchema.parse(expandedDebitHold),
+  );
+}
+
+export function expandedDebitHoldFromJSON(
+  jsonString: string,
+): SafeParseResult<ExpandedDebitHold, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ExpandedDebitHold$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ExpandedDebitHold' from JSON`,
+  );
 }

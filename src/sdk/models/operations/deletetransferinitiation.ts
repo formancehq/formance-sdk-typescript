@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteTransferInitiationRequest = {
   /**
@@ -63,6 +66,26 @@ export namespace DeleteTransferInitiationRequest$ {
   export type Outbound = DeleteTransferInitiationRequest$Outbound;
 }
 
+export function deleteTransferInitiationRequestToJSON(
+  deleteTransferInitiationRequest: DeleteTransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    DeleteTransferInitiationRequest$outboundSchema.parse(
+      deleteTransferInitiationRequest,
+    ),
+  );
+}
+
+export function deleteTransferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteTransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteTransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteTransferInitiationRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteTransferInitiationResponse$inboundSchema: z.ZodType<
   DeleteTransferInitiationResponse,
@@ -117,4 +140,24 @@ export namespace DeleteTransferInitiationResponse$ {
   export const outboundSchema = DeleteTransferInitiationResponse$outboundSchema;
   /** @deprecated use `DeleteTransferInitiationResponse$Outbound` instead. */
   export type Outbound = DeleteTransferInitiationResponse$Outbound;
+}
+
+export function deleteTransferInitiationResponseToJSON(
+  deleteTransferInitiationResponse: DeleteTransferInitiationResponse,
+): string {
+  return JSON.stringify(
+    DeleteTransferInitiationResponse$outboundSchema.parse(
+      deleteTransferInitiationResponse,
+    ),
+  );
+}
+
+export function deleteTransferInitiationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteTransferInitiationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteTransferInitiationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteTransferInitiationResponse' from JSON`,
+  );
 }

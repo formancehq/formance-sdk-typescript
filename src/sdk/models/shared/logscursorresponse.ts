@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Log,
   Log$inboundSchema,
@@ -70,6 +73,24 @@ export namespace LogsCursorResponseCursor$ {
   export type Outbound = LogsCursorResponseCursor$Outbound;
 }
 
+export function logsCursorResponseCursorToJSON(
+  logsCursorResponseCursor: LogsCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    LogsCursorResponseCursor$outboundSchema.parse(logsCursorResponseCursor),
+  );
+}
+
+export function logsCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<LogsCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogsCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogsCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const LogsCursorResponse$inboundSchema: z.ZodType<
   LogsCursorResponse,
@@ -104,4 +125,22 @@ export namespace LogsCursorResponse$ {
   export const outboundSchema = LogsCursorResponse$outboundSchema;
   /** @deprecated use `LogsCursorResponse$Outbound` instead. */
   export type Outbound = LogsCursorResponse$Outbound;
+}
+
+export function logsCursorResponseToJSON(
+  logsCursorResponse: LogsCursorResponse,
+): string {
+  return JSON.stringify(
+    LogsCursorResponse$outboundSchema.parse(logsCursorResponse),
+  );
+}
+
+export function logsCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<LogsCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LogsCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LogsCursorResponse' from JSON`,
+  );
 }

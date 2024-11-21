@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreateTransactionRequest = {
@@ -94,6 +97,24 @@ export namespace CreateTransactionRequest$ {
   export type Outbound = CreateTransactionRequest$Outbound;
 }
 
+export function createTransactionRequestToJSON(
+  createTransactionRequest: CreateTransactionRequest,
+): string {
+  return JSON.stringify(
+    CreateTransactionRequest$outboundSchema.parse(createTransactionRequest),
+  );
+}
+
+export function createTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreateTransactionResponse$inboundSchema: z.ZodType<
   CreateTransactionResponse,
@@ -153,4 +174,22 @@ export namespace CreateTransactionResponse$ {
   export const outboundSchema = CreateTransactionResponse$outboundSchema;
   /** @deprecated use `CreateTransactionResponse$Outbound` instead. */
   export type Outbound = CreateTransactionResponse$Outbound;
+}
+
+export function createTransactionResponseToJSON(
+  createTransactionResponse: CreateTransactionResponse,
+): string {
+  return JSON.stringify(
+    CreateTransactionResponse$outboundSchema.parse(createTransactionResponse),
+  );
+}
+
+export function createTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransactionResponse' from JSON`,
+  );
 }

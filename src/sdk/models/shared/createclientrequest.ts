@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateClientRequest = {
   description?: string | undefined;
@@ -70,4 +73,22 @@ export namespace CreateClientRequest$ {
   export const outboundSchema = CreateClientRequest$outboundSchema;
   /** @deprecated use `CreateClientRequest$Outbound` instead. */
   export type Outbound = CreateClientRequest$Outbound;
+}
+
+export function createClientRequestToJSON(
+  createClientRequest: CreateClientRequest,
+): string {
+  return JSON.stringify(
+    CreateClientRequest$outboundSchema.parse(createClientRequest),
+  );
+}
+
+export function createClientRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateClientRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateClientRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateClientRequest' from JSON`,
+  );
 }

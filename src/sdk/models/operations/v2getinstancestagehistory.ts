@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetInstanceStageHistoryRequest = {
@@ -77,6 +80,26 @@ export namespace V2GetInstanceStageHistoryRequest$ {
   export type Outbound = V2GetInstanceStageHistoryRequest$Outbound;
 }
 
+export function v2GetInstanceStageHistoryRequestToJSON(
+  v2GetInstanceStageHistoryRequest: V2GetInstanceStageHistoryRequest,
+): string {
+  return JSON.stringify(
+    V2GetInstanceStageHistoryRequest$outboundSchema.parse(
+      v2GetInstanceStageHistoryRequest,
+    ),
+  );
+}
+
+export function v2GetInstanceStageHistoryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceStageHistoryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceStageHistoryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceStageHistoryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetInstanceStageHistoryResponse$inboundSchema: z.ZodType<
   V2GetInstanceStageHistoryResponse,
@@ -143,4 +166,24 @@ export namespace V2GetInstanceStageHistoryResponse$ {
     V2GetInstanceStageHistoryResponse$outboundSchema;
   /** @deprecated use `V2GetInstanceStageHistoryResponse$Outbound` instead. */
   export type Outbound = V2GetInstanceStageHistoryResponse$Outbound;
+}
+
+export function v2GetInstanceStageHistoryResponseToJSON(
+  v2GetInstanceStageHistoryResponse: V2GetInstanceStageHistoryResponse,
+): string {
+  return JSON.stringify(
+    V2GetInstanceStageHistoryResponse$outboundSchema.parse(
+      v2GetInstanceStageHistoryResponse,
+    ),
+  );
+}
+
+export function v2GetInstanceStageHistoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceStageHistoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceStageHistoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceStageHistoryResponse' from JSON`,
+  );
 }

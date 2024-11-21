@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WorkflowInstance,
   WorkflowInstance$inboundSchema,
@@ -68,4 +71,22 @@ export namespace TriggerOccurrence$ {
   export const outboundSchema = TriggerOccurrence$outboundSchema;
   /** @deprecated use `TriggerOccurrence$Outbound` instead. */
   export type Outbound = TriggerOccurrence$Outbound;
+}
+
+export function triggerOccurrenceToJSON(
+  triggerOccurrence: TriggerOccurrence,
+): string {
+  return JSON.stringify(
+    TriggerOccurrence$outboundSchema.parse(triggerOccurrence),
+  );
+}
+
+export function triggerOccurrenceFromJSON(
+  jsonString: string,
+): SafeParseResult<TriggerOccurrence, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TriggerOccurrence$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TriggerOccurrence' from JSON`,
+  );
 }

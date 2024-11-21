@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CurrencyCloudConfig = {
   apiKey: string;
@@ -67,4 +70,22 @@ export namespace CurrencyCloudConfig$ {
   export const outboundSchema = CurrencyCloudConfig$outboundSchema;
   /** @deprecated use `CurrencyCloudConfig$Outbound` instead. */
   export type Outbound = CurrencyCloudConfig$Outbound;
+}
+
+export function currencyCloudConfigToJSON(
+  currencyCloudConfig: CurrencyCloudConfig,
+): string {
+  return JSON.stringify(
+    CurrencyCloudConfig$outboundSchema.parse(currencyCloudConfig),
+  );
+}
+
+export function currencyCloudConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<CurrencyCloudConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CurrencyCloudConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CurrencyCloudConfig' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AssetHolder,
   AssetHolder$inboundSchema,
@@ -65,6 +68,24 @@ export namespace WalletWithBalancesBalances$ {
   export type Outbound = WalletWithBalancesBalances$Outbound;
 }
 
+export function walletWithBalancesBalancesToJSON(
+  walletWithBalancesBalances: WalletWithBalancesBalances,
+): string {
+  return JSON.stringify(
+    WalletWithBalancesBalances$outboundSchema.parse(walletWithBalancesBalances),
+  );
+}
+
+export function walletWithBalancesBalancesFromJSON(
+  jsonString: string,
+): SafeParseResult<WalletWithBalancesBalances, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WalletWithBalancesBalances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WalletWithBalancesBalances' from JSON`,
+  );
+}
+
 /** @internal */
 export const WalletWithBalances$inboundSchema: z.ZodType<
   WalletWithBalances,
@@ -114,4 +135,22 @@ export namespace WalletWithBalances$ {
   export const outboundSchema = WalletWithBalances$outboundSchema;
   /** @deprecated use `WalletWithBalances$Outbound` instead. */
   export type Outbound = WalletWithBalances$Outbound;
+}
+
+export function walletWithBalancesToJSON(
+  walletWithBalances: WalletWithBalances,
+): string {
+  return JSON.stringify(
+    WalletWithBalances$outboundSchema.parse(walletWithBalances),
+  );
+}
+
+export function walletWithBalancesFromJSON(
+  jsonString: string,
+): SafeParseResult<WalletWithBalances, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WalletWithBalances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WalletWithBalances' from JSON`,
+  );
 }

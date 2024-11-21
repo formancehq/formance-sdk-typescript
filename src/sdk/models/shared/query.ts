@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type QueryRaw = {};
 
@@ -46,6 +49,20 @@ export namespace QueryRaw$ {
   export const outboundSchema = QueryRaw$outboundSchema;
   /** @deprecated use `QueryRaw$Outbound` instead. */
   export type Outbound = QueryRaw$Outbound;
+}
+
+export function queryRawToJSON(queryRaw: QueryRaw): string {
+  return JSON.stringify(QueryRaw$outboundSchema.parse(queryRaw));
+}
+
+export function queryRawFromJSON(
+  jsonString: string,
+): SafeParseResult<QueryRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => QueryRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'QueryRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -103,4 +120,18 @@ export namespace Query$ {
   export const outboundSchema = Query$outboundSchema;
   /** @deprecated use `Query$Outbound` instead. */
   export type Outbound = Query$Outbound;
+}
+
+export function queryToJSON(query: Query): string {
+  return JSON.stringify(Query$outboundSchema.parse(query));
+}
+
+export function queryFromJSON(
+  jsonString: string,
+): SafeParseResult<Query, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Query$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Query' from JSON`,
+  );
 }

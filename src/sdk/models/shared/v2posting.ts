@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Posting = {
   amount: bigint;
@@ -54,4 +57,18 @@ export namespace V2Posting$ {
   export const outboundSchema = V2Posting$outboundSchema;
   /** @deprecated use `V2Posting$Outbound` instead. */
   export type Outbound = V2Posting$Outbound;
+}
+
+export function v2PostingToJSON(v2Posting: V2Posting): string {
+  return JSON.stringify(V2Posting$outboundSchema.parse(v2Posting));
+}
+
+export function v2PostingFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Posting, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Posting$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Posting' from JSON`,
+  );
 }

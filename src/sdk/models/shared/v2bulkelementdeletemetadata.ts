@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2TargetId,
   V2TargetId$inboundSchema,
@@ -69,6 +72,26 @@ export namespace V2BulkElementDeleteMetadataData$ {
   export type Outbound = V2BulkElementDeleteMetadataData$Outbound;
 }
 
+export function v2BulkElementDeleteMetadataDataToJSON(
+  v2BulkElementDeleteMetadataData: V2BulkElementDeleteMetadataData,
+): string {
+  return JSON.stringify(
+    V2BulkElementDeleteMetadataData$outboundSchema.parse(
+      v2BulkElementDeleteMetadataData,
+    ),
+  );
+}
+
+export function v2BulkElementDeleteMetadataDataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementDeleteMetadataData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementDeleteMetadataData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementDeleteMetadataData' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2BulkElementDeleteMetadata$inboundSchema: z.ZodType<
   V2BulkElementDeleteMetadata,
@@ -109,4 +132,24 @@ export namespace V2BulkElementDeleteMetadata$ {
   export const outboundSchema = V2BulkElementDeleteMetadata$outboundSchema;
   /** @deprecated use `V2BulkElementDeleteMetadata$Outbound` instead. */
   export type Outbound = V2BulkElementDeleteMetadata$Outbound;
+}
+
+export function v2BulkElementDeleteMetadataToJSON(
+  v2BulkElementDeleteMetadata: V2BulkElementDeleteMetadata,
+): string {
+  return JSON.stringify(
+    V2BulkElementDeleteMetadata$outboundSchema.parse(
+      v2BulkElementDeleteMetadata,
+    ),
+  );
+}
+
+export function v2BulkElementDeleteMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementDeleteMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementDeleteMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementDeleteMetadata' from JSON`,
+  );
 }

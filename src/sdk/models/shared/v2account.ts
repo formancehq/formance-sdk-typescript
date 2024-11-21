@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Volume,
   V2Volume$inboundSchema,
@@ -60,4 +63,18 @@ export namespace V2Account$ {
   export const outboundSchema = V2Account$outboundSchema;
   /** @deprecated use `V2Account$Outbound` instead. */
   export type Outbound = V2Account$Outbound;
+}
+
+export function v2AccountToJSON(v2Account: V2Account): string {
+  return JSON.stringify(V2Account$outboundSchema.parse(v2Account));
+}
+
+export function v2AccountFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Account, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Account$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Account' from JSON`,
+  );
 }

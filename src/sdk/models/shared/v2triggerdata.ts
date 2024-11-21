@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2TriggerData = {
   event: string;
@@ -58,4 +61,18 @@ export namespace V2TriggerData$ {
   export const outboundSchema = V2TriggerData$outboundSchema;
   /** @deprecated use `V2TriggerData$Outbound` instead. */
   export type Outbound = V2TriggerData$Outbound;
+}
+
+export function v2TriggerDataToJSON(v2TriggerData: V2TriggerData): string {
+  return JSON.stringify(V2TriggerData$outboundSchema.parse(v2TriggerData));
+}
+
+export function v2TriggerDataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TriggerData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TriggerData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TriggerData' from JSON`,
+  );
 }

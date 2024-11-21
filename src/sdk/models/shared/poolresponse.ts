@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Pool,
   Pool$inboundSchema,
@@ -51,4 +54,18 @@ export namespace PoolResponse$ {
   export const outboundSchema = PoolResponse$outboundSchema;
   /** @deprecated use `PoolResponse$Outbound` instead. */
   export type Outbound = PoolResponse$Outbound;
+}
+
+export function poolResponseToJSON(poolResponse: PoolResponse): string {
+  return JSON.stringify(PoolResponse$outboundSchema.parse(poolResponse));
+}
+
+export function poolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PoolResponse' from JSON`,
+  );
 }

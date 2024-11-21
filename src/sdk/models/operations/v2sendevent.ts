@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2SendEventRequestBody = {
   name: string;
@@ -68,6 +71,24 @@ export namespace V2SendEventRequestBody$ {
   export type Outbound = V2SendEventRequestBody$Outbound;
 }
 
+export function v2SendEventRequestBodyToJSON(
+  v2SendEventRequestBody: V2SendEventRequestBody,
+): string {
+  return JSON.stringify(
+    V2SendEventRequestBody$outboundSchema.parse(v2SendEventRequestBody),
+  );
+}
+
+export function v2SendEventRequestBodyFromJSON(
+  jsonString: string,
+): SafeParseResult<V2SendEventRequestBody, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2SendEventRequestBody$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2SendEventRequestBody' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2SendEventRequest$inboundSchema: z.ZodType<
   V2SendEventRequest,
@@ -113,6 +134,24 @@ export namespace V2SendEventRequest$ {
   export const outboundSchema = V2SendEventRequest$outboundSchema;
   /** @deprecated use `V2SendEventRequest$Outbound` instead. */
   export type Outbound = V2SendEventRequest$Outbound;
+}
+
+export function v2SendEventRequestToJSON(
+  v2SendEventRequest: V2SendEventRequest,
+): string {
+  return JSON.stringify(
+    V2SendEventRequest$outboundSchema.parse(v2SendEventRequest),
+  );
+}
+
+export function v2SendEventRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2SendEventRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2SendEventRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2SendEventRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -169,4 +208,22 @@ export namespace V2SendEventResponse$ {
   export const outboundSchema = V2SendEventResponse$outboundSchema;
   /** @deprecated use `V2SendEventResponse$Outbound` instead. */
   export type Outbound = V2SendEventResponse$Outbound;
+}
+
+export function v2SendEventResponseToJSON(
+  v2SendEventResponse: V2SendEventResponse,
+): string {
+  return JSON.stringify(
+    V2SendEventResponse$outboundSchema.parse(v2SendEventResponse),
+  );
+}
+
+export function v2SendEventResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2SendEventResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2SendEventResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2SendEventResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2StageSendDestinationAccount,
   V2StageSendDestinationAccount$inboundSchema,
@@ -68,4 +71,22 @@ export namespace V2StageSendDestination$ {
   export const outboundSchema = V2StageSendDestination$outboundSchema;
   /** @deprecated use `V2StageSendDestination$Outbound` instead. */
   export type Outbound = V2StageSendDestination$Outbound;
+}
+
+export function v2StageSendDestinationToJSON(
+  v2StageSendDestination: V2StageSendDestination,
+): string {
+  return JSON.stringify(
+    V2StageSendDestination$outboundSchema.parse(v2StageSendDestination),
+  );
+}
+
+export function v2StageSendDestinationFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StageSendDestination, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StageSendDestination$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StageSendDestination' from JSON`,
+  );
 }

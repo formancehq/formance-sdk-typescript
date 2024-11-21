@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetOIDCWellKnownsResponse = {
   /**
@@ -74,4 +77,22 @@ export namespace GetOIDCWellKnownsResponse$ {
   export const outboundSchema = GetOIDCWellKnownsResponse$outboundSchema;
   /** @deprecated use `GetOIDCWellKnownsResponse$Outbound` instead. */
   export type Outbound = GetOIDCWellKnownsResponse$Outbound;
+}
+
+export function getOIDCWellKnownsResponseToJSON(
+  getOIDCWellKnownsResponse: GetOIDCWellKnownsResponse,
+): string {
+  return JSON.stringify(
+    GetOIDCWellKnownsResponse$outboundSchema.parse(getOIDCWellKnownsResponse),
+  );
+}
+
+export function getOIDCWellKnownsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetOIDCWellKnownsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetOIDCWellKnownsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetOIDCWellKnownsResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Version,
   Version$inboundSchema,
@@ -56,4 +59,22 @@ export namespace GetVersionsResponse$ {
   export const outboundSchema = GetVersionsResponse$outboundSchema;
   /** @deprecated use `GetVersionsResponse$Outbound` instead. */
   export type Outbound = GetVersionsResponse$Outbound;
+}
+
+export function getVersionsResponseToJSON(
+  getVersionsResponse: GetVersionsResponse,
+): string {
+  return JSON.stringify(
+    GetVersionsResponse$outboundSchema.parse(getVersionsResponse),
+  );
+}
+
+export function getVersionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetVersionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetVersionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetVersionsResponse' from JSON`,
+  );
 }

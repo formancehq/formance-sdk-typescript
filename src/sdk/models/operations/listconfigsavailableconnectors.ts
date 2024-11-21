@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListConfigsAvailableConnectorsResponse = {
@@ -90,4 +93,26 @@ export namespace ListConfigsAvailableConnectorsResponse$ {
     ListConfigsAvailableConnectorsResponse$outboundSchema;
   /** @deprecated use `ListConfigsAvailableConnectorsResponse$Outbound` instead. */
   export type Outbound = ListConfigsAvailableConnectorsResponse$Outbound;
+}
+
+export function listConfigsAvailableConnectorsResponseToJSON(
+  listConfigsAvailableConnectorsResponse:
+    ListConfigsAvailableConnectorsResponse,
+): string {
+  return JSON.stringify(
+    ListConfigsAvailableConnectorsResponse$outboundSchema.parse(
+      listConfigsAvailableConnectorsResponse,
+    ),
+  );
+}
+
+export function listConfigsAvailableConnectorsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListConfigsAvailableConnectorsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ListConfigsAvailableConnectorsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListConfigsAvailableConnectorsResponse' from JSON`,
+  );
 }

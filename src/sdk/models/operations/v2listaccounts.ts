@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2ListAccountsRequest = {
@@ -102,6 +105,24 @@ export namespace V2ListAccountsRequest$ {
   export type Outbound = V2ListAccountsRequest$Outbound;
 }
 
+export function v2ListAccountsRequestToJSON(
+  v2ListAccountsRequest: V2ListAccountsRequest,
+): string {
+  return JSON.stringify(
+    V2ListAccountsRequest$outboundSchema.parse(v2ListAccountsRequest),
+  );
+}
+
+export function v2ListAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListAccountsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListAccountsResponse$inboundSchema: z.ZodType<
   V2ListAccountsResponse,
@@ -165,4 +186,22 @@ export namespace V2ListAccountsResponse$ {
   export const outboundSchema = V2ListAccountsResponse$outboundSchema;
   /** @deprecated use `V2ListAccountsResponse$Outbound` instead. */
   export type Outbound = V2ListAccountsResponse$Outbound;
+}
+
+export function v2ListAccountsResponseToJSON(
+  v2ListAccountsResponse: V2ListAccountsResponse,
+): string {
+  return JSON.stringify(
+    V2ListAccountsResponse$outboundSchema.parse(v2ListAccountsResponse),
+  );
+}
+
+export function v2ListAccountsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListAccountsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListAccountsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListAccountsResponse' from JSON`,
+  );
 }

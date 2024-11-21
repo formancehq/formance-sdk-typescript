@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReadClientRequest = {
@@ -68,6 +71,24 @@ export namespace ReadClientRequest$ {
   export type Outbound = ReadClientRequest$Outbound;
 }
 
+export function readClientRequestToJSON(
+  readClientRequest: ReadClientRequest,
+): string {
+  return JSON.stringify(
+    ReadClientRequest$outboundSchema.parse(readClientRequest),
+  );
+}
+
+export function readClientRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadClientRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadClientRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadClientRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReadClientResponse$inboundSchema: z.ZodType<
   ReadClientResponse,
@@ -127,4 +148,22 @@ export namespace ReadClientResponse$ {
   export const outboundSchema = ReadClientResponse$outboundSchema;
   /** @deprecated use `ReadClientResponse$Outbound` instead. */
   export type Outbound = ReadClientResponse$Outbound;
+}
+
+export function readClientResponseToJSON(
+  readClientResponse: ReadClientResponse,
+): string {
+  return JSON.stringify(
+    ReadClientResponse$outboundSchema.parse(readClientResponse),
+  );
+}
+
+export function readClientResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadClientResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadClientResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadClientResponse' from JSON`,
+  );
 }

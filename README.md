@@ -366,10 +366,10 @@ If a HTTP request fails, an operation my also throw an error from the `sdk/model
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `createTransactions` method may throw the following errors:
 
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | default              | application/json     |
-| errors.SDKError      | 4XX, 5XX             | \*/\*                |
+| Error Type           | Status Code | Content Type     |
+| -------------------- | ----------- | ---------------- |
+| errors.ErrorResponse | default     | application/json |
+| errors.SDKError      | 4XX, 5XX    | \*/\*            |
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
@@ -442,12 +442,16 @@ Validation errors can also occur when either method arguments or data returned f
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `http://localhost` | None |
-| 1 | `https://{organization}.{environment}.formance.cloud` | `environment` (default is `sandbox`), `organization` (default is `orgID-stackID`) |
+| #   | Server                                                | Variables                                                          | Default values                    |
+| --- | ----------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------- |
+| 0   | `http://localhost`                                    |                                                                    |                                   |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: string` | `"sandbox"`<br/>`"orgID-stackID"` |
+
+If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
+
+#### Example
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
@@ -471,16 +475,9 @@ run();
 
 ```
 
-#### Variables
-
-Some of the server options above contain variables. If you want to set the values of those variables, the following optional parameters are available when initializing the SDK client instance:
- * `environment: models.ServerEnvironment`
- * `organization: string`
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -560,9 +557,9 @@ const sdk = new SDK({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                           | Type                           | Scheme                         |
-| ------------------------------ | ------------------------------ | ------------------------------ |
-| `clientID` `clientSecret`      | oauth2                         | OAuth2 Client Credentials Flow |
+| Name                          | Type   | Scheme                         |
+| ----------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript

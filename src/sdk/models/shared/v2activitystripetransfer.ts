@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * A set of key/value pairs that you can attach to a transfer object.
@@ -57,6 +60,26 @@ export namespace V2ActivityStripeTransferMetadata$ {
   export type Outbound = V2ActivityStripeTransferMetadata$Outbound;
 }
 
+export function v2ActivityStripeTransferMetadataToJSON(
+  v2ActivityStripeTransferMetadata: V2ActivityStripeTransferMetadata,
+): string {
+  return JSON.stringify(
+    V2ActivityStripeTransferMetadata$outboundSchema.parse(
+      v2ActivityStripeTransferMetadata,
+    ),
+  );
+}
+
+export function v2ActivityStripeTransferMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityStripeTransferMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityStripeTransferMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityStripeTransferMetadata' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ActivityStripeTransfer$inboundSchema: z.ZodType<
   V2ActivityStripeTransfer,
@@ -108,4 +131,22 @@ export namespace V2ActivityStripeTransfer$ {
   export const outboundSchema = V2ActivityStripeTransfer$outboundSchema;
   /** @deprecated use `V2ActivityStripeTransfer$Outbound` instead. */
   export type Outbound = V2ActivityStripeTransfer$Outbound;
+}
+
+export function v2ActivityStripeTransferToJSON(
+  v2ActivityStripeTransfer: V2ActivityStripeTransfer,
+): string {
+  return JSON.stringify(
+    V2ActivityStripeTransfer$outboundSchema.parse(v2ActivityStripeTransfer),
+  );
+}
+
+export function v2ActivityStripeTransferFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityStripeTransfer, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityStripeTransfer$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityStripeTransfer' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ModulrConfig = {
   apiKey: string;
@@ -63,4 +66,18 @@ export namespace ModulrConfig$ {
   export const outboundSchema = ModulrConfig$outboundSchema;
   /** @deprecated use `ModulrConfig$Outbound` instead. */
   export type Outbound = ModulrConfig$Outbound;
+}
+
+export function modulrConfigToJSON(modulrConfig: ModulrConfig): string {
+  return JSON.stringify(ModulrConfig$outboundSchema.parse(modulrConfig));
+}
+
+export function modulrConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<ModulrConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ModulrConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ModulrConfig' from JSON`,
+  );
 }

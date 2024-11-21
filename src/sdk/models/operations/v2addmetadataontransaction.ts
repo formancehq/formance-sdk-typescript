@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2AddMetadataOnTransactionRequest = {
   /**
@@ -102,6 +105,26 @@ export namespace V2AddMetadataOnTransactionRequest$ {
   export type Outbound = V2AddMetadataOnTransactionRequest$Outbound;
 }
 
+export function v2AddMetadataOnTransactionRequestToJSON(
+  v2AddMetadataOnTransactionRequest: V2AddMetadataOnTransactionRequest,
+): string {
+  return JSON.stringify(
+    V2AddMetadataOnTransactionRequest$outboundSchema.parse(
+      v2AddMetadataOnTransactionRequest,
+    ),
+  );
+}
+
+export function v2AddMetadataOnTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AddMetadataOnTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AddMetadataOnTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AddMetadataOnTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2AddMetadataOnTransactionResponse$inboundSchema: z.ZodType<
   V2AddMetadataOnTransactionResponse,
@@ -157,4 +180,25 @@ export namespace V2AddMetadataOnTransactionResponse$ {
     V2AddMetadataOnTransactionResponse$outboundSchema;
   /** @deprecated use `V2AddMetadataOnTransactionResponse$Outbound` instead. */
   export type Outbound = V2AddMetadataOnTransactionResponse$Outbound;
+}
+
+export function v2AddMetadataOnTransactionResponseToJSON(
+  v2AddMetadataOnTransactionResponse: V2AddMetadataOnTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2AddMetadataOnTransactionResponse$outboundSchema.parse(
+      v2AddMetadataOnTransactionResponse,
+    ),
+  );
+}
+
+export function v2AddMetadataOnTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AddMetadataOnTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2AddMetadataOnTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AddMetadataOnTransactionResponse' from JSON`,
+  );
 }

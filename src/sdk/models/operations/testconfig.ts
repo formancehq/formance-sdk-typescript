@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type TestConfigRequest = {
@@ -68,6 +71,24 @@ export namespace TestConfigRequest$ {
   export type Outbound = TestConfigRequest$Outbound;
 }
 
+export function testConfigRequestToJSON(
+  testConfigRequest: TestConfigRequest,
+): string {
+  return JSON.stringify(
+    TestConfigRequest$outboundSchema.parse(testConfigRequest),
+  );
+}
+
+export function testConfigRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TestConfigRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TestConfigRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TestConfigRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const TestConfigResponse$inboundSchema: z.ZodType<
   TestConfigResponse,
@@ -127,4 +148,22 @@ export namespace TestConfigResponse$ {
   export const outboundSchema = TestConfigResponse$outboundSchema;
   /** @deprecated use `TestConfigResponse$Outbound` instead. */
   export type Outbound = TestConfigResponse$Outbound;
+}
+
+export function testConfigResponseToJSON(
+  testConfigResponse: TestConfigResponse,
+): string {
+  return JSON.stringify(
+    TestConfigResponse$outboundSchema.parse(testConfigResponse),
+  );
+}
+
+export function testConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TestConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TestConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TestConfigResponse' from JSON`,
+  );
 }

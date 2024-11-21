@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReadConnectorConfigRequest = {
@@ -68,6 +71,24 @@ export namespace ReadConnectorConfigRequest$ {
   export type Outbound = ReadConnectorConfigRequest$Outbound;
 }
 
+export function readConnectorConfigRequestToJSON(
+  readConnectorConfigRequest: ReadConnectorConfigRequest,
+): string {
+  return JSON.stringify(
+    ReadConnectorConfigRequest$outboundSchema.parse(readConnectorConfigRequest),
+  );
+}
+
+export function readConnectorConfigRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadConnectorConfigRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadConnectorConfigRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadConnectorConfigRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReadConnectorConfigResponse$inboundSchema: z.ZodType<
   ReadConnectorConfigResponse,
@@ -129,4 +150,24 @@ export namespace ReadConnectorConfigResponse$ {
   export const outboundSchema = ReadConnectorConfigResponse$outboundSchema;
   /** @deprecated use `ReadConnectorConfigResponse$Outbound` instead. */
   export type Outbound = ReadConnectorConfigResponse$Outbound;
+}
+
+export function readConnectorConfigResponseToJSON(
+  readConnectorConfigResponse: ReadConnectorConfigResponse,
+): string {
+  return JSON.stringify(
+    ReadConnectorConfigResponse$outboundSchema.parse(
+      readConnectorConfigResponse,
+    ),
+  );
+}
+
+export function readConnectorConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReadConnectorConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReadConnectorConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReadConnectorConfigResponse' from JSON`,
+  );
 }

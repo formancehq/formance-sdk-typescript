@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2LedgerAccountSubject,
   V2LedgerAccountSubject$inboundSchema,
@@ -72,4 +75,18 @@ export namespace V2Subject$ {
   export const outboundSchema = V2Subject$outboundSchema;
   /** @deprecated use `V2Subject$Outbound` instead. */
   export type Outbound = V2Subject$Outbound;
+}
+
+export function v2SubjectToJSON(v2Subject: V2Subject): string {
+  return JSON.stringify(V2Subject$outboundSchema.parse(v2Subject));
+}
+
+export function v2SubjectFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Subject, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Subject$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Subject' from JSON`,
+  );
 }

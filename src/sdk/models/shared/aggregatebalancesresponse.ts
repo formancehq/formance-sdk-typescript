@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AggregateBalancesResponse = {
   data: { [k: string]: number };
@@ -42,4 +45,22 @@ export namespace AggregateBalancesResponse$ {
   export const outboundSchema = AggregateBalancesResponse$outboundSchema;
   /** @deprecated use `AggregateBalancesResponse$Outbound` instead. */
   export type Outbound = AggregateBalancesResponse$Outbound;
+}
+
+export function aggregateBalancesResponseToJSON(
+  aggregateBalancesResponse: AggregateBalancesResponse,
+): string {
+  return JSON.stringify(
+    AggregateBalancesResponse$outboundSchema.parse(aggregateBalancesResponse),
+  );
+}
+
+export function aggregateBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AggregateBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AggregateBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AggregateBalancesResponse' from JSON`,
+  );
 }

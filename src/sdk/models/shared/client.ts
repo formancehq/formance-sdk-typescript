@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ClientSecret,
   ClientSecret$inboundSchema,
@@ -81,4 +84,18 @@ export namespace Client$ {
   export const outboundSchema = Client$outboundSchema;
   /** @deprecated use `Client$Outbound` instead. */
   export type Outbound = Client$Outbound;
+}
+
+export function clientToJSON(client: Client): string {
+  return JSON.stringify(Client$outboundSchema.parse(client));
+}
+
+export function clientFromJSON(
+  jsonString: string,
+): SafeParseResult<Client, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Client$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Client' from JSON`,
+  );
 }

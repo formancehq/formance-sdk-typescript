@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   ErrorsEnum,
   ErrorsEnum$inboundSchema,
@@ -55,4 +58,18 @@ export namespace ErrorResponse$ {
   export const outboundSchema = ErrorResponse$outboundSchema;
   /** @deprecated use `ErrorResponse$Outbound` instead. */
   export type Outbound = ErrorResponse$Outbound;
+}
+
+export function errorResponseToJSON(errorResponse: ErrorResponse): string {
+  return JSON.stringify(ErrorResponse$outboundSchema.parse(errorResponse));
+}
+
+export function errorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ErrorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ErrorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ErrorResponse' from JSON`,
+  );
 }

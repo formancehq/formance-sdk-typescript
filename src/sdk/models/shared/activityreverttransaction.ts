@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityRevertTransaction = {
   id: string;
@@ -46,4 +49,22 @@ export namespace ActivityRevertTransaction$ {
   export const outboundSchema = ActivityRevertTransaction$outboundSchema;
   /** @deprecated use `ActivityRevertTransaction$Outbound` instead. */
   export type Outbound = ActivityRevertTransaction$Outbound;
+}
+
+export function activityRevertTransactionToJSON(
+  activityRevertTransaction: ActivityRevertTransaction,
+): string {
+  return JSON.stringify(
+    ActivityRevertTransaction$outboundSchema.parse(activityRevertTransaction),
+  );
+}
+
+export function activityRevertTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityRevertTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityRevertTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityRevertTransaction' from JSON`,
+  );
 }

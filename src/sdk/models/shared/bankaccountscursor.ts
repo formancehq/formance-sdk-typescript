@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   BankAccount,
   BankAccount$inboundSchema,
@@ -73,6 +76,24 @@ export namespace BankAccountsCursorCursor$ {
   export type Outbound = BankAccountsCursorCursor$Outbound;
 }
 
+export function bankAccountsCursorCursorToJSON(
+  bankAccountsCursorCursor: BankAccountsCursorCursor,
+): string {
+  return JSON.stringify(
+    BankAccountsCursorCursor$outboundSchema.parse(bankAccountsCursorCursor),
+  );
+}
+
+export function bankAccountsCursorCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<BankAccountsCursorCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankAccountsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccountsCursorCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const BankAccountsCursor$inboundSchema: z.ZodType<
   BankAccountsCursor,
@@ -107,4 +128,22 @@ export namespace BankAccountsCursor$ {
   export const outboundSchema = BankAccountsCursor$outboundSchema;
   /** @deprecated use `BankAccountsCursor$Outbound` instead. */
   export type Outbound = BankAccountsCursor$Outbound;
+}
+
+export function bankAccountsCursorToJSON(
+  bankAccountsCursor: BankAccountsCursor,
+): string {
+  return JSON.stringify(
+    BankAccountsCursor$outboundSchema.parse(bankAccountsCursor),
+  );
+}
+
+export function bankAccountsCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<BankAccountsCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankAccountsCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccountsCursor' from JSON`,
+  );
 }

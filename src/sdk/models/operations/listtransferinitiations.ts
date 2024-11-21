@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListTransferInitiationsRequest = {
@@ -98,6 +101,26 @@ export namespace ListTransferInitiationsRequest$ {
   export type Outbound = ListTransferInitiationsRequest$Outbound;
 }
 
+export function listTransferInitiationsRequestToJSON(
+  listTransferInitiationsRequest: ListTransferInitiationsRequest,
+): string {
+  return JSON.stringify(
+    ListTransferInitiationsRequest$outboundSchema.parse(
+      listTransferInitiationsRequest,
+    ),
+  );
+}
+
+export function listTransferInitiationsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransferInitiationsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransferInitiationsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransferInitiationsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListTransferInitiationsResponse$inboundSchema: z.ZodType<
   ListTransferInitiationsResponse,
@@ -161,4 +184,24 @@ export namespace ListTransferInitiationsResponse$ {
   export const outboundSchema = ListTransferInitiationsResponse$outboundSchema;
   /** @deprecated use `ListTransferInitiationsResponse$Outbound` instead. */
   export type Outbound = ListTransferInitiationsResponse$Outbound;
+}
+
+export function listTransferInitiationsResponseToJSON(
+  listTransferInitiationsResponse: ListTransferInitiationsResponse,
+): string {
+  return JSON.stringify(
+    ListTransferInitiationsResponse$outboundSchema.parse(
+      listTransferInitiationsResponse,
+    ),
+  );
+}
+
+export function listTransferInitiationsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTransferInitiationsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTransferInitiationsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTransferInitiationsResponse' from JSON`,
+  );
 }

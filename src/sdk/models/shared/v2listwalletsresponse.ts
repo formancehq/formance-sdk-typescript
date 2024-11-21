@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Wallet,
   V2Wallet$inboundSchema,
@@ -70,6 +73,26 @@ export namespace V2ListWalletsResponseCursor$ {
   export type Outbound = V2ListWalletsResponseCursor$Outbound;
 }
 
+export function v2ListWalletsResponseCursorToJSON(
+  v2ListWalletsResponseCursor: V2ListWalletsResponseCursor,
+): string {
+  return JSON.stringify(
+    V2ListWalletsResponseCursor$outboundSchema.parse(
+      v2ListWalletsResponseCursor,
+    ),
+  );
+}
+
+export function v2ListWalletsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWalletsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWalletsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWalletsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ListWalletsResponse$inboundSchema: z.ZodType<
   V2ListWalletsResponse,
@@ -104,4 +127,22 @@ export namespace V2ListWalletsResponse$ {
   export const outboundSchema = V2ListWalletsResponse$outboundSchema;
   /** @deprecated use `V2ListWalletsResponse$Outbound` instead. */
   export type Outbound = V2ListWalletsResponse$Outbound;
+}
+
+export function v2ListWalletsResponseToJSON(
+  v2ListWalletsResponse: V2ListWalletsResponse,
+): string {
+  return JSON.stringify(
+    V2ListWalletsResponse$outboundSchema.parse(v2ListWalletsResponse),
+  );
+}
+
+export function v2ListWalletsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ListWalletsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ListWalletsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWalletsResponse' from JSON`,
+  );
 }

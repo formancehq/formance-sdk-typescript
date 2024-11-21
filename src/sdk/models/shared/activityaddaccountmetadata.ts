@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ActivityAddAccountMetadata = {
   id: string;
@@ -50,4 +53,22 @@ export namespace ActivityAddAccountMetadata$ {
   export const outboundSchema = ActivityAddAccountMetadata$outboundSchema;
   /** @deprecated use `ActivityAddAccountMetadata$Outbound` instead. */
   export type Outbound = ActivityAddAccountMetadata$Outbound;
+}
+
+export function activityAddAccountMetadataToJSON(
+  activityAddAccountMetadata: ActivityAddAccountMetadata,
+): string {
+  return JSON.stringify(
+    ActivityAddAccountMetadata$outboundSchema.parse(activityAddAccountMetadata),
+  );
+}
+
+export function activityAddAccountMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityAddAccountMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityAddAccountMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityAddAccountMetadata' from JSON`,
+  );
 }

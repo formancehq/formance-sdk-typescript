@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BankingCircleConfig = {
   authorizationEndpoint: string;
@@ -75,4 +78,22 @@ export namespace BankingCircleConfig$ {
   export const outboundSchema = BankingCircleConfig$outboundSchema;
   /** @deprecated use `BankingCircleConfig$Outbound` instead. */
   export type Outbound = BankingCircleConfig$Outbound;
+}
+
+export function bankingCircleConfigToJSON(
+  bankingCircleConfig: BankingCircleConfig,
+): string {
+  return JSON.stringify(
+    BankingCircleConfig$outboundSchema.parse(bankingCircleConfig),
+  );
+}
+
+export function bankingCircleConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<BankingCircleConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BankingCircleConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankingCircleConfig' from JSON`,
+  );
 }

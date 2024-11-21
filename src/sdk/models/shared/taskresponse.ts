@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   TaskBankingCircle,
   TaskBankingCircle$inboundSchema,
@@ -133,6 +136,24 @@ export namespace TaskResponseData$ {
   export type Outbound = TaskResponseData$Outbound;
 }
 
+export function taskResponseDataToJSON(
+  taskResponseData: TaskResponseData,
+): string {
+  return JSON.stringify(
+    TaskResponseData$outboundSchema.parse(taskResponseData),
+  );
+}
+
+export function taskResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskResponseData' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskResponse$inboundSchema: z.ZodType<
   TaskResponse,
@@ -193,4 +214,18 @@ export namespace TaskResponse$ {
   export const outboundSchema = TaskResponse$outboundSchema;
   /** @deprecated use `TaskResponse$Outbound` instead. */
   export type Outbound = TaskResponse$Outbound;
+}
+
+export function taskResponseToJSON(taskResponse: TaskResponse): string {
+  return JSON.stringify(TaskResponse$outboundSchema.parse(taskResponse));
+}
+
+export function taskResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskResponse' from JSON`,
+  );
 }

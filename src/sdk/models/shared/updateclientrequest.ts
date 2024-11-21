@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateClientRequest = {
   description?: string | undefined;
@@ -70,4 +73,22 @@ export namespace UpdateClientRequest$ {
   export const outboundSchema = UpdateClientRequest$outboundSchema;
   /** @deprecated use `UpdateClientRequest$Outbound` instead. */
   export type Outbound = UpdateClientRequest$Outbound;
+}
+
+export function updateClientRequestToJSON(
+  updateClientRequest: UpdateClientRequest,
+): string {
+  return JSON.stringify(
+    UpdateClientRequest$outboundSchema.parse(updateClientRequest),
+  );
+}
+
+export function updateClientRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateClientRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateClientRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateClientRequest' from JSON`,
+  );
 }

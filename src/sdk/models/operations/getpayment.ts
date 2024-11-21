@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetPaymentRequest = {
@@ -68,6 +71,24 @@ export namespace GetPaymentRequest$ {
   export type Outbound = GetPaymentRequest$Outbound;
 }
 
+export function getPaymentRequestToJSON(
+  getPaymentRequest: GetPaymentRequest,
+): string {
+  return JSON.stringify(
+    GetPaymentRequest$outboundSchema.parse(getPaymentRequest),
+  );
+}
+
+export function getPaymentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPaymentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPaymentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPaymentRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetPaymentResponse$inboundSchema: z.ZodType<
   GetPaymentResponse,
@@ -127,4 +148,22 @@ export namespace GetPaymentResponse$ {
   export const outboundSchema = GetPaymentResponse$outboundSchema;
   /** @deprecated use `GetPaymentResponse$Outbound` instead. */
   export type Outbound = GetPaymentResponse$Outbound;
+}
+
+export function getPaymentResponseToJSON(
+  getPaymentResponse: GetPaymentResponse,
+): string {
+  return JSON.stringify(
+    GetPaymentResponse$outboundSchema.parse(getPaymentResponse),
+  );
+}
+
+export function getPaymentResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetPaymentResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetPaymentResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetPaymentResponse' from JSON`,
+  );
 }

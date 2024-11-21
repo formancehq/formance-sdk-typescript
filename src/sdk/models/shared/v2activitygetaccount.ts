@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ActivityGetAccount = {
   id: string;
@@ -46,4 +49,22 @@ export namespace V2ActivityGetAccount$ {
   export const outboundSchema = V2ActivityGetAccount$outboundSchema;
   /** @deprecated use `V2ActivityGetAccount$Outbound` instead. */
   export type Outbound = V2ActivityGetAccount$Outbound;
+}
+
+export function v2ActivityGetAccountToJSON(
+  v2ActivityGetAccount: V2ActivityGetAccount,
+): string {
+  return JSON.stringify(
+    V2ActivityGetAccount$outboundSchema.parse(v2ActivityGetAccount),
+  );
+}
+
+export function v2ActivityGetAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityGetAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityGetAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityGetAccount' from JSON`,
+  );
 }

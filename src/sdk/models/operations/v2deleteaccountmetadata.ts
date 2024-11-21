@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2DeleteAccountMetadataRequest = {
   /**
@@ -77,6 +80,26 @@ export namespace V2DeleteAccountMetadataRequest$ {
   export type Outbound = V2DeleteAccountMetadataRequest$Outbound;
 }
 
+export function v2DeleteAccountMetadataRequestToJSON(
+  v2DeleteAccountMetadataRequest: V2DeleteAccountMetadataRequest,
+): string {
+  return JSON.stringify(
+    V2DeleteAccountMetadataRequest$outboundSchema.parse(
+      v2DeleteAccountMetadataRequest,
+    ),
+  );
+}
+
+export function v2DeleteAccountMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteAccountMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2DeleteAccountMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteAccountMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2DeleteAccountMetadataResponse$inboundSchema: z.ZodType<
   V2DeleteAccountMetadataResponse,
@@ -131,4 +154,24 @@ export namespace V2DeleteAccountMetadataResponse$ {
   export const outboundSchema = V2DeleteAccountMetadataResponse$outboundSchema;
   /** @deprecated use `V2DeleteAccountMetadataResponse$Outbound` instead. */
   export type Outbound = V2DeleteAccountMetadataResponse$Outbound;
+}
+
+export function v2DeleteAccountMetadataResponseToJSON(
+  v2DeleteAccountMetadataResponse: V2DeleteAccountMetadataResponse,
+): string {
+  return JSON.stringify(
+    V2DeleteAccountMetadataResponse$outboundSchema.parse(
+      v2DeleteAccountMetadataResponse,
+    ),
+  );
+}
+
+export function v2DeleteAccountMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteAccountMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2DeleteAccountMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteAccountMetadataResponse' from JSON`,
+  );
 }

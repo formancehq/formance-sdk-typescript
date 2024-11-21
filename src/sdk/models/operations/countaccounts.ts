@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CountAccountsRequest = {
   /**
@@ -78,6 +81,24 @@ export namespace CountAccountsRequest$ {
   export type Outbound = CountAccountsRequest$Outbound;
 }
 
+export function countAccountsRequestToJSON(
+  countAccountsRequest: CountAccountsRequest,
+): string {
+  return JSON.stringify(
+    CountAccountsRequest$outboundSchema.parse(countAccountsRequest),
+  );
+}
+
+export function countAccountsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CountAccountsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CountAccountsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CountAccountsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CountAccountsResponse$inboundSchema: z.ZodType<
   CountAccountsResponse,
@@ -137,4 +158,22 @@ export namespace CountAccountsResponse$ {
   export const outboundSchema = CountAccountsResponse$outboundSchema;
   /** @deprecated use `CountAccountsResponse$Outbound` instead. */
   export type Outbound = CountAccountsResponse$Outbound;
+}
+
+export function countAccountsResponseToJSON(
+  countAccountsResponse: CountAccountsResponse,
+): string {
+  return JSON.stringify(
+    CountAccountsResponse$outboundSchema.parse(countAccountsResponse),
+  );
+}
+
+export function countAccountsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CountAccountsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CountAccountsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CountAccountsResponse' from JSON`,
+  );
 }

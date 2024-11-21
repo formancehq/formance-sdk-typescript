@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateMetadataRequest = {
   requestBody: { [k: string]: string } | null;
@@ -75,6 +78,24 @@ export namespace UpdateMetadataRequest$ {
   export type Outbound = UpdateMetadataRequest$Outbound;
 }
 
+export function updateMetadataRequestToJSON(
+  updateMetadataRequest: UpdateMetadataRequest,
+): string {
+  return JSON.stringify(
+    UpdateMetadataRequest$outboundSchema.parse(updateMetadataRequest),
+  );
+}
+
+export function updateMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateMetadataResponse$inboundSchema: z.ZodType<
   UpdateMetadataResponse,
@@ -129,4 +150,22 @@ export namespace UpdateMetadataResponse$ {
   export const outboundSchema = UpdateMetadataResponse$outboundSchema;
   /** @deprecated use `UpdateMetadataResponse$Outbound` instead. */
   export type Outbound = UpdateMetadataResponse$Outbound;
+}
+
+export function updateMetadataResponseToJSON(
+  updateMetadataResponse: UpdateMetadataResponse,
+): string {
+  return JSON.stringify(
+    UpdateMetadataResponse$outboundSchema.parse(updateMetadataResponse),
+  );
+}
+
+export function updateMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateMetadataResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Monetary = {
   /**
@@ -52,4 +55,18 @@ export namespace V2Monetary$ {
   export const outboundSchema = V2Monetary$outboundSchema;
   /** @deprecated use `V2Monetary$Outbound` instead. */
   export type Outbound = V2Monetary$Outbound;
+}
+
+export function v2MonetaryToJSON(v2Monetary: V2Monetary): string {
+  return JSON.stringify(V2Monetary$outboundSchema.parse(v2Monetary));
+}
+
+export function v2MonetaryFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Monetary, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Monetary$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Monetary' from JSON`,
+  );
 }

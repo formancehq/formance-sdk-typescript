@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type User = {
   email?: string | undefined;
@@ -44,4 +47,18 @@ export namespace User$ {
   export const outboundSchema = User$outboundSchema;
   /** @deprecated use `User$Outbound` instead. */
   export type Outbound = User$Outbound;
+}
+
+export function userToJSON(user: User): string {
+  return JSON.stringify(User$outboundSchema.parse(user));
+}
+
+export function userFromJSON(
+  jsonString: string,
+): SafeParseResult<User, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => User$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'User' from JSON`,
+  );
 }

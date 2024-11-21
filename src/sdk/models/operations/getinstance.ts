@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetInstanceRequest = {
@@ -66,6 +69,24 @@ export namespace GetInstanceRequest$ {
   export const outboundSchema = GetInstanceRequest$outboundSchema;
   /** @deprecated use `GetInstanceRequest$Outbound` instead. */
   export type Outbound = GetInstanceRequest$Outbound;
+}
+
+export function getInstanceRequestToJSON(
+  getInstanceRequest: GetInstanceRequest,
+): string {
+  return JSON.stringify(
+    GetInstanceRequest$outboundSchema.parse(getInstanceRequest),
+  );
+}
+
+export function getInstanceRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -131,4 +152,22 @@ export namespace GetInstanceResponse$ {
   export const outboundSchema = GetInstanceResponse$outboundSchema;
   /** @deprecated use `GetInstanceResponse$Outbound` instead. */
   export type Outbound = GetInstanceResponse$Outbound;
+}
+
+export function getInstanceResponseToJSON(
+  getInstanceResponse: GetInstanceResponse,
+): string {
+  return JSON.stringify(
+    GetInstanceResponse$outboundSchema.parse(getInstanceResponse),
+  );
+}
+
+export function getInstanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceResponse' from JSON`,
+  );
 }

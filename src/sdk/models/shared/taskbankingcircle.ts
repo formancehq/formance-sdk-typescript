@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -66,6 +69,20 @@ export namespace Descriptor$ {
   export type Outbound = Descriptor$Outbound;
 }
 
+export function descriptorToJSON(descriptor: Descriptor): string {
+  return JSON.stringify(Descriptor$outboundSchema.parse(descriptor));
+}
+
+export function descriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<Descriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Descriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Descriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskBankingCircleState$inboundSchema: z.ZodType<
   TaskBankingCircleState,
@@ -94,6 +111,24 @@ export namespace TaskBankingCircleState$ {
   export const outboundSchema = TaskBankingCircleState$outboundSchema;
   /** @deprecated use `TaskBankingCircleState$Outbound` instead. */
   export type Outbound = TaskBankingCircleState$Outbound;
+}
+
+export function taskBankingCircleStateToJSON(
+  taskBankingCircleState: TaskBankingCircleState,
+): string {
+  return JSON.stringify(
+    TaskBankingCircleState$outboundSchema.parse(taskBankingCircleState),
+  );
+}
+
+export function taskBankingCircleStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskBankingCircleState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskBankingCircleState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskBankingCircleState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -151,4 +186,22 @@ export namespace TaskBankingCircle$ {
   export const outboundSchema = TaskBankingCircle$outboundSchema;
   /** @deprecated use `TaskBankingCircle$Outbound` instead. */
   export type Outbound = TaskBankingCircle$Outbound;
+}
+
+export function taskBankingCircleToJSON(
+  taskBankingCircle: TaskBankingCircle,
+): string {
+  return JSON.stringify(
+    TaskBankingCircle$outboundSchema.parse(taskBankingCircle),
+  );
+}
+
+export function taskBankingCircleFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskBankingCircle, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskBankingCircle$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskBankingCircle' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationPaymentStatus,
   OrchestrationPaymentStatus$inboundSchema,
@@ -48,6 +51,26 @@ export namespace OrchestrationPaymentAdjustmentRaw$ {
     OrchestrationPaymentAdjustmentRaw$outboundSchema;
   /** @deprecated use `OrchestrationPaymentAdjustmentRaw$Outbound` instead. */
   export type Outbound = OrchestrationPaymentAdjustmentRaw$Outbound;
+}
+
+export function orchestrationPaymentAdjustmentRawToJSON(
+  orchestrationPaymentAdjustmentRaw: OrchestrationPaymentAdjustmentRaw,
+): string {
+  return JSON.stringify(
+    OrchestrationPaymentAdjustmentRaw$outboundSchema.parse(
+      orchestrationPaymentAdjustmentRaw,
+    ),
+  );
+}
+
+export function orchestrationPaymentAdjustmentRawFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPaymentAdjustmentRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPaymentAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPaymentAdjustmentRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -96,4 +119,24 @@ export namespace OrchestrationPaymentAdjustment$ {
   export const outboundSchema = OrchestrationPaymentAdjustment$outboundSchema;
   /** @deprecated use `OrchestrationPaymentAdjustment$Outbound` instead. */
   export type Outbound = OrchestrationPaymentAdjustment$Outbound;
+}
+
+export function orchestrationPaymentAdjustmentToJSON(
+  orchestrationPaymentAdjustment: OrchestrationPaymentAdjustment,
+): string {
+  return JSON.stringify(
+    OrchestrationPaymentAdjustment$outboundSchema.parse(
+      orchestrationPaymentAdjustment,
+    ),
+  );
+}
+
+export function orchestrationPaymentAdjustmentFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPaymentAdjustment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPaymentAdjustment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPaymentAdjustment' from JSON`,
+  );
 }

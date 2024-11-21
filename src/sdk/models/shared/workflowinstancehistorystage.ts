@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WorkflowInstanceHistoryStageInput,
   WorkflowInstanceHistoryStageInput$inboundSchema,
@@ -94,4 +97,24 @@ export namespace WorkflowInstanceHistoryStage$ {
   export const outboundSchema = WorkflowInstanceHistoryStage$outboundSchema;
   /** @deprecated use `WorkflowInstanceHistoryStage$Outbound` instead. */
   export type Outbound = WorkflowInstanceHistoryStage$Outbound;
+}
+
+export function workflowInstanceHistoryStageToJSON(
+  workflowInstanceHistoryStage: WorkflowInstanceHistoryStage,
+): string {
+  return JSON.stringify(
+    WorkflowInstanceHistoryStage$outboundSchema.parse(
+      workflowInstanceHistoryStage,
+    ),
+  );
+}
+
+export function workflowInstanceHistoryStageFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowInstanceHistoryStage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowInstanceHistoryStage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowInstanceHistoryStage' from JSON`,
+  );
 }

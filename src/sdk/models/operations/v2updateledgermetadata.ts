@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2UpdateLedgerMetadataRequest = {
@@ -80,6 +83,26 @@ export namespace V2UpdateLedgerMetadataRequest$ {
   export type Outbound = V2UpdateLedgerMetadataRequest$Outbound;
 }
 
+export function v2UpdateLedgerMetadataRequestToJSON(
+  v2UpdateLedgerMetadataRequest: V2UpdateLedgerMetadataRequest,
+): string {
+  return JSON.stringify(
+    V2UpdateLedgerMetadataRequest$outboundSchema.parse(
+      v2UpdateLedgerMetadataRequest,
+    ),
+  );
+}
+
+export function v2UpdateLedgerMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2UpdateLedgerMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2UpdateLedgerMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2UpdateLedgerMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2UpdateLedgerMetadataResponse$inboundSchema: z.ZodType<
   V2UpdateLedgerMetadataResponse,
@@ -139,4 +162,24 @@ export namespace V2UpdateLedgerMetadataResponse$ {
   export const outboundSchema = V2UpdateLedgerMetadataResponse$outboundSchema;
   /** @deprecated use `V2UpdateLedgerMetadataResponse$Outbound` instead. */
   export type Outbound = V2UpdateLedgerMetadataResponse$Outbound;
+}
+
+export function v2UpdateLedgerMetadataResponseToJSON(
+  v2UpdateLedgerMetadataResponse: V2UpdateLedgerMetadataResponse,
+): string {
+  return JSON.stringify(
+    V2UpdateLedgerMetadataResponse$outboundSchema.parse(
+      v2UpdateLedgerMetadataResponse,
+    ),
+  );
+}
+
+export function v2UpdateLedgerMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2UpdateLedgerMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2UpdateLedgerMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2UpdateLedgerMetadataResponse' from JSON`,
+  );
 }

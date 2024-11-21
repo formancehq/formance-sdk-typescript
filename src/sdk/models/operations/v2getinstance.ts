@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetInstanceRequest = {
@@ -70,6 +73,24 @@ export namespace V2GetInstanceRequest$ {
   export type Outbound = V2GetInstanceRequest$Outbound;
 }
 
+export function v2GetInstanceRequestToJSON(
+  v2GetInstanceRequest: V2GetInstanceRequest,
+): string {
+  return JSON.stringify(
+    V2GetInstanceRequest$outboundSchema.parse(v2GetInstanceRequest),
+  );
+}
+
+export function v2GetInstanceRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetInstanceResponse$inboundSchema: z.ZodType<
   V2GetInstanceResponse,
@@ -133,4 +154,22 @@ export namespace V2GetInstanceResponse$ {
   export const outboundSchema = V2GetInstanceResponse$outboundSchema;
   /** @deprecated use `V2GetInstanceResponse$Outbound` instead. */
   export type Outbound = V2GetInstanceResponse$Outbound;
+}
+
+export function v2GetInstanceResponseToJSON(
+  v2GetInstanceResponse: V2GetInstanceResponse,
+): string {
+  return JSON.stringify(
+    V2GetInstanceResponse$outboundSchema.parse(v2GetInstanceResponse),
+  );
+}
+
+export function v2GetInstanceResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceResponse' from JSON`,
+  );
 }

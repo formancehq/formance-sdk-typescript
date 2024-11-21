@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListReconciliationsRequest = {
@@ -84,6 +87,24 @@ export namespace ListReconciliationsRequest$ {
   export type Outbound = ListReconciliationsRequest$Outbound;
 }
 
+export function listReconciliationsRequestToJSON(
+  listReconciliationsRequest: ListReconciliationsRequest,
+): string {
+  return JSON.stringify(
+    ListReconciliationsRequest$outboundSchema.parse(listReconciliationsRequest),
+  );
+}
+
+export function listReconciliationsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListReconciliationsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListReconciliationsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListReconciliationsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListReconciliationsResponse$inboundSchema: z.ZodType<
   ListReconciliationsResponse,
@@ -147,4 +168,24 @@ export namespace ListReconciliationsResponse$ {
   export const outboundSchema = ListReconciliationsResponse$outboundSchema;
   /** @deprecated use `ListReconciliationsResponse$Outbound` instead. */
   export type Outbound = ListReconciliationsResponse$Outbound;
+}
+
+export function listReconciliationsResponseToJSON(
+  listReconciliationsResponse: ListReconciliationsResponse,
+): string {
+  return JSON.stringify(
+    ListReconciliationsResponse$outboundSchema.parse(
+      listReconciliationsResponse,
+    ),
+  );
+}
+
+export function listReconciliationsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListReconciliationsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListReconciliationsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListReconciliationsResponse' from JSON`,
+  );
 }

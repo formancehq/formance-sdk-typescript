@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddMetadataOnTransactionRequest = {
   /**
@@ -85,6 +88,26 @@ export namespace AddMetadataOnTransactionRequest$ {
   export type Outbound = AddMetadataOnTransactionRequest$Outbound;
 }
 
+export function addMetadataOnTransactionRequestToJSON(
+  addMetadataOnTransactionRequest: AddMetadataOnTransactionRequest,
+): string {
+  return JSON.stringify(
+    AddMetadataOnTransactionRequest$outboundSchema.parse(
+      addMetadataOnTransactionRequest,
+    ),
+  );
+}
+
+export function addMetadataOnTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddMetadataOnTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddMetadataOnTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddMetadataOnTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddMetadataOnTransactionResponse$inboundSchema: z.ZodType<
   AddMetadataOnTransactionResponse,
@@ -139,4 +162,24 @@ export namespace AddMetadataOnTransactionResponse$ {
   export const outboundSchema = AddMetadataOnTransactionResponse$outboundSchema;
   /** @deprecated use `AddMetadataOnTransactionResponse$Outbound` instead. */
   export type Outbound = AddMetadataOnTransactionResponse$Outbound;
+}
+
+export function addMetadataOnTransactionResponseToJSON(
+  addMetadataOnTransactionResponse: AddMetadataOnTransactionResponse,
+): string {
+  return JSON.stringify(
+    AddMetadataOnTransactionResponse$outboundSchema.parse(
+      addMetadataOnTransactionResponse,
+    ),
+  );
+}
+
+export function addMetadataOnTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AddMetadataOnTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddMetadataOnTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddMetadataOnTransactionResponse' from JSON`,
+  );
 }

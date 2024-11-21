@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type RunScriptRequest = {
@@ -94,6 +97,24 @@ export namespace RunScriptRequest$ {
   export type Outbound = RunScriptRequest$Outbound;
 }
 
+export function runScriptRequestToJSON(
+  runScriptRequest: RunScriptRequest,
+): string {
+  return JSON.stringify(
+    RunScriptRequest$outboundSchema.parse(runScriptRequest),
+  );
+}
+
+export function runScriptRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RunScriptRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RunScriptRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RunScriptRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RunScriptResponse$inboundSchema: z.ZodType<
   RunScriptResponse,
@@ -153,4 +174,22 @@ export namespace RunScriptResponse$ {
   export const outboundSchema = RunScriptResponse$outboundSchema;
   /** @deprecated use `RunScriptResponse$Outbound` instead. */
   export type Outbound = RunScriptResponse$Outbound;
+}
+
+export function runScriptResponseToJSON(
+  runScriptResponse: RunScriptResponse,
+): string {
+  return JSON.stringify(
+    RunScriptResponse$outboundSchema.parse(runScriptResponse),
+  );
+}
+
+export function runScriptResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<RunScriptResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RunScriptResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RunScriptResponse' from JSON`,
+  );
 }

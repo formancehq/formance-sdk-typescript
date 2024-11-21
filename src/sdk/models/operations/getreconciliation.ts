@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetReconciliationRequest = {
@@ -68,6 +71,24 @@ export namespace GetReconciliationRequest$ {
   export type Outbound = GetReconciliationRequest$Outbound;
 }
 
+export function getReconciliationRequestToJSON(
+  getReconciliationRequest: GetReconciliationRequest,
+): string {
+  return JSON.stringify(
+    GetReconciliationRequest$outboundSchema.parse(getReconciliationRequest),
+  );
+}
+
+export function getReconciliationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetReconciliationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetReconciliationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetReconciliationRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetReconciliationResponse$inboundSchema: z.ZodType<
   GetReconciliationResponse,
@@ -129,4 +150,22 @@ export namespace GetReconciliationResponse$ {
   export const outboundSchema = GetReconciliationResponse$outboundSchema;
   /** @deprecated use `GetReconciliationResponse$Outbound` instead. */
   export type Outbound = GetReconciliationResponse$Outbound;
+}
+
+export function getReconciliationResponseToJSON(
+  getReconciliationResponse: GetReconciliationResponse,
+): string {
+  return JSON.stringify(
+    GetReconciliationResponse$outboundSchema.parse(getReconciliationResponse),
+  );
+}
+
+export function getReconciliationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetReconciliationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetReconciliationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetReconciliationResponse' from JSON`,
+  );
 }

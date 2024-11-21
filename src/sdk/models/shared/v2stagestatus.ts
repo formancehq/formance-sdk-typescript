@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2StageStatus = {
   error?: string | undefined;
@@ -60,4 +63,18 @@ export namespace V2StageStatus$ {
   export const outboundSchema = V2StageStatus$outboundSchema;
   /** @deprecated use `V2StageStatus$Outbound` instead. */
   export type Outbound = V2StageStatus$Outbound;
+}
+
+export function v2StageStatusToJSON(v2StageStatus: V2StageStatus): string {
+  return JSON.stringify(V2StageStatus$outboundSchema.parse(v2StageStatus));
+}
+
+export function v2StageStatusFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StageStatus, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StageStatus$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StageStatus' from JSON`,
+  );
 }

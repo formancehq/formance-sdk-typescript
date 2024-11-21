@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2Account,
   V2Account$inboundSchema,
@@ -70,6 +73,26 @@ export namespace V2AccountsCursorResponseCursor$ {
   export type Outbound = V2AccountsCursorResponseCursor$Outbound;
 }
 
+export function v2AccountsCursorResponseCursorToJSON(
+  v2AccountsCursorResponseCursor: V2AccountsCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    V2AccountsCursorResponseCursor$outboundSchema.parse(
+      v2AccountsCursorResponseCursor,
+    ),
+  );
+}
+
+export function v2AccountsCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AccountsCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AccountsCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AccountsCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2AccountsCursorResponse$inboundSchema: z.ZodType<
   V2AccountsCursorResponse,
@@ -104,4 +127,22 @@ export namespace V2AccountsCursorResponse$ {
   export const outboundSchema = V2AccountsCursorResponse$outboundSchema;
   /** @deprecated use `V2AccountsCursorResponse$Outbound` instead. */
   export type Outbound = V2AccountsCursorResponse$Outbound;
+}
+
+export function v2AccountsCursorResponseToJSON(
+  v2AccountsCursorResponse: V2AccountsCursorResponse,
+): string {
+  return JSON.stringify(
+    V2AccountsCursorResponse$outboundSchema.parse(v2AccountsCursorResponse),
+  );
+}
+
+export function v2AccountsCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2AccountsCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2AccountsCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2AccountsCursorResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2TargetId,
   V2TargetId$inboundSchema,
@@ -69,6 +72,26 @@ export namespace V2BulkElementAddMetadataData$ {
   export type Outbound = V2BulkElementAddMetadataData$Outbound;
 }
 
+export function v2BulkElementAddMetadataDataToJSON(
+  v2BulkElementAddMetadataData: V2BulkElementAddMetadataData,
+): string {
+  return JSON.stringify(
+    V2BulkElementAddMetadataData$outboundSchema.parse(
+      v2BulkElementAddMetadataData,
+    ),
+  );
+}
+
+export function v2BulkElementAddMetadataDataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementAddMetadataData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementAddMetadataData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementAddMetadataData' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2BulkElementAddMetadata$inboundSchema: z.ZodType<
   V2BulkElementAddMetadata,
@@ -109,4 +132,22 @@ export namespace V2BulkElementAddMetadata$ {
   export const outboundSchema = V2BulkElementAddMetadata$outboundSchema;
   /** @deprecated use `V2BulkElementAddMetadata$Outbound` instead. */
   export type Outbound = V2BulkElementAddMetadata$Outbound;
+}
+
+export function v2BulkElementAddMetadataToJSON(
+  v2BulkElementAddMetadata: V2BulkElementAddMetadata,
+): string {
+  return JSON.stringify(
+    V2BulkElementAddMetadata$outboundSchema.parse(v2BulkElementAddMetadata),
+  );
+}
+
+export function v2BulkElementAddMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkElementAddMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkElementAddMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementAddMetadata' from JSON`,
+  );
 }

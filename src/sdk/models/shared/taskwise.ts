@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskWiseDescriptor$ {
   export type Outbound = TaskWiseDescriptor$Outbound;
 }
 
+export function taskWiseDescriptorToJSON(
+  taskWiseDescriptor: TaskWiseDescriptor,
+): string {
+  return JSON.stringify(
+    TaskWiseDescriptor$outboundSchema.parse(taskWiseDescriptor),
+  );
+}
+
+export function taskWiseDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskWiseDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskWiseDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskWiseDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskWiseState$inboundSchema: z.ZodType<
   TaskWiseState,
@@ -98,6 +119,20 @@ export namespace TaskWiseState$ {
   export const outboundSchema = TaskWiseState$outboundSchema;
   /** @deprecated use `TaskWiseState$Outbound` instead. */
   export type Outbound = TaskWiseState$Outbound;
+}
+
+export function taskWiseStateToJSON(taskWiseState: TaskWiseState): string {
+  return JSON.stringify(TaskWiseState$outboundSchema.parse(taskWiseState));
+}
+
+export function taskWiseStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskWiseState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskWiseState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskWiseState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +190,18 @@ export namespace TaskWise$ {
   export const outboundSchema = TaskWise$outboundSchema;
   /** @deprecated use `TaskWise$Outbound` instead. */
   export type Outbound = TaskWise$Outbound;
+}
+
+export function taskWiseToJSON(taskWise: TaskWise): string {
+  return JSON.stringify(TaskWise$outboundSchema.parse(taskWise));
+}
+
+export function taskWiseFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskWise, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskWise$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskWise' from JSON`,
+  );
 }

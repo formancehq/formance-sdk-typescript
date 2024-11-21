@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ExportLogsRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace V2ExportLogsRequest$ {
   export type Outbound = V2ExportLogsRequest$Outbound;
 }
 
+export function v2ExportLogsRequestToJSON(
+  v2ExportLogsRequest: V2ExportLogsRequest,
+): string {
+  return JSON.stringify(
+    V2ExportLogsRequest$outboundSchema.parse(v2ExportLogsRequest),
+  );
+}
+
+export function v2ExportLogsRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ExportLogsRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ExportLogsRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ExportLogsRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ExportLogsResponse$inboundSchema: z.ZodType<
   V2ExportLogsResponse,
@@ -117,4 +138,22 @@ export namespace V2ExportLogsResponse$ {
   export const outboundSchema = V2ExportLogsResponse$outboundSchema;
   /** @deprecated use `V2ExportLogsResponse$Outbound` instead. */
   export type Outbound = V2ExportLogsResponse$Outbound;
+}
+
+export function v2ExportLogsResponseToJSON(
+  v2ExportLogsResponse: V2ExportLogsResponse,
+): string {
+  return JSON.stringify(
+    V2ExportLogsResponse$outboundSchema.parse(v2ExportLogsResponse),
+  );
+}
+
+export function v2ExportLogsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ExportLogsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ExportLogsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ExportLogsResponse' from JSON`,
+  );
 }

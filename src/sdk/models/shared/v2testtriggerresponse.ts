@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2TriggerTest,
   V2TriggerTest$inboundSchema,
@@ -48,4 +51,22 @@ export namespace V2TestTriggerResponse$ {
   export const outboundSchema = V2TestTriggerResponse$outboundSchema;
   /** @deprecated use `V2TestTriggerResponse$Outbound` instead. */
   export type Outbound = V2TestTriggerResponse$Outbound;
+}
+
+export function v2TestTriggerResponseToJSON(
+  v2TestTriggerResponse: V2TestTriggerResponse,
+): string {
+  return JSON.stringify(
+    V2TestTriggerResponse$outboundSchema.parse(v2TestTriggerResponse),
+  );
+}
+
+export function v2TestTriggerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TestTriggerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TestTriggerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TestTriggerResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ListTriggersOccurrencesRequest = {
@@ -70,6 +73,26 @@ export namespace ListTriggersOccurrencesRequest$ {
   export type Outbound = ListTriggersOccurrencesRequest$Outbound;
 }
 
+export function listTriggersOccurrencesRequestToJSON(
+  listTriggersOccurrencesRequest: ListTriggersOccurrencesRequest,
+): string {
+  return JSON.stringify(
+    ListTriggersOccurrencesRequest$outboundSchema.parse(
+      listTriggersOccurrencesRequest,
+    ),
+  );
+}
+
+export function listTriggersOccurrencesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTriggersOccurrencesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTriggersOccurrencesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTriggersOccurrencesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListTriggersOccurrencesResponse$inboundSchema: z.ZodType<
   ListTriggersOccurrencesResponse,
@@ -133,4 +156,24 @@ export namespace ListTriggersOccurrencesResponse$ {
   export const outboundSchema = ListTriggersOccurrencesResponse$outboundSchema;
   /** @deprecated use `ListTriggersOccurrencesResponse$Outbound` instead. */
   export type Outbound = ListTriggersOccurrencesResponse$Outbound;
+}
+
+export function listTriggersOccurrencesResponseToJSON(
+  listTriggersOccurrencesResponse: ListTriggersOccurrencesResponse,
+): string {
+  return JSON.stringify(
+    ListTriggersOccurrencesResponse$outboundSchema.parse(
+      listTriggersOccurrencesResponse,
+    ),
+  );
+}
+
+export function listTriggersOccurrencesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListTriggersOccurrencesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListTriggersOccurrencesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListTriggersOccurrencesResponse' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ReconcileRequest = {
@@ -80,6 +83,24 @@ export namespace ReconcileRequest$ {
   export type Outbound = ReconcileRequest$Outbound;
 }
 
+export function reconcileRequestToJSON(
+  reconcileRequest: ReconcileRequest,
+): string {
+  return JSON.stringify(
+    ReconcileRequest$outboundSchema.parse(reconcileRequest),
+  );
+}
+
+export function reconcileRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconcileRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReconcileRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconcileRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReconcileResponse$inboundSchema: z.ZodType<
   ReconcileResponse,
@@ -141,4 +162,22 @@ export namespace ReconcileResponse$ {
   export const outboundSchema = ReconcileResponse$outboundSchema;
   /** @deprecated use `ReconcileResponse$Outbound` instead. */
   export type Outbound = ReconcileResponse$Outbound;
+}
+
+export function reconcileResponseToJSON(
+  reconcileResponse: ReconcileResponse,
+): string {
+  return JSON.stringify(
+    ReconcileResponse$outboundSchema.parse(reconcileResponse),
+  );
+}
+
+export function reconcileResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconcileResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReconcileResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconcileResponse' from JSON`,
+  );
 }

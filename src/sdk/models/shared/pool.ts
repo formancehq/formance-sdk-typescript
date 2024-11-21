@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Pool = {
   accounts: Array<string>;
@@ -44,4 +47,18 @@ export namespace Pool$ {
   export const outboundSchema = Pool$outboundSchema;
   /** @deprecated use `Pool$Outbound` instead. */
   export type Outbound = Pool$Outbound;
+}
+
+export function poolToJSON(pool: Pool): string {
+  return JSON.stringify(Pool$outboundSchema.parse(pool));
+}
+
+export function poolFromJSON(
+  jsonString: string,
+): SafeParseResult<Pool, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Pool$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Pool' from JSON`,
+  );
 }

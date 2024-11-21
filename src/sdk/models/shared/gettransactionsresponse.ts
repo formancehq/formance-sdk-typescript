@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WalletsTransaction,
   WalletsTransaction$inboundSchema,
@@ -70,6 +73,26 @@ export namespace GetTransactionsResponseCursor$ {
   export type Outbound = GetTransactionsResponseCursor$Outbound;
 }
 
+export function getTransactionsResponseCursorToJSON(
+  getTransactionsResponseCursor: GetTransactionsResponseCursor,
+): string {
+  return JSON.stringify(
+    GetTransactionsResponseCursor$outboundSchema.parse(
+      getTransactionsResponseCursor,
+    ),
+  );
+}
+
+export function getTransactionsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransactionsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransactionsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransactionsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetTransactionsResponse$inboundSchema: z.ZodType<
   GetTransactionsResponse,
@@ -104,4 +127,22 @@ export namespace GetTransactionsResponse$ {
   export const outboundSchema = GetTransactionsResponse$outboundSchema;
   /** @deprecated use `GetTransactionsResponse$Outbound` instead. */
   export type Outbound = GetTransactionsResponse$Outbound;
+}
+
+export function getTransactionsResponseToJSON(
+  getTransactionsResponse: GetTransactionsResponse,
+): string {
+  return JSON.stringify(
+    GetTransactionsResponse$outboundSchema.parse(getTransactionsResponse),
+  );
+}
+
+export function getTransactionsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransactionsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransactionsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransactionsResponse' from JSON`,
+  );
 }

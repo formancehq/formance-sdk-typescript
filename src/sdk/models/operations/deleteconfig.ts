@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeleteConfigRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace DeleteConfigRequest$ {
   export type Outbound = DeleteConfigRequest$Outbound;
 }
 
+export function deleteConfigRequestToJSON(
+  deleteConfigRequest: DeleteConfigRequest,
+): string {
+  return JSON.stringify(
+    DeleteConfigRequest$outboundSchema.parse(deleteConfigRequest),
+  );
+}
+
+export function deleteConfigRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteConfigRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteConfigRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConfigRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeleteConfigResponse$inboundSchema: z.ZodType<
   DeleteConfigResponse,
@@ -117,4 +138,22 @@ export namespace DeleteConfigResponse$ {
   export const outboundSchema = DeleteConfigResponse$outboundSchema;
   /** @deprecated use `DeleteConfigResponse$Outbound` instead. */
   export type Outbound = DeleteConfigResponse$Outbound;
+}
+
+export function deleteConfigResponseToJSON(
+  deleteConfigResponse: DeleteConfigResponse,
+): string {
+  return JSON.stringify(
+    DeleteConfigResponse$outboundSchema.parse(deleteConfigResponse),
+  );
+}
+
+export function deleteConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeleteConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeleteConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeleteConfigResponse' from JSON`,
+  );
 }

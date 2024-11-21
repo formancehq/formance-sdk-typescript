@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Client,
   Client$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ListClientsResponse$ {
   export const outboundSchema = ListClientsResponse$outboundSchema;
   /** @deprecated use `ListClientsResponse$Outbound` instead. */
   export type Outbound = ListClientsResponse$Outbound;
+}
+
+export function listClientsResponseToJSON(
+  listClientsResponse: ListClientsResponse,
+): string {
+  return JSON.stringify(
+    ListClientsResponse$outboundSchema.parse(listClientsResponse),
+  );
+}
+
+export function listClientsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListClientsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListClientsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListClientsResponse' from JSON`,
+  );
 }

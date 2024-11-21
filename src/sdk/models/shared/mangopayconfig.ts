@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MangoPayConfig = {
   apiKey: string;
@@ -63,4 +66,18 @@ export namespace MangoPayConfig$ {
   export const outboundSchema = MangoPayConfig$outboundSchema;
   /** @deprecated use `MangoPayConfig$Outbound` instead. */
   export type Outbound = MangoPayConfig$Outbound;
+}
+
+export function mangoPayConfigToJSON(mangoPayConfig: MangoPayConfig): string {
+  return JSON.stringify(MangoPayConfig$outboundSchema.parse(mangoPayConfig));
+}
+
+export function mangoPayConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<MangoPayConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MangoPayConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MangoPayConfig' from JSON`,
+  );
 }

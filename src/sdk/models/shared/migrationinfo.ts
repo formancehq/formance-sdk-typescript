@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum State {
   ToDo = "TO DO",
@@ -80,4 +83,18 @@ export namespace MigrationInfo$ {
   export const outboundSchema = MigrationInfo$outboundSchema;
   /** @deprecated use `MigrationInfo$Outbound` instead. */
   export type Outbound = MigrationInfo$Outbound;
+}
+
+export function migrationInfoToJSON(migrationInfo: MigrationInfo): string {
+  return JSON.stringify(MigrationInfo$outboundSchema.parse(migrationInfo));
+}
+
+export function migrationInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<MigrationInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MigrationInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MigrationInfo' from JSON`,
+  );
 }

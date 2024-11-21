@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Connector,
   Connector$inboundSchema,
@@ -119,4 +122,22 @@ export namespace TransferInitiationRequest$ {
   export const outboundSchema = TransferInitiationRequest$outboundSchema;
   /** @deprecated use `TransferInitiationRequest$Outbound` instead. */
   export type Outbound = TransferInitiationRequest$Outbound;
+}
+
+export function transferInitiationRequestToJSON(
+  transferInitiationRequest: TransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    TransferInitiationRequest$outboundSchema.parse(transferInitiationRequest),
+  );
+}
+
+export function transferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationRequest' from JSON`,
+  );
 }

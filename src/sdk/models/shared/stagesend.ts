@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Monetary,
   Monetary$inboundSchema,
@@ -77,4 +80,18 @@ export namespace StageSend$ {
   export const outboundSchema = StageSend$outboundSchema;
   /** @deprecated use `StageSend$Outbound` instead. */
   export type Outbound = StageSend$Outbound;
+}
+
+export function stageSendToJSON(stageSend: StageSend): string {
+  return JSON.stringify(StageSend$outboundSchema.parse(stageSend));
+}
+
+export function stageSendFromJSON(
+  jsonString: string,
+): SafeParseResult<StageSend, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StageSend$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StageSend' from JSON`,
+  );
 }

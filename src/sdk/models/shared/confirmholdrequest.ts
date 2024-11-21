@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ConfirmHoldRequest = {
   /**
@@ -52,4 +55,22 @@ export namespace ConfirmHoldRequest$ {
   export const outboundSchema = ConfirmHoldRequest$outboundSchema;
   /** @deprecated use `ConfirmHoldRequest$Outbound` instead. */
   export type Outbound = ConfirmHoldRequest$Outbound;
+}
+
+export function confirmHoldRequestToJSON(
+  confirmHoldRequest: ConfirmHoldRequest,
+): string {
+  return JSON.stringify(
+    ConfirmHoldRequest$outboundSchema.parse(confirmHoldRequest),
+  );
+}
+
+export function confirmHoldRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ConfirmHoldRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ConfirmHoldRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfirmHoldRequest' from JSON`,
+  );
 }

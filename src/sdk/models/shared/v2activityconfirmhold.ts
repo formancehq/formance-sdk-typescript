@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ActivityConfirmHold = {
   id: string;
@@ -42,4 +45,22 @@ export namespace V2ActivityConfirmHold$ {
   export const outboundSchema = V2ActivityConfirmHold$outboundSchema;
   /** @deprecated use `V2ActivityConfirmHold$Outbound` instead. */
   export type Outbound = V2ActivityConfirmHold$Outbound;
+}
+
+export function v2ActivityConfirmHoldToJSON(
+  v2ActivityConfirmHold: V2ActivityConfirmHold,
+): string {
+  return JSON.stringify(
+    V2ActivityConfirmHold$outboundSchema.parse(v2ActivityConfirmHold),
+  );
+}
+
+export function v2ActivityConfirmHoldFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityConfirmHold, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityConfirmHold$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityConfirmHold' from JSON`,
+  );
 }

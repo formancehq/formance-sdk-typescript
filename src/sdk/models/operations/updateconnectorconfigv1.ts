@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UpdateConnectorConfigV1Request = {
@@ -83,6 +86,26 @@ export namespace UpdateConnectorConfigV1Request$ {
   export type Outbound = UpdateConnectorConfigV1Request$Outbound;
 }
 
+export function updateConnectorConfigV1RequestToJSON(
+  updateConnectorConfigV1Request: UpdateConnectorConfigV1Request,
+): string {
+  return JSON.stringify(
+    UpdateConnectorConfigV1Request$outboundSchema.parse(
+      updateConnectorConfigV1Request,
+    ),
+  );
+}
+
+export function updateConnectorConfigV1RequestFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateConnectorConfigV1Request, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateConnectorConfigV1Request$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateConnectorConfigV1Request' from JSON`,
+  );
+}
+
 /** @internal */
 export const UpdateConnectorConfigV1Response$inboundSchema: z.ZodType<
   UpdateConnectorConfigV1Response,
@@ -137,4 +160,24 @@ export namespace UpdateConnectorConfigV1Response$ {
   export const outboundSchema = UpdateConnectorConfigV1Response$outboundSchema;
   /** @deprecated use `UpdateConnectorConfigV1Response$Outbound` instead. */
   export type Outbound = UpdateConnectorConfigV1Response$Outbound;
+}
+
+export function updateConnectorConfigV1ResponseToJSON(
+  updateConnectorConfigV1Response: UpdateConnectorConfigV1Response,
+): string {
+  return JSON.stringify(
+    UpdateConnectorConfigV1Response$outboundSchema.parse(
+      updateConnectorConfigV1Response,
+    ),
+  );
+}
+
+export function updateConnectorConfigV1ResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<UpdateConnectorConfigV1Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => UpdateConnectorConfigV1Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'UpdateConnectorConfigV1Response' from JSON`,
+  );
 }

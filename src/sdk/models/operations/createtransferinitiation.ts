@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreateTransferInitiationResponse = {
@@ -88,4 +91,24 @@ export namespace CreateTransferInitiationResponse$ {
   export const outboundSchema = CreateTransferInitiationResponse$outboundSchema;
   /** @deprecated use `CreateTransferInitiationResponse$Outbound` instead. */
   export type Outbound = CreateTransferInitiationResponse$Outbound;
+}
+
+export function createTransferInitiationResponseToJSON(
+  createTransferInitiationResponse: CreateTransferInitiationResponse,
+): string {
+  return JSON.stringify(
+    CreateTransferInitiationResponse$outboundSchema.parse(
+      createTransferInitiationResponse,
+    ),
+  );
+}
+
+export function createTransferInitiationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateTransferInitiationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateTransferInitiationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateTransferInitiationResponse' from JSON`,
+  );
 }

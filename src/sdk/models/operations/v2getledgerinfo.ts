@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetLedgerInfoRequest = {
@@ -68,6 +71,24 @@ export namespace V2GetLedgerInfoRequest$ {
   export type Outbound = V2GetLedgerInfoRequest$Outbound;
 }
 
+export function v2GetLedgerInfoRequestToJSON(
+  v2GetLedgerInfoRequest: V2GetLedgerInfoRequest,
+): string {
+  return JSON.stringify(
+    V2GetLedgerInfoRequest$outboundSchema.parse(v2GetLedgerInfoRequest),
+  );
+}
+
+export function v2GetLedgerInfoRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetLedgerInfoRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetLedgerInfoRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetLedgerInfoRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2GetLedgerInfoResponse$inboundSchema: z.ZodType<
   V2GetLedgerInfoResponse,
@@ -127,4 +148,22 @@ export namespace V2GetLedgerInfoResponse$ {
   export const outboundSchema = V2GetLedgerInfoResponse$outboundSchema;
   /** @deprecated use `V2GetLedgerInfoResponse$Outbound` instead. */
   export type Outbound = V2GetLedgerInfoResponse$Outbound;
+}
+
+export function v2GetLedgerInfoResponseToJSON(
+  v2GetLedgerInfoResponse: V2GetLedgerInfoResponse,
+): string {
+  return JSON.stringify(
+    V2GetLedgerInfoResponse$outboundSchema.parse(v2GetLedgerInfoResponse),
+  );
+}
+
+export function v2GetLedgerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetLedgerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetLedgerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetLedgerInfoResponse' from JSON`,
+  );
 }

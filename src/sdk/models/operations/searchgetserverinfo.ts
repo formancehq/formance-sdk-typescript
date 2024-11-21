@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type SearchgetServerInfoResponse = {
@@ -84,4 +87,24 @@ export namespace SearchgetServerInfoResponse$ {
   export const outboundSchema = SearchgetServerInfoResponse$outboundSchema;
   /** @deprecated use `SearchgetServerInfoResponse$Outbound` instead. */
   export type Outbound = SearchgetServerInfoResponse$Outbound;
+}
+
+export function searchgetServerInfoResponseToJSON(
+  searchgetServerInfoResponse: SearchgetServerInfoResponse,
+): string {
+  return JSON.stringify(
+    SearchgetServerInfoResponse$outboundSchema.parse(
+      searchgetServerInfoResponse,
+    ),
+  );
+}
+
+export function searchgetServerInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<SearchgetServerInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => SearchgetServerInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'SearchgetServerInfoResponse' from JSON`,
+  );
 }

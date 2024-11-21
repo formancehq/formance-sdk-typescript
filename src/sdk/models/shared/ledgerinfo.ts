@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MigrationInfo,
   MigrationInfo$inboundSchema,
@@ -52,6 +55,20 @@ export namespace Storage$ {
   export type Outbound = Storage$Outbound;
 }
 
+export function storageToJSON(storage: Storage): string {
+  return JSON.stringify(Storage$outboundSchema.parse(storage));
+}
+
+export function storageFromJSON(
+  jsonString: string,
+): SafeParseResult<Storage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Storage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Storage' from JSON`,
+  );
+}
+
 /** @internal */
 export const LedgerInfo$inboundSchema: z.ZodType<
   LedgerInfo,
@@ -89,4 +106,18 @@ export namespace LedgerInfo$ {
   export const outboundSchema = LedgerInfo$outboundSchema;
   /** @deprecated use `LedgerInfo$Outbound` instead. */
   export type Outbound = LedgerInfo$Outbound;
+}
+
+export function ledgerInfoToJSON(ledgerInfo: LedgerInfo): string {
+  return JSON.stringify(LedgerInfo$outboundSchema.parse(ledgerInfo));
+}
+
+export function ledgerInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerInfo' from JSON`,
+  );
 }

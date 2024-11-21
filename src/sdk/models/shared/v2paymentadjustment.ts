@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2PaymentStatus,
   V2PaymentStatus$inboundSchema,
@@ -47,6 +50,24 @@ export namespace V2PaymentAdjustmentRaw$ {
   export const outboundSchema = V2PaymentAdjustmentRaw$outboundSchema;
   /** @deprecated use `V2PaymentAdjustmentRaw$Outbound` instead. */
   export type Outbound = V2PaymentAdjustmentRaw$Outbound;
+}
+
+export function v2PaymentAdjustmentRawToJSON(
+  v2PaymentAdjustmentRaw: V2PaymentAdjustmentRaw,
+): string {
+  return JSON.stringify(
+    V2PaymentAdjustmentRaw$outboundSchema.parse(v2PaymentAdjustmentRaw),
+  );
+}
+
+export function v2PaymentAdjustmentRawFromJSON(
+  jsonString: string,
+): SafeParseResult<V2PaymentAdjustmentRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2PaymentAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2PaymentAdjustmentRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -95,4 +116,22 @@ export namespace V2PaymentAdjustment$ {
   export const outboundSchema = V2PaymentAdjustment$outboundSchema;
   /** @deprecated use `V2PaymentAdjustment$Outbound` instead. */
   export type Outbound = V2PaymentAdjustment$Outbound;
+}
+
+export function v2PaymentAdjustmentToJSON(
+  v2PaymentAdjustment: V2PaymentAdjustment,
+): string {
+  return JSON.stringify(
+    V2PaymentAdjustment$outboundSchema.parse(v2PaymentAdjustment),
+  );
+}
+
+export function v2PaymentAdjustmentFromJSON(
+  jsonString: string,
+): SafeParseResult<V2PaymentAdjustment, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2PaymentAdjustment$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2PaymentAdjustment' from JSON`,
+  );
 }

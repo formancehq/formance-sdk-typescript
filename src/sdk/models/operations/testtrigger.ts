@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type TestTriggerRequest = {
@@ -80,6 +83,24 @@ export namespace TestTriggerRequest$ {
   export type Outbound = TestTriggerRequest$Outbound;
 }
 
+export function testTriggerRequestToJSON(
+  testTriggerRequest: TestTriggerRequest,
+): string {
+  return JSON.stringify(
+    TestTriggerRequest$outboundSchema.parse(testTriggerRequest),
+  );
+}
+
+export function testTriggerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<TestTriggerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TestTriggerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TestTriggerRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const TestTriggerResponse$inboundSchema: z.ZodType<
   TestTriggerResponse,
@@ -139,4 +160,22 @@ export namespace TestTriggerResponse$ {
   export const outboundSchema = TestTriggerResponse$outboundSchema;
   /** @deprecated use `TestTriggerResponse$Outbound` instead. */
   export type Outbound = TestTriggerResponse$Outbound;
+}
+
+export function testTriggerResponseToJSON(
+  testTriggerResponse: TestTriggerResponse,
+): string {
+  return JSON.stringify(
+    TestTriggerResponse$outboundSchema.parse(testTriggerResponse),
+  );
+}
+
+export function testTriggerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<TestTriggerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TestTriggerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TestTriggerResponse' from JSON`,
+  );
 }

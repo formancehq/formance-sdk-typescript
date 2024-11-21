@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountType,
   AccountType$inboundSchema,
@@ -71,4 +74,18 @@ export namespace AccountRequest$ {
   export const outboundSchema = AccountRequest$outboundSchema;
   /** @deprecated use `AccountRequest$Outbound` instead. */
   export type Outbound = AccountRequest$Outbound;
+}
+
+export function accountRequestToJSON(accountRequest: AccountRequest): string {
+  return JSON.stringify(AccountRequest$outboundSchema.parse(accountRequest));
+}
+
+export function accountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountRequest' from JSON`,
+  );
 }

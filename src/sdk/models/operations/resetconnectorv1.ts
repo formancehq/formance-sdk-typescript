@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type ResetConnectorV1Request = {
@@ -71,6 +74,24 @@ export namespace ResetConnectorV1Request$ {
   export type Outbound = ResetConnectorV1Request$Outbound;
 }
 
+export function resetConnectorV1RequestToJSON(
+  resetConnectorV1Request: ResetConnectorV1Request,
+): string {
+  return JSON.stringify(
+    ResetConnectorV1Request$outboundSchema.parse(resetConnectorV1Request),
+  );
+}
+
+export function resetConnectorV1RequestFromJSON(
+  jsonString: string,
+): SafeParseResult<ResetConnectorV1Request, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResetConnectorV1Request$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResetConnectorV1Request' from JSON`,
+  );
+}
+
 /** @internal */
 export const ResetConnectorV1Response$inboundSchema: z.ZodType<
   ResetConnectorV1Response,
@@ -125,4 +146,22 @@ export namespace ResetConnectorV1Response$ {
   export const outboundSchema = ResetConnectorV1Response$outboundSchema;
   /** @deprecated use `ResetConnectorV1Response$Outbound` instead. */
   export type Outbound = ResetConnectorV1Response$Outbound;
+}
+
+export function resetConnectorV1ResponseToJSON(
+  resetConnectorV1Response: ResetConnectorV1Response,
+): string {
+  return JSON.stringify(
+    ResetConnectorV1Response$outboundSchema.parse(resetConnectorV1Response),
+  );
+}
+
+export function resetConnectorV1ResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ResetConnectorV1Response, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ResetConnectorV1Response$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResetConnectorV1Response' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2PaymentMetadata = {
   key?: string | undefined;
@@ -42,4 +45,22 @@ export namespace V2PaymentMetadata$ {
   export const outboundSchema = V2PaymentMetadata$outboundSchema;
   /** @deprecated use `V2PaymentMetadata$Outbound` instead. */
   export type Outbound = V2PaymentMetadata$Outbound;
+}
+
+export function v2PaymentMetadataToJSON(
+  v2PaymentMetadata: V2PaymentMetadata,
+): string {
+  return JSON.stringify(
+    V2PaymentMetadata$outboundSchema.parse(v2PaymentMetadata),
+  );
+}
+
+export function v2PaymentMetadataFromJSON(
+  jsonString: string,
+): SafeParseResult<V2PaymentMetadata, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2PaymentMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2PaymentMetadata' from JSON`,
+  );
 }

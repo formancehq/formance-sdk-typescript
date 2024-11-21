@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type InsertConfigResponse = {
@@ -84,4 +87,22 @@ export namespace InsertConfigResponse$ {
   export const outboundSchema = InsertConfigResponse$outboundSchema;
   /** @deprecated use `InsertConfigResponse$Outbound` instead. */
   export type Outbound = InsertConfigResponse$Outbound;
+}
+
+export function insertConfigResponseToJSON(
+  insertConfigResponse: InsertConfigResponse,
+): string {
+  return JSON.stringify(
+    InsertConfigResponse$outboundSchema.parse(insertConfigResponse),
+  );
+}
+
+export function insertConfigResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<InsertConfigResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => InsertConfigResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'InsertConfigResponse' from JSON`,
+  );
 }

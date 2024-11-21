@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2ReadTriggerRequest = {
@@ -68,6 +71,24 @@ export namespace V2ReadTriggerRequest$ {
   export type Outbound = V2ReadTriggerRequest$Outbound;
 }
 
+export function v2ReadTriggerRequestToJSON(
+  v2ReadTriggerRequest: V2ReadTriggerRequest,
+): string {
+  return JSON.stringify(
+    V2ReadTriggerRequest$outboundSchema.parse(v2ReadTriggerRequest),
+  );
+}
+
+export function v2ReadTriggerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ReadTriggerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ReadTriggerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ReadTriggerRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2ReadTriggerResponse$inboundSchema: z.ZodType<
   V2ReadTriggerResponse,
@@ -127,4 +148,22 @@ export namespace V2ReadTriggerResponse$ {
   export const outboundSchema = V2ReadTriggerResponse$outboundSchema;
   /** @deprecated use `V2ReadTriggerResponse$Outbound` instead. */
   export type Outbound = V2ReadTriggerResponse$Outbound;
+}
+
+export function v2ReadTriggerResponseToJSON(
+  v2ReadTriggerResponse: V2ReadTriggerResponse,
+): string {
+  return JSON.stringify(
+    V2ReadTriggerResponse$outboundSchema.parse(v2ReadTriggerResponse),
+  );
+}
+
+export function v2ReadTriggerResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ReadTriggerResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ReadTriggerResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ReadTriggerResponse' from JSON`,
+  );
 }

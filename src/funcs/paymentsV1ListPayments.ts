@@ -67,12 +67,20 @@ export async function paymentsV1ListPayments(
   });
 
   const securityInput = await extractSecurity(client._options.security);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
+
   const context = {
     operationID: "listPayments",
     oAuth2Scopes: ["auth:read", "payments:read"],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.security,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
@@ -91,9 +99,8 @@ export async function paymentsV1ListPayments(
   const doResult = await client._do(req, {
     context,
     errorCodes: ["default"],
-    retryConfig: options?.retries
-      || client._options.retryConfig,
-    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
     return doResult;

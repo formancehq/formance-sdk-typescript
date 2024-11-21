@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WorkflowInstance,
   WorkflowInstance$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ListRunsResponse$ {
   export const outboundSchema = ListRunsResponse$outboundSchema;
   /** @deprecated use `ListRunsResponse$Outbound` instead. */
   export type Outbound = ListRunsResponse$Outbound;
+}
+
+export function listRunsResponseToJSON(
+  listRunsResponse: ListRunsResponse,
+): string {
+  return JSON.stringify(
+    ListRunsResponse$outboundSchema.parse(listRunsResponse),
+  );
+}
+
+export function listRunsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListRunsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListRunsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListRunsResponse' from JSON`,
+  );
 }

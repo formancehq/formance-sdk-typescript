@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Secret,
   Secret$inboundSchema,
@@ -48,4 +51,22 @@ export namespace CreateSecretResponse$ {
   export const outboundSchema = CreateSecretResponse$outboundSchema;
   /** @deprecated use `CreateSecretResponse$Outbound` instead. */
   export type Outbound = CreateSecretResponse$Outbound;
+}
+
+export function createSecretResponseToJSON(
+  createSecretResponse: CreateSecretResponse,
+): string {
+  return JSON.stringify(
+    CreateSecretResponse$outboundSchema.parse(createSecretResponse),
+  );
+}
+
+export function createSecretResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreateSecretResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreateSecretResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreateSecretResponse' from JSON`,
+  );
 }

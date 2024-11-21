@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Mapping,
   Mapping$inboundSchema,
@@ -48,4 +51,20 @@ export namespace MappingResponse$ {
   export const outboundSchema = MappingResponse$outboundSchema;
   /** @deprecated use `MappingResponse$Outbound` instead. */
   export type Outbound = MappingResponse$Outbound;
+}
+
+export function mappingResponseToJSON(
+  mappingResponse: MappingResponse,
+): string {
+  return JSON.stringify(MappingResponse$outboundSchema.parse(mappingResponse));
+}
+
+export function mappingResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<MappingResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MappingResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MappingResponse' from JSON`,
+  );
 }

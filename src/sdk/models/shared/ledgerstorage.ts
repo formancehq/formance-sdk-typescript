@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LedgerStorage = {
   driver: string;
@@ -46,4 +49,18 @@ export namespace LedgerStorage$ {
   export const outboundSchema = LedgerStorage$outboundSchema;
   /** @deprecated use `LedgerStorage$Outbound` instead. */
   export type Outbound = LedgerStorage$Outbound;
+}
+
+export function ledgerStorageToJSON(ledgerStorage: LedgerStorage): string {
+  return JSON.stringify(LedgerStorage$outboundSchema.parse(ledgerStorage));
+}
+
+export function ledgerStorageFromJSON(
+  jsonString: string,
+): SafeParseResult<LedgerStorage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LedgerStorage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerStorage' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Trigger = {
   createdAt: Date;
@@ -66,4 +69,18 @@ export namespace V2Trigger$ {
   export const outboundSchema = V2Trigger$outboundSchema;
   /** @deprecated use `V2Trigger$Outbound` instead. */
   export type Outbound = V2Trigger$Outbound;
+}
+
+export function v2TriggerToJSON(v2Trigger: V2Trigger): string {
+  return JSON.stringify(V2Trigger$outboundSchema.parse(v2Trigger));
+}
+
+export function v2TriggerFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Trigger, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Trigger$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Trigger' from JSON`,
+  );
 }

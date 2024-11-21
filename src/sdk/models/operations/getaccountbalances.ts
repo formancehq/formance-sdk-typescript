@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetAccountBalancesRequest = {
@@ -135,6 +138,24 @@ export namespace GetAccountBalancesRequest$ {
   export type Outbound = GetAccountBalancesRequest$Outbound;
 }
 
+export function getAccountBalancesRequestToJSON(
+  getAccountBalancesRequest: GetAccountBalancesRequest,
+): string {
+  return JSON.stringify(
+    GetAccountBalancesRequest$outboundSchema.parse(getAccountBalancesRequest),
+  );
+}
+
+export function getAccountBalancesRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAccountBalancesRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAccountBalancesRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAccountBalancesRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetAccountBalancesResponse$inboundSchema: z.ZodType<
   GetAccountBalancesResponse,
@@ -194,4 +215,22 @@ export namespace GetAccountBalancesResponse$ {
   export const outboundSchema = GetAccountBalancesResponse$outboundSchema;
   /** @deprecated use `GetAccountBalancesResponse$Outbound` instead. */
   export type Outbound = GetAccountBalancesResponse$Outbound;
+}
+
+export function getAccountBalancesResponseToJSON(
+  getAccountBalancesResponse: GetAccountBalancesResponse,
+): string {
+  return JSON.stringify(
+    GetAccountBalancesResponse$outboundSchema.parse(getAccountBalancesResponse),
+  );
+}
+
+export function getAccountBalancesResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetAccountBalancesResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetAccountBalancesResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetAccountBalancesResponse' from JSON`,
+  );
 }

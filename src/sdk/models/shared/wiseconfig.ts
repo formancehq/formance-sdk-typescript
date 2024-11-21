@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WiseConfig = {
   apiKey: string;
@@ -55,4 +58,18 @@ export namespace WiseConfig$ {
   export const outboundSchema = WiseConfig$outboundSchema;
   /** @deprecated use `WiseConfig$Outbound` instead. */
   export type Outbound = WiseConfig$Outbound;
+}
+
+export function wiseConfigToJSON(wiseConfig: WiseConfig): string {
+  return JSON.stringify(WiseConfig$outboundSchema.parse(wiseConfig));
+}
+
+export function wiseConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<WiseConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WiseConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WiseConfig' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   AccountType,
   AccountType$inboundSchema,
@@ -57,6 +60,24 @@ export namespace PaymentsAccountRaw$ {
   export const outboundSchema = PaymentsAccountRaw$outboundSchema;
   /** @deprecated use `PaymentsAccountRaw$Outbound` instead. */
   export type Outbound = PaymentsAccountRaw$Outbound;
+}
+
+export function paymentsAccountRawToJSON(
+  paymentsAccountRaw: PaymentsAccountRaw,
+): string {
+  return JSON.stringify(
+    PaymentsAccountRaw$outboundSchema.parse(paymentsAccountRaw),
+  );
+}
+
+export function paymentsAccountRawFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsAccountRaw, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsAccountRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsAccountRaw' from JSON`,
+  );
 }
 
 /** @internal */
@@ -126,4 +147,20 @@ export namespace PaymentsAccount$ {
   export const outboundSchema = PaymentsAccount$outboundSchema;
   /** @deprecated use `PaymentsAccount$Outbound` instead. */
   export type Outbound = PaymentsAccount$Outbound;
+}
+
+export function paymentsAccountToJSON(
+  paymentsAccount: PaymentsAccount,
+): string {
+  return JSON.stringify(PaymentsAccount$outboundSchema.parse(paymentsAccount));
+}
+
+export function paymentsAccountFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsAccount, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsAccount$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsAccount' from JSON`,
+  );
 }

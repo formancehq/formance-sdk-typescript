@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2RevertTransactionRequest = {
@@ -89,6 +92,24 @@ export namespace V2RevertTransactionRequest$ {
   export type Outbound = V2RevertTransactionRequest$Outbound;
 }
 
+export function v2RevertTransactionRequestToJSON(
+  v2RevertTransactionRequest: V2RevertTransactionRequest,
+): string {
+  return JSON.stringify(
+    V2RevertTransactionRequest$outboundSchema.parse(v2RevertTransactionRequest),
+  );
+}
+
+export function v2RevertTransactionRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2RevertTransactionRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2RevertTransactionRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2RevertTransactionRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2RevertTransactionResponse$inboundSchema: z.ZodType<
   V2RevertTransactionResponse,
@@ -152,4 +173,24 @@ export namespace V2RevertTransactionResponse$ {
   export const outboundSchema = V2RevertTransactionResponse$outboundSchema;
   /** @deprecated use `V2RevertTransactionResponse$Outbound` instead. */
   export type Outbound = V2RevertTransactionResponse$Outbound;
+}
+
+export function v2RevertTransactionResponseToJSON(
+  v2RevertTransactionResponse: V2RevertTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2RevertTransactionResponse$outboundSchema.parse(
+      v2RevertTransactionResponse,
+    ),
+  );
+}
+
+export function v2RevertTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2RevertTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2RevertTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2RevertTransactionResponse' from JSON`,
+  );
 }

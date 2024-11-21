@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Wallet,
   Wallet$inboundSchema,
@@ -70,6 +73,24 @@ export namespace ListWalletsResponseCursor$ {
   export type Outbound = ListWalletsResponseCursor$Outbound;
 }
 
+export function listWalletsResponseCursorToJSON(
+  listWalletsResponseCursor: ListWalletsResponseCursor,
+): string {
+  return JSON.stringify(
+    ListWalletsResponseCursor$outboundSchema.parse(listWalletsResponseCursor),
+  );
+}
+
+export function listWalletsResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWalletsResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWalletsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWalletsResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const ListWalletsResponse$inboundSchema: z.ZodType<
   ListWalletsResponse,
@@ -104,4 +125,22 @@ export namespace ListWalletsResponse$ {
   export const outboundSchema = ListWalletsResponse$outboundSchema;
   /** @deprecated use `ListWalletsResponse$Outbound` instead. */
   export type Outbound = ListWalletsResponse$Outbound;
+}
+
+export function listWalletsResponseToJSON(
+  listWalletsResponse: ListWalletsResponse,
+): string {
+  return JSON.stringify(
+    ListWalletsResponse$outboundSchema.parse(listWalletsResponse),
+  );
+}
+
+export function listWalletsResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListWalletsResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListWalletsResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListWalletsResponse' from JSON`,
+  );
 }

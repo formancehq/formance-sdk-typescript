@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum V2MigrationInfoState {
   ToDo = "TO DO",
@@ -81,4 +84,20 @@ export namespace V2MigrationInfo$ {
   export const outboundSchema = V2MigrationInfo$outboundSchema;
   /** @deprecated use `V2MigrationInfo$Outbound` instead. */
   export type Outbound = V2MigrationInfo$Outbound;
+}
+
+export function v2MigrationInfoToJSON(
+  v2MigrationInfo: V2MigrationInfo,
+): string {
+  return JSON.stringify(V2MigrationInfo$outboundSchema.parse(v2MigrationInfo));
+}
+
+export function v2MigrationInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<V2MigrationInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2MigrationInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2MigrationInfo' from JSON`,
+  );
 }

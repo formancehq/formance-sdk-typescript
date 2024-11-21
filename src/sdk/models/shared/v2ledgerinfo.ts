@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2MigrationInfo,
   V2MigrationInfo$inboundSchema,
@@ -55,6 +58,24 @@ export namespace V2LedgerInfoStorage$ {
   export type Outbound = V2LedgerInfoStorage$Outbound;
 }
 
+export function v2LedgerInfoStorageToJSON(
+  v2LedgerInfoStorage: V2LedgerInfoStorage,
+): string {
+  return JSON.stringify(
+    V2LedgerInfoStorage$outboundSchema.parse(v2LedgerInfoStorage),
+  );
+}
+
+export function v2LedgerInfoStorageFromJSON(
+  jsonString: string,
+): SafeParseResult<V2LedgerInfoStorage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2LedgerInfoStorage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2LedgerInfoStorage' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2LedgerInfo$inboundSchema: z.ZodType<
   V2LedgerInfo,
@@ -92,4 +113,18 @@ export namespace V2LedgerInfo$ {
   export const outboundSchema = V2LedgerInfo$outboundSchema;
   /** @deprecated use `V2LedgerInfo$Outbound` instead. */
   export type Outbound = V2LedgerInfo$Outbound;
+}
+
+export function v2LedgerInfoToJSON(v2LedgerInfo: V2LedgerInfo): string {
+  return JSON.stringify(V2LedgerInfo$outboundSchema.parse(v2LedgerInfo));
+}
+
+export function v2LedgerInfoFromJSON(
+  jsonString: string,
+): SafeParseResult<V2LedgerInfo, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2LedgerInfo$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2LedgerInfo' from JSON`,
+  );
 }

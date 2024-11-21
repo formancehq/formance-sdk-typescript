@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetInstanceHistoryRequest = {
@@ -70,6 +73,24 @@ export namespace GetInstanceHistoryRequest$ {
   export type Outbound = GetInstanceHistoryRequest$Outbound;
 }
 
+export function getInstanceHistoryRequestToJSON(
+  getInstanceHistoryRequest: GetInstanceHistoryRequest,
+): string {
+  return JSON.stringify(
+    GetInstanceHistoryRequest$outboundSchema.parse(getInstanceHistoryRequest),
+  );
+}
+
+export function getInstanceHistoryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceHistoryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceHistoryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceHistoryRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetInstanceHistoryResponse$inboundSchema: z.ZodType<
   GetInstanceHistoryResponse,
@@ -133,4 +154,22 @@ export namespace GetInstanceHistoryResponse$ {
   export const outboundSchema = GetInstanceHistoryResponse$outboundSchema;
   /** @deprecated use `GetInstanceHistoryResponse$Outbound` instead. */
   export type Outbound = GetInstanceHistoryResponse$Outbound;
+}
+
+export function getInstanceHistoryResponseToJSON(
+  getInstanceHistoryResponse: GetInstanceHistoryResponse,
+): string {
+  return JSON.stringify(
+    GetInstanceHistoryResponse$outboundSchema.parse(getInstanceHistoryResponse),
+  );
+}
+
+export function getInstanceHistoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetInstanceHistoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetInstanceHistoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetInstanceHistoryResponse' from JSON`,
+  );
 }

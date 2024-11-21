@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DeletePoolRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace DeletePoolRequest$ {
   export type Outbound = DeletePoolRequest$Outbound;
 }
 
+export function deletePoolRequestToJSON(
+  deletePoolRequest: DeletePoolRequest,
+): string {
+  return JSON.stringify(
+    DeletePoolRequest$outboundSchema.parse(deletePoolRequest),
+  );
+}
+
+export function deletePoolRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<DeletePoolRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeletePoolRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeletePoolRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const DeletePoolResponse$inboundSchema: z.ZodType<
   DeletePoolResponse,
@@ -117,4 +138,22 @@ export namespace DeletePoolResponse$ {
   export const outboundSchema = DeletePoolResponse$outboundSchema;
   /** @deprecated use `DeletePoolResponse$Outbound` instead. */
   export type Outbound = DeletePoolResponse$Outbound;
+}
+
+export function deletePoolResponseToJSON(
+  deletePoolResponse: DeletePoolResponse,
+): string {
+  return JSON.stringify(
+    DeletePoolResponse$outboundSchema.parse(deletePoolResponse),
+  );
+}
+
+export function deletePoolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<DeletePoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => DeletePoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'DeletePoolResponse' from JSON`,
+  );
 }

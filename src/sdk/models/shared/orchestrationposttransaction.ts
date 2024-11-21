@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Posting,
   Posting$inboundSchema,
@@ -63,6 +66,27 @@ export namespace OrchestrationPostTransactionScript$ {
   export type Outbound = OrchestrationPostTransactionScript$Outbound;
 }
 
+export function orchestrationPostTransactionScriptToJSON(
+  orchestrationPostTransactionScript: OrchestrationPostTransactionScript,
+): string {
+  return JSON.stringify(
+    OrchestrationPostTransactionScript$outboundSchema.parse(
+      orchestrationPostTransactionScript,
+    ),
+  );
+}
+
+export function orchestrationPostTransactionScriptFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPostTransactionScript, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      OrchestrationPostTransactionScript$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPostTransactionScript' from JSON`,
+  );
+}
+
 /** @internal */
 export const OrchestrationPostTransaction$inboundSchema: z.ZodType<
   OrchestrationPostTransaction,
@@ -112,4 +136,24 @@ export namespace OrchestrationPostTransaction$ {
   export const outboundSchema = OrchestrationPostTransaction$outboundSchema;
   /** @deprecated use `OrchestrationPostTransaction$Outbound` instead. */
   export type Outbound = OrchestrationPostTransaction$Outbound;
+}
+
+export function orchestrationPostTransactionToJSON(
+  orchestrationPostTransaction: OrchestrationPostTransaction,
+): string {
+  return JSON.stringify(
+    OrchestrationPostTransaction$outboundSchema.parse(
+      orchestrationPostTransaction,
+    ),
+  );
+}
+
+export function orchestrationPostTransactionFromJSON(
+  jsonString: string,
+): SafeParseResult<OrchestrationPostTransaction, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => OrchestrationPostTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'OrchestrationPostTransaction' from JSON`,
+  );
 }

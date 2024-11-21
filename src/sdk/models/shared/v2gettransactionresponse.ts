@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2ExpandedTransaction,
   V2ExpandedTransaction$inboundSchema,
@@ -48,4 +51,22 @@ export namespace V2GetTransactionResponse$ {
   export const outboundSchema = V2GetTransactionResponse$outboundSchema;
   /** @deprecated use `V2GetTransactionResponse$Outbound` instead. */
   export type Outbound = V2GetTransactionResponse$Outbound;
+}
+
+export function v2GetTransactionResponseToJSON(
+  v2GetTransactionResponse: V2GetTransactionResponse,
+): string {
+  return JSON.stringify(
+    V2GetTransactionResponse$outboundSchema.parse(v2GetTransactionResponse),
+  );
+}
+
+export function v2GetTransactionResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetTransactionResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetTransactionResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetTransactionResponse' from JSON`,
+  );
 }

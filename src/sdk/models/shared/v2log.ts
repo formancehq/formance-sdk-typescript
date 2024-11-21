@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum V2LogType {
   NewTransaction = "NEW_TRANSACTION",
@@ -80,4 +83,18 @@ export namespace V2Log$ {
   export const outboundSchema = V2Log$outboundSchema;
   /** @deprecated use `V2Log$Outbound` instead. */
   export type Outbound = V2Log$Outbound;
+}
+
+export function v2LogToJSON(v2Log: V2Log): string {
+  return JSON.stringify(V2Log$outboundSchema.parse(v2Log));
+}
+
+export function v2LogFromJSON(
+  jsonString: string,
+): SafeParseResult<V2Log, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2Log$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2Log' from JSON`,
+  );
 }

@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RemoveAccountFromPoolRequest = {
   /**
@@ -70,6 +73,26 @@ export namespace RemoveAccountFromPoolRequest$ {
   export type Outbound = RemoveAccountFromPoolRequest$Outbound;
 }
 
+export function removeAccountFromPoolRequestToJSON(
+  removeAccountFromPoolRequest: RemoveAccountFromPoolRequest,
+): string {
+  return JSON.stringify(
+    RemoveAccountFromPoolRequest$outboundSchema.parse(
+      removeAccountFromPoolRequest,
+    ),
+  );
+}
+
+export function removeAccountFromPoolRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RemoveAccountFromPoolRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RemoveAccountFromPoolRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RemoveAccountFromPoolRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RemoveAccountFromPoolResponse$inboundSchema: z.ZodType<
   RemoveAccountFromPoolResponse,
@@ -124,4 +147,24 @@ export namespace RemoveAccountFromPoolResponse$ {
   export const outboundSchema = RemoveAccountFromPoolResponse$outboundSchema;
   /** @deprecated use `RemoveAccountFromPoolResponse$Outbound` instead. */
   export type Outbound = RemoveAccountFromPoolResponse$Outbound;
+}
+
+export function removeAccountFromPoolResponseToJSON(
+  removeAccountFromPoolResponse: RemoveAccountFromPoolResponse,
+): string {
+  return JSON.stringify(
+    RemoveAccountFromPoolResponse$outboundSchema.parse(
+      removeAccountFromPoolResponse,
+    ),
+  );
+}
+
+export function removeAccountFromPoolResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<RemoveAccountFromPoolResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RemoveAccountFromPoolResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RemoveAccountFromPoolResponse' from JSON`,
+  );
 }

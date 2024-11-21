@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskMoneycorpDescriptor$ {
   export type Outbound = TaskMoneycorpDescriptor$Outbound;
 }
 
+export function taskMoneycorpDescriptorToJSON(
+  taskMoneycorpDescriptor: TaskMoneycorpDescriptor,
+): string {
+  return JSON.stringify(
+    TaskMoneycorpDescriptor$outboundSchema.parse(taskMoneycorpDescriptor),
+  );
+}
+
+export function taskMoneycorpDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMoneycorpDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMoneycorpDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMoneycorpDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskMoneycorpState$inboundSchema: z.ZodType<
   TaskMoneycorpState,
@@ -98,6 +119,24 @@ export namespace TaskMoneycorpState$ {
   export const outboundSchema = TaskMoneycorpState$outboundSchema;
   /** @deprecated use `TaskMoneycorpState$Outbound` instead. */
   export type Outbound = TaskMoneycorpState$Outbound;
+}
+
+export function taskMoneycorpStateToJSON(
+  taskMoneycorpState: TaskMoneycorpState,
+): string {
+  return JSON.stringify(
+    TaskMoneycorpState$outboundSchema.parse(taskMoneycorpState),
+  );
+}
+
+export function taskMoneycorpStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMoneycorpState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMoneycorpState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMoneycorpState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +194,18 @@ export namespace TaskMoneycorp$ {
   export const outboundSchema = TaskMoneycorp$outboundSchema;
   /** @deprecated use `TaskMoneycorp$Outbound` instead. */
   export type Outbound = TaskMoneycorp$Outbound;
+}
+
+export function taskMoneycorpToJSON(taskMoneycorp: TaskMoneycorp): string {
+  return JSON.stringify(TaskMoneycorp$outboundSchema.parse(taskMoneycorp));
+}
+
+export function taskMoneycorpFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskMoneycorp, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskMoneycorp$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskMoneycorp' from JSON`,
+  );
 }

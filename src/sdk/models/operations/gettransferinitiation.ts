@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetTransferInitiationRequest = {
@@ -66,6 +69,26 @@ export namespace GetTransferInitiationRequest$ {
   export const outboundSchema = GetTransferInitiationRequest$outboundSchema;
   /** @deprecated use `GetTransferInitiationRequest$Outbound` instead. */
   export type Outbound = GetTransferInitiationRequest$Outbound;
+}
+
+export function getTransferInitiationRequestToJSON(
+  getTransferInitiationRequest: GetTransferInitiationRequest,
+): string {
+  return JSON.stringify(
+    GetTransferInitiationRequest$outboundSchema.parse(
+      getTransferInitiationRequest,
+    ),
+  );
+}
+
+export function getTransferInitiationRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransferInitiationRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransferInitiationRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransferInitiationRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -131,4 +154,24 @@ export namespace GetTransferInitiationResponse$ {
   export const outboundSchema = GetTransferInitiationResponse$outboundSchema;
   /** @deprecated use `GetTransferInitiationResponse$Outbound` instead. */
   export type Outbound = GetTransferInitiationResponse$Outbound;
+}
+
+export function getTransferInitiationResponseToJSON(
+  getTransferInitiationResponse: GetTransferInitiationResponse,
+): string {
+  return JSON.stringify(
+    GetTransferInitiationResponse$outboundSchema.parse(
+      getTransferInitiationResponse,
+    ),
+  );
+}
+
+export function getTransferInitiationResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetTransferInitiationResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetTransferInitiationResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetTransferInitiationResponse' from JSON`,
+  );
 }

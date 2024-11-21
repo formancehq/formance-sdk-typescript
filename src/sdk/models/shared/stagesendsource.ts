@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   StageSendSourceAccount,
   StageSendSourceAccount$inboundSchema,
@@ -68,4 +71,20 @@ export namespace StageSendSource$ {
   export const outboundSchema = StageSendSource$outboundSchema;
   /** @deprecated use `StageSendSource$Outbound` instead. */
   export type Outbound = StageSendSource$Outbound;
+}
+
+export function stageSendSourceToJSON(
+  stageSendSource: StageSendSource,
+): string {
+  return JSON.stringify(StageSendSource$outboundSchema.parse(stageSendSource));
+}
+
+export function stageSendSourceFromJSON(
+  jsonString: string,
+): SafeParseResult<StageSendSource, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => StageSendSource$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'StageSendSource' from JSON`,
+  );
 }

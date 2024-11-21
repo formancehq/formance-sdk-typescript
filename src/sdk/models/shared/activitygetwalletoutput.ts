@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   WalletWithBalances,
   WalletWithBalances$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ActivityGetWalletOutput$ {
   export const outboundSchema = ActivityGetWalletOutput$outboundSchema;
   /** @deprecated use `ActivityGetWalletOutput$Outbound` instead. */
   export type Outbound = ActivityGetWalletOutput$Outbound;
+}
+
+export function activityGetWalletOutputToJSON(
+  activityGetWalletOutput: ActivityGetWalletOutput,
+): string {
+  return JSON.stringify(
+    ActivityGetWalletOutput$outboundSchema.parse(activityGetWalletOutput),
+  );
+}
+
+export function activityGetWalletOutputFromJSON(
+  jsonString: string,
+): SafeParseResult<ActivityGetWalletOutput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ActivityGetWalletOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityGetWalletOutput' from JSON`,
+  );
 }

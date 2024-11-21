@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2StageStatus,
   V2StageStatus$inboundSchema,
@@ -78,4 +81,22 @@ export namespace V2WorkflowInstance$ {
   export const outboundSchema = V2WorkflowInstance$outboundSchema;
   /** @deprecated use `V2WorkflowInstance$Outbound` instead. */
   export type Outbound = V2WorkflowInstance$Outbound;
+}
+
+export function v2WorkflowInstanceToJSON(
+  v2WorkflowInstance: V2WorkflowInstance,
+): string {
+  return JSON.stringify(
+    V2WorkflowInstance$outboundSchema.parse(v2WorkflowInstance),
+  );
+}
+
+export function v2WorkflowInstanceFromJSON(
+  jsonString: string,
+): SafeParseResult<V2WorkflowInstance, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2WorkflowInstance$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2WorkflowInstance' from JSON`,
+  );
 }

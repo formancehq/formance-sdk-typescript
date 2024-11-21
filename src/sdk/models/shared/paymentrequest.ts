@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentScheme,
   PaymentScheme$inboundSchema,
@@ -93,4 +96,18 @@ export namespace PaymentRequest$ {
   export const outboundSchema = PaymentRequest$outboundSchema;
   /** @deprecated use `PaymentRequest$Outbound` instead. */
   export type Outbound = PaymentRequest$Outbound;
+}
+
+export function paymentRequestToJSON(paymentRequest: PaymentRequest): string {
+  return JSON.stringify(PaymentRequest$outboundSchema.parse(paymentRequest));
+}
+
+export function paymentRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentRequest' from JSON`,
+  );
 }

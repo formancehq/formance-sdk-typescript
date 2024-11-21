@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetConnectorTaskRequest = {
@@ -75,6 +78,24 @@ export namespace GetConnectorTaskRequest$ {
   export type Outbound = GetConnectorTaskRequest$Outbound;
 }
 
+export function getConnectorTaskRequestToJSON(
+  getConnectorTaskRequest: GetConnectorTaskRequest,
+): string {
+  return JSON.stringify(
+    GetConnectorTaskRequest$outboundSchema.parse(getConnectorTaskRequest),
+  );
+}
+
+export function getConnectorTaskRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetConnectorTaskRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetConnectorTaskRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectorTaskRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetConnectorTaskResponse$inboundSchema: z.ZodType<
   GetConnectorTaskResponse,
@@ -134,4 +155,22 @@ export namespace GetConnectorTaskResponse$ {
   export const outboundSchema = GetConnectorTaskResponse$outboundSchema;
   /** @deprecated use `GetConnectorTaskResponse$Outbound` instead. */
   export type Outbound = GetConnectorTaskResponse$Outbound;
+}
+
+export function getConnectorTaskResponseToJSON(
+  getConnectorTaskResponse: GetConnectorTaskResponse,
+): string {
+  return JSON.stringify(
+    GetConnectorTaskResponse$outboundSchema.parse(getConnectorTaskResponse),
+  );
+}
+
+export function getConnectorTaskResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetConnectorTaskResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetConnectorTaskResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetConnectorTaskResponse' from JSON`,
+  );
 }

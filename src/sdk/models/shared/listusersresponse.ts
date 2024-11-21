@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   User,
   User$inboundSchema,
@@ -48,4 +51,22 @@ export namespace ListUsersResponse$ {
   export const outboundSchema = ListUsersResponse$outboundSchema;
   /** @deprecated use `ListUsersResponse$Outbound` instead. */
   export type Outbound = ListUsersResponse$Outbound;
+}
+
+export function listUsersResponseToJSON(
+  listUsersResponse: ListUsersResponse,
+): string {
+  return JSON.stringify(
+    ListUsersResponse$outboundSchema.parse(listUsersResponse),
+  );
+}
+
+export function listUsersResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ListUsersResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ListUsersResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ListUsersResponse' from JSON`,
+  );
 }

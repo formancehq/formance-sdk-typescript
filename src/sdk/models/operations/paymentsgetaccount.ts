@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type PaymentsgetAccountRequest = {
@@ -68,6 +71,24 @@ export namespace PaymentsgetAccountRequest$ {
   export type Outbound = PaymentsgetAccountRequest$Outbound;
 }
 
+export function paymentsgetAccountRequestToJSON(
+  paymentsgetAccountRequest: PaymentsgetAccountRequest,
+): string {
+  return JSON.stringify(
+    PaymentsgetAccountRequest$outboundSchema.parse(paymentsgetAccountRequest),
+  );
+}
+
+export function paymentsgetAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsgetAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsgetAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsgetAccountRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const PaymentsgetAccountResponse$inboundSchema: z.ZodType<
   PaymentsgetAccountResponse,
@@ -127,4 +148,22 @@ export namespace PaymentsgetAccountResponse$ {
   export const outboundSchema = PaymentsgetAccountResponse$outboundSchema;
   /** @deprecated use `PaymentsgetAccountResponse$Outbound` instead. */
   export type Outbound = PaymentsgetAccountResponse$Outbound;
+}
+
+export function paymentsgetAccountResponseToJSON(
+  paymentsgetAccountResponse: PaymentsgetAccountResponse,
+): string {
+  return JSON.stringify(
+    PaymentsgetAccountResponse$outboundSchema.parse(paymentsgetAccountResponse),
+  );
+}
+
+export function paymentsgetAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<PaymentsgetAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => PaymentsgetAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentsgetAccountResponse' from JSON`,
+  );
 }

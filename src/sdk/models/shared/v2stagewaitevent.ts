@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2StageWaitEvent = {
   event: string;
@@ -42,4 +45,22 @@ export namespace V2StageWaitEvent$ {
   export const outboundSchema = V2StageWaitEvent$outboundSchema;
   /** @deprecated use `V2StageWaitEvent$Outbound` instead. */
   export type Outbound = V2StageWaitEvent$Outbound;
+}
+
+export function v2StageWaitEventToJSON(
+  v2StageWaitEvent: V2StageWaitEvent,
+): string {
+  return JSON.stringify(
+    V2StageWaitEvent$outboundSchema.parse(v2StageWaitEvent),
+  );
+}
+
+export function v2StageWaitEventFromJSON(
+  jsonString: string,
+): SafeParseResult<V2StageWaitEvent, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2StageWaitEvent$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2StageWaitEvent' from JSON`,
+  );
 }

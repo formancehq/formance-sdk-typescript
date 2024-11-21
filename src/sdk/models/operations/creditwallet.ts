@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type CreditWalletRequest = {
@@ -82,6 +85,24 @@ export namespace CreditWalletRequest$ {
   export type Outbound = CreditWalletRequest$Outbound;
 }
 
+export function creditWalletRequestToJSON(
+  creditWalletRequest: CreditWalletRequest,
+): string {
+  return JSON.stringify(
+    CreditWalletRequest$outboundSchema.parse(creditWalletRequest),
+  );
+}
+
+export function creditWalletRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CreditWalletRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreditWalletRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreditWalletRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CreditWalletResponse$inboundSchema: z.ZodType<
   CreditWalletResponse,
@@ -136,4 +157,22 @@ export namespace CreditWalletResponse$ {
   export const outboundSchema = CreditWalletResponse$outboundSchema;
   /** @deprecated use `CreditWalletResponse$Outbound` instead. */
   export type Outbound = CreditWalletResponse$Outbound;
+}
+
+export function creditWalletResponseToJSON(
+  creditWalletResponse: CreditWalletResponse,
+): string {
+  return JSON.stringify(
+    CreditWalletResponse$outboundSchema.parse(creditWalletResponse),
+  );
+}
+
+export function creditWalletResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CreditWalletResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CreditWalletResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CreditWalletResponse' from JSON`,
+  );
 }

@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   V2BulkElementResult,
   V2BulkElementResult$inboundSchema,
@@ -48,4 +51,18 @@ export namespace V2BulkResponse$ {
   export const outboundSchema = V2BulkResponse$outboundSchema;
   /** @deprecated use `V2BulkResponse$Outbound` instead. */
   export type Outbound = V2BulkResponse$Outbound;
+}
+
+export function v2BulkResponseToJSON(v2BulkResponse: V2BulkResponse): string {
+  return JSON.stringify(V2BulkResponse$outboundSchema.parse(v2BulkResponse));
+}
+
+export function v2BulkResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2BulkResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2BulkResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkResponse' from JSON`,
+  );
 }

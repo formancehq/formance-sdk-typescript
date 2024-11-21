@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type GetBalancesAggregatedRequest = {
@@ -82,6 +85,26 @@ export namespace GetBalancesAggregatedRequest$ {
   export type Outbound = GetBalancesAggregatedRequest$Outbound;
 }
 
+export function getBalancesAggregatedRequestToJSON(
+  getBalancesAggregatedRequest: GetBalancesAggregatedRequest,
+): string {
+  return JSON.stringify(
+    GetBalancesAggregatedRequest$outboundSchema.parse(
+      getBalancesAggregatedRequest,
+    ),
+  );
+}
+
+export function getBalancesAggregatedRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalancesAggregatedRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalancesAggregatedRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalancesAggregatedRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const GetBalancesAggregatedResponse$inboundSchema: z.ZodType<
   GetBalancesAggregatedResponse,
@@ -145,4 +168,24 @@ export namespace GetBalancesAggregatedResponse$ {
   export const outboundSchema = GetBalancesAggregatedResponse$outboundSchema;
   /** @deprecated use `GetBalancesAggregatedResponse$Outbound` instead. */
   export type Outbound = GetBalancesAggregatedResponse$Outbound;
+}
+
+export function getBalancesAggregatedResponseToJSON(
+  getBalancesAggregatedResponse: GetBalancesAggregatedResponse,
+): string {
+  return JSON.stringify(
+    GetBalancesAggregatedResponse$outboundSchema.parse(
+      getBalancesAggregatedResponse,
+    ),
+  );
+}
+
+export function getBalancesAggregatedResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GetBalancesAggregatedResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GetBalancesAggregatedResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetBalancesAggregatedResponse' from JSON`,
+  );
 }

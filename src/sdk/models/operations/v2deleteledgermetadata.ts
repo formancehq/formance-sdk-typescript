@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2DeleteLedgerMetadataRequest = {
   /**
@@ -70,6 +73,26 @@ export namespace V2DeleteLedgerMetadataRequest$ {
   export type Outbound = V2DeleteLedgerMetadataRequest$Outbound;
 }
 
+export function v2DeleteLedgerMetadataRequestToJSON(
+  v2DeleteLedgerMetadataRequest: V2DeleteLedgerMetadataRequest,
+): string {
+  return JSON.stringify(
+    V2DeleteLedgerMetadataRequest$outboundSchema.parse(
+      v2DeleteLedgerMetadataRequest,
+    ),
+  );
+}
+
+export function v2DeleteLedgerMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteLedgerMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2DeleteLedgerMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteLedgerMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2DeleteLedgerMetadataResponse$inboundSchema: z.ZodType<
   V2DeleteLedgerMetadataResponse,
@@ -124,4 +147,24 @@ export namespace V2DeleteLedgerMetadataResponse$ {
   export const outboundSchema = V2DeleteLedgerMetadataResponse$outboundSchema;
   /** @deprecated use `V2DeleteLedgerMetadataResponse$Outbound` instead. */
   export type Outbound = V2DeleteLedgerMetadataResponse$Outbound;
+}
+
+export function v2DeleteLedgerMetadataResponseToJSON(
+  v2DeleteLedgerMetadataResponse: V2DeleteLedgerMetadataResponse,
+): string {
+  return JSON.stringify(
+    V2DeleteLedgerMetadataResponse$outboundSchema.parse(
+      v2DeleteLedgerMetadataResponse,
+    ),
+  );
+}
+
+export function v2DeleteLedgerMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteLedgerMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2DeleteLedgerMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteLedgerMetadataResponse' from JSON`,
+  );
 }

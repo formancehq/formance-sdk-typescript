@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type RunWorkflowRequest = {
@@ -87,6 +90,24 @@ export namespace RunWorkflowRequest$ {
   export type Outbound = RunWorkflowRequest$Outbound;
 }
 
+export function runWorkflowRequestToJSON(
+  runWorkflowRequest: RunWorkflowRequest,
+): string {
+  return JSON.stringify(
+    RunWorkflowRequest$outboundSchema.parse(runWorkflowRequest),
+  );
+}
+
+export function runWorkflowRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<RunWorkflowRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RunWorkflowRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RunWorkflowRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const RunWorkflowResponse$inboundSchema: z.ZodType<
   RunWorkflowResponse,
@@ -146,4 +167,22 @@ export namespace RunWorkflowResponse$ {
   export const outboundSchema = RunWorkflowResponse$outboundSchema;
   /** @deprecated use `RunWorkflowResponse$Outbound` instead. */
   export type Outbound = RunWorkflowResponse$Outbound;
+}
+
+export function runWorkflowResponseToJSON(
+  runWorkflowResponse: RunWorkflowResponse,
+): string {
+  return JSON.stringify(
+    RunWorkflowResponse$outboundSchema.parse(runWorkflowResponse),
+  );
+}
+
+export function runWorkflowResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<RunWorkflowResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => RunWorkflowResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'RunWorkflowResponse' from JSON`,
+  );
 }

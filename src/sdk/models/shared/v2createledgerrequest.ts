@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2CreateLedgerRequest = {
   bucket?: string | undefined;
@@ -46,4 +49,22 @@ export namespace V2CreateLedgerRequest$ {
   export const outboundSchema = V2CreateLedgerRequest$outboundSchema;
   /** @deprecated use `V2CreateLedgerRequest$Outbound` instead. */
   export type Outbound = V2CreateLedgerRequest$Outbound;
+}
+
+export function v2CreateLedgerRequestToJSON(
+  v2CreateLedgerRequest: V2CreateLedgerRequest,
+): string {
+  return JSON.stringify(
+    V2CreateLedgerRequest$outboundSchema.parse(v2CreateLedgerRequest),
+  );
+}
+
+export function v2CreateLedgerRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2CreateLedgerRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2CreateLedgerRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2CreateLedgerRequest' from JSON`,
+  );
 }

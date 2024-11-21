@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2DeleteTransactionMetadataRequest = {
   /**
@@ -78,6 +81,27 @@ export namespace V2DeleteTransactionMetadataRequest$ {
   export type Outbound = V2DeleteTransactionMetadataRequest$Outbound;
 }
 
+export function v2DeleteTransactionMetadataRequestToJSON(
+  v2DeleteTransactionMetadataRequest: V2DeleteTransactionMetadataRequest,
+): string {
+  return JSON.stringify(
+    V2DeleteTransactionMetadataRequest$outboundSchema.parse(
+      v2DeleteTransactionMetadataRequest,
+    ),
+  );
+}
+
+export function v2DeleteTransactionMetadataRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteTransactionMetadataRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2DeleteTransactionMetadataRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteTransactionMetadataRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2DeleteTransactionMetadataResponse$inboundSchema: z.ZodType<
   V2DeleteTransactionMetadataResponse,
@@ -134,4 +158,25 @@ export namespace V2DeleteTransactionMetadataResponse$ {
     V2DeleteTransactionMetadataResponse$outboundSchema;
   /** @deprecated use `V2DeleteTransactionMetadataResponse$Outbound` instead. */
   export type Outbound = V2DeleteTransactionMetadataResponse$Outbound;
+}
+
+export function v2DeleteTransactionMetadataResponseToJSON(
+  v2DeleteTransactionMetadataResponse: V2DeleteTransactionMetadataResponse,
+): string {
+  return JSON.stringify(
+    V2DeleteTransactionMetadataResponse$outboundSchema.parse(
+      v2DeleteTransactionMetadataResponse,
+    ),
+  );
+}
+
+export function v2DeleteTransactionMetadataResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2DeleteTransactionMetadataResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      V2DeleteTransactionMetadataResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2DeleteTransactionMetadataResponse' from JSON`,
+  );
 }

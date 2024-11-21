@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   OrchestrationV2Transaction,
   OrchestrationV2Transaction$inboundSchema,
@@ -49,4 +52,24 @@ export namespace V2ActivityCreateTransactionOutput$ {
     V2ActivityCreateTransactionOutput$outboundSchema;
   /** @deprecated use `V2ActivityCreateTransactionOutput$Outbound` instead. */
   export type Outbound = V2ActivityCreateTransactionOutput$Outbound;
+}
+
+export function v2ActivityCreateTransactionOutputToJSON(
+  v2ActivityCreateTransactionOutput: V2ActivityCreateTransactionOutput,
+): string {
+  return JSON.stringify(
+    V2ActivityCreateTransactionOutput$outboundSchema.parse(
+      v2ActivityCreateTransactionOutput,
+    ),
+  );
+}
+
+export function v2ActivityCreateTransactionOutputFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityCreateTransactionOutput, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityCreateTransactionOutput$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityCreateTransactionOutput' from JSON`,
+  );
 }

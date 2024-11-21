@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetInfoResponse = {
@@ -93,4 +96,22 @@ export namespace V2GetInfoResponse$ {
   export const outboundSchema = V2GetInfoResponse$outboundSchema;
   /** @deprecated use `V2GetInfoResponse$Outbound` instead. */
   export type Outbound = V2GetInfoResponse$Outbound;
+}
+
+export function v2GetInfoResponseToJSON(
+  v2GetInfoResponse: V2GetInfoResponse,
+): string {
+  return JSON.stringify(
+    V2GetInfoResponse$outboundSchema.parse(v2GetInfoResponse),
+  );
+}
+
+export function v2GetInfoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInfoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInfoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInfoResponse' from JSON`,
+  );
 }

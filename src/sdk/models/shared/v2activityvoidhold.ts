@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ActivityVoidHold = {
   id: string;
@@ -42,4 +45,22 @@ export namespace V2ActivityVoidHold$ {
   export const outboundSchema = V2ActivityVoidHold$outboundSchema;
   /** @deprecated use `V2ActivityVoidHold$Outbound` instead. */
   export type Outbound = V2ActivityVoidHold$Outbound;
+}
+
+export function v2ActivityVoidHoldToJSON(
+  v2ActivityVoidHold: V2ActivityVoidHold,
+): string {
+  return JSON.stringify(
+    V2ActivityVoidHold$outboundSchema.parse(v2ActivityVoidHold),
+  );
+}
+
+export function v2ActivityVoidHoldFromJSON(
+  jsonString: string,
+): SafeParseResult<V2ActivityVoidHold, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2ActivityVoidHold$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ActivityVoidHold' from JSON`,
+  );
 }

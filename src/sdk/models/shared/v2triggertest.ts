@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Filter = {
   error?: string | undefined;
@@ -55,6 +58,20 @@ export namespace Filter$ {
   export type Outbound = Filter$Outbound;
 }
 
+export function filterToJSON(filter: Filter): string {
+  return JSON.stringify(Filter$outboundSchema.parse(filter));
+}
+
+export function filterFromJSON(
+  jsonString: string,
+): SafeParseResult<Filter, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Filter$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Filter' from JSON`,
+  );
+}
+
 /** @internal */
 export const Variables$inboundSchema: z.ZodType<
   Variables,
@@ -94,6 +111,20 @@ export namespace Variables$ {
   export type Outbound = Variables$Outbound;
 }
 
+export function variablesToJSON(variables: Variables): string {
+  return JSON.stringify(Variables$outboundSchema.parse(variables));
+}
+
+export function variablesFromJSON(
+  jsonString: string,
+): SafeParseResult<Variables, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Variables$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Variables' from JSON`,
+  );
+}
+
 /** @internal */
 export const V2TriggerTest$inboundSchema: z.ZodType<
   V2TriggerTest,
@@ -131,4 +162,18 @@ export namespace V2TriggerTest$ {
   export const outboundSchema = V2TriggerTest$outboundSchema;
   /** @deprecated use `V2TriggerTest$Outbound` instead. */
   export type Outbound = V2TriggerTest$Outbound;
+}
+
+export function v2TriggerTestToJSON(v2TriggerTest: V2TriggerTest): string {
+  return JSON.stringify(V2TriggerTest$outboundSchema.parse(v2TriggerTest));
+}
+
+export function v2TriggerTestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2TriggerTest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2TriggerTest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2TriggerTest' from JSON`,
+  );
 }

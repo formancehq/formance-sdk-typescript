@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   Reconciliation,
   Reconciliation$inboundSchema,
@@ -75,6 +78,27 @@ export namespace ReconciliationsCursorResponseCursor$ {
   export type Outbound = ReconciliationsCursorResponseCursor$Outbound;
 }
 
+export function reconciliationsCursorResponseCursorToJSON(
+  reconciliationsCursorResponseCursor: ReconciliationsCursorResponseCursor,
+): string {
+  return JSON.stringify(
+    ReconciliationsCursorResponseCursor$outboundSchema.parse(
+      reconciliationsCursorResponseCursor,
+    ),
+  );
+}
+
+export function reconciliationsCursorResponseCursorFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconciliationsCursorResponseCursor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) =>
+      ReconciliationsCursorResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconciliationsCursorResponseCursor' from JSON`,
+  );
+}
+
 /** @internal */
 export const ReconciliationsCursorResponse$inboundSchema: z.ZodType<
   ReconciliationsCursorResponse,
@@ -109,4 +133,24 @@ export namespace ReconciliationsCursorResponse$ {
   export const outboundSchema = ReconciliationsCursorResponse$outboundSchema;
   /** @deprecated use `ReconciliationsCursorResponse$Outbound` instead. */
   export type Outbound = ReconciliationsCursorResponse$Outbound;
+}
+
+export function reconciliationsCursorResponseToJSON(
+  reconciliationsCursorResponse: ReconciliationsCursorResponse,
+): string {
+  return JSON.stringify(
+    ReconciliationsCursorResponse$outboundSchema.parse(
+      reconciliationsCursorResponse,
+    ),
+  );
+}
+
+export function reconciliationsCursorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ReconciliationsCursorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ReconciliationsCursorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ReconciliationsCursorResponse' from JSON`,
+  );
 }

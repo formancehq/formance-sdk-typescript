@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AddMetadataToAccountRequest = {
   /**
@@ -90,6 +93,26 @@ export namespace AddMetadataToAccountRequest$ {
   export type Outbound = AddMetadataToAccountRequest$Outbound;
 }
 
+export function addMetadataToAccountRequestToJSON(
+  addMetadataToAccountRequest: AddMetadataToAccountRequest,
+): string {
+  return JSON.stringify(
+    AddMetadataToAccountRequest$outboundSchema.parse(
+      addMetadataToAccountRequest,
+    ),
+  );
+}
+
+export function addMetadataToAccountRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<AddMetadataToAccountRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddMetadataToAccountRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddMetadataToAccountRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const AddMetadataToAccountResponse$inboundSchema: z.ZodType<
   AddMetadataToAccountResponse,
@@ -144,4 +167,24 @@ export namespace AddMetadataToAccountResponse$ {
   export const outboundSchema = AddMetadataToAccountResponse$outboundSchema;
   /** @deprecated use `AddMetadataToAccountResponse$Outbound` instead. */
   export type Outbound = AddMetadataToAccountResponse$Outbound;
+}
+
+export function addMetadataToAccountResponseToJSON(
+  addMetadataToAccountResponse: AddMetadataToAccountResponse,
+): string {
+  return JSON.stringify(
+    AddMetadataToAccountResponse$outboundSchema.parse(
+      addMetadataToAccountResponse,
+    ),
+  );
+}
+
+export function addMetadataToAccountResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AddMetadataToAccountResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AddMetadataToAccountResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AddMetadataToAccountResponse' from JSON`,
+  );
 }

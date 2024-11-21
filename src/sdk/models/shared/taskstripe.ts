@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   PaymentStatus,
   PaymentStatus$inboundSchema,
@@ -70,6 +73,24 @@ export namespace TaskStripeDescriptor$ {
   export type Outbound = TaskStripeDescriptor$Outbound;
 }
 
+export function taskStripeDescriptorToJSON(
+  taskStripeDescriptor: TaskStripeDescriptor,
+): string {
+  return JSON.stringify(
+    TaskStripeDescriptor$outboundSchema.parse(taskStripeDescriptor),
+  );
+}
+
+export function taskStripeDescriptorFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskStripeDescriptor, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskStripeDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskStripeDescriptor' from JSON`,
+  );
+}
+
 /** @internal */
 export const TaskStripeState$inboundSchema: z.ZodType<
   TaskStripeState,
@@ -98,6 +119,22 @@ export namespace TaskStripeState$ {
   export const outboundSchema = TaskStripeState$outboundSchema;
   /** @deprecated use `TaskStripeState$Outbound` instead. */
   export type Outbound = TaskStripeState$Outbound;
+}
+
+export function taskStripeStateToJSON(
+  taskStripeState: TaskStripeState,
+): string {
+  return JSON.stringify(TaskStripeState$outboundSchema.parse(taskStripeState));
+}
+
+export function taskStripeStateFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskStripeState, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskStripeState$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskStripeState' from JSON`,
+  );
 }
 
 /** @internal */
@@ -155,4 +192,18 @@ export namespace TaskStripe$ {
   export const outboundSchema = TaskStripe$outboundSchema;
   /** @deprecated use `TaskStripe$Outbound` instead. */
   export type Outbound = TaskStripe$Outbound;
+}
+
+export function taskStripeToJSON(taskStripe: TaskStripe): string {
+  return JSON.stringify(TaskStripe$outboundSchema.parse(taskStripe));
+}
+
+export function taskStripeFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskStripe, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskStripe$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskStripe' from JSON`,
+  );
 }

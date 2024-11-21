@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2GetInstanceHistoryRequest = {
@@ -68,6 +71,26 @@ export namespace V2GetInstanceHistoryRequest$ {
   export const outboundSchema = V2GetInstanceHistoryRequest$outboundSchema;
   /** @deprecated use `V2GetInstanceHistoryRequest$Outbound` instead. */
   export type Outbound = V2GetInstanceHistoryRequest$Outbound;
+}
+
+export function v2GetInstanceHistoryRequestToJSON(
+  v2GetInstanceHistoryRequest: V2GetInstanceHistoryRequest,
+): string {
+  return JSON.stringify(
+    V2GetInstanceHistoryRequest$outboundSchema.parse(
+      v2GetInstanceHistoryRequest,
+    ),
+  );
+}
+
+export function v2GetInstanceHistoryRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceHistoryRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceHistoryRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceHistoryRequest' from JSON`,
+  );
 }
 
 /** @internal */
@@ -135,4 +158,24 @@ export namespace V2GetInstanceHistoryResponse$ {
   export const outboundSchema = V2GetInstanceHistoryResponse$outboundSchema;
   /** @deprecated use `V2GetInstanceHistoryResponse$Outbound` instead. */
   export type Outbound = V2GetInstanceHistoryResponse$Outbound;
+}
+
+export function v2GetInstanceHistoryResponseToJSON(
+  v2GetInstanceHistoryResponse: V2GetInstanceHistoryResponse,
+): string {
+  return JSON.stringify(
+    V2GetInstanceHistoryResponse$outboundSchema.parse(
+      v2GetInstanceHistoryResponse,
+    ),
+  );
+}
+
+export function v2GetInstanceHistoryResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<V2GetInstanceHistoryResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => V2GetInstanceHistoryResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2GetInstanceHistoryResponse' from JSON`,
+  );
 }

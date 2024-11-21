@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../../lib/primitives.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CancelEventRequest = {
   /**
@@ -63,6 +66,24 @@ export namespace CancelEventRequest$ {
   export type Outbound = CancelEventRequest$Outbound;
 }
 
+export function cancelEventRequestToJSON(
+  cancelEventRequest: CancelEventRequest,
+): string {
+  return JSON.stringify(
+    CancelEventRequest$outboundSchema.parse(cancelEventRequest),
+  );
+}
+
+export function cancelEventRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelEventRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CancelEventRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelEventRequest' from JSON`,
+  );
+}
+
 /** @internal */
 export const CancelEventResponse$inboundSchema: z.ZodType<
   CancelEventResponse,
@@ -117,4 +138,22 @@ export namespace CancelEventResponse$ {
   export const outboundSchema = CancelEventResponse$outboundSchema;
   /** @deprecated use `CancelEventResponse$Outbound` instead. */
   export type Outbound = CancelEventResponse$Outbound;
+}
+
+export function cancelEventResponseToJSON(
+  cancelEventResponse: CancelEventResponse,
+): string {
+  return JSON.stringify(
+    CancelEventResponse$outboundSchema.parse(cancelEventResponse),
+  );
+}
+
+export function cancelEventResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<CancelEventResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => CancelEventResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'CancelEventResponse' from JSON`,
+  );
 }

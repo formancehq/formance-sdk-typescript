@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BalanceWithAssets = {
   assets: { [k: string]: bigint };
@@ -56,4 +59,22 @@ export namespace BalanceWithAssets$ {
   export const outboundSchema = BalanceWithAssets$outboundSchema;
   /** @deprecated use `BalanceWithAssets$Outbound` instead. */
   export type Outbound = BalanceWithAssets$Outbound;
+}
+
+export function balanceWithAssetsToJSON(
+  balanceWithAssets: BalanceWithAssets,
+): string {
+  return JSON.stringify(
+    BalanceWithAssets$outboundSchema.parse(balanceWithAssets),
+  );
+}
+
+export function balanceWithAssetsFromJSON(
+  jsonString: string,
+): SafeParseResult<BalanceWithAssets, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BalanceWithAssets$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalanceWithAssets' from JSON`,
+  );
 }

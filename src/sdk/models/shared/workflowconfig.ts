@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WorkflowConfig = {
   name?: string | undefined;
@@ -46,4 +49,18 @@ export namespace WorkflowConfig$ {
   export const outboundSchema = WorkflowConfig$outboundSchema;
   /** @deprecated use `WorkflowConfig$Outbound` instead. */
   export type Outbound = WorkflowConfig$Outbound;
+}
+
+export function workflowConfigToJSON(workflowConfig: WorkflowConfig): string {
+  return JSON.stringify(WorkflowConfig$outboundSchema.parse(workflowConfig));
+}
+
+export function workflowConfigFromJSON(
+  jsonString: string,
+): SafeParseResult<WorkflowConfig, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => WorkflowConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'WorkflowConfig' from JSON`,
+  );
 }
