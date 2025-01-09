@@ -40,3 +40,30 @@ actions:
     remove: true
   - target: $["paths"]["/api/payments/accounts"]["get"]["requestBody"]
     remove: true
+  - target: $["paths"]["/api/payments/v3/accounts"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/accounts"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/payments"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/payments"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/pools"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/pools"]["get"]["requestBody"]
+    remove: true
+
+
