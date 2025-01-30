@@ -1,21 +1,17 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    my-source:
+    stacks-source:
         inputs:
-            - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+            - location: https://github.com/formancehq/stack/releases/download/v3.0.0-rc.1/generate.json
         overlays:
             - location: ./overlay.yaml
         registry:
-            location: registry.speakeasyapi.dev/formance/formance/my-source
+            location: registry.speakeasyapi.dev/formance/formance/stacks-source
 targets:
     formance-sdk-typescript:
         target: typescript
-        source: my-source
+        source: stacks-source
         publish:
             npm:
                 token: $NPM_TOKEN
-        codeSamples:
-            registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
-            blocking: false
