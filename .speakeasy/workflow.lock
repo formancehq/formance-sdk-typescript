@@ -1,7 +1,7 @@
 speakeasyVersion: 1.441.1
 sources:
-    my-source:
-        sourceNamespace: my-source
+    stacks-source:
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
         sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
         tags:
@@ -9,31 +9,31 @@ sources:
             - speakeasy-sdk-regen-1732202930
 targets:
     formance-sdk-typescript:
-        source: my-source
-        sourceNamespace: my-source
+        source: stacks-source
+        sourceNamespace: stacks-source
         sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
         sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
-        codeSamplesNamespace: my-source-code-samples
+        codeSamplesNamespace: stacks-source-code-samples
         codeSamplesRevisionDigest: sha256:742392eb0d92e98b50315d6fddf26dfb71a3add09553a08412d18982efc85d10
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        my-source:
+        stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v2.1.2/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.0-rc.1/generate.json
             overlays:
                 - location: ./overlay.yaml
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source
     targets:
         formance-sdk-typescript:
             target: typescript
-            source: my-source
+            source: stacks-source
             publish:
                 npm:
                     token: $NPM_TOKEN
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-code-samples
                 blocking: false
