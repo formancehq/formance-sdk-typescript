@@ -65,5 +65,23 @@ actions:
       - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
   - target: $["paths"]["/api/payments/v3/pools"]["get"]["requestBody"]
     remove: true
-
-
+  - target: $["paths"]["/api/payments/v3/connectors"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/connectors"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/schedules"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/schedules"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["requestBody"]
+    remove: true
+- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["parameters"]
+    update:
+      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["requestBody"]
+    remove: true
