@@ -80,7 +80,7 @@ actions:
       - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
   - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["requestBody"]
     remove: true
-- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["parameters"]
+  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["parameters"]
     update:
       - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
   - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["requestBody"]
