@@ -70,10 +70,10 @@ actions:
       - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
   - target: $["paths"]["/api/payments/v3/connectors"]["get"]["requestBody"]
     remove: true
-  - target: $["paths"]["/api/payments/v3/schedules"]["get"]["parameters"]
+  - target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["parameters"]
     update:
       - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/schedules"]["get"]["requestBody"]
+  - target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["requestBody"]
     remove: true
   - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["parameters"]
     update:
