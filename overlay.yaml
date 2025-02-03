@@ -55,7 +55,7 @@ actions:
       - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
   - target: $["paths"]["/api/payments/v3/payments"]["get"]["requestBody"]
     remove: true
-      - target: $["paths"]["/api/payments/v3/pools"]["get"]["parameters"]
+  - target: $["paths"]["/api/payments/v3/pools"]["get"]["parameters"]
     update:
       - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
   - target: $["paths"]["/api/payments/v3/pools"]["get"]["requestBody"]
