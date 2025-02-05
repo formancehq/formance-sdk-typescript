@@ -59,7 +59,7 @@ let value: V2GetTransactionResponse = {
       },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2022-01-22T00:51:28.398Z"),
+      timestamp: new Date("2023-01-22T00:51:28.398Z"),
     },
   },
 };

@@ -10,14 +10,14 @@ let value: ReconciliationsCursorResponseCursor = {
     {
       createdAt: new Date("2021-01-01T00:00:00.000Z"),
       driftBalances: {
-        "key": BigInt("944689"),
+        "key": BigInt("342458"),
       },
       id: "XXX",
       ledgerBalances: {
-        "key": BigInt("663457"),
+        "key": BigInt("979244"),
       },
       paymentsBalances: {
-        "key": BigInt("525160"),
+        "key": BigInt("849818"),
       },
       policyID: "XXX",
       reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),

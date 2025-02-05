@@ -8,8 +8,8 @@ import { GetHoldsResponseCursor } from "@formance/formance-sdk/sdk/models/shared
 let value: GetHoldsResponseCursor = {
   data: [
     {
-      description: "unethically farmer or",
-      id: "db87e31a-b944-4947-8583-3b63d61b499f",
+      description: "adjourn suitcase blowgun really arid because consequently",
+      id: "9fa1d619-365a-4613-b8c0-919d37c22ebb",
       metadata: {
         "key": "<value>",
       },

@@ -5,7 +5,7 @@
 ```typescript
 import { OrchestrationPaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: OrchestrationPaymentStatus = OrchestrationPaymentStatus.Terminated;
+let value: OrchestrationPaymentStatus = OrchestrationPaymentStatus.Pending;
 ```
 
 ## Values

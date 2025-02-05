@@ -13,12 +13,7 @@ let value: OrchestrationCreditWalletRequest = {
   metadata: {
     "key": "",
   },
-  sources: [
-    {
-      identifier: "<value>",
-      type: "<value>",
-    },
-  ],
+  sources: [],
 };
 ```
 

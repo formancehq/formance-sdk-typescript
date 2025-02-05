@@ -6,7 +6,7 @@
 import { WalletsTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletsTransaction = {
-  id: 566915,
+  id: 235556,
   metadata: {
     "key": "<value>",
   },
@@ -47,7 +47,7 @@ let value: WalletsTransaction = {
     },
   },
   reference: "ref:001",
-  timestamp: new Date("2022-01-31T17:24:00.756Z"),
+  timestamp: new Date("2025-03-17T13:08:49.732Z"),
 };
 ```
 

@@ -10,7 +10,6 @@ let value: MoneycorpConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My Moneycorp Account",
-  pollingPeriod: "60s",
 };
 ```
 

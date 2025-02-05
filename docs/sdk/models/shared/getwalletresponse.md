@@ -10,12 +10,12 @@ let value: GetWalletResponse = {
     balances: {
       main: {
         assets: {
-          "key": BigInt("496440"),
+          "key": BigInt("213371"),
         },
       },
     },
-    createdAt: new Date("2023-10-19T22:57:45.544Z"),
-    id: "ae4d7acb-cace-4e5f-9097-3818d25a5657",
+    createdAt: new Date("2025-06-01T14:18:08.175Z"),
+    id: "f7c2cf84-2e57-466c-beaf-39abc5e24794",
     ledger: "<value>",
     metadata: {
       "key": "<value>",

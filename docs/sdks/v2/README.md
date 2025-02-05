@@ -626,6 +626,12 @@ async function run() {
           destination: "users:002",
           source: "users:001",
         },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
       ],
       reference: "ref:001",
       script: {
@@ -677,6 +683,12 @@ async function run() {
         "admin": "true",
       },
       postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
         {
           amount: BigInt("100"),
           asset: "COIN",
@@ -754,7 +766,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2.deleteAccountMetadata({
-    address: "3680 Emile Grove",
+    address: "96609 Cummings Canyon",
     key: "foo",
     ledger: "ledger001",
   });
@@ -785,7 +797,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV2DeleteAccountMetadata(sdk, {
-    address: "3680 Emile Grove",
+    address: "96609 Cummings Canyon",
     key: "foo",
     ledger: "ledger001",
   });

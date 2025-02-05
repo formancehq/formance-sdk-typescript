@@ -7,12 +7,12 @@ import { PaymentStatus, TaskModulr } from "@formance/formance-sdk/sdk/models/sha
 
 let value: TaskModulr = {
   connectorID: "<id>",
-  createdAt: new Date("2022-07-10T19:03:58.934Z"),
+  createdAt: new Date("2024-03-13T20:59:08.982Z"),
   descriptor: {},
-  id: "72766324-3bb9-4191-9053-9ebcfa99d6ca",
+  id: "13c3fb79-9f24-4b3d-8520-9d4ec0993570",
   state: {},
-  status: PaymentStatus.Pending,
-  updatedAt: new Date("2022-08-19T01:44:07.509Z"),
+  status: PaymentStatus.Succeeded,
+  updatedAt: new Date("2024-02-20T15:25:02.227Z"),
 };
 ```
 

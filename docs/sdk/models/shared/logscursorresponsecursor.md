@@ -11,7 +11,7 @@ let value: LogsCursorResponseCursor = {
       data: {
         "key": "<value>",
       },
-      date: new Date("2024-04-20T04:24:39.583Z"),
+      date: new Date("2025-11-12T17:32:52.430Z"),
       hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
       id: 1234,
       type: Type.SetMetadata,

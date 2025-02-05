@@ -7,8 +7,8 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "before inside anticodon digitize tribe glider weakly atop",
-    id: "8eaa84f7-4b95-4431-ba83-00b3402d3f24",
+    description: "apud but boo",
+    id: "5a9174a2-a74b-4320-bd78-1158b7d60615",
     metadata: {
       "key": "<value>",
     },

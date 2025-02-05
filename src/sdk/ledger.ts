@@ -3,13 +3,13 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { Sdkv1 } from "./sdkv1.js";
+import { V1 } from "./v1.js";
 import { V2 } from "./v2.js";
 
 export class Ledger extends ClientSDK {
-  private _v1?: Sdkv1;
-  get v1(): Sdkv1 {
-    return (this._v1 ??= new Sdkv1(this._options));
+  private _v1?: V1;
+  get v1(): V1 {
+    return (this._v1 ??= new V1(this._options));
   }
 
   private _v2?: V2;

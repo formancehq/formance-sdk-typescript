@@ -27,7 +27,7 @@ let value: V2RevertTransactionResponse = {
       ],
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2024-02-04T09:09:59.216Z"),
+      timestamp: new Date("2025-02-03T09:09:59.216Z"),
     },
   },
 };

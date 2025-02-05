@@ -10,7 +10,6 @@ let value: ModulrConfig = {
   apiSecret: "XXX",
   endpoint: "XXX",
   name: "My Modulr Account",
-  pollingPeriod: "60s",
 };
 ```
 

@@ -63,7 +63,6 @@ let value: ListAccountsRequest = {
     "48": "e",
     "49": "2",
   },
-  pageSize: 100,
 };
 ```
 

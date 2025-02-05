@@ -17,5 +17,5 @@ targets:
                 token: $NPM_TOKEN
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                location: registry.speakeasyapi.dev/formance/formance/my-source-typescript-code-samples
             blocking: false

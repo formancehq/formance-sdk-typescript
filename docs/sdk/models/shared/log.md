@@ -9,10 +9,10 @@ let value: Log = {
   data: {
     "key": "<value>",
   },
-  date: new Date("2023-08-24T21:19:59.665Z"),
+  date: new Date("2024-11-30T21:58:32.911Z"),
   hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
   id: 1234,
-  type: Type.SetMetadata,
+  type: Type.NewTransaction,
 };
 ```
 

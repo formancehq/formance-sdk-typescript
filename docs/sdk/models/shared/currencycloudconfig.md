@@ -10,7 +10,6 @@ let value: CurrencyCloudConfig = {
   endpoint: "XXX",
   loginID: "XXX",
   name: "My CurrencyCloud Account",
-  pollingPeriod: "60s",
 };
 ```
 

@@ -7,8 +7,8 @@ import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: DebitWalletResponse = {
   data: {
-    description: "sans beside finally before",
-    id: "58b7d606-15fd-4366-bc00-1a6d47b85282",
+    description: "judgementally furthermore meh",
+    id: "00e6e764-149c-48c2-a9e3-3bc35a697cdd",
     metadata: {
       "key": "<value>",
     },

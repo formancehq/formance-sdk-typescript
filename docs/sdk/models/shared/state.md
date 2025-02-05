@@ -5,7 +5,7 @@
 ```typescript
 import { State } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: State = State.ToDo;
+let value: State = State.Done;
 ```
 
 ## Values

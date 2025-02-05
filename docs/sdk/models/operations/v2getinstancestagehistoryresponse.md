@@ -8,14 +8,14 @@ import { Scheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/s
 
 let value: V2GetInstanceStageHistoryResponse = {
   contentType: "<value>",
-  statusCode: 305,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetWorkflowInstanceHistoryStageResponse: {
     data: [
       {
-        attempt: 961937,
+        attempt: 292147,
         input: {
           createTransaction: {
             data: {
@@ -55,12 +55,7 @@ let value: V2GetInstanceStageHistoryResponse = {
               metadata: {
                 "key": "",
               },
-              sources: [
-                {
-                  identifier: "<value>",
-                  type: "<value>",
-                },
-              ],
+              sources: [],
             },
           },
           debitWallet: {
@@ -80,7 +75,6 @@ let value: V2GetInstanceStageHistoryResponse = {
             asset: "USD",
             destination: "acct_1Gqj58KZcSIg2N2q",
             metadata: {},
-            waitingValidation: false,
           },
         },
         name: "<value>",
@@ -100,7 +94,7 @@ let value: V2GetInstanceStageHistoryResponse = {
                   },
                 ],
                 reference: "ref:001",
-                timestamp: new Date("2022-09-21T22:45:36.817Z"),
+                timestamp: new Date("2023-09-21T22:45:36.817Z"),
                 txid: BigInt("100294"),
               },
             ],
@@ -143,14 +137,14 @@ let value: V2GetInstanceStageHistoryResponse = {
                 {
                   absolute: false,
                   amount: BigInt("100"),
-                  date: new Date("2022-01-19T00:09:53.916Z"),
+                  date: new Date("2023-01-19T00:09:53.916Z"),
                   raw: {},
                   status: V2PaymentStatus.Cancelled,
                 },
               ],
               asset: "USD",
               connectorID: "<id>",
-              createdAt: new Date("2024-01-05T05:29:05.430Z"),
+              createdAt: new Date("2025-01-04T05:29:05.430Z"),
               destinationAccountID: "<id>",
               id: "XXX",
               initialAmount: BigInt("100"),
@@ -167,7 +161,7 @@ let value: V2GetInstanceStageHistoryResponse = {
             cursor: {
               data: [
                 {
-                  createdAt: new Date("2022-03-12T02:16:45.552Z"),
+                  createdAt: new Date("2023-03-12T02:16:45.552Z"),
                   id: "7fe5f3ff-cad4-4d90-b52f-77a52d3831df",
                   ledger: "<value>",
                   metadata: {
@@ -183,7 +177,7 @@ let value: V2GetInstanceStageHistoryResponse = {
             },
           },
         },
-        startedAt: new Date("2024-09-20T14:02:09.066Z"),
+        startedAt: new Date("2025-09-20T14:02:09.066Z"),
         terminated: false,
       },
     ],

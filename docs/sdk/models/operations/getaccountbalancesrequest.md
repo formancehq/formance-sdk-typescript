@@ -8,7 +8,6 @@ import { GetAccountBalancesRequest } from "@formance/formance-sdk/sdk/models/ope
 let value: GetAccountBalancesRequest = {
   accountId: "XXX",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  pageSize: 100,
   sort: [
     "date:asc",
     "status:desc",

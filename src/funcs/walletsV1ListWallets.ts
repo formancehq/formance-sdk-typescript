@@ -9,6 +9,7 @@ import {
   queryJoin,
 } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -71,16 +72,16 @@ export async function walletsV1ListWallets(
     }),
   );
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const securityInput = await extractSecurity(client._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     operationID: "listWallets",
-    oAuth2Scopes: ["auth:read", "wallets:read"],
+    oAuth2Scopes: ["ledger:read", "wallets:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -94,6 +95,7 @@ export async function walletsV1ListWallets(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,

@@ -20,8 +20,8 @@ let value: V2ActivityCreateTransactionOutput = {
         },
       ],
       reference: "ref:001",
-      timestamp: new Date("2024-08-18T09:11:38.486Z"),
-      txid: BigInt("253916"),
+      timestamp: new Date("2025-10-10T09:16:42.423Z"),
+      txid: BigInt("974788"),
     },
   ],
 };

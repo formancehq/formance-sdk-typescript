@@ -10,7 +10,6 @@ let value: V2ActivityStripeTransfer = {
   asset: "USD",
   destination: "acct_1Gqj58KZcSIg2N2q",
   metadata: {},
-  waitingValidation: false,
 };
 ```
 
