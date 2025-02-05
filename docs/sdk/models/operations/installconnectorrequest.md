@@ -9,12 +9,12 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 let value: InstallConnectorRequest = {
   connectorConfig: {
     apiKey: "XXX",
-    clientID: "XXX",
     endpoint: "XXX",
-    name: "My Moneycorp Account",
-    pollingPeriod: "60s",
+    loginID: "XXX",
+    name: "My CurrencyCloud Account",
+    pollingPeriod: "120s",
   },
-  connector: Connector.Stripe,
+  connector: Connector.Adyen,
 };
 ```
 

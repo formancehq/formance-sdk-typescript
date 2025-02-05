@@ -18,8 +18,8 @@ let value: OrchestrationV2Transaction = {
     },
   ],
   reference: "ref:001",
-  timestamp: new Date("2022-03-28T08:49:02.228Z"),
-  txid: BigInt("748656"),
+  timestamp: new Date("2024-05-08T01:09:28.036Z"),
+  txid: BigInt("227129"),
 };
 ```
 

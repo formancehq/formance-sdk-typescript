@@ -10,7 +10,6 @@ let value: AdyenConfig = {
   hmacKey: "XXX",
   liveEndpointPrefix: "XXX",
   name: "My Adyen Account",
-  pollingPeriod: "60s",
 };
 ```
 

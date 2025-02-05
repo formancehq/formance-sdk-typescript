@@ -6,8 +6,8 @@
 import { OrchestrationWallet } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: OrchestrationWallet = {
-  createdAt: new Date("2022-11-05T11:21:31.834Z"),
-  id: "6ed9306a-dd03-453c-8c8f-2e12b196becd",
+  createdAt: new Date("2025-03-22T07:24:15.908Z"),
+  id: "accdbfe9-90f2-4bd5-a31b-7be2e64ff3a1",
   ledger: "<value>",
   metadata: {
     "key": "<value>",

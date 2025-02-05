@@ -12,8 +12,8 @@ let value: GetHoldsResponse = {
       data: [
         {
           description:
-            "uh-huh bathrobe submissive meh nor mmm elevator utter heavily",
-          id: "38b18f3a-907b-40e8-a03f-914706739c39",
+            "contravene jaggedly programme ecliptic make woot saw husband powerless",
+          id: "66c530ee-1521-4e0f-b1d9-55c5a87e8db0",
           metadata: {
             "key": "<value>",
           },
@@ -26,7 +26,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 508,
+  statusCode: 226,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -10,6 +10,7 @@ import {
   queryJoin,
 } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -82,16 +83,16 @@ export async function ledgerV2ListAccounts(
     }, { explode: false }),
   );
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const securityInput = await extractSecurity(client._options.security);
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
     operationID: "v2ListAccounts",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    oAuth2Scopes: ["ledger:read", "ledger:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -105,6 +106,7 @@ export async function ledgerV2ListAccounts(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,

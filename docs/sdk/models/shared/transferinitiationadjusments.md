@@ -7,9 +7,9 @@ import { TransferInitiationAdjusments, TransferInitiationStatus } from "@formanc
 
 let value: TransferInitiationAdjusments = {
   adjustmentID: "<id>",
-  createdAt: new Date("2022-03-17T09:07:57.019Z"),
+  createdAt: new Date("2023-07-15T03:50:42.259Z"),
   error: "<value>",
-  status: TransferInitiationStatus.WaitingForValidation,
+  status: TransferInitiationStatus.Reversed,
 };
 ```
 

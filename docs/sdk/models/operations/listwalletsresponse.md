@@ -11,8 +11,8 @@ let value: ListWalletsResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2023-01-19T14:12:42.332Z"),
-          id: "442825ab-06ad-47f4-8074-d34cb8b60081",
+          createdAt: new Date("2023-09-07T04:32:30.698Z"),
+          id: "1b64b5bd-3f24-4257-b8de-3917557b1eb2",
           ledger: "<value>",
           metadata: {
             "key": "<value>",
@@ -26,7 +26,7 @@ let value: ListWalletsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 510,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

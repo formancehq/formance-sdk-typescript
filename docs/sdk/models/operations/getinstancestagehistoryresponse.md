@@ -51,12 +51,7 @@ let value: GetInstanceStageHistoryResponse = {
               metadata: {
                 "key": "",
               },
-              sources: [
-                {
-                  identifier: "<value>",
-                  type: "<value>",
-                },
-              ],
+              sources: [],
             },
           },
           debitWallet: {
@@ -76,14 +71,13 @@ let value: GetInstanceStageHistoryResponse = {
             asset: "USD",
             destination: "acct_1Gqj58KZcSIg2N2q",
             metadata: {},
-            waitingValidation: false,
           },
         },
         name: "<value>",
         output: {
           createTransaction: {
             data: {
-              id: BigInt("31838"),
+              id: BigInt("704415"),
               metadata: {
                 "admin": "true",
               },
@@ -97,7 +91,7 @@ let value: GetInstanceStageHistoryResponse = {
               ],
               reference: "ref:001",
               reverted: false,
-              timestamp: new Date("2022-06-30T12:06:54.333Z"),
+              timestamp: new Date("2023-02-04T21:29:28.328Z"),
             },
           },
           getAccount: {
@@ -138,23 +132,23 @@ let value: GetInstanceStageHistoryResponse = {
                 {
                   absolute: false,
                   amount: BigInt("100"),
-                  date: new Date("2023-11-13T03:22:04.343Z"),
+                  date: new Date("2023-06-30T12:06:54.333Z"),
                   raw: {},
                   status: OrchestrationPaymentStatus.Failed,
                 },
               ],
               asset: "USD",
               connectorID: "<id>",
-              createdAt: new Date("2022-09-18T17:31:57.984Z"),
+              createdAt: new Date("2024-09-24T15:25:14.861Z"),
               destinationAccountID: "<id>",
               id: "XXX",
               initialAmount: BigInt("100"),
               metadata: {},
               raw: {},
               reference: "<value>",
-              scheme: OrchestrationPaymentScheme.Unknown,
+              scheme: OrchestrationPaymentScheme.Discover,
               sourceAccountID: "<id>",
-              status: OrchestrationPaymentStatus.Failed,
+              status: OrchestrationPaymentStatus.Cancelled,
               type: OrchestrationPaymentType.Transfer,
             },
           },
@@ -162,8 +156,8 @@ let value: GetInstanceStageHistoryResponse = {
             cursor: {
               data: [
                 {
-                  createdAt: new Date("2023-10-09T12:59:31.265Z"),
-                  id: "b4632fb7-3406-44b6-a201-a78ef3a40c56",
+                  createdAt: new Date("2024-08-10T01:17:06.903Z"),
+                  id: "9b4632fb-7340-464b-9620-1a78ef3a40c5",
                   ledger: "<value>",
                   metadata: {
                     "key": "<value>",
@@ -179,7 +173,7 @@ let value: GetInstanceStageHistoryResponse = {
           },
           revertTransaction: {
             data: {
-              id: BigInt("831049"),
+              id: BigInt("588317"),
               metadata: {
                 "admin": "true",
               },
@@ -193,16 +187,16 @@ let value: GetInstanceStageHistoryResponse = {
               ],
               reference: "ref:001",
               reverted: false,
-              timestamp: new Date("2023-11-21T08:44:18.290Z"),
+              timestamp: new Date("2025-06-29T19:53:54.840Z"),
             },
           },
         },
-        startedAt: new Date("2024-08-14T10:12:10.228Z"),
+        startedAt: new Date("2024-11-20T08:44:18.290Z"),
         terminated: false,
       },
     ],
   },
-  statusCode: 207,
+  statusCode: 503,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

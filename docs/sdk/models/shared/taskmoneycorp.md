@@ -7,12 +7,12 @@ import { PaymentStatus, TaskMoneycorp } from "@formance/formance-sdk/sdk/models/
 
 let value: TaskMoneycorp = {
   connectorID: "<id>",
-  createdAt: new Date("2024-04-28T22:11:42.800Z"),
+  createdAt: new Date("2025-08-06T22:08:29.288Z"),
   descriptor: {},
-  id: "7abb0150-66e9-4be7-a04d-e54e5a418e93",
+  id: "6ca403b9-46a2-4668-985c-106e42e25b43",
   state: {},
   status: PaymentStatus.DisputeWon,
-  updatedAt: new Date("2022-12-18T13:17:08.954Z"),
+  updatedAt: new Date("2025-09-25T10:30:22.038Z"),
 };
 ```
 

@@ -11,7 +11,6 @@ let value: ListTransactionsRequest = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   destination: "users:001",
   ledger: "ledger001",
-  pageSize: 100,
   reference: "ref:001",
   source: "users:001",
 };

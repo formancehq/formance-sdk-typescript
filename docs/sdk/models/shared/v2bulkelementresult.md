@@ -16,7 +16,7 @@ const value: shared.Schemas = {
 ```typescript
 const value: shared.V2BulkElementResultCreateTransactionSchemas = {
   data: {
-    id: BigInt("701841"),
+    id: BigInt("139745"),
     metadata: {
       "admin": "true",
     },
@@ -30,7 +30,7 @@ const value: shared.V2BulkElementResultCreateTransactionSchemas = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2022-02-03T02:11:26.549Z"),
+    timestamp: new Date("2023-12-29T08:00:18.342Z"),
   },
   responseType: "<value>",
 };
@@ -59,7 +59,7 @@ const value: shared.V2BulkElementResultErrorSchemas = {
 ```typescript
 const value: shared.V2BulkElementResultRevertTransactionSchemas = {
   data: {
-    id: BigInt("873320"),
+    id: BigInt("51053"),
     metadata: {
       "admin": "true",
     },
@@ -73,7 +73,7 @@ const value: shared.V2BulkElementResultRevertTransactionSchemas = {
     ],
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2023-05-03T03:34:27.990Z"),
+    timestamp: new Date("2023-12-30T01:41:47.858Z"),
   },
   responseType: "<value>",
 };

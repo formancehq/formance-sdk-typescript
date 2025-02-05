@@ -1,20 +1,21 @@
-speakeasyVersion: 1.441.1
+speakeasyVersion: 1.484.1
 sources:
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
-        sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
+        sourceRevisionDigest: sha256:70fca355c99da6e1847b682a588d3982ea2dfd552272e732df17792d489c22c7
+        sourceBlobDigest: sha256:089e883311be156b043a5f5f9dbecbd667b328bcf60fdf15945ade2fe43e1233
         tags:
             - latest
-            - speakeasy-sdk-regen-1732202930
+            - speakeasy-sdk-regen-1737418949
+            - v2.1.2
 targets:
     formance-sdk-typescript:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
-        sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
-        codeSamplesNamespace: my-source-code-samples
-        codeSamplesRevisionDigest: sha256:742392eb0d92e98b50315d6fddf26dfb71a3add09553a08412d18982efc85d10
+        sourceRevisionDigest: sha256:70fca355c99da6e1847b682a588d3982ea2dfd552272e732df17792d489c22c7
+        sourceBlobDigest: sha256:089e883311be156b043a5f5f9dbecbd667b328bcf60fdf15945ade2fe43e1233
+        codeSamplesNamespace: my-source-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:c90a70517146b3b27ea6fcfb902761c772988ad6a57033668c09c436893f858c
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -35,5 +36,5 @@ workflow:
                     token: $NPM_TOKEN
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/my-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/my-source-typescript-code-samples
                 blocking: false

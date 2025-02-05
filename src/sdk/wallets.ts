@@ -3,11 +3,11 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { SDKWalletsV1 } from "./sdkwalletsv1.js";
+import { Sdkv1 } from "./sdkv1.js";
 
 export class Wallets extends ClientSDK {
-  private _v1?: SDKWalletsV1;
-  get v1(): SDKWalletsV1 {
-    return (this._v1 ??= new SDKWalletsV1(this._options));
+  private _v1?: Sdkv1;
+  get v1(): Sdkv1 {
+    return (this._v1 ??= new Sdkv1(this._options));
   }
 }

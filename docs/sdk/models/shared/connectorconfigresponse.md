@@ -9,9 +9,9 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 
 let value: ConnectorConfigResponse = {
   data: {
-    directory: "/tmp/dummypay",
-    filePollingPeriod: "60s",
-    name: "My DummyPay Account",
+    apiKey: "XXX",
+    name: "My Wise Account",
+    pollingPeriod: "120s",
   },
 };
 ```

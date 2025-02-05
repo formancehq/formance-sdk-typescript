@@ -13,12 +13,7 @@ let value: CreditWalletRequest = {
   metadata: {
     "key": "",
   },
-  sources: [
-    {
-      identifier: "<value>",
-      type: "<value>",
-    },
-  ],
+  sources: [],
 };
 ```
 

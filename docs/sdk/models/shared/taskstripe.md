@@ -7,15 +7,15 @@ import { PaymentStatus, TaskStripe } from "@formance/formance-sdk/sdk/models/sha
 
 let value: TaskStripe = {
   connectorID: "<id>",
-  createdAt: new Date("2024-09-18T19:37:34.618Z"),
+  createdAt: new Date("2023-02-07T09:13:36.865Z"),
   descriptor: {
-    account: "46021610",
+    account: "68381295",
     name: "<value>",
   },
-  id: "4a95d448-7728-446b-aec6-9b652bd5c9c6",
+  id: "9020e2d5-c541-447d-b7f8-06b3b80c8174",
   state: {},
-  status: PaymentStatus.Expired,
-  updatedAt: new Date("2022-04-08T06:41:24.174Z"),
+  status: PaymentStatus.Failed,
+  updatedAt: new Date("2025-10-29T02:08:12.174Z"),
 };
 ```
 

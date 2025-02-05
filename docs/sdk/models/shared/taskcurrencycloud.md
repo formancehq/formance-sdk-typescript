@@ -7,12 +7,12 @@ import { PaymentStatus, TaskCurrencyCloud } from "@formance/formance-sdk/sdk/mod
 
 let value: TaskCurrencyCloud = {
   connectorID: "<id>",
-  createdAt: new Date("2023-06-08T00:51:36.478Z"),
+  createdAt: new Date("2024-06-24T07:10:39.639Z"),
   descriptor: {},
-  id: "99f24b3d-5209-4d4e-ac09-93570226bd2c",
+  id: "b1329304-a95d-4448-a772-846bec69b652",
   state: {},
   status: PaymentStatus.DisputeLost,
-  updatedAt: new Date("2024-11-27T19:05:06.518Z"),
+  updatedAt: new Date("2023-12-13T23:26:10.852Z"),
 };
 ```
 

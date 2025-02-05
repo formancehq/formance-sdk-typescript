@@ -7,7 +7,6 @@ import { ListTransferInitiationsRequest } from "@formance/formance-sdk/sdk/model
 
 let value: ListTransferInitiationsRequest = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  pageSize: 100,
   sort: [
     "date:asc",
     "status:desc",

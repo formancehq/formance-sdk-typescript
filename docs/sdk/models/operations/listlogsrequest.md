@@ -9,7 +9,6 @@ let value: ListLogsRequest = {
   after: "1234",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   ledger: "ledger001",
-  pageSize: 100,
 };
 ```
 

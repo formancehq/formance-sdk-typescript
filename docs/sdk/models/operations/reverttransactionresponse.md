@@ -54,7 +54,7 @@ let value: RevertTransactionResponse = {
         },
       },
       reference: "ref:001",
-      timestamp: new Date("2024-12-06T04:47:23.164Z"),
+      timestamp: new Date("2025-12-06T04:47:23.164Z"),
       txid: BigInt("468651"),
     },
   },
