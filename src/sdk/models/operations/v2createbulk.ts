@@ -12,9 +12,21 @@ import * as shared from "../shared/index.js";
 export type V2CreateBulkRequest = {
   requestBody?: Array<shared.V2BulkElement> | undefined;
   /**
+   * Make bulk atomic
+   */
+  atomic?: boolean | undefined;
+  /**
+   * Continue on failure
+   */
+  continueOnFailure?: boolean | undefined;
+  /**
    * Name of the ledger.
    */
   ledger: string;
+  /**
+   * Process bulk elements in parallel
+   */
+  parallel?: boolean | undefined;
 };
 
 export type V2CreateBulkResponse = {
@@ -43,7 +55,10 @@ export const V2CreateBulkRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   RequestBody: z.array(shared.V2BulkElement$inboundSchema).optional(),
+  atomic: z.boolean().optional(),
+  continueOnFailure: z.boolean().optional(),
   ledger: z.string(),
+  parallel: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     "RequestBody": "requestBody",
@@ -53,7 +68,10 @@ export const V2CreateBulkRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type V2CreateBulkRequest$Outbound = {
   RequestBody?: Array<shared.V2BulkElement$Outbound> | undefined;
+  atomic?: boolean | undefined;
+  continueOnFailure?: boolean | undefined;
   ledger: string;
+  parallel?: boolean | undefined;
 };
 
 /** @internal */
@@ -63,7 +81,10 @@ export const V2CreateBulkRequest$outboundSchema: z.ZodType<
   V2CreateBulkRequest
 > = z.object({
   requestBody: z.array(shared.V2BulkElement$outboundSchema).optional(),
+  atomic: z.boolean().optional(),
+  continueOnFailure: z.boolean().optional(),
   ledger: z.string(),
+  parallel: z.boolean().optional(),
 }).transform((v) => {
   return remap$(v, {
     requestBody: "RequestBody",

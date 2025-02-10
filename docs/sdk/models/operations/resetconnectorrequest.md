@@ -7,7 +7,7 @@ import { ResetConnectorRequest } from "@formance/formance-sdk/sdk/models/operati
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ResetConnectorRequest = {
-  connector: Connector.Modulr,
+  connector: Connector.CurrencyCloud,
 };
 ```
 

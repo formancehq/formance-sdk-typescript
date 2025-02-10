@@ -8,7 +8,7 @@ import { Connector, ConnectorsResponseData } from "@formance/formance-sdk/sdk/mo
 let value: ConnectorsResponseData = {
   connectorID: "<id>",
   name: "<value>",
-  provider: Connector.Mangopay,
+  provider: Connector.CurrencyCloud,
 };
 ```
 

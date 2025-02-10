@@ -7,8 +7,8 @@ import { V2StageStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2StageStatus = {
   instanceID: "<id>",
-  stage: 4137.68,
-  startedAt: new Date("2022-06-16T00:41:16.617Z"),
+  stage: 2875.75,
+  startedAt: new Date("2025-04-22T19:44:51.587Z"),
 };
 ```
 

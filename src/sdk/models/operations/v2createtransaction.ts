@@ -27,6 +27,10 @@ export type V2CreateTransactionRequest = {
    */
   dryRun?: boolean | undefined;
   /**
+   * Disable balance checks when passing postings
+   */
+  force?: boolean | undefined;
+  /**
    * Name of the ledger.
    */
   ledger: string;
@@ -60,6 +64,7 @@ export const V2CreateTransactionRequest$inboundSchema: z.ZodType<
   "Idempotency-Key": z.string().optional(),
   V2PostTransaction: shared.V2PostTransaction$inboundSchema,
   dryRun: z.boolean().optional(),
+  force: z.boolean().optional(),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -73,6 +78,7 @@ export type V2CreateTransactionRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
   V2PostTransaction: shared.V2PostTransaction$Outbound;
   dryRun?: boolean | undefined;
+  force?: boolean | undefined;
   ledger: string;
 };
 
@@ -85,6 +91,7 @@ export const V2CreateTransactionRequest$outboundSchema: z.ZodType<
   idempotencyKey: z.string().optional(),
   v2PostTransaction: shared.V2PostTransaction$outboundSchema,
   dryRun: z.boolean().optional(),
+  force: z.boolean().optional(),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {

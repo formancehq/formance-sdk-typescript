@@ -9,8 +9,6 @@
 const value: shared.StripeConfig = {
   apiKey: "XXX",
   name: "My Stripe Account",
-  pageSize: 50,
-  pollingPeriod: "60s",
 };
 ```
 
@@ -19,7 +17,6 @@ const value: shared.StripeConfig = {
 ```typescript
 const value: shared.DummyPayConfig = {
   directory: "/tmp/dummypay",
-  filePollingPeriod: "60s",
   name: "My DummyPay Account",
 };
 ```
@@ -30,7 +27,6 @@ const value: shared.DummyPayConfig = {
 const value: shared.WiseConfig = {
   apiKey: "XXX",
   name: "My Wise Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -42,7 +38,6 @@ const value: shared.ModulrConfig = {
   apiSecret: "XXX",
   endpoint: "XXX",
   name: "My Modulr Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -54,7 +49,6 @@ const value: shared.CurrencyCloudConfig = {
   endpoint: "XXX",
   loginID: "XXX",
   name: "My CurrencyCloud Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -66,7 +60,6 @@ const value: shared.BankingCircleConfig = {
   endpoint: "XXX",
   name: "My Banking Circle Account",
   password: "XXX",
-  pollingPeriod: "60s",
   userCertificate: "XXX",
   userCertificateKey: "XXX",
   username: "XXX",
@@ -81,7 +74,6 @@ const value: shared.MangoPayConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My MangoPay Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -93,7 +85,6 @@ const value: shared.MoneycorpConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My Moneycorp Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -102,12 +93,8 @@ const value: shared.MoneycorpConfig = {
 ```typescript
 const value: shared.AtlarConfig = {
   accessKey: "XXX",
-  baseUrl: "https://api.example.com",
   name: "My Atlar Account",
-  pageSize: 50,
-  pollingPeriod: "60s",
   secret: "XXX",
-  transferInitiationStatusPollingPeriod: "60s",
 };
 ```
 
@@ -119,7 +106,6 @@ const value: shared.AdyenConfig = {
   hmacKey: "XXX",
   liveEndpointPrefix: "XXX",
   name: "My Adyen Account",
-  pollingPeriod: "60s",
 };
 ```
 
@@ -130,7 +116,6 @@ const value: shared.GenericConfig = {
   apiKey: "XXX",
   endpoint: "XXX",
   name: "My Generic Account",
-  pollingPeriod: "60s",
 };
 ```
 

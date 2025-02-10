@@ -7,6 +7,7 @@
 
 ```typescript
 const value: shared.Schemas = {
+  logID: 474185,
   responseType: "<value>",
 };
 ```
@@ -16,9 +17,41 @@ const value: shared.Schemas = {
 ```typescript
 const value: shared.V2BulkElementResultCreateTransactionSchemas = {
   data: {
-    id: BigInt("701841"),
+    id: BigInt("514767"),
     metadata: {
       "admin": "true",
+    },
+    postCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    postCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
     postings: [
       {
@@ -28,10 +61,43 @@ const value: shared.V2BulkElementResultCreateTransactionSchemas = {
         source: "users:001",
       },
     ],
+    preCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    preCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2022-02-03T02:11:26.549Z"),
+    timestamp: new Date("2023-06-03T22:07:16.212Z"),
   },
+  logID: 712893,
   responseType: "<value>",
 };
 ```
@@ -40,6 +106,7 @@ const value: shared.V2BulkElementResultCreateTransactionSchemas = {
 
 ```typescript
 const value: shared.V2BulkElementResultDeleteMetadataSchemas = {
+  logID: 830477,
   responseType: "<value>",
 };
 ```
@@ -50,6 +117,7 @@ const value: shared.V2BulkElementResultDeleteMetadataSchemas = {
 const value: shared.V2BulkElementResultErrorSchemas = {
   errorCode: "<value>",
   errorDescription: "<value>",
+  logID: 57909,
   responseType: "<value>",
 };
 ```
@@ -59,9 +127,41 @@ const value: shared.V2BulkElementResultErrorSchemas = {
 ```typescript
 const value: shared.V2BulkElementResultRevertTransactionSchemas = {
   data: {
-    id: BigInt("873320"),
+    id: BigInt("291389"),
     metadata: {
       "admin": "true",
+    },
+    postCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    postCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
     postings: [
       {
@@ -71,10 +171,43 @@ const value: shared.V2BulkElementResultRevertTransactionSchemas = {
         source: "users:001",
       },
     ],
+    preCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    preCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2023-05-03T03:34:27.990Z"),
+    timestamp: new Date("2023-02-11T16:43:38.291Z"),
   },
+  logID: 956545,
   responseType: "<value>",
 };
 ```

@@ -13,7 +13,7 @@ import {
 let value: V2GetWorkflowInstanceHistoryStageResponse = {
   data: [
     {
-      attempt: 460803,
+      attempt: 757824,
       input: {
         createTransaction: {
           data: {
@@ -53,12 +53,7 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
             metadata: {
               "key": "",
             },
-            sources: [
-              {
-                identifier: "<value>",
-                type: "<value>",
-              },
-            ],
+            sources: [],
           },
         },
         debitWallet: {
@@ -78,7 +73,6 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
           asset: "USD",
           destination: "acct_1Gqj58KZcSIg2N2q",
           metadata: {},
-          waitingValidation: false,
         },
       },
       name: "<value>",
@@ -98,8 +92,8 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
                 },
               ],
               reference: "ref:001",
-              timestamp: new Date("2022-01-06T05:55:38.572Z"),
-              txid: BigInt("553766"),
+              timestamp: new Date("2023-01-01T01:56:18.923Z"),
+              txid: BigInt("254240"),
             },
           ],
         },
@@ -141,23 +135,23 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
               {
                 absolute: false,
                 amount: BigInt("100"),
-                date: new Date("2022-05-05T19:52:13.918Z"),
+                date: new Date("2025-04-01T00:20:32.487Z"),
                 raw: {},
-                status: V2PaymentStatus.Succeeded,
+                status: V2PaymentStatus.Failed,
               },
             ],
             asset: "USD",
             connectorID: "<id>",
-            createdAt: new Date("2024-02-05T03:15:11.328Z"),
+            createdAt: new Date("2023-05-06T23:42:04.838Z"),
             destinationAccountID: "<id>",
             id: "XXX",
             initialAmount: BigInt("100"),
             metadata: {},
             raw: {},
             reference: "<value>",
-            scheme: Scheme.Diners,
+            scheme: Scheme.SepaDebit,
             sourceAccountID: "<id>",
-            status: V2PaymentStatus.Cancelled,
+            status: V2PaymentStatus.Terminated,
             type: V2PaymentType.Transfer,
           },
         },
@@ -165,8 +159,8 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
           cursor: {
             data: [
               {
-                createdAt: new Date("2022-11-23T13:48:35.382Z"),
-                id: "bb5659e2-e0a6-4cb7-8a8c-784949226642",
+                createdAt: new Date("2025-01-02T02:28:08.091Z"),
+                id: "d762cb68-a205-497b-9d72-d9bbf4b5635f",
                 ledger: "<value>",
                 metadata: {
                   "key": "<value>",
@@ -181,7 +175,7 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
           },
         },
       },
-      startedAt: new Date("2022-01-28T15:41:52.745Z"),
+      startedAt: new Date("2023-09-27T14:32:12.836Z"),
       terminated: false,
     },
   ],

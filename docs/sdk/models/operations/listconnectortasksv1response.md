@@ -4,11 +4,11 @@
 
 ```typescript
 import { ListConnectorTasksV1Response } from "@formance/formance-sdk/sdk/models/operations";
-import { PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
+import { TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksV1Response = {
   contentType: "<value>",
-  statusCode: 503,
+  statusCode: 417,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,12 +17,11 @@ let value: ListConnectorTasksV1Response = {
       data: [
         {
           connectorID: "<id>",
-          createdAt: new Date("2024-08-29T09:21:28.573Z"),
+          createdAt: new Date("2025-11-21T04:42:37.776Z"),
           descriptor: {},
-          id: "7e2a71b3-000e-4bea-a84f-576f25a19743",
-          state: {},
-          status: PaymentStatus.Expired,
-          updatedAt: new Date("2023-05-16T08:17:57.191Z"),
+          id: "0bd85c17-8b13-469e-992f-d8e8edfe026f",
+          status: TaskStatus.Pending,
+          updatedAt: new Date("2025-08-29T09:21:28.573Z"),
         },
       ],
       hasMore: false,

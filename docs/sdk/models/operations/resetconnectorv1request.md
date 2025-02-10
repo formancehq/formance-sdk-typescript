@@ -7,7 +7,7 @@ import { ResetConnectorV1Request } from "@formance/formance-sdk/sdk/models/opera
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ResetConnectorV1Request = {
-  connector: Connector.Generic,
+  connector: Connector.Adyen,
   connectorId: "XXX",
 };
 ```

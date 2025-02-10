@@ -7,7 +7,7 @@ import { GetInstanceHistoryResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: GetInstanceHistoryResponse = {
   contentType: "<value>",
-  statusCode: 203,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

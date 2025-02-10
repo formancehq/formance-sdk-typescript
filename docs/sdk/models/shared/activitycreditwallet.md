@@ -14,12 +14,7 @@ let value: ActivityCreditWallet = {
     metadata: {
       "key": "",
     },
-    sources: [
-      {
-        identifier: "<value>",
-        type: "<value>",
-      },
-    ],
+    sources: [],
   },
 };
 ```

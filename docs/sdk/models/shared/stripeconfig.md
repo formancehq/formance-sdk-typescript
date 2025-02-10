@@ -8,8 +8,6 @@ import { StripeConfig } from "@formance/formance-sdk/sdk/models/shared";
 let value: StripeConfig = {
   apiKey: "XXX",
   name: "My Stripe Account",
-  pageSize: 50,
-  pollingPeriod: "60s",
 };
 ```
 

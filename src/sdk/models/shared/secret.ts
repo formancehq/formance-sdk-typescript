@@ -11,7 +11,7 @@ export type Secret = {
   clear: string;
   id: string;
   lastDigits: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -21,7 +21,7 @@ export const Secret$inboundSchema: z.ZodType<Secret, z.ZodTypeDef, unknown> = z
     clear: z.string(),
     id: z.string(),
     lastDigits: z.string(),
-    metadata: z.record(z.any()).optional(),
+    metadata: z.nullable(z.record(z.any())).optional(),
     name: z.string(),
   });
 
@@ -30,7 +30,7 @@ export type Secret$Outbound = {
   clear: string;
   id: string;
   lastDigits: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -43,7 +43,7 @@ export const Secret$outboundSchema: z.ZodType<
   clear: z.string(),
   id: z.string(),
   lastDigits: z.string(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
 });
 

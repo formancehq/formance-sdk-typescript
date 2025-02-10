@@ -8,24 +8,24 @@ import { Attempt } from "@formance/formance-sdk/sdk/models/shared";
 let value: Attempt = {
   config: {
     active: true,
-    createdAt: new Date("2022-11-14T11:47:11.710Z"),
+    createdAt: new Date("2025-04-01T06:33:23.449Z"),
     endpoint: "https://example.com",
     eventTypes: [
       "TYPE1",
       "TYPE2",
     ],
-    id: "b97ace7a-6e76-4f05-9d75-96545ef1baa0",
+    id: "0a342973-e3c0-42d8-ba66-22e77a08e667",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-    updatedAt: new Date("2024-03-28T17:29:23.622Z"),
+    updatedAt: new Date("2024-10-30T13:28:06.854Z"),
   },
-  createdAt: new Date("2023-06-28T09:42:10.187Z"),
-  id: "08dee873-dcd3-41be-8e8a-148e790f7258",
+  createdAt: new Date("2025-03-30T02:19:05.351Z"),
+  id: "b0fb90e7-e69e-4726-96bd-0742ad83c8cf",
   payload: "{\"data\":\"test\"}",
   retryAttempt: 1,
   status: "success",
   statusCode: 200,
-  updatedAt: new Date("2022-08-04T12:35:53.060Z"),
-  webhookID: "ed14a40b-3542-422f-abf9-5277c83d2805",
+  updatedAt: new Date("2023-12-16T15:01:52.027Z"),
+  webhookID: "4bf479f3-f8bc-42ff-bdd5-de42c9165a6a",
 };
 ```
 

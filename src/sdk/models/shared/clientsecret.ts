@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type ClientSecret = {
   id: string;
   lastDigits: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -22,7 +22,7 @@ export const ClientSecret$inboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   lastDigits: z.string(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
 });
 
@@ -30,7 +30,7 @@ export const ClientSecret$inboundSchema: z.ZodType<
 export type ClientSecret$Outbound = {
   id: string;
   lastDigits: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -42,7 +42,7 @@ export const ClientSecret$outboundSchema: z.ZodType<
 > = z.object({
   id: z.string(),
   lastDigits: z.string(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
 });
 

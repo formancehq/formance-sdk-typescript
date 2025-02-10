@@ -7,7 +7,7 @@ import { V2GetLedgerInfoResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2GetLedgerInfoResponse = {
   contentType: "<value>",
-  statusCode: 308,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -18,7 +18,7 @@ let value: V2GetLedgerInfoResponse = {
         migrations: [
           {
             name: "migrations:001",
-            version: 11,
+            version: "11",
           },
         ],
       },

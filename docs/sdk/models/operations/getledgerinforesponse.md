@@ -14,13 +14,13 @@ let value: GetLedgerInfoResponse = {
         migrations: [
           {
             name: "migrations:001",
-            version: 11,
+            version: "11",
           },
         ],
       },
     },
   },
-  statusCode: 203,
+  statusCode: 418,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

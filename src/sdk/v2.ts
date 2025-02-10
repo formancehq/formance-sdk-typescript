@@ -18,6 +18,7 @@ import { ledgerV2GetBalancesAggregated } from "../funcs/ledgerV2GetBalancesAggre
 import { ledgerV2GetInfo } from "../funcs/ledgerV2GetInfo.js";
 import { ledgerV2GetLedger } from "../funcs/ledgerV2GetLedger.js";
 import { ledgerV2GetLedgerInfo } from "../funcs/ledgerV2GetLedgerInfo.js";
+import { ledgerV2GetMetrics } from "../funcs/ledgerV2GetMetrics.js";
 import { ledgerV2GetTransaction } from "../funcs/ledgerV2GetTransaction.js";
 import { ledgerV2GetVolumesWithBalances } from "../funcs/ledgerV2GetVolumesWithBalances.js";
 import { ledgerV2ImportLogs } from "../funcs/ledgerV2ImportLogs.js";
@@ -257,6 +258,18 @@ export class V2 extends ClientSDK {
     return unwrapAsync(ledgerV2GetLedgerInfo(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Read in memory metrics
+   */
+  async getMetrics(
+    options?: RequestOptions,
+  ): Promise<operations.GetMetricsResponse> {
+    return unwrapAsync(ledgerV2GetMetrics(
+      this,
       options,
     ));
   }

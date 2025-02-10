@@ -34,18 +34,26 @@ and standard method from web, mobile and desktop applications.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
-
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
+<!-- $toc-max-depth=2 -->
+* [@formance/formance-sdk](#formanceformance-sdk)
+  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
+* [Introduction](#introduction)
 * [Authentication](#authentication)
-* [Debugging](#debugging)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication-1)
+  * [Standalone functions](#standalone-functions)
+  * [Retries](#retries)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -181,6 +189,7 @@ run();
 * [getInfo](docs/sdks/v2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/v2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
+* [getMetrics](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 * [getTransaction](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/v2/README.md#importlogs)
@@ -285,6 +294,53 @@ run();
 * [updateConnectorConfigV1](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/sdkpaymentsv1/README.md#updatemetadata) - Update metadata
 
+#### [payments.v3](docs/sdks/v3/README.md)
+
+* [addAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
+* [approvePaymentInitiation](docs/sdks/v3/README.md#approvepaymentinitiation) - Approve a payment initiation
+* [createAccount](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [createBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+
+* [createPayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+* [createPool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
+* [deletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
+* [forwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
+* [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
+* [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
+* [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+* [getInfo](docs/sdks/v3/README.md#getinfo) - Show server information
+* [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
+* [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
+* [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
+* [getPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get pool balances
+* [getTask](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
+* [initiatePayment](docs/sdks/v3/README.md#initiatepayment) - Initiate a payment
+* [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
+* [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
+* [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
+* [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
+* [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
+* [listConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
+* [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
+* [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+* [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+* [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
+* [listPools](docs/sdks/v3/README.md#listpools) - List all pools
+* [rejectPaymentInitiation](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
+* [removeAccountFromPool](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
+* [resetConnector](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+* [retryPaymentInitiation](docs/sdks/v3/README.md#retrypaymentinitiation) - Retry a payment initiation
+* [reversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
+* [uninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
+* [updateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [updatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+
 ### [reconciliation](docs/sdks/reconciliation/README.md)
 
 
@@ -345,6 +401,7 @@ run();
 * [getManyConfigs](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
 * [testConfig](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
+* [updateConfig](docs/sdks/sdkwebhooksv1/README.md#updateconfig) - Update one config
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -352,30 +409,20 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. By default, an API error will throw a `errors.SDKError`.
+Some methods specify known errors which can be thrown. All the known errors are enumerated in the `sdk/models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `addMetadataOnTransaction` method may throw the following errors:
 
-If a HTTP request fails, an operation my also throw an error from the `sdk/models/errors/httpclienterrors.ts` module:
+| Error Type             | Status Code | Content Type     |
+| ---------------------- | ----------- | ---------------- |
+| errors.V2ErrorResponse | default     | application/json |
+| errors.SDKError        | 4XX, 5XX    | \*/\*            |
 
-| HTTP Client Error                                    | Description                                          |
-| ---------------------------------------------------- | ---------------------------------------------------- |
-| RequestAbortedError                                  | HTTP request was aborted by the client               |
-| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
-| ConnectionError                                      | HTTP client was unable to make a request to a server |
-| InvalidRequestError                                  | Any input used to create a request is invalid        |
-| UnexpectedClientError                                | Unrecognised or unexpected error                     |
-
-In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `createTransactions` method may throw the following errors:
-
-| Error Type           | Status Code | Content Type     |
-| -------------------- | ----------- | ---------------- |
-| errors.ErrorResponse | default     | application/json |
-| errors.SDKError      | 4XX, 5XX    | \*/\*            |
+If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import {
-  ErrorResponse,
   SDKValidationError,
+  V2ErrorResponse,
 } from "@formance/formance-sdk/sdk/models/errors";
 
 const sdk = new SDK({
@@ -388,22 +435,12 @@ const sdk = new SDK({
 async function run() {
   let result;
   try {
-    result = await sdk.ledger.v1.createTransactions({
-      transactions: {
-        transactions: [
-          {
-            postings: [
-              {
-                amount: BigInt("100"),
-                asset: "COIN",
-                destination: "users:002",
-                source: "users:001",
-              },
-            ],
-            reference: "ref:001",
-          },
-        ],
+    result = await sdk.ledger.v2.addMetadataOnTransaction({
+      requestBody: {
+        "admin": "true",
       },
+      dryRun: true,
+      id: BigInt("1234"),
       ledger: "ledger001",
     });
 
@@ -411,19 +448,21 @@ async function run() {
     console.log(result);
   } catch (err) {
     switch (true) {
+      // The server response does not match the expected SDK schema
       case (err instanceof SDKValidationError): {
-        // Validation errors can be pretty-printed
+        // Pretty-print will provide a human-readable multi-line error message
         console.error(err.pretty());
         // Raw value may also be inspected
         console.error(err.rawValue);
         return;
       }
-      case (err instanceof ErrorResponse): {
-        // Handle err.data$: ErrorResponseData
+      case (err instanceof V2ErrorResponse): {
+        // Handle err.data$: V2ErrorResponseData
         console.error(err);
         return;
       }
       default: {
+        // Other errors such as network errors, see HTTPClientErrors for more details
         throw err;
       }
     }
@@ -434,7 +473,17 @@ run();
 
 ```
 
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted multi-line string since validation errors can list many issues and the plain error string may be difficult read when debugging.
+
+In some rare cases, the SDK can fail to get a response from the server or even make the request due to unexpected circumstances such as network conditions. These types of errors are captured in the `sdk/models/errors/httpclienterrors.ts` module:
+
+| HTTP Client Error                                    | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| RequestAbortedError                                  | HTTP request was aborted by the client               |
+| RequestTimeoutError                                  | HTTP request timed out due to an AbortSignal signal  |
+| ConnectionError                                      | HTTP client was unable to make a request to a server |
+| InvalidRequestError                                  | Any input used to create a request is invalid        |
+| UnexpectedClientError                                | Unrecognised or unexpected error                     |
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -444,10 +493,10 @@ Validation errors can also occur when either method arguments or data returned f
 
 You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                          | Default values                    |
-| --- | ----------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------- |
-| 0   | `http://localhost`                                    |                                                                    |                                   |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: string` | `"sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                                                          | Default values                       |
+| --- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
+| 0   | `http://localhost`                                    |                                                                    |                                      |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: string` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
 
 If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
 
@@ -646,6 +695,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV2GetInfo`](docs/sdks/v2/README.md#getinfo) - Show server information
 - [`ledgerV2GetLedger`](docs/sdks/v2/README.md#getledger) - Get a ledger
 - [`ledgerV2GetLedgerInfo`](docs/sdks/v2/README.md#getledgerinfo) - Get information about a ledger
+- [`ledgerV2GetMetrics`](docs/sdks/v2/README.md#getmetrics) - Read in memory metrics
 - [`ledgerV2GetTransaction`](docs/sdks/v2/README.md#gettransaction) - Get transaction from a ledger by its ID
 - [`ledgerV2GetVolumesWithBalances`](docs/sdks/v2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 - [`ledgerV2ImportLogs`](docs/sdks/v2/README.md#importlogs)
@@ -729,6 +779,50 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV1UpdateBankAccountMetadata`](docs/sdks/sdkpaymentsv1/README.md#updatebankaccountmetadata) - Update metadata of a bank account
 - [`paymentsV1UpdateConnectorConfigV1`](docs/sdks/sdkpaymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 - [`paymentsV1UpdateMetadata`](docs/sdks/sdkpaymentsv1/README.md#updatemetadata) - Update metadata
+- [`paymentsV3AddAccountToPool`](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
+- [`paymentsV3ApprovePaymentInitiation`](docs/sdks/v3/README.md#approvepaymentinitiation) - Approve a payment initiation
+- [`paymentsV3CreateAccount`](docs/sdks/v3/README.md#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+- [`paymentsV3CreateBankAccount`](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
+
+- [`paymentsV3CreatePayment`](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
+
+- [`paymentsV3CreatePool`](docs/sdks/v3/README.md#createpool) - Create a formance pool object
+- [`paymentsV3DeletePaymentInitiation`](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+- [`paymentsV3DeletePool`](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
+- [`paymentsV3ForwardBankAccount`](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+- [`paymentsV3GetAccount`](docs/sdks/v3/README.md#getaccount) - Get an account by ID
+- [`paymentsV3GetAccountBalances`](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
+- [`paymentsV3GetBankAccount`](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+- [`paymentsV3GetConnectorConfig`](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
+- [`paymentsV3GetConnectorSchedule`](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+- [`paymentsV3GetInfo`](docs/sdks/v3/README.md#getinfo) - Show server information
+- [`paymentsV3GetPayment`](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
+- [`paymentsV3GetPaymentInitiation`](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
+- [`paymentsV3GetPool`](docs/sdks/v3/README.md#getpool) - Get a pool by ID
+- [`paymentsV3GetPoolBalances`](docs/sdks/v3/README.md#getpoolbalances) - Get pool balances
+- [`paymentsV3GetTask`](docs/sdks/v3/README.md#gettask) - Get a task and its result by ID
+- [`paymentsV3InitiatePayment`](docs/sdks/v3/README.md#initiatepayment) - Initiate a payment
+- [`paymentsV3InstallConnector`](docs/sdks/v3/README.md#installconnector) - Install a connector
+- [`paymentsV3ListAccounts`](docs/sdks/v3/README.md#listaccounts) - List all accounts
+- [`paymentsV3ListBankAccounts`](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+- [`paymentsV3ListConnectorConfigs`](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
+- [`paymentsV3ListConnectors`](docs/sdks/v3/README.md#listconnectors) - List all connectors
+- [`paymentsV3ListConnectorScheduleInstances`](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
+- [`paymentsV3ListConnectorSchedules`](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
+- [`paymentsV3ListPaymentInitiationAdjustments`](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
+- [`paymentsV3ListPaymentInitiationRelatedPayments`](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
+- [`paymentsV3ListPaymentInitiations`](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+- [`paymentsV3ListPayments`](docs/sdks/v3/README.md#listpayments) - List all payments
+- [`paymentsV3ListPools`](docs/sdks/v3/README.md#listpools) - List all pools
+- [`paymentsV3RejectPaymentInitiation`](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
+- [`paymentsV3RemoveAccountFromPool`](docs/sdks/v3/README.md#removeaccountfrompool) - Remove an account from a pool
+- [`paymentsV3ResetConnector`](docs/sdks/v3/README.md#resetconnector) - Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
+- [`paymentsV3RetryPaymentInitiation`](docs/sdks/v3/README.md#retrypaymentinitiation) - Retry a payment initiation
+- [`paymentsV3ReversePaymentInitiation`](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
+- [`paymentsV3UninstallConnector`](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
+- [`paymentsV3UpdateBankAccountMetadata`](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+- [`paymentsV3UpdatePaymentMetadata`](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
 - [`reconciliationV1CreatePolicy`](docs/sdks/sdkreconciliationv1/README.md#createpolicy) - Create a policy
 - [`reconciliationV1DeletePolicy`](docs/sdks/sdkreconciliationv1/README.md#deletepolicy) - Delete a policy
 - [`reconciliationV1GetPolicy`](docs/sdks/sdkreconciliationv1/README.md#getpolicy) - Get a policy
@@ -760,6 +854,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`webhooksV1GetManyConfigs`](docs/sdks/sdkwebhooksv1/README.md#getmanyconfigs) - Get many configs
 - [`webhooksV1InsertConfig`](docs/sdks/sdkwebhooksv1/README.md#insertconfig) - Insert a new config
 - [`webhooksV1TestConfig`](docs/sdks/sdkwebhooksv1/README.md#testconfig) - Test one config
+- [`webhooksV1UpdateConfig`](docs/sdks/sdkwebhooksv1/README.md#updateconfig) - Update one config
 - ~~[`ledgerV1RunScript`](docs/sdks/sdkv1/README.md#runscript)~~ - Execute a Numscript :warning: **Deprecated**
 - ~~[`paymentsV1GetConnectorTask`](docs/sdks/sdkpaymentsv1/README.md#getconnectortask)~~ - Read a specific task of the connector :warning: **Deprecated**
 - ~~[`paymentsV1ListConnectorTasks`](docs/sdks/sdkpaymentsv1/README.md#listconnectortasks)~~ - List tasks from a connector :warning: **Deprecated**

@@ -6,8 +6,8 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "vacation separately utter",
-  id: "9eb18445-59a4-4209-920e-81df7016e2d0",
+  description: "voluntarily plus mmm suspension",
+  id: "0a6cb7a8-c784-4949-9226-6420047b7e02",
   metadata: {
     "key": "<value>",
   },

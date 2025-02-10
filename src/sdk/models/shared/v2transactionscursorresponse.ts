@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V2ExpandedTransaction,
-  V2ExpandedTransaction$inboundSchema,
-  V2ExpandedTransaction$Outbound,
-  V2ExpandedTransaction$outboundSchema,
-} from "./v2expandedtransaction.js";
+  V2Transaction,
+  V2Transaction$inboundSchema,
+  V2Transaction$Outbound,
+  V2Transaction$outboundSchema,
+} from "./v2transaction.js";
 
 export type V2TransactionsCursorResponseCursor = {
-  data: Array<V2ExpandedTransaction>;
+  data: Array<V2Transaction>;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -31,7 +31,7 @@ export const V2TransactionsCursorResponseCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(V2ExpandedTransaction$inboundSchema),
+  data: z.array(V2Transaction$inboundSchema),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),
@@ -40,7 +40,7 @@ export const V2TransactionsCursorResponseCursor$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2TransactionsCursorResponseCursor$Outbound = {
-  data: Array<V2ExpandedTransaction$Outbound>;
+  data: Array<V2Transaction$Outbound>;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -53,7 +53,7 @@ export const V2TransactionsCursorResponseCursor$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2TransactionsCursorResponseCursor
 > = z.object({
-  data: z.array(V2ExpandedTransaction$outboundSchema),
+  data: z.array(V2Transaction$outboundSchema),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),

@@ -8,7 +8,7 @@ import { V2WorkflowInstanceHistory } from "@formance/formance-sdk/sdk/models/sha
 let value: V2WorkflowInstanceHistory = {
   input: {},
   name: "<value>",
-  startedAt: new Date("2024-10-28T19:37:08.863Z"),
+  startedAt: new Date("2025-10-20T01:37:25.539Z"),
   terminated: false,
 };
 ```

@@ -16,7 +16,7 @@ export type V2MigrationInfo = {
   date?: Date | undefined;
   name?: string | undefined;
   state?: V2MigrationInfoState | undefined;
-  version?: number | undefined;
+  version?: string | undefined;
 };
 
 /** @internal */
@@ -50,7 +50,7 @@ export const V2MigrationInfo$inboundSchema: z.ZodType<
     .optional(),
   name: z.string().optional(),
   state: V2MigrationInfoState$inboundSchema.optional(),
-  version: z.number().int().optional(),
+  version: z.string().optional(),
 });
 
 /** @internal */
@@ -58,7 +58,7 @@ export type V2MigrationInfo$Outbound = {
   date?: string | undefined;
   name?: string | undefined;
   state?: string | undefined;
-  version?: number | undefined;
+  version?: string | undefined;
 };
 
 /** @internal */
@@ -70,7 +70,7 @@ export const V2MigrationInfo$outboundSchema: z.ZodType<
   date: z.date().transform(v => v.toISOString()).optional(),
   name: z.string().optional(),
   state: V2MigrationInfoState$outboundSchema.optional(),
-  version: z.number().int().optional(),
+  version: z.string().optional(),
 });
 
 /**

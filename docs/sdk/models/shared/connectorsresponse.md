@@ -12,7 +12,7 @@ let value: ConnectorsResponse = {
     {
       connectorID: "<id>",
       name: "<value>",
-      provider: Connector.Moneycorp,
+      provider: Connector.Generic,
     },
   ],
 };

@@ -9,12 +9,12 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 let value: InstallConnectorRequest = {
   connectorConfig: {
     apiKey: "XXX",
-    clientID: "XXX",
+    apiSecret: "XXX",
     endpoint: "XXX",
-    name: "My Moneycorp Account",
-    pollingPeriod: "60s",
+    name: "My Modulr Account",
+    pollingPeriod: "120s",
   },
-  connector: Connector.Stripe,
+  connector: Connector.Mangopay,
 };
 ```
 

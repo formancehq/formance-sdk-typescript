@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
+  TaskStatus,
+  TaskStatus$inboundSchema,
+  TaskStatus$outboundSchema,
+} from "./taskstatus.js";
 
 export type TaskCurrencyCloudDescriptor = {
   name?: string | undefined;
@@ -24,8 +24,8 @@ export type TaskCurrencyCloud = {
   descriptor: TaskCurrencyCloudDescriptor;
   error?: string | undefined;
   id: string;
-  state: TaskCurrencyCloudState;
-  status: PaymentStatus;
+  state?: TaskCurrencyCloudState | null | undefined;
+  status: TaskStatus;
   updatedAt: Date;
 };
 
@@ -144,8 +144,9 @@ export const TaskCurrencyCloud$inboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$inboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskCurrencyCloudState$inboundSchema),
-  status: PaymentStatus$inboundSchema,
+  state: z.nullable(z.lazy(() => TaskCurrencyCloudState$inboundSchema))
+    .optional(),
+  status: TaskStatus$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
@@ -156,7 +157,7 @@ export type TaskCurrencyCloud$Outbound = {
   descriptor: TaskCurrencyCloudDescriptor$Outbound;
   error?: string | undefined;
   id: string;
-  state: TaskCurrencyCloudState$Outbound;
+  state?: TaskCurrencyCloudState$Outbound | null | undefined;
   status: string;
   updatedAt: string;
 };
@@ -172,8 +173,9 @@ export const TaskCurrencyCloud$outboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$outboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskCurrencyCloudState$outboundSchema),
-  status: PaymentStatus$outboundSchema,
+  state: z.nullable(z.lazy(() => TaskCurrencyCloudState$outboundSchema))
+    .optional(),
+  status: TaskStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),
 });
 

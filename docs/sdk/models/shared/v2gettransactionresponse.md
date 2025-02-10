@@ -7,9 +7,25 @@ import { V2GetTransactionResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: V2GetTransactionResponse = {
   data: {
-    id: BigInt("765070"),
+    id: BigInt("227741"),
     metadata: {
       "admin": "true",
+    },
+    postCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
     postCommitVolumes: {
       "orders:1": {
@@ -35,6 +51,22 @@ let value: V2GetTransactionResponse = {
         source: "users:001",
       },
     ],
+    preCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
     preCommitVolumes: {
       "orders:1": {
         "USD": {
@@ -53,13 +85,13 @@ let value: V2GetTransactionResponse = {
     },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2022-12-10T16:41:14.824Z"),
+    timestamp: new Date("2024-05-04T16:27:05.396Z"),
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `data`                                                                              | [shared.V2ExpandedTransaction](../../../sdk/models/shared/v2expandedtransaction.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `data`                                                              | [shared.V2Transaction](../../../sdk/models/shared/v2transaction.md) | :heavy_check_mark:                                                  | N/A                                                                 |

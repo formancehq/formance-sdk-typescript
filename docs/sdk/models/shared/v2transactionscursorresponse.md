@@ -9,9 +9,25 @@ let value: V2TransactionsCursorResponse = {
   cursor: {
     data: [
       {
-        id: BigInt("709051"),
+        id: BigInt("298246"),
         metadata: {
           "admin": "true",
+        },
+        postCommitEffectiveVolumes: {
+          "orders:1": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+          "orders:2": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
         },
         postCommitVolumes: {
           "orders:1": {
@@ -37,6 +53,22 @@ let value: V2TransactionsCursorResponse = {
             source: "users:001",
           },
         ],
+        preCommitEffectiveVolumes: {
+          "orders:1": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+          "orders:2": {
+            "USD": {
+              balance: BigInt("90"),
+              input: BigInt("100"),
+              output: BigInt("10"),
+            },
+          },
+        },
         preCommitVolumes: {
           "orders:1": {
             "USD": {
@@ -55,7 +87,7 @@ let value: V2TransactionsCursorResponse = {
         },
         reference: "ref:001",
         reverted: false,
-        timestamp: new Date("2023-11-06T08:13:52.054Z"),
+        timestamp: new Date("2025-08-03T08:45:30.623Z"),
       },
     ],
     hasMore: false,

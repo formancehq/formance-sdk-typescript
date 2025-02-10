@@ -16,7 +16,7 @@ export type MigrationInfo = {
   date?: Date | undefined;
   name?: string | undefined;
   state?: State | undefined;
-  version?: number | undefined;
+  version?: string | undefined;
 };
 
 /** @internal */
@@ -49,7 +49,7 @@ export const MigrationInfo$inboundSchema: z.ZodType<
     .optional(),
   name: z.string().optional(),
   state: State$inboundSchema.optional(),
-  version: z.number().int().optional(),
+  version: z.string().optional(),
 });
 
 /** @internal */
@@ -57,7 +57,7 @@ export type MigrationInfo$Outbound = {
   date?: string | undefined;
   name?: string | undefined;
   state?: string | undefined;
-  version?: number | undefined;
+  version?: string | undefined;
 };
 
 /** @internal */
@@ -69,7 +69,7 @@ export const MigrationInfo$outboundSchema: z.ZodType<
   date: z.date().transform(v => v.toISOString()).optional(),
   name: z.string().optional(),
   state: State$outboundSchema.optional(),
-  version: z.number().int().optional(),
+  version: z.string().optional(),
 });
 
 /**

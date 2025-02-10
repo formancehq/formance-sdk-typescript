@@ -68,7 +68,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.addAccountToPool({
     addAccountToPoolRequest: {
-      accountID: "<value>",
+      accountID: "<id>",
     },
     poolId: "XXX",
   });
@@ -100,7 +100,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1AddAccountToPool(sdk, {
     addAccountToPoolRequest: {
-      accountID: "<value>",
+      accountID: "<id>",
     },
     poolId: "XXX",
   });
@@ -254,10 +254,10 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.createAccount({
-    connectorID: "<value>",
-    createdAt: new Date("2024-08-19T02:15:08.668Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2025-08-19T02:15:08.152Z"),
     reference: "<value>",
-    type: AccountType.Unknown,
+    type: AccountType.Internal,
   });
 
   // Handle the result
@@ -287,10 +287,10 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1CreateAccount(sdk, {
-    connectorID: "<value>",
-    createdAt: new Date("2024-08-19T02:15:08.668Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2025-08-19T02:15:08.152Z"),
     reference: "<value>",
-    type: AccountType.Unknown,
+    type: AccountType.Internal,
   });
 
   if (!res.ok) {
@@ -344,7 +344,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.createBankAccount({
-    connectorID: "<value>",
+    connectorID: "<id>",
     country: "GB",
     name: "My account",
   });
@@ -375,7 +375,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1CreateBankAccount(sdk, {
-    connectorID: "<value>",
+    connectorID: "<id>",
     country: "GB",
     name: "My account",
   });
@@ -434,12 +434,12 @@ async function run() {
   const result = await sdk.payments.v1.createPayment({
     amount: BigInt("100"),
     asset: "USD",
-    connectorID: "<value>",
-    createdAt: new Date("2024-11-09T01:03:21.153Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2025-11-09T01:03:21.011Z"),
     reference: "<value>",
-    scheme: PaymentScheme.GooglePay,
-    status: PaymentStatus.DisputeWon,
-    type: PaymentType.Transfer,
+    scheme: PaymentScheme.Molpay,
+    status: PaymentStatus.RefundedFailure,
+    type: PaymentType.Payout,
   });
 
   // Handle the result
@@ -471,12 +471,12 @@ async function run() {
   const res = await paymentsV1CreatePayment(sdk, {
     amount: BigInt("100"),
     asset: "USD",
-    connectorID: "<value>",
-    createdAt: new Date("2024-11-09T01:03:21.153Z"),
+    connectorID: "<id>",
+    createdAt: new Date("2025-11-09T01:03:21.011Z"),
     reference: "<value>",
-    scheme: PaymentScheme.GooglePay,
-    status: PaymentStatus.DisputeWon,
-    type: PaymentType.Transfer,
+    scheme: PaymentScheme.Molpay,
+    status: PaymentStatus.RefundedFailure,
+    type: PaymentType.Payout,
   });
 
   if (!res.ok) {
@@ -532,6 +532,8 @@ async function run() {
   const result = await sdk.payments.v1.createPool({
     accountIDs: [
       "<value>",
+      "<value>",
+      "<value>",
     ],
     name: "<value>",
   });
@@ -563,6 +565,8 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1CreatePool(sdk, {
     accountIDs: [
+      "<value>",
+      "<value>",
       "<value>",
     ],
     name: "<value>",
@@ -622,13 +626,13 @@ async function run() {
   const result = await sdk.payments.v1.createTransferInitiation({
     amount: BigInt("256698"),
     asset: "USD",
-    description: "Multi-tiered incremental methodology",
-    destinationAccountID: "<value>",
+    description: "worthy pace vague ick liberalize between um",
+    destinationAccountID: "<id>",
     reference: "XXX",
-    scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
-    sourceAccountID: "<value>",
-    type: TransferInitiationRequestType.Transfer,
-    validated: false,
+    scheduledAt: new Date("2025-05-02T09:50:03.622Z"),
+    sourceAccountID: "<id>",
+    type: TransferInitiationRequestType.Payout,
+    validated: true,
   });
 
   // Handle the result
@@ -660,13 +664,13 @@ async function run() {
   const res = await paymentsV1CreateTransferInitiation(sdk, {
     amount: BigInt("256698"),
     asset: "USD",
-    description: "Multi-tiered incremental methodology",
-    destinationAccountID: "<value>",
+    description: "worthy pace vague ick liberalize between um",
+    destinationAccountID: "<id>",
     reference: "XXX",
-    scheduledAt: new Date("2023-05-04T22:47:54.364Z"),
-    sourceAccountID: "<value>",
-    type: TransferInitiationRequestType.Transfer,
-    validated: false,
+    scheduledAt: new Date("2025-05-02T09:50:03.622Z"),
+    sourceAccountID: "<id>",
+    type: TransferInitiationRequestType.Payout,
+    validated: true,
   });
 
   if (!res.ok) {
@@ -887,7 +891,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.forwardBankAccount({
     forwardBankAccountRequest: {
-      connectorID: "<value>",
+      connectorID: "<id>",
     },
     bankAccountId: "XXX",
   });
@@ -919,7 +923,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1ForwardBankAccount(sdk, {
     forwardBankAccountRequest: {
-      connectorID: "<value>",
+      connectorID: "<id>",
     },
     bankAccountId: "XXX",
   });
@@ -977,7 +981,6 @@ async function run() {
   const result = await sdk.payments.v1.getAccountBalances({
     accountId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -1012,7 +1015,6 @@ async function run() {
   const res = await paymentsV1GetAccountBalances(sdk, {
     accountId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -1497,7 +1499,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.getPoolBalances({
-    at: new Date("2023-05-05T06:40:23.018Z"),
+    at: new Date("2024-05-04T06:40:23.119Z"),
     poolId: "XXX",
   });
 
@@ -1527,7 +1529,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1GetPoolBalances(sdk, {
-    at: new Date("2023-05-05T06:40:23.018Z"),
+    at: new Date("2024-05-04T06:40:23.119Z"),
     poolId: "XXX",
   });
 
@@ -1668,11 +1670,11 @@ async function run() {
   const result = await sdk.payments.v1.installConnector({
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 50,
+      name: "My Wise Account",
+      pageSize: 10,
       pollingPeriod: "60s",
     },
-    connector: Connector.Adyen,
+    connector: Connector.Atlar,
   });
 
   // Handle the result
@@ -1704,11 +1706,11 @@ async function run() {
   const res = await paymentsV1InstallConnector(sdk, {
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 50,
+      name: "My Wise Account",
+      pageSize: 10,
       pollingPeriod: "60s",
     },
-    connector: Connector.Adyen,
+    connector: Connector.Atlar,
   });
 
   if (!res.ok) {
@@ -1841,7 +1843,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.listBankAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -1875,7 +1876,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1ListBankAccounts(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2016,7 +2016,6 @@ async function run() {
   const result = await sdk.payments.v1.listConnectorTasks({
     connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
   });
 
   // Handle the result
@@ -2048,7 +2047,6 @@ async function run() {
   const res = await paymentsV1ListConnectorTasks(sdk, {
     connector: Connector.Modulr,
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
   });
 
   if (!res.ok) {
@@ -2106,7 +2104,6 @@ async function run() {
     connector: Connector.BankingCircle,
     connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
   });
 
   // Handle the result
@@ -2139,7 +2136,6 @@ async function run() {
     connector: Connector.BankingCircle,
     connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
   });
 
   if (!res.ok) {
@@ -2194,7 +2190,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.listPayments({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2228,7 +2223,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1ListPayments(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2287,7 +2281,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.listPools({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2321,7 +2314,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1ListPools(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2380,7 +2372,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.listTransferInitiations({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2414,7 +2405,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1ListTransferInitiations(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2634,7 +2624,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.paymentslistAccounts({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -2668,7 +2657,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1PaymentslistAccounts(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     sort: [
       "date:asc",
       "status:desc",
@@ -3249,11 +3237,9 @@ async function run() {
     reverseTransferInitiationRequest: {
       amount: BigInt("327549"),
       asset: "USD",
-      description: "Streamlined high-level local area network",
+      description: "till gosh how proselytise worriedly whoa",
       metadata: {
         "key": "<value>",
-        "key1": "<value>",
-        "key2": "<value>",
       },
       reference: "XXX",
     },
@@ -3289,11 +3275,9 @@ async function run() {
     reverseTransferInitiationRequest: {
       amount: BigInt("327549"),
       asset: "USD",
-      description: "Streamlined high-level local area network",
+      description: "till gosh how proselytise worriedly whoa",
       metadata: {
         "key": "<value>",
-        "key1": "<value>",
-        "key2": "<value>",
       },
       reference: "XXX",
     },
@@ -3618,7 +3602,7 @@ async function run() {
   const result = await sdk.payments.v1.updateBankAccountMetadata({
     updateBankAccountMetadataRequest: {
       metadata: {
-
+        "key": "<value>",
       },
     },
     bankAccountId: "XXX",
@@ -3652,7 +3636,7 @@ async function run() {
   const res = await paymentsV1UpdateBankAccountMetadata(sdk, {
     updateBankAccountMetadataRequest: {
       metadata: {
-  
+        "key": "<value>",
       },
     },
     bankAccountId: "XXX",
@@ -3713,10 +3697,10 @@ async function run() {
     connectorConfig: {
       apiKey: "XXX",
       name: "My Stripe Account",
-      pageSize: 50,
-      pollingPeriod: "60s",
+      pageSize: 10,
+      pollingPeriod: "120s",
     },
-    connector: Connector.Stripe,
+    connector: Connector.Adyen,
     connectorId: "XXX",
   });
 
@@ -3750,10 +3734,10 @@ async function run() {
     connectorConfig: {
       apiKey: "XXX",
       name: "My Stripe Account",
-      pageSize: 50,
-      pollingPeriod: "60s",
+      pageSize: 10,
+      pollingPeriod: "120s",
     },
-    connector: Connector.Stripe,
+    connector: Connector.Adyen,
     connectorId: "XXX",
   });
 

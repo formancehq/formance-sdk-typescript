@@ -8,9 +8,25 @@ import { V2TransactionsCursorResponseCursor } from "@formance/formance-sdk/sdk/m
 let value: V2TransactionsCursorResponseCursor = {
   data: [
     {
-      id: BigInt("103988"),
+      id: BigInt("193990"),
       metadata: {
         "admin": "true",
+      },
+      postCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
       },
       postCommitVolumes: {
         "orders:1": {
@@ -36,6 +52,22 @@ let value: V2TransactionsCursorResponseCursor = {
           source: "users:001",
         },
       ],
+      preCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
       preCommitVolumes: {
         "orders:1": {
           "USD": {
@@ -54,7 +86,7 @@ let value: V2TransactionsCursorResponseCursor = {
       },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2024-09-22T01:21:39.695Z"),
+      timestamp: new Date("2024-06-11T05:20:25.998Z"),
     },
   ],
   hasMore: false,
@@ -66,10 +98,10 @@ let value: V2TransactionsCursorResponseCursor = {
 
 ## Fields
 
-| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           | Example                                                                               |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `data`                                                                                | [shared.V2ExpandedTransaction](../../../sdk/models/shared/v2expandedtransaction.md)[] | :heavy_check_mark:                                                                    | N/A                                                                                   |                                                                                       |
-| `hasMore`                                                                             | *boolean*                                                                             | :heavy_check_mark:                                                                    | N/A                                                                                   | false                                                                                 |
-| `next`                                                                                | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |                                                                                       |
-| `pageSize`                                                                            | *number*                                                                              | :heavy_check_mark:                                                                    | N/A                                                                                   | 15                                                                                    |
-| `previous`                                                                            | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                                          |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           | Example                                                               |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `data`                                                                | [shared.V2Transaction](../../../sdk/models/shared/v2transaction.md)[] | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
+| `hasMore`                                                             | *boolean*                                                             | :heavy_check_mark:                                                    | N/A                                                                   | false                                                                 |
+| `next`                                                                | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
+| `pageSize`                                                            | *number*                                                              | :heavy_check_mark:                                                    | N/A                                                                   | 15                                                                    |
+| `previous`                                                            | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                          |

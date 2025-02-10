@@ -7,7 +7,7 @@ import { AssetHolder } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AssetHolder = {
   assets: {
-    "key": BigInt("528742"),
+    "key": BigInt("607181"),
   },
 };
 ```

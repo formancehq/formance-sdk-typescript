@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateClientRequest = {
   description?: string | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
   postLogoutRedirectUris?: Array<string> | undefined;
   public?: boolean | undefined;
@@ -25,7 +25,7 @@ export const CreateClientRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   description: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
   postLogoutRedirectUris: z.array(z.string()).optional(),
   public: z.boolean().optional(),
@@ -37,7 +37,7 @@ export const CreateClientRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type CreateClientRequest$Outbound = {
   description?: string | undefined;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
   postLogoutRedirectUris?: Array<string> | undefined;
   public?: boolean | undefined;
@@ -53,7 +53,7 @@ export const CreateClientRequest$outboundSchema: z.ZodType<
   CreateClientRequest
 > = z.object({
   description: z.string().optional(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
   postLogoutRedirectUris: z.array(z.string()).optional(),
   public: z.boolean().optional(),

@@ -7,10 +7,10 @@ import { PaymentAdjustment, PaymentStatus } from "@formance/formance-sdk/sdk/mod
 
 let value: PaymentAdjustment = {
   amount: BigInt("100"),
-  createdAt: new Date("2024-04-09T11:43:44.154Z"),
+  createdAt: new Date("2025-12-13T10:35:27.310Z"),
   raw: {},
   reference: "<value>",
-  status: PaymentStatus.DisputeWon,
+  status: PaymentStatus.DisputeLost,
 };
 ```
 

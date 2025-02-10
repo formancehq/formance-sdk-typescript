@@ -20,7 +20,7 @@ let value: ListBalancesResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 507,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ import { V2ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: V2ListTransactionsResponse = {
   contentType: "<value>",
-  statusCode: 501,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,9 +15,25 @@ let value: V2ListTransactionsResponse = {
     cursor: {
       data: [
         {
-          id: BigInt("615560"),
+          id: BigInt("962189"),
           metadata: {
             "admin": "true",
+          },
+          postCommitEffectiveVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
           },
           postCommitVolumes: {
             "orders:1": {
@@ -43,6 +59,22 @@ let value: V2ListTransactionsResponse = {
               source: "users:001",
             },
           ],
+          preCommitEffectiveVolumes: {
+            "orders:1": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+            "orders:2": {
+              "USD": {
+                balance: BigInt("90"),
+                input: BigInt("100"),
+                output: BigInt("10"),
+              },
+            },
+          },
           preCommitVolumes: {
             "orders:1": {
               "USD": {
@@ -61,7 +93,7 @@ let value: V2ListTransactionsResponse = {
           },
           reference: "ref:001",
           reverted: false,
-          timestamp: new Date("2022-05-16T16:57:38.984Z"),
+          timestamp: new Date("2023-09-30T15:12:09.673Z"),
         },
       ],
       hasMore: false,

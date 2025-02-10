@@ -5,17 +5,16 @@ OK
 ## Example Usage
 
 ```typescript
-import { PaymentStatus, TaskResponse } from "@formance/formance-sdk/sdk/models/shared";
+import { TaskResponse, TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskResponse = {
   data: {
     connectorID: "<id>",
-    createdAt: new Date("2022-01-29T05:00:23.216Z"),
+    createdAt: new Date("2024-11-21T01:28:47.404Z"),
     descriptor: {},
-    id: "c8174e4f-85db-46ac-add2-d0391946518f",
-    state: {},
-    status: PaymentStatus.Failed,
-    updatedAt: new Date("2024-11-13T22:33:54.853Z"),
+    id: "cdd2d039-1946-4518-8f94-f6bafe21ce7b",
+    status: TaskStatus.Active,
+    updatedAt: new Date("2023-06-13T17:11:29.127Z"),
   },
 };
 ```

@@ -12,7 +12,7 @@ let value: V2LedgerInfoResponse = {
       migrations: [
         {
           name: "migrations:001",
-          version: 11,
+          version: "11",
         },
       ],
     },

@@ -11,7 +11,7 @@ let value: V2LedgerInfo = {
     migrations: [
       {
         name: "migrations:001",
-        version: 11,
+        version: "11",
       },
     ],
   },

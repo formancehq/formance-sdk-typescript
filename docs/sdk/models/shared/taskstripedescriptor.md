@@ -6,7 +6,7 @@
 import { TaskStripeDescriptor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskStripeDescriptor = {
-  account: "36699108",
+  account: "61036538",
   name: "<value>",
 };
 ```

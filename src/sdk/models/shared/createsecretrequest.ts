@@ -8,7 +8,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSecretRequest = {
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -18,13 +18,13 @@ export const CreateSecretRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
 });
 
 /** @internal */
 export type CreateSecretRequest$Outbound = {
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
 };
 
@@ -34,7 +34,7 @@ export const CreateSecretRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSecretRequest
 > = z.object({
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
 });
 

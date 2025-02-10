@@ -3,16 +3,15 @@
 ## Example Usage
 
 ```typescript
-import { PaymentStatus, TaskMangoPay } from "@formance/formance-sdk/sdk/models/shared";
+import { TaskMangoPay, TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskMangoPay = {
   connectorID: "<id>",
-  createdAt: new Date("2022-01-16T03:56:55.503Z"),
+  createdAt: new Date("2023-11-18T07:59:54.568Z"),
   descriptor: {},
-  id: "fdb27ee0-c0f6-4f54-95b3-d9ff2f00ff27",
-  state: {},
-  status: PaymentStatus.DisputeLost,
-  updatedAt: new Date("2023-11-20T04:44:06.594Z"),
+  id: "5b3d9ff2-f00f-4f27-a7da-c7abb015066e",
+  status: TaskStatus.Terminated,
+  updatedAt: new Date("2025-08-30T08:52:26.881Z"),
 };
 ```
 
@@ -25,6 +24,6 @@ let value: TaskMangoPay = {
 | `descriptor`                                                                                  | [shared.TaskMangoPayDescriptor](../../../sdk/models/shared/taskmangopaydescriptor.md)         | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `error`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `state`                                                                                       | [shared.TaskMangoPayState](../../../sdk/models/shared/taskmangopaystate.md)                   | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `status`                                                                                      | [shared.PaymentStatus](../../../sdk/models/shared/paymentstatus.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `state`                                                                                       | [shared.TaskMangoPayState](../../../sdk/models/shared/taskmangopaystate.md)                   | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `status`                                                                                      | [shared.TaskStatus](../../../sdk/models/shared/taskstatus.md)                                 | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |

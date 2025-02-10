@@ -7,7 +7,7 @@ import { RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: RevertTransactionResponse = {
   contentType: "<value>",
-  statusCode: 501,
+  statusCode: 303,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -54,8 +54,8 @@ let value: RevertTransactionResponse = {
         },
       },
       reference: "ref:001",
-      timestamp: new Date("2024-12-06T04:47:23.164Z"),
-      txid: BigInt("468651"),
+      timestamp: new Date("2023-03-17T19:22:07.134Z"),
+      txid: BigInt("697429"),
     },
   },
 };

@@ -3,16 +3,15 @@
 ## Example Usage
 
 ```typescript
-import { PaymentStatus, TaskMoneycorp } from "@formance/formance-sdk/sdk/models/shared";
+import { TaskMoneycorp, TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskMoneycorp = {
   connectorID: "<id>",
-  createdAt: new Date("2024-04-28T22:11:42.800Z"),
+  createdAt: new Date("2024-04-29T13:46:10.741Z"),
   descriptor: {},
-  id: "7abb0150-66e9-4be7-a04d-e54e5a418e93",
-  state: {},
-  status: PaymentStatus.DisputeWon,
-  updatedAt: new Date("2022-12-18T13:17:08.954Z"),
+  id: "04de54e5-a418-4e93-9ac5-8a2f7f372036",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2024-11-27T16:51:17.097Z"),
 };
 ```
 
@@ -25,6 +24,6 @@ let value: TaskMoneycorp = {
 | `descriptor`                                                                                  | [shared.TaskMoneycorpDescriptor](../../../sdk/models/shared/taskmoneycorpdescriptor.md)       | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `error`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `state`                                                                                       | [shared.TaskMoneycorpState](../../../sdk/models/shared/taskmoneycorpstate.md)                 | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `status`                                                                                      | [shared.PaymentStatus](../../../sdk/models/shared/paymentstatus.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `state`                                                                                       | [shared.TaskMoneycorpState](../../../sdk/models/shared/taskmoneycorpstate.md)                 | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `status`                                                                                      | [shared.TaskStatus](../../../sdk/models/shared/taskstatus.md)                                 | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |

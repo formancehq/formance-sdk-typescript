@@ -6,7 +6,7 @@
 import { V2Trigger } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Trigger = {
-  createdAt: new Date("2024-04-13T19:53:21.496Z"),
+  createdAt: new Date("2025-12-08T19:51:14.504Z"),
   event: "<value>",
   id: "<id>",
   workflowID: "<id>",

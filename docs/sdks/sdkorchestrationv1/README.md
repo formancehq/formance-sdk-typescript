@@ -282,7 +282,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.deleteTrigger({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -311,7 +311,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV1DeleteTrigger(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {
@@ -946,7 +946,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.listTriggersOccurrences({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -975,7 +975,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV1ListTriggersOccurrences(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {
@@ -1185,7 +1185,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v1.readTrigger({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -1214,7 +1214,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV1ReadTrigger(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {

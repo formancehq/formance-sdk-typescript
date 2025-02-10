@@ -12,13 +12,29 @@ import {
   V2Posting$Outbound,
   V2Posting$outboundSchema,
 } from "./v2posting.js";
+import {
+  V2Volume,
+  V2Volume$inboundSchema,
+  V2Volume$Outbound,
+  V2Volume$outboundSchema,
+} from "./v2volume.js";
 
 export type V2Transaction = {
   id: bigint;
+  insertedAt?: Date | undefined;
   metadata: { [k: string]: string };
+  postCommitEffectiveVolumes?:
+    | { [k: string]: { [k: string]: V2Volume } }
+    | undefined;
+  postCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
   postings: Array<V2Posting>;
+  preCommitEffectiveVolumes?:
+    | { [k: string]: { [k: string]: V2Volume } }
+    | undefined;
+  preCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
   reference?: string | undefined;
   reverted: boolean;
+  revertedAt?: Date | undefined;
   timestamp: Date;
 };
 
@@ -29,20 +45,44 @@ export const V2Transaction$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.number().transform(v => BigInt(v)),
+  insertedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
   metadata: z.record(z.string()),
+  postCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
+    .optional(),
+  postCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
   postings: z.array(V2Posting$inboundSchema),
+  preCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
+    .optional(),
+  preCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
   reference: z.string().optional(),
   reverted: z.boolean(),
+  revertedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
 /** @internal */
 export type V2Transaction$Outbound = {
   id: number;
+  insertedAt?: string | undefined;
   metadata: { [k: string]: string };
+  postCommitEffectiveVolumes?: {
+    [k: string]: { [k: string]: V2Volume$Outbound };
+  } | undefined;
+  postCommitVolumes?:
+    | { [k: string]: { [k: string]: V2Volume$Outbound } }
+    | undefined;
   postings: Array<V2Posting$Outbound>;
+  preCommitEffectiveVolumes?: {
+    [k: string]: { [k: string]: V2Volume$Outbound };
+  } | undefined;
+  preCommitVolumes?:
+    | { [k: string]: { [k: string]: V2Volume$Outbound } }
+    | undefined;
   reference?: string | undefined;
   reverted: boolean;
+  revertedAt?: string | undefined;
   timestamp: string;
 };
 
@@ -53,10 +93,18 @@ export const V2Transaction$outboundSchema: z.ZodType<
   V2Transaction
 > = z.object({
   id: z.bigint().transform(v => Number(v)),
+  insertedAt: z.date().transform(v => v.toISOString()).optional(),
   metadata: z.record(z.string()),
+  postCommitEffectiveVolumes: z.record(z.record(V2Volume$outboundSchema))
+    .optional(),
+  postCommitVolumes: z.record(z.record(V2Volume$outboundSchema)).optional(),
   postings: z.array(V2Posting$outboundSchema),
+  preCommitEffectiveVolumes: z.record(z.record(V2Volume$outboundSchema))
+    .optional(),
+  preCommitVolumes: z.record(z.record(V2Volume$outboundSchema)).optional(),
   reference: z.string().optional(),
   reverted: z.boolean(),
+  revertedAt: z.date().transform(v => v.toISOString()).optional(),
   timestamp: z.date().transform(v => v.toISOString()),
 });
 

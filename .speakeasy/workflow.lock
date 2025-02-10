@@ -1,20 +1,21 @@
-speakeasyVersion: 1.441.1
+speakeasyVersion: 1.487.1
 sources:
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
-        sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
+        sourceRevisionDigest: sha256:195e29e14453b2ac1401f09f86974f73f511457c55f06045a0d69a7fb3b7159a
+        sourceBlobDigest: sha256:8cf35e986e82211aec5e932bb47ac2b7c7ed0e11ebcd2a05c4afab36466be933
         tags:
             - latest
-            - speakeasy-sdk-regen-1732202930
+            - speakeasy-sdk-regen-1737418949
+            - v3.0.0
 targets:
     formance-sdk-typescript:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:25a113054c1e72e39f72b3f651ae9571df6083225130cdf314c099507d9a6d39
-        sourceBlobDigest: sha256:3e23c263761e5f072ed5b6c1218d39286188d47c0eca9823a5ecb64be3a02d57
-        codeSamplesNamespace: stacks-source-code-samples
-        codeSamplesRevisionDigest: sha256:742392eb0d92e98b50315d6fddf26dfb71a3add09553a08412d18982efc85d10
+        sourceRevisionDigest: sha256:195e29e14453b2ac1401f09f86974f73f511457c55f06045a0d69a7fb3b7159a
+        sourceBlobDigest: sha256:8cf35e986e82211aec5e932bb47ac2b7c7ed0e11ebcd2a05c4afab36466be933
+        codeSamplesNamespace: stacks-source-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:28ec5330b154a85be56d06ab7e68dfcde9726d5b471b5661bb7648ecb89d2aad
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -35,5 +36,7 @@ workflow:
                     token: $NPM_TOKEN
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-code-samples
+                    location: registry.speakeasyapi.dev/formance/formance/stacks-source-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
                 blocking: false

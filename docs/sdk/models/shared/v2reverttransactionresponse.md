@@ -7,9 +7,41 @@ import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/s
 
 let value: V2RevertTransactionResponse = {
   data: {
-    id: BigInt("916419"),
+    id: BigInt("998355"),
     metadata: {
       "admin": "true",
+    },
+    postCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    postCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
     },
     postings: [
       {
@@ -19,9 +51,41 @@ let value: V2RevertTransactionResponse = {
         source: "users:001",
       },
     ],
+    preCommitEffectiveVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
+    preCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: BigInt("90"),
+          input: BigInt("100"),
+          output: BigInt("10"),
+        },
+      },
+    },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2022-10-25T14:52:48.050Z"),
+    timestamp: new Date("2025-07-17T15:34:53.162Z"),
   },
 };
 ```

@@ -12,9 +12,17 @@ import {
   V2BulkElementResult$Outbound,
   V2BulkElementResult$outboundSchema,
 } from "./v2bulkelementresult.js";
+import {
+  V2ErrorsEnum,
+  V2ErrorsEnum$inboundSchema,
+  V2ErrorsEnum$outboundSchema,
+} from "./v2errorsenum.js";
 
 export type V2BulkResponse = {
   data: Array<V2BulkElementResult>;
+  details?: string | undefined;
+  errorCode: V2ErrorsEnum;
+  errorMessage: string;
 };
 
 /** @internal */
@@ -24,11 +32,17 @@ export const V2BulkResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: z.array(V2BulkElementResult$inboundSchema),
+  details: z.string().optional(),
+  errorCode: V2ErrorsEnum$inboundSchema,
+  errorMessage: z.string(),
 });
 
 /** @internal */
 export type V2BulkResponse$Outbound = {
   data: Array<V2BulkElementResult$Outbound>;
+  details?: string | undefined;
+  errorCode: string;
+  errorMessage: string;
 };
 
 /** @internal */
@@ -38,6 +52,9 @@ export const V2BulkResponse$outboundSchema: z.ZodType<
   V2BulkResponse
 > = z.object({
   data: z.array(V2BulkElementResult$outboundSchema),
+  details: z.string().optional(),
+  errorCode: V2ErrorsEnum$outboundSchema,
+  errorMessage: z.string(),
 });
 
 /**

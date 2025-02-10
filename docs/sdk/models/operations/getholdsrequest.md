@@ -10,7 +10,6 @@ let value: GetHoldsRequest = {
   metadata: {
     "admin": "true",
   },
-  pageSize: 100,
   walletID: "wallet1",
 };
 ```

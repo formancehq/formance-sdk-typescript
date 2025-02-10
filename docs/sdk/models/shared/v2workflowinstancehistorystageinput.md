@@ -44,12 +44,7 @@ let value: V2WorkflowInstanceHistoryStageInput = {
       metadata: {
         "key": "",
       },
-      sources: [
-        {
-          identifier: "<value>",
-          type: "<value>",
-        },
-      ],
+      sources: [],
     },
   },
   debitWallet: {
@@ -69,7 +64,6 @@ let value: V2WorkflowInstanceHistoryStageInput = {
     asset: "USD",
     destination: "acct_1Gqj58KZcSIg2N2q",
     metadata: {},
-    waitingValidation: false,
   },
 };
 ```

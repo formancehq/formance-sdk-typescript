@@ -6,9 +6,8 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description:
-    "phew founder yahoo coaxingly gah finally painfully politely boohoo delirious",
-  id: "c070cf0e-c5e4-461a-907a-d2cb89196d59",
+  description: "hm jellyfish modulo likewise airport pleasure",
+  id: "27f80941-6808-48c6-b8be-69b0c6a7bb3a",
   metadata: {
     "key": "<value>",
   },

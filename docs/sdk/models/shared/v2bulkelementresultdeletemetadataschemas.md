@@ -6,6 +6,7 @@
 import { V2BulkElementResultDeleteMetadataSchemas } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementResultDeleteMetadataSchemas = {
+  logID: 196451,
   responseType: "<value>",
 };
 ```
@@ -14,4 +15,5 @@ let value: V2BulkElementResultDeleteMetadataSchemas = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
+| `logID`            | *number*           | :heavy_check_mark: | N/A                |
 | `responseType`     | *string*           | :heavy_check_mark: | N/A                |

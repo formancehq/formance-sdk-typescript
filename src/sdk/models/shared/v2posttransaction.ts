@@ -15,7 +15,7 @@ import {
 
 export type V2PostTransactionScript = {
   plain: string;
-  vars?: { [k: string]: any } | undefined;
+  vars?: { [k: string]: string } | undefined;
 };
 
 export type V2PostTransaction = {
@@ -33,13 +33,13 @@ export const V2PostTransactionScript$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   plain: z.string(),
-  vars: z.record(z.any()).optional(),
+  vars: z.record(z.string()).optional(),
 });
 
 /** @internal */
 export type V2PostTransactionScript$Outbound = {
   plain: string;
-  vars?: { [k: string]: any } | undefined;
+  vars?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
@@ -49,7 +49,7 @@ export const V2PostTransactionScript$outboundSchema: z.ZodType<
   V2PostTransactionScript
 > = z.object({
   plain: z.string(),
-  vars: z.record(z.any()).optional(),
+  vars: z.record(z.string()).optional(),
 });
 
 /**
