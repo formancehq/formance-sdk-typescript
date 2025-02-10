@@ -17,24 +17,29 @@ export type V2BulkElementResultErrorSchemas = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
+  logID: number;
   responseType: string;
 };
 
 export type V2BulkElementResultDeleteMetadataSchemas = {
+  logID: number;
   responseType: string;
 };
 
 export type V2BulkElementResultRevertTransactionSchemas = {
   data: V2Transaction;
+  logID: number;
   responseType: string;
 };
 
 export type Schemas = {
+  logID: number;
   responseType: string;
 };
 
 export type V2BulkElementResultCreateTransactionSchemas = {
   data: V2Transaction;
+  logID: number;
   responseType: string;
 };
 
@@ -60,6 +65,7 @@ export const V2BulkElementResultErrorSchemas$inboundSchema: z.ZodType<
   errorCode: z.string(),
   errorDescription: z.string(),
   errorDetails: z.string().optional(),
+  logID: z.number().int(),
   responseType: z.string(),
 });
 
@@ -68,6 +74,7 @@ export type V2BulkElementResultErrorSchemas$Outbound = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
+  logID: number;
   responseType: string;
 };
 
@@ -80,6 +87,7 @@ export const V2BulkElementResultErrorSchemas$outboundSchema: z.ZodType<
   errorCode: z.string(),
   errorDescription: z.string(),
   errorDetails: z.string().optional(),
+  logID: z.number().int(),
   responseType: z.string(),
 });
 
@@ -122,11 +130,13 @@ export const V2BulkElementResultDeleteMetadataSchemas$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  logID: z.number().int(),
   responseType: z.string(),
 });
 
 /** @internal */
 export type V2BulkElementResultDeleteMetadataSchemas$Outbound = {
+  logID: number;
   responseType: string;
 };
 
@@ -136,6 +146,7 @@ export const V2BulkElementResultDeleteMetadataSchemas$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementResultDeleteMetadataSchemas
 > = z.object({
+  logID: z.number().int(),
   responseType: z.string(),
 });
 
@@ -189,12 +200,14 @@ export const V2BulkElementResultRevertTransactionSchemas$inboundSchema:
     unknown
   > = z.object({
     data: V2Transaction$inboundSchema,
+    logID: z.number().int(),
     responseType: z.string(),
   });
 
 /** @internal */
 export type V2BulkElementResultRevertTransactionSchemas$Outbound = {
   data: V2Transaction$Outbound;
+  logID: number;
   responseType: string;
 };
 
@@ -206,6 +219,7 @@ export const V2BulkElementResultRevertTransactionSchemas$outboundSchema:
     V2BulkElementResultRevertTransactionSchemas
   > = z.object({
     data: V2Transaction$outboundSchema,
+    logID: z.number().int(),
     responseType: z.string(),
   });
 
@@ -254,11 +268,13 @@ export function v2BulkElementResultRevertTransactionSchemasFromJSON(
 /** @internal */
 export const Schemas$inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> =
   z.object({
+    logID: z.number().int(),
     responseType: z.string(),
   });
 
 /** @internal */
 export type Schemas$Outbound = {
+  logID: number;
   responseType: string;
 };
 
@@ -268,6 +284,7 @@ export const Schemas$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Schemas
 > = z.object({
+  logID: z.number().int(),
   responseType: z.string(),
 });
 
@@ -306,12 +323,14 @@ export const V2BulkElementResultCreateTransactionSchemas$inboundSchema:
     unknown
   > = z.object({
     data: V2Transaction$inboundSchema,
+    logID: z.number().int(),
     responseType: z.string(),
   });
 
 /** @internal */
 export type V2BulkElementResultCreateTransactionSchemas$Outbound = {
   data: V2Transaction$Outbound;
+  logID: number;
   responseType: string;
 };
 
@@ -323,6 +342,7 @@ export const V2BulkElementResultCreateTransactionSchemas$outboundSchema:
     V2BulkElementResultCreateTransactionSchemas
   > = z.object({
     data: V2Transaction$outboundSchema,
+    logID: z.number().int(),
     responseType: z.string(),
   });
 

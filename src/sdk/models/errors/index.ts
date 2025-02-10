@@ -11,5 +11,6 @@ export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./v2error.js";
 export * from "./v2errorresponse.js";
+export * from "./v3errorresponse.js";
 export * from "./walletserrorresponse.js";
 export * from "./webhookserrorresponse.js";

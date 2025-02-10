@@ -16,7 +16,7 @@ import {
 export type BankAccount = {
   accountID?: string | undefined;
   accountNumber?: string | undefined;
-  connectorID: string;
+  connectorID?: string | undefined;
   country: string;
   createdAt: Date;
   iban?: string | undefined;
@@ -36,7 +36,7 @@ export const BankAccount$inboundSchema: z.ZodType<
 > = z.object({
   accountID: z.string().optional(),
   accountNumber: z.string().optional(),
-  connectorID: z.string(),
+  connectorID: z.string().optional(),
   country: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   iban: z.string().optional(),
@@ -52,7 +52,7 @@ export const BankAccount$inboundSchema: z.ZodType<
 export type BankAccount$Outbound = {
   accountID?: string | undefined;
   accountNumber?: string | undefined;
-  connectorID: string;
+  connectorID?: string | undefined;
   country: string;
   createdAt: string;
   iban?: string | undefined;
@@ -72,7 +72,7 @@ export const BankAccount$outboundSchema: z.ZodType<
 > = z.object({
   accountID: z.string().optional(),
   accountNumber: z.string().optional(),
-  connectorID: z.string(),
+  connectorID: z.string().optional(),
   country: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   iban: z.string().optional(),

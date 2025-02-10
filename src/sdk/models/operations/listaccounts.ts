@@ -94,7 +94,7 @@ export const ListAccountsRequest$inboundSchema: z.ZodType<
   cursor: z.string().optional(),
   ledger: z.string(),
   metadata: z.record(z.any()).optional(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   pagination_token: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -110,7 +110,7 @@ export type ListAccountsRequest$Outbound = {
   cursor?: string | undefined;
   ledger: string;
   metadata?: { [k: string]: any } | undefined;
-  pageSize: number;
+  pageSize?: number | undefined;
   pagination_token?: string | undefined;
 };
 
@@ -126,7 +126,7 @@ export const ListAccountsRequest$outboundSchema: z.ZodType<
   cursor: z.string().optional(),
   ledger: z.string(),
   metadata: z.record(z.any()).optional(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   paginationToken: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {

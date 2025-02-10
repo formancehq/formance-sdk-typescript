@@ -6,7 +6,7 @@
 import { V2BulkElementRevertTransactionData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementRevertTransactionData = {
-  id: BigInt("556133"),
+  id: BigInt("657862"),
 };
 ```
 

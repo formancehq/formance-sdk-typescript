@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V2ExpandedTransaction,
-  V2ExpandedTransaction$inboundSchema,
-  V2ExpandedTransaction$Outbound,
-  V2ExpandedTransaction$outboundSchema,
-} from "./v2expandedtransaction.js";
+  V2Transaction,
+  V2Transaction$inboundSchema,
+  V2Transaction$Outbound,
+  V2Transaction$outboundSchema,
+} from "./v2transaction.js";
 
 export type V2GetTransactionResponse = {
-  data: V2ExpandedTransaction;
+  data: V2Transaction;
 };
 
 /** @internal */
@@ -23,12 +23,12 @@ export const V2GetTransactionResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V2ExpandedTransaction$inboundSchema,
+  data: V2Transaction$inboundSchema,
 });
 
 /** @internal */
 export type V2GetTransactionResponse$Outbound = {
-  data: V2ExpandedTransaction$Outbound;
+  data: V2Transaction$Outbound;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export const V2GetTransactionResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2GetTransactionResponse
 > = z.object({
-  data: V2ExpandedTransaction$outboundSchema,
+  data: V2Transaction$outboundSchema,
 });
 
 /**

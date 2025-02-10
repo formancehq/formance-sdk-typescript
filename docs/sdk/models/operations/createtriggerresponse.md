@@ -7,7 +7,7 @@ import { CreateTriggerResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: CreateTriggerResponse = {
   contentType: "<value>",
-  statusCode: 500,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

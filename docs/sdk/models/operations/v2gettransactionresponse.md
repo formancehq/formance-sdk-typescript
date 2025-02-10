@@ -7,15 +7,31 @@ import { V2GetTransactionResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: V2GetTransactionResponse = {
   contentType: "<value>",
-  statusCode: 412,
+  statusCode: 423,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetTransactionResponse: {
     data: {
-      id: BigInt("606393"),
+      id: BigInt("39187"),
       metadata: {
         "admin": "true",
+      },
+      postCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
       },
       postCommitVolumes: {
         "orders:1": {
@@ -41,6 +57,22 @@ let value: V2GetTransactionResponse = {
           source: "users:001",
         },
       ],
+      preCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
       preCommitVolumes: {
         "orders:1": {
           "USD": {
@@ -59,7 +91,7 @@ let value: V2GetTransactionResponse = {
       },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2022-01-22T00:51:28.398Z"),
+      timestamp: new Date("2023-11-06T22:57:15.637Z"),
     },
   },
 };

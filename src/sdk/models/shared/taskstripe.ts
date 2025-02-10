@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
+  TaskStatus,
+  TaskStatus$inboundSchema,
+  TaskStatus$outboundSchema,
+} from "./taskstatus.js";
 
 export type TaskStripeDescriptor = {
   account: string;
@@ -26,8 +26,8 @@ export type TaskStripe = {
   descriptor: TaskStripeDescriptor;
   error?: string | undefined;
   id: string;
-  state: TaskStripeState;
-  status: PaymentStatus;
+  state?: TaskStripeState | null | undefined;
+  status: TaskStatus;
   updatedAt: Date;
 };
 
@@ -148,8 +148,8 @@ export const TaskStripe$inboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskStripeDescriptor$inboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskStripeState$inboundSchema),
-  status: PaymentStatus$inboundSchema,
+  state: z.nullable(z.lazy(() => TaskStripeState$inboundSchema)).optional(),
+  status: TaskStatus$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
@@ -160,7 +160,7 @@ export type TaskStripe$Outbound = {
   descriptor: TaskStripeDescriptor$Outbound;
   error?: string | undefined;
   id: string;
-  state: TaskStripeState$Outbound;
+  state?: TaskStripeState$Outbound | null | undefined;
   status: string;
   updatedAt: string;
 };
@@ -176,8 +176,8 @@ export const TaskStripe$outboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskStripeDescriptor$outboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskStripeState$outboundSchema),
-  status: PaymentStatus$outboundSchema,
+  state: z.nullable(z.lazy(() => TaskStripeState$outboundSchema)).optional(),
+  status: TaskStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),
 });
 

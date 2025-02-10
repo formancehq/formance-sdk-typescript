@@ -8,14 +8,14 @@ import { Reconciliation } from "@formance/formance-sdk/sdk/models/shared";
 let value: Reconciliation = {
   createdAt: new Date("2021-01-01T00:00:00.000Z"),
   driftBalances: {
-    "key": BigInt("192649"),
+    "key": BigInt("422444"),
   },
   id: "XXX",
   ledgerBalances: {
-    "key": BigInt("419683"),
+    "key": BigInt("265507"),
   },
   paymentsBalances: {
-    "key": BigInt("653492"),
+    "key": BigInt("184401"),
   },
   policyID: "XXX",
   reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),

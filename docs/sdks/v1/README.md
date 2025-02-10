@@ -113,7 +113,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.createSecret({
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   // Handle the result
@@ -142,7 +142,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1CreateSecret(sdk, {
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   if (!res.ok) {
@@ -195,7 +195,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.deleteClient({
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   // Handle the result
@@ -224,7 +224,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1DeleteClient(sdk, {
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   if (!res.ok) {
@@ -277,8 +277,8 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.deleteSecret({
-    clientId: "<value>",
-    secretId: "<value>",
+    clientId: "<id>",
+    secretId: "<id>",
   });
 
   // Handle the result
@@ -307,8 +307,8 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1DeleteSecret(sdk, {
-    clientId: "<value>",
-    secretId: "<value>",
+    clientId: "<id>",
+    secretId: "<id>",
   });
 
   if (!res.ok) {
@@ -669,7 +669,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.readClient({
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   // Handle the result
@@ -698,7 +698,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1ReadClient(sdk, {
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   if (!res.ok) {
@@ -751,7 +751,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.readUser({
-    userId: "<value>",
+    userId: "<id>",
   });
 
   // Handle the result
@@ -780,7 +780,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1ReadUser(sdk, {
-    userId: "<value>",
+    userId: "<id>",
   });
 
   if (!res.ok) {
@@ -833,7 +833,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.auth.v1.updateClient({
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   // Handle the result
@@ -862,7 +862,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await authV1UpdateClient(sdk, {
-    clientId: "<value>",
+    clientId: "<id>",
   });
 
   if (!res.ok) {

@@ -7,7 +7,7 @@ import { PaymentsgetAccountResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: PaymentsgetAccountResponse = {
   contentType: "<value>",
-  statusCode: 202,
+  statusCode: 103,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

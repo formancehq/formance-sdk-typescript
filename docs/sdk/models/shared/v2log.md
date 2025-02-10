@@ -9,7 +9,7 @@ let value: V2Log = {
   data: {
     "key": "<value>",
   },
-  date: new Date("2024-02-12T00:34:41.133Z"),
+  date: new Date("2025-02-08T03:46:21.750Z"),
   hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
   id: BigInt("1234"),
   type: V2LogType.NewTransaction,

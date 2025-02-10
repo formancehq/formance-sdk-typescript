@@ -9,7 +9,7 @@ let value: V2LedgerInfoStorage = {
   migrations: [
     {
       name: "migrations:001",
-      version: 11,
+      version: "11",
     },
   ],
 };

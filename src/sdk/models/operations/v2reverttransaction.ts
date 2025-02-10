@@ -15,6 +15,10 @@ export type V2RevertTransactionRequest = {
    */
   atEffectiveDate?: boolean | undefined;
   /**
+   * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
+   */
+  dryRun?: boolean | undefined;
+  /**
    * Force revert
    */
   force?: boolean | undefined;
@@ -54,6 +58,7 @@ export const V2RevertTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   atEffectiveDate: z.boolean().optional(),
+  dryRun: z.boolean().optional(),
   force: z.boolean().optional(),
   id: z.number().transform(v => BigInt(v)),
   ledger: z.string(),
@@ -62,6 +67,7 @@ export const V2RevertTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type V2RevertTransactionRequest$Outbound = {
   atEffectiveDate?: boolean | undefined;
+  dryRun?: boolean | undefined;
   force?: boolean | undefined;
   id: number;
   ledger: string;
@@ -74,6 +80,7 @@ export const V2RevertTransactionRequest$outboundSchema: z.ZodType<
   V2RevertTransactionRequest
 > = z.object({
   atEffectiveDate: z.boolean().optional(),
+  dryRun: z.boolean().optional(),
   force: z.boolean().optional(),
   id: z.bigint().transform(v => Number(v)),
   ledger: z.string(),

@@ -4,36 +4,27 @@
 
 ```typescript
 import { V2CreateBulkResponse } from "@formance/formance-sdk/sdk/models/operations";
+import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2CreateBulkResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 300,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2BulkResponse: {
     data: [
       {
-        data: {
-          id: BigInt("318569"),
-          metadata: {
-            "admin": "true",
-          },
-          postings: [
-            {
-              amount: BigInt("100"),
-              asset: "COIN",
-              destination: "users:002",
-              source: "users:001",
-            },
-          ],
-          reference: "ref:001",
-          reverted: false,
-          timestamp: new Date("2024-01-02T11:33:45.485Z"),
-        },
+        errorCode: "<value>",
+        errorDescription: "<value>",
+        logID: 612096,
         responseType: "<value>",
       },
     ],
+    details:
+      "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
+    errorCode: V2ErrorsEnum.Validation,
+    errorMessage: "[VALIDATION] invalid 'cursor' query param",
   },
 };
 ```

@@ -54,6 +54,18 @@ async function run() {
               destination: "users:002",
               source: "users:001",
             },
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
           ],
           reference: "ref:001",
         },
@@ -92,6 +104,18 @@ async function run() {
       transactions: [
         {
           postings: [
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
+            {
+              amount: BigInt("100"),
+              asset: "COIN",
+              destination: "users:002",
+              source: "users:001",
+            },
             {
               amount: BigInt("100"),
               asset: "COIN",
@@ -243,7 +267,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v1.addMetadataToAccount({
     requestBody: {
-
+      "key": "<value>",
     },
     address: "users:001",
     ledger: "ledger001",
@@ -276,7 +300,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV1AddMetadataToAccount(sdk, {
     requestBody: {
-  
+      "key": "<value>",
     },
     address: "users:001",
     ledger: "ledger001",
@@ -623,6 +647,18 @@ async function run() {
           destination: "users:002",
           source: "users:001",
         },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
       ],
       reference: "ref:001",
       script: {
@@ -671,6 +707,18 @@ async function run() {
   const res = await ledgerV1CreateTransaction(sdk, {
     postTransaction: {
       postings: [
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
         {
           amount: BigInt("100"),
           asset: "COIN",
@@ -2011,6 +2059,10 @@ async function run() {
           account: "users:001",
           expr: {},
         },
+        {
+          account: "users:001",
+          expr: {},
+        },
       ],
     },
     ledger: "ledger001",
@@ -2044,6 +2096,10 @@ async function run() {
   const res = await ledgerV1UpdateMapping(sdk, {
     mapping: {
       contracts: [
+        {
+          account: "users:001",
+          expr: {},
+        },
         {
           account: "users:001",
           expr: {},

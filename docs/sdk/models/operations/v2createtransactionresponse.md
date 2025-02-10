@@ -7,15 +7,47 @@ import { V2CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: V2CreateTransactionResponse = {
   contentType: "<value>",
-  statusCode: 201,
+  statusCode: 410,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2CreateTransactionResponse: {
     data: {
-      id: BigInt("586513"),
+      id: BigInt("437032"),
       metadata: {
         "admin": "true",
+      },
+      postCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      postCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
       },
       postings: [
         {
@@ -25,9 +57,41 @@ let value: V2CreateTransactionResponse = {
           source: "users:001",
         },
       ],
+      preCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
+      preCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: BigInt("90"),
+            input: BigInt("100"),
+            output: BigInt("10"),
+          },
+        },
+      },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2022-01-23T00:54:32.021Z"),
+      timestamp: new Date("2025-02-03T14:29:27.520Z"),
     },
   },
 };

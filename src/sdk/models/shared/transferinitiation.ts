@@ -42,7 +42,7 @@ export type TransferInitiation = {
   metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   relatedAdjustments?: Array<TransferInitiationAdjusments> | undefined;
-  relatedPayments?: Array<TransferInitiationPayments> | undefined;
+  relatedPayments?: Array<TransferInitiationPayments> | null | undefined;
   scheduledAt: Date;
   sourceAccountID: string;
   status: TransferInitiationStatus;
@@ -89,7 +89,8 @@ export const TransferInitiation$inboundSchema: z.ZodType<
   reference: z.string(),
   relatedAdjustments: z.array(TransferInitiationAdjusments$inboundSchema)
     .optional(),
-  relatedPayments: z.array(TransferInitiationPayments$inboundSchema).optional(),
+  relatedPayments: z.nullable(z.array(TransferInitiationPayments$inboundSchema))
+    .optional(),
   scheduledAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ),
@@ -112,7 +113,10 @@ export type TransferInitiation$Outbound = {
   metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   relatedAdjustments?: Array<TransferInitiationAdjusments$Outbound> | undefined;
-  relatedPayments?: Array<TransferInitiationPayments$Outbound> | undefined;
+  relatedPayments?:
+    | Array<TransferInitiationPayments$Outbound>
+    | null
+    | undefined;
   scheduledAt: string;
   sourceAccountID: string;
   status: string;
@@ -138,8 +142,9 @@ export const TransferInitiation$outboundSchema: z.ZodType<
   reference: z.string(),
   relatedAdjustments: z.array(TransferInitiationAdjusments$outboundSchema)
     .optional(),
-  relatedPayments: z.array(TransferInitiationPayments$outboundSchema)
-    .optional(),
+  relatedPayments: z.nullable(
+    z.array(TransferInitiationPayments$outboundSchema),
+  ).optional(),
   scheduledAt: z.date().transform(v => v.toISOString()),
   sourceAccountID: z.string(),
   status: TransferInitiationStatus$outboundSchema,

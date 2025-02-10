@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
+  TaskStatus,
+  TaskStatus$inboundSchema,
+  TaskStatus$outboundSchema,
+} from "./taskstatus.js";
 
 export type TaskDummyPayDescriptor = {
   fileName?: string | undefined;
@@ -26,8 +26,8 @@ export type TaskDummyPay = {
   descriptor: TaskDummyPayDescriptor;
   error?: string | undefined;
   id: string;
-  state: TaskDummyPayState;
-  status: PaymentStatus;
+  state?: TaskDummyPayState | null | undefined;
+  status: TaskStatus;
   updatedAt: Date;
 };
 
@@ -150,8 +150,8 @@ export const TaskDummyPay$inboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskDummyPayDescriptor$inboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskDummyPayState$inboundSchema),
-  status: PaymentStatus$inboundSchema,
+  state: z.nullable(z.lazy(() => TaskDummyPayState$inboundSchema)).optional(),
+  status: TaskStatus$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
@@ -162,7 +162,7 @@ export type TaskDummyPay$Outbound = {
   descriptor: TaskDummyPayDescriptor$Outbound;
   error?: string | undefined;
   id: string;
-  state: TaskDummyPayState$Outbound;
+  state?: TaskDummyPayState$Outbound | null | undefined;
   status: string;
   updatedAt: string;
 };
@@ -178,8 +178,8 @@ export const TaskDummyPay$outboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskDummyPayDescriptor$outboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskDummyPayState$outboundSchema),
-  status: PaymentStatus$outboundSchema,
+  state: z.nullable(z.lazy(() => TaskDummyPayState$outboundSchema)).optional(),
+  status: TaskStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),
 });
 

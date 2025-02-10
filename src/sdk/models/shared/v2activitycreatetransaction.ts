@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V2PostTransaction,
-  V2PostTransaction$inboundSchema,
-  V2PostTransaction$Outbound,
-  V2PostTransaction$outboundSchema,
-} from "./v2posttransaction.js";
+  OrchestrationV2PostTransaction,
+  OrchestrationV2PostTransaction$inboundSchema,
+  OrchestrationV2PostTransaction$Outbound,
+  OrchestrationV2PostTransaction$outboundSchema,
+} from "./orchestrationv2posttransaction.js";
 
 export type V2ActivityCreateTransaction = {
-  data?: V2PostTransaction | undefined;
+  data?: OrchestrationV2PostTransaction | undefined;
   ledger?: string | undefined;
 };
 
@@ -24,13 +24,13 @@ export const V2ActivityCreateTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V2PostTransaction$inboundSchema.optional(),
+  data: OrchestrationV2PostTransaction$inboundSchema.optional(),
   ledger: z.string().optional(),
 });
 
 /** @internal */
 export type V2ActivityCreateTransaction$Outbound = {
-  data?: V2PostTransaction$Outbound | undefined;
+  data?: OrchestrationV2PostTransaction$Outbound | undefined;
   ledger?: string | undefined;
 };
 
@@ -40,7 +40,7 @@ export const V2ActivityCreateTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2ActivityCreateTransaction
 > = z.object({
-  data: V2PostTransaction$outboundSchema.optional(),
+  data: OrchestrationV2PostTransaction$outboundSchema.optional(),
   ledger: z.string().optional(),
 });
 

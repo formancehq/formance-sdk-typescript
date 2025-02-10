@@ -52,8 +52,8 @@ let value: ScriptResponse = {
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2022-02-10T05:07:51.800Z"),
-    txid: BigInt("147400"),
+    timestamp: new Date("2023-02-14T19:10:20.351Z"),
+    txid: BigInt("257821"),
   },
 };
 ```

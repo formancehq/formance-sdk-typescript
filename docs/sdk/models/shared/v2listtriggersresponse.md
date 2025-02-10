@@ -9,7 +9,7 @@ let value: V2ListTriggersResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2022-06-26T10:37:28.934Z"),
+        createdAt: new Date("2023-08-26T03:38:10.416Z"),
         event: "<value>",
         id: "<id>",
         workflowID: "<id>",

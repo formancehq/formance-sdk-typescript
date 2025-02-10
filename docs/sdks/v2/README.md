@@ -21,6 +21,7 @@
 * [getInfo](#getinfo) - Show server information
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
+* [getMetrics](#getmetrics) - Read in memory metrics
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
@@ -407,7 +408,10 @@ async function run() {
         action: "<value>",
       },
     ],
+    atomic: true,
+    continueOnFailure: true,
     ledger: "ledger001",
+    parallel: true,
   });
 
   // Handle the result
@@ -468,7 +472,10 @@ async function run() {
         },
       },
     ],
+    atomic: true,
+    continueOnFailure: true,
     ledger: "ledger001",
+    parallel: true,
   });
 
   if (!res.ok) {
@@ -626,6 +633,12 @@ async function run() {
           destination: "users:002",
           source: "users:001",
         },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
       ],
       reference: "ref:001",
       script: {
@@ -643,6 +656,7 @@ async function run() {
       },
     },
     dryRun: true,
+    force: true,
     ledger: "ledger001",
   });
 
@@ -683,6 +697,12 @@ async function run() {
           destination: "users:002",
           source: "users:001",
         },
+        {
+          amount: BigInt("100"),
+          asset: "COIN",
+          destination: "users:002",
+          source: "users:001",
+        },
       ],
       reference: "ref:001",
       script: {
@@ -700,6 +720,7 @@ async function run() {
       },
     },
     dryRun: true,
+    force: true,
     ledger: "ledger001",
   });
 
@@ -754,7 +775,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2.deleteAccountMetadata({
-    address: "3680 Emile Grove",
+    address: "96609 Cummings Canyon",
     key: "foo",
     ledger: "ledger001",
   });
@@ -785,7 +806,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV2DeleteAccountMetadata(sdk, {
-    address: "3680 Emile Grove",
+    address: "96609 Cummings Canyon",
     key: "foo",
     ledger: "ledger001",
   });
@@ -1481,6 +1502,84 @@ run();
 ### Response
 
 **Promise\<[operations.V2GetLedgerInfoResponse](../../sdk/models/operations/v2getledgerinforesponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## getMetrics
+
+Read in memory metrics
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.getMetrics();
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2GetMetrics } from "@formance/formance-sdk/funcs/ledgerV2GetMetrics.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2GetMetrics(sdk);
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result);
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetMetricsResponse](../../sdk/models/operations/getmetricsresponse.md)\>**
 
 ### Errors
 
@@ -2192,6 +2291,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2.revertTransaction({
+    dryRun: true,
     id: BigInt("1234"),
     ledger: "ledger001",
   });
@@ -2222,6 +2322,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV2RevertTransaction(sdk, {
+    dryRun: true,
     id: BigInt("1234"),
     ledger: "ledger001",
   });

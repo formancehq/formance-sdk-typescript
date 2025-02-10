@@ -8,9 +8,8 @@ import { BankAccountsCursorCursor } from "@formance/formance-sdk/sdk/models/shar
 let value: BankAccountsCursorCursor = {
   data: [
     {
-      connectorID: "<id>",
-      country: "Canada",
-      createdAt: new Date("2024-11-22T15:42:40.032Z"),
+      country: "Myanmar",
+      createdAt: new Date("2023-12-20T15:19:35.871Z"),
       id: "<id>",
       name: "<value>",
     },

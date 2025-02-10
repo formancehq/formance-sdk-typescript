@@ -68,7 +68,7 @@ export const GetBalancesRequest$inboundSchema: z.ZodType<
   after: z.string().optional(),
   cursor: z.string().optional(),
   ledger: z.string(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
 });
 
 /** @internal */
@@ -77,7 +77,7 @@ export type GetBalancesRequest$Outbound = {
   after?: string | undefined;
   cursor?: string | undefined;
   ledger: string;
-  pageSize: number;
+  pageSize?: number | undefined;
 };
 
 /** @internal */
@@ -90,7 +90,7 @@ export const GetBalancesRequest$outboundSchema: z.ZodType<
   after: z.string().optional(),
   cursor: z.string().optional(),
   ledger: z.string(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
 });
 
 /**

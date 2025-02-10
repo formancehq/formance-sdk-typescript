@@ -16,7 +16,7 @@ import {
 export type Client = {
   description?: string | undefined;
   id: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
   postLogoutRedirectUris?: Array<string> | undefined;
   public?: boolean | undefined;
@@ -31,7 +31,7 @@ export const Client$inboundSchema: z.ZodType<Client, z.ZodTypeDef, unknown> = z
   .object({
     description: z.string().optional(),
     id: z.string(),
-    metadata: z.record(z.any()).optional(),
+    metadata: z.nullable(z.record(z.any())).optional(),
     name: z.string(),
     postLogoutRedirectUris: z.array(z.string()).optional(),
     public: z.boolean().optional(),
@@ -45,7 +45,7 @@ export const Client$inboundSchema: z.ZodType<Client, z.ZodTypeDef, unknown> = z
 export type Client$Outbound = {
   description?: string | undefined;
   id: string;
-  metadata?: { [k: string]: any } | undefined;
+  metadata?: { [k: string]: any } | null | undefined;
   name: string;
   postLogoutRedirectUris?: Array<string> | undefined;
   public?: boolean | undefined;
@@ -63,7 +63,7 @@ export const Client$outboundSchema: z.ZodType<
 > = z.object({
   description: z.string().optional(),
   id: z.string(),
-  metadata: z.record(z.any()).optional(),
+  metadata: z.nullable(z.record(z.any())).optional(),
   name: z.string(),
   postLogoutRedirectUris: z.array(z.string()).optional(),
   public: z.boolean().optional(),

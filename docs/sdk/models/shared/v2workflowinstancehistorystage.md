@@ -6,7 +6,7 @@
 import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 271550,
+  attempt: 583138,
   input: {
     createTransaction: {
       data: {
@@ -46,12 +46,7 @@ let value: V2WorkflowInstanceHistoryStage = {
         metadata: {
           "key": "",
         },
-        sources: [
-          {
-            identifier: "<value>",
-            type: "<value>",
-          },
-        ],
+        sources: [],
       },
     },
     debitWallet: {
@@ -71,7 +66,6 @@ let value: V2WorkflowInstanceHistoryStage = {
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       metadata: {},
-      waitingValidation: false,
     },
   },
   name: "<value>",
@@ -91,8 +85,8 @@ let value: V2WorkflowInstanceHistoryStage = {
             },
           ],
           reference: "ref:001",
-          timestamp: new Date("2024-03-06T23:06:11.778Z"),
-          txid: BigInt("474872"),
+          timestamp: new Date("2023-10-10T19:22:40.102Z"),
+          txid: BigInt("473386"),
         },
       ],
     },
@@ -134,21 +128,21 @@ let value: V2WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2024-09-17T20:09:09.916Z"),
+            date: new Date("2025-07-03T06:10:20.109Z"),
             raw: {},
-            status: V2PaymentStatus.Pending,
+            status: V2PaymentStatus.Active,
           },
         ],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2022-07-18T00:05:49.160Z"),
+        createdAt: new Date("2024-04-12T15:41:27.262Z"),
         destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.Unionpay,
+        scheme: Scheme.ApplePay,
         sourceAccountID: "<id>",
         status: V2PaymentStatus.Failed,
         type: V2PaymentType.Other,
@@ -158,8 +152,8 @@ let value: V2WorkflowInstanceHistoryStage = {
       cursor: {
         data: [
           {
-            createdAt: new Date("2023-01-19T19:42:43.719Z"),
-            id: "40d69f02-ccc8-4f69-916b-3fa4c1f0e4c0",
+            createdAt: new Date("2025-01-15T16:27:33.018Z"),
+            id: "bf650232-c8ad-435b-a606-e65fa51cbe31",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -174,7 +168,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2024-04-01T00:20:32.487Z"),
+  startedAt: new Date("2023-08-11T22:07:27.220Z"),
   terminated: false,
 };
 ```

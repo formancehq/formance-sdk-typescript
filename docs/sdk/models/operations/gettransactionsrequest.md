@@ -7,7 +7,6 @@ import { GetTransactionsRequest } from "@formance/formance-sdk/sdk/models/operat
 
 let value: GetTransactionsRequest = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-  pageSize: 100,
   walletID: "wallet1",
 };
 ```

@@ -5,7 +5,7 @@
 ```typescript
 import { Type } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Type = Type.NewTransaction;
+let value: Type = Type.SetMetadata;
 ```
 
 ## Values

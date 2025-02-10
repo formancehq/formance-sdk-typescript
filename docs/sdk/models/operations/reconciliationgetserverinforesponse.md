@@ -7,7 +7,7 @@ import { ReconciliationgetServerInfoResponse } from "@formance/formance-sdk/sdk/
 
 let value: ReconciliationgetServerInfoResponse = {
   contentType: "<value>",
-  statusCode: 301,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

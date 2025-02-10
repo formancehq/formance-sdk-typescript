@@ -9,7 +9,6 @@ let value: GenericConfig = {
   apiKey: "XXX",
   endpoint: "XXX",
   name: "My Generic Account",
-  pollingPeriod: "60s",
 };
 ```
 

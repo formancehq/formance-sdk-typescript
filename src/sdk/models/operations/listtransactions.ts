@@ -102,7 +102,7 @@ export const ListTransactionsRequest$inboundSchema: z.ZodType<
     .optional(),
   ledger: z.string(),
   metadata: z.record(z.any()).optional(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   reference: z.string().optional(),
   source: z.string().optional(),
   startTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
@@ -118,7 +118,7 @@ export type ListTransactionsRequest$Outbound = {
   endTime?: string | undefined;
   ledger: string;
   metadata?: { [k: string]: any } | undefined;
-  pageSize: number;
+  pageSize?: number | undefined;
   reference?: string | undefined;
   source?: string | undefined;
   startTime?: string | undefined;
@@ -137,7 +137,7 @@ export const ListTransactionsRequest$outboundSchema: z.ZodType<
   endTime: z.date().transform(v => v.toISOString()).optional(),
   ledger: z.string(),
   metadata: z.record(z.any()).optional(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   reference: z.string().optional(),
   source: z.string().optional(),
   startTime: z.date().transform(v => v.toISOString()).optional(),

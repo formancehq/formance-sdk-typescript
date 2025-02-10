@@ -79,7 +79,7 @@ export const ListLogsRequest$inboundSchema: z.ZodType<
   endTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   ledger: z.string(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   startTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
 });
@@ -90,7 +90,7 @@ export type ListLogsRequest$Outbound = {
   cursor?: string | undefined;
   endTime?: string | undefined;
   ledger: string;
-  pageSize: number;
+  pageSize?: number | undefined;
   startTime?: string | undefined;
 };
 
@@ -104,7 +104,7 @@ export const ListLogsRequest$outboundSchema: z.ZodType<
   cursor: z.string().optional(),
   endTime: z.date().transform(v => v.toISOString()).optional(),
   ledger: z.string(),
-  pageSize: z.number().int().default(15),
+  pageSize: z.number().int().optional(),
   startTime: z.date().transform(v => v.toISOString()).optional(),
 });
 

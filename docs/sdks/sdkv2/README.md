@@ -283,7 +283,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2.deleteTrigger({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -312,7 +312,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV2DeleteTrigger(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {
@@ -1037,7 +1037,7 @@ async function run() {
   const result = await sdk.orchestration.v2.listTriggersOccurrences({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -1068,7 +1068,7 @@ async function run() {
   const res = await orchestrationV2ListTriggersOccurrences(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {
@@ -1207,7 +1207,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2.readTrigger({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -1236,7 +1236,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV2ReadTrigger(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {
@@ -1456,7 +1456,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.orchestration.v2.testTrigger({
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   // Handle the result
@@ -1485,7 +1485,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await orchestrationV2TestTrigger(sdk, {
-    triggerID: "<value>",
+    triggerID: "<id>",
   });
 
   if (!res.ok) {

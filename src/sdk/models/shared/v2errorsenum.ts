@@ -17,6 +17,12 @@ export enum V2ErrorsEnum {
   NoPostings = "NO_POSTINGS",
   LedgerNotFound = "LEDGER_NOT_FOUND",
   Import = "IMPORT",
+  Timeout = "TIMEOUT",
+  BulkSizeExceeded = "BULK_SIZE_EXCEEDED",
+  InterpreterParse = "INTERPRETER_PARSE",
+  InterpreterRuntime = "INTERPRETER_RUNTIME",
+  LedgerAlreadyExists = "LEDGER_ALREADY_EXISTS",
+  OutdatedSchema = "OUTDATED_SCHEMA",
 }
 
 /** @internal */

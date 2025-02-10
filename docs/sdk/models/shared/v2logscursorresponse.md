@@ -12,11 +12,11 @@ let value: V2LogsCursorResponse = {
         data: {
           "key": "<value>",
         },
-        date: new Date("2023-06-21T16:40:18.965Z"),
+        date: new Date("2025-05-26T15:39:37.504Z"),
         hash:
           "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
         id: BigInt("1234"),
-        type: V2LogType.NewTransaction,
+        type: V2LogType.SetMetadata,
       },
     ],
     hasMore: false,

@@ -11,7 +11,7 @@ let value: GetTransactionsResponse = {
     cursor: {
       data: [
         {
-          id: 848346,
+          id: 947822,
           metadata: {
             "key": "<value>",
           },
@@ -52,7 +52,7 @@ let value: GetTransactionsResponse = {
             },
           },
           reference: "ref:001",
-          timestamp: new Date("2023-06-22T12:00:18.977Z"),
+          timestamp: new Date("2025-03-09T12:00:31.798Z"),
         },
       ],
       hasMore: false,
@@ -61,7 +61,7 @@ let value: GetTransactionsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 103,
+  statusCode: 207,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

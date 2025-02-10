@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
+  TaskStatus,
+  TaskStatus$inboundSchema,
+  TaskStatus$outboundSchema,
+} from "./taskstatus.js";
 
 export type TaskMangoPayDescriptor = {
   key?: string | undefined;
@@ -26,8 +26,8 @@ export type TaskMangoPay = {
   descriptor: TaskMangoPayDescriptor;
   error?: string | undefined;
   id: string;
-  state: TaskMangoPayState;
-  status: PaymentStatus;
+  state?: TaskMangoPayState | null | undefined;
+  status: TaskStatus;
   updatedAt: Date;
 };
 
@@ -150,8 +150,8 @@ export const TaskMangoPay$inboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskMangoPayDescriptor$inboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskMangoPayState$inboundSchema),
-  status: PaymentStatus$inboundSchema,
+  state: z.nullable(z.lazy(() => TaskMangoPayState$inboundSchema)).optional(),
+  status: TaskStatus$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
@@ -162,7 +162,7 @@ export type TaskMangoPay$Outbound = {
   descriptor: TaskMangoPayDescriptor$Outbound;
   error?: string | undefined;
   id: string;
-  state: TaskMangoPayState$Outbound;
+  state?: TaskMangoPayState$Outbound | null | undefined;
   status: string;
   updatedAt: string;
 };
@@ -178,8 +178,8 @@ export const TaskMangoPay$outboundSchema: z.ZodType<
   descriptor: z.lazy(() => TaskMangoPayDescriptor$outboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskMangoPayState$outboundSchema),
-  status: PaymentStatus$outboundSchema,
+  state: z.nullable(z.lazy(() => TaskMangoPayState$outboundSchema)).optional(),
+  status: TaskStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),
 });
 

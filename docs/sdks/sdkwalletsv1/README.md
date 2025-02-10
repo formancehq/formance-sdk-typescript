@@ -44,7 +44,7 @@ async function run() {
       amount: BigInt("100"),
       final: true,
     },
-    holdId: "<value>",
+    holdId: "<id>",
   });
 
   // Handle the result
@@ -77,7 +77,7 @@ async function run() {
       amount: BigInt("100"),
       final: true,
     },
-    holdId: "<value>",
+    holdId: "<id>",
   });
 
   if (!res.ok) {
@@ -302,10 +302,7 @@ async function run() {
         "key": "",
       },
       sources: [
-        {
-          identifier: "<value>",
-          type: "<value>",
-        },
+
       ],
     },
     id: "<id>",
@@ -346,10 +343,7 @@ async function run() {
         "key": "",
       },
       sources: [
-        {
-          identifier: "<value>",
-          type: "<value>",
-        },
+  
       ],
     },
     id: "<id>",
@@ -594,7 +588,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.v1.getHold({
-    holdID: "<value>",
+    holdID: "<id>",
   });
 
   // Handle the result
@@ -623,7 +617,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await walletsV1GetHold(sdk, {
-    holdID: "<value>",
+    holdID: "<id>",
   });
 
   if (!res.ok) {
@@ -681,7 +675,6 @@ async function run() {
     metadata: {
       "admin": "true",
     },
-    pageSize: 100,
     walletID: "wallet1",
   });
 
@@ -715,7 +708,6 @@ async function run() {
     metadata: {
       "admin": "true",
     },
-    pageSize: 100,
     walletID: "wallet1",
   });
 
@@ -769,7 +761,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.v1.getTransactions({
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     walletID: "wallet1",
   });
 
@@ -800,7 +791,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await walletsV1GetTransactions(sdk, {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-    pageSize: 100,
     walletID: "wallet1",
   });
 
@@ -1109,7 +1099,6 @@ async function run() {
       "admin": "true",
     },
     name: "wallet1",
-    pageSize: 100,
   });
 
   // Handle the result
@@ -1144,7 +1133,6 @@ async function run() {
       "admin": "true",
     },
     name: "wallet1",
-    pageSize: 100,
   });
 
   if (!res.ok) {
@@ -1281,7 +1269,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.wallets.v1.voidHold({
-    holdId: "<value>",
+    holdId: "<id>",
   });
 
   // Handle the result
@@ -1310,7 +1298,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await walletsV1VoidHold(sdk, {
-    holdId: "<value>",
+    holdId: "<id>",
   });
 
   if (!res.ok) {

@@ -7,7 +7,7 @@ import { V2CreateTriggerResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2CreateTriggerResponse = {
   contentType: "<value>",
-  statusCode: 411,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

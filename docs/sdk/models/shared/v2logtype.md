@@ -15,3 +15,4 @@ let value: V2LogType = V2LogType.SetMetadata;
 | `NewTransaction`      | NEW_TRANSACTION       |
 | `SetMetadata`         | SET_METADATA          |
 | `RevertedTransaction` | REVERTED_TRANSACTION  |
+| `DeleteMetadata`      | DELETE_METADATA       |

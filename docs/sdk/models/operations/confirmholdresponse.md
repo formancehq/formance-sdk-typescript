@@ -7,7 +7,7 @@ import { ConfirmHoldResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: ConfirmHoldResponse = {
   contentType: "<value>",
-  statusCode: 411,
+  statusCode: 506,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

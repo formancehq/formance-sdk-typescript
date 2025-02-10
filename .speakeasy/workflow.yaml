@@ -15,3 +15,9 @@ targets:
         publish:
             npm:
                 token: $NPM_TOKEN
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/formance/formance/stacks-source-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false

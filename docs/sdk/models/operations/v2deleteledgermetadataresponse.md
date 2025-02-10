@@ -7,7 +7,7 @@ import { V2DeleteLedgerMetadataResponse } from "@formance/formance-sdk/sdk/model
 
 let value: V2DeleteLedgerMetadataResponse = {
   contentType: "<value>",
-  statusCode: 305,
+  statusCode: 201,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

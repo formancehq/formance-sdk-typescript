@@ -5,7 +5,7 @@
 ```typescript
 import { V2Connector } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2Connector = V2Connector.Modulr;
+let value: V2Connector = V2Connector.Moneycorp;
 ```
 
 ## Values

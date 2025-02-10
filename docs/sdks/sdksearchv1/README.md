@@ -36,7 +36,6 @@ async function run() {
       "quickstart",
     ],
     policy: "OR",
-    raw: {},
     sort: "id:asc",
     terms: [
       "destination=central_bank1",
@@ -77,7 +76,6 @@ async function run() {
       "quickstart",
     ],
     policy: "OR",
-    raw: {},
     sort: "id:asc",
     terms: [
       "destination=central_bank1",

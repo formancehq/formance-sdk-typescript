@@ -7,8 +7,8 @@ import { ActivityDebitWalletOutput } from "@formance/formance-sdk/sdk/models/sha
 
 let value: ActivityDebitWalletOutput = {
   data: {
-    description: "midst yuck onset eek oof if deserted meh failing",
-    id: "e269f2e1-7735-47df-b8d9-53680293d511",
+    description: "till transcend before",
+    id: "6e2d07a0-9f2b-4920-b08f-ab792ecf432f",
     metadata: {
       "key": "<value>",
     },

@@ -7,7 +7,7 @@ import { CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: CreateTransactionResponse = {
   contentType: "<value>",
-  statusCode: 417,
+  statusCode: 400,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -55,8 +55,8 @@ let value: CreateTransactionResponse = {
           },
         },
         reference: "ref:001",
-        timestamp: new Date("2024-10-31T08:20:58.047Z"),
-        txid: BigInt("681820"),
+        timestamp: new Date("2023-11-27T12:37:26.320Z"),
+        txid: BigInt("660174"),
       },
     ],
   },

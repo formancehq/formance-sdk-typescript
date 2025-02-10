@@ -8,7 +8,7 @@ import { V2ListTriggersResponseCursor } from "@formance/formance-sdk/sdk/models/
 let value: V2ListTriggersResponseCursor = {
   data: [
     {
-      createdAt: new Date("2024-01-17T17:42:49.523Z"),
+      createdAt: new Date("2025-01-03T23:23:29.876Z"),
       event: "<value>",
       id: "<id>",
       workflowID: "<id>",

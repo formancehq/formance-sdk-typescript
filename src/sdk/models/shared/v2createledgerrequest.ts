@@ -9,6 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2CreateLedgerRequest = {
   bucket?: string | undefined;
+  features?: { [k: string]: string } | undefined;
   metadata?: { [k: string]: string } | undefined;
 };
 
@@ -19,12 +20,14 @@ export const V2CreateLedgerRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   bucket: z.string().optional(),
+  features: z.record(z.string()).optional(),
   metadata: z.record(z.string()).optional(),
 });
 
 /** @internal */
 export type V2CreateLedgerRequest$Outbound = {
   bucket?: string | undefined;
+  features?: { [k: string]: string } | undefined;
   metadata?: { [k: string]: string } | undefined;
 };
 
@@ -35,6 +38,7 @@ export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
   V2CreateLedgerRequest
 > = z.object({
   bucket: z.string().optional(),
+  features: z.record(z.string()).optional(),
   metadata: z.record(z.string()).optional(),
 });
 

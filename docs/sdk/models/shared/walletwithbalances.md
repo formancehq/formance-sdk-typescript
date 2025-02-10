@@ -9,12 +9,12 @@ let value: WalletWithBalances = {
   balances: {
     main: {
       assets: {
-        "key": BigInt("818422"),
+        "key": BigInt("946558"),
       },
     },
   },
-  createdAt: new Date("2022-03-30T04:07:03.909Z"),
-  id: "9d3cec10-3496-4b52-a5ef-3c4e2a1fbd97",
+  createdAt: new Date("2023-05-26T22:19:48.108Z"),
+  id: "e177357d-f8d9-4536-b802-93d511e12d4a",
   ledger: "<value>",
   metadata: {
     "key": "<value>",

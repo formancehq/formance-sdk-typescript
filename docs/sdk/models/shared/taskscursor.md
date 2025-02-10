@@ -5,19 +5,18 @@ OK
 ## Example Usage
 
 ```typescript
-import { PaymentStatus, TasksCursor } from "@formance/formance-sdk/sdk/models/shared";
+import { TasksCursor, TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TasksCursor = {
   cursor: {
     data: [
       {
         connectorID: "<id>",
-        createdAt: new Date("2022-08-22T14:52:03.725Z"),
+        createdAt: new Date("2025-04-30T16:47:28.347Z"),
         descriptor: {},
-        id: "7d4a715d-fd25-4d8c-8c15-7fe6168e44a8",
-        state: {},
-        status: PaymentStatus.Succeeded,
-        updatedAt: new Date("2023-06-21T11:44:04.584Z"),
+        id: "c157fe61-68e4-44a8-8327-ccf660dac7e0",
+        status: TaskStatus.Active,
+        updatedAt: new Date("2023-04-04T06:37:32.905Z"),
       },
     ],
     hasMore: false,

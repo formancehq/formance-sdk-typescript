@@ -9,6 +9,7 @@ import { webhooksV1DeleteConfig } from "../funcs/webhooksV1DeleteConfig.js";
 import { webhooksV1GetManyConfigs } from "../funcs/webhooksV1GetManyConfigs.js";
 import { webhooksV1InsertConfig } from "../funcs/webhooksV1InsertConfig.js";
 import { webhooksV1TestConfig } from "../funcs/webhooksV1TestConfig.js";
+import { webhooksV1UpdateConfig } from "../funcs/webhooksV1UpdateConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import * as shared from "./models/shared/index.js";
@@ -139,6 +140,23 @@ export class SDKWebhooksV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.TestConfigResponse> {
     return unwrapAsync(webhooksV1TestConfig(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update one config
+   *
+   * @remarks
+   * Update a webhooks config by ID.
+   */
+  async updateConfig(
+    request: operations.UpdateConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateConfigResponse> {
+    return unwrapAsync(webhooksV1UpdateConfig(
       this,
       request,
       options,

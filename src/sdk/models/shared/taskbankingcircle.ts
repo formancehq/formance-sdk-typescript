@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  PaymentStatus,
-  PaymentStatus$inboundSchema,
-  PaymentStatus$outboundSchema,
-} from "./paymentstatus.js";
+  TaskStatus,
+  TaskStatus$inboundSchema,
+  TaskStatus$outboundSchema,
+} from "./taskstatus.js";
 
 export type Descriptor = {
   key?: string | undefined;
@@ -25,8 +25,8 @@ export type TaskBankingCircle = {
   descriptor: Descriptor;
   error?: string | undefined;
   id: string;
-  state: TaskBankingCircleState;
-  status: PaymentStatus;
+  state?: TaskBankingCircleState | null | undefined;
+  status: TaskStatus;
   updatedAt: Date;
 };
 
@@ -142,8 +142,9 @@ export const TaskBankingCircle$inboundSchema: z.ZodType<
   descriptor: z.lazy(() => Descriptor$inboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskBankingCircleState$inboundSchema),
-  status: PaymentStatus$inboundSchema,
+  state: z.nullable(z.lazy(() => TaskBankingCircleState$inboundSchema))
+    .optional(),
+  status: TaskStatus$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
@@ -154,7 +155,7 @@ export type TaskBankingCircle$Outbound = {
   descriptor: Descriptor$Outbound;
   error?: string | undefined;
   id: string;
-  state: TaskBankingCircleState$Outbound;
+  state?: TaskBankingCircleState$Outbound | null | undefined;
   status: string;
   updatedAt: string;
 };
@@ -170,8 +171,9 @@ export const TaskBankingCircle$outboundSchema: z.ZodType<
   descriptor: z.lazy(() => Descriptor$outboundSchema),
   error: z.string().optional(),
   id: z.string(),
-  state: z.lazy(() => TaskBankingCircleState$outboundSchema),
-  status: PaymentStatus$outboundSchema,
+  state: z.nullable(z.lazy(() => TaskBankingCircleState$outboundSchema))
+    .optional(),
+  status: TaskStatus$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),
 });
 

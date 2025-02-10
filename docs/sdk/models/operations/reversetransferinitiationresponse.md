@@ -7,7 +7,7 @@ import { ReverseTransferInitiationResponse } from "@formance/formance-sdk/sdk/mo
 
 let value: ReverseTransferInitiationResponse = {
   contentType: "<value>",
-  statusCode: 204,
+  statusCode: 504,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

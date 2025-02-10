@@ -10,7 +10,6 @@ let value: MangoPayConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My MangoPay Account",
-  pollingPeriod: "60s",
 };
 ```
 
