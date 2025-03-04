@@ -13,9 +13,9 @@ let value: V2Workflow = {
       },
     ],
   },
-  createdAt: new Date("2023-03-11T10:51:29.864Z"),
+  createdAt: new Date("2024-10-21T17:31:37.327Z"),
   id: "<id>",
-  updatedAt: new Date("2024-03-25T04:53:25.304Z"),
+  updatedAt: new Date("2023-03-11T10:51:29.864Z"),
 };
 ```
 

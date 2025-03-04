@@ -7,14 +7,14 @@ import { TaskStatus, TaskStripe } from "@formance/formance-sdk/sdk/models/shared
 
 let value: TaskStripe = {
   connectorID: "<id>",
-  createdAt: new Date("2023-10-30T18:58:57.422Z"),
+  createdAt: new Date("2025-06-06T08:49:54.446Z"),
   descriptor: {
-    account: "25441523",
+    account: "94602161",
     name: "<value>",
   },
-  id: "bec69b65-2bd5-4c9c-b6b6-1874e6066dc3",
-  status: TaskStatus.Active,
-  updatedAt: new Date("2024-01-10T18:14:09.000Z"),
+  id: "04a95d44-8772-4846-9bec-69b652bd5c9c",
+  status: TaskStatus.Terminated,
+  updatedAt: new Date("2024-03-23T17:25:25.814Z"),
 };
 ```
 

@@ -7,7 +7,7 @@ import { V3GetPoolBalancesResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: V3GetPoolBalancesResponse = {
   contentType: "<value>",
-  statusCode: 307,
+  statusCode: 501,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

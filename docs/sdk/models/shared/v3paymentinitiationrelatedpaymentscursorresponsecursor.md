@@ -12,17 +12,17 @@ import {
 let value: V3PaymentInitiationRelatedPaymentsCursorResponseCursor = {
   data: [
     {
-      amount: BigInt("916627"),
+      amount: BigInt("858421"),
       asset: "<value>",
       connectorID: "<value>",
-      createdAt: new Date("2023-12-22T17:33:21.807Z"),
+      createdAt: new Date("2024-03-16T06:19:45.604Z"),
       id: "<id>",
-      initialAmount: BigInt("497004"),
+      initialAmount: BigInt("115870"),
       provider: "<value>",
       reference: "<value>",
       scheme: "<value>",
-      status: V3PaymentStatusEnum.RefundedFailure,
-      type: V3PaymentTypeEnum.Payout,
+      status: V3PaymentStatusEnum.AmountAdjustement,
+      type: V3PaymentTypeEnum.PayIn,
     },
   ],
   hasMore: false,

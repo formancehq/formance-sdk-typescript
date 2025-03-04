@@ -6,7 +6,7 @@
 import { V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PaymentInitiationStatusEnum =
-  V3PaymentInitiationStatusEnum.Rejected;
+  V3PaymentInitiationStatusEnum.ReverseProcessing;
 ```
 
 ## Values

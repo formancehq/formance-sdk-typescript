@@ -6,7 +6,7 @@
 import { V3ConnectorConfigsResponseKey } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ConnectorConfigsResponseKey = {
-  dataType: "int",
+  dataType: "timestamp",
   required: false,
 };
 ```

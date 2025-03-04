@@ -9,10 +9,10 @@ let value: V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  password: "HqOdTTzT1ejLPPf",
+  password: "ZjZJMh2rORRcPoD",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
-  username: "Joshuah.Dare",
+  username: "Alene98",
 };
 ```
 

@@ -7,11 +7,11 @@ import { TaskBankingCircle, TaskStatus } from "@formance/formance-sdk/sdk/models
 
 let value: TaskBankingCircle = {
   connectorID: "<id>",
-  createdAt: new Date("2025-09-09T18:38:44.004Z"),
+  createdAt: new Date("2025-02-06T04:30:16.073Z"),
   descriptor: {},
-  id: "42e25b43-6ce0-42f9-98d0-0fdb27ee0c0f",
+  id: "946a2668-85c1-406e-a42e-25b436ce02f9",
   status: TaskStatus.Failed,
-  updatedAt: new Date("2024-02-08T01:12:43.433Z"),
+  updatedAt: new Date("2023-02-13T14:27:35.536Z"),
 };
 ```
 

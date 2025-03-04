@@ -18,7 +18,7 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://cluttered-folklore.biz/",
+  baseURL: "https://snappy-mainstream.net",
   name: "<value>",
   secret: "<value>",
 };
@@ -31,10 +31,10 @@ const value: shared.V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  password: "ZjZJMh2rORRcPoD",
+  password: "Xt56hn8FPjqsKJq",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
-  username: "Alene98",
+  username: "Lavada16",
 };
 ```
 
@@ -53,7 +53,7 @@ const value: shared.V3CurrencycloudConfig = {
 
 ```typescript
 const value: shared.V3DummypayConfig = {
-  directory: "/lib",
+  directory: "/lost+found",
   name: "<value>",
 };
 ```

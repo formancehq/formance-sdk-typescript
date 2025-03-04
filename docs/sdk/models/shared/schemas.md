@@ -6,7 +6,7 @@
 import { Schemas } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Schemas = {
-  logID: 642804,
+  logID: 344856,
   responseType: "<value>",
 };
 ```

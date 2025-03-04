@@ -22,6 +22,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as shared from "../sdk/models/shared/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -30,11 +31,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Create a policy
  */
-export async function reconciliationV1CreatePolicy(
+export function reconciliationV1CreatePolicy(
   client: SDKCore,
   request: shared.PolicyRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.CreatePolicyResponse,
     | errors.ReconciliationErrorResponse
@@ -47,13 +48,40 @@ export async function reconciliationV1CreatePolicy(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: shared.PolicyRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.CreatePolicyResponse,
+      | errors.ReconciliationErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => shared.PolicyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
@@ -69,6 +97,7 @@ export async function reconciliationV1CreatePolicy(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createPolicy",
     oAuth2Scopes: ["auth:read", "reconciliation:write"],
 
@@ -91,7 +120,7 @@ export async function reconciliationV1CreatePolicy(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -102,7 +131,7 @@ export async function reconciliationV1CreatePolicy(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -131,8 +160,8 @@ export async function reconciliationV1CreatePolicy(
     M.jsonErr("default", errors.ReconciliationErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

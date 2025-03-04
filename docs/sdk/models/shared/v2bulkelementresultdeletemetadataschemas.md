@@ -6,7 +6,7 @@
 import { V2BulkElementResultDeleteMetadataSchemas } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementResultDeleteMetadataSchemas = {
-  logID: 196451,
+  logID: 444479,
   responseType: "<value>",
 };
 ```

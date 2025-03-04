@@ -8,7 +8,7 @@ import { V3PoolBalancesResponse } from "@formance/formance-sdk/sdk/models/shared
 let value: V3PoolBalancesResponse = {
   data: [
     {
-      amount: BigInt("39029"),
+      amount: BigInt("14112"),
       asset: "<value>",
     },
   ],

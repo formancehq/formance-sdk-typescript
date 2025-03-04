@@ -7,8 +7,8 @@ import { CreateWalletResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: CreateWalletResponse = {
   data: {
-    createdAt: new Date("2024-04-08T07:17:04.384Z"),
-    id: "095071a8-8eeb-4940-a153-986cbb806770",
+    createdAt: new Date("2024-10-12T05:48:42.839Z"),
+    id: "184ba16e-6b1d-48f8-9cfb-95066d3b0ea6",
     ledger: "<value>",
     metadata: {
       "key": "<value>",

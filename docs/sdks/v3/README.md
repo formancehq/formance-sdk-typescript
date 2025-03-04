@@ -22,7 +22,6 @@
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](#getinfo) - Show server information
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](#getpool) - Get a pool by ID
@@ -1199,84 +1198,6 @@ run();
 ### Response
 
 **Promise\<[operations.V3GetConnectorScheduleResponse](../../sdk/models/operations/v3getconnectorscheduleresponse.md)\>**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| errors.V3ErrorResponse | default                | application/json       |
-| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
-
-## getInfo
-
-Show server information
-
-### Example Usage
-
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const result = await sdk.payments.v3.getInfo();
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@formance/formance-sdk/core.js";
-import { paymentsV3GetInfo } from "@formance/formance-sdk/funcs/paymentsV3GetInfo.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const res = await paymentsV3GetInfo(sdk);
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.V3GetInfoResponse](../../sdk/models/operations/v3getinforesponse.md)\>**
 
 ### Errors
 

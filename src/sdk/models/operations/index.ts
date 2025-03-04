@@ -185,7 +185,6 @@ export * from "./v3getaccountbalances.js";
 export * from "./v3getbankaccount.js";
 export * from "./v3getconnectorconfig.js";
 export * from "./v3getconnectorschedule.js";
-export * from "./v3getinfo.js";
 export * from "./v3getpayment.js";
 export * from "./v3getpaymentinitiation.js";
 export * from "./v3getpool.js";

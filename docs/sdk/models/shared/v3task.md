@@ -6,10 +6,10 @@
 import { V3Task, V3TaskStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Task = {
-  createdAt: new Date("2024-05-06T05:31:28.003Z"),
+  createdAt: new Date("2023-06-30T02:58:45.254Z"),
   id: "<id>",
-  status: V3TaskStatusEnum.Succeeded,
-  updatedAt: new Date("2023-01-13T10:12:09.346Z"),
+  status: V3TaskStatusEnum.Processing,
+  updatedAt: new Date("2025-08-09T00:14:34.839Z"),
 };
 ```
 

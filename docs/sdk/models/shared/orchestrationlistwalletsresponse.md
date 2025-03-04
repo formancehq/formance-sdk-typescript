@@ -9,8 +9,8 @@ let value: OrchestrationListWalletsResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2023-10-27T14:09:54.597Z"),
-        id: "e2a1fbd9-7987-4c22-a651-dc8f1c453c2d",
+        createdAt: new Date("2025-06-15T14:42:11.992Z"),
+        id: "9306add0-353c-4c8f-92e1-2b196becd048",
         ledger: "<value>",
         metadata: {
           "key": "<value>",

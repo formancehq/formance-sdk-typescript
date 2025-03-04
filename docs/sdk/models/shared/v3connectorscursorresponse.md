@@ -10,7 +10,7 @@ let value: V3ConnectorsCursorResponse = {
     data: [
       {
         config: {},
-        createdAt: new Date("2024-04-28T14:20:35.511Z"),
+        createdAt: new Date("2024-07-01T14:02:10.936Z"),
         id: "<id>",
         name: "<value>",
         provider: "<value>",

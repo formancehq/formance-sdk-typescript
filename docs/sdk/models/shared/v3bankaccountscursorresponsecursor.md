@@ -8,7 +8,7 @@ import { V3BankAccountsCursorResponseCursor } from "@formance/formance-sdk/sdk/m
 let value: V3BankAccountsCursorResponseCursor = {
   data: [
     {
-      createdAt: new Date("2024-07-17T19:51:13.460Z"),
+      createdAt: new Date("2024-07-03T09:16:14.276Z"),
       id: "<id>",
       name: "<value>",
     },

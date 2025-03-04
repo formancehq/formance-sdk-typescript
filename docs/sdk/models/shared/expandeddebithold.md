@@ -6,8 +6,8 @@
 import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ExpandedDebitHold = {
-  description: "ew bah whether sediment litter",
-  id: "a148e790-f725-4823-aed1-4a40b354222f",
+  description: "apud upward inside during",
+  id: "c0548e0d-89f2-4437-99b0-6e7d14b97ace",
   metadata: {
     "key": "<value>",
   },

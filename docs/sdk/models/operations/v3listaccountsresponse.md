@@ -8,7 +8,7 @@ import { V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ListAccountsResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,7 +17,7 @@ let value: V3ListAccountsResponse = {
       data: [
         {
           connectorID: "<value>",
-          createdAt: new Date("2023-09-28T05:26:01.481Z"),
+          createdAt: new Date("2023-04-28T22:46:34.018Z"),
           id: "<id>",
           provider: "<value>",
           raw: {},

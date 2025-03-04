@@ -8,7 +8,7 @@ import { V3ConnectorScheduleResponse } from "@formance/formance-sdk/sdk/models/s
 let value: V3ConnectorScheduleResponse = {
   data: {
     connectorID: "<value>",
-    createdAt: new Date("2023-02-14T05:15:42.091Z"),
+    createdAt: new Date("2024-02-17T01:18:56.856Z"),
     id: "<id>",
   },
 };

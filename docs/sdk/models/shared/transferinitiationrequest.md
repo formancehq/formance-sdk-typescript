@@ -6,14 +6,15 @@
 import { TransferInitiationRequest, TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiationRequest = {
-  amount: BigInt("953707"),
+  amount: BigInt("447503"),
   asset: "USD",
-  description: "barring happily obesity lamp ill-fated vastly yippee save in",
+  description:
+    "whose recovery furthermore glaring huddle well-lit gently excluding",
   destinationAccountID: "<id>",
   reference: "XXX",
-  scheduledAt: new Date("2023-05-30T09:02:00.896Z"),
+  scheduledAt: new Date("2024-09-22T15:13:56.903Z"),
   sourceAccountID: "<id>",
-  type: TransferInitiationRequestType.Payout,
+  type: TransferInitiationRequestType.Transfer,
   validated: false,
 };
 ```

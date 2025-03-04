@@ -12,16 +12,16 @@ import {
 let value: V3PaymentInitiationsCursorResponseCursor = {
   data: [
     {
-      amount: BigInt("563937"),
+      amount: BigInt("932220"),
       asset: "<value>",
       connectorID: "<value>",
-      createdAt: new Date("2025-01-21T07:34:32.676Z"),
-      description: "own brr about beneath prime gee clonk gloss",
+      createdAt: new Date("2025-02-26T05:58:35.788Z"),
+      description: "overcoat lawmaker depot deadly fen well-worn",
       id: "<id>",
       reference: "<value>",
-      scheduledAt: new Date("2023-06-08T02:18:28.420Z"),
-      status: V3PaymentInitiationStatusEnum.WaitingForValidation,
-      type: V3PaymentInitiationTypeEnum.Unknown,
+      scheduledAt: new Date("2023-07-28T17:27:23.627Z"),
+      status: V3PaymentInitiationStatusEnum.Rejected,
+      type: V3PaymentInitiationTypeEnum.Payout,
     },
   ],
   hasMore: false,

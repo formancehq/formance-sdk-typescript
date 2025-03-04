@@ -8,17 +8,17 @@ import { V3PaymentsCursorResponseCursor, V3PaymentStatusEnum, V3PaymentTypeEnum 
 let value: V3PaymentsCursorResponseCursor = {
   data: [
     {
-      amount: BigInt("884147"),
+      amount: BigInt("57667"),
       asset: "<value>",
       connectorID: "<value>",
-      createdAt: new Date("2024-07-02T20:25:12.002Z"),
+      createdAt: new Date("2024-11-06T13:51:23.213Z"),
       id: "<id>",
-      initialAmount: BigInt("627058"),
+      initialAmount: BigInt("495225"),
       provider: "<value>",
       reference: "<value>",
       scheme: "<value>",
-      status: V3PaymentStatusEnum.Expired,
-      type: V3PaymentTypeEnum.PayIn,
+      status: V3PaymentStatusEnum.Cancelled,
+      type: V3PaymentTypeEnum.Payout,
     },
   ],
   hasMore: false,

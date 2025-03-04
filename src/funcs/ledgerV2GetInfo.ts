@@ -19,15 +19,16 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Show server information
  */
-export async function ledgerV2GetInfo(
+export function ledgerV2GetInfo(
   client: SDKCore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V2GetInfoResponse,
     | errors.V2ErrorResponse
@@ -40,6 +41,31 @@ export async function ledgerV2GetInfo(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V2GetInfoResponse,
+      | errors.V2ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const path = pathToFunc("/api/ledger/_/info")();
 
   const headers = new Headers(compactMap({
@@ -50,6 +76,7 @@ export async function ledgerV2GetInfo(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2GetInfo",
     oAuth2Scopes: ["auth:read", "ledger:read"],
 
@@ -71,7 +98,7 @@ export async function ledgerV2GetInfo(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -82,7 +109,7 @@ export async function ledgerV2GetInfo(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -114,8 +141,8 @@ export async function ledgerV2GetInfo(
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

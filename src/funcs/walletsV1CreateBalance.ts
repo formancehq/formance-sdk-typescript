@@ -21,16 +21,17 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Create a balance
  */
-export async function walletsV1CreateBalance(
+export function walletsV1CreateBalance(
   client: SDKCore,
   request: operations.CreateBalanceRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.CreateBalanceResponse,
     | errors.WalletsErrorResponse
@@ -43,13 +44,40 @@ export async function walletsV1CreateBalance(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.CreateBalanceRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.CreateBalanceResponse,
+      | errors.WalletsErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.CreateBalanceRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.CreateBalanceRequest, {
@@ -79,6 +107,7 @@ export async function walletsV1CreateBalance(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createBalance",
     oAuth2Scopes: ["auth:read", "wallets:write"],
 
@@ -101,7 +130,7 @@ export async function walletsV1CreateBalance(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -112,7 +141,7 @@ export async function walletsV1CreateBalance(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -141,8 +170,8 @@ export async function walletsV1CreateBalance(
     M.jsonErr("default", errors.WalletsErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

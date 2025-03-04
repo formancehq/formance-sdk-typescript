@@ -5,7 +5,7 @@
 ```typescript
 import { V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V3AccountTypeEnum = V3AccountTypeEnum.Unknown;
+let value: V3AccountTypeEnum = V3AccountTypeEnum.Internal;
 ```
 
 ## Values

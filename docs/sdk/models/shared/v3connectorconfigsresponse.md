@@ -9,7 +9,7 @@ let value: V3ConnectorConfigsResponse = {
   data: {
     connector: {
       key: {
-        dataType: "mediumint",
+        dataType: "serial",
         required: false,
       },
     },

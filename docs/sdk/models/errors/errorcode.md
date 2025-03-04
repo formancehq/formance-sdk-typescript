@@ -5,7 +5,7 @@
 ```typescript
 import { ErrorCode } from "@formance/formance-sdk/sdk/models/errors";
 
-let value: ErrorCode = ErrorCode.Internal;
+let value: ErrorCode = ErrorCode.NotFound;
 ```
 
 ## Values

@@ -6,9 +6,9 @@
 import { V3PaymentInitiationAdjustment, V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PaymentInitiationAdjustment = {
-  createdAt: new Date("2023-10-08T06:27:13.427Z"),
+  createdAt: new Date("2024-02-27T18:10:37.714Z"),
   id: "<id>",
-  status: V3PaymentInitiationStatusEnum.WaitingForValidation,
+  status: V3PaymentInitiationStatusEnum.Processing,
 };
 ```
 

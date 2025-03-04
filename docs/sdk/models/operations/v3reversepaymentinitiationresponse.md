@@ -7,7 +7,7 @@ import { V3ReversePaymentInitiationResponse } from "@formance/formance-sdk/sdk/m
 
 let value: V3ReversePaymentInitiationResponse = {
   contentType: "<value>",
-  statusCode: 423,
+  statusCode: 409,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

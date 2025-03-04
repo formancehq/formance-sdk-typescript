@@ -9,11 +9,11 @@ let value: PaymentRequest = {
   amount: BigInt("100"),
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2025-07-24T09:07:52.552Z"),
+  createdAt: new Date("2025-07-02T23:49:03.163Z"),
   reference: "<value>",
-  scheme: PaymentScheme.Unionpay,
-  status: PaymentStatus.DisputeWon,
-  type: PaymentType.Other,
+  scheme: PaymentScheme.Visa,
+  status: PaymentStatus.Dispute,
+  type: PaymentType.Transfer,
 };
 ```
 

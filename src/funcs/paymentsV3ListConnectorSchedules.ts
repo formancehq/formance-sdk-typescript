@@ -26,16 +26,17 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * List all connector schedules
  */
-export async function paymentsV3ListConnectorSchedules(
+export function paymentsV3ListConnectorSchedules(
   client: SDKCore,
   request: operations.V3ListConnectorSchedulesRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V3ListConnectorSchedulesResponse,
     | errors.V3ErrorResponse
@@ -48,6 +49,33 @@ export async function paymentsV3ListConnectorSchedules(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.V3ListConnectorSchedulesRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V3ListConnectorSchedulesResponse,
+      | errors.V3ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -55,7 +83,7 @@ export async function paymentsV3ListConnectorSchedules(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -89,6 +117,7 @@ export async function paymentsV3ListConnectorSchedules(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3ListConnectorSchedules",
     oAuth2Scopes: ["auth:read", "payments:read"],
 
@@ -112,7 +141,7 @@ export async function paymentsV3ListConnectorSchedules(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -123,7 +152,7 @@ export async function paymentsV3ListConnectorSchedules(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -152,8 +181,8 @@ export async function paymentsV3ListConnectorSchedules(
     M.jsonErr("default", errors.V3ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

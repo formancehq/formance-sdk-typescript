@@ -11,16 +11,16 @@ import {
 
 let value: V3GetPaymentInitiationResponse = {
   data: {
-    amount: BigInt("241750"),
+    amount: BigInt("414547"),
     asset: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2023-07-25T19:06:35.622Z"),
-    description: "gladly since gee whoever beside prance",
+    createdAt: new Date("2025-07-19T10:08:23.061Z"),
+    description: "amongst following in lazily belabor",
     id: "<id>",
     reference: "<value>",
-    scheduledAt: new Date("2024-07-08T05:45:55.648Z"),
-    status: V3PaymentInitiationStatusEnum.Processing,
-    type: V3PaymentInitiationTypeEnum.Unknown,
+    scheduledAt: new Date("2024-02-17T11:17:08.578Z"),
+    status: V3PaymentInitiationStatusEnum.Unknown,
+    type: V3PaymentInitiationTypeEnum.Transfer,
   },
 };
 ```

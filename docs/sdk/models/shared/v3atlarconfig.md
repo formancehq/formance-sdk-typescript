@@ -7,7 +7,7 @@ import { V3AtlarConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://intrepid-role.com/",
+  baseURL: "https://coordinated-casket.info",
   name: "<value>",
   secret: "<value>",
 };

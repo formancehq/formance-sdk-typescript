@@ -21,16 +21,17 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Reset a connector. Be aware that this will delete all data and stop all existing tasks like payment initiations and bank account creations.
  */
-export async function paymentsV3ResetConnector(
+export function paymentsV3ResetConnector(
   client: SDKCore,
   request: operations.V3ResetConnectorRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V3ResetConnectorResponse,
     | errors.V3ErrorResponse
@@ -43,13 +44,40 @@ export async function paymentsV3ResetConnector(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.V3ResetConnectorRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V3ResetConnectorResponse,
+      | errors.V3ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.V3ResetConnectorRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -73,6 +101,7 @@ export async function paymentsV3ResetConnector(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3ResetConnector",
     oAuth2Scopes: ["auth:read", "payments:write"],
 
@@ -95,7 +124,7 @@ export async function paymentsV3ResetConnector(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -106,7 +135,7 @@ export async function paymentsV3ResetConnector(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -135,8 +164,8 @@ export async function paymentsV3ResetConnector(
     M.jsonErr("default", errors.V3ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

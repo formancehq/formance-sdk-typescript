@@ -16,7 +16,6 @@ import { paymentsV3GetAccountBalances } from "../funcs/paymentsV3GetAccountBalan
 import { paymentsV3GetBankAccount } from "../funcs/paymentsV3GetBankAccount.js";
 import { paymentsV3GetConnectorConfig } from "../funcs/paymentsV3GetConnectorConfig.js";
 import { paymentsV3GetConnectorSchedule } from "../funcs/paymentsV3GetConnectorSchedule.js";
-import { paymentsV3GetInfo } from "../funcs/paymentsV3GetInfo.js";
 import { paymentsV3GetPayment } from "../funcs/paymentsV3GetPayment.js";
 import { paymentsV3GetPaymentInitiation } from "../funcs/paymentsV3GetPaymentInitiation.js";
 import { paymentsV3GetPool } from "../funcs/paymentsV3GetPool.js";
@@ -241,18 +240,6 @@ export class V3 extends ClientSDK {
     return unwrapAsync(paymentsV3GetConnectorSchedule(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Show server information
-   */
-  async getInfo(
-    options?: RequestOptions,
-  ): Promise<operations.V3GetInfoResponse> {
-    return unwrapAsync(paymentsV3GetInfo(
-      this,
       options,
     ));
   }

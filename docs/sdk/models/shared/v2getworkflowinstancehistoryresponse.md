@@ -10,7 +10,7 @@ let value: V2GetWorkflowInstanceHistoryResponse = {
     {
       input: {},
       name: "<value>",
-      startedAt: new Date("2025-12-04T08:27:59.075Z"),
+      startedAt: new Date("2023-04-02T03:33:58.167Z"),
       terminated: false,
     },
   ],

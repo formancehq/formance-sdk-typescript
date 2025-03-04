@@ -8,9 +8,9 @@ import { V3AccountTypeEnum, V3CreateAccountRequest } from "@formance/formance-sd
 let value: V3CreateAccountRequest = {
   accountName: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2023-12-06T10:12:28.995Z"),
+  createdAt: new Date("2024-12-17T05:26:17.145Z"),
   reference: "<value>",
-  type: V3AccountTypeEnum.Internal,
+  type: V3AccountTypeEnum.External,
 };
 ```
 

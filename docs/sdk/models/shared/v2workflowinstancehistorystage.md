@@ -6,7 +6,7 @@
 import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 583138,
+  attempt: 245990,
   input: {
     createTransaction: {
       data: {
@@ -85,8 +85,8 @@ let value: V2WorkflowInstanceHistoryStage = {
             },
           ],
           reference: "ref:001",
-          timestamp: new Date("2023-10-10T19:22:40.102Z"),
-          txid: BigInt("473386"),
+          timestamp: new Date("2024-10-01T02:51:40.989Z"),
+          txid: BigInt("258036"),
         },
       ],
     },
@@ -128,32 +128,32 @@ let value: V2WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2025-07-03T06:10:20.109Z"),
+            date: new Date("2024-06-02T19:56:17.254Z"),
             raw: {},
-            status: V2PaymentStatus.Active,
+            status: V2PaymentStatus.Cancelled,
           },
         ],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2024-04-12T15:41:27.262Z"),
+        createdAt: new Date("2023-09-10T12:26:59.523Z"),
         destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.ApplePay,
+        scheme: Scheme.SepaDebit,
         sourceAccountID: "<id>",
         status: V2PaymentStatus.Failed,
-        type: V2PaymentType.Other,
+        type: V2PaymentType.Transfer,
       },
     },
     listWallets: {
       cursor: {
         data: [
           {
-            createdAt: new Date("2025-01-15T16:27:33.018Z"),
-            id: "bf650232-c8ad-435b-a606-e65fa51cbe31",
+            createdAt: new Date("2025-12-04T07:07:12.134Z"),
+            id: "abf65023-2c8a-4d35-8b60-6e65fa51cbe3",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -168,7 +168,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2023-08-11T22:07:27.220Z"),
+  startedAt: new Date("2025-03-04T14:00:13.445Z"),
   terminated: false,
 };
 ```

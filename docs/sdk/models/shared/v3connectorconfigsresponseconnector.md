@@ -7,7 +7,7 @@ import { V3ConnectorConfigsResponseConnector } from "@formance/formance-sdk/sdk/
 
 let value: V3ConnectorConfigsResponseConnector = {
   key: {
-    dataType: "float",
+    dataType: "date",
     required: false,
   },
 };

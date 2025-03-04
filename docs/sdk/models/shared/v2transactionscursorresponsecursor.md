@@ -8,7 +8,7 @@ import { V2TransactionsCursorResponseCursor } from "@formance/formance-sdk/sdk/m
 let value: V2TransactionsCursorResponseCursor = {
   data: [
     {
-      id: BigInt("193990"),
+      id: BigInt("937664"),
       metadata: {
         "admin": "true",
       },
@@ -86,7 +86,7 @@ let value: V2TransactionsCursorResponseCursor = {
       },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2024-06-11T05:20:25.998Z"),
+      timestamp: new Date("2023-12-01T11:41:01.088Z"),
     },
   ],
   hasMore: false,

@@ -18,7 +18,7 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://marvelous-finer.name/",
+  baseURL: "https://untidy-populist.net/",
   name: "<value>",
   secret: "<value>",
 };
@@ -31,10 +31,10 @@ const value: shared.V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  password: "63fE7rGdV3yeKfH",
+  password: "qTOUeFdze7qwA1l",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
-  username: "Halle.Lebsack",
+  username: "Shanna1",
 };
 ```
 
@@ -53,7 +53,7 @@ const value: shared.V3CurrencycloudConfig = {
 
 ```typescript
 const value: shared.V3DummypayConfig = {
-  directory: "/usr/sbin",
+  directory: "/selinux",
   name: "<value>",
 };
 ```

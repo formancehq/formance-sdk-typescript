@@ -9,16 +9,16 @@ let value: Payment = {
   adjustments: [
     {
       amount: BigInt("100"),
-      createdAt: new Date("2023-07-15T03:50:42.259Z"),
+      createdAt: new Date("2023-09-01T17:18:42.245Z"),
       raw: {},
       reference: "<value>",
-      status: PaymentStatus.Other,
+      status: PaymentStatus.RefundedFailure,
     },
   ],
   amount: BigInt("100"),
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2024-01-06T22:15:28.403Z"),
+  createdAt: new Date("2023-03-01T17:31:10.140Z"),
   destinationAccountID: "<id>",
   id: "XXX",
   initialAmount: BigInt("100"),
@@ -27,9 +27,9 @@ let value: Payment = {
   },
   raw: {},
   reference: "<value>",
-  scheme: PaymentScheme.ApplePay,
+  scheme: PaymentScheme.Amex,
   sourceAccountID: "<id>",
-  status: PaymentStatus.DisputeLost,
+  status: PaymentStatus.RefundedFailure,
   type: PaymentType.Transfer,
 };
 ```

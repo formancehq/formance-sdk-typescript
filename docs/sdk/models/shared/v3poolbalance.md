@@ -6,7 +6,7 @@
 import { V3PoolBalance } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PoolBalance = {
-  amount: BigInt("94094"),
+  amount: BigInt("150639"),
   asset: "<value>",
 };
 ```

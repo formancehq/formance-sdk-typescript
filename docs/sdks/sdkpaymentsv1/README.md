@@ -1670,8 +1670,8 @@ async function run() {
   const result = await sdk.payments.v1.installConnector({
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Wise Account",
-      pageSize: 10,
+      name: "My Stripe Account",
+      pageSize: 50,
       pollingPeriod: "60s",
     },
     connector: Connector.Atlar,
@@ -1706,8 +1706,8 @@ async function run() {
   const res = await paymentsV1InstallConnector(sdk, {
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Wise Account",
-      pageSize: 10,
+      name: "My Stripe Account",
+      pageSize: 50,
       pollingPeriod: "60s",
     },
     connector: Connector.Atlar,

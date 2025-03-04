@@ -6,7 +6,7 @@
 import { V2Monetary } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Monetary = {
-  amount: BigInt("252854"),
+  amount: BigInt("933456"),
   asset: "<value>",
 };
 ```

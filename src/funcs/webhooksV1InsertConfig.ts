@@ -22,6 +22,7 @@ import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as shared from "../sdk/models/shared/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -38,11 +39,11 @@ import { Result } from "../sdk/types/fp.js";
  *
  * All eventTypes are converted to lower-case when inserted.
  */
-export async function webhooksV1InsertConfig(
+export function webhooksV1InsertConfig(
   client: SDKCore,
   request: shared.ConfigUser,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.InsertConfigResponse,
     | errors.WebhooksErrorResponse
@@ -55,13 +56,40 @@ export async function webhooksV1InsertConfig(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: shared.ConfigUser,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.InsertConfigResponse,
+      | errors.WebhooksErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => shared.ConfigUser$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
@@ -77,6 +105,7 @@ export async function webhooksV1InsertConfig(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "insertConfig",
     oAuth2Scopes: ["auth:read", "webhooks:write"],
 
@@ -99,7 +128,7 @@ export async function webhooksV1InsertConfig(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -110,7 +139,7 @@ export async function webhooksV1InsertConfig(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -139,8 +168,8 @@ export async function webhooksV1InsertConfig(
     M.jsonErr("default", errors.WebhooksErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

@@ -11,9 +11,9 @@ import {
 let value: V3PaymentInitiationAdjustmentsCursorResponseCursor = {
   data: [
     {
-      createdAt: new Date("2023-07-04T12:44:41.019Z"),
+      createdAt: new Date("2024-07-13T10:33:56.826Z"),
       id: "<id>",
-      status: V3PaymentInitiationStatusEnum.ReverseFailed,
+      status: V3PaymentInitiationStatusEnum.Processing,
     },
   ],
   hasMore: false,

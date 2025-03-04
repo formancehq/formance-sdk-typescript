@@ -8,7 +8,7 @@ import { V3PaymentInitiationStatusEnum, V3PaymentInitiationTypeEnum } from "@for
 
 let value: V3ListPaymentInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 415,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,16 +16,17 @@ let value: V3ListPaymentInitiationsResponse = {
     cursor: {
       data: [
         {
-          amount: BigInt("487676"),
+          amount: BigInt("745233"),
           asset: "<value>",
           connectorID: "<value>",
-          createdAt: new Date("2023-01-01T14:21:39.818Z"),
-          description: "huzzah valiantly skeleton uniform miserably promptly",
+          createdAt: new Date("2024-07-31T11:46:24.744Z"),
+          description:
+            "unexpectedly sightseeing contravene jaggedly programme ecliptic",
           id: "<id>",
           reference: "<value>",
-          scheduledAt: new Date("2025-11-21T15:56:29.957Z"),
-          status: V3PaymentInitiationStatusEnum.WaitingForValidation,
-          type: V3PaymentInitiationTypeEnum.Unknown,
+          scheduledAt: new Date("2024-01-08T05:39:17.949Z"),
+          status: V3PaymentInitiationStatusEnum.Rejected,
+          type: V3PaymentInitiationTypeEnum.Payout,
         },
       ],
       hasMore: false,
