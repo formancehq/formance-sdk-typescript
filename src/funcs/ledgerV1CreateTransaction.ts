@@ -21,16 +21,17 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Create a new transaction to a ledger
  */
-export async function ledgerV1CreateTransaction(
+export function ledgerV1CreateTransaction(
   client: SDKCore,
   request: operations.CreateTransactionRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.CreateTransactionResponse,
     | errors.ErrorResponse
@@ -43,13 +44,40 @@ export async function ledgerV1CreateTransaction(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.CreateTransactionRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.CreateTransactionResponse,
+      | errors.ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.CreateTransactionRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.PostTransaction, { explode: true });
@@ -76,6 +104,7 @@ export async function ledgerV1CreateTransaction(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createTransaction",
     oAuth2Scopes: ["auth:read", "ledger:write"],
 
@@ -99,7 +128,7 @@ export async function ledgerV1CreateTransaction(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -110,7 +139,7 @@ export async function ledgerV1CreateTransaction(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -139,8 +168,8 @@ export async function ledgerV1CreateTransaction(
     M.jsonErr("default", errors.ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

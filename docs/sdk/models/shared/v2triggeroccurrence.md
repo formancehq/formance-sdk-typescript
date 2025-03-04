@@ -6,7 +6,7 @@
 import { V2TriggerOccurrence } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2TriggerOccurrence = {
-  date: new Date("2024-08-05T15:21:33.982Z"),
+  date: new Date("2025-07-22T01:12:42.157Z"),
   event: {
     "key": "<value>",
   },

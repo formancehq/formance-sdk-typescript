@@ -11,8 +11,8 @@ let value: BankAccountsCursor = {
   cursor: {
     data: [
       {
-        country: "Papua New Guinea",
-        createdAt: new Date("2024-06-27T06:53:26.759Z"),
+        country: "Japan",
+        createdAt: new Date("2025-12-09T17:05:31.658Z"),
         id: "<id>",
         name: "<value>",
       },

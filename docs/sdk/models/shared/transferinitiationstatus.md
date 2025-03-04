@@ -5,7 +5,7 @@
 ```typescript
 import { TransferInitiationStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: TransferInitiationStatus = TransferInitiationStatus.ReverseFailed;
+let value: TransferInitiationStatus = TransferInitiationStatus.Validated;
 ```
 
 ## Values

@@ -8,7 +8,7 @@ import { V3ConnectorConfigsResponseData } from "@formance/formance-sdk/sdk/model
 let value: V3ConnectorConfigsResponseData = {
   connector: {
     key: {
-      dataType: "decimal",
+      dataType: "bit",
       required: false,
     },
   },

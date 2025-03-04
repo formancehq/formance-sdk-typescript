@@ -15,6 +15,7 @@ import {
 
 export type V3BankAccount = {
   accountNumber?: string | null | undefined;
+  country?: string | null | undefined;
   createdAt: Date;
   iban?: string | null | undefined;
   id: string;
@@ -31,6 +32,7 @@ export const V3BankAccount$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   accountNumber: z.nullable(z.string()).optional(),
+  country: z.nullable(z.string()).optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   iban: z.nullable(z.string()).optional(),
   id: z.string(),
@@ -44,6 +46,7 @@ export const V3BankAccount$inboundSchema: z.ZodType<
 /** @internal */
 export type V3BankAccount$Outbound = {
   accountNumber?: string | null | undefined;
+  country?: string | null | undefined;
   createdAt: string;
   iban?: string | null | undefined;
   id: string;
@@ -60,6 +63,7 @@ export const V3BankAccount$outboundSchema: z.ZodType<
   V3BankAccount
 > = z.object({
   accountNumber: z.nullable(z.string()).optional(),
+  country: z.nullable(z.string()).optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   iban: z.nullable(z.string()).optional(),
   id: z.string(),

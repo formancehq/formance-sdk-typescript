@@ -26,6 +26,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -34,11 +35,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * List accounts from a ledger, sorted by address in descending order.
  */
-export async function ledgerV2ListAccounts(
+export function ledgerV2ListAccounts(
   client: SDKCore,
   request: operations.V2ListAccountsRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V2ListAccountsResponse,
     | errors.V2ErrorResponse
@@ -51,13 +52,40 @@ export async function ledgerV2ListAccounts(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.V2ListAccountsRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V2ListAccountsResponse,
+      | errors.V2ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.V2ListAccountsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -91,6 +119,7 @@ export async function ledgerV2ListAccounts(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2ListAccounts",
     oAuth2Scopes: ["auth:read", "ledger:read"],
 
@@ -114,7 +143,7 @@ export async function ledgerV2ListAccounts(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -125,7 +154,7 @@ export async function ledgerV2ListAccounts(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -154,8 +183,8 @@ export async function ledgerV2ListAccounts(
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

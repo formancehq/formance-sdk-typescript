@@ -19,15 +19,16 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * List all connector configurations
  */
-export async function paymentsV3ListConnectorConfigs(
+export function paymentsV3ListConnectorConfigs(
   client: SDKCore,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V3ListConnectorConfigsResponse,
     | errors.V3ErrorResponse
@@ -40,6 +41,31 @@ export async function paymentsV3ListConnectorConfigs(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V3ListConnectorConfigsResponse,
+      | errors.V3ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const path = pathToFunc("/api/payments/v3/connectors/configs")();
 
   const headers = new Headers(compactMap({
@@ -50,6 +76,7 @@ export async function paymentsV3ListConnectorConfigs(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3ListConnectorConfigs",
     oAuth2Scopes: ["auth:read", "payments:read"],
 
@@ -71,7 +98,7 @@ export async function paymentsV3ListConnectorConfigs(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -82,7 +109,7 @@ export async function paymentsV3ListConnectorConfigs(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -111,8 +138,8 @@ export async function paymentsV3ListConnectorConfigs(
     M.jsonErr("default", errors.V3ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

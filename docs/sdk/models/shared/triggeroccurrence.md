@@ -6,7 +6,7 @@
 import { TriggerOccurrence } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TriggerOccurrence = {
-  date: new Date("2025-12-13T23:26:30.191Z"),
+  date: new Date("2024-09-18T10:03:22.825Z"),
   event: {
     "key": "<value>",
   },

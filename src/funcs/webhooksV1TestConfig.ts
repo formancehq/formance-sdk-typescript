@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Test a config by sending a webhook to its endpoint.
  */
-export async function webhooksV1TestConfig(
+export function webhooksV1TestConfig(
   client: SDKCore,
   request: operations.TestConfigRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.TestConfigResponse,
     | errors.WebhooksErrorResponse
@@ -46,13 +47,40 @@ export async function webhooksV1TestConfig(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.TestConfigRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.TestConfigResponse,
+      | errors.WebhooksErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.TestConfigRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = null;
@@ -74,6 +102,7 @@ export async function webhooksV1TestConfig(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "testConfig",
     oAuth2Scopes: ["auth:read", "webhooks:read"],
 
@@ -96,7 +125,7 @@ export async function webhooksV1TestConfig(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -107,7 +136,7 @@ export async function webhooksV1TestConfig(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -136,8 +165,8 @@ export async function webhooksV1TestConfig(
     M.jsonErr("default", errors.WebhooksErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

@@ -7,7 +7,7 @@ import { V3BankAccountRelatedAccount } from "@formance/formance-sdk/sdk/models/s
 
 let value: V3BankAccountRelatedAccount = {
   accountID: "<id>",
-  createdAt: new Date("2023-11-04T05:21:12.577Z"),
+  createdAt: new Date("2023-03-31T12:44:44.932Z"),
 };
 ```
 

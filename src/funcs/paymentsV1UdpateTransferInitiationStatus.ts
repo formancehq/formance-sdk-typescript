@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Update a transfer initiation status
  */
-export async function paymentsV1UdpateTransferInitiationStatus(
+export function paymentsV1UdpateTransferInitiationStatus(
   client: SDKCore,
   request: operations.UdpateTransferInitiationStatusRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.UdpateTransferInitiationStatusResponse,
     | errors.PaymentsErrorResponse
@@ -46,6 +47,33 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.UdpateTransferInitiationStatusRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.UdpateTransferInitiationStatusResponse,
+      | errors.PaymentsErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) =>
@@ -55,7 +83,7 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON(
@@ -84,6 +112,7 @@ export async function paymentsV1UdpateTransferInitiationStatus(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "udpateTransferInitiationStatus",
     oAuth2Scopes: ["auth:read", "payments:write"],
 
@@ -106,7 +135,7 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -117,7 +146,7 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -144,8 +173,8 @@ export async function paymentsV1UdpateTransferInitiationStatus(
     M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

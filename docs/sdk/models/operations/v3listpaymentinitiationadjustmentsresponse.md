@@ -8,7 +8,7 @@ import { V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models
 
 let value: V3ListPaymentInitiationAdjustmentsResponse = {
   contentType: "<value>",
-  statusCode: 208,
+  statusCode: 431,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,9 +16,9 @@ let value: V3ListPaymentInitiationAdjustmentsResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2025-04-23T21:13:00.722Z"),
+          createdAt: new Date("2024-01-21T17:19:51.132Z"),
           id: "<id>",
-          status: V3PaymentInitiationStatusEnum.Processed,
+          status: V3PaymentInitiationStatusEnum.Reversed,
         },
       ],
       hasMore: false,

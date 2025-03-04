@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -29,11 +30,11 @@ import { Result } from "../sdk/types/fp.js";
  * @remarks
  * Send an event to a running workflow
  */
-export async function orchestrationV1SendEvent(
+export function orchestrationV1SendEvent(
   client: SDKCore,
   request: operations.SendEventRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.SendEventResponse,
     | errors.ErrorT
@@ -46,13 +47,40 @@ export async function orchestrationV1SendEvent(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.SendEventRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.SendEventResponse,
+      | errors.ErrorT
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.SendEventRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
@@ -77,6 +105,7 @@ export async function orchestrationV1SendEvent(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "sendEvent",
     oAuth2Scopes: ["auth:read", "orchestration:write"],
 
@@ -99,7 +128,7 @@ export async function orchestrationV1SendEvent(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -110,7 +139,7 @@ export async function orchestrationV1SendEvent(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -137,8 +166,8 @@ export async function orchestrationV1SendEvent(
     M.jsonErr("default", errors.ErrorT$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

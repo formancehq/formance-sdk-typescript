@@ -4,16 +4,17 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionDec2023: false
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 4.0.0
+  version: 4.1.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -23,6 +24,7 @@ typescript:
   clientServerStatusCodesAsErrors: false
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: enum
   flattenGlobalSecurity: true
@@ -36,6 +38,7 @@ typescript:
       shared: sdk/models/shared
       webhooks: sdk/models/webhooks
   inputModelSuffix: input
+  jsonpath: legacy
   maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs

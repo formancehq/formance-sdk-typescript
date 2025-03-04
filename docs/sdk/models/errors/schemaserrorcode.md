@@ -5,7 +5,7 @@
 ```typescript
 import { SchemasErrorCode } from "@formance/formance-sdk/sdk/models/errors";
 
-let value: SchemasErrorCode = SchemasErrorCode.NotFound;
+let value: SchemasErrorCode = SchemasErrorCode.Validation;
 ```
 
 ## Values

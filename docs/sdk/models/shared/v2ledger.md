@@ -6,7 +6,7 @@
 import { V2Ledger } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Ledger = {
-  addedAt: new Date("2023-05-04T00:37:25.698Z"),
+  addedAt: new Date("2024-12-07T01:38:47.300Z"),
   bucket: "<value>",
   metadata: {
     "admin": "true",

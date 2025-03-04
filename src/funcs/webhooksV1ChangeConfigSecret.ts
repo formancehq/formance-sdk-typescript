@@ -21,6 +21,7 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
@@ -32,11 +33,11 @@ import { Result } from "../sdk/types/fp.js";
  * If not passed or empty, a secret is automatically generated.
  * The format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)
  */
-export async function webhooksV1ChangeConfigSecret(
+export function webhooksV1ChangeConfigSecret(
   client: SDKCore,
   request: operations.ChangeConfigSecretRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.ChangeConfigSecretResponse,
     | errors.WebhooksErrorResponse
@@ -49,13 +50,40 @@ export async function webhooksV1ChangeConfigSecret(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.ChangeConfigSecretRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.ChangeConfigSecretResponse,
+      | errors.WebhooksErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.ChangeConfigSecretRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload.ConfigChangeSecret, {
@@ -82,6 +110,7 @@ export async function webhooksV1ChangeConfigSecret(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "changeConfigSecret",
     oAuth2Scopes: ["auth:read", "webhooks:write"],
 
@@ -104,7 +133,7 @@ export async function webhooksV1ChangeConfigSecret(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -115,7 +144,7 @@ export async function webhooksV1ChangeConfigSecret(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -144,8 +173,8 @@ export async function webhooksV1ChangeConfigSecret(
     M.jsonErr("default", errors.WebhooksErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

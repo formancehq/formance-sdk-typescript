@@ -12,6 +12,6 @@ const value: string = "<value>";
 ### `BigInt`
 
 ```typescript
-const value: BigInt = BigInt("378268");
+const value: BigInt = BigInt("912151");
 ```
 

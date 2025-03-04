@@ -12,6 +12,7 @@ import {
   AfterErrorHook,
   BeforeRequestContext,
   BeforeRequestHook,
+  HookContext,
   SDKInitHook,
   SDKInitOptions,
 } from "./types.js";
@@ -32,12 +33,10 @@ type Session = {
 export class ClientCredentialsHook
   implements SDKInitHook, BeforeRequestHook, AfterErrorHook
 {
-  private baseURL?: URL | null;
   private client?: HTTPClient;
   private sessions: Record<string, Session> = {};
 
   sdkInit(opts: SDKInitOptions): SDKInitOptions {
-    this.baseURL = opts.baseURL;
     this.client = opts.client;
 
     return opts;
@@ -52,7 +51,7 @@ export class ClientCredentialsHook
       return request;
     }
 
-    const credentials = await this.getCredentials(hookCtx.securitySource);
+    const credentials = await this.getCredentials(hookCtx);
     if (!credentials) {
       return request;
     }
@@ -66,6 +65,7 @@ export class ClientCredentialsHook
       || this.hasTokenExpired(session.expiresAt)
     ) {
       session = await this.doTokenRequest(
+        hookCtx,
         credentials,
         this.getScopes(hookCtx.oAuth2Scopes, session),
       );
@@ -92,7 +92,7 @@ export class ClientCredentialsHook
       return { response, error };
     }
 
-    const credentials = await this.getCredentials(hookCtx.securitySource);
+    const credentials = await this.getCredentials(hookCtx);
     if (!credentials) {
       return { response, error };
     }
@@ -106,6 +106,7 @@ export class ClientCredentialsHook
   }
 
   private async doTokenRequest(
+    hookCtx: HookContext,
     credentials: Credentials,
     scopes: string[],
   ): Promise<Session> {
@@ -118,7 +119,10 @@ export class ClientCredentialsHook
       formData.append("scope", scopes.join(" "));
     }
 
-    const tokenURL = new URL(credentials.tokenURL ?? "", this.baseURL ?? "");
+    if (!hookCtx.baseURL?.toString()) {
+      throw new Error("Assertion error: Base URL cannot be empty");
+    }
+    const tokenURL = new URL(credentials.tokenURL ?? "", hookCtx.baseURL);
 
     const request = new Request(tokenURL, {
       method: "POST",
@@ -165,8 +169,10 @@ export class ClientCredentialsHook
   }
 
   private async getCredentials(
-    source?: unknown | (() => Promise<unknown>),
+    hookCtx: HookContext,
   ): Promise<Credentials | null> {
+    const source = hookCtx.securitySource;
+
     if (!source) {
       return null;
     }
@@ -175,6 +181,13 @@ export class ClientCredentialsHook
     if (typeof source === "function") {
       security = await source();
     }
+
+    return this.getCredentialsGlobal(security);
+  }
+
+  private async getCredentialsGlobal(
+    security: unknown,
+  ): Promise<Credentials | null> {
     const out = parse(
       security,
       (val) => z.lazy(() => shared.Security$outboundSchema).parse(val),

@@ -313,7 +313,6 @@ run();
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
-* [getInfo](docs/sdks/v3/README.md#getinfo) - Show server information
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
@@ -493,12 +492,17 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                                | Variables                                                          | Default values                       |
-| --- | ----------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
-| 0   | `http://localhost`                                    |                                                                    |                                      |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment: models.ServerEnvironment`<br/>`organization: string` | `"eu.sandbox"`<br/>`"orgID-stackID"` |
+| #   | Server                                                | Variables                        | Description                                |
+| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
+| 0   | `http://localhost`                                    |                                  | local server                               |
+| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
 
-If the selected server has variables, you may override their default values through the additional parameters made available in the SDK constructor.
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable       | Parameter                               | Supported Values                                                           | Default           | Description                                                   |
+| -------------- | --------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization: string`                  | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -507,6 +511,8 @@ import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
   serverIdx: 1,
+  environment: "us-east-1",
+  organization: "<value>",
   security: {
     clientID: "<YOUR_CLIENT_ID_HERE>",
     clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
@@ -796,7 +802,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3GetBankAccount`](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 - [`paymentsV3GetConnectorConfig`](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 - [`paymentsV3GetConnectorSchedule`](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
-- [`paymentsV3GetInfo`](docs/sdks/v3/README.md#getinfo) - Show server information
 - [`paymentsV3GetPayment`](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 - [`paymentsV3GetPaymentInitiation`](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 - [`paymentsV3GetPool`](docs/sdks/v3/README.md#getpool) - Get a pool by ID

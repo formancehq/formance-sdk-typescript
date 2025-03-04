@@ -7,11 +7,11 @@ import { TaskModulr, TaskStatus } from "@formance/formance-sdk/sdk/models/shared
 
 let value: TaskModulr = {
   connectorID: "<id>",
-  createdAt: new Date("2023-03-28T20:15:02.629Z"),
+  createdAt: new Date("2023-07-10T19:03:58.934Z"),
   descriptor: {},
-  id: "0539ebcf-a99d-46ca-8403-b946a266885c",
+  id: "72766324-3bb9-4191-9053-9ebcfa99d6ca",
   status: TaskStatus.Pending,
-  updatedAt: new Date("2024-04-05T14:30:06.008Z"),
+  updatedAt: new Date("2023-08-19T01:44:07.509Z"),
 };
 ```
 

@@ -6,9 +6,9 @@
 import { V3CreatePaymentAdjustmentRequest, V3PaymentStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3CreatePaymentAdjustmentRequest = {
-  createdAt: new Date("2025-08-04T18:06:39.289Z"),
+  createdAt: new Date("2023-05-12T04:11:57.892Z"),
   reference: "<value>",
-  status: V3PaymentStatusEnum.DisputeWon,
+  status: V3PaymentStatusEnum.Authorisation,
 };
 ```
 

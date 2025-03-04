@@ -6,17 +6,17 @@
 import { V3Payment, V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Payment = {
-  amount: BigInt("882604"),
+  amount: BigInt("155108"),
   asset: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2023-08-27T21:13:31.086Z"),
+  createdAt: new Date("2024-09-30T01:51:05.989Z"),
   id: "<id>",
-  initialAmount: BigInt("227669"),
+  initialAmount: BigInt("730247"),
   provider: "<value>",
   reference: "<value>",
   scheme: "<value>",
-  status: V3PaymentStatusEnum.AmountAdjustement,
-  type: V3PaymentTypeEnum.Other,
+  status: V3PaymentStatusEnum.Other,
+  type: V3PaymentTypeEnum.PayIn,
 };
 ```
 

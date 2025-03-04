@@ -9,12 +9,12 @@ let value: V3AccountsCursorResponseCursor = {
   data: [
     {
       connectorID: "<value>",
-      createdAt: new Date("2025-04-25T09:55:17.750Z"),
+      createdAt: new Date("2024-03-29T18:15:38.452Z"),
       id: "<id>",
       provider: "<value>",
       raw: {},
       reference: "<value>",
-      type: V3AccountTypeEnum.Unknown,
+      type: V3AccountTypeEnum.Internal,
     },
   ],
   hasMore: false,

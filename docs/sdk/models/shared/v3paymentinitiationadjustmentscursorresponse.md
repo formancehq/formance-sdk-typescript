@@ -9,9 +9,9 @@ let value: V3PaymentInitiationAdjustmentsCursorResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2025-11-20T20:44:10.098Z"),
+        createdAt: new Date("2023-08-06T01:46:58.157Z"),
         id: "<id>",
-        status: V3PaymentInitiationStatusEnum.Failed,
+        status: V3PaymentInitiationStatusEnum.ReverseProcessing,
       },
     ],
     hasMore: false,

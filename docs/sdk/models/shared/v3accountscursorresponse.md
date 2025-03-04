@@ -10,7 +10,7 @@ let value: V3AccountsCursorResponse = {
     data: [
       {
         connectorID: "<value>",
-        createdAt: new Date("2024-10-09T20:04:58.799Z"),
+        createdAt: new Date("2025-06-22T04:07:37.417Z"),
         id: "<id>",
         provider: "<value>",
         raw: {},

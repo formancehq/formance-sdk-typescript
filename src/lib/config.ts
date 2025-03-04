@@ -41,25 +41,25 @@ export type SDKOptions = {
   /**
    * The security details required to authenticate the SDK
    */
-  security?: shared.Security | (() => Promise<shared.Security>);
+  security?: shared.Security | (() => Promise<shared.Security>) | undefined;
 
   httpClient?: HTTPClient;
   /**
    * Allows overriding the default server used by the SDK
    */
-  serverIdx?: number;
+  serverIdx?: number | undefined;
   /**
    * Sets the environment variable for url substitution
    */
-  environment?: ServerEnvironment;
+  environment?: ServerEnvironment | undefined;
   /**
    * Sets the organization variable for url substitution
    */
-  organization?: string;
+  organization?: string | undefined;
   /**
    * Allows overriding the default server URL used by the SDK
    */
-  serverURL?: string;
+  serverURL?: string | undefined;
   /**
    * Allows overriding the default retry config used by the SDK
    */
@@ -95,9 +95,9 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
 export const SDK_METADATA = {
   language: "typescript",
-  openapiDocVersion: "v3.0.0",
-  sdkVersion: "4.0.0",
-  genVersion: "2.506.0",
+  openapiDocVersion: "v3.0.1",
+  sdkVersion: "4.1.0",
+  genVersion: "2.539.0",
   userAgent:
-    "speakeasy-sdk/typescript 4.0.0 2.506.0 v3.0.0 @formance/formance-sdk",
+    "speakeasy-sdk/typescript 4.1.0 2.539.0 v3.0.1 @formance/formance-sdk",
 } as const;

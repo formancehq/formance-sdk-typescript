@@ -7,18 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  BalanceWithAssets,
-  BalanceWithAssets$inboundSchema,
-  BalanceWithAssets$Outbound,
-  BalanceWithAssets$outboundSchema,
-} from "./balancewithassets.js";
+  WalletSummary,
+  WalletSummary$inboundSchema,
+  WalletSummary$Outbound,
+  WalletSummary$outboundSchema,
+} from "./walletsummary.js";
 
 export type GetWalletSummaryResponse = {
-  availableFunds: { [k: string]: bigint };
-  balances: Array<BalanceWithAssets>;
-  expirableFunds: { [k: string]: bigint };
-  expiredFunds: { [k: string]: bigint };
-  holdFunds: { [k: string]: bigint };
+  data: WalletSummary;
 };
 
 /** @internal */
@@ -27,20 +23,12 @@ export const GetWalletSummaryResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  availableFunds: z.record(z.number().transform(v => BigInt(v))),
-  balances: z.array(BalanceWithAssets$inboundSchema),
-  expirableFunds: z.record(z.number().transform(v => BigInt(v))),
-  expiredFunds: z.record(z.number().transform(v => BigInt(v))),
-  holdFunds: z.record(z.number().transform(v => BigInt(v))),
+  data: WalletSummary$inboundSchema,
 });
 
 /** @internal */
 export type GetWalletSummaryResponse$Outbound = {
-  availableFunds: { [k: string]: number };
-  balances: Array<BalanceWithAssets$Outbound>;
-  expirableFunds: { [k: string]: number };
-  expiredFunds: { [k: string]: number };
-  holdFunds: { [k: string]: number };
+  data: WalletSummary$Outbound;
 };
 
 /** @internal */
@@ -49,11 +37,7 @@ export const GetWalletSummaryResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetWalletSummaryResponse
 > = z.object({
-  availableFunds: z.record(z.bigint().transform(v => Number(v))),
-  balances: z.array(BalanceWithAssets$outboundSchema),
-  expirableFunds: z.record(z.bigint().transform(v => Number(v))),
-  expiredFunds: z.record(z.bigint().transform(v => Number(v))),
-  holdFunds: z.record(z.bigint().transform(v => Number(v))),
+  data: WalletSummary$outboundSchema,
 });
 
 /**

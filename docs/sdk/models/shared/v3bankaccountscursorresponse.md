@@ -9,7 +9,7 @@ let value: V3BankAccountsCursorResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2023-05-05T21:16:09.499Z"),
+        createdAt: new Date("2024-06-18T11:12:24.413Z"),
         id: "<id>",
         name: "<value>",
       },

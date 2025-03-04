@@ -7,7 +7,7 @@ import { BalanceWithAssets } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BalanceWithAssets = {
   assets: {
-    "key": BigInt("554508"),
+    "key": BigInt("802241"),
   },
   name: "<value>",
 };

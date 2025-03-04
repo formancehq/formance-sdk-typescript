@@ -12,7 +12,7 @@ let value: LogsCursorResponse = {
         data: {
           "key": "<value>",
         },
-        date: new Date("2023-02-16T12:43:22.337Z"),
+        date: new Date("2023-06-03T22:07:16.212Z"),
         hash:
           "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
         id: 1234,

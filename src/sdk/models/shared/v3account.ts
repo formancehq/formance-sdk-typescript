@@ -20,7 +20,7 @@ export type V3Account = {
   defaultAsset?: string | null | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
-  name?: string | undefined;
+  name?: string | null | undefined;
   provider: string;
   raw: V3AccountRaw;
   reference: string;
@@ -82,7 +82,7 @@ export const V3Account$inboundSchema: z.ZodType<
   defaultAsset: z.nullable(z.string()).optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  name: z.string().optional(),
+  name: z.nullable(z.string()).optional(),
   provider: z.string(),
   raw: z.lazy(() => V3AccountRaw$inboundSchema),
   reference: z.string(),
@@ -96,7 +96,7 @@ export type V3Account$Outbound = {
   defaultAsset?: string | null | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
-  name?: string | undefined;
+  name?: string | null | undefined;
   provider: string;
   raw: V3AccountRaw$Outbound;
   reference: string;
@@ -114,7 +114,7 @@ export const V3Account$outboundSchema: z.ZodType<
   defaultAsset: z.nullable(z.string()).optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  name: z.string().optional(),
+  name: z.nullable(z.string()).optional(),
   provider: z.string(),
   raw: z.lazy(() => V3AccountRaw$outboundSchema),
   reference: z.string(),

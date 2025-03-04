@@ -5,7 +5,7 @@
 ```typescript
 import { V2PaymentStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2PaymentStatus = V2PaymentStatus.Cancelled;
+let value: V2PaymentStatus = V2PaymentStatus.Active;
 ```
 
 ## Values

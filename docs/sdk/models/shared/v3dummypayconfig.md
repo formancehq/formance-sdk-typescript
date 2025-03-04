@@ -6,7 +6,7 @@
 import { V3DummypayConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3DummypayConfig = {
-  directory: "/dev",
+  directory: "/lib",
   name: "<value>",
 };
 ```

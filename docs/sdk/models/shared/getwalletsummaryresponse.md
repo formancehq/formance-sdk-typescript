@@ -6,35 +6,33 @@
 import { GetWalletSummaryResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetWalletSummaryResponse = {
-  availableFunds: {
-    "key": BigInt("758969"),
-  },
-  balances: [
-    {
-      assets: {
-        "key": BigInt("817425"),
-      },
-      name: "<value>",
+  data: {
+    availableFunds: {
+      "key": BigInt("91613"),
     },
-  ],
-  expirableFunds: {
-    "key": BigInt("282201"),
-  },
-  expiredFunds: {
-    "key": BigInt("255156"),
-  },
-  holdFunds: {
-    "key": BigInt("441358"),
+    balances: [
+      {
+        assets: {
+          "key": BigInt("271782"),
+        },
+        name: "<value>",
+      },
+    ],
+    expirableFunds: {
+      "key": BigInt("346394"),
+    },
+    expiredFunds: {
+      "key": BigInt("853503"),
+    },
+    holdFunds: {
+      "key": BigInt("766412"),
+    },
   },
 };
 ```
 
 ## Fields
 
-| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `availableFunds`                                                              | Record<string, *BigInt*>                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
-| `balances`                                                                    | [shared.BalanceWithAssets](../../../sdk/models/shared/balancewithassets.md)[] | :heavy_check_mark:                                                            | N/A                                                                           |
-| `expirableFunds`                                                              | Record<string, *BigInt*>                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
-| `expiredFunds`                                                                | Record<string, *BigInt*>                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
-| `holdFunds`                                                                   | Record<string, *BigInt*>                                                      | :heavy_check_mark:                                                            | N/A                                                                           |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `data`                                                              | [shared.WalletSummary](../../../sdk/models/shared/walletsummary.md) | :heavy_check_mark:                                                  | N/A                                                                 |

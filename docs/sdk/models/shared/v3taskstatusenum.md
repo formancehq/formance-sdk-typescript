@@ -5,7 +5,7 @@
 ```typescript
 import { V3TaskStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V3TaskStatusEnum = V3TaskStatusEnum.Processing;
+let value: V3TaskStatusEnum = V3TaskStatusEnum.Succeeded;
 ```
 
 ## Values

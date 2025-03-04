@@ -8,7 +8,7 @@ import { V3PoolsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/s
 let value: V3PoolsCursorResponseCursor = {
   data: [
     {
-      createdAt: new Date("2025-05-16T10:11:19.877Z"),
+      createdAt: new Date("2024-11-22T17:03:59.478Z"),
       id: "<id>",
       name: "<value>",
       poolAccounts: [

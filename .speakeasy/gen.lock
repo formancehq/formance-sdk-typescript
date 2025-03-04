@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 1cba0db5c8227fc94bb882f8261ced0a
-  docVersion: v3.0.0
-  speakeasyVersion: 1.487.1
-  generationVersion: 2.506.0
-  releaseVersion: 4.0.0
-  configChecksum: 5c9b39514ea209b62d0942d6cd08d1bb
+  docChecksum: 9d3c2763dd507a399ca787e261c6fafe
+  docVersion: v3.0.1
+  speakeasyVersion: 1.509.0
+  generationVersion: 2.539.0
+  releaseVersion: 4.1.0
+  configChecksum: 1b36b437118de2c4fc9aa747c31fea09
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -16,20 +16,20 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.2
     constsAndDefaults: 0.1.11
-    core: 3.19.0
+    core: 3.21.3
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     errors: 2.84.0
-    globalSecurity: 2.82.12
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.4
     ignores: 2.81.1
     nameOverrides: 2.81.2
-    nullables: 0.1.0
-    oauth2ClientCredentials: 0.2.0
+    nullables: 0.1.1
+    oauth2ClientCredentials: 0.2.1
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -391,7 +391,6 @@ generatedFiles:
   - docs/sdk/models/operations/v3getconnectorconfigresponse.md
   - docs/sdk/models/operations/v3getconnectorschedulerequest.md
   - docs/sdk/models/operations/v3getconnectorscheduleresponse.md
-  - docs/sdk/models/operations/v3getinforesponse.md
   - docs/sdk/models/operations/v3getpaymentinitiationrequest.md
   - docs/sdk/models/operations/v3getpaymentinitiationresponse.md
   - docs/sdk/models/operations/v3getpaymentrequest.md
@@ -885,7 +884,6 @@ generatedFiles:
   - docs/sdk/models/shared/v3bankaccountscursorresponse.md
   - docs/sdk/models/shared/v3bankaccountscursorresponsecursor.md
   - docs/sdk/models/shared/v3bankingcircleconfig.md
-  - docs/sdk/models/shared/v3configinforesponse.md
   - docs/sdk/models/shared/v3connector.md
   - docs/sdk/models/shared/v3connectorconfig.md
   - docs/sdk/models/shared/v3connectorconfigsresponse.md
@@ -976,6 +974,7 @@ generatedFiles:
   - docs/sdk/models/shared/walletbalances.md
   - docs/sdk/models/shared/walletstransaction.md
   - docs/sdk/models/shared/walletsubject.md
+  - docs/sdk/models/shared/walletsummary.md
   - docs/sdk/models/shared/walletsvolume.md
   - docs/sdk/models/shared/walletwithbalances.md
   - docs/sdk/models/shared/walletwithbalancesbalances.md
@@ -1164,7 +1163,6 @@ generatedFiles:
   - src/funcs/paymentsV3GetBankAccount.ts
   - src/funcs/paymentsV3GetConnectorConfig.ts
   - src/funcs/paymentsV3GetConnectorSchedule.ts
-  - src/funcs/paymentsV3GetInfo.ts
   - src/funcs/paymentsV3GetPayment.ts
   - src/funcs/paymentsV3GetPaymentInitiation.ts
   - src/funcs/paymentsV3GetPool.ts
@@ -1445,7 +1443,6 @@ generatedFiles:
   - src/sdk/models/operations/v3getbankaccount.ts
   - src/sdk/models/operations/v3getconnectorconfig.ts
   - src/sdk/models/operations/v3getconnectorschedule.ts
-  - src/sdk/models/operations/v3getinfo.ts
   - src/sdk/models/operations/v3getpayment.ts
   - src/sdk/models/operations/v3getpaymentinitiation.ts
   - src/sdk/models/operations/v3getpool.ts
@@ -1817,7 +1814,6 @@ generatedFiles:
   - src/sdk/models/shared/v3bankaccountrelatedaccount.ts
   - src/sdk/models/shared/v3bankaccountscursorresponse.ts
   - src/sdk/models/shared/v3bankingcircleconfig.ts
-  - src/sdk/models/shared/v3configinforesponse.ts
   - src/sdk/models/shared/v3connector.ts
   - src/sdk/models/shared/v3connectorconfig.ts
   - src/sdk/models/shared/v3connectorconfigsresponse.ts
@@ -1888,6 +1884,7 @@ generatedFiles:
   - src/sdk/models/shared/wallet.ts
   - src/sdk/models/shared/walletstransaction.ts
   - src/sdk/models/shared/walletsubject.ts
+  - src/sdk/models/shared/walletsummary.ts
   - src/sdk/models/shared/walletsvolume.ts
   - src/sdk/models/shared/walletwithbalances.ts
   - src/sdk/models/shared/webhooksconfig.ts
@@ -1913,6 +1910,7 @@ generatedFiles:
   - src/sdk/sdkwalletsv1.ts
   - src/sdk/sdkwebhooksv1.ts
   - src/sdk/search.ts
+  - src/sdk/types/async.ts
   - src/sdk/types/blobs.ts
   - src/sdk/types/constdatetime.ts
   - src/sdk/types/enums.ts
@@ -2056,7 +2054,7 @@ examples:
         application/json: [{"action": "<value>"}]
       responses:
         "200":
-          application/json: {"data": [{"logID": 642842, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+          application/json: {"data": [{"errorCode": "<value>", "errorDescription": "<value>", "logID": 314478, "responseType": "<value>"}], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         "400":
           application/json: {"data": [], "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
         default:
@@ -3053,7 +3051,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s"}
+        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<id>"}}
@@ -3155,7 +3153,7 @@ examples:
           accountId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
+          application/json: {"data": {"accountName": "<value>", "connectorID": "<id>", "createdAt": "2024-11-12T03:25:46.461Z", "defaultAsset": "<value>", "defaultCurrency": "<value>", "id": "<id>", "metadata": {"key": "<value>", "key1": "<value>"}, "raw": {}, "reference": "<value>", "type": "UNKNOWN"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetServerInfo:
@@ -3238,7 +3236,7 @@ examples:
         path:
           transferId: "XXX"
       requestBody:
-        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "reference": "XXX"}
+        application/json: {"amount": 327549, "asset": "USD", "description": "till gosh how proselytise worriedly whoa", "metadata": {"key": "<value>"}, "reference": "XXX"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -3910,7 +3908,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}
+          application/json: {"data": {"availableFunds": {"key": 265270, "key1": 425645}, "balances": [{"assets": {}, "name": "<value>"}], "expirableFunds": {}, "expiredFunds": {"key": 937378, "key1": 696335, "key2": 846984}, "holdFunds": {"key": 930990, "key1": 132783, "key2": 515347}}}
         default:
           application/json: {"errorCode": "INSUFFICIENT_FUND", "errorMessage": "<value>"}
   listBalances:

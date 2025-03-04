@@ -21,13 +21,14 @@ import * as errors from "../sdk/models/errors/index.js";
 import { SDKError } from "../sdk/models/errors/sdkerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
-export async function ledgerV2ImportLogs(
+export function ledgerV2ImportLogs(
   client: SDKCore,
   request: operations.V2ImportLogsRequest,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.V2ImportLogsResponse,
     | errors.V2ErrorResponse
@@ -40,13 +41,40 @@ export async function ledgerV2ImportLogs(
     | ConnectionError
   >
 > {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: SDKCore,
+  request: operations.V2ImportLogsRequest,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.V2ImportLogsResponse,
+      | errors.V2ErrorResponse
+      | SDKError
+      | SDKValidationError
+      | UnexpectedClientError
+      | InvalidRequestError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | ConnectionError
+    >,
+    APICall,
+  ]
+> {
   const parsed = safeParse(
     request,
     (value) => operations.V2ImportLogsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = payload.RequestBody;
@@ -69,6 +97,7 @@ export async function ledgerV2ImportLogs(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2ImportLogs",
     oAuth2Scopes: ["auth:read", "ledger:write"],
 
@@ -91,7 +120,7 @@ export async function ledgerV2ImportLogs(
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -102,7 +131,7 @@ export async function ledgerV2ImportLogs(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -129,8 +158,8 @@ export async function ledgerV2ImportLogs(
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }
