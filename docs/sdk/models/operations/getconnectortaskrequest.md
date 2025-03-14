@@ -7,7 +7,7 @@ import { GetConnectorTaskRequest } from "@formance/formance-sdk/sdk/models/opera
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetConnectorTaskRequest = {
-  connector: Connector.Wise,
+  connector: Connector.Stripe,
   taskId: "task1",
 };
 ```

@@ -7,7 +7,7 @@ import { V2ListAccountsResponse } from "@formance/formance-sdk/sdk/models/operat
 
 let value: V2ListAccountsResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 300,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ import { V3ListConnectorsResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: V3ListConnectorsResponse = {
   contentType: "<value>",
-  statusCode: 303,
+  statusCode: 426,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,7 +16,7 @@ let value: V3ListConnectorsResponse = {
       data: [
         {
           config: {},
-          createdAt: new Date("2025-06-06T01:32:10.356Z"),
+          createdAt: new Date("2023-06-02T10:10:05.991Z"),
           id: "<id>",
           name: "<value>",
           provider: "<value>",

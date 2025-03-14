@@ -8,88 +8,9 @@ import { V2BulkResponse, V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/
 let value: V2BulkResponse = {
   data: [
     {
-      data: {
-        id: BigInt("274295"),
-        metadata: {
-          "admin": "true",
-        },
-        postCommitEffectiveVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        postCommitVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        postings: [
-          {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
-        preCommitEffectiveVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        preCommitVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        reference: "ref:001",
-        reverted: false,
-        timestamp: new Date("2025-02-08T05:12:43.428Z"),
-      },
-      logID: 30192,
+      errorCode: "<value>",
+      errorDescription: "<value>",
+      logID: 287153,
       responseType: "<value>",
     },
   ],

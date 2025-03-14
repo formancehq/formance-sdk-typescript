@@ -11,6 +11,8 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+  tests:
+    generateNewTests: true
   comments: {}
   telemetryEnabled: false
 typescript:

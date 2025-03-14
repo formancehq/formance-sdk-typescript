@@ -22,7 +22,7 @@ workflow:
     sources:
         stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v3.0.1/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.0.2/generate.json
             overlays:
                 - location: ./overlay.yaml
             registry:

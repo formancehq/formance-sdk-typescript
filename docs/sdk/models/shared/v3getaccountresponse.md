@@ -8,12 +8,12 @@ import { V3AccountTypeEnum, V3GetAccountResponse } from "@formance/formance-sdk/
 let value: V3GetAccountResponse = {
   data: {
     connectorID: "<value>",
-    createdAt: new Date("2023-08-20T21:26:11.367Z"),
+    createdAt: new Date("2024-07-30T14:26:18.054Z"),
     id: "<id>",
     provider: "<value>",
     raw: {},
     reference: "<value>",
-    type: V3AccountTypeEnum.Internal,
+    type: V3AccountTypeEnum.Unknown,
   },
 };
 ```

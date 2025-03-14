@@ -7,7 +7,7 @@ import { V3ListConnectorConfigsResponse } from "@formance/formance-sdk/sdk/model
 
 let value: V3ListConnectorConfigsResponse = {
   contentType: "<value>",
-  statusCode: 511,
+  statusCode: 407,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

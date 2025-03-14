@@ -8,7 +8,7 @@ import { TransferInitiationStatus, TransferInitiationType } from "@formance/form
 
 let value: ListTransferInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 415,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,20 +16,20 @@ let value: ListTransferInitiationsResponse = {
     cursor: {
       data: [
         {
-          amount: BigInt("739884"),
+          amount: BigInt("304446"),
           asset: "USD",
           connectorID: "<id>",
-          createdAt: new Date("2025-09-11T06:37:56.079Z"),
-          description: "why however complicated form rundown phew trolley hmph",
+          createdAt: new Date("2025-12-29T18:23:56.613Z"),
+          description: "across following gadzooks wobbly athwart",
           destinationAccountID: "<id>",
           error: "<value>",
           id: "XXX",
-          initialAmount: BigInt("97258"),
+          initialAmount: BigInt("432281"),
           reference: "<value>",
-          scheduledAt: new Date("2024-06-29T13:31:25.620Z"),
+          scheduledAt: new Date("2024-07-26T02:35:23.934Z"),
           sourceAccountID: "<id>",
-          status: TransferInitiationStatus.AskRetried,
-          type: TransferInitiationType.Transfer,
+          status: TransferInitiationStatus.ReverseFailed,
+          type: TransferInitiationType.Payout,
         },
       ],
       hasMore: false,

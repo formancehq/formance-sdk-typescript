@@ -8,7 +8,7 @@ import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UdpateTransferInitiationStatusRequest = {
   updateTransferInitiationStatusRequest: {
-    status: Status.Validated,
+    status: Status.Processing,
   },
   transferId: "XXX",
 };

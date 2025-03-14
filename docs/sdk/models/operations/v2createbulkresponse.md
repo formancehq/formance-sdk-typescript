@@ -8,7 +8,7 @@ import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2CreateBulkResponse = {
   contentType: "<value>",
-  statusCode: 300,
+  statusCode: 431,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,7 +17,7 @@ let value: V2CreateBulkResponse = {
       {
         errorCode: "<value>",
         errorDescription: "<value>",
-        logID: 612096,
+        logID: 359508,
         responseType: "<value>",
       },
     ],

@@ -7,7 +7,7 @@ import { V3ResetConnectorResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: V3ResetConnectorResponse = {
   contentType: "<value>",
-  statusCode: 408,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

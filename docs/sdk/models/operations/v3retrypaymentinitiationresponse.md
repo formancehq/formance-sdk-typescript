@@ -7,7 +7,7 @@ import { V3RetryPaymentInitiationResponse } from "@formance/formance-sdk/sdk/mod
 
 let value: V3RetryPaymentInitiationResponse = {
   contentType: "<value>",
-  statusCode: 307,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

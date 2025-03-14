@@ -7,11 +7,11 @@ import { TaskDummyPay, TaskStatus } from "@formance/formance-sdk/sdk/models/shar
 
 let value: TaskDummyPay = {
   connectorID: "<id>",
-  createdAt: new Date("2023-05-17T09:48:42.675Z"),
+  createdAt: new Date("2023-06-28T11:34:52.703Z"),
   descriptor: {},
-  id: "1c23ef5d-d999-4493-b26b-9fa22139de68",
-  status: TaskStatus.Active,
-  updatedAt: new Date("2024-10-14T20:28:38.974Z"),
+  id: "caef11c2-3ef5-4dd9-a994-9326b9fa2213",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2025-09-06T16:17:40.992Z"),
 };
 ```
 

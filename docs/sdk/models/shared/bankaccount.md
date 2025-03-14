@@ -6,8 +6,8 @@
 import { BankAccount } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BankAccount = {
-  country: "Eswatini",
-  createdAt: new Date("2023-11-10T14:49:35.672Z"),
+  country: "Cameroon",
+  createdAt: new Date("2023-12-09T02:01:52.269Z"),
   id: "<id>",
   name: "<value>",
 };

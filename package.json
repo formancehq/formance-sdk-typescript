@@ -10,6 +10,8 @@
     "directory": "."
   },
   "scripts": {
+    "test": "vitest run src --reporter=junit --outputFile=.speakeasy/reports/tests.xml --reporter=default",
+    "check": "npm run test && npm run lint",
     "lint": "eslint --cache --max-warnings=0 src",
     "build": "tsc",
     "prepublishOnly": "npm run build"
@@ -19,10 +21,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/node": "^18.19.3",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.22.0",
+    "vitest": "^3.0.2",
     "zod": "^3.23.4"
   },
   "dependencies": {

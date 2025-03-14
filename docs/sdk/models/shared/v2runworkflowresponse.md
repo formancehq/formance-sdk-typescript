@@ -7,10 +7,10 @@ import { V2RunWorkflowResponse } from "@formance/formance-sdk/sdk/models/shared"
 
 let value: V2RunWorkflowResponse = {
   data: {
-    createdAt: new Date("2023-06-19T02:07:21.588Z"),
+    createdAt: new Date("2025-01-04T13:57:54.417Z"),
     id: "<id>",
     terminated: false,
-    updatedAt: new Date("2023-12-09T02:01:52.269Z"),
+    updatedAt: new Date("2024-05-31T22:39:05.751Z"),
     workflowID: "<id>",
   },
 };

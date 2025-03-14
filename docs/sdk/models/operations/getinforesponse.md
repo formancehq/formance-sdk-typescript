@@ -7,7 +7,7 @@ import { GetInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetInfoResponse = {
   contentType: "<value>",
-  statusCode: 305,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

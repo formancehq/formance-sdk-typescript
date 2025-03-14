@@ -6,8 +6,9 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "as whenever antagonize obstruct overburden",
-  id: "6e41b690-fe90-46fa-a27f-8094168088c6",
+  description:
+    "jovially forceful synergy not home why absentmindedly vaguely roughly",
+  id: "d2cb8919-6d59-46e4-a1b6-90fe906fa27f",
   metadata: {
     "key": "<value>",
   },

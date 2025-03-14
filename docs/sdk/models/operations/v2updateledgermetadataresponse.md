@@ -8,7 +8,7 @@ import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2UpdateLedgerMetadataResponse = {
   contentType: "<value>",
-  statusCode: 507,
+  statusCode: 208,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -7,7 +7,7 @@ import { V3CreatePoolResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: V3CreatePoolResponse = {
   contentType: "<value>",
-  statusCode: 505,
+  statusCode: 410,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

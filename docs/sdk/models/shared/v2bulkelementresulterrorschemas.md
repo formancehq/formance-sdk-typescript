@@ -8,7 +8,7 @@ import { V2BulkElementResultErrorSchemas } from "@formance/formance-sdk/sdk/mode
 let value: V2BulkElementResultErrorSchemas = {
   errorCode: "<value>",
   errorDescription: "<value>",
-  logID: 873320,
+  logID: 548256,
   responseType: "<value>",
 };
 ```

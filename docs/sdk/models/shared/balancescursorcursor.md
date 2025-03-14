@@ -10,10 +10,10 @@ let value: BalancesCursorCursor = {
     {
       accountId: "<id>",
       asset: "<value>",
-      balance: BigInt("753043"),
-      createdAt: new Date("2023-01-07T12:12:46.716Z"),
+      balance: BigInt("745764"),
+      createdAt: new Date("2024-01-22T22:16:09.171Z"),
       currency: "Kenyan Shilling",
-      lastUpdatedAt: new Date("2024-01-05T23:44:25.788Z"),
+      lastUpdatedAt: new Date("2024-09-22T15:13:56.903Z"),
     },
   ],
   hasMore: false,

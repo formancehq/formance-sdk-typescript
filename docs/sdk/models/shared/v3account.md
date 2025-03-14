@@ -7,12 +7,12 @@ import { V3Account, V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/
 
 let value: V3Account = {
   connectorID: "<value>",
-  createdAt: new Date("2024-03-21T23:27:48.401Z"),
+  createdAt: new Date("2024-04-04T23:19:54.974Z"),
   id: "<id>",
   provider: "<value>",
   raw: {},
   reference: "<value>",
-  type: V3AccountTypeEnum.Unknown,
+  type: V3AccountTypeEnum.Internal,
 };
 ```
 

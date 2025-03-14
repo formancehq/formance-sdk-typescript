@@ -9,7 +9,7 @@ let value: Log = {
   data: {
     "key": "<value>",
   },
-  date: new Date("2023-03-05T11:14:44.230Z"),
+  date: new Date("2025-09-15T17:39:34.108Z"),
   hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
   id: 1234,
   type: Type.NewTransaction,

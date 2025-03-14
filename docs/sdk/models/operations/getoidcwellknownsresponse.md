@@ -7,7 +7,7 @@ import { GetOIDCWellKnownsResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: GetOIDCWellKnownsResponse = {
   contentType: "<value>",
-  statusCode: 415,
+  statusCode: 100,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

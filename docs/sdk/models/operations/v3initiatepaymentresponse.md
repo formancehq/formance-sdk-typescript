@@ -7,7 +7,7 @@ import { V3InitiatePaymentResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: V3InitiatePaymentResponse = {
   contentType: "<value>",
-  statusCode: 501,
+  statusCode: 208,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

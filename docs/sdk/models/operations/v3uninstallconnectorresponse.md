@@ -7,7 +7,7 @@ import { V3UninstallConnectorResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: V3UninstallConnectorResponse = {
   contentType: "<value>",
-  statusCode: 423,
+  statusCode: 203,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

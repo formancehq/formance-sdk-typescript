@@ -6,11 +6,11 @@
 import { V2VolumesWithBalance } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2VolumesWithBalance = {
-  account: "87413721",
+  account: "60113227",
   asset: "<value>",
-  balance: BigInt("907899"),
-  input: BigInt("709051"),
-  output: BigInt("615277"),
+  balance: BigInt("998023"),
+  input: BigInt("533978"),
+  output: BigInt("944203"),
 };
 ```
 

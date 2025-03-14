@@ -8,9 +8,9 @@ import { V3Balance } from "@formance/formance-sdk/sdk/models/shared";
 let value: V3Balance = {
   accountID: "<id>",
   asset: "<value>",
-  balance: BigInt("415589"),
-  createdAt: new Date("2025-09-21T12:46:13.410Z"),
-  lastUpdatedAt: new Date("2024-06-27T22:52:07.645Z"),
+  balance: BigInt("496307"),
+  createdAt: new Date("2024-04-17T11:52:21.291Z"),
+  lastUpdatedAt: new Date("2023-11-21T07:40:22.612Z"),
 };
 ```
 

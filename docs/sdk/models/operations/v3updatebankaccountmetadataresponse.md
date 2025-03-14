@@ -7,7 +7,7 @@ import { V3UpdateBankAccountMetadataResponse } from "@formance/formance-sdk/sdk/
 
 let value: V3UpdateBankAccountMetadataResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 431,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

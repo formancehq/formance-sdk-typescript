@@ -6,7 +6,7 @@
 import { V2DeleteAccountMetadataRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2DeleteAccountMetadataRequest = {
-  address: "76213 Marks Knoll",
+  address: "33549 Cordie Crossing",
   key: "foo",
   ledger: "ledger001",
 };

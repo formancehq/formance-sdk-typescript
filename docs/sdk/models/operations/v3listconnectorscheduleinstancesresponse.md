@@ -7,7 +7,7 @@ import { V3ListConnectorScheduleInstancesResponse } from "@formance/formance-sdk
 
 let value: V3ListConnectorScheduleInstancesResponse = {
   contentType: "<value>",
-  statusCode: 202,
+  statusCode: 201,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,7 +16,7 @@ let value: V3ListConnectorScheduleInstancesResponse = {
       data: [
         {
           connectorID: "<value>",
-          createdAt: new Date("2023-10-02T10:28:28.527Z"),
+          createdAt: new Date("2025-10-08T08:11:23.552Z"),
           id: "<id>",
           scheduleID: "<id>",
           terminated: false,

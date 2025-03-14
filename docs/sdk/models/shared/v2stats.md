@@ -6,8 +6,8 @@
 import { V2Stats } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Stats = {
-  accounts: 769047,
-  transactions: BigInt("677895"),
+  accounts: 103988,
+  transactions: BigInt("907899"),
 };
 ```
 

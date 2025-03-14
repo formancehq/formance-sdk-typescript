@@ -7,7 +7,7 @@ import { V3GetAccountResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: V3GetAccountResponse = {
   contentType: "<value>",
-  statusCode: 505,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

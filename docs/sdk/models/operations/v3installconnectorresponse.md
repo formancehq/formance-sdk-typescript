@@ -7,7 +7,7 @@ import { V3InstallConnectorResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: V3InstallConnectorResponse = {
   contentType: "<value>",
-  statusCode: 101,
+  statusCode: 304,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

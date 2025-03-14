@@ -10,8 +10,8 @@ let value: ListBankAccountsResponse = {
     cursor: {
       data: [
         {
-          country: "Jersey",
-          createdAt: new Date("2024-03-16T06:40:22.205Z"),
+          country: "French Guiana",
+          createdAt: new Date("2024-02-13T20:18:32.614Z"),
           id: "<id>",
           name: "<value>",
         },
@@ -23,7 +23,7 @@ let value: ListBankAccountsResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 205,
+  statusCode: 306,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

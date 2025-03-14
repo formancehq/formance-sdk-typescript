@@ -9,10 +9,10 @@ let value: V2ListRunsResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2025-01-04T13:57:54.417Z"),
+        createdAt: new Date("2024-07-14T06:41:15.268Z"),
         id: "<id>",
         terminated: false,
-        updatedAt: new Date("2024-05-31T22:39:05.751Z"),
+        updatedAt: new Date("2025-05-20T02:57:57.993Z"),
         workflowID: "<id>",
       },
     ],

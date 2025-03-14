@@ -7,7 +7,7 @@ import { V3CreateBankAccountResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: V3CreateBankAccountResponse = {
   contentType: "<value>",
-  statusCode: 505,
+  statusCode: 208,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

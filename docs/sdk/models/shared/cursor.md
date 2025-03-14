@@ -10,7 +10,7 @@ let value: Cursor = {
     {
       accountName: "<value>",
       connectorID: "<id>",
-      createdAt: new Date("2023-08-08T07:40:34.349Z"),
+      createdAt: new Date("2023-11-19T09:21:25.817Z"),
       defaultAsset: "<value>",
       defaultCurrency: "<value>",
       id: "<id>",
@@ -19,7 +19,7 @@ let value: Cursor = {
       },
       raw: {},
       reference: "<value>",
-      type: AccountType.External,
+      type: AccountType.Unknown,
     },
   ],
   hasMore: false,

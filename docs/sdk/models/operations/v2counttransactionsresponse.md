@@ -12,7 +12,7 @@ let value: V2CountTransactionsResponse = {
       "<value>",
     ],
   },
-  statusCode: 207,
+  statusCode: 102,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

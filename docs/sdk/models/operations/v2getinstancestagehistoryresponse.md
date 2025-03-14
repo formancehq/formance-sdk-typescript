@@ -8,14 +8,14 @@ import { Scheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/s
 
 let value: V2GetInstanceStageHistoryResponse = {
   contentType: "<value>",
-  statusCode: 202,
+  statusCode: 507,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2GetWorkflowInstanceHistoryStageResponse: {
     data: [
       {
-        attempt: 100294,
+        attempt: 785153,
         input: {
           createTransaction: {
             data: {
@@ -94,8 +94,8 @@ let value: V2GetInstanceStageHistoryResponse = {
                   },
                 ],
                 reference: "ref:001",
-                timestamp: new Date("2023-01-19T00:09:53.916Z"),
-                txid: BigInt("929530"),
+                timestamp: new Date("2023-11-05T18:37:43.326Z"),
+                txid: BigInt("586410"),
               },
             ],
           },
@@ -137,32 +137,32 @@ let value: V2GetInstanceStageHistoryResponse = {
                 {
                   absolute: false,
                   amount: BigInt("100"),
-                  date: new Date("2025-01-04T05:29:05.430Z"),
+                  date: new Date("2023-03-12T02:16:45.552Z"),
                   raw: {},
-                  status: V2PaymentStatus.Succeeded,
+                  status: V2PaymentStatus.Terminated,
                 },
               ],
               asset: "USD",
               connectorID: "<id>",
-              createdAt: new Date("2023-11-05T18:37:43.326Z"),
+              createdAt: new Date("2025-12-07T08:01:55.761Z"),
               destinationAccountID: "<id>",
               id: "XXX",
               initialAmount: BigInt("100"),
               metadata: {},
               raw: {},
               reference: "<value>",
-              scheme: Scheme.ApplePay,
+              scheme: Scheme.Rtp,
               sourceAccountID: "<id>",
-              status: V2PaymentStatus.Pending,
-              type: V2PaymentType.Payout,
+              status: V2PaymentStatus.Terminated,
+              type: V2PaymentType.Other,
             },
           },
           listWallets: {
             cursor: {
               data: [
                 {
-                  createdAt: new Date("2025-12-07T08:01:55.761Z"),
-                  id: "e5f3ffca-d4d9-4052-bf77-a52d3831dffe",
+                  createdAt: new Date("2023-09-11T22:40:46.497Z"),
+                  id: "ffcad4d9-052f-477a-852d-3831dffec516",
                   ledger: "<value>",
                   metadata: {
                     "key": "<value>",
@@ -177,7 +177,7 @@ let value: V2GetInstanceStageHistoryResponse = {
             },
           },
         },
-        startedAt: new Date("2024-01-01T03:03:00.284Z"),
+        startedAt: new Date("2023-05-26T04:57:17.080Z"),
         terminated: false,
       },
     ],

@@ -7,7 +7,7 @@ import { ListConnectorTasksV1Request } from "@formance/formance-sdk/sdk/models/o
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksV1Request = {
-  connector: Connector.Stripe,
+  connector: Connector.Generic,
   connectorId: "XXX",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
 };

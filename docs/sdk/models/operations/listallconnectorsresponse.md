@@ -7,7 +7,7 @@ import { ListAllConnectorsResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: ListAllConnectorsResponse = {
   contentType: "<value>",
-  statusCode: 302,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

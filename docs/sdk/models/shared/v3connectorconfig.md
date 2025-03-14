@@ -18,7 +18,7 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://snappy-mainstream.net",
+  baseURL: "https://smart-climb.name",
   name: "<value>",
   secret: "<value>",
 };
@@ -31,10 +31,10 @@ const value: shared.V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  password: "Xt56hn8FPjqsKJq",
+  password: "t56hn8FPjqsKJqY",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
-  username: "Lavada16",
+  username: "Mariah.Gibson84",
 };
 ```
 
@@ -53,7 +53,7 @@ const value: shared.V3CurrencycloudConfig = {
 
 ```typescript
 const value: shared.V3DummypayConfig = {
-  directory: "/lost+found",
+  directory: "/sbin",
   name: "<value>",
 };
 ```

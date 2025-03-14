@@ -8,7 +8,7 @@ import { V3AccountTypeEnum, V3CreateAccountResponse } from "@formance/formance-s
 let value: V3CreateAccountResponse = {
   data: {
     connectorID: "<value>",
-    createdAt: new Date("2025-01-11T01:11:19.363Z"),
+    createdAt: new Date("2024-03-21T23:27:48.401Z"),
     id: "<id>",
     provider: "<value>",
     raw: {},

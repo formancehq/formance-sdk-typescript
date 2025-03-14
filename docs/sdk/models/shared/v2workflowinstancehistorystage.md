@@ -6,7 +6,7 @@
 import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 245990,
+  attempt: 73,
   input: {
     createTransaction: {
       data: {
@@ -85,8 +85,8 @@ let value: V2WorkflowInstanceHistoryStage = {
             },
           ],
           reference: "ref:001",
-          timestamp: new Date("2024-10-01T02:51:40.989Z"),
-          txid: BigInt("258036"),
+          timestamp: new Date("2023-10-06T15:31:52.701Z"),
+          txid: BigInt("749101"),
         },
       ],
     },
@@ -128,21 +128,21 @@ let value: V2WorkflowInstanceHistoryStage = {
           {
             absolute: false,
             amount: BigInt("100"),
-            date: new Date("2024-06-02T19:56:17.254Z"),
+            date: new Date("2024-08-06T10:34:04.832Z"),
             raw: {},
-            status: V2PaymentStatus.Cancelled,
+            status: V2PaymentStatus.Pending,
           },
         ],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2023-09-10T12:26:59.523Z"),
+        createdAt: new Date("2024-03-07T10:02:12.604Z"),
         destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: BigInt("100"),
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.SepaDebit,
+        scheme: Scheme.Unionpay,
         sourceAccountID: "<id>",
         status: V2PaymentStatus.Failed,
         type: V2PaymentType.Transfer,
@@ -152,8 +152,8 @@ let value: V2WorkflowInstanceHistoryStage = {
       cursor: {
         data: [
           {
-            createdAt: new Date("2025-12-04T07:07:12.134Z"),
-            id: "abf65023-2c8a-4d35-8b60-6e65fa51cbe3",
+            createdAt: new Date("2025-07-10T13:11:55.307Z"),
+            id: "762cb68a-2059-47bd-872d-9bbf4b5635f4",
             ledger: "<value>",
             metadata: {
               "key": "<value>",
@@ -168,7 +168,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2025-03-04T14:00:13.445Z"),
+  startedAt: new Date("2024-10-01T02:51:40.989Z"),
   terminated: false,
 };
 ```

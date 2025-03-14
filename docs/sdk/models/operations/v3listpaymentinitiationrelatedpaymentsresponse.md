@@ -8,7 +8,7 @@ import { V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/s
 
 let value: V3ListPaymentInitiationRelatedPaymentsResponse = {
   contentType: "<value>",
-  statusCode: 410,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -16,16 +16,16 @@ let value: V3ListPaymentInitiationRelatedPaymentsResponse = {
     cursor: {
       data: [
         {
-          amount: BigInt("621666"),
+          amount: BigInt("75359"),
           asset: "<value>",
           connectorID: "<value>",
-          createdAt: new Date("2023-11-13T06:32:38.998Z"),
+          createdAt: new Date("2024-04-10T10:20:08.256Z"),
           id: "<id>",
-          initialAmount: BigInt("874400"),
+          initialAmount: BigInt("107617"),
           provider: "<value>",
           reference: "<value>",
           scheme: "<value>",
-          status: V3PaymentStatusEnum.Pending,
+          status: V3PaymentStatusEnum.Dispute,
           type: V3PaymentTypeEnum.PayIn,
         },
       ],

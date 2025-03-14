@@ -13,7 +13,7 @@ let value: GetBalancesAggregatedResponse = {
     },
   },
   contentType: "<value>",
-  statusCode: 205,
+  statusCode: 418,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

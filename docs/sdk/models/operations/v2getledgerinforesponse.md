@@ -7,7 +7,7 @@ import { V2GetLedgerInfoResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V2GetLedgerInfoResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 423,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
