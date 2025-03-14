@@ -7,7 +7,7 @@ import { V3GetBankAccountResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: V3GetBankAccountResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 226,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

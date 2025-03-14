@@ -13,7 +13,7 @@ let value: AccountsCursor = {
       {
         accountName: "<value>",
         connectorID: "<id>",
-        createdAt: new Date("2024-08-01T13:08:34.793Z"),
+        createdAt: new Date("2024-01-06T13:27:24.144Z"),
         defaultAsset: "<value>",
         defaultCurrency: "<value>",
         id: "<id>",
@@ -22,7 +22,7 @@ let value: AccountsCursor = {
         },
         raw: {},
         reference: "<value>",
-        type: AccountType.External,
+        type: AccountType.Internal,
       },
     ],
     hasMore: false,

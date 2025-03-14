@@ -7,7 +7,7 @@ import { V3CreatePaymentResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V3CreatePaymentResponse = {
   contentType: "<value>",
-  statusCode: 451,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

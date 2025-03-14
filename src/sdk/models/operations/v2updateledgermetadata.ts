@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2UpdateLedgerMetadataRequest = {
-  requestBody?: { [k: string]: string } | undefined;
+  requestBody: { [k: string]: string };
   /**
    * Name of the ledger.
    */
@@ -42,7 +42,7 @@ export const V2UpdateLedgerMetadataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  RequestBody: z.record(z.string()).optional(),
+  RequestBody: z.record(z.string()),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -52,7 +52,7 @@ export const V2UpdateLedgerMetadataRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2UpdateLedgerMetadataRequest$Outbound = {
-  RequestBody?: { [k: string]: string } | undefined;
+  RequestBody: { [k: string]: string };
   ledger: string;
 };
 
@@ -62,7 +62,7 @@ export const V2UpdateLedgerMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2UpdateLedgerMetadataRequest
 > = z.object({
-  requestBody: z.record(z.string()).optional(),
+  requestBody: z.record(z.string()),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {

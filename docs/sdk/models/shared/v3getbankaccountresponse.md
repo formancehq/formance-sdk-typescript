@@ -7,7 +7,7 @@ import { V3GetBankAccountResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: V3GetBankAccountResponse = {
   data: {
-    createdAt: new Date("2023-03-31T12:44:44.932Z"),
+    createdAt: new Date("2024-04-17T11:52:21.291Z"),
     id: "<id>",
     name: "<value>",
   },

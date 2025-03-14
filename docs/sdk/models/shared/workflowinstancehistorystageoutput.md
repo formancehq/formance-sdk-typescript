@@ -13,7 +13,7 @@ import {
 let value: WorkflowInstanceHistoryStageOutput = {
   createTransaction: {
     data: {
-      id: BigInt("628314"),
+      id: BigInt("713718"),
       metadata: {
         "admin": "true",
       },
@@ -27,7 +27,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
       ],
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2025-04-23T16:31:49.440Z"),
+      timestamp: new Date("2025-09-30T06:52:58.064Z"),
     },
   },
   getAccount: {
@@ -68,32 +68,32 @@ let value: WorkflowInstanceHistoryStageOutput = {
         {
           absolute: false,
           amount: BigInt("100"),
-          date: new Date("2025-04-22T17:39:24.661Z"),
+          date: new Date("2023-06-10T15:44:18.944Z"),
           raw: {},
           status: OrchestrationPaymentStatus.Cancelled,
         },
       ],
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2025-02-28T11:16:40.701Z"),
+      createdAt: new Date("2024-03-27T03:25:20.607Z"),
       destinationAccountID: "<id>",
       id: "XXX",
       initialAmount: BigInt("100"),
       metadata: {},
       raw: {},
       reference: "<value>",
-      scheme: OrchestrationPaymentScheme.Other,
+      scheme: OrchestrationPaymentScheme.Jcb,
       sourceAccountID: "<id>",
       status: OrchestrationPaymentStatus.Cancelled,
-      type: OrchestrationPaymentType.Transfer,
+      type: OrchestrationPaymentType.Other,
     },
   },
   listWallets: {
     cursor: {
       data: [
         {
-          createdAt: new Date("2024-10-06T14:53:57.713Z"),
-          id: "0f2bd531-b7be-42e6-84ff-3a1ada6669ee",
+          createdAt: new Date("2023-08-06T23:39:39.226Z"),
+          id: "a1ada666-9ee0-4213-a58a-befadc4e0047",
           ledger: "<value>",
           metadata: {
             "key": "<value>",
@@ -109,7 +109,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
   },
   revertTransaction: {
     data: {
-      id: BigInt("181622"),
+      id: BigInt("101770"),
       metadata: {
         "admin": "true",
       },
@@ -123,7 +123,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
       ],
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2023-05-03T23:56:54.252Z"),
+      timestamp: new Date("2025-01-07T14:51:30.818Z"),
     },
   },
 };

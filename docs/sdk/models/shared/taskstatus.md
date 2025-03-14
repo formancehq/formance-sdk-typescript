@@ -5,7 +5,7 @@
 ```typescript
 import { TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: TaskStatus = TaskStatus.Terminated;
+let value: TaskStatus = TaskStatus.Pending;
 ```
 
 ## Values

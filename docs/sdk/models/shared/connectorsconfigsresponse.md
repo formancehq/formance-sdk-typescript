@@ -11,7 +11,7 @@ let value: ConnectorsConfigsResponse = {
   data: {
     connector: {
       key: {
-        dataType: "float",
+        dataType: "bigint",
         required: false,
       },
     },

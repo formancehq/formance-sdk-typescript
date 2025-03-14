@@ -7,13 +7,13 @@ import { V2CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: V2CreateTransactionResponse = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 410,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
   v2CreateTransactionResponse: {
     data: {
-      id: BigInt("670638"),
+      id: BigInt("437032"),
       metadata: {
         "admin": "true",
       },
@@ -91,7 +91,7 @@ let value: V2CreateTransactionResponse = {
       },
       reference: "ref:001",
       reverted: false,
-      timestamp: new Date("2023-08-19T13:54:10.391Z"),
+      timestamp: new Date("2025-02-03T14:29:27.520Z"),
     },
   },
 };

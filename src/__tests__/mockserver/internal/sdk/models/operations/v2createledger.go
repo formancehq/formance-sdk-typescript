@@ -7,14 +7,14 @@ import (
 )
 
 type V2CreateLedgerRequest struct {
-	V2CreateLedgerRequest *components.V2CreateLedgerRequest `request:"mediaType=application/json"`
+	V2CreateLedgerRequest components.V2CreateLedgerRequest `request:"mediaType=application/json"`
 	// Name of the ledger.
 	Ledger string `pathParam:"style=simple,explode=false,name=ledger"`
 }
 
-func (o *V2CreateLedgerRequest) GetV2CreateLedgerRequest() *components.V2CreateLedgerRequest {
+func (o *V2CreateLedgerRequest) GetV2CreateLedgerRequest() components.V2CreateLedgerRequest {
 	if o == nil {
-		return nil
+		return components.V2CreateLedgerRequest{}
 	}
 	return o.V2CreateLedgerRequest
 }

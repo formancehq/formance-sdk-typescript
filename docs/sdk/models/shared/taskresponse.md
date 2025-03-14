@@ -10,11 +10,11 @@ import { TaskResponse, TaskStatus } from "@formance/formance-sdk/sdk/models/shar
 let value: TaskResponse = {
   data: {
     connectorID: "<id>",
-    createdAt: new Date("2023-01-28T08:10:11.447Z"),
+    createdAt: new Date("2024-07-06T01:15:14.096Z"),
     descriptor: {},
-    id: "6b3b80c8-174e-44f8-95db-6acdd2d03919",
-    status: TaskStatus.Stopped,
-    updatedAt: new Date("2023-12-12T09:44:42.528Z"),
+    id: "0c8174e4-f85d-4b6a-bcdd-2d0391946518",
+    status: TaskStatus.Terminated,
+    updatedAt: new Date("2023-11-25T20:02:18.063Z"),
   },
 };
 ```

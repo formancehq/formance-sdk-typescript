@@ -10,7 +10,7 @@ let value: V2BulkElementAddMetadataData = {
     "key": "<value>",
   },
   targetId: "<id>",
-  targetType: V2TargetType.Account,
+  targetType: V2TargetType.Transaction,
 };
 ```
 

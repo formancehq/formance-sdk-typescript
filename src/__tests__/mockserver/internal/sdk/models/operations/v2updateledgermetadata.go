@@ -14,7 +14,7 @@ type V2UpdateLedgerMetadataRequest struct {
 
 func (o *V2UpdateLedgerMetadataRequest) GetRequestBody() map[string]string {
 	if o == nil {
-		return nil
+		return map[string]string{}
 	}
 	return o.RequestBody
 }

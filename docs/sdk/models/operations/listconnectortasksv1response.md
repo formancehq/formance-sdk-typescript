@@ -8,7 +8,7 @@ import { TaskStatus } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksV1Response = {
   contentType: "<value>",
-  statusCode: 102,
+  statusCode: 417,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,11 +17,11 @@ let value: ListConnectorTasksV1Response = {
       data: [
         {
           connectorID: "<id>",
-          createdAt: new Date("2024-07-12T17:58:06.600Z"),
+          createdAt: new Date("2025-11-21T04:42:37.776Z"),
           descriptor: {},
-          id: "5c178b13-69e9-42fd-b8e8-edfe026f42e7",
+          id: "0bd85c17-8b13-469e-992f-d8e8edfe026f",
           status: TaskStatus.Pending,
-          updatedAt: new Date("2024-12-25T14:02:06.082Z"),
+          updatedAt: new Date("2025-08-29T09:21:28.573Z"),
         },
       ],
       hasMore: false,

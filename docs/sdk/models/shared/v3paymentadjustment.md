@@ -6,11 +6,11 @@
 import { V3PaymentAdjustment, V3PaymentStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PaymentAdjustment = {
-  createdAt: new Date("2025-04-29T08:32:42.250Z"),
+  createdAt: new Date("2025-08-20T05:20:49.819Z"),
   id: "<id>",
   raw: {},
   reference: "<value>",
-  status: V3PaymentStatusEnum.Unknown,
+  status: V3PaymentStatusEnum.Capture,
 };
 ```
 

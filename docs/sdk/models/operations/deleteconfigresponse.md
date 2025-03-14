@@ -7,7 +7,7 @@ import { DeleteConfigResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: DeleteConfigResponse = {
   contentType: "<value>",
-  statusCode: 510,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

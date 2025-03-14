@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 9d3c2763dd507a399ca787e261c6fafe
-  docVersion: v3.0.1
-  speakeasyVersion: 1.509.0
-  generationVersion: 2.539.0
-  releaseVersion: 4.1.0
-  configChecksum: 13dd343d86e3575ba30b6a44a2b8d013
+  docChecksum: 90e2ecf8fc7bcddc6818fbde29ac3dae
+  docVersion: v3.0.2
+  speakeasyVersion: 1.517.3
+  generationVersion: 2.548.6
+  releaseVersion: 4.2.0
+  configChecksum: 817338f56893cb2311b983d690256861
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -16,7 +16,7 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.2
     constsAndDefaults: 0.1.11
-    core: 3.21.3
+    core: 3.21.4
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
@@ -30,12 +30,12 @@ features:
     mockServer: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    oauth2ClientCredentials: 0.2.1
+    oauth2ClientCredentials: 0.3.1
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.15.0
     unions: 2.85.8
+    uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
   - .npmignore
@@ -1013,8 +1013,6 @@ generatedFiles:
   - eslint.config.mjs
   - jsr.json
   - package.json
-  - src/__tests__/assertions.ts
-  - src/__tests__/files.ts
   - src/__tests__/mockserver/Dockerfile
   - src/__tests__/mockserver/Makefile
   - src/__tests__/mockserver/README.md
@@ -1028,215 +1026,6 @@ generatedFiles:
   - src/__tests__/mockserver/internal/handler/doc.go
   - src/__tests__/mockserver/internal/handler/generated_handler.go
   - src/__tests__/mockserver/internal/handler/generated_handlers.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiauthclientsclientid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiauthclientsclientidsecretssecretid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiledgerv2ledgeraccountsaddressmetadatakey.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiledgerv2ledgermetadatakey.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiledgerv2ledgertransactionsidmetadatakey.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiorchestrationtriggerstriggerid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiorchestrationv2triggerstriggerid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiorchestrationv2workflowsflowid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiorchestrationworkflowsflowid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsconnectorsconnector.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsconnectorsconnectorconnectorid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentspoolspoolid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentspoolspoolidaccountsaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentstransferinitiationstransferid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsv3connectorsconnectorid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsv3paymentinitiationspaymentinitiationid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsv3poolspoolid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapipaymentsv3poolspoolidaccountsaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapireconciliationpoliciespolicyid.go
-  - src/__tests__/mockserver/internal/handler/pathdeleteapiwebhooksconfigsid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthclients.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthclientsclientid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthusers.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthusersuserid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiauthwellknownopenidconfiguration.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgeraccounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgeraccountsaddress.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgeraggregatebalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgerbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgerinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgerlogs.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgermapping.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgerstats.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerledgertransactionstxid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgermetrics.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledger.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgeraccounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgeraccountsaddress.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgeraggregatebalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgerinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgerlogs.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgerstats.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgertransactionsid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiledgerv2ledgervolumes.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationinstances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationinstancesinstanceid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationinstancesinstanceidhistory.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationinstancesinstanceidstagesnumberhistory.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationtriggers.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationtriggerstriggerid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationtriggerstriggeridoccurrences.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2info.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2instances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2instancesinstanceid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2instancesinstanceidhistory.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2instancesinstanceidstagesnumberhistory.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2triggers.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2triggerstriggerid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2triggerstriggeridoccurrences.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2workflows.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationv2workflowsflowid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationworkflows.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiorchestrationworkflowsflowid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsaccountsaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsaccountsaccountidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsbankaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsbankaccountsbankaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectors.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconfigs.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectorconfig.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectorconnectoridconfig.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectorconnectoridtasks.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectorconnectoridtaskstaskid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectortasks.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsconnectorsconnectortaskstaskid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentspayments.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentspaymentspaymentid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentspools.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentspoolspoolid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentspoolspoolidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentstransferinitiations.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentstransferinitiationstransferid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3accounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3accountsaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3accountsaccountidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3bankaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3bankaccountsbankaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectors.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectorsconfigs.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectorsconnectoridconfig.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectorsconnectoridschedules.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectorsconnectoridschedulesscheduleid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3connectorsconnectoridschedulesscheduleidinstances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3paymentinitiations.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3paymentinitiationspaymentinitiationid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3paymentinitiationspaymentinitiationidadjustments.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3paymentinitiationspaymentinitiationidpayments.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3payments.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3paymentspaymentid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3pools.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3poolspoolid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3poolspoolidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapipaymentsv3taskstaskid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapireconciliationinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapireconciliationpolicies.go
-  - src/__tests__/mockserver/internal/handler/pathgetapireconciliationpoliciespolicyid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapireconciliationreconciliations.go
-  - src/__tests__/mockserver/internal/handler/pathgetapireconciliationreconciliationsreconciliationid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapisearchinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletsholds.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletsholdsholdid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletsinfo.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletstransactions.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletswallets.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletswalletsid.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletswalletsidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletswalletsidbalancesbalancename.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwalletswalletsidsummary.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwebhooksconfigs.go
-  - src/__tests__/mockserver/internal/handler/pathgetapiwebhooksconfigsidtest.go
-  - src/__tests__/mockserver/internal/handler/pathgetversions.go
-  - src/__tests__/mockserver/internal/handler/pathheadapiledgerledgeraccounts.go
-  - src/__tests__/mockserver/internal/handler/pathheadapiledgerledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathheadapiledgerv2ledgeraccounts.go
-  - src/__tests__/mockserver/internal/handler/pathheadapiledgerv2ledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathpatchapipaymentsbankaccountsbankaccountidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpatchapipaymentspaymentspaymentidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpatchapipaymentsv3bankaccountsbankaccountidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpatchapipaymentsv3paymentspaymentidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpatchapiwalletswalletsid.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiauthclients.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiauthclientsclientidsecrets.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerledgerscript.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerledgertransactionsbatch.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerledgertransactionstxidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerledgertransactionstxidrevert.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledger.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgeraccountsaddressmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgerbulk.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgerlogsexport.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgerlogsimport.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgertransactions.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgertransactionsidmetadata.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiledgerv2ledgertransactionsidrevert.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationinstancesinstanceidevents.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationtriggers.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationv2instancesinstanceidevents.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationv2triggers.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationv2triggerstriggeridtest.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationv2workflows.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationv2workflowsworkflowidinstances.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationworkflows.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiorchestrationworkflowsworkflowidinstances.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsbankaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsbankaccountsbankaccountidforward.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsconnectorsconnector.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsconnectorsconnectorconnectoridconfig.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsconnectorsconnectorconnectoridreset.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsconnectorsconnectorreset.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsconnectorsconnectortransfers.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentspayments.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentspools.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentspoolspoolidaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentstransferinitiations.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentstransferinitiationstransferidretry.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentstransferinitiationstransferidreverse.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentstransferinitiationstransferidstatus.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3accounts.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3bankaccounts.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3bankaccountsbankaccountidforward.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3connectorsconnectoridreset.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3connectorsinstallconnector.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3paymentinitiations.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3paymentinitiationspaymentinitiationidapprove.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3paymentinitiationspaymentinitiationidreject.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3paymentinitiationspaymentinitiationidretry.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3paymentinitiationspaymentinitiationidreverse.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3payments.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3pools.go
-  - src/__tests__/mockserver/internal/handler/pathpostapipaymentsv3poolspoolidaccountsaccountid.go
-  - src/__tests__/mockserver/internal/handler/pathpostapireconciliationpolicies.go
-  - src/__tests__/mockserver/internal/handler/pathpostapireconciliationpoliciespolicyidreconciliation.go
-  - src/__tests__/mockserver/internal/handler/pathpostapisearch.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletsholdsholdidconfirm.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletsholdsholdidvoid.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletswallets.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletswalletsidbalances.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletswalletsidcredit.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwalletswalletsiddebit.go
-  - src/__tests__/mockserver/internal/handler/pathpostapiwebhooksconfigs.go
-  - src/__tests__/mockserver/internal/handler/pathputapiauthclientsclientid.go
-  - src/__tests__/mockserver/internal/handler/pathputapiledgerledgermapping.go
-  - src/__tests__/mockserver/internal/handler/pathputapiledgerv2ledgermetadata.go
-  - src/__tests__/mockserver/internal/handler/pathputapiorchestrationinstancesinstanceidabort.go
-  - src/__tests__/mockserver/internal/handler/pathputapiorchestrationv2instancesinstanceidabort.go
-  - src/__tests__/mockserver/internal/handler/pathputapiwebhooksconfigsid.go
-  - src/__tests__/mockserver/internal/handler/pathputapiwebhooksconfigsidactivate.go
-  - src/__tests__/mockserver/internal/handler/pathputapiwebhooksconfigsiddeactivate.go
-  - src/__tests__/mockserver/internal/handler/pathputapiwebhooksconfigsidsecretchange.go
   - src/__tests__/mockserver/internal/handler/values/files.go
   - src/__tests__/mockserver/internal/logging/doc.go
   - src/__tests__/mockserver/internal/logging/formats.go
@@ -1910,19 +1699,6 @@ generatedFiles:
   - src/__tests__/mockserver/internal/server/templates/log/style.css.tmpl
   - src/__tests__/mockserver/internal/tracking/requesttracker.go
   - src/__tests__/mockserver/main.go
-  - src/__tests__/sdk.test.ts
-  - src/__tests__/sdkorchestrationv1.test.ts
-  - src/__tests__/sdkpaymentsv1.test.ts
-  - src/__tests__/sdkreconciliationv1.test.ts
-  - src/__tests__/sdksearchv1.test.ts
-  - src/__tests__/sdkv1.test.ts
-  - src/__tests__/sdkv2.test.ts
-  - src/__tests__/sdkwalletsv1.test.ts
-  - src/__tests__/sdkwebhooksv1.test.ts
-  - src/__tests__/testclient.ts
-  - src/__tests__/v1.test.ts
-  - src/__tests__/v2.test.ts
-  - src/__tests__/v3.test.ts
   - src/core.ts
   - src/funcs/authV1CreateClient.ts
   - src/funcs/authV1CreateSecret.ts
@@ -3121,6 +2897,8 @@ examples:
       parameters:
         path:
           ledger: "ledger001"
+      requestBody:
+        application/octet-stream: "x-file: example.file"
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
@@ -3227,6 +3005,8 @@ examples:
         path:
           ledger: "ledger001"
           txid: 1234
+      requestBody:
+        application/json: {"key": "<value>"}
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "INSUFFICIENT_FUND", "errorMessage": "[INSUFFICIENT_FUND] account had insufficient funds"}

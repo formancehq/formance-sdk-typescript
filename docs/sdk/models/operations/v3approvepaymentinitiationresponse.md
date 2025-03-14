@@ -7,7 +7,7 @@ import { V3ApprovePaymentInitiationResponse } from "@formance/formance-sdk/sdk/m
 
 let value: V3ApprovePaymentInitiationResponse = {
   contentType: "<value>",
-  statusCode: 429,
+  statusCode: 402,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

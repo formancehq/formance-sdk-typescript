@@ -7,7 +7,7 @@ import { V3ListBankAccountsResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: V3ListBankAccountsResponse = {
   contentType: "<value>",
-  statusCode: 226,
+  statusCode: 205,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V3ListBankAccountsResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2025-05-17T21:36:00.719Z"),
+          createdAt: new Date("2023-05-09T19:23:40.239Z"),
           id: "<id>",
           name: "<value>",
         },

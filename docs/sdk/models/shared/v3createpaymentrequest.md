@@ -6,14 +6,14 @@
 import { V3CreatePaymentRequest, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3CreatePaymentRequest = {
-  amount: BigInt("556719"),
+  amount: BigInt("774960"),
   asset: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2023-09-15T13:47:48.249Z"),
-  initialAmount: BigInt("119685"),
+  createdAt: new Date("2023-03-04T18:57:25.826Z"),
+  initialAmount: BigInt("556719"),
   reference: "<value>",
   scheme: "<value>",
-  type: V3PaymentTypeEnum.Transfer,
+  type: V3PaymentTypeEnum.PayIn,
 };
 ```
 

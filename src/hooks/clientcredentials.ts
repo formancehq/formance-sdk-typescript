@@ -112,6 +112,11 @@ export class ClientCredentialsHook
   ): Promise<Session> {
     const formData = new URLSearchParams();
     formData.append("grant_type", "client_credentials");
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/x-www-form-urlencoded",
+    };
+
     formData.append("client_id", credentials.clientID);
     formData.append("client_secret", credentials.clientSecret);
 
@@ -126,9 +131,7 @@ export class ClientCredentialsHook
 
     const request = new Request(tokenURL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+      headers,
       body: formData,
     });
 
@@ -167,7 +170,6 @@ export class ClientCredentialsHook
 
     return sess;
   }
-
   private async getCredentials(
     hookCtx: HookContext,
   ): Promise<Credentials | null> {
