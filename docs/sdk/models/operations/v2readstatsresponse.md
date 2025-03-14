@@ -7,7 +7,7 @@ import { V2ReadStatsResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: V2ReadStatsResponse = {
   contentType: "<value>",
-  statusCode: 504,
+  statusCode: 305,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

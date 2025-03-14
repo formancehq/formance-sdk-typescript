@@ -10,9 +10,9 @@ let value: V3BalancesCursorResponseCursor = {
     {
       accountID: "<id>",
       asset: "<value>",
-      balance: BigInt("492261"),
-      createdAt: new Date("2023-02-27T21:22:28.511Z"),
-      lastUpdatedAt: new Date("2023-01-01T01:54:20.575Z"),
+      balance: BigInt("526096"),
+      createdAt: new Date("2023-08-22T18:10:11.403Z"),
+      lastUpdatedAt: new Date("2024-06-23T12:26:15.788Z"),
     },
   ],
   hasMore: false,

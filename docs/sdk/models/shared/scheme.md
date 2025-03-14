@@ -5,7 +5,7 @@
 ```typescript
 import { Scheme } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Scheme = Scheme.SepaDebit;
+let value: Scheme = Scheme.Discover;
 ```
 
 ## Values

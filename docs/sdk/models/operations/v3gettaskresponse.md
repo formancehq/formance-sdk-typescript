@@ -7,7 +7,7 @@ import { V3GetTaskResponse } from "@formance/formance-sdk/sdk/models/operations"
 
 let value: V3GetTaskResponse = {
   contentType: "<value>",
-  statusCode: 100,
+  statusCode: 307,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

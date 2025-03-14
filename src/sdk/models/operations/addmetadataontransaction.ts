@@ -12,7 +12,7 @@ export type AddMetadataOnTransactionRequest = {
   /**
    * metadata
    */
-  requestBody?: { [k: string]: any } | null | undefined;
+  requestBody: { [k: string]: any } | null;
   /**
    * Name of the ledger.
    */
@@ -44,7 +44,7 @@ export const AddMetadataOnTransactionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  RequestBody: z.nullable(z.record(z.any())).optional(),
+  RequestBody: z.nullable(z.record(z.any())),
   ledger: z.string(),
   txid: z.number().transform(v => BigInt(v)),
 }).transform((v) => {
@@ -55,7 +55,7 @@ export const AddMetadataOnTransactionRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type AddMetadataOnTransactionRequest$Outbound = {
-  RequestBody?: { [k: string]: any } | null | undefined;
+  RequestBody: { [k: string]: any } | null;
   ledger: string;
   txid: number;
 };
@@ -66,7 +66,7 @@ export const AddMetadataOnTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AddMetadataOnTransactionRequest
 > = z.object({
-  requestBody: z.nullable(z.record(z.any())).optional(),
+  requestBody: z.nullable(z.record(z.any())),
   ledger: z.string(),
   txid: z.bigint().transform(v => Number(v)),
 }).transform((v) => {

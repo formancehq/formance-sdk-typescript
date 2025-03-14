@@ -7,7 +7,7 @@ import { ListTransactionsResponse } from "@formance/formance-sdk/sdk/models/oper
 
 let value: ListTransactionsResponse = {
   contentType: "<value>",
-  statusCode: 508,
+  statusCode: 501,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -56,8 +56,8 @@ let value: ListTransactionsResponse = {
             },
           },
           reference: "ref:001",
-          timestamp: new Date("2024-09-15T17:37:32.983Z"),
-          txid: BigInt("407183"),
+          timestamp: new Date("2024-11-05T15:40:43.604Z"),
+          txid: BigInt("123820"),
         },
       ],
       hasMore: false,

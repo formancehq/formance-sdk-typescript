@@ -77,7 +77,7 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = payload.RequestBody;
+  const body = payload.V2ImportLogsRequest;
 
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {

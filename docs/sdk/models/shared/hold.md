@@ -6,8 +6,9 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description: "chubby rout unhappy yum finally drat after sheepishly bah",
-  id: "b792ecf4-32fc-4286-a22f-4f172081bb2f",
+  description:
+    "yowza ick moralise which whenever exasperation cap seemingly deep",
+  id: "e0a6cb7a-8c78-4494-8922-66420047b7e0",
   metadata: {
     "key": "<value>",
   },

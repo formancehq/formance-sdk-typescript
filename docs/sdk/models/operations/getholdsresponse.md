@@ -11,8 +11,8 @@ let value: GetHoldsResponse = {
     cursor: {
       data: [
         {
-          description: "compromise if made-up deer rightfully",
-          id: "907b0e80-3f91-4470-9673-9c39afcd72f2",
+          description: "boo legitimize well meh",
+          id: "39c39afc-d72f-4271-bffb-5442825ab06a",
           metadata: {
             "key": "<value>",
           },
@@ -25,7 +25,7 @@ let value: GetHoldsResponse = {
       previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
-  statusCode: 103,
+  statusCode: 308,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

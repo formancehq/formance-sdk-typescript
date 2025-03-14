@@ -7,7 +7,7 @@ import { V3ListPoolsResponse } from "@formance/formance-sdk/sdk/models/operation
 
 let value: V3ListPoolsResponse = {
   contentType: "<value>",
-  statusCode: 308,
+  statusCode: 203,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -15,7 +15,7 @@ let value: V3ListPoolsResponse = {
     cursor: {
       data: [
         {
-          createdAt: new Date("2025-03-19T01:22:32.739Z"),
+          createdAt: new Date("2024-05-04T18:39:05.975Z"),
           id: "<id>",
           name: "<value>",
           poolAccounts: [

@@ -7,7 +7,7 @@ import { V3CreateAccountResponse } from "@formance/formance-sdk/sdk/models/opera
 
 let value: V3CreateAccountResponse = {
   contentType: "<value>",
-  statusCode: 103,
+  statusCode: 507,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

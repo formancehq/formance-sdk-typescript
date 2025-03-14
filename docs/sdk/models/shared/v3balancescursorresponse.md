@@ -11,9 +11,9 @@ let value: V3BalancesCursorResponse = {
       {
         accountID: "<id>",
         asset: "<value>",
-        balance: BigInt("880322"),
-        createdAt: new Date("2024-03-31T11:38:42.791Z"),
-        lastUpdatedAt: new Date("2025-09-21T12:46:13.410Z"),
+        balance: BigInt("52819"),
+        createdAt: new Date("2023-01-01T01:54:20.575Z"),
+        lastUpdatedAt: new Date("2025-08-22T19:59:17.126Z"),
       },
     ],
     hasMore: false,

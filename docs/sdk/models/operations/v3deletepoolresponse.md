@@ -7,7 +7,7 @@ import { V3DeletePoolResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: V3DeletePoolResponse = {
   contentType: "<value>",
-  statusCode: 202,
+  statusCode: 200,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

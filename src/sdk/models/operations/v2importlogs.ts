@@ -9,7 +9,11 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ImportLogsRequest = {
-  requestBody?: string | undefined;
+  v2ImportLogsRequest:
+    | ReadableStream<Uint8Array>
+    | Blob
+    | ArrayBuffer
+    | Uint8Array;
   /**
    * Name of the ledger.
    */
@@ -37,17 +41,26 @@ export const V2ImportLogsRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  RequestBody: z.string().optional(),
+  V2ImportLogsRequest: z.union([
+    z.instanceof(ReadableStream<Uint8Array>),
+    z.instanceof(Blob),
+    z.instanceof(ArrayBuffer),
+    z.instanceof(Uint8Array),
+  ]),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    "RequestBody": "requestBody",
+    "V2ImportLogsRequest": "v2ImportLogsRequest",
   });
 });
 
 /** @internal */
 export type V2ImportLogsRequest$Outbound = {
-  RequestBody?: string | undefined;
+  V2ImportLogsRequest:
+    | ReadableStream<Uint8Array>
+    | Blob
+    | ArrayBuffer
+    | Uint8Array;
   ledger: string;
 };
 
@@ -57,11 +70,16 @@ export const V2ImportLogsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2ImportLogsRequest
 > = z.object({
-  requestBody: z.string().optional(),
+  v2ImportLogsRequest: z.union([
+    z.instanceof(ReadableStream<Uint8Array>),
+    z.instanceof(Blob),
+    z.instanceof(ArrayBuffer),
+    z.instanceof(Uint8Array),
+  ]),
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    requestBody: "RequestBody",
+    v2ImportLogsRequest: "V2ImportLogsRequest",
   });
 });
 

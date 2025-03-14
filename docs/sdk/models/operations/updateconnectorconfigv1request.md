@@ -8,13 +8,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
-    accessKey: "XXX",
-    baseUrl: "https://api.atlar.com",
-    name: "My Atlar Account",
-    pageSize: 25,
+    apiKey: "XXX",
+    apiSecret: "XXX",
+    endpoint: "XXX",
+    name: "My Modulr Account",
     pollingPeriod: "120s",
-    secret: "XXX",
-    transferInitiationStatusPollingPeriod: "120s",
   },
   connector: Connector.BankingCircle,
   connectorId: "XXX",

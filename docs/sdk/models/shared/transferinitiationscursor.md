@@ -11,19 +11,20 @@ let value: TransferInitiationsCursor = {
   cursor: {
     data: [
       {
-        amount: BigInt("144876"),
+        amount: BigInt("620421"),
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2025-03-12T17:24:42.086Z"),
-        description: "safely harvest victoriously tag fly",
+        createdAt: new Date("2024-08-07T15:17:18.675Z"),
+        description:
+          "helpfully chasuble defiantly rightfully behind tuxedo enchanting free humidity",
         destinationAccountID: "<id>",
         error: "<value>",
         id: "XXX",
-        initialAmount: BigInt("979244"),
+        initialAmount: BigInt("208224"),
         reference: "<value>",
-        scheduledAt: new Date("2025-07-20T09:36:10.465Z"),
+        scheduledAt: new Date("2024-08-29T01:07:14.865Z"),
         sourceAccountID: "<id>",
-        status: TransferInitiationStatus.PartiallyReversed,
+        status: TransferInitiationStatus.Failed,
         type: TransferInitiationType.Payout,
       },
     ],

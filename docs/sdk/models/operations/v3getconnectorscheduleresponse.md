@@ -7,7 +7,7 @@ import { V3GetConnectorScheduleResponse } from "@formance/formance-sdk/sdk/model
 
 let value: V3GetConnectorScheduleResponse = {
   contentType: "<value>",
-  statusCode: 451,
+  statusCode: 202,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

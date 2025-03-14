@@ -8,7 +8,7 @@ import { V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ListAccountsResponse = {
   contentType: "<value>",
-  statusCode: 208,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,12 +17,12 @@ let value: V3ListAccountsResponse = {
       data: [
         {
           connectorID: "<value>",
-          createdAt: new Date("2025-11-01T17:59:03.627Z"),
+          createdAt: new Date("2023-04-28T22:46:34.018Z"),
           id: "<id>",
           provider: "<value>",
           raw: {},
           reference: "<value>",
-          type: V3AccountTypeEnum.External,
+          type: V3AccountTypeEnum.Internal,
         },
       ],
       hasMore: false,

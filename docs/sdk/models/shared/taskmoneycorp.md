@@ -7,11 +7,11 @@ import { TaskMoneycorp, TaskStatus } from "@formance/formance-sdk/sdk/models/sha
 
 let value: TaskMoneycorp = {
   connectorID: "<id>",
-  createdAt: new Date("2023-06-11T09:12:10.015Z"),
+  createdAt: new Date("2025-04-28T22:11:42.800Z"),
   descriptor: {},
-  id: "77dac7ab-b015-4066-8e9b-e704de54e5a4",
-  status: TaskStatus.Stopped,
-  updatedAt: new Date("2025-10-08T20:41:24.877Z"),
+  id: "7abb0150-66e9-4be7-a04d-e54e5a418e93",
+  status: TaskStatus.Terminated,
+  updatedAt: new Date("2023-12-18T13:17:08.954Z"),
 };
 ```
 

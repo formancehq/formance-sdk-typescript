@@ -7,7 +7,7 @@ import { V3GetAccountBalancesResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: V3GetAccountBalancesResponse = {
   contentType: "<value>",
-  statusCode: 100,
+  statusCode: 303,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -17,9 +17,9 @@ let value: V3GetAccountBalancesResponse = {
         {
           accountID: "<id>",
           asset: "<value>",
-          balance: BigInt("46806"),
-          createdAt: new Date("2025-11-29T22:07:11.535Z"),
-          lastUpdatedAt: new Date("2023-01-05T05:32:33.670Z"),
+          balance: BigInt("880679"),
+          createdAt: new Date("2025-11-01T17:59:03.627Z"),
+          lastUpdatedAt: new Date("2025-12-23T02:40:59.586Z"),
         },
       ],
       hasMore: false,

@@ -16,7 +16,7 @@ export type V2AddMetadataOnTransactionRequest = {
   /**
    * metadata
    */
-  requestBody?: { [k: string]: string } | undefined;
+  requestBody: { [k: string]: string };
   /**
    * Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker.
    */
@@ -53,7 +53,7 @@ export const V2AddMetadataOnTransactionRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   "Idempotency-Key": z.string().optional(),
-  RequestBody: z.record(z.string()).optional(),
+  RequestBody: z.record(z.string()),
   dryRun: z.boolean().optional(),
   id: z.number().transform(v => BigInt(v)),
   ledger: z.string(),
@@ -67,7 +67,7 @@ export const V2AddMetadataOnTransactionRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type V2AddMetadataOnTransactionRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
-  RequestBody?: { [k: string]: string } | undefined;
+  RequestBody: { [k: string]: string };
   dryRun?: boolean | undefined;
   id: number;
   ledger: string;
@@ -80,7 +80,7 @@ export const V2AddMetadataOnTransactionRequest$outboundSchema: z.ZodType<
   V2AddMetadataOnTransactionRequest
 > = z.object({
   idempotencyKey: z.string().optional(),
-  requestBody: z.record(z.string()).optional(),
+  requestBody: z.record(z.string()),
   dryRun: z.boolean().optional(),
   id: z.bigint().transform(v => Number(v)),
   ledger: z.string(),

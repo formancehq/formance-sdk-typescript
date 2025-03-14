@@ -7,7 +7,7 @@ import { DeleteSecretResponse } from "@formance/formance-sdk/sdk/models/operatio
 
 let value: DeleteSecretResponse = {
   contentType: "<value>",
-  statusCode: 308,
+  statusCode: 504,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

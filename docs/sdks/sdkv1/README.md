@@ -181,6 +181,9 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v1.addMetadataOnTransaction({
+    requestBody: {
+      "key": "<value>",
+    },
     ledger: "ledger001",
     txid: BigInt("1234"),
   });
@@ -211,6 +214,9 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV1AddMetadataOnTransaction(sdk, {
+    requestBody: {
+      "key": "<value>",
+    },
     ledger: "ledger001",
     txid: BigInt("1234"),
   });

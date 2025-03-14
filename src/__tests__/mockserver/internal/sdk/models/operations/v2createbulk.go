@@ -20,7 +20,7 @@ type V2CreateBulkRequest struct {
 
 func (o *V2CreateBulkRequest) GetRequestBody() []components.V2BulkElement {
 	if o == nil {
-		return nil
+		return []components.V2BulkElement{}
 	}
 	return o.RequestBody
 }

@@ -36,7 +36,7 @@ let value: ListAccountsResponse = {
     errorCode: ErrorsEnum.InsufficientFund,
     errorMessage: "[INSUFFICIENT_FUND] account had insufficient funds",
   },
-  statusCode: 501,
+  statusCode: 402,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

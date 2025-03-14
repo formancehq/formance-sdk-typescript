@@ -1768,6 +1768,7 @@ run();
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
+import { openAsBlob } from "node:fs";
 
 const sdk = new SDK({
   security: {
@@ -1778,6 +1779,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.ledger.v2.importLogs({
+    v2ImportLogsRequest: await openAsBlob("example.file"),
     ledger: "ledger001",
   });
 
@@ -1795,6 +1797,7 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { ledgerV2ImportLogs } from "@formance/formance-sdk/funcs/ledgerV2ImportLogs.js";
+import { openAsBlob } from "node:fs";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1807,6 +1810,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await ledgerV2ImportLogs(sdk, {
+    v2ImportLogsRequest: await openAsBlob("example.file"),
     ledger: "ledger001",
   });
 

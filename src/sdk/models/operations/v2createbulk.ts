@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateBulkRequest = {
-  requestBody?: Array<shared.V2BulkElement> | undefined;
+  requestBody: Array<shared.V2BulkElement>;
   /**
    * Make bulk atomic
    */
@@ -54,7 +54,7 @@ export const V2CreateBulkRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  RequestBody: z.array(shared.V2BulkElement$inboundSchema).optional(),
+  RequestBody: z.array(shared.V2BulkElement$inboundSchema),
   atomic: z.boolean().optional(),
   continueOnFailure: z.boolean().optional(),
   ledger: z.string(),
@@ -67,7 +67,7 @@ export const V2CreateBulkRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2CreateBulkRequest$Outbound = {
-  RequestBody?: Array<shared.V2BulkElement$Outbound> | undefined;
+  RequestBody: Array<shared.V2BulkElement$Outbound>;
   atomic?: boolean | undefined;
   continueOnFailure?: boolean | undefined;
   ledger: string;
@@ -80,7 +80,7 @@ export const V2CreateBulkRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateBulkRequest
 > = z.object({
-  requestBody: z.array(shared.V2BulkElement$outboundSchema).optional(),
+  requestBody: z.array(shared.V2BulkElement$outboundSchema),
   atomic: z.boolean().optional(),
   continueOnFailure: z.boolean().optional(),
   ledger: z.string(),

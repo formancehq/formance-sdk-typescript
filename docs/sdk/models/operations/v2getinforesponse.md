@@ -8,7 +8,7 @@ import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2GetInfoResponse = {
   contentType: "<value>",
-  statusCode: 501,
+  statusCode: 101,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2CreateLedgerRequest = {
-  v2CreateLedgerRequest?: shared.V2CreateLedgerRequest | undefined;
+  v2CreateLedgerRequest: shared.V2CreateLedgerRequest;
   /**
    * Name of the ledger.
    */
@@ -38,7 +38,7 @@ export const V2CreateLedgerRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  V2CreateLedgerRequest: shared.V2CreateLedgerRequest$inboundSchema.optional(),
+  V2CreateLedgerRequest: shared.V2CreateLedgerRequest$inboundSchema,
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -48,7 +48,7 @@ export const V2CreateLedgerRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2CreateLedgerRequest$Outbound = {
-  V2CreateLedgerRequest?: shared.V2CreateLedgerRequest$Outbound | undefined;
+  V2CreateLedgerRequest: shared.V2CreateLedgerRequest$Outbound;
   ledger: string;
 };
 
@@ -58,7 +58,7 @@ export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateLedgerRequest
 > = z.object({
-  v2CreateLedgerRequest: shared.V2CreateLedgerRequest$outboundSchema.optional(),
+  v2CreateLedgerRequest: shared.V2CreateLedgerRequest$outboundSchema,
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {

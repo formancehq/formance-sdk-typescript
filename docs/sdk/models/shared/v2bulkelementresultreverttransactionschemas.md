@@ -7,7 +7,7 @@ import { V2BulkElementResultRevertTransactionSchemas } from "@formance/formance-
 
 let value: V2BulkElementResultRevertTransactionSchemas = {
   data: {
-    id: BigInt("739633"),
+    id: BigInt("502393"),
     metadata: {
       "admin": "true",
     },
@@ -85,9 +85,9 @@ let value: V2BulkElementResultRevertTransactionSchemas = {
     },
     reference: "ref:001",
     reverted: false,
-    timestamp: new Date("2025-11-14T17:31:24.420Z"),
+    timestamp: new Date("2024-08-14T21:25:17.893Z"),
   },
-  logID: 277990,
+  logID: 645544,
   responseType: "<value>",
 };
 ```
