@@ -14,6 +14,7 @@ type BankingCircleConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
 	//
 	PollingPeriod      *string `default:"120s" json:"pollingPeriod"`
+	Provider           *string `default:"Bankingcircle" json:"provider"`
 	UserCertificate    string  `json:"userCertificate"`
 	UserCertificateKey string  `json:"userCertificateKey"`
 	Username           string  `json:"username"`
@@ -24,7 +25,7 @@ func (b BankingCircleConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BankingCircleConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -63,6 +64,13 @@ func (o *BankingCircleConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *BankingCircleConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *BankingCircleConfig) GetUserCertificate() string {

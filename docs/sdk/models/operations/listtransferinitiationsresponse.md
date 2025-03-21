@@ -25,6 +25,7 @@ let value: ListTransferInitiationsResponse = {
           error: "<value>",
           id: "XXX",
           initialAmount: BigInt("97258"),
+          provider: "<value>",
           reference: "<value>",
           scheduledAt: new Date("2024-06-29T13:31:25.620Z"),
           sourceAccountID: "<id>",

@@ -27,6 +27,7 @@ export type V3PaymentInitiation = {
   error?: string | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
+  provider: string;
   reference: string;
   scheduledAt: Date;
   sourceAccountID?: string | undefined;
@@ -49,6 +50,7 @@ export const V3PaymentInitiation$inboundSchema: z.ZodType<
   error: z.string().optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
+  provider: z.string(),
   reference: z.string(),
   scheduledAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
@@ -69,6 +71,7 @@ export type V3PaymentInitiation$Outbound = {
   error?: string | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
+  provider: string;
   reference: string;
   scheduledAt: string;
   sourceAccountID?: string | undefined;
@@ -91,6 +94,7 @@ export const V3PaymentInitiation$outboundSchema: z.ZodType<
   error: z.string().optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
+  provider: z.string(),
   reference: z.string(),
   scheduledAt: z.date().transform(v => v.toISOString()),
   sourceAccountID: z.string().optional(),

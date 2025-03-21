@@ -13,6 +13,7 @@ type V3MangopayConfig struct {
 	Name          string  `json:"name"`
 	PageSize      *int64  `default:"25" json:"pageSize"`
 	PollingPeriod *string `default:"2m" json:"pollingPeriod"`
+	Provider      *string `default:"Mangopay" json:"provider"`
 }
 
 func (v V3MangopayConfig) MarshalJSON() ([]byte, error) {
@@ -20,7 +21,7 @@ func (v V3MangopayConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3MangopayConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -66,4 +67,11 @@ func (o *V3MangopayConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3MangopayConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

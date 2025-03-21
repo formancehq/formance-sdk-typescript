@@ -43,7 +43,6 @@ type TransferInitiationRequest struct {
 	Description          string                        `json:"description"`
 	DestinationAccountID string                        `json:"destinationAccountID"`
 	Metadata             map[string]string             `json:"metadata,omitempty"`
-	Provider             *Connector                    `json:"provider,omitempty"`
 	Reference            string                        `json:"reference"`
 	ScheduledAt          time.Time                     `json:"scheduledAt"`
 	SourceAccountID      string                        `json:"sourceAccountID"`
@@ -102,13 +101,6 @@ func (o *TransferInitiationRequest) GetMetadata() map[string]string {
 		return nil
 	}
 	return o.Metadata
-}
-
-func (o *TransferInitiationRequest) GetProvider() *Connector {
-	if o == nil {
-		return nil
-	}
-	return o.Provider
 }
 
 func (o *TransferInitiationRequest) GetReference() string {

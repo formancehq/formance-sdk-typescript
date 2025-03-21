@@ -13,6 +13,7 @@ type V3ModulrConfig struct {
 	Name          string  `json:"name"`
 	PageSize      *int64  `default:"25" json:"pageSize"`
 	PollingPeriod *string `default:"2m" json:"pollingPeriod"`
+	Provider      *string `default:"Modulr" json:"provider"`
 }
 
 func (v V3ModulrConfig) MarshalJSON() ([]byte, error) {
@@ -20,7 +21,7 @@ func (v V3ModulrConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3ModulrConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -66,4 +67,11 @@ func (o *V3ModulrConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3ModulrConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

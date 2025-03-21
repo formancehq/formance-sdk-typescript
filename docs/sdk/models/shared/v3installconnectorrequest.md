@@ -18,7 +18,7 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://untidy-populist.net/",
+  baseUrl: "https://untidy-populist.net/",
   name: "<value>",
   secret: "<value>",
 };

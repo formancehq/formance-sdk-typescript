@@ -47,6 +47,7 @@ type TransferInitiation struct {
 	ID                   string                         `json:"id"`
 	InitialAmount        *big.Int                       `json:"initialAmount"`
 	Metadata             map[string]string              `json:"metadata,omitempty"`
+	Provider             *string                        `json:"provider"`
 	Reference            string                         `json:"reference"`
 	RelatedAdjustments   []TransferInitiationAdjusments `json:"relatedAdjustments,omitempty"`
 	RelatedPayments      []TransferInitiationPayments   `json:"relatedPayments,omitempty"`
@@ -135,6 +136,13 @@ func (o *TransferInitiation) GetMetadata() map[string]string {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *TransferInitiation) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *TransferInitiation) GetReference() string {

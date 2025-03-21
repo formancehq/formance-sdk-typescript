@@ -18,6 +18,7 @@ export type ModulrConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -31,6 +32,7 @@ export const ModulrConfig$inboundSchema: z.ZodType<
   endpoint: z.string().optional(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Modulr"),
 });
 
 /** @internal */
@@ -40,6 +42,7 @@ export type ModulrConfig$Outbound = {
   endpoint?: string | undefined;
   name: string;
   pollingPeriod: string;
+  provider: string;
 };
 
 /** @internal */
@@ -53,6 +56,7 @@ export const ModulrConfig$outboundSchema: z.ZodType<
   endpoint: z.string().optional(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Modulr"),
 });
 
 /**

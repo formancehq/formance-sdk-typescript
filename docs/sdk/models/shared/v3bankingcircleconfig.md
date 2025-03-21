@@ -26,6 +26,7 @@ let value: V3BankingcircleConfig = {
 | `pageSize`              | *number*                | :heavy_minus_sign:      | N/A                     |
 | `password`              | *string*                | :heavy_check_mark:      | N/A                     |
 | `pollingPeriod`         | *string*                | :heavy_minus_sign:      | N/A                     |
+| `provider`              | *string*                | :heavy_minus_sign:      | N/A                     |
 | `userCertificate`       | *string*                | :heavy_check_mark:      | N/A                     |
 | `userCertificateKey`    | *string*                | :heavy_check_mark:      | N/A                     |
 | `username`              | *string*                | :heavy_check_mark:      | N/A                     |

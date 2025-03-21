@@ -8,9 +8,14 @@ import { ReadConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/o
 let value: ReadConnectorConfigResponse = {
   connectorConfigResponse: {
     data: {
-      directory: "/tmp/dummypay",
-      filePollingPeriod: "10s",
-      name: "My DummyPay Account",
+      accessKey: "XXX",
+      baseUrl: "https://api.atlar.com",
+      name: "My Atlar Account",
+      pageSize: 25,
+      pollingPeriod: "120s",
+      provider: "Atlar",
+      secret: "XXX",
+      transferInitiationStatusPollingPeriod: "120s",
     },
   },
   contentType: "<value>",

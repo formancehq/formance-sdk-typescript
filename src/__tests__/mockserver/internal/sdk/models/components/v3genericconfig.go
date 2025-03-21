@@ -12,6 +12,7 @@ type V3GenericConfig struct {
 	Name          string  `json:"name"`
 	PageSize      *int64  `default:"25" json:"pageSize"`
 	PollingPeriod *string `default:"2m" json:"pollingPeriod"`
+	Provider      *string `default:"Generic" json:"provider"`
 }
 
 func (v V3GenericConfig) MarshalJSON() ([]byte, error) {
@@ -19,7 +20,7 @@ func (v V3GenericConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3GenericConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -58,4 +59,11 @@ func (o *V3GenericConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3GenericConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

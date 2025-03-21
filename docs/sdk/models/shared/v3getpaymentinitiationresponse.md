@@ -17,6 +17,7 @@ let value: V3GetPaymentInitiationResponse = {
     createdAt: new Date("2025-07-19T10:08:23.061Z"),
     description: "amongst following in lazily belabor",
     id: "<id>",
+    provider: "<value>",
     reference: "<value>",
     scheduledAt: new Date("2024-02-17T11:17:08.578Z"),
     status: V3PaymentInitiationStatusEnum.Unknown,

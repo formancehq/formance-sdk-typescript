@@ -21,6 +21,7 @@ type AtlarConfig struct {
 	// The frequency at which the connector tries to fetch new Transaction objects from the Atlar API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Atlar" json:"provider"`
 	// The secret used by the connector for authorizing requests to the Atlar API.
 	// You can obtain it along with the associated access key from the Atlar dashboard.
 	//
@@ -35,7 +36,7 @@ func (a AtlarConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AtlarConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -74,6 +75,13 @@ func (o *AtlarConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *AtlarConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *AtlarConfig) GetSecret() string {

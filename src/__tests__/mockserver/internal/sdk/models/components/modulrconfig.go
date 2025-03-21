@@ -14,6 +14,7 @@ type ModulrConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Modulr" json:"provider"`
 }
 
 func (m ModulrConfig) MarshalJSON() ([]byte, error) {
@@ -21,7 +22,7 @@ func (m ModulrConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (m *ModulrConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -60,4 +61,11 @@ func (o *ModulrConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *ModulrConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

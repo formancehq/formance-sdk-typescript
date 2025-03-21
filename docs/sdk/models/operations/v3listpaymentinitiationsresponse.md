@@ -23,6 +23,7 @@ let value: V3ListPaymentInitiationsResponse = {
           description:
             "unexpectedly sightseeing contravene jaggedly programme ecliptic",
           id: "<id>",
+          provider: "<value>",
           reference: "<value>",
           scheduledAt: new Date("2024-01-08T05:39:17.949Z"),
           status: V3PaymentInitiationStatusEnum.Rejected,

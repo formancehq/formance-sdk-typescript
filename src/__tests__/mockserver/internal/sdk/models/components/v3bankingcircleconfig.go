@@ -13,6 +13,7 @@ type V3BankingcircleConfig struct {
 	PageSize              *int64  `default:"25" json:"pageSize"`
 	Password              string  `json:"password"`
 	PollingPeriod         *string `default:"2m" json:"pollingPeriod"`
+	Provider              *string `default:"Bankingcircle" json:"provider"`
 	UserCertificate       string  `json:"userCertificate"`
 	UserCertificateKey    string  `json:"userCertificateKey"`
 	Username              string  `json:"username"`
@@ -23,7 +24,7 @@ func (v V3BankingcircleConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3BankingcircleConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -69,6 +70,13 @@ func (o *V3BankingcircleConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3BankingcircleConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *V3BankingcircleConfig) GetUserCertificate() string {

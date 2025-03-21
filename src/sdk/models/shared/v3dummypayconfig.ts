@@ -12,6 +12,7 @@ export type V3DummypayConfig = {
   name: string;
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -24,6 +25,7 @@ export const V3DummypayConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Dummypay"),
 });
 
 /** @internal */
@@ -32,6 +34,7 @@ export type V3DummypayConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
+  provider: string;
 };
 
 /** @internal */
@@ -44,6 +47,7 @@ export const V3DummypayConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Dummypay"),
 });
 
 /**

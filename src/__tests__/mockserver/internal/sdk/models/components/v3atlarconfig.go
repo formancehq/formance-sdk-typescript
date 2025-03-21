@@ -8,10 +8,11 @@ import (
 
 type V3AtlarConfig struct {
 	AccessKey     string  `json:"accessKey"`
-	BaseURL       string  `json:"baseURL"`
+	BaseURL       string  `json:"baseUrl"`
 	Name          string  `json:"name"`
 	PageSize      *int64  `default:"25" json:"pageSize"`
 	PollingPeriod *string `default:"2m" json:"pollingPeriod"`
+	Provider      *string `default:"Atlar" json:"provider"`
 	Secret        string  `json:"secret"`
 }
 
@@ -20,7 +21,7 @@ func (v V3AtlarConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3AtlarConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -59,6 +60,13 @@ func (o *V3AtlarConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3AtlarConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *V3AtlarConfig) GetSecret() string {

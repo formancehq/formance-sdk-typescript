@@ -3,6 +3,7 @@
 package components
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"mockserver/internal/sdk/utils"
@@ -11,17 +12,17 @@ import (
 type ConnectorConfigType string
 
 const (
-	ConnectorConfigTypeStripeConfig        ConnectorConfigType = "StripeConfig"
-	ConnectorConfigTypeDummyPayConfig      ConnectorConfigType = "DummyPayConfig"
-	ConnectorConfigTypeWiseConfig          ConnectorConfigType = "WiseConfig"
-	ConnectorConfigTypeModulrConfig        ConnectorConfigType = "ModulrConfig"
-	ConnectorConfigTypeCurrencyCloudConfig ConnectorConfigType = "CurrencyCloudConfig"
-	ConnectorConfigTypeBankingCircleConfig ConnectorConfigType = "BankingCircleConfig"
-	ConnectorConfigTypeMangoPayConfig      ConnectorConfigType = "MangoPayConfig"
-	ConnectorConfigTypeMoneycorpConfig     ConnectorConfigType = "MoneycorpConfig"
-	ConnectorConfigTypeAtlarConfig         ConnectorConfigType = "AtlarConfig"
-	ConnectorConfigTypeAdyenConfig         ConnectorConfigType = "AdyenConfig"
-	ConnectorConfigTypeGenericConfig       ConnectorConfigType = "GenericConfig"
+	ConnectorConfigTypeAdyen         ConnectorConfigType = "Adyen"
+	ConnectorConfigTypeAtlar         ConnectorConfigType = "Atlar"
+	ConnectorConfigTypeBankingcircle ConnectorConfigType = "Bankingcircle"
+	ConnectorConfigTypeCurrencycloud ConnectorConfigType = "Currencycloud"
+	ConnectorConfigTypeDummypay      ConnectorConfigType = "Dummypay"
+	ConnectorConfigTypeGeneric       ConnectorConfigType = "Generic"
+	ConnectorConfigTypeMangopay      ConnectorConfigType = "Mangopay"
+	ConnectorConfigTypeModulr        ConnectorConfigType = "Modulr"
+	ConnectorConfigTypeMoneycorp     ConnectorConfigType = "Moneycorp"
+	ConnectorConfigTypeStripe        ConnectorConfigType = "Stripe"
+	ConnectorConfigTypeWise          ConnectorConfigType = "Wise"
 )
 
 type ConnectorConfig struct {
@@ -40,181 +41,248 @@ type ConnectorConfig struct {
 	Type ConnectorConfigType
 }
 
-func CreateConnectorConfigStripeConfig(stripeConfig StripeConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeStripeConfig
+func CreateConnectorConfigAdyen(adyen AdyenConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeAdyen
+
+	typStr := string(typ)
+	adyen.Provider = &typStr
 
 	return ConnectorConfig{
-		StripeConfig: &stripeConfig,
-		Type:         typ,
+		AdyenConfig: &adyen,
+		Type:        typ,
 	}
 }
 
-func CreateConnectorConfigDummyPayConfig(dummyPayConfig DummyPayConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeDummyPayConfig
+func CreateConnectorConfigAtlar(atlar AtlarConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeAtlar
+
+	typStr := string(typ)
+	atlar.Provider = &typStr
 
 	return ConnectorConfig{
-		DummyPayConfig: &dummyPayConfig,
-		Type:           typ,
+		AtlarConfig: &atlar,
+		Type:        typ,
 	}
 }
 
-func CreateConnectorConfigWiseConfig(wiseConfig WiseConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeWiseConfig
+func CreateConnectorConfigBankingcircle(bankingcircle BankingCircleConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeBankingcircle
+
+	typStr := string(typ)
+	bankingcircle.Provider = &typStr
 
 	return ConnectorConfig{
-		WiseConfig: &wiseConfig,
-		Type:       typ,
-	}
-}
-
-func CreateConnectorConfigModulrConfig(modulrConfig ModulrConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeModulrConfig
-
-	return ConnectorConfig{
-		ModulrConfig: &modulrConfig,
-		Type:         typ,
-	}
-}
-
-func CreateConnectorConfigCurrencyCloudConfig(currencyCloudConfig CurrencyCloudConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeCurrencyCloudConfig
-
-	return ConnectorConfig{
-		CurrencyCloudConfig: &currencyCloudConfig,
+		BankingCircleConfig: &bankingcircle,
 		Type:                typ,
 	}
 }
 
-func CreateConnectorConfigBankingCircleConfig(bankingCircleConfig BankingCircleConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeBankingCircleConfig
+func CreateConnectorConfigCurrencycloud(currencycloud CurrencyCloudConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeCurrencycloud
+
+	typStr := string(typ)
+	currencycloud.Provider = &typStr
 
 	return ConnectorConfig{
-		BankingCircleConfig: &bankingCircleConfig,
+		CurrencyCloudConfig: &currencycloud,
 		Type:                typ,
 	}
 }
 
-func CreateConnectorConfigMangoPayConfig(mangoPayConfig MangoPayConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeMangoPayConfig
+func CreateConnectorConfigDummypay(dummypay DummyPayConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeDummypay
+
+	typStr := string(typ)
+	dummypay.Provider = &typStr
 
 	return ConnectorConfig{
-		MangoPayConfig: &mangoPayConfig,
+		DummyPayConfig: &dummypay,
 		Type:           typ,
 	}
 }
 
-func CreateConnectorConfigMoneycorpConfig(moneycorpConfig MoneycorpConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeMoneycorpConfig
+func CreateConnectorConfigGeneric(generic GenericConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeGeneric
+
+	typStr := string(typ)
+	generic.Provider = &typStr
 
 	return ConnectorConfig{
-		MoneycorpConfig: &moneycorpConfig,
+		GenericConfig: &generic,
+		Type:          typ,
+	}
+}
+
+func CreateConnectorConfigMangopay(mangopay MangoPayConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeMangopay
+
+	typStr := string(typ)
+	mangopay.Provider = &typStr
+
+	return ConnectorConfig{
+		MangoPayConfig: &mangopay,
+		Type:           typ,
+	}
+}
+
+func CreateConnectorConfigModulr(modulr ModulrConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeModulr
+
+	typStr := string(typ)
+	modulr.Provider = &typStr
+
+	return ConnectorConfig{
+		ModulrConfig: &modulr,
+		Type:         typ,
+	}
+}
+
+func CreateConnectorConfigMoneycorp(moneycorp MoneycorpConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeMoneycorp
+
+	typStr := string(typ)
+	moneycorp.Provider = &typStr
+
+	return ConnectorConfig{
+		MoneycorpConfig: &moneycorp,
 		Type:            typ,
 	}
 }
 
-func CreateConnectorConfigAtlarConfig(atlarConfig AtlarConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeAtlarConfig
+func CreateConnectorConfigStripe(stripe StripeConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeStripe
+
+	typStr := string(typ)
+	stripe.Provider = &typStr
 
 	return ConnectorConfig{
-		AtlarConfig: &atlarConfig,
-		Type:        typ,
+		StripeConfig: &stripe,
+		Type:         typ,
 	}
 }
 
-func CreateConnectorConfigAdyenConfig(adyenConfig AdyenConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeAdyenConfig
+func CreateConnectorConfigWise(wise WiseConfig) ConnectorConfig {
+	typ := ConnectorConfigTypeWise
+
+	typStr := string(typ)
+	wise.Provider = &typStr
 
 	return ConnectorConfig{
-		AdyenConfig: &adyenConfig,
-		Type:        typ,
-	}
-}
-
-func CreateConnectorConfigGenericConfig(genericConfig GenericConfig) ConnectorConfig {
-	typ := ConnectorConfigTypeGenericConfig
-
-	return ConnectorConfig{
-		GenericConfig: &genericConfig,
-		Type:          typ,
+		WiseConfig: &wise,
+		Type:       typ,
 	}
 }
 
 func (u *ConnectorConfig) UnmarshalJSON(data []byte) error {
 
-	var wiseConfig WiseConfig = WiseConfig{}
-	if err := utils.UnmarshalJSON(data, &wiseConfig, "", true, true); err == nil {
-		u.WiseConfig = &wiseConfig
-		u.Type = ConnectorConfigTypeWiseConfig
-		return nil
+	type discriminator struct {
+		Provider string `json:"provider"`
 	}
 
-	var stripeConfig StripeConfig = StripeConfig{}
-	if err := utils.UnmarshalJSON(data, &stripeConfig, "", true, true); err == nil {
-		u.StripeConfig = &stripeConfig
-		u.Type = ConnectorConfigTypeStripeConfig
-		return nil
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
 
-	var genericConfig GenericConfig = GenericConfig{}
-	if err := utils.UnmarshalJSON(data, &genericConfig, "", true, true); err == nil {
-		u.GenericConfig = &genericConfig
-		u.Type = ConnectorConfigTypeGenericConfig
-		return nil
-	}
+	switch dis.Provider {
+	case "Adyen":
+		adyenConfig := new(AdyenConfig)
+		if err := utils.UnmarshalJSON(data, &adyenConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Adyen) type AdyenConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var modulrConfig ModulrConfig = ModulrConfig{}
-	if err := utils.UnmarshalJSON(data, &modulrConfig, "", true, true); err == nil {
-		u.ModulrConfig = &modulrConfig
-		u.Type = ConnectorConfigTypeModulrConfig
+		u.AdyenConfig = adyenConfig
+		u.Type = ConnectorConfigTypeAdyen
 		return nil
-	}
+	case "Atlar":
+		atlarConfig := new(AtlarConfig)
+		if err := utils.UnmarshalJSON(data, &atlarConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Atlar) type AtlarConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var currencyCloudConfig CurrencyCloudConfig = CurrencyCloudConfig{}
-	if err := utils.UnmarshalJSON(data, &currencyCloudConfig, "", true, true); err == nil {
-		u.CurrencyCloudConfig = &currencyCloudConfig
-		u.Type = ConnectorConfigTypeCurrencyCloudConfig
+		u.AtlarConfig = atlarConfig
+		u.Type = ConnectorConfigTypeAtlar
 		return nil
-	}
+	case "Bankingcircle":
+		bankingCircleConfig := new(BankingCircleConfig)
+		if err := utils.UnmarshalJSON(data, &bankingCircleConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Bankingcircle) type BankingCircleConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var mangoPayConfig MangoPayConfig = MangoPayConfig{}
-	if err := utils.UnmarshalJSON(data, &mangoPayConfig, "", true, true); err == nil {
-		u.MangoPayConfig = &mangoPayConfig
-		u.Type = ConnectorConfigTypeMangoPayConfig
+		u.BankingCircleConfig = bankingCircleConfig
+		u.Type = ConnectorConfigTypeBankingcircle
 		return nil
-	}
+	case "Currencycloud":
+		currencyCloudConfig := new(CurrencyCloudConfig)
+		if err := utils.UnmarshalJSON(data, &currencyCloudConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Currencycloud) type CurrencyCloudConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var moneycorpConfig MoneycorpConfig = MoneycorpConfig{}
-	if err := utils.UnmarshalJSON(data, &moneycorpConfig, "", true, true); err == nil {
-		u.MoneycorpConfig = &moneycorpConfig
-		u.Type = ConnectorConfigTypeMoneycorpConfig
+		u.CurrencyCloudConfig = currencyCloudConfig
+		u.Type = ConnectorConfigTypeCurrencycloud
 		return nil
-	}
+	case "Dummypay":
+		dummyPayConfig := new(DummyPayConfig)
+		if err := utils.UnmarshalJSON(data, &dummyPayConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Dummypay) type DummyPayConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var adyenConfig AdyenConfig = AdyenConfig{}
-	if err := utils.UnmarshalJSON(data, &adyenConfig, "", true, true); err == nil {
-		u.AdyenConfig = &adyenConfig
-		u.Type = ConnectorConfigTypeAdyenConfig
+		u.DummyPayConfig = dummyPayConfig
+		u.Type = ConnectorConfigTypeDummypay
 		return nil
-	}
+	case "Generic":
+		genericConfig := new(GenericConfig)
+		if err := utils.UnmarshalJSON(data, &genericConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Generic) type GenericConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var dummyPayConfig DummyPayConfig = DummyPayConfig{}
-	if err := utils.UnmarshalJSON(data, &dummyPayConfig, "", true, true); err == nil {
-		u.DummyPayConfig = &dummyPayConfig
-		u.Type = ConnectorConfigTypeDummyPayConfig
+		u.GenericConfig = genericConfig
+		u.Type = ConnectorConfigTypeGeneric
 		return nil
-	}
+	case "Mangopay":
+		mangoPayConfig := new(MangoPayConfig)
+		if err := utils.UnmarshalJSON(data, &mangoPayConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Mangopay) type MangoPayConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var atlarConfig AtlarConfig = AtlarConfig{}
-	if err := utils.UnmarshalJSON(data, &atlarConfig, "", true, true); err == nil {
-		u.AtlarConfig = &atlarConfig
-		u.Type = ConnectorConfigTypeAtlarConfig
+		u.MangoPayConfig = mangoPayConfig
+		u.Type = ConnectorConfigTypeMangopay
 		return nil
-	}
+	case "Modulr":
+		modulrConfig := new(ModulrConfig)
+		if err := utils.UnmarshalJSON(data, &modulrConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Modulr) type ModulrConfig within ConnectorConfig: %w", string(data), err)
+		}
 
-	var bankingCircleConfig BankingCircleConfig = BankingCircleConfig{}
-	if err := utils.UnmarshalJSON(data, &bankingCircleConfig, "", true, true); err == nil {
-		u.BankingCircleConfig = &bankingCircleConfig
-		u.Type = ConnectorConfigTypeBankingCircleConfig
+		u.ModulrConfig = modulrConfig
+		u.Type = ConnectorConfigTypeModulr
+		return nil
+	case "Moneycorp":
+		moneycorpConfig := new(MoneycorpConfig)
+		if err := utils.UnmarshalJSON(data, &moneycorpConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Moneycorp) type MoneycorpConfig within ConnectorConfig: %w", string(data), err)
+		}
+
+		u.MoneycorpConfig = moneycorpConfig
+		u.Type = ConnectorConfigTypeMoneycorp
+		return nil
+	case "Stripe":
+		stripeConfig := new(StripeConfig)
+		if err := utils.UnmarshalJSON(data, &stripeConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Stripe) type StripeConfig within ConnectorConfig: %w", string(data), err)
+		}
+
+		u.StripeConfig = stripeConfig
+		u.Type = ConnectorConfigTypeStripe
+		return nil
+	case "Wise":
+		wiseConfig := new(WiseConfig)
+		if err := utils.UnmarshalJSON(data, &wiseConfig, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Provider == Wise) type WiseConfig within ConnectorConfig: %w", string(data), err)
+		}
+
+		u.WiseConfig = wiseConfig
+		u.Type = ConnectorConfigTypeWise
 		return nil
 	}
 

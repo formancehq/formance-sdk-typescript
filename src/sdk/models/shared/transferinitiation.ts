@@ -40,6 +40,7 @@ export type TransferInitiation = {
   id: string;
   initialAmount: bigint;
   metadata?: { [k: string]: string } | null | undefined;
+  provider: string | null;
   reference: string;
   relatedAdjustments?: Array<TransferInitiationAdjusments> | undefined;
   relatedPayments?: Array<TransferInitiationPayments> | null | undefined;
@@ -86,6 +87,7 @@ export const TransferInitiation$inboundSchema: z.ZodType<
   id: z.string(),
   initialAmount: z.number().transform(v => BigInt(v)),
   metadata: z.nullable(z.record(z.string())).optional(),
+  provider: z.nullable(z.string()),
   reference: z.string(),
   relatedAdjustments: z.array(TransferInitiationAdjusments$inboundSchema)
     .optional(),
@@ -111,6 +113,7 @@ export type TransferInitiation$Outbound = {
   id: string;
   initialAmount: number;
   metadata?: { [k: string]: string } | null | undefined;
+  provider: string | null;
   reference: string;
   relatedAdjustments?: Array<TransferInitiationAdjusments$Outbound> | undefined;
   relatedPayments?:
@@ -139,6 +142,7 @@ export const TransferInitiation$outboundSchema: z.ZodType<
   id: z.string(),
   initialAmount: z.bigint().transform(v => Number(v)),
   metadata: z.nullable(z.record(z.string())).optional(),
+  provider: z.nullable(z.string()),
   reference: z.string(),
   relatedAdjustments: z.array(TransferInitiationAdjusments$outboundSchema)
     .optional(),

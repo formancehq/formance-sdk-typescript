@@ -3,52 +3,24 @@
 
 ## Supported Types
 
-### `shared.StripeConfig`
+### `shared.AdyenConfig`
 
 ```typescript
-const value: shared.StripeConfig = {
+const value: shared.AdyenConfig = {
   apiKey: "XXX",
-  name: "My Stripe Account",
+  hmacKey: "XXX",
+  liveEndpointPrefix: "XXX",
+  name: "My Adyen Account",
 };
 ```
 
-### `shared.DummyPayConfig`
+### `shared.AtlarConfig`
 
 ```typescript
-const value: shared.DummyPayConfig = {
-  directory: "/tmp/dummypay",
-  name: "My DummyPay Account",
-};
-```
-
-### `shared.WiseConfig`
-
-```typescript
-const value: shared.WiseConfig = {
-  apiKey: "XXX",
-  name: "My Wise Account",
-};
-```
-
-### `shared.ModulrConfig`
-
-```typescript
-const value: shared.ModulrConfig = {
-  apiKey: "XXX",
-  apiSecret: "XXX",
-  endpoint: "XXX",
-  name: "My Modulr Account",
-};
-```
-
-### `shared.CurrencyCloudConfig`
-
-```typescript
-const value: shared.CurrencyCloudConfig = {
-  apiKey: "XXX",
-  endpoint: "XXX",
-  loginID: "XXX",
-  name: "My CurrencyCloud Account",
+const value: shared.AtlarConfig = {
+  accessKey: "XXX",
+  name: "My Atlar Account",
+  secret: "XXX",
 };
 ```
 
@@ -66,6 +38,36 @@ const value: shared.BankingCircleConfig = {
 };
 ```
 
+### `shared.CurrencyCloudConfig`
+
+```typescript
+const value: shared.CurrencyCloudConfig = {
+  apiKey: "XXX",
+  endpoint: "XXX",
+  loginID: "XXX",
+  name: "My CurrencyCloud Account",
+};
+```
+
+### `shared.DummyPayConfig`
+
+```typescript
+const value: shared.DummyPayConfig = {
+  directory: "/tmp/dummypay",
+  name: "My DummyPay Account",
+};
+```
+
+### `shared.GenericConfig`
+
+```typescript
+const value: shared.GenericConfig = {
+  apiKey: "XXX",
+  endpoint: "XXX",
+  name: "My Generic Account",
+};
+```
+
 ### `shared.MangoPayConfig`
 
 ```typescript
@@ -74,6 +76,17 @@ const value: shared.MangoPayConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My MangoPay Account",
+};
+```
+
+### `shared.ModulrConfig`
+
+```typescript
+const value: shared.ModulrConfig = {
+  apiKey: "XXX",
+  apiSecret: "XXX",
+  endpoint: "XXX",
+  name: "My Modulr Account",
 };
 ```
 
@@ -88,34 +101,21 @@ const value: shared.MoneycorpConfig = {
 };
 ```
 
-### `shared.AtlarConfig`
+### `shared.StripeConfig`
 
 ```typescript
-const value: shared.AtlarConfig = {
-  accessKey: "XXX",
-  name: "My Atlar Account",
-  secret: "XXX",
+const value: shared.StripeConfig = {
+  apiKey: "XXX",
+  name: "My Stripe Account",
 };
 ```
 
-### `shared.AdyenConfig`
+### `shared.WiseConfig`
 
 ```typescript
-const value: shared.AdyenConfig = {
+const value: shared.WiseConfig = {
   apiKey: "XXX",
-  hmacKey: "XXX",
-  liveEndpointPrefix: "XXX",
-  name: "My Adyen Account",
-};
-```
-
-### `shared.GenericConfig`
-
-```typescript
-const value: shared.GenericConfig = {
-  apiKey: "XXX",
-  endpoint: "XXX",
-  name: "My Generic Account",
+  name: "My Wise Account",
 };
 ```
 

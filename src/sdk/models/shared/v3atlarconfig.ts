@@ -9,10 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3AtlarConfig = {
   accessKey: string;
-  baseURL: string;
+  baseUrl: string;
   name: string;
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
   secret: string;
 };
 
@@ -23,20 +24,22 @@ export const V3AtlarConfig$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   accessKey: z.string(),
-  baseURL: z.string(),
+  baseUrl: z.string(),
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Atlar"),
   secret: z.string(),
 });
 
 /** @internal */
 export type V3AtlarConfig$Outbound = {
   accessKey: string;
-  baseURL: string;
+  baseUrl: string;
   name: string;
   pageSize: number;
   pollingPeriod: string;
+  provider: string;
   secret: string;
 };
 
@@ -47,10 +50,11 @@ export const V3AtlarConfig$outboundSchema: z.ZodType<
   V3AtlarConfig
 > = z.object({
   accessKey: z.string(),
-  baseURL: z.string(),
+  baseUrl: z.string(),
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Atlar"),
   secret: z.string(),
 });
 

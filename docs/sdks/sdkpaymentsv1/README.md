@@ -1669,10 +1669,15 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.installConnector({
     connectorConfig: {
-      apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 50,
+      authorizationEndpoint: "XXX",
+      endpoint: "XXX",
+      name: "My Banking Circle Account",
+      password: "XXX",
       pollingPeriod: "60s",
+      provider: "Bankingcircle",
+      userCertificate: "XXX",
+      userCertificateKey: "XXX",
+      username: "XXX",
     },
     connector: Connector.Atlar,
   });
@@ -1705,10 +1710,15 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1InstallConnector(sdk, {
     connectorConfig: {
-      apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 50,
+      authorizationEndpoint: "XXX",
+      endpoint: "XXX",
+      name: "My Banking Circle Account",
+      password: "XXX",
       pollingPeriod: "60s",
+      provider: "Bankingcircle",
+      userCertificate: "XXX",
+      userCertificateKey: "XXX",
+      username: "XXX",
     },
     connector: Connector.Atlar,
   });
@@ -3696,9 +3706,11 @@ async function run() {
   const result = await sdk.payments.v1.updateConnectorConfigV1({
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 10,
+      hmacKey: "XXX",
+      liveEndpointPrefix: "XXX",
+      name: "My Adyen Account",
       pollingPeriod: "120s",
+      provider: "Adyen",
     },
     connector: Connector.Adyen,
     connectorId: "XXX",
@@ -3733,9 +3745,11 @@ async function run() {
   const res = await paymentsV1UpdateConnectorConfigV1(sdk, {
     connectorConfig: {
       apiKey: "XXX",
-      name: "My Stripe Account",
-      pageSize: 10,
+      hmacKey: "XXX",
+      liveEndpointPrefix: "XXX",
+      name: "My Adyen Account",
       pollingPeriod: "120s",
+      provider: "Adyen",
     },
     connector: Connector.Adyen,
     connectorId: "XXX",

@@ -13,6 +13,7 @@ export type V3GenericConfig = {
   name: string;
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -26,6 +27,7 @@ export const V3GenericConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Generic"),
 });
 
 /** @internal */
@@ -35,6 +37,7 @@ export type V3GenericConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
+  provider: string;
 };
 
 /** @internal */
@@ -48,6 +51,7 @@ export const V3GenericConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Generic"),
 });
 
 /**
