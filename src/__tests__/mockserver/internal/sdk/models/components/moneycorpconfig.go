@@ -14,6 +14,7 @@ type MoneycorpConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Moneycorp" json:"provider"`
 }
 
 func (m MoneycorpConfig) MarshalJSON() ([]byte, error) {
@@ -21,7 +22,7 @@ func (m MoneycorpConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MoneycorpConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -60,4 +61,11 @@ func (o *MoneycorpConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *MoneycorpConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

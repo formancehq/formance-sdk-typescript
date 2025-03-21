@@ -18,6 +18,7 @@ let value: V3PaymentInitiationsCursorResponseCursor = {
       createdAt: new Date("2025-02-26T05:58:35.788Z"),
       description: "overcoat lawmaker depot deadly fen well-worn",
       id: "<id>",
+      provider: "<value>",
       reference: "<value>",
       scheduledAt: new Date("2023-07-28T17:27:23.627Z"),
       status: V3PaymentInitiationStatusEnum.Rejected,

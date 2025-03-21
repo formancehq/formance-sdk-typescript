@@ -21,6 +21,7 @@ let value: TransferInitiationsCursor = {
         error: "<value>",
         id: "XXX",
         initialAmount: BigInt("208224"),
+        provider: "<value>",
         reference: "<value>",
         scheduledAt: new Date("2024-08-29T01:07:14.865Z"),
         sourceAccountID: "<id>",

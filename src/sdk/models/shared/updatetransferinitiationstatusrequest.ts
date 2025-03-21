@@ -8,10 +8,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export enum Status {
-  WaitingForValidation = "WAITING_FOR_VALIDATION",
-  Processing = "PROCESSING",
-  Processed = "PROCESSED",
-  Failed = "FAILED",
   Rejected = "REJECTED",
   Validated = "VALIDATED",
 }

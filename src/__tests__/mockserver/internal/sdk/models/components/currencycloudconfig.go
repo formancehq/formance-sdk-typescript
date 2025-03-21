@@ -15,6 +15,7 @@ type CurrencyCloudConfig struct {
 	Name    string `json:"name"`
 	// The frequency at which the connector will fetch transactions
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Currencycloud" json:"provider"`
 }
 
 func (c CurrencyCloudConfig) MarshalJSON() ([]byte, error) {
@@ -22,7 +23,7 @@ func (c CurrencyCloudConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CurrencyCloudConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -61,4 +62,11 @@ func (o *CurrencyCloudConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *CurrencyCloudConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

@@ -11,6 +11,7 @@ type V3DummypayConfig struct {
 	Name          string  `json:"name"`
 	PageSize      *int64  `default:"25" json:"pageSize"`
 	PollingPeriod *string `default:"2m" json:"pollingPeriod"`
+	Provider      *string `default:"Dummypay" json:"provider"`
 }
 
 func (v V3DummypayConfig) MarshalJSON() ([]byte, error) {
@@ -18,7 +19,7 @@ func (v V3DummypayConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3DummypayConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -50,4 +51,11 @@ func (o *V3DummypayConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3DummypayConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

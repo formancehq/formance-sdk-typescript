@@ -6,11 +6,6 @@ import * as z from "zod";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  Connector,
-  Connector$inboundSchema,
-  Connector$outboundSchema,
-} from "./connector.js";
 
 export enum TransferInitiationRequestType {
   Transfer = "TRANSFER",
@@ -24,7 +19,6 @@ export type TransferInitiationRequest = {
   description: string;
   destinationAccountID: string;
   metadata?: { [k: string]: string } | null | undefined;
-  provider?: Connector | undefined;
   reference: string;
   scheduledAt: Date;
   sourceAccountID: string;
@@ -65,7 +59,6 @@ export const TransferInitiationRequest$inboundSchema: z.ZodType<
   description: z.string(),
   destinationAccountID: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  provider: Connector$inboundSchema.optional(),
   reference: z.string(),
   scheduledAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
@@ -83,7 +76,6 @@ export type TransferInitiationRequest$Outbound = {
   description: string;
   destinationAccountID: string;
   metadata?: { [k: string]: string } | null | undefined;
-  provider?: string | undefined;
   reference: string;
   scheduledAt: string;
   sourceAccountID: string;
@@ -103,7 +95,6 @@ export const TransferInitiationRequest$outboundSchema: z.ZodType<
   description: z.string(),
   destinationAccountID: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  provider: Connector$outboundSchema.optional(),
   reference: z.string(),
   scheduledAt: z.date().transform(v => v.toISOString()),
   sourceAccountID: z.string(),

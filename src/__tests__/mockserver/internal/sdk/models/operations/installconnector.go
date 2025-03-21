@@ -19,6 +19,50 @@ func (o *InstallConnectorRequest) GetConnectorConfig() components.ConnectorConfi
 	return o.ConnectorConfig
 }
 
+func (o *InstallConnectorRequest) GetConnectorConfigAdyen() *components.AdyenConfig {
+	return o.GetConnectorConfig().AdyenConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigAtlar() *components.AtlarConfig {
+	return o.GetConnectorConfig().AtlarConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigBankingcircle() *components.BankingCircleConfig {
+	return o.GetConnectorConfig().BankingCircleConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigCurrencycloud() *components.CurrencyCloudConfig {
+	return o.GetConnectorConfig().CurrencyCloudConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigDummypay() *components.DummyPayConfig {
+	return o.GetConnectorConfig().DummyPayConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigGeneric() *components.GenericConfig {
+	return o.GetConnectorConfig().GenericConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigMangopay() *components.MangoPayConfig {
+	return o.GetConnectorConfig().MangoPayConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigModulr() *components.ModulrConfig {
+	return o.GetConnectorConfig().ModulrConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigMoneycorp() *components.MoneycorpConfig {
+	return o.GetConnectorConfig().MoneycorpConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigStripe() *components.StripeConfig {
+	return o.GetConnectorConfig().StripeConfig
+}
+
+func (o *InstallConnectorRequest) GetConnectorConfigWise() *components.WiseConfig {
+	return o.GetConnectorConfig().WiseConfig
+}
+
 func (o *InstallConnectorRequest) GetConnector() components.Connector {
 	if o == nil {
 		return components.Connector("")

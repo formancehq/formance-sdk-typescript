@@ -13,6 +13,7 @@ let value: V3GetConnectorConfigResponse = {
     name: "<value>",
     pageSize: 25,
     pollingPeriod: "2m",
+    provider: "Currencycloud",
   },
 };
 ```

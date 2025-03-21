@@ -13,6 +13,7 @@ type V3AdyenConfig struct {
 	Name               string  `json:"name"`
 	PageSize           *int64  `default:"25" json:"pageSize"`
 	PollingPeriod      *string `default:"2m" json:"pollingPeriod"`
+	Provider           *string `default:"Adyen" json:"provider"`
 	WebhookPassword    *string `json:"webhookPassword,omitempty"`
 	WebhookUsername    *string `json:"webhookUsername,omitempty"`
 }
@@ -22,7 +23,7 @@ func (v V3AdyenConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3AdyenConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -68,6 +69,13 @@ func (o *V3AdyenConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3AdyenConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *V3AdyenConfig) GetWebhookPassword() *string {

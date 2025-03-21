@@ -10,12 +10,8 @@ import (
 type Status string
 
 const (
-	StatusWaitingForValidation Status = "WAITING_FOR_VALIDATION"
-	StatusProcessing           Status = "PROCESSING"
-	StatusProcessed            Status = "PROCESSED"
-	StatusFailed               Status = "FAILED"
-	StatusRejected             Status = "REJECTED"
-	StatusValidated            Status = "VALIDATED"
+	StatusRejected  Status = "REJECTED"
+	StatusValidated Status = "VALIDATED"
 )
 
 func (e Status) ToPointer() *Status {
@@ -27,14 +23,6 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "WAITING_FOR_VALIDATION":
-		fallthrough
-	case "PROCESSING":
-		fallthrough
-	case "PROCESSED":
-		fallthrough
-	case "FAILED":
-		fallthrough
 	case "REJECTED":
 		fallthrough
 	case "VALIDATED":

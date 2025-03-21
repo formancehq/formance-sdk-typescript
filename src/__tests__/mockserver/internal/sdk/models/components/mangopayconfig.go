@@ -14,6 +14,7 @@ type MangoPayConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Mangopay" json:"provider"`
 }
 
 func (m MangoPayConfig) MarshalJSON() ([]byte, error) {
@@ -21,7 +22,7 @@ func (m MangoPayConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MangoPayConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -60,4 +61,11 @@ func (o *MangoPayConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *MangoPayConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

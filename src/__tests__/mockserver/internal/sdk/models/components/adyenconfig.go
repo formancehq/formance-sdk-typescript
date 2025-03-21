@@ -14,6 +14,7 @@ type AdyenConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from Adyen API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Adyen" json:"provider"`
 }
 
 func (a AdyenConfig) MarshalJSON() ([]byte, error) {
@@ -21,7 +22,7 @@ func (a AdyenConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AdyenConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -60,4 +61,11 @@ func (o *AdyenConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *AdyenConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

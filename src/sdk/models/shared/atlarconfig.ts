@@ -34,6 +34,7 @@ export type AtlarConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
   /**
    * The secret used by the connector for authorizing requests to the Atlar API.
    *
@@ -60,6 +61,7 @@ export const AtlarConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Atlar"),
   secret: z.string(),
   transferInitiationStatusPollingPeriod: z.string().default("120s"),
 });
@@ -71,6 +73,7 @@ export type AtlarConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
+  provider: string;
   secret: string;
   transferInitiationStatusPollingPeriod: string;
 };
@@ -86,6 +89,7 @@ export const AtlarConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Atlar"),
   secret: z.string(),
   transferInitiationStatusPollingPeriod: z.string().default("120s"),
 });

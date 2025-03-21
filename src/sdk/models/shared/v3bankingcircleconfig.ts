@@ -14,6 +14,7 @@ export type V3BankingcircleConfig = {
   pageSize?: number | undefined;
   password: string;
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
   userCertificate: string;
   userCertificateKey: string;
   username: string;
@@ -31,6 +32,7 @@ export const V3BankingcircleConfig$inboundSchema: z.ZodType<
   pageSize: z.number().int().default(25),
   password: z.string(),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Bankingcircle"),
   userCertificate: z.string(),
   userCertificateKey: z.string(),
   username: z.string(),
@@ -44,6 +46,7 @@ export type V3BankingcircleConfig$Outbound = {
   pageSize: number;
   password: string;
   pollingPeriod: string;
+  provider: string;
   userCertificate: string;
   userCertificateKey: string;
   username: string;
@@ -61,6 +64,7 @@ export const V3BankingcircleConfig$outboundSchema: z.ZodType<
   pageSize: z.number().int().default(25),
   password: z.string(),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Bankingcircle"),
   userCertificate: z.string(),
   userCertificateKey: z.string(),
   username: z.string(),

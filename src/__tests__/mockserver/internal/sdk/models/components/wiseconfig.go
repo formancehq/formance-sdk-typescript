@@ -12,6 +12,7 @@ type WiseConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Wise" json:"provider"`
 }
 
 func (w WiseConfig) MarshalJSON() ([]byte, error) {
@@ -19,7 +20,7 @@ func (w WiseConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WiseConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -44,4 +45,11 @@ func (o *WiseConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *WiseConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

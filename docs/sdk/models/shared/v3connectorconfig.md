@@ -18,7 +18,7 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseURL: "https://snappy-mainstream.net",
+  baseUrl: "https://snappy-mainstream.net",
   name: "<value>",
   secret: "<value>",
 };

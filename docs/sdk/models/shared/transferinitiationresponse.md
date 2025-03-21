@@ -18,6 +18,7 @@ let value: TransferInitiationResponse = {
     error: "<value>",
     id: "XXX",
     initialAmount: BigInt("424505"),
+    provider: "<value>",
     reference: "<value>",
     scheduledAt: new Date("2025-06-03T10:02:48.006Z"),
     sourceAccountID: "<id>",

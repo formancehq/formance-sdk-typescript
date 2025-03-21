@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 90e2ecf8fc7bcddc6818fbde29ac3dae
-  docVersion: v3.0.2
-  speakeasyVersion: 1.517.3
-  generationVersion: 2.548.6
-  releaseVersion: 4.2.0
-  configChecksum: 817338f56893cb2311b983d690256861
+  docChecksum: 85bb1b400e74cd8d9daca889b776fd3a
+  docVersion: v3.0.3
+  speakeasyVersion: 1.521.1
+  generationVersion: 2.558.5
+  releaseVersion: 4.2.1
+  configChecksum: e5b1d9d5a8e65916a113cd8209503448
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -30,7 +30,7 @@ features:
     mockServer: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.1
-    oauth2ClientCredentials: 0.3.1
+    oauth2ClientCredentials: 0.3.2
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
@@ -3617,7 +3617,7 @@ examples:
         application/json: {"amount": 256698, "asset": "USD", "description": "worthy pace vague ick liberalize between um", "destinationAccountID": "<id>", "reference": "XXX", "scheduledAt": "2025-05-02T09:50:03.622Z", "sourceAccountID": "<id>", "type": "PAYOUT", "validated": true}
       responses:
         "200":
-          application/json: {"data": {"amount": 422655, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-01-07T23:05:45.713Z", "description": "jut profane apud newsstand printer fondly", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 923751, "reference": "<value>", "scheduledAt": "2023-01-12T11:17:22.320Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "PAYOUT"}}
+          application/json: {"data": {"amount": 422655, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-01-07T23:05:45.713Z", "description": "jut profane apud newsstand printer fondly", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 923751, "provider": "<value>", "reference": "<value>", "scheduledAt": "2023-01-12T11:17:22.320Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "PAYOUT"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   deletePool:
@@ -3734,7 +3734,7 @@ examples:
           transferId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"amount": 72812, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-06-13T16:04:12.992Z", "description": "lack sick cheerfully minor", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 849995, "reference": "<value>", "scheduledAt": "2025-01-24T01:47:16.422Z", "sourceAccountID": "<id>", "status": "WAITING_FOR_VALIDATION", "type": "PAYOUT"}}
+          application/json: {"data": {"amount": 72812, "asset": "USD", "connectorID": "<id>", "createdAt": "2023-06-13T16:04:12.992Z", "description": "lack sick cheerfully minor", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 849995, "provider": "<value>", "reference": "<value>", "scheduledAt": "2025-01-24T01:47:16.422Z", "sourceAccountID": "<id>", "status": "WAITING_FOR_VALIDATION", "type": "PAYOUT"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   installConnector:
@@ -3743,7 +3743,7 @@ examples:
         path:
           connector: "ATLAR"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 50, "pollingPeriod": "60s"}
+        application/json: {"authorizationEndpoint": "XXX", "endpoint": "XXX", "name": "My Banking Circle Account", "password": "XXX", "pollingPeriod": "60s", "provider": "Bankingcircle", "userCertificate": "XXX", "userCertificateKey": "XXX", "username": "XXX"}
       responses:
         "201":
           application/json: {"data": {"connectorID": "<id>"}}
@@ -3835,7 +3835,7 @@ examples:
           sort: ["date:asc", "status:desc"]
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"amount": 27378, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-04-12T17:55:51.446Z", "description": "shovel aw scrutinise delicious a machine provided thongs eek pfft", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 955636, "reference": "<value>", "scheduledAt": "2025-12-22T21:51:13.393Z", "sourceAccountID": "<id>", "status": "ASK_REVERSED", "type": "TRANSFER"}, {"amount": 99452, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-05-14T08:21:14.101Z", "description": "vice programme downchange lucky", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 418039, "reference": "<value>", "scheduledAt": "2024-05-12T21:20:56.584Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"amount": 27378, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-04-12T17:55:51.446Z", "description": "shovel aw scrutinise delicious a machine provided thongs eek pfft", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 955636, "provider": "<value>", "reference": "<value>", "scheduledAt": "2025-12-22T21:51:13.393Z", "sourceAccountID": "<id>", "status": "ASK_REVERSED", "type": "TRANSFER"}, {"amount": 99452, "asset": "USD", "connectorID": "<id>", "createdAt": "2024-05-14T08:21:14.101Z", "description": "vice programme downchange lucky", "destinationAccountID": "<id>", "error": "<value>", "id": "XXX", "initialAmount": 418039, "provider": "<value>", "reference": "<value>", "scheduledAt": "2024-05-12T21:20:56.584Z", "sourceAccountID": "<id>", "status": "PROCESSED", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   paymentsgetAccount:
@@ -3874,7 +3874,7 @@ examples:
           connector: "GENERIC"
       responses:
         "200":
-          application/json: {"data": {"accessKey": "XXX", "baseUrl": "https://api.example.com", "name": "My Atlar Account", "pageSize": 50, "pollingPeriod": "60s", "secret": "XXX", "transferInitiationStatusPollingPeriod": "60s"}}
+          application/json: {"data": {"apiKey": "XXX", "name": "My Wise Account", "pollingPeriod": "60s", "provider": "Wise"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   readConnectorConfigV1:
@@ -3885,7 +3885,7 @@ examples:
           connectorId: "XXX"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "XXX", "apiSecret": "XXX", "endpoint": "XXX", "name": "My Modulr Account", "pollingPeriod": "120s"}}
+          application/json: {"data": {"directory": "/tmp/dummypay", "filePollingPeriod": "10s", "name": "My DummyPay Account", "provider": "Dummypay"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
   removeAccountFromPool:
@@ -3976,7 +3976,7 @@ examples:
           connector: "ADYEN"
           connectorId: "XXX"
       requestBody:
-        application/json: {"apiKey": "XXX", "name": "My Stripe Account", "pageSize": 10, "pollingPeriod": "120s"}
+        application/json: {"apiKey": "XXX", "hmacKey": "XXX", "liveEndpointPrefix": "XXX", "name": "My Adyen Account", "pollingPeriod": "120s", "provider": "Adyen"}
       responses:
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing reference"}
@@ -4103,7 +4103,7 @@ examples:
           connectorID: "<id>"
       responses:
         "200":
-          application/json: {"data": {"apiKey": "<value>", "apiSecret": "<value>", "endpoint": "<value>", "name": "<value>", "pageSize": "25", "pollingPeriod": "2m"}}
+          application/json: {"data": {"apiKey": "<value>", "apiSecret": "<value>", "endpoint": "<value>", "name": "<value>", "pageSize": "25", "pollingPeriod": "2m", "provider": "Modulr"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
   v3GetConnectorSchedule:
@@ -4141,7 +4141,7 @@ examples:
           paymentInitiationID: "<id>"
       responses:
         "200":
-          application/json: {"data": {"amount": 42625, "asset": "<value>", "connectorID": "<value>", "createdAt": "2025-07-18T19:40:16.233Z", "description": "off of between vacantly though instead gazebo", "id": "<id>", "reference": "<value>", "scheduledAt": "2025-04-28T02:58:21.926Z", "status": "REVERSE_FAILED", "type": "TRANSFER"}}
+          application/json: {"data": {"amount": 42625, "asset": "<value>", "connectorID": "<value>", "createdAt": "2025-07-18T19:40:16.233Z", "description": "off of between vacantly though instead gazebo", "id": "<id>", "provider": "<value>", "reference": "<value>", "scheduledAt": "2025-04-28T02:58:21.926Z", "status": "REVERSE_FAILED", "type": "TRANSFER"}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
   v3GetPool:
@@ -4296,7 +4296,7 @@ examples:
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
       responses:
         "200":
-          application/json: {"cursor": {"data": [{"amount": 203475, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-03-08T03:55:10.091Z", "description": "inside pessimistic small adrenalin reach measly boohoo eek soap amid", "id": "<id>", "reference": "<value>", "scheduledAt": "2025-11-27T20:49:45.578Z", "status": "UNKNOWN", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
+          application/json: {"cursor": {"data": [{"amount": 203475, "asset": "<value>", "connectorID": "<value>", "createdAt": "2024-03-08T03:55:10.091Z", "description": "inside pessimistic small adrenalin reach measly boohoo eek soap amid", "id": "<id>", "provider": "<value>", "reference": "<value>", "scheduledAt": "2025-11-27T20:49:45.578Z", "status": "UNKNOWN", "type": "TRANSFER"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
         default:
           application/json: {"errorCode": "VALIDATION", "errorMessage": "[VALIDATION] missing required config field: pollingPeriod"}
   v3ListPayments:

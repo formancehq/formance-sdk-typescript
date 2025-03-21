@@ -18,6 +18,7 @@ type V3PaymentInitiation struct {
 	Error                *string                       `json:"error,omitempty"`
 	ID                   string                        `json:"id"`
 	Metadata             map[string]string             `json:"metadata,omitempty"`
+	Provider             string                        `json:"provider"`
 	Reference            string                        `json:"reference"`
 	ScheduledAt          time.Time                     `json:"scheduledAt"`
 	SourceAccountID      *string                       `json:"sourceAccountID,omitempty"`
@@ -97,6 +98,13 @@ func (o *V3PaymentInitiation) GetMetadata() map[string]string {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *V3PaymentInitiation) GetProvider() string {
+	if o == nil {
+		return ""
+	}
+	return o.Provider
 }
 
 func (o *V3PaymentInitiation) GetReference() string {

@@ -9,10 +9,11 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
     apiKey: "XXX",
-    apiSecret: "XXX",
     endpoint: "XXX",
-    name: "My Modulr Account",
+    loginID: "XXX",
+    name: "My CurrencyCloud Account",
     pollingPeriod: "120s",
+    provider: "Currencycloud",
   },
   connector: Connector.BankingCircle,
   connectorId: "XXX",

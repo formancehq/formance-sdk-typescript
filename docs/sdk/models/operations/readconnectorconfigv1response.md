@@ -9,10 +9,11 @@ let value: ReadConnectorConfigV1Response = {
   connectorConfigResponse: {
     data: {
       apiKey: "XXX",
-      clientID: "XXX",
+      apiSecret: "XXX",
       endpoint: "XXX",
-      name: "My Moneycorp Account",
+      name: "My Modulr Account",
       pollingPeriod: "120s",
+      provider: "Modulr",
     },
   },
   contentType: "<value>",

@@ -18,6 +18,7 @@ export type AdyenConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -31,6 +32,7 @@ export const AdyenConfig$inboundSchema: z.ZodType<
   liveEndpointPrefix: z.string().optional(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Adyen"),
 });
 
 /** @internal */
@@ -40,6 +42,7 @@ export type AdyenConfig$Outbound = {
   liveEndpointPrefix?: string | undefined;
   name: string;
   pollingPeriod: string;
+  provider: string;
 };
 
 /** @internal */
@@ -53,6 +56,7 @@ export const AdyenConfig$outboundSchema: z.ZodType<
   liveEndpointPrefix: z.string().optional(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Adyen"),
 });
 
 /**

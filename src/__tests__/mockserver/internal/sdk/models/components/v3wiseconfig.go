@@ -11,6 +11,7 @@ type V3WiseConfig struct {
 	Name             string  `json:"name"`
 	PageSize         *int64  `default:"25" json:"pageSize"`
 	PollingPeriod    *string `default:"2m" json:"pollingPeriod"`
+	Provider         *string `default:"Wise" json:"provider"`
 	WebhookPublicKey string  `json:"webhookPublicKey"`
 }
 
@@ -19,7 +20,7 @@ func (v V3WiseConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (v *V3WiseConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -51,6 +52,13 @@ func (o *V3WiseConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *V3WiseConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }
 
 func (o *V3WiseConfig) GetWebhookPublicKey() string {

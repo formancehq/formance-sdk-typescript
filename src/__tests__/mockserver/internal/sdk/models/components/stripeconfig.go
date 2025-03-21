@@ -15,6 +15,7 @@ type StripeConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from Stripe API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Stripe" json:"provider"`
 }
 
 func (s StripeConfig) MarshalJSON() ([]byte, error) {
@@ -22,7 +23,7 @@ func (s StripeConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (s *StripeConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -54,4 +55,11 @@ func (o *StripeConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *StripeConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

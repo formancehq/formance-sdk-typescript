@@ -14,6 +14,7 @@ type DummyPayConfig struct {
 	NumberOfAccountsPreGenerated *int64  `json:"numberOfAccountsPreGenerated,omitempty"`
 	NumberOfPaymentsPreGenerated *int64  `json:"numberOfPaymentsPreGenerated,omitempty"`
 	PrefixFileToIngest           *string `json:"prefixFileToIngest,omitempty"`
+	Provider                     *string `default:"Dummypay" json:"provider"`
 }
 
 func (d DummyPayConfig) MarshalJSON() ([]byte, error) {
@@ -21,7 +22,7 @@ func (d DummyPayConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DummyPayConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -67,4 +68,11 @@ func (o *DummyPayConfig) GetPrefixFileToIngest() *string {
 		return nil
 	}
 	return o.PrefixFileToIngest
+}
+
+func (o *DummyPayConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

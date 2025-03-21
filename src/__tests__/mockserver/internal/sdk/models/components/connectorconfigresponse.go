@@ -13,3 +13,47 @@ func (o *ConnectorConfigResponse) GetData() ConnectorConfig {
 	}
 	return o.Data
 }
+
+func (o *ConnectorConfigResponse) GetDataAdyen() *AdyenConfig {
+	return o.GetData().AdyenConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataAtlar() *AtlarConfig {
+	return o.GetData().AtlarConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataBankingcircle() *BankingCircleConfig {
+	return o.GetData().BankingCircleConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataCurrencycloud() *CurrencyCloudConfig {
+	return o.GetData().CurrencyCloudConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataDummypay() *DummyPayConfig {
+	return o.GetData().DummyPayConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataGeneric() *GenericConfig {
+	return o.GetData().GenericConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataMangopay() *MangoPayConfig {
+	return o.GetData().MangoPayConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataModulr() *ModulrConfig {
+	return o.GetData().ModulrConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataMoneycorp() *MoneycorpConfig {
+	return o.GetData().MoneycorpConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataStripe() *StripeConfig {
+	return o.GetData().StripeConfig
+}
+
+func (o *ConnectorConfigResponse) GetDataWise() *WiseConfig {
+	return o.GetData().WiseConfig
+}

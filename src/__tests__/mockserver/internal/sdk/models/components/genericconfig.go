@@ -13,6 +13,7 @@ type GenericConfig struct {
 	// The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
 	//
 	PollingPeriod *string `default:"120s" json:"pollingPeriod"`
+	Provider      *string `default:"Generic" json:"provider"`
 }
 
 func (g GenericConfig) MarshalJSON() ([]byte, error) {
@@ -20,7 +21,7 @@ func (g GenericConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GenericConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
 		return err
 	}
 	return nil
@@ -52,4 +53,11 @@ func (o *GenericConfig) GetPollingPeriod() *string {
 		return nil
 	}
 	return o.PollingPeriod
+}
+
+func (o *GenericConfig) GetProvider() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Provider
 }

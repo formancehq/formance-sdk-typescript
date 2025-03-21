@@ -18,6 +18,7 @@ export type MangoPayConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -31,6 +32,7 @@ export const MangoPayConfig$inboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Mangopay"),
 });
 
 /** @internal */
@@ -40,6 +42,7 @@ export type MangoPayConfig$Outbound = {
   endpoint: string;
   name: string;
   pollingPeriod: string;
+  provider: string;
 };
 
 /** @internal */
@@ -53,6 +56,7 @@ export const MangoPayConfig$outboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("120s"),
+  provider: z.string().default("Mangopay"),
 });
 
 /**

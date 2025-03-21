@@ -14,6 +14,7 @@ export type V3AdyenConfig = {
   name: string;
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
+  provider?: string | undefined;
   webhookPassword?: string | undefined;
   webhookUsername?: string | undefined;
 };
@@ -30,6 +31,7 @@ export const V3AdyenConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Adyen"),
   webhookPassword: z.string().optional(),
   webhookUsername: z.string().optional(),
 });
@@ -42,6 +44,7 @@ export type V3AdyenConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
+  provider: string;
   webhookPassword?: string | undefined;
   webhookUsername?: string | undefined;
 };
@@ -58,6 +61,7 @@ export const V3AdyenConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("2m"),
+  provider: z.string().default("Adyen"),
   webhookPassword: z.string().optional(),
   webhookUsername: z.string().optional(),
 });

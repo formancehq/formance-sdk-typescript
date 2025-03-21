@@ -19,6 +19,7 @@ let value: V3PaymentInitiationsCursorResponse = {
         createdAt: new Date("2025-04-08T09:48:40.874Z"),
         description: "who modulo oh nor unused",
         id: "<id>",
+        provider: "<value>",
         reference: "<value>",
         scheduledAt: new Date("2025-09-18T05:49:59.550Z"),
         status: V3PaymentInitiationStatusEnum.Processing,

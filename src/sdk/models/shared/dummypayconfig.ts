@@ -17,6 +17,7 @@ export type DummyPayConfig = {
   numberOfAccountsPreGenerated?: number | undefined;
   numberOfPaymentsPreGenerated?: number | undefined;
   prefixFileToIngest?: string | undefined;
+  provider?: string | undefined;
 };
 
 /** @internal */
@@ -31,6 +32,7 @@ export const DummyPayConfig$inboundSchema: z.ZodType<
   numberOfAccountsPreGenerated: z.number().int().optional(),
   numberOfPaymentsPreGenerated: z.number().int().optional(),
   prefixFileToIngest: z.string().optional(),
+  provider: z.string().default("Dummypay"),
 });
 
 /** @internal */
@@ -41,6 +43,7 @@ export type DummyPayConfig$Outbound = {
   numberOfAccountsPreGenerated?: number | undefined;
   numberOfPaymentsPreGenerated?: number | undefined;
   prefixFileToIngest?: string | undefined;
+  provider: string;
 };
 
 /** @internal */
@@ -55,6 +58,7 @@ export const DummyPayConfig$outboundSchema: z.ZodType<
   numberOfAccountsPreGenerated: z.number().int().optional(),
   numberOfPaymentsPreGenerated: z.number().int().optional(),
   prefixFileToIngest: z.string().optional(),
+  provider: z.string().default("Dummypay"),
 });
 
 /**

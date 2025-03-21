@@ -19,6 +19,83 @@ func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequest() *components.V
 	return o.V3InstallConnectorRequest
 }
 
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestAdyen() *components.V3AdyenConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3AdyenConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestAtlar() *components.V3AtlarConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3AtlarConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestBankingcircle() *components.V3BankingcircleConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3BankingcircleConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestCurrencycloud() *components.V3CurrencycloudConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3CurrencycloudConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestDummypay() *components.V3DummypayConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3DummypayConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestGeneric() *components.V3GenericConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3GenericConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestMangopay() *components.V3MangopayConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3MangopayConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestModulr() *components.V3ModulrConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3ModulrConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestMoneycorp() *components.V3MoneycorpConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3MoneycorpConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestStripe() *components.V3StripeConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3StripeConfig
+	}
+	return nil
+}
+
+func (o *V3InstallConnectorRequest) GetV3InstallConnectorRequestWise() *components.V3WiseConfig {
+	if v := o.GetV3InstallConnectorRequest(); v != nil {
+		return v.V3WiseConfig
+	}
+	return nil
+}
+
 func (o *V3InstallConnectorRequest) GetConnector() string {
 	if o == nil {
 		return ""
