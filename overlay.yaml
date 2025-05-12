@@ -3,85 +3,87 @@ info:
   title: Overlay spec.json => updated-spec.json
   version: 0.0.0
 actions:
-  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["parameters"]
-    update:
-      - {"name": "query", "in": "query", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
-  - target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/accounts"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/accounts"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/accounts"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/payments"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/payments"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/pools"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/pools"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/connectors"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/connectors"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["requestBody"]
-    remove: true
-  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["parameters"]
-    update:
-      - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
-  - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["requestBody"]
-    remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["head"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/volumes"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/ledger/v2/{ledger}/logs"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/accounts"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/accounts"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/accounts"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/bank-accounts"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/payments"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/payments"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/payment-initiations"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/pools"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/pools"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/connectors"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/connectors"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/connectors/{connectorID}/schedules"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["requestBody"]
+  remove: true
