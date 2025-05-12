@@ -87,3 +87,5 @@ actions:
   - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
 - target: $["paths"]["/api/payments/v3/payment-initiations/{paymentInitiationID}/payments"]["get"]["requestBody"]
   remove: true
+- target: $["paths"]["/api/payments/v3/payment-service-users"]["get"]["requestBody"]
+  remove: true
