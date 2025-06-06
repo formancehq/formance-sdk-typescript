@@ -3,16 +3,17 @@ generation:
   sdkClassName: SDK
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   fixes:
-    nameResolutionFeb2025: false
+    nameResolutionDec2023: true
+    nameResolutionFeb2025: true
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
     securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
-  tests:
-    generateNewTests: true
   comments: {}
   telemetryEnabled: false
 typescript:
