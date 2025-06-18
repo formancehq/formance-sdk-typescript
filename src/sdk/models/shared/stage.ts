@@ -31,23 +31,23 @@ import {
   Update$outboundSchema,
 } from "./update.js";
 
-export type Stage = StageWaitEvent | Update | StageDelay | StageSend;
+export type Stage = StageWaitEvent | StageSend | StageDelay | Update;
 
 /** @internal */
 export const Stage$inboundSchema: z.ZodType<Stage, z.ZodTypeDef, unknown> = z
   .union([
     StageWaitEvent$inboundSchema,
-    Update$inboundSchema,
-    StageDelay$inboundSchema,
     StageSend$inboundSchema,
+    StageDelay$inboundSchema,
+    Update$inboundSchema,
   ]);
 
 /** @internal */
 export type Stage$Outbound =
   | StageWaitEvent$Outbound
-  | Update$Outbound
+  | StageSend$Outbound
   | StageDelay$Outbound
-  | StageSend$Outbound;
+  | Update$Outbound;
 
 /** @internal */
 export const Stage$outboundSchema: z.ZodType<
@@ -56,9 +56,9 @@ export const Stage$outboundSchema: z.ZodType<
   Stage
 > = z.union([
   StageWaitEvent$outboundSchema,
-  Update$outboundSchema,
-  StageDelay$outboundSchema,
   StageSend$outboundSchema,
+  StageDelay$outboundSchema,
+  Update$outboundSchema,
 ]);
 
 /**

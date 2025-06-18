@@ -5,25 +5,7 @@
 ```typescript
 import { ReadConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReadConnectorConfigResponse = {
-  connectorConfigResponse: {
-    data: {
-      accessKey: "XXX",
-      baseUrl: "https://api.atlar.com",
-      name: "My Atlar Account",
-      pageSize: 25,
-      pollingPeriod: "120s",
-      provider: "Atlar",
-      secret: "XXX",
-      transferInitiationStatusPollingPeriod: "120s",
-    },
-  },
-  contentType: "<value>",
-  statusCode: 204,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ReadConnectorConfigResponse = {};
 ```
 
 ## Fields

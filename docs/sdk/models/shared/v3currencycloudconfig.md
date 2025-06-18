@@ -10,6 +10,7 @@ let value: V3CurrencycloudConfig = {
   endpoint: "<value>",
   loginID: "<id>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

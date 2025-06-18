@@ -6,7 +6,7 @@
 import { V3BankAccount } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3BankAccount = {
-  createdAt: new Date("2023-11-21T07:40:22.612Z"),
+  createdAt: new Date("2024-05-24T03:55:34.117Z"),
   id: "<id>",
   name: "<value>",
 };

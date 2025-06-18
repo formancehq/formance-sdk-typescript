@@ -3,59 +3,59 @@
 
 ## Supported Types
 
-### `shared.Schemas`
+### `shared.V2BulkElementResultAddMetadata`
 
 ```typescript
-const value: shared.Schemas = {
-  logID: 556133,
+const value: shared.V2BulkElementResultAddMetadata = {
+  logID: 934456,
   responseType: "<value>",
 };
 ```
 
-### `shared.V2BulkElementResultCreateTransactionSchemas`
+### `shared.V2BulkElementResultCreateTransaction`
 
 ```typescript
-const value: shared.V2BulkElementResultCreateTransactionSchemas = {
+const value: shared.V2BulkElementResultCreateTransaction = {
   data: {
-    id: BigInt("318028"),
+    id: 126928n,
     metadata: {
       "admin": "true",
     },
     postCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postings: [
       {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "COIN",
         destination: "users:002",
         source: "users:001",
@@ -64,108 +64,108 @@ const value: shared.V2BulkElementResultCreateTransactionSchemas = {
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     preCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     reference: "ref:001",
-    reverted: false,
-    timestamp: new Date("2025-11-16T00:59:56.580Z"),
+    reverted: true,
+    timestamp: new Date("2025-12-06T01:08:16.380Z"),
   },
-  logID: 965735,
+  logID: 778245,
   responseType: "<value>",
 };
 ```
 
-### `shared.V2BulkElementResultDeleteMetadataSchemas`
+### `shared.V2BulkElementResultDeleteMetadata`
 
 ```typescript
-const value: shared.V2BulkElementResultDeleteMetadataSchemas = {
-  logID: 620126,
+const value: shared.V2BulkElementResultDeleteMetadata = {
+  logID: 699342,
   responseType: "<value>",
 };
 ```
 
-### `shared.V2BulkElementResultErrorSchemas`
+### `shared.V2BulkElementResultError`
 
 ```typescript
-const value: shared.V2BulkElementResultErrorSchemas = {
+const value: shared.V2BulkElementResultError = {
   errorCode: "<value>",
   errorDescription: "<value>",
-  logID: 617497,
+  logID: 332853,
   responseType: "<value>",
 };
 ```
 
-### `shared.V2BulkElementResultRevertTransactionSchemas`
+### `shared.V2BulkElementResultRevertTransaction`
 
 ```typescript
-const value: shared.V2BulkElementResultRevertTransactionSchemas = {
+const value: shared.V2BulkElementResultRevertTransaction = {
   data: {
-    id: BigInt("985379"),
+    id: 126928n,
     metadata: {
       "admin": "true",
     },
     postCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postings: [
       {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "COIN",
         destination: "users:002",
         source: "users:001",
@@ -174,40 +174,40 @@ const value: shared.V2BulkElementResultRevertTransactionSchemas = {
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     preCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     reference: "ref:001",
-    reverted: false,
-    timestamp: new Date("2025-08-30T11:05:45.637Z"),
+    reverted: true,
+    timestamp: new Date("2025-12-06T01:08:16.380Z"),
   },
-  logID: 765070,
+  logID: 96956,
   responseType: "<value>",
 };
 ```

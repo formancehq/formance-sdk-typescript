@@ -31,23 +31,23 @@ import {
   V2Update$outboundSchema,
 } from "./v2update.js";
 
-export type V2Stage = V2StageWaitEvent | V2Update | V2StageDelay | V2StageSend;
+export type V2Stage = V2StageWaitEvent | V2StageSend | V2StageDelay | V2Update;
 
 /** @internal */
 export const V2Stage$inboundSchema: z.ZodType<V2Stage, z.ZodTypeDef, unknown> =
   z.union([
     V2StageWaitEvent$inboundSchema,
-    V2Update$inboundSchema,
-    V2StageDelay$inboundSchema,
     V2StageSend$inboundSchema,
+    V2StageDelay$inboundSchema,
+    V2Update$inboundSchema,
   ]);
 
 /** @internal */
 export type V2Stage$Outbound =
   | V2StageWaitEvent$Outbound
-  | V2Update$Outbound
+  | V2StageSend$Outbound
   | V2StageDelay$Outbound
-  | V2StageSend$Outbound;
+  | V2Update$Outbound;
 
 /** @internal */
 export const V2Stage$outboundSchema: z.ZodType<
@@ -56,9 +56,9 @@ export const V2Stage$outboundSchema: z.ZodType<
   V2Stage
 > = z.union([
   V2StageWaitEvent$outboundSchema,
-  V2Update$outboundSchema,
-  V2StageDelay$outboundSchema,
   V2StageSend$outboundSchema,
+  V2StageDelay$outboundSchema,
+  V2Update$outboundSchema,
 ]);
 
 /**

@@ -7,24 +7,29 @@ import { WalletSummary } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletSummary = {
   availableFunds: {
-    "key": BigInt("304714"),
+    "key": 12015n,
+    "key1": 827997n,
+    "key2": 276430n,
   },
   balances: [
     {
       assets: {
-        "key": BigInt("872564"),
+        "key": 994406n,
       },
       name: "<value>",
     },
   ],
   expirableFunds: {
-    "key": BigInt("62556"),
+    "key": 851621n,
+    "key1": 443166n,
   },
   expiredFunds: {
-    "key": BigInt("493467"),
+    "key": 608370n,
+    "key1": 91511n,
   },
   holdFunds: {
-    "key": BigInt("654684"),
+    "key": 108015n,
+    "key1": 971947n,
   },
 };
 ```

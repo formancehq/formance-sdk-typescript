@@ -7,6 +7,7 @@ import { ListBankAccountsRequest } from "@formance/formance-sdk/sdk/models/opera
 
 let value: ListBankAccountsRequest = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
   sort: [
     "date:asc",
     "status:desc",

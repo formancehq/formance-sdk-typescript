@@ -6,17 +6,15 @@
 import { V3ConnectorConfigsResponseData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ConnectorConfigsResponseData = {
-  connector: {
-    key: {
-      dataType: "bit",
-      required: false,
-    },
-  },
+  dataType: "point",
+  required: false,
 };
 ```
 
 ## Fields
 
-| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `connector`                                                                                                     | [shared.V3ConnectorConfigsResponseConnector](../../../sdk/models/shared/v3connectorconfigsresponseconnector.md) | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `dataType`         | *string*           | :heavy_check_mark: | N/A                |
+| `defaultValue`     | *string*           | :heavy_minus_sign: | N/A                |
+| `required`         | *boolean*          | :heavy_check_mark: | N/A                |

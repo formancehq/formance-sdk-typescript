@@ -7,7 +7,7 @@ import { DebitWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: DebitWalletRequest = {
   amount: {
-    amount: BigInt("100"),
+    amount: 100n,
     asset: "USD/2",
   },
   metadata: {

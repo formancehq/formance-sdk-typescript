@@ -13,7 +13,7 @@ import {
   V2Transaction$outboundSchema,
 } from "./v2transaction.js";
 
-export type V2BulkElementResultErrorSchemas = {
+export type V2BulkElementResultError = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
@@ -21,44 +21,42 @@ export type V2BulkElementResultErrorSchemas = {
   responseType: string;
 };
 
-export type V2BulkElementResultDeleteMetadataSchemas = {
+export type V2BulkElementResultDeleteMetadata = {
   logID: number;
   responseType: string;
 };
 
-export type V2BulkElementResultRevertTransactionSchemas = {
+export type V2BulkElementResultRevertTransaction = {
   data: V2Transaction;
   logID: number;
   responseType: string;
 };
 
-export type Schemas = {
+export type V2BulkElementResultAddMetadata = {
   logID: number;
   responseType: string;
 };
 
-export type V2BulkElementResultCreateTransactionSchemas = {
+export type V2BulkElementResultCreateTransaction = {
   data: V2Transaction;
   logID: number;
   responseType: string;
 };
 
 export type V2BulkElementResult =
-  | (Schemas & { responseType: "ADD_METADATA" })
-  | (V2BulkElementResultDeleteMetadataSchemas & {
-    responseType: "DELETE_METADATA";
-  })
-  | (V2BulkElementResultCreateTransactionSchemas & {
+  | (V2BulkElementResultError & { responseType: "ERROR" })
+  | (V2BulkElementResultCreateTransaction & {
     responseType: "CREATE_TRANSACTION";
   })
-  | (V2BulkElementResultRevertTransactionSchemas & {
+  | (V2BulkElementResultRevertTransaction & {
     responseType: "REVERT_TRANSACTION";
   })
-  | (V2BulkElementResultErrorSchemas & { responseType: "ERROR" });
+  | (V2BulkElementResultAddMetadata & { responseType: "ADD_METADATA" })
+  | (V2BulkElementResultDeleteMetadata & { responseType: "DELETE_METADATA" });
 
 /** @internal */
-export const V2BulkElementResultErrorSchemas$inboundSchema: z.ZodType<
-  V2BulkElementResultErrorSchemas,
+export const V2BulkElementResultError$inboundSchema: z.ZodType<
+  V2BulkElementResultError,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -70,7 +68,7 @@ export const V2BulkElementResultErrorSchemas$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type V2BulkElementResultErrorSchemas$Outbound = {
+export type V2BulkElementResultError$Outbound = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
@@ -79,10 +77,10 @@ export type V2BulkElementResultErrorSchemas$Outbound = {
 };
 
 /** @internal */
-export const V2BulkElementResultErrorSchemas$outboundSchema: z.ZodType<
-  V2BulkElementResultErrorSchemas$Outbound,
+export const V2BulkElementResultError$outboundSchema: z.ZodType<
+  V2BulkElementResultError$Outbound,
   z.ZodTypeDef,
-  V2BulkElementResultErrorSchemas
+  V2BulkElementResultError
 > = z.object({
   errorCode: z.string(),
   errorDescription: z.string(),
@@ -95,38 +93,36 @@ export const V2BulkElementResultErrorSchemas$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace V2BulkElementResultErrorSchemas$ {
-  /** @deprecated use `V2BulkElementResultErrorSchemas$inboundSchema` instead. */
-  export const inboundSchema = V2BulkElementResultErrorSchemas$inboundSchema;
-  /** @deprecated use `V2BulkElementResultErrorSchemas$outboundSchema` instead. */
-  export const outboundSchema = V2BulkElementResultErrorSchemas$outboundSchema;
-  /** @deprecated use `V2BulkElementResultErrorSchemas$Outbound` instead. */
-  export type Outbound = V2BulkElementResultErrorSchemas$Outbound;
+export namespace V2BulkElementResultError$ {
+  /** @deprecated use `V2BulkElementResultError$inboundSchema` instead. */
+  export const inboundSchema = V2BulkElementResultError$inboundSchema;
+  /** @deprecated use `V2BulkElementResultError$outboundSchema` instead. */
+  export const outboundSchema = V2BulkElementResultError$outboundSchema;
+  /** @deprecated use `V2BulkElementResultError$Outbound` instead. */
+  export type Outbound = V2BulkElementResultError$Outbound;
 }
 
-export function v2BulkElementResultErrorSchemasToJSON(
-  v2BulkElementResultErrorSchemas: V2BulkElementResultErrorSchemas,
+export function v2BulkElementResultErrorToJSON(
+  v2BulkElementResultError: V2BulkElementResultError,
 ): string {
   return JSON.stringify(
-    V2BulkElementResultErrorSchemas$outboundSchema.parse(
-      v2BulkElementResultErrorSchemas,
-    ),
+    V2BulkElementResultError$outboundSchema.parse(v2BulkElementResultError),
   );
 }
 
-export function v2BulkElementResultErrorSchemasFromJSON(
+export function v2BulkElementResultErrorFromJSON(
   jsonString: string,
-): SafeParseResult<V2BulkElementResultErrorSchemas, SDKValidationError> {
+): SafeParseResult<V2BulkElementResultError, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => V2BulkElementResultErrorSchemas$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2BulkElementResultErrorSchemas' from JSON`,
+    (x) => V2BulkElementResultError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultError' from JSON`,
   );
 }
 
 /** @internal */
-export const V2BulkElementResultDeleteMetadataSchemas$inboundSchema: z.ZodType<
-  V2BulkElementResultDeleteMetadataSchemas,
+export const V2BulkElementResultDeleteMetadata$inboundSchema: z.ZodType<
+  V2BulkElementResultDeleteMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -135,16 +131,16 @@ export const V2BulkElementResultDeleteMetadataSchemas$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type V2BulkElementResultDeleteMetadataSchemas$Outbound = {
+export type V2BulkElementResultDeleteMetadata$Outbound = {
   logID: number;
   responseType: string;
 };
 
 /** @internal */
-export const V2BulkElementResultDeleteMetadataSchemas$outboundSchema: z.ZodType<
-  V2BulkElementResultDeleteMetadataSchemas$Outbound,
+export const V2BulkElementResultDeleteMetadata$outboundSchema: z.ZodType<
+  V2BulkElementResultDeleteMetadata$Outbound,
   z.ZodTypeDef,
-  V2BulkElementResultDeleteMetadataSchemas
+  V2BulkElementResultDeleteMetadata
 > = z.object({
   logID: z.number().int(),
   responseType: z.string(),
@@ -154,135 +150,122 @@ export const V2BulkElementResultDeleteMetadataSchemas$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace V2BulkElementResultDeleteMetadataSchemas$ {
-  /** @deprecated use `V2BulkElementResultDeleteMetadataSchemas$inboundSchema` instead. */
-  export const inboundSchema =
-    V2BulkElementResultDeleteMetadataSchemas$inboundSchema;
-  /** @deprecated use `V2BulkElementResultDeleteMetadataSchemas$outboundSchema` instead. */
+export namespace V2BulkElementResultDeleteMetadata$ {
+  /** @deprecated use `V2BulkElementResultDeleteMetadata$inboundSchema` instead. */
+  export const inboundSchema = V2BulkElementResultDeleteMetadata$inboundSchema;
+  /** @deprecated use `V2BulkElementResultDeleteMetadata$outboundSchema` instead. */
   export const outboundSchema =
-    V2BulkElementResultDeleteMetadataSchemas$outboundSchema;
-  /** @deprecated use `V2BulkElementResultDeleteMetadataSchemas$Outbound` instead. */
-  export type Outbound = V2BulkElementResultDeleteMetadataSchemas$Outbound;
+    V2BulkElementResultDeleteMetadata$outboundSchema;
+  /** @deprecated use `V2BulkElementResultDeleteMetadata$Outbound` instead. */
+  export type Outbound = V2BulkElementResultDeleteMetadata$Outbound;
 }
 
-export function v2BulkElementResultDeleteMetadataSchemasToJSON(
-  v2BulkElementResultDeleteMetadataSchemas:
-    V2BulkElementResultDeleteMetadataSchemas,
+export function v2BulkElementResultDeleteMetadataToJSON(
+  v2BulkElementResultDeleteMetadata: V2BulkElementResultDeleteMetadata,
 ): string {
   return JSON.stringify(
-    V2BulkElementResultDeleteMetadataSchemas$outboundSchema.parse(
-      v2BulkElementResultDeleteMetadataSchemas,
+    V2BulkElementResultDeleteMetadata$outboundSchema.parse(
+      v2BulkElementResultDeleteMetadata,
     ),
   );
 }
 
-export function v2BulkElementResultDeleteMetadataSchemasFromJSON(
+export function v2BulkElementResultDeleteMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<
-  V2BulkElementResultDeleteMetadataSchemas,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultDeleteMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      V2BulkElementResultDeleteMetadataSchemas$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'V2BulkElementResultDeleteMetadataSchemas' from JSON`,
+    (x) => V2BulkElementResultDeleteMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultDeleteMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const V2BulkElementResultRevertTransactionSchemas$inboundSchema:
-  z.ZodType<
-    V2BulkElementResultRevertTransactionSchemas,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    data: V2Transaction$inboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultRevertTransaction$inboundSchema: z.ZodType<
+  V2BulkElementResultRevertTransaction,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: V2Transaction$inboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
 /** @internal */
-export type V2BulkElementResultRevertTransactionSchemas$Outbound = {
+export type V2BulkElementResultRevertTransaction$Outbound = {
   data: V2Transaction$Outbound;
   logID: number;
   responseType: string;
 };
 
 /** @internal */
-export const V2BulkElementResultRevertTransactionSchemas$outboundSchema:
-  z.ZodType<
-    V2BulkElementResultRevertTransactionSchemas$Outbound,
-    z.ZodTypeDef,
-    V2BulkElementResultRevertTransactionSchemas
-  > = z.object({
-    data: V2Transaction$outboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultRevertTransaction$outboundSchema: z.ZodType<
+  V2BulkElementResultRevertTransaction$Outbound,
+  z.ZodTypeDef,
+  V2BulkElementResultRevertTransaction
+> = z.object({
+  data: V2Transaction$outboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace V2BulkElementResultRevertTransactionSchemas$ {
-  /** @deprecated use `V2BulkElementResultRevertTransactionSchemas$inboundSchema` instead. */
+export namespace V2BulkElementResultRevertTransaction$ {
+  /** @deprecated use `V2BulkElementResultRevertTransaction$inboundSchema` instead. */
   export const inboundSchema =
-    V2BulkElementResultRevertTransactionSchemas$inboundSchema;
-  /** @deprecated use `V2BulkElementResultRevertTransactionSchemas$outboundSchema` instead. */
+    V2BulkElementResultRevertTransaction$inboundSchema;
+  /** @deprecated use `V2BulkElementResultRevertTransaction$outboundSchema` instead. */
   export const outboundSchema =
-    V2BulkElementResultRevertTransactionSchemas$outboundSchema;
-  /** @deprecated use `V2BulkElementResultRevertTransactionSchemas$Outbound` instead. */
-  export type Outbound = V2BulkElementResultRevertTransactionSchemas$Outbound;
+    V2BulkElementResultRevertTransaction$outboundSchema;
+  /** @deprecated use `V2BulkElementResultRevertTransaction$Outbound` instead. */
+  export type Outbound = V2BulkElementResultRevertTransaction$Outbound;
 }
 
-export function v2BulkElementResultRevertTransactionSchemasToJSON(
-  v2BulkElementResultRevertTransactionSchemas:
-    V2BulkElementResultRevertTransactionSchemas,
+export function v2BulkElementResultRevertTransactionToJSON(
+  v2BulkElementResultRevertTransaction: V2BulkElementResultRevertTransaction,
 ): string {
   return JSON.stringify(
-    V2BulkElementResultRevertTransactionSchemas$outboundSchema.parse(
-      v2BulkElementResultRevertTransactionSchemas,
+    V2BulkElementResultRevertTransaction$outboundSchema.parse(
+      v2BulkElementResultRevertTransaction,
     ),
   );
 }
 
-export function v2BulkElementResultRevertTransactionSchemasFromJSON(
+export function v2BulkElementResultRevertTransactionFromJSON(
   jsonString: string,
-): SafeParseResult<
-  V2BulkElementResultRevertTransactionSchemas,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultRevertTransaction, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      V2BulkElementResultRevertTransactionSchemas$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'V2BulkElementResultRevertTransactionSchemas' from JSON`,
+      V2BulkElementResultRevertTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultRevertTransaction' from JSON`,
   );
 }
 
 /** @internal */
-export const Schemas$inboundSchema: z.ZodType<Schemas, z.ZodTypeDef, unknown> =
-  z.object({
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultAddMetadata$inboundSchema: z.ZodType<
+  V2BulkElementResultAddMetadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
 /** @internal */
-export type Schemas$Outbound = {
+export type V2BulkElementResultAddMetadata$Outbound = {
   logID: number;
   responseType: string;
 };
 
 /** @internal */
-export const Schemas$outboundSchema: z.ZodType<
-  Schemas$Outbound,
+export const V2BulkElementResultAddMetadata$outboundSchema: z.ZodType<
+  V2BulkElementResultAddMetadata$Outbound,
   z.ZodTypeDef,
-  Schemas
+  V2BulkElementResultAddMetadata
 > = z.object({
   logID: z.number().int(),
   responseType: z.string(),
@@ -292,99 +275,97 @@ export const Schemas$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Schemas$ {
-  /** @deprecated use `Schemas$inboundSchema` instead. */
-  export const inboundSchema = Schemas$inboundSchema;
-  /** @deprecated use `Schemas$outboundSchema` instead. */
-  export const outboundSchema = Schemas$outboundSchema;
-  /** @deprecated use `Schemas$Outbound` instead. */
-  export type Outbound = Schemas$Outbound;
+export namespace V2BulkElementResultAddMetadata$ {
+  /** @deprecated use `V2BulkElementResultAddMetadata$inboundSchema` instead. */
+  export const inboundSchema = V2BulkElementResultAddMetadata$inboundSchema;
+  /** @deprecated use `V2BulkElementResultAddMetadata$outboundSchema` instead. */
+  export const outboundSchema = V2BulkElementResultAddMetadata$outboundSchema;
+  /** @deprecated use `V2BulkElementResultAddMetadata$Outbound` instead. */
+  export type Outbound = V2BulkElementResultAddMetadata$Outbound;
 }
 
-export function schemasToJSON(schemas: Schemas): string {
-  return JSON.stringify(Schemas$outboundSchema.parse(schemas));
+export function v2BulkElementResultAddMetadataToJSON(
+  v2BulkElementResultAddMetadata: V2BulkElementResultAddMetadata,
+): string {
+  return JSON.stringify(
+    V2BulkElementResultAddMetadata$outboundSchema.parse(
+      v2BulkElementResultAddMetadata,
+    ),
+  );
 }
 
-export function schemasFromJSON(
+export function v2BulkElementResultAddMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Schemas, SDKValidationError> {
+): SafeParseResult<V2BulkElementResultAddMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Schemas$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Schemas' from JSON`,
+    (x) => V2BulkElementResultAddMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultAddMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const V2BulkElementResultCreateTransactionSchemas$inboundSchema:
-  z.ZodType<
-    V2BulkElementResultCreateTransactionSchemas,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    data: V2Transaction$inboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultCreateTransaction$inboundSchema: z.ZodType<
+  V2BulkElementResultCreateTransaction,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: V2Transaction$inboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
 /** @internal */
-export type V2BulkElementResultCreateTransactionSchemas$Outbound = {
+export type V2BulkElementResultCreateTransaction$Outbound = {
   data: V2Transaction$Outbound;
   logID: number;
   responseType: string;
 };
 
 /** @internal */
-export const V2BulkElementResultCreateTransactionSchemas$outboundSchema:
-  z.ZodType<
-    V2BulkElementResultCreateTransactionSchemas$Outbound,
-    z.ZodTypeDef,
-    V2BulkElementResultCreateTransactionSchemas
-  > = z.object({
-    data: V2Transaction$outboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultCreateTransaction$outboundSchema: z.ZodType<
+  V2BulkElementResultCreateTransaction$Outbound,
+  z.ZodTypeDef,
+  V2BulkElementResultCreateTransaction
+> = z.object({
+  data: V2Transaction$outboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace V2BulkElementResultCreateTransactionSchemas$ {
-  /** @deprecated use `V2BulkElementResultCreateTransactionSchemas$inboundSchema` instead. */
+export namespace V2BulkElementResultCreateTransaction$ {
+  /** @deprecated use `V2BulkElementResultCreateTransaction$inboundSchema` instead. */
   export const inboundSchema =
-    V2BulkElementResultCreateTransactionSchemas$inboundSchema;
-  /** @deprecated use `V2BulkElementResultCreateTransactionSchemas$outboundSchema` instead. */
+    V2BulkElementResultCreateTransaction$inboundSchema;
+  /** @deprecated use `V2BulkElementResultCreateTransaction$outboundSchema` instead. */
   export const outboundSchema =
-    V2BulkElementResultCreateTransactionSchemas$outboundSchema;
-  /** @deprecated use `V2BulkElementResultCreateTransactionSchemas$Outbound` instead. */
-  export type Outbound = V2BulkElementResultCreateTransactionSchemas$Outbound;
+    V2BulkElementResultCreateTransaction$outboundSchema;
+  /** @deprecated use `V2BulkElementResultCreateTransaction$Outbound` instead. */
+  export type Outbound = V2BulkElementResultCreateTransaction$Outbound;
 }
 
-export function v2BulkElementResultCreateTransactionSchemasToJSON(
-  v2BulkElementResultCreateTransactionSchemas:
-    V2BulkElementResultCreateTransactionSchemas,
+export function v2BulkElementResultCreateTransactionToJSON(
+  v2BulkElementResultCreateTransaction: V2BulkElementResultCreateTransaction,
 ): string {
   return JSON.stringify(
-    V2BulkElementResultCreateTransactionSchemas$outboundSchema.parse(
-      v2BulkElementResultCreateTransactionSchemas,
+    V2BulkElementResultCreateTransaction$outboundSchema.parse(
+      v2BulkElementResultCreateTransaction,
     ),
   );
 }
 
-export function v2BulkElementResultCreateTransactionSchemasFromJSON(
+export function v2BulkElementResultCreateTransactionFromJSON(
   jsonString: string,
-): SafeParseResult<
-  V2BulkElementResultCreateTransactionSchemas,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultCreateTransaction, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      V2BulkElementResultCreateTransactionSchemas$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'V2BulkElementResultCreateTransactionSchemas' from JSON`,
+      V2BulkElementResultCreateTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultCreateTransaction' from JSON`,
   );
 }
 
@@ -394,28 +375,28 @@ export const V2BulkElementResult$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Schemas$inboundSchema).and(
-    z.object({ responseType: z.literal("ADD_METADATA") }).transform((v) => ({
+  z.lazy(() => V2BulkElementResultError$inboundSchema).and(
+    z.object({ responseType: z.literal("ERROR") }).transform((v) => ({
       responseType: v.responseType,
     })),
   ),
-  z.lazy(() => V2BulkElementResultDeleteMetadataSchemas$inboundSchema).and(
-    z.object({ responseType: z.literal("DELETE_METADATA") }).transform((v) => ({
-      responseType: v.responseType,
-    })),
-  ),
-  z.lazy(() => V2BulkElementResultCreateTransactionSchemas$inboundSchema).and(
+  z.lazy(() => V2BulkElementResultCreateTransaction$inboundSchema).and(
     z.object({ responseType: z.literal("CREATE_TRANSACTION") }).transform((
       v,
     ) => ({ responseType: v.responseType })),
   ),
-  z.lazy(() => V2BulkElementResultRevertTransactionSchemas$inboundSchema).and(
+  z.lazy(() => V2BulkElementResultRevertTransaction$inboundSchema).and(
     z.object({ responseType: z.literal("REVERT_TRANSACTION") }).transform((
       v,
     ) => ({ responseType: v.responseType })),
   ),
-  z.lazy(() => V2BulkElementResultErrorSchemas$inboundSchema).and(
-    z.object({ responseType: z.literal("ERROR") }).transform((v) => ({
+  z.lazy(() => V2BulkElementResultAddMetadata$inboundSchema).and(
+    z.object({ responseType: z.literal("ADD_METADATA") }).transform((v) => ({
+      responseType: v.responseType,
+    })),
+  ),
+  z.lazy(() => V2BulkElementResultDeleteMetadata$inboundSchema).and(
+    z.object({ responseType: z.literal("DELETE_METADATA") }).transform((v) => ({
       responseType: v.responseType,
     })),
   ),
@@ -423,17 +404,17 @@ export const V2BulkElementResult$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2BulkElementResult$Outbound =
-  | (Schemas$Outbound & { responseType: "ADD_METADATA" })
-  | (V2BulkElementResultDeleteMetadataSchemas$Outbound & {
-    responseType: "DELETE_METADATA";
-  })
-  | (V2BulkElementResultCreateTransactionSchemas$Outbound & {
+  | (V2BulkElementResultError$Outbound & { responseType: "ERROR" })
+  | (V2BulkElementResultCreateTransaction$Outbound & {
     responseType: "CREATE_TRANSACTION";
   })
-  | (V2BulkElementResultRevertTransactionSchemas$Outbound & {
+  | (V2BulkElementResultRevertTransaction$Outbound & {
     responseType: "REVERT_TRANSACTION";
   })
-  | (V2BulkElementResultErrorSchemas$Outbound & { responseType: "ERROR" });
+  | (V2BulkElementResultAddMetadata$Outbound & { responseType: "ADD_METADATA" })
+  | (V2BulkElementResultDeleteMetadata$Outbound & {
+    responseType: "DELETE_METADATA";
+  });
 
 /** @internal */
 export const V2BulkElementResult$outboundSchema: z.ZodType<
@@ -441,28 +422,28 @@ export const V2BulkElementResult$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementResult
 > = z.union([
-  z.lazy(() => Schemas$outboundSchema).and(
-    z.object({ responseType: z.literal("ADD_METADATA") }).transform((v) => ({
+  z.lazy(() => V2BulkElementResultError$outboundSchema).and(
+    z.object({ responseType: z.literal("ERROR") }).transform((v) => ({
       responseType: v.responseType,
     })),
   ),
-  z.lazy(() => V2BulkElementResultDeleteMetadataSchemas$outboundSchema).and(
-    z.object({ responseType: z.literal("DELETE_METADATA") }).transform((v) => ({
-      responseType: v.responseType,
-    })),
-  ),
-  z.lazy(() => V2BulkElementResultCreateTransactionSchemas$outboundSchema).and(
+  z.lazy(() => V2BulkElementResultCreateTransaction$outboundSchema).and(
     z.object({ responseType: z.literal("CREATE_TRANSACTION") }).transform((
       v,
     ) => ({ responseType: v.responseType })),
   ),
-  z.lazy(() => V2BulkElementResultRevertTransactionSchemas$outboundSchema).and(
+  z.lazy(() => V2BulkElementResultRevertTransaction$outboundSchema).and(
     z.object({ responseType: z.literal("REVERT_TRANSACTION") }).transform((
       v,
     ) => ({ responseType: v.responseType })),
   ),
-  z.lazy(() => V2BulkElementResultErrorSchemas$outboundSchema).and(
-    z.object({ responseType: z.literal("ERROR") }).transform((v) => ({
+  z.lazy(() => V2BulkElementResultAddMetadata$outboundSchema).and(
+    z.object({ responseType: z.literal("ADD_METADATA") }).transform((v) => ({
+      responseType: v.responseType,
+    })),
+  ),
+  z.lazy(() => V2BulkElementResultDeleteMetadata$outboundSchema).and(
+    z.object({ responseType: z.literal("DELETE_METADATA") }).transform((v) => ({
       responseType: v.responseType,
     })),
   ),

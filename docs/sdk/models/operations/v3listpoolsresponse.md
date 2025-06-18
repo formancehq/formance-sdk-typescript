@@ -5,31 +5,7 @@
 ```typescript
 import { V3ListPoolsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListPoolsResponse = {
-  contentType: "<value>",
-  statusCode: 203,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v3PoolsCursorResponse: {
-    cursor: {
-      data: [
-        {
-          createdAt: new Date("2024-05-04T18:39:05.975Z"),
-          id: "<id>",
-          name: "<value>",
-          poolAccounts: [
-            "<value>",
-          ],
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V3ListPoolsResponse = {};
 ```
 
 ## Fields

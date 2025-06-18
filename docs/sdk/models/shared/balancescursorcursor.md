@@ -6,16 +6,7 @@
 import { BalancesCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BalancesCursorCursor = {
-  data: [
-    {
-      accountId: "<id>",
-      asset: "<value>",
-      balance: BigInt("753043"),
-      createdAt: new Date("2023-01-07T12:12:46.716Z"),
-      currency: "Kenyan Shilling",
-      lastUpdatedAt: new Date("2024-01-05T23:44:25.788Z"),
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

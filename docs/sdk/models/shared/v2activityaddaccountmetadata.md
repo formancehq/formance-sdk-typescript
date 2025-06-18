@@ -8,9 +8,7 @@ import { V2ActivityAddAccountMetadata } from "@formance/formance-sdk/sdk/models/
 let value: V2ActivityAddAccountMetadata = {
   id: "<id>",
   ledger: "<value>",
-  metadata: {
-    "key": "<value>",
-  },
+  metadata: {},
 };
 ```
 

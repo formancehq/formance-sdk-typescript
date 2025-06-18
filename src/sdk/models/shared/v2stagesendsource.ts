@@ -7,28 +7,28 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V2StageSendSourceAccount,
-  V2StageSendSourceAccount$inboundSchema,
-  V2StageSendSourceAccount$Outbound,
-  V2StageSendSourceAccount$outboundSchema,
-} from "./v2stagesendsourceaccount.js";
+  V2StageSendDestinationAccount,
+  V2StageSendDestinationAccount$inboundSchema,
+  V2StageSendDestinationAccount$Outbound,
+  V2StageSendDestinationAccount$outboundSchema,
+} from "./v2stagesenddestinationaccount.js";
+import {
+  V2StageSendDestinationWallet,
+  V2StageSendDestinationWallet$inboundSchema,
+  V2StageSendDestinationWallet$Outbound,
+  V2StageSendDestinationWallet$outboundSchema,
+} from "./v2stagesenddestinationwallet.js";
 import {
   V2StageSendSourcePayment,
   V2StageSendSourcePayment$inboundSchema,
   V2StageSendSourcePayment$Outbound,
   V2StageSendSourcePayment$outboundSchema,
 } from "./v2stagesendsourcepayment.js";
-import {
-  V2StageSendSourceWallet,
-  V2StageSendSourceWallet$inboundSchema,
-  V2StageSendSourceWallet$Outbound,
-  V2StageSendSourceWallet$outboundSchema,
-} from "./v2stagesendsourcewallet.js";
 
 export type V2StageSendSource = {
-  account?: V2StageSendSourceAccount | undefined;
+  account?: V2StageSendDestinationAccount | undefined;
   payment?: V2StageSendSourcePayment | undefined;
-  wallet?: V2StageSendSourceWallet | undefined;
+  wallet?: V2StageSendDestinationWallet | undefined;
 };
 
 /** @internal */
@@ -37,16 +37,16 @@ export const V2StageSendSource$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account: V2StageSendSourceAccount$inboundSchema.optional(),
+  account: V2StageSendDestinationAccount$inboundSchema.optional(),
   payment: V2StageSendSourcePayment$inboundSchema.optional(),
-  wallet: V2StageSendSourceWallet$inboundSchema.optional(),
+  wallet: V2StageSendDestinationWallet$inboundSchema.optional(),
 });
 
 /** @internal */
 export type V2StageSendSource$Outbound = {
-  account?: V2StageSendSourceAccount$Outbound | undefined;
+  account?: V2StageSendDestinationAccount$Outbound | undefined;
   payment?: V2StageSendSourcePayment$Outbound | undefined;
-  wallet?: V2StageSendSourceWallet$Outbound | undefined;
+  wallet?: V2StageSendDestinationWallet$Outbound | undefined;
 };
 
 /** @internal */
@@ -55,9 +55,9 @@ export const V2StageSendSource$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2StageSendSource
 > = z.object({
-  account: V2StageSendSourceAccount$outboundSchema.optional(),
+  account: V2StageSendDestinationAccount$outboundSchema.optional(),
   payment: V2StageSendSourcePayment$outboundSchema.optional(),
-  wallet: V2StageSendSourceWallet$outboundSchema.optional(),
+  wallet: V2StageSendDestinationWallet$outboundSchema.optional(),
 });
 
 /**

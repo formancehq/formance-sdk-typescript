@@ -15,10 +15,6 @@ export type PaymentsgetServerInfoResponse = {
    */
   contentType: string;
   /**
-   * Server information
-   */
-  serverInfo?: shared.ServerInfo | undefined;
-  /**
    * HTTP response status code for this operation
    */
   statusCode: number;
@@ -26,6 +22,10 @@ export type PaymentsgetServerInfoResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
+  /**
+   * Server information
+   */
+  paymentsServerInfo?: shared.PaymentsServerInfo | undefined;
 };
 
 /** @internal */
@@ -35,13 +35,12 @@ export const PaymentsgetServerInfoResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  ServerInfo: shared.ServerInfo$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
+  paymentsServerInfo: shared.PaymentsServerInfo$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
-    "ServerInfo": "serverInfo",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
   });
@@ -50,9 +49,9 @@ export const PaymentsgetServerInfoResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type PaymentsgetServerInfoResponse$Outbound = {
   ContentType: string;
-  ServerInfo?: shared.ServerInfo$Outbound | undefined;
   StatusCode: number;
   RawResponse: never;
+  paymentsServerInfo?: shared.PaymentsServerInfo$Outbound | undefined;
 };
 
 /** @internal */
@@ -62,15 +61,14 @@ export const PaymentsgetServerInfoResponse$outboundSchema: z.ZodType<
   PaymentsgetServerInfoResponse
 > = z.object({
   contentType: z.string(),
-  serverInfo: shared.ServerInfo$outboundSchema.optional(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
+  paymentsServerInfo: shared.PaymentsServerInfo$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",
-    serverInfo: "ServerInfo",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
   });

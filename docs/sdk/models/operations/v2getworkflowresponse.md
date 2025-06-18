@@ -5,13 +5,7 @@
 ```typescript
 import { V2GetWorkflowResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetWorkflowResponse = {
-  contentType: "<value>",
-  statusCode: 201,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V2GetWorkflowResponse = {};
 ```
 
 ## Fields

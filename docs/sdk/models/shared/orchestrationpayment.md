@@ -13,26 +13,26 @@ import {
 let value: OrchestrationPayment = {
   adjustments: [
     {
-      absolute: false,
-      amount: BigInt("100"),
-      date: new Date("2024-10-28T02:02:29.593Z"),
+      absolute: true,
+      amount: 100n,
+      date: new Date("2024-10-09T23:24:55.455Z"),
       raw: {},
-      status: OrchestrationPaymentStatus.Terminated,
+      status: OrchestrationPaymentStatus.Cancelled,
     },
   ],
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2023-01-15T14:16:01.354Z"),
+  createdAt: new Date("2024-03-15T09:58:07.783Z"),
   destinationAccountID: "<id>",
   id: "XXX",
-  initialAmount: BigInt("100"),
+  initialAmount: 100n,
   metadata: {},
   raw: {},
   reference: "<value>",
-  scheme: OrchestrationPaymentScheme.ApplePay,
+  scheme: OrchestrationPaymentScheme.Unknown,
   sourceAccountID: "<id>",
-  status: OrchestrationPaymentStatus.Cancelled,
-  type: OrchestrationPaymentType.Other,
+  status: OrchestrationPaymentStatus.Active,
+  type: OrchestrationPaymentType.Payout,
 };
 ```
 

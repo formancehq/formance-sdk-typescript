@@ -6,8 +6,9 @@
 import { V3DummypayConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3DummypayConfig = {
-  directory: "/lib",
+  directory: "/var/mail",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

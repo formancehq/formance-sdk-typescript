@@ -3,8 +3,9 @@
  */
 
 import * as z from "zod";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
-export enum ErrorCode {
+export enum ErrorErrorCode {
   Validation = "VALIDATION",
   NotFound = "NOT_FOUND",
   Internal = "INTERNAL",
@@ -14,27 +15,29 @@ export enum ErrorCode {
  * General error
  */
 export type ErrorTData = {
-  errorCode: ErrorCode;
+  errorCode: ErrorErrorCode;
   errorMessage: string;
 };
 
 /**
  * General error
  */
-export class ErrorT extends Error {
-  errorCode: ErrorCode;
+export class ErrorT extends SDKBaseError {
+  errorCode: ErrorErrorCode;
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */
   data$: ErrorTData;
 
-  constructor(err: ErrorTData) {
+  constructor(
+    err: ErrorTData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
 
@@ -43,32 +46,41 @@ export class ErrorT extends Error {
 }
 
 /** @internal */
-export const ErrorCode$inboundSchema: z.ZodNativeEnum<typeof ErrorCode> = z
-  .nativeEnum(ErrorCode);
+export const ErrorErrorCode$inboundSchema: z.ZodNativeEnum<
+  typeof ErrorErrorCode
+> = z.nativeEnum(ErrorErrorCode);
 
 /** @internal */
-export const ErrorCode$outboundSchema: z.ZodNativeEnum<typeof ErrorCode> =
-  ErrorCode$inboundSchema;
+export const ErrorErrorCode$outboundSchema: z.ZodNativeEnum<
+  typeof ErrorErrorCode
+> = ErrorErrorCode$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace ErrorCode$ {
-  /** @deprecated use `ErrorCode$inboundSchema` instead. */
-  export const inboundSchema = ErrorCode$inboundSchema;
-  /** @deprecated use `ErrorCode$outboundSchema` instead. */
-  export const outboundSchema = ErrorCode$outboundSchema;
+export namespace ErrorErrorCode$ {
+  /** @deprecated use `ErrorErrorCode$inboundSchema` instead. */
+  export const inboundSchema = ErrorErrorCode$inboundSchema;
+  /** @deprecated use `ErrorErrorCode$outboundSchema` instead. */
+  export const outboundSchema = ErrorErrorCode$outboundSchema;
 }
 
 /** @internal */
 export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
   .object({
-    errorCode: ErrorCode$inboundSchema,
+    errorCode: ErrorErrorCode$inboundSchema,
     errorMessage: z.string(),
+    request$: z.instanceof(Request),
+    response$: z.instanceof(Response),
+    body$: z.string(),
   })
   .transform((v) => {
-    return new ErrorT(v);
+    return new ErrorT(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -85,7 +97,7 @@ export const ErrorT$outboundSchema: z.ZodType<
 > = z.instanceof(ErrorT)
   .transform(v => v.data$)
   .pipe(z.object({
-    errorCode: ErrorCode$outboundSchema,
+    errorCode: ErrorErrorCode$outboundSchema,
     errorMessage: z.string(),
   }));
 

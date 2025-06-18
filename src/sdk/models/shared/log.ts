@@ -7,7 +7,7 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export enum Type {
+export enum LogType {
   NewTransaction = "NEW_TRANSACTION",
   SetMetadata = "SET_METADATA",
 }
@@ -17,27 +17,26 @@ export type Log = {
   date: Date;
   hash: string;
   id: number;
-  type: Type;
+  type: LogType;
 };
 
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
-  Type,
-);
+export const LogType$inboundSchema: z.ZodNativeEnum<typeof LogType> = z
+  .nativeEnum(LogType);
 
 /** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
+export const LogType$outboundSchema: z.ZodNativeEnum<typeof LogType> =
+  LogType$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
+export namespace LogType$ {
+  /** @deprecated use `LogType$inboundSchema` instead. */
+  export const inboundSchema = LogType$inboundSchema;
+  /** @deprecated use `LogType$outboundSchema` instead. */
+  export const outboundSchema = LogType$outboundSchema;
 }
 
 /** @internal */
@@ -47,7 +46,7 @@ export const Log$inboundSchema: z.ZodType<Log, z.ZodTypeDef, unknown> = z
     date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
     hash: z.string(),
     id: z.number().int(),
-    type: Type$inboundSchema,
+    type: LogType$inboundSchema,
   });
 
 /** @internal */
@@ -66,7 +65,7 @@ export const Log$outboundSchema: z.ZodType<Log$Outbound, z.ZodTypeDef, Log> = z
     date: z.date().transform(v => v.toISOString()),
     hash: z.string(),
     id: z.number().int(),
-    type: Type$outboundSchema,
+    type: LogType$outboundSchema,
   });
 
 /**

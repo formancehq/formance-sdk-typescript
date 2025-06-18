@@ -5,13 +5,7 @@
 ```typescript
 import { V3GetConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3GetConnectorConfigResponse = {
-  contentType: "<value>",
-  statusCode: 421,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3GetConnectorConfigResponse = {};
 ```
 
 ## Fields

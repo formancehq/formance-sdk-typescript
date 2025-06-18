@@ -9,24 +9,24 @@ let value: AttemptResponse = {
   data: {
     config: {
       active: true,
-      createdAt: new Date("2025-05-17T05:55:31.078Z"),
+      createdAt: new Date("2023-07-04T21:48:22.124Z"),
       endpoint: "https://example.com",
       eventTypes: [
         "TYPE1",
         "TYPE2",
       ],
-      id: "9459b68e-a812-4391-805b-bcb9739a1918",
+      id: "8632b3d4-b624-4cd0-8286-c8bbbd5a999f",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2023-05-11T10:31:56.444Z"),
+      updatedAt: new Date("2023-06-29T22:55:29.320Z"),
     },
-    createdAt: new Date("2023-05-04T22:59:01.944Z"),
-    id: "e94182c7-b6ba-48d9-994e-8682448b428d",
+    createdAt: new Date("2025-04-14T09:43:04.593Z"),
+    id: "1e575769-e005-401b-be00-67706c5f1f6c",
     payload: "{\"data\":\"test\"}",
     retryAttempt: 1,
     status: "success",
     statusCode: 200,
-    updatedAt: new Date("2024-06-05T10:43:50.149Z"),
-    webhookID: "4c12fa8c-f3c5-4bbf-b10b-9bc75c69e204",
+    updatedAt: new Date("2023-10-11T04:47:16.396Z"),
+    webhookID: "16c72c96-cbb3-40c5-be46-e81556a05261",
   },
 };
 ```

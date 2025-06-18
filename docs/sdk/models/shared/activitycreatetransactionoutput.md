@@ -7,21 +7,14 @@ import { ActivityCreateTransactionOutput } from "@formance/formance-sdk/sdk/mode
 
 let value: ActivityCreateTransactionOutput = {
   data: {
-    id: BigInt("338514"),
+    id: 194985n,
     metadata: {
       "admin": "true",
     },
-    postings: [
-      {
-        amount: BigInt("100"),
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
+    postings: [],
     reference: "ref:001",
-    reverted: false,
-    timestamp: new Date("2024-09-24T22:27:35.031Z"),
+    reverted: true,
+    timestamp: new Date("2024-09-30T06:28:56.548Z"),
   },
 };
 ```

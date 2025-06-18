@@ -13,7 +13,7 @@ let value: V2BulkElementCreateTransaction = {
     },
     postings: [
       {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "COIN",
         destination: "users:002",
         source: "users:001",

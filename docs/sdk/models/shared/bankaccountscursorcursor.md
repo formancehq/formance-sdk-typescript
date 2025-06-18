@@ -6,14 +6,7 @@
 import { BankAccountsCursorCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BankAccountsCursorCursor = {
-  data: [
-    {
-      country: "Canada",
-      createdAt: new Date("2025-11-22T15:42:40.032Z"),
-      id: "<id>",
-      name: "<value>",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

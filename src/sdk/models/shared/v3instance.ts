@@ -10,12 +10,12 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type V3Instance = {
   connectorID: string;
   createdAt: Date;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   scheduleID: string;
   terminated: boolean;
   terminatedAt?: Date | undefined;
-  updatedAt?: Date | undefined;
+  updatedAt: Date;
 };
 
 /** @internal */
@@ -26,27 +26,26 @@ export const V3Instance$inboundSchema: z.ZodType<
 > = z.object({
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   scheduleID: z.string(),
   terminated: z.boolean(),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-  updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
-    .optional(),
+  updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
 });
 
 /** @internal */
 export type V3Instance$Outbound = {
   connectorID: string;
   createdAt: string;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   scheduleID: string;
   terminated: boolean;
   terminatedAt?: string | undefined;
-  updatedAt?: string | undefined;
+  updatedAt: string;
 };
 
 /** @internal */
@@ -57,12 +56,12 @@ export const V3Instance$outboundSchema: z.ZodType<
 > = z.object({
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   scheduleID: z.string(),
   terminated: z.boolean(),
   terminatedAt: z.date().transform(v => v.toISOString()).optional(),
-  updatedAt: z.date().transform(v => v.toISOString()).optional(),
+  updatedAt: z.date().transform(v => v.toISOString()),
 });
 
 /**

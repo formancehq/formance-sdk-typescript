@@ -13,16 +13,17 @@ let value: AccountsCursor = {
       {
         accountName: "<value>",
         connectorID: "<id>",
-        createdAt: new Date("2024-01-06T13:27:24.144Z"),
+        createdAt: new Date("2023-03-08T12:42:25.690Z"),
         defaultAsset: "<value>",
         defaultCurrency: "<value>",
         id: "<id>",
         metadata: {
           "key": "<value>",
+          "key1": "<value>",
         },
-        raw: {},
+        raw: null,
         reference: "<value>",
-        type: AccountType.Internal,
+        type: AccountType.External,
       },
     ],
     hasMore: false,
@@ -35,6 +36,6 @@ let value: AccountsCursor = {
 
 ## Fields
 
-| Field                                                 | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `cursor`                                              | [shared.Cursor](../../../sdk/models/shared/cursor.md) | :heavy_check_mark:                                    | N/A                                                   |
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `cursor`                                                                          | [shared.AccountsCursorCursor](../../../sdk/models/shared/accountscursorcursor.md) | :heavy_check_mark:                                                                | N/A                                                                               |

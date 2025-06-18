@@ -10,16 +10,10 @@ import { ReconciliationResponse } from "@formance/formance-sdk/sdk/models/shared
 let value: ReconciliationResponse = {
   data: {
     createdAt: new Date("2021-01-01T00:00:00.000Z"),
-    driftBalances: {
-      "key": BigInt("314552"),
-    },
+    driftBalances: {},
     id: "XXX",
-    ledgerBalances: {
-      "key": BigInt("303356"),
-    },
-    paymentsBalances: {
-      "key": BigInt("130205"),
-    },
+    ledgerBalances: {},
+    paymentsBalances: {},
     policyID: "XXX",
     reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
     reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),

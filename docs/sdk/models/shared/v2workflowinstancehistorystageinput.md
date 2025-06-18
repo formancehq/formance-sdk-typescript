@@ -13,7 +13,7 @@ let value: V2WorkflowInstanceHistoryStageInput = {
       },
       postings: [
         {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -38,7 +38,7 @@ let value: V2WorkflowInstanceHistoryStageInput = {
   creditWallet: {
     data: {
       amount: {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "USD/2",
       },
       metadata: {
@@ -50,7 +50,7 @@ let value: V2WorkflowInstanceHistoryStageInput = {
   debitWallet: {
     data: {
       amount: {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "USD/2",
       },
       metadata: {
@@ -60,7 +60,7 @@ let value: V2WorkflowInstanceHistoryStageInput = {
     },
   },
   stripeTransfer: {
-    amount: BigInt("100"),
+    amount: 100n,
     asset: "USD",
     destination: "acct_1Gqj58KZcSIg2N2q",
     metadata: {},

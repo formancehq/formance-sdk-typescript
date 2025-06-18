@@ -7,7 +7,7 @@ import { V3CreatePoolRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3CreatePoolRequest = {
   accountIDs: [
-    "<value>",
+    "<value 1>",
   ],
   name: "<value>",
 };

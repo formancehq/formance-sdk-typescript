@@ -24,7 +24,7 @@ export type TaskStripe = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskStripeDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskStripeState | null | undefined;
   status: TaskStatus;
@@ -146,7 +146,7 @@ export const TaskStripe$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskStripeDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskStripeState$inboundSchema)).optional(),
   status: TaskStatus$inboundSchema,
@@ -158,7 +158,7 @@ export type TaskStripe$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskStripeDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskStripeState$Outbound | null | undefined;
   status: string;
@@ -174,7 +174,7 @@ export const TaskStripe$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskStripeDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskStripeState$outboundSchema)).optional(),
   status: TaskStatus$outboundSchema,

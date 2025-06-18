@@ -5,13 +5,7 @@
 ```typescript
 import { V2SendEventResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2SendEventResponse = {
-  contentType: "<value>",
-  statusCode: 306,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V2SendEventResponse = {};
 ```
 
 ## Fields

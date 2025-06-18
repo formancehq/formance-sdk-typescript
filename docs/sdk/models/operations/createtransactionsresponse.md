@@ -5,62 +5,7 @@
 ```typescript
 import { CreateTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateTransactionsResponse = {
-  contentType: "<value>",
-  statusCode: 208,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  transactionsResponse: {
-    data: [
-      {
-        postCommitVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        postings: [
-          {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
-        preCommitVolumes: {
-          "orders:1": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-          "orders:2": {
-            "USD": {
-              balance: BigInt("90"),
-              input: BigInt("100"),
-              output: BigInt("10"),
-            },
-          },
-        },
-        reference: "ref:001",
-        timestamp: new Date("2024-03-10T13:41:13.226Z"),
-        txid: BigInt("881104"),
-      },
-    ],
-  },
-};
+let value: CreateTransactionsResponse = {};
 ```
 
 ## Fields

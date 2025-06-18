@@ -5,13 +5,7 @@
 ```typescript
 import { GetOIDCWellKnownsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetOIDCWellKnownsResponse = {
-  contentType: "<value>",
-  statusCode: 415,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetOIDCWellKnownsResponse = {};
 ```
 
 ## Fields

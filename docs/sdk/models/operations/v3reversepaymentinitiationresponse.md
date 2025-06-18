@@ -5,13 +5,7 @@
 ```typescript
 import { V3ReversePaymentInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ReversePaymentInitiationResponse = {
-  contentType: "<value>",
-  statusCode: 409,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3ReversePaymentInitiationResponse = {};
 ```
 
 ## Fields

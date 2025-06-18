@@ -6,38 +6,7 @@
 import { V2AccountsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2AccountsCursorResponseCursor = {
-  data: [
-    {
-      address: "users:001",
-      effectiveVolumes: {
-        "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
-        },
-        "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
-        },
-      },
-      metadata: {
-        "admin": "true",
-      },
-      volumes: {
-        "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
-        },
-        "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
-        },
-      },
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

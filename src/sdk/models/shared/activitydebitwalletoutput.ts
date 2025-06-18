@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Hold,
-  Hold$inboundSchema,
-  Hold$Outbound,
-  Hold$outboundSchema,
-} from "./hold.js";
+  OrchestrationHold,
+  OrchestrationHold$inboundSchema,
+  OrchestrationHold$Outbound,
+  OrchestrationHold$outboundSchema,
+} from "./orchestrationhold.js";
 
 export type ActivityDebitWalletOutput = {
-  data: Hold;
+  data: OrchestrationHold;
 };
 
 /** @internal */
@@ -23,12 +23,12 @@ export const ActivityDebitWalletOutput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: Hold$inboundSchema,
+  data: OrchestrationHold$inboundSchema,
 });
 
 /** @internal */
 export type ActivityDebitWalletOutput$Outbound = {
-  data: Hold$Outbound;
+  data: OrchestrationHold$Outbound;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export const ActivityDebitWalletOutput$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ActivityDebitWalletOutput
 > = z.object({
-  data: Hold$outboundSchema,
+  data: OrchestrationHold$outboundSchema,
 });
 
 /**

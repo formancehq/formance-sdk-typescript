@@ -6,10 +6,10 @@
 import { V2WorkflowInstance } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstance = {
-  createdAt: new Date("2023-09-19T15:47:11.283Z"),
+  createdAt: new Date("2025-08-09T23:10:58.132Z"),
   id: "<id>",
   terminated: false,
-  updatedAt: new Date("2025-10-31T10:26:27.251Z"),
+  updatedAt: new Date("2023-03-03T09:19:28.314Z"),
   workflowID: "<id>",
 };
 ```

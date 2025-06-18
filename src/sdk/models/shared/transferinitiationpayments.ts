@@ -7,16 +7,16 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  TransferInitiationStatus,
-  TransferInitiationStatus$inboundSchema,
-  TransferInitiationStatus$outboundSchema,
-} from "./transferinitiationstatus.js";
+  PaymentStatus,
+  PaymentStatus$inboundSchema,
+  PaymentStatus$outboundSchema,
+} from "./paymentstatus.js";
 
 export type TransferInitiationPayments = {
   createdAt: Date;
-  error: string;
+  error?: string | null | undefined;
   paymentID: string;
-  status: TransferInitiationStatus;
+  status: PaymentStatus;
 };
 
 /** @internal */
@@ -26,15 +26,15 @@ export const TransferInitiationPayments$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   paymentID: z.string(),
-  status: TransferInitiationStatus$inboundSchema,
+  status: PaymentStatus$inboundSchema,
 });
 
 /** @internal */
 export type TransferInitiationPayments$Outbound = {
   createdAt: string;
-  error: string;
+  error?: string | null | undefined;
   paymentID: string;
   status: string;
 };
@@ -46,9 +46,9 @@ export const TransferInitiationPayments$outboundSchema: z.ZodType<
   TransferInitiationPayments
 > = z.object({
   createdAt: z.date().transform(v => v.toISOString()),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   paymentID: z.string(),
-  status: TransferInitiationStatus$outboundSchema,
+  status: PaymentStatus$outboundSchema,
 });
 
 /**

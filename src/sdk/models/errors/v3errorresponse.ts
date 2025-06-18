@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import * as shared from "../shared/index.js";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
 export type V3ErrorResponseData = {
   details?: string | undefined;
@@ -11,7 +12,7 @@ export type V3ErrorResponseData = {
   errorMessage: string;
 };
 
-export class V3ErrorResponse extends Error {
+export class V3ErrorResponse extends SDKBaseError {
   details?: string | undefined;
   errorCode: shared.V3ErrorsEnum;
   errorMessage: string;
@@ -19,13 +20,15 @@ export class V3ErrorResponse extends Error {
   /** The original data that was passed to this error instance. */
   data$: V3ErrorResponseData;
 
-  constructor(err: V3ErrorResponseData) {
+  constructor(
+    err: V3ErrorResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.details != null) this.details = err.details;
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
@@ -43,9 +46,16 @@ export const V3ErrorResponse$inboundSchema: z.ZodType<
   details: z.string().optional(),
   errorCode: shared.V3ErrorsEnum$inboundSchema,
   errorMessage: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new V3ErrorResponse(v);
+    return new V3ErrorResponse(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -6,7 +6,7 @@
 import { V2GetTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2GetTransactionRequest = {
-  id: BigInt("1234"),
+  id: 1234n,
   ledger: "ledger001",
 };
 ```

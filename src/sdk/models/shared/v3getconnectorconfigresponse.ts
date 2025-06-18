@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V3ConnectorConfig,
-  V3ConnectorConfig$inboundSchema,
-  V3ConnectorConfig$Outbound,
-  V3ConnectorConfig$outboundSchema,
-} from "./v3connectorconfig.js";
+  V3InstallConnectorRequest,
+  V3InstallConnectorRequest$inboundSchema,
+  V3InstallConnectorRequest$Outbound,
+  V3InstallConnectorRequest$outboundSchema,
+} from "./v3installconnectorrequest.js";
 
 export type V3GetConnectorConfigResponse = {
-  data: V3ConnectorConfig;
+  data: V3InstallConnectorRequest;
 };
 
 /** @internal */
@@ -23,12 +23,12 @@ export const V3GetConnectorConfigResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V3ConnectorConfig$inboundSchema,
+  data: V3InstallConnectorRequest$inboundSchema,
 });
 
 /** @internal */
 export type V3GetConnectorConfigResponse$Outbound = {
-  data: V3ConnectorConfig$Outbound;
+  data: V3InstallConnectorRequest$Outbound;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export const V3GetConnectorConfigResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3GetConnectorConfigResponse
 > = z.object({
-  data: V3ConnectorConfig$outboundSchema,
+  data: V3InstallConnectorRequest$outboundSchema,
 });
 
 /**

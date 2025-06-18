@@ -48,7 +48,7 @@ export type V2RevertTransactionResponse = {
   /**
    * OK
    */
-  v2RevertTransactionResponse?: shared.V2RevertTransactionResponse | undefined;
+  v2CreateTransactionResponse?: shared.V2CreateTransactionResponse | undefined;
 };
 
 /** @internal */
@@ -126,14 +126,14 @@ export const V2RevertTransactionResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2RevertTransactionResponse: shared.V2RevertTransactionResponse$inboundSchema
+  V2CreateTransactionResponse: shared.V2CreateTransactionResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "V2RevertTransactionResponse": "v2RevertTransactionResponse",
+    "V2CreateTransactionResponse": "v2CreateTransactionResponse",
   });
 });
 
@@ -142,8 +142,8 @@ export type V2RevertTransactionResponse$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
-  V2RevertTransactionResponse?:
-    | shared.V2RevertTransactionResponse$Outbound
+  V2CreateTransactionResponse?:
+    | shared.V2CreateTransactionResponse$Outbound
     | undefined;
 };
 
@@ -158,14 +158,14 @@ export const V2RevertTransactionResponse$outboundSchema: z.ZodType<
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
-  v2RevertTransactionResponse: shared.V2RevertTransactionResponse$outboundSchema
+  v2CreateTransactionResponse: shared.V2CreateTransactionResponse$outboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
-    v2RevertTransactionResponse: "V2RevertTransactionResponse",
+    v2CreateTransactionResponse: "V2CreateTransactionResponse",
   });
 });
 

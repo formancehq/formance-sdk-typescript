@@ -11,22 +11,22 @@ let value: TransactionsCursorResponseCursor = {
       postCommitVolumes: {
         "orders:1": {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
         "orders:2": {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
       },
       postings: [
         {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "COIN",
           destination: "users:002",
           source: "users:001",
@@ -35,22 +35,22 @@ let value: TransactionsCursorResponseCursor = {
       preCommitVolumes: {
         "orders:1": {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
         "orders:2": {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
       },
       reference: "ref:001",
-      timestamp: new Date("2023-02-11T16:43:38.291Z"),
-      txid: BigInt("956545"),
+      timestamp: new Date("2023-08-27T16:16:15.405Z"),
+      txid: 837007n,
     },
   ],
   hasMore: false,

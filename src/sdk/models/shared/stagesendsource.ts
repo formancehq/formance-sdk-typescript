@@ -7,28 +7,28 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  StageSendSourceAccount,
-  StageSendSourceAccount$inboundSchema,
-  StageSendSourceAccount$Outbound,
-  StageSendSourceAccount$outboundSchema,
-} from "./stagesendsourceaccount.js";
+  StageSendDestinationAccount,
+  StageSendDestinationAccount$inboundSchema,
+  StageSendDestinationAccount$Outbound,
+  StageSendDestinationAccount$outboundSchema,
+} from "./stagesenddestinationaccount.js";
+import {
+  StageSendDestinationWallet,
+  StageSendDestinationWallet$inboundSchema,
+  StageSendDestinationWallet$Outbound,
+  StageSendDestinationWallet$outboundSchema,
+} from "./stagesenddestinationwallet.js";
 import {
   StageSendSourcePayment,
   StageSendSourcePayment$inboundSchema,
   StageSendSourcePayment$Outbound,
   StageSendSourcePayment$outboundSchema,
 } from "./stagesendsourcepayment.js";
-import {
-  StageSendSourceWallet,
-  StageSendSourceWallet$inboundSchema,
-  StageSendSourceWallet$Outbound,
-  StageSendSourceWallet$outboundSchema,
-} from "./stagesendsourcewallet.js";
 
 export type StageSendSource = {
-  account?: StageSendSourceAccount | undefined;
+  account?: StageSendDestinationAccount | undefined;
   payment?: StageSendSourcePayment | undefined;
-  wallet?: StageSendSourceWallet | undefined;
+  wallet?: StageSendDestinationWallet | undefined;
 };
 
 /** @internal */
@@ -37,16 +37,16 @@ export const StageSendSource$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account: StageSendSourceAccount$inboundSchema.optional(),
+  account: StageSendDestinationAccount$inboundSchema.optional(),
   payment: StageSendSourcePayment$inboundSchema.optional(),
-  wallet: StageSendSourceWallet$inboundSchema.optional(),
+  wallet: StageSendDestinationWallet$inboundSchema.optional(),
 });
 
 /** @internal */
 export type StageSendSource$Outbound = {
-  account?: StageSendSourceAccount$Outbound | undefined;
+  account?: StageSendDestinationAccount$Outbound | undefined;
   payment?: StageSendSourcePayment$Outbound | undefined;
-  wallet?: StageSendSourceWallet$Outbound | undefined;
+  wallet?: StageSendDestinationWallet$Outbound | undefined;
 };
 
 /** @internal */
@@ -55,9 +55,9 @@ export const StageSendSource$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   StageSendSource
 > = z.object({
-  account: StageSendSourceAccount$outboundSchema.optional(),
+  account: StageSendDestinationAccount$outboundSchema.optional(),
   payment: StageSendSourcePayment$outboundSchema.optional(),
-  wallet: StageSendSourceWallet$outboundSchema.optional(),
+  wallet: StageSendDestinationWallet$outboundSchema.optional(),
 });
 
 /**

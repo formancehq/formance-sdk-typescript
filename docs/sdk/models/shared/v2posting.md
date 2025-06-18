@@ -6,7 +6,7 @@
 import { V2Posting } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Posting = {
-  amount: BigInt("100"),
+  amount: 100n,
   asset: "COIN",
   destination: "users:002",
   source: "users:001",

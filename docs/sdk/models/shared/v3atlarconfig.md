@@ -7,8 +7,9 @@ import { V3AtlarConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3AtlarConfig = {
   accessKey: "<value>",
-  baseUrl: "https://coordinated-casket.info",
+  baseUrl: "https://classic-carboxyl.name",
   name: "<value>",
+  pageSize: 25,
   secret: "<value>",
 };
 ```

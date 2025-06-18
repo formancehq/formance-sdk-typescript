@@ -4,34 +4,8 @@
 
 ```typescript
 import { GetTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: GetTransferInitiationResponse = {
-  contentType: "<value>",
-  statusCode: 206,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  transferInitiationResponse: {
-    data: {
-      amount: BigInt("517309"),
-      asset: "USD",
-      connectorID: "<id>",
-      createdAt: new Date("2024-04-09T19:14:12.306Z"),
-      description: "athletic frequent and everlasting versus young supposing",
-      destinationAccountID: "<id>",
-      error: "<value>",
-      id: "XXX",
-      initialAmount: BigInt("382808"),
-      provider: "<value>",
-      reference: "<value>",
-      scheduledAt: new Date("2025-09-08T08:13:49.082Z"),
-      sourceAccountID: "<id>",
-      status: TransferInitiationStatus.Reversed,
-      type: TransferInitiationType.Payout,
-    },
-  },
-};
+let value: GetTransferInitiationResponse = {};
 ```
 
 ## Fields

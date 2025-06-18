@@ -5,13 +5,7 @@
 ```typescript
 import { DeleteWorkflowResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeleteWorkflowResponse = {
-  contentType: "<value>",
-  statusCode: 203,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: DeleteWorkflowResponse = {};
 ```
 
 ## Fields

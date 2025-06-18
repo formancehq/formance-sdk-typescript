@@ -18,7 +18,8 @@ import {
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
 import * as errors from "../sdk/models/errors/index.js";
-import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
+import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -38,13 +39,14 @@ export function paymentsV1AddAccountToPool(
   Result<
     operations.AddAccountToPoolResponse,
     | errors.PaymentsErrorResponse
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | SDKBaseError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -63,13 +65,14 @@ async function $do(
     Result<
       operations.AddAccountToPoolResponse,
       | errors.PaymentsErrorResponse
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | SDKBaseError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -105,6 +108,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "addAccountToPool",
     oAuth2Scopes: ["auth:read", "payments:write"],
@@ -125,6 +129,7 @@ async function $do(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -154,17 +159,18 @@ async function $do(
   const [result] = await M.match<
     operations.AddAccountToPoolResponse,
     | errors.PaymentsErrorResponse
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | SDKBaseError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.nil(204, operations.AddAccountToPoolResponse$inboundSchema),
     M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

@@ -7,15 +7,15 @@ import { WebhooksConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WebhooksConfig = {
   active: true,
-  createdAt: new Date("2023-11-12T18:59:01.405Z"),
+  createdAt: new Date("2023-11-12T09:04:54.417Z"),
   endpoint: "https://example.com",
   eventTypes: [
     "TYPE1",
     "TYPE2",
   ],
-  id: "d632f183-d3b2-4fa6-af86-2b9333704b9d",
+  id: "4a4be316-e883-4d42-804f-721ff9e2262e",
   secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-  updatedAt: new Date("2023-01-24T07:40:44.694Z"),
+  updatedAt: new Date("2025-03-22T18:00:09.972Z"),
 };
 ```
 

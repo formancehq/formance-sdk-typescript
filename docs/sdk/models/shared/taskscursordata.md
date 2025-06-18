@@ -8,14 +8,14 @@
 ```typescript
 const value: shared.TaskStripe = {
   connectorID: "<id>",
-  createdAt: new Date("2023-09-18T17:04:06.742Z"),
+  createdAt: new Date("2023-03-05T06:55:25.261Z"),
   descriptor: {
-    account: "44864963",
+    account: "17918387",
     name: "<value>",
   },
-  id: "b7ee584a-fd51-4f64-957f-f45802e016b4",
-  status: TaskStatus.Active,
-  updatedAt: new Date("2025-08-14T08:55:15.893Z"),
+  id: "33f71b24-bfe0-4b00-aca2-3bf50b0b6a42",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2023-11-01T02:32:56.757Z"),
 };
 ```
 
@@ -24,11 +24,11 @@ const value: shared.TaskStripe = {
 ```typescript
 const value: shared.TaskWise = {
   connectorID: "<id>",
-  createdAt: new Date("2023-09-05T19:16:17.163Z"),
+  createdAt: new Date("2023-01-02T14:55:44.073Z"),
   descriptor: {},
-  id: "8fb5cf5b-1e15-484a-88b5-8ccb8a17d9f4",
-  status: TaskStatus.Terminated,
-  updatedAt: new Date("2023-04-10T15:42:56.368Z"),
+  id: "fb608d09-fa9e-4cc0-a730-91f7bd0fa498",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2024-12-20T10:23:41.730Z"),
 };
 ```
 
@@ -37,11 +37,11 @@ const value: shared.TaskWise = {
 ```typescript
 const value: shared.TaskCurrencyCloud = {
   connectorID: "<id>",
-  createdAt: new Date("2025-05-07T05:17:18.959Z"),
+  createdAt: new Date("2023-01-20T07:36:08.926Z"),
   descriptor: {},
-  id: "48cc7f74-4b66-404d-acb0-047e649ebd22",
-  status: TaskStatus.Terminated,
-  updatedAt: new Date("2025-11-12T16:00:20.228Z"),
+  id: "1fce36f2-b6e4-47f0-b338-999743e75415",
+  status: TaskStatus.Active,
+  updatedAt: new Date("2023-11-26T15:56:58.022Z"),
 };
 ```
 
@@ -50,11 +50,11 @@ const value: shared.TaskCurrencyCloud = {
 ```typescript
 const value: shared.TaskDummyPay = {
   connectorID: "<id>",
-  createdAt: new Date("2024-02-12T04:50:27.888Z"),
+  createdAt: new Date("2025-06-24T11:25:33.881Z"),
   descriptor: {},
-  id: "58a9b6d2-5c5a-4424-ae73-50c390d204e4",
-  status: TaskStatus.Stopped,
-  updatedAt: new Date("2023-11-19T11:55:56.968Z"),
+  id: "fc1bfe4b-65ca-4bce-b6fa-b9576f145dc3",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2024-03-01T12:21:18.711Z"),
 };
 ```
 
@@ -63,11 +63,11 @@ const value: shared.TaskDummyPay = {
 ```typescript
 const value: shared.TaskModulr = {
   connectorID: "<id>",
-  createdAt: new Date("2025-10-13T09:06:30.714Z"),
+  createdAt: new Date("2023-09-16T23:41:05.885Z"),
   descriptor: {},
-  id: "cc8d7773-e433-4dc6-80f2-dcfc5363bda2",
-  status: TaskStatus.Stopped,
-  updatedAt: new Date("2024-05-22T02:09:12.082Z"),
+  id: "3573aa93-2e4a-4cf2-92dd-26210727b804",
+  status: TaskStatus.Terminated,
+  updatedAt: new Date("2024-02-20T15:02:53.231Z"),
 };
 ```
 
@@ -76,11 +76,11 @@ const value: shared.TaskModulr = {
 ```typescript
 const value: shared.TaskBankingCircle = {
   connectorID: "<id>",
-  createdAt: new Date("2023-08-07T21:00:43.658Z"),
+  createdAt: new Date("2024-11-30T07:32:33.754Z"),
   descriptor: {},
-  id: "58a7f0ae-33c7-4f9e-902a-6d6b91bb1857",
-  status: TaskStatus.Pending,
-  updatedAt: new Date("2023-06-23T04:38:11.873Z"),
+  id: "e0044afb-5429-41dd-bd12-bf631eb1934c",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2024-10-22T22:58:55.068Z"),
 };
 ```
 
@@ -89,11 +89,11 @@ const value: shared.TaskBankingCircle = {
 ```typescript
 const value: shared.TaskMangoPay = {
   connectorID: "<id>",
-  createdAt: new Date("2023-04-06T03:24:49.820Z"),
+  createdAt: new Date("2024-12-21T20:49:55.743Z"),
   descriptor: {},
-  id: "3d06c13b-a92c-422c-b554-55b35ce918a5",
-  status: TaskStatus.Terminated,
-  updatedAt: new Date("2024-09-22T12:52:03.409Z"),
+  id: "4b0f3464-6501-4ab0-a79c-38aa2b6ecf1a",
+  status: TaskStatus.Failed,
+  updatedAt: new Date("2024-06-25T08:37:51.659Z"),
 };
 ```
 
@@ -102,11 +102,11 @@ const value: shared.TaskMangoPay = {
 ```typescript
 const value: shared.TaskMoneycorp = {
   connectorID: "<id>",
-  createdAt: new Date("2023-06-08T22:29:24.231Z"),
+  createdAt: new Date("2025-05-01T08:08:58.599Z"),
   descriptor: {},
-  id: "be4fc494-1da9-426e-8203-4ca009a29356",
-  status: TaskStatus.Failed,
-  updatedAt: new Date("2025-12-03T05:54:00.678Z"),
+  id: "596ed08d-486e-44cb-b9e6-21faee8410a5",
+  status: TaskStatus.Active,
+  updatedAt: new Date("2024-09-24T21:46:16.635Z"),
 };
 ```
 

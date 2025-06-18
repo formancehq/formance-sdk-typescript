@@ -6,11 +6,13 @@
 import { V3Pool } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Pool = {
-  createdAt: new Date("2023-10-20T05:47:37.552Z"),
+  createdAt: new Date("2024-07-30T19:16:55.222Z"),
   id: "<id>",
   name: "<value>",
   poolAccounts: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
 };
 ```

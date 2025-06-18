@@ -4,39 +4,8 @@
 
 ```typescript
 import { PaymentslistAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: PaymentslistAccountsResponse = {
-  accountsCursor: {
-    cursor: {
-      data: [
-        {
-          accountName: "<value>",
-          connectorID: "<id>",
-          createdAt: new Date("2023-05-07T22:53:51.252Z"),
-          defaultAsset: "<value>",
-          defaultCurrency: "<value>",
-          id: "<id>",
-          metadata: {
-            "key": "<value>",
-          },
-          raw: {},
-          reference: "<value>",
-          type: AccountType.Internal,
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-  contentType: "<value>",
-  statusCode: 504,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: PaymentslistAccountsResponse = {};
 ```
 
 ## Fields

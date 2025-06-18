@@ -3,14 +3,17 @@
  */
 
 import { paymentsV3AddAccountToPool } from "../funcs/paymentsV3AddAccountToPool.js";
+import { paymentsV3AddBankAccountToPaymentServiceUser } from "../funcs/paymentsV3AddBankAccountToPaymentServiceUser.js";
 import { paymentsV3ApprovePaymentInitiation } from "../funcs/paymentsV3ApprovePaymentInitiation.js";
 import { paymentsV3CreateAccount } from "../funcs/paymentsV3CreateAccount.js";
 import { paymentsV3CreateBankAccount } from "../funcs/paymentsV3CreateBankAccount.js";
 import { paymentsV3CreatePayment } from "../funcs/paymentsV3CreatePayment.js";
+import { paymentsV3CreatePaymentServiceUser } from "../funcs/paymentsV3CreatePaymentServiceUser.js";
 import { paymentsV3CreatePool } from "../funcs/paymentsV3CreatePool.js";
 import { paymentsV3DeletePaymentInitiation } from "../funcs/paymentsV3DeletePaymentInitiation.js";
 import { paymentsV3DeletePool } from "../funcs/paymentsV3DeletePool.js";
 import { paymentsV3ForwardBankAccount } from "../funcs/paymentsV3ForwardBankAccount.js";
+import { paymentsV3ForwardPaymentServiceUserBankAccount } from "../funcs/paymentsV3ForwardPaymentServiceUserBankAccount.js";
 import { paymentsV3GetAccount } from "../funcs/paymentsV3GetAccount.js";
 import { paymentsV3GetAccountBalances } from "../funcs/paymentsV3GetAccountBalances.js";
 import { paymentsV3GetBankAccount } from "../funcs/paymentsV3GetBankAccount.js";
@@ -18,8 +21,10 @@ import { paymentsV3GetConnectorConfig } from "../funcs/paymentsV3GetConnectorCon
 import { paymentsV3GetConnectorSchedule } from "../funcs/paymentsV3GetConnectorSchedule.js";
 import { paymentsV3GetPayment } from "../funcs/paymentsV3GetPayment.js";
 import { paymentsV3GetPaymentInitiation } from "../funcs/paymentsV3GetPaymentInitiation.js";
+import { paymentsV3GetPaymentServiceUser } from "../funcs/paymentsV3GetPaymentServiceUser.js";
 import { paymentsV3GetPool } from "../funcs/paymentsV3GetPool.js";
 import { paymentsV3GetPoolBalances } from "../funcs/paymentsV3GetPoolBalances.js";
+import { paymentsV3GetPoolBalancesLatest } from "../funcs/paymentsV3GetPoolBalancesLatest.js";
 import { paymentsV3GetTask } from "../funcs/paymentsV3GetTask.js";
 import { paymentsV3InitiatePayment } from "../funcs/paymentsV3InitiatePayment.js";
 import { paymentsV3InstallConnector } from "../funcs/paymentsV3InstallConnector.js";
@@ -33,6 +38,7 @@ import { paymentsV3ListPaymentInitiationAdjustments } from "../funcs/paymentsV3L
 import { paymentsV3ListPaymentInitiationRelatedPayments } from "../funcs/paymentsV3ListPaymentInitiationRelatedPayments.js";
 import { paymentsV3ListPaymentInitiations } from "../funcs/paymentsV3ListPaymentInitiations.js";
 import { paymentsV3ListPayments } from "../funcs/paymentsV3ListPayments.js";
+import { paymentsV3ListPaymentServiceUsers } from "../funcs/paymentsV3ListPaymentServiceUsers.js";
 import { paymentsV3ListPools } from "../funcs/paymentsV3ListPools.js";
 import { paymentsV3RejectPaymentInitiation } from "../funcs/paymentsV3RejectPaymentInitiation.js";
 import { paymentsV3RemoveAccountFromPool } from "../funcs/paymentsV3RemoveAccountFromPool.js";
@@ -42,6 +48,7 @@ import { paymentsV3ReversePaymentInitiation } from "../funcs/paymentsV3ReversePa
 import { paymentsV3UninstallConnector } from "../funcs/paymentsV3UninstallConnector.js";
 import { paymentsV3UpdateBankAccountMetadata } from "../funcs/paymentsV3UpdateBankAccountMetadata.js";
 import { paymentsV3UpdatePaymentMetadata } from "../funcs/paymentsV3UpdatePaymentMetadata.js";
+import { paymentsV3V3UpdateConnectorConfig } from "../funcs/paymentsV3V3UpdateConnectorConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import * as shared from "./models/shared/index.js";
@@ -56,6 +63,20 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3AddAccountToPoolResponse> {
     return unwrapAsync(paymentsV3AddAccountToPool(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Add a bank account to a payment service user
+   */
+  async addBankAccountToPaymentServiceUser(
+    request: operations.V3AddBankAccountToPaymentServiceUserRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3AddBankAccountToPaymentServiceUserResponse> {
+    return unwrapAsync(paymentsV3AddBankAccountToPaymentServiceUser(
       this,
       request,
       options,
@@ -119,6 +140,20 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Create a formance payment service user object
+   */
+  async createPaymentServiceUser(
+    request?: shared.V3CreatePaymentServiceUserRequest | undefined,
+    options?: RequestOptions,
+  ): Promise<operations.V3CreatePaymentServiceUserResponse> {
+    return unwrapAsync(paymentsV3CreatePaymentServiceUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Create a formance pool object
    */
   async createPool(
@@ -168,6 +203,20 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3ForwardBankAccountResponse> {
     return unwrapAsync(paymentsV3ForwardBankAccount(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Forward a payment service user's bank account to a connector
+   */
+  async forwardPaymentServiceUserBankAccount(
+    request: operations.V3ForwardPaymentServiceUserBankAccountRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ForwardPaymentServiceUserBankAccountResponse> {
+    return unwrapAsync(paymentsV3ForwardPaymentServiceUserBankAccount(
       this,
       request,
       options,
@@ -273,6 +322,20 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Get a payment service user by ID
+   */
+  async getPaymentServiceUser(
+    request: operations.V3GetPaymentServiceUserRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GetPaymentServiceUserResponse> {
+    return unwrapAsync(paymentsV3GetPaymentServiceUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get a pool by ID
    */
   async getPool(
@@ -287,13 +350,27 @@ export class V3 extends ClientSDK {
   }
 
   /**
-   * Get pool balances
+   * Get historical pool balances from a particular point in time
    */
   async getPoolBalances(
     request: operations.V3GetPoolBalancesRequest,
     options?: RequestOptions,
   ): Promise<operations.V3GetPoolBalancesResponse> {
     return unwrapAsync(paymentsV3GetPoolBalances(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get latest pool balances
+   */
+  async getPoolBalancesLatest(
+    request: operations.V3GetPoolBalancesLatestRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GetPoolBalancesLatestResponse> {
+    return unwrapAsync(paymentsV3GetPoolBalancesLatest(
       this,
       request,
       options,
@@ -467,6 +544,20 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * List all payment service users
+   */
+  async listPaymentServiceUsers(
+    request: operations.V3ListPaymentServiceUsersRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ListPaymentServiceUsersResponse> {
+    return unwrapAsync(paymentsV3ListPaymentServiceUsers(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * List all payments
    */
   async listPayments(
@@ -600,6 +691,23 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3UpdatePaymentMetadataResponse> {
     return unwrapAsync(paymentsV3UpdatePaymentMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update the config of a connector
+   *
+   * @remarks
+   * Update connector config
+   */
+  async v3UpdateConnectorConfig(
+    request: operations.V3UpdateConnectorConfigRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3UpdateConnectorConfigResponse> {
+    return unwrapAsync(paymentsV3V3UpdateConnectorConfig(
       this,
       request,
       options,

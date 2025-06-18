@@ -14,6 +14,7 @@ import {
 } from "./subject.js";
 
 export type Hold = {
+  asset: string;
   description: string;
   destination?: Subject | undefined;
   /**
@@ -33,6 +34,7 @@ export type Hold = {
 /** @internal */
 export const Hold$inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z
   .object({
+    asset: z.string(),
     description: z.string(),
     destination: Subject$inboundSchema.optional(),
     id: z.string(),
@@ -42,6 +44,7 @@ export const Hold$inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z
 
 /** @internal */
 export type Hold$Outbound = {
+  asset: string;
   description: string;
   destination?: Subject$Outbound | undefined;
   id: string;
@@ -52,6 +55,7 @@ export type Hold$Outbound = {
 /** @internal */
 export const Hold$outboundSchema: z.ZodType<Hold$Outbound, z.ZodTypeDef, Hold> =
   z.object({
+    asset: z.string(),
     description: z.string(),
     destination: Subject$outboundSchema.optional(),
     id: z.string(),

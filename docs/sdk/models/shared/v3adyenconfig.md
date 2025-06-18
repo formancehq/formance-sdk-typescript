@@ -9,6 +9,7 @@ let value: V3AdyenConfig = {
   apiKey: "<value>",
   companyID: "<id>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

@@ -6,27 +6,37 @@
 import { WalletsTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WalletsTransaction = {
-  id: 11813,
-  metadata: {
-    "key": "<value>",
-  },
+  id: 705470,
+  metadata: {},
   postCommitVolumes: {
     "key": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
       "EUR": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+    "key1": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+      "EUR": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   postings: [
     {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "COIN",
       destination: "users:002",
       source: "users:001",
@@ -35,19 +45,19 @@ let value: WalletsTransaction = {
   preCommitVolumes: {
     "key": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
       "EUR": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   reference: "ref:001",
-  timestamp: new Date("2023-04-14T01:12:14.951Z"),
+  timestamp: new Date("2025-03-31T07:55:46.485Z"),
 };
 ```
 

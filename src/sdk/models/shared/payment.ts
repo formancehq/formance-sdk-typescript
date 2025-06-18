@@ -33,7 +33,7 @@ import {
   PaymentType$outboundSchema,
 } from "./paymenttype.js";
 
-export type Raw = {};
+export type PaymentRaw = {};
 
 export type Payment = {
   adjustments: Array<PaymentAdjustment>;
@@ -46,7 +46,7 @@ export type Payment = {
   initialAmount: bigint;
   metadata: { [k: string]: string } | null;
   provider?: Connector | undefined;
-  raw: Raw | null;
+  raw: PaymentRaw | null;
   reference: string;
   scheme: PaymentScheme;
   sourceAccountID: string;
@@ -55,40 +55,46 @@ export type Payment = {
 };
 
 /** @internal */
-export const Raw$inboundSchema: z.ZodType<Raw, z.ZodTypeDef, unknown> = z
-  .object({});
+export const PaymentRaw$inboundSchema: z.ZodType<
+  PaymentRaw,
+  z.ZodTypeDef,
+  unknown
+> = z.object({});
 
 /** @internal */
-export type Raw$Outbound = {};
+export type PaymentRaw$Outbound = {};
 
 /** @internal */
-export const Raw$outboundSchema: z.ZodType<Raw$Outbound, z.ZodTypeDef, Raw> = z
-  .object({});
+export const PaymentRaw$outboundSchema: z.ZodType<
+  PaymentRaw$Outbound,
+  z.ZodTypeDef,
+  PaymentRaw
+> = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Raw$ {
-  /** @deprecated use `Raw$inboundSchema` instead. */
-  export const inboundSchema = Raw$inboundSchema;
-  /** @deprecated use `Raw$outboundSchema` instead. */
-  export const outboundSchema = Raw$outboundSchema;
-  /** @deprecated use `Raw$Outbound` instead. */
-  export type Outbound = Raw$Outbound;
+export namespace PaymentRaw$ {
+  /** @deprecated use `PaymentRaw$inboundSchema` instead. */
+  export const inboundSchema = PaymentRaw$inboundSchema;
+  /** @deprecated use `PaymentRaw$outboundSchema` instead. */
+  export const outboundSchema = PaymentRaw$outboundSchema;
+  /** @deprecated use `PaymentRaw$Outbound` instead. */
+  export type Outbound = PaymentRaw$Outbound;
 }
 
-export function rawToJSON(raw: Raw): string {
-  return JSON.stringify(Raw$outboundSchema.parse(raw));
+export function paymentRawToJSON(paymentRaw: PaymentRaw): string {
+  return JSON.stringify(PaymentRaw$outboundSchema.parse(paymentRaw));
 }
 
-export function rawFromJSON(
+export function paymentRawFromJSON(
   jsonString: string,
-): SafeParseResult<Raw, SDKValidationError> {
+): SafeParseResult<PaymentRaw, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Raw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Raw' from JSON`,
+    (x) => PaymentRaw$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PaymentRaw' from JSON`,
   );
 }
 
@@ -107,7 +113,7 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     initialAmount: z.number().transform(v => BigInt(v)),
     metadata: z.nullable(z.record(z.string())),
     provider: Connector$inboundSchema.optional(),
-    raw: z.nullable(z.lazy(() => Raw$inboundSchema)),
+    raw: z.nullable(z.lazy(() => PaymentRaw$inboundSchema)),
     reference: z.string(),
     scheme: PaymentScheme$inboundSchema,
     sourceAccountID: z.string(),
@@ -127,7 +133,7 @@ export type Payment$Outbound = {
   initialAmount: number;
   metadata: { [k: string]: string } | null;
   provider?: string | undefined;
-  raw: Raw$Outbound | null;
+  raw: PaymentRaw$Outbound | null;
   reference: string;
   scheme: string;
   sourceAccountID: string;
@@ -151,7 +157,7 @@ export const Payment$outboundSchema: z.ZodType<
   initialAmount: z.bigint().transform(v => Number(v)),
   metadata: z.nullable(z.record(z.string())),
   provider: Connector$outboundSchema.optional(),
-  raw: z.nullable(z.lazy(() => Raw$outboundSchema)),
+  raw: z.nullable(z.lazy(() => PaymentRaw$outboundSchema)),
   reference: z.string(),
   scheme: PaymentScheme$outboundSchema,
   sourceAccountID: z.string(),

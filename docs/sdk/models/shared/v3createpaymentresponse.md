@@ -7,17 +7,17 @@ import { V3CreatePaymentResponse, V3PaymentStatusEnum, V3PaymentTypeEnum } from 
 
 let value: V3CreatePaymentResponse = {
   data: {
-    amount: BigInt("663457"),
+    amount: 241792n,
     asset: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2024-07-29T13:48:05.536Z"),
+    createdAt: new Date("2024-03-21T20:04:47.256Z"),
     id: "<id>",
-    initialAmount: BigInt("416367"),
+    initialAmount: 121784n,
     provider: "<value>",
     reference: "<value>",
     scheme: "<value>",
-    status: V3PaymentStatusEnum.Pending,
-    type: V3PaymentTypeEnum.Payout,
+    status: V3PaymentStatusEnum.Cancelled,
+    type: V3PaymentTypeEnum.Transfer,
   },
 };
 ```

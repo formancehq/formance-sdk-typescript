@@ -7,13 +7,7 @@ import { V3BankAccountsCursorResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: V3BankAccountsCursorResponse = {
   cursor: {
-    data: [
-      {
-        createdAt: new Date("2024-06-18T11:12:24.413Z"),
-        id: "<id>",
-        name: "<value>",
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

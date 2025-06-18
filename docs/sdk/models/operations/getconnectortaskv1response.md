@@ -5,13 +5,7 @@
 ```typescript
 import { GetConnectorTaskV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetConnectorTaskV1Response = {
-  contentType: "<value>",
-  statusCode: 100,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetConnectorTaskV1Response = {};
 ```
 
 ## Fields

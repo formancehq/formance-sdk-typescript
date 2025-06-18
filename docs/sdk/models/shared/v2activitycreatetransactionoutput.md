@@ -11,17 +11,10 @@ let value: V2ActivityCreateTransactionOutput = {
       metadata: {
         "admin": "true",
       },
-      postings: [
-        {
-          amount: BigInt("100"),
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-      ],
+      postings: [],
       reference: "ref:001",
-      timestamp: new Date("2025-03-24T05:48:45.842Z"),
-      txid: BigInt("897146"),
+      timestamp: new Date("2025-03-28T10:26:16.538Z"),
+      txid: 910526n,
     },
   ],
 };

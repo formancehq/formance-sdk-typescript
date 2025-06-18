@@ -3,10 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
+import { V2PaymentScheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  attempt: 245990,
+  attempt: 282083,
   input: {
     createTransaction: {
       data: {
@@ -15,7 +15,7 @@ let value: V2WorkflowInstanceHistoryStage = {
         },
         postings: [
           {
-            amount: BigInt("100"),
+            amount: 100n,
             asset: "COIN",
             destination: "users:002",
             source: "users:001",
@@ -40,7 +40,7 @@ let value: V2WorkflowInstanceHistoryStage = {
     creditWallet: {
       data: {
         amount: {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "USD/2",
         },
         metadata: {
@@ -52,7 +52,7 @@ let value: V2WorkflowInstanceHistoryStage = {
     debitWallet: {
       data: {
         amount: {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "USD/2",
         },
         metadata: {
@@ -62,7 +62,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
     stripeTransfer: {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       metadata: {},
@@ -76,17 +76,10 @@ let value: V2WorkflowInstanceHistoryStage = {
           metadata: {
             "admin": "true",
           },
-          postings: [
-            {
-              amount: BigInt("100"),
-              asset: "COIN",
-              destination: "users:002",
-              source: "users:001",
-            },
-          ],
+          postings: [],
           reference: "ref:001",
-          timestamp: new Date("2024-10-01T02:51:40.989Z"),
-          txid: BigInt("258036"),
+          timestamp: new Date("2025-03-28T10:26:16.538Z"),
+          txid: 910526n,
         },
       ],
     },
@@ -95,14 +88,14 @@ let value: V2WorkflowInstanceHistoryStage = {
         address: "users:001",
         effectiveVolumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
         metadata: {
@@ -110,57 +103,39 @@ let value: V2WorkflowInstanceHistoryStage = {
         },
         volumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
       },
     },
     getPayment: {
       data: {
-        adjustments: [
-          {
-            absolute: false,
-            amount: BigInt("100"),
-            date: new Date("2024-06-02T19:56:17.254Z"),
-            raw: {},
-            status: V2PaymentStatus.Cancelled,
-          },
-        ],
+        adjustments: [],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2023-09-10T12:26:59.523Z"),
+        createdAt: new Date("2025-06-20T02:05:25.894Z"),
         destinationAccountID: "<id>",
         id: "XXX",
-        initialAmount: BigInt("100"),
+        initialAmount: 100n,
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: Scheme.SepaDebit,
+        scheme: V2PaymentScheme.AchDebit,
         sourceAccountID: "<id>",
-        status: V2PaymentStatus.Failed,
-        type: V2PaymentType.Transfer,
+        status: V2PaymentStatus.Succeeded,
+        type: V2PaymentType.PayIn,
       },
     },
     listWallets: {
       cursor: {
-        data: [
-          {
-            createdAt: new Date("2025-12-04T07:07:12.134Z"),
-            id: "abf65023-2c8a-4d35-8b60-6e65fa51cbe3",
-            ledger: "<value>",
-            metadata: {
-              "key": "<value>",
-            },
-            name: "<value>",
-          },
-        ],
+        data: [],
         hasMore: false,
         next: "",
         pageSize: 15,
@@ -168,8 +143,8 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2025-03-04T14:00:13.445Z"),
-  terminated: false,
+  startedAt: new Date("2023-10-01T07:20:02.601Z"),
+  terminated: true,
 };
 ```
 

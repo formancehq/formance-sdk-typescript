@@ -5,23 +5,7 @@
 ```typescript
 import { GetMappingResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetMappingResponse = {
-  contentType: "<value>",
-  mappingResponse: {
-    data: {
-      contracts: [
-        {
-          account: "users:001",
-          expr: {},
-        },
-      ],
-    },
-  },
-  statusCode: 308,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetMappingResponse = {};
 ```
 
 ## Fields

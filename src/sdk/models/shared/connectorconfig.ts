@@ -74,17 +74,17 @@ import {
 } from "./wiseconfig.js";
 
 export type ConnectorConfig =
-  | (WiseConfig & { provider: "Wise" })
-  | (GenericConfig & { provider: "Generic" })
-  | (StripeConfig & { provider: "Stripe" })
-  | (AdyenConfig & { provider: "Adyen" })
-  | (CurrencyCloudConfig & { provider: "Currencycloud" })
+  | (BankingCircleConfig & { provider: "Bankingcircle" })
   | (MangoPayConfig & { provider: "Mangopay" })
-  | (ModulrConfig & { provider: "Modulr" })
   | (MoneycorpConfig & { provider: "Moneycorp" })
-  | (DummyPayConfig & { provider: "Dummypay" })
+  | (AdyenConfig & { provider: "Adyen" })
   | (AtlarConfig & { provider: "Atlar" })
-  | (BankingCircleConfig & { provider: "Bankingcircle" });
+  | (CurrencyCloudConfig & { provider: "Currencycloud" })
+  | (GenericConfig & { provider: "Generic" })
+  | (ModulrConfig & { provider: "Modulr" })
+  | (DummyPayConfig & { provider: "Dummypay" })
+  | (StripeConfig & { provider: "Stripe" })
+  | (WiseConfig & { provider: "Wise" });
 
 /** @internal */
 export const ConnectorConfig$inboundSchema: z.ZodType<
@@ -92,28 +92,8 @@ export const ConnectorConfig$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  WiseConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Wise") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  GenericConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Generic") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  StripeConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AdyenConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Adyen") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  CurrencyCloudConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Currencycloud") }).transform((v) => ({
+  BankingCircleConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -122,18 +102,13 @@ export const ConnectorConfig$inboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
-  ModulrConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Modulr") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
   MoneycorpConfig$inboundSchema.and(
     z.object({ provider: z.literal("Moneycorp") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
-  DummyPayConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+  AdyenConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Adyen") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -142,8 +117,33 @@ export const ConnectorConfig$inboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
-  BankingCircleConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
+  CurrencyCloudConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Currencycloud") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  GenericConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Generic") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  ModulrConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Modulr") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  DummyPayConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  StripeConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  WiseConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Wise") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -151,17 +151,17 @@ export const ConnectorConfig$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ConnectorConfig$Outbound =
-  | (WiseConfig$Outbound & { provider: "Wise" })
-  | (GenericConfig$Outbound & { provider: "Generic" })
-  | (StripeConfig$Outbound & { provider: "Stripe" })
-  | (AdyenConfig$Outbound & { provider: "Adyen" })
-  | (CurrencyCloudConfig$Outbound & { provider: "Currencycloud" })
+  | (BankingCircleConfig$Outbound & { provider: "Bankingcircle" })
   | (MangoPayConfig$Outbound & { provider: "Mangopay" })
-  | (ModulrConfig$Outbound & { provider: "Modulr" })
   | (MoneycorpConfig$Outbound & { provider: "Moneycorp" })
-  | (DummyPayConfig$Outbound & { provider: "Dummypay" })
+  | (AdyenConfig$Outbound & { provider: "Adyen" })
   | (AtlarConfig$Outbound & { provider: "Atlar" })
-  | (BankingCircleConfig$Outbound & { provider: "Bankingcircle" });
+  | (CurrencyCloudConfig$Outbound & { provider: "Currencycloud" })
+  | (GenericConfig$Outbound & { provider: "Generic" })
+  | (ModulrConfig$Outbound & { provider: "Modulr" })
+  | (DummyPayConfig$Outbound & { provider: "Dummypay" })
+  | (StripeConfig$Outbound & { provider: "Stripe" })
+  | (WiseConfig$Outbound & { provider: "Wise" });
 
 /** @internal */
 export const ConnectorConfig$outboundSchema: z.ZodType<
@@ -169,28 +169,8 @@ export const ConnectorConfig$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorConfig
 > = z.union([
-  WiseConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Wise") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  GenericConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Generic") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  StripeConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  AdyenConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Adyen") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  CurrencyCloudConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Currencycloud") }).transform((v) => ({
+  BankingCircleConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -199,18 +179,13 @@ export const ConnectorConfig$outboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
-  ModulrConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Modulr") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
   MoneycorpConfig$outboundSchema.and(
     z.object({ provider: z.literal("Moneycorp") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
-  DummyPayConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+  AdyenConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Adyen") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -219,8 +194,33 @@ export const ConnectorConfig$outboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
-  BankingCircleConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
+  CurrencyCloudConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Currencycloud") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  GenericConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Generic") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  ModulrConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Modulr") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  DummyPayConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  StripeConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  WiseConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Wise") }).transform((v) => ({
       provider: v.provider,
     })),
   ),

@@ -8,6 +8,12 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  V2AccountResponse,
+  V2AccountResponse$inboundSchema,
+  V2AccountResponse$Outbound,
+  V2AccountResponse$outboundSchema,
+} from "./v2accountresponse.js";
+import {
   V2ActivityCreateTransactionOutput,
   V2ActivityCreateTransactionOutput$inboundSchema,
   V2ActivityCreateTransactionOutput$Outbound,
@@ -19,12 +25,6 @@ import {
   V2ActivityDebitWalletOutput$Outbound,
   V2ActivityDebitWalletOutput$outboundSchema,
 } from "./v2activitydebitwalletoutput.js";
-import {
-  V2ActivityGetAccountOutput,
-  V2ActivityGetAccountOutput$inboundSchema,
-  V2ActivityGetAccountOutput$Outbound,
-  V2ActivityGetAccountOutput$outboundSchema,
-} from "./v2activitygetaccountoutput.js";
 import {
   V2ActivityGetPaymentOutput,
   V2ActivityGetPaymentOutput$inboundSchema,
@@ -47,7 +47,7 @@ import {
 export type V2WorkflowInstanceHistoryStageOutput = {
   createTransaction?: V2ActivityCreateTransactionOutput | undefined;
   debitWallet?: V2ActivityDebitWalletOutput | undefined;
-  getAccount?: V2ActivityGetAccountOutput | undefined;
+  getAccount?: V2AccountResponse | undefined;
   getPayment?: V2ActivityGetPaymentOutput | undefined;
   getWallet?: V2ActivityGetWalletOutput | undefined;
   listWallets?: V2ListWalletsResponse | undefined;
@@ -61,7 +61,7 @@ export const V2WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
 > = z.object({
   CreateTransaction: V2ActivityCreateTransactionOutput$inboundSchema.optional(),
   DebitWallet: V2ActivityDebitWalletOutput$inboundSchema.optional(),
-  GetAccount: V2ActivityGetAccountOutput$inboundSchema.optional(),
+  GetAccount: V2AccountResponse$inboundSchema.optional(),
   GetPayment: V2ActivityGetPaymentOutput$inboundSchema.optional(),
   GetWallet: V2ActivityGetWalletOutput$inboundSchema.optional(),
   ListWallets: V2ListWalletsResponse$inboundSchema.optional(),
@@ -80,7 +80,7 @@ export const V2WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
 export type V2WorkflowInstanceHistoryStageOutput$Outbound = {
   CreateTransaction?: V2ActivityCreateTransactionOutput$Outbound | undefined;
   DebitWallet?: V2ActivityDebitWalletOutput$Outbound | undefined;
-  GetAccount?: V2ActivityGetAccountOutput$Outbound | undefined;
+  GetAccount?: V2AccountResponse$Outbound | undefined;
   GetPayment?: V2ActivityGetPaymentOutput$Outbound | undefined;
   GetWallet?: V2ActivityGetWalletOutput$Outbound | undefined;
   ListWallets?: V2ListWalletsResponse$Outbound | undefined;
@@ -95,7 +95,7 @@ export const V2WorkflowInstanceHistoryStageOutput$outboundSchema: z.ZodType<
   createTransaction: V2ActivityCreateTransactionOutput$outboundSchema
     .optional(),
   debitWallet: V2ActivityDebitWalletOutput$outboundSchema.optional(),
-  getAccount: V2ActivityGetAccountOutput$outboundSchema.optional(),
+  getAccount: V2AccountResponse$outboundSchema.optional(),
   getPayment: V2ActivityGetPaymentOutput$outboundSchema.optional(),
   getWallet: V2ActivityGetWalletOutput$outboundSchema.optional(),
   listWallets: V2ListWalletsResponse$outboundSchema.optional(),

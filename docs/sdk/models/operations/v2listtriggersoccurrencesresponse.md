@@ -5,30 +5,7 @@
 ```typescript
 import { V2ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListTriggersOccurrencesResponse = {
-  contentType: "<value>",
-  statusCode: 407,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2ListTriggersOccurrencesResponse: {
-    cursor: {
-      data: [
-        {
-          date: new Date("2024-04-05T21:52:12.474Z"),
-          event: {
-            "key": "<value>",
-          },
-          triggerID: "<id>",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V2ListTriggersOccurrencesResponse = {};
 ```
 
 ## Fields

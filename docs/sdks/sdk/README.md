@@ -38,7 +38,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.getVersions();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -64,15 +63,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await getVersions(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("getVersions failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

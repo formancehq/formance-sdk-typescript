@@ -11,6 +11,8 @@ let value: Policy = {
   ledgerName: "default",
   ledgerQuery: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
   name: "XXX",
   paymentsPoolID: "XXX",

@@ -15,7 +15,7 @@ import {
 export type TransferInitiationAdjusments = {
   adjustmentID: string;
   createdAt: Date;
-  error: string;
+  error?: string | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
   status: TransferInitiationStatus;
 };
@@ -28,7 +28,7 @@ export const TransferInitiationAdjusments$inboundSchema: z.ZodType<
 > = z.object({
   adjustmentID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
   status: TransferInitiationStatus$inboundSchema,
 });
@@ -37,7 +37,7 @@ export const TransferInitiationAdjusments$inboundSchema: z.ZodType<
 export type TransferInitiationAdjusments$Outbound = {
   adjustmentID: string;
   createdAt: string;
-  error: string;
+  error?: string | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
   status: string;
 };
@@ -50,7 +50,7 @@ export const TransferInitiationAdjusments$outboundSchema: z.ZodType<
 > = z.object({
   adjustmentID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
   status: TransferInitiationStatus$outboundSchema,
 });

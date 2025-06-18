@@ -7,16 +7,7 @@ import { V2LedgerListResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2LedgerListResponse = {
   cursor: {
-    data: [
-      {
-        addedAt: new Date("2025-07-04T20:50:00.142Z"),
-        bucket: "<value>",
-        metadata: {
-          "admin": "true",
-        },
-        name: "<value>",
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

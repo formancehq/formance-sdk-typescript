@@ -10,6 +10,7 @@ let value: V3MoneycorpConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

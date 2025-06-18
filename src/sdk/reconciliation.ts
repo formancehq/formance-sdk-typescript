@@ -3,11 +3,11 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { SDKReconciliationV1 } from "./sdkreconciliationv1.js";
+import { ReconciliationV1 } from "./reconciliationv1.js";
 
 export class Reconciliation extends ClientSDK {
-  private _v1?: SDKReconciliationV1;
-  get v1(): SDKReconciliationV1 {
-    return (this._v1 ??= new SDKReconciliationV1(this._options));
+  private _v1?: ReconciliationV1;
+  get v1(): ReconciliationV1 {
+    return (this._v1 ??= new ReconciliationV1(this._options));
   }
 }

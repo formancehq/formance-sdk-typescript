@@ -7,10 +7,13 @@ import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: DebitWalletResponse = {
   data: {
-    description: "apricot adjudge fibre",
-    id: "0a0122c1-272b-47e0-9d2e-580b3ea442c7",
+    asset: "<value>",
+    description:
+      "weatherize portly legislature yuck duh decision hotfoot including",
+    id: "18d42f48-9941-4839-91c6-039cc91f19a3",
     metadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
     walletID: "<id>",
   },

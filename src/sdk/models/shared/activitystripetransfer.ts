@@ -13,7 +13,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * @remarks
  * It can be useful for storing additional information about the transfer in a structured format.
  */
-export type Metadata = {};
+export type ActivityStripeTransferMetadata = {};
 
 export type ActivityStripeTransfer = {
   amount?: bigint | undefined;
@@ -26,51 +26,57 @@ export type ActivityStripeTransfer = {
    * @remarks
    * It can be useful for storing additional information about the transfer in a structured format.
    */
-  metadata?: Metadata | undefined;
+  metadata?: ActivityStripeTransferMetadata | undefined;
   waitingValidation?: boolean | undefined;
 };
 
 /** @internal */
-export const Metadata$inboundSchema: z.ZodType<
-  Metadata,
+export const ActivityStripeTransferMetadata$inboundSchema: z.ZodType<
+  ActivityStripeTransferMetadata,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type Metadata$Outbound = {};
+export type ActivityStripeTransferMetadata$Outbound = {};
 
 /** @internal */
-export const Metadata$outboundSchema: z.ZodType<
-  Metadata$Outbound,
+export const ActivityStripeTransferMetadata$outboundSchema: z.ZodType<
+  ActivityStripeTransferMetadata$Outbound,
   z.ZodTypeDef,
-  Metadata
+  ActivityStripeTransferMetadata
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Metadata$ {
-  /** @deprecated use `Metadata$inboundSchema` instead. */
-  export const inboundSchema = Metadata$inboundSchema;
-  /** @deprecated use `Metadata$outboundSchema` instead. */
-  export const outboundSchema = Metadata$outboundSchema;
-  /** @deprecated use `Metadata$Outbound` instead. */
-  export type Outbound = Metadata$Outbound;
+export namespace ActivityStripeTransferMetadata$ {
+  /** @deprecated use `ActivityStripeTransferMetadata$inboundSchema` instead. */
+  export const inboundSchema = ActivityStripeTransferMetadata$inboundSchema;
+  /** @deprecated use `ActivityStripeTransferMetadata$outboundSchema` instead. */
+  export const outboundSchema = ActivityStripeTransferMetadata$outboundSchema;
+  /** @deprecated use `ActivityStripeTransferMetadata$Outbound` instead. */
+  export type Outbound = ActivityStripeTransferMetadata$Outbound;
 }
 
-export function metadataToJSON(metadata: Metadata): string {
-  return JSON.stringify(Metadata$outboundSchema.parse(metadata));
+export function activityStripeTransferMetadataToJSON(
+  activityStripeTransferMetadata: ActivityStripeTransferMetadata,
+): string {
+  return JSON.stringify(
+    ActivityStripeTransferMetadata$outboundSchema.parse(
+      activityStripeTransferMetadata,
+    ),
+  );
 }
 
-export function metadataFromJSON(
+export function activityStripeTransferMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<Metadata, SDKValidationError> {
+): SafeParseResult<ActivityStripeTransferMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Metadata$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Metadata' from JSON`,
+    (x) => ActivityStripeTransferMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ActivityStripeTransferMetadata' from JSON`,
   );
 }
 
@@ -84,7 +90,8 @@ export const ActivityStripeTransfer$inboundSchema: z.ZodType<
   asset: z.string().optional(),
   connectorID: z.string().optional(),
   destination: z.string().optional(),
-  metadata: z.lazy(() => Metadata$inboundSchema).optional(),
+  metadata: z.lazy(() => ActivityStripeTransferMetadata$inboundSchema)
+    .optional(),
   waitingValidation: z.boolean().default(false),
 });
 
@@ -94,7 +101,7 @@ export type ActivityStripeTransfer$Outbound = {
   asset?: string | undefined;
   connectorID?: string | undefined;
   destination?: string | undefined;
-  metadata?: Metadata$Outbound | undefined;
+  metadata?: ActivityStripeTransferMetadata$Outbound | undefined;
   waitingValidation: boolean;
 };
 
@@ -108,7 +115,8 @@ export const ActivityStripeTransfer$outboundSchema: z.ZodType<
   asset: z.string().optional(),
   connectorID: z.string().optional(),
   destination: z.string().optional(),
-  metadata: z.lazy(() => Metadata$outboundSchema).optional(),
+  metadata: z.lazy(() => ActivityStripeTransferMetadata$outboundSchema)
+    .optional(),
   waitingValidation: z.boolean().default(false),
 });
 

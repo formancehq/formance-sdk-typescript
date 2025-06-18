@@ -7,7 +7,7 @@ import { GetTransactionRequest } from "@formance/formance-sdk/sdk/models/operati
 
 let value: GetTransactionRequest = {
   ledger: "ledger001",
-  txid: BigInt("1234"),
+  txid: 1234n,
 };
 ```
 

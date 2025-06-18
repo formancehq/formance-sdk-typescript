@@ -12,27 +12,19 @@ import {
 
 let value: ActivityGetPaymentOutput = {
   data: {
-    adjustments: [
-      {
-        absolute: false,
-        amount: BigInt("100"),
-        date: new Date("2023-02-01T02:03:31.039Z"),
-        raw: {},
-        status: OrchestrationPaymentStatus.Failed,
-      },
-    ],
+    adjustments: [],
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2025-08-16T05:08:02.805Z"),
+    createdAt: new Date("2023-12-16T14:43:43.030Z"),
     destinationAccountID: "<id>",
     id: "XXX",
-    initialAmount: BigInt("100"),
+    initialAmount: 100n,
     metadata: {},
     raw: {},
     reference: "<value>",
-    scheme: OrchestrationPaymentScheme.A2a,
+    scheme: OrchestrationPaymentScheme.Ach,
     sourceAccountID: "<id>",
-    status: OrchestrationPaymentStatus.Failed,
+    status: OrchestrationPaymentStatus.Active,
     type: OrchestrationPaymentType.Other,
   },
 };

@@ -22,7 +22,7 @@ export type TaskCurrencyCloud = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskCurrencyCloudDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskCurrencyCloudState | null | undefined;
   status: TaskStatus;
@@ -142,7 +142,7 @@ export const TaskCurrencyCloud$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskCurrencyCloudState$inboundSchema))
     .optional(),
@@ -155,7 +155,7 @@ export type TaskCurrencyCloud$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskCurrencyCloudDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskCurrencyCloudState$Outbound | null | undefined;
   status: string;
@@ -171,7 +171,7 @@ export const TaskCurrencyCloud$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskCurrencyCloudDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskCurrencyCloudState$outboundSchema))
     .optional(),

@@ -7,15 +7,11 @@ import { Workflow } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Workflow = {
   config: {
-    stages: [
-      {
-        "key": "<value>",
-      },
-    ],
+    stages: [],
   },
-  createdAt: new Date("2023-08-01T05:04:01.310Z"),
+  createdAt: new Date("2024-01-05T11:44:20.070Z"),
   id: "<id>",
-  updatedAt: new Date("2023-05-04T00:37:25.698Z"),
+  updatedAt: new Date("2023-02-13T10:14:57.926Z"),
 };
 ```
 

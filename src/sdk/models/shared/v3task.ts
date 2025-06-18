@@ -16,7 +16,7 @@ export type V3Task = {
   connectorID?: string | undefined;
   createdAt: Date;
   createdObjectID?: string | undefined;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   status: V3TaskStatusEnum;
   updatedAt: Date;
@@ -30,7 +30,7 @@ export const V3Task$inboundSchema: z.ZodType<V3Task, z.ZodTypeDef, unknown> = z
       new Date(v)
     ),
     createdObjectID: z.string().optional(),
-    error: z.string().optional(),
+    error: z.nullable(z.string()).optional(),
     id: z.string(),
     status: V3TaskStatusEnum$inboundSchema,
     updatedAt: z.string().datetime({ offset: true }).transform(v =>
@@ -43,7 +43,7 @@ export type V3Task$Outbound = {
   connectorID?: string | undefined;
   createdAt: string;
   createdObjectID?: string | undefined;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   status: string;
   updatedAt: string;
@@ -58,7 +58,7 @@ export const V3Task$outboundSchema: z.ZodType<
   connectorID: z.string().optional(),
   createdAt: z.date().transform(v => v.toISOString()),
   createdObjectID: z.string().optional(),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   status: V3TaskStatusEnum$outboundSchema,
   updatedAt: z.date().transform(v => v.toISOString()),

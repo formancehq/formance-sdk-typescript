@@ -5,13 +5,7 @@
 ```typescript
 import { GetPoolResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetPoolResponse = {
-  contentType: "<value>",
-  statusCode: 103,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetPoolResponse = {};
 ```
 
 ## Fields

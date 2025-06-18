@@ -7,15 +7,7 @@ import { UpdateConnectorConfigV1Request } from "@formance/formance-sdk/sdk/model
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateConnectorConfigV1Request = {
-  connectorConfig: {
-    apiKey: "XXX",
-    endpoint: "XXX",
-    loginID: "XXX",
-    name: "My CurrencyCloud Account",
-    pollingPeriod: "120s",
-    provider: "Currencycloud",
-  },
-  connector: Connector.BankingCircle,
+  connector: Connector.Modulr,
   connectorId: "XXX",
 };
 ```

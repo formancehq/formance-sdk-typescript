@@ -7,13 +7,14 @@ import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: GetHoldResponse = {
   data: {
-    description: "scuttle amongst repeatedly motor though wearily empty",
-    id: "66c6cc67-803d-4c1a-9082-d91aeb1a9ac4",
+    asset: "<value>",
+    description: "noisily since whispered helpfully blah implode",
+    id: "3e139af1-c62d-4949-926a-783670366ad9",
     metadata: {
       "key": "<value>",
     },
-    originalAmount: BigInt("100"),
-    remaining: BigInt("10"),
+    originalAmount: 100n,
+    remaining: 10n,
     walletID: "<id>",
   },
 };

@@ -6,12 +6,10 @@
 import { Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Hold = {
-  description:
-    "yowza ick moralise which whenever exasperation cap seemingly deep",
-  id: "e0a6cb7a-8c78-4494-8922-66420047b7e0",
-  metadata: {
-    "key": "<value>",
-  },
+  asset: "<value>",
+  description: "provided gleefully hopelessly internal shyly aha",
+  id: "fa49dd57-defa-4ebb-bb3c-22be446f30dc",
+  metadata: {},
   walletID: "<id>",
 };
 ```
@@ -20,6 +18,7 @@ let value: Hold = {
 
 | Field                                             | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `asset`                                           | *string*                                          | :heavy_check_mark:                                | N/A                                               |
 | `description`                                     | *string*                                          | :heavy_check_mark:                                | N/A                                               |
 | `destination`                                     | *shared.Subject*                                  | :heavy_minus_sign:                                | N/A                                               |
 | `id`                                              | *string*                                          | :heavy_check_mark:                                | The unique ID of the hold.                        |

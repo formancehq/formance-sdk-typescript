@@ -9,9 +9,7 @@ let value: ConfigInfo = {
   config: {
     storage: {
       driver: "<value>",
-      ledgers: [
-        "<value>",
-      ],
+      ledgers: [],
     },
   },
   server: "<value>",

@@ -5,13 +5,7 @@
 ```typescript
 import { V3ForwardBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ForwardBankAccountResponse = {
-  contentType: "<value>",
-  statusCode: 203,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3ForwardBankAccountResponse = {};
 ```
 
 ## Fields

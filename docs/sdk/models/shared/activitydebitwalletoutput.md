@@ -7,11 +7,11 @@ import { ActivityDebitWalletOutput } from "@formance/formance-sdk/sdk/models/sha
 
 let value: ActivityDebitWalletOutput = {
   data: {
-    description:
-      "if deserted meh failing up subsidy except fax hence optimistically",
-    id: "bc0bdb87-8be9-4eb1-8844-559a420920e8",
+    description: "which off now lazy alongside tennis",
+    id: "c222121e-b1ee-4cde-bbee-679447d1db2c",
     metadata: {
       "key": "<value>",
+      "key1": "<value>",
     },
     walletID: "<id>",
   },
@@ -20,6 +20,6 @@ let value: ActivityDebitWalletOutput = {
 
 ## Fields
 
-| Field                                             | Type                                              | Required                                          | Description                                       |
-| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `data`                                            | [shared.Hold](../../../sdk/models/shared/hold.md) | :heavy_check_mark:                                | N/A                                               |
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `data`                                                                      | [shared.OrchestrationHold](../../../sdk/models/shared/orchestrationhold.md) | :heavy_check_mark:                                                          | N/A                                                                         |

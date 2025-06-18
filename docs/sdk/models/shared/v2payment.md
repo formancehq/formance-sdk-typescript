@@ -3,31 +3,31 @@
 ## Example Usage
 
 ```typescript
-import { Scheme, V2Payment, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+import { V2Payment, V2PaymentScheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Payment = {
   adjustments: [
     {
-      absolute: false,
-      amount: BigInt("100"),
-      date: new Date("2023-01-01T23:45:36.080Z"),
+      absolute: true,
+      amount: 100n,
+      date: new Date("2023-09-10T15:58:54.180Z"),
       raw: {},
-      status: V2PaymentStatus.Pending,
+      status: V2PaymentStatus.Terminated,
     },
   ],
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2023-09-06T05:37:35.670Z"),
+  createdAt: new Date("2023-06-24T08:08:27.704Z"),
   destinationAccountID: "<id>",
   id: "XXX",
-  initialAmount: BigInt("100"),
+  initialAmount: 100n,
   metadata: {},
-  raw: {},
+  raw: null,
   reference: "<value>",
-  scheme: Scheme.SepaCredit,
+  scheme: V2PaymentScheme.Amex,
   sourceAccountID: "<id>",
-  status: V2PaymentStatus.Active,
-  type: V2PaymentType.Other,
+  status: V2PaymentStatus.Succeeded,
+  type: V2PaymentType.Payout,
 };
 ```
 
@@ -46,7 +46,7 @@ let value: V2Payment = {
 | `provider`                                                                                    | [shared.V2Connector](../../../sdk/models/shared/v2connector.md)                               | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 | `raw`                                                                                         | [shared.V2PaymentRaw](../../../sdk/models/shared/v2paymentraw.md)                             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
-| `scheme`                                                                                      | [shared.Scheme](../../../sdk/models/shared/scheme.md)                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `scheme`                                                                                      | [shared.V2PaymentScheme](../../../sdk/models/shared/v2paymentscheme.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `sourceAccountID`                                                                             | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `status`                                                                                      | [shared.V2PaymentStatus](../../../sdk/models/shared/v2paymentstatus.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `type`                                                                                        | [shared.V2PaymentType](../../../sdk/models/shared/v2paymenttype.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

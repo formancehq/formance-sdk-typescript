@@ -8,10 +8,13 @@ import { GetHoldsResponseCursor } from "@formance/formance-sdk/sdk/models/shared
 let value: GetHoldsResponseCursor = {
   data: [
     {
-      description: "brr ew bah whether sediment litter oxidise yowza",
-      id: "3ed14a40-b354-4222-9fbf-95277c83d280",
+      asset: "<value>",
+      description: "dream finally developmental",
+      id: "478db7c9-0d9d-4305-8146-2316ac01b272",
       metadata: {
         "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
       },
       walletID: "<id>",
     },

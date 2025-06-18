@@ -7,17 +7,7 @@ import { V2ListWalletsResponse } from "@formance/formance-sdk/sdk/models/shared"
 
 let value: V2ListWalletsResponse = {
   cursor: {
-    data: [
-      {
-        createdAt: new Date("2024-09-22T21:28:43.149Z"),
-        id: "91f8c064-4c97-40ff-b308-fe945e723417",
-        ledger: "<value>",
-        metadata: {
-          "key": "<value>",
-        },
-        name: "<value>",
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

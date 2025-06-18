@@ -5,13 +5,7 @@
 ```typescript
 import { RetryTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: RetryTransferInitiationResponse = {
-  contentType: "<value>",
-  statusCode: 300,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: RetryTransferInitiationResponse = {};
 ```
 
 ## Fields

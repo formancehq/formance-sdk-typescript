@@ -5,30 +5,7 @@
 ```typescript
 import { V2GetVolumesWithBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetVolumesWithBalancesResponse = {
-  contentType: "<value>",
-  statusCode: 101,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2VolumesWithBalanceCursorResponse: {
-    cursor: {
-      data: [
-        {
-          account: "13406525",
-          asset: "<value>",
-          balance: BigInt("93940"),
-          input: BigInt("575947"),
-          output: BigInt("929297"),
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V2GetVolumesWithBalancesResponse = {};
 ```
 
 ## Fields

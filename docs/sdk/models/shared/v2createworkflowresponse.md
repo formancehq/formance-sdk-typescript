@@ -12,11 +12,12 @@ let value: V2CreateWorkflowResponse = {
         {
           "key": "<value>",
         },
+        {},
       ],
     },
-    createdAt: new Date("2025-12-08T19:51:14.504Z"),
+    createdAt: new Date("2024-12-15T04:22:54.021Z"),
     id: "<id>",
-    updatedAt: new Date("2024-03-10T05:14:19.198Z"),
+    updatedAt: new Date("2024-02-08T04:15:31.810Z"),
   },
 };
 ```

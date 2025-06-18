@@ -3,11 +3,11 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { SDKSearchV1 } from "./sdksearchv1.js";
+import { SearchV1 } from "./searchv1.js";
 
 export class Search extends ClientSDK {
-  private _v1?: SDKSearchV1;
-  get v1(): SDKSearchV1 {
-    return (this._v1 ??= new SDKSearchV1(this._options));
+  private _v1?: SearchV1;
+  get v1(): SearchV1 {
+    return (this._v1 ??= new SearchV1(this._options));
   }
 }

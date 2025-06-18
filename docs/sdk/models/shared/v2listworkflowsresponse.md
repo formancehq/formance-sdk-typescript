@@ -7,20 +7,7 @@ import { V2ListWorkflowsResponse } from "@formance/formance-sdk/sdk/models/share
 
 let value: V2ListWorkflowsResponse = {
   cursor: {
-    data: [
-      {
-        config: {
-          stages: [
-            {
-              "key": "<value>",
-            },
-          ],
-        },
-        createdAt: new Date("2024-11-25T16:08:08.795Z"),
-        id: "<id>",
-        updatedAt: new Date("2025-11-12T19:38:06.759Z"),
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

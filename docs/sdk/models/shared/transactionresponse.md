@@ -10,22 +10,22 @@ let value: TransactionResponse = {
     postCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postings: [
       {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "COIN",
         destination: "users:002",
         source: "users:001",
@@ -34,22 +34,22 @@ let value: TransactionResponse = {
     preCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2025-09-11T07:18:01.119Z"),
-    txid: BigInt("321473"),
+    timestamp: new Date("2023-12-31T14:12:54.438Z"),
+    txid: 811899n,
   },
 };
 ```

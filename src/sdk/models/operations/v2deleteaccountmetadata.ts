@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2DeleteAccountMetadataRequest = {
   /**
+   * Use an idempotency key
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * Account address
    */
   address: string;
@@ -44,13 +48,19 @@ export const V2DeleteAccountMetadataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   address: z.string(),
   key: z.string(),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+  });
 });
 
 /** @internal */
 export type V2DeleteAccountMetadataRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   address: string;
   key: string;
   ledger: string;
@@ -62,9 +72,14 @@ export const V2DeleteAccountMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2DeleteAccountMetadataRequest
 > = z.object({
+  idempotencyKey: z.string().optional(),
   address: z.string(),
   key: z.string(),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+  });
 });
 
 /**

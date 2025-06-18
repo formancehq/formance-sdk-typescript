@@ -14,22 +14,22 @@ let value: ScriptResponse = {
     postCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     postings: [
       {
-        amount: BigInt("100"),
+        amount: 100n,
         asset: "COIN",
         destination: "users:002",
         source: "users:001",
@@ -38,22 +38,22 @@ let value: ScriptResponse = {
     preCommitVolumes: {
       "orders:1": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       "orders:2": {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2024-02-19T13:57:23.980Z"),
-    txid: BigInt("657862"),
+    timestamp: new Date("2023-12-24T18:02:59.726Z"),
+    txid: 482425n,
   },
 };
 ```

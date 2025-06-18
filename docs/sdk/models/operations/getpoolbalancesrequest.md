@@ -6,7 +6,7 @@
 import { GetPoolBalancesRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: GetPoolBalancesRequest = {
-  at: new Date("2023-11-13T02:02:02.665Z"),
+  at: new Date("2025-03-04T06:23:55.517Z"),
   poolId: "XXX",
 };
 ```

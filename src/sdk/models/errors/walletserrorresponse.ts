@@ -3,8 +3,9 @@
  */
 
 import * as z from "zod";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
-export enum SchemasWalletsErrorResponseErrorCode {
+export enum WalletsErrorResponseErrorCode {
   Validation = "VALIDATION",
   InternalError = "INTERNAL_ERROR",
   InsufficientFund = "INSUFFICIENT_FUND",
@@ -12,24 +13,26 @@ export enum SchemasWalletsErrorResponseErrorCode {
 }
 
 export type WalletsErrorResponseData = {
-  errorCode: SchemasWalletsErrorResponseErrorCode;
+  errorCode: WalletsErrorResponseErrorCode;
   errorMessage: string;
 };
 
-export class WalletsErrorResponse extends Error {
-  errorCode: SchemasWalletsErrorResponseErrorCode;
+export class WalletsErrorResponse extends SDKBaseError {
+  errorCode: WalletsErrorResponseErrorCode;
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */
   data$: WalletsErrorResponseData;
 
-  constructor(err: WalletsErrorResponseData) {
+  constructor(
+    err: WalletsErrorResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
 
@@ -38,27 +41,24 @@ export class WalletsErrorResponse extends Error {
 }
 
 /** @internal */
-export const SchemasWalletsErrorResponseErrorCode$inboundSchema:
-  z.ZodNativeEnum<typeof SchemasWalletsErrorResponseErrorCode> = z.nativeEnum(
-    SchemasWalletsErrorResponseErrorCode,
-  );
+export const WalletsErrorResponseErrorCode$inboundSchema: z.ZodNativeEnum<
+  typeof WalletsErrorResponseErrorCode
+> = z.nativeEnum(WalletsErrorResponseErrorCode);
 
 /** @internal */
-export const SchemasWalletsErrorResponseErrorCode$outboundSchema:
-  z.ZodNativeEnum<typeof SchemasWalletsErrorResponseErrorCode> =
-    SchemasWalletsErrorResponseErrorCode$inboundSchema;
+export const WalletsErrorResponseErrorCode$outboundSchema: z.ZodNativeEnum<
+  typeof WalletsErrorResponseErrorCode
+> = WalletsErrorResponseErrorCode$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace SchemasWalletsErrorResponseErrorCode$ {
-  /** @deprecated use `SchemasWalletsErrorResponseErrorCode$inboundSchema` instead. */
-  export const inboundSchema =
-    SchemasWalletsErrorResponseErrorCode$inboundSchema;
-  /** @deprecated use `SchemasWalletsErrorResponseErrorCode$outboundSchema` instead. */
-  export const outboundSchema =
-    SchemasWalletsErrorResponseErrorCode$outboundSchema;
+export namespace WalletsErrorResponseErrorCode$ {
+  /** @deprecated use `WalletsErrorResponseErrorCode$inboundSchema` instead. */
+  export const inboundSchema = WalletsErrorResponseErrorCode$inboundSchema;
+  /** @deprecated use `WalletsErrorResponseErrorCode$outboundSchema` instead. */
+  export const outboundSchema = WalletsErrorResponseErrorCode$outboundSchema;
 }
 
 /** @internal */
@@ -67,11 +67,18 @@ export const WalletsErrorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  errorCode: SchemasWalletsErrorResponseErrorCode$inboundSchema,
+  errorCode: WalletsErrorResponseErrorCode$inboundSchema,
   errorMessage: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new WalletsErrorResponse(v);
+    return new WalletsErrorResponse(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */
@@ -88,7 +95,7 @@ export const WalletsErrorResponse$outboundSchema: z.ZodType<
 > = z.instanceof(WalletsErrorResponse)
   .transform(v => v.data$)
   .pipe(z.object({
-    errorCode: SchemasWalletsErrorResponseErrorCode$outboundSchema,
+    errorCode: WalletsErrorResponseErrorCode$outboundSchema,
     errorMessage: z.string(),
   }));
 

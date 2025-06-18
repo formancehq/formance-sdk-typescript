@@ -6,20 +6,20 @@
 import { TransferInitiation, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransferInitiation = {
-  amount: BigInt("802148"),
+  amount: 710672n,
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2023-12-20T21:44:54.690Z"),
-  description: "phooey off metabolise impact worth",
+  createdAt: new Date("2025-03-28T05:39:45.281Z"),
+  description:
+    "tough astride step-mother merit determined given boohoo give fatally",
   destinationAccountID: "<id>",
-  error: "<value>",
   id: "XXX",
-  initialAmount: BigInt("817249"),
+  initialAmount: 989882n,
   provider: "<value>",
   reference: "<value>",
-  scheduledAt: new Date("2024-11-07T11:49:37.012Z"),
+  scheduledAt: new Date("2025-08-12T09:59:28.956Z"),
   sourceAccountID: "<id>",
-  status: TransferInitiationStatus.PartiallyReversed,
+  status: TransferInitiationStatus.AskRetried,
   type: TransferInitiationType.Payout,
 };
 ```
@@ -34,7 +34,7 @@ let value: TransferInitiation = {
 | `createdAt`                                                                                         | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)       | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
 | `description`                                                                                       | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
 | `destinationAccountID`                                                                              | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
-| `error`                                                                                             | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
+| `error`                                                                                             | *string*                                                                                            | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |                                                                                                     |
 | `id`                                                                                                | *string*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 | XXX                                                                                                 |
 | `initialAmount`                                                                                     | *BigInt*                                                                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |                                                                                                     |
 | `metadata`                                                                                          | Record<string, *string*>                                                                            | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |                                                                                                     |

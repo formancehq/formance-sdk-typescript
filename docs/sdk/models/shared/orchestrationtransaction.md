@@ -6,21 +6,14 @@
 import { OrchestrationTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: OrchestrationTransaction = {
-  id: BigInt("415125"),
+  id: 822521n,
   metadata: {
     "admin": "true",
   },
-  postings: [
-    {
-      amount: BigInt("100"),
-      asset: "COIN",
-      destination: "users:002",
-      source: "users:001",
-    },
-  ],
+  postings: [],
   reference: "ref:001",
   reverted: false,
-  timestamp: new Date("2024-07-23T21:41:06.633Z"),
+  timestamp: new Date("2024-11-12T11:56:41.793Z"),
 };
 ```
 

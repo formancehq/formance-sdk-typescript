@@ -6,11 +6,9 @@
 import { V2Hold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Hold = {
-  description: "as whenever antagonize obstruct overburden",
-  id: "6e41b690-fe90-46fa-a27f-8094168088c6",
-  metadata: {
-    "key": "<value>",
-  },
+  description: "whose likewise pace nor till ha",
+  id: "7ae18307-979c-40d2-be0a-437807ab6138",
+  metadata: {},
   walletID: "<id>",
 };
 ```

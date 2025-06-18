@@ -6,9 +6,7 @@
 import { V3UpdatePaymentMetadataRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3UpdatePaymentMetadataRequest = {
-  metadata: {
-    "key": "<value>",
-  },
+  metadata: null,
 };
 ```
 

@@ -5,7 +5,7 @@
 ```typescript
 import { V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V3PaymentTypeEnum = V3PaymentTypeEnum.PayIn;
+let value: V3PaymentTypeEnum = V3PaymentTypeEnum.Transfer;
 ```
 
 ## Values

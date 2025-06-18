@@ -5,7 +5,7 @@
 ```typescript
 import { V3PaymentStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V3PaymentStatusEnum = V3PaymentStatusEnum.Cancelled;
+let value: V3PaymentStatusEnum = V3PaymentStatusEnum.Authorisation;
 ```
 
 ## Values

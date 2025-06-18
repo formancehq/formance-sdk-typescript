@@ -10,6 +10,7 @@ let value: BankingCircleConfig = {
   endpoint: "XXX",
   name: "My Banking Circle Account",
   password: "XXX",
+  pollingPeriod: "60s",
   userCertificate: "XXX",
   userCertificateKey: "XXX",
   username: "XXX",

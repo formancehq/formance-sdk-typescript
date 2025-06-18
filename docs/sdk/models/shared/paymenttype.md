@@ -5,7 +5,7 @@
 ```typescript
 import { PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: PaymentType = PaymentType.Transfer;
+let value: PaymentType = PaymentType.Payout;
 ```
 
 ## Values

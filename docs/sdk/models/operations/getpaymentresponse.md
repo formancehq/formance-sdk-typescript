@@ -4,44 +4,8 @@
 
 ```typescript
 import { GetPaymentResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: GetPaymentResponse = {
-  contentType: "<value>",
-  paymentResponse: {
-    data: {
-      adjustments: [
-        {
-          amount: BigInt("100"),
-          createdAt: new Date("2024-11-08T20:30:17.087Z"),
-          raw: {},
-          reference: "<value>",
-          status: PaymentStatus.Other,
-        },
-      ],
-      amount: BigInt("100"),
-      asset: "USD",
-      connectorID: "<id>",
-      createdAt: new Date("2025-12-21T10:02:05.716Z"),
-      destinationAccountID: "<id>",
-      id: "XXX",
-      initialAmount: BigInt("100"),
-      metadata: {
-        "key": "<value>",
-      },
-      raw: {},
-      reference: "<value>",
-      scheme: PaymentScheme.Alipay,
-      sourceAccountID: "<id>",
-      status: PaymentStatus.Succeeded,
-      type: PaymentType.Transfer,
-    },
-  },
-  statusCode: 308,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetPaymentResponse = {};
 ```
 
 ## Fields

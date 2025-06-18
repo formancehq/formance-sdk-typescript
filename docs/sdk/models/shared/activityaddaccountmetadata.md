@@ -10,6 +10,7 @@ let value: ActivityAddAccountMetadata = {
   ledger: "<value>",
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
   },
 };
 ```

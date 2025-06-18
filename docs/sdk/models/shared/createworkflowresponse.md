@@ -8,15 +8,11 @@ import { CreateWorkflowResponse } from "@formance/formance-sdk/sdk/models/shared
 let value: CreateWorkflowResponse = {
   data: {
     config: {
-      stages: [
-        {
-          "key": "<value>",
-        },
-      ],
+      stages: [],
     },
-    createdAt: new Date("2025-12-13T16:03:43.381Z"),
+    createdAt: new Date("2025-08-13T17:35:58.193Z"),
     id: "<id>",
-    updatedAt: new Date("2023-02-03T08:20:20.613Z"),
+    updatedAt: new Date("2024-06-18T23:26:47.377Z"),
   },
 };
 ```

@@ -7,7 +7,7 @@ import { V2CreditWalletRequest } from "@formance/formance-sdk/sdk/models/shared"
 
 let value: V2CreditWalletRequest = {
   amount: {
-    amount: BigInt("100"),
+    amount: 100n,
     asset: "USD/2",
   },
   metadata: {

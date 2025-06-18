@@ -12,14 +12,14 @@ let value: V2AccountsCursorResponse = {
         address: "users:001",
         effectiveVolumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
         metadata: {
@@ -27,14 +27,14 @@ let value: V2AccountsCursorResponse = {
         },
         volumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
       },
