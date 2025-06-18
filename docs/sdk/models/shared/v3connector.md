@@ -7,7 +7,7 @@ import { V3Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Connector = {
   config: {},
-  createdAt: new Date("2023-12-30T22:53:01.318Z"),
+  createdAt: new Date("2024-04-23T06:32:34.973Z"),
   id: "<id>",
   name: "<value>",
   provider: "<value>",
@@ -20,7 +20,7 @@ let value: V3Connector = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `config`                                                                                      | [shared.V3ConnectorSchemasConfig](../../../sdk/models/shared/v3connectorschemasconfig.md)     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `config`                                                                                      | [shared.V3ConnectorConfig](../../../sdk/models/shared/v3connectorconfig.md)                   | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |

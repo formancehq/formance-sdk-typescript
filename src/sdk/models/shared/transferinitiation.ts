@@ -36,7 +36,7 @@ export type TransferInitiation = {
   createdAt: Date;
   description: string;
   destinationAccountID: string;
-  error: string;
+  error?: string | null | undefined;
   id: string;
   initialAmount: bigint;
   metadata?: { [k: string]: string } | null | undefined;
@@ -83,7 +83,7 @@ export const TransferInitiation$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   description: z.string(),
   destinationAccountID: z.string(),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   initialAmount: z.number().transform(v => BigInt(v)),
   metadata: z.nullable(z.record(z.string())).optional(),
@@ -109,7 +109,7 @@ export type TransferInitiation$Outbound = {
   createdAt: string;
   description: string;
   destinationAccountID: string;
-  error: string;
+  error?: string | null | undefined;
   id: string;
   initialAmount: number;
   metadata?: { [k: string]: string } | null | undefined;
@@ -138,7 +138,7 @@ export const TransferInitiation$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   description: z.string(),
   destinationAccountID: z.string(),
-  error: z.string(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   initialAmount: z.bigint().transform(v => Number(v)),
   metadata: z.nullable(z.record(z.string())).optional(),

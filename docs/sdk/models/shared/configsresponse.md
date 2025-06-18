@@ -10,15 +10,15 @@ let value: ConfigsResponse = {
     data: [
       {
         active: true,
-        createdAt: new Date("2024-02-10T05:09:54.223Z"),
+        createdAt: new Date("2025-10-03T22:31:06.964Z"),
         endpoint: "https://example.com",
         eventTypes: [
           "TYPE1",
           "TYPE2",
         ],
-        id: "cea3d6b7-f123-4332-9b33-36f54153c124",
+        id: "12a4490a-393a-4397-99d6-0654e8a25ec4",
         secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-        updatedAt: new Date("2025-07-16T13:12:18.198Z"),
+        updatedAt: new Date("2023-09-22T08:18:22.925Z"),
       },
     ],
     hasMore: false,

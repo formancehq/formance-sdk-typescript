@@ -6,7 +6,6 @@
 import { BankAccountRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: BankAccountRequest = {
-  connectorID: "<id>",
   country: "GB",
   name: "My account",
 };
@@ -17,7 +16,7 @@ let value: BankAccountRequest = {
 | Field                    | Type                     | Required                 | Description              | Example                  |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
 | `accountNumber`          | *string*                 | :heavy_minus_sign:       | N/A                      |                          |
-| `connectorID`            | *string*                 | :heavy_check_mark:       | N/A                      |                          |
+| `connectorID`            | *string*                 | :heavy_minus_sign:       | N/A                      |                          |
 | `country`                | *string*                 | :heavy_check_mark:       | N/A                      | GB                       |
 | `iban`                   | *string*                 | :heavy_minus_sign:       | N/A                      |                          |
 | `metadata`               | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |                          |

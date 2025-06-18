@@ -6,13 +6,7 @@
 import { V3BankAccountsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3BankAccountsCursorResponseCursor = {
-  data: [
-    {
-      createdAt: new Date("2024-07-03T09:16:14.276Z"),
-      id: "<id>",
-      name: "<value>",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

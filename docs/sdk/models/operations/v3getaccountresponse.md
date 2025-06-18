@@ -5,13 +5,7 @@
 ```typescript
 import { V3GetAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3GetAccountResponse = {
-  contentType: "<value>",
-  statusCode: 505,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3GetAccountResponse = {};
 ```
 
 ## Fields

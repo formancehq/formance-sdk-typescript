@@ -8,9 +8,7 @@ import { Config } from "@formance/formance-sdk/sdk/models/shared";
 let value: Config = {
   storage: {
     driver: "<value>",
-    ledgers: [
-      "<value>",
-    ],
+    ledgers: [],
   },
 };
 ```

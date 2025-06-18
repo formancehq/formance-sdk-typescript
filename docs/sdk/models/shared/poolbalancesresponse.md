@@ -9,12 +9,7 @@ import { PoolBalancesResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PoolBalancesResponse = {
   data: {
-    balances: [
-      {
-        amount: BigInt("100"),
-        asset: "USD",
-      },
-    ],
+    balances: [],
   },
 };
 ```

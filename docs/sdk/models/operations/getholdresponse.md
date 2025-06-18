@@ -5,25 +5,7 @@
 ```typescript
 import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetHoldResponse = {
-  contentType: "<value>",
-  getHoldResponse: {
-    data: {
-      description: "consequently incidentally cop",
-      id: "578de391-7557-4b1e-9b2f-8f38449ecb8e",
-      metadata: {
-        "key": "<value>",
-      },
-      originalAmount: BigInt("100"),
-      remaining: BigInt("10"),
-      walletID: "<id>",
-    },
-  },
-  statusCode: 510,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetHoldResponse = {};
 ```
 
 ## Fields

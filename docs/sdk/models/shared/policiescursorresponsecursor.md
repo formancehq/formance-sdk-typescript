@@ -13,6 +13,7 @@ let value: PoliciesCursorResponseCursor = {
       ledgerName: "default",
       ledgerQuery: {
         "key": "<value>",
+        "key1": "<value>",
       },
       name: "XXX",
       paymentsPoolID: "XXX",

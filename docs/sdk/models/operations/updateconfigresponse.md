@@ -5,13 +5,7 @@
 ```typescript
 import { UpdateConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: UpdateConfigResponse = {
-  contentType: "<value>",
-  statusCode: 102,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: UpdateConfigResponse = {};
 ```
 
 ## Fields

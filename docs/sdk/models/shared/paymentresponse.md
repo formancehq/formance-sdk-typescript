@@ -9,30 +9,22 @@ import { PaymentResponse, PaymentScheme, PaymentStatus, PaymentType } from "@for
 
 let value: PaymentResponse = {
   data: {
-    adjustments: [
-      {
-        amount: BigInt("100"),
-        createdAt: new Date("2023-07-29T04:07:06.634Z"),
-        raw: {},
-        reference: "<value>",
-        status: PaymentStatus.DisputeLost,
-      },
-    ],
-    amount: BigInt("100"),
+    adjustments: [],
+    amount: 100n,
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2025-07-29T19:18:16.265Z"),
+    createdAt: new Date("2025-07-08T02:46:08.631Z"),
     destinationAccountID: "<id>",
     id: "XXX",
-    initialAmount: BigInt("100"),
+    initialAmount: 100n,
     metadata: {
       "key": "<value>",
     },
     raw: {},
     reference: "<value>",
-    scheme: PaymentScheme.SepaDebit,
+    scheme: PaymentScheme.SepaCredit,
     sourceAccountID: "<id>",
-    status: PaymentStatus.Expired,
+    status: PaymentStatus.Refunded,
     type: PaymentType.Other,
   },
 };

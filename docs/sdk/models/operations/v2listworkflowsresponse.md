@@ -5,35 +5,7 @@
 ```typescript
 import { V2ListWorkflowsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListWorkflowsResponse = {
-  contentType: "<value>",
-  statusCode: 307,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2ListWorkflowsResponse: {
-    cursor: {
-      data: [
-        {
-          config: {
-            stages: [
-              {
-                "key": "<value>",
-              },
-            ],
-          },
-          createdAt: new Date("2025-03-07T20:10:20.231Z"),
-          id: "<id>",
-          updatedAt: new Date("2023-10-24T06:42:18.790Z"),
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V2ListWorkflowsResponse = {};
 ```
 
 ## Fields

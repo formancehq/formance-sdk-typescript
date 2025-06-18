@@ -6,11 +6,8 @@
 import { AddMetadataOnTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: AddMetadataOnTransactionRequest = {
-  requestBody: {
-    "key": "<value>",
-  },
   ledger: "ledger001",
-  txid: BigInt("1234"),
+  txid: 1234n,
 };
 ```
 

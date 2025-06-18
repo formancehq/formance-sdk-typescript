@@ -5,13 +5,7 @@
 ```typescript
 import { UninstallConnectorV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: UninstallConnectorV1Response = {
-  contentType: "<value>",
-  statusCode: 202,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: UninstallConnectorV1Response = {};
 ```
 
 ## Fields

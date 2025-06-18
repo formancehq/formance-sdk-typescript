@@ -31,7 +31,7 @@ import {
 
 export type V2PaymentRaw = {};
 
-export enum Scheme {
+export enum V2PaymentScheme {
   Visa = "visa",
   Mastercard = "mastercard",
   Amex = "amex",
@@ -71,7 +71,7 @@ export type V2Payment = {
   provider?: V2Connector | undefined;
   raw: V2PaymentRaw | null;
   reference: string;
-  scheme: Scheme;
+  scheme: V2PaymentScheme;
   sourceAccountID: string;
   status: V2PaymentStatus;
   type: V2PaymentType;
@@ -122,22 +122,24 @@ export function v2PaymentRawFromJSON(
 }
 
 /** @internal */
-export const Scheme$inboundSchema: z.ZodNativeEnum<typeof Scheme> = z
-  .nativeEnum(Scheme);
+export const V2PaymentScheme$inboundSchema: z.ZodNativeEnum<
+  typeof V2PaymentScheme
+> = z.nativeEnum(V2PaymentScheme);
 
 /** @internal */
-export const Scheme$outboundSchema: z.ZodNativeEnum<typeof Scheme> =
-  Scheme$inboundSchema;
+export const V2PaymentScheme$outboundSchema: z.ZodNativeEnum<
+  typeof V2PaymentScheme
+> = V2PaymentScheme$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Scheme$ {
-  /** @deprecated use `Scheme$inboundSchema` instead. */
-  export const inboundSchema = Scheme$inboundSchema;
-  /** @deprecated use `Scheme$outboundSchema` instead. */
-  export const outboundSchema = Scheme$outboundSchema;
+export namespace V2PaymentScheme$ {
+  /** @deprecated use `V2PaymentScheme$inboundSchema` instead. */
+  export const inboundSchema = V2PaymentScheme$inboundSchema;
+  /** @deprecated use `V2PaymentScheme$outboundSchema` instead. */
+  export const outboundSchema = V2PaymentScheme$outboundSchema;
 }
 
 /** @internal */
@@ -178,7 +180,7 @@ export const V2Payment$inboundSchema: z.ZodType<
   provider: V2Connector$inboundSchema.optional(),
   raw: z.nullable(z.lazy(() => V2PaymentRaw$inboundSchema)),
   reference: z.string(),
-  scheme: Scheme$inboundSchema,
+  scheme: V2PaymentScheme$inboundSchema,
   sourceAccountID: z.string(),
   status: V2PaymentStatus$inboundSchema,
   type: V2PaymentType$inboundSchema,
@@ -220,7 +222,7 @@ export const V2Payment$outboundSchema: z.ZodType<
   provider: V2Connector$outboundSchema.optional(),
   raw: z.nullable(z.lazy(() => V2PaymentRaw$outboundSchema)),
   reference: z.string(),
-  scheme: Scheme$outboundSchema,
+  scheme: V2PaymentScheme$outboundSchema,
   sourceAccountID: z.string(),
   status: V2PaymentStatus$outboundSchema,
   type: V2PaymentType$outboundSchema,

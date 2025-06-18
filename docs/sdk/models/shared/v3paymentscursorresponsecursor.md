@@ -3,24 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { V3PaymentsCursorResponseCursor, V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
+import { V3PaymentsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PaymentsCursorResponseCursor = {
-  data: [
-    {
-      amount: BigInt("57667"),
-      asset: "<value>",
-      connectorID: "<value>",
-      createdAt: new Date("2024-11-06T13:51:23.213Z"),
-      id: "<id>",
-      initialAmount: BigInt("495225"),
-      provider: "<value>",
-      reference: "<value>",
-      scheme: "<value>",
-      status: V3PaymentStatusEnum.Cancelled,
-      type: V3PaymentTypeEnum.Payout,
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

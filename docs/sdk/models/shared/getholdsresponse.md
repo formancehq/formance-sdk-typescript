@@ -9,10 +9,13 @@ let value: GetHoldsResponse = {
   cursor: {
     data: [
       {
-        description: "cheese of bewail whose masterpiece why rarely splurge",
-        id: "49dc3042-048a-4639-8cbd-4875a2c0696a",
+        asset: "<value>",
+        description: "dream finally developmental",
+        id: "478db7c9-0d9d-4305-8146-2316ac01b272",
         metadata: {
           "key": "<value>",
+          "key1": "<value>",
+          "key2": "<value>",
         },
         walletID: "<id>",
       },

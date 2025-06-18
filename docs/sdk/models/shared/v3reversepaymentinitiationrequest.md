@@ -6,9 +6,10 @@
 import { V3ReversePaymentInitiationRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ReversePaymentInitiationRequest = {
-  amount: BigInt("415003"),
+  amount: 407829n,
   asset: "<value>",
-  description: "unabashedly heighten although joshingly preheat",
+  description:
+    "phooey roughly till uh-huh majestically muffled badly trial gosh",
   reference: "<value>",
 };
 ```

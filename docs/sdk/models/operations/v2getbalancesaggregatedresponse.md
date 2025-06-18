@@ -5,19 +5,7 @@
 ```typescript
 import { V2GetBalancesAggregatedResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetBalancesAggregatedResponse = {
-  contentType: "<value>",
-  statusCode: 404,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2AggregateBalancesResponse: {
-    data: {
-      "USD": BigInt("100"),
-      "EUR": BigInt("12"),
-    },
-  },
-};
+let value: V2GetBalancesAggregatedResponse = {};
 ```
 
 ## Fields

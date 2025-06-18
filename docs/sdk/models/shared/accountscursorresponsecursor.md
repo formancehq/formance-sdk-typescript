@@ -6,20 +6,7 @@
 import { AccountsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: AccountsCursorResponseCursor = {
-  data: [
-    {
-      address: "users:001",
-      metadata: {
-        "admin": true,
-        "a": {
-          "nested": {
-            "key": "value",
-          },
-        },
-      },
-      type: "virtual",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

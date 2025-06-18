@@ -5,32 +5,7 @@
 ```typescript
 import { V3ListConnectorsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListConnectorsResponse = {
-  contentType: "<value>",
-  statusCode: 303,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v3ConnectorsCursorResponse: {
-    cursor: {
-      data: [
-        {
-          config: {},
-          createdAt: new Date("2025-06-06T01:32:10.356Z"),
-          id: "<id>",
-          name: "<value>",
-          provider: "<value>",
-          reference: "<value>",
-          scheduledForDeletion: false,
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V3ListConnectorsResponse = {};
 ```
 
 ## Fields

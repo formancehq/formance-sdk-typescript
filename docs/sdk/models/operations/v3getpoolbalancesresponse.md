@@ -5,13 +5,7 @@
 ```typescript
 import { V3GetPoolBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3GetPoolBalancesResponse = {
-  contentType: "<value>",
-  statusCode: 501,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3GetPoolBalancesResponse = {};
 ```
 
 ## Fields

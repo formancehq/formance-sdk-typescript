@@ -7,10 +7,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type V3ConnectorSchemasConfig = {};
+export type V3ConnectorConfig = {};
 
 export type V3Connector = {
-  config: V3ConnectorSchemasConfig;
+  config: V3ConnectorConfig;
   createdAt: Date;
   id: string;
   name: string;
@@ -20,50 +20,50 @@ export type V3Connector = {
 };
 
 /** @internal */
-export const V3ConnectorSchemasConfig$inboundSchema: z.ZodType<
-  V3ConnectorSchemasConfig,
+export const V3ConnectorConfig$inboundSchema: z.ZodType<
+  V3ConnectorConfig,
   z.ZodTypeDef,
   unknown
 > = z.object({});
 
 /** @internal */
-export type V3ConnectorSchemasConfig$Outbound = {};
+export type V3ConnectorConfig$Outbound = {};
 
 /** @internal */
-export const V3ConnectorSchemasConfig$outboundSchema: z.ZodType<
-  V3ConnectorSchemasConfig$Outbound,
+export const V3ConnectorConfig$outboundSchema: z.ZodType<
+  V3ConnectorConfig$Outbound,
   z.ZodTypeDef,
-  V3ConnectorSchemasConfig
+  V3ConnectorConfig
 > = z.object({});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace V3ConnectorSchemasConfig$ {
-  /** @deprecated use `V3ConnectorSchemasConfig$inboundSchema` instead. */
-  export const inboundSchema = V3ConnectorSchemasConfig$inboundSchema;
-  /** @deprecated use `V3ConnectorSchemasConfig$outboundSchema` instead. */
-  export const outboundSchema = V3ConnectorSchemasConfig$outboundSchema;
-  /** @deprecated use `V3ConnectorSchemasConfig$Outbound` instead. */
-  export type Outbound = V3ConnectorSchemasConfig$Outbound;
+export namespace V3ConnectorConfig$ {
+  /** @deprecated use `V3ConnectorConfig$inboundSchema` instead. */
+  export const inboundSchema = V3ConnectorConfig$inboundSchema;
+  /** @deprecated use `V3ConnectorConfig$outboundSchema` instead. */
+  export const outboundSchema = V3ConnectorConfig$outboundSchema;
+  /** @deprecated use `V3ConnectorConfig$Outbound` instead. */
+  export type Outbound = V3ConnectorConfig$Outbound;
 }
 
-export function v3ConnectorSchemasConfigToJSON(
-  v3ConnectorSchemasConfig: V3ConnectorSchemasConfig,
+export function v3ConnectorConfigToJSON(
+  v3ConnectorConfig: V3ConnectorConfig,
 ): string {
   return JSON.stringify(
-    V3ConnectorSchemasConfig$outboundSchema.parse(v3ConnectorSchemasConfig),
+    V3ConnectorConfig$outboundSchema.parse(v3ConnectorConfig),
   );
 }
 
-export function v3ConnectorSchemasConfigFromJSON(
+export function v3ConnectorConfigFromJSON(
   jsonString: string,
-): SafeParseResult<V3ConnectorSchemasConfig, SDKValidationError> {
+): SafeParseResult<V3ConnectorConfig, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => V3ConnectorSchemasConfig$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3ConnectorSchemasConfig' from JSON`,
+    (x) => V3ConnectorConfig$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V3ConnectorConfig' from JSON`,
   );
 }
 
@@ -73,7 +73,7 @@ export const V3Connector$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  config: z.lazy(() => V3ConnectorSchemasConfig$inboundSchema),
+  config: z.lazy(() => V3ConnectorConfig$inboundSchema),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),
   name: z.string(),
@@ -84,7 +84,7 @@ export const V3Connector$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V3Connector$Outbound = {
-  config: V3ConnectorSchemasConfig$Outbound;
+  config: V3ConnectorConfig$Outbound;
   createdAt: string;
   id: string;
   name: string;
@@ -99,7 +99,7 @@ export const V3Connector$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3Connector
 > = z.object({
-  config: z.lazy(() => V3ConnectorSchemasConfig$outboundSchema),
+  config: z.lazy(() => V3ConnectorConfig$outboundSchema),
   createdAt: z.date().transform(v => v.toISOString()),
   id: z.string(),
   name: z.string(),

@@ -5,13 +5,7 @@
 ```typescript
 import { V3DeletePoolResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3DeletePoolResponse = {
-  contentType: "<value>",
-  statusCode: 200,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3DeletePoolResponse = {};
 ```
 
 ## Fields

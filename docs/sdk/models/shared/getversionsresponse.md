@@ -10,7 +10,7 @@ let value: GetVersionsResponse = {
   region: "<value>",
   versions: [
     {
-      health: false,
+      health: true,
       name: "<value>",
       version: "<value>",
     },

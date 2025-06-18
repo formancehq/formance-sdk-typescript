@@ -5,13 +5,7 @@
 ```typescript
 import { V2DeleteTransactionMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2DeleteTransactionMetadataResponse = {
-  contentType: "<value>",
-  statusCode: 407,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V2DeleteTransactionMetadataResponse = {};
 ```
 
 ## Fields

@@ -6,45 +6,45 @@
 import { V2Transaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2Transaction = {
-  id: BigInt("313590"),
+  id: 918598n,
   metadata: {
     "admin": "true",
   },
   postCommitEffectiveVolumes: {
     "orders:1": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
     "orders:2": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   postCommitVolumes: {
     "orders:1": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
     "orders:2": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   postings: [
     {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "COIN",
       destination: "users:002",
       source: "users:001",
@@ -53,38 +53,38 @@ let value: V2Transaction = {
   preCommitEffectiveVolumes: {
     "orders:1": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
     "orders:2": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   preCommitVolumes: {
     "orders:1": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
     "orders:2": {
       "USD": {
-        balance: BigInt("90"),
-        input: BigInt("100"),
-        output: BigInt("10"),
+        balance: 90n,
+        input: 100n,
+        output: 10n,
       },
     },
   },
   reference: "ref:001",
   reverted: false,
-  timestamp: new Date("2024-02-05T15:08:18.944Z"),
+  timestamp: new Date("2024-04-20T12:45:50.043Z"),
 };
 ```
 

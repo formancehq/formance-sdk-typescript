@@ -12,7 +12,7 @@ import { ErrorT } from "@formance/formance-sdk/sdk/models/errors";
 
 ## Fields
 
-| Field                                                       | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `errorCode`                                                 | [errors.ErrorCode](../../../sdk/models/errors/errorcode.md) | :heavy_check_mark:                                          | N/A                                                         |
-| `errorMessage`                                              | *string*                                                    | :heavy_check_mark:                                          | N/A                                                         |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `errorCode`                                                           | [errors.ErrorErrorCode](../../../sdk/models/errors/errorerrorcode.md) | :heavy_check_mark:                                                    | N/A                                                                   |
+| `errorMessage`                                                        | *string*                                                              | :heavy_check_mark:                                                    | N/A                                                                   |

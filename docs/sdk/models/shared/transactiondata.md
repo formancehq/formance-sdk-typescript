@@ -6,14 +6,7 @@
 import { TransactionData } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TransactionData = {
-  postings: [
-    {
-      amount: BigInt("100"),
-      asset: "COIN",
-      destination: "users:002",
-      source: "users:001",
-    },
-  ],
+  postings: [],
   reference: "ref:001",
 };
 ```

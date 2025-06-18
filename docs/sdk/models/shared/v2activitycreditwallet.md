@@ -8,7 +8,7 @@ import { V2ActivityCreditWallet } from "@formance/formance-sdk/sdk/models/shared
 let value: V2ActivityCreditWallet = {
   data: {
     amount: {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "USD/2",
     },
     metadata: {

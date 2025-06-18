@@ -8,7 +8,7 @@ import { ActivityDebitWallet } from "@formance/formance-sdk/sdk/models/shared";
 let value: ActivityDebitWallet = {
   data: {
     amount: {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "USD/2",
     },
     metadata: {

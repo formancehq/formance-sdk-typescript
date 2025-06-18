@@ -8,7 +8,7 @@ import { LedgerStorage } from "@formance/formance-sdk/sdk/models/shared";
 let value: LedgerStorage = {
   driver: "<value>",
   ledgers: [
-    "<value>",
+    "<value 1>",
   ],
 };
 ```

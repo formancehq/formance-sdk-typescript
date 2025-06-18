@@ -8,7 +8,7 @@ import { AccountWithVolumesAndBalances } from "@formance/formance-sdk/sdk/models
 let value: AccountWithVolumesAndBalances = {
   address: "users:001",
   balances: {
-    "COIN": BigInt("100"),
+    "COIN": 100n,
   },
   metadata: {
     "admin": true,
@@ -21,14 +21,14 @@ let value: AccountWithVolumesAndBalances = {
   type: "virtual",
   volumes: {
     "USD": {
-      balance: BigInt("90"),
-      input: BigInt("100"),
-      output: BigInt("10"),
+      balance: 90n,
+      input: 100n,
+      output: 10n,
     },
     "EUR": {
-      balance: BigInt("90"),
-      input: BigInt("100"),
-      output: BigInt("10"),
+      balance: 90n,
+      input: 100n,
+      output: 10n,
     },
   },
 };

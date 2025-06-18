@@ -6,13 +6,7 @@
 import { V3ConnectorSchedulesCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3ConnectorSchedulesCursorResponseCursor = {
-  data: [
-    {
-      connectorID: "<value>",
-      createdAt: new Date("2023-11-21T08:44:57.483Z"),
-      id: "<id>",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

@@ -9,11 +9,12 @@ let value: V3PoolsCursorResponse = {
   cursor: {
     data: [
       {
-        createdAt: new Date("2024-01-29T19:03:39.004Z"),
+        createdAt: new Date("2025-01-22T17:52:21.884Z"),
         id: "<id>",
         name: "<value>",
         poolAccounts: [
-          "<value>",
+          "<value 1>",
+          "<value 2>",
         ],
       },
     ],

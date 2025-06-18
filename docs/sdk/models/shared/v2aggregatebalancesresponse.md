@@ -7,8 +7,8 @@ import { V2AggregateBalancesResponse } from "@formance/formance-sdk/sdk/models/s
 
 let value: V2AggregateBalancesResponse = {
   data: {
-    "USD": BigInt("100"),
-    "EUR": BigInt("12"),
+    "USD": 100n,
+    "EUR": 12n,
   },
 };
 ```

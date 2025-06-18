@@ -10,6 +10,13 @@ let value: V2WorkflowConfig = {
     {
       "key": "<value>",
     },
+    {
+      "key": "<value>",
+    },
+    {
+      "key": "<value>",
+      "key1": "<value>",
+    },
   ],
 };
 ```

@@ -7,130 +7,18 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Key = {
-  dataType: string;
-  required: boolean;
-};
-
-export type ConnectorsConfigsResponseConnector = {
-  key: Key;
-};
-
 export type ConnectorsConfigsResponseData = {
-  connector: ConnectorsConfigsResponseConnector;
+  dataType: string;
+  defaultValue?: string | undefined;
+  required: boolean;
 };
 
 /**
  * OK
  */
 export type ConnectorsConfigsResponse = {
-  data: ConnectorsConfigsResponseData;
+  data: { [k: string]: { [k: string]: ConnectorsConfigsResponseData } };
 };
-
-/** @internal */
-export const Key$inboundSchema: z.ZodType<Key, z.ZodTypeDef, unknown> = z
-  .object({
-    dataType: z.string(),
-    required: z.boolean(),
-  });
-
-/** @internal */
-export type Key$Outbound = {
-  dataType: string;
-  required: boolean;
-};
-
-/** @internal */
-export const Key$outboundSchema: z.ZodType<Key$Outbound, z.ZodTypeDef, Key> = z
-  .object({
-    dataType: z.string(),
-    required: z.boolean(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Key$ {
-  /** @deprecated use `Key$inboundSchema` instead. */
-  export const inboundSchema = Key$inboundSchema;
-  /** @deprecated use `Key$outboundSchema` instead. */
-  export const outboundSchema = Key$outboundSchema;
-  /** @deprecated use `Key$Outbound` instead. */
-  export type Outbound = Key$Outbound;
-}
-
-export function keyToJSON(key: Key): string {
-  return JSON.stringify(Key$outboundSchema.parse(key));
-}
-
-export function keyFromJSON(
-  jsonString: string,
-): SafeParseResult<Key, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Key$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Key' from JSON`,
-  );
-}
-
-/** @internal */
-export const ConnectorsConfigsResponseConnector$inboundSchema: z.ZodType<
-  ConnectorsConfigsResponseConnector,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.lazy(() => Key$inboundSchema),
-});
-
-/** @internal */
-export type ConnectorsConfigsResponseConnector$Outbound = {
-  key: Key$Outbound;
-};
-
-/** @internal */
-export const ConnectorsConfigsResponseConnector$outboundSchema: z.ZodType<
-  ConnectorsConfigsResponseConnector$Outbound,
-  z.ZodTypeDef,
-  ConnectorsConfigsResponseConnector
-> = z.object({
-  key: z.lazy(() => Key$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ConnectorsConfigsResponseConnector$ {
-  /** @deprecated use `ConnectorsConfigsResponseConnector$inboundSchema` instead. */
-  export const inboundSchema = ConnectorsConfigsResponseConnector$inboundSchema;
-  /** @deprecated use `ConnectorsConfigsResponseConnector$outboundSchema` instead. */
-  export const outboundSchema =
-    ConnectorsConfigsResponseConnector$outboundSchema;
-  /** @deprecated use `ConnectorsConfigsResponseConnector$Outbound` instead. */
-  export type Outbound = ConnectorsConfigsResponseConnector$Outbound;
-}
-
-export function connectorsConfigsResponseConnectorToJSON(
-  connectorsConfigsResponseConnector: ConnectorsConfigsResponseConnector,
-): string {
-  return JSON.stringify(
-    ConnectorsConfigsResponseConnector$outboundSchema.parse(
-      connectorsConfigsResponseConnector,
-    ),
-  );
-}
-
-export function connectorsConfigsResponseConnectorFromJSON(
-  jsonString: string,
-): SafeParseResult<ConnectorsConfigsResponseConnector, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      ConnectorsConfigsResponseConnector$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ConnectorsConfigsResponseConnector' from JSON`,
-  );
-}
 
 /** @internal */
 export const ConnectorsConfigsResponseData$inboundSchema: z.ZodType<
@@ -138,12 +26,16 @@ export const ConnectorsConfigsResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  connector: z.lazy(() => ConnectorsConfigsResponseConnector$inboundSchema),
+  dataType: z.string(),
+  defaultValue: z.string().optional(),
+  required: z.boolean(),
 });
 
 /** @internal */
 export type ConnectorsConfigsResponseData$Outbound = {
-  connector: ConnectorsConfigsResponseConnector$Outbound;
+  dataType: string;
+  defaultValue?: string | undefined;
+  required: boolean;
 };
 
 /** @internal */
@@ -152,7 +44,9 @@ export const ConnectorsConfigsResponseData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorsConfigsResponseData
 > = z.object({
-  connector: z.lazy(() => ConnectorsConfigsResponseConnector$outboundSchema),
+  dataType: z.string(),
+  defaultValue: z.string().optional(),
+  required: z.boolean(),
 });
 
 /**
@@ -194,12 +88,16 @@ export const ConnectorsConfigsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => ConnectorsConfigsResponseData$inboundSchema),
+  data: z.record(
+    z.record(z.lazy(() => ConnectorsConfigsResponseData$inboundSchema)),
+  ),
 });
 
 /** @internal */
 export type ConnectorsConfigsResponse$Outbound = {
-  data: ConnectorsConfigsResponseData$Outbound;
+  data: {
+    [k: string]: { [k: string]: ConnectorsConfigsResponseData$Outbound };
+  };
 };
 
 /** @internal */
@@ -208,7 +106,9 @@ export const ConnectorsConfigsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorsConfigsResponse
 > = z.object({
-  data: z.lazy(() => ConnectorsConfigsResponseData$outboundSchema),
+  data: z.record(
+    z.record(z.lazy(() => ConnectorsConfigsResponseData$outboundSchema)),
+  ),
 });
 
 /**

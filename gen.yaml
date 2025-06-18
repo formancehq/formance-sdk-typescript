@@ -17,14 +17,16 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 4.2.1
+  version: 4.3.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
   author: Formance
+  baseErrorName: SDKBaseError
   clientServerStatusCodesAsErrors: false
+  constFieldsAlwaysOptional: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
   enableMCPServer: true

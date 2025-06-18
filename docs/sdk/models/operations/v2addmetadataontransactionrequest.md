@@ -6,11 +6,8 @@
 import { V2AddMetadataOnTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2AddMetadataOnTransactionRequest = {
-  requestBody: {
-    "admin": "true",
-  },
   dryRun: true,
-  id: BigInt("1234"),
+  id: 1234n,
   ledger: "ledger001",
 };
 ```

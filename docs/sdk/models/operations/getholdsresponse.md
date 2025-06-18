@@ -5,31 +5,7 @@
 ```typescript
 import { GetHoldsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetHoldsResponse = {
-  contentType: "<value>",
-  getHoldsResponse: {
-    cursor: {
-      data: [
-        {
-          description: "boo legitimize well meh",
-          id: "39c39afc-d72f-4271-bffb-5442825ab06a",
-          metadata: {
-            "key": "<value>",
-          },
-          walletID: "<id>",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-  statusCode: 308,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetHoldsResponse = {};
 ```
 
 ## Fields

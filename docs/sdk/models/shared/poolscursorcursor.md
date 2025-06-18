@@ -9,7 +9,9 @@ let value: PoolsCursorCursor = {
   data: [
     {
       accounts: [
-        "<value>",
+        "<value 1>",
+        "<value 2>",
+        "<value 3>",
       ],
       id: "<id>",
       name: "<value>",

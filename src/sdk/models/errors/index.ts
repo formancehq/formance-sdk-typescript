@@ -7,6 +7,7 @@ export * from "./errorresponse.js";
 export * from "./httpclienterrors.js";
 export * from "./paymentserrorresponse.js";
 export * from "./reconciliationerrorresponse.js";
+export * from "./responsevalidationerror.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./v2error.js";

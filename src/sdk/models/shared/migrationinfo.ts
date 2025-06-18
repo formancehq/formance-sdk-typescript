@@ -7,7 +7,7 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export enum State {
+export enum MigrationInfoState {
   ToDo = "TO DO",
   Done = "DONE",
 }
@@ -15,28 +15,29 @@ export enum State {
 export type MigrationInfo = {
   date?: Date | undefined;
   name?: string | undefined;
-  state?: State | undefined;
+  state?: MigrationInfoState | undefined;
   version?: string | undefined;
 };
 
 /** @internal */
-export const State$inboundSchema: z.ZodNativeEnum<typeof State> = z.nativeEnum(
-  State,
-);
+export const MigrationInfoState$inboundSchema: z.ZodNativeEnum<
+  typeof MigrationInfoState
+> = z.nativeEnum(MigrationInfoState);
 
 /** @internal */
-export const State$outboundSchema: z.ZodNativeEnum<typeof State> =
-  State$inboundSchema;
+export const MigrationInfoState$outboundSchema: z.ZodNativeEnum<
+  typeof MigrationInfoState
+> = MigrationInfoState$inboundSchema;
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace State$ {
-  /** @deprecated use `State$inboundSchema` instead. */
-  export const inboundSchema = State$inboundSchema;
-  /** @deprecated use `State$outboundSchema` instead. */
-  export const outboundSchema = State$outboundSchema;
+export namespace MigrationInfoState$ {
+  /** @deprecated use `MigrationInfoState$inboundSchema` instead. */
+  export const inboundSchema = MigrationInfoState$inboundSchema;
+  /** @deprecated use `MigrationInfoState$outboundSchema` instead. */
+  export const outboundSchema = MigrationInfoState$outboundSchema;
 }
 
 /** @internal */
@@ -48,7 +49,7 @@ export const MigrationInfo$inboundSchema: z.ZodType<
   date: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   name: z.string().optional(),
-  state: State$inboundSchema.optional(),
+  state: MigrationInfoState$inboundSchema.optional(),
   version: z.string().optional(),
 });
 
@@ -68,7 +69,7 @@ export const MigrationInfo$outboundSchema: z.ZodType<
 > = z.object({
   date: z.date().transform(v => v.toISOString()).optional(),
   name: z.string().optional(),
-  state: State$outboundSchema.optional(),
+  state: MigrationInfoState$outboundSchema.optional(),
   version: z.string().optional(),
 });
 

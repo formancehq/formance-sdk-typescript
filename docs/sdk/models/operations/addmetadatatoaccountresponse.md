@@ -5,13 +5,7 @@
 ```typescript
 import { AddMetadataToAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: AddMetadataToAccountResponse = {
-  contentType: "<value>",
-  statusCode: 423,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: AddMetadataToAccountResponse = {};
 ```
 
 ## Fields

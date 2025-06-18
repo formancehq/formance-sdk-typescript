@@ -10,6 +10,10 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2DeleteTransactionMetadataRequest = {
   /**
+   * Use an idempotency key
+   */
+  idempotencyKey?: string | undefined;
+  /**
    * Transaction ID.
    */
   id: bigint;
@@ -44,13 +48,19 @@ export const V2DeleteTransactionMetadataRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  "Idempotency-Key": z.string().optional(),
   id: z.number().transform(v => BigInt(v)),
   key: z.string(),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "Idempotency-Key": "idempotencyKey",
+  });
 });
 
 /** @internal */
 export type V2DeleteTransactionMetadataRequest$Outbound = {
+  "Idempotency-Key"?: string | undefined;
   id: number;
   key: string;
   ledger: string;
@@ -62,9 +72,14 @@ export const V2DeleteTransactionMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2DeleteTransactionMetadataRequest
 > = z.object({
+  idempotencyKey: z.string().optional(),
   id: z.bigint().transform(v => Number(v)),
   key: z.string(),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    idempotencyKey: "Idempotency-Key",
+  });
 });
 
 /**

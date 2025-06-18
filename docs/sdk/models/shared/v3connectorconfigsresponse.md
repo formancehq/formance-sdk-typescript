@@ -7,9 +7,16 @@ import { V3ConnectorConfigsResponse } from "@formance/formance-sdk/sdk/models/sh
 
 let value: V3ConnectorConfigsResponse = {
   data: {
-    connector: {
-      key: {
-        dataType: "serial",
+    "key": {},
+    "key1": {
+      "key": {
+        dataType: "enum",
+        required: false,
+      },
+    },
+    "key2": {
+      "key": {
+        dataType: "enum",
         required: false,
       },
     },
@@ -19,6 +26,6 @@ let value: V3ConnectorConfigsResponse = {
 
 ## Fields
 
-| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `data`                                                                                                | [shared.V3ConnectorConfigsResponseData](../../../sdk/models/shared/v3connectorconfigsresponsedata.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| Field                                                                                                                                 | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`                                                                                                                                | Record<string, Record<string, [shared.V3ConnectorConfigsResponseData](../../../sdk/models/shared/v3connectorconfigsresponsedata.md)>> | :heavy_check_mark:                                                                                                                    | N/A                                                                                                                                   |

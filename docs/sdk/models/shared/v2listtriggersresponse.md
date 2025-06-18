@@ -7,14 +7,7 @@ import { V2ListTriggersResponse } from "@formance/formance-sdk/sdk/models/shared
 
 let value: V2ListTriggersResponse = {
   cursor: {
-    data: [
-      {
-        createdAt: new Date("2025-03-04T20:48:07.480Z"),
-        event: "<value>",
-        id: "<id>",
-        workflowID: "<id>",
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

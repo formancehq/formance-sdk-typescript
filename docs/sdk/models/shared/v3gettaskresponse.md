@@ -7,10 +7,10 @@ import { V3GetTaskResponse, V3TaskStatusEnum } from "@formance/formance-sdk/sdk/
 
 let value: V3GetTaskResponse = {
   data: {
-    createdAt: new Date("2025-08-16T09:25:12.558Z"),
+    createdAt: new Date("2024-01-18T13:38:13.412Z"),
     id: "<id>",
     status: V3TaskStatusEnum.Processing,
-    updatedAt: new Date("2025-11-11T12:54:59.231Z"),
+    updatedAt: new Date("2025-04-03T04:28:43.868Z"),
   },
 };
 ```

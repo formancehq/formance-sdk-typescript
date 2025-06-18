@@ -8,8 +8,10 @@ import { V2BulkElementAddMetadataData, V2TargetType } from "@formance/formance-s
 let value: V2BulkElementAddMetadataData = {
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
-  targetId: "<id>",
+  targetId: 350871n,
   targetType: V2TargetType.Transaction,
 };
 ```

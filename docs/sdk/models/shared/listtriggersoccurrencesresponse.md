@@ -6,15 +6,7 @@
 import { ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListTriggersOccurrencesResponse = {
-  data: [
-    {
-      date: new Date("2024-02-21T02:44:46.039Z"),
-      event: {
-        "key": "<value>",
-      },
-      triggerID: "<id>",
-    },
-  ],
+  data: [],
 };
 ```
 

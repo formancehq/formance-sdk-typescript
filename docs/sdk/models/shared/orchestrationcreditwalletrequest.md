@@ -7,7 +7,7 @@ import { OrchestrationCreditWalletRequest } from "@formance/formance-sdk/sdk/mod
 
 let value: OrchestrationCreditWalletRequest = {
   amount: {
-    amount: BigInt("100"),
+    amount: 100n,
     asset: "USD/2",
   },
   metadata: {

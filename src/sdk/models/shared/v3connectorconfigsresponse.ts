@@ -7,140 +7,15 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type V3ConnectorConfigsResponseKey = {
-  dataType: string;
-  required: boolean;
-};
-
-export type V3ConnectorConfigsResponseConnector = {
-  key: V3ConnectorConfigsResponseKey;
-};
-
 export type V3ConnectorConfigsResponseData = {
-  connector: V3ConnectorConfigsResponseConnector;
+  dataType: string;
+  defaultValue?: string | undefined;
+  required: boolean;
 };
 
 export type V3ConnectorConfigsResponse = {
-  data: V3ConnectorConfigsResponseData;
+  data: { [k: string]: { [k: string]: V3ConnectorConfigsResponseData } };
 };
-
-/** @internal */
-export const V3ConnectorConfigsResponseKey$inboundSchema: z.ZodType<
-  V3ConnectorConfigsResponseKey,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  dataType: z.string(),
-  required: z.boolean(),
-});
-
-/** @internal */
-export type V3ConnectorConfigsResponseKey$Outbound = {
-  dataType: string;
-  required: boolean;
-};
-
-/** @internal */
-export const V3ConnectorConfigsResponseKey$outboundSchema: z.ZodType<
-  V3ConnectorConfigsResponseKey$Outbound,
-  z.ZodTypeDef,
-  V3ConnectorConfigsResponseKey
-> = z.object({
-  dataType: z.string(),
-  required: z.boolean(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ConnectorConfigsResponseKey$ {
-  /** @deprecated use `V3ConnectorConfigsResponseKey$inboundSchema` instead. */
-  export const inboundSchema = V3ConnectorConfigsResponseKey$inboundSchema;
-  /** @deprecated use `V3ConnectorConfigsResponseKey$outboundSchema` instead. */
-  export const outboundSchema = V3ConnectorConfigsResponseKey$outboundSchema;
-  /** @deprecated use `V3ConnectorConfigsResponseKey$Outbound` instead. */
-  export type Outbound = V3ConnectorConfigsResponseKey$Outbound;
-}
-
-export function v3ConnectorConfigsResponseKeyToJSON(
-  v3ConnectorConfigsResponseKey: V3ConnectorConfigsResponseKey,
-): string {
-  return JSON.stringify(
-    V3ConnectorConfigsResponseKey$outboundSchema.parse(
-      v3ConnectorConfigsResponseKey,
-    ),
-  );
-}
-
-export function v3ConnectorConfigsResponseKeyFromJSON(
-  jsonString: string,
-): SafeParseResult<V3ConnectorConfigsResponseKey, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3ConnectorConfigsResponseKey$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3ConnectorConfigsResponseKey' from JSON`,
-  );
-}
-
-/** @internal */
-export const V3ConnectorConfigsResponseConnector$inboundSchema: z.ZodType<
-  V3ConnectorConfigsResponseConnector,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  key: z.lazy(() => V3ConnectorConfigsResponseKey$inboundSchema),
-});
-
-/** @internal */
-export type V3ConnectorConfigsResponseConnector$Outbound = {
-  key: V3ConnectorConfigsResponseKey$Outbound;
-};
-
-/** @internal */
-export const V3ConnectorConfigsResponseConnector$outboundSchema: z.ZodType<
-  V3ConnectorConfigsResponseConnector$Outbound,
-  z.ZodTypeDef,
-  V3ConnectorConfigsResponseConnector
-> = z.object({
-  key: z.lazy(() => V3ConnectorConfigsResponseKey$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace V3ConnectorConfigsResponseConnector$ {
-  /** @deprecated use `V3ConnectorConfigsResponseConnector$inboundSchema` instead. */
-  export const inboundSchema =
-    V3ConnectorConfigsResponseConnector$inboundSchema;
-  /** @deprecated use `V3ConnectorConfigsResponseConnector$outboundSchema` instead. */
-  export const outboundSchema =
-    V3ConnectorConfigsResponseConnector$outboundSchema;
-  /** @deprecated use `V3ConnectorConfigsResponseConnector$Outbound` instead. */
-  export type Outbound = V3ConnectorConfigsResponseConnector$Outbound;
-}
-
-export function v3ConnectorConfigsResponseConnectorToJSON(
-  v3ConnectorConfigsResponseConnector: V3ConnectorConfigsResponseConnector,
-): string {
-  return JSON.stringify(
-    V3ConnectorConfigsResponseConnector$outboundSchema.parse(
-      v3ConnectorConfigsResponseConnector,
-    ),
-  );
-}
-
-export function v3ConnectorConfigsResponseConnectorFromJSON(
-  jsonString: string,
-): SafeParseResult<V3ConnectorConfigsResponseConnector, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      V3ConnectorConfigsResponseConnector$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3ConnectorConfigsResponseConnector' from JSON`,
-  );
-}
 
 /** @internal */
 export const V3ConnectorConfigsResponseData$inboundSchema: z.ZodType<
@@ -148,12 +23,16 @@ export const V3ConnectorConfigsResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  connector: z.lazy(() => V3ConnectorConfigsResponseConnector$inboundSchema),
+  dataType: z.string(),
+  defaultValue: z.string().optional(),
+  required: z.boolean(),
 });
 
 /** @internal */
 export type V3ConnectorConfigsResponseData$Outbound = {
-  connector: V3ConnectorConfigsResponseConnector$Outbound;
+  dataType: string;
+  defaultValue?: string | undefined;
+  required: boolean;
 };
 
 /** @internal */
@@ -162,7 +41,9 @@ export const V3ConnectorConfigsResponseData$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ConnectorConfigsResponseData
 > = z.object({
-  connector: z.lazy(() => V3ConnectorConfigsResponseConnector$outboundSchema),
+  dataType: z.string(),
+  defaultValue: z.string().optional(),
+  required: z.boolean(),
 });
 
 /**
@@ -204,12 +85,16 @@ export const V3ConnectorConfigsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => V3ConnectorConfigsResponseData$inboundSchema),
+  data: z.record(
+    z.record(z.lazy(() => V3ConnectorConfigsResponseData$inboundSchema)),
+  ),
 });
 
 /** @internal */
 export type V3ConnectorConfigsResponse$Outbound = {
-  data: V3ConnectorConfigsResponseData$Outbound;
+  data: {
+    [k: string]: { [k: string]: V3ConnectorConfigsResponseData$Outbound };
+  };
 };
 
 /** @internal */
@@ -218,7 +103,9 @@ export const V3ConnectorConfigsResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ConnectorConfigsResponse
 > = z.object({
-  data: z.lazy(() => V3ConnectorConfigsResponseData$outboundSchema),
+  data: z.record(
+    z.record(z.lazy(() => V3ConnectorConfigsResponseData$outboundSchema)),
+  ),
 });
 
 /**

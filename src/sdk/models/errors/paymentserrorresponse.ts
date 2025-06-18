@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import * as shared from "../shared/index.js";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
 /**
  * Error
@@ -16,20 +17,22 @@ export type PaymentsErrorResponseData = {
 /**
  * Error
  */
-export class PaymentsErrorResponse extends Error {
+export class PaymentsErrorResponse extends SDKBaseError {
   errorCode: shared.PaymentsErrorsEnum;
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */
   data$: PaymentsErrorResponseData;
 
-  constructor(err: PaymentsErrorResponseData) {
+  constructor(
+    err: PaymentsErrorResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
 
@@ -45,9 +48,16 @@ export const PaymentsErrorResponse$inboundSchema: z.ZodType<
 > = z.object({
   errorCode: shared.PaymentsErrorsEnum$inboundSchema,
   errorMessage: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new PaymentsErrorResponse(v);
+    return new PaymentsErrorResponse(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

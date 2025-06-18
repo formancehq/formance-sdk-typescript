@@ -5,19 +5,7 @@
 ```typescript
 import { GetBalancesAggregatedResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetBalancesAggregatedResponse = {
-  aggregateBalancesResponse: {
-    data: {
-      "USD": 100,
-      "EUR": 12,
-    },
-  },
-  contentType: "<value>",
-  statusCode: 205,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetBalancesAggregatedResponse = {};
 ```
 
 ## Fields

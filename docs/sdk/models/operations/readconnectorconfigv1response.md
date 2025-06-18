@@ -5,23 +5,7 @@
 ```typescript
 import { ReadConnectorConfigV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReadConnectorConfigV1Response = {
-  connectorConfigResponse: {
-    data: {
-      apiKey: "XXX",
-      apiSecret: "XXX",
-      endpoint: "XXX",
-      name: "My Modulr Account",
-      pollingPeriod: "120s",
-      provider: "Modulr",
-    },
-  },
-  contentType: "<value>",
-  statusCode: 207,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ReadConnectorConfigV1Response = {};
 ```
 
 ## Fields

@@ -6,15 +6,7 @@
 import { V2ListTriggersOccurrencesResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ListTriggersOccurrencesResponseCursor = {
-  data: [
-    {
-      date: new Date("2023-07-29T23:05:02.179Z"),
-      event: {
-        "key": "<value>",
-      },
-      triggerID: "<id>",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

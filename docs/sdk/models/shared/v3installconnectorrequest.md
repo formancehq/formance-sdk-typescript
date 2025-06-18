@@ -10,6 +10,7 @@ const value: shared.V3AdyenConfig = {
   apiKey: "<value>",
   companyID: "<id>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -18,8 +19,9 @@ const value: shared.V3AdyenConfig = {
 ```typescript
 const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
-  baseUrl: "https://untidy-populist.net/",
+  baseUrl: "https://classic-carboxyl.name",
   name: "<value>",
+  pageSize: 25,
   secret: "<value>",
 };
 ```
@@ -31,10 +33,22 @@ const value: shared.V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  password: "qTOUeFdze7qwA1l",
+  pageSize: 25,
+  password: "x2JumI7CZjxPmAq",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
-  username: "Shanna1",
+  username: "Savion88",
+};
+```
+
+### `shared.V3ColumnConfig`
+
+```typescript
+const value: shared.V3ColumnConfig = {
+  apiKey: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -46,6 +60,7 @@ const value: shared.V3CurrencycloudConfig = {
   endpoint: "<value>",
   loginID: "<id>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -53,8 +68,9 @@ const value: shared.V3CurrencycloudConfig = {
 
 ```typescript
 const value: shared.V3DummypayConfig = {
-  directory: "/selinux",
+  directory: "/var/mail",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -65,6 +81,7 @@ const value: shared.V3GenericConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -76,6 +93,7 @@ const value: shared.V3MangopayConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -87,6 +105,7 @@ const value: shared.V3ModulrConfig = {
   apiSecret: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -98,6 +117,19 @@ const value: shared.V3MoneycorpConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
+};
+```
+
+### `shared.V3QontoConfig`
+
+```typescript
+const value: shared.V3QontoConfig = {
+  apiKey: "<value>",
+  clientID: "<id>",
+  endpoint: "<value>",
+  name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -107,6 +139,7 @@ const value: shared.V3MoneycorpConfig = {
 const value: shared.V3StripeConfig = {
   apiKey: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 
@@ -116,6 +149,7 @@ const value: shared.V3StripeConfig = {
 const value: shared.V3WiseConfig = {
   apiKey: "<value>",
   name: "<value>",
+  pageSize: 25,
   webhookPublicKey: "<value>",
 };
 ```

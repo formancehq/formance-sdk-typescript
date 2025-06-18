@@ -7,15 +7,7 @@ import { V3BalancesCursorResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: V3BalancesCursorResponse = {
   cursor: {
-    data: [
-      {
-        accountID: "<id>",
-        asset: "<value>",
-        balance: BigInt("52819"),
-        createdAt: new Date("2023-01-01T01:54:20.575Z"),
-        lastUpdatedAt: new Date("2025-08-22T19:59:17.126Z"),
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

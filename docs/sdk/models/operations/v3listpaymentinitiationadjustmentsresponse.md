@@ -4,30 +4,8 @@
 
 ```typescript
 import { V3ListPaymentInitiationAdjustmentsResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V3ListPaymentInitiationAdjustmentsResponse = {
-  contentType: "<value>",
-  statusCode: 431,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v3PaymentInitiationAdjustmentsCursorResponse: {
-    cursor: {
-      data: [
-        {
-          createdAt: new Date("2024-01-21T17:19:51.132Z"),
-          id: "<id>",
-          status: V3PaymentInitiationStatusEnum.Reversed,
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V3ListPaymentInitiationAdjustmentsResponse = {};
 ```
 
 ## Fields

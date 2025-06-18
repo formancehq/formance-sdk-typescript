@@ -7,10 +7,10 @@ import { OrchestrationPaymentAdjustment, OrchestrationPaymentStatus } from "@for
 
 let value: OrchestrationPaymentAdjustment = {
   absolute: false,
-  amount: BigInt("100"),
-  date: new Date("2025-05-09T07:52:40.062Z"),
+  amount: 100n,
+  date: new Date("2024-01-27T01:41:23.354Z"),
   raw: {},
-  status: OrchestrationPaymentStatus.Succeeded,
+  status: OrchestrationPaymentStatus.Failed,
 };
 ```
 

@@ -7,11 +7,11 @@ import { TaskCurrencyCloud, TaskStatus } from "@formance/formance-sdk/sdk/models
 
 let value: TaskCurrencyCloud = {
   connectorID: "<id>",
-  createdAt: new Date("2024-06-07T00:51:36.478Z"),
+  createdAt: new Date("2023-01-20T07:36:08.926Z"),
   descriptor: {},
-  id: "99f24b3d-5209-4d4e-ac09-93570226bd2c",
-  status: TaskStatus.Failed,
-  updatedAt: new Date("2025-11-27T19:05:06.518Z"),
+  id: "1fce36f2-b6e4-47f0-b338-999743e75415",
+  status: TaskStatus.Active,
+  updatedAt: new Date("2023-11-26T15:56:58.022Z"),
 };
 ```
 

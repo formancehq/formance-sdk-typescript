@@ -13,31 +13,34 @@ import {
   MigrationInfo$outboundSchema,
 } from "./migrationinfo.js";
 
-export type Storage = {
+export type LedgerInfoStorage = {
   migrations?: Array<MigrationInfo> | undefined;
 };
 
 export type LedgerInfo = {
   name?: string | undefined;
-  storage?: Storage | undefined;
+  storage?: LedgerInfoStorage | undefined;
 };
 
 /** @internal */
-export const Storage$inboundSchema: z.ZodType<Storage, z.ZodTypeDef, unknown> =
-  z.object({
-    migrations: z.array(MigrationInfo$inboundSchema).optional(),
-  });
+export const LedgerInfoStorage$inboundSchema: z.ZodType<
+  LedgerInfoStorage,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  migrations: z.array(MigrationInfo$inboundSchema).optional(),
+});
 
 /** @internal */
-export type Storage$Outbound = {
+export type LedgerInfoStorage$Outbound = {
   migrations?: Array<MigrationInfo$Outbound> | undefined;
 };
 
 /** @internal */
-export const Storage$outboundSchema: z.ZodType<
-  Storage$Outbound,
+export const LedgerInfoStorage$outboundSchema: z.ZodType<
+  LedgerInfoStorage$Outbound,
   z.ZodTypeDef,
-  Storage
+  LedgerInfoStorage
 > = z.object({
   migrations: z.array(MigrationInfo$outboundSchema).optional(),
 });
@@ -46,26 +49,30 @@ export const Storage$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Storage$ {
-  /** @deprecated use `Storage$inboundSchema` instead. */
-  export const inboundSchema = Storage$inboundSchema;
-  /** @deprecated use `Storage$outboundSchema` instead. */
-  export const outboundSchema = Storage$outboundSchema;
-  /** @deprecated use `Storage$Outbound` instead. */
-  export type Outbound = Storage$Outbound;
+export namespace LedgerInfoStorage$ {
+  /** @deprecated use `LedgerInfoStorage$inboundSchema` instead. */
+  export const inboundSchema = LedgerInfoStorage$inboundSchema;
+  /** @deprecated use `LedgerInfoStorage$outboundSchema` instead. */
+  export const outboundSchema = LedgerInfoStorage$outboundSchema;
+  /** @deprecated use `LedgerInfoStorage$Outbound` instead. */
+  export type Outbound = LedgerInfoStorage$Outbound;
 }
 
-export function storageToJSON(storage: Storage): string {
-  return JSON.stringify(Storage$outboundSchema.parse(storage));
+export function ledgerInfoStorageToJSON(
+  ledgerInfoStorage: LedgerInfoStorage,
+): string {
+  return JSON.stringify(
+    LedgerInfoStorage$outboundSchema.parse(ledgerInfoStorage),
+  );
 }
 
-export function storageFromJSON(
+export function ledgerInfoStorageFromJSON(
   jsonString: string,
-): SafeParseResult<Storage, SDKValidationError> {
+): SafeParseResult<LedgerInfoStorage, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Storage$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Storage' from JSON`,
+    (x) => LedgerInfoStorage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LedgerInfoStorage' from JSON`,
   );
 }
 
@@ -76,13 +83,13 @@ export const LedgerInfo$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   name: z.string().optional(),
-  storage: z.lazy(() => Storage$inboundSchema).optional(),
+  storage: z.lazy(() => LedgerInfoStorage$inboundSchema).optional(),
 });
 
 /** @internal */
 export type LedgerInfo$Outbound = {
   name?: string | undefined;
-  storage?: Storage$Outbound | undefined;
+  storage?: LedgerInfoStorage$Outbound | undefined;
 };
 
 /** @internal */
@@ -92,7 +99,7 @@ export const LedgerInfo$outboundSchema: z.ZodType<
   LedgerInfo
 > = z.object({
   name: z.string().optional(),
-  storage: z.lazy(() => Storage$outboundSchema).optional(),
+  storage: z.lazy(() => LedgerInfoStorage$outboundSchema).optional(),
 });
 
 /**

@@ -7,8 +7,8 @@ import { StatsResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: StatsResponse = {
   data: {
-    accounts: 531494,
-    transactions: 802069,
+    accounts: 412798,
+    transactions: 642378,
   },
 };
 ```

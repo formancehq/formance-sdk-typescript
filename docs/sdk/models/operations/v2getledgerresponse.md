@@ -5,23 +5,7 @@
 ```typescript
 import { V2GetLedgerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetLedgerResponse = {
-  contentType: "<value>",
-  statusCode: 501,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2GetLedgerResponse: {
-    data: {
-      addedAt: new Date("2025-07-07T09:18:10.249Z"),
-      bucket: "<value>",
-      metadata: {
-        "admin": "true",
-      },
-      name: "<value>",
-    },
-  },
-};
+let value: V2GetLedgerResponse = {};
 ```
 
 ## Fields

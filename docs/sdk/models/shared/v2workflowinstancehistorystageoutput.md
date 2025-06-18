@@ -3,7 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { Scheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStageOutput } from "@formance/formance-sdk/sdk/models/shared";
+import {
+  V2PaymentScheme,
+  V2PaymentStatus,
+  V2PaymentType,
+  V2WorkflowInstanceHistoryStageOutput,
+} from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2WorkflowInstanceHistoryStageOutput = {
   createTransaction: {
@@ -12,17 +17,10 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
         metadata: {
           "admin": "true",
         },
-        postings: [
-          {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
+        postings: [],
         reference: "ref:001",
-        timestamp: new Date("2023-08-11T22:07:27.220Z"),
-        txid: BigInt("176104"),
+        timestamp: new Date("2025-03-28T10:26:16.538Z"),
+        txid: 910526n,
       },
     ],
   },
@@ -31,14 +29,14 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
       address: "users:001",
       effectiveVolumes: {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
         "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       metadata: {
@@ -46,57 +44,39 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
       },
       volumes: {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
         "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
   },
   getPayment: {
     data: {
-      adjustments: [
-        {
-          absolute: false,
-          amount: BigInt("100"),
-          date: new Date("2023-12-17T12:12:43.741Z"),
-          raw: {},
-          status: V2PaymentStatus.Succeeded,
-        },
-      ],
+      adjustments: [],
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2024-08-14T07:58:15.099Z"),
+      createdAt: new Date("2025-06-20T02:05:25.894Z"),
       destinationAccountID: "<id>",
       id: "XXX",
-      initialAmount: BigInt("100"),
+      initialAmount: 100n,
       metadata: {},
       raw: {},
       reference: "<value>",
-      scheme: Scheme.Visa,
+      scheme: V2PaymentScheme.AchDebit,
       sourceAccountID: "<id>",
-      status: V2PaymentStatus.Terminated,
-      type: V2PaymentType.Transfer,
+      status: V2PaymentStatus.Succeeded,
+      type: V2PaymentType.PayIn,
     },
   },
   listWallets: {
     cursor: {
-      data: [
-        {
-          createdAt: new Date("2024-08-13T01:14:36.260Z"),
-          id: "93d8bf6e-0094-4345-ab9c-dd66ea185f09",
-          ledger: "<value>",
-          metadata: {
-            "key": "<value>",
-          },
-          name: "<value>",
-        },
-      ],
+      data: [],
       hasMore: false,
       next: "",
       pageSize: 15,
@@ -112,7 +92,7 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `createTransaction`                                                                                         | [shared.V2ActivityCreateTransactionOutput](../../../sdk/models/shared/v2activitycreatetransactionoutput.md) | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
 | `debitWallet`                                                                                               | [shared.V2ActivityDebitWalletOutput](../../../sdk/models/shared/v2activitydebitwalletoutput.md)             | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
-| `getAccount`                                                                                                | [shared.V2ActivityGetAccountOutput](../../../sdk/models/shared/v2activitygetaccountoutput.md)               | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
+| `getAccount`                                                                                                | [shared.V2AccountResponse](../../../sdk/models/shared/v2accountresponse.md)                                 | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
 | `getPayment`                                                                                                | [shared.V2ActivityGetPaymentOutput](../../../sdk/models/shared/v2activitygetpaymentoutput.md)               | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
 | `getWallet`                                                                                                 | [shared.V2ActivityGetWalletOutput](../../../sdk/models/shared/v2activitygetwalletoutput.md)                 | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |
 | `listWallets`                                                                                               | [shared.V2ListWalletsResponse](../../../sdk/models/shared/v2listwalletsresponse.md)                         | :heavy_minus_sign:                                                                                          | N/A                                                                                                         |

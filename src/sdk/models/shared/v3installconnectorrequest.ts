@@ -25,6 +25,12 @@ import {
   V3BankingcircleConfig$outboundSchema,
 } from "./v3bankingcircleconfig.js";
 import {
+  V3ColumnConfig,
+  V3ColumnConfig$inboundSchema,
+  V3ColumnConfig$Outbound,
+  V3ColumnConfig$outboundSchema,
+} from "./v3columnconfig.js";
+import {
   V3CurrencycloudConfig,
   V3CurrencycloudConfig$inboundSchema,
   V3CurrencycloudConfig$Outbound,
@@ -61,6 +67,12 @@ import {
   V3MoneycorpConfig$outboundSchema,
 } from "./v3moneycorpconfig.js";
 import {
+  V3QontoConfig,
+  V3QontoConfig$inboundSchema,
+  V3QontoConfig$Outbound,
+  V3QontoConfig$outboundSchema,
+} from "./v3qontoconfig.js";
+import {
   V3StripeConfig,
   V3StripeConfig$inboundSchema,
   V3StripeConfig$Outbound,
@@ -74,17 +86,19 @@ import {
 } from "./v3wiseconfig.js";
 
 export type V3InstallConnectorRequest =
-  | (V3DummypayConfig & { provider: "Dummypay" })
-  | (V3StripeConfig & { provider: "Stripe" })
-  | (V3GenericConfig & { provider: "Generic" })
-  | (V3WiseConfig & { provider: "Wise" })
+  | (V3BankingcircleConfig & { provider: "Bankingcircle" })
   | (V3AtlarConfig & { provider: "Atlar" })
   | (V3CurrencycloudConfig & { provider: "Currencycloud" })
   | (V3MangopayConfig & { provider: "Mangopay" })
   | (V3ModulrConfig & { provider: "Modulr" })
   | (V3MoneycorpConfig & { provider: "Moneycorp" })
+  | (V3QontoConfig & { provider: "Qonto" })
   | (V3AdyenConfig & { provider: "Adyen" })
-  | (V3BankingcircleConfig & { provider: "Bankingcircle" });
+  | (V3ColumnConfig & { provider: "Column" })
+  | (V3GenericConfig & { provider: "Generic" })
+  | (V3WiseConfig & { provider: "Wise" })
+  | (V3DummypayConfig & { provider: "Dummypay" })
+  | (V3StripeConfig & { provider: "Stripe" });
 
 /** @internal */
 export const V3InstallConnectorRequest$inboundSchema: z.ZodType<
@@ -92,23 +106,8 @@ export const V3InstallConnectorRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  V3DummypayConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3StripeConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3GenericConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Generic") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3WiseConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Wise") }).transform((v) => ({
+  V3BankingcircleConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -137,13 +136,38 @@ export const V3InstallConnectorRequest$inboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
+  V3QontoConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Qonto") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
   V3AdyenConfig$inboundSchema.and(
     z.object({ provider: z.literal("Adyen") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
-  V3BankingcircleConfig$inboundSchema.and(
-    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
+  V3ColumnConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Column") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3GenericConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Generic") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3WiseConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Wise") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3DummypayConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3StripeConfig$inboundSchema.and(
+    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -151,17 +175,19 @@ export const V3InstallConnectorRequest$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V3InstallConnectorRequest$Outbound =
-  | (V3DummypayConfig$Outbound & { provider: "Dummypay" })
-  | (V3StripeConfig$Outbound & { provider: "Stripe" })
-  | (V3GenericConfig$Outbound & { provider: "Generic" })
-  | (V3WiseConfig$Outbound & { provider: "Wise" })
+  | (V3BankingcircleConfig$Outbound & { provider: "Bankingcircle" })
   | (V3AtlarConfig$Outbound & { provider: "Atlar" })
   | (V3CurrencycloudConfig$Outbound & { provider: "Currencycloud" })
   | (V3MangopayConfig$Outbound & { provider: "Mangopay" })
   | (V3ModulrConfig$Outbound & { provider: "Modulr" })
   | (V3MoneycorpConfig$Outbound & { provider: "Moneycorp" })
+  | (V3QontoConfig$Outbound & { provider: "Qonto" })
   | (V3AdyenConfig$Outbound & { provider: "Adyen" })
-  | (V3BankingcircleConfig$Outbound & { provider: "Bankingcircle" });
+  | (V3ColumnConfig$Outbound & { provider: "Column" })
+  | (V3GenericConfig$Outbound & { provider: "Generic" })
+  | (V3WiseConfig$Outbound & { provider: "Wise" })
+  | (V3DummypayConfig$Outbound & { provider: "Dummypay" })
+  | (V3StripeConfig$Outbound & { provider: "Stripe" });
 
 /** @internal */
 export const V3InstallConnectorRequest$outboundSchema: z.ZodType<
@@ -169,23 +195,8 @@ export const V3InstallConnectorRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3InstallConnectorRequest
 > = z.union([
-  V3DummypayConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3StripeConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3GenericConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Generic") }).transform((v) => ({
-      provider: v.provider,
-    })),
-  ),
-  V3WiseConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Wise") }).transform((v) => ({
+  V3BankingcircleConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
@@ -214,13 +225,38 @@ export const V3InstallConnectorRequest$outboundSchema: z.ZodType<
       provider: v.provider,
     })),
   ),
+  V3QontoConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Qonto") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
   V3AdyenConfig$outboundSchema.and(
     z.object({ provider: z.literal("Adyen") }).transform((v) => ({
       provider: v.provider,
     })),
   ),
-  V3BankingcircleConfig$outboundSchema.and(
-    z.object({ provider: z.literal("Bankingcircle") }).transform((v) => ({
+  V3ColumnConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Column") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3GenericConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Generic") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3WiseConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Wise") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3DummypayConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Dummypay") }).transform((v) => ({
+      provider: v.provider,
+    })),
+  ),
+  V3StripeConfig$outboundSchema.and(
+    z.object({ provider: z.literal("Stripe") }).transform((v) => ({
       provider: v.provider,
     })),
   ),

@@ -8,7 +8,7 @@ import { GetBalanceResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: GetBalanceResponse = {
   data: {
     assets: {
-      "key": BigInt("952820"),
+      "key": 604106n,
     },
     name: "<value>",
   },

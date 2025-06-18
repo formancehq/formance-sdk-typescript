@@ -5,13 +5,7 @@
 ```typescript
 import { ListTriggersResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListTriggersResponse = {
-  contentType: "<value>",
-  statusCode: 205,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ListTriggersResponse = {};
 ```
 
 ## Fields

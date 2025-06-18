@@ -4,6 +4,7 @@
 
 import * as z from "zod";
 import * as shared from "../shared/index.js";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
 export type ErrorResponseData = {
   details?: string | undefined;
@@ -11,7 +12,7 @@ export type ErrorResponseData = {
   errorMessage: string;
 };
 
-export class ErrorResponse extends Error {
+export class ErrorResponse extends SDKBaseError {
   details?: string | undefined;
   errorCode: shared.ErrorsEnum;
   errorMessage: string;
@@ -19,13 +20,15 @@ export class ErrorResponse extends Error {
   /** The original data that was passed to this error instance. */
   data$: ErrorResponseData;
 
-  constructor(err: ErrorResponseData) {
+  constructor(
+    err: ErrorResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.details != null) this.details = err.details;
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
@@ -43,9 +46,16 @@ export const ErrorResponse$inboundSchema: z.ZodType<
   details: z.string().optional(),
   errorCode: shared.ErrorsEnum$inboundSchema,
   errorMessage: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ErrorResponse(v);
+    return new ErrorResponse(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod";
+import { SDKBaseError } from "./sdkbaseerror.js";
 
 /**
  * Error response
@@ -16,7 +17,7 @@ export type ReconciliationErrorResponseData = {
 /**
  * Error response
  */
-export class ReconciliationErrorResponse extends Error {
+export class ReconciliationErrorResponse extends SDKBaseError {
   details?: string | undefined;
   errorCode: string;
   errorMessage: string;
@@ -24,13 +25,15 @@ export class ReconciliationErrorResponse extends Error {
   /** The original data that was passed to this error instance. */
   data$: ReconciliationErrorResponseData;
 
-  constructor(err: ReconciliationErrorResponseData) {
+  constructor(
+    err: ReconciliationErrorResponseData,
+    httpMeta: { response: Response; request: Request; body: string },
+  ) {
     const message = "message" in err && typeof err.message === "string"
       ? err.message
       : `API error occurred: ${JSON.stringify(err)}`;
-    super(message);
+    super(message, httpMeta);
     this.data$ = err;
-
     if (err.details != null) this.details = err.details;
     this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
@@ -48,9 +51,16 @@ export const ReconciliationErrorResponse$inboundSchema: z.ZodType<
   details: z.string().optional(),
   errorCode: z.string(),
   errorMessage: z.string(),
+  request$: z.instanceof(Request),
+  response$: z.instanceof(Response),
+  body$: z.string(),
 })
   .transform((v) => {
-    return new ReconciliationErrorResponse(v);
+    return new ReconciliationErrorResponse(v, {
+      request: v.request$,
+      response: v.response$,
+      body: v.body$,
+    });
   });
 
 /** @internal */

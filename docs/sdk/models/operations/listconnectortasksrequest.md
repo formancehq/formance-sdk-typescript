@@ -7,8 +7,9 @@ import { ListConnectorTasksRequest } from "@formance/formance-sdk/sdk/models/ope
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ListConnectorTasksRequest = {
-  connector: Connector.BankingCircle,
+  connector: Connector.Stripe,
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+  pageSize: 100,
 };
 ```
 

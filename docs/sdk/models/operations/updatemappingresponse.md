@@ -5,23 +5,7 @@
 ```typescript
 import { UpdateMappingResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: UpdateMappingResponse = {
-  contentType: "<value>",
-  mappingResponse: {
-    data: {
-      contracts: [
-        {
-          account: "users:001",
-          expr: {},
-        },
-      ],
-    },
-  },
-  statusCode: 500,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: UpdateMappingResponse = {};
 ```
 
 ## Fields

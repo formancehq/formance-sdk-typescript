@@ -5,13 +5,7 @@
 ```typescript
 import { ListInstancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListInstancesResponse = {
-  contentType: "<value>",
-  statusCode: 407,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ListInstancesResponse = {};
 ```
 
 ## Fields

@@ -5,13 +5,7 @@
 ```typescript
 import { ReadClientResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReadClientResponse = {
-  contentType: "<value>",
-  statusCode: 428,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ReadClientResponse = {};
 ```
 
 ## Fields

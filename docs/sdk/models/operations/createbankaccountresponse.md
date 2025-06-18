@@ -5,13 +5,7 @@
 ```typescript
 import { CreateBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateBankAccountResponse = {
-  contentType: "<value>",
-  statusCode: 203,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: CreateBankAccountResponse = {};
 ```
 
 ## Fields

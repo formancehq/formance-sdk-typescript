@@ -6,16 +6,6 @@
 import { DebitWalletRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: DebitWalletRequest = {
-  debitWalletRequest: {
-    amount: {
-      amount: BigInt("100"),
-      asset: "USD/2",
-    },
-    metadata: {
-      "key": "",
-    },
-    pending: true,
-  },
   id: "<id>",
 };
 ```

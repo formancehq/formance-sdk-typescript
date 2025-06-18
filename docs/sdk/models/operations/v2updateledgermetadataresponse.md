@@ -4,21 +4,8 @@
 
 ```typescript
 import { V2UpdateLedgerMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: V2UpdateLedgerMetadataResponse = {
-  contentType: "<value>",
-  statusCode: 507,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2ErrorResponse: {
-    details:
-      "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-    errorCode: V2ErrorsEnum.Validation,
-    errorMessage: "[VALIDATION] invalid 'cursor' query param",
-  },
-};
+let value: V2UpdateLedgerMetadataResponse = {};
 ```
 
 ## Fields

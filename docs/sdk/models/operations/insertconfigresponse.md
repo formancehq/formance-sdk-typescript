@@ -5,27 +5,7 @@
 ```typescript
 import { InsertConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: InsertConfigResponse = {
-  configResponse: {
-    data: {
-      active: true,
-      createdAt: new Date("2025-11-23T17:51:29.432Z"),
-      endpoint: "https://example.com",
-      eventTypes: [
-        "TYPE1",
-        "TYPE2",
-      ],
-      id: "2c998f5c-86f9-416c-abe4-c79ffd5ea60c",
-      secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-      updatedAt: new Date("2025-05-11T15:54:08.244Z"),
-    },
-  },
-  contentType: "<value>",
-  statusCode: 425,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: InsertConfigResponse = {};
 ```
 
 ## Fields

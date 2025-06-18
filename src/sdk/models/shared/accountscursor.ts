@@ -13,7 +13,7 @@ import {
   PaymentsAccount$outboundSchema,
 } from "./paymentsaccount.js";
 
-export type Cursor = {
+export type AccountsCursorCursor = {
   data: Array<PaymentsAccount>;
   hasMore: boolean;
   next?: string | undefined;
@@ -25,21 +25,24 @@ export type Cursor = {
  * OK
  */
 export type AccountsCursor = {
-  cursor: Cursor;
+  cursor: AccountsCursorCursor;
 };
 
 /** @internal */
-export const Cursor$inboundSchema: z.ZodType<Cursor, z.ZodTypeDef, unknown> = z
-  .object({
-    data: z.array(PaymentsAccount$inboundSchema),
-    hasMore: z.boolean(),
-    next: z.string().optional(),
-    pageSize: z.number().int(),
-    previous: z.string().optional(),
-  });
+export const AccountsCursorCursor$inboundSchema: z.ZodType<
+  AccountsCursorCursor,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.array(PaymentsAccount$inboundSchema),
+  hasMore: z.boolean(),
+  next: z.string().optional(),
+  pageSize: z.number().int(),
+  previous: z.string().optional(),
+});
 
 /** @internal */
-export type Cursor$Outbound = {
+export type AccountsCursorCursor$Outbound = {
   data: Array<PaymentsAccount$Outbound>;
   hasMore: boolean;
   next?: string | undefined;
@@ -48,10 +51,10 @@ export type Cursor$Outbound = {
 };
 
 /** @internal */
-export const Cursor$outboundSchema: z.ZodType<
-  Cursor$Outbound,
+export const AccountsCursorCursor$outboundSchema: z.ZodType<
+  AccountsCursorCursor$Outbound,
   z.ZodTypeDef,
-  Cursor
+  AccountsCursorCursor
 > = z.object({
   data: z.array(PaymentsAccount$outboundSchema),
   hasMore: z.boolean(),
@@ -64,26 +67,30 @@ export const Cursor$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Cursor$ {
-  /** @deprecated use `Cursor$inboundSchema` instead. */
-  export const inboundSchema = Cursor$inboundSchema;
-  /** @deprecated use `Cursor$outboundSchema` instead. */
-  export const outboundSchema = Cursor$outboundSchema;
-  /** @deprecated use `Cursor$Outbound` instead. */
-  export type Outbound = Cursor$Outbound;
+export namespace AccountsCursorCursor$ {
+  /** @deprecated use `AccountsCursorCursor$inboundSchema` instead. */
+  export const inboundSchema = AccountsCursorCursor$inboundSchema;
+  /** @deprecated use `AccountsCursorCursor$outboundSchema` instead. */
+  export const outboundSchema = AccountsCursorCursor$outboundSchema;
+  /** @deprecated use `AccountsCursorCursor$Outbound` instead. */
+  export type Outbound = AccountsCursorCursor$Outbound;
 }
 
-export function cursorToJSON(cursor: Cursor): string {
-  return JSON.stringify(Cursor$outboundSchema.parse(cursor));
+export function accountsCursorCursorToJSON(
+  accountsCursorCursor: AccountsCursorCursor,
+): string {
+  return JSON.stringify(
+    AccountsCursorCursor$outboundSchema.parse(accountsCursorCursor),
+  );
 }
 
-export function cursorFromJSON(
+export function accountsCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<Cursor, SDKValidationError> {
+): SafeParseResult<AccountsCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Cursor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Cursor' from JSON`,
+    (x) => AccountsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountsCursorCursor' from JSON`,
   );
 }
 
@@ -93,12 +100,12 @@ export const AccountsCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => Cursor$inboundSchema),
+  cursor: z.lazy(() => AccountsCursorCursor$inboundSchema),
 });
 
 /** @internal */
 export type AccountsCursor$Outbound = {
-  cursor: Cursor$Outbound;
+  cursor: AccountsCursorCursor$Outbound;
 };
 
 /** @internal */
@@ -107,7 +114,7 @@ export const AccountsCursor$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountsCursor
 > = z.object({
-  cursor: z.lazy(() => Cursor$outboundSchema),
+  cursor: z.lazy(() => AccountsCursorCursor$outboundSchema),
 });
 
 /**

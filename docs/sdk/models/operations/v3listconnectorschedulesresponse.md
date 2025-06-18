@@ -5,28 +5,7 @@
 ```typescript
 import { V3ListConnectorSchedulesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListConnectorSchedulesResponse = {
-  contentType: "<value>",
-  statusCode: 300,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v3ConnectorSchedulesCursorResponse: {
-    cursor: {
-      data: [
-        {
-          connectorID: "<value>",
-          createdAt: new Date("2024-12-02T02:48:11.197Z"),
-          id: "<id>",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V3ListConnectorSchedulesResponse = {};
 ```
 
 ## Fields

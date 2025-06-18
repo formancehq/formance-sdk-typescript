@@ -5,18 +5,7 @@
 ```typescript
 import { V2CountTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2CountTransactionsResponse = {
-  contentType: "<value>",
-  headers: {
-    "key": [
-      "<value>",
-    ],
-  },
-  statusCode: 207,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V2CountTransactionsResponse = {};
 ```
 
 ## Fields

@@ -3,20 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { V3AccountsCursorResponseCursor, V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
+import { V3AccountsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3AccountsCursorResponseCursor = {
-  data: [
-    {
-      connectorID: "<value>",
-      createdAt: new Date("2024-03-29T18:15:38.452Z"),
-      id: "<id>",
-      provider: "<value>",
-      raw: {},
-      reference: "<value>",
-      type: V3AccountTypeEnum.Internal,
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

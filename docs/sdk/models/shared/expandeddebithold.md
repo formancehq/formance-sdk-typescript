@@ -6,13 +6,17 @@
 import { ExpandedDebitHold } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ExpandedDebitHold = {
-  description: "apud upward inside during",
-  id: "c0548e0d-89f2-4437-99b0-6e7d14b97ace",
+  asset: "<value>",
+  description:
+    "enraged bah below inborn judgementally but restfully despite surprisingly",
+  id: "b901ad5b-3b9e-4559-8c6e-8fdb4664a935",
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
-  originalAmount: BigInt("100"),
-  remaining: BigInt("10"),
+  originalAmount: 100n,
+  remaining: 10n,
   walletID: "<id>",
 };
 ```
@@ -21,6 +25,7 @@ let value: ExpandedDebitHold = {
 
 | Field                                             | Type                                              | Required                                          | Description                                       | Example                                           |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `asset`                                           | *string*                                          | :heavy_check_mark:                                | N/A                                               |                                                   |
 | `description`                                     | *string*                                          | :heavy_check_mark:                                | N/A                                               |                                                   |
 | `destination`                                     | *shared.Subject*                                  | :heavy_minus_sign:                                | N/A                                               |                                                   |
 | `id`                                              | *string*                                          | :heavy_check_mark:                                | The unique ID of the hold.                        |                                                   |

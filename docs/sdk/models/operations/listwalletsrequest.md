@@ -12,6 +12,7 @@ let value: ListWalletsRequest = {
     "admin": "true",
   },
   name: "wallet1",
+  pageSize: 100,
 };
 ```
 

@@ -10,6 +10,7 @@ let value: V2UpdateAccount = {
   ledger: "<value>",
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
   },
 };
 ```

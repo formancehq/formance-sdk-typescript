@@ -9,20 +9,19 @@ import { TransferInitiationResponse, TransferInitiationStatus, TransferInitiatio
 
 let value: TransferInitiationResponse = {
   data: {
-    amount: BigInt("178066"),
+    amount: 461665n,
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2025-12-02T08:02:45.129Z"),
-    description: "yawningly limp as uncover sleepily",
+    createdAt: new Date("2024-07-18T07:18:18.022Z"),
+    description: "inferior upwardly allegation mid oh yahoo wearily",
     destinationAccountID: "<id>",
-    error: "<value>",
     id: "XXX",
-    initialAmount: BigInt("424505"),
+    initialAmount: 470401n,
     provider: "<value>",
     reference: "<value>",
-    scheduledAt: new Date("2025-06-03T10:02:48.006Z"),
+    scheduledAt: new Date("2025-01-05T14:17:24.024Z"),
     sourceAccountID: "<id>",
-    status: TransferInitiationStatus.ReverseProcessing,
+    status: TransferInitiationStatus.Rejected,
     type: TransferInitiationType.Payout,
   },
 };

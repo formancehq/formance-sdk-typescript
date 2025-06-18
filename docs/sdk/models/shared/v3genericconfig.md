@@ -9,6 +9,7 @@ let value: V3GenericConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

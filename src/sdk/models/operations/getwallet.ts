@@ -15,13 +15,13 @@ export type GetWalletRequest = {
 
 export type GetWalletResponse = {
   /**
+   * Wallet
+   */
+  activityGetWalletOutput?: shared.ActivityGetWalletOutput | undefined;
+  /**
    * HTTP response content type for this operation
    */
   contentType: string;
-  /**
-   * Wallet
-   */
-  getWalletResponse?: shared.GetWalletResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -92,14 +92,15 @@ export const GetWalletResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  ActivityGetWalletOutput: shared.ActivityGetWalletOutput$inboundSchema
+    .optional(),
   ContentType: z.string(),
-  GetWalletResponse: shared.GetWalletResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {
   return remap$(v, {
+    "ActivityGetWalletOutput": "activityGetWalletOutput",
     "ContentType": "contentType",
-    "GetWalletResponse": "getWalletResponse",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
   });
@@ -107,8 +108,8 @@ export const GetWalletResponse$inboundSchema: z.ZodType<
 
 /** @internal */
 export type GetWalletResponse$Outbound = {
+  ActivityGetWalletOutput?: shared.ActivityGetWalletOutput$Outbound | undefined;
   ContentType: string;
-  GetWalletResponse?: shared.GetWalletResponse$Outbound | undefined;
   StatusCode: number;
   RawResponse: never;
 };
@@ -119,16 +120,17 @@ export const GetWalletResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetWalletResponse
 > = z.object({
+  activityGetWalletOutput: shared.ActivityGetWalletOutput$outboundSchema
+    .optional(),
   contentType: z.string(),
-  getWalletResponse: shared.GetWalletResponse$outboundSchema.optional(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
 }).transform((v) => {
   return remap$(v, {
+    activityGetWalletOutput: "ActivityGetWalletOutput",
     contentType: "ContentType",
-    getWalletResponse: "GetWalletResponse",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
   });

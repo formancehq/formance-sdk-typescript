@@ -7,7 +7,7 @@ import { RevertTransactionRequest } from "@formance/formance-sdk/sdk/models/oper
 
 let value: RevertTransactionRequest = {
   ledger: "ledger001",
-  txid: BigInt("1234"),
+  txid: 1234n,
 };
 ```
 

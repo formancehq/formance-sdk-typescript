@@ -6,7 +6,7 @@
 import { ConfirmHoldRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: ConfirmHoldRequest = {
-  amount: BigInt("100"),
+  amount: 100n,
   final: true,
 };
 ```

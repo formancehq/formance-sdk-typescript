@@ -8,17 +8,13 @@ import { WalletWithBalances } from "@formance/formance-sdk/sdk/models/shared";
 let value: WalletWithBalances = {
   balances: {
     main: {
-      assets: {
-        "key": BigInt("759451"),
-      },
+      assets: {},
     },
   },
-  createdAt: new Date("2023-07-15T07:23:52.507Z"),
-  id: "2651dc8f-1c45-43c2-9da0-caeb8d484f30",
+  createdAt: new Date("2025-11-21T10:02:33.334Z"),
+  id: "065bc9b9-1058-43ec-8140-f6e54c982d29",
   ledger: "<value>",
-  metadata: {
-    "key": "<value>",
-  },
+  metadata: {},
   name: "<value>",
 };
 ```

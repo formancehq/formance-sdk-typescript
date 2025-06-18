@@ -12,7 +12,7 @@ import {
   TaskStatus$outboundSchema,
 } from "./taskstatus.js";
 
-export type Descriptor = {
+export type TaskBankingCircleDescriptor = {
   key?: string | undefined;
   name?: string | undefined;
 };
@@ -22,8 +22,8 @@ export type TaskBankingCircleState = {};
 export type TaskBankingCircle = {
   connectorID: string;
   createdAt: Date;
-  descriptor: Descriptor;
-  error?: string | undefined;
+  descriptor: TaskBankingCircleDescriptor;
+  error?: string | null | undefined;
   id: string;
   state?: TaskBankingCircleState | null | undefined;
   status: TaskStatus;
@@ -31,8 +31,8 @@ export type TaskBankingCircle = {
 };
 
 /** @internal */
-export const Descriptor$inboundSchema: z.ZodType<
-  Descriptor,
+export const TaskBankingCircleDescriptor$inboundSchema: z.ZodType<
+  TaskBankingCircleDescriptor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -41,16 +41,16 @@ export const Descriptor$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Descriptor$Outbound = {
+export type TaskBankingCircleDescriptor$Outbound = {
   key?: string | undefined;
   name?: string | undefined;
 };
 
 /** @internal */
-export const Descriptor$outboundSchema: z.ZodType<
-  Descriptor$Outbound,
+export const TaskBankingCircleDescriptor$outboundSchema: z.ZodType<
+  TaskBankingCircleDescriptor$Outbound,
   z.ZodTypeDef,
-  Descriptor
+  TaskBankingCircleDescriptor
 > = z.object({
   key: z.string().optional(),
   name: z.string().optional(),
@@ -60,26 +60,32 @@ export const Descriptor$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Descriptor$ {
-  /** @deprecated use `Descriptor$inboundSchema` instead. */
-  export const inboundSchema = Descriptor$inboundSchema;
-  /** @deprecated use `Descriptor$outboundSchema` instead. */
-  export const outboundSchema = Descriptor$outboundSchema;
-  /** @deprecated use `Descriptor$Outbound` instead. */
-  export type Outbound = Descriptor$Outbound;
+export namespace TaskBankingCircleDescriptor$ {
+  /** @deprecated use `TaskBankingCircleDescriptor$inboundSchema` instead. */
+  export const inboundSchema = TaskBankingCircleDescriptor$inboundSchema;
+  /** @deprecated use `TaskBankingCircleDescriptor$outboundSchema` instead. */
+  export const outboundSchema = TaskBankingCircleDescriptor$outboundSchema;
+  /** @deprecated use `TaskBankingCircleDescriptor$Outbound` instead. */
+  export type Outbound = TaskBankingCircleDescriptor$Outbound;
 }
 
-export function descriptorToJSON(descriptor: Descriptor): string {
-  return JSON.stringify(Descriptor$outboundSchema.parse(descriptor));
+export function taskBankingCircleDescriptorToJSON(
+  taskBankingCircleDescriptor: TaskBankingCircleDescriptor,
+): string {
+  return JSON.stringify(
+    TaskBankingCircleDescriptor$outboundSchema.parse(
+      taskBankingCircleDescriptor,
+    ),
+  );
 }
 
-export function descriptorFromJSON(
+export function taskBankingCircleDescriptorFromJSON(
   jsonString: string,
-): SafeParseResult<Descriptor, SDKValidationError> {
+): SafeParseResult<TaskBankingCircleDescriptor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Descriptor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Descriptor' from JSON`,
+    (x) => TaskBankingCircleDescriptor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskBankingCircleDescriptor' from JSON`,
   );
 }
 
@@ -139,8 +145,8 @@ export const TaskBankingCircle$inboundSchema: z.ZodType<
 > = z.object({
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  descriptor: z.lazy(() => Descriptor$inboundSchema),
-  error: z.string().optional(),
+  descriptor: z.lazy(() => TaskBankingCircleDescriptor$inboundSchema),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskBankingCircleState$inboundSchema))
     .optional(),
@@ -152,8 +158,8 @@ export const TaskBankingCircle$inboundSchema: z.ZodType<
 export type TaskBankingCircle$Outbound = {
   connectorID: string;
   createdAt: string;
-  descriptor: Descriptor$Outbound;
-  error?: string | undefined;
+  descriptor: TaskBankingCircleDescriptor$Outbound;
+  error?: string | null | undefined;
   id: string;
   state?: TaskBankingCircleState$Outbound | null | undefined;
   status: string;
@@ -168,8 +174,8 @@ export const TaskBankingCircle$outboundSchema: z.ZodType<
 > = z.object({
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
-  descriptor: z.lazy(() => Descriptor$outboundSchema),
-  error: z.string().optional(),
+  descriptor: z.lazy(() => TaskBankingCircleDescriptor$outboundSchema),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskBankingCircleState$outboundSchema))
     .optional(),

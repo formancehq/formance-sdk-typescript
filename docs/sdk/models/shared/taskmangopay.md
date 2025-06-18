@@ -7,11 +7,11 @@ import { TaskMangoPay, TaskStatus } from "@formance/formance-sdk/sdk/models/shar
 
 let value: TaskMangoPay = {
   connectorID: "<id>",
-  createdAt: new Date("2023-01-16T03:56:55.503Z"),
+  createdAt: new Date("2024-12-21T20:49:55.743Z"),
   descriptor: {},
-  id: "fdb27ee0-c0f6-4f54-95b3-d9ff2f00ff27",
+  id: "4b0f3464-6501-4ab0-a79c-38aa2b6ecf1a",
   status: TaskStatus.Failed,
-  updatedAt: new Date("2024-11-19T04:44:06.594Z"),
+  updatedAt: new Date("2024-06-25T08:37:51.659Z"),
 };
 ```
 

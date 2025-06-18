@@ -10,9 +10,7 @@ let value: ConfigInfoResponse = {
     config: {
       storage: {
         driver: "<value>",
-        ledgers: [
-          "<value>",
-        ],
+        ledgers: [],
       },
     },
     server: "<value>",

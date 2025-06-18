@@ -24,7 +24,7 @@ export type TaskDummyPay = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskDummyPayDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskDummyPayState | null | undefined;
   status: TaskStatus;
@@ -148,7 +148,7 @@ export const TaskDummyPay$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskDummyPayDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskDummyPayState$inboundSchema)).optional(),
   status: TaskStatus$inboundSchema,
@@ -160,7 +160,7 @@ export type TaskDummyPay$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskDummyPayDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskDummyPayState$Outbound | null | undefined;
   status: string;
@@ -176,7 +176,7 @@ export const TaskDummyPay$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskDummyPayDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskDummyPayState$outboundSchema)).optional(),
   status: TaskStatus$outboundSchema,

@@ -24,7 +24,7 @@ export type TaskMoneycorp = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskMoneycorpDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskMoneycorpState | null | undefined;
   status: TaskStatus;
@@ -148,7 +148,7 @@ export const TaskMoneycorp$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskMoneycorpDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskMoneycorpState$inboundSchema)).optional(),
   status: TaskStatus$inboundSchema,
@@ -160,7 +160,7 @@ export type TaskMoneycorp$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskMoneycorpDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskMoneycorpState$Outbound | null | undefined;
   status: string;
@@ -176,7 +176,7 @@ export const TaskMoneycorp$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskMoneycorpDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskMoneycorpState$outboundSchema)).optional(),
   status: TaskStatus$outboundSchema,

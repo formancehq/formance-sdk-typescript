@@ -7,17 +7,7 @@ import { V3ConnectorsCursorResponse } from "@formance/formance-sdk/sdk/models/sh
 
 let value: V3ConnectorsCursorResponse = {
   cursor: {
-    data: [
-      {
-        config: {},
-        createdAt: new Date("2024-07-01T14:02:10.936Z"),
-        id: "<id>",
-        name: "<value>",
-        provider: "<value>",
-        reference: "<value>",
-        scheduledForDeletion: false,
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

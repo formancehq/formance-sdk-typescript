@@ -7,14 +7,14 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  Balance,
-  Balance$inboundSchema,
-  Balance$Outbound,
-  Balance$outboundSchema,
-} from "./balance.js";
+  CreateBalanceRequest,
+  CreateBalanceRequest$inboundSchema,
+  CreateBalanceRequest$Outbound,
+  CreateBalanceRequest$outboundSchema,
+} from "./createbalancerequest.js";
 
 export type CreateBalanceResponse = {
-  data: Balance;
+  data: CreateBalanceRequest;
 };
 
 /** @internal */
@@ -23,12 +23,12 @@ export const CreateBalanceResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: Balance$inboundSchema,
+  data: CreateBalanceRequest$inboundSchema,
 });
 
 /** @internal */
 export type CreateBalanceResponse$Outbound = {
-  data: Balance$Outbound;
+  data: CreateBalanceRequest$Outbound;
 };
 
 /** @internal */
@@ -37,7 +37,7 @@ export const CreateBalanceResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateBalanceResponse
 > = z.object({
-  data: Balance$outboundSchema,
+  data: CreateBalanceRequest$outboundSchema,
 });
 
 /**

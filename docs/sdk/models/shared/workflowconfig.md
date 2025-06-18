@@ -7,9 +7,7 @@ import { WorkflowConfig } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WorkflowConfig = {
   stages: [
-    {
-      "key": "<value>",
-    },
+    {},
   ],
 };
 ```

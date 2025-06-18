@@ -7,15 +7,7 @@ import { V2ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/mo
 
 let value: V2ListTriggersOccurrencesResponse = {
   cursor: {
-    data: [
-      {
-        date: new Date("2024-12-26T17:49:51.811Z"),
-        event: {
-          "key": "<value>",
-        },
-        triggerID: "<id>",
-      },
-    ],
+    data: [],
     hasMore: false,
     next: "",
     pageSize: 15,

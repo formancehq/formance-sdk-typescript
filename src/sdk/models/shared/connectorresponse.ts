@@ -7,7 +7,7 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export type Data = {
+export type ConnectorResponseData = {
   connectorID: string;
 };
 
@@ -15,50 +15,60 @@ export type Data = {
  * OK
  */
 export type ConnectorResponse = {
-  data: Data;
+  data: ConnectorResponseData;
 };
 
 /** @internal */
-export const Data$inboundSchema: z.ZodType<Data, z.ZodTypeDef, unknown> = z
-  .object({
-    connectorID: z.string(),
-  });
+export const ConnectorResponseData$inboundSchema: z.ZodType<
+  ConnectorResponseData,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  connectorID: z.string(),
+});
 
 /** @internal */
-export type Data$Outbound = {
+export type ConnectorResponseData$Outbound = {
   connectorID: string;
 };
 
 /** @internal */
-export const Data$outboundSchema: z.ZodType<Data$Outbound, z.ZodTypeDef, Data> =
-  z.object({
-    connectorID: z.string(),
-  });
+export const ConnectorResponseData$outboundSchema: z.ZodType<
+  ConnectorResponseData$Outbound,
+  z.ZodTypeDef,
+  ConnectorResponseData
+> = z.object({
+  connectorID: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Data$ {
-  /** @deprecated use `Data$inboundSchema` instead. */
-  export const inboundSchema = Data$inboundSchema;
-  /** @deprecated use `Data$outboundSchema` instead. */
-  export const outboundSchema = Data$outboundSchema;
-  /** @deprecated use `Data$Outbound` instead. */
-  export type Outbound = Data$Outbound;
+export namespace ConnectorResponseData$ {
+  /** @deprecated use `ConnectorResponseData$inboundSchema` instead. */
+  export const inboundSchema = ConnectorResponseData$inboundSchema;
+  /** @deprecated use `ConnectorResponseData$outboundSchema` instead. */
+  export const outboundSchema = ConnectorResponseData$outboundSchema;
+  /** @deprecated use `ConnectorResponseData$Outbound` instead. */
+  export type Outbound = ConnectorResponseData$Outbound;
 }
 
-export function dataToJSON(data: Data): string {
-  return JSON.stringify(Data$outboundSchema.parse(data));
+export function connectorResponseDataToJSON(
+  connectorResponseData: ConnectorResponseData,
+): string {
+  return JSON.stringify(
+    ConnectorResponseData$outboundSchema.parse(connectorResponseData),
+  );
 }
 
-export function dataFromJSON(
+export function connectorResponseDataFromJSON(
   jsonString: string,
-): SafeParseResult<Data, SDKValidationError> {
+): SafeParseResult<ConnectorResponseData, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Data$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Data' from JSON`,
+    (x) => ConnectorResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConnectorResponseData' from JSON`,
   );
 }
 
@@ -68,12 +78,12 @@ export const ConnectorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.lazy(() => Data$inboundSchema),
+  data: z.lazy(() => ConnectorResponseData$inboundSchema),
 });
 
 /** @internal */
 export type ConnectorResponse$Outbound = {
-  data: Data$Outbound;
+  data: ConnectorResponseData$Outbound;
 };
 
 /** @internal */
@@ -82,7 +92,7 @@ export const ConnectorResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorResponse
 > = z.object({
-  data: z.lazy(() => Data$outboundSchema),
+  data: z.lazy(() => ConnectorResponseData$outboundSchema),
 });
 
 /**

@@ -14,6 +14,7 @@ import {
 } from "./subject.js";
 
 export type ExpandedDebitHold = {
+  asset: string;
   description: string;
   destination?: Subject | undefined;
   /**
@@ -44,6 +45,7 @@ export const ExpandedDebitHold$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  asset: z.string(),
   description: z.string(),
   destination: Subject$inboundSchema.optional(),
   id: z.string(),
@@ -55,6 +57,7 @@ export const ExpandedDebitHold$inboundSchema: z.ZodType<
 
 /** @internal */
 export type ExpandedDebitHold$Outbound = {
+  asset: string;
   description: string;
   destination?: Subject$Outbound | undefined;
   id: string;
@@ -70,6 +73,7 @@ export const ExpandedDebitHold$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ExpandedDebitHold
 > = z.object({
+  asset: z.string(),
   description: z.string(),
   destination: Subject$outboundSchema.optional(),
   id: z.string(),

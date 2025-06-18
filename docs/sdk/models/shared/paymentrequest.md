@@ -6,14 +6,14 @@
 import { PaymentRequest, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PaymentRequest = {
-  amount: BigInt("100"),
+  amount: 100n,
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2025-07-02T23:49:03.163Z"),
+  createdAt: new Date("2025-11-06T04:29:01.370Z"),
   reference: "<value>",
-  scheme: PaymentScheme.Visa,
-  status: PaymentStatus.Dispute,
-  type: PaymentType.Transfer,
+  scheme: PaymentScheme.AchDebit,
+  status: PaymentStatus.DisputeWon,
+  type: PaymentType.PayIn,
 };
 ```
 

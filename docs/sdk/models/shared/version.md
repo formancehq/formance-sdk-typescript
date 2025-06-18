@@ -6,7 +6,7 @@
 import { Version } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Version = {
-  health: false,
+  health: true,
   name: "<value>",
   version: "<value>",
 };

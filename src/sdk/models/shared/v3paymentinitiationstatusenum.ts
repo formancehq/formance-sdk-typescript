@@ -7,6 +7,7 @@ import * as z from "zod";
 export enum V3PaymentInitiationStatusEnum {
   Unknown = "UNKNOWN",
   WaitingForValidation = "WAITING_FOR_VALIDATION",
+  ScheduledForProcessing = "SCHEDULED_FOR_PROCESSING",
   Processing = "PROCESSING",
   Processed = "PROCESSED",
   Failed = "FAILED",

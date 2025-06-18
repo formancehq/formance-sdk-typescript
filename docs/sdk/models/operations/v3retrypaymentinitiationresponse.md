@@ -5,13 +5,7 @@
 ```typescript
 import { V3RetryPaymentInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3RetryPaymentInitiationResponse = {
-  contentType: "<value>",
-  statusCode: 307,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3RetryPaymentInitiationResponse = {};
 ```
 
 ## Fields

@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [addAccountToPool](#addaccounttopool) - Add an account to a pool
+* [addBankAccountToPaymentServiceUser](#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
 * [approvePaymentInitiation](#approvepaymentinitiation) - Approve a payment initiation
 * [createAccount](#createaccount) - Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
@@ -13,10 +14,12 @@
 
 * [createPayment](#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
+* [createPaymentServiceUser](#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](#createpool) - Create a formance pool object
 * [deletePaymentInitiation](#deletepaymentinitiation) - Delete a payment initiation by ID
 * [deletePool](#deletepool) - Delete a pool by ID
 * [forwardBankAccount](#forwardbankaccount) - Forward a Bank Account to a PSP for creation
+* [forwardPaymentServiceUserBankAccount](#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
@@ -24,8 +27,10 @@
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
 * [getPayment](#getpayment) - Get a payment by ID
 * [getPaymentInitiation](#getpaymentinitiation) - Get a payment initiation by ID
+* [getPaymentServiceUser](#getpaymentserviceuser) - Get a payment service user by ID
 * [getPool](#getpool) - Get a pool by ID
-* [getPoolBalances](#getpoolbalances) - Get pool balances
+* [getPoolBalances](#getpoolbalances) - Get historical pool balances from a particular point in time
+* [getPoolBalancesLatest](#getpoolbalanceslatest) - Get latest pool balances
 * [getTask](#gettask) - Get a task and its result by ID
 * [initiatePayment](#initiatepayment) - Initiate a payment
 * [installConnector](#installconnector) - Install a connector
@@ -38,6 +43,7 @@
 * [listPaymentInitiationAdjustments](#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUsers](#listpaymentserviceusers) - List all payment service users
 * [listPayments](#listpayments) - List all payments
 * [listPools](#listpools) - List all pools
 * [rejectPaymentInitiation](#rejectpaymentinitiation) - Reject a payment initiation
@@ -48,6 +54,7 @@
 * [uninstallConnector](#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update a bank account's metadata
 * [updatePaymentMetadata](#updatepaymentmetadata) - Update a payment's metadata
+* [v3UpdateConnectorConfig](#v3updateconnectorconfig) - Update the config of a connector
 
 ## addAccountToPool
 
@@ -71,7 +78,6 @@ async function run() {
     poolID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -100,15 +106,12 @@ async function run() {
     accountID: "<id>",
     poolID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3AddAccountToPool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -126,6 +129,87 @@ run();
 ### Response
 
 **Promise\<[operations.V3AddAccountToPoolResponse](../../sdk/models/operations/v3addaccounttopoolresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## addBankAccountToPaymentServiceUser
+
+Add a bank account to a payment service user
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.addBankAccountToPaymentServiceUser({
+    bankAccountID: "<id>",
+    paymentServiceUserID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3AddBankAccountToPaymentServiceUser } from "@formance/formance-sdk/funcs/paymentsV3AddBankAccountToPaymentServiceUser.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3AddBankAccountToPaymentServiceUser(sdk, {
+    bankAccountID: "<id>",
+    paymentServiceUserID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3AddBankAccountToPaymentServiceUser failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3AddBankAccountToPaymentServiceUserRequest](../../sdk/models/operations/v3addbankaccounttopaymentserviceuserrequest.md)                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3AddBankAccountToPaymentServiceUserResponse](../../sdk/models/operations/v3addbankaccounttopaymentserviceuserresponse.md)\>**
 
 ### Errors
 
@@ -155,7 +239,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -183,15 +266,12 @@ async function run() {
   const res = await paymentsV3ApprovePaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ApprovePaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -237,7 +317,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.createAccount();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -263,15 +342,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3CreateAccount(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3CreateAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -317,7 +393,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.createBankAccount();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -343,15 +418,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3CreateBankAccount(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3CreateBankAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -397,7 +469,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.createPayment();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -423,15 +494,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3CreatePayment(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3CreatePayment failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -449,6 +517,81 @@ run();
 ### Response
 
 **Promise\<[operations.V3CreatePaymentResponse](../../sdk/models/operations/v3createpaymentresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## createPaymentServiceUser
+
+Create a formance payment service user object
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.createPaymentServiceUser();
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3CreatePaymentServiceUser } from "@formance/formance-sdk/funcs/paymentsV3CreatePaymentServiceUser.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3CreatePaymentServiceUser(sdk);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3CreatePaymentServiceUser failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [shared.V3CreatePaymentServiceUserRequest](../../sdk/models/shared/v3createpaymentserviceuserrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3CreatePaymentServiceUserResponse](../../sdk/models/operations/v3createpaymentserviceuserresponse.md)\>**
 
 ### Errors
 
@@ -476,7 +619,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.createPool();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -502,15 +644,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3CreatePool(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3CreatePool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -557,7 +696,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -585,15 +723,12 @@ async function run() {
   const res = await paymentsV3DeletePaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3DeletePaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -640,7 +775,6 @@ async function run() {
     poolID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -668,15 +802,12 @@ async function run() {
   const res = await paymentsV3DeletePool(sdk, {
     poolID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3DeletePool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -723,7 +854,6 @@ async function run() {
     bankAccountID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -751,15 +881,12 @@ async function run() {
   const res = await paymentsV3ForwardBankAccount(sdk, {
     bankAccountID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ForwardBankAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -777,6 +904,87 @@ run();
 ### Response
 
 **Promise\<[operations.V3ForwardBankAccountResponse](../../sdk/models/operations/v3forwardbankaccountresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## forwardPaymentServiceUserBankAccount
+
+Forward a payment service user's bank account to a connector
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.forwardPaymentServiceUserBankAccount({
+    bankAccountID: "<id>",
+    paymentServiceUserID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3ForwardPaymentServiceUserBankAccount } from "@formance/formance-sdk/funcs/paymentsV3ForwardPaymentServiceUserBankAccount.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3ForwardPaymentServiceUserBankAccount(sdk, {
+    bankAccountID: "<id>",
+    paymentServiceUserID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ForwardPaymentServiceUserBankAccount failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ForwardPaymentServiceUserBankAccountRequest](../../sdk/models/operations/v3forwardpaymentserviceuserbankaccountrequest.md)                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ForwardPaymentServiceUserBankAccountResponse](../../sdk/models/operations/v3forwardpaymentserviceuserbankaccountresponse.md)\>**
 
 ### Errors
 
@@ -806,7 +1014,6 @@ async function run() {
     accountID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -834,15 +1041,12 @@ async function run() {
   const res = await paymentsV3GetAccount(sdk, {
     accountID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -891,7 +1095,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -921,15 +1124,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetAccountBalances failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -976,7 +1176,6 @@ async function run() {
     bankAccountID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1004,15 +1203,12 @@ async function run() {
   const res = await paymentsV3GetBankAccount(sdk, {
     bankAccountID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetBankAccount failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1059,7 +1255,6 @@ async function run() {
     connectorID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1087,15 +1282,12 @@ async function run() {
   const res = await paymentsV3GetConnectorConfig(sdk, {
     connectorID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetConnectorConfig failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1143,7 +1335,6 @@ async function run() {
     scheduleID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1172,15 +1363,12 @@ async function run() {
     connectorID: "<id>",
     scheduleID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetConnectorSchedule failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1227,7 +1415,6 @@ async function run() {
     paymentID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1255,15 +1442,12 @@ async function run() {
   const res = await paymentsV3GetPayment(sdk, {
     paymentID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPayment failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1310,7 +1494,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1338,15 +1521,12 @@ async function run() {
   const res = await paymentsV3GetPaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1364,6 +1544,85 @@ run();
 ### Response
 
 **Promise\<[operations.V3GetPaymentInitiationResponse](../../sdk/models/operations/v3getpaymentinitiationresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## getPaymentServiceUser
+
+Get a payment service user by ID
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.getPaymentServiceUser({
+    paymentServiceUserID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3GetPaymentServiceUser } from "@formance/formance-sdk/funcs/paymentsV3GetPaymentServiceUser.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3GetPaymentServiceUser(sdk, {
+    paymentServiceUserID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPaymentServiceUser failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GetPaymentServiceUserRequest](../../sdk/models/operations/v3getpaymentserviceuserrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GetPaymentServiceUserResponse](../../sdk/models/operations/v3getpaymentserviceuserresponse.md)\>**
 
 ### Errors
 
@@ -1393,7 +1652,6 @@ async function run() {
     poolID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1421,15 +1679,12 @@ async function run() {
   const res = await paymentsV3GetPool(sdk, {
     poolID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1457,7 +1712,7 @@ run();
 
 ## getPoolBalances
 
-Get pool balances
+Get historical pool balances from a particular point in time
 
 ### Example Usage
 
@@ -1476,7 +1731,6 @@ async function run() {
     poolID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1504,15 +1758,12 @@ async function run() {
   const res = await paymentsV3GetPoolBalances(sdk, {
     poolID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPoolBalances failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1530,6 +1781,85 @@ run();
 ### Response
 
 **Promise\<[operations.V3GetPoolBalancesResponse](../../sdk/models/operations/v3getpoolbalancesresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## getPoolBalancesLatest
+
+Get latest pool balances
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.getPoolBalancesLatest({
+    poolID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3GetPoolBalancesLatest } from "@formance/formance-sdk/funcs/paymentsV3GetPoolBalancesLatest.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3GetPoolBalancesLatest(sdk, {
+    poolID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetPoolBalancesLatest failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GetPoolBalancesLatestRequest](../../sdk/models/operations/v3getpoolbalanceslatestrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GetPoolBalancesLatestResponse](../../sdk/models/operations/v3getpoolbalanceslatestresponse.md)\>**
 
 ### Errors
 
@@ -1559,7 +1889,6 @@ async function run() {
     taskID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1587,15 +1916,12 @@ async function run() {
   const res = await paymentsV3GetTask(sdk, {
     taskID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetTask failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1640,7 +1966,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.initiatePayment({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1666,15 +1991,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3InitiatePayment(sdk, {});
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3InitiatePayment failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1721,7 +2043,6 @@ async function run() {
     connector: "<value>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1749,15 +2070,12 @@ async function run() {
   const res = await paymentsV3InstallConnector(sdk, {
     connector: "<value>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3InstallConnector failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1805,7 +2123,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1834,15 +2151,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListAccounts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1890,7 +2204,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1919,15 +2232,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListBankAccounts failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -1972,7 +2282,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v3.listConnectorConfigs();
 
-  // Handle the result
   console.log(result);
 }
 
@@ -1998,15 +2307,12 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV3ListConnectorConfigs(sdk);
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListConnectorConfigs failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2055,7 +2361,6 @@ async function run() {
     scheduleID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2086,15 +2391,12 @@ async function run() {
     pageSize: 100,
     scheduleID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListConnectorScheduleInstances failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2143,7 +2445,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2173,15 +2474,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListConnectorSchedules failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2229,7 +2527,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2258,15 +2555,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListConnectors failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2315,7 +2609,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2345,15 +2638,12 @@ async function run() {
     pageSize: 100,
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPaymentInitiationAdjustments failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2402,7 +2692,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2432,15 +2721,12 @@ async function run() {
     pageSize: 100,
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPaymentInitiationRelatedPayments failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2488,7 +2774,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2517,15 +2802,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPaymentInitiations failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2543,6 +2825,87 @@ run();
 ### Response
 
 **Promise\<[operations.V3ListPaymentInitiationsResponse](../../sdk/models/operations/v3listpaymentinitiationsresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V3ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## listPaymentServiceUsers
+
+List all payment service users
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.listPaymentServiceUsers({
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3ListPaymentServiceUsers } from "@formance/formance-sdk/funcs/paymentsV3ListPaymentServiceUsers.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3ListPaymentServiceUsers(sdk, {
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    pageSize: 100,
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPaymentServiceUsers failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ListPaymentServiceUsersRequest](../../sdk/models/operations/v3listpaymentserviceusersrequest.md)                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ListPaymentServiceUsersResponse](../../sdk/models/operations/v3listpaymentserviceusersresponse.md)\>**
 
 ### Errors
 
@@ -2573,7 +2936,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2602,15 +2964,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPayments failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2658,7 +3017,6 @@ async function run() {
     pageSize: 100,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2687,15 +3045,12 @@ async function run() {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListPools failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2742,7 +3097,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2770,15 +3124,12 @@ async function run() {
   const res = await paymentsV3RejectPaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3RejectPaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2826,7 +3177,6 @@ async function run() {
     poolID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2855,15 +3205,12 @@ async function run() {
     accountID: "<id>",
     poolID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3RemoveAccountFromPool failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2910,7 +3257,6 @@ async function run() {
     connectorID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -2938,15 +3284,12 @@ async function run() {
   const res = await paymentsV3ResetConnector(sdk, {
     connectorID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ResetConnector failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -2993,7 +3336,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -3021,15 +3363,12 @@ async function run() {
   const res = await paymentsV3RetryPaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3RetryPaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -3076,7 +3415,6 @@ async function run() {
     paymentInitiationID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -3104,15 +3442,12 @@ async function run() {
   const res = await paymentsV3ReversePaymentInitiation(sdk, {
     paymentInitiationID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ReversePaymentInitiation failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -3159,7 +3494,6 @@ async function run() {
     connectorID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -3187,15 +3521,12 @@ async function run() {
   const res = await paymentsV3UninstallConnector(sdk, {
     connectorID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3UninstallConnector failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -3242,7 +3573,6 @@ async function run() {
     bankAccountID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -3270,15 +3600,12 @@ async function run() {
   const res = await paymentsV3UpdateBankAccountMetadata(sdk, {
     bankAccountID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3UpdateBankAccountMetadata failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -3325,7 +3652,6 @@ async function run() {
     paymentID: "<id>",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -3353,15 +3679,12 @@ async function run() {
   const res = await paymentsV3UpdatePaymentMetadata(sdk, {
     paymentID: "<id>",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3UpdatePaymentMetadata failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -3386,3 +3709,82 @@ run();
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.V3ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## v3UpdateConnectorConfig
+
+Update connector config
+
+### Example Usage
+
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.v3UpdateConnectorConfig({
+    connectorID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3V3UpdateConnectorConfig } from "@formance/formance-sdk/funcs/paymentsV3V3UpdateConnectorConfig.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3V3UpdateConnectorConfig(sdk, {
+    connectorID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3V3UpdateConnectorConfig failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3UpdateConnectorConfigRequest](../../sdk/models/operations/v3updateconnectorconfigrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3UpdateConnectorConfigResponse](../../sdk/models/operations/v3updateconnectorconfigresponse.md)\>**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |

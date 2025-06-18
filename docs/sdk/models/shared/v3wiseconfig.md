@@ -8,6 +8,7 @@ import { V3WiseConfig } from "@formance/formance-sdk/sdk/models/shared";
 let value: V3WiseConfig = {
   apiKey: "<value>",
   name: "<value>",
+  pageSize: 25,
   webhookPublicKey: "<value>",
 };
 ```

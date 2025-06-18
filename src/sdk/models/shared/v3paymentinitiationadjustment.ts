@@ -16,7 +16,7 @@ export type V3PaymentInitiationAdjustment = {
   amount?: bigint | undefined;
   asset?: string | undefined;
   createdAt: Date;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
   status: V3PaymentInitiationStatusEnum;
@@ -31,7 +31,7 @@ export const V3PaymentInitiationAdjustment$inboundSchema: z.ZodType<
   amount: z.number().transform(v => BigInt(v)).optional(),
   asset: z.string().optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
   status: V3PaymentInitiationStatusEnum$inboundSchema,
@@ -42,7 +42,7 @@ export type V3PaymentInitiationAdjustment$Outbound = {
   amount?: number | undefined;
   asset?: string | undefined;
   createdAt: string;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
   status: string;
@@ -57,7 +57,7 @@ export const V3PaymentInitiationAdjustment$outboundSchema: z.ZodType<
   amount: z.bigint().transform(v => Number(v)).optional(),
   asset: z.string().optional(),
   createdAt: z.date().transform(v => v.toISOString()),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
   status: V3PaymentInitiationStatusEnum$outboundSchema,

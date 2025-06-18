@@ -7,7 +7,7 @@ import { V2RevertTransactionRequest } from "@formance/formance-sdk/sdk/models/op
 
 let value: V2RevertTransactionRequest = {
   dryRun: true,
-  id: BigInt("1234"),
+  id: 1234n,
   ledger: "ledger001",
 };
 ```

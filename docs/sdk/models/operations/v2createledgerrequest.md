@@ -6,11 +6,6 @@
 import { V2CreateLedgerRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2CreateLedgerRequest = {
-  v2CreateLedgerRequest: {
-    metadata: {
-      "admin": "true",
-    },
-  },
   ledger: "ledger001",
 };
 ```

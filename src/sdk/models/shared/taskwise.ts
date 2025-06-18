@@ -24,7 +24,7 @@ export type TaskWise = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskWiseDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskWiseState | null | undefined;
   status: TaskStatus;
@@ -144,7 +144,7 @@ export const TaskWise$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskWiseDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskWiseState$inboundSchema)).optional(),
   status: TaskStatus$inboundSchema,
@@ -156,7 +156,7 @@ export type TaskWise$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskWiseDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskWiseState$Outbound | null | undefined;
   status: string;
@@ -172,7 +172,7 @@ export const TaskWise$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskWiseDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskWiseState$outboundSchema)).optional(),
   status: TaskStatus$outboundSchema,

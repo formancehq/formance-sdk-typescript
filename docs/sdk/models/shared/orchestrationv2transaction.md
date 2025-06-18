@@ -9,17 +9,10 @@ let value: OrchestrationV2Transaction = {
   metadata: {
     "admin": "true",
   },
-  postings: [
-    {
-      amount: BigInt("100"),
-      asset: "COIN",
-      destination: "users:002",
-      source: "users:001",
-    },
-  ],
+  postings: [],
   reference: "ref:001",
-  timestamp: new Date("2024-02-21T12:25:46.156Z"),
-  txid: BigInt("601634"),
+  timestamp: new Date("2024-06-22T20:49:25.112Z"),
+  txid: 422477n,
 };
 ```
 

@@ -38,12 +38,6 @@ import {
   ActivityGetWalletOutput$outboundSchema,
 } from "./activitygetwalletoutput.js";
 import {
-  ActivityRevertTransactionOutput,
-  ActivityRevertTransactionOutput$inboundSchema,
-  ActivityRevertTransactionOutput$Outbound,
-  ActivityRevertTransactionOutput$outboundSchema,
-} from "./activityreverttransactionoutput.js";
-import {
   OrchestrationListWalletsResponse,
   OrchestrationListWalletsResponse$inboundSchema,
   OrchestrationListWalletsResponse$Outbound,
@@ -57,7 +51,7 @@ export type WorkflowInstanceHistoryStageOutput = {
   getPayment?: ActivityGetPaymentOutput | undefined;
   getWallet?: ActivityGetWalletOutput | undefined;
   listWallets?: OrchestrationListWalletsResponse | undefined;
-  revertTransaction?: ActivityRevertTransactionOutput | undefined;
+  revertTransaction?: ActivityCreateTransactionOutput | undefined;
 };
 
 /** @internal */
@@ -72,7 +66,7 @@ export const WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
   GetPayment: ActivityGetPaymentOutput$inboundSchema.optional(),
   GetWallet: ActivityGetWalletOutput$inboundSchema.optional(),
   ListWallets: OrchestrationListWalletsResponse$inboundSchema.optional(),
-  RevertTransaction: ActivityRevertTransactionOutput$inboundSchema.optional(),
+  RevertTransaction: ActivityCreateTransactionOutput$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "CreateTransaction": "createTransaction",
@@ -93,7 +87,7 @@ export type WorkflowInstanceHistoryStageOutput$Outbound = {
   GetPayment?: ActivityGetPaymentOutput$Outbound | undefined;
   GetWallet?: ActivityGetWalletOutput$Outbound | undefined;
   ListWallets?: OrchestrationListWalletsResponse$Outbound | undefined;
-  RevertTransaction?: ActivityRevertTransactionOutput$Outbound | undefined;
+  RevertTransaction?: ActivityCreateTransactionOutput$Outbound | undefined;
 };
 
 /** @internal */
@@ -108,7 +102,7 @@ export const WorkflowInstanceHistoryStageOutput$outboundSchema: z.ZodType<
   getPayment: ActivityGetPaymentOutput$outboundSchema.optional(),
   getWallet: ActivityGetWalletOutput$outboundSchema.optional(),
   listWallets: OrchestrationListWalletsResponse$outboundSchema.optional(),
-  revertTransaction: ActivityRevertTransactionOutput$outboundSchema.optional(),
+  revertTransaction: ActivityCreateTransactionOutput$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     createTransaction: "CreateTransaction",

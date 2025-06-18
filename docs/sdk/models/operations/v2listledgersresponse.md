@@ -5,31 +5,7 @@
 ```typescript
 import { V2ListLedgersResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListLedgersResponse = {
-  contentType: "<value>",
-  statusCode: 201,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  v2LedgerListResponse: {
-    cursor: {
-      data: [
-        {
-          addedAt: new Date("2024-10-04T19:38:10.454Z"),
-          bucket: "<value>",
-          metadata: {
-            "admin": "true",
-          },
-          name: "<value>",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-};
+let value: V2ListLedgersResponse = {};
 ```
 
 ## Fields

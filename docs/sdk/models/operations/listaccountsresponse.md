@@ -4,43 +4,8 @@
 
 ```typescript
 import { ListAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { ErrorsEnum } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: ListAccountsResponse = {
-  accountsCursorResponse: {
-    cursor: {
-      data: [
-        {
-          address: "users:001",
-          metadata: {
-            "admin": true,
-            "a": {
-              "nested": {
-                "key": "value",
-              },
-            },
-          },
-          type: "virtual",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-  contentType: "<value>",
-  errorResponse: {
-    details:
-      "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-    errorCode: ErrorsEnum.InsufficientFund,
-    errorMessage: "[INSUFFICIENT_FUND] account had insufficient funds",
-  },
-  statusCode: 402,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ListAccountsResponse = {};
 ```
 
 ## Fields

@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type UpdateClientRequest = {
-  updateClientRequest?: shared.UpdateClientRequest | undefined;
+  clientOptions?: shared.ClientOptions | undefined;
   /**
    * Client ID
    */
@@ -23,6 +23,10 @@ export type UpdateClientResponse = {
    */
   contentType: string;
   /**
+   * Updated client
+   */
+  createClientResponse?: shared.CreateClientResponse | undefined;
+  /**
    * HTTP response status code for this operation
    */
   statusCode: number;
@@ -30,10 +34,6 @@ export type UpdateClientResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
-  /**
-   * Updated client
-   */
-  updateClientResponse?: shared.UpdateClientResponse | undefined;
 };
 
 /** @internal */
@@ -42,17 +42,17 @@ export const UpdateClientRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  UpdateClientRequest: shared.UpdateClientRequest$inboundSchema.optional(),
+  ClientOptions: shared.ClientOptions$inboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    "UpdateClientRequest": "updateClientRequest",
+    "ClientOptions": "clientOptions",
   });
 });
 
 /** @internal */
 export type UpdateClientRequest$Outbound = {
-  UpdateClientRequest?: shared.UpdateClientRequest$Outbound | undefined;
+  ClientOptions?: shared.ClientOptions$Outbound | undefined;
   clientId: string;
 };
 
@@ -62,11 +62,11 @@ export const UpdateClientRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateClientRequest
 > = z.object({
-  updateClientRequest: shared.UpdateClientRequest$outboundSchema.optional(),
+  clientOptions: shared.ClientOptions$outboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    updateClientRequest: "UpdateClientRequest",
+    clientOptions: "ClientOptions",
   });
 });
 
@@ -108,24 +108,24 @@ export const UpdateClientResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
+  CreateClientResponse: shared.CreateClientResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  UpdateClientResponse: shared.UpdateClientResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
+    "CreateClientResponse": "createClientResponse",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "UpdateClientResponse": "updateClientResponse",
   });
 });
 
 /** @internal */
 export type UpdateClientResponse$Outbound = {
   ContentType: string;
+  CreateClientResponse?: shared.CreateClientResponse$Outbound | undefined;
   StatusCode: number;
   RawResponse: never;
-  UpdateClientResponse?: shared.UpdateClientResponse$Outbound | undefined;
 };
 
 /** @internal */
@@ -135,17 +135,17 @@ export const UpdateClientResponse$outboundSchema: z.ZodType<
   UpdateClientResponse
 > = z.object({
   contentType: z.string(),
+  createClientResponse: shared.CreateClientResponse$outboundSchema.optional(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
-  updateClientResponse: shared.UpdateClientResponse$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",
+    createClientResponse: "CreateClientResponse",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
-    updateClientResponse: "UpdateClientResponse",
   });
 });
 

@@ -10,6 +10,7 @@ let value: V3ModulrConfig = {
   apiSecret: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

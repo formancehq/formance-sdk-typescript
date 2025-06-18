@@ -7,7 +7,9 @@ import { PoolRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: PoolRequest = {
   accountIDs: [
-    "<value>",
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
   ],
   name: "<value>",
 };

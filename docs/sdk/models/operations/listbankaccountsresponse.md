@@ -5,29 +5,7 @@
 ```typescript
 import { ListBankAccountsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListBankAccountsResponse = {
-  bankAccountsCursor: {
-    cursor: {
-      data: [
-        {
-          country: "Jersey",
-          createdAt: new Date("2024-03-16T06:40:22.205Z"),
-          id: "<id>",
-          name: "<value>",
-        },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
-    },
-  },
-  contentType: "<value>",
-  statusCode: 205,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ListBankAccountsResponse = {};
 ```
 
 ## Fields

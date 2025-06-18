@@ -5,13 +5,7 @@
 ```typescript
 import { DeleteConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeleteConfigResponse = {
-  contentType: "<value>",
-  statusCode: 205,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: DeleteConfigResponse = {};
 ```
 
 ## Fields

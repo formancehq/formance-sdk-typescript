@@ -11,7 +11,7 @@ import {
 } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: WorkflowInstanceHistoryStage = {
-  attempt: 414456,
+  attempt: 405193,
   input: {
     createTransaction: {
       data: {
@@ -20,7 +20,7 @@ let value: WorkflowInstanceHistoryStage = {
         },
         postings: [
           {
-            amount: BigInt("100"),
+            amount: 100n,
             asset: "COIN",
             destination: "users:002",
             source: "users:001",
@@ -45,7 +45,7 @@ let value: WorkflowInstanceHistoryStage = {
     creditWallet: {
       data: {
         amount: {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "USD/2",
         },
         metadata: {
@@ -57,7 +57,7 @@ let value: WorkflowInstanceHistoryStage = {
     debitWallet: {
       data: {
         amount: {
-          amount: BigInt("100"),
+          amount: 100n,
           asset: "USD/2",
         },
         metadata: {
@@ -67,7 +67,7 @@ let value: WorkflowInstanceHistoryStage = {
       },
     },
     stripeTransfer: {
-      amount: BigInt("100"),
+      amount: 100n,
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       metadata: {},
@@ -77,21 +77,14 @@ let value: WorkflowInstanceHistoryStage = {
   output: {
     createTransaction: {
       data: {
-        id: BigInt("127499"),
+        id: 194985n,
         metadata: {
           "admin": "true",
         },
-        postings: [
-          {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
+        postings: [],
         reference: "ref:001",
-        reverted: false,
-        timestamp: new Date("2025-07-10T08:13:06.418Z"),
+        reverted: true,
+        timestamp: new Date("2024-09-30T06:28:56.548Z"),
       },
     },
     getAccount: {
@@ -99,14 +92,14 @@ let value: WorkflowInstanceHistoryStage = {
         address: "users:001",
         effectiveVolumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
         metadata: {
@@ -114,57 +107,39 @@ let value: WorkflowInstanceHistoryStage = {
         },
         volumes: {
           "USD": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
           "EUR": {
-            balance: BigInt("90"),
-            input: BigInt("100"),
-            output: BigInt("10"),
+            balance: 90n,
+            input: 100n,
+            output: 10n,
           },
         },
       },
     },
     getPayment: {
       data: {
-        adjustments: [
-          {
-            absolute: false,
-            amount: BigInt("100"),
-            date: new Date("2023-03-07T11:52:20.186Z"),
-            raw: {},
-            status: OrchestrationPaymentStatus.Terminated,
-          },
-        ],
+        adjustments: [],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2025-10-05T00:47:16.247Z"),
+        createdAt: new Date("2023-12-16T14:43:43.030Z"),
         destinationAccountID: "<id>",
         id: "XXX",
-        initialAmount: BigInt("100"),
+        initialAmount: 100n,
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: OrchestrationPaymentScheme.Other,
+        scheme: OrchestrationPaymentScheme.Ach,
         sourceAccountID: "<id>",
-        status: OrchestrationPaymentStatus.Failed,
-        type: OrchestrationPaymentType.Transfer,
+        status: OrchestrationPaymentStatus.Active,
+        type: OrchestrationPaymentType.Other,
       },
     },
     listWallets: {
       cursor: {
-        data: [
-          {
-            createdAt: new Date("2023-02-16T12:43:22.337Z"),
-            id: "88513569-b550-404b-8acc-dbfe990f2bd5",
-            ledger: "<value>",
-            metadata: {
-              "key": "<value>",
-            },
-            name: "<value>",
-          },
-        ],
+        data: [],
         hasMore: false,
         next: "",
         pageSize: 15,
@@ -173,25 +148,18 @@ let value: WorkflowInstanceHistoryStage = {
     },
     revertTransaction: {
       data: {
-        id: BigInt("98759"),
+        id: 194985n,
         metadata: {
           "admin": "true",
         },
-        postings: [
-          {
-            amount: BigInt("100"),
-            asset: "COIN",
-            destination: "users:002",
-            source: "users:001",
-          },
-        ],
+        postings: [],
         reference: "ref:001",
-        reverted: false,
-        timestamp: new Date("2025-03-31T11:19:56.559Z"),
+        reverted: true,
+        timestamp: new Date("2024-09-30T06:28:56.548Z"),
       },
     },
   },
-  startedAt: new Date("2024-05-11T02:35:54.356Z"),
+  startedAt: new Date("2023-02-09T04:59:09.612Z"),
   terminated: false,
 };
 ```

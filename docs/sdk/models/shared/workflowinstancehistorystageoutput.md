@@ -13,21 +13,14 @@ import {
 let value: WorkflowInstanceHistoryStageOutput = {
   createTransaction: {
     data: {
-      id: BigInt("713718"),
+      id: 194985n,
       metadata: {
         "admin": "true",
       },
-      postings: [
-        {
-          amount: BigInt("100"),
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-      ],
+      postings: [],
       reference: "ref:001",
-      reverted: false,
-      timestamp: new Date("2025-09-30T06:52:58.064Z"),
+      reverted: true,
+      timestamp: new Date("2024-09-30T06:28:56.548Z"),
     },
   },
   getAccount: {
@@ -35,14 +28,14 @@ let value: WorkflowInstanceHistoryStageOutput = {
       address: "users:001",
       effectiveVolumes: {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
         "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
       metadata: {
@@ -50,57 +43,39 @@ let value: WorkflowInstanceHistoryStageOutput = {
       },
       volumes: {
         "USD": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
         "EUR": {
-          balance: BigInt("90"),
-          input: BigInt("100"),
-          output: BigInt("10"),
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
       },
     },
   },
   getPayment: {
     data: {
-      adjustments: [
-        {
-          absolute: false,
-          amount: BigInt("100"),
-          date: new Date("2023-06-10T15:44:18.944Z"),
-          raw: {},
-          status: OrchestrationPaymentStatus.Cancelled,
-        },
-      ],
+      adjustments: [],
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2024-03-27T03:25:20.607Z"),
+      createdAt: new Date("2023-12-16T14:43:43.030Z"),
       destinationAccountID: "<id>",
       id: "XXX",
-      initialAmount: BigInt("100"),
+      initialAmount: 100n,
       metadata: {},
       raw: {},
       reference: "<value>",
-      scheme: OrchestrationPaymentScheme.Jcb,
+      scheme: OrchestrationPaymentScheme.Ach,
       sourceAccountID: "<id>",
-      status: OrchestrationPaymentStatus.Cancelled,
+      status: OrchestrationPaymentStatus.Active,
       type: OrchestrationPaymentType.Other,
     },
   },
   listWallets: {
     cursor: {
-      data: [
-        {
-          createdAt: new Date("2023-08-06T23:39:39.226Z"),
-          id: "a1ada666-9ee0-4213-a58a-befadc4e0047",
-          ledger: "<value>",
-          metadata: {
-            "key": "<value>",
-          },
-          name: "<value>",
-        },
-      ],
+      data: [],
       hasMore: false,
       next: "",
       pageSize: 15,
@@ -109,21 +84,14 @@ let value: WorkflowInstanceHistoryStageOutput = {
   },
   revertTransaction: {
     data: {
-      id: BigInt("101770"),
+      id: 194985n,
       metadata: {
         "admin": "true",
       },
-      postings: [
-        {
-          amount: BigInt("100"),
-          asset: "COIN",
-          destination: "users:002",
-          source: "users:001",
-        },
-      ],
+      postings: [],
       reference: "ref:001",
-      reverted: false,
-      timestamp: new Date("2025-01-07T14:51:30.818Z"),
+      reverted: true,
+      timestamp: new Date("2024-09-30T06:28:56.548Z"),
     },
   },
 };
@@ -139,4 +107,4 @@ let value: WorkflowInstanceHistoryStageOutput = {
 | `getPayment`                                                                                              | [shared.ActivityGetPaymentOutput](../../../sdk/models/shared/activitygetpaymentoutput.md)                 | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
 | `getWallet`                                                                                               | [shared.ActivityGetWalletOutput](../../../sdk/models/shared/activitygetwalletoutput.md)                   | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
 | `listWallets`                                                                                             | [shared.OrchestrationListWalletsResponse](../../../sdk/models/shared/orchestrationlistwalletsresponse.md) | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
-| `revertTransaction`                                                                                       | [shared.ActivityRevertTransactionOutput](../../../sdk/models/shared/activityreverttransactionoutput.md)   | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |
+| `revertTransaction`                                                                                       | [shared.ActivityCreateTransactionOutput](../../../sdk/models/shared/activitycreatetransactionoutput.md)   | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |

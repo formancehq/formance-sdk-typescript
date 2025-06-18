@@ -8,8 +8,8 @@ import { ListWalletsResponseCursor } from "@formance/formance-sdk/sdk/models/sha
 let value: ListWalletsResponseCursor = {
   data: [
     {
-      createdAt: new Date("2023-12-09T03:57:33.283Z"),
-      id: "1475610e-14ad-45a7-9060-fc53655e6b28",
+      createdAt: new Date("2024-10-25T04:47:20.887Z"),
+      id: "c2f94309-9b1a-4cb6-b585-5a136e9e5174",
       ledger: "<value>",
       metadata: {
         "key": "<value>",

@@ -3,13 +3,13 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { SDKPaymentsV1 } from "./sdkpaymentsv1.js";
+import { PaymentsV1 } from "./paymentsv1.js";
 import { V3 } from "./v3.js";
 
 export class Payments extends ClientSDK {
-  private _v1?: SDKPaymentsV1;
-  get v1(): SDKPaymentsV1 {
-    return (this._v1 ??= new SDKPaymentsV1(this._options));
+  private _v1?: PaymentsV1;
+  get v1(): PaymentsV1 {
+    return (this._v1 ??= new PaymentsV1(this._options));
   }
 
   private _v3?: V3;

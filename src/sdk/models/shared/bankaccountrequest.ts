@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BankAccountRequest = {
   accountNumber?: string | undefined;
-  connectorID: string;
+  connectorID?: string | undefined;
   country: string;
   iban?: string | undefined;
   metadata?: { [k: string]: string } | null | undefined;
@@ -24,7 +24,7 @@ export const BankAccountRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   accountNumber: z.string().optional(),
-  connectorID: z.string(),
+  connectorID: z.string().optional(),
   country: z.string(),
   iban: z.string().optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
@@ -35,7 +35,7 @@ export const BankAccountRequest$inboundSchema: z.ZodType<
 /** @internal */
 export type BankAccountRequest$Outbound = {
   accountNumber?: string | undefined;
-  connectorID: string;
+  connectorID?: string | undefined;
   country: string;
   iban?: string | undefined;
   metadata?: { [k: string]: string } | null | undefined;
@@ -50,7 +50,7 @@ export const BankAccountRequest$outboundSchema: z.ZodType<
   BankAccountRequest
 > = z.object({
   accountNumber: z.string().optional(),
-  connectorID: z.string(),
+  connectorID: z.string().optional(),
   country: z.string(),
   iban: z.string().optional(),
   metadata: z.nullable(z.record(z.string())).optional(),

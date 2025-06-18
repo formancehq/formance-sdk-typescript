@@ -6,17 +6,7 @@
 import { V2ListWalletsResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ListWalletsResponseCursor = {
-  data: [
-    {
-      createdAt: new Date("2023-11-13T15:24:13.369Z"),
-      id: "fde094da-818a-4f9f-bfa8-7e011c5a968a",
-      ledger: "<value>",
-      metadata: {
-        "key": "<value>",
-      },
-      name: "<value>",
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

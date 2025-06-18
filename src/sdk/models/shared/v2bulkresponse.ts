@@ -19,10 +19,9 @@ import {
 } from "./v2errorsenum.js";
 
 export type V2BulkResponse = {
-  data: Array<V2BulkElementResult>;
-  details?: string | undefined;
-  errorCode: V2ErrorsEnum;
-  errorMessage: string;
+  data?: Array<V2BulkElementResult> | undefined;
+  errorCode?: V2ErrorsEnum | undefined;
+  errorMessage?: string | undefined;
 };
 
 /** @internal */
@@ -31,18 +30,16 @@ export const V2BulkResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(V2BulkElementResult$inboundSchema),
-  details: z.string().optional(),
-  errorCode: V2ErrorsEnum$inboundSchema,
-  errorMessage: z.string(),
+  data: z.array(V2BulkElementResult$inboundSchema).optional(),
+  errorCode: V2ErrorsEnum$inboundSchema.optional(),
+  errorMessage: z.string().optional(),
 });
 
 /** @internal */
 export type V2BulkResponse$Outbound = {
-  data: Array<V2BulkElementResult$Outbound>;
-  details?: string | undefined;
-  errorCode: string;
-  errorMessage: string;
+  data?: Array<V2BulkElementResult$Outbound> | undefined;
+  errorCode?: string | undefined;
+  errorMessage?: string | undefined;
 };
 
 /** @internal */
@@ -51,10 +48,9 @@ export const V2BulkResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkResponse
 > = z.object({
-  data: z.array(V2BulkElementResult$outboundSchema),
-  details: z.string().optional(),
-  errorCode: V2ErrorsEnum$outboundSchema,
-  errorMessage: z.string(),
+  data: z.array(V2BulkElementResult$outboundSchema).optional(),
+  errorCode: V2ErrorsEnum$outboundSchema.optional(),
+  errorMessage: z.string().optional(),
 });
 
 /**

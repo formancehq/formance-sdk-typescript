@@ -3,17 +3,17 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { SDKOrchestrationV1 } from "./sdkorchestrationv1.js";
-import { Sdkv2 } from "./sdkv2.js";
+import { OrchestrationV1 } from "./orchestrationv1.js";
+import { OrchestrationV2 } from "./orchestrationv2.js";
 
 export class Orchestration extends ClientSDK {
-  private _v1?: SDKOrchestrationV1;
-  get v1(): SDKOrchestrationV1 {
-    return (this._v1 ??= new SDKOrchestrationV1(this._options));
+  private _v1?: OrchestrationV1;
+  get v1(): OrchestrationV1 {
+    return (this._v1 ??= new OrchestrationV1(this._options));
   }
 
-  private _v2?: Sdkv2;
-  get v2(): Sdkv2 {
-    return (this._v2 ??= new Sdkv2(this._options));
+  private _v2?: OrchestrationV2;
+  get v2(): OrchestrationV2 {
+    return (this._v2 ??= new OrchestrationV2(this._options));
   }
 }

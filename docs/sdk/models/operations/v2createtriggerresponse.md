@@ -5,13 +5,7 @@
 ```typescript
 import { V2CreateTriggerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2CreateTriggerResponse = {
-  contentType: "<value>",
-  statusCode: 100,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V2CreateTriggerResponse = {};
 ```
 
 ## Fields

@@ -3,31 +3,23 @@
 ## Example Usage
 
 ```typescript
-import { Scheme, V2ActivityGetPaymentOutput, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
+import { V2ActivityGetPaymentOutput, V2PaymentScheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2ActivityGetPaymentOutput = {
   data: {
-    adjustments: [
-      {
-        absolute: false,
-        amount: BigInt("100"),
-        date: new Date("2023-07-01T08:52:15.017Z"),
-        raw: {},
-        status: V2PaymentStatus.Failed,
-      },
-    ],
+    adjustments: [],
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2024-11-13T13:50:30.123Z"),
+    createdAt: new Date("2025-06-20T02:05:25.894Z"),
     destinationAccountID: "<id>",
     id: "XXX",
-    initialAmount: BigInt("100"),
+    initialAmount: 100n,
     metadata: {},
     raw: {},
     reference: "<value>",
-    scheme: Scheme.Rtp,
+    scheme: V2PaymentScheme.AchDebit,
     sourceAccountID: "<id>",
-    status: V2PaymentStatus.Cancelled,
+    status: V2PaymentStatus.Succeeded,
     type: V2PaymentType.PayIn,
   },
 };

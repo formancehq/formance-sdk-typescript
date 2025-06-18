@@ -6,12 +6,13 @@
 import { V3InitiatePaymentRequest, V3PaymentInitiationTypeEnum } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3InitiatePaymentRequest = {
-  amount: BigInt("267829"),
+  amount: 51037n,
   asset: "<value>",
   connectorID: "<value>",
-  description: "meh table gadzooks fooey pulp except scout mortally",
+  description:
+    "worriedly camouflage impossible inside unimportant instead hornet",
   reference: "<value>",
-  scheduledAt: new Date("2025-04-28T08:41:17.381Z"),
+  scheduledAt: new Date("2024-05-26T13:28:26.343Z"),
   type: V3PaymentInitiationTypeEnum.Unknown,
 };
 ```

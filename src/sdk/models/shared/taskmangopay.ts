@@ -24,7 +24,7 @@ export type TaskMangoPay = {
   connectorID: string;
   createdAt: Date;
   descriptor: TaskMangoPayDescriptor;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskMangoPayState | null | undefined;
   status: TaskStatus;
@@ -148,7 +148,7 @@ export const TaskMangoPay$inboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   descriptor: z.lazy(() => TaskMangoPayDescriptor$inboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskMangoPayState$inboundSchema)).optional(),
   status: TaskStatus$inboundSchema,
@@ -160,7 +160,7 @@ export type TaskMangoPay$Outbound = {
   connectorID: string;
   createdAt: string;
   descriptor: TaskMangoPayDescriptor$Outbound;
-  error?: string | undefined;
+  error?: string | null | undefined;
   id: string;
   state?: TaskMangoPayState$Outbound | null | undefined;
   status: string;
@@ -176,7 +176,7 @@ export const TaskMangoPay$outboundSchema: z.ZodType<
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   descriptor: z.lazy(() => TaskMangoPayDescriptor$outboundSchema),
-  error: z.string().optional(),
+  error: z.nullable(z.string()).optional(),
   id: z.string(),
   state: z.nullable(z.lazy(() => TaskMangoPayState$outboundSchema)).optional(),
   status: TaskStatus$outboundSchema,

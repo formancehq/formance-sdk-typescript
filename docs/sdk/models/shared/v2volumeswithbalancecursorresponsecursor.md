@@ -6,15 +6,7 @@
 import { V2VolumesWithBalanceCursorResponseCursor } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2VolumesWithBalanceCursorResponseCursor = {
-  data: [
-    {
-      account: "21160113",
-      asset: "<value>",
-      balance: BigInt("298750"),
-      input: BigInt("255064"),
-      output: BigInt("750537"),
-    },
-  ],
+  data: [],
   hasMore: false,
   next: "",
   pageSize: 15,

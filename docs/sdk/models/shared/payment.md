@@ -6,31 +6,21 @@
 import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Payment = {
-  adjustments: [
-    {
-      amount: BigInt("100"),
-      createdAt: new Date("2023-09-01T17:18:42.245Z"),
-      raw: {},
-      reference: "<value>",
-      status: PaymentStatus.RefundedFailure,
-    },
-  ],
-  amount: BigInt("100"),
+  adjustments: [],
+  amount: 100n,
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2023-03-01T17:31:10.140Z"),
+  createdAt: new Date("2025-11-17T06:22:17.047Z"),
   destinationAccountID: "<id>",
   id: "XXX",
-  initialAmount: BigInt("100"),
-  metadata: {
-    "key": "<value>",
-  },
-  raw: {},
+  initialAmount: 100n,
+  metadata: null,
+  raw: null,
   reference: "<value>",
-  scheme: PaymentScheme.Amex,
+  scheme: PaymentScheme.A2a,
   sourceAccountID: "<id>",
-  status: PaymentStatus.RefundedFailure,
-  type: PaymentType.Transfer,
+  status: PaymentStatus.Failed,
+  type: PaymentType.Payout,
 };
 ```
 
@@ -48,7 +38,7 @@ let value: Payment = {
 | `initialAmount`                                                                               | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | 100                                                                                           |
 | `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `provider`                                                                                    | [shared.Connector](../../../sdk/models/shared/connector.md)                                   | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `raw`                                                                                         | [shared.Raw](../../../sdk/models/shared/raw.md)                                               | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `raw`                                                                                         | [shared.PaymentRaw](../../../sdk/models/shared/paymentraw.md)                                 | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `scheme`                                                                                      | [shared.PaymentScheme](../../../sdk/models/shared/paymentscheme.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `sourceAccountID`                                                                             | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

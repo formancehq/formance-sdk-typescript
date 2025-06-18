@@ -5,13 +5,7 @@
 ```typescript
 import { V3ResetConnectorResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ResetConnectorResponse = {
-  contentType: "<value>",
-  statusCode: 408,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: V3ResetConnectorResponse = {};
 ```
 
 ## Fields

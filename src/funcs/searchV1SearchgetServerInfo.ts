@@ -15,7 +15,8 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import { SDKError } from "../sdk/models/errors/sdkerror.js";
+import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
+import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -32,13 +33,14 @@ export function searchV1SearchgetServerInfo(
 ): APIPromise<
   Result<
     operations.SearchgetServerInfoResponse,
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | SDKBaseError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
 > {
   return new APIPromise($do(
@@ -54,13 +56,14 @@ async function $do(
   [
     Result<
       operations.SearchgetServerInfoResponse,
-      | SDKError
-      | SDKValidationError
-      | UnexpectedClientError
-      | InvalidRequestError
+      | SDKBaseError
+      | ResponseValidationError
+      | ConnectionError
       | RequestAbortedError
       | RequestTimeoutError
-      | ConnectionError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
     >,
     APICall,
   ]
@@ -75,6 +78,7 @@ async function $do(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "searchgetServerInfo",
     oAuth2Scopes: ["auth:read", "search:read"],
@@ -94,6 +98,7 @@ async function $do(
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
@@ -122,19 +127,20 @@ async function $do(
 
   const [result] = await M.match<
     operations.SearchgetServerInfoResponse,
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | SDKBaseError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, operations.SearchgetServerInfoResponse$inboundSchema, {
       key: "ServerInfo",
     }),
     M.fail("default"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];
   }

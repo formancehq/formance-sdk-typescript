@@ -8,6 +8,7 @@ import { V3StripeConfig } from "@formance/formance-sdk/sdk/models/shared";
 let value: V3StripeConfig = {
   apiKey: "<value>",
   name: "<value>",
+  pageSize: 25,
 };
 ```
 

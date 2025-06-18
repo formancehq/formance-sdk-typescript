@@ -12,7 +12,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.getVersions();
 
-  // Handle the result
   console.log(result);
 }
 

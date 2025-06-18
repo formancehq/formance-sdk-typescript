@@ -13,12 +13,12 @@ import {
   V2AssetHolder$outboundSchema,
 } from "./v2assetholder.js";
 
-export type Balances = {
+export type V2WalletWithBalancesBalances = {
   main: V2AssetHolder;
 };
 
 export type V2WalletWithBalances = {
-  balances: Balances;
+  balances: V2WalletWithBalancesBalances;
   createdAt: Date;
   /**
    * The unique ID of the wallet.
@@ -33,8 +33,8 @@ export type V2WalletWithBalances = {
 };
 
 /** @internal */
-export const Balances$inboundSchema: z.ZodType<
-  Balances,
+export const V2WalletWithBalancesBalances$inboundSchema: z.ZodType<
+  V2WalletWithBalancesBalances,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -42,15 +42,15 @@ export const Balances$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Balances$Outbound = {
+export type V2WalletWithBalancesBalances$Outbound = {
   main: V2AssetHolder$Outbound;
 };
 
 /** @internal */
-export const Balances$outboundSchema: z.ZodType<
-  Balances$Outbound,
+export const V2WalletWithBalancesBalances$outboundSchema: z.ZodType<
+  V2WalletWithBalancesBalances$Outbound,
   z.ZodTypeDef,
-  Balances
+  V2WalletWithBalancesBalances
 > = z.object({
   main: V2AssetHolder$outboundSchema,
 });
@@ -59,26 +59,32 @@ export const Balances$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Balances$ {
-  /** @deprecated use `Balances$inboundSchema` instead. */
-  export const inboundSchema = Balances$inboundSchema;
-  /** @deprecated use `Balances$outboundSchema` instead. */
-  export const outboundSchema = Balances$outboundSchema;
-  /** @deprecated use `Balances$Outbound` instead. */
-  export type Outbound = Balances$Outbound;
+export namespace V2WalletWithBalancesBalances$ {
+  /** @deprecated use `V2WalletWithBalancesBalances$inboundSchema` instead. */
+  export const inboundSchema = V2WalletWithBalancesBalances$inboundSchema;
+  /** @deprecated use `V2WalletWithBalancesBalances$outboundSchema` instead. */
+  export const outboundSchema = V2WalletWithBalancesBalances$outboundSchema;
+  /** @deprecated use `V2WalletWithBalancesBalances$Outbound` instead. */
+  export type Outbound = V2WalletWithBalancesBalances$Outbound;
 }
 
-export function balancesToJSON(balances: Balances): string {
-  return JSON.stringify(Balances$outboundSchema.parse(balances));
+export function v2WalletWithBalancesBalancesToJSON(
+  v2WalletWithBalancesBalances: V2WalletWithBalancesBalances,
+): string {
+  return JSON.stringify(
+    V2WalletWithBalancesBalances$outboundSchema.parse(
+      v2WalletWithBalancesBalances,
+    ),
+  );
 }
 
-export function balancesFromJSON(
+export function v2WalletWithBalancesBalancesFromJSON(
   jsonString: string,
-): SafeParseResult<Balances, SDKValidationError> {
+): SafeParseResult<V2WalletWithBalancesBalances, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Balances$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Balances' from JSON`,
+    (x) => V2WalletWithBalancesBalances$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2WalletWithBalancesBalances' from JSON`,
   );
 }
 
@@ -88,7 +94,7 @@ export const V2WalletWithBalances$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  balances: z.lazy(() => Balances$inboundSchema),
+  balances: z.lazy(() => V2WalletWithBalancesBalances$inboundSchema),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),
   ledger: z.string(),
@@ -98,7 +104,7 @@ export const V2WalletWithBalances$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2WalletWithBalances$Outbound = {
-  balances: Balances$Outbound;
+  balances: V2WalletWithBalancesBalances$Outbound;
   createdAt: string;
   id: string;
   ledger: string;
@@ -112,7 +118,7 @@ export const V2WalletWithBalances$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2WalletWithBalances
 > = z.object({
-  balances: z.lazy(() => Balances$outboundSchema),
+  balances: z.lazy(() => V2WalletWithBalancesBalances$outboundSchema),
   createdAt: z.date().transform(v => v.toISOString()),
   id: z.string(),
   ledger: z.string(),

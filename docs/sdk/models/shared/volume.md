@@ -6,9 +6,9 @@
 import { Volume } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Volume = {
-  balance: BigInt("80"),
-  input: BigInt("100"),
-  output: BigInt("20"),
+  balance: 80n,
+  input: 100n,
+  output: 20n,
 };
 ```
 

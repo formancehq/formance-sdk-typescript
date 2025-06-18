@@ -8,6 +8,8 @@ import { CreateWalletRequest } from "@formance/formance-sdk/sdk/models/shared";
 let value: CreateWalletRequest = {
   metadata: {
     "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
   },
   name: "<value>",
 };

@@ -5,32 +5,7 @@
 ```typescript
 import { ReconcileResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReconcileResponse = {
-  contentType: "<value>",
-  reconciliationResponse: {
-    data: {
-      createdAt: new Date("2021-01-01T00:00:00.000Z"),
-      driftBalances: {
-        "key": BigInt("899867"),
-      },
-      id: "XXX",
-      ledgerBalances: {
-        "key": BigInt("56877"),
-      },
-      paymentsBalances: {
-        "key": BigInt("980486"),
-      },
-      policyID: "XXX",
-      reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-      reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
-      status: "COMPLETED",
-    },
-  },
-  statusCode: 103,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: ReconcileResponse = {};
 ```
 
 ## Fields

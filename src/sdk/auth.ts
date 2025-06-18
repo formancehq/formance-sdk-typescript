@@ -3,11 +3,11 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { V1 } from "./v1.js";
+import { AuthV1 } from "./authv1.js";
 
 export class Auth extends ClientSDK {
-  private _v1?: V1;
-  get v1(): V1 {
-    return (this._v1 ??= new V1(this._options));
+  private _v1?: AuthV1;
+  get v1(): AuthV1 {
+    return (this._v1 ??= new AuthV1(this._options));
   }
 }

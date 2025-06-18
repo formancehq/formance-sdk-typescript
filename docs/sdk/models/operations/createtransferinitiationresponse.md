@@ -4,34 +4,8 @@
 
 ```typescript
 import { CreateTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
-import { TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: CreateTransferInitiationResponse = {
-  contentType: "<value>",
-  statusCode: 308,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-  transferInitiationResponse: {
-    data: {
-      amount: BigInt("645570"),
-      asset: "USD",
-      connectorID: "<id>",
-      createdAt: new Date("2023-02-08T18:10:24.636Z"),
-      description: "vanadyl mmm ownership toward curly about",
-      destinationAccountID: "<id>",
-      error: "<value>",
-      id: "XXX",
-      initialAmount: BigInt("958983"),
-      provider: "<value>",
-      reference: "<value>",
-      scheduledAt: new Date("2024-01-25T11:37:19.885Z"),
-      sourceAccountID: "<id>",
-      status: TransferInitiationStatus.Rejected,
-      type: TransferInitiationType.Transfer,
-    },
-  },
-};
+let value: CreateTransferInitiationResponse = {};
 ```
 
 ## Fields

@@ -11,17 +11,17 @@ import {
 
 let value: V3GetPaymentInitiationResponse = {
   data: {
-    amount: BigInt("414547"),
+    amount: 582036n,
     asset: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2025-07-19T10:08:23.061Z"),
-    description: "amongst following in lazily belabor",
+    createdAt: new Date("2023-03-24T10:08:14.033Z"),
+    description: "vaguely row hello",
     id: "<id>",
     provider: "<value>",
     reference: "<value>",
-    scheduledAt: new Date("2024-02-17T11:17:08.578Z"),
-    status: V3PaymentInitiationStatusEnum.Unknown,
-    type: V3PaymentInitiationTypeEnum.Transfer,
+    scheduledAt: new Date("2025-02-05T06:41:14.397Z"),
+    status: V3PaymentInitiationStatusEnum.ReverseFailed,
+    type: V3PaymentInitiationTypeEnum.Payout,
   },
 };
 ```

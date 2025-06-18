@@ -10,11 +10,12 @@ let value: V2LogsCursorResponseCursor = {
     {
       data: {
         "key": "<value>",
+        "key1": "<value>",
       },
-      date: new Date("2024-06-13T20:54:19.756Z"),
+      date: new Date("2023-11-27T21:30:42.821Z"),
       hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
-      id: BigInt("1234"),
-      type: V2LogType.DeleteMetadata,
+      id: 1234n,
+      type: V2LogType.SetMetadata,
     },
   ],
   hasMore: false,

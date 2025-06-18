@@ -5,32 +5,7 @@
 ```typescript
 import { GetReconciliationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetReconciliationResponse = {
-  contentType: "<value>",
-  reconciliationResponse: {
-    data: {
-      createdAt: new Date("2021-01-01T00:00:00.000Z"),
-      driftBalances: {
-        "key": BigInt("401428"),
-      },
-      id: "XXX",
-      ledgerBalances: {
-        "key": BigInt("416692"),
-      },
-      paymentsBalances: {
-        "key": BigInt("810839"),
-      },
-      policyID: "XXX",
-      reconciledAtLedger: new Date("2021-01-01T00:00:00.000Z"),
-      reconciledAtPayments: new Date("2021-01-01T00:00:00.000Z"),
-      status: "COMPLETED",
-    },
-  },
-  statusCode: 202,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
-};
+let value: GetReconciliationResponse = {};
 ```
 
 ## Fields
