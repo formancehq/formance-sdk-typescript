@@ -5,7 +5,10 @@
 ```typescript
 import { AddAccountToPoolResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: AddAccountToPoolResponse = {};
+let value: AddAccountToPoolResponse = {
+  contentType: "<value>",
+  statusCode: 133544,
+};
 ```
 
 ## Fields

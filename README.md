@@ -490,15 +490,15 @@ run();
 
 
 **Inherit from [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts)**:
-* [`V3ErrorResponse`](docs/sdk/models/errors/v3errorresponse.md): Error. Applicable to 46 of 219 methods.*
-* [`PaymentsErrorResponse`](docs/sdk/models/errors/paymentserrorresponse.md): Error. Applicable to 45 of 219 methods.*
-* [`V2ErrorResponse`](docs/sdk/models/errors/v2errorresponse.md): Error. Applicable to 26 of 219 methods.*
-* [`ErrorResponse`](docs/sdk/models/errors/errorresponse.md): Applicable to 19 of 219 methods.*
-* [`V2Error`](docs/sdk/models/errors/v2error.md): General error. Applicable to 18 of 219 methods.*
-* [`ErrorT`](docs/sdk/models/errors/errort.md): General error. Applicable to 17 of 219 methods.*
-* [`WalletsErrorResponse`](docs/sdk/models/errors/walletserrorresponse.md): Applicable to 15 of 219 methods.*
-* [`ReconciliationErrorResponse`](docs/sdk/models/errors/reconciliationerrorresponse.md): Error response. Applicable to 8 of 219 methods.*
-* [`WebhooksErrorResponse`](docs/sdk/models/errors/webhookserrorresponse.md): Error. Applicable to 8 of 219 methods.*
+* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 46 of 219 methods.*
+* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 45 of 219 methods.*
+* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Error. Applicable to 26 of 219 methods.*
+* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 219 methods.*
+* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 219 methods.*
+* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 219 methods.*
+* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 219 methods.*
+* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 219 methods.*
+* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 219 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>

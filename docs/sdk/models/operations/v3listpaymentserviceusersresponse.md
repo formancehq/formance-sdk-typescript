@@ -5,7 +5,10 @@
 ```typescript
 import { V3ListPaymentServiceUsersResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListPaymentServiceUsersResponse = {};
+let value: V3ListPaymentServiceUsersResponse = {
+  contentType: "<value>",
+  statusCode: 448457,
+};
 ```
 
 ## Fields

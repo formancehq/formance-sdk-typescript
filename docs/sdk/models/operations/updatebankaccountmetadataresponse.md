@@ -5,7 +5,10 @@
 ```typescript
 import { UpdateBankAccountMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: UpdateBankAccountMetadataResponse = {};
+let value: UpdateBankAccountMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 963871,
+};
 ```
 
 ## Fields

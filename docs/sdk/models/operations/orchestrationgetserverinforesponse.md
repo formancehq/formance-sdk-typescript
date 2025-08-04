@@ -5,7 +5,10 @@
 ```typescript
 import { OrchestrationgetServerInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: OrchestrationgetServerInfoResponse = {};
+let value: OrchestrationgetServerInfoResponse = {
+  contentType: "<value>",
+  statusCode: 513161,
+};
 ```
 
 ## Fields

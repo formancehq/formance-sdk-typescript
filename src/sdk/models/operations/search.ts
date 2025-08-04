@@ -17,7 +17,7 @@ export type SearchResponse = {
   /**
    * Success
    */
-  response?: shared.Response | undefined;
+  response?: shared.ResponseT | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -35,7 +35,7 @@ export const SearchResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  Response: shared.Response$inboundSchema.optional(),
+  Response: shared.ResponseT$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {
@@ -50,7 +50,7 @@ export const SearchResponse$inboundSchema: z.ZodType<
 /** @internal */
 export type SearchResponse$Outbound = {
   ContentType: string;
-  Response?: shared.Response$Outbound | undefined;
+  Response?: shared.ResponseT$Outbound | undefined;
   StatusCode: number;
   RawResponse: never;
 };
@@ -62,7 +62,7 @@ export const SearchResponse$outboundSchema: z.ZodType<
   SearchResponse
 > = z.object({
   contentType: z.string(),
-  response: shared.Response$outboundSchema.optional(),
+  response: shared.ResponseT$outboundSchema.optional(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");

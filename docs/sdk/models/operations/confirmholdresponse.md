@@ -5,7 +5,10 @@
 ```typescript
 import { ConfirmHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ConfirmHoldResponse = {};
+let value: ConfirmHoldResponse = {
+  contentType: "<value>",
+  statusCode: 420822,
+};
 ```
 
 ## Fields

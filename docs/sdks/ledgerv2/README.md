@@ -39,6 +39,7 @@ Set the metadata of a transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2AddMetadataOnTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -128,6 +129,7 @@ Add metadata to an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2AddMetadataToAccount" method="post" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -217,6 +219,7 @@ Count the accounts from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CountAccounts" method="head" path="/api/ledger/v2/{ledger}/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -296,6 +299,7 @@ Count the transactions from a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CountTransactions" method="head" path="/api/ledger/v2/{ledger}/transactions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -375,6 +379,7 @@ Bulk request
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CreateBulk" method="post" path="/api/ledger/v2/{ledger}/_bulk" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -470,6 +475,7 @@ Create a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CreateLedger" method="post" path="/api/ledger/v2/{ledger}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -559,6 +565,7 @@ Create a new transaction to a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CreateTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -696,6 +703,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2DeleteAccountMetadata" method="delete" path="/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -779,6 +787,7 @@ Delete ledger metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2DeleteLedgerMetadata" method="delete" path="/api/ledger/v2/{ledger}/metadata/{key}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -860,6 +869,7 @@ Delete metadata by key
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2DeleteTransactionMetadata" method="delete" path="/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -943,6 +953,7 @@ Export logs
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ExportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/export" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1021,6 +1032,7 @@ Get account by its address
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetAccount" method="get" path="/api/ledger/v2/{ledger}/accounts/{address}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1102,6 +1114,7 @@ Get the aggregated balances from selected accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetBalancesAggregated" method="get" path="/api/ledger/v2/{ledger}/aggregate/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1181,6 +1194,7 @@ Show server information
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetInfo" method="get" path="/api/ledger/_/info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1255,6 +1269,7 @@ Get a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetLedger" method="get" path="/api/ledger/v2/{ledger}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1334,6 +1349,7 @@ Get information about a ledger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetLedgerInfo" method="get" path="/api/ledger/v2/{ledger}/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1413,6 +1429,7 @@ Read in memory metrics
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getMetrics" method="get" path="/api/ledger/_/metrics" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1487,6 +1504,7 @@ Get transaction from a ledger by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetTransaction" method="get" path="/api/ledger/v2/{ledger}/transactions/{id}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1568,6 +1586,7 @@ Get list of volumes with balances for (account/asset)
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetVolumesWithBalances" method="get" path="/api/ledger/v2/{ledger}/volumes" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1651,6 +1670,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ImportLogs" method="post" path="/api/ledger/v2/{ledger}/logs/import" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { openAsBlob } from "node:fs";
@@ -1734,6 +1754,7 @@ List accounts from a ledger, sorted by address in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListAccounts" method="get" path="/api/ledger/v2/{ledger}/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1817,6 +1838,7 @@ List ledgers
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListLedgers" method="get" path="/api/ledger/v2" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1898,6 +1920,7 @@ List the logs from a ledger, sorted by ID in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListLogs" method="get" path="/api/ledger/v2/{ledger}/logs" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1981,6 +2004,7 @@ List transactions from a ledger, sorted by id in descending order.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListTransactions" method="get" path="/api/ledger/v2/{ledger}/transactions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2065,6 +2089,7 @@ Get statistics from a ledger. (aggregate metrics on accounts and transactions)
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ReadStats" method="get" path="/api/ledger/v2/{ledger}/stats" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2144,6 +2169,7 @@ Revert a ledger transaction by its ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2RevertTransaction" method="post" path="/api/ledger/v2/{ledger}/transactions/{id}/revert" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2227,6 +2253,7 @@ Update ledger metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2UpdateLedgerMetadata" method="put" path="/api/ledger/v2/{ledger}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

@@ -5,7 +5,10 @@
 ```typescript
 import { GetOIDCWellKnownsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetOIDCWellKnownsResponse = {};
+let value: GetOIDCWellKnownsResponse = {
+  contentType: "<value>",
+  statusCode: 464984,
+};
 ```
 
 ## Fields

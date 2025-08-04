@@ -16,6 +16,7 @@ Elasticsearch.v1 query engine
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="search" method="post" path="/api/search/" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -120,6 +121,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="searchgetServerInfo" method="get" path="/api/search/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

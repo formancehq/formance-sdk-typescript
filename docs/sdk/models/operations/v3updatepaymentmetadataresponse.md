@@ -5,7 +5,10 @@
 ```typescript
 import { V3UpdatePaymentMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3UpdatePaymentMetadataResponse = {};
+let value: V3UpdatePaymentMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 946846,
+};
 ```
 
 ## Fields

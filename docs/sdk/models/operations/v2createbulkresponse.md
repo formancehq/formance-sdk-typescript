@@ -5,7 +5,10 @@
 ```typescript
 import { V2CreateBulkResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2CreateBulkResponse = {};
+let value: V2CreateBulkResponse = {
+  contentType: "<value>",
+  statusCode: 173641,
+};
 ```
 
 ## Fields

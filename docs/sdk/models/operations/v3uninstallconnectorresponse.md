@@ -5,7 +5,10 @@
 ```typescript
 import { V3UninstallConnectorResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3UninstallConnectorResponse = {};
+let value: V3UninstallConnectorResponse = {
+  contentType: "<value>",
+  statusCode: 572597,
+};
 ```
 
 ## Fields

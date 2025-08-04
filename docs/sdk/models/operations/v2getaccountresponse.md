@@ -5,7 +5,10 @@
 ```typescript
 import { V2GetAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetAccountResponse = {};
+let value: V2GetAccountResponse = {
+  contentType: "<value>",
+  statusCode: 534068,
+};
 ```
 
 ## Fields

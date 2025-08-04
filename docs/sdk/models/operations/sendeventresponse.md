@@ -5,7 +5,10 @@
 ```typescript
 import { SendEventResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: SendEventResponse = {};
+let value: SendEventResponse = {
+  contentType: "<value>",
+  statusCode: 740337,
+};
 ```
 
 ## Fields

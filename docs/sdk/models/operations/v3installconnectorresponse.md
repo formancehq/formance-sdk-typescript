@@ -5,7 +5,10 @@
 ```typescript
 import { V3InstallConnectorResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3InstallConnectorResponse = {};
+let value: V3InstallConnectorResponse = {
+  contentType: "<value>",
+  statusCode: 944262,
+};
 ```
 
 ## Fields

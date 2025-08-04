@@ -20,6 +20,7 @@ Activate a webhooks config by ID, to start receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="activateConfig" method="put" path="/api/webhooks/configs/{id}/activate" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -103,6 +104,7 @@ The format is a random string of bytes of size 24, base64 encoded. (larger size 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="changeConfigSecret" method="put" path="/api/webhooks/configs/{id}/secret/change" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -188,6 +190,7 @@ Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deactivateConfig" method="put" path="/api/webhooks/configs/{id}/deactivate" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -267,6 +270,7 @@ Delete a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteConfig" method="delete" path="/api/webhooks/configs/{id}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -346,6 +350,7 @@ Sorted by updated date descending
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getManyConfigs" method="get" path="/api/webhooks/configs" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -436,6 +441,7 @@ All eventTypes are converted to lower-case when inserted.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="insertConfig" method="post" path="/api/webhooks/configs" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -527,6 +533,7 @@ Test a config by sending a webhook to its endpoint.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="testConfig" method="get" path="/api/webhooks/configs/{id}/test" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -606,6 +613,7 @@ Update a webhooks config by ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateConfig" method="put" path="/api/webhooks/configs/{id}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

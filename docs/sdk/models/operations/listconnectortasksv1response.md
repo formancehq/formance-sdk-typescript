@@ -5,7 +5,10 @@
 ```typescript
 import { ListConnectorTasksV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListConnectorTasksV1Response = {};
+let value: ListConnectorTasksV1Response = {
+  contentType: "<value>",
+  statusCode: 265146,
+};
 ```
 
 ## Fields

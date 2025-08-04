@@ -5,7 +5,10 @@
 ```typescript
 import { GetMappingResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetMappingResponse = {};
+let value: GetMappingResponse = {
+  contentType: "<value>",
+  statusCode: 42370,
+};
 ```
 
 ## Fields

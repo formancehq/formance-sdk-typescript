@@ -5,7 +5,10 @@
 ```typescript
 import { GetManyConfigsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetManyConfigsResponse = {};
+let value: GetManyConfigsResponse = {
+  contentType: "<value>",
+  statusCode: 8647,
+};
 ```
 
 ## Fields

@@ -1,11 +1,11 @@
-# Response
+# ResponseT
 
 ## Example Usage
 
 ```typescript
-import { Response } from "@formance/formance-sdk/sdk/models/shared";
+import { ResponseT } from "@formance/formance-sdk/sdk/models/shared";
 
-let value: Response = {
+let value: ResponseT = {
   cursor: {
     next: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",

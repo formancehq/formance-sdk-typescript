@@ -5,7 +5,10 @@
 ```typescript
 import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DebitWalletResponse = {};
+let value: DebitWalletResponse = {
+  contentType: "<value>",
+  statusCode: 409170,
+};
 ```
 
 ## Fields

@@ -14,10 +14,14 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 4.3.0
+  version: 4.4.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -34,6 +38,7 @@ typescript:
   enumFormat: enum
   flattenGlobalSecurity: true
   flatteningOrder: body-first
+  generateExamples: true
   imports:
     option: openapi
     paths:

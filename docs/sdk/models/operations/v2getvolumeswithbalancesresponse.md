@@ -5,7 +5,10 @@
 ```typescript
 import { V2GetVolumesWithBalancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetVolumesWithBalancesResponse = {};
+let value: V2GetVolumesWithBalancesResponse = {
+  contentType: "<value>",
+  statusCode: 339791,
+};
 ```
 
 ## Fields

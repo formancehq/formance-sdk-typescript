@@ -5,7 +5,10 @@
 ```typescript
 import { CancelEventResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CancelEventResponse = {};
+let value: CancelEventResponse = {
+  contentType: "<value>",
+  statusCode: 461482,
+};
 ```
 
 ## Fields

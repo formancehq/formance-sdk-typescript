@@ -5,7 +5,10 @@
 ```typescript
 import { ListReconciliationsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListReconciliationsResponse = {};
+let value: ListReconciliationsResponse = {
+  contentType: "<value>",
+  statusCode: 266280,
+};
 ```
 
 ## Fields

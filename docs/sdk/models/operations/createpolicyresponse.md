@@ -5,7 +5,10 @@
 ```typescript
 import { CreatePolicyResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreatePolicyResponse = {};
+let value: CreatePolicyResponse = {
+  contentType: "<value>",
+  statusCode: 632344,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { V2ListLedgersResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListLedgersResponse = {};
+let value: V2ListLedgersResponse = {
+  contentType: "<value>",
+  statusCode: 984690,
+};
 ```
 
 ## Fields

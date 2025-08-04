@@ -5,7 +5,10 @@
 ```typescript
 import { AddMetadataOnTransactionResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: AddMetadataOnTransactionResponse = {};
+let value: AddMetadataOnTransactionResponse = {
+  contentType: "<value>",
+  statusCode: 336276,
+};
 ```
 
 ## Fields

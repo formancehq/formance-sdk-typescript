@@ -5,7 +5,10 @@
 ```typescript
 import { V2ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListTriggersOccurrencesResponse = {};
+let value: V2ListTriggersOccurrencesResponse = {
+  contentType: "<value>",
+  statusCode: 343292,
+};
 ```
 
 ## Fields

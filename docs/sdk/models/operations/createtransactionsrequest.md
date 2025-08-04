@@ -6,6 +6,14 @@
 import { CreateTransactionsRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CreateTransactionsRequest = {
+  transactions: {
+    transactions: [
+      {
+        postings: [],
+        reference: "ref:001",
+      },
+    ],
+  },
   ledger: "ledger001",
 };
 ```

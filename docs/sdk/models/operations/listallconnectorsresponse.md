@@ -5,7 +5,10 @@
 ```typescript
 import { ListAllConnectorsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListAllConnectorsResponse = {};
+let value: ListAllConnectorsResponse = {
+  contentType: "<value>",
+  statusCode: 829476,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { V3ListConnectorConfigsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListConnectorConfigsResponse = {};
+let value: V3ListConnectorConfigsResponse = {
+  contentType: "<value>",
+  statusCode: 15933,
+};
 ```
 
 ## Fields

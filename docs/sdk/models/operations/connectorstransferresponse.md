@@ -5,7 +5,10 @@
 ```typescript
 import { ConnectorsTransferResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ConnectorsTransferResponse = {};
+let value: ConnectorsTransferResponse = {
+  contentType: "<value>",
+  statusCode: 253116,
+};
 ```
 
 ## Fields

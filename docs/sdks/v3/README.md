@@ -62,6 +62,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3AddAccountToPool" method="post" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -143,6 +144,7 @@ Add a bank account to a payment service user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3AddBankAccountToPaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -224,6 +226,7 @@ Approve a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ApprovePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/approve" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -304,6 +307,7 @@ Create a formance account object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3CreateAccount" method="post" path="/api/payments/v3/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -380,6 +384,7 @@ Create a formance bank account object. This object will not be forwarded to the 
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3CreateBankAccount" method="post" path="/api/payments/v3/bank-accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -456,6 +461,7 @@ Create a formance payment object. This object will not be forwarded to the conne
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3CreatePayment" method="post" path="/api/payments/v3/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -531,6 +537,7 @@ Create a formance payment service user object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3CreatePaymentServiceUser" method="post" path="/api/payments/v3/payment-service-users" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -606,6 +613,7 @@ Create a formance pool object
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3CreatePool" method="post" path="/api/payments/v3/pools" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -681,6 +689,7 @@ Delete a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3DeletePaymentInitiation" method="delete" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -760,6 +769,7 @@ Delete a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3DeletePool" method="delete" path="/api/payments/v3/pools/{poolID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -839,6 +849,7 @@ Forward a Bank Account to a PSP for creation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ForwardBankAccount" method="post" path="/api/payments/v3/bank-accounts/{bankAccountID}/forward" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -918,6 +929,7 @@ Forward a payment service user's bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ForwardPaymentServiceUserBankAccount" method="post" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}/bank-accounts/{bankAccountID}/forward" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -999,6 +1011,7 @@ Get an account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetAccount" method="get" path="/api/payments/v3/accounts/{accountID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1078,6 +1091,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetAccountBalances" method="get" path="/api/payments/v3/accounts/{accountID}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1161,6 +1175,7 @@ Get a Bank Account by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetBankAccount" method="get" path="/api/payments/v3/bank-accounts/{bankAccountID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1240,6 +1255,7 @@ Get a connector configuration by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetConnectorConfig" method="get" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1319,6 +1335,7 @@ Get a connector schedule by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetConnectorSchedule" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1400,6 +1417,7 @@ Get a payment by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPayment" method="get" path="/api/payments/v3/payments/{paymentID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1479,6 +1497,7 @@ Get a payment initiation by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPaymentInitiation" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1558,6 +1577,7 @@ Get a payment service user by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPaymentServiceUser" method="get" path="/api/payments/v3/payment-service-users/{paymentServiceUserID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1637,6 +1657,7 @@ Get a pool by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPool" method="get" path="/api/payments/v3/pools/{poolID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1716,6 +1737,7 @@ Get historical pool balances from a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPoolBalances" method="get" path="/api/payments/v3/pools/{poolID}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1795,6 +1817,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetPoolBalancesLatest" method="get" path="/api/payments/v3/pools/{poolID}/balances/latest" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1874,6 +1897,7 @@ Get a task and its result by ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3GetTask" method="get" path="/api/payments/v3/tasks/{taskID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1953,6 +1977,7 @@ Initiate a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3InitiatePayment" method="post" path="/api/payments/v3/payment-initiations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2028,6 +2053,7 @@ Install a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3InstallConnector" method="post" path="/api/payments/v3/connectors/install/{connector}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2107,6 +2133,7 @@ List all accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListAccounts" method="get" path="/api/payments/v3/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2188,6 +2215,7 @@ List all bank accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListBankAccounts" method="get" path="/api/payments/v3/bank-accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2269,6 +2297,7 @@ List all connector configurations
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListConnectorConfigs" method="get" path="/api/payments/v3/connectors/configs" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2343,6 +2372,7 @@ List all connector schedule instances
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListConnectorScheduleInstances" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}/instances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2428,6 +2458,7 @@ List all connector schedules
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListConnectorSchedules" method="get" path="/api/payments/v3/connectors/{connectorID}/schedules" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2511,6 +2542,7 @@ List all connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListConnectors" method="get" path="/api/payments/v3/connectors" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2592,6 +2624,7 @@ List all payment initiation adjustments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPaymentInitiationAdjustments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2675,6 +2708,7 @@ List all payments related to a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPaymentInitiationRelatedPayments" method="get" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2758,6 +2792,7 @@ List all payment initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPaymentInitiations" method="get" path="/api/payments/v3/payment-initiations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2839,6 +2874,7 @@ List all payment service users
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPaymentServiceUsers" method="get" path="/api/payments/v3/payment-service-users" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2920,6 +2956,7 @@ List all payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPayments" method="get" path="/api/payments/v3/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3001,6 +3038,7 @@ List all pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ListPools" method="get" path="/api/payments/v3/pools" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3082,6 +3120,7 @@ Reject a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3RejectPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reject" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3161,6 +3200,7 @@ Remove an account from a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3RemoveAccountFromPool" method="delete" path="/api/payments/v3/pools/{poolID}/accounts/{accountID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3242,6 +3282,7 @@ Reset a connector. Be aware that this will delete all data and stop all existing
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ResetConnector" method="post" path="/api/payments/v3/connectors/{connectorID}/reset" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3321,6 +3362,7 @@ Retry a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3RetryPaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/retry" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3400,6 +3442,7 @@ Reverse a payment initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3ReversePaymentInitiation" method="post" path="/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3479,6 +3522,7 @@ Uninstall a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3UninstallConnector" method="delete" path="/api/payments/v3/connectors/{connectorID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3558,6 +3602,7 @@ Update a bank account's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3UpdateBankAccountMetadata" method="patch" path="/api/payments/v3/bank-accounts/{bankAccountID}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3637,6 +3682,7 @@ Update a payment's metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3UpdatePaymentMetadata" method="patch" path="/api/payments/v3/payments/{paymentID}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3716,6 +3762,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v3UpdateConnectorConfig" method="patch" path="/api/payments/v3/connectors/{connectorID}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

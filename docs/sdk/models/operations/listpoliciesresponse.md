@@ -5,7 +5,10 @@
 ```typescript
 import { ListPoliciesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListPoliciesResponse = {};
+let value: ListPoliciesResponse = {
+  contentType: "<value>",
+  statusCode: 80441,
+};
 ```
 
 ## Fields

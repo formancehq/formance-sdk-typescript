@@ -6,6 +6,9 @@
 import { ForwardBankAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ForwardBankAccountRequest = {
+  forwardBankAccountRequest: {
+    connectorID: "<id>",
+  },
   bankAccountId: "XXX",
 };
 ```

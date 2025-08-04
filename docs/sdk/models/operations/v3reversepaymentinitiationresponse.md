@@ -5,7 +5,10 @@
 ```typescript
 import { V3ReversePaymentInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ReversePaymentInitiationResponse = {};
+let value: V3ReversePaymentInitiationResponse = {
+  contentType: "<value>",
+  statusCode: 183385,
+};
 ```
 
 ## Fields

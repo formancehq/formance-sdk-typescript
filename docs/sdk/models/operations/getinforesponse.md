@@ -5,7 +5,10 @@
 ```typescript
 import { GetInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetInfoResponse = {};
+let value: GetInfoResponse = {
+  contentType: "<value>",
+  statusCode: 862664,
+};
 ```
 
 ## Fields

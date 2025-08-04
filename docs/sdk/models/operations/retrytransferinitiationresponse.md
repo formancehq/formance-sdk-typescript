@@ -5,7 +5,10 @@
 ```typescript
 import { RetryTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: RetryTransferInitiationResponse = {};
+let value: RetryTransferInitiationResponse = {
+  contentType: "<value>",
+  statusCode: 807298,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { ResetConnectorResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ResetConnectorResponse = {};
+let value: ResetConnectorResponse = {
+  contentType: "<value>",
+  statusCode: 545084,
+};
 ```
 
 ## Fields

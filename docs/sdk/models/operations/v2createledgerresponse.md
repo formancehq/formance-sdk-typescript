@@ -5,7 +5,10 @@
 ```typescript
 import { V2CreateLedgerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2CreateLedgerResponse = {};
+let value: V2CreateLedgerResponse = {
+  contentType: "<value>",
+  statusCode: 5140,
+};
 ```
 
 ## Fields

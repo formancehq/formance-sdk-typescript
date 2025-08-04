@@ -4,8 +4,12 @@
 
 ```typescript
 import { UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/operations";
+import { Status } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: UpdateTransferInitiationStatusRequest = {
+  updateTransferInitiationStatusRequest: {
+    status: Status.Rejected,
+  },
   transferId: "XXX",
 };
 ```

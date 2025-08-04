@@ -7,6 +7,13 @@ import { InstallConnectorRequest } from "@formance/formance-sdk/sdk/models/opera
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: InstallConnectorRequest = {
+  connectorConfig: {
+    apiKey: "XXX",
+    loginID: "XXX",
+    name: "My CurrencyCloud Account",
+    pollingPeriod: "60s",
+    provider: "Currencycloud",
+  },
   connector: Connector.Wise,
 };
 ```

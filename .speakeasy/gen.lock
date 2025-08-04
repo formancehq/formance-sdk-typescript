@@ -3,10 +3,10 @@ id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
   docChecksum: c079046e05a1d80ad361ab1f38ccee14
   docVersion: v3.0.5
-  speakeasyVersion: 1.564.1
-  generationVersion: 2.630.9
-  releaseVersion: 4.3.0
-  configChecksum: 0767915eee5804893d326b2621d6512a
+  speakeasyVersion: 1.596.0
+  generationVersion: 2.672.0
+  releaseVersion: 4.4.0
+  configChecksum: a13231dcf77fa23956195014807b6e2a
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -16,13 +16,13 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.2
     constsAndDefaults: 0.1.12
-    core: 3.21.11
+    core: 3.21.19
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    errors: 2.85.0
+    errors: 2.86.0
     globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
@@ -33,7 +33,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.10
+    unions: 2.85.11
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -655,8 +655,8 @@ generatedFiles:
   - docs/sdk/models/shared/reconciliationresponse.md
   - docs/sdk/models/shared/reconciliationscursorresponse.md
   - docs/sdk/models/shared/reconciliationscursorresponsecursor.md
-  - docs/sdk/models/shared/response.md
   - docs/sdk/models/shared/responsecursor.md
+  - docs/sdk/models/shared/responset.md
   - docs/sdk/models/shared/reversetransferinitiationrequest.md
   - docs/sdk/models/shared/runworkflowresponse.md
   - docs/sdk/models/shared/script.md
@@ -1025,6 +1025,10 @@ generatedFiles:
   - docs/sdks/webhooks/README.md
   - docs/sdks/webhooksv1/README.md
   - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/getVersions.example.ts
+  - examples/package.json
   - jsr.json
   - package.json
   - src/core.ts

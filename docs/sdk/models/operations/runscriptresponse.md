@@ -5,7 +5,10 @@
 ```typescript
 import { RunScriptResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: RunScriptResponse = {};
+let value: RunScriptResponse = {
+  contentType: "<value>",
+  statusCode: 884133,
+};
 ```
 
 ## Fields

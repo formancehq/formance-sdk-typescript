@@ -5,7 +5,10 @@
 ```typescript
 import { GetHoldsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetHoldsResponse = {};
+let value: GetHoldsResponse = {
+  contentType: "<value>",
+  statusCode: 11360,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { VoidHoldResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: VoidHoldResponse = {};
+let value: VoidHoldResponse = {
+  contentType: "<value>",
+  statusCode: 980210,
+};
 ```
 
 ## Fields

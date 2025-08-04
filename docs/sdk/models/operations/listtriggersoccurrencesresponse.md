@@ -5,7 +5,10 @@
 ```typescript
 import { ListTriggersOccurrencesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ListTriggersOccurrencesResponse = {};
+let value: ListTriggersOccurrencesResponse = {
+  contentType: "<value>",
+  statusCode: 594998,
+};
 ```
 
 ## Fields

@@ -5,7 +5,10 @@
 ```typescript
 import { ReadConnectorConfigV1Response } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReadConnectorConfigV1Response = {};
+let value: ReadConnectorConfigV1Response = {
+  contentType: "<value>",
+  statusCode: 950306,
+};
 ```
 
 ## Fields

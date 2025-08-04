@@ -6,6 +6,7 @@
 import { V2CreateBulkRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2CreateBulkRequest = {
+  requestBody: [],
   atomic: true,
   continueOnFailure: true,
   ledger: "ledger001",
