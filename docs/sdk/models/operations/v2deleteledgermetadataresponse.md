@@ -5,7 +5,10 @@
 ```typescript
 import { V2DeleteLedgerMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2DeleteLedgerMetadataResponse = {};
+let value: V2DeleteLedgerMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 349510,
+};
 ```
 
 ## Fields

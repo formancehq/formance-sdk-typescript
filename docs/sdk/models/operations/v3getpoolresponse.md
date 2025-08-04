@@ -5,7 +5,10 @@
 ```typescript
 import { V3GetPoolResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3GetPoolResponse = {};
+let value: V3GetPoolResponse = {
+  contentType: "<value>",
+  statusCode: 476083,
+};
 ```
 
 ## Fields

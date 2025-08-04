@@ -5,7 +5,11 @@
 ```typescript
 import { V2CountTransactionsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2CountTransactionsResponse = {};
+let value: V2CountTransactionsResponse = {
+  contentType: "<value>",
+  headers: {},
+  statusCode: 880123,
+};
 ```
 
 ## Fields

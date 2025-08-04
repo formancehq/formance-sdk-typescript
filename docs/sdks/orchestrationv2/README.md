@@ -30,6 +30,7 @@ Cancel a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CancelEvent" method="put" path="/api/orchestration/v2/instances/{instanceID}/abort" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -109,6 +110,7 @@ Create trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CreateTrigger" method="post" path="/api/orchestration/v2/triggers" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -184,6 +186,7 @@ Create a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2CreateWorkflow" method="post" path="/api/orchestration/v2/workflows" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -259,6 +262,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2DeleteTrigger" method="delete" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -338,6 +342,7 @@ Delete a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2DeleteWorkflow" method="delete" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -417,6 +422,7 @@ Get a workflow instance by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetInstance" method="get" path="/api/orchestration/v2/instances/{instanceID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -496,6 +502,7 @@ Get a workflow instance history by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetInstanceHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/history" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -575,6 +582,7 @@ Get a workflow instance stage history
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetInstanceStageHistory" method="get" path="/api/orchestration/v2/instances/{instanceID}/stages/{number}/history" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -656,6 +664,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetServerInfo" method="get" path="/api/orchestration/v2/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -730,6 +739,7 @@ Get a flow by id
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2GetWorkflow" method="get" path="/api/orchestration/v2/workflows/{flowId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -809,6 +819,7 @@ List instances of a workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListInstances" method="get" path="/api/orchestration/v2/instances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -894,6 +905,7 @@ List triggers
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListTriggers" method="get" path="/api/orchestration/v2/triggers" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -975,6 +987,7 @@ List triggers occurrences
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListTriggersOccurrences" method="get" path="/api/orchestration/v2/triggers/{triggerID}/occurrences" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1058,6 +1071,7 @@ List registered workflows
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ListWorkflows" method="get" path="/api/orchestration/v2/workflows" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1139,6 +1153,7 @@ Read trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2ReadTrigger" method="get" path="/api/orchestration/v2/triggers/{triggerID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1218,6 +1233,7 @@ Run workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2RunWorkflow" method="post" path="/api/orchestration/v2/workflows/{workflowID}/instances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1297,6 +1313,7 @@ Send an event to a running workflow
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="v2SendEvent" method="post" path="/api/orchestration/v2/instances/{instanceID}/events" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1376,6 +1393,7 @@ Test trigger
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="testTrigger" method="post" path="/api/orchestration/v2/triggers/{triggerID}/test" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

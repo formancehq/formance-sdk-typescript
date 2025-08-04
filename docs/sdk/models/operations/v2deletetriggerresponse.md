@@ -5,7 +5,10 @@
 ```typescript
 import { V2DeleteTriggerResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2DeleteTriggerResponse = {};
+let value: V2DeleteTriggerResponse = {
+  contentType: "<value>",
+  statusCode: 993338,
+};
 ```
 
 ## Fields

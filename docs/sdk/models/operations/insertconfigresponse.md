@@ -5,7 +5,10 @@
 ```typescript
 import { InsertConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: InsertConfigResponse = {};
+let value: InsertConfigResponse = {
+  contentType: "<value>",
+  statusCode: 603890,
+};
 ```
 
 ## Fields

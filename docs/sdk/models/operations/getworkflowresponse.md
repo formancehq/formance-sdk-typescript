@@ -5,7 +5,10 @@
 ```typescript
 import { GetWorkflowResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetWorkflowResponse = {};
+let value: GetWorkflowResponse = {
+  contentType: "<value>",
+  statusCode: 477077,
+};
 ```
 
 ## Fields

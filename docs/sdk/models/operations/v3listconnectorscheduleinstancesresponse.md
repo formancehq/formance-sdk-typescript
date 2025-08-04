@@ -5,7 +5,10 @@
 ```typescript
 import { V3ListConnectorScheduleInstancesResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListConnectorScheduleInstancesResponse = {};
+let value: V3ListConnectorScheduleInstancesResponse = {
+  contentType: "<value>",
+  statusCode: 146384,
+};
 ```
 
 ## Fields

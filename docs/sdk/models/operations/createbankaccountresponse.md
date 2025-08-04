@@ -5,7 +5,10 @@
 ```typescript
 import { CreateBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateBankAccountResponse = {};
+let value: CreateBankAccountResponse = {
+  contentType: "<value>",
+  statusCode: 517642,
+};
 ```
 
 ## Fields

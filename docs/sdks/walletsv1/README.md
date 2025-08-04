@@ -28,6 +28,7 @@ Confirm a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="confirmHold" method="post" path="/api/wallets/holds/{hold_id}/confirm" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -115,6 +116,7 @@ Create a balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createBalance" method="post" path="/api/wallets/wallets/{id}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -194,6 +196,7 @@ Create a new wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createWallet" method="post" path="/api/wallets/wallets" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -269,6 +272,7 @@ Credit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="creditWallet" method="post" path="/api/wallets/wallets/{id}/credit" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -368,6 +372,7 @@ Debit a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="debitWallet" method="post" path="/api/wallets/wallets/{id}/debit" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -467,6 +472,7 @@ Get detailed balance
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBalance" method="get" path="/api/wallets/wallets/{id}/balances/{balanceName}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -548,6 +554,7 @@ Get a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getHold" method="get" path="/api/wallets/holds/{holdID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -627,6 +634,7 @@ Get all holds for a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getHolds" method="get" path="/api/wallets/holds" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -714,6 +722,7 @@ run();
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTransactions" method="get" path="/api/wallets/transactions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -797,6 +806,7 @@ Get a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWallet" method="get" path="/api/wallets/wallets/{id}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -876,6 +886,7 @@ Get wallet summary
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getWalletSummary" method="get" path="/api/wallets/wallets/{id}/summary" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -955,6 +966,7 @@ List balances of a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listBalances" method="get" path="/api/wallets/wallets/{id}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1033,6 +1045,7 @@ List all wallets
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listWallets" method="get" path="/api/wallets/wallets" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1124,6 +1137,7 @@ Update a wallet
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateWallet" method="patch" path="/api/wallets/wallets/{id}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1203,6 +1217,7 @@ Cancel a hold
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="voidHold" method="post" path="/api/wallets/holds/{hold_id}/void" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1282,6 +1297,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="walletsgetServerInfo" method="get" path="/api/wallets/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

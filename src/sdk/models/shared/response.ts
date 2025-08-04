@@ -21,7 +21,7 @@ export type ResponseCursor = {
   total?: Total | undefined;
 };
 
-export type Response = {
+export type ResponseT = {
   cursor?: ResponseCursor | undefined;
   /**
    * The payload
@@ -145,8 +145,8 @@ export function responseCursorFromJSON(
 }
 
 /** @internal */
-export const Response$inboundSchema: z.ZodType<
-  Response,
+export const ResponseT$inboundSchema: z.ZodType<
+  ResponseT,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -155,16 +155,16 @@ export const Response$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Response$Outbound = {
+export type ResponseT$Outbound = {
   cursor?: ResponseCursor$Outbound | undefined;
   data?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
-export const Response$outboundSchema: z.ZodType<
-  Response$Outbound,
+export const ResponseT$outboundSchema: z.ZodType<
+  ResponseT$Outbound,
   z.ZodTypeDef,
-  Response
+  ResponseT
 > = z.object({
   cursor: z.lazy(() => ResponseCursor$outboundSchema).optional(),
   data: z.record(z.any()).optional(),
@@ -174,25 +174,25 @@ export const Response$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Response$ {
-  /** @deprecated use `Response$inboundSchema` instead. */
-  export const inboundSchema = Response$inboundSchema;
-  /** @deprecated use `Response$outboundSchema` instead. */
-  export const outboundSchema = Response$outboundSchema;
-  /** @deprecated use `Response$Outbound` instead. */
-  export type Outbound = Response$Outbound;
+export namespace ResponseT$ {
+  /** @deprecated use `ResponseT$inboundSchema` instead. */
+  export const inboundSchema = ResponseT$inboundSchema;
+  /** @deprecated use `ResponseT$outboundSchema` instead. */
+  export const outboundSchema = ResponseT$outboundSchema;
+  /** @deprecated use `ResponseT$Outbound` instead. */
+  export type Outbound = ResponseT$Outbound;
 }
 
-export function responseToJSON(response: Response): string {
-  return JSON.stringify(Response$outboundSchema.parse(response));
+export function responseToJSON(responseT: ResponseT): string {
+  return JSON.stringify(ResponseT$outboundSchema.parse(responseT));
 }
 
 export function responseFromJSON(
   jsonString: string,
-): SafeParseResult<Response, SDKValidationError> {
+): SafeParseResult<ResponseT, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Response$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Response' from JSON`,
+    (x) => ResponseT$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ResponseT' from JSON`,
   );
 }

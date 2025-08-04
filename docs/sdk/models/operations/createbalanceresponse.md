@@ -5,7 +5,10 @@
 ```typescript
 import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateBalanceResponse = {};
+let value: CreateBalanceResponse = {
+  contentType: "<value>",
+  statusCode: 389772,
+};
 ```
 
 ## Fields

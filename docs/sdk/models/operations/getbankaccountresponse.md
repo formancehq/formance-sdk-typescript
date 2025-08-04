@@ -5,7 +5,10 @@
 ```typescript
 import { GetBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetBankAccountResponse = {};
+let value: GetBankAccountResponse = {
+  contentType: "<value>",
+  statusCode: 237454,
+};
 ```
 
 ## Fields

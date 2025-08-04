@@ -5,7 +5,10 @@
 ```typescript
 import { V2DeleteWorkflowResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2DeleteWorkflowResponse = {};
+let value: V2DeleteWorkflowResponse = {
+  contentType: "<value>",
+  statusCode: 602658,
+};
 ```
 
 ## Fields

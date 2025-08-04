@@ -25,6 +25,7 @@ Show stack version information
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getVersions" method="get" path="/versions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

@@ -5,7 +5,10 @@
 ```typescript
 import { DeactivateConfigResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeactivateConfigResponse = {};
+let value: DeactivateConfigResponse = {
+  contentType: "<value>",
+  statusCode: 816135,
+};
 ```
 
 ## Fields

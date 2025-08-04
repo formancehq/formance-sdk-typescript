@@ -5,7 +5,10 @@
 ```typescript
 import { V3RemoveAccountFromPoolResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3RemoveAccountFromPoolResponse = {};
+let value: V3RemoveAccountFromPoolResponse = {
+  contentType: "<value>",
+  statusCode: 966684,
+};
 ```
 
 ## Fields

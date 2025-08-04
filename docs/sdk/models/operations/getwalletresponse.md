@@ -5,7 +5,10 @@
 ```typescript
 import { GetWalletResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetWalletResponse = {};
+let value: GetWalletResponse = {
+  contentType: "<value>",
+  statusCode: 913853,
+};
 ```
 
 ## Fields

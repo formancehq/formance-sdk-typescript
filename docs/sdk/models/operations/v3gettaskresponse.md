@@ -5,7 +5,10 @@
 ```typescript
 import { V3GetTaskResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3GetTaskResponse = {};
+let value: V3GetTaskResponse = {
+  contentType: "<value>",
+  statusCode: 140270,
+};
 ```
 
 ## Fields

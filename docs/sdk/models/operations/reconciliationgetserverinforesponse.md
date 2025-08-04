@@ -5,7 +5,10 @@
 ```typescript
 import { ReconciliationgetServerInfoResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReconciliationgetServerInfoResponse = {};
+let value: ReconciliationgetServerInfoResponse = {
+  contentType: "<value>",
+  statusCode: 443118,
+};
 ```
 
 ## Fields

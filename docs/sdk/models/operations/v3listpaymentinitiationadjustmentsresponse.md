@@ -5,7 +5,10 @@
 ```typescript
 import { V3ListPaymentInitiationAdjustmentsResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ListPaymentInitiationAdjustmentsResponse = {};
+let value: V3ListPaymentInitiationAdjustmentsResponse = {
+  contentType: "<value>",
+  statusCode: 188875,
+};
 ```
 
 ## Fields

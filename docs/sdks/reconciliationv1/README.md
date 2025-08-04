@@ -20,6 +20,7 @@ Create a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createPolicy" method="post" path="/api/reconciliation/policies" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -109,6 +110,7 @@ Delete a policy by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deletePolicy" method="delete" path="/api/reconciliation/policies/{policyID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -188,6 +190,7 @@ Get a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPolicy" method="get" path="/api/reconciliation/policies/{policyID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -267,6 +270,7 @@ Get a reconciliation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getReconciliation" method="get" path="/api/reconciliation/reconciliations/{reconciliationID}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -346,6 +350,7 @@ List policies
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listPolicies" method="get" path="/api/reconciliation/policies" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -427,6 +432,7 @@ List reconciliations
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listReconciliations" method="get" path="/api/reconciliation/reconciliations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -508,6 +514,7 @@ Reconcile using a policy
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reconcile" method="post" path="/api/reconciliation/policies/{policyID}/reconciliation" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -595,6 +602,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reconciliationgetServerInfo" method="get" path="/api/reconciliation/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

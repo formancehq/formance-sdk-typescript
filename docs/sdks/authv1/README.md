@@ -23,6 +23,7 @@ Create client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createClient" method="post" path="/api/auth/clients" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -97,6 +98,7 @@ Add a secret to a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createSecret" method="post" path="/api/auth/clients/{clientId}/secrets" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -175,6 +177,7 @@ Delete client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteClient" method="delete" path="/api/auth/clients/{clientId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -253,6 +256,7 @@ Delete a secret from a client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteSecret" method="delete" path="/api/auth/clients/{clientId}/secrets/{secretId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -333,6 +337,7 @@ Retrieve OpenID connect well-knowns.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getOIDCWellKnowns" method="get" path="/api/auth/.well-known/openid-configuration" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -406,6 +411,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getServerInfo" method="get" path="/api/auth/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -479,6 +485,7 @@ List clients
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listClients" method="get" path="/api/auth/clients" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -552,6 +559,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listUsers" method="get" path="/api/auth/users" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -625,6 +633,7 @@ Read client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="readClient" method="get" path="/api/auth/clients/{clientId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -703,6 +712,7 @@ Read user
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="readUser" method="get" path="/api/auth/users/{userId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -781,6 +791,7 @@ Update client
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateClient" method="put" path="/api/auth/clients/{clientId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 

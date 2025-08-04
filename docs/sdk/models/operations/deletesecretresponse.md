@@ -5,7 +5,10 @@
 ```typescript
 import { DeleteSecretResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeleteSecretResponse = {};
+let value: DeleteSecretResponse = {
+  contentType: "<value>",
+  statusCode: 737968,
+};
 ```
 
 ## Fields

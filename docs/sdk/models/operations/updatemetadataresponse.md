@@ -5,7 +5,10 @@
 ```typescript
 import { UpdateMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: UpdateMetadataResponse = {};
+let value: UpdateMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 714403,
+};
 ```
 
 ## Fields

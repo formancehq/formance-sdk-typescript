@@ -6,6 +6,30 @@
 import { CreateTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: CreateTransactionRequest = {
+  postTransaction: {
+    postings: [
+      {
+        amount: 100n,
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    script: {
+      plain: "vars {\n"
+        + "account $user\n"
+        + "}\n"
+        + "send [COIN 10] (\n"
+        + "	source = @world\n"
+        + "	destination = $user\n"
+        + ")\n"
+        + "",
+      vars: {
+        "user": "users:042",
+      },
+    },
+  },
   ledger: "ledger001",
   preview: true,
 };

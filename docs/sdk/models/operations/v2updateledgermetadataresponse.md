@@ -5,7 +5,10 @@
 ```typescript
 import { V2UpdateLedgerMetadataResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2UpdateLedgerMetadataResponse = {};
+let value: V2UpdateLedgerMetadataResponse = {
+  contentType: "<value>",
+  statusCode: 813045,
+};
 ```
 
 ## Fields

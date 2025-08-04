@@ -5,7 +5,10 @@
 ```typescript
 import { CreateSecretResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateSecretResponse = {};
+let value: CreateSecretResponse = {
+  contentType: "<value>",
+  statusCode: 633844,
+};
 ```
 
 ## Fields

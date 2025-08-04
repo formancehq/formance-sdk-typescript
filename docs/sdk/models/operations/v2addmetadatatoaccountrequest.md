@@ -6,6 +6,9 @@
 import { V2AddMetadataToAccountRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2AddMetadataToAccountRequest = {
+  requestBody: {
+    "admin": "true",
+  },
   address: "users:001",
   dryRun: true,
   ledger: "ledger001",

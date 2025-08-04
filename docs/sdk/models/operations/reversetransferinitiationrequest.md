@@ -6,6 +6,13 @@
 import { ReverseTransferInitiationRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: ReverseTransferInitiationRequest = {
+  reverseTransferInitiationRequest: {
+    amount: 965953n,
+    asset: "USD",
+    description: "frankly harvest meanwhile grave upon inasmuch for",
+    metadata: {},
+    reference: "XXX",
+  },
   transferId: "XXX",
 };
 ```

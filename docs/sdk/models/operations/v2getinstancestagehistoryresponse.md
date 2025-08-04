@@ -5,7 +5,10 @@
 ```typescript
 import { V2GetInstanceStageHistoryResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2GetInstanceStageHistoryResponse = {};
+let value: V2GetInstanceStageHistoryResponse = {
+  contentType: "<value>",
+  statusCode: 584673,
+};
 ```
 
 ## Fields

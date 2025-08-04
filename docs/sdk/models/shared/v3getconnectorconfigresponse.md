@@ -8,12 +8,11 @@ import { V3GetConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/
 let value: V3GetConnectorConfigResponse = {
   data: {
     apiKey: "<value>",
-    clientID: "<id>",
-    endpoint: "<value>",
     name: "<value>",
     pageSize: 25,
     pollingPeriod: "2m",
-    provider: "Qonto",
+    provider: "Wise",
+    webhookPublicKey: "<value>",
   },
 };
 ```

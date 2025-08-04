@@ -5,7 +5,10 @@
 ```typescript
 import { ReverseTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: ReverseTransferInitiationResponse = {};
+let value: ReverseTransferInitiationResponse = {
+  contentType: "<value>",
+  statusCode: 298532,
+};
 ```
 
 ## Fields

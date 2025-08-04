@@ -6,6 +6,33 @@
 import { V2CreateTransactionRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2CreateTransactionRequest = {
+  v2PostTransaction: {
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: 100n,
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    script: {
+      plain: "vars {\n"
+        + "account $user\n"
+        + "}\n"
+        + "send [COIN 10] (\n"
+        + "	source = @world\n"
+        + "	destination = $user\n"
+        + ")\n"
+        + "",
+      vars: {
+        "user": "users:042",
+      },
+    },
+  },
   dryRun: true,
   force: true,
   ledger: "ledger001",

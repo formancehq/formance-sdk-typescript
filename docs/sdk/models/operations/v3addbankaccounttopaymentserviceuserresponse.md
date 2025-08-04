@@ -5,7 +5,10 @@
 ```typescript
 import { V3AddBankAccountToPaymentServiceUserResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3AddBankAccountToPaymentServiceUserResponse = {};
+let value: V3AddBankAccountToPaymentServiceUserResponse = {
+  contentType: "<value>",
+  statusCode: 997622,
+};
 ```
 
 ## Fields

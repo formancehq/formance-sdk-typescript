@@ -56,6 +56,7 @@ Add an account to a pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="addAccountToPool" method="post" path="/api/payments/pools/{poolId}/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -141,6 +142,7 @@ Execute a transfer between two accounts.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="connectorsTransfer" method="post" path="/api/payments/connectors/{connector}/transfers" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -234,6 +236,7 @@ Create an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createAccount" method="post" path="/api/payments/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { AccountType } from "@formance/formance-sdk/sdk/models/shared";
@@ -321,6 +324,7 @@ Create a bank account in Payments and on the PSP.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createBankAccount" method="post" path="/api/payments/bank-accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -402,6 +406,7 @@ Create a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createPayment" method="post" path="/api/payments/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/shared";
@@ -497,6 +502,7 @@ Create a Pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createPool" method="post" path="/api/payments/pools" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -584,6 +590,7 @@ Create a transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="createTransferInitiation" method="post" path="/api/payments/transfer-initiations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/shared";
@@ -681,6 +688,7 @@ Delete a pool by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deletePool" method="delete" path="/api/payments/pools/{poolId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -760,6 +768,7 @@ Delete a transfer initiation by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="deleteTransferInitiation" method="delete" path="/api/payments/transfer-initiations/{transferId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -839,6 +848,7 @@ Forward a bank account to a connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="forwardBankAccount" method="post" path="/api/payments/bank-accounts/{bankAccountId}/forward" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -924,6 +934,7 @@ Get account balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getAccountBalances" method="get" path="/api/payments/accounts/{accountId}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1015,6 +1026,7 @@ Get a bank account created by user on Formance
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getBankAccount" method="get" path="/api/payments/bank-accounts/{bankAccountId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1096,6 +1108,7 @@ Get a specific task associated to the connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getConnectorTask" method="get" path="/api/payments/connectors/{connector}/tasks/{taskId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -1179,6 +1192,7 @@ Get a specific task associated to the connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getConnectorTaskV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -1264,6 +1278,7 @@ Get a payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPayment" method="get" path="/api/payments/payments/{paymentId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1343,6 +1358,7 @@ Get a Pool
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPool" method="get" path="/api/payments/pools/{poolId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1422,6 +1438,7 @@ Get historical pool balances at a particular point in time
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPoolBalances" method="get" path="/api/payments/pools/{poolId}/balances" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1503,6 +1520,7 @@ Get latest pool balances
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getPoolBalancesLatest" method="get" path="/api/payments/pools/{poolId}/balances/latest" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1582,6 +1600,7 @@ Get a transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="getTransferInitiation" method="get" path="/api/payments/transfer-initiations/{transferId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1661,6 +1680,7 @@ Install a connector by its name and config.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="installConnector" method="post" path="/api/payments/connectors/{connector}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -1756,6 +1776,7 @@ List all installed connectors.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listAllConnectors" method="get" path="/api/payments/connectors" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1830,6 +1851,7 @@ List all bank accounts created by user on Formance.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listBankAccounts" method="get" path="/api/payments/bank-accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1919,6 +1941,7 @@ List the configs of each available connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listConfigsAvailableConnectors" method="get" path="/api/payments/connectors/configs" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1995,6 +2018,7 @@ List all tasks associated with this connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listConnectorTasks" method="get" path="/api/payments/connectors/{connector}/tasks" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -2080,6 +2104,7 @@ List all tasks associated with this connector.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listConnectorTasksV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -2167,6 +2192,7 @@ List payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listPayments" method="get" path="/api/payments/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2256,6 +2282,7 @@ List Pools
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listPools" method="get" path="/api/payments/pools" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2345,6 +2372,7 @@ List Transfer Initiations
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="listTransferInitiations" method="get" path="/api/payments/transfer-initiations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2434,6 +2462,7 @@ Get an account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="paymentsgetAccount" method="get" path="/api/payments/accounts/{accountId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2513,6 +2542,7 @@ Get server info
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="paymentsgetServerInfo" method="get" path="/api/payments/_info" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2587,6 +2617,7 @@ List accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="paymentslistAccounts" method="get" path="/api/payments/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2678,6 +2709,7 @@ Read connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="readConnectorConfig" method="get" path="/api/payments/connectors/{connector}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -2759,6 +2791,7 @@ Read connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="readConnectorConfigV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -2842,6 +2875,7 @@ Remove an account from a pool by its id.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="removeAccountFromPool" method="delete" path="/api/payments/pools/{poolId}/accounts/{accountId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -2927,6 +2961,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="resetConnector" method="post" path="/api/payments/connectors/{connector}/reset" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -3010,6 +3045,7 @@ It will remove the connector and ALL PAYMENTS generated with it.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="resetConnectorV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/reset" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -3093,6 +3129,7 @@ Retry a failed transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="retryTransferInitiation" method="post" path="/api/payments/transfer-initiations/{transferId}/retry" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3172,6 +3209,7 @@ Reverse transfer initiation
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="reverseTransferInitiation" method="post" path="/api/payments/transfer-initiations/{transferId}/reverse" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3271,6 +3309,7 @@ Uninstall a connector by its name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="uninstallConnector" method="delete" path="/api/payments/connectors/{connector}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -3352,6 +3391,7 @@ Uninstall a connector by its name.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="uninstallConnectorV1" method="delete" path="/api/payments/connectors/{connector}/{connectorId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -3435,6 +3475,7 @@ Update metadata of a bank account
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateBankAccountMetadata" method="patch" path="/api/payments/bank-accounts/{bankAccountId}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3528,6 +3569,7 @@ Update connector config
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateConnectorConfigV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Connector } from "@formance/formance-sdk/sdk/models/shared";
@@ -3625,6 +3667,7 @@ Update metadata
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateMetadata" method="patch" path="/api/payments/payments/{paymentId}/metadata" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -3710,6 +3753,7 @@ Update a transfer initiation status
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="updateTransferInitiationStatus" method="post" path="/api/payments/transfer-initiations/{transferId}/status" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import { Status } from "@formance/formance-sdk/sdk/models/shared";

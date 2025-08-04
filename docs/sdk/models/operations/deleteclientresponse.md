@@ -5,7 +5,10 @@
 ```typescript
 import { DeleteClientResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeleteClientResponse = {};
+let value: DeleteClientResponse = {
+  contentType: "<value>",
+  statusCode: 954986,
+};
 ```
 
 ## Fields

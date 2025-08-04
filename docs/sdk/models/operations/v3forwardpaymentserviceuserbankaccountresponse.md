@@ -5,7 +5,10 @@
 ```typescript
 import { V3ForwardPaymentServiceUserBankAccountResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V3ForwardPaymentServiceUserBankAccountResponse = {};
+let value: V3ForwardPaymentServiceUserBankAccountResponse = {
+  contentType: "<value>",
+  statusCode: 18289,
+};
 ```
 
 ## Fields

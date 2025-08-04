@@ -5,7 +5,10 @@
 ```typescript
 import { CreateTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: CreateTransferInitiationResponse = {};
+let value: CreateTransferInitiationResponse = {
+  contentType: "<value>",
+  statusCode: 704408,
+};
 ```
 
 ## Fields

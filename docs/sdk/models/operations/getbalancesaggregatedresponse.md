@@ -5,7 +5,10 @@
 ```typescript
 import { GetBalancesAggregatedResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: GetBalancesAggregatedResponse = {};
+let value: GetBalancesAggregatedResponse = {
+  contentType: "<value>",
+  statusCode: 530417,
+};
 ```
 
 ## Fields

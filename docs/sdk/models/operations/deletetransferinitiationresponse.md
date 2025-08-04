@@ -5,7 +5,10 @@
 ```typescript
 import { DeleteTransferInitiationResponse } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: DeleteTransferInitiationResponse = {};
+let value: DeleteTransferInitiationResponse = {
+  contentType: "<value>",
+  statusCode: 971014,
+};
 ```
 
 ## Fields
