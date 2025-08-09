@@ -8,10 +8,8 @@ import { V2BulkResponse, V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/
 let value: V2BulkResponse = {
   data: [
     {
-      errorCode: "<value>",
-      errorDescription: "<value>",
       logID: 416874,
-      responseType: "ERROR",
+      responseType: "ADD_METADATA",
     },
   ],
   errorCode: V2ErrorsEnum.Validation,
