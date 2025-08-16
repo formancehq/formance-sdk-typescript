@@ -9,14 +9,10 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/share
 
 let value: ConnectorConfigResponse = {
   data: {
-    accessKey: "XXX",
-    baseUrl: "https://api.example.com",
-    name: "My Atlar Account",
-    pageSize: 50,
-    pollingPeriod: "60s",
-    provider: "Atlar",
-    secret: "XXX",
-    transferInitiationStatusPollingPeriod: "60s",
+    directory: "/tmp/dummypay",
+    filePollingPeriod: "60s",
+    name: "My DummyPay Account",
+    provider: "Dummypay",
   },
 };
 ```
