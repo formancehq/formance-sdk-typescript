@@ -8,7 +8,7 @@ dotenv.config();
  * Example usage of the @formance/formance-sdk SDK
  *
  * To run this example from the examples directory:
- * npm run build && npx tsx getVersions.ts
+ * npm run build && npx tsx getVersions.example.ts
  */
 
 import { SDK } from "@formance/formance-sdk";
