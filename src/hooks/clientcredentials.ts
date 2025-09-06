@@ -20,6 +20,7 @@ type Credentials = {
   clientID: string;
   clientSecret: string;
   tokenURL: string | undefined;
+  additionalProperties: Record<string, string>;
 };
 
 type Session = {
@@ -123,6 +124,12 @@ export class ClientCredentialsHook
       formData.append("scope", scopes.join(" "));
     }
 
+    for (
+      const [key, value] of Object.entries(credentials.additionalProperties)
+    ) {
+      formData.append(key, value);
+    }
+
     if (!hookCtx.baseURL?.toString()) {
       throw new Error("Assertion error: Base URL cannot be empty");
     }
@@ -148,7 +155,7 @@ export class ClientCredentialsHook
       throw new Error("Unexpected response format");
     }
 
-    if (data.token_type !== "Bearer") {
+    if (data.token_type?.toLowerCase() !== "bearer") {
       throw new Error("Unexpected token type");
     }
 
@@ -195,10 +202,21 @@ export class ClientCredentialsHook
       "unexpected security type",
     );
 
+    const additionalProperties: Record<string, string> = {};
+    for (const [key, value] of Object.entries(out ?? {})) {
+      if (
+        key !== "clientID" && key !== "clientSecret" && key !== "tokenURL"
+        && typeof value === "string"
+      ) {
+        additionalProperties[key] = value;
+      }
+    }
+
     return {
       clientID: out?.clientID ?? "",
       clientSecret: out?.clientSecret ?? "",
       tokenURL: out?.tokenURL ?? "",
+      additionalProperties,
     };
   }
 
