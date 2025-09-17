@@ -3,18 +3,14 @@
 
 ## Supported Types
 
-### `shared.V3BankingcircleConfig`
+### `shared.V3AdyenConfig`
 
 ```typescript
-const value: shared.V3BankingcircleConfig = {
-  authorizationEndpoint: "<value>",
-  endpoint: "<value>",
+const value: shared.V3AdyenConfig = {
+  apiKey: "<value>",
+  companyID: "<id>",
   name: "<value>",
   pageSize: 25,
-  password: "x2JumI7CZjxPmAq",
-  userCertificate: "<value>",
-  userCertificateKey: "<value>",
-  username: "Savion88",
 };
 ```
 
@@ -30,6 +26,32 @@ const value: shared.V3AtlarConfig = {
 };
 ```
 
+### `shared.V3BankingcircleConfig`
+
+```typescript
+const value: shared.V3BankingcircleConfig = {
+  authorizationEndpoint: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  pageSize: 25,
+  password: "x2JumI7CZjxPmAq",
+  userCertificate: "<value>",
+  userCertificateKey: "<value>",
+  username: "Savion88",
+};
+```
+
+### `shared.V3ColumnConfig`
+
+```typescript
+const value: shared.V3ColumnConfig = {
+  apiKey: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  pageSize: 25,
+};
+```
+
 ### `shared.V3CurrencycloudConfig`
 
 ```typescript
@@ -37,6 +59,27 @@ const value: shared.V3CurrencycloudConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   loginID: "<id>",
+  name: "<value>",
+  pageSize: 25,
+};
+```
+
+### `shared.V3DummypayConfig`
+
+```typescript
+const value: shared.V3DummypayConfig = {
+  directory: "/var/mail",
+  name: "<value>",
+  pageSize: 25,
+};
+```
+
+### `shared.V3GenericConfig`
+
+```typescript
+const value: shared.V3GenericConfig = {
+  apiKey: "<value>",
+  endpoint: "<value>",
   name: "<value>",
   pageSize: 25,
 };
@@ -90,34 +133,11 @@ const value: shared.V3QontoConfig = {
 };
 ```
 
-### `shared.V3AdyenConfig`
+### `shared.V3StripeConfig`
 
 ```typescript
-const value: shared.V3AdyenConfig = {
+const value: shared.V3StripeConfig = {
   apiKey: "<value>",
-  companyID: "<id>",
-  name: "<value>",
-  pageSize: 25,
-};
-```
-
-### `shared.V3ColumnConfig`
-
-```typescript
-const value: shared.V3ColumnConfig = {
-  apiKey: "<value>",
-  endpoint: "<value>",
-  name: "<value>",
-  pageSize: 25,
-};
-```
-
-### `shared.V3GenericConfig`
-
-```typescript
-const value: shared.V3GenericConfig = {
-  apiKey: "<value>",
-  endpoint: "<value>",
   name: "<value>",
   pageSize: 25,
 };
@@ -131,26 +151,6 @@ const value: shared.V3WiseConfig = {
   name: "<value>",
   pageSize: 25,
   webhookPublicKey: "<value>",
-};
-```
-
-### `shared.V3DummypayConfig`
-
-```typescript
-const value: shared.V3DummypayConfig = {
-  directory: "/var/mail",
-  name: "<value>",
-  pageSize: 25,
-};
-```
-
-### `shared.V3StripeConfig`
-
-```typescript
-const value: shared.V3StripeConfig = {
-  apiKey: "<value>",
-  name: "<value>",
-  pageSize: 25,
 };
 ```
 
