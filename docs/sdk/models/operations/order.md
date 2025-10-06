@@ -1,5 +1,7 @@
 # Order
 
+Deprecated: Use sort param
+
 ## Example Usage
 
 ```typescript

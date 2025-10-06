@@ -3,13 +3,11 @@
 
 ## Supported Types
 
-### `shared.V2BulkElementResultError`
+### `shared.V2BulkElementResultAddMetadata`
 
 ```typescript
-const value: shared.V2BulkElementResultError = {
-  errorCode: "<value>",
-  errorDescription: "<value>",
-  logID: 332853,
+const value: shared.V2BulkElementResultAddMetadata = {
+  logID: 934456,
   responseType: "<value>",
 };
 ```
@@ -104,6 +102,26 @@ const value: shared.V2BulkElementResultCreateTransaction = {
 };
 ```
 
+### `shared.V2BulkElementResultDeleteMetadata`
+
+```typescript
+const value: shared.V2BulkElementResultDeleteMetadata = {
+  logID: 699342,
+  responseType: "<value>",
+};
+```
+
+### `shared.V2BulkElementResultError`
+
+```typescript
+const value: shared.V2BulkElementResultError = {
+  errorCode: "<value>",
+  errorDescription: "<value>",
+  logID: 332853,
+  responseType: "<value>",
+};
+```
+
 ### `shared.V2BulkElementResultRevertTransaction`
 
 ```typescript
@@ -190,24 +208,6 @@ const value: shared.V2BulkElementResultRevertTransaction = {
     timestamp: new Date("2025-12-06T01:08:16.380Z"),
   },
   logID: 96956,
-  responseType: "<value>",
-};
-```
-
-### `shared.V2BulkElementResultAddMetadata`
-
-```typescript
-const value: shared.V2BulkElementResultAddMetadata = {
-  logID: 934456,
-  responseType: "<value>",
-};
-```
-
-### `shared.V2BulkElementResultDeleteMetadata`
-
-```typescript
-const value: shared.V2BulkElementResultDeleteMetadata = {
-  logID: 699342,
   responseType: "<value>",
 };
 ```

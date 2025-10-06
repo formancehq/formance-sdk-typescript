@@ -3,45 +3,6 @@
 
 ## Supported Types
 
-### `shared.BankingCircleConfig`
-
-```typescript
-const value: shared.BankingCircleConfig = {
-  authorizationEndpoint: "XXX",
-  endpoint: "XXX",
-  name: "My Banking Circle Account",
-  password: "XXX",
-  pollingPeriod: "60s",
-  userCertificate: "XXX",
-  userCertificateKey: "XXX",
-  username: "XXX",
-};
-```
-
-### `shared.MangoPayConfig`
-
-```typescript
-const value: shared.MangoPayConfig = {
-  apiKey: "XXX",
-  clientID: "XXX",
-  endpoint: "XXX",
-  name: "My MangoPay Account",
-  pollingPeriod: "60s",
-};
-```
-
-### `shared.MoneycorpConfig`
-
-```typescript
-const value: shared.MoneycorpConfig = {
-  apiKey: "XXX",
-  clientID: "XXX",
-  endpoint: "XXX",
-  name: "My Moneycorp Account",
-  pollingPeriod: "60s",
-};
-```
-
 ### `shared.AdyenConfig`
 
 ```typescript
@@ -68,6 +29,21 @@ const value: shared.AtlarConfig = {
 };
 ```
 
+### `shared.BankingCircleConfig`
+
+```typescript
+const value: shared.BankingCircleConfig = {
+  authorizationEndpoint: "XXX",
+  endpoint: "XXX",
+  name: "My Banking Circle Account",
+  password: "XXX",
+  pollingPeriod: "60s",
+  userCertificate: "XXX",
+  userCertificateKey: "XXX",
+  username: "XXX",
+};
+```
+
 ### `shared.CurrencyCloudConfig`
 
 ```typescript
@@ -80,6 +56,16 @@ const value: shared.CurrencyCloudConfig = {
 };
 ```
 
+### `shared.DummyPayConfig`
+
+```typescript
+const value: shared.DummyPayConfig = {
+  directory: "/tmp/dummypay",
+  filePollingPeriod: "60s",
+  name: "My DummyPay Account",
+};
+```
+
 ### `shared.GenericConfig`
 
 ```typescript
@@ -87,6 +73,18 @@ const value: shared.GenericConfig = {
   apiKey: "XXX",
   endpoint: "XXX",
   name: "My Generic Account",
+  pollingPeriod: "60s",
+};
+```
+
+### `shared.MangoPayConfig`
+
+```typescript
+const value: shared.MangoPayConfig = {
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My MangoPay Account",
   pollingPeriod: "60s",
 };
 ```
@@ -103,13 +101,15 @@ const value: shared.ModulrConfig = {
 };
 ```
 
-### `shared.DummyPayConfig`
+### `shared.MoneycorpConfig`
 
 ```typescript
-const value: shared.DummyPayConfig = {
-  directory: "/tmp/dummypay",
-  filePollingPeriod: "60s",
-  name: "My DummyPay Account",
+const value: shared.MoneycorpConfig = {
+  apiKey: "XXX",
+  clientID: "XXX",
+  endpoint: "XXX",
+  name: "My Moneycorp Account",
+  pollingPeriod: "60s",
 };
 ```
 

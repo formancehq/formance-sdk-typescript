@@ -13,18 +13,51 @@ import {
   V2Posting$outboundSchema,
 } from "./v2posting.js";
 
+/**
+ * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
+ */
+export enum Runtime {
+  ExperimentalInterpreter = "experimental-interpreter",
+  Machine = "machine",
+}
+
 export type V2PostTransactionScript = {
   plain: string;
   vars?: { [k: string]: string } | undefined;
 };
 
 export type V2PostTransaction = {
+  accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
+  force?: boolean | undefined;
   metadata: { [k: string]: string };
   postings?: Array<V2Posting> | undefined;
   reference?: string | undefined;
+  /**
+   * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
+   */
+  runtime?: Runtime | undefined;
   script?: V2PostTransactionScript | undefined;
   timestamp?: Date | undefined;
 };
+
+/** @internal */
+export const Runtime$inboundSchema: z.ZodNativeEnum<typeof Runtime> = z
+  .nativeEnum(Runtime);
+
+/** @internal */
+export const Runtime$outboundSchema: z.ZodNativeEnum<typeof Runtime> =
+  Runtime$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Runtime$ {
+  /** @deprecated use `Runtime$inboundSchema` instead. */
+  export const inboundSchema = Runtime$inboundSchema;
+  /** @deprecated use `Runtime$outboundSchema` instead. */
+  export const outboundSchema = Runtime$outboundSchema;
+}
 
 /** @internal */
 export const V2PostTransactionScript$inboundSchema: z.ZodType<
@@ -89,9 +122,12 @@ export const V2PostTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  accountMetadata: z.record(z.record(z.string())).optional(),
+  force: z.boolean().optional(),
   metadata: z.record(z.string()),
   postings: z.array(V2Posting$inboundSchema).optional(),
   reference: z.string().optional(),
+  runtime: Runtime$inboundSchema.optional(),
   script: z.lazy(() => V2PostTransactionScript$inboundSchema).optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
@@ -99,9 +135,12 @@ export const V2PostTransaction$inboundSchema: z.ZodType<
 
 /** @internal */
 export type V2PostTransaction$Outbound = {
+  accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
+  force?: boolean | undefined;
   metadata: { [k: string]: string };
   postings?: Array<V2Posting$Outbound> | undefined;
   reference?: string | undefined;
+  runtime?: string | undefined;
   script?: V2PostTransactionScript$Outbound | undefined;
   timestamp?: string | undefined;
 };
@@ -112,9 +151,12 @@ export const V2PostTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2PostTransaction
 > = z.object({
+  accountMetadata: z.record(z.record(z.string())).optional(),
+  force: z.boolean().optional(),
   metadata: z.record(z.string()),
   postings: z.array(V2Posting$outboundSchema).optional(),
   reference: z.string().optional(),
+  runtime: Runtime$outboundSchema.optional(),
   script: z.lazy(() => V2PostTransactionScript$outboundSchema).optional(),
   timestamp: z.date().transform(v => v.toISOString()).optional(),
 });

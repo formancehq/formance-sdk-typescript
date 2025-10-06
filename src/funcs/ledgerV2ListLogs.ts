@@ -107,6 +107,7 @@ async function $do(
       "cursor": payload.cursor,
       "pageSize": payload.pageSize,
       "pit": payload.pit,
+      "sort": payload.sort,
     }),
     encodeJSONQuery({
       "query": payload.query,

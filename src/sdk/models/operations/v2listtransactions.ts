@@ -9,6 +9,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
+/**
+ * Deprecated: Use sort param
+ */
 export enum Order {
   Effective = "effective",
 }
@@ -28,6 +31,11 @@ export type V2ListTransactionsRequest = {
    * Name of the ledger.
    */
   ledger: string;
+  /**
+   * Deprecated: Use sort param
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+   */
   order?: Order | undefined;
   /**
    * The maximum number of results to return per page.
@@ -38,6 +46,13 @@ export type V2ListTransactionsRequest = {
   pit?: Date | undefined;
   query?: { [k: string]: any } | undefined;
   reverse?: boolean | undefined;
+  /**
+   * Sort results using a field name and order (ascending or descending).
+   *
+   * @remarks
+   * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+   */
+  sort?: string | undefined;
 };
 
 export type V2ListTransactionsResponse = {
@@ -96,6 +111,7 @@ export const V2ListTransactionsRequest$inboundSchema: z.ZodType<
     .optional(),
   query: z.record(z.any()).optional(),
   reverse: z.boolean().optional(),
+  sort: z.string().optional(),
 });
 
 /** @internal */
@@ -108,6 +124,7 @@ export type V2ListTransactionsRequest$Outbound = {
   pit?: string | undefined;
   query?: { [k: string]: any } | undefined;
   reverse?: boolean | undefined;
+  sort?: string | undefined;
 };
 
 /** @internal */
@@ -124,6 +141,7 @@ export const V2ListTransactionsRequest$outboundSchema: z.ZodType<
   pit: z.date().transform(v => v.toISOString()).optional(),
   query: z.record(z.any()).optional(),
   reverse: z.boolean().optional(),
+  sort: z.string().optional(),
 });
 
 /**

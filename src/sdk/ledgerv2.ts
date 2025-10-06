@@ -7,30 +7,40 @@ import { ledgerV2AddMetadataToAccount } from "../funcs/ledgerV2AddMetadataToAcco
 import { ledgerV2CountAccounts } from "../funcs/ledgerV2CountAccounts.js";
 import { ledgerV2CountTransactions } from "../funcs/ledgerV2CountTransactions.js";
 import { ledgerV2CreateBulk } from "../funcs/ledgerV2CreateBulk.js";
+import { ledgerV2CreateExporter } from "../funcs/ledgerV2CreateExporter.js";
 import { ledgerV2CreateLedger } from "../funcs/ledgerV2CreateLedger.js";
+import { ledgerV2CreatePipeline } from "../funcs/ledgerV2CreatePipeline.js";
 import { ledgerV2CreateTransaction } from "../funcs/ledgerV2CreateTransaction.js";
 import { ledgerV2DeleteAccountMetadata } from "../funcs/ledgerV2DeleteAccountMetadata.js";
+import { ledgerV2DeleteExporter } from "../funcs/ledgerV2DeleteExporter.js";
 import { ledgerV2DeleteLedgerMetadata } from "../funcs/ledgerV2DeleteLedgerMetadata.js";
+import { ledgerV2DeletePipeline } from "../funcs/ledgerV2DeletePipeline.js";
 import { ledgerV2DeleteTransactionMetadata } from "../funcs/ledgerV2DeleteTransactionMetadata.js";
 import { ledgerV2ExportLogs } from "../funcs/ledgerV2ExportLogs.js";
 import { ledgerV2GetAccount } from "../funcs/ledgerV2GetAccount.js";
 import { ledgerV2GetBalancesAggregated } from "../funcs/ledgerV2GetBalancesAggregated.js";
-import { ledgerV2GetInfo } from "../funcs/ledgerV2GetInfo.js";
+import { ledgerV2GetExporterState } from "../funcs/ledgerV2GetExporterState.js";
 import { ledgerV2GetLedger } from "../funcs/ledgerV2GetLedger.js";
 import { ledgerV2GetLedgerInfo } from "../funcs/ledgerV2GetLedgerInfo.js";
-import { ledgerV2GetMetrics } from "../funcs/ledgerV2GetMetrics.js";
+import { ledgerV2GetPipelineState } from "../funcs/ledgerV2GetPipelineState.js";
 import { ledgerV2GetTransaction } from "../funcs/ledgerV2GetTransaction.js";
 import { ledgerV2GetVolumesWithBalances } from "../funcs/ledgerV2GetVolumesWithBalances.js";
 import { ledgerV2ImportLogs } from "../funcs/ledgerV2ImportLogs.js";
 import { ledgerV2ListAccounts } from "../funcs/ledgerV2ListAccounts.js";
+import { ledgerV2ListExporters } from "../funcs/ledgerV2ListExporters.js";
 import { ledgerV2ListLedgers } from "../funcs/ledgerV2ListLedgers.js";
 import { ledgerV2ListLogs } from "../funcs/ledgerV2ListLogs.js";
+import { ledgerV2ListPipelines } from "../funcs/ledgerV2ListPipelines.js";
 import { ledgerV2ListTransactions } from "../funcs/ledgerV2ListTransactions.js";
 import { ledgerV2ReadStats } from "../funcs/ledgerV2ReadStats.js";
+import { ledgerV2ResetPipeline } from "../funcs/ledgerV2ResetPipeline.js";
 import { ledgerV2RevertTransaction } from "../funcs/ledgerV2RevertTransaction.js";
+import { ledgerV2StartPipeline } from "../funcs/ledgerV2StartPipeline.js";
+import { ledgerV2StopPipeline } from "../funcs/ledgerV2StopPipeline.js";
 import { ledgerV2UpdateLedgerMetadata } from "../funcs/ledgerV2UpdateLedgerMetadata.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
+import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class LedgerV2 extends ClientSDK {
@@ -105,6 +115,20 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Create exporter
+   */
+  async createExporter(
+    request: shared.V2ExporterConfiguration,
+    options?: RequestOptions,
+  ): Promise<operations.V2CreateExporterResponse> {
+    return unwrapAsync(ledgerV2CreateExporter(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Create a ledger
    */
   async createLedger(
@@ -112,6 +136,20 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2CreateLedgerResponse> {
     return unwrapAsync(ledgerV2CreateLedger(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Create pipeline
+   */
+  async createPipeline(
+    request: operations.V2CreatePipelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2CreatePipelineResponse> {
+    return unwrapAsync(ledgerV2CreatePipeline(
       this,
       request,
       options,
@@ -150,6 +188,20 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Delete exporter
+   */
+  async deleteExporter(
+    request: operations.V2DeleteExporterRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeleteExporterResponse> {
+    return unwrapAsync(ledgerV2DeleteExporter(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Delete ledger metadata by key
    */
   async deleteLedgerMetadata(
@@ -157,6 +209,20 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2DeleteLedgerMetadataResponse> {
     return unwrapAsync(ledgerV2DeleteLedgerMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Delete pipeline
+   */
+  async deletePipeline(
+    request: operations.V2DeletePipelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeletePipelineResponse> {
+    return unwrapAsync(ledgerV2DeletePipeline(
       this,
       request,
       options,
@@ -223,13 +289,15 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
-   * Show server information
+   * Get exporter state
    */
-  async getInfo(
+  async getExporterState(
+    request: operations.V2GetExporterStateRequest,
     options?: RequestOptions,
-  ): Promise<operations.V2GetInfoResponse> {
-    return unwrapAsync(ledgerV2GetInfo(
+  ): Promise<operations.V2GetExporterStateResponse> {
+    return unwrapAsync(ledgerV2GetExporterState(
       this,
+      request,
       options,
     ));
   }
@@ -263,13 +331,15 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
-   * Read in memory metrics
+   * Get pipeline state
    */
-  async getMetrics(
+  async getPipelineState(
+    request: operations.V2GetPipelineStateRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetMetricsResponse> {
-    return unwrapAsync(ledgerV2GetMetrics(
+  ): Promise<operations.V2GetPipelineStateResponse> {
+    return unwrapAsync(ledgerV2GetPipelineState(
       this,
+      request,
       options,
     ));
   }
@@ -331,6 +401,18 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * List exporters
+   */
+  async listExporters(
+    options?: RequestOptions,
+  ): Promise<operations.V2ListExportersResponse> {
+    return unwrapAsync(ledgerV2ListExporters(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * List ledgers
    */
   async listLedgers(
@@ -355,6 +437,20 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2ListLogsResponse> {
     return unwrapAsync(ledgerV2ListLogs(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List pipelines
+   */
+  async listPipelines(
+    request: operations.V2ListPipelinesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListPipelinesResponse> {
+    return unwrapAsync(ledgerV2ListPipelines(
       this,
       request,
       options,
@@ -396,6 +492,20 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Reset pipeline
+   */
+  async resetPipeline(
+    request: operations.V2ResetPipelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ResetPipelineResponse> {
+    return unwrapAsync(ledgerV2ResetPipeline(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Revert a ledger transaction by its ID
    */
   async revertTransaction(
@@ -403,6 +513,34 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2RevertTransactionResponse> {
     return unwrapAsync(ledgerV2RevertTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Start pipeline
+   */
+  async startPipeline(
+    request: operations.V2StartPipelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2StartPipelineResponse> {
+    return unwrapAsync(ledgerV2StartPipeline(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Stop pipeline
+   */
+  async stopPipeline(
+    request: operations.V2StopPipelineRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2StopPipelineResponse> {
+    return unwrapAsync(ledgerV2StopPipeline(
       this,
       request,
       options,

@@ -27,7 +27,6 @@ and standard method from web, mobile and desktop applications.
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
 * [@formance/formance-sdk](#formanceformance-sdk)
-  * [🏗 **Welcome to your new SDK!** 🏗](#welcome-to-your-new-sdk)
 * [Introduction](#introduction)
 * [Authentication](#authentication)
   * [SDK Installation](#sdk-installation)
@@ -74,10 +73,7 @@ bun add @formance/formance-sdk
 ### Yarn
 
 ```bash
-yarn add @formance/formance-sdk zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @formance/formance-sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -138,6 +134,8 @@ run();
 
 ### [ledger](docs/sdks/ledger/README.md)
 
+* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
+* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
 #### [ledger.v1](docs/sdks/ledgerv1/README.md)
 
@@ -169,27 +167,36 @@ run();
 * [countAccounts](docs/sdks/ledgerv2/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/ledgerv2/README.md#counttransactions) - Count the transactions from a ledger
 * [createBulk](docs/sdks/ledgerv2/README.md#createbulk) - Bulk request
+* [createExporter](docs/sdks/ledgerv2/README.md#createexporter) - Create exporter
 * [createLedger](docs/sdks/ledgerv2/README.md#createledger) - Create a ledger
+* [createPipeline](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 * [createTransaction](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+* [deleteExporter](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
+* [deletePipeline](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
 * [deleteTransactionMetadata](docs/sdks/ledgerv2/README.md#deletetransactionmetadata) - Delete metadata by key
 * [exportLogs](docs/sdks/ledgerv2/README.md#exportlogs) - Export logs
 * [getAccount](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
+* [getExporterState](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
-* [getMetrics](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
+* [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/ledgerv2/README.md#importlogs)
 * [listAccounts](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
+* [listExporters](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 * [listLedgers](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 * [listLogs](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
+* [listPipelines](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
 * [listTransactions](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
+* [resetPipeline](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
 * [revertTransaction](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [startPipeline](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
+* [stopPipeline](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
 * [updateLedgerMetadata](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 
 ### [orchestration](docs/sdks/orchestration/README.md)
@@ -432,14 +439,7 @@ const sdk = new SDK({
 
 async function run() {
   try {
-    const result = await sdk.ledger.v2.addMetadataOnTransaction({
-      requestBody: {
-        "admin": "true",
-      },
-      dryRun: true,
-      id: 1234n,
-      ledger: "ledger001",
-    });
+    const result = await sdk.ledger.getInfo();
 
     console.log(result);
   } catch (error) {
@@ -481,15 +481,15 @@ run();
 
 
 **Inherit from [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts)**:
-* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 46 of 219 methods.*
-* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 45 of 219 methods.*
-* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Error. Applicable to 26 of 219 methods.*
-* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 219 methods.*
-* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 219 methods.*
-* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 219 methods.*
-* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 219 methods.*
-* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 219 methods.*
-* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 219 methods.*
+* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 46 of 230 methods.*
+* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 45 of 230 methods.*
+* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Error. Applicable to 37 of 230 methods.*
+* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 230 methods.*
+* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 230 methods.*
+* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 230 methods.*
+* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 230 methods.*
+* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 230 methods.*
+* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 230 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -511,10 +511,10 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                               | Supported Values                                                           | Default           | Description                                                   |
-| -------------- | --------------------------------------- | -------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `organization: string`                  | string                                                                     | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | Parameter                               | Supported Values                                      | Default           | Description                                                   |
+| -------------- | --------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
+| `organization` | `organization: string`                  | string                                                | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -548,7 +548,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  serverURL: "https://orgID-stackID.eu.sandbox.formance.cloud",
+  serverURL: "https://orgID-stackID.sandbox.formance.cloud",
   security: {
     clientID: "<YOUR_CLIENT_ID_HERE>",
     clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
@@ -611,7 +611,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new SDK({ httpClient });
+const sdk = new SDK({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -675,6 +675,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`authV1ReadUser`](docs/sdks/authv1/README.md#readuser) - Read user
 - [`authV1UpdateClient`](docs/sdks/authv1/README.md#updateclient) - Update client
 - [`getVersions`](docs/sdks/sdk/README.md#getversions) - Show stack version information
+- [`ledgerGetInfo`](docs/sdks/ledger/README.md#getinfo) - Show server information
+- [`ledgerGetMetrics`](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 - [`ledgerV1AddMetadataOnTransaction`](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 - [`ledgerV1AddMetadataToAccount`](docs/sdks/ledgerv1/README.md#addmetadatatoaccount) - Add metadata to an account
 - [`ledgerV1CountAccounts`](docs/sdks/ledgerv1/README.md#countaccounts) - Count the accounts from a ledger
@@ -699,27 +701,36 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV2CountAccounts`](docs/sdks/ledgerv2/README.md#countaccounts) - Count the accounts from a ledger
 - [`ledgerV2CountTransactions`](docs/sdks/ledgerv2/README.md#counttransactions) - Count the transactions from a ledger
 - [`ledgerV2CreateBulk`](docs/sdks/ledgerv2/README.md#createbulk) - Bulk request
+- [`ledgerV2CreateExporter`](docs/sdks/ledgerv2/README.md#createexporter) - Create exporter
 - [`ledgerV2CreateLedger`](docs/sdks/ledgerv2/README.md#createledger) - Create a ledger
+- [`ledgerV2CreatePipeline`](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 - [`ledgerV2CreateTransaction`](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 - [`ledgerV2DeleteAccountMetadata`](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+- [`ledgerV2DeleteExporter`](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 - [`ledgerV2DeleteLedgerMetadata`](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
+- [`ledgerV2DeletePipeline`](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
 - [`ledgerV2DeleteTransactionMetadata`](docs/sdks/ledgerv2/README.md#deletetransactionmetadata) - Delete metadata by key
 - [`ledgerV2ExportLogs`](docs/sdks/ledgerv2/README.md#exportlogs) - Export logs
 - [`ledgerV2GetAccount`](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 - [`ledgerV2GetBalancesAggregated`](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
-- [`ledgerV2GetInfo`](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
+- [`ledgerV2GetExporterState`](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
 - [`ledgerV2GetLedger`](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 - [`ledgerV2GetLedgerInfo`](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
-- [`ledgerV2GetMetrics`](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
+- [`ledgerV2GetPipelineState`](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 - [`ledgerV2GetTransaction`](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 - [`ledgerV2GetVolumesWithBalances`](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 - [`ledgerV2ImportLogs`](docs/sdks/ledgerv2/README.md#importlogs)
 - [`ledgerV2ListAccounts`](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
+- [`ledgerV2ListExporters`](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 - [`ledgerV2ListLedgers`](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 - [`ledgerV2ListLogs`](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
+- [`ledgerV2ListPipelines`](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
 - [`ledgerV2ListTransactions`](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 - [`ledgerV2ReadStats`](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
+- [`ledgerV2ResetPipeline`](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
 - [`ledgerV2RevertTransaction`](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+- [`ledgerV2StartPipeline`](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
+- [`ledgerV2StopPipeline`](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
 - [`ledgerV2UpdateLedgerMetadata`](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 - [`orchestrationV1CancelEvent`](docs/sdks/orchestrationv1/README.md#cancelevent) - Cancel a running workflow
 - [`orchestrationV1CreateTrigger`](docs/sdks/orchestrationv1/README.md#createtrigger) - Create trigger

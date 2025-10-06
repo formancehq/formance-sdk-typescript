@@ -10,6 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type V2Ledger = {
   addedAt: Date;
   bucket: string;
+  features?: { [k: string]: string } | undefined;
+  id?: number | undefined;
   metadata?: { [k: string]: string } | undefined;
   name: string;
 };
@@ -22,6 +24,8 @@ export const V2Ledger$inboundSchema: z.ZodType<
 > = z.object({
   addedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   bucket: z.string(),
+  features: z.record(z.string()).optional(),
+  id: z.number().int().optional(),
   metadata: z.record(z.string()).optional(),
   name: z.string(),
 });
@@ -30,6 +34,8 @@ export const V2Ledger$inboundSchema: z.ZodType<
 export type V2Ledger$Outbound = {
   addedAt: string;
   bucket: string;
+  features?: { [k: string]: string } | undefined;
+  id?: number | undefined;
   metadata?: { [k: string]: string } | undefined;
   name: string;
 };
@@ -42,6 +48,8 @@ export const V2Ledger$outboundSchema: z.ZodType<
 > = z.object({
   addedAt: z.date().transform(v => v.toISOString()),
   bucket: z.string(),
+  features: z.record(z.string()).optional(),
+  id: z.number().int().optional(),
   metadata: z.record(z.string()).optional(),
   name: z.string(),
 });

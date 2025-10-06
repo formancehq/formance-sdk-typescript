@@ -16,7 +16,10 @@ import {
 export type V2Account = {
   address: string;
   effectiveVolumes?: { [k: string]: V2Volume } | undefined;
+  firstUsage?: Date | undefined;
+  insertionDate?: Date | undefined;
   metadata: { [k: string]: string };
+  updatedAt?: Date | undefined;
   volumes?: { [k: string]: V2Volume } | undefined;
 };
 
@@ -28,7 +31,14 @@ export const V2Account$inboundSchema: z.ZodType<
 > = z.object({
   address: z.string(),
   effectiveVolumes: z.record(V2Volume$inboundSchema).optional(),
+  firstUsage: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
+  insertionDate: z.string().datetime({ offset: true }).transform(v =>
+    new Date(v)
+  ).optional(),
   metadata: z.record(z.string()),
+  updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
   volumes: z.record(V2Volume$inboundSchema).optional(),
 });
 
@@ -36,7 +46,10 @@ export const V2Account$inboundSchema: z.ZodType<
 export type V2Account$Outbound = {
   address: string;
   effectiveVolumes?: { [k: string]: V2Volume$Outbound } | undefined;
+  firstUsage?: string | undefined;
+  insertionDate?: string | undefined;
   metadata: { [k: string]: string };
+  updatedAt?: string | undefined;
   volumes?: { [k: string]: V2Volume$Outbound } | undefined;
 };
 
@@ -48,7 +61,10 @@ export const V2Account$outboundSchema: z.ZodType<
 > = z.object({
   address: z.string(),
   effectiveVolumes: z.record(V2Volume$outboundSchema).optional(),
+  firstUsage: z.date().transform(v => v.toISOString()).optional(),
+  insertionDate: z.date().transform(v => v.toISOString()).optional(),
   metadata: z.record(z.string()),
+  updatedAt: z.date().transform(v => v.toISOString()).optional(),
   volumes: z.record(V2Volume$outboundSchema).optional(),
 });
 

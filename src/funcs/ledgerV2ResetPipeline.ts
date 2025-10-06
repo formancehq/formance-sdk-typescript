@@ -3,8 +3,10 @@
  */
 
 import { SDKCore } from "../core.js";
+import { encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -24,14 +26,15 @@ import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Read in memory metrics
+ * Reset pipeline
  */
-export function ledgerV2GetMetrics(
+export function ledgerV2ResetPipeline(
   client: SDKCore,
+  request: operations.V2ResetPipelineRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.GetMetricsResponse,
+    operations.V2ResetPipelineResponse,
     | errors.V2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -45,17 +48,19 @@ export function ledgerV2GetMetrics(
 > {
   return new APIPromise($do(
     client,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: SDKCore,
+  request: operations.V2ResetPipelineRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.GetMetricsResponse,
+      operations.V2ResetPipelineResponse,
       | errors.V2ErrorResponse
       | SDKBaseError
       | ResponseValidationError
@@ -69,7 +74,31 @@ async function $do(
     APICall,
   ]
 > {
-  const path = pathToFunc("/api/ledger/_/metrics")();
+  const parsed = safeParse(
+    request,
+    (value) => operations.V2ResetPipelineRequest$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
+
+  const pathParams = {
+    ledger: encodeSimple("ledger", payload.ledger, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+    pipelineID: encodeSimple("pipelineID", payload.pipelineID, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc(
+    "/api/ledger/v2/{ledger}/pipelines/{pipelineID}/reset",
+  )(pathParams);
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -81,8 +110,8 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "getMetrics",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    operationID: "v2ResetPipeline",
+    oAuth2Scopes: ["auth:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -95,10 +124,11 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -127,7 +157,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.GetMetricsResponse,
+    operations.V2ResetPipelineResponse,
     | errors.V2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -138,7 +168,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.GetMetricsResponse$inboundSchema, { key: "object" }),
+    M.nil(202, operations.V2ResetPipelineResponse$inboundSchema),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

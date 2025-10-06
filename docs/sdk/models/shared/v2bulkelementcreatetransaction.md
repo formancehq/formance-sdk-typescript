@@ -8,6 +8,11 @@ import { V2BulkElementCreateTransaction } from "@formance/formance-sdk/sdk/model
 let value: V2BulkElementCreateTransaction = {
   action: "<value>",
   data: {
+    accountMetadata: {
+      "key": {
+        "admin": "true",
+      },
+    },
     metadata: {
       "admin": "true",
     },

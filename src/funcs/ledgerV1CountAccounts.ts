@@ -177,7 +177,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, operations.CountAccountsResponse$inboundSchema, { hdrs: true }),
+    M.nil(204, operations.CountAccountsResponse$inboundSchema, { hdrs: true }),
     M.jsonErr("default", errors.ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

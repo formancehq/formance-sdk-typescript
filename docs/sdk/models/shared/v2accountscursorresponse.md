@@ -22,9 +22,12 @@ let value: V2AccountsCursorResponse = {
             output: 10n,
           },
         },
+        firstUsage: new Date("2023-01-01T00:00:00Z"),
+        insertionDate: new Date("2023-01-01T00:00:00Z"),
         metadata: {
           "admin": "true",
         },
+        updatedAt: new Date("2023-01-01T00:00:00Z"),
         volumes: {
           "USD": {
             balance: 90n,

@@ -90,6 +90,7 @@ async function $do(
   const query = encodeFormQuery({
     "cursor": payload.cursor,
     "pageSize": payload.pageSize,
+    "sort": payload.sort,
   });
 
   const headers = new Headers(compactMap({
