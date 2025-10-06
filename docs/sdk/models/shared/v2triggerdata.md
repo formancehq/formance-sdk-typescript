@@ -19,4 +19,5 @@ let value: V2TriggerData = {
 | `filter`              | *string*              | :heavy_minus_sign:    | N/A                   |
 | `name`                | *string*              | :heavy_minus_sign:    | N/A                   |
 | `vars`                | Record<string, *any*> | :heavy_minus_sign:    | N/A                   |
+| `version`             | *string*              | :heavy_minus_sign:    | N/A                   |
 | `workflowID`          | *string*              | :heavy_check_mark:    | N/A                   |

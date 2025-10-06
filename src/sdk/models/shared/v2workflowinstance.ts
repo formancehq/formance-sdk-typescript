@@ -12,6 +12,12 @@ import {
   V2StageStatus$Outbound,
   V2StageStatus$outboundSchema,
 } from "./v2stagestatus.js";
+import {
+  V2Workflow,
+  V2Workflow$inboundSchema,
+  V2Workflow$Outbound,
+  V2Workflow$outboundSchema,
+} from "./v2workflow.js";
 
 export type V2WorkflowInstance = {
   createdAt: Date;
@@ -21,6 +27,7 @@ export type V2WorkflowInstance = {
   terminated: boolean;
   terminatedAt?: Date | undefined;
   updatedAt: Date;
+  workflow?: V2Workflow | undefined;
   workflowID: string;
 };
 
@@ -39,6 +46,7 @@ export const V2WorkflowInstance$inboundSchema: z.ZodType<
     new Date(v)
   ).optional(),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  workflow: V2Workflow$inboundSchema.optional(),
   workflowID: z.string(),
 });
 
@@ -51,6 +59,7 @@ export type V2WorkflowInstance$Outbound = {
   terminated: boolean;
   terminatedAt?: string | undefined;
   updatedAt: string;
+  workflow?: V2Workflow$Outbound | undefined;
   workflowID: string;
 };
 
@@ -67,6 +76,7 @@ export const V2WorkflowInstance$outboundSchema: z.ZodType<
   terminated: z.boolean(),
   terminatedAt: z.date().transform(v => v.toISOString()).optional(),
   updatedAt: z.date().transform(v => v.toISOString()),
+  workflow: V2Workflow$outboundSchema.optional(),
   workflowID: z.string(),
 });
 

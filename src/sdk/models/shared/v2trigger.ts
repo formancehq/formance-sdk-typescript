@@ -14,6 +14,7 @@ export type V2Trigger = {
   id: string;
   name?: string | undefined;
   vars?: { [k: string]: any } | undefined;
+  version?: string | undefined;
   workflowID: string;
 };
 
@@ -29,6 +30,7 @@ export const V2Trigger$inboundSchema: z.ZodType<
   id: z.string(),
   name: z.string().optional(),
   vars: z.record(z.any()).optional(),
+  version: z.string().optional(),
   workflowID: z.string(),
 });
 
@@ -40,6 +42,7 @@ export type V2Trigger$Outbound = {
   id: string;
   name?: string | undefined;
   vars?: { [k: string]: any } | undefined;
+  version?: string | undefined;
   workflowID: string;
 };
 
@@ -55,6 +58,7 @@ export const V2Trigger$outboundSchema: z.ZodType<
   id: z.string(),
   name: z.string().optional(),
   vars: z.record(z.any()).optional(),
+  version: z.string().optional(),
   workflowID: z.string(),
 });
 

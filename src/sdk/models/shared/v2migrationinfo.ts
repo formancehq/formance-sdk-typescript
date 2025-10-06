@@ -10,6 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export enum V2MigrationInfoState {
   ToDo = "TO DO",
   Done = "DONE",
+  Progress = "PROGRESS",
 }
 
 export type V2MigrationInfo = {

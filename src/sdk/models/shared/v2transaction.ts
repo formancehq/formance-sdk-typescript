@@ -36,6 +36,7 @@ export type V2Transaction = {
   reverted: boolean;
   revertedAt?: Date | undefined;
   timestamp: Date;
+  updatedAt?: Date | undefined;
 };
 
 /** @internal */
@@ -60,6 +61,8 @@ export const V2Transaction$inboundSchema: z.ZodType<
   revertedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
+    .optional(),
 });
 
 /** @internal */
@@ -84,6 +87,7 @@ export type V2Transaction$Outbound = {
   reverted: boolean;
   revertedAt?: string | undefined;
   timestamp: string;
+  updatedAt?: string | undefined;
 };
 
 /** @internal */
@@ -106,6 +110,7 @@ export const V2Transaction$outboundSchema: z.ZodType<
   reverted: z.boolean(),
   revertedAt: z.date().transform(v => v.toISOString()).optional(),
   timestamp: z.date().transform(v => v.toISOString()),
+  updatedAt: z.date().transform(v => v.toISOString()).optional(),
 });
 
 /**

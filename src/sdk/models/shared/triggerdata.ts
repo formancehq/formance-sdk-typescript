@@ -12,6 +12,7 @@ export type TriggerData = {
   filter?: string | undefined;
   name?: string | undefined;
   vars?: { [k: string]: any } | undefined;
+  version?: string | undefined;
   workflowID: string;
 };
 
@@ -25,6 +26,7 @@ export const TriggerData$inboundSchema: z.ZodType<
   filter: z.string().optional(),
   name: z.string().optional(),
   vars: z.record(z.any()).optional(),
+  version: z.string().optional(),
   workflowID: z.string(),
 });
 
@@ -34,6 +36,7 @@ export type TriggerData$Outbound = {
   filter?: string | undefined;
   name?: string | undefined;
   vars?: { [k: string]: any } | undefined;
+  version?: string | undefined;
   workflowID: string;
 };
 
@@ -47,6 +50,7 @@ export const TriggerData$outboundSchema: z.ZodType<
   filter: z.string().optional(),
   name: z.string().optional(),
   vars: z.record(z.any()).optional(),
+  version: z.string().optional(),
   workflowID: z.string(),
 });
 

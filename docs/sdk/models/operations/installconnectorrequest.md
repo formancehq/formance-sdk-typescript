@@ -9,10 +9,10 @@ import { Connector } from "@formance/formance-sdk/sdk/models/shared";
 let value: InstallConnectorRequest = {
   connectorConfig: {
     apiKey: "XXX",
-    loginID: "XXX",
-    name: "My CurrencyCloud Account",
+    endpoint: "XXX",
+    name: "My Generic Account",
     pollingPeriod: "60s",
-    provider: "Currencycloud",
+    provider: "Generic",
   },
   connector: Connector.Wise,
 };

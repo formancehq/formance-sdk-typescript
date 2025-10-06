@@ -17,6 +17,11 @@ const value: shared.V2BulkElementAddMetadata = {
 const value: shared.V2BulkElementCreateTransaction = {
   action: "<value>",
   data: {
+    accountMetadata: {
+      "key": {
+        "admin": "true",
+      },
+    },
     metadata: {
       "admin": "true",
     },

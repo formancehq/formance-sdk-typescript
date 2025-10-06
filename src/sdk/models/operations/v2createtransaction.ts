@@ -28,6 +28,8 @@ export type V2CreateTransactionRequest = {
   dryRun?: boolean | undefined;
   /**
    * Disable balance checks when passing postings
+   *
+   * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   force?: boolean | undefined;
   /**

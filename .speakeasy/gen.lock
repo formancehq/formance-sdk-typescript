@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: c079046e05a1d80ad361ab1f38ccee14
+  docChecksum: 4aaed26e7fbddbaeef20c93ae50f5aed
   docVersion: v3.1.0
-  speakeasyVersion: 1.617.1
-  generationVersion: 2.701.8
-  releaseVersion: 4.5.0
-  configChecksum: 9b2b427789d5db4a6ebdfd88ce64526e
+  speakeasyVersion: 1.634.2
+  generationVersion: 2.721.3
+  releaseVersion: 4.6.0
+  configChecksum: ed3e9340c017cf78527dbaba07d5cb0d
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -16,13 +16,13 @@ features:
     additionalDependencies: 0.1.0
     bigint: 0.0.2
     constsAndDefaults: 0.1.12
-    core: 3.21.22
+    core: 3.21.26
     defaultEnabledRetries: 0.1.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
-    errors: 2.86.0
+    errors: 2.86.1
     globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.5
@@ -33,7 +33,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.11
+    unions: 2.86.0
     uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
@@ -299,16 +299,25 @@ generatedFiles:
   - docs/sdk/models/operations/v2counttransactionsresponse.md
   - docs/sdk/models/operations/v2createbulkrequest.md
   - docs/sdk/models/operations/v2createbulkresponse.md
+  - docs/sdk/models/operations/v2createexporterresponse.md
+  - docs/sdk/models/operations/v2createexporterresponsebody.md
   - docs/sdk/models/operations/v2createledgerrequest.md
   - docs/sdk/models/operations/v2createledgerresponse.md
+  - docs/sdk/models/operations/v2createpipelinerequest.md
+  - docs/sdk/models/operations/v2createpipelineresponse.md
+  - docs/sdk/models/operations/v2createpipelineresponsebody.md
   - docs/sdk/models/operations/v2createtransactionrequest.md
   - docs/sdk/models/operations/v2createtransactionresponse.md
   - docs/sdk/models/operations/v2createtriggerresponse.md
   - docs/sdk/models/operations/v2createworkflowresponse.md
   - docs/sdk/models/operations/v2deleteaccountmetadatarequest.md
   - docs/sdk/models/operations/v2deleteaccountmetadataresponse.md
+  - docs/sdk/models/operations/v2deleteexporterrequest.md
+  - docs/sdk/models/operations/v2deleteexporterresponse.md
   - docs/sdk/models/operations/v2deleteledgermetadatarequest.md
   - docs/sdk/models/operations/v2deleteledgermetadataresponse.md
+  - docs/sdk/models/operations/v2deletepipelinerequest.md
+  - docs/sdk/models/operations/v2deletepipelineresponse.md
   - docs/sdk/models/operations/v2deletetransactionmetadatarequest.md
   - docs/sdk/models/operations/v2deletetransactionmetadataresponse.md
   - docs/sdk/models/operations/v2deletetriggerrequest.md
@@ -321,6 +330,9 @@ generatedFiles:
   - docs/sdk/models/operations/v2getaccountresponse.md
   - docs/sdk/models/operations/v2getbalancesaggregatedrequest.md
   - docs/sdk/models/operations/v2getbalancesaggregatedresponse.md
+  - docs/sdk/models/operations/v2getexporterstaterequest.md
+  - docs/sdk/models/operations/v2getexporterstateresponse.md
+  - docs/sdk/models/operations/v2getexporterstateresponsebody.md
   - docs/sdk/models/operations/v2getinforesponse.md
   - docs/sdk/models/operations/v2getinstancehistoryrequest.md
   - docs/sdk/models/operations/v2getinstancehistoryresponse.md
@@ -332,6 +344,9 @@ generatedFiles:
   - docs/sdk/models/operations/v2getledgerinforesponse.md
   - docs/sdk/models/operations/v2getledgerrequest.md
   - docs/sdk/models/operations/v2getledgerresponse.md
+  - docs/sdk/models/operations/v2getpipelinestaterequest.md
+  - docs/sdk/models/operations/v2getpipelinestateresponse.md
+  - docs/sdk/models/operations/v2getpipelinestateresponsebody.md
   - docs/sdk/models/operations/v2getserverinforesponse.md
   - docs/sdk/models/operations/v2gettransactionrequest.md
   - docs/sdk/models/operations/v2gettransactionresponse.md
@@ -343,12 +358,21 @@ generatedFiles:
   - docs/sdk/models/operations/v2importlogsresponse.md
   - docs/sdk/models/operations/v2listaccountsrequest.md
   - docs/sdk/models/operations/v2listaccountsresponse.md
+  - docs/sdk/models/operations/v2listexporterscursor1.md
+  - docs/sdk/models/operations/v2listexporterscursor2.md
+  - docs/sdk/models/operations/v2listexportersresponse.md
+  - docs/sdk/models/operations/v2listexportersresponsebody.md
   - docs/sdk/models/operations/v2listinstancesrequest.md
   - docs/sdk/models/operations/v2listinstancesresponse.md
   - docs/sdk/models/operations/v2listledgersrequest.md
   - docs/sdk/models/operations/v2listledgersresponse.md
   - docs/sdk/models/operations/v2listlogsrequest.md
   - docs/sdk/models/operations/v2listlogsresponse.md
+  - docs/sdk/models/operations/v2listpipelinescursor1.md
+  - docs/sdk/models/operations/v2listpipelinescursor2.md
+  - docs/sdk/models/operations/v2listpipelinesrequest.md
+  - docs/sdk/models/operations/v2listpipelinesresponse.md
+  - docs/sdk/models/operations/v2listpipelinesresponsebody.md
   - docs/sdk/models/operations/v2listtransactionsrequest.md
   - docs/sdk/models/operations/v2listtransactionsresponse.md
   - docs/sdk/models/operations/v2listtriggersoccurrencesrequest.md
@@ -361,6 +385,8 @@ generatedFiles:
   - docs/sdk/models/operations/v2readstatsresponse.md
   - docs/sdk/models/operations/v2readtriggerrequest.md
   - docs/sdk/models/operations/v2readtriggerresponse.md
+  - docs/sdk/models/operations/v2resetpipelinerequest.md
+  - docs/sdk/models/operations/v2resetpipelineresponse.md
   - docs/sdk/models/operations/v2reverttransactionrequest.md
   - docs/sdk/models/operations/v2reverttransactionresponse.md
   - docs/sdk/models/operations/v2runworkflowrequest.md
@@ -368,6 +394,10 @@ generatedFiles:
   - docs/sdk/models/operations/v2sendeventrequest.md
   - docs/sdk/models/operations/v2sendeventrequestbody.md
   - docs/sdk/models/operations/v2sendeventresponse.md
+  - docs/sdk/models/operations/v2startpipelinerequest.md
+  - docs/sdk/models/operations/v2startpipelineresponse.md
+  - docs/sdk/models/operations/v2stoppipelinerequest.md
+  - docs/sdk/models/operations/v2stoppipelineresponse.md
   - docs/sdk/models/operations/v2updateledgermetadatarequest.md
   - docs/sdk/models/operations/v2updateledgermetadataresponse.md
   - docs/sdk/models/operations/v3addaccounttopoolrequest.md
@@ -609,6 +639,7 @@ generatedFiles:
   - docs/sdk/models/shared/orchestrationposttransaction.md
   - docs/sdk/models/shared/orchestrationposttransactionscript.md
   - docs/sdk/models/shared/orchestrationtransaction.md
+  - docs/sdk/models/shared/orchestrationv2account.md
   - docs/sdk/models/shared/orchestrationv2posttransaction.md
   - docs/sdk/models/shared/orchestrationv2posttransactionscript.md
   - docs/sdk/models/shared/orchestrationv2transaction.md
@@ -658,6 +689,7 @@ generatedFiles:
   - docs/sdk/models/shared/responsecursor.md
   - docs/sdk/models/shared/responset.md
   - docs/sdk/models/shared/reversetransferinitiationrequest.md
+  - docs/sdk/models/shared/runtime.md
   - docs/sdk/models/shared/runworkflowresponse.md
   - docs/sdk/models/shared/script.md
   - docs/sdk/models/shared/scriptresponse.md
@@ -750,6 +782,7 @@ generatedFiles:
   - docs/sdk/models/shared/v2activitydebitwallet.md
   - docs/sdk/models/shared/v2activitydebitwalletoutput.md
   - docs/sdk/models/shared/v2activitygetaccount.md
+  - docs/sdk/models/shared/v2activitygetaccountoutput.md
   - docs/sdk/models/shared/v2activitygetpayment.md
   - docs/sdk/models/shared/v2activitygetpaymentoutput.md
   - docs/sdk/models/shared/v2activitygetwallet.md
@@ -778,6 +811,7 @@ generatedFiles:
   - docs/sdk/models/shared/v2configinforesponse.md
   - docs/sdk/models/shared/v2connector.md
   - docs/sdk/models/shared/v2createledgerrequest.md
+  - docs/sdk/models/shared/v2createpipelinerequest.md
   - docs/sdk/models/shared/v2createtransactionresponse.md
   - docs/sdk/models/shared/v2createtriggerresponse.md
   - docs/sdk/models/shared/v2createworkflowresponse.md
@@ -785,6 +819,8 @@ generatedFiles:
   - docs/sdk/models/shared/v2debitwalletrequest.md
   - docs/sdk/models/shared/v2errorresponse.md
   - docs/sdk/models/shared/v2errorsenum.md
+  - docs/sdk/models/shared/v2exporter.md
+  - docs/sdk/models/shared/v2exporterconfiguration.md
   - docs/sdk/models/shared/v2getledgerresponse.md
   - docs/sdk/models/shared/v2gettransactionresponse.md
   - docs/sdk/models/shared/v2getworkflowinstancehistoryresponse.md
@@ -824,10 +860,12 @@ generatedFiles:
   - docs/sdk/models/shared/v2paymentscheme.md
   - docs/sdk/models/shared/v2paymentstatus.md
   - docs/sdk/models/shared/v2paymenttype.md
+  - docs/sdk/models/shared/v2pipeline.md
   - docs/sdk/models/shared/v2posting.md
   - docs/sdk/models/shared/v2posttransaction.md
   - docs/sdk/models/shared/v2posttransactionscript.md
   - docs/sdk/models/shared/v2readtriggerresponse.md
+  - docs/sdk/models/shared/v2reverttransactionrequest.md
   - docs/sdk/models/shared/v2runworkflowresponse.md
   - docs/sdk/models/shared/v2serverinfo.md
   - docs/sdk/models/shared/v2stage.md
@@ -1044,6 +1082,8 @@ generatedFiles:
   - src/funcs/authV1ReadUser.ts
   - src/funcs/authV1UpdateClient.ts
   - src/funcs/getVersions.ts
+  - src/funcs/ledgerGetInfo.ts
+  - src/funcs/ledgerGetMetrics.ts
   - src/funcs/ledgerV1AddMetadataOnTransaction.ts
   - src/funcs/ledgerV1AddMetadataToAccount.ts
   - src/funcs/ledgerV1CountAccounts.ts
@@ -1069,27 +1109,36 @@ generatedFiles:
   - src/funcs/ledgerV2CountAccounts.ts
   - src/funcs/ledgerV2CountTransactions.ts
   - src/funcs/ledgerV2CreateBulk.ts
+  - src/funcs/ledgerV2CreateExporter.ts
   - src/funcs/ledgerV2CreateLedger.ts
+  - src/funcs/ledgerV2CreatePipeline.ts
   - src/funcs/ledgerV2CreateTransaction.ts
   - src/funcs/ledgerV2DeleteAccountMetadata.ts
+  - src/funcs/ledgerV2DeleteExporter.ts
   - src/funcs/ledgerV2DeleteLedgerMetadata.ts
+  - src/funcs/ledgerV2DeletePipeline.ts
   - src/funcs/ledgerV2DeleteTransactionMetadata.ts
   - src/funcs/ledgerV2ExportLogs.ts
   - src/funcs/ledgerV2GetAccount.ts
   - src/funcs/ledgerV2GetBalancesAggregated.ts
-  - src/funcs/ledgerV2GetInfo.ts
+  - src/funcs/ledgerV2GetExporterState.ts
   - src/funcs/ledgerV2GetLedger.ts
   - src/funcs/ledgerV2GetLedgerInfo.ts
-  - src/funcs/ledgerV2GetMetrics.ts
+  - src/funcs/ledgerV2GetPipelineState.ts
   - src/funcs/ledgerV2GetTransaction.ts
   - src/funcs/ledgerV2GetVolumesWithBalances.ts
   - src/funcs/ledgerV2ImportLogs.ts
   - src/funcs/ledgerV2ListAccounts.ts
+  - src/funcs/ledgerV2ListExporters.ts
   - src/funcs/ledgerV2ListLedgers.ts
   - src/funcs/ledgerV2ListLogs.ts
+  - src/funcs/ledgerV2ListPipelines.ts
   - src/funcs/ledgerV2ListTransactions.ts
   - src/funcs/ledgerV2ReadStats.ts
+  - src/funcs/ledgerV2ResetPipeline.ts
   - src/funcs/ledgerV2RevertTransaction.ts
+  - src/funcs/ledgerV2StartPipeline.ts
+  - src/funcs/ledgerV2StopPipeline.ts
   - src/funcs/ledgerV2UpdateLedgerMetadata.ts
   - src/funcs/orchestrationV1CancelEvent.ts
   - src/funcs/orchestrationV1CreateTrigger.ts
@@ -1426,42 +1475,53 @@ generatedFiles:
   - src/sdk/models/operations/v2countaccounts.ts
   - src/sdk/models/operations/v2counttransactions.ts
   - src/sdk/models/operations/v2createbulk.ts
+  - src/sdk/models/operations/v2createexporter.ts
   - src/sdk/models/operations/v2createledger.ts
+  - src/sdk/models/operations/v2createpipeline.ts
   - src/sdk/models/operations/v2createtransaction.ts
   - src/sdk/models/operations/v2createtrigger.ts
   - src/sdk/models/operations/v2createworkflow.ts
   - src/sdk/models/operations/v2deleteaccountmetadata.ts
+  - src/sdk/models/operations/v2deleteexporter.ts
   - src/sdk/models/operations/v2deleteledgermetadata.ts
+  - src/sdk/models/operations/v2deletepipeline.ts
   - src/sdk/models/operations/v2deletetransactionmetadata.ts
   - src/sdk/models/operations/v2deletetrigger.ts
   - src/sdk/models/operations/v2deleteworkflow.ts
   - src/sdk/models/operations/v2exportlogs.ts
   - src/sdk/models/operations/v2getaccount.ts
   - src/sdk/models/operations/v2getbalancesaggregated.ts
+  - src/sdk/models/operations/v2getexporterstate.ts
   - src/sdk/models/operations/v2getinfo.ts
   - src/sdk/models/operations/v2getinstance.ts
   - src/sdk/models/operations/v2getinstancehistory.ts
   - src/sdk/models/operations/v2getinstancestagehistory.ts
   - src/sdk/models/operations/v2getledger.ts
   - src/sdk/models/operations/v2getledgerinfo.ts
+  - src/sdk/models/operations/v2getpipelinestate.ts
   - src/sdk/models/operations/v2getserverinfo.ts
   - src/sdk/models/operations/v2gettransaction.ts
   - src/sdk/models/operations/v2getvolumeswithbalances.ts
   - src/sdk/models/operations/v2getworkflow.ts
   - src/sdk/models/operations/v2importlogs.ts
   - src/sdk/models/operations/v2listaccounts.ts
+  - src/sdk/models/operations/v2listexporters.ts
   - src/sdk/models/operations/v2listinstances.ts
   - src/sdk/models/operations/v2listledgers.ts
   - src/sdk/models/operations/v2listlogs.ts
+  - src/sdk/models/operations/v2listpipelines.ts
   - src/sdk/models/operations/v2listtransactions.ts
   - src/sdk/models/operations/v2listtriggers.ts
   - src/sdk/models/operations/v2listtriggersoccurrences.ts
   - src/sdk/models/operations/v2listworkflows.ts
   - src/sdk/models/operations/v2readstats.ts
   - src/sdk/models/operations/v2readtrigger.ts
+  - src/sdk/models/operations/v2resetpipeline.ts
   - src/sdk/models/operations/v2reverttransaction.ts
   - src/sdk/models/operations/v2runworkflow.ts
   - src/sdk/models/operations/v2sendevent.ts
+  - src/sdk/models/operations/v2startpipeline.ts
+  - src/sdk/models/operations/v2stoppipeline.ts
   - src/sdk/models/operations/v2updateledgermetadata.ts
   - src/sdk/models/operations/v3addaccounttopool.ts
   - src/sdk/models/operations/v3addbankaccounttopaymentserviceuser.ts
@@ -1635,6 +1695,7 @@ generatedFiles:
   - src/sdk/models/shared/orchestrationpaymentstatus.ts
   - src/sdk/models/shared/orchestrationposttransaction.ts
   - src/sdk/models/shared/orchestrationtransaction.ts
+  - src/sdk/models/shared/orchestrationv2account.ts
   - src/sdk/models/shared/orchestrationv2posttransaction.ts
   - src/sdk/models/shared/orchestrationv2transaction.ts
   - src/sdk/models/shared/orchestrationwallet.ts
@@ -1739,6 +1800,7 @@ generatedFiles:
   - src/sdk/models/shared/v2activitydebitwallet.ts
   - src/sdk/models/shared/v2activitydebitwalletoutput.ts
   - src/sdk/models/shared/v2activitygetaccount.ts
+  - src/sdk/models/shared/v2activitygetaccountoutput.ts
   - src/sdk/models/shared/v2activitygetpayment.ts
   - src/sdk/models/shared/v2activitygetpaymentoutput.ts
   - src/sdk/models/shared/v2activitygetwallet.ts
@@ -1758,6 +1820,7 @@ generatedFiles:
   - src/sdk/models/shared/v2configinforesponse.ts
   - src/sdk/models/shared/v2connector.ts
   - src/sdk/models/shared/v2createledgerrequest.ts
+  - src/sdk/models/shared/v2createpipelinerequest.ts
   - src/sdk/models/shared/v2createtransactionresponse.ts
   - src/sdk/models/shared/v2createtriggerresponse.ts
   - src/sdk/models/shared/v2createworkflowresponse.ts
@@ -1765,6 +1828,8 @@ generatedFiles:
   - src/sdk/models/shared/v2debitwalletrequest.ts
   - src/sdk/models/shared/v2errorresponse.ts
   - src/sdk/models/shared/v2errorsenum.ts
+  - src/sdk/models/shared/v2exporter.ts
+  - src/sdk/models/shared/v2exporterconfiguration.ts
   - src/sdk/models/shared/v2getledgerresponse.ts
   - src/sdk/models/shared/v2gettransactionresponse.ts
   - src/sdk/models/shared/v2getworkflowinstancehistoryresponse.ts
@@ -1790,9 +1855,11 @@ generatedFiles:
   - src/sdk/models/shared/v2paymentadjustment.ts
   - src/sdk/models/shared/v2paymentmetadata.ts
   - src/sdk/models/shared/v2paymentstatus.ts
+  - src/sdk/models/shared/v2pipeline.ts
   - src/sdk/models/shared/v2posting.ts
   - src/sdk/models/shared/v2posttransaction.ts
   - src/sdk/models/shared/v2readtriggerresponse.ts
+  - src/sdk/models/shared/v2reverttransactionrequest.ts
   - src/sdk/models/shared/v2runworkflowresponse.ts
   - src/sdk/models/shared/v2serverinfo.ts
   - src/sdk/models/shared/v2stage.ts
@@ -2114,7 +2181,7 @@ examples:
           dryRun: true
           force: true
       requestBody:
-        application/json: {"metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
+        application/json: {"accountMetadata": {"key": {"admin": "true"}, "key1": {"admin": "true"}, "key2": {"admin": "true"}}, "metadata": {"admin": "true"}, "postings": [{"amount": 100, "asset": "COIN", "destination": "users:002", "source": "users:001"}], "reference": "ref:001", "script": {"plain": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n", "vars": {"user": "users:042"}}}
       responses:
         "200":
           application/json: {"data": {"id": 863659, "metadata": {"admin": "true"}, "postCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "postings": [], "preCommitEffectiveVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "preCommitVolumes": {"orders:1": {"USD": {"balance": 90, "input": 100, "output": 10}}, "orders:2": {"USD": {"balance": 90, "input": 100, "output": 10}}}, "reference": "ref:001", "reverted": false, "timestamp": "2024-01-08T03:47:56.227Z"}}
@@ -2162,7 +2229,7 @@ examples:
           address: "users:001"
       responses:
         "200":
-          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "metadata": {"admin": "true"}, "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
+          application/json: {"data": {"address": "users:001", "effectiveVolumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}, "firstUsage": "2023-01-01T00:00:00Z", "insertionDate": "2023-01-01T00:00:00Z", "metadata": {"admin": "true"}, "updatedAt": "2023-01-01T00:00:00Z", "volumes": {"USD": {"balance": 90, "input": 100, "output": 10}, "EUR": {"balance": 90, "input": 100, "output": 10}}}}
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
   v2GetBalancesAggregated:
@@ -2231,6 +2298,7 @@ examples:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           groupBy: 3
+          sort: "id:desc"
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2254,6 +2322,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2265,6 +2334,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       responses:
         "200":
           application/json: {"cursor": {"data": [{"addedAt": "2024-03-14T02:30:05.506Z", "bucket": "<value>", "metadata": {"admin": "true"}, "name": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2278,6 +2348,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -2291,6 +2362,7 @@ examples:
         query:
           pageSize: 100
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+          sort: "id:desc"
       responses:
         "200":
           application/json: {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}
@@ -4135,6 +4207,107 @@ examples:
       responses:
         default:
           application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreateExporter:
+    speakeasy-default-v2-create-exporter:
+      requestBody:
+        application/json: {"config": {"key": "<value>"}, "driver": "<value>"}
+      responses:
+        "201":
+          application/json: {"data": {"config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "createdAt": "2023-09-20T22:58:09.492Z", "driver": "<value>", "id": "<id>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2CreatePipeline:
+    speakeasy-default-v2-create-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "201":
+          application/json: {"data": {"createdAt": "2023-10-13T04:07:21.184Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeleteExporter:
+    speakeasy-default-v2-delete-exporter:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2DeletePipeline:
+    speakeasy-default-v2-delete-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetExporterState:
+    speakeasy-default-v2-get-exporter-state:
+      parameters:
+        path:
+          exporterID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"config": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "createdAt": "2025-12-16T02:14:09.876Z", "driver": "<value>", "id": "<id>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2GetPipelineState:
+    speakeasy-default-v2-get-pipeline-state:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"createdAt": "2024-06-04T21:05:32.605Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListExporters:
+    speakeasy-default-v2-list-exporters:
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"data": [], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ListPipelines:
+    speakeasy-default-v2-list-pipelines:
+      parameters:
+        path:
+          ledger: "ledger001"
+      responses:
+        "200":
+          application/json: {"cursor": {"cursor": {"data": [{"createdAt": "2023-07-10T16:30:37.234Z", "exporterID": "<id>", "id": "<id>", "ledger": "<value>"}], "hasMore": false, "next": "", "pageSize": 15, "previous": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="}}}
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2ResetPipeline:
+    speakeasy-default-v2-reset-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2StartPipeline:
+    speakeasy-default-v2-start-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
+  v2StopPipeline:
+    speakeasy-default-v2-stop-pipeline:
+      parameters:
+        path:
+          ledger: "ledger001"
+          pipelineID: "<id>"
+      responses:
+        default:
+          application/json: {"details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9", "errorCode": "VALIDATION", "errorMessage": "[VALIDATION] invalid 'cursor' query param"}
 examplesVersion: 1.0.2
 generatedTests:
   getVersions: "2025-03-04T15:22:19+01:00"
@@ -4348,3 +4521,4 @@ generatedTests:
   insertConfig: "2025-03-04T15:22:19+01:00"
   testConfig: "2025-03-04T15:22:19+01:00"
   updateConfig: "2025-03-04T15:22:19+01:00"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `sdk.ledger.v1.countAccounts()`:  `response` **Changed** **Breaking** :warning:\n* `sdk.ledger.v2.getVolumesWithBalances()`: \n  *  `request.sort` **Added**\n* `sdk.ledger.v2.listLedgers()`: \n  *  `request.sort` **Added**\n  *  `response.cursor.data.[]` **Changed**\n* `sdk.ledger.v2.listLogs()`: \n  *  `request.sort` **Added**\n* `sdk.ledger.v2.deleteExporter()`: **Added**\n* `sdk.ledger.v2.deletePipeline()`: **Added**\n* `sdk.ledger.v2.getExporterState()`: **Added**\n* `sdk.ledger.v2.getPipelineState()`: **Added**\n* `sdk.ledger.v2.listExporters()`: **Added**\n* `sdk.ledger.v2.listPipelines()`: **Added**\n* `sdk.ledger.v2.resetPipeline()`: **Added**\n* `sdk.ledger.v2.startPipeline()`: **Added**\n* `sdk.ledger.v2.stopPipeline()`: **Added**\n* `sdk.ledger.v2.getInfo()`: **Deleted** **Breaking** :warning:\n* `sdk.ledger.v2.getMetrics()`: **Deleted** **Breaking** :warning:\n* `sdk.ledger.v2.createBulk()`: \n  *  `request.requestBody.[].[addMetadata].data` **Changed**\n  *  `response.data.[].[addMetadata].data.updatedAt` **Added**\n* `sdk.ledger.v2.createTransaction()`: \n  *  `request.v2PostTransaction` **Changed**\n  *  `response.data.updatedAt` **Added**\n* `sdk.ledger.v2.getAccount()`:  `response.data` **Changed**\n* `sdk.ledger.v2.getLedger()`:  `response.data` **Changed**\n* `sdk.ledger.v2.getTransaction()`:  `response.data.updatedAt` **Added**\n* `sdk.ledger.getInfo()`: **Added**\n* `sdk.ledger.v2.createExporter()`: **Added**\n* `sdk.ledger.v2.listAccounts()`: \n  *  `request.sort` **Added**\n  *  `response.cursor.data.[]` **Changed**\n* `sdk.ledger.v2.createPipeline()`: **Added**\n* `sdk.ledger.v2.listTransactions()`: \n  *  `request.sort` **Added**\n  *  `response.cursor.data.[].updatedAt` **Added**\n* `sdk.ledger.v2.revertTransaction()`: \n  *  `request.v2RevertTransactionRequest` **Added**\n  *  `response.data.updatedAt` **Added**\n* `sdk.ledger.getMetrics()`: **Added**\n* `sdk.orchestration.v1.createTrigger()`: \n  *  `request.version` **Added**\n  *  `response.data.version` **Added**\n* `sdk.orchestration.v1.getInstance()`:  `response.data.workflow` **Added**\n* `sdk.orchestration.v1.listInstances()`:  `response.data.[].workflow` **Added**\n* `sdk.orchestration.v1.listTriggers()`:  `response.data.[].version` **Added**\n* `sdk.orchestration.v1.listTriggersOccurrences()`:  `response.data.[].workflowInstance.workflow` **Added**\n* `sdk.orchestration.v1.readTrigger()`:  `response.data.version` **Added**\n* `sdk.orchestration.v1.runWorkflow()`:  `response.data.workflow` **Added**\n* `sdk.orchestration.v2.createTrigger()`: \n  *  `request.version` **Added**\n  *  `response.data.version` **Added**\n* `sdk.orchestration.v2.getInstance()`:  `response.data.workflow` **Added**\n* `sdk.orchestration.v2.listInstances()`:  `response.cursor.data.[].workflow` **Added**\n* `sdk.orchestration.v2.listTriggers()`:  `response.cursor.data.[].version` **Added**\n* `sdk.orchestration.v2.listTriggersOccurrences()`:  `response.cursor.data.[].workflowInstance.workflow` **Added**\n* `sdk.orchestration.v2.readTrigger()`:  `response.data.version` **Added**\n* `sdk.orchestration.v2.runWorkflow()`:  `response.data.workflow` **Added**\n* `sdk.reconciliation.v1.listPolicies()`: \n  *  `request.query` **Added**\n* `sdk.reconciliation.v1.listReconciliations()`: \n  *  `request.query` **Added**\n"

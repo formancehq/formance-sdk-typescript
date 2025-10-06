@@ -32,6 +32,13 @@ export type V2ListAccountsRequest = {
   pageSize?: number | undefined;
   pit?: Date | undefined;
   query?: { [k: string]: any } | undefined;
+  /**
+   * Sort results using a field name and order (ascending or descending).
+   *
+   * @remarks
+   * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+   */
+  sort?: string | undefined;
 };
 
 export type V2ListAccountsResponse = {
@@ -66,6 +73,7 @@ export const V2ListAccountsRequest$inboundSchema: z.ZodType<
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
   query: z.record(z.any()).optional(),
+  sort: z.string().optional(),
 });
 
 /** @internal */
@@ -76,6 +84,7 @@ export type V2ListAccountsRequest$Outbound = {
   pageSize?: number | undefined;
   pit?: string | undefined;
   query?: { [k: string]: any } | undefined;
+  sort?: string | undefined;
 };
 
 /** @internal */
@@ -90,6 +99,7 @@ export const V2ListAccountsRequest$outboundSchema: z.ZodType<
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
   query: z.record(z.any()).optional(),
+  sort: z.string().optional(),
 });
 
 /**

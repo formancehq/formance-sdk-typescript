@@ -27,7 +27,6 @@ export const ServerList = [
  * The environment name. Defaults to the production environment.
  */
 export const ServerEnvironment = {
-  EuSandbox: "eu.sandbox",
   Sandbox: "sandbox",
   EuWest1: "eu-west-1",
   UsEast1: "us-east-1",
@@ -78,7 +77,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
   const serverParams: Params[] = [
     {},
     {
-      "environment": options.environment ?? "eu.sandbox",
+      "environment": options.environment ?? "sandbox",
       "organization": options.organization ?? "orgID-stackID",
     },
   ];
@@ -99,9 +98,9 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 
 export const SDK_METADATA = {
   language: "typescript",
-  openapiDocVersion: "v3.0.5",
-  sdkVersion: "4.5.0",
-  genVersion: "2.701.8",
+  openapiDocVersion: "v3.1.0",
+  sdkVersion: "4.6.0",
+  genVersion: "2.721.3",
   userAgent:
-    "speakeasy-sdk/typescript 4.5.0 2.701.8 v3.0.5 @formance/formance-sdk",
+    "speakeasy-sdk/typescript 4.6.0 2.721.3 v3.1.0 @formance/formance-sdk",
 } as const;

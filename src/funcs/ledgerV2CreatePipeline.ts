@@ -3,8 +3,10 @@
  */
 
 import { SDKCore } from "../core.js";
+import { encodeJSON, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -24,14 +26,15 @@ import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
- * Show server information
+ * Create pipeline
  */
-export function ledgerV2GetInfo(
+export function ledgerV2CreatePipeline(
   client: SDKCore,
+  request: operations.V2CreatePipelineRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V2GetInfoResponse,
+    operations.V2CreatePipelineResponse,
     | errors.V2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -45,17 +48,19 @@ export function ledgerV2GetInfo(
 > {
   return new APIPromise($do(
     client,
+    request,
     options,
   ));
 }
 
 async function $do(
   client: SDKCore,
+  request: operations.V2CreatePipelineRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V2GetInfoResponse,
+      operations.V2CreatePipelineResponse,
       | errors.V2ErrorResponse
       | SDKBaseError
       | ResponseValidationError
@@ -69,9 +74,30 @@ async function $do(
     APICall,
   ]
 > {
-  const path = pathToFunc("/api/ledger/_/info")();
+  const parsed = safeParse(
+    request,
+    (value) => operations.V2CreatePipelineRequest$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.V2CreatePipelineRequest, {
+    explode: true,
+  });
+
+  const pathParams = {
+    ledger: encodeSimple("ledger", payload.ledger, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
+
+  const path = pathToFunc("/api/ledger/v2/{ledger}/pipelines")(pathParams);
 
   const headers = new Headers(compactMap({
+    "Content-Type": "application/json",
     Accept: "application/json",
   }));
 
@@ -81,8 +107,8 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v2GetInfo",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    operationID: "v2CreatePipeline",
+    oAuth2Scopes: ["auth:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -95,10 +121,11 @@ async function $do(
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
-    method: "GET",
+    method: "POST",
     baseURL: options?.serverURL,
     path: path,
     headers: headers,
+    body: body,
     userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
@@ -127,7 +154,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V2GetInfoResponse,
+    operations.V2CreatePipelineResponse,
     | errors.V2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -138,11 +165,8 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.V2GetInfoResponse$inboundSchema, {
-      key: "V2ConfigInfoResponse",
-    }),
-    M.json("5XX", operations.V2GetInfoResponse$inboundSchema, {
-      key: "V2ErrorResponse",
+    M.json(201, operations.V2CreatePipelineResponse$inboundSchema, {
+      key: "object",
     }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });

@@ -110,6 +110,7 @@ async function $do(
       "pageSize": payload.pageSize,
       "pit": payload.pit,
       "reverse": payload.reverse,
+      "sort": payload.sort,
     }),
     encodeJSONQuery({
       "query": payload.query,

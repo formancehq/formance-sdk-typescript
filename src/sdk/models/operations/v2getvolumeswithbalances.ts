@@ -39,6 +39,13 @@ export type V2GetVolumesWithBalancesRequest = {
    */
   pageSize?: number | undefined;
   query?: { [k: string]: any } | undefined;
+  /**
+   * Sort results using a field name and order (ascending or descending).
+   *
+   * @remarks
+   * Format: `<field>:<order>`, where `<field>` is the field name and `<order>` is either `asc` or `desc`.
+   */
+  sort?: string | undefined;
   startTime?: Date | undefined;
 };
 
@@ -77,6 +84,7 @@ export const V2GetVolumesWithBalancesRequest$inboundSchema: z.ZodType<
   ledger: z.string(),
   pageSize: z.number().int().optional(),
   query: z.record(z.any()).optional(),
+  sort: z.string().optional(),
   startTime: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
 });
@@ -90,6 +98,7 @@ export type V2GetVolumesWithBalancesRequest$Outbound = {
   ledger: string;
   pageSize?: number | undefined;
   query?: { [k: string]: any } | undefined;
+  sort?: string | undefined;
   startTime?: string | undefined;
 };
 
@@ -106,6 +115,7 @@ export const V2GetVolumesWithBalancesRequest$outboundSchema: z.ZodType<
   ledger: z.string(),
   pageSize: z.number().int().optional(),
   query: z.record(z.any()).optional(),
+  sort: z.string().optional(),
   startTime: z.date().transform(v => v.toISOString()).optional(),
 });
 

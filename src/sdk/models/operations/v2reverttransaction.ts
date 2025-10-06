@@ -10,6 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as shared from "../shared/index.js";
 
 export type V2RevertTransactionRequest = {
+  v2RevertTransactionRequest?: shared.V2RevertTransactionRequest | undefined;
   /**
    * Revert transaction at effective date of the original tx
    */
@@ -57,15 +58,24 @@ export const V2RevertTransactionRequest$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  V2RevertTransactionRequest: shared.V2RevertTransactionRequest$inboundSchema
+    .optional(),
   atEffectiveDate: z.boolean().optional(),
   dryRun: z.boolean().optional(),
   force: z.boolean().optional(),
   id: z.number().transform(v => BigInt(v)),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    "V2RevertTransactionRequest": "v2RevertTransactionRequest",
+  });
 });
 
 /** @internal */
 export type V2RevertTransactionRequest$Outbound = {
+  V2RevertTransactionRequest?:
+    | shared.V2RevertTransactionRequest$Outbound
+    | undefined;
   atEffectiveDate?: boolean | undefined;
   dryRun?: boolean | undefined;
   force?: boolean | undefined;
@@ -79,11 +89,17 @@ export const V2RevertTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2RevertTransactionRequest
 > = z.object({
+  v2RevertTransactionRequest: shared.V2RevertTransactionRequest$outboundSchema
+    .optional(),
   atEffectiveDate: z.boolean().optional(),
   dryRun: z.boolean().optional(),
   force: z.boolean().optional(),
   id: z.bigint().transform(v => Number(v)),
   ledger: z.string(),
+}).transform((v) => {
+  return remap$(v, {
+    v2RevertTransactionRequest: "V2RevertTransactionRequest",
+  });
 });
 
 /**

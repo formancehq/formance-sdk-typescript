@@ -107,6 +107,7 @@ async function $do(
       "groupBy": payload.groupBy,
       "insertionDate": payload.insertionDate,
       "pageSize": payload.pageSize,
+      "sort": payload.sort,
       "startTime": payload.startTime,
     }),
     encodeJSONQuery({
