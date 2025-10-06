@@ -7,7 +7,7 @@ sources:
         tags:
             - latest
             - speakeasy-sdk-regen-1754440192
-            - v3.0.5
+            - v3.1.0
 targets:
     formance-sdk-typescript:
         source: stacks-source
@@ -22,7 +22,7 @@ workflow:
     sources:
         stacks-source:
             inputs:
-                - location: https://github.com/formancehq/stack/releases/download/v3.0.5/generate.json
+                - location: https://github.com/formancehq/stack/releases/download/v3.1.0/generate.json
             overlays:
                 - location: ./overlay.yaml
             registry:
