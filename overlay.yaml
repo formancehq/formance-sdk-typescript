@@ -25,6 +25,8 @@ actions:
   - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
 - target: $["paths"]["/api/ledger/v2/{ledger}/transactions"]["get"]["requestBody"]
   remove: true
+- target: $["paths"]["/api/ledger/v2/{ledger}/logs/import"]["get"]["requestBody"]
+  remove: true
 - target: $["paths"]["/api/ledger/v2/{ledger}/aggregate/balances"]["get"]["parameters"]
   update:
   - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
