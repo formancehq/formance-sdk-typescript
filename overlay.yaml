@@ -3,6 +3,9 @@ info:
   title: Overlay spec.json => updated-spec.json
   version: 0.0.0
 actions:
+- target: $["paths"]["/api/ledger/v2"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
 - target: $["paths"]["/api/ledger/v2/{ledger}/accounts"]["head"]["parameters"]
   update:
   - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
