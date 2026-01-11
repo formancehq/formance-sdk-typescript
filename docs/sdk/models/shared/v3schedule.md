@@ -7,7 +7,7 @@ import { V3Schedule } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Schedule = {
   connectorID: "<value>",
-  createdAt: new Date("2024-10-15T12:12:09.859Z"),
+  createdAt: new Date("2025-10-15T12:12:09.859Z"),
   id: "<id>",
 };
 ```

@@ -20,7 +20,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
       postings: [],
       reference: "ref:001",
       reverted: true,
-      timestamp: new Date("2024-09-30T06:28:56.548Z"),
+      timestamp: new Date("2025-09-30T06:28:56.548Z"),
     },
   },
   getAccount: {
@@ -60,7 +60,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
       adjustments: [],
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2023-12-16T14:43:43.030Z"),
+      createdAt: new Date("2024-12-15T14:43:43.030Z"),
       destinationAccountID: "<id>",
       id: "XXX",
       initialAmount: 100n,
@@ -91,7 +91,7 @@ let value: WorkflowInstanceHistoryStageOutput = {
       postings: [],
       reference: "ref:001",
       reverted: true,
-      timestamp: new Date("2024-09-30T06:28:56.548Z"),
+      timestamp: new Date("2025-09-30T06:28:56.548Z"),
     },
   },
 };

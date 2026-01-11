@@ -10,9 +10,9 @@ let value: GetWorkflowResponse = {
     config: {
       stages: [],
     },
-    createdAt: new Date("2025-08-13T17:35:58.193Z"),
+    createdAt: new Date("2026-08-13T17:35:58.193Z"),
     id: "<id>",
-    updatedAt: new Date("2024-06-18T23:26:47.377Z"),
+    updatedAt: new Date("2025-06-18T23:26:47.377Z"),
   },
 };
 ```

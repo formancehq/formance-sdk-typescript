@@ -7,7 +7,7 @@ import { V3GetPoolResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3GetPoolResponse = {
   data: {
-    createdAt: new Date("2023-12-23T12:30:42.599Z"),
+    createdAt: new Date("2024-12-22T12:30:42.599Z"),
     id: "<id>",
     name: "<value>",
     poolAccounts: [

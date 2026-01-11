@@ -3,7 +3,11 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery } from "../lib/encodings.js";
+import {
+  encodeFormQuery,
+  encodeJSONQuery,
+  queryJoin,
+} from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -87,11 +91,16 @@ async function $do(
 
   const path = pathToFunc("/api/ledger/v2")();
 
-  const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "pageSize": payload.pageSize,
-    "sort": payload.sort,
-  });
+  const query = queryJoin(
+    encodeFormQuery({
+      "cursor": payload.cursor,
+      "pageSize": payload.pageSize,
+      "sort": payload.sort,
+    }),
+    encodeJSONQuery({
+      "query": payload.query,
+    }, { explode: false }),
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",

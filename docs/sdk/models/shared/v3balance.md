@@ -9,8 +9,8 @@ let value: V3Balance = {
   accountID: "<id>",
   asset: "<value>",
   balance: 814379n,
-  createdAt: new Date("2023-12-09T10:40:12.734Z"),
-  lastUpdatedAt: new Date("2023-07-02T02:45:23.699Z"),
+  createdAt: new Date("2024-12-08T10:40:12.734Z"),
+  lastUpdatedAt: new Date("2024-07-01T02:45:23.699Z"),
 };
 ```
 
