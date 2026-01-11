@@ -9,9 +9,9 @@ let value: Workflow = {
   config: {
     stages: [],
   },
-  createdAt: new Date("2024-01-05T11:44:20.070Z"),
+  createdAt: new Date("2025-01-04T11:44:20.070Z"),
   id: "<id>",
-  updatedAt: new Date("2023-02-13T10:14:57.926Z"),
+  updatedAt: new Date("2024-02-13T10:14:57.926Z"),
 };
 ```
 

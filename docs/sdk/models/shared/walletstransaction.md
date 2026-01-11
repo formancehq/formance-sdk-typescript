@@ -57,7 +57,7 @@ let value: WalletsTransaction = {
     },
   },
   reference: "ref:001",
-  timestamp: new Date("2025-03-31T07:55:46.485Z"),
+  timestamp: new Date("2026-03-31T07:55:46.485Z"),
 };
 ```
 

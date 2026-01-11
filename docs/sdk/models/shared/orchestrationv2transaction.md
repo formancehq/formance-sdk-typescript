@@ -11,7 +11,7 @@ let value: OrchestrationV2Transaction = {
   },
   postings: [],
   reference: "ref:001",
-  timestamp: new Date("2024-06-22T20:49:25.112Z"),
+  timestamp: new Date("2025-06-22T20:49:25.112Z"),
   txid: 422477n,
 };
 ```

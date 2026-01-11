@@ -15,7 +15,7 @@ let value: V2WalletWithBalances = {
       },
     },
   },
-  createdAt: new Date("2023-09-19T05:08:10.815Z"),
+  createdAt: new Date("2024-09-18T05:08:10.815Z"),
   id: "7400a0a5-b18b-48ae-91d8-160845e2bf7f",
   ledger: "<value>",
   metadata: {

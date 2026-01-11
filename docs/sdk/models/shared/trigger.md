@@ -6,7 +6,7 @@
 import { Trigger } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Trigger = {
-  createdAt: new Date("2023-11-11T11:48:41.600Z"),
+  createdAt: new Date("2024-11-10T11:48:41.600Z"),
   event: "<value>",
   id: "<id>",
   workflowID: "<id>",

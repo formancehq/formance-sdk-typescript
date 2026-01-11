@@ -8,7 +8,7 @@ import { WorkflowInstanceHistory } from "@formance/formance-sdk/sdk/models/share
 let value: WorkflowInstanceHistory = {
   input: {},
   name: "<value>",
-  startedAt: new Date("2023-12-04T11:55:31.478Z"),
+  startedAt: new Date("2024-12-03T11:55:31.478Z"),
   terminated: false,
 };
 ```

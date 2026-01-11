@@ -25,6 +25,7 @@ export type V2ListLedgersRequest = {
    * @remarks
    */
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -61,6 +62,7 @@ export const V2ListLedgersRequest$inboundSchema: z.ZodType<
 > = z.object({
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
   sort: z.string().optional(),
 });
 
@@ -68,6 +70,7 @@ export const V2ListLedgersRequest$inboundSchema: z.ZodType<
 export type V2ListLedgersRequest$Outbound = {
   cursor?: string | undefined;
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
   sort?: string | undefined;
 };
 
@@ -79,6 +82,7 @@ export const V2ListLedgersRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
   sort: z.string().optional(),
 });
 

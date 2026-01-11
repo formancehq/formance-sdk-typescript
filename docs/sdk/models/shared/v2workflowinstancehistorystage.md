@@ -78,7 +78,7 @@ let value: V2WorkflowInstanceHistoryStage = {
           },
           postings: [],
           reference: "ref:001",
-          timestamp: new Date("2025-03-28T10:26:16.538Z"),
+          timestamp: new Date("2026-03-28T10:26:16.538Z"),
           txid: 910526n,
         },
       ],
@@ -120,7 +120,7 @@ let value: V2WorkflowInstanceHistoryStage = {
         adjustments: [],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2025-06-20T02:05:25.894Z"),
+        createdAt: new Date("2026-06-20T02:05:25.894Z"),
         destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: 100n,
@@ -143,7 +143,7 @@ let value: V2WorkflowInstanceHistoryStage = {
       },
     },
   },
-  startedAt: new Date("2023-10-01T07:20:02.601Z"),
+  startedAt: new Date("2024-09-30T07:20:02.601Z"),
   terminated: true,
 };
 ```

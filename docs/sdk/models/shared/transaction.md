@@ -40,7 +40,7 @@ let value: Transaction = {
     },
   },
   reference: "ref:001",
-  timestamp: new Date("2025-06-14T09:08:43.591Z"),
+  timestamp: new Date("2026-06-14T09:08:43.591Z"),
   txid: 185146n,
 };
 ```

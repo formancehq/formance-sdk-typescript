@@ -10,7 +10,7 @@ let value: V2ActivityGetPaymentOutput = {
     adjustments: [],
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2025-06-20T02:05:25.894Z"),
+    createdAt: new Date("2026-06-20T02:05:25.894Z"),
     destinationAccountID: "<id>",
     id: "XXX",
     initialAmount: 100n,

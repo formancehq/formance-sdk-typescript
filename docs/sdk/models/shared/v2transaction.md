@@ -84,7 +84,7 @@ let value: V2Transaction = {
   },
   reference: "ref:001",
   reverted: false,
-  timestamp: new Date("2024-04-20T12:45:50.043Z"),
+  timestamp: new Date("2025-04-20T12:45:50.043Z"),
 };
 ```
 

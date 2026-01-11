@@ -12,7 +12,7 @@ let value: ActivityGetWalletOutput = {
         assets: {},
       },
     },
-    createdAt: new Date("2023-10-20T08:55:30.202Z"),
+    createdAt: new Date("2024-10-19T08:55:30.202Z"),
     id: "b04d34af-0989-4d42-95c6-a4b6139b911c",
     ledger: "<value>",
     metadata: {

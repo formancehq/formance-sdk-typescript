@@ -16,7 +16,7 @@ let value: V2ActivityGetWalletOutput = {
         },
       },
     },
-    createdAt: new Date("2024-09-17T19:35:27.644Z"),
+    createdAt: new Date("2025-09-17T19:35:27.644Z"),
     id: "ab7169ae-35e6-4072-bd30-2fb25d22938c",
     ledger: "<value>",
     metadata: {

@@ -7,7 +7,7 @@ import { V3Connector } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Connector = {
   config: {},
-  createdAt: new Date("2024-04-23T06:32:34.973Z"),
+  createdAt: new Date("2025-04-23T06:32:34.973Z"),
   id: "<id>",
   name: "<value>",
   provider: "<value>",

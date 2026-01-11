@@ -10,7 +10,7 @@ import { BankAccountResponse } from "@formance/formance-sdk/sdk/models/shared";
 let value: BankAccountResponse = {
   data: {
     country: "Sweden",
-    createdAt: new Date("2024-03-16T06:17:20.627Z"),
+    createdAt: new Date("2025-03-16T06:17:20.627Z"),
     id: "<id>",
     name: "<value>",
   },

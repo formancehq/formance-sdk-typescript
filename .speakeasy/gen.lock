@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 2bb10af9-e48a-4bd7-ae46-a35fa809dc29
 management:
-  docChecksum: 4aaed26e7fbddbaeef20c93ae50f5aed
+  docChecksum: ecadc15783d2f1444a18b7d3e9a90025
   docVersion: v3.1.0
   speakeasyVersion: 1.634.2
   generationVersion: 2.721.3
-  releaseVersion: 4.6.1
-  configChecksum: 77c1f5afff3566d0c5723eefbb6ce466
+  releaseVersion: 4.6.2
+  configChecksum: f0655910e385b38459059ac74de4b0c8
   repoURL: https://github.com/formancehq/formance-sdk-typescript.git
   repoSubDirectory: .
   installationURL: https://github.com/formancehq/formance-sdk-typescript
@@ -4521,3 +4521,4 @@ generatedTests:
   insertConfig: "2025-03-04T15:22:19+01:00"
   testConfig: "2025-03-04T15:22:19+01:00"
   updateConfig: "2025-03-04T15:22:19+01:00"
+releaseNotes: "## Typescript SDK Changes Detected:\n* `sdk.ledger.v2.listLedgers()`: \n  *  `request.query` **Added**\n"
