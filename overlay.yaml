@@ -102,3 +102,13 @@ actions:
   - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
 - target: $["paths"]["/api/reconciliation/reconciliations"]["get"]["requestBody"]
   remove: true
+- target: $["paths"]["/api/payments/v3/orders"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/orders"]["get"]["requestBody"]
+  remove: true
+- target: $["paths"]["/api/payments/v3/conversions"]["get"]["parameters"]
+  update:
+  - { "name": "query", "in": "query", "content": { "application/json": { "schema": { "type": "object", "additionalProperties": true } } } }
+- target: $["paths"]["/api/payments/v3/conversions"]["get"]["requestBody"]
+  remove: true
