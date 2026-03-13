@@ -7,7 +7,7 @@ import { V2GetLedgerResponse } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2GetLedgerResponse = {
   data: {
-    addedAt: new Date("2023-03-08T06:18:27.028Z"),
+    addedAt: new Date("2024-03-07T06:18:27.028Z"),
     bucket: "<value>",
     metadata: {
       "admin": "true",

@@ -52,7 +52,7 @@ let value: ScriptResponse = {
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2023-12-24T18:02:59.726Z"),
+    timestamp: new Date("2024-12-23T18:02:59.726Z"),
     txid: 482425n,
   },
 };

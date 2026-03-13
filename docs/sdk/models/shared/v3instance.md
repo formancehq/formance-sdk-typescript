@@ -7,11 +7,11 @@ import { V3Instance } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Instance = {
   connectorID: "<value>",
-  createdAt: new Date("2023-05-30T12:43:25.924Z"),
+  createdAt: new Date("2024-05-29T12:43:25.924Z"),
   id: "<id>",
   scheduleID: "<id>",
   terminated: false,
-  updatedAt: new Date("2023-04-28T17:49:57.637Z"),
+  updatedAt: new Date("2024-04-27T17:49:57.637Z"),
 };
 ```
 

@@ -9,11 +9,11 @@ let value: TasksCursorCursor = {
   data: [
     {
       connectorID: "<id>",
-      createdAt: new Date("2023-11-11T01:47:54.767Z"),
+      createdAt: new Date("2024-11-10T01:47:54.767Z"),
       descriptor: {},
       id: "58d374f2-992c-450d-ab1d-d6bde271d329",
       status: TaskStatus.Pending,
-      updatedAt: new Date("2023-05-06T10:16:45.820Z"),
+      updatedAt: new Date("2024-05-05T10:16:45.820Z"),
     },
   ],
   hasMore: false,

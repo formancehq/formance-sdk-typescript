@@ -9,9 +9,9 @@ let value: AccountBalance = {
   accountId: "<id>",
   asset: "<value>",
   balance: 224648n,
-  createdAt: new Date("2025-12-26T11:34:56.681Z"),
+  createdAt: new Date("2026-12-26T11:34:56.681Z"),
   currency: "Lari",
-  lastUpdatedAt: new Date("2025-10-20T04:09:28.596Z"),
+  lastUpdatedAt: new Date("2026-10-20T04:09:28.596Z"),
 };
 ```
 

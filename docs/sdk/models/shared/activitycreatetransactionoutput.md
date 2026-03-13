@@ -14,7 +14,7 @@ let value: ActivityCreateTransactionOutput = {
     postings: [],
     reference: "ref:001",
     reverted: true,
-    timestamp: new Date("2024-09-30T06:28:56.548Z"),
+    timestamp: new Date("2025-09-30T06:28:56.548Z"),
   },
 };
 ```

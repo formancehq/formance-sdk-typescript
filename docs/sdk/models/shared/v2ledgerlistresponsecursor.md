@@ -8,7 +8,7 @@ import { V2LedgerListResponseCursor } from "@formance/formance-sdk/sdk/models/sh
 let value: V2LedgerListResponseCursor = {
   data: [
     {
-      addedAt: new Date("2023-09-28T22:39:47.167Z"),
+      addedAt: new Date("2024-09-27T22:39:47.167Z"),
       bucket: "<value>",
       metadata: {
         "admin": "true",

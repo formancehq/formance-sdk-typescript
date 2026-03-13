@@ -7,11 +7,11 @@ import { TaskStatus, TaskWise } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: TaskWise = {
   connectorID: "<id>",
-  createdAt: new Date("2023-01-02T14:55:44.073Z"),
+  createdAt: new Date("2024-01-02T14:55:44.073Z"),
   descriptor: {},
   id: "fb608d09-fa9e-4cc0-a730-91f7bd0fa498",
   status: TaskStatus.Failed,
-  updatedAt: new Date("2024-12-20T10:23:41.730Z"),
+  updatedAt: new Date("2025-12-20T10:23:41.730Z"),
 };
 ```
 

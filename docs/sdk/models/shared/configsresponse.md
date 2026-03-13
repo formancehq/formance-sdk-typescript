@@ -10,7 +10,7 @@ let value: ConfigsResponse = {
     data: [
       {
         active: true,
-        createdAt: new Date("2025-10-03T22:31:06.964Z"),
+        createdAt: new Date("2026-10-03T22:31:06.964Z"),
         endpoint: "https://example.com",
         eventTypes: [
           "TYPE1",
@@ -18,7 +18,7 @@ let value: ConfigsResponse = {
         ],
         id: "12a4490a-393a-4397-99d6-0654e8a25ec4",
         secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-        updatedAt: new Date("2023-09-22T08:18:22.925Z"),
+        updatedAt: new Date("2024-09-21T08:18:22.925Z"),
       },
     ],
     hasMore: false,
