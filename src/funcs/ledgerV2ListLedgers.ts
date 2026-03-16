@@ -89,6 +89,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "cursor": payload.cursor,
+    "includeDeleted": payload.includeDeleted,
     "pageSize": payload.pageSize,
     "sort": payload.sort,
   });
@@ -104,7 +105,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2ListLedgers",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    oAuth2Scopes: ["ledger:read"],
 
     resolvedSecurity: requestSecurity,
 

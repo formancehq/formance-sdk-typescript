@@ -12,6 +12,7 @@ let value: V2AddMetadataOnTransactionRequest = {
   dryRun: true,
   id: 1234n,
   ledger: "ledger001",
+  schemaVersion: "v1.0.0",
 };
 ```
 
@@ -24,3 +25,4 @@ let value: V2AddMetadataOnTransactionRequest = {
 | `dryRun`                                                                                                           | *boolean*                                                                                                          | :heavy_minus_sign:                                                                                                 | Set the dryRun mode. Dry run mode doesn't add the logs to the database or publish a message to the message broker. | true                                                                                                               |
 | `id`                                                                                                               | *BigInt*                                                                                                           | :heavy_check_mark:                                                                                                 | Transaction ID.                                                                                                    | 1234                                                                                                               |
 | `ledger`                                                                                                           | *string*                                                                                                           | :heavy_check_mark:                                                                                                 | Name of the ledger.                                                                                                | ledger001                                                                                                          |
+| `schemaVersion`                                                                                                    | *string*                                                                                                           | :heavy_minus_sign:                                                                                                 | Schema version to use for validation                                                                               | v1.0.0                                                                                                             |

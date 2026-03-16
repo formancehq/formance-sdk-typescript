@@ -1,0 +1,18 @@
+# V3PaymentServiceUserUpdateLinkRequest
+
+## Example Usage
+
+```typescript
+import { V3PaymentServiceUserUpdateLinkRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V3PaymentServiceUserUpdateLinkRequest = {
+  clientRedirectURL: "https://altruistic-mentor.com/",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                               | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationName`                                                                                                                                                                                   | *string*                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                  | The name of the application to be displayed to the user when they click the link (depending on the open banking provider). Note that this field might be mandatory for some open banking providers. |
+| `clientRedirectURL`                                                                                                                                                                                 | *string*                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                  | N/A                                                                                                                                                                                                 |

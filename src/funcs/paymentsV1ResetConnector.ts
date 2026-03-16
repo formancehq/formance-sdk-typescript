@@ -113,7 +113,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "resetConnector",
-    oAuth2Scopes: ["auth:read", "payments:write"],
+    oAuth2Scopes: ["payments:write"],
 
     resolvedSecurity: requestSecurity,
 

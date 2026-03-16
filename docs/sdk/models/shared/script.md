@@ -6,14 +6,8 @@
 import { Script } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: Script = {
-  plain: "vars {\n"
-    + "account $user\n"
-    + "}\n"
-    + "send [COIN 10] (\n"
-    + "	source = @world\n"
-    + "	destination = $user\n"
-    + ")\n"
-    + "",
+  plain:
+    "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
   reference: "order_1234",
   vars: {
     "user": "users:042",

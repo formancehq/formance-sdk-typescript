@@ -98,6 +98,7 @@ async function $do(
     "atomic": payload.atomic,
     "continueOnFailure": payload.continueOnFailure,
     "parallel": payload.parallel,
+    "schemaVersion": payload.schemaVersion,
   });
 
   const headers = new Headers(compactMap({
@@ -112,7 +113,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2CreateBulk",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 

@@ -34,7 +34,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function orchestrationV2CreateWorkflow(
   client: SDKCore,
-  request?: shared.V2WorkflowConfig | undefined,
+  request?: shared.V2CreateWorkflowRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -59,7 +59,7 @@ export function orchestrationV2CreateWorkflow(
 
 async function $do(
   client: SDKCore,
-  request?: shared.V2WorkflowConfig | undefined,
+  request?: shared.V2CreateWorkflowRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -80,7 +80,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => shared.V2WorkflowConfig$outboundSchema.optional().parse(value),
+    (value) =>
+      shared.V2CreateWorkflowRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -105,7 +106,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2CreateWorkflow",
-    oAuth2Scopes: ["auth:read", "orchestration:write"],
+    oAuth2Scopes: ["orchestration:write"],
 
     resolvedSecurity: requestSecurity,
 

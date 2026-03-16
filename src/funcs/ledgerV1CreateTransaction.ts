@@ -110,7 +110,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createTransaction",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -169,6 +169,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.CreateTransactionResponse$inboundSchema, {
+      hdrs: true,
       key: "TransactionsResponse",
     }),
     M.jsonErr("default", errors.ErrorResponse$inboundSchema),

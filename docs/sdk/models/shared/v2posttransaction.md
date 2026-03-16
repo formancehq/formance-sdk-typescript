@@ -24,14 +24,9 @@ let value: V2PostTransaction = {
   ],
   reference: "ref:001",
   script: {
-    plain: "vars {\n"
-      + "account $user\n"
-      + "}\n"
-      + "send [COIN 10] (\n"
-      + "	source = @world\n"
-      + "	destination = $user\n"
-      + ")\n"
-      + "",
+    plain:
+      "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+    template: "CUSTOMER_DEPOSIT",
     vars: {
       "user": "users:042",
     },

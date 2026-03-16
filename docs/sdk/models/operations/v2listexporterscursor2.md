@@ -12,13 +12,13 @@ let value: V2ListExportersCursor2 = {
         "key": "<value>",
         "key1": "<value>",
       },
-      createdAt: new Date("2023-06-13T00:54:54.124Z"),
+      createdAt: new Date("2024-06-12T00:54:54.124Z"),
       driver: "<value>",
       id: "<id>",
     },
   ],
   hasMore: false,
-  next: "",
+  next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
   pageSize: 15,
   previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
@@ -30,6 +30,6 @@ let value: V2ListExportersCursor2 = {
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `data`                                                          | [shared.V2Exporter](../../../sdk/models/shared/v2exporter.md)[] | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
 | `hasMore`                                                       | *boolean*                                                       | :heavy_check_mark:                                              | N/A                                                             | false                                                           |
-| `next`                                                          | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             |                                                                 |
+| `next`                                                          | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                                |
 | `pageSize`                                                      | *number*                                                        | :heavy_check_mark:                                              | N/A                                                             | 15                                                              |
 | `previous`                                                      | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                    |

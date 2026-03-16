@@ -1,21 +1,21 @@
 # V3CreatePoolRequest
 
+Query and dynamic pools are available from Connectivity v3.1
+
 ## Example Usage
 
 ```typescript
 import { V3CreatePoolRequest } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3CreatePoolRequest = {
-  accountIDs: [
-    "<value 1>",
-  ],
   name: "<value>",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `accountIDs`       | *string*[]         | :heavy_check_mark: | N/A                |
-| `name`             | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                                                                                                                               | Type                                                                                                                                                                | Required                                                                                                                                                            | Description                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `accountIDs`                                                                                                                                                        | *string*[]                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                  | N/A                                                                                                                                                                 |
+| `name`                                                                                                                                                              | *string*                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                  | N/A                                                                                                                                                                 |
+| `query`                                                                                                                                                             | Record<string, *any*>                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                  | The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata. |

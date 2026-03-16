@@ -7,13 +7,18 @@ import { paymentsV3AddBankAccountToPaymentServiceUser } from "../funcs/paymentsV
 import { paymentsV3ApprovePaymentInitiation } from "../funcs/paymentsV3ApprovePaymentInitiation.js";
 import { paymentsV3CreateAccount } from "../funcs/paymentsV3CreateAccount.js";
 import { paymentsV3CreateBankAccount } from "../funcs/paymentsV3CreateBankAccount.js";
+import { paymentsV3CreateLinkForPaymentServiceUser } from "../funcs/paymentsV3CreateLinkForPaymentServiceUser.js";
 import { paymentsV3CreatePayment } from "../funcs/paymentsV3CreatePayment.js";
 import { paymentsV3CreatePaymentServiceUser } from "../funcs/paymentsV3CreatePaymentServiceUser.js";
 import { paymentsV3CreatePool } from "../funcs/paymentsV3CreatePool.js";
 import { paymentsV3DeletePaymentInitiation } from "../funcs/paymentsV3DeletePaymentInitiation.js";
+import { paymentsV3DeletePaymentServiceUser } from "../funcs/paymentsV3DeletePaymentServiceUser.js";
+import { paymentsV3DeletePaymentServiceUserConnectionFromConnectorID } from "../funcs/paymentsV3DeletePaymentServiceUserConnectionFromConnectorID.js";
+import { paymentsV3DeletePaymentServiceUserConnector } from "../funcs/paymentsV3DeletePaymentServiceUserConnector.js";
 import { paymentsV3DeletePool } from "../funcs/paymentsV3DeletePool.js";
 import { paymentsV3ForwardBankAccount } from "../funcs/paymentsV3ForwardBankAccount.js";
 import { paymentsV3ForwardPaymentServiceUserBankAccount } from "../funcs/paymentsV3ForwardPaymentServiceUserBankAccount.js";
+import { paymentsV3ForwardPaymentServiceUserToProvider } from "../funcs/paymentsV3ForwardPaymentServiceUserToProvider.js";
 import { paymentsV3GetAccount } from "../funcs/paymentsV3GetAccount.js";
 import { paymentsV3GetAccountBalances } from "../funcs/paymentsV3GetAccountBalances.js";
 import { paymentsV3GetBankAccount } from "../funcs/paymentsV3GetBankAccount.js";
@@ -22,6 +27,7 @@ import { paymentsV3GetConnectorSchedule } from "../funcs/paymentsV3GetConnectorS
 import { paymentsV3GetPayment } from "../funcs/paymentsV3GetPayment.js";
 import { paymentsV3GetPaymentInitiation } from "../funcs/paymentsV3GetPaymentInitiation.js";
 import { paymentsV3GetPaymentServiceUser } from "../funcs/paymentsV3GetPaymentServiceUser.js";
+import { paymentsV3GetPaymentServiceUserLinkAttemptFromConnectorID } from "../funcs/paymentsV3GetPaymentServiceUserLinkAttemptFromConnectorID.js";
 import { paymentsV3GetPool } from "../funcs/paymentsV3GetPool.js";
 import { paymentsV3GetPoolBalances } from "../funcs/paymentsV3GetPoolBalances.js";
 import { paymentsV3GetPoolBalancesLatest } from "../funcs/paymentsV3GetPoolBalancesLatest.js";
@@ -38,6 +44,9 @@ import { paymentsV3ListPaymentInitiationAdjustments } from "../funcs/paymentsV3L
 import { paymentsV3ListPaymentInitiationRelatedPayments } from "../funcs/paymentsV3ListPaymentInitiationRelatedPayments.js";
 import { paymentsV3ListPaymentInitiations } from "../funcs/paymentsV3ListPaymentInitiations.js";
 import { paymentsV3ListPayments } from "../funcs/paymentsV3ListPayments.js";
+import { paymentsV3ListPaymentServiceUserConnections } from "../funcs/paymentsV3ListPaymentServiceUserConnections.js";
+import { paymentsV3ListPaymentServiceUserConnectionsFromConnectorID } from "../funcs/paymentsV3ListPaymentServiceUserConnectionsFromConnectorID.js";
+import { paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID } from "../funcs/paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID.js";
 import { paymentsV3ListPaymentServiceUsers } from "../funcs/paymentsV3ListPaymentServiceUsers.js";
 import { paymentsV3ListPools } from "../funcs/paymentsV3ListPools.js";
 import { paymentsV3RejectPaymentInitiation } from "../funcs/paymentsV3RejectPaymentInitiation.js";
@@ -47,7 +56,9 @@ import { paymentsV3RetryPaymentInitiation } from "../funcs/paymentsV3RetryPaymen
 import { paymentsV3ReversePaymentInitiation } from "../funcs/paymentsV3ReversePaymentInitiation.js";
 import { paymentsV3UninstallConnector } from "../funcs/paymentsV3UninstallConnector.js";
 import { paymentsV3UpdateBankAccountMetadata } from "../funcs/paymentsV3UpdateBankAccountMetadata.js";
+import { paymentsV3UpdateLinkForPaymentServiceUserOnConnector } from "../funcs/paymentsV3UpdateLinkForPaymentServiceUserOnConnector.js";
 import { paymentsV3UpdatePaymentMetadata } from "../funcs/paymentsV3UpdatePaymentMetadata.js";
+import { paymentsV3UpdatePoolQuery } from "../funcs/paymentsV3UpdatePoolQuery.js";
 import { paymentsV3V3UpdateConnectorConfig } from "../funcs/paymentsV3V3UpdateConnectorConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
@@ -126,6 +137,20 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Create an authentication link for a payment service user on a connector, for oauth flow
+   */
+  async createLinkForPaymentServiceUser(
+    request: operations.V3CreateLinkForPaymentServiceUserRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3CreateLinkForPaymentServiceUserResponse> {
+    return unwrapAsync(paymentsV3CreateLinkForPaymentServiceUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
    */
   async createPayment(
@@ -182,6 +207,53 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Delete a payment service user by ID
+   */
+  async deletePaymentServiceUser(
+    request: operations.V3DeletePaymentServiceUserRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3DeletePaymentServiceUserResponse> {
+    return unwrapAsync(paymentsV3DeletePaymentServiceUser(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Delete a connection for a payment service user on a connector
+   */
+  async deletePaymentServiceUserConnectionFromConnectorID(
+    request:
+      operations.V3DeletePaymentServiceUserConnectionFromConnectorIDRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3DeletePaymentServiceUserConnectionFromConnectorIDResponse
+  > {
+    return unwrapAsync(
+      paymentsV3DeletePaymentServiceUserConnectionFromConnectorID(
+        this,
+        request,
+        options,
+      ),
+    );
+  }
+
+  /**
+   * Remove a payment service user from a connector, the PSU will still exist in Formance
+   */
+  async deletePaymentServiceUserConnector(
+    request: operations.V3DeletePaymentServiceUserConnectorRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3DeletePaymentServiceUserConnectorResponse> {
+    return unwrapAsync(paymentsV3DeletePaymentServiceUserConnector(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Delete a pool by ID
    */
   async deletePool(
@@ -217,6 +289,20 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3ForwardPaymentServiceUserBankAccountResponse> {
     return unwrapAsync(paymentsV3ForwardPaymentServiceUserBankAccount(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Register/forward a payment service user on/to a connector
+   */
+  async forwardPaymentServiceUserToProvider(
+    request: operations.V3ForwardPaymentServiceUserToProviderRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ForwardPaymentServiceUserToProviderResponse> {
+    return unwrapAsync(paymentsV3ForwardPaymentServiceUserToProvider(
       this,
       request,
       options,
@@ -333,6 +419,25 @@ export class V3 extends ClientSDK {
       request,
       options,
     ));
+  }
+
+  /**
+   * Get a link attempt for a payment service user on a connector
+   */
+  async getPaymentServiceUserLinkAttemptFromConnectorID(
+    request:
+      operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse
+  > {
+    return unwrapAsync(
+      paymentsV3GetPaymentServiceUserLinkAttemptFromConnectorID(
+        this,
+        request,
+        options,
+      ),
+    );
   }
 
   /**
@@ -544,6 +649,59 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * List all connections for a payment service user
+   */
+  async listPaymentServiceUserConnections(
+    request: operations.V3ListPaymentServiceUserConnectionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ListPaymentServiceUserConnectionsResponse> {
+    return unwrapAsync(paymentsV3ListPaymentServiceUserConnections(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+   */
+  async listPaymentServiceUserConnectionsFromConnectorID(
+    request:
+      operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
+  > {
+    return unwrapAsync(
+      paymentsV3ListPaymentServiceUserConnectionsFromConnectorID(
+        this,
+        request,
+        options,
+      ),
+    );
+  }
+
+  /**
+   * List all link attempts for a payment service user on a connector.
+   * Allows to check if users used the link and completed the oauth flow.
+   */
+  async listPaymentServiceUserLinkAttemptsFromConnectorID(
+    request:
+      operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
+    options?: RequestOptions,
+  ): Promise<
+    operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
+  > {
+    return unwrapAsync(
+      paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID(
+        this,
+        request,
+        options,
+      ),
+    );
+  }
+
+  /**
    * List all payment service users
    */
   async listPaymentServiceUsers(
@@ -684,6 +842,20 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Update/Regenerate a link for a payment service user on a connector
+   */
+  async updateLinkForPaymentServiceUserOnConnector(
+    request: operations.V3UpdateLinkForPaymentServiceUserOnConnectorRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3UpdateLinkForPaymentServiceUserOnConnectorResponse> {
+    return unwrapAsync(paymentsV3UpdateLinkForPaymentServiceUserOnConnector(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Update a payment's metadata
    */
   async updatePaymentMetadata(
@@ -691,6 +863,20 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3UpdatePaymentMetadataResponse> {
     return unwrapAsync(paymentsV3UpdatePaymentMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update the query of a pool
+   */
+  async updatePoolQuery(
+    request: operations.V3UpdatePoolQueryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3UpdatePoolQueryResponse> {
+    return unwrapAsync(paymentsV3UpdatePoolQuery(
       this,
       request,
       options,

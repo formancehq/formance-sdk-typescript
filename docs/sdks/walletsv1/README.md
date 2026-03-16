@@ -1,5 +1,4 @@
-# WalletsV1
-(*wallets.v1*)
+# Wallets.V1
 
 ## Overview
 

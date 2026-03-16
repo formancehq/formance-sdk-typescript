@@ -115,7 +115,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "revertTransaction",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -174,6 +174,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(201, operations.RevertTransactionResponse$inboundSchema, {
+      hdrs: true,
       key: "TransactionResponse",
     }),
     M.jsonErr("default", errors.ErrorResponse$inboundSchema),

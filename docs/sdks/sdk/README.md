@@ -29,12 +29,7 @@ Show stack version information
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
+const sdk = new SDK();
 
 async function run() {
   const result = await sdk.getVersions();
@@ -55,12 +50,7 @@ import { getVersions } from "@formance/formance-sdk/funcs/getVersions.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
+const sdk = new SDKCore();
 
 async function run() {
   const res = await getVersions(sdk);

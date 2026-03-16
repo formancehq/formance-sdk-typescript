@@ -107,11 +107,17 @@ async function $do(
     "atEffectiveDate": payload.atEffectiveDate,
     "dryRun": payload.dryRun,
     "force": payload.force,
+    "schemaVersion": payload.schemaVersion,
   });
 
   const headers = new Headers(compactMap({
     "Content-Type": "application/json",
     Accept: "application/json",
+    "Idempotency-Key": encodeSimple(
+      "Idempotency-Key",
+      payload["Idempotency-Key"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const securityInput = await extractSecurity(client._options.security);
@@ -121,7 +127,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2RevertTransaction",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -180,7 +186,8 @@ async function $do(
     | SDKValidationError
   >(
     M.json(201, operations.V2RevertTransactionResponse$inboundSchema, {
-      key: "V2CreateTransactionResponse",
+      hdrs: true,
+      key: "V2RevertTransactionResponse",
     }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });

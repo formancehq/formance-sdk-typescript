@@ -6,7 +6,7 @@
 import { V3PaymentServiceUser } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3PaymentServiceUser = {
-  createdAt: new Date("2025-09-30T03:09:54.430Z"),
+  createdAt: new Date("2026-09-30T03:09:54.430Z"),
   id: "<id>",
   name: "<value>",
 };

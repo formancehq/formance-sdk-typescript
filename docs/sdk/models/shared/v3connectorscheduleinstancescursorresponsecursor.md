@@ -9,11 +9,11 @@ let value: V3ConnectorScheduleInstancesCursorResponseCursor = {
   data: [
     {
       connectorID: "<value>",
-      createdAt: new Date("2024-01-22T16:01:21.394Z"),
+      createdAt: new Date("2025-01-21T16:01:21.394Z"),
       id: "<id>",
       scheduleID: "<id>",
       terminated: false,
-      updatedAt: new Date("2025-03-29T01:12:39.596Z"),
+      updatedAt: new Date("2026-03-29T01:12:39.596Z"),
     },
   ],
   hasMore: false,

@@ -124,7 +124,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2DeleteTransactionMetadata",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -181,7 +181,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil("2XX", operations.V2DeleteTransactionMetadataResponse$inboundSchema),
+    M.nil(204, operations.V2DeleteTransactionMetadataResponse$inboundSchema, {
+      hdrs: true,
+    }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

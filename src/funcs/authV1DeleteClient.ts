@@ -102,7 +102,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "deleteClient",
-    oAuth2Scopes: ["auth:read", "auth:write"],
+    oAuth2Scopes: ["auth:write"],
 
     resolvedSecurity: requestSecurity,
 

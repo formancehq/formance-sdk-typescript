@@ -12,6 +12,7 @@ import { ledgerV2CreateLedger } from "../funcs/ledgerV2CreateLedger.js";
 import { ledgerV2CreatePipeline } from "../funcs/ledgerV2CreatePipeline.js";
 import { ledgerV2CreateTransaction } from "../funcs/ledgerV2CreateTransaction.js";
 import { ledgerV2DeleteAccountMetadata } from "../funcs/ledgerV2DeleteAccountMetadata.js";
+import { ledgerV2DeleteBucket } from "../funcs/ledgerV2DeleteBucket.js";
 import { ledgerV2DeleteExporter } from "../funcs/ledgerV2DeleteExporter.js";
 import { ledgerV2DeleteLedgerMetadata } from "../funcs/ledgerV2DeleteLedgerMetadata.js";
 import { ledgerV2DeletePipeline } from "../funcs/ledgerV2DeletePipeline.js";
@@ -23,20 +24,26 @@ import { ledgerV2GetExporterState } from "../funcs/ledgerV2GetExporterState.js";
 import { ledgerV2GetLedger } from "../funcs/ledgerV2GetLedger.js";
 import { ledgerV2GetLedgerInfo } from "../funcs/ledgerV2GetLedgerInfo.js";
 import { ledgerV2GetPipelineState } from "../funcs/ledgerV2GetPipelineState.js";
+import { ledgerV2GetSchema } from "../funcs/ledgerV2GetSchema.js";
 import { ledgerV2GetTransaction } from "../funcs/ledgerV2GetTransaction.js";
 import { ledgerV2GetVolumesWithBalances } from "../funcs/ledgerV2GetVolumesWithBalances.js";
 import { ledgerV2ImportLogs } from "../funcs/ledgerV2ImportLogs.js";
+import { ledgerV2InsertSchema } from "../funcs/ledgerV2InsertSchema.js";
 import { ledgerV2ListAccounts } from "../funcs/ledgerV2ListAccounts.js";
 import { ledgerV2ListExporters } from "../funcs/ledgerV2ListExporters.js";
 import { ledgerV2ListLedgers } from "../funcs/ledgerV2ListLedgers.js";
 import { ledgerV2ListLogs } from "../funcs/ledgerV2ListLogs.js";
 import { ledgerV2ListPipelines } from "../funcs/ledgerV2ListPipelines.js";
+import { ledgerV2ListSchemas } from "../funcs/ledgerV2ListSchemas.js";
 import { ledgerV2ListTransactions } from "../funcs/ledgerV2ListTransactions.js";
 import { ledgerV2ReadStats } from "../funcs/ledgerV2ReadStats.js";
 import { ledgerV2ResetPipeline } from "../funcs/ledgerV2ResetPipeline.js";
+import { ledgerV2RestoreBucket } from "../funcs/ledgerV2RestoreBucket.js";
 import { ledgerV2RevertTransaction } from "../funcs/ledgerV2RevertTransaction.js";
+import { ledgerV2RunQuery } from "../funcs/ledgerV2RunQuery.js";
 import { ledgerV2StartPipeline } from "../funcs/ledgerV2StartPipeline.js";
 import { ledgerV2StopPipeline } from "../funcs/ledgerV2StopPipeline.js";
+import { ledgerV2UpdateExporter } from "../funcs/ledgerV2UpdateExporter.js";
 import { ledgerV2UpdateLedgerMetadata } from "../funcs/ledgerV2UpdateLedgerMetadata.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
@@ -118,7 +125,7 @@ export class LedgerV2 extends ClientSDK {
    * Create exporter
    */
   async createExporter(
-    request: shared.V2ExporterConfiguration,
+    request: shared.V2CreateExporterRequest,
     options?: RequestOptions,
   ): Promise<operations.V2CreateExporterResponse> {
     return unwrapAsync(ledgerV2CreateExporter(
@@ -181,6 +188,23 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2DeleteAccountMetadataResponse> {
     return unwrapAsync(ledgerV2DeleteAccountMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Delete bucket
+   *
+   * @remarks
+   * Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+   */
+  async deleteBucket(
+    request: operations.V2DeleteBucketRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2DeleteBucketResponse> {
+    return unwrapAsync(ledgerV2DeleteBucket(
       this,
       request,
       options,
@@ -345,6 +369,20 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Get a schema for a ledger by version
+   */
+  async getSchema(
+    request: operations.V2GetSchemaRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2GetSchemaResponse> {
+    return unwrapAsync(ledgerV2GetSchema(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get transaction from a ledger by its ID
    */
   async getTransaction(
@@ -377,6 +415,20 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2ImportLogsResponse> {
     return unwrapAsync(ledgerV2ImportLogs(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Insert a schema for a ledger
+   */
+  async insertSchema(
+    request: operations.V2InsertSchemaRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2InsertSchemaResponse> {
+    return unwrapAsync(ledgerV2InsertSchema(
       this,
       request,
       options,
@@ -458,6 +510,20 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * List all schemas for a ledger
+   */
+  async listSchemas(
+    request: operations.V2ListSchemasRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ListSchemasResponse> {
+    return unwrapAsync(ledgerV2ListSchemas(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * List transactions from a ledger
    *
    * @remarks
@@ -506,6 +572,23 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Restore bucket
+   *
+   * @remarks
+   * Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+   */
+  async restoreBucket(
+    request: operations.V2RestoreBucketRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2RestoreBucketResponse> {
+    return unwrapAsync(ledgerV2RestoreBucket(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Revert a ledger transaction by its ID
    */
   async revertTransaction(
@@ -513,6 +596,23 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2RevertTransactionResponse> {
     return unwrapAsync(ledgerV2RevertTransaction(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Run a query template
+   *
+   * @remarks
+   * Run a query template on a ledger
+   */
+  async runQuery(
+    request: operations.V2RunQueryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2RunQueryResponse> {
+    return unwrapAsync(ledgerV2RunQuery(
       this,
       request,
       options,
@@ -541,6 +641,20 @@ export class LedgerV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2StopPipelineResponse> {
     return unwrapAsync(ledgerV2StopPipeline(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update exporter
+   */
+  async updateExporter(
+    request: operations.V2UpdateExporterRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2UpdateExporterResponse> {
+    return unwrapAsync(ledgerV2UpdateExporter(
       this,
       request,
       options,

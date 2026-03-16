@@ -103,6 +103,7 @@ async function $do(
 
   const query = encodeFormQuery({
     "dryRun": payload.dryRun,
+    "schemaVersion": payload.schemaVersion,
   });
 
   const headers = new Headers(compactMap({
@@ -122,7 +123,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2AddMetadataToAccount",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -180,7 +181,9 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(204, operations.V2AddMetadataToAccountResponse$inboundSchema),
+    M.nil(204, operations.V2AddMetadataToAccountResponse$inboundSchema, {
+      hdrs: true,
+    }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {

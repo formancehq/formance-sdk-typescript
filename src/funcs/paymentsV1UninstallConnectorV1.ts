@@ -115,7 +115,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "uninstallConnectorV1",
-    oAuth2Scopes: ["auth:read", "payments:write"],
+    oAuth2Scopes: ["payments:write"],
 
     resolvedSecurity: requestSecurity,
 

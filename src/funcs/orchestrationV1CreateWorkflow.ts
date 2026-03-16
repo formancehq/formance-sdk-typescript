@@ -34,7 +34,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function orchestrationV1CreateWorkflow(
   client: SDKCore,
-  request?: shared.WorkflowConfig | undefined,
+  request?: shared.CreateWorkflowRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -59,7 +59,7 @@ export function orchestrationV1CreateWorkflow(
 
 async function $do(
   client: SDKCore,
-  request?: shared.WorkflowConfig | undefined,
+  request?: shared.CreateWorkflowRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -80,7 +80,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => shared.WorkflowConfig$outboundSchema.optional().parse(value),
+    (value) =>
+      shared.CreateWorkflowRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -105,7 +106,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createWorkflow",
-    oAuth2Scopes: ["auth:read", "orchestration:write"],
+    oAuth2Scopes: ["orchestration:write"],
 
     resolvedSecurity: requestSecurity,
 

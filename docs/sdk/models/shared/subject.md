@@ -8,7 +8,7 @@
 ```typescript
 const value: shared.LedgerAccountSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "ACCOUNT",
 };
 ```
 
@@ -17,7 +17,7 @@ const value: shared.LedgerAccountSubject = {
 ```typescript
 const value: shared.WalletSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "WALLET",
 };
 ```
 

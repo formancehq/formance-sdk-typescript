@@ -107,7 +107,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getPolicy",
-    oAuth2Scopes: ["auth:read", "reconciliation:read"],
+    oAuth2Scopes: ["reconciliation:read"],
 
     resolvedSecurity: requestSecurity,
 

@@ -13,7 +13,7 @@ let value: AccountsCursor = {
       {
         accountName: "<value>",
         connectorID: "<id>",
-        createdAt: new Date("2023-03-08T12:42:25.690Z"),
+        createdAt: new Date("2024-03-07T12:42:25.690Z"),
         defaultAsset: "<value>",
         defaultCurrency: "<value>",
         id: "<id>",

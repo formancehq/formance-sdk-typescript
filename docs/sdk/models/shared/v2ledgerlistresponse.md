@@ -9,7 +9,7 @@ let value: V2LedgerListResponse = {
   cursor: {
     data: [],
     hasMore: false,
-    next: "",
+    next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
     pageSize: 15,
     previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   },

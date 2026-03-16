@@ -7,7 +7,7 @@ import { V2BulkElementResultAddMetadata } from "@formance/formance-sdk/sdk/model
 
 let value: V2BulkElementResultAddMetadata = {
   logID: 934456,
-  responseType: "<value>",
+  responseType: "ADD_METADATA",
 };
 ```
 
@@ -16,4 +16,4 @@ let value: V2BulkElementResultAddMetadata = {
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `logID`            | *number*           | :heavy_check_mark: | N/A                |
-| `responseType`     | *string*           | :heavy_check_mark: | N/A                |
+| `responseType`     | *"ADD_METADATA"*   | :heavy_check_mark: | N/A                |

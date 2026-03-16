@@ -2,12 +2,7 @@
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
+const sdk = new SDK();
 
 async function run() {
   const result = await sdk.getVersions();

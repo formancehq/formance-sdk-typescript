@@ -79,11 +79,11 @@ let value: V2TransactionsCursorResponseCursor = {
       },
       reference: "ref:001",
       reverted: true,
-      timestamp: new Date("2025-06-22T11:57:12.314Z"),
+      timestamp: new Date("2026-06-22T11:57:12.314Z"),
     },
   ],
   hasMore: false,
-  next: "",
+  next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
   pageSize: 15,
   previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
@@ -95,6 +95,6 @@ let value: V2TransactionsCursorResponseCursor = {
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `data`                                                                | [shared.V2Transaction](../../../sdk/models/shared/v2transaction.md)[] | :heavy_check_mark:                                                    | N/A                                                                   |                                                                       |
 | `hasMore`                                                             | *boolean*                                                             | :heavy_check_mark:                                                    | N/A                                                                   | false                                                                 |
-| `next`                                                                | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   |                                                                       |
+| `next`                                                                | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                                      |
 | `pageSize`                                                            | *number*                                                              | :heavy_check_mark:                                                    | N/A                                                                   | 15                                                                    |
 | `previous`                                                            | *string*                                                              | :heavy_minus_sign:                                                    | N/A                                                                   | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                          |

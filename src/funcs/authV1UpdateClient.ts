@@ -80,7 +80,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = encodeJSON("body", payload.ClientOptions, { explode: true });
+  const body = encodeJSON("body", payload.CreateClientRequest, {
+    explode: true,
+  });
 
   const pathParams = {
     clientId: encodeSimple("clientId", payload.clientId, {
@@ -103,7 +105,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "updateClient",
-    oAuth2Scopes: ["auth:read", "auth:write"],
+    oAuth2Scopes: ["auth:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -160,7 +162,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.UpdateClientResponse$inboundSchema, {
-      key: "CreateClientResponse",
+      key: "UpdateClientResponse",
     }),
     M.fail("default"),
   )(response, req, { extraFields: responseFields });

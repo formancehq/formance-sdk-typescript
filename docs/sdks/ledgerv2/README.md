@@ -1,5 +1,4 @@
-# LedgerV2
-(*ledger.v2*)
+# Ledger.V2
 
 ## Overview
 
@@ -15,6 +14,7 @@
 * [createPipeline](#createpipeline) - Create pipeline
 * [createTransaction](#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](#deleteaccountmetadata) - Delete metadata by key
+* [deleteBucket](#deletebucket) - Delete bucket
 * [deleteExporter](#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](#deleteledgermetadata) - Delete ledger metadata by key
 * [deletePipeline](#deletepipeline) - Delete pipeline
@@ -26,20 +26,26 @@
 * [getLedger](#getledger) - Get a ledger
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getPipelineState](#getpipelinestate) - Get pipeline state
+* [getSchema](#getschema) - Get a schema for a ledger by version
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](#importlogs)
+* [insertSchema](#insertschema) - Insert a schema for a ledger
 * [listAccounts](#listaccounts) - List accounts from a ledger
 * [listExporters](#listexporters) - List exporters
 * [listLedgers](#listledgers) - List ledgers
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listPipelines](#listpipelines) - List pipelines
+* [listSchemas](#listschemas) - List all schemas for a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
 * [resetPipeline](#resetpipeline) - Reset pipeline
+* [restoreBucket](#restorebucket) - Restore bucket
 * [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [runQuery](#runquery) - Run a query template
 * [startPipeline](#startpipeline) - Start pipeline
 * [stopPipeline](#stoppipeline) - Stop pipeline
+* [updateExporter](#updateexporter) - Update exporter
 * [updateLedgerMetadata](#updateledgermetadata) - Update ledger metadata
 
 ## addMetadataOnTransaction
@@ -67,6 +73,7 @@ async function run() {
     dryRun: true,
     id: 1234n,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
 
   console.log(result);
@@ -100,6 +107,7 @@ async function run() {
     dryRun: true,
     id: 1234n,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -157,6 +165,7 @@ async function run() {
     address: "users:001",
     dryRun: true,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
 
   console.log(result);
@@ -190,6 +199,7 @@ async function run() {
     address: "users:001",
     dryRun: true,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -410,6 +420,7 @@ async function run() {
     continueOnFailure: true,
     ledger: "ledger001",
     parallel: true,
+    schemaVersion: "v1.0.0",
   });
 
   console.log(result);
@@ -446,6 +457,7 @@ async function run() {
     continueOnFailure: true,
     ledger: "ledger001",
     parallel: true,
+    schemaVersion: "v1.0.0",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -548,7 +560,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [shared.V2ExporterConfiguration](../../sdk/models/shared/v2exporterconfiguration.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [shared.V2CreateExporterRequest](../../sdk/models/shared/v2createexporterrequest.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -778,14 +790,8 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {\n" +
-        "account $user\n" +
-        "}\n" +
-        "send [COIN 10] (\n" +
-        "	source = @world\n" +
-        "	destination = $user\n" +
-        ")\n" +
-        "",
+        plain: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+        template: "CUSTOMER_DEPOSIT",
         vars: {
           "user": "users:042",
         },
@@ -794,6 +800,7 @@ async function run() {
     dryRun: true,
     force: true,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
 
   console.log(result);
@@ -846,14 +853,8 @@ async function run() {
       ],
       reference: "ref:001",
       script: {
-        plain: "vars {\n" +
-        "account $user\n" +
-        "}\n" +
-        "send [COIN 10] (\n" +
-        "	source = @world\n" +
-        "	destination = $user\n" +
-        ")\n" +
-        "",
+        plain: "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+        template: "CUSTOMER_DEPOSIT",
         vars: {
           "user": "users:042",
         },
@@ -862,6 +863,7 @@ async function run() {
     dryRun: true,
     force: true,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -970,6 +972,86 @@ run();
 ### Response
 
 **Promise\<[operations.V2DeleteAccountMetadataResponse](../../sdk/models/operations/v2deleteaccountmetadataresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## deleteBucket
+
+Delete a bucket by marking all ledgers in the bucket as deleted (soft delete). All ledgers in the bucket will have their deleted_at field set to the current timestamp.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2DeleteBucket" method="delete" path="/api/ledger/v2/_/buckets/{bucket}" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.deleteBucket({
+    bucket: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2DeleteBucket } from "@formance/formance-sdk/funcs/ledgerV2DeleteBucket.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2DeleteBucket(sdk, {
+    bucket: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2DeleteBucket failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2DeleteBucketRequest](../../sdk/models/operations/v2deletebucketrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2DeleteBucketResponse](../../sdk/models/operations/v2deletebucketresponse.md)\>**
 
 ### Errors
 
@@ -1869,6 +1951,88 @@ run();
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## getSchema
+
+Get a schema for a ledger by version
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2GetSchema" method="get" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.getSchema({
+    ledger: "ledger001",
+    version: "v1.0.0",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2GetSchema } from "@formance/formance-sdk/funcs/ledgerV2GetSchema.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2GetSchema(sdk, {
+    ledger: "ledger001",
+    version: "v1.0.0",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2GetSchema failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2GetSchemaRequest](../../sdk/models/operations/v2getschemarequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2GetSchemaResponse](../../sdk/models/operations/v2getschemaresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## getTransaction
 
 Get transaction from a ledger by its ID
@@ -2113,6 +2277,128 @@ run();
 ### Response
 
 **Promise\<[operations.V2ImportLogsResponse](../../sdk/models/operations/v2importlogsresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## insertSchema
+
+Insert a schema for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2InsertSchema" method="post" path="/api/ledger/v2/{ledger}/schemas/{version}" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.insertSchema({
+    v2SchemaData: {
+      chart: {
+        "users": {
+          additionalProperties: {
+            "$userID": {
+              dotPattern: "^[0-9]{16}$",
+            },
+          },
+        },
+      },
+      queries: {
+        "key": {
+          params: {
+            cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+            pageSize: 100,
+            sort: "id:desc",
+          },
+        },
+      },
+    },
+    ledger: "ledger001",
+    version: "v1.0.0",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2InsertSchema } from "@formance/formance-sdk/funcs/ledgerV2InsertSchema.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2InsertSchema(sdk, {
+    v2SchemaData: {
+      chart: {
+        "users": {
+          additionalProperties: {
+            "$userID": {
+              dotPattern: "^[0-9]{16}$",
+            },
+          },
+        },
+      },
+      queries: {
+        "key": {
+          params: {
+            cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+            pageSize: 100,
+            sort: "id:desc",
+          },
+        },
+      },
+    },
+    ledger: "ledger001",
+    version: "v1.0.0",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2InsertSchema failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2InsertSchemaRequest](../../sdk/models/operations/v2insertschemarequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2InsertSchemaResponse](../../sdk/models/operations/v2insertschemaresponse.md)\>**
 
 ### Errors
 
@@ -2532,6 +2818,86 @@ run();
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## listSchemas
+
+List all schemas for a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2ListSchemas" method="get" path="/api/ledger/v2/{ledger}/schemas" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.listSchemas({
+    ledger: "ledger001",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2ListSchemas } from "@formance/formance-sdk/funcs/ledgerV2ListSchemas.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2ListSchemas(sdk, {
+    ledger: "ledger001",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2ListSchemas failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2ListSchemasRequest](../../sdk/models/operations/v2listschemasrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2ListSchemasResponse](../../sdk/models/operations/v2listschemasresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## listTransactions
 
 List transactions from a ledger, sorted by id in descending order.
@@ -2781,6 +3147,86 @@ run();
 | errors.V2ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## restoreBucket
+
+Restore a deleted bucket by unmarking all ledgers in the bucket as deleted. All ledgers in the bucket will have their deleted_at field set to NULL.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2RestoreBucket" method="post" path="/api/ledger/v2/_/buckets/{bucket}/restore" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.restoreBucket({
+    bucket: "<value>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2RestoreBucket } from "@formance/formance-sdk/funcs/ledgerV2RestoreBucket.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2RestoreBucket(sdk, {
+    bucket: "<value>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2RestoreBucket failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2RestoreBucketRequest](../../sdk/models/operations/v2restorebucketrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2RestoreBucketResponse](../../sdk/models/operations/v2restorebucketresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## revertTransaction
 
 Revert a ledger transaction by its ID
@@ -2803,6 +3249,7 @@ async function run() {
     dryRun: true,
     id: 1234n,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
 
   console.log(result);
@@ -2833,6 +3280,7 @@ async function run() {
     dryRun: true,
     id: 1234n,
     ledger: "ledger001",
+    schemaVersion: "v1.0.0",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -2857,6 +3305,110 @@ run();
 ### Response
 
 **Promise\<[operations.V2RevertTransactionResponse](../../sdk/models/operations/v2reverttransactionresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## runQuery
+
+Run a query template on a ledger
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2RunQuery" method="post" path="/api/ledger/v2/{ledger}/queries/{id}/run" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.runQuery({
+    requestBody: {
+      params: {
+        cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        pageSize: 100,
+        sort: "id:desc",
+      },
+    },
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    id: "CUSTOMER_DEPOSIT",
+    ledger: "ledger001",
+    pageSize: 100,
+    schemaVersion: "v1.0.0",
+    sort: "id:desc",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2RunQuery } from "@formance/formance-sdk/funcs/ledgerV2RunQuery.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2RunQuery(sdk, {
+    requestBody: {
+      params: {
+        cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+        pageSize: 100,
+        sort: "id:desc",
+      },
+    },
+    cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
+    id: "CUSTOMER_DEPOSIT",
+    ledger: "ledger001",
+    pageSize: 100,
+    schemaVersion: "v1.0.0",
+    sort: "id:desc",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2RunQuery failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2RunQueryRequest](../../sdk/models/operations/v2runqueryrequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2RunQueryResponse](../../sdk/models/operations/v2runqueryresponse.md)\>**
 
 ### Errors
 
@@ -3021,6 +3573,102 @@ run();
 ### Response
 
 **Promise\<[operations.V2StopPipelineResponse](../../sdk/models/operations/v2stoppipelineresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| errors.V2ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## updateExporter
+
+Update exporter
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v2UpdateExporter" method="put" path="/api/ledger/v2/_/exporters/{exporterID}" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.ledger.v2.updateExporter({
+    v2CreateExporterRequest: {
+      config: {
+        "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
+      },
+      driver: "<value>",
+    },
+    exporterID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { ledgerV2UpdateExporter } from "@formance/formance-sdk/funcs/ledgerV2UpdateExporter.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await ledgerV2UpdateExporter(sdk, {
+    v2CreateExporterRequest: {
+      config: {
+        "key": "<value>",
+        "key1": "<value>",
+        "key2": "<value>",
+      },
+      driver: "<value>",
+    },
+    exporterID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("ledgerV2UpdateExporter failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V2UpdateExporterRequest](../../sdk/models/operations/v2updateexporterrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V2UpdateExporterResponse](../../sdk/models/operations/v2updateexporterresponse.md)\>**
 
 ### Errors
 

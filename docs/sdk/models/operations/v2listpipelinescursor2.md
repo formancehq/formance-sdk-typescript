@@ -8,7 +8,7 @@ import { V2ListPipelinesCursor2 } from "@formance/formance-sdk/sdk/models/operat
 let value: V2ListPipelinesCursor2 = {
   data: [],
   hasMore: false,
-  next: "",
+  next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
   pageSize: 15,
   previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
@@ -20,6 +20,6 @@ let value: V2ListPipelinesCursor2 = {
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
 | `data`                                                          | [shared.V2Pipeline](../../../sdk/models/shared/v2pipeline.md)[] | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
 | `hasMore`                                                       | *boolean*                                                       | :heavy_check_mark:                                              | N/A                                                             | false                                                           |
-| `next`                                                          | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             |                                                                 |
+| `next`                                                          | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                                |
 | `pageSize`                                                      | *number*                                                        | :heavy_check_mark:                                              | N/A                                                             | 15                                                              |
 | `previous`                                                      | *string*                                                        | :heavy_minus_sign:                                              | N/A                                                             | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                    |

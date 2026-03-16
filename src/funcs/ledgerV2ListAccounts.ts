@@ -3,12 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import {
-  encodeFormQuery,
-  encodeJSONQuery,
-  encodeSimple,
-  queryJoin,
-} from "../lib/encodings.js";
+import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -102,18 +97,13 @@ async function $do(
 
   const path = pathToFunc("/api/ledger/v2/{ledger}/accounts")(pathParams);
 
-  const query = queryJoin(
-    encodeFormQuery({
-      "cursor": payload.cursor,
-      "expand": payload.expand,
-      "pageSize": payload.pageSize,
-      "pit": payload.pit,
-      "sort": payload.sort,
-    }),
-    encodeJSONQuery({
-      "query": payload.query,
-    }, { explode: false }),
-  );
+  const query = encodeFormQuery({
+    "cursor": payload.cursor,
+    "expand": payload.expand,
+    "pageSize": payload.pageSize,
+    "pit": payload.pit,
+    "sort": payload.sort,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -126,7 +116,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2ListAccounts",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    oAuth2Scopes: ["ledger:read"],
 
     resolvedSecurity: requestSecurity,
 

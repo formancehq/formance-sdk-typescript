@@ -113,7 +113,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "confirmHold",
-    oAuth2Scopes: ["auth:read", "wallets:write"],
+    oAuth2Scopes: ["wallets:write"],
 
     resolvedSecurity: requestSecurity,
 

@@ -6,7 +6,7 @@
 import { V2BulkElementAddMetadata } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementAddMetadata = {
-  action: "<value>",
+  action: "ADD_METADATA",
 };
 ```
 
@@ -14,6 +14,6 @@ let value: V2BulkElementAddMetadata = {
 
 | Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `action`                                                                                          | *string*                                                                                          | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `action`                                                                                          | *"ADD_METADATA"*                                                                                  | :heavy_check_mark:                                                                                | N/A                                                                                               |
 | `data`                                                                                            | [shared.V2BulkElementAddMetadataData](../../../sdk/models/shared/v2bulkelementaddmetadatadata.md) | :heavy_minus_sign:                                                                                | N/A                                                                                               |
 | `ik`                                                                                              | *string*                                                                                          | :heavy_minus_sign:                                                                                | N/A                                                                                               |

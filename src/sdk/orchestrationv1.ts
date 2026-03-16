@@ -66,7 +66,7 @@ export class OrchestrationV1 extends ClientSDK {
    * Create a workflow
    */
   async createWorkflow(
-    request?: shared.WorkflowConfig | undefined,
+    request?: shared.CreateWorkflowRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateWorkflowResponse> {
     return unwrapAsync(orchestrationV1CreateWorkflow(

@@ -43,7 +43,7 @@ let value: V2AccountsCursorResponse = {
       },
     ],
     hasMore: false,
-    next: "",
+    next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
     pageSize: 15,
     previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   },
@@ -52,6 +52,7 @@ let value: V2AccountsCursorResponse = {
 
 ## Fields
 
-| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `cursor`                                                                                              | [shared.V2AccountsCursorResponseCursor](../../../sdk/models/shared/v2accountscursorresponsecursor.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                                  | [shared.V2AccountsCursorResponseCursor](../../../sdk/models/shared/v2accountscursorresponsecursor.md)     | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `resource`                                                                                                | [shared.V2AccountsCursorResponseResource](../../../sdk/models/shared/v2accountscursorresponseresource.md) | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |

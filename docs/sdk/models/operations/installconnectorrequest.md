@@ -11,7 +11,7 @@ let value: InstallConnectorRequest = {
     apiKey: "XXX",
     endpoint: "XXX",
     name: "My Generic Account",
-    pollingPeriod: "60s",
+    pollingPeriod: "120m",
     provider: "Generic",
   },
   connector: Connector.Wise,

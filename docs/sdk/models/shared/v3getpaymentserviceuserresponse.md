@@ -7,7 +7,7 @@ import { V3GetPaymentServiceUserResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: V3GetPaymentServiceUserResponse = {
   data: {
-    createdAt: new Date("2023-07-13T22:18:18.331Z"),
+    createdAt: new Date("2024-07-12T22:18:18.331Z"),
     id: "<id>",
     name: "<value>",
   },

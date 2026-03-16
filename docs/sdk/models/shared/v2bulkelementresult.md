@@ -8,7 +8,7 @@
 ```typescript
 const value: shared.V2BulkElementResultAddMetadata = {
   logID: 934456,
-  responseType: "<value>",
+  responseType: "ADD_METADATA",
 };
 ```
 
@@ -17,7 +17,7 @@ const value: shared.V2BulkElementResultAddMetadata = {
 ```typescript
 const value: shared.V2BulkElementResultCreateTransaction = {
   data: {
-    id: 126928n,
+    id: 712930n,
     metadata: {
       "admin": "true",
     },
@@ -53,14 +53,7 @@ const value: shared.V2BulkElementResultCreateTransaction = {
         },
       },
     },
-    postings: [
-      {
-        amount: 100n,
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
+    postings: [],
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
@@ -94,11 +87,11 @@ const value: shared.V2BulkElementResultCreateTransaction = {
       },
     },
     reference: "ref:001",
-    reverted: true,
-    timestamp: new Date("2025-12-06T01:08:16.380Z"),
+    reverted: false,
+    timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 778245,
-  responseType: "<value>",
+  responseType: "CREATE_TRANSACTION",
 };
 ```
 
@@ -107,7 +100,7 @@ const value: shared.V2BulkElementResultCreateTransaction = {
 ```typescript
 const value: shared.V2BulkElementResultDeleteMetadata = {
   logID: 699342,
-  responseType: "<value>",
+  responseType: "DELETE_METADATA",
 };
 ```
 
@@ -118,7 +111,7 @@ const value: shared.V2BulkElementResultError = {
   errorCode: "<value>",
   errorDescription: "<value>",
   logID: 332853,
-  responseType: "<value>",
+  responseType: "ERROR",
 };
 ```
 
@@ -127,7 +120,7 @@ const value: shared.V2BulkElementResultError = {
 ```typescript
 const value: shared.V2BulkElementResultRevertTransaction = {
   data: {
-    id: 126928n,
+    id: 712930n,
     metadata: {
       "admin": "true",
     },
@@ -163,14 +156,7 @@ const value: shared.V2BulkElementResultRevertTransaction = {
         },
       },
     },
-    postings: [
-      {
-        amount: 100n,
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
+    postings: [],
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
@@ -204,11 +190,11 @@ const value: shared.V2BulkElementResultRevertTransaction = {
       },
     },
     reference: "ref:001",
-    reverted: true,
-    timestamp: new Date("2025-12-06T01:08:16.380Z"),
+    reverted: false,
+    timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 96956,
-  responseType: "<value>",
+  responseType: "REVERT_TRANSACTION",
 };
 ```
 

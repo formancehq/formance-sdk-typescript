@@ -7,14 +7,8 @@ import { RunScriptRequest } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: RunScriptRequest = {
   script: {
-    plain: "vars {\n"
-      + "account $user\n"
-      + "}\n"
-      + "send [COIN 10] (\n"
-      + "	source = @world\n"
-      + "	destination = $user\n"
-      + ")\n"
-      + "",
+    plain:
+      "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
     reference: "order_1234",
     vars: {
       "user": "users:042",
