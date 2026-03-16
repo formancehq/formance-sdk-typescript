@@ -45,6 +45,7 @@ import { paymentsV1UninstallConnectorV1 } from "../funcs/paymentsV1UninstallConn
 import { paymentsV1UpdateBankAccountMetadata } from "../funcs/paymentsV1UpdateBankAccountMetadata.js";
 import { paymentsV1UpdateConnectorConfigV1 } from "../funcs/paymentsV1UpdateConnectorConfigV1.js";
 import { paymentsV1UpdateMetadata } from "../funcs/paymentsV1UpdateMetadata.js";
+import { paymentsV1UpdatePoolQuery } from "../funcs/paymentsV1UpdatePoolQuery.js";
 import { paymentsV1UpdateTransferInitiationStatus } from "../funcs/paymentsV1UpdateTransferInitiationStatus.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
@@ -735,6 +736,20 @@ export class PaymentsV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.UpdateMetadataResponse> {
     return unwrapAsync(paymentsV1UpdateMetadata(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Update the query of a pool
+   */
+  async updatePoolQuery(
+    request: operations.UpdatePoolQueryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.UpdatePoolQueryResponse> {
+    return unwrapAsync(paymentsV1UpdatePoolQuery(
       this,
       request,
       options,

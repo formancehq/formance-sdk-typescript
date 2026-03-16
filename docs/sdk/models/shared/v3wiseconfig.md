@@ -8,18 +8,18 @@ import { V3WiseConfig } from "@formance/formance-sdk/sdk/models/shared";
 let value: V3WiseConfig = {
   apiKey: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Wise",
   webhookPublicKey: "<value>",
 };
 ```
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `apiKey`           | *string*           | :heavy_check_mark: | N/A                |
-| `name`             | *string*           | :heavy_check_mark: | N/A                |
-| `pageSize`         | *number*           | :heavy_minus_sign: | N/A                |
-| `pollingPeriod`    | *string*           | :heavy_minus_sign: | N/A                |
-| `provider`         | *string*           | :heavy_minus_sign: | N/A                |
-| `webhookPublicKey` | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `apiKey`                                                                | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
+| `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Wise"*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
+| `webhookPublicKey`                                                      | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |

@@ -108,7 +108,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getPoolBalancesLatest",
-    oAuth2Scopes: ["auth:read", "payments:read"],
+    oAuth2Scopes: ["payments:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -166,7 +166,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetPoolBalancesLatestResponse$inboundSchema, {
-      key: "PoolBalancesResponse",
+      key: "PoolBalancesLatestResponse",
     }),
     M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });

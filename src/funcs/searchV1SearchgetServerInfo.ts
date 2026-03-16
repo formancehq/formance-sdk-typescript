@@ -81,7 +81,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "searchgetServerInfo",
-    oAuth2Scopes: ["auth:read", "search:read"],
+    oAuth2Scopes: ["search:read"],
 
     resolvedSecurity: requestSecurity,
 

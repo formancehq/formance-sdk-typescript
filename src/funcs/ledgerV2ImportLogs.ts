@@ -80,7 +80,9 @@ async function $do(
     return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
-  const body = payload.V2ImportLogsRequest;
+  const body = payload.V2ImportLogsRequest instanceof Uint8Array
+    ? new Uint8Array(payload.V2ImportLogsRequest).buffer
+    : payload.V2ImportLogsRequest;
 
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {
@@ -103,7 +105,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2ImportLogs",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 

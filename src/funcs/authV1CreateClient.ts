@@ -30,7 +30,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function authV1CreateClient(
   client: SDKCore,
-  request?: shared.ClientOptions | undefined,
+  request?: shared.CreateClientRequest | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -54,7 +54,7 @@ export function authV1CreateClient(
 
 async function $do(
   client: SDKCore,
-  request?: shared.ClientOptions | undefined,
+  request?: shared.CreateClientRequest | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -74,7 +74,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => shared.ClientOptions$outboundSchema.optional().parse(value),
+    (value) =>
+      shared.CreateClientRequest$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -99,7 +100,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createClient",
-    oAuth2Scopes: ["auth:read", "auth:write"],
+    oAuth2Scopes: ["auth:write"],
 
     resolvedSecurity: requestSecurity,
 

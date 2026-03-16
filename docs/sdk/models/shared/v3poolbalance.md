@@ -17,3 +17,4 @@ let value: V3PoolBalance = {
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `amount`           | *BigInt*           | :heavy_check_mark: | N/A                |
 | `asset`            | *string*           | :heavy_check_mark: | N/A                |
+| `relatedAccounts`  | *string*[]         | :heavy_minus_sign: | N/A                |

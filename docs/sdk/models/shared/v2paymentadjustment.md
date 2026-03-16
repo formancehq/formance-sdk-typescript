@@ -8,7 +8,7 @@ import { V2PaymentAdjustment, V2PaymentStatus } from "@formance/formance-sdk/sdk
 let value: V2PaymentAdjustment = {
   absolute: false,
   amount: 100n,
-  date: new Date("2023-04-09T12:47:58.385Z"),
+  date: new Date("2024-04-08T12:47:58.385Z"),
   raw: {},
   status: V2PaymentStatus.Succeeded,
 };

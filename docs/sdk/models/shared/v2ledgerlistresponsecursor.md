@@ -8,7 +8,7 @@ import { V2LedgerListResponseCursor } from "@formance/formance-sdk/sdk/models/sh
 let value: V2LedgerListResponseCursor = {
   data: [
     {
-      addedAt: new Date("2023-09-28T22:39:47.167Z"),
+      addedAt: new Date("2024-09-27T22:39:47.167Z"),
       bucket: "<value>",
       metadata: {
         "admin": "true",
@@ -17,7 +17,7 @@ let value: V2LedgerListResponseCursor = {
     },
   ],
   hasMore: false,
-  next: "",
+  next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
   pageSize: 15,
   previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
 };
@@ -29,6 +29,6 @@ let value: V2LedgerListResponseCursor = {
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
 | `data`                                                      | [shared.V2Ledger](../../../sdk/models/shared/v2ledger.md)[] | :heavy_check_mark:                                          | N/A                                                         |                                                             |
 | `hasMore`                                                   | *boolean*                                                   | :heavy_check_mark:                                          | N/A                                                         | false                                                       |
-| `next`                                                      | *string*                                                    | :heavy_minus_sign:                                          | N/A                                                         |                                                             |
+| `next`                                                      | *string*                                                    | :heavy_minus_sign:                                          | N/A                                                         | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                            |
 | `pageSize`                                                  | *number*                                                    | :heavy_check_mark:                                          | N/A                                                         | 15                                                          |
 | `previous`                                                  | *string*                                                    | :heavy_minus_sign:                                          | N/A                                                         | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                |

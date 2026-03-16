@@ -7,7 +7,7 @@ import { V2GetTransactionResponse } from "@formance/formance-sdk/sdk/models/shar
 
 let value: V2GetTransactionResponse = {
   data: {
-    id: 126928n,
+    id: 712930n,
     metadata: {
       "admin": "true",
     },
@@ -43,14 +43,7 @@ let value: V2GetTransactionResponse = {
         },
       },
     },
-    postings: [
-      {
-        amount: 100n,
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
+    postings: [],
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
@@ -84,8 +77,8 @@ let value: V2GetTransactionResponse = {
       },
     },
     reference: "ref:001",
-    reverted: true,
-    timestamp: new Date("2025-12-06T01:08:16.380Z"),
+    reverted: false,
+    timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
 };
 ```

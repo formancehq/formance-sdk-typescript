@@ -6,14 +6,8 @@
 import { OrchestrationV2PostTransactionScript } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: OrchestrationV2PostTransactionScript = {
-  plain: "vars {\n"
-    + "account $user\n"
-    + "}\n"
-    + "send [COIN 10] (\n"
-    + "	source = @world\n"
-    + "	destination = $user\n"
-    + ")\n"
-    + "",
+  plain:
+    "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
   vars: {
     "user": "users:042",
   },

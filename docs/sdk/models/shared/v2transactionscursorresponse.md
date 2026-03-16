@@ -9,7 +9,7 @@ let value: V2TransactionsCursorResponse = {
   cursor: {
     data: [],
     hasMore: false,
-    next: "",
+    next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
     pageSize: 15,
     previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   },
@@ -18,6 +18,7 @@ let value: V2TransactionsCursorResponse = {
 
 ## Fields
 
-| Field                                                                                                         | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `cursor`                                                                                                      | [shared.V2TransactionsCursorResponseCursor](../../../sdk/models/shared/v2transactionscursorresponsecursor.md) | :heavy_check_mark:                                                                                            | N/A                                                                                                           |
+| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                                          | [shared.V2TransactionsCursorResponseCursor](../../../sdk/models/shared/v2transactionscursorresponsecursor.md)     | :heavy_check_mark:                                                                                                | N/A                                                                                                               |
+| `resource`                                                                                                        | [shared.V2TransactionsCursorResponseResource](../../../sdk/models/shared/v2transactionscursorresponseresource.md) | :heavy_minus_sign:                                                                                                | N/A                                                                                                               |

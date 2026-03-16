@@ -1,5 +1,4 @@
 # Ledger
-(*ledger*)
 
 ## Overview
 

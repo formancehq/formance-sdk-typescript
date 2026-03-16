@@ -7,7 +7,7 @@ import { V2BulkElementResultCreateTransaction } from "@formance/formance-sdk/sdk
 
 let value: V2BulkElementResultCreateTransaction = {
   data: {
-    id: 126928n,
+    id: 712930n,
     metadata: {
       "admin": "true",
     },
@@ -43,14 +43,7 @@ let value: V2BulkElementResultCreateTransaction = {
         },
       },
     },
-    postings: [
-      {
-        amount: 100n,
-        asset: "COIN",
-        destination: "users:002",
-        source: "users:001",
-      },
-    ],
+    postings: [],
     preCommitEffectiveVolumes: {
       "orders:1": {
         "USD": {
@@ -84,11 +77,11 @@ let value: V2BulkElementResultCreateTransaction = {
       },
     },
     reference: "ref:001",
-    reverted: true,
-    timestamp: new Date("2025-12-06T01:08:16.380Z"),
+    reverted: false,
+    timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 778245,
-  responseType: "<value>",
+  responseType: "CREATE_TRANSACTION",
 };
 ```
 
@@ -98,4 +91,4 @@ let value: V2BulkElementResultCreateTransaction = {
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `data`                                                              | [shared.V2Transaction](../../../sdk/models/shared/v2transaction.md) | :heavy_check_mark:                                                  | N/A                                                                 |
 | `logID`                                                             | *number*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
-| `responseType`                                                      | *string*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
+| `responseType`                                                      | *"CREATE_TRANSACTION"*                                              | :heavy_check_mark:                                                  | N/A                                                                 |

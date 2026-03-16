@@ -105,7 +105,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getWallet",
-    oAuth2Scopes: ["auth:read", "wallets:read"],
+    oAuth2Scopes: ["wallets:read"],
 
     resolvedSecurity: requestSecurity,
 
@@ -163,7 +163,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.GetWalletResponse$inboundSchema, {
-      key: "ActivityGetWalletOutput",
+      key: "GetWalletResponse",
     }),
     M.nil(404, operations.GetWalletResponse$inboundSchema),
     M.jsonErr("default", errors.WalletsErrorResponse$inboundSchema),

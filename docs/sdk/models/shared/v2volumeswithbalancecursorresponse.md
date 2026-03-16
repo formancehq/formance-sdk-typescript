@@ -17,7 +17,7 @@ let value: V2VolumesWithBalanceCursorResponse = {
       },
     ],
     hasMore: false,
-    next: "",
+    next: "aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=",
     pageSize: 15,
     previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
   },
@@ -26,6 +26,7 @@ let value: V2VolumesWithBalanceCursorResponse = {
 
 ## Fields
 
-| Field                                                                                                                     | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `cursor`                                                                                                                  | [shared.V2VolumesWithBalanceCursorResponseCursor](../../../sdk/models/shared/v2volumeswithbalancecursorresponsecursor.md) | :heavy_check_mark:                                                                                                        | N/A                                                                                                                       |
+| Field                                                                                                                         | Type                                                                                                                          | Required                                                                                                                      | Description                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                                                      | [shared.V2VolumesWithBalanceCursorResponseCursor](../../../sdk/models/shared/v2volumeswithbalancecursorresponsecursor.md)     | :heavy_check_mark:                                                                                                            | N/A                                                                                                                           |
+| `resource`                                                                                                                    | [shared.V2VolumesWithBalanceCursorResponseResource](../../../sdk/models/shared/v2volumeswithbalancecursorresponseresource.md) | :heavy_minus_sign:                                                                                                            | N/A                                                                                                                           |

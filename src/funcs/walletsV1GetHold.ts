@@ -105,7 +105,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getHold",
-    oAuth2Scopes: ["auth:read", "wallets:read"],
+    oAuth2Scopes: ["wallets:read"],
 
     resolvedSecurity: requestSecurity,
 

@@ -6,7 +6,7 @@
 import { V2BulkElementCreateTransaction } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementCreateTransaction = {
-  action: "<value>",
+  action: "CREATE_TRANSACTION",
   data: {
     accountMetadata: {
       "key": {
@@ -26,14 +26,9 @@ let value: V2BulkElementCreateTransaction = {
     ],
     reference: "ref:001",
     script: {
-      plain: "vars {\n"
-        + "account $user\n"
-        + "}\n"
-        + "send [COIN 10] (\n"
-        + "	source = @world\n"
-        + "	destination = $user\n"
-        + ")\n"
-        + "",
+      plain:
+        "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+      template: "CUSTOMER_DEPOSIT",
       vars: {
         "user": "users:042",
       },
@@ -46,6 +41,6 @@ let value: V2BulkElementCreateTransaction = {
 
 | Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `action`                                                                    | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
+| `action`                                                                    | *"CREATE_TRANSACTION"*                                                      | :heavy_check_mark:                                                          | N/A                                                                         |
 | `data`                                                                      | [shared.V2PostTransaction](../../../sdk/models/shared/v2posttransaction.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
 | `ik`                                                                        | *string*                                                                    | :heavy_minus_sign:                                                          | N/A                                                                         |

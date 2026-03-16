@@ -111,7 +111,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3GetPoolBalances",
-    oAuth2Scopes: ["auth:read", "payments:read"],
+    oAuth2Scopes: ["payments:read"],
 
     resolvedSecurity: requestSecurity,
 

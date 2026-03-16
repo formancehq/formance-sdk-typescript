@@ -7,7 +7,7 @@ import { V2LedgerAccountSubject } from "@formance/formance-sdk/sdk/models/shared
 
 let value: V2LedgerAccountSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "ACCOUNT",
 };
 ```
 
@@ -16,4 +16,4 @@ let value: V2LedgerAccountSubject = {
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `identifier`       | *string*           | :heavy_check_mark: | N/A                |
-| `type`             | *string*           | :heavy_check_mark: | N/A                |
+| `type`             | *"ACCOUNT"*        | :heavy_check_mark: | N/A                |

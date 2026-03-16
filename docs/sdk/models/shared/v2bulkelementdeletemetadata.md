@@ -6,7 +6,7 @@
 import { V2BulkElementDeleteMetadata } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V2BulkElementDeleteMetadata = {
-  action: "<value>",
+  action: "DELETE_METADATA",
 };
 ```
 
@@ -14,6 +14,6 @@ let value: V2BulkElementDeleteMetadata = {
 
 | Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `action`                                                                                                | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `action`                                                                                                | *"DELETE_METADATA"*                                                                                     | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `data`                                                                                                  | [shared.V2BulkElementDeleteMetadataData](../../../sdk/models/shared/v2bulkelementdeletemetadatadata.md) | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `ik`                                                                                                    | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |

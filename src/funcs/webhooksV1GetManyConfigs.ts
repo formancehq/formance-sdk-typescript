@@ -106,7 +106,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getManyConfigs",
-    oAuth2Scopes: ["auth:read", "webhooks:read"],
+    oAuth2Scopes: ["webhooks:read"],
 
     resolvedSecurity: requestSecurity,
 

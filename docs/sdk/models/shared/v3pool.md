@@ -6,7 +6,7 @@
 import { V3Pool } from "@formance/formance-sdk/sdk/models/shared";
 
 let value: V3Pool = {
-  createdAt: new Date("2024-07-30T19:16:55.222Z"),
+  createdAt: new Date("2025-07-30T19:16:55.222Z"),
   id: "<id>",
   name: "<value>",
   poolAccounts: [
@@ -25,3 +25,5 @@ let value: V3Pool = {
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `poolAccounts`                                                                                | *string*[]                                                                                    | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `query`                                                                                       | Record<string, *any*>                                                                         | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `type`                                                                                        | [shared.V3PoolTypeEnum](../../../sdk/models/shared/v3pooltypeenum.md)                         | :heavy_minus_sign:                                                                            | N/A                                                                                           |

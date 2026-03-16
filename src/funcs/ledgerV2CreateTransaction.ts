@@ -98,6 +98,7 @@ async function $do(
   const query = encodeFormQuery({
     "dryRun": payload.dryRun,
     "force": payload.force,
+    "schemaVersion": payload.schemaVersion,
   });
 
   const headers = new Headers(compactMap({
@@ -117,7 +118,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2CreateTransaction",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 
@@ -176,6 +177,7 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.V2CreateTransactionResponse$inboundSchema, {
+      hdrs: true,
       key: "V2CreateTransactionResponse",
     }),
     M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),

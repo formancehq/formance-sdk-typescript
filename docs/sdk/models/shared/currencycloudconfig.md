@@ -11,6 +11,7 @@ let value: CurrencyCloudConfig = {
   loginID: "XXX",
   name: "My CurrencyCloud Account",
   pollingPeriod: "60s",
+  provider: "Currencycloud",
 };
 ```
 
@@ -23,4 +24,4 @@ let value: CurrencyCloudConfig = {
 | `loginID`                                                                     | *string*                                                                      | :heavy_check_mark:                                                            | Username of the API Key holder                                                | XXX                                                                           |
 | `name`                                                                        | *string*                                                                      | :heavy_check_mark:                                                            | N/A                                                                           | My CurrencyCloud Account                                                      |
 | `pollingPeriod`                                                               | *string*                                                                      | :heavy_minus_sign:                                                            | The frequency at which the connector will fetch transactions                  | 60s                                                                           |
-| `provider`                                                                    | *string*                                                                      | :heavy_minus_sign:                                                            | N/A                                                                           |                                                                               |
+| `provider`                                                                    | *"Currencycloud"*                                                             | :heavy_check_mark:                                                            | N/A                                                                           |                                                                               |

@@ -10,7 +10,7 @@ const value: shared.V3AdyenConfig = {
   apiKey: "<value>",
   companyID: "<id>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Adyen",
 };
 ```
 
@@ -21,7 +21,7 @@ const value: shared.V3AtlarConfig = {
   accessKey: "<value>",
   baseUrl: "https://classic-carboxyl.name",
   name: "<value>",
-  pageSize: 25,
+  provider: "Atlar",
   secret: "<value>",
 };
 ```
@@ -33,11 +33,24 @@ const value: shared.V3BankingcircleConfig = {
   authorizationEndpoint: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
   password: "x2JumI7CZjxPmAq",
+  provider: "Bankingcircle",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
   username: "Savion88",
+};
+```
+
+### `shared.V3CoinbaseprimeConfig`
+
+```typescript
+const value: shared.V3CoinbaseprimeConfig = {
+  apiKey: "<value>",
+  apiSecret: "<value>",
+  name: "<value>",
+  passphrase: "<value>",
+  portfolioId: "<id>",
+  provider: "Coinbaseprime",
 };
 ```
 
@@ -48,7 +61,7 @@ const value: shared.V3ColumnConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Column",
 };
 ```
 
@@ -60,7 +73,7 @@ const value: shared.V3CurrencycloudConfig = {
   endpoint: "<value>",
   loginID: "<id>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Currencycloud",
 };
 ```
 
@@ -70,7 +83,18 @@ const value: shared.V3CurrencycloudConfig = {
 const value: shared.V3DummypayConfig = {
   directory: "/var/mail",
   name: "<value>",
-  pageSize: 25,
+  provider: "Dummypay",
+};
+```
+
+### `shared.V3FireblocksConfig`
+
+```typescript
+const value: shared.V3FireblocksConfig = {
+  apiKey: "<value>",
+  name: "<value>",
+  privateKey: "<value>",
+  provider: "Fireblocks",
 };
 ```
 
@@ -81,7 +105,19 @@ const value: shared.V3GenericConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Generic",
+};
+```
+
+### `shared.V3IncreaseConfig`
+
+```typescript
+const value: shared.V3IncreaseConfig = {
+  apiKey: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  provider: "Increase",
+  webhookSharedSecret: "<value>",
 };
 ```
 
@@ -93,7 +129,7 @@ const value: shared.V3MangopayConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Mangopay",
 };
 ```
 
@@ -105,7 +141,7 @@ const value: shared.V3ModulrConfig = {
   apiSecret: "<value>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Modulr",
 };
 ```
 
@@ -117,7 +153,33 @@ const value: shared.V3MoneycorpConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Moneycorp",
+};
+```
+
+### `shared.V3PlaidConfig`
+
+```typescript
+const value: shared.V3PlaidConfig = {
+  clientID: "<id>",
+  clientSecret: "<value>",
+  name: "<value>",
+  provider: "Plaid",
+};
+```
+
+### `shared.V3PowensConfig`
+
+```typescript
+const value: shared.V3PowensConfig = {
+  clientID: "<id>",
+  clientSecret: "<value>",
+  configurationToken: "<value>",
+  domain: "busy-cycle.com",
+  endpoint: "<value>",
+  maxConnectionsPerLink: 69947,
+  name: "<value>",
+  provider: "Powens",
 };
 ```
 
@@ -129,7 +191,7 @@ const value: shared.V3QontoConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Qonto",
 };
 ```
 
@@ -139,7 +201,19 @@ const value: shared.V3QontoConfig = {
 const value: shared.V3StripeConfig = {
   apiKey: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Stripe",
+};
+```
+
+### `shared.V3TinkConfig`
+
+```typescript
+const value: shared.V3TinkConfig = {
+  clientID: "<id>",
+  clientSecret: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  provider: "Tink",
 };
 ```
 
@@ -149,7 +223,7 @@ const value: shared.V3StripeConfig = {
 const value: shared.V3WiseConfig = {
   apiKey: "<value>",
   name: "<value>",
-  pageSize: 25,
+  provider: "Wise",
   webhookPublicKey: "<value>",
 };
 ```

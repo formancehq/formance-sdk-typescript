@@ -7,7 +7,7 @@
 
 ```typescript
 const value: shared.V2BulkElementAddMetadata = {
-  action: "<value>",
+  action: "ADD_METADATA",
 };
 ```
 
@@ -15,7 +15,7 @@ const value: shared.V2BulkElementAddMetadata = {
 
 ```typescript
 const value: shared.V2BulkElementCreateTransaction = {
-  action: "<value>",
+  action: "CREATE_TRANSACTION",
   data: {
     accountMetadata: {
       "key": {
@@ -35,14 +35,9 @@ const value: shared.V2BulkElementCreateTransaction = {
     ],
     reference: "ref:001",
     script: {
-      plain: "vars {\n"
-        + "account $user\n"
-        + "}\n"
-        + "send [COIN 10] (\n"
-        + "	source = @world\n"
-        + "	destination = $user\n"
-        + ")\n"
-        + "",
+      plain:
+        "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+      template: "CUSTOMER_DEPOSIT",
       vars: {
         "user": "users:042",
       },
@@ -55,7 +50,7 @@ const value: shared.V2BulkElementCreateTransaction = {
 
 ```typescript
 const value: shared.V2BulkElementDeleteMetadata = {
-  action: "<value>",
+  action: "DELETE_METADATA",
 };
 ```
 
@@ -63,7 +58,13 @@ const value: shared.V2BulkElementDeleteMetadata = {
 
 ```typescript
 const value: shared.V2BulkElementRevertTransaction = {
-  action: "<value>",
+  action: "REVERT_TRANSACTION",
+  data: {
+    id: 532442n,
+    metadata: {
+      "admin": "true",
+    },
+  },
 };
 ```
 

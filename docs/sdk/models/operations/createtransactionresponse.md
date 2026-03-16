@@ -7,7 +7,8 @@ import { CreateTransactionResponse } from "@formance/formance-sdk/sdk/models/ope
 
 let value: CreateTransactionResponse = {
   contentType: "<value>",
-  statusCode: 874130,
+  headers: {},
+  statusCode: 158599,
 };
 ```
 
@@ -16,6 +17,7 @@ let value: CreateTransactionResponse = {
 | Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `contentType`                                                                     | *string*                                                                          | :heavy_check_mark:                                                                | HTTP response content type for this operation                                     |
+| `headers`                                                                         | Record<string, *string*[]>                                                        | :heavy_check_mark:                                                                | N/A                                                                               |
 | `statusCode`                                                                      | *number*                                                                          | :heavy_check_mark:                                                                | HTTP response status code for this operation                                      |
 | `rawResponse`                                                                     | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)             | :heavy_check_mark:                                                                | Raw HTTP response; suitable for custom response parsing                           |
 | `transactionsResponse`                                                            | [shared.TransactionsResponse](../../../sdk/models/shared/transactionsresponse.md) | :heavy_minus_sign:                                                                | OK                                                                                |

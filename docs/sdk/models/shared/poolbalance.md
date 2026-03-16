@@ -17,3 +17,4 @@ let value: PoolBalance = {
 | ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | `amount`           | *BigInt*           | :heavy_check_mark: | N/A                | 100                |
 | `asset`            | *string*           | :heavy_check_mark: | N/A                | USD                |
+| `relatedAccounts`  | *string*[]         | :heavy_minus_sign: | N/A                |                    |

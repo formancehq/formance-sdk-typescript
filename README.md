@@ -91,12 +91,7 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
+const sdk = new SDK();
 
 async function run() {
   const result = await sdk.getVersions();
@@ -115,10 +110,11 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [auth](docs/sdks/auth/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
+* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
 
-#### [auth.v1](docs/sdks/authv1/README.md)
+### [Auth.V1](docs/sdks/authv1/README.md)
 
 * [createClient](docs/sdks/authv1/README.md#createclient) - Create client
 * [createSecret](docs/sdks/authv1/README.md#createsecret) - Add a secret to a client
@@ -132,12 +128,12 @@ run();
 * [readUser](docs/sdks/authv1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/authv1/README.md#updateclient) - Update client
 
-### [ledger](docs/sdks/ledger/README.md)
+### [Ledger](docs/sdks/ledger/README.md)
 
 * [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
 * [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 
-#### [ledger.v1](docs/sdks/ledgerv1/README.md)
+#### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [createTransactions](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -160,7 +156,7 @@ run();
 * [~~runScript~~](docs/sdks/ledgerv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/ledgerv1/README.md#updatemapping) - Update the mapping of a ledger
 
-#### [ledger.v2](docs/sdks/ledgerv2/README.md)
+#### [Ledger.V2](docs/sdks/ledgerv2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/ledgerv2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/ledgerv2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -172,6 +168,7 @@ run();
 * [createPipeline](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 * [createTransaction](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 * [deleteAccountMetadata](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+* [deleteBucket](docs/sdks/ledgerv2/README.md#deletebucket) - Delete bucket
 * [deleteExporter](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 * [deleteLedgerMetadata](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
 * [deletePipeline](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
@@ -183,26 +180,29 @@ run();
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
 * [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
+* [getSchema](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 * [getVolumesWithBalances](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 * [importLogs](docs/sdks/ledgerv2/README.md#importlogs)
+* [insertSchema](docs/sdks/ledgerv2/README.md#insertschema) - Insert a schema for a ledger
 * [listAccounts](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
 * [listExporters](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 * [listLedgers](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 * [listLogs](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
 * [listPipelines](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
+* [listSchemas](docs/sdks/ledgerv2/README.md#listschemas) - List all schemas for a ledger
 * [listTransactions](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
 * [resetPipeline](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
+* [restoreBucket](docs/sdks/ledgerv2/README.md#restorebucket) - Restore bucket
 * [revertTransaction](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+* [runQuery](docs/sdks/ledgerv2/README.md#runquery) - Run a query template
 * [startPipeline](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
 * [stopPipeline](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
+* [updateExporter](docs/sdks/ledgerv2/README.md#updateexporter) - Update exporter
 * [updateLedgerMetadata](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 
-### [orchestration](docs/sdks/orchestration/README.md)
-
-
-#### [orchestration.v1](docs/sdks/orchestrationv1/README.md)
+### [Orchestration.V1](docs/sdks/orchestrationv1/README.md)
 
 * [cancelEvent](docs/sdks/orchestrationv1/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestrationv1/README.md#createtrigger) - Create trigger
@@ -222,7 +222,7 @@ run();
 * [runWorkflow](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
 
-#### [orchestration.v2](docs/sdks/orchestrationv2/README.md)
+### [Orchestration.V2](docs/sdks/orchestrationv2/README.md)
 
 * [cancelEvent](docs/sdks/orchestrationv2/README.md#cancelevent) - Cancel a running workflow
 * [createTrigger](docs/sdks/orchestrationv2/README.md#createtrigger) - Create trigger
@@ -243,10 +243,7 @@ run();
 * [sendEvent](docs/sdks/orchestrationv2/README.md#sendevent) - Send an event to a running workflow
 * [testTrigger](docs/sdks/orchestrationv2/README.md#testtrigger) - Test trigger
 
-### [payments](docs/sdks/payments/README.md)
-
-
-#### [payments.v1](docs/sdks/paymentsv1/README.md)
+### [Payments.V1](docs/sdks/paymentsv1/README.md)
 
 * [addAccountToPool](docs/sdks/paymentsv1/README.md#addaccounttopool) - Add an account to a pool
 * [connectorsTransfer](docs/sdks/paymentsv1/README.md#connectorstransfer) - Transfer funds between Connector accounts
@@ -291,9 +288,10 @@ run();
 * [updateBankAccountMetadata](docs/sdks/paymentsv1/README.md#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](docs/sdks/paymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](docs/sdks/paymentsv1/README.md#updatemetadata) - Update metadata
+* [updatePoolQuery](docs/sdks/paymentsv1/README.md#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](docs/sdks/paymentsv1/README.md#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
-#### [payments.v3](docs/sdks/v3/README.md)
+### [Payments.V3](docs/sdks/v3/README.md)
 
 * [addAccountToPool](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
 * [addBankAccountToPaymentServiceUser](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
@@ -302,14 +300,19 @@ run();
 
 * [createBankAccount](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+* [createLinkForPaymentServiceUser](docs/sdks/v3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
 * [createPayment](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 * [createPaymentServiceUser](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
 * [createPool](docs/sdks/v3/README.md#createpool) - Create a formance pool object
 * [deletePaymentInitiation](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+* [deletePaymentServiceUser](docs/sdks/v3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
+* [deletePaymentServiceUserConnectionFromConnectorID](docs/sdks/v3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+* [deletePaymentServiceUserConnector](docs/sdks/v3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 * [deletePool](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
 * [forwardBankAccount](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
 * [forwardPaymentServiceUserBankAccount](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+* [forwardPaymentServiceUserToProvider](docs/sdks/v3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
 * [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 * [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
@@ -318,6 +321,7 @@ run();
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+* [getPaymentServiceUserLinkAttemptFromConnectorID](docs/sdks/v3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
 * [getPool](docs/sdks/v3/README.md#getpool) - Get a pool by ID
 * [getPoolBalances](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
 * [getPoolBalancesLatest](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
@@ -333,6 +337,11 @@ run();
 * [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
+* [listPaymentServiceUserConnections](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
+* [listPaymentServiceUserConnectionsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+* [listPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 * [listPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 * [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
 * [listPools](docs/sdks/v3/README.md#listpools) - List all pools
@@ -343,13 +352,12 @@ run();
 * [reversePaymentInitiation](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
 * [uninstallConnector](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
 * [updateBankAccountMetadata](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+* [updateLinkForPaymentServiceUserOnConnector](docs/sdks/v3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 * [updatePaymentMetadata](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+* [updatePoolQuery](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
 * [v3UpdateConnectorConfig](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
 
-### [reconciliation](docs/sdks/reconciliation/README.md)
-
-
-#### [reconciliation.v1](docs/sdks/reconciliationv1/README.md)
+### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
 * [createPolicy](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
@@ -360,22 +368,12 @@ run();
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
 * [reconciliationgetServerInfo](docs/sdks/reconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
-### [SDK](docs/sdks/sdk/README.md)
-
-* [getVersions](docs/sdks/sdk/README.md#getversions) - Show stack version information
-
-### [~~search~~](docs/sdks/search/README.md)
-
-
-#### [~~search.v1~~](docs/sdks/searchv1/README.md)
+### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
 * [~~search~~](docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
 * [~~searchgetServerInfo~~](docs/sdks/searchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
-### [wallets](docs/sdks/wallets/README.md)
-
-
-#### [wallets.v1](docs/sdks/walletsv1/README.md)
+### [Wallets.V1](docs/sdks/walletsv1/README.md)
 
 * [confirmHold](docs/sdks/walletsv1/README.md#confirmhold) - Confirm a hold
 * [createBalance](docs/sdks/walletsv1/README.md#createbalance) - Create a balance
@@ -394,10 +392,7 @@ run();
 * [voidHold](docs/sdks/walletsv1/README.md#voidhold) - Cancel a hold
 * [walletsgetServerInfo](docs/sdks/walletsv1/README.md#walletsgetserverinfo) - Get server info
 
-### [webhooks](docs/sdks/webhooks/README.md)
-
-
-#### [webhooks.v1](docs/sdks/webhooksv1/README.md)
+### [Webhooks.V1](docs/sdks/webhooksv1/README.md)
 
 * [activateConfig](docs/sdks/webhooksv1/README.md#activateconfig) - Activate one config
 * [changeConfigSecret](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
@@ -481,15 +476,15 @@ run();
 
 
 **Inherit from [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts)**:
-* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 46 of 230 methods.*
-* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 45 of 230 methods.*
-* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Error. Applicable to 37 of 230 methods.*
-* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 230 methods.*
-* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 230 methods.*
-* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 230 methods.*
-* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 230 methods.*
-* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 230 methods.*
-* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 230 methods.*
+* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 57 of 249 methods.*
+* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 46 of 249 methods.*
+* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Applicable to 44 of 249 methods.*
+* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 249 methods.*
+* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 249 methods.*
+* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 249 methods.*
+* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 249 methods.*
+* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 249 methods.*
+* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 249 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -511,10 +506,10 @@ You can override the default server globally by passing a server index to the `s
 
 If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
 
-| Variable       | Parameter                               | Supported Values                                      | Default           | Description                                                   |
-| -------------- | --------------------------------------- | ----------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment: models.ServerEnvironment` | - `"sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"sandbox"`       | The environment name. Defaults to the production environment. |
-| `organization` | `organization: string`                  | string                                                | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
+| Variable       | Parameter                               | Supported Values                                         | Default           | Description                                                   |
+| -------------- | --------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
+| `organization` | `organization: string`                  | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
 
 #### Example
 
@@ -524,11 +519,7 @@ import { SDK } from "@formance/formance-sdk";
 const sdk = new SDK({
   serverIdx: 1,
   environment: "us-east-1",
-  organization: "<value>",
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
+  organization: "orgID-stackID",
 });
 
 async function run() {
@@ -548,11 +539,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { SDK } from "@formance/formance-sdk";
 
 const sdk = new SDK({
-  serverURL: "https://orgID-stackID.sandbox.formance.cloud",
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
+  serverURL: "https://orgID-stackID.eu.sandbox.formance.cloud",
 });
 
 async function run() {
@@ -579,19 +566,23 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be
 used to integrate a third-party HTTP client or when writing tests to mock out
 the HTTP client and feed in fixtures.
 
-The following example shows how to use the `"beforeRequest"` hook to to add a
-custom header and a timeout to requests and how to use the `"requestError"` hook
-to log errors:
+The following example shows how to:
+- route requests through a proxy server using [undici](https://www.npmjs.com/package/undici)'s ProxyAgent
+- use the `"beforeRequest"` hook to add a custom header and a timeout to requests
+- use the `"requestError"` hook to log errors
 
 ```typescript
 import { SDK } from "@formance/formance-sdk";
+import { ProxyAgent } from "undici";
 import { HTTPClient } from "@formance/formance-sdk/lib/http";
 
+const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
+
 const httpClient = new HTTPClient({
-  // fetcher takes a function that has the same signature as native `fetch`.
-  fetcher: (request) => {
-    return fetch(request);
-  }
+  // 'fetcher' takes a function that has the same signature as native 'fetch'.
+  fetcher: (input, init) =>
+    // 'dispatcher' is specific to undici and not part of the standard Fetch API.
+    fetch(input, { ...init, dispatcher } as RequestInit),
 });
 
 httpClient.addHook("beforeRequest", (request) => {
@@ -622,9 +613,9 @@ const sdk = new SDK({ httpClient: httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name                          | Type   | Scheme                         |
-| ----------------------------- | ------ | ------------------------------ |
-| `clientID`<br/>`clientSecret` | oauth2 | OAuth2 Client Credentials Flow |
+| Name                                         | Type   | Scheme                         |
+| -------------------------------------------- | ------ | ------------------------------ |
+| `clientID`<br/>`clientSecret`<br/>`tokenURL` | oauth2 | OAuth2 Client Credentials Flow |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```typescript
@@ -706,6 +697,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV2CreatePipeline`](docs/sdks/ledgerv2/README.md#createpipeline) - Create pipeline
 - [`ledgerV2CreateTransaction`](docs/sdks/ledgerv2/README.md#createtransaction) - Create a new transaction to a ledger
 - [`ledgerV2DeleteAccountMetadata`](docs/sdks/ledgerv2/README.md#deleteaccountmetadata) - Delete metadata by key
+- [`ledgerV2DeleteBucket`](docs/sdks/ledgerv2/README.md#deletebucket) - Delete bucket
 - [`ledgerV2DeleteExporter`](docs/sdks/ledgerv2/README.md#deleteexporter) - Delete exporter
 - [`ledgerV2DeleteLedgerMetadata`](docs/sdks/ledgerv2/README.md#deleteledgermetadata) - Delete ledger metadata by key
 - [`ledgerV2DeletePipeline`](docs/sdks/ledgerv2/README.md#deletepipeline) - Delete pipeline
@@ -717,20 +709,26 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV2GetLedger`](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 - [`ledgerV2GetLedgerInfo`](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
 - [`ledgerV2GetPipelineState`](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
+- [`ledgerV2GetSchema`](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 - [`ledgerV2GetTransaction`](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
 - [`ledgerV2GetVolumesWithBalances`](docs/sdks/ledgerv2/README.md#getvolumeswithbalances) - Get list of volumes with balances for (account/asset)
 - [`ledgerV2ImportLogs`](docs/sdks/ledgerv2/README.md#importlogs)
+- [`ledgerV2InsertSchema`](docs/sdks/ledgerv2/README.md#insertschema) - Insert a schema for a ledger
 - [`ledgerV2ListAccounts`](docs/sdks/ledgerv2/README.md#listaccounts) - List accounts from a ledger
 - [`ledgerV2ListExporters`](docs/sdks/ledgerv2/README.md#listexporters) - List exporters
 - [`ledgerV2ListLedgers`](docs/sdks/ledgerv2/README.md#listledgers) - List ledgers
 - [`ledgerV2ListLogs`](docs/sdks/ledgerv2/README.md#listlogs) - List the logs from a ledger
 - [`ledgerV2ListPipelines`](docs/sdks/ledgerv2/README.md#listpipelines) - List pipelines
+- [`ledgerV2ListSchemas`](docs/sdks/ledgerv2/README.md#listschemas) - List all schemas for a ledger
 - [`ledgerV2ListTransactions`](docs/sdks/ledgerv2/README.md#listtransactions) - List transactions from a ledger
 - [`ledgerV2ReadStats`](docs/sdks/ledgerv2/README.md#readstats) - Get statistics from a ledger
 - [`ledgerV2ResetPipeline`](docs/sdks/ledgerv2/README.md#resetpipeline) - Reset pipeline
+- [`ledgerV2RestoreBucket`](docs/sdks/ledgerv2/README.md#restorebucket) - Restore bucket
 - [`ledgerV2RevertTransaction`](docs/sdks/ledgerv2/README.md#reverttransaction) - Revert a ledger transaction by its ID
+- [`ledgerV2RunQuery`](docs/sdks/ledgerv2/README.md#runquery) - Run a query template
 - [`ledgerV2StartPipeline`](docs/sdks/ledgerv2/README.md#startpipeline) - Start pipeline
 - [`ledgerV2StopPipeline`](docs/sdks/ledgerv2/README.md#stoppipeline) - Stop pipeline
+- [`ledgerV2UpdateExporter`](docs/sdks/ledgerv2/README.md#updateexporter) - Update exporter
 - [`ledgerV2UpdateLedgerMetadata`](docs/sdks/ledgerv2/README.md#updateledgermetadata) - Update ledger metadata
 - [`orchestrationV1CancelEvent`](docs/sdks/orchestrationv1/README.md#cancelevent) - Cancel a running workflow
 - [`orchestrationV1CreateTrigger`](docs/sdks/orchestrationv1/README.md#createtrigger) - Create trigger
@@ -805,6 +803,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV1UpdateBankAccountMetadata`](docs/sdks/paymentsv1/README.md#updatebankaccountmetadata) - Update metadata of a bank account
 - [`paymentsV1UpdateConnectorConfigV1`](docs/sdks/paymentsv1/README.md#updateconnectorconfigv1) - Update the config of a connector
 - [`paymentsV1UpdateMetadata`](docs/sdks/paymentsv1/README.md#updatemetadata) - Update metadata
+- [`paymentsV1UpdatePoolQuery`](docs/sdks/paymentsv1/README.md#updatepoolquery) - Update the query of a pool
 - [`paymentsV1UpdateTransferInitiationStatus`](docs/sdks/paymentsv1/README.md#updatetransferinitiationstatus) - Update the status of a transfer initiation
 - [`paymentsV3AddAccountToPool`](docs/sdks/v3/README.md#addaccounttopool) - Add an account to a pool
 - [`paymentsV3AddBankAccountToPaymentServiceUser`](docs/sdks/v3/README.md#addbankaccounttopaymentserviceuser) - Add a bank account to a payment service user
@@ -813,14 +812,19 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 - [`paymentsV3CreateBankAccount`](docs/sdks/v3/README.md#createbankaccount) - Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
 
+- [`paymentsV3CreateLinkForPaymentServiceUser`](docs/sdks/v3/README.md#createlinkforpaymentserviceuser) - Create an authentication link for a payment service user on a connector, for oauth flow
 - [`paymentsV3CreatePayment`](docs/sdks/v3/README.md#createpayment) - Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
 
 - [`paymentsV3CreatePaymentServiceUser`](docs/sdks/v3/README.md#createpaymentserviceuser) - Create a formance payment service user object
 - [`paymentsV3CreatePool`](docs/sdks/v3/README.md#createpool) - Create a formance pool object
 - [`paymentsV3DeletePaymentInitiation`](docs/sdks/v3/README.md#deletepaymentinitiation) - Delete a payment initiation by ID
+- [`paymentsV3DeletePaymentServiceUser`](docs/sdks/v3/README.md#deletepaymentserviceuser) - Delete a payment service user by ID
+- [`paymentsV3DeletePaymentServiceUserConnectionFromConnectorID`](docs/sdks/v3/README.md#deletepaymentserviceuserconnectionfromconnectorid) - Delete a connection for a payment service user on a connector
+- [`paymentsV3DeletePaymentServiceUserConnector`](docs/sdks/v3/README.md#deletepaymentserviceuserconnector) - Remove a payment service user from a connector, the PSU will still exist in Formance
 - [`paymentsV3DeletePool`](docs/sdks/v3/README.md#deletepool) - Delete a pool by ID
 - [`paymentsV3ForwardBankAccount`](docs/sdks/v3/README.md#forwardbankaccount) - Forward a Bank Account to a PSP for creation
 - [`paymentsV3ForwardPaymentServiceUserBankAccount`](docs/sdks/v3/README.md#forwardpaymentserviceuserbankaccount) - Forward a payment service user's bank account to a connector
+- [`paymentsV3ForwardPaymentServiceUserToProvider`](docs/sdks/v3/README.md#forwardpaymentserviceusertoprovider) - Register/forward a payment service user on/to a connector
 - [`paymentsV3GetAccount`](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 - [`paymentsV3GetAccountBalances`](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 - [`paymentsV3GetBankAccount`](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
@@ -829,6 +833,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3GetPayment`](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 - [`paymentsV3GetPaymentInitiation`](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 - [`paymentsV3GetPaymentServiceUser`](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
+- [`paymentsV3GetPaymentServiceUserLinkAttemptFromConnectorID`](docs/sdks/v3/README.md#getpaymentserviceuserlinkattemptfromconnectorid) - Get a link attempt for a payment service user on a connector
 - [`paymentsV3GetPool`](docs/sdks/v3/README.md#getpool) - Get a pool by ID
 - [`paymentsV3GetPoolBalances`](docs/sdks/v3/README.md#getpoolbalances) - Get historical pool balances from a particular point in time
 - [`paymentsV3GetPoolBalancesLatest`](docs/sdks/v3/README.md#getpoolbalanceslatest) - Get latest pool balances
@@ -845,6 +850,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3ListPaymentInitiationRelatedPayments`](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 - [`paymentsV3ListPaymentInitiations`](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
 - [`paymentsV3ListPayments`](docs/sdks/v3/README.md#listpayments) - List all payments
+- [`paymentsV3ListPaymentServiceUserConnections`](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
+- [`paymentsV3ListPaymentServiceUserConnectionsFromConnectorID`](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
+- [`paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID`](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
+Allows to check if users used the link and completed the oauth flow.
+
 - [`paymentsV3ListPaymentServiceUsers`](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 - [`paymentsV3ListPools`](docs/sdks/v3/README.md#listpools) - List all pools
 - [`paymentsV3RejectPaymentInitiation`](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
@@ -854,7 +864,9 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3ReversePaymentInitiation`](docs/sdks/v3/README.md#reversepaymentinitiation) - Reverse a payment initiation
 - [`paymentsV3UninstallConnector`](docs/sdks/v3/README.md#uninstallconnector) - Uninstall a connector
 - [`paymentsV3UpdateBankAccountMetadata`](docs/sdks/v3/README.md#updatebankaccountmetadata) - Update a bank account's metadata
+- [`paymentsV3UpdateLinkForPaymentServiceUserOnConnector`](docs/sdks/v3/README.md#updatelinkforpaymentserviceuseronconnector) - Update/Regenerate a link for a payment service user on a connector
 - [`paymentsV3UpdatePaymentMetadata`](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
+- [`paymentsV3UpdatePoolQuery`](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
 - [`paymentsV3V3UpdateConnectorConfig`](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
 - [`reconciliationV1CreatePolicy`](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
 - [`reconciliationV1DeletePolicy`](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
@@ -948,12 +960,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
+const sdk = new SDK();
 
 async function run() {
   const result = await sdk.getVersions({
@@ -990,10 +997,6 @@ const sdk = new SDK({
       maxElapsedTime: 100,
     },
     retryConnectionErrors: false,
-  },
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
   },
 });
 

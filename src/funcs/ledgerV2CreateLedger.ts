@@ -108,7 +108,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2CreateLedger",
-    oAuth2Scopes: ["auth:read", "ledger:write"],
+    oAuth2Scopes: ["ledger:write"],
 
     resolvedSecurity: requestSecurity,
 

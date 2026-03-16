@@ -1,5 +1,4 @@
-# PaymentsV1
-(*payments.v1*)
+# Payments.V1
 
 ## Overview
 
@@ -48,6 +47,7 @@
 * [updateBankAccountMetadata](#updatebankaccountmetadata) - Update metadata of a bank account
 * [updateConnectorConfigV1](#updateconnectorconfigv1) - Update the config of a connector
 * [updateMetadata](#updatemetadata) - Update metadata
+* [updatePoolQuery](#updatepoolquery) - Update the query of a pool
 * [updateTransferInitiationStatus](#updatetransferinitiationstatus) - Update the status of a transfer initiation
 
 ## addAccountToPool
@@ -515,10 +515,6 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.createPool({
-    accountIDs: [
-      "<value 1>",
-      "<value 2>",
-    ],
     name: "<value>",
   });
 
@@ -547,10 +543,6 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1CreatePool(sdk, {
-    accountIDs: [
-      "<value 1>",
-      "<value 2>",
-    ],
     name: "<value>",
   });
   if (res.ok) {
@@ -3739,6 +3731,96 @@ run();
 ### Response
 
 **Promise\<[operations.UpdateMetadataResponse](../../sdk/models/operations/updatemetadataresponse.md)\>**
+
+### Errors
+
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| errors.PaymentsErrorResponse | default                      | application/json             |
+| errors.SDKError              | 4XX, 5XX                     | \*/\*                        |
+
+## updatePoolQuery
+
+Update the query of a pool
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="updatePoolQuery" method="patch" path="/api/payments/pools/{poolId}/query" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v1.updatePoolQuery({
+    updatePoolQueryRequest: {
+      query: {
+        "key": "<value>",
+      },
+    },
+    poolId: "XXX",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV1UpdatePoolQuery } from "@formance/formance-sdk/funcs/paymentsV1UpdatePoolQuery.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV1UpdatePoolQuery(sdk, {
+    updatePoolQueryRequest: {
+      query: {
+        "key": "<value>",
+      },
+    },
+    poolId: "XXX",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV1UpdatePoolQuery failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.UpdatePoolQueryRequest](../../sdk/models/operations/updatepoolqueryrequest.md)                                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.UpdatePoolQueryResponse](../../sdk/models/operations/updatepoolqueryresponse.md)\>**
 
 ### Errors
 

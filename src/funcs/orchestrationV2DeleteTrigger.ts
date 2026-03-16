@@ -110,7 +110,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2DeleteTrigger",
-    oAuth2Scopes: ["auth:read", "orchestration:write"],
+    oAuth2Scopes: ["orchestration:write"],
 
     resolvedSecurity: requestSecurity,
 

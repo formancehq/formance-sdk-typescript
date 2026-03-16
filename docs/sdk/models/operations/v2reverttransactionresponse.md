@@ -7,7 +7,13 @@ import { V2RevertTransactionResponse } from "@formance/formance-sdk/sdk/models/o
 
 let value: V2RevertTransactionResponse = {
   contentType: "<value>",
-  statusCode: 569052,
+  headers: {
+    "key": [
+      "<value 1>",
+    ],
+    "key1": [],
+  },
+  statusCode: 302968,
 };
 ```
 
@@ -16,6 +22,7 @@ let value: V2RevertTransactionResponse = {
 | Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `contentType`                                                                                   | *string*                                                                                        | :heavy_check_mark:                                                                              | HTTP response content type for this operation                                                   |
+| `headers`                                                                                       | Record<string, *string*[]>                                                                      | :heavy_check_mark:                                                                              | N/A                                                                                             |
 | `statusCode`                                                                                    | *number*                                                                                        | :heavy_check_mark:                                                                              | HTTP response status code for this operation                                                    |
 | `rawResponse`                                                                                   | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response)                           | :heavy_check_mark:                                                                              | Raw HTTP response; suitable for custom response parsing                                         |
-| `v2CreateTransactionResponse`                                                                   | [shared.V2CreateTransactionResponse](../../../sdk/models/shared/v2createtransactionresponse.md) | :heavy_minus_sign:                                                                              | OK                                                                                              |
+| `v2RevertTransactionResponse`                                                                   | [shared.V2RevertTransactionResponse](../../../sdk/models/shared/v2reverttransactionresponse.md) | :heavy_minus_sign:                                                                              | OK                                                                                              |

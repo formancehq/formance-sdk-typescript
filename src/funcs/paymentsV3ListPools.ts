@@ -3,11 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
-import {
-  encodeFormQuery,
-  encodeJSONQuery,
-  queryJoin,
-} from "../lib/encodings.js";
+import { encodeFormQuery } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -91,15 +87,10 @@ async function $do(
 
   const path = pathToFunc("/api/payments/v3/pools")();
 
-  const query = queryJoin(
-    encodeFormQuery({
-      "cursor": payload.cursor,
-      "pageSize": payload.pageSize,
-    }),
-    encodeJSONQuery({
-      "query": payload.query,
-    }, { explode: false }),
-  );
+  const query = encodeFormQuery({
+    "cursor": payload.cursor,
+    "pageSize": payload.pageSize,
+  });
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
@@ -112,7 +103,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3ListPools",
-    oAuth2Scopes: ["auth:read", "payments:read"],
+    oAuth2Scopes: ["payments:read"],
 
     resolvedSecurity: requestSecurity,
 

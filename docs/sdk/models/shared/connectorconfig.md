@@ -12,6 +12,7 @@ const value: shared.AdyenConfig = {
   liveEndpointPrefix: "XXX",
   name: "My Adyen Account",
   pollingPeriod: "60s",
+  provider: "Adyen",
 };
 ```
 
@@ -23,7 +24,8 @@ const value: shared.AtlarConfig = {
   baseUrl: "https://api.example.com",
   name: "My Atlar Account",
   pageSize: 50,
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Atlar",
   secret: "XXX",
   transferInitiationStatusPollingPeriod: "60s",
 };
@@ -37,7 +39,8 @@ const value: shared.BankingCircleConfig = {
   endpoint: "XXX",
   name: "My Banking Circle Account",
   password: "XXX",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Bankingcircle",
   userCertificate: "XXX",
   userCertificateKey: "XXX",
   username: "XXX",
@@ -53,6 +56,7 @@ const value: shared.CurrencyCloudConfig = {
   loginID: "XXX",
   name: "My CurrencyCloud Account",
   pollingPeriod: "60s",
+  provider: "Currencycloud",
 };
 ```
 
@@ -63,6 +67,7 @@ const value: shared.DummyPayConfig = {
   directory: "/tmp/dummypay",
   filePollingPeriod: "60s",
   name: "My DummyPay Account",
+  provider: "Dummypay",
 };
 ```
 
@@ -73,7 +78,8 @@ const value: shared.GenericConfig = {
   apiKey: "XXX",
   endpoint: "XXX",
   name: "My Generic Account",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Generic",
 };
 ```
 
@@ -85,7 +91,8 @@ const value: shared.MangoPayConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My MangoPay Account",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Mangopay",
 };
 ```
 
@@ -97,7 +104,8 @@ const value: shared.ModulrConfig = {
   apiSecret: "XXX",
   endpoint: "XXX",
   name: "My Modulr Account",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Modulr",
 };
 ```
 
@@ -109,7 +117,8 @@ const value: shared.MoneycorpConfig = {
   clientID: "XXX",
   endpoint: "XXX",
   name: "My Moneycorp Account",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Moneycorp",
 };
 ```
 
@@ -120,7 +129,8 @@ const value: shared.StripeConfig = {
   apiKey: "XXX",
   name: "My Stripe Account",
   pageSize: 50,
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Stripe",
 };
 ```
 
@@ -130,7 +140,8 @@ const value: shared.StripeConfig = {
 const value: shared.WiseConfig = {
   apiKey: "XXX",
   name: "My Wise Account",
-  pollingPeriod: "60s",
+  pollingPeriod: "120m",
+  provider: "Wise",
 };
 ```
 

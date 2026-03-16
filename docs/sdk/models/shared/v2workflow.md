@@ -14,9 +14,9 @@ let value: V2Workflow = {
       {},
     ],
   },
-  createdAt: new Date("2025-03-28T23:58:29.371Z"),
+  createdAt: new Date("2026-03-28T23:58:29.371Z"),
   id: "<id>",
-  updatedAt: new Date("2024-02-05T04:29:43.512Z"),
+  updatedAt: new Date("2025-02-04T04:29:43.512Z"),
 };
 ```
 
@@ -24,7 +24,7 @@ let value: V2Workflow = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `config`                                                                                      | [shared.V2WorkflowConfig](../../../sdk/models/shared/v2workflowconfig.md)                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `config`                                                                                      | [shared.V2CreateWorkflowRequest](../../../sdk/models/shared/v2createworkflowrequest.md)       | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |

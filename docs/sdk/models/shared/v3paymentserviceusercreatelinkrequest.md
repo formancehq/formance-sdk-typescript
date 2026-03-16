@@ -1,0 +1,18 @@
+# V3PaymentServiceUserCreateLinkRequest
+
+## Example Usage
+
+```typescript
+import { V3PaymentServiceUserCreateLinkRequest } from "@formance/formance-sdk/sdk/models/shared";
+
+let value: V3PaymentServiceUserCreateLinkRequest = {
+  clientRedirectURL: "https://second-hand-procurement.org",
+};
+```
+
+## Fields
+
+| Field                                                                                                                                                                                               | Type                                                                                                                                                                                                | Required                                                                                                                                                                                            | Description                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `applicationName`                                                                                                                                                                                   | *string*                                                                                                                                                                                            | :heavy_minus_sign:                                                                                                                                                                                  | The name of the application to be displayed to the user when they click the link (depending on the open banking provider). Note that this field might be mandatory for some open banking providers. |
+| `clientRedirectURL`                                                                                                                                                                                 | *string*                                                                                                                                                                                            | :heavy_check_mark:                                                                                                                                                                                  | The URL to redirect the user to after the link flow is completed.                                                                                                                                   |

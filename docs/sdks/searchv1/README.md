@@ -1,5 +1,7 @@
-# SearchV1
-(*search.v1*)
+# ~~Search.V1~~
+
+> [!WARNING]
+> This SDK is **DEPRECATED**
 
 ## Overview
 

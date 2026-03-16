@@ -130,7 +130,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "listTransactions",
-    oAuth2Scopes: ["auth:read", "ledger:read"],
+    oAuth2Scopes: ["ledger:read"],
 
     resolvedSecurity: requestSecurity,
 

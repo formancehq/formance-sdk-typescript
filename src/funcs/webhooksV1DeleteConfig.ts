@@ -108,7 +108,7 @@ async function $do(
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "deleteConfig",
-    oAuth2Scopes: ["auth:read", "webhooks:write"],
+    oAuth2Scopes: ["webhooks:write"],
 
     resolvedSecurity: requestSecurity,
 

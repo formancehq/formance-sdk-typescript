@@ -12,7 +12,7 @@ let value: UpdateConnectorConfigV1Request = {
     endpoint: "XXX",
     name: "My Banking Circle Account",
     password: "XXX",
-    pollingPeriod: "60s",
+    pollingPeriod: "120m",
     provider: "Bankingcircle",
     userCertificate: "XXX",
     userCertificateKey: "XXX",

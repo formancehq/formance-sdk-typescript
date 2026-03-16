@@ -28,14 +28,8 @@ let value: WorkflowInstanceHistoryStage = {
         ],
         reference: "ref:001",
         script: {
-          plain: "vars {\n"
-            + "account $user\n"
-            + "}\n"
-            + "send [COIN 10] (\n"
-            + "	source = @world\n"
-            + "	destination = $user\n"
-            + ")\n"
-            + "",
+          plain:
+            "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
           vars: {
             "user": "users:042",
           },
@@ -84,7 +78,7 @@ let value: WorkflowInstanceHistoryStage = {
         postings: [],
         reference: "ref:001",
         reverted: true,
-        timestamp: new Date("2024-09-30T06:28:56.548Z"),
+        timestamp: new Date("2025-09-30T06:28:56.548Z"),
       },
     },
     getAccount: {
@@ -124,7 +118,7 @@ let value: WorkflowInstanceHistoryStage = {
         adjustments: [],
         asset: "USD",
         connectorID: "<id>",
-        createdAt: new Date("2023-12-16T14:43:43.030Z"),
+        createdAt: new Date("2024-12-15T14:43:43.030Z"),
         destinationAccountID: "<id>",
         id: "XXX",
         initialAmount: 100n,
@@ -155,11 +149,11 @@ let value: WorkflowInstanceHistoryStage = {
         postings: [],
         reference: "ref:001",
         reverted: true,
-        timestamp: new Date("2024-09-30T06:28:56.548Z"),
+        timestamp: new Date("2025-09-30T06:28:56.548Z"),
       },
     },
   },
-  startedAt: new Date("2023-02-09T04:59:09.612Z"),
+  startedAt: new Date("2024-02-09T04:59:09.612Z"),
   terminated: false,
 };
 ```
