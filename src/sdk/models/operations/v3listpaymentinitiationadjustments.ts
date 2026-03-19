@@ -24,6 +24,7 @@ export type V3ListPaymentInitiationAdjustmentsRequest = {
    * The payment initiation ID
    */
   paymentInitiationID: string;
+  query?: { [k: string]: any } | undefined;
 };
 
 export type V3ListPaymentInitiationAdjustmentsResponse = {
@@ -52,6 +53,7 @@ export type V3ListPaymentInitiationAdjustmentsRequest$Outbound = {
   cursor?: string | undefined;
   pageSize?: number | undefined;
   paymentInitiationID: string;
+  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -64,6 +66,7 @@ export const V3ListPaymentInitiationAdjustmentsRequest$outboundSchema:
     cursor: z.string().optional(),
     pageSize: z.number().int().optional(),
     paymentInitiationID: z.string(),
+    query: z.record(z.any()).optional(),
   });
 
 export function v3ListPaymentInitiationAdjustmentsRequestToJSON(

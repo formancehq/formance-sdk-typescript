@@ -14,6 +14,7 @@ export type V2CountTransactionsRequest = {
    */
   ledger: string;
   pit?: Date | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 export type V2CountTransactionsResponse = {
@@ -36,6 +37,7 @@ export type V2CountTransactionsResponse = {
 export type V2CountTransactionsRequest$Outbound = {
   ledger: string;
   pit?: string | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -46,6 +48,7 @@ export const V2CountTransactionsRequest$outboundSchema: z.ZodType<
 > = z.object({
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+  query: z.record(z.any()).optional(),
 });
 
 export function v2CountTransactionsRequestToJSON(

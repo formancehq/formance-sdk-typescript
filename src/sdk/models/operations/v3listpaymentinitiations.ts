@@ -20,6 +20,7 @@ export type V3ListPaymentInitiationsRequest = {
    * The number of items to return
    */
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 export type V3ListPaymentInitiationsResponse = {
@@ -47,6 +48,7 @@ export type V3ListPaymentInitiationsResponse = {
 export type V3ListPaymentInitiationsRequest$Outbound = {
   cursor?: string | undefined;
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -57,6 +59,7 @@ export const V3ListPaymentInitiationsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
 });
 
 export function v3ListPaymentInitiationsRequestToJSON(

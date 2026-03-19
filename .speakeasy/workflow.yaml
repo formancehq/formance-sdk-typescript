@@ -4,6 +4,8 @@ sources:
     stacks-source:
         inputs:
             - location: registry.speakeasyapi.dev/formance/formance/stacks-source@latest
+        overlays:
+            - location: ./overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/formance/formance/stacks-source
 targets:
