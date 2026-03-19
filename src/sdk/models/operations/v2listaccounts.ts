@@ -31,6 +31,7 @@ export type V2ListAccountsRequest = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
+  query?: { [k: string]: any } | undefined;
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -66,6 +67,7 @@ export type V2ListAccountsRequest$Outbound = {
   ledger: string;
   pageSize?: number | undefined;
   pit?: string | undefined;
+  query?: { [k: string]: any } | undefined;
   sort?: string | undefined;
 };
 
@@ -80,6 +82,7 @@ export const V2ListAccountsRequest$outboundSchema: z.ZodType<
   ledger: z.string(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+  query: z.record(z.any()).optional(),
   sort: z.string().optional(),
 });
 

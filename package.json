@@ -1,6 +1,6 @@
 {
   "name": "@formance/formance-sdk",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "author": "Formance",
   "main": "./index.js",
   "sideEffects": false,

@@ -15,6 +15,7 @@ export type V2GetBalancesAggregatedRequest = {
    */
   ledger: string;
   pit?: Date | undefined;
+  query?: { [k: string]: any } | undefined;
   /**
    * Use insertion date instead of effective date
    */
@@ -44,6 +45,7 @@ export type V2GetBalancesAggregatedResponse = {
 export type V2GetBalancesAggregatedRequest$Outbound = {
   ledger: string;
   pit?: string | undefined;
+  query?: { [k: string]: any } | undefined;
   useInsertionDate?: boolean | undefined;
 };
 
@@ -55,6 +57,7 @@ export const V2GetBalancesAggregatedRequest$outboundSchema: z.ZodType<
 > = z.object({
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+  query: z.record(z.any()).optional(),
   useInsertionDate: z.boolean().optional(),
 });
 

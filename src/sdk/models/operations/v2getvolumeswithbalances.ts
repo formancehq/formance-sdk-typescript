@@ -38,6 +38,7 @@ export type V2GetVolumesWithBalancesRequest = {
    * @remarks
    */
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -77,6 +78,7 @@ export type V2GetVolumesWithBalancesRequest$Outbound = {
   insertionDate?: boolean | undefined;
   ledger: string;
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
   sort?: string | undefined;
   startTime?: string | undefined;
 };
@@ -93,6 +95,7 @@ export const V2GetVolumesWithBalancesRequest$outboundSchema: z.ZodType<
   insertionDate: z.boolean().optional(),
   ledger: z.string(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
   sort: z.string().optional(),
   startTime: z.date().transform(v => v.toISOString()).optional(),
 });

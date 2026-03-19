@@ -3,7 +3,12 @@
  */
 
 import { SDKCore } from "../core.js";
-import { encodeFormQuery, encodeSimple } from "../lib/encodings.js";
+import {
+  encodeFormQuery,
+  encodeJSONQuery,
+  encodeSimple,
+  queryJoin,
+} from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -100,10 +105,15 @@ async function $do(
     "/api/payments/v3/payment-initiations/{paymentInitiationID}/adjustments",
   )(pathParams);
 
-  const query = encodeFormQuery({
-    "cursor": payload.cursor,
-    "pageSize": payload.pageSize,
-  });
+  const query = queryJoin(
+    encodeFormQuery({
+      "cursor": payload.cursor,
+      "pageSize": payload.pageSize,
+    }),
+    encodeJSONQuery({
+      "query": payload.query,
+    }, { explode: false }),
+  );
 
   const headers = new Headers(compactMap({
     Accept: "application/json",

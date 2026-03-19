@@ -24,6 +24,7 @@ export type V3ListConnectorSchedulesRequest = {
    * The number of items to return
    */
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 export type V3ListConnectorSchedulesResponse = {
@@ -52,6 +53,7 @@ export type V3ListConnectorSchedulesRequest$Outbound = {
   connectorID: string;
   cursor?: string | undefined;
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -63,6 +65,7 @@ export const V3ListConnectorSchedulesRequest$outboundSchema: z.ZodType<
   connectorID: z.string(),
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
 });
 
 export function v3ListConnectorSchedulesRequestToJSON(

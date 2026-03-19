@@ -44,6 +44,7 @@ export type V2ListTransactionsRequest = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
+  query?: { [k: string]: any } | undefined;
   reverse?: boolean | undefined;
   /**
    * Sort results using a field name and order (ascending or descending).
@@ -88,6 +89,7 @@ export type V2ListTransactionsRequest$Outbound = {
   order?: string | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
+  query?: { [k: string]: any } | undefined;
   reverse?: boolean | undefined;
   sort?: string | undefined;
 };
@@ -104,6 +106,7 @@ export const V2ListTransactionsRequest$outboundSchema: z.ZodType<
   order: V2ListTransactionsOrder$outboundSchema.optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+  query: z.record(z.any()).optional(),
   reverse: z.boolean().optional(),
   sort: z.string().optional(),
 });

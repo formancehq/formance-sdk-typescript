@@ -20,6 +20,7 @@ export type V3ListPoolsRequest = {
    * The number of items to return
    */
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 export type V3ListPoolsResponse = {
@@ -45,6 +46,7 @@ export type V3ListPoolsResponse = {
 export type V3ListPoolsRequest$Outbound = {
   cursor?: string | undefined;
   pageSize?: number | undefined;
+  query?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
@@ -55,6 +57,7 @@ export const V3ListPoolsRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.string().optional(),
   pageSize: z.number().int().optional(),
+  query: z.record(z.any()).optional(),
 });
 
 export function v3ListPoolsRequestToJSON(
