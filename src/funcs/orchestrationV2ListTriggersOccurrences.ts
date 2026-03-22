@@ -95,7 +95,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/api/orchestration/v2/triggers/{triggerID}/occurrences",
   )(pathParams);

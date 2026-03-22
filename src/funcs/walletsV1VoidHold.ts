@@ -91,7 +91,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/wallets/holds/{hold_id}/void")(pathParams);
 
   const headers = new Headers(compactMap({

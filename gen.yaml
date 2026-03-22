@@ -29,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 5.0.1
+  version: 5.0.2
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}

@@ -103,7 +103,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}",
   )(pathParams);

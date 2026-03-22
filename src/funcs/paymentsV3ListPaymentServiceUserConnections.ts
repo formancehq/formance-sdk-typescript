@@ -94,7 +94,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/api/payments/v3/payment-service-users/{paymentServiceUserID}/connections",
   )(pathParams);

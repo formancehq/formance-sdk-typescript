@@ -99,7 +99,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/webhooks/configs/{id}/secret/change")(
     pathParams,
   );

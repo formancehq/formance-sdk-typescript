@@ -93,7 +93,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/{ledger}/script")(pathParams);
 
   const query = encodeFormQuery({

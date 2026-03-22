@@ -92,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/payments/v3/accounts/{accountID}/balances")(
     pathParams,
   );

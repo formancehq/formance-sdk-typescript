@@ -95,7 +95,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/wallets/wallets/{id}/balances/{balanceName}")(
     pathParams,
   );

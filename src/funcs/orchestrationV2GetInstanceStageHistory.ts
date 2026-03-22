@@ -99,7 +99,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc(
     "/api/orchestration/v2/instances/{instanceID}/stages/{number}/history",
   )(pathParams);
