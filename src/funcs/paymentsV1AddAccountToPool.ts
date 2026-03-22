@@ -96,7 +96,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/payments/pools/{poolId}/accounts")(pathParams);
 
   const headers = new Headers(compactMap({

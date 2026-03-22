@@ -93,7 +93,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/v2/_/exporters/{exporterID}")(
     pathParams,
   );

@@ -92,7 +92,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/api/reconciliation/reconciliations/{reconciliationID}",
   )(pathParams);

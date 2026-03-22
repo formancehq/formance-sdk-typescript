@@ -92,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/auth/clients/{clientId}/secrets/{secretId}")(
     pathParams,
   );
