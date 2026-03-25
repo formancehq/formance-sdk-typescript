@@ -92,7 +92,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/v2/{ledger}/metadata")(pathParams);
 
   const headers = new Headers(compactMap({

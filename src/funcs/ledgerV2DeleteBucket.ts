@@ -94,7 +94,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/v2/_/buckets/{bucket}")(pathParams);
 
   const headers = new Headers(compactMap({
