@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     stacks-source:
         inputs:
-            - location: registry.speakeasyapi.dev/formance/formance/stacks-source@latest
+            - location: registry.speakeasyapi.dev/formance/formance/stacks-source@LATEST_RELEASE
         overlays:
             - location: ./overlay.yaml
         registry:
