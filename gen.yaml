@@ -46,7 +46,7 @@ typescript:
   enableCustomCodeRegions: false
   enableMCPServer: true
   enableReactQuery: false
-  enumFormat: enum
+  enumFormat: union
   exportZodModelNamespace: false
   flatAdditionalProperties: false
   flattenGlobalSecurity: true
