@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3UpdatePoolQueryServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3UpdatePoolQueryRequest = {
-  v3UpdatePoolQueryRequest?: shared.V3UpdatePoolQueryRequest | undefined;
+  v3UpdatePoolQueryRequest?: payments.V3UpdatePoolQueryRequest | undefined;
   /**
    * The pool ID
    */
@@ -35,7 +39,7 @@ export type V3UpdatePoolQueryResponse = {
 /** @internal */
 export type V3UpdatePoolQueryRequest$Outbound = {
   V3UpdatePoolQueryRequest?:
-    | shared.V3UpdatePoolQueryRequest$Outbound
+    | payments.V3UpdatePoolQueryRequest$Outbound
     | undefined;
   poolID: string;
 };
@@ -46,7 +50,7 @@ export const V3UpdatePoolQueryRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3UpdatePoolQueryRequest
 > = z.object({
-  v3UpdatePoolQueryRequest: shared.V3UpdatePoolQueryRequest$outboundSchema
+  v3UpdatePoolQueryRequest: payments.V3UpdatePoolQueryRequest$outboundSchema
     .optional(),
   poolID: z.string(),
 }).transform((v) => {

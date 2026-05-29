@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2CreateTriggerServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateTriggerResponse = {
   /**
@@ -25,7 +29,7 @@ export type V2CreateTriggerResponse = {
   /**
    * Created trigger
    */
-  v2CreateTriggerResponse?: shared.V2CreateTriggerResponse | undefined;
+  v2CreateTriggerResponse?: orchestration.V2CreateTriggerResponse | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V2CreateTriggerResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2CreateTriggerResponse: shared.V2CreateTriggerResponse$inboundSchema
+  V2CreateTriggerResponse: orchestration.V2CreateTriggerResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

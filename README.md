@@ -34,7 +34,6 @@ and standard method from web, mobile and desktop applications.
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
-  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Authentication](#authentication-1)
   * [Standalone functions](#standalone-functions)
@@ -121,7 +120,7 @@ run();
 * [deleteClient](docs/sdks/authv1/README.md#deleteclient) - Delete client
 * [deleteSecret](docs/sdks/authv1/README.md#deletesecret) - Delete a secret from a client
 * [getOIDCWellKnowns](docs/sdks/authv1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-* [getServerInfo](docs/sdks/authv1/README.md#getserverinfo) - Get server info
+* [getServerInfoAuth](docs/sdks/authv1/README.md#getserverinfoauth) - Get server info
 * [listClients](docs/sdks/authv1/README.md#listclients) - List clients
 * [listUsers](docs/sdks/authv1/README.md#listusers) - List users
 * [readClient](docs/sdks/authv1/README.md#readclient) - Read client
@@ -141,14 +140,14 @@ run();
 * [countAccounts](docs/sdks/ledgerv1/README.md#countaccounts) - Count the accounts from a ledger
 * [countTransactions](docs/sdks/ledgerv1/README.md#counttransactions) - Count the transactions from a ledger
 * [createTransaction](docs/sdks/ledgerv1/README.md#createtransaction) - Create a new transaction to a ledger
-* [getAccount](docs/sdks/ledgerv1/README.md#getaccount) - Get account by its address
+* [getAccountLedger](docs/sdks/ledgerv1/README.md#getaccountledger) - Get account by its address
 * [getBalances](docs/sdks/ledgerv1/README.md#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](docs/sdks/ledgerv1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getInfo](docs/sdks/ledgerv1/README.md#getinfo) - Show server information
 * [getLedgerInfo](docs/sdks/ledgerv1/README.md#getledgerinfo) - Get information about a ledger
 * [getMapping](docs/sdks/ledgerv1/README.md#getmapping) - Get the mapping of a ledger
 * [getTransaction](docs/sdks/ledgerv1/README.md#gettransaction) - Get transaction from a ledger by its ID
-* [listAccounts](docs/sdks/ledgerv1/README.md#listaccounts) - List accounts from a ledger
+* [listAccountsLedger](docs/sdks/ledgerv1/README.md#listaccountsledger) - List accounts from a ledger
 * [listLogs](docs/sdks/ledgerv1/README.md#listlogs) - List the logs from a ledger
 * [listTransactions](docs/sdks/ledgerv1/README.md#listtransactions) - List transactions from a ledger
 * [readStats](docs/sdks/ledgerv1/README.md#readstats) - Get statistics from a ledger
@@ -212,12 +211,12 @@ run();
 * [getInstance](docs/sdks/orchestrationv1/README.md#getinstance) - Get a workflow instance by id
 * [getInstanceHistory](docs/sdks/orchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
 * [getInstanceStageHistory](docs/sdks/orchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
+* [getServerInfoOrchestration](docs/sdks/orchestrationv1/README.md#getserverinfoorchestration) - Get server info
 * [getWorkflow](docs/sdks/orchestrationv1/README.md#getworkflow) - Get a flow by id
 * [listInstances](docs/sdks/orchestrationv1/README.md#listinstances) - List instances of a workflow
 * [listTriggers](docs/sdks/orchestrationv1/README.md#listtriggers) - List triggers
 * [listTriggersOccurrences](docs/sdks/orchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
 * [listWorkflows](docs/sdks/orchestrationv1/README.md#listworkflows) - List registered workflows
-* [orchestrationgetServerInfo](docs/sdks/orchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
 * [readTrigger](docs/sdks/orchestrationv1/README.md#readtrigger) - Read trigger
 * [runWorkflow](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 * [sendEvent](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
@@ -256,6 +255,7 @@ run();
 * [deleteTransferInitiation](docs/sdks/paymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
 * [forwardBankAccount](docs/sdks/paymentsv1/README.md#forwardbankaccount) - Forward a bank account to a connector
 * [getAccountBalances](docs/sdks/paymentsv1/README.md#getaccountbalances) - Get account balances
+* [getAccountPayments](docs/sdks/paymentsv1/README.md#getaccountpayments) - Get an account
 * [getBankAccount](docs/sdks/paymentsv1/README.md#getbankaccount) - Get a bank account created by user on Formance
 * [~~getConnectorTask~~](docs/sdks/paymentsv1/README.md#getconnectortask) - Read a specific task of the connector :warning: **Deprecated**
 * [getConnectorTaskV1](docs/sdks/paymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
@@ -263,8 +263,10 @@ run();
 * [getPool](docs/sdks/paymentsv1/README.md#getpool) - Get a Pool
 * [getPoolBalances](docs/sdks/paymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
 * [getPoolBalancesLatest](docs/sdks/paymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
+* [getServerInfoPayments](docs/sdks/paymentsv1/README.md#getserverinfopayments) - Get server info
 * [getTransferInitiation](docs/sdks/paymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
 * [installConnector](docs/sdks/paymentsv1/README.md#installconnector) - Install a connector
+* [listAccountsPayments](docs/sdks/paymentsv1/README.md#listaccountspayments) - List accounts
 * [listAllConnectors](docs/sdks/paymentsv1/README.md#listallconnectors) - List all installed connectors
 * [listBankAccounts](docs/sdks/paymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
 * [listConfigsAvailableConnectors](docs/sdks/paymentsv1/README.md#listconfigsavailableconnectors) - List the configs of each available connector
@@ -273,9 +275,6 @@ run();
 * [listPayments](docs/sdks/paymentsv1/README.md#listpayments) - List payments
 * [listPools](docs/sdks/paymentsv1/README.md#listpools) - List Pools
 * [listTransferInitiations](docs/sdks/paymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
-* [paymentsgetAccount](docs/sdks/paymentsv1/README.md#paymentsgetaccount) - Get an account
-* [paymentsgetServerInfo](docs/sdks/paymentsv1/README.md#paymentsgetserverinfo) - Get server info
-* [paymentslistAccounts](docs/sdks/paymentsv1/README.md#paymentslistaccounts) - List accounts
 * [~~readConnectorConfig~~](docs/sdks/paymentsv1/README.md#readconnectorconfig) - Read the config of a connector :warning: **Deprecated**
 * [readConnectorConfigV1](docs/sdks/paymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
 * [removeAccountFromPool](docs/sdks/paymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
@@ -318,6 +317,8 @@ run();
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+* [getConversion](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
+* [getOrder](docs/sdks/v3/README.md#getorder) - Get a single order by its Formance ID
 * [getPayment](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 * [getPaymentInitiation](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 * [getPaymentServiceUser](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
@@ -334,14 +335,11 @@ run();
 * [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
 * [listConnectors](docs/sdks/v3/README.md#listconnectors) - List all connectors
+* [listConversions](docs/sdks/v3/README.md#listconversions) - List currency and asset conversions ingested from connectors
+* [listOrders](docs/sdks/v3/README.md#listorders) - List orders ingested from exchange-style connectors
 * [listPaymentInitiationAdjustments](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
 * [listPaymentInitiationRelatedPayments](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 * [listPaymentInitiations](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
-* [listPaymentServiceUserConnections](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
-* [listPaymentServiceUserConnectionsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
-* [listPaymentServiceUserLinkAttemptsFromConnectorID](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
-Allows to check if users used the link and completed the oauth flow.
-
 * [listPaymentServiceUsers](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 * [listPayments](docs/sdks/v3/README.md#listpayments) - List all payments
 * [listPools](docs/sdks/v3/README.md#listpools) - List all pools
@@ -363,15 +361,15 @@ Allows to check if users used the link and completed the oauth flow.
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
 * [getPolicy](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getServerInfoReconciliation](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
 * [listPolicies](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
-* [reconciliationgetServerInfo](docs/sdks/reconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 
 ### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
+* [~~getServerInfoSearch~~](docs/sdks/searchv1/README.md#getserverinfosearch) - Get server info :warning: **Deprecated**
 * [~~search~~](docs/sdks/searchv1/README.md#search) - search.v1 :warning: **Deprecated**
-* [~~searchgetServerInfo~~](docs/sdks/searchv1/README.md#searchgetserverinfo) - Get server info :warning: **Deprecated**
 
 ### [Wallets.V1](docs/sdks/walletsv1/README.md)
 
@@ -383,6 +381,7 @@ Allows to check if users used the link and completed the oauth flow.
 * [getBalance](docs/sdks/walletsv1/README.md#getbalance) - Get detailed balance
 * [getHold](docs/sdks/walletsv1/README.md#gethold) - Get a hold
 * [getHolds](docs/sdks/walletsv1/README.md#getholds) - Get all holds for a wallet
+* [getServerInfoWallets](docs/sdks/walletsv1/README.md#getserverinfowallets) - Get server info
 * [getTransactions](docs/sdks/walletsv1/README.md#gettransactions)
 * [getWallet](docs/sdks/walletsv1/README.md#getwallet) - Get a wallet
 * [getWalletSummary](docs/sdks/walletsv1/README.md#getwalletsummary) - Get wallet summary
@@ -390,7 +389,6 @@ Allows to check if users used the link and completed the oauth flow.
 * [listWallets](docs/sdks/walletsv1/README.md#listwallets) - List all wallets
 * [updateWallet](docs/sdks/walletsv1/README.md#updatewallet) - Update a wallet
 * [voidHold](docs/sdks/walletsv1/README.md#voidhold) - Cancel a hold
-* [walletsgetServerInfo](docs/sdks/walletsv1/README.md#walletsgetserverinfo) - Get server info
 
 ### [Webhooks.V1](docs/sdks/webhooksv1/README.md)
 
@@ -424,6 +422,7 @@ Allows to check if users used the link and completed the oauth flow.
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 import * as errors from "@formance/formance-sdk/sdk/models/errors";
+import * as ledger from "@formance/formance-sdk/sdk/models/ledger";
 
 const sdk = new SDK({
   security: {
@@ -446,9 +445,9 @@ async function run() {
       console.log(error.headers);
 
       // Depending on the method different errors may be thrown
-      if (error instanceof errors.V2ErrorResponse) {
+      if (error instanceof errors.ErrorsV2ErrorResponse) {
+        console.log(error.data$.v2ErrorsEnum); // shared.V2ErrorsEnum
         console.log(error.data$.details); // string
-        console.log(error.data$.errorCode); // shared.V2ErrorsEnum
         console.log(error.data$.errorMessage); // string
       }
     }
@@ -463,7 +462,7 @@ run();
 **Primary error:**
 * [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts): The base class for HTTP error responses.
 
-<details><summary>Less common errors (15)</summary>
+<details><summary>Less common errors (13)</summary>
 
 <br />
 
@@ -476,82 +475,19 @@ run();
 
 
 **Inherit from [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts)**:
-* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 57 of 249 methods.*
-* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 46 of 249 methods.*
-* [`V2ErrorResponse`](./src/sdk/models/errors/v2errorresponse.ts): Applicable to 44 of 249 methods.*
-* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 19 of 249 methods.*
-* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 249 methods.*
-* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 249 methods.*
-* [`WalletsErrorResponse`](./src/sdk/models/errors/walletserrorresponse.ts): Applicable to 15 of 249 methods.*
-* [`ReconciliationErrorResponse`](./src/sdk/models/errors/reconciliationerrorresponse.ts): Error response. Applicable to 8 of 249 methods.*
-* [`WebhooksErrorResponse`](./src/sdk/models/errors/webhookserrorresponse.ts): Error. Applicable to 8 of 249 methods.*
+* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 58 of 250 methods.*
+* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 46 of 250 methods.*
+* [`ErrorsV2ErrorResponse`](./src/sdk/models/errors/errorsv2errorresponse.ts): Applicable to 44 of 250 methods.*
+* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 31 of 250 methods.*
+* [`ErrorsErrorResponse`](./src/sdk/models/errors/errorserrorresponse.ts): Applicable to 19 of 250 methods.*
+* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 250 methods.*
+* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 250 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
 
 \* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| #   | Server                                                | Variables                        | Description                                |
-| --- | ----------------------------------------------------- | -------------------------------- | ------------------------------------------ |
-| 0   | `http://localhost`                                    |                                  | local server                               |
-| 1   | `https://{organization}.{environment}.formance.cloud` | `environment`<br/>`organization` | A per-organization and per-environment API |
-
-If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
-
-| Variable       | Parameter                               | Supported Values                                         | Default           | Description                                                   |
-| -------------- | --------------------------------------- | -------------------------------------------------------- | ----------------- | ------------------------------------------------------------- |
-| `environment`  | `environment: models.ServerEnvironment` | - `"eu.sandbox"`<br/>- `"eu-west-1"`<br/>- `"us-east-1"` | `"eu.sandbox"`    | The environment name. Defaults to the production environment. |
-| `organization` | `organization: string`                  | string                                                   | `"orgID-stackID"` | The organization name. Defaults to a generic organization.    |
-
-#### Example
-
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-const sdk = new SDK({
-  serverIdx: 1,
-  environment: "us-east-1",
-  organization: "orgID-stackID",
-});
-
-async function run() {
-  const result = await sdk.getVersions();
-
-  console.log(result);
-}
-
-run();
-
-```
-
-### Override Server URL Per-Client
-
-The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-const sdk = new SDK({
-  serverURL: "https://orgID-stackID.eu.sandbox.formance.cloud",
-});
-
-async function run() {
-  const result = await sdk.getVersions();
-
-  console.log(result);
-}
-
-run();
-
-```
-<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
@@ -659,7 +595,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`authV1DeleteClient`](docs/sdks/authv1/README.md#deleteclient) - Delete client
 - [`authV1DeleteSecret`](docs/sdks/authv1/README.md#deletesecret) - Delete a secret from a client
 - [`authV1GetOIDCWellKnowns`](docs/sdks/authv1/README.md#getoidcwellknowns) - Retrieve OpenID connect well-knowns.
-- [`authV1GetServerInfo`](docs/sdks/authv1/README.md#getserverinfo) - Get server info
+- [`authV1GetServerInfoAuth`](docs/sdks/authv1/README.md#getserverinfoauth) - Get server info
 - [`authV1ListClients`](docs/sdks/authv1/README.md#listclients) - List clients
 - [`authV1ListUsers`](docs/sdks/authv1/README.md#listusers) - List users
 - [`authV1ReadClient`](docs/sdks/authv1/README.md#readclient) - Read client
@@ -674,14 +610,14 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV1CountTransactions`](docs/sdks/ledgerv1/README.md#counttransactions) - Count the transactions from a ledger
 - [`ledgerV1CreateTransaction`](docs/sdks/ledgerv1/README.md#createtransaction) - Create a new transaction to a ledger
 - [`ledgerV1CreateTransactions`](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
-- [`ledgerV1GetAccount`](docs/sdks/ledgerv1/README.md#getaccount) - Get account by its address
+- [`ledgerV1GetAccountLedger`](docs/sdks/ledgerv1/README.md#getaccountledger) - Get account by its address
 - [`ledgerV1GetBalances`](docs/sdks/ledgerv1/README.md#getbalances) - Get the balances from a ledger's account
 - [`ledgerV1GetBalancesAggregated`](docs/sdks/ledgerv1/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 - [`ledgerV1GetInfo`](docs/sdks/ledgerv1/README.md#getinfo) - Show server information
 - [`ledgerV1GetLedgerInfo`](docs/sdks/ledgerv1/README.md#getledgerinfo) - Get information about a ledger
 - [`ledgerV1GetMapping`](docs/sdks/ledgerv1/README.md#getmapping) - Get the mapping of a ledger
 - [`ledgerV1GetTransaction`](docs/sdks/ledgerv1/README.md#gettransaction) - Get transaction from a ledger by its ID
-- [`ledgerV1ListAccounts`](docs/sdks/ledgerv1/README.md#listaccounts) - List accounts from a ledger
+- [`ledgerV1ListAccountsLedger`](docs/sdks/ledgerv1/README.md#listaccountsledger) - List accounts from a ledger
 - [`ledgerV1ListLogs`](docs/sdks/ledgerv1/README.md#listlogs) - List the logs from a ledger
 - [`ledgerV1ListTransactions`](docs/sdks/ledgerv1/README.md#listtransactions) - List transactions from a ledger
 - [`ledgerV1ReadStats`](docs/sdks/ledgerv1/README.md#readstats) - Get statistics from a ledger
@@ -738,12 +674,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`orchestrationV1GetInstance`](docs/sdks/orchestrationv1/README.md#getinstance) - Get a workflow instance by id
 - [`orchestrationV1GetInstanceHistory`](docs/sdks/orchestrationv1/README.md#getinstancehistory) - Get a workflow instance history by id
 - [`orchestrationV1GetInstanceStageHistory`](docs/sdks/orchestrationv1/README.md#getinstancestagehistory) - Get a workflow instance stage history
+- [`orchestrationV1GetServerInfoOrchestration`](docs/sdks/orchestrationv1/README.md#getserverinfoorchestration) - Get server info
 - [`orchestrationV1GetWorkflow`](docs/sdks/orchestrationv1/README.md#getworkflow) - Get a flow by id
 - [`orchestrationV1ListInstances`](docs/sdks/orchestrationv1/README.md#listinstances) - List instances of a workflow
 - [`orchestrationV1ListTriggers`](docs/sdks/orchestrationv1/README.md#listtriggers) - List triggers
 - [`orchestrationV1ListTriggersOccurrences`](docs/sdks/orchestrationv1/README.md#listtriggersoccurrences) - List triggers occurrences
 - [`orchestrationV1ListWorkflows`](docs/sdks/orchestrationv1/README.md#listworkflows) - List registered workflows
-- [`orchestrationV1OrchestrationgetServerInfo`](docs/sdks/orchestrationv1/README.md#orchestrationgetserverinfo) - Get server info
 - [`orchestrationV1ReadTrigger`](docs/sdks/orchestrationv1/README.md#readtrigger) - Read trigger
 - [`orchestrationV1RunWorkflow`](docs/sdks/orchestrationv1/README.md#runworkflow) - Run workflow
 - [`orchestrationV1SendEvent`](docs/sdks/orchestrationv1/README.md#sendevent) - Send an event to a running workflow
@@ -776,14 +712,17 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV1DeleteTransferInitiation`](docs/sdks/paymentsv1/README.md#deletetransferinitiation) - Delete a transfer initiation
 - [`paymentsV1ForwardBankAccount`](docs/sdks/paymentsv1/README.md#forwardbankaccount) - Forward a bank account to a connector
 - [`paymentsV1GetAccountBalances`](docs/sdks/paymentsv1/README.md#getaccountbalances) - Get account balances
+- [`paymentsV1GetAccountPayments`](docs/sdks/paymentsv1/README.md#getaccountpayments) - Get an account
 - [`paymentsV1GetBankAccount`](docs/sdks/paymentsv1/README.md#getbankaccount) - Get a bank account created by user on Formance
 - [`paymentsV1GetConnectorTaskV1`](docs/sdks/paymentsv1/README.md#getconnectortaskv1) - Read a specific task of the connector
 - [`paymentsV1GetPayment`](docs/sdks/paymentsv1/README.md#getpayment) - Get a payment
 - [`paymentsV1GetPool`](docs/sdks/paymentsv1/README.md#getpool) - Get a Pool
 - [`paymentsV1GetPoolBalances`](docs/sdks/paymentsv1/README.md#getpoolbalances) - Get historical pool balances at a particular point in time
 - [`paymentsV1GetPoolBalancesLatest`](docs/sdks/paymentsv1/README.md#getpoolbalanceslatest) - Get latest pool balances
+- [`paymentsV1GetServerInfoPayments`](docs/sdks/paymentsv1/README.md#getserverinfopayments) - Get server info
 - [`paymentsV1GetTransferInitiation`](docs/sdks/paymentsv1/README.md#gettransferinitiation) - Get a transfer initiation
 - [`paymentsV1InstallConnector`](docs/sdks/paymentsv1/README.md#installconnector) - Install a connector
+- [`paymentsV1ListAccountsPayments`](docs/sdks/paymentsv1/README.md#listaccountspayments) - List accounts
 - [`paymentsV1ListAllConnectors`](docs/sdks/paymentsv1/README.md#listallconnectors) - List all installed connectors
 - [`paymentsV1ListBankAccounts`](docs/sdks/paymentsv1/README.md#listbankaccounts) - List bank accounts created by user on Formance
 - [`paymentsV1ListConfigsAvailableConnectors`](docs/sdks/paymentsv1/README.md#listconfigsavailableconnectors) - List the configs of each available connector
@@ -791,9 +730,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV1ListPayments`](docs/sdks/paymentsv1/README.md#listpayments) - List payments
 - [`paymentsV1ListPools`](docs/sdks/paymentsv1/README.md#listpools) - List Pools
 - [`paymentsV1ListTransferInitiations`](docs/sdks/paymentsv1/README.md#listtransferinitiations) - List Transfer Initiations
-- [`paymentsV1PaymentsgetAccount`](docs/sdks/paymentsv1/README.md#paymentsgetaccount) - Get an account
-- [`paymentsV1PaymentsgetServerInfo`](docs/sdks/paymentsv1/README.md#paymentsgetserverinfo) - Get server info
-- [`paymentsV1PaymentslistAccounts`](docs/sdks/paymentsv1/README.md#paymentslistaccounts) - List accounts
 - [`paymentsV1ReadConnectorConfigV1`](docs/sdks/paymentsv1/README.md#readconnectorconfigv1) - Read the config of a connector
 - [`paymentsV1RemoveAccountFromPool`](docs/sdks/paymentsv1/README.md#removeaccountfrompool) - Remove an account from a pool
 - [`paymentsV1ResetConnectorV1`](docs/sdks/paymentsv1/README.md#resetconnectorv1) - Reset a connector
@@ -830,6 +766,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3GetBankAccount`](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
 - [`paymentsV3GetConnectorConfig`](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 - [`paymentsV3GetConnectorSchedule`](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
+- [`paymentsV3GetConversion`](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
+- [`paymentsV3GetOrder`](docs/sdks/v3/README.md#getorder) - Get a single order by its Formance ID
 - [`paymentsV3GetPayment`](docs/sdks/v3/README.md#getpayment) - Get a payment by ID
 - [`paymentsV3GetPaymentInitiation`](docs/sdks/v3/README.md#getpaymentinitiation) - Get a payment initiation by ID
 - [`paymentsV3GetPaymentServiceUser`](docs/sdks/v3/README.md#getpaymentserviceuser) - Get a payment service user by ID
@@ -846,15 +784,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3ListConnectors`](docs/sdks/v3/README.md#listconnectors) - List all connectors
 - [`paymentsV3ListConnectorScheduleInstances`](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
 - [`paymentsV3ListConnectorSchedules`](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
+- [`paymentsV3ListConversions`](docs/sdks/v3/README.md#listconversions) - List currency and asset conversions ingested from connectors
+- [`paymentsV3ListOrders`](docs/sdks/v3/README.md#listorders) - List orders ingested from exchange-style connectors
 - [`paymentsV3ListPaymentInitiationAdjustments`](docs/sdks/v3/README.md#listpaymentinitiationadjustments) - List all payment initiation adjustments
 - [`paymentsV3ListPaymentInitiationRelatedPayments`](docs/sdks/v3/README.md#listpaymentinitiationrelatedpayments) - List all payments related to a payment initiation
 - [`paymentsV3ListPaymentInitiations`](docs/sdks/v3/README.md#listpaymentinitiations) - List all payment initiations
 - [`paymentsV3ListPayments`](docs/sdks/v3/README.md#listpayments) - List all payments
-- [`paymentsV3ListPaymentServiceUserConnections`](docs/sdks/v3/README.md#listpaymentserviceuserconnections) - List all connections for a payment service user
-- [`paymentsV3ListPaymentServiceUserConnectionsFromConnectorID`](docs/sdks/v3/README.md#listpaymentserviceuserconnectionsfromconnectorid) - List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
-- [`paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID`](docs/sdks/v3/README.md#listpaymentserviceuserlinkattemptsfromconnectorid) - List all link attempts for a payment service user on a connector.
-Allows to check if users used the link and completed the oauth flow.
-
 - [`paymentsV3ListPaymentServiceUsers`](docs/sdks/v3/README.md#listpaymentserviceusers) - List all payment service users
 - [`paymentsV3ListPools`](docs/sdks/v3/README.md#listpools) - List all pools
 - [`paymentsV3RejectPaymentInitiation`](docs/sdks/v3/README.md#rejectpaymentinitiation) - Reject a payment initiation
@@ -872,10 +807,10 @@ Allows to check if users used the link and completed the oauth flow.
 - [`reconciliationV1DeletePolicy`](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
 - [`reconciliationV1GetPolicy`](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 - [`reconciliationV1GetReconciliation`](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+- [`reconciliationV1GetServerInfoReconciliation`](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
 - [`reconciliationV1ListPolicies`](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 - [`reconciliationV1ListReconciliations`](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
 - [`reconciliationV1Reconcile`](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
-- [`reconciliationV1ReconciliationgetServerInfo`](docs/sdks/reconciliationv1/README.md#reconciliationgetserverinfo) - Get server info
 - [`walletsV1ConfirmHold`](docs/sdks/walletsv1/README.md#confirmhold) - Confirm a hold
 - [`walletsV1CreateBalance`](docs/sdks/walletsv1/README.md#createbalance) - Create a balance
 - [`walletsV1CreateWallet`](docs/sdks/walletsv1/README.md#createwallet) - Create a new wallet
@@ -884,6 +819,7 @@ Allows to check if users used the link and completed the oauth flow.
 - [`walletsV1GetBalance`](docs/sdks/walletsv1/README.md#getbalance) - Get detailed balance
 - [`walletsV1GetHold`](docs/sdks/walletsv1/README.md#gethold) - Get a hold
 - [`walletsV1GetHolds`](docs/sdks/walletsv1/README.md#getholds) - Get all holds for a wallet
+- [`walletsV1GetServerInfoWallets`](docs/sdks/walletsv1/README.md#getserverinfowallets) - Get server info
 - [`walletsV1GetTransactions`](docs/sdks/walletsv1/README.md#gettransactions)
 - [`walletsV1GetWallet`](docs/sdks/walletsv1/README.md#getwallet) - Get a wallet
 - [`walletsV1GetWalletSummary`](docs/sdks/walletsv1/README.md#getwalletsummary) - Get wallet summary
@@ -891,7 +827,6 @@ Allows to check if users used the link and completed the oauth flow.
 - [`walletsV1ListWallets`](docs/sdks/walletsv1/README.md#listwallets) - List all wallets
 - [`walletsV1UpdateWallet`](docs/sdks/walletsv1/README.md#updatewallet) - Update a wallet
 - [`walletsV1VoidHold`](docs/sdks/walletsv1/README.md#voidhold) - Cancel a hold
-- [`walletsV1WalletsgetServerInfo`](docs/sdks/walletsv1/README.md#walletsgetserverinfo) - Get server info
 - [`webhooksV1ActivateConfig`](docs/sdks/webhooksv1/README.md#activateconfig) - Activate one config
 - [`webhooksV1ChangeConfigSecret`](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
 - [`webhooksV1DeactivateConfig`](docs/sdks/webhooksv1/README.md#deactivateconfig) - Deactivate one config
@@ -906,8 +841,8 @@ Allows to check if users used the link and completed the oauth flow.
 - ~~[`paymentsV1ReadConnectorConfig`](docs/sdks/paymentsv1/README.md#readconnectorconfig)~~ - Read the config of a connector :warning: **Deprecated**
 - ~~[`paymentsV1ResetConnector`](docs/sdks/paymentsv1/README.md#resetconnector)~~ - Reset a connector :warning: **Deprecated**
 - ~~[`paymentsV1UninstallConnector`](docs/sdks/paymentsv1/README.md#uninstallconnector)~~ - Uninstall a connector :warning: **Deprecated**
+- ~~[`searchV1GetServerInfoSearch`](docs/sdks/searchv1/README.md#getserverinfosearch)~~ - Get server info :warning: **Deprecated**
 - ~~[`searchV1Search`](docs/sdks/searchv1/README.md#search)~~ - search.v1 :warning: **Deprecated**
-- ~~[`searchV1SearchgetServerInfo`](docs/sdks/searchv1/README.md#searchgetserverinfo)~~ - Get server info :warning: **Deprecated**
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

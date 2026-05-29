@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as gateway from "../gateway/index.js";
+
+export const GetVersionsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetVersionsResponse = {
   /**
@@ -17,7 +21,7 @@ export type GetVersionsResponse = {
   /**
    * OK
    */
-  getVersionsResponse?: shared.GetVersionsResponse | undefined;
+  getVersionsResponse?: gateway.GetVersionsResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -35,7 +39,7 @@ export const GetVersionsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  GetVersionsResponse: shared.GetVersionsResponse$inboundSchema.optional(),
+  GetVersionsResponse: gateway.GetVersionsResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

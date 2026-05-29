@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const ListLogsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListLogsRequest = {
   /**
@@ -57,7 +61,7 @@ export type ListLogsResponse = {
   /**
    * OK
    */
-  logsCursorResponse?: shared.LogsCursorResponse | undefined;
+  logsCursorResponse?: ledger.LogsCursorResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -105,7 +109,7 @@ export const ListLogsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  LogsCursorResponse: shared.LogsCursorResponse$inboundSchema.optional(),
+  LogsCursorResponse: ledger.LogsCursorResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

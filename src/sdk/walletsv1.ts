@@ -10,6 +10,7 @@ import { walletsV1DebitWallet } from "../funcs/walletsV1DebitWallet.js";
 import { walletsV1GetBalance } from "../funcs/walletsV1GetBalance.js";
 import { walletsV1GetHold } from "../funcs/walletsV1GetHold.js";
 import { walletsV1GetHolds } from "../funcs/walletsV1GetHolds.js";
+import { walletsV1GetServerInfoWallets } from "../funcs/walletsV1GetServerInfoWallets.js";
 import { walletsV1GetTransactions } from "../funcs/walletsV1GetTransactions.js";
 import { walletsV1GetWallet } from "../funcs/walletsV1GetWallet.js";
 import { walletsV1GetWalletSummary } from "../funcs/walletsV1GetWalletSummary.js";
@@ -17,7 +18,6 @@ import { walletsV1ListBalances } from "../funcs/walletsV1ListBalances.js";
 import { walletsV1ListWallets } from "../funcs/walletsV1ListWallets.js";
 import { walletsV1UpdateWallet } from "../funcs/walletsV1UpdateWallet.js";
 import { walletsV1VoidHold } from "../funcs/walletsV1VoidHold.js";
-import { walletsV1WalletsgetServerInfo } from "../funcs/walletsV1WalletsgetServerInfo.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
 import { unwrapAsync } from "./types/fp.js";
@@ -135,6 +135,18 @@ export class WalletsV1 extends ClientSDK {
     ));
   }
 
+  /**
+   * Get server info
+   */
+  async getServerInfoWallets(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerInfoWalletsResponse> {
+    return unwrapAsync(walletsV1GetServerInfoWallets(
+      this,
+      options,
+    ));
+  }
+
   async getTransactions(
     request: operations.GetTransactionsRequest,
     options?: RequestOptions,
@@ -226,18 +238,6 @@ export class WalletsV1 extends ClientSDK {
     return unwrapAsync(walletsV1VoidHold(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Get server info
-   */
-  async walletsgetServerInfo(
-    options?: RequestOptions,
-  ): Promise<operations.WalletsgetServerInfoResponse> {
-    return unwrapAsync(walletsV1WalletsgetServerInfo(
-      this,
       options,
     ));
   }

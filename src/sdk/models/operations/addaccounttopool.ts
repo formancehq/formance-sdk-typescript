@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const AddAccountToPoolServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type AddAccountToPoolRequest = {
-  addAccountToPoolRequest: shared.AddAccountToPoolRequest;
+  addAccountToPoolRequest: payments.AddAccountToPoolRequest;
   /**
    * The pool ID.
    */
@@ -34,7 +38,7 @@ export type AddAccountToPoolResponse = {
 
 /** @internal */
 export type AddAccountToPoolRequest$Outbound = {
-  AddAccountToPoolRequest: shared.AddAccountToPoolRequest$Outbound;
+  AddAccountToPoolRequest: payments.AddAccountToPoolRequest$Outbound;
   poolId: string;
 };
 
@@ -44,7 +48,7 @@ export const AddAccountToPoolRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AddAccountToPoolRequest
 > = z.object({
-  addAccountToPoolRequest: shared.AddAccountToPoolRequest$outboundSchema,
+  addAccountToPoolRequest: payments.AddAccountToPoolRequest$outboundSchema,
   poolId: z.string(),
 }).transform((v) => {
   return remap$(v, {

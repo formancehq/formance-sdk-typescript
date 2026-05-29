@@ -1,27 +1,27 @@
-speakeasyVersion: 1.757.1
+speakeasyVersion: 1.768.2
 sources:
     stacks-source:
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:5e8bd4979ed3387462d01b18520b278a02c4da6b5f010bd4233f11f14754cd01
-        sourceBlobDigest: sha256:e85664a8de6b3b3c8ad658fcc8ad4f2d8d49643b7fe7baa8dfab9b236ca26982
+        sourceRevisionDigest: sha256:50819cd828a449ecc06b55d023f21936862b83d3868af613cacac7b2158171ed
+        sourceBlobDigest: sha256:1c6d9f1fecf4fe8ac7db4eddc823c8e367e7fdd6551ea5e2910a5f77549caa34
         tags:
             - latest
-            - v0.0.0
+            - SDK_VERSION
 targets:
     formance-sdk-typescript:
         source: stacks-source
         sourceNamespace: stacks-source
-        sourceRevisionDigest: sha256:5e8bd4979ed3387462d01b18520b278a02c4da6b5f010bd4233f11f14754cd01
-        sourceBlobDigest: sha256:e85664a8de6b3b3c8ad658fcc8ad4f2d8d49643b7fe7baa8dfab9b236ca26982
+        sourceRevisionDigest: sha256:50819cd828a449ecc06b55d023f21936862b83d3868af613cacac7b2158171ed
+        sourceBlobDigest: sha256:1c6d9f1fecf4fe8ac7db4eddc823c8e367e7fdd6551ea5e2910a5f77549caa34
         codeSamplesNamespace: stacks-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:3ba1772a43fd4e4043876b6611325e3ceab91d106ad91102ad2c102a2dcbc5b2
+        codeSamplesRevisionDigest: sha256:90cd749c3aad99abdb392d22af326943702966d205c515a186ba3fb3d8106b98
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         stacks-source:
             inputs:
-                - location: registry.speakeasyapi.dev/formance/formance/stacks-source@latest
+                - location: registry.speakeasyapi.dev/formance/formance/stacks-source@LATEST_RELEASE
             overlays:
                 - location: ./overlay.yaml
             registry:

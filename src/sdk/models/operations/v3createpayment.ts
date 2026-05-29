@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3CreatePaymentServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3CreatePaymentResponse = {
   /**
@@ -25,7 +29,7 @@ export type V3CreatePaymentResponse = {
   /**
    * Created
    */
-  v3CreatePaymentResponse?: shared.V3CreatePaymentResponse | undefined;
+  v3CreatePaymentResponse?: payments.V3CreatePaymentResponse | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V3CreatePaymentResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3CreatePaymentResponse: shared.V3CreatePaymentResponse$inboundSchema
+  V3CreatePaymentResponse: payments.V3CreatePaymentResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

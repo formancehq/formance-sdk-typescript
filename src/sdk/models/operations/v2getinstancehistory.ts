@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2GetInstanceHistoryServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetInstanceHistoryRequest = {
   /**
@@ -33,7 +37,7 @@ export type V2GetInstanceHistoryResponse = {
    * The workflow instance history
    */
   v2GetWorkflowInstanceHistoryResponse?:
-    | shared.V2GetWorkflowInstanceHistoryResponse
+    | orchestration.V2GetWorkflowInstanceHistoryResponse
     | undefined;
 };
 
@@ -70,7 +74,7 @@ export const V2GetInstanceHistoryResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2GetWorkflowInstanceHistoryResponse: shared
+  V2GetWorkflowInstanceHistoryResponse: orchestration
     .V2GetWorkflowInstanceHistoryResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

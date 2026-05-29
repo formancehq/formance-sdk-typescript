@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as reconciliation from "../reconciliation/index.js";
+
+export const ListReconciliationsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListReconciliationsRequest = {
   /**
@@ -37,7 +41,7 @@ export type ListReconciliationsResponse = {
    * OK
    */
   reconciliationsCursorResponse?:
-    | shared.ReconciliationsCursorResponse
+    | reconciliation.ReconciliationsCursorResponse
     | undefined;
   /**
    * HTTP response status code for this operation
@@ -82,7 +86,7 @@ export const ListReconciliationsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  ReconciliationsCursorResponse: shared
+  ReconciliationsCursorResponse: reconciliation
     .ReconciliationsCursorResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),

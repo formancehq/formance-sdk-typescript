@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ReverseTransferInitiationServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ReverseTransferInitiationRequest = {
-  reverseTransferInitiationRequest: shared.ReverseTransferInitiationRequest;
+  reverseTransferInitiationRequest: payments.ReverseTransferInitiationRequest;
   /**
    * The transfer ID.
    */
@@ -35,7 +39,7 @@ export type ReverseTransferInitiationResponse = {
 /** @internal */
 export type ReverseTransferInitiationRequest$Outbound = {
   ReverseTransferInitiationRequest:
-    shared.ReverseTransferInitiationRequest$Outbound;
+    payments.ReverseTransferInitiationRequest$Outbound;
   transferId: string;
 };
 
@@ -46,7 +50,7 @@ export const ReverseTransferInitiationRequest$outboundSchema: z.ZodType<
   ReverseTransferInitiationRequest
 > = z.object({
   reverseTransferInitiationRequest:
-    shared.ReverseTransferInitiationRequest$outboundSchema,
+    payments.ReverseTransferInitiationRequest$outboundSchema,
   transferId: z.string(),
 }).transform((v) => {
   return remap$(v, {

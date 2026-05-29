@@ -1,0 +1,29 @@
+# V3Pool
+
+## Example Usage
+
+```typescript
+import { V3Pool } from "@formance/formance-sdk/sdk/models/payments";
+
+let value: V3Pool = {
+  createdAt: new Date("2025-07-30T19:16:55.222Z"),
+  id: "<id>",
+  name: "<value>",
+  poolAccounts: [
+    "<value 1>",
+    "<value 2>",
+    "<value 3>",
+  ],
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `v3PoolTypeEnum`                                                                              | [payments.V3PoolTypeEnum](../../../sdk/models/payments/v3pooltypeenum.md)                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `poolAccounts`                                                                                | *string*[]                                                                                    | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `query`                                                                                       | Record<string, *any*>                                                                         | :heavy_minus_sign:                                                                            | N/A                                                                                           |

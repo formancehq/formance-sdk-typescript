@@ -3,6 +3,7 @@
  */
 
 import { SDKCore } from "../core.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -15,16 +16,19 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { V2GetServerInfoServerList } from "../sdk/models/operations/v2getserverinfo.js";
+import * as orchestration from "../sdk/models/orchestration/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Get server info
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function orchestrationV2GetServerInfo(
   client: SDKCore,
@@ -32,7 +36,7 @@ export function orchestrationV2GetServerInfo(
 ): APIPromise<
   Result<
     operations.V2GetServerInfoResponse,
-    | errors.V2Error
+    | orchestration.V2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -56,7 +60,7 @@ async function $do(
   [
     Result<
       operations.V2GetServerInfoResponse,
-      | errors.V2Error
+      | orchestration.V2Error
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -69,6 +73,9 @@ async function $do(
     APICall,
   ]
 > {
+  const baseURL = options?.serverURL
+    || pathToFunc(V2GetServerInfoServerList[0], { charEncoding: "percent" })();
+
   const path = pathToFunc("/api/orchestration/v2/_info")();
 
   const headers = new Headers(compactMap({
@@ -76,11 +83,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "v2GetServerInfo",
     oAuth2Scopes: ["orchestration:read"],
 
@@ -96,7 +103,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     userAgent: client._options.userAgent,
@@ -109,7 +116,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -128,7 +136,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V2GetServerInfoResponse,
-    | errors.V2Error
+    | orchestration.V2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -141,7 +149,7 @@ async function $do(
     M.json(200, operations.V2GetServerInfoResponse$inboundSchema, {
       key: "V2ServerInfo",
     }),
-    M.jsonErr("default", errors.V2Error$inboundSchema),
+    M.jsonErr("default", orchestration.V2Error$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

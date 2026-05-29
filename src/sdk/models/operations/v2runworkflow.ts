@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2RunWorkflowServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2RunWorkflowRequest = {
   requestBody?: { [k: string]: string } | undefined;
@@ -37,7 +41,7 @@ export type V2RunWorkflowResponse = {
   /**
    * The workflow instance
    */
-  v2RunWorkflowResponse?: shared.V2RunWorkflowResponse | undefined;
+  v2RunWorkflowResponse?: orchestration.V2RunWorkflowResponse | undefined;
 };
 
 /** @internal */
@@ -79,7 +83,8 @@ export const V2RunWorkflowResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2RunWorkflowResponse: shared.V2RunWorkflowResponse$inboundSchema.optional(),
+  V2RunWorkflowResponse: orchestration.V2RunWorkflowResponse$inboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

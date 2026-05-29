@@ -6,11 +6,15 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+
+export const CreateSecretServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateSecretRequest = {
-  createSecretRequest?: shared.CreateSecretRequest | undefined;
+  secretOptions?: auth.SecretOptions1 | undefined;
   /**
    * Client ID
    */
@@ -25,7 +29,7 @@ export type CreateSecretResponse = {
   /**
    * Created secret
    */
-  createSecretResponse?: shared.CreateSecretResponse | undefined;
+  createSecretResponse?: auth.CreateSecretResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -38,7 +42,7 @@ export type CreateSecretResponse = {
 
 /** @internal */
 export type CreateSecretRequest$Outbound = {
-  CreateSecretRequest?: shared.CreateSecretRequest$Outbound | undefined;
+  SecretOptions?: auth.SecretOptions1$Outbound | undefined;
   clientId: string;
 };
 
@@ -48,11 +52,11 @@ export const CreateSecretRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSecretRequest
 > = z.object({
-  createSecretRequest: shared.CreateSecretRequest$outboundSchema.optional(),
+  secretOptions: auth.SecretOptions1$outboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    createSecretRequest: "CreateSecretRequest",
+    secretOptions: "SecretOptions",
   });
 });
 
@@ -71,7 +75,7 @@ export const CreateSecretResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  CreateSecretResponse: shared.CreateSecretResponse$inboundSchema.optional(),
+  CreateSecretResponse: auth.CreateSecretResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

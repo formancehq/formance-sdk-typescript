@@ -6,11 +6,15 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+
+export const UpdateClientServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UpdateClientRequest = {
-  createClientRequest?: shared.CreateClientRequest | undefined;
+  clientOptions?: auth.ClientOptions2 | undefined;
   /**
    * Client ID
    */
@@ -23,6 +27,10 @@ export type UpdateClientResponse = {
    */
   contentType: string;
   /**
+   * Updated client
+   */
+  createClientResponse?: auth.CreateClientResponse | undefined;
+  /**
    * HTTP response status code for this operation
    */
   statusCode: number;
@@ -30,15 +38,11 @@ export type UpdateClientResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
-  /**
-   * Updated client
-   */
-  updateClientResponse?: shared.UpdateClientResponse | undefined;
 };
 
 /** @internal */
 export type UpdateClientRequest$Outbound = {
-  CreateClientRequest?: shared.CreateClientRequest$Outbound | undefined;
+  ClientOptions?: auth.ClientOptions2$Outbound | undefined;
   clientId: string;
 };
 
@@ -48,11 +52,11 @@ export const UpdateClientRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateClientRequest
 > = z.object({
-  createClientRequest: shared.CreateClientRequest$outboundSchema.optional(),
+  clientOptions: auth.ClientOptions2$outboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    createClientRequest: "CreateClientRequest",
+    clientOptions: "ClientOptions",
   });
 });
 
@@ -71,15 +75,15 @@ export const UpdateClientResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
+  CreateClientResponse: auth.CreateClientResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  UpdateClientResponse: shared.UpdateClientResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
+    "CreateClientResponse": "createClientResponse",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "UpdateClientResponse": "updateClientResponse",
   });
 });
 

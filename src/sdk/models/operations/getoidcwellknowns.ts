@@ -8,6 +8,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const GetOIDCWellKnownsServerList = [
+  "http://localhost:8080/",
+] as const;
+
 export type GetOIDCWellKnownsResponse = {
   /**
    * HTTP response content type for this operation

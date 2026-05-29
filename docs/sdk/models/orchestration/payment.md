@@ -1,0 +1,44 @@
+# Payment
+
+## Example Usage
+
+```typescript
+import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: Payment = {
+  paymentMetadata: {},
+  paymentStatus: PaymentStatus.Cancelled,
+  adjustments: [],
+  asset: "USD",
+  connectorID: "<id>",
+  createdAt: new Date("2024-01-05T21:52:54.990Z"),
+  destinationAccountID: "<id>",
+  id: "XXX",
+  initialAmount: 100n,
+  raw: {},
+  reference: "<value>",
+  scheme: PaymentScheme.Unionpay,
+  sourceAccountID: "<id>",
+  type: PaymentType.Payout,
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `connector`                                                                                   | [orchestration.Connector](../../../sdk/models/orchestration/connector.md)                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `paymentMetadata`                                                                             | [orchestration.PaymentMetadata](../../../sdk/models/orchestration/paymentmetadata.md)         | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `paymentStatus`                                                                               | [orchestration.PaymentStatus](../../../sdk/models/orchestration/paymentstatus.md)             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `adjustments`                                                                                 | [orchestration.PaymentAdjustment](../../../sdk/models/orchestration/paymentadjustment.md)[]   | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `asset`                                                                                       | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | USD                                                                                           |
+| `connectorID`                                                                                 | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `destinationAccountID`                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | XXX                                                                                           |
+| `initialAmount`                                                                               | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | 100                                                                                           |
+| `raw`                                                                                         | [orchestration.PaymentRaw](../../../sdk/models/orchestration/paymentraw.md)                   | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `scheme`                                                                                      | [orchestration.PaymentScheme](../../../sdk/models/orchestration/paymentscheme.md)             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `sourceAccountID`                                                                             | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `type`                                                                                        | [orchestration.PaymentType](../../../sdk/models/orchestration/paymenttype.md)                 | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

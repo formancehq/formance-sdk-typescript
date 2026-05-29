@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetAccountRequest = {
   /**
@@ -43,7 +47,7 @@ export type V2GetAccountResponse = {
   /**
    * OK
    */
-  v2AccountResponse?: shared.V2AccountResponse | undefined;
+  v2AccountResponse?: ledger.V2AccountResponse | undefined;
 };
 
 /** @internal */
@@ -83,7 +87,7 @@ export const V2GetAccountResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2AccountResponse: shared.V2AccountResponse$inboundSchema.optional(),
+  V2AccountResponse: ledger.V2AccountResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

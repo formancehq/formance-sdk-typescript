@@ -7,7 +7,7 @@ import { V2CreateLedgerRequest } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2CreateLedgerRequest = {
   v2CreateLedgerRequest: {
-    metadata: {
+    v2Metadata: {
       "admin": "true",
     },
   },
@@ -19,5 +19,5 @@ let value: V2CreateLedgerRequest = {
 
 | Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `v2CreateLedgerRequest`                                                             | [shared.V2CreateLedgerRequest](../../../sdk/models/shared/v2createledgerrequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
+| `v2CreateLedgerRequest`                                                             | [ledger.V2CreateLedgerRequest](../../../sdk/models/ledger/v2createledgerrequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
 | `ledger`                                                                            | *string*                                                                            | :heavy_check_mark:                                                                  | Name of the ledger.                                                                 | ledger001                                                                           |

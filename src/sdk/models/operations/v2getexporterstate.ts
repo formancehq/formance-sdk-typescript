@@ -7,20 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetExporterStateServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetExporterStateRequest = {
   /**
    * The exporter id
    */
   exporterID: string;
-};
-
-/**
- * Exporter information
- */
-export type V2GetExporterStateResponseBody = {
-  data: shared.V2Exporter;
 };
 
 export type V2GetExporterStateResponse = {
@@ -39,7 +36,7 @@ export type V2GetExporterStateResponse = {
   /**
    * Exporter information
    */
-  object?: V2GetExporterStateResponseBody | undefined;
+  v2GetExporterStateResponse?: ledger.V2GetExporterStateResponse | undefined;
 };
 
 /** @internal */
@@ -65,25 +62,6 @@ export function v2GetExporterStateRequestToJSON(
 }
 
 /** @internal */
-export const V2GetExporterStateResponseBody$inboundSchema: z.ZodType<
-  V2GetExporterStateResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: shared.V2Exporter$inboundSchema,
-});
-
-export function v2GetExporterStateResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2GetExporterStateResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2GetExporterStateResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2GetExporterStateResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const V2GetExporterStateResponse$inboundSchema: z.ZodType<
   V2GetExporterStateResponse,
   z.ZodTypeDef,
@@ -92,12 +70,15 @@ export const V2GetExporterStateResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2GetExporterStateResponseBody$inboundSchema).optional(),
+  V2GetExporterStateResponse: z.lazy(() =>
+    ledger.V2GetExporterStateResponse$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2GetExporterStateResponse": "v2GetExporterStateResponse",
   });
 });
 

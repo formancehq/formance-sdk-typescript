@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3UpdatePaymentMetadataServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3UpdatePaymentMetadataRequest = {
   v3UpdatePaymentMetadataRequest?:
-    | shared.V3UpdatePaymentMetadataRequest
+    | payments.V3UpdatePaymentMetadataRequest
     | undefined;
   /**
    * The payment ID
@@ -37,7 +41,7 @@ export type V3UpdatePaymentMetadataResponse = {
 /** @internal */
 export type V3UpdatePaymentMetadataRequest$Outbound = {
   V3UpdatePaymentMetadataRequest?:
-    | shared.V3UpdatePaymentMetadataRequest$Outbound
+    | payments.V3UpdatePaymentMetadataRequest$Outbound
     | undefined;
   paymentID: string;
 };
@@ -48,7 +52,7 @@ export const V3UpdatePaymentMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3UpdatePaymentMetadataRequest
 > = z.object({
-  v3UpdatePaymentMetadataRequest: shared
+  v3UpdatePaymentMetadataRequest: payments
     .V3UpdatePaymentMetadataRequest$outboundSchema.optional(),
   paymentID: z.string(),
 }).transform((v) => {

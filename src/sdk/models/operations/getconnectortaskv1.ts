@@ -7,13 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const GetConnectorTaskV1ServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetConnectorTaskV1Request = {
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
   /**
    * The connector ID.
    */
@@ -40,7 +44,7 @@ export type GetConnectorTaskV1Response = {
   /**
    * OK
    */
-  taskResponse?: shared.TaskResponse | undefined;
+  taskResponse?: payments.TaskResponse | undefined;
 };
 
 /** @internal */
@@ -56,7 +60,7 @@ export const GetConnectorTaskV1Request$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   GetConnectorTaskV1Request
 > = z.object({
-  connector: shared.Connector$outboundSchema,
+  connector: payments.Connector$outboundSchema,
   connectorId: z.string(),
   taskId: z.string(),
 });
@@ -78,7 +82,7 @@ export const GetConnectorTaskV1Response$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TaskResponse: shared.TaskResponse$inboundSchema.optional(),
+  TaskResponse: payments.TaskResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

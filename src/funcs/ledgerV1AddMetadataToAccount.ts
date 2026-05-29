@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -17,16 +18,19 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as ledger from "../sdk/models/ledger/index.js";
+import { AddMetadataToAccountServerList } from "../sdk/models/operations/addmetadatatoaccount.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Add metadata to an account
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function ledgerV1AddMetadataToAccount(
   client: SDKCore,
@@ -35,7 +39,7 @@ export function ledgerV1AddMetadataToAccount(
 ): APIPromise<
   Result<
     operations.AddMetadataToAccountResponse,
-    | errors.ErrorResponse
+    | ledger.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -61,7 +65,7 @@ async function $do(
   [
     Result<
       operations.AddMetadataToAccountResponse,
-      | errors.ErrorResponse
+      | ledger.ErrorsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -86,6 +90,11 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
+  const baseURL = options?.serverURL
+    || pathToFunc(AddMetadataToAccountServerList[0], {
+      charEncoding: "percent",
+    })();
+
   const pathParams = {
     address: encodeSimple("address", payload.address, {
       explode: false,
@@ -96,7 +105,6 @@ async function $do(
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/{ledger}/accounts/{address}/metadata")(
     pathParams,
   );
@@ -107,11 +115,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "addMetadataToAccount",
     oAuth2Scopes: ["ledger:write"],
 
@@ -127,7 +135,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     body: body,
@@ -141,7 +149,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["204"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -160,7 +169,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.AddMetadataToAccountResponse,
-    | errors.ErrorResponse
+    | ledger.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -173,7 +182,7 @@ async function $do(
     M.nil(204, operations.AddMetadataToAccountResponse$inboundSchema, {
       hdrs: true,
     }),
-    M.jsonErr("default", errors.ErrorResponse$inboundSchema),
+    M.jsonErr("default", ledger.ErrorsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

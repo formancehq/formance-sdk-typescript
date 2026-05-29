@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2RunQueryServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2RunQueryRequestBody = {
+  v2QueryParams?: ledger.V2QueryParams | undefined;
   cursor?: string | undefined;
-  params?: shared.V2QueryParams | undefined;
   vars?: { [k: string]: string } | undefined;
 };
 
@@ -73,10 +77,10 @@ export type V2RunQueryRequest = {
  * OK
  */
 export type V2RunQueryResponseBody =
-  | shared.V2TransactionsCursorResponse
-  | shared.V2AccountsCursorResponse
-  | shared.V2LogsCursorResponse
-  | shared.V2VolumesWithBalanceCursorResponse;
+  | ledger.V2TransactionsCursorResponse
+  | ledger.V2AccountsCursorResponse
+  | ledger.V2LogsCursorResponse
+  | ledger.V2VolumesWithBalanceCursorResponse;
 
 export type V2RunQueryResponse = {
   /**
@@ -95,17 +99,17 @@ export type V2RunQueryResponse = {
    * OK
    */
   oneOf?:
-    | shared.V2TransactionsCursorResponse
-    | shared.V2AccountsCursorResponse
-    | shared.V2LogsCursorResponse
-    | shared.V2VolumesWithBalanceCursorResponse
+    | ledger.V2TransactionsCursorResponse
+    | ledger.V2AccountsCursorResponse
+    | ledger.V2LogsCursorResponse
+    | ledger.V2VolumesWithBalanceCursorResponse
     | undefined;
 };
 
 /** @internal */
 export type V2RunQueryRequestBody$Outbound = {
+  params?: ledger.V2QueryParams$Outbound | undefined;
   cursor?: string | undefined;
-  params?: shared.V2QueryParams$Outbound | undefined;
   vars?: { [k: string]: string } | undefined;
 };
 
@@ -115,9 +119,13 @@ export const V2RunQueryRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2RunQueryRequestBody
 > = z.object({
+  v2QueryParams: ledger.V2QueryParams$outboundSchema.optional(),
   cursor: z.string().optional(),
-  params: shared.V2QueryParams$outboundSchema.optional(),
   vars: z.record(z.string()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    v2QueryParams: "params",
+  });
 });
 
 export function v2RunQueryRequestBodyToJSON(
@@ -185,10 +193,10 @@ export const V2RunQueryResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  shared.V2TransactionsCursorResponse$inboundSchema,
-  shared.V2AccountsCursorResponse$inboundSchema,
-  shared.V2LogsCursorResponse$inboundSchema,
-  shared.V2VolumesWithBalanceCursorResponse$inboundSchema,
+  ledger.V2TransactionsCursorResponse$inboundSchema,
+  ledger.V2AccountsCursorResponse$inboundSchema,
+  ledger.V2LogsCursorResponse$inboundSchema,
+  ledger.V2VolumesWithBalanceCursorResponse$inboundSchema,
 ]);
 
 export function v2RunQueryResponseBodyFromJSON(
@@ -211,10 +219,10 @@ export const V2RunQueryResponse$inboundSchema: z.ZodType<
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
   oneOf: z.union([
-    shared.V2TransactionsCursorResponse$inboundSchema,
-    shared.V2AccountsCursorResponse$inboundSchema,
-    shared.V2LogsCursorResponse$inboundSchema,
-    shared.V2VolumesWithBalanceCursorResponse$inboundSchema,
+    ledger.V2TransactionsCursorResponse$inboundSchema,
+    ledger.V2AccountsCursorResponse$inboundSchema,
+    ledger.V2LogsCursorResponse$inboundSchema,
+    ledger.V2VolumesWithBalanceCursorResponse$inboundSchema,
   ]).optional(),
 }).transform((v) => {
   return remap$(v, {

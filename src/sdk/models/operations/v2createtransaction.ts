@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2CreateTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateTransactionRequest = {
   /**
@@ -21,7 +25,7 @@ export type V2CreateTransactionRequest = {
    *   - `postings`: suitable for simple transactions
    *   - `script`: enabling more complex transactions with Numscript
    */
-  v2PostTransaction: shared.V2PostTransaction;
+  v2PostTransaction: ledger.V2PostTransaction;
   /**
    * Set the dryRun mode. dry run mode doesn't add the logs to the database or publish a message to the message broker.
    */
@@ -57,13 +61,13 @@ export type V2CreateTransactionResponse = {
   /**
    * OK
    */
-  v2CreateTransactionResponse?: shared.V2CreateTransactionResponse | undefined;
+  v2CreateTransactionResponse?: ledger.V2CreateTransactionResponse | undefined;
 };
 
 /** @internal */
 export type V2CreateTransactionRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
-  V2PostTransaction: shared.V2PostTransaction$Outbound;
+  V2PostTransaction: ledger.V2PostTransaction$Outbound;
   dryRun?: boolean | undefined;
   force?: boolean | undefined;
   ledger: string;
@@ -77,7 +81,7 @@ export const V2CreateTransactionRequest$outboundSchema: z.ZodType<
   V2CreateTransactionRequest
 > = z.object({
   idempotencyKey: z.string().optional(),
-  v2PostTransaction: shared.V2PostTransaction$outboundSchema,
+  v2PostTransaction: ledger.V2PostTransaction$outboundSchema,
   dryRun: z.boolean().optional(),
   force: z.boolean().optional(),
   ledger: z.string(),
@@ -107,7 +111,7 @@ export const V2CreateTransactionResponse$inboundSchema: z.ZodType<
   Headers: z.record(z.array(z.string())).default({}),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2CreateTransactionResponse: shared.V2CreateTransactionResponse$inboundSchema
+  V2CreateTransactionResponse: ledger.V2CreateTransactionResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

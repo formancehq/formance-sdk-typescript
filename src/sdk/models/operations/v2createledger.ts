@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2CreateLedgerServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateLedgerRequest = {
-  v2CreateLedgerRequest: shared.V2CreateLedgerRequest;
+  v2CreateLedgerRequest: ledger.V2CreateLedgerRequest;
   /**
    * Name of the ledger.
    */
@@ -34,7 +38,7 @@ export type V2CreateLedgerResponse = {
 
 /** @internal */
 export type V2CreateLedgerRequest$Outbound = {
-  V2CreateLedgerRequest: shared.V2CreateLedgerRequest$Outbound;
+  V2CreateLedgerRequest: ledger.V2CreateLedgerRequest$Outbound;
   ledger: string;
 };
 
@@ -44,7 +48,7 @@ export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateLedgerRequest
 > = z.object({
-  v2CreateLedgerRequest: shared.V2CreateLedgerRequest$outboundSchema,
+  v2CreateLedgerRequest: ledger.V2CreateLedgerRequest$outboundSchema,
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {

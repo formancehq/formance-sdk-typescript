@@ -10,18 +10,18 @@ import { orchestrationV1DeleteWorkflow } from "../funcs/orchestrationV1DeleteWor
 import { orchestrationV1GetInstance } from "../funcs/orchestrationV1GetInstance.js";
 import { orchestrationV1GetInstanceHistory } from "../funcs/orchestrationV1GetInstanceHistory.js";
 import { orchestrationV1GetInstanceStageHistory } from "../funcs/orchestrationV1GetInstanceStageHistory.js";
+import { orchestrationV1GetServerInfoOrchestration } from "../funcs/orchestrationV1GetServerInfoOrchestration.js";
 import { orchestrationV1GetWorkflow } from "../funcs/orchestrationV1GetWorkflow.js";
 import { orchestrationV1ListInstances } from "../funcs/orchestrationV1ListInstances.js";
 import { orchestrationV1ListTriggers } from "../funcs/orchestrationV1ListTriggers.js";
 import { orchestrationV1ListTriggersOccurrences } from "../funcs/orchestrationV1ListTriggersOccurrences.js";
 import { orchestrationV1ListWorkflows } from "../funcs/orchestrationV1ListWorkflows.js";
-import { orchestrationV1OrchestrationgetServerInfo } from "../funcs/orchestrationV1OrchestrationgetServerInfo.js";
 import { orchestrationV1ReadTrigger } from "../funcs/orchestrationV1ReadTrigger.js";
 import { orchestrationV1RunWorkflow } from "../funcs/orchestrationV1RunWorkflow.js";
 import { orchestrationV1SendEvent } from "../funcs/orchestrationV1SendEvent.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as orchestration from "./models/orchestration/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class OrchestrationV1 extends ClientSDK {
@@ -49,7 +49,7 @@ export class OrchestrationV1 extends ClientSDK {
    * Create trigger
    */
   async createTrigger(
-    request?: shared.TriggerData | undefined,
+    request?: orchestration.TriggerData2 | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateTriggerResponse> {
     return unwrapAsync(orchestrationV1CreateTrigger(
@@ -66,7 +66,7 @@ export class OrchestrationV1 extends ClientSDK {
    * Create a workflow
    */
   async createWorkflow(
-    request?: shared.CreateWorkflowRequest | undefined,
+    request?: orchestration.WorkflowConfig | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateWorkflowResponse> {
     return unwrapAsync(orchestrationV1CreateWorkflow(
@@ -162,6 +162,18 @@ export class OrchestrationV1 extends ClientSDK {
   }
 
   /**
+   * Get server info
+   */
+  async getServerInfoOrchestration(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerInfoOrchestrationResponse> {
+    return unwrapAsync(orchestrationV1GetServerInfoOrchestration(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * Get a flow by id
    *
    * @remarks
@@ -239,18 +251,6 @@ export class OrchestrationV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ListWorkflowsResponse> {
     return unwrapAsync(orchestrationV1ListWorkflows(
-      this,
-      options,
-    ));
-  }
-
-  /**
-   * Get server info
-   */
-  async orchestrationgetServerInfo(
-    options?: RequestOptions,
-  ): Promise<operations.OrchestrationgetServerInfoResponse> {
-    return unwrapAsync(orchestrationV1OrchestrationgetServerInfo(
       this,
       options,
     ));
