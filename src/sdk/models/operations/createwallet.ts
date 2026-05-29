@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as wallets from "../wallets/index.js";
+
+export const CreateWalletServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateWalletRequest = {
-  createWalletRequest?: shared.CreateWalletRequest | undefined;
+  createWalletRequest?: wallets.CreateWalletRequest | undefined;
   /**
    * Use an idempotency key
    */
@@ -25,7 +29,7 @@ export type CreateWalletResponse = {
   /**
    * Wallet created
    */
-  createWalletResponse?: shared.CreateWalletResponse | undefined;
+  createWalletResponse?: wallets.CreateWalletResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -38,7 +42,7 @@ export type CreateWalletResponse = {
 
 /** @internal */
 export type CreateWalletRequest$Outbound = {
-  CreateWalletRequest?: shared.CreateWalletRequest$Outbound | undefined;
+  CreateWalletRequest?: wallets.CreateWalletRequest$Outbound | undefined;
   "Idempotency-Key"?: string | undefined;
 };
 
@@ -48,7 +52,7 @@ export const CreateWalletRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateWalletRequest
 > = z.object({
-  createWalletRequest: shared.CreateWalletRequest$outboundSchema.optional(),
+  createWalletRequest: wallets.CreateWalletRequest$outboundSchema.optional(),
   idempotencyKey: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -72,7 +76,7 @@ export const CreateWalletResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  CreateWalletResponse: shared.CreateWalletResponse$inboundSchema.optional(),
+  CreateWalletResponse: wallets.CreateWalletResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

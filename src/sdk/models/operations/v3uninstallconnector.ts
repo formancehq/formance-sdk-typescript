@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3UninstallConnectorServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3UninstallConnectorRequest = {
   /**
@@ -33,7 +37,7 @@ export type V3UninstallConnectorResponse = {
    * Accepted
    */
   v3UninstallConnectorResponse?:
-    | shared.V3UninstallConnectorResponse
+    | payments.V3UninstallConnectorResponse
     | undefined;
 };
 
@@ -70,7 +74,7 @@ export const V3UninstallConnectorResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3UninstallConnectorResponse: shared
+  V3UninstallConnectorResponse: payments
     .V3UninstallConnectorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

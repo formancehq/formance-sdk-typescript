@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ListBankAccountsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListBankAccountsRequest = {
   /**
@@ -35,7 +39,7 @@ export type ListBankAccountsResponse = {
   /**
    * OK
    */
-  bankAccountsCursor?: shared.BankAccountsCursor | undefined;
+  bankAccountsCursor?: payments.BankAccountsCursor | undefined;
   /**
    * HTTP response content type for this operation
    */
@@ -82,7 +86,7 @@ export const ListBankAccountsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  BankAccountsCursor: shared.BankAccountsCursor$inboundSchema.optional(),
+  BankAccountsCursor: payments.BankAccountsCursor$inboundSchema.optional(),
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),

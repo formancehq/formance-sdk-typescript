@@ -7,13 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const GetInfoServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetInfoResponse = {
   /**
    * OK
    */
-  configInfoResponse?: shared.ConfigInfoResponse | undefined;
+  configInfoResponse?: ledger.ConfigInfoResponse | undefined;
   /**
    * HTTP response content type for this operation
    */
@@ -34,7 +38,7 @@ export const GetInfoResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ConfigInfoResponse: shared.ConfigInfoResponse$inboundSchema.optional(),
+  ConfigInfoResponse: ledger.ConfigInfoResponse$inboundSchema.optional(),
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),

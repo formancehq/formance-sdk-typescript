@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3InstallConnectorServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3InstallConnectorRequest = {
-  v3InstallConnectorRequest?: shared.V3InstallConnectorRequest | undefined;
+  v3ConnectorConfig?: payments.V3ConnectorConfig | undefined;
   /**
    * The connector to filter by
    */
@@ -33,14 +37,12 @@ export type V3InstallConnectorResponse = {
   /**
    * Accepted
    */
-  v3InstallConnectorResponse?: shared.V3InstallConnectorResponse | undefined;
+  v3InstallConnectorResponse?: payments.V3InstallConnectorResponse | undefined;
 };
 
 /** @internal */
 export type V3InstallConnectorRequest$Outbound = {
-  V3InstallConnectorRequest?:
-    | shared.V3InstallConnectorRequest$Outbound
-    | undefined;
+  V3ConnectorConfig?: payments.V3ConnectorConfig$Outbound | undefined;
   connector: string;
 };
 
@@ -50,12 +52,11 @@ export const V3InstallConnectorRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3InstallConnectorRequest
 > = z.object({
-  v3InstallConnectorRequest: shared.V3InstallConnectorRequest$outboundSchema
-    .optional(),
+  v3ConnectorConfig: payments.V3ConnectorConfig$outboundSchema.optional(),
   connector: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    v3InstallConnectorRequest: "V3InstallConnectorRequest",
+    v3ConnectorConfig: "V3ConnectorConfig",
   });
 });
 
@@ -76,7 +77,7 @@ export const V3InstallConnectorResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3InstallConnectorResponse: shared.V3InstallConnectorResponse$inboundSchema
+  V3InstallConnectorResponse: payments.V3InstallConnectorResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

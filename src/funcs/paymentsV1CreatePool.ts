@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeJSON } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -17,12 +18,12 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import { CreatePoolServerList } from "../sdk/models/operations/createpool.js";
 import * as operations from "../sdk/models/operations/index.js";
-import * as shared from "../sdk/models/shared/index.js";
+import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -31,15 +32,17 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * Create a Pool
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function paymentsV1CreatePool(
   client: SDKCore,
-  request: shared.PoolRequest,
+  request: payments.PoolRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
     operations.CreatePoolResponse,
-    | errors.PaymentsErrorResponse
+    | payments.PaymentsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -59,13 +62,13 @@ export function paymentsV1CreatePool(
 
 async function $do(
   client: SDKCore,
-  request: shared.PoolRequest,
+  request: payments.PoolRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
       operations.CreatePoolResponse,
-      | errors.PaymentsErrorResponse
+      | payments.PaymentsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -80,7 +83,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => shared.PoolRequest$outboundSchema.parse(value),
+    (value) => payments.PoolRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -88,6 +91,9 @@ async function $do(
   }
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
+
+  const baseURL = options?.serverURL
+    || pathToFunc(CreatePoolServerList[0], { charEncoding: "percent" })();
 
   const path = pathToFunc("/api/payments/pools")();
 
@@ -97,11 +103,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "createPool",
     oAuth2Scopes: ["payments:write"],
 
@@ -117,7 +123,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     body: body,
@@ -131,7 +137,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -150,7 +157,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreatePoolResponse,
-    | errors.PaymentsErrorResponse
+    | payments.PaymentsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -163,7 +170,7 @@ async function $do(
     M.json(200, operations.CreatePoolResponse$inboundSchema, {
       key: "PoolResponse",
     }),
-    M.jsonErr("default", errors.PaymentsErrorResponse$inboundSchema),
+    M.jsonErr("default", payments.PaymentsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

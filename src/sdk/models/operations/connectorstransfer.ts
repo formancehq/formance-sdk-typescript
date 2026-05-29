@@ -7,14 +7,18 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ConnectorsTransferServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ConnectorsTransferRequest = {
-  transferRequest: shared.TransferRequest;
+  transferRequest: payments.TransferRequest;
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
 };
 
 export type ConnectorsTransferResponse = {
@@ -33,12 +37,12 @@ export type ConnectorsTransferResponse = {
   /**
    * OK
    */
-  transferResponse?: shared.TransferResponse | undefined;
+  transferResponse?: payments.TransferResponse | undefined;
 };
 
 /** @internal */
 export type ConnectorsTransferRequest$Outbound = {
-  TransferRequest: shared.TransferRequest$Outbound;
+  TransferRequest: payments.TransferRequest$Outbound;
   connector: string;
 };
 
@@ -48,8 +52,8 @@ export const ConnectorsTransferRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorsTransferRequest
 > = z.object({
-  transferRequest: shared.TransferRequest$outboundSchema,
-  connector: shared.Connector$outboundSchema,
+  transferRequest: payments.TransferRequest$outboundSchema,
+  connector: payments.Connector$outboundSchema,
 }).transform((v) => {
   return remap$(v, {
     transferRequest: "TransferRequest",
@@ -73,7 +77,7 @@ export const ConnectorsTransferResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TransferResponse: shared.TransferResponse$inboundSchema.optional(),
+  TransferResponse: payments.TransferResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

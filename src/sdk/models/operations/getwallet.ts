@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as wallets from "../wallets/index.js";
+
+export const GetWalletServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetWalletRequest = {
   id: string;
@@ -21,7 +25,7 @@ export type GetWalletResponse = {
   /**
    * Wallet
    */
-  getWalletResponse?: shared.GetWalletResponse | undefined;
+  getWalletResponse?: wallets.GetWalletResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -61,7 +65,7 @@ export const GetWalletResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  GetWalletResponse: shared.GetWalletResponse$inboundSchema.optional(),
+  GetWalletResponse: wallets.GetWalletResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

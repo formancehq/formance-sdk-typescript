@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as wallets from "../wallets/index.js";
+
+export const DebitWalletServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type DebitWalletRequest = {
-  debitWalletRequest?: shared.DebitWalletRequest | undefined;
+  debitWalletRequest?: wallets.DebitWalletRequest | undefined;
   /**
    * Use an idempotency key
    */
@@ -26,7 +30,7 @@ export type DebitWalletResponse = {
   /**
    * Wallet successfully debited as a pending hold
    */
-  debitWalletResponse?: shared.DebitWalletResponse | undefined;
+  debitWalletResponse?: wallets.DebitWalletResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -39,7 +43,7 @@ export type DebitWalletResponse = {
 
 /** @internal */
 export type DebitWalletRequest$Outbound = {
-  DebitWalletRequest?: shared.DebitWalletRequest$Outbound | undefined;
+  DebitWalletRequest?: wallets.DebitWalletRequest$Outbound | undefined;
   "Idempotency-Key"?: string | undefined;
   id: string;
 };
@@ -50,7 +54,7 @@ export const DebitWalletRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   DebitWalletRequest
 > = z.object({
-  debitWalletRequest: shared.DebitWalletRequest$outboundSchema.optional(),
+  debitWalletRequest: wallets.DebitWalletRequest$outboundSchema.optional(),
   idempotencyKey: z.string().optional(),
   id: z.string(),
 }).transform((v) => {
@@ -75,7 +79,7 @@ export const DebitWalletResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  DebitWalletResponse: shared.DebitWalletResponse$inboundSchema.optional(),
+  DebitWalletResponse: wallets.DebitWalletResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

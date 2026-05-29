@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ForwardPaymentServiceUserBankAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ForwardPaymentServiceUserBankAccountRequest = {
   v3ForwardPaymentServiceUserBankAccountRequest?:
-    | shared.V3ForwardPaymentServiceUserBankAccountRequest
+    | payments.V3ForwardPaymentServiceUserBankAccountRequest
     | undefined;
   /**
    * The bank account ID
@@ -40,14 +44,14 @@ export type V3ForwardPaymentServiceUserBankAccountResponse = {
    * Accepted
    */
   v3ForwardPaymentServiceUserBankAccountResponse?:
-    | shared.V3ForwardPaymentServiceUserBankAccountResponse
+    | payments.V3ForwardPaymentServiceUserBankAccountResponse
     | undefined;
 };
 
 /** @internal */
 export type V3ForwardPaymentServiceUserBankAccountRequest$Outbound = {
   V3ForwardPaymentServiceUserBankAccountRequest?:
-    | shared.V3ForwardPaymentServiceUserBankAccountRequest$Outbound
+    | payments.V3ForwardPaymentServiceUserBankAccountRequest$Outbound
     | undefined;
   bankAccountID: string;
   paymentServiceUserID: string;
@@ -60,7 +64,7 @@ export const V3ForwardPaymentServiceUserBankAccountRequest$outboundSchema:
     z.ZodTypeDef,
     V3ForwardPaymentServiceUserBankAccountRequest
   > = z.object({
-    v3ForwardPaymentServiceUserBankAccountRequest: shared
+    v3ForwardPaymentServiceUserBankAccountRequest: payments
       .V3ForwardPaymentServiceUserBankAccountRequest$outboundSchema.optional(),
     bankAccountID: z.string(),
     paymentServiceUserID: z.string(),
@@ -92,7 +96,7 @@ export const V3ForwardPaymentServiceUserBankAccountResponse$inboundSchema:
     ContentType: z.string(),
     StatusCode: z.number().int(),
     RawResponse: z.instanceof(Response),
-    V3ForwardPaymentServiceUserBankAccountResponse: shared
+    V3ForwardPaymentServiceUserBankAccountResponse: payments
       .V3ForwardPaymentServiceUserBankAccountResponse$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {

@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3GetConnectorScheduleServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3GetConnectorScheduleRequest = {
   /**
@@ -36,7 +40,9 @@ export type V3GetConnectorScheduleResponse = {
   /**
    * OK
    */
-  v3ConnectorScheduleResponse?: shared.V3ConnectorScheduleResponse | undefined;
+  v3ConnectorScheduleResponse?:
+    | payments.V3ConnectorScheduleResponse
+    | undefined;
 };
 
 /** @internal */
@@ -74,8 +80,8 @@ export const V3GetConnectorScheduleResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3ConnectorScheduleResponse: shared.V3ConnectorScheduleResponse$inboundSchema
-    .optional(),
+  V3ConnectorScheduleResponse: payments
+    .V3ConnectorScheduleResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

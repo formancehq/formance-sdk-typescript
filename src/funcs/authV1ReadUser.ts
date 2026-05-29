@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +22,7 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { ReadUserServerList } from "../sdk/models/operations/readuser.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -29,6 +31,8 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * Read user
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function authV1ReadUser(
   client: SDKCore,
@@ -85,13 +89,15 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
+  const baseURL = options?.serverURL
+    || pathToFunc(ReadUserServerList[0], { charEncoding: "percent" })();
+
   const pathParams = {
     userId: encodeSimple("userId", payload.userId, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/auth/users/{userId}")(pathParams);
 
   const headers = new Headers(compactMap({
@@ -99,11 +105,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "readUser",
     oAuth2Scopes: ["auth:read"],
 
@@ -119,7 +125,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     body: body,
@@ -133,7 +139,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

@@ -7,10 +7,16 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ForwardBankAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ForwardBankAccountRequest = {
-  v3ForwardBankAccountRequest?: shared.V3ForwardBankAccountRequest | undefined;
+  v3ForwardBankAccountRequest?:
+    | payments.V3ForwardBankAccountRequest
+    | undefined;
   /**
    * The bank account ID
    */
@@ -34,14 +40,14 @@ export type V3ForwardBankAccountResponse = {
    * Accepted
    */
   v3ForwardBankAccountResponse?:
-    | shared.V3ForwardBankAccountResponse
+    | payments.V3ForwardBankAccountResponse
     | undefined;
 };
 
 /** @internal */
 export type V3ForwardBankAccountRequest$Outbound = {
   V3ForwardBankAccountRequest?:
-    | shared.V3ForwardBankAccountRequest$Outbound
+    | payments.V3ForwardBankAccountRequest$Outbound
     | undefined;
   bankAccountID: string;
 };
@@ -52,8 +58,8 @@ export const V3ForwardBankAccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ForwardBankAccountRequest
 > = z.object({
-  v3ForwardBankAccountRequest: shared.V3ForwardBankAccountRequest$outboundSchema
-    .optional(),
+  v3ForwardBankAccountRequest: payments
+    .V3ForwardBankAccountRequest$outboundSchema.optional(),
   bankAccountID: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -80,7 +86,7 @@ export const V3ForwardBankAccountResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3ForwardBankAccountResponse: shared
+  V3ForwardBankAccountResponse: payments
     .V3ForwardBankAccountResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

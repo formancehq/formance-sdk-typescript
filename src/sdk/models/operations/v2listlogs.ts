@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2ListLogsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2ListLogsRequest = {
   /**
@@ -56,7 +60,7 @@ export type V2ListLogsResponse = {
   /**
    * OK
    */
-  v2LogsCursorResponse?: shared.V2LogsCursorResponse | undefined;
+  v2LogsCursorResponse?: ledger.V2LogsCursorResponse | undefined;
 };
 
 /** @internal */
@@ -100,7 +104,7 @@ export const V2ListLogsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2LogsCursorResponse: shared.V2LogsCursorResponse$inboundSchema.optional(),
+  V2LogsCursorResponse: ledger.V2LogsCursorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

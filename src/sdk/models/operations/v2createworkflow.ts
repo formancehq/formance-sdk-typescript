@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2CreateWorkflowServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateWorkflowResponse = {
   /**
@@ -25,7 +29,7 @@ export type V2CreateWorkflowResponse = {
   /**
    * Created workflow
    */
-  v2CreateWorkflowResponse?: shared.V2CreateWorkflowResponse | undefined;
+  v2CreateWorkflowResponse?: orchestration.V2CreateWorkflowResponse | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V2CreateWorkflowResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2CreateWorkflowResponse: shared.V2CreateWorkflowResponse$inboundSchema
+  V2CreateWorkflowResponse: orchestration.V2CreateWorkflowResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

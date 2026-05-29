@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const GetBalancesAggregatedServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetBalancesAggregatedRequest = {
   /**
@@ -28,7 +32,7 @@ export type GetBalancesAggregatedResponse = {
   /**
    * OK
    */
-  aggregateBalancesResponse?: shared.AggregateBalancesResponse | undefined;
+  aggregateBalancesResponse?: ledger.AggregateBalancesResponse | undefined;
   /**
    * HTTP response content type for this operation
    */
@@ -77,7 +81,7 @@ export const GetBalancesAggregatedResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  AggregateBalancesResponse: shared.AggregateBalancesResponse$inboundSchema
+  AggregateBalancesResponse: ledger.AggregateBalancesResponse$inboundSchema
     .optional(),
   ContentType: z.string(),
   StatusCode: z.number().int(),

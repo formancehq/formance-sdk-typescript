@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2UpdateExporterServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2UpdateExporterRequest = {
-  v2CreateExporterRequest: shared.V2CreateExporterRequest;
+  v2ExporterConfiguration: ledger.V2ExporterConfiguration2;
   /**
    * The exporter id
    */
@@ -34,7 +38,7 @@ export type V2UpdateExporterResponse = {
 
 /** @internal */
 export type V2UpdateExporterRequest$Outbound = {
-  V2CreateExporterRequest: shared.V2CreateExporterRequest$Outbound;
+  V2ExporterConfiguration: ledger.V2ExporterConfiguration2$Outbound;
   exporterID: string;
 };
 
@@ -44,11 +48,11 @@ export const V2UpdateExporterRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2UpdateExporterRequest
 > = z.object({
-  v2CreateExporterRequest: shared.V2CreateExporterRequest$outboundSchema,
+  v2ExporterConfiguration: ledger.V2ExporterConfiguration2$outboundSchema,
   exporterID: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    v2CreateExporterRequest: "V2CreateExporterRequest",
+    v2ExporterConfiguration: "V2ExporterConfiguration",
   });
 });
 

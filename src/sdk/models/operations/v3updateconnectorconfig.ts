@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3UpdateConnectorConfigServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3UpdateConnectorConfigRequest = {
-  v3InstallConnectorRequest?: shared.V3InstallConnectorRequest | undefined;
+  v3ConnectorConfig?: payments.V3ConnectorConfig | undefined;
   /**
    * The connector ID
    */
@@ -34,9 +38,7 @@ export type V3UpdateConnectorConfigResponse = {
 
 /** @internal */
 export type V3UpdateConnectorConfigRequest$Outbound = {
-  V3InstallConnectorRequest?:
-    | shared.V3InstallConnectorRequest$Outbound
-    | undefined;
+  V3ConnectorConfig?: payments.V3ConnectorConfig$Outbound | undefined;
   connectorID: string;
 };
 
@@ -46,12 +48,11 @@ export const V3UpdateConnectorConfigRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3UpdateConnectorConfigRequest
 > = z.object({
-  v3InstallConnectorRequest: shared.V3InstallConnectorRequest$outboundSchema
-    .optional(),
+  v3ConnectorConfig: payments.V3ConnectorConfig$outboundSchema.optional(),
   connectorID: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    v3InstallConnectorRequest: "V3InstallConnectorRequest",
+    v3ConnectorConfig: "V3ConnectorConfig",
   });
 });
 

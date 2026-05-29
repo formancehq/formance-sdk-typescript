@@ -4,19 +4,14 @@
 
 ```typescript
 import { UpdateConnectorConfigV1Request } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/shared";
+import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: UpdateConnectorConfigV1Request = {
   connectorConfig: {
-    authorizationEndpoint: "XXX",
-    endpoint: "XXX",
-    name: "My Banking Circle Account",
-    password: "XXX",
+    apiKey: "XXX",
+    name: "My Wise Account",
     pollingPeriod: "120m",
-    provider: "Bankingcircle",
-    userCertificate: "XXX",
-    userCertificateKey: "XXX",
-    username: "XXX",
+    provider: "Wise",
   },
   connector: Connector.Modulr,
   connectorId: "XXX",
@@ -25,8 +20,8 @@ let value: UpdateConnectorConfigV1Request = {
 
 ## Fields
 
-| Field                                                       | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `connectorConfig`                                           | *shared.ConnectorConfig*                                    | :heavy_check_mark:                                          | N/A                                                         |                                                             |
-| `connector`                                                 | [shared.Connector](../../../sdk/models/shared/connector.md) | :heavy_check_mark:                                          | The name of the connector.                                  |                                                             |
-| `connectorId`                                               | *string*                                                    | :heavy_check_mark:                                          | The connector ID.                                           | XXX                                                         |
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     | Example                                                         |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `connectorConfig`                                               | *payments.ConnectorConfig*                                      | :heavy_check_mark:                                              | N/A                                                             |                                                                 |
+| `connector`                                                     | [payments.Connector](../../../sdk/models/payments/connector.md) | :heavy_check_mark:                                              | The name of the connector.                                      |                                                                 |
+| `connectorId`                                                   | *string*                                                        | :heavy_check_mark:                                              | The connector ID.                                               | XXX                                                             |

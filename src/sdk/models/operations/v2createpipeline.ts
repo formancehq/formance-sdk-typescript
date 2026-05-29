@@ -7,21 +7,18 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2CreatePipelineServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreatePipelineRequest = {
-  v2CreatePipelineRequest?: shared.V2CreatePipelineRequest | undefined;
+  v2CreatePipelineRequest?: ledger.V2CreatePipelineRequest | undefined;
   /**
    * Name of the ledger.
    */
   ledger: string;
-};
-
-/**
- * Created ipeline
- */
-export type V2CreatePipelineResponseBody = {
-  data: shared.V2Pipeline;
 };
 
 export type V2CreatePipelineResponse = {
@@ -40,12 +37,12 @@ export type V2CreatePipelineResponse = {
   /**
    * Created ipeline
    */
-  object?: V2CreatePipelineResponseBody | undefined;
+  v2CreatePipelineResponse?: ledger.V2CreatePipelineResponse | undefined;
 };
 
 /** @internal */
 export type V2CreatePipelineRequest$Outbound = {
-  V2CreatePipelineRequest?: shared.V2CreatePipelineRequest$Outbound | undefined;
+  V2CreatePipelineRequest?: ledger.V2CreatePipelineRequest$Outbound | undefined;
   ledger: string;
 };
 
@@ -55,7 +52,7 @@ export const V2CreatePipelineRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreatePipelineRequest
 > = z.object({
-  v2CreatePipelineRequest: shared.V2CreatePipelineRequest$outboundSchema
+  v2CreatePipelineRequest: ledger.V2CreatePipelineRequest$outboundSchema
     .optional(),
   ledger: z.string(),
 }).transform((v) => {
@@ -73,25 +70,6 @@ export function v2CreatePipelineRequestToJSON(
 }
 
 /** @internal */
-export const V2CreatePipelineResponseBody$inboundSchema: z.ZodType<
-  V2CreatePipelineResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: shared.V2Pipeline$inboundSchema,
-});
-
-export function v2CreatePipelineResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2CreatePipelineResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2CreatePipelineResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2CreatePipelineResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const V2CreatePipelineResponse$inboundSchema: z.ZodType<
   V2CreatePipelineResponse,
   z.ZodTypeDef,
@@ -100,12 +78,15 @@ export const V2CreatePipelineResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2CreatePipelineResponseBody$inboundSchema).optional(),
+  V2CreatePipelineResponse: z.lazy(() =>
+    ledger.V2CreatePipelineResponse$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2CreatePipelineResponse": "v2CreatePipelineResponse",
   });
 });
 

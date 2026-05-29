@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3GetBankAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3GetBankAccountRequest = {
   /**
@@ -32,7 +36,7 @@ export type V3GetBankAccountResponse = {
   /**
    * OK
    */
-  v3GetBankAccountResponse?: shared.V3GetBankAccountResponse | undefined;
+  v3GetBankAccountResponse?: payments.V3GetBankAccountResponse | undefined;
 };
 
 /** @internal */
@@ -66,7 +70,7 @@ export const V3GetBankAccountResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3GetBankAccountResponse: shared.V3GetBankAccountResponse$inboundSchema
+  V3GetBankAccountResponse: payments.V3GetBankAccountResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3CreateBankAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3CreateBankAccountResponse = {
   /**
@@ -25,7 +29,9 @@ export type V3CreateBankAccountResponse = {
   /**
    * Created
    */
-  v3CreateBankAccountResponse?: shared.V3CreateBankAccountResponse | undefined;
+  v3CreateBankAccountResponse?:
+    | payments.V3CreateBankAccountResponse
+    | undefined;
 };
 
 /** @internal */
@@ -37,8 +43,8 @@ export const V3CreateBankAccountResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3CreateBankAccountResponse: shared.V3CreateBankAccountResponse$inboundSchema
-    .optional(),
+  V3CreateBankAccountResponse: payments
+    .V3CreateBankAccountResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

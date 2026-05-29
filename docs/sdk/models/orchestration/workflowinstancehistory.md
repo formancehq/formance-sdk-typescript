@@ -1,0 +1,25 @@
+# WorkflowInstanceHistory
+
+## Example Usage
+
+```typescript
+import { WorkflowInstanceHistory } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: WorkflowInstanceHistory = {
+  stage: {},
+  name: "<value>",
+  startedAt: new Date("2024-12-03T11:55:31.478Z"),
+  terminated: false,
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `stage`                                                                                       | *orchestration.Stage*                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `error`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `startedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `terminated`                                                                                  | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `terminatedAt`                                                                                | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | N/A                                                                                           |

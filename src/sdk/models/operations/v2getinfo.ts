@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetInfoServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetInfoResponse = {
   /**
@@ -25,11 +29,11 @@ export type V2GetInfoResponse = {
   /**
    * OK
    */
-  v2ConfigInfoResponse?: shared.V2ConfigInfoResponse | undefined;
+  v2ConfigInfo?: ledger.V2ConfigInfo | undefined;
   /**
    * Error
    */
-  v2ErrorResponse?: shared.V2ErrorResponse | undefined;
+  v2ErrorResponse?: ledger.V2ErrorResponse | undefined;
 };
 
 /** @internal */
@@ -41,14 +45,14 @@ export const V2GetInfoResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2ConfigInfoResponse: shared.V2ConfigInfoResponse$inboundSchema.optional(),
-  V2ErrorResponse: shared.V2ErrorResponse$inboundSchema.optional(),
+  V2ConfigInfo: ledger.V2ConfigInfo$inboundSchema.optional(),
+  V2ErrorResponse: ledger.V2ErrorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "V2ConfigInfoResponse": "v2ConfigInfoResponse",
+    "V2ConfigInfo": "v2ConfigInfo",
     "V2ErrorResponse": "v2ErrorResponse",
   });
 });

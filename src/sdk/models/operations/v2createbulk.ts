@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2CreateBulkServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateBulkRequest = {
-  requestBody: Array<shared.V2BulkElement>;
+  requestBody: Array<any>;
   /**
    * Make bulk atomic
    */
@@ -49,12 +53,12 @@ export type V2CreateBulkResponse = {
   /**
    * OK
    */
-  v2BulkResponse?: shared.V2BulkResponse | undefined;
+  v2BulkResponse?: ledger.V2BulkResponse | undefined;
 };
 
 /** @internal */
 export type V2CreateBulkRequest$Outbound = {
-  RequestBody: Array<shared.V2BulkElement$Outbound>;
+  RequestBody: Array<any>;
   atomic?: boolean | undefined;
   continueOnFailure?: boolean | undefined;
   ledger: string;
@@ -68,7 +72,7 @@ export const V2CreateBulkRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateBulkRequest
 > = z.object({
-  requestBody: z.array(shared.V2BulkElement$outboundSchema),
+  requestBody: z.array(z.any()),
   atomic: z.boolean().optional(),
   continueOnFailure: z.boolean().optional(),
   ledger: z.string(),
@@ -97,7 +101,7 @@ export const V2CreateBulkResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2BulkResponse: shared.V2BulkResponse$inboundSchema.optional(),
+  V2BulkResponse: ledger.V2BulkResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

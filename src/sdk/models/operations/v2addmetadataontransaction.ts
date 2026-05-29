@@ -8,6 +8,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const V2AddMetadataOnTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
+
 export type V2AddMetadataOnTransactionRequest = {
   /**
    * Use an idempotency key

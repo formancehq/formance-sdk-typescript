@@ -12,7 +12,7 @@ let value: V3InstallConnectorRequest = {
 
 ## Fields
 
-| Field                              | Type                               | Required                           | Description                        |
-| ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| `v3InstallConnectorRequest`        | *shared.V3InstallConnectorRequest* | :heavy_minus_sign:                 | N/A                                |
-| `connector`                        | *string*                           | :heavy_check_mark:                 | The connector to filter by         |
+| Field                        | Type                         | Required                     | Description                  |
+| ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
+| `v3ConnectorConfig`          | *payments.V3ConnectorConfig* | :heavy_minus_sign:           | N/A                          |
+| `connector`                  | *string*                     | :heavy_check_mark:           | The connector to filter by   |

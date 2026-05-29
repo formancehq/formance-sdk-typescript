@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ListPaymentsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListPaymentsRequest = {
   /**
@@ -45,7 +49,7 @@ export type ListPaymentsResponse = {
   /**
    * OK
    */
-  paymentsCursor?: shared.PaymentsCursor | undefined;
+  paymentsCursor?: payments.PaymentsCursor | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -91,7 +95,7 @@ export const ListPaymentsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  PaymentsCursor: shared.PaymentsCursor$inboundSchema.optional(),
+  PaymentsCursor: payments.PaymentsCursor$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

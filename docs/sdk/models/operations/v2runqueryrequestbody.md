@@ -6,7 +6,7 @@
 import { V2RunQueryRequestBody } from "@formance/formance-sdk/sdk/models/operations";
 
 let value: V2RunQueryRequestBody = {
-  params: {
+  v2QueryParams: {
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
     sort: "id:desc",
@@ -18,6 +18,6 @@ let value: V2RunQueryRequestBody = {
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| `v2QueryParams`          | *ledger.V2QueryParams*   | :heavy_minus_sign:       | N/A                      |
 | `cursor`                 | *string*                 | :heavy_minus_sign:       | N/A                      |
-| `params`                 | *shared.V2QueryParams*   | :heavy_minus_sign:       | N/A                      |
 | `vars`                   | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |

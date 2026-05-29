@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3InitiatePaymentServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3InitiatePaymentRequest = {
-  v3InitiatePaymentRequest?: shared.V3InitiatePaymentRequest | undefined;
+  v3InitiatePaymentRequest?: payments.V3InitiatePaymentRequest | undefined;
   /**
    * If set to true, the request will not have to be validated. This is useful if we want to directly forward the request to the PSP.
    *
@@ -35,13 +39,13 @@ export type V3InitiatePaymentResponse = {
   /**
    * Accepted
    */
-  v3InitiatePaymentResponse?: shared.V3InitiatePaymentResponse | undefined;
+  v3InitiatePaymentResponse?: payments.V3InitiatePaymentResponse | undefined;
 };
 
 /** @internal */
 export type V3InitiatePaymentRequest$Outbound = {
   V3InitiatePaymentRequest?:
-    | shared.V3InitiatePaymentRequest$Outbound
+    | payments.V3InitiatePaymentRequest$Outbound
     | undefined;
   noValidation: boolean;
 };
@@ -52,7 +56,7 @@ export const V3InitiatePaymentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3InitiatePaymentRequest
 > = z.object({
-  v3InitiatePaymentRequest: shared.V3InitiatePaymentRequest$outboundSchema
+  v3InitiatePaymentRequest: payments.V3InitiatePaymentRequest$outboundSchema
     .optional(),
   noValidation: z.boolean().default(false),
 }).transform((v) => {
@@ -78,7 +82,7 @@ export const V3InitiatePaymentResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3InitiatePaymentResponse: shared.V3InitiatePaymentResponse$inboundSchema
+  V3InitiatePaymentResponse: payments.V3InitiatePaymentResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

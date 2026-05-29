@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ListConnectorConfigsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ListConnectorConfigsResponse = {
   /**
@@ -25,7 +29,7 @@ export type V3ListConnectorConfigsResponse = {
   /**
    * OK
    */
-  v3ConnectorConfigsResponse?: shared.V3ConnectorConfigsResponse | undefined;
+  v3ConnectorConfigsResponse?: payments.V3ConnectorConfigsResponse | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V3ListConnectorConfigsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3ConnectorConfigsResponse: shared.V3ConnectorConfigsResponse$inboundSchema
+  V3ConnectorConfigsResponse: payments.V3ConnectorConfigsResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

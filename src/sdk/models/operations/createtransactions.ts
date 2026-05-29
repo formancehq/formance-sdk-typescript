@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const CreateTransactionsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateTransactionsRequest = {
-  transactions: shared.Transactions;
+  transactions: ledger.Transactions;
   /**
    * Name of the ledger.
    */
@@ -33,12 +37,12 @@ export type CreateTransactionsResponse = {
   /**
    * OK
    */
-  transactionsResponse?: shared.TransactionsResponse | undefined;
+  transactionsResponse?: ledger.TransactionsResponse | undefined;
 };
 
 /** @internal */
 export type CreateTransactionsRequest$Outbound = {
-  Transactions: shared.Transactions$Outbound;
+  Transactions: ledger.Transactions$Outbound;
   ledger: string;
 };
 
@@ -48,7 +52,7 @@ export const CreateTransactionsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateTransactionsRequest
 > = z.object({
-  transactions: shared.Transactions$outboundSchema,
+  transactions: ledger.Transactions$outboundSchema,
   ledger: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -73,7 +77,7 @@ export const CreateTransactionsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TransactionsResponse: shared.TransactionsResponse$inboundSchema.optional(),
+  TransactionsResponse: ledger.TransactionsResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

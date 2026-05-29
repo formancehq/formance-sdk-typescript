@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as reconciliation from "../reconciliation/index.js";
+
+export const ListPoliciesServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListPoliciesRequest = {
   /**
@@ -36,7 +40,7 @@ export type ListPoliciesResponse = {
   /**
    * OK
    */
-  policiesCursorResponse?: shared.PoliciesCursorResponse | undefined;
+  policiesCursorResponse?: reconciliation.PoliciesCursorResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -80,7 +84,7 @@ export const ListPoliciesResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  PoliciesCursorResponse: shared.PoliciesCursorResponse$inboundSchema
+  PoliciesCursorResponse: reconciliation.PoliciesCursorResponse$inboundSchema
     .optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
