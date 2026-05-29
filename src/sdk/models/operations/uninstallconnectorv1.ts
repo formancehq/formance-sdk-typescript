@@ -7,13 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const UninstallConnectorV1ServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UninstallConnectorV1Request = {
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
   /**
    * The connector ID.
    */
@@ -47,7 +51,7 @@ export const UninstallConnectorV1Request$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UninstallConnectorV1Request
 > = z.object({
-  connector: shared.Connector$outboundSchema,
+  connector: payments.Connector$outboundSchema,
   connectorId: z.string(),
 });
 

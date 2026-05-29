@@ -46,8 +46,8 @@ import { ledgerV2StopPipeline } from "../funcs/ledgerV2StopPipeline.js";
 import { ledgerV2UpdateExporter } from "../funcs/ledgerV2UpdateExporter.js";
 import { ledgerV2UpdateLedgerMetadata } from "../funcs/ledgerV2UpdateLedgerMetadata.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as ledger from "./models/ledger/index.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class LedgerV2 extends ClientSDK {
@@ -125,7 +125,7 @@ export class LedgerV2 extends ClientSDK {
    * Create exporter
    */
   async createExporter(
-    request: shared.V2CreateExporterRequest,
+    request: ledger.V2ExporterConfiguration2,
     options?: RequestOptions,
   ): Promise<operations.V2CreateExporterResponse> {
     return unwrapAsync(ledgerV2CreateExporter(

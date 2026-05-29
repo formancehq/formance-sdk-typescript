@@ -7,15 +7,15 @@ import { authV1CreateSecret } from "../funcs/authV1CreateSecret.js";
 import { authV1DeleteClient } from "../funcs/authV1DeleteClient.js";
 import { authV1DeleteSecret } from "../funcs/authV1DeleteSecret.js";
 import { authV1GetOIDCWellKnowns } from "../funcs/authV1GetOIDCWellKnowns.js";
-import { authV1GetServerInfo } from "../funcs/authV1GetServerInfo.js";
+import { authV1GetServerInfoAuth } from "../funcs/authV1GetServerInfoAuth.js";
 import { authV1ListClients } from "../funcs/authV1ListClients.js";
 import { authV1ListUsers } from "../funcs/authV1ListUsers.js";
 import { authV1ReadClient } from "../funcs/authV1ReadClient.js";
 import { authV1ReadUser } from "../funcs/authV1ReadUser.js";
 import { authV1UpdateClient } from "../funcs/authV1UpdateClient.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
+import * as auth from "./models/auth/index.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class AuthV1 extends ClientSDK {
@@ -23,7 +23,7 @@ export class AuthV1 extends ClientSDK {
    * Create client
    */
   async createClient(
-    request?: shared.CreateClientRequest | undefined,
+    request?: auth.ClientOptions2 | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateClientResponse> {
     return unwrapAsync(authV1CreateClient(
@@ -90,10 +90,10 @@ export class AuthV1 extends ClientSDK {
   /**
    * Get server info
    */
-  async getServerInfo(
+  async getServerInfoAuth(
     options?: RequestOptions,
-  ): Promise<operations.GetServerInfoResponse> {
-    return unwrapAsync(authV1GetServerInfo(
+  ): Promise<operations.GetServerInfoAuthResponse> {
+    return unwrapAsync(authV1GetServerInfoAuth(
       this,
       options,
     ));

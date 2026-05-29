@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3GetPoolBalancesLatestServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3GetPoolBalancesLatestRequest = {
   /**
@@ -32,7 +36,7 @@ export type V3GetPoolBalancesLatestResponse = {
   /**
    * OK
    */
-  v3PoolBalancesResponse?: shared.V3PoolBalancesResponse | undefined;
+  v3PoolBalancesResponse?: payments.V3PoolBalancesResponse | undefined;
 };
 
 /** @internal */
@@ -68,7 +72,7 @@ export const V3GetPoolBalancesLatestResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3PoolBalancesResponse: shared.V3PoolBalancesResponse$inboundSchema
+  V3PoolBalancesResponse: payments.V3PoolBalancesResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

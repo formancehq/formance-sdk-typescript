@@ -8,14 +8,14 @@ import { ledgerV1CountAccounts } from "../funcs/ledgerV1CountAccounts.js";
 import { ledgerV1CountTransactions } from "../funcs/ledgerV1CountTransactions.js";
 import { ledgerV1CreateTransaction } from "../funcs/ledgerV1CreateTransaction.js";
 import { ledgerV1CreateTransactions } from "../funcs/ledgerV1CreateTransactions.js";
-import { ledgerV1GetAccount } from "../funcs/ledgerV1GetAccount.js";
+import { ledgerV1GetAccountLedger } from "../funcs/ledgerV1GetAccountLedger.js";
 import { ledgerV1GetBalances } from "../funcs/ledgerV1GetBalances.js";
 import { ledgerV1GetBalancesAggregated } from "../funcs/ledgerV1GetBalancesAggregated.js";
 import { ledgerV1GetInfo } from "../funcs/ledgerV1GetInfo.js";
 import { ledgerV1GetLedgerInfo } from "../funcs/ledgerV1GetLedgerInfo.js";
 import { ledgerV1GetMapping } from "../funcs/ledgerV1GetMapping.js";
 import { ledgerV1GetTransaction } from "../funcs/ledgerV1GetTransaction.js";
-import { ledgerV1ListAccounts } from "../funcs/ledgerV1ListAccounts.js";
+import { ledgerV1ListAccountsLedger } from "../funcs/ledgerV1ListAccountsLedger.js";
 import { ledgerV1ListLogs } from "../funcs/ledgerV1ListLogs.js";
 import { ledgerV1ListTransactions } from "../funcs/ledgerV1ListTransactions.js";
 import { ledgerV1ReadStats } from "../funcs/ledgerV1ReadStats.js";
@@ -114,11 +114,11 @@ export class LedgerV1 extends ClientSDK {
   /**
    * Get account by its address
    */
-  async getAccount(
-    request: operations.GetAccountRequest,
+  async getAccountLedger(
+    request: operations.GetAccountLedgerRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetAccountResponse> {
-    return unwrapAsync(ledgerV1GetAccount(
+  ): Promise<operations.GetAccountLedgerResponse> {
+    return unwrapAsync(ledgerV1GetAccountLedger(
       this,
       request,
       options,
@@ -213,11 +213,11 @@ export class LedgerV1 extends ClientSDK {
    * @remarks
    * List accounts from a ledger, sorted by address in descending order.
    */
-  async listAccounts(
-    request: operations.ListAccountsRequest,
+  async listAccountsLedger(
+    request: operations.ListAccountsLedgerRequest,
     options?: RequestOptions,
-  ): Promise<operations.ListAccountsResponse> {
-    return unwrapAsync(ledgerV1ListAccounts(
+  ): Promise<operations.ListAccountsLedgerResponse> {
+    return unwrapAsync(ledgerV1ListAccountsLedger(
       this,
       request,
       options,

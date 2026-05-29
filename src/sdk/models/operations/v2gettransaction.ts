@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetTransactionRequest = {
   expand?: string | undefined;
@@ -38,7 +42,7 @@ export type V2GetTransactionResponse = {
   /**
    * OK
    */
-  v2GetTransactionResponse?: shared.V2GetTransactionResponse | undefined;
+  v2GetTransactionResponse?: ledger.V2GetTransactionResponse | undefined;
 };
 
 /** @internal */
@@ -78,7 +82,7 @@ export const V2GetTransactionResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2GetTransactionResponse: shared.V2GetTransactionResponse$inboundSchema
+  V2GetTransactionResponse: ledger.V2GetTransactionResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

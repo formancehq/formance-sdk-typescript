@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetPipelineStateServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetPipelineStateRequest = {
   /**
@@ -18,13 +22,6 @@ export type V2GetPipelineStateRequest = {
    * The pipeline id
    */
   pipelineID: string;
-};
-
-/**
- * Pipeline information
- */
-export type V2GetPipelineStateResponseBody = {
-  data: shared.V2Pipeline;
 };
 
 export type V2GetPipelineStateResponse = {
@@ -43,7 +40,7 @@ export type V2GetPipelineStateResponse = {
   /**
    * Pipeline information
    */
-  object?: V2GetPipelineStateResponseBody | undefined;
+  v2GetPipelineStateResponse?: ledger.V2GetPipelineStateResponse | undefined;
 };
 
 /** @internal */
@@ -71,25 +68,6 @@ export function v2GetPipelineStateRequestToJSON(
 }
 
 /** @internal */
-export const V2GetPipelineStateResponseBody$inboundSchema: z.ZodType<
-  V2GetPipelineStateResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: shared.V2Pipeline$inboundSchema,
-});
-
-export function v2GetPipelineStateResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2GetPipelineStateResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2GetPipelineStateResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2GetPipelineStateResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const V2GetPipelineStateResponse$inboundSchema: z.ZodType<
   V2GetPipelineStateResponse,
   z.ZodTypeDef,
@@ -98,12 +76,15 @@ export const V2GetPipelineStateResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2GetPipelineStateResponseBody$inboundSchema).optional(),
+  V2GetPipelineStateResponse: z.lazy(() =>
+    ledger.V2GetPipelineStateResponse$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2GetPipelineStateResponse": "v2GetPipelineStateResponse",
   });
 });
 

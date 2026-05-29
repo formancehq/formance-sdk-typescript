@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -21,6 +22,7 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { RunScriptServerList } from "../sdk/models/operations/runscript.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -29,6 +31,8 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * This route is deprecated, and has been merged into `POST /{ledger}/transactions`.
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  *
  * @deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
  */
@@ -87,13 +91,15 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload.Script, { explode: true });
 
+  const baseURL = options?.serverURL
+    || pathToFunc(RunScriptServerList[0], { charEncoding: "percent" })();
+
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/ledger/{ledger}/script")(pathParams);
 
   const query = encodeFormQuery({
@@ -106,11 +112,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "runScript",
     oAuth2Scopes: ["ledger:write"],
 
@@ -126,7 +132,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     query: query,
@@ -141,7 +147,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });

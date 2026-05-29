@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const RunScriptServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type RunScriptRequest = {
-  script: shared.Script;
+  script: ledger.Script;
   /**
    * Name of the ledger.
    */
@@ -37,7 +41,7 @@ export type RunScriptResponse = {
    *   - `errorCode` and `error_code` (deprecated): contains the string code of the error
    *   - `errorMessage` and `error_message` (deprecated): contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
    */
-  scriptResponse?: shared.ScriptResponse | undefined;
+  scriptResponse?: ledger.ScriptResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -50,7 +54,7 @@ export type RunScriptResponse = {
 
 /** @internal */
 export type RunScriptRequest$Outbound = {
-  Script: shared.Script$Outbound;
+  Script: ledger.Script$Outbound;
   ledger: string;
   preview?: boolean | undefined;
 };
@@ -61,7 +65,7 @@ export const RunScriptRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   RunScriptRequest
 > = z.object({
-  script: shared.Script$outboundSchema,
+  script: ledger.Script$outboundSchema,
   ledger: z.string(),
   preview: z.boolean().optional(),
 }).transform((v) => {
@@ -85,7 +89,7 @@ export const RunScriptResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  ScriptResponse: shared.ScriptResponse$inboundSchema.optional(),
+  ScriptResponse: ledger.ScriptResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

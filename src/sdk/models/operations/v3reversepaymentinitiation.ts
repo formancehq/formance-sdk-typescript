@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ReversePaymentInitiationServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ReversePaymentInitiationRequest = {
   v3ReversePaymentInitiationRequest?:
-    | shared.V3ReversePaymentInitiationRequest
+    | payments.V3ReversePaymentInitiationRequest
     | undefined;
   /**
    * The payment initiation ID
@@ -36,14 +40,14 @@ export type V3ReversePaymentInitiationResponse = {
    * Accepted
    */
   v3ReversePaymentInitiationResponse?:
-    | shared.V3ReversePaymentInitiationResponse
+    | payments.V3ReversePaymentInitiationResponse
     | undefined;
 };
 
 /** @internal */
 export type V3ReversePaymentInitiationRequest$Outbound = {
   V3ReversePaymentInitiationRequest?:
-    | shared.V3ReversePaymentInitiationRequest$Outbound
+    | payments.V3ReversePaymentInitiationRequest$Outbound
     | undefined;
   paymentInitiationID: string;
 };
@@ -54,7 +58,7 @@ export const V3ReversePaymentInitiationRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ReversePaymentInitiationRequest
 > = z.object({
-  v3ReversePaymentInitiationRequest: shared
+  v3ReversePaymentInitiationRequest: payments
     .V3ReversePaymentInitiationRequest$outboundSchema.optional(),
   paymentInitiationID: z.string(),
 }).transform((v) => {
@@ -82,7 +86,7 @@ export const V3ReversePaymentInitiationResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3ReversePaymentInitiationResponse: shared
+  V3ReversePaymentInitiationResponse: payments
     .V3ReversePaymentInitiationResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

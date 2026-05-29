@@ -29,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 5.0.1
+  version: 6.0.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -48,6 +48,7 @@ typescript:
   enableReactQuery: false
   enumFormat: enum
   exportZodModelNamespace: false
+  fixEnumNameSanitization: false
   flatAdditionalProperties: false
   flattenGlobalSecurity: true
   flatteningOrder: body-first
@@ -77,6 +78,7 @@ typescript:
   packageName: '@formance/formance-sdk'
   preApplyUnionDiscriminators: true
   preserveModelFieldNames: false
+  privateIdentifierPrefix: '#'
   responseFormat: envelope
   sseFlatResponse: false
   templateVersion: v2

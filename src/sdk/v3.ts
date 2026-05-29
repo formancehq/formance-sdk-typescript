@@ -24,6 +24,8 @@ import { paymentsV3GetAccountBalances } from "../funcs/paymentsV3GetAccountBalan
 import { paymentsV3GetBankAccount } from "../funcs/paymentsV3GetBankAccount.js";
 import { paymentsV3GetConnectorConfig } from "../funcs/paymentsV3GetConnectorConfig.js";
 import { paymentsV3GetConnectorSchedule } from "../funcs/paymentsV3GetConnectorSchedule.js";
+import { paymentsV3GetConversion } from "../funcs/paymentsV3GetConversion.js";
+import { paymentsV3GetOrder } from "../funcs/paymentsV3GetOrder.js";
 import { paymentsV3GetPayment } from "../funcs/paymentsV3GetPayment.js";
 import { paymentsV3GetPaymentInitiation } from "../funcs/paymentsV3GetPaymentInitiation.js";
 import { paymentsV3GetPaymentServiceUser } from "../funcs/paymentsV3GetPaymentServiceUser.js";
@@ -40,13 +42,12 @@ import { paymentsV3ListConnectorConfigs } from "../funcs/paymentsV3ListConnector
 import { paymentsV3ListConnectors } from "../funcs/paymentsV3ListConnectors.js";
 import { paymentsV3ListConnectorScheduleInstances } from "../funcs/paymentsV3ListConnectorScheduleInstances.js";
 import { paymentsV3ListConnectorSchedules } from "../funcs/paymentsV3ListConnectorSchedules.js";
+import { paymentsV3ListConversions } from "../funcs/paymentsV3ListConversions.js";
+import { paymentsV3ListOrders } from "../funcs/paymentsV3ListOrders.js";
 import { paymentsV3ListPaymentInitiationAdjustments } from "../funcs/paymentsV3ListPaymentInitiationAdjustments.js";
 import { paymentsV3ListPaymentInitiationRelatedPayments } from "../funcs/paymentsV3ListPaymentInitiationRelatedPayments.js";
 import { paymentsV3ListPaymentInitiations } from "../funcs/paymentsV3ListPaymentInitiations.js";
 import { paymentsV3ListPayments } from "../funcs/paymentsV3ListPayments.js";
-import { paymentsV3ListPaymentServiceUserConnections } from "../funcs/paymentsV3ListPaymentServiceUserConnections.js";
-import { paymentsV3ListPaymentServiceUserConnectionsFromConnectorID } from "../funcs/paymentsV3ListPaymentServiceUserConnectionsFromConnectorID.js";
-import { paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID } from "../funcs/paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID.js";
 import { paymentsV3ListPaymentServiceUsers } from "../funcs/paymentsV3ListPaymentServiceUsers.js";
 import { paymentsV3ListPools } from "../funcs/paymentsV3ListPools.js";
 import { paymentsV3RejectPaymentInitiation } from "../funcs/paymentsV3RejectPaymentInitiation.js";
@@ -62,7 +63,7 @@ import { paymentsV3UpdatePoolQuery } from "../funcs/paymentsV3UpdatePoolQuery.js
 import { paymentsV3V3UpdateConnectorConfig } from "../funcs/paymentsV3V3UpdateConnectorConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as payments from "./models/payments/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class V3 extends ClientSDK {
@@ -112,7 +113,7 @@ export class V3 extends ClientSDK {
    * Create a formance account object. This object will not be forwarded to the connector. It is only used for internal purposes.
    */
   async createAccount(
-    request?: shared.V3CreateAccountRequest | undefined,
+    request?: payments.V3CreateAccountRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.V3CreateAccountResponse> {
     return unwrapAsync(paymentsV3CreateAccount(
@@ -126,7 +127,7 @@ export class V3 extends ClientSDK {
    * Create a formance bank account object. This object will not be forwarded to the connector until you called the forwardBankAccount method.
    */
   async createBankAccount(
-    request?: shared.V3CreateBankAccountRequest | undefined,
+    request?: payments.V3CreateBankAccountRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.V3CreateBankAccountResponse> {
     return unwrapAsync(paymentsV3CreateBankAccount(
@@ -154,7 +155,7 @@ export class V3 extends ClientSDK {
    * Create a formance payment object. This object will not be forwarded to the connector. It is only used for internal purposes.
    */
   async createPayment(
-    request?: shared.V3CreatePaymentRequest | undefined,
+    request?: payments.V3CreatePaymentRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.V3CreatePaymentResponse> {
     return unwrapAsync(paymentsV3CreatePayment(
@@ -168,7 +169,7 @@ export class V3 extends ClientSDK {
    * Create a formance payment service user object
    */
   async createPaymentServiceUser(
-    request?: shared.V3CreatePaymentServiceUserRequest | undefined,
+    request?: payments.V3CreatePaymentServiceUserRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.V3CreatePaymentServiceUserResponse> {
     return unwrapAsync(paymentsV3CreatePaymentServiceUser(
@@ -182,7 +183,7 @@ export class V3 extends ClientSDK {
    * Create a formance pool object
    */
   async createPool(
-    request?: shared.V3CreatePoolRequest | undefined,
+    request?: payments.V3CreatePoolRequest | undefined,
     options?: RequestOptions,
   ): Promise<operations.V3CreatePoolResponse> {
     return unwrapAsync(paymentsV3CreatePool(
@@ -373,6 +374,54 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3GetConnectorScheduleResponse> {
     return unwrapAsync(paymentsV3GetConnectorSchedule(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a single conversion by its Formance ID
+   *
+   * @remarks
+   * Returns one conversion identified by its Formance-assigned `id`
+   * (**not** the PSP's native `reference`). See `V3Conversion` for the
+   * response shape — on `COMPLETED` status the `destinationAmount` and
+   * `fee` fields reflect the settled values; on `FAILED` the `error`
+   * field carries the PSP's rejection reason.
+   *
+   * Returns an error via `V3ErrorResponse` when no conversion exists
+   * for the given ID.
+   */
+  async getConversion(
+    request: operations.V3GetConversionRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GetConversionResponse> {
+    return unwrapAsync(paymentsV3GetConversion(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a single order by its Formance ID
+   *
+   * @remarks
+   * Returns one order identified by its Formance-assigned `id` (composed
+   * from the PSP `reference` and the connector ID — **not** the PSP's
+   * native reference). The response includes the full `adjustments`
+   * history ordered from oldest to most recent; the last adjustment
+   * reflects the order's current top-level `status`.
+   *
+   * Returns an error via `V3ErrorResponse` when no order exists for the
+   * given ID, or when the ID cannot be decoded.
+   */
+  async getOrder(
+    request: operations.V3GetOrderRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GetOrderResponse> {
+    return unwrapAsync(paymentsV3GetOrder(
       this,
       request,
       options,
@@ -607,6 +656,66 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * List currency and asset conversions ingested from connectors
+   *
+   * @remarks
+   * Returns the full list of conversions ingested by Formance from
+   * connectors that implement the conversions capability. A conversion
+   * is a direct swap between two assets on a PSP (e.g. USD → USDC on
+   * Coinbase Prime). Conversions are **read-only** through the Formance
+   * API.
+   *
+   * Unlike orders, conversions do not carry an adjustment history —
+   * Formance records only the final observed state (`status`,
+   * `destinationAmount`, and `fee` when settled).
+   *
+   * Results are cursor-paginated. The optional request body accepts a
+   * query builder for filtering over top-level `V3Conversion` fields
+   * such as `connectorID`, `reference`, `status`, `sourceAsset`,
+   * `destinationAsset`, and `createdAt`.
+   */
+  async listConversions(
+    request: operations.V3ListConversionsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ListConversionsResponse> {
+    return unwrapAsync(paymentsV3ListConversions(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List orders ingested from exchange-style connectors
+   *
+   * @remarks
+   * Returns the full list of orders ingested by Formance from connectors
+   * that implement the orders capability (e.g. `coinbaseprime`). Orders
+   * represent trade placements on an exchange-style PSP and are
+   * **read-only** through the Formance API — submission, cancellation,
+   * and lifecycle transitions are owned by the underlying connector.
+   *
+   * Results are cursor-paginated. The optional request body accepts a
+   * query builder for filtering over top-level `V3Order` fields such as
+   * `connectorID`, `reference`, `direction`, `status`, `type`,
+   * `sourceAsset`, `destinationAsset`, and `createdAt`.
+   *
+   * See `V3Order` for the full response shape, including the
+   * `adjustments` array that captures each observed state transition on
+   * the exchange.
+   */
+  async listOrders(
+    request: operations.V3ListOrdersRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ListOrdersResponse> {
+    return unwrapAsync(paymentsV3ListOrders(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * List all payment initiation adjustments
    */
   async listPaymentInitiationAdjustments(
@@ -646,59 +755,6 @@ export class V3 extends ClientSDK {
       request,
       options,
     ));
-  }
-
-  /**
-   * List all connections for a payment service user
-   */
-  async listPaymentServiceUserConnections(
-    request: operations.V3ListPaymentServiceUserConnectionsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.V3ListPaymentServiceUserConnectionsResponse> {
-    return unwrapAsync(paymentsV3ListPaymentServiceUserConnections(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * List enabled connections for a payment service user on a connector (i.e. the various banks PSUser has enabled on the connector)
-   */
-  async listPaymentServiceUserConnectionsFromConnectorID(
-    request:
-      operations.V3ListPaymentServiceUserConnectionsFromConnectorIDRequest,
-    options?: RequestOptions,
-  ): Promise<
-    operations.V3ListPaymentServiceUserConnectionsFromConnectorIDResponse
-  > {
-    return unwrapAsync(
-      paymentsV3ListPaymentServiceUserConnectionsFromConnectorID(
-        this,
-        request,
-        options,
-      ),
-    );
-  }
-
-  /**
-   * List all link attempts for a payment service user on a connector.
-   * Allows to check if users used the link and completed the oauth flow.
-   */
-  async listPaymentServiceUserLinkAttemptsFromConnectorID(
-    request:
-      operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDRequest,
-    options?: RequestOptions,
-  ): Promise<
-    operations.V3ListPaymentServiceUserLinkAttemptsFromConnectorIDResponse
-  > {
-    return unwrapAsync(
-      paymentsV3ListPaymentServiceUserLinkAttemptsFromConnectorID(
-        this,
-        request,
-        options,
-      ),
-    );
   }
 
   /**

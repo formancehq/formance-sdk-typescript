@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3GetPaymentServiceUserLinkAttemptFromConnectorIDServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3GetPaymentServiceUserLinkAttemptFromConnectorIDRequest = {
   /**
@@ -41,7 +45,7 @@ export type V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse = {
    * OK
    */
   v3PaymentServiceUserLinkAttempt?:
-    | shared.V3PaymentServiceUserLinkAttempt
+    | payments.V3PaymentServiceUserLinkAttempt
     | undefined;
 };
 
@@ -85,7 +89,7 @@ export const V3GetPaymentServiceUserLinkAttemptFromConnectorIDResponse$inboundSc
     ContentType: z.string(),
     StatusCode: z.number().int(),
     RawResponse: z.instanceof(Response),
-    V3PaymentServiceUserLinkAttempt: shared
+    V3PaymentServiceUserLinkAttempt: payments
       .V3PaymentServiceUserLinkAttempt$inboundSchema.optional(),
   }).transform((v) => {
     return remap$(v, {

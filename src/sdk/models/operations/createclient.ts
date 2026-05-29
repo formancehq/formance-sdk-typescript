@@ -6,8 +6,12 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+
+export const CreateClientServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateClientResponse = {
   /**
@@ -17,7 +21,7 @@ export type CreateClientResponse = {
   /**
    * Client created
    */
-  createClientResponse?: shared.CreateClientResponse | undefined;
+  createClientResponse?: auth.CreateClientResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -35,7 +39,7 @@ export const CreateClientResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  CreateClientResponse: shared.CreateClientResponse$inboundSchema.optional(),
+  CreateClientResponse: auth.CreateClientResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

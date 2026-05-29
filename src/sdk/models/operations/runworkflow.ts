@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const RunWorkflowServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type RunWorkflowRequest = {
   requestBody?: { [k: string]: string } | undefined;
@@ -29,7 +33,7 @@ export type RunWorkflowResponse = {
   /**
    * The workflow instance
    */
-  runWorkflowResponse?: shared.RunWorkflowResponse | undefined;
+  runWorkflowResponse?: orchestration.RunWorkflowResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -77,7 +81,8 @@ export const RunWorkflowResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  RunWorkflowResponse: shared.RunWorkflowResponse$inboundSchema.optional(),
+  RunWorkflowResponse: orchestration.RunWorkflowResponse$inboundSchema
+    .optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const ListTransactionsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListTransactionsRequest = {
   /**
@@ -85,7 +89,7 @@ export type ListTransactionsResponse = {
   /**
    * OK
    */
-  transactionsCursorResponse?: shared.TransactionsCursorResponse | undefined;
+  transactionsCursorResponse?: ledger.TransactionsCursorResponse | undefined;
 };
 
 /** @internal */
@@ -139,7 +143,7 @@ export const ListTransactionsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TransactionsCursorResponse: shared.TransactionsCursorResponse$inboundSchema
+  TransactionsCursorResponse: ledger.TransactionsCursorResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

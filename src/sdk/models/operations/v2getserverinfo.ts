@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2GetServerInfoServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetServerInfoResponse = {
   /**
@@ -25,7 +29,7 @@ export type V2GetServerInfoResponse = {
   /**
    * Server information
    */
-  v2ServerInfo?: shared.V2ServerInfo | undefined;
+  v2ServerInfo?: orchestration.V2ServerInfo | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V2GetServerInfoResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2ServerInfo: shared.V2ServerInfo$inboundSchema.optional(),
+  V2ServerInfo: orchestration.V2ServerInfo$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -17,16 +18,19 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { V3ReversePaymentInitiationServerList } from "../sdk/models/operations/v3reversepaymentinitiation.js";
+import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * Reverse a payment initiation
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function paymentsV3ReversePaymentInitiation(
   client: SDKCore,
@@ -35,7 +39,7 @@ export function paymentsV3ReversePaymentInitiation(
 ): APIPromise<
   Result<
     operations.V3ReversePaymentInitiationResponse,
-    | errors.V3ErrorResponse
+    | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -61,7 +65,7 @@ async function $do(
   [
     Result<
       operations.V3ReversePaymentInitiationResponse,
-      | errors.V3ErrorResponse
+      | payments.V3ErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -88,6 +92,11 @@ async function $do(
     explode: true,
   });
 
+  const baseURL = options?.serverURL
+    || pathToFunc(V3ReversePaymentInitiationServerList[0], {
+      charEncoding: "percent",
+    })();
+
   const pathParams = {
     paymentInitiationID: encodeSimple(
       "paymentInitiationID",
@@ -95,7 +104,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/api/payments/v3/payment-initiations/{paymentInitiationID}/reverse",
   )(pathParams);
@@ -106,11 +114,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "v3ReversePaymentInitiation",
     oAuth2Scopes: ["payments:write"],
 
@@ -126,7 +134,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     body: body,
@@ -140,7 +148,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["202"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -159,7 +168,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3ReversePaymentInitiationResponse,
-    | errors.V3ErrorResponse
+    | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -172,7 +181,7 @@ async function $do(
     M.json(202, operations.V3ReversePaymentInitiationResponse$inboundSchema, {
       key: "V3ReversePaymentInitiationResponse",
     }),
-    M.jsonErr("default", errors.V3ErrorResponse$inboundSchema),
+    M.jsonErr("default", payments.V3ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

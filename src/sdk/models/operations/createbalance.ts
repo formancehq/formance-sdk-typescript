@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as wallets from "../wallets/index.js";
+
+export const CreateBalanceServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateBalanceRequest = {
-  createBalanceRequest?: shared.CreateBalanceRequest | undefined;
+  balance?: wallets.Balance | undefined;
   /**
    * Use an idempotency key
    */
@@ -26,7 +30,7 @@ export type CreateBalanceResponse = {
   /**
    * Created balance
    */
-  createBalanceResponse?: shared.CreateBalanceResponse | undefined;
+  createBalanceResponse?: wallets.CreateBalanceResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -39,7 +43,7 @@ export type CreateBalanceResponse = {
 
 /** @internal */
 export type CreateBalanceRequest$Outbound = {
-  CreateBalanceRequest?: shared.CreateBalanceRequest$Outbound | undefined;
+  Balance?: wallets.Balance$Outbound | undefined;
   "Idempotency-Key"?: string | undefined;
   id: string;
 };
@@ -50,12 +54,12 @@ export const CreateBalanceRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateBalanceRequest
 > = z.object({
-  createBalanceRequest: shared.CreateBalanceRequest$outboundSchema.optional(),
+  balance: wallets.Balance$outboundSchema.optional(),
   idempotencyKey: z.string().optional(),
   id: z.string(),
 }).transform((v) => {
   return remap$(v, {
-    createBalanceRequest: "CreateBalanceRequest",
+    balance: "Balance",
     idempotencyKey: "Idempotency-Key",
   });
 });
@@ -75,7 +79,7 @@ export const CreateBalanceResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  CreateBalanceResponse: shared.CreateBalanceResponse$inboundSchema.optional(),
+  CreateBalanceResponse: wallets.CreateBalanceResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

@@ -7,13 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ListConnectorTasksServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListConnectorTasksRequest = {
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
   /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
    *
@@ -47,7 +51,7 @@ export type ListConnectorTasksResponse = {
   /**
    * OK
    */
-  tasksCursor?: shared.TasksCursor | undefined;
+  tasksCursor?: payments.TasksCursor | undefined;
 };
 
 /** @internal */
@@ -63,7 +67,7 @@ export const ListConnectorTasksRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ListConnectorTasksRequest
 > = z.object({
-  connector: shared.Connector$outboundSchema,
+  connector: payments.Connector$outboundSchema,
   cursor: z.string().optional(),
   pageSize: z.number().int().default(15),
 });
@@ -85,7 +89,7 @@ export const ListConnectorTasksResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TasksCursor: shared.TasksCursor$inboundSchema.optional(),
+  TasksCursor: payments.TasksCursor$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

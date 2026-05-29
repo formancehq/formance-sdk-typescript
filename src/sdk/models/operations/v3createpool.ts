@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3CreatePoolServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3CreatePoolResponse = {
   /**
@@ -25,7 +29,7 @@ export type V3CreatePoolResponse = {
   /**
    * Created
    */
-  v3CreatePoolResponse?: shared.V3CreatePoolResponse | undefined;
+  v3CreatePoolResponse?: payments.V3CreatePoolResponse | undefined;
 };
 
 /** @internal */
@@ -37,7 +41,7 @@ export const V3CreatePoolResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3CreatePoolResponse: shared.V3CreatePoolResponse$inboundSchema.optional(),
+  V3CreatePoolResponse: payments.V3CreatePoolResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

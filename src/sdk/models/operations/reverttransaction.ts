@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const RevertTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type RevertTransactionRequest = {
   /**
@@ -41,7 +45,7 @@ export type RevertTransactionResponse = {
   /**
    * OK
    */
-  transactionResponse?: shared.TransactionResponse | undefined;
+  transactionResponse?: ledger.TransactionResponse | undefined;
 };
 
 /** @internal */
@@ -80,7 +84,7 @@ export const RevertTransactionResponse$inboundSchema: z.ZodType<
   Headers: z.record(z.array(z.string())).default({}),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TransactionResponse: shared.TransactionResponse$inboundSchema.optional(),
+  TransactionResponse: ledger.TransactionResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

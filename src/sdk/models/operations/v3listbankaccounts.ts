@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ListBankAccountsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ListBankAccountsRequest = {
   /**
@@ -40,7 +44,7 @@ export type V3ListBankAccountsResponse = {
    * OK
    */
   v3BankAccountsCursorResponse?:
-    | shared.V3BankAccountsCursorResponse
+    | payments.V3BankAccountsCursorResponse
     | undefined;
 };
 
@@ -79,7 +83,7 @@ export const V3ListBankAccountsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3BankAccountsCursorResponse: shared
+  V3BankAccountsCursorResponse: payments
     .V3BankAccountsCursorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

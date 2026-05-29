@@ -12,7 +12,7 @@ import { webhooksV1TestConfig } from "../funcs/webhooksV1TestConfig.js";
 import { webhooksV1UpdateConfig } from "../funcs/webhooksV1UpdateConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as webhooks from "./models/webhooks/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class WebhooksV1 extends ClientSDK {
@@ -119,7 +119,7 @@ export class WebhooksV1 extends ClientSDK {
    * All eventTypes are converted to lower-case when inserted.
    */
   async insertConfig(
-    request: shared.ConfigUser,
+    request: webhooks.ConfigUser,
     options?: RequestOptions,
   ): Promise<operations.InsertConfigResponse> {
     return unwrapAsync(webhooksV1InsertConfig(

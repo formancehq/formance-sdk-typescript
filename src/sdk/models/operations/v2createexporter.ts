@@ -7,14 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
 
-/**
- * Created exporter
- */
-export type V2CreateExporterResponseBody = {
-  data: shared.V2Exporter;
-};
+export const V2CreateExporterServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2CreateExporterResponse = {
   /**
@@ -32,27 +29,8 @@ export type V2CreateExporterResponse = {
   /**
    * Created exporter
    */
-  object?: V2CreateExporterResponseBody | undefined;
+  v2CreateExporterResponse?: ledger.V2CreateExporterResponse | undefined;
 };
-
-/** @internal */
-export const V2CreateExporterResponseBody$inboundSchema: z.ZodType<
-  V2CreateExporterResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: shared.V2Exporter$inboundSchema,
-});
-
-export function v2CreateExporterResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2CreateExporterResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2CreateExporterResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2CreateExporterResponseBody' from JSON`,
-  );
-}
 
 /** @internal */
 export const V2CreateExporterResponse$inboundSchema: z.ZodType<
@@ -63,12 +41,15 @@ export const V2CreateExporterResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2CreateExporterResponseBody$inboundSchema).optional(),
+  V2CreateExporterResponse: z.lazy(() =>
+    ledger.V2CreateExporterResponse$inboundSchema
+  ).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2CreateExporterResponse": "v2CreateExporterResponse",
   });
 });
 

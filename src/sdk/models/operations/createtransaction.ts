@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const CreateTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateTransactionRequest = {
   /**
@@ -17,7 +21,7 @@ export type CreateTransactionRequest = {
    *   - `postings`: suitable for simple transactions
    *   - `script`: enabling more complex transactions with Numscript
    */
-  postTransaction: shared.PostTransaction;
+  postTransaction: ledger.PostTransaction;
   /**
    * Name of the ledger.
    */
@@ -45,12 +49,12 @@ export type CreateTransactionResponse = {
   /**
    * OK
    */
-  transactionsResponse?: shared.TransactionsResponse | undefined;
+  transactionsResponse?: ledger.TransactionsResponse | undefined;
 };
 
 /** @internal */
 export type CreateTransactionRequest$Outbound = {
-  PostTransaction: shared.PostTransaction$Outbound;
+  PostTransaction: ledger.PostTransaction$Outbound;
   ledger: string;
   preview?: boolean | undefined;
 };
@@ -61,7 +65,7 @@ export const CreateTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateTransactionRequest
 > = z.object({
-  postTransaction: shared.PostTransaction$outboundSchema,
+  postTransaction: ledger.PostTransaction$outboundSchema,
   ledger: z.string(),
   preview: z.boolean().optional(),
 }).transform((v) => {
@@ -88,7 +92,7 @@ export const CreateTransactionResponse$inboundSchema: z.ZodType<
   Headers: z.record(z.array(z.string())).default({}),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  TransactionsResponse: shared.TransactionsResponse$inboundSchema.optional(),
+  TransactionsResponse: ledger.TransactionsResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

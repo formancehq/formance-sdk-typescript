@@ -5,10 +5,10 @@ OK
 
 ## Supported Types
 
-### `shared.V2TransactionsCursorResponse`
+### `ledger.V2TransactionsCursorResponse`
 
 ```typescript
-const value: shared.V2TransactionsCursorResponse = {
+const value: ledger.V2TransactionsCursorResponse = {
   cursor: {
     data: [],
     hasMore: false,
@@ -19,15 +19,14 @@ const value: shared.V2TransactionsCursorResponse = {
 };
 ```
 
-### `shared.V2AccountsCursorResponse`
+### `ledger.V2AccountsCursorResponse`
 
 ```typescript
-const value: shared.V2AccountsCursorResponse = {
+const value: ledger.V2AccountsCursorResponse = {
   cursor: {
     data: [
       {
-        address: "users:001",
-        effectiveVolumes: {
+        v2Volumes: {
           "USD": {
             balance: 90n,
             input: 100n,
@@ -39,24 +38,25 @@ const value: shared.V2AccountsCursorResponse = {
             output: 10n,
           },
         },
+        v2Volumes1: {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+          "EUR": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        address: "users:001",
         firstUsage: new Date("2023-01-01T00:00:00Z"),
         insertionDate: new Date("2023-01-01T00:00:00Z"),
         metadata: {
           "admin": "true",
         },
         updatedAt: new Date("2023-01-01T00:00:00Z"),
-        volumes: {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-          "EUR": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
       },
     ],
     hasMore: false,
@@ -67,10 +67,10 @@ const value: shared.V2AccountsCursorResponse = {
 };
 ```
 
-### `shared.V2LogsCursorResponse`
+### `ledger.V2LogsCursorResponse`
 
 ```typescript
-const value: shared.V2LogsCursorResponse = {
+const value: ledger.V2LogsCursorResponse = {
   cursor: {
     data: [],
     hasMore: false,
@@ -81,10 +81,10 @@ const value: shared.V2LogsCursorResponse = {
 };
 ```
 
-### `shared.V2VolumesWithBalanceCursorResponse`
+### `ledger.V2VolumesWithBalanceCursorResponse`
 
 ```typescript
-const value: shared.V2VolumesWithBalanceCursorResponse = {
+const value: ledger.V2VolumesWithBalanceCursorResponse = {
   cursor: {
     data: [
       {

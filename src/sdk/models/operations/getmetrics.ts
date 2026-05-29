@@ -8,6 +8,10 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export const GetMetricsServerList = [
+  "http://localhost:8080/",
+] as const;
+
 export type GetMetricsResponse = {
   /**
    * HTTP response content type for this operation

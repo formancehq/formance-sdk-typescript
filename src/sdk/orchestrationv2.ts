@@ -22,7 +22,7 @@ import { orchestrationV2SendEvent } from "../funcs/orchestrationV2SendEvent.js";
 import { orchestrationV2TestTrigger } from "../funcs/orchestrationV2TestTrigger.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as orchestration from "./models/orchestration/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class OrchestrationV2 extends ClientSDK {
@@ -50,7 +50,7 @@ export class OrchestrationV2 extends ClientSDK {
    * Create trigger
    */
   async createTrigger(
-    request?: shared.V2TriggerData | undefined,
+    request?: orchestration.V2TriggerData2 | undefined,
     options?: RequestOptions,
   ): Promise<operations.V2CreateTriggerResponse> {
     return unwrapAsync(orchestrationV2CreateTrigger(
@@ -67,7 +67,7 @@ export class OrchestrationV2 extends ClientSDK {
    * Create a workflow
    */
   async createWorkflow(
-    request?: shared.V2CreateWorkflowRequest | undefined,
+    request?: orchestration.V2WorkflowConfig | undefined,
     options?: RequestOptions,
   ): Promise<operations.V2CreateWorkflowResponse> {
     return unwrapAsync(orchestrationV2CreateWorkflow(

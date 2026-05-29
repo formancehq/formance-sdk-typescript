@@ -9,6 +9,7 @@ import {
   encodeSimple,
   queryJoin,
 } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -22,16 +23,19 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { V3ListPaymentInitiationRelatedPaymentsServerList } from "../sdk/models/operations/v3listpaymentinitiationrelatedpayments.js";
+import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
 /**
  * List all payments related to a payment initiation
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function paymentsV3ListPaymentInitiationRelatedPayments(
   client: SDKCore,
@@ -40,7 +44,7 @@ export function paymentsV3ListPaymentInitiationRelatedPayments(
 ): APIPromise<
   Result<
     operations.V3ListPaymentInitiationRelatedPaymentsResponse,
-    | errors.V3ErrorResponse
+    | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -66,7 +70,7 @@ async function $do(
   [
     Result<
       operations.V3ListPaymentInitiationRelatedPaymentsResponse,
-      | errors.V3ErrorResponse
+      | payments.V3ErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -92,6 +96,11 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
+  const baseURL = options?.serverURL
+    || pathToFunc(V3ListPaymentInitiationRelatedPaymentsServerList[0], {
+      charEncoding: "percent",
+    })();
+
   const pathParams = {
     paymentInitiationID: encodeSimple(
       "paymentInitiationID",
@@ -99,7 +108,6 @@ async function $do(
       { explode: false, charEncoding: "percent" },
     ),
   };
-
   const path = pathToFunc(
     "/api/payments/v3/payment-initiations/{paymentInitiationID}/payments",
   )(pathParams);
@@ -119,11 +127,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "v3ListPaymentInitiationRelatedPayments",
     oAuth2Scopes: ["payments:read"],
 
@@ -139,7 +147,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     query: query,
@@ -154,7 +162,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -173,7 +182,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V3ListPaymentInitiationRelatedPaymentsResponse,
-    | errors.V3ErrorResponse
+    | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -188,7 +197,7 @@ async function $do(
       operations.V3ListPaymentInitiationRelatedPaymentsResponse$inboundSchema,
       { key: "V3PaymentInitiationRelatedPaymentsCursorResponse" },
     ),
-    M.jsonErr("default", errors.V3ErrorResponse$inboundSchema),
+    M.jsonErr("default", payments.V3ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

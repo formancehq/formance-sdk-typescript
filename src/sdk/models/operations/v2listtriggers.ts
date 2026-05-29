@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const V2ListTriggersServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2ListTriggersRequest = {
   /**
@@ -47,7 +51,7 @@ export type V2ListTriggersResponse = {
   /**
    * List of triggers
    */
-  v2ListTriggersResponse?: shared.V2ListTriggersResponse | undefined;
+  v2ListTriggersResponse?: orchestration.V2ListTriggersResponse | undefined;
 };
 
 /** @internal */
@@ -85,7 +89,7 @@ export const V2ListTriggersResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2ListTriggersResponse: shared.V2ListTriggersResponse$inboundSchema
+  V2ListTriggersResponse: orchestration.V2ListTriggersResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {

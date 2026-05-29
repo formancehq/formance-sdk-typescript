@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const UpdateTransferInitiationStatusServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UpdateTransferInitiationStatusRequest = {
   updateTransferInitiationStatusRequest:
-    shared.UpdateTransferInitiationStatusRequest;
+    payments.UpdateTransferInitiationStatusRequest;
   /**
    * The transfer ID.
    */
@@ -36,7 +40,7 @@ export type UpdateTransferInitiationStatusResponse = {
 /** @internal */
 export type UpdateTransferInitiationStatusRequest$Outbound = {
   UpdateTransferInitiationStatusRequest:
-    shared.UpdateTransferInitiationStatusRequest$Outbound;
+    payments.UpdateTransferInitiationStatusRequest$Outbound;
   transferId: string;
 };
 
@@ -47,7 +51,7 @@ export const UpdateTransferInitiationStatusRequest$outboundSchema: z.ZodType<
   UpdateTransferInitiationStatusRequest
 > = z.object({
   updateTransferInitiationStatusRequest:
-    shared.UpdateTransferInitiationStatusRequest$outboundSchema,
+    payments.UpdateTransferInitiationStatusRequest$outboundSchema,
   transferId: z.string(),
 }).transform((v) => {
   return remap$(v, {
