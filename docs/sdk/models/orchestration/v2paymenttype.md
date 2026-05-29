@@ -1,0 +1,18 @@
+# V2PaymentType
+
+## Example Usage
+
+```typescript
+import { V2PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: V2PaymentType = V2PaymentType.Payout;
+```
+
+## Values
+
+| Name       | Value      |
+| ---------- | ---------- |
+| `PayIn`    | PAY-IN     |
+| `Payout`   | PAYOUT     |
+| `Transfer` | TRANSFER   |
+| `Other`    | OTHER      |

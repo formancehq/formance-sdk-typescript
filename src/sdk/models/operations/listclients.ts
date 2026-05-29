@@ -6,8 +6,12 @@ import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
+import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+
+export const ListClientsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ListClientsResponse = {
   /**
@@ -17,7 +21,7 @@ export type ListClientsResponse = {
   /**
    * List of clients
    */
-  listClientsResponse?: shared.ListClientsResponse | undefined;
+  listClientsResponse?: auth.ListClientsResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -35,7 +39,7 @@ export const ListClientsResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  ListClientsResponse: shared.ListClientsResponse$inboundSchema.optional(),
+  ListClientsResponse: auth.ListClientsResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

@@ -1,0 +1,21 @@
+# LedgerStorage
+
+## Example Usage
+
+```typescript
+import { LedgerStorage } from "@formance/formance-sdk/sdk/models/ledger";
+
+let value: LedgerStorage = {
+  driver: "<value>",
+  ledgers: [
+    "<value 1>",
+  ],
+};
+```
+
+## Fields
+
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `driver`           | *string*           | :heavy_check_mark: | N/A                |
+| `ledgers`          | *string*[]         | :heavy_check_mark: | N/A                |

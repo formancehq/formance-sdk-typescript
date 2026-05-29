@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2GetLedgerInfoServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2GetLedgerInfoRequest = {
   /**
@@ -32,7 +36,7 @@ export type V2GetLedgerInfoResponse = {
   /**
    * OK
    */
-  v2LedgerInfoResponse?: shared.V2LedgerInfoResponse | undefined;
+  v2LedgerInfoResponse?: ledger.V2LedgerInfoResponse | undefined;
 };
 
 /** @internal */
@@ -66,7 +70,7 @@ export const V2GetLedgerInfoResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2LedgerInfoResponse: shared.V2LedgerInfoResponse$inboundSchema.optional(),
+  V2LedgerInfoResponse: ledger.V2LedgerInfoResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

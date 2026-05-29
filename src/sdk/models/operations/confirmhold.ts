@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as wallets from "../wallets/index.js";
+
+export const ConfirmHoldServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ConfirmHoldRequest = {
-  confirmHoldRequest?: shared.ConfirmHoldRequest | undefined;
+  confirmHoldRequest?: wallets.ConfirmHoldRequest | undefined;
   /**
    * Use an idempotency key
    */
@@ -35,7 +39,7 @@ export type ConfirmHoldResponse = {
 
 /** @internal */
 export type ConfirmHoldRequest$Outbound = {
-  ConfirmHoldRequest?: shared.ConfirmHoldRequest$Outbound | undefined;
+  ConfirmHoldRequest?: wallets.ConfirmHoldRequest$Outbound | undefined;
   "Idempotency-Key"?: string | undefined;
   hold_id: string;
 };
@@ -46,7 +50,7 @@ export const ConfirmHoldRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConfirmHoldRequest
 > = z.object({
-  confirmHoldRequest: shared.ConfirmHoldRequest$outboundSchema.optional(),
+  confirmHoldRequest: wallets.ConfirmHoldRequest$outboundSchema.optional(),
   idempotencyKey: z.string().optional(),
   holdId: z.string(),
 }).transform((v) => {

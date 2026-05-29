@@ -6,13 +6,13 @@ import { reconciliationV1CreatePolicy } from "../funcs/reconciliationV1CreatePol
 import { reconciliationV1DeletePolicy } from "../funcs/reconciliationV1DeletePolicy.js";
 import { reconciliationV1GetPolicy } from "../funcs/reconciliationV1GetPolicy.js";
 import { reconciliationV1GetReconciliation } from "../funcs/reconciliationV1GetReconciliation.js";
+import { reconciliationV1GetServerInfoReconciliation } from "../funcs/reconciliationV1GetServerInfoReconciliation.js";
 import { reconciliationV1ListPolicies } from "../funcs/reconciliationV1ListPolicies.js";
 import { reconciliationV1ListReconciliations } from "../funcs/reconciliationV1ListReconciliations.js";
 import { reconciliationV1Reconcile } from "../funcs/reconciliationV1Reconcile.js";
-import { reconciliationV1ReconciliationgetServerInfo } from "../funcs/reconciliationV1ReconciliationgetServerInfo.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as reconciliation from "./models/reconciliation/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class ReconciliationV1 extends ClientSDK {
@@ -23,7 +23,7 @@ export class ReconciliationV1 extends ClientSDK {
    * Create a policy
    */
   async createPolicy(
-    request: shared.PolicyRequest,
+    request: reconciliation.PolicyRequest,
     options?: RequestOptions,
   ): Promise<operations.CreatePolicyResponse> {
     return unwrapAsync(reconciliationV1CreatePolicy(
@@ -79,6 +79,18 @@ export class ReconciliationV1 extends ClientSDK {
   }
 
   /**
+   * Get server info
+   */
+  async getServerInfoReconciliation(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerInfoReconciliationResponse> {
+    return unwrapAsync(reconciliationV1GetServerInfoReconciliation(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * List policies
    */
   async listPolicies(
@@ -119,18 +131,6 @@ export class ReconciliationV1 extends ClientSDK {
     return unwrapAsync(reconciliationV1Reconcile(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Get server info
-   */
-  async reconciliationgetServerInfo(
-    options?: RequestOptions,
-  ): Promise<operations.ReconciliationgetServerInfoResponse> {
-    return unwrapAsync(reconciliationV1ReconciliationgetServerInfo(
-      this,
       options,
     ));
   }

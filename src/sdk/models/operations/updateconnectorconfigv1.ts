@@ -7,14 +7,18 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const UpdateConnectorConfigV1ServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UpdateConnectorConfigV1Request = {
-  connectorConfig: shared.ConnectorConfig;
+  connectorConfig: payments.ConnectorConfig;
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
   /**
    * The connector ID.
    */
@@ -38,7 +42,7 @@ export type UpdateConnectorConfigV1Response = {
 
 /** @internal */
 export type UpdateConnectorConfigV1Request$Outbound = {
-  ConnectorConfig: shared.ConnectorConfig$Outbound;
+  ConnectorConfig: payments.ConnectorConfig$Outbound;
   connector: string;
   connectorId: string;
 };
@@ -49,8 +53,8 @@ export const UpdateConnectorConfigV1Request$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateConnectorConfigV1Request
 > = z.object({
-  connectorConfig: shared.ConnectorConfig$outboundSchema,
-  connector: shared.Connector$outboundSchema,
+  connectorConfig: payments.ConnectorConfig$outboundSchema,
+  connector: payments.Connector$outboundSchema,
   connectorId: z.string(),
 }).transform((v) => {
   return remap$(v, {

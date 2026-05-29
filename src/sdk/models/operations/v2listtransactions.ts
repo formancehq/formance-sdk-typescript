@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2ListTransactionsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 /**
  * Deprecated: Use sort param
@@ -72,7 +76,7 @@ export type V2ListTransactionsResponse = {
    * OK
    */
   v2TransactionsCursorResponse?:
-    | shared.V2TransactionsCursorResponse
+    | ledger.V2TransactionsCursorResponse
     | undefined;
 };
 
@@ -128,7 +132,7 @@ export const V2ListTransactionsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2TransactionsCursorResponse: shared
+  V2TransactionsCursorResponse: ledger
     .V2TransactionsCursorResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

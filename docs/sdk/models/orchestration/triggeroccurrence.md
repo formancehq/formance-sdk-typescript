@@ -1,0 +1,26 @@
+# TriggerOccurrence
+
+## Example Usage
+
+```typescript
+import { TriggerOccurrence } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: TriggerOccurrence = {
+  date: new Date("2025-06-12T16:17:45.137Z"),
+  event: {
+    "key": "<value>",
+  },
+  triggerID: "<id>",
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `workflowInstance`                                                                            | [orchestration.WorkflowInstance](../../../sdk/models/orchestration/workflowinstance.md)       | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `date`                                                                                        | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `error`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `event`                                                                                       | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `triggerID`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `workflowInstanceID`                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |

@@ -7,27 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
 
-export type V2ListExportersCursor2 = {
-  data: Array<shared.V2Exporter>;
-  hasMore: boolean;
-  next?: string | undefined;
-  pageSize: number;
-  previous?: string | undefined;
-};
-
-export type V2ListExportersCursor1 = {
-  cursor: V2ListExportersCursor2;
-  data?: Array<shared.V2Exporter> | undefined;
-};
-
-/**
- * Exporters list
- */
-export type V2ListExportersResponseBody = {
-  cursor?: V2ListExportersCursor1 | undefined;
-};
+export const V2ListExportersServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2ListExportersResponse = {
   /**
@@ -45,70 +29,8 @@ export type V2ListExportersResponse = {
   /**
    * Exporters list
    */
-  object?: V2ListExportersResponseBody | undefined;
+  v2ExportersCursorResponse?: ledger.V2ExportersCursorResponse | undefined;
 };
-
-/** @internal */
-export const V2ListExportersCursor2$inboundSchema: z.ZodType<
-  V2ListExportersCursor2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: z.array(shared.V2Exporter$inboundSchema),
-  hasMore: z.boolean(),
-  next: z.string().optional(),
-  pageSize: z.number().int(),
-  previous: z.string().optional(),
-});
-
-export function v2ListExportersCursor2FromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListExportersCursor2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListExportersCursor2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListExportersCursor2' from JSON`,
-  );
-}
-
-/** @internal */
-export const V2ListExportersCursor1$inboundSchema: z.ZodType<
-  V2ListExportersCursor1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.lazy(() => V2ListExportersCursor2$inboundSchema),
-  data: z.array(shared.V2Exporter$inboundSchema).optional(),
-});
-
-export function v2ListExportersCursor1FromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListExportersCursor1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListExportersCursor1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListExportersCursor1' from JSON`,
-  );
-}
-
-/** @internal */
-export const V2ListExportersResponseBody$inboundSchema: z.ZodType<
-  V2ListExportersResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.lazy(() => V2ListExportersCursor1$inboundSchema).optional(),
-});
-
-export function v2ListExportersResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListExportersResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListExportersResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListExportersResponseBody' from JSON`,
-  );
-}
 
 /** @internal */
 export const V2ListExportersResponse$inboundSchema: z.ZodType<
@@ -119,12 +41,14 @@ export const V2ListExportersResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2ListExportersResponseBody$inboundSchema).optional(),
+  V2ExportersCursorResponse: ledger.V2ExportersCursorResponse$inboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2ExportersCursorResponse": "v2ExportersCursorResponse",
   });
 });
 

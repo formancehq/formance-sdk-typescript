@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const GetPoolServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type GetPoolRequest = {
   /**
@@ -24,7 +28,7 @@ export type GetPoolResponse = {
   /**
    * OK
    */
-  poolResponse?: shared.PoolResponse | undefined;
+  poolResponse?: payments.PoolResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -60,7 +64,7 @@ export const GetPoolResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  PoolResponse: shared.PoolResponse$inboundSchema.optional(),
+  PoolResponse: payments.PoolResponse$inboundSchema.optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
 }).transform((v) => {

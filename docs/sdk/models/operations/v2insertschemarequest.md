@@ -7,7 +7,7 @@ import { V2InsertSchemaRequest } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2InsertSchemaRequest = {
   v2SchemaData: {
-    chart: {
+    v2ChartOfAccounts: {
       "users": {
         additionalProperties: {
           "$userID": {
@@ -16,9 +16,9 @@ let value: V2InsertSchemaRequest = {
         },
       },
     },
-    queries: {
+    v2QueryTemplates: {
       "key": {
-        params: {
+        v2QueryParams: {
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
           pageSize: 100,
           sort: "id:desc",
@@ -33,9 +33,9 @@ let value: V2InsertSchemaRequest = {
 
 ## Fields
 
-| Field                                                             | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `idempotencyKey`                                                  | *string*                                                          | :heavy_minus_sign:                                                | Use an idempotency key                                            |                                                                   |
-| `v2SchemaData`                                                    | [shared.V2SchemaData](../../../sdk/models/shared/v2schemadata.md) | :heavy_check_mark:                                                | N/A                                                               |                                                                   |
-| `ledger`                                                          | *string*                                                          | :heavy_check_mark:                                                | Name of the ledger.                                               | ledger001                                                         |
-| `version`                                                         | *string*                                                          | :heavy_check_mark:                                                | Schema version.                                                   | v1.0.0                                                            |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `idempotencyKey`                                                    | *string*                                                            | :heavy_minus_sign:                                                  | Use an idempotency key                                              |                                                                     |
+| `v2SchemaData`                                                      | [ledger.V2SchemaData2](../../../sdk/models/ledger/v2schemadata2.md) | :heavy_check_mark:                                                  | N/A                                                                 |                                                                     |
+| `ledger`                                                            | *string*                                                            | :heavy_check_mark:                                                  | Name of the ledger.                                                 | ledger001                                                           |
+| `version`                                                           | *string*                                                            | :heavy_check_mark:                                                  | Schema version.                                                     | v1.0.0                                                              |

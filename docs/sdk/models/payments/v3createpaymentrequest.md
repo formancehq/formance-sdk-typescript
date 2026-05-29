@@ -1,0 +1,35 @@
+# V3CreatePaymentRequest
+
+## Example Usage
+
+```typescript
+import { V3CreatePaymentRequest, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+
+let value: V3CreatePaymentRequest = {
+  v3PaymentTypeEnum: V3PaymentTypeEnum.Unknown,
+  amount: 995696n,
+  asset: "<value>",
+  connectorID: "<value>",
+  createdAt: new Date("2026-02-19T00:00:46.737Z"),
+  initialAmount: 475472n,
+  reference: "<value>",
+  scheme: "<value>",
+};
+```
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `v3Metadata`                                                                                                    | Record<string, *string*>                                                                                        | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |
+| `v3PaymentTypeEnum`                                                                                             | [payments.V3PaymentTypeEnum](../../../sdk/models/payments/v3paymenttypeenum.md)                                 | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `adjustments`                                                                                                   | [payments.V3CreatePaymentAdjustmentRequest](../../../sdk/models/payments/v3createpaymentadjustmentrequest.md)[] | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |
+| `amount`                                                                                                        | *BigInt*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `asset`                                                                                                         | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `connectorID`                                                                                                   | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `createdAt`                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                   | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `destinationAccountID`                                                                                          | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |
+| `initialAmount`                                                                                                 | *BigInt*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `reference`                                                                                                     | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `scheme`                                                                                                        | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `sourceAccountID`                                                                                               | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |

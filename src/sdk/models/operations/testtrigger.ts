@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as orchestration from "../orchestration/index.js";
+
+export const TestTriggerServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type TestTriggerRequest = {
   requestBody?: { [k: string]: any } | undefined;
@@ -33,7 +37,7 @@ export type TestTriggerResponse = {
   /**
    * Test a trigger
    */
-  v2TestTriggerResponse?: shared.V2TestTriggerResponse | undefined;
+  v2TestTriggerResponse?: orchestration.V2TestTriggerResponse | undefined;
 };
 
 /** @internal */
@@ -73,7 +77,8 @@ export const TestTriggerResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2TestTriggerResponse: shared.V2TestTriggerResponse$inboundSchema.optional(),
+  V2TestTriggerResponse: orchestration.V2TestTriggerResponse$inboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

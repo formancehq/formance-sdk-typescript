@@ -3,10 +3,10 @@
  */
 
 import { SDKCore } from "../core.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
-import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
 import {
   ConnectionError,
@@ -15,11 +15,12 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as ledger from "../sdk/models/ledger/index.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { V2ListExportersServerList } from "../sdk/models/operations/v2listexporters.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -32,7 +33,7 @@ export function ledgerV2ListExporters(
 ): APIPromise<
   Result<
     operations.V2ListExportersResponse,
-    | errors.V2ErrorResponse
+    | ledger.ErrorsV2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -56,7 +57,7 @@ async function $do(
   [
     Result<
       operations.V2ListExportersResponse,
-      | errors.V2ErrorResponse
+      | ledger.ErrorsV2ErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -69,24 +70,24 @@ async function $do(
     APICall,
   ]
 > {
+  const baseURL = options?.serverURL
+    || pathToFunc(V2ListExportersServerList[0], { charEncoding: "percent" })();
+
   const path = pathToFunc("/api/ledger/v2/_/exporters")();
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
   }));
 
-  const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
-
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "v2ListExporters",
-    oAuth2Scopes: ["auth:read"],
+    oAuth2Scopes: null,
 
-    resolvedSecurity: requestSecurity,
+    resolvedSecurity: null,
 
-    securitySource: client._options.security,
+    securitySource: null,
     retryConfig: options?.retries
       || client._options.retryConfig
       || { strategy: "none" },
@@ -94,9 +95,8 @@ async function $do(
   };
 
   const requestRes = client._createRequest(context, {
-    security: requestSecurity,
     method: "GET",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     userAgent: client._options.userAgent,
@@ -109,7 +109,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -128,7 +129,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V2ListExportersResponse,
-    | errors.V2ErrorResponse
+    | ledger.ErrorsV2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -139,9 +140,9 @@ async function $do(
     | SDKValidationError
   >(
     M.json(200, operations.V2ListExportersResponse$inboundSchema, {
-      key: "object",
+      key: "V2ExportersCursorResponse",
     }),
-    M.jsonErr("default", errors.V2ErrorResponse$inboundSchema),
+    M.jsonErr("default", ledger.ErrorsV2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

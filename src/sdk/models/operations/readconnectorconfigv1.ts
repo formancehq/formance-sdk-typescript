@@ -7,13 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const ReadConnectorConfigV1ServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ReadConnectorConfigV1Request = {
   /**
    * The name of the connector.
    */
-  connector: shared.Connector;
+  connector: payments.Connector;
   /**
    * The connector ID.
    */
@@ -24,7 +28,7 @@ export type ReadConnectorConfigV1Response = {
   /**
    * OK
    */
-  connectorConfigResponse?: shared.ConnectorConfigResponse | undefined;
+  connectorConfigResponse?: payments.ConnectorConfigResponse | undefined;
   /**
    * HTTP response content type for this operation
    */
@@ -51,7 +55,7 @@ export const ReadConnectorConfigV1Request$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ReadConnectorConfigV1Request
 > = z.object({
-  connector: shared.Connector$outboundSchema,
+  connector: payments.Connector$outboundSchema,
   connectorId: z.string(),
 });
 
@@ -71,7 +75,7 @@ export const ReadConnectorConfigV1Response$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  ConnectorConfigResponse: shared.ConnectorConfigResponse$inboundSchema
+  ConnectorConfigResponse: payments.ConnectorConfigResponse$inboundSchema
     .optional(),
   ContentType: z.string(),
   StatusCode: z.number().int(),

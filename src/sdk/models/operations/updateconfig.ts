@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as webhooks from "../webhooks/index.js";
+
+export const UpdateConfigServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UpdateConfigRequest = {
-  configUser: shared.ConfigUser;
+  configUser: webhooks.ConfigUser;
   /**
    * Config ID
    */
@@ -34,7 +38,7 @@ export type UpdateConfigResponse = {
 
 /** @internal */
 export type UpdateConfigRequest$Outbound = {
-  ConfigUser: shared.ConfigUser$Outbound;
+  ConfigUser: webhooks.ConfigUser$Outbound;
   id: string;
 };
 
@@ -44,7 +48,7 @@ export const UpdateConfigRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateConfigRequest
 > = z.object({
-  configUser: shared.ConfigUser$outboundSchema,
+  configUser: webhooks.ConfigUser$outboundSchema,
   id: z.string(),
 }).transform((v) => {
   return remap$(v, {

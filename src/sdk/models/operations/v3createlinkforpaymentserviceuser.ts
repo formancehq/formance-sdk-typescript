@@ -7,11 +7,15 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3CreateLinkForPaymentServiceUserServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3CreateLinkForPaymentServiceUserRequest = {
   v3PaymentServiceUserCreateLinkRequest?:
-    | shared.V3PaymentServiceUserCreateLinkRequest
+    | payments.V3PaymentServiceUserCreateLinkRequest
     | undefined;
   /**
    * The connector ID
@@ -40,14 +44,14 @@ export type V3CreateLinkForPaymentServiceUserResponse = {
    * Created
    */
   v3PaymentServiceUserCreateLinkResponse?:
-    | shared.V3PaymentServiceUserCreateLinkResponse
+    | payments.V3PaymentServiceUserCreateLinkResponse
     | undefined;
 };
 
 /** @internal */
 export type V3CreateLinkForPaymentServiceUserRequest$Outbound = {
   V3PaymentServiceUserCreateLinkRequest?:
-    | shared.V3PaymentServiceUserCreateLinkRequest$Outbound
+    | payments.V3PaymentServiceUserCreateLinkRequest$Outbound
     | undefined;
   connectorID: string;
   paymentServiceUserID: string;
@@ -59,7 +63,7 @@ export const V3CreateLinkForPaymentServiceUserRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3CreateLinkForPaymentServiceUserRequest
 > = z.object({
-  v3PaymentServiceUserCreateLinkRequest: shared
+  v3PaymentServiceUserCreateLinkRequest: payments
     .V3PaymentServiceUserCreateLinkRequest$outboundSchema.optional(),
   connectorID: z.string(),
   paymentServiceUserID: z.string(),
@@ -90,7 +94,7 @@ export const V3CreateLinkForPaymentServiceUserResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V3PaymentServiceUserCreateLinkResponse: shared
+  V3PaymentServiceUserCreateLinkResponse: payments
     .V3PaymentServiceUserCreateLinkResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

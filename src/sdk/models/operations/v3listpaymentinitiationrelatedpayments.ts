@@ -7,7 +7,11 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const V3ListPaymentInitiationRelatedPaymentsServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V3ListPaymentInitiationRelatedPaymentsRequest = {
   /**
@@ -44,7 +48,7 @@ export type V3ListPaymentInitiationRelatedPaymentsResponse = {
    * OK
    */
   v3PaymentInitiationRelatedPaymentsCursorResponse?:
-    | shared.V3PaymentInitiationRelatedPaymentsCursorResponse
+    | payments.V3PaymentInitiationRelatedPaymentsCursorResponse
     | undefined;
 };
 
@@ -90,7 +94,7 @@ export const V3ListPaymentInitiationRelatedPaymentsResponse$inboundSchema:
     ContentType: z.string(),
     StatusCode: z.number().int(),
     RawResponse: z.instanceof(Response),
-    V3PaymentInitiationRelatedPaymentsCursorResponse: shared
+    V3PaymentInitiationRelatedPaymentsCursorResponse: payments
       .V3PaymentInitiationRelatedPaymentsCursorResponse$inboundSchema
       .optional(),
   }).transform((v) => {

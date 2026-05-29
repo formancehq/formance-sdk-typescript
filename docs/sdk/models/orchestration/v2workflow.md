@@ -1,0 +1,30 @@
+# V2Workflow
+
+## Example Usage
+
+```typescript
+import { V2Workflow } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: V2Workflow = {
+  v2WorkflowConfig: {
+    stages: [
+      {
+        "key": "<value>",
+      },
+      {},
+    ],
+  },
+  createdAt: new Date("2026-03-28T23:58:29.371Z"),
+  id: "<id>",
+  updatedAt: new Date("2025-02-04T04:29:43.512Z"),
+};
+```
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `v2WorkflowConfig`                                                                            | [orchestration.V2WorkflowConfig](../../../sdk/models/orchestration/v2workflowconfig.md)       | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |

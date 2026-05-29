@@ -7,9 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const CreateAccountServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type CreateAccountResponse = {
+  /**
+   * OK
+   */
+  accountResponse?: payments.AccountResponse | undefined;
   /**
    * HTTP response content type for this operation
    */
@@ -22,10 +30,6 @@ export type CreateAccountResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
-  /**
-   * OK
-   */
-  paymentsAccountResponse?: shared.PaymentsAccountResponse | undefined;
 };
 
 /** @internal */
@@ -34,13 +38,13 @@ export const CreateAccountResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  AccountResponse: payments.AccountResponse$inboundSchema.optional(),
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  paymentsAccountResponse: shared.PaymentsAccountResponse$inboundSchema
-    .optional(),
 }).transform((v) => {
   return remap$(v, {
+    "AccountResponse": "accountResponse",
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",

@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as payments from "../payments/index.js";
+
+export const UpdateBankAccountMetadataServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type UpdateBankAccountMetadataRequest = {
-  updateBankAccountMetadataRequest: shared.UpdateBankAccountMetadataRequest;
+  updateBankAccountMetadataRequest: payments.UpdateBankAccountMetadataRequest;
   /**
    * The bank account ID.
    */
@@ -35,7 +39,7 @@ export type UpdateBankAccountMetadataResponse = {
 /** @internal */
 export type UpdateBankAccountMetadataRequest$Outbound = {
   UpdateBankAccountMetadataRequest:
-    shared.UpdateBankAccountMetadataRequest$Outbound;
+    payments.UpdateBankAccountMetadataRequest$Outbound;
   bankAccountId: string;
 };
 
@@ -46,7 +50,7 @@ export const UpdateBankAccountMetadataRequest$outboundSchema: z.ZodType<
   UpdateBankAccountMetadataRequest
 > = z.object({
   updateBankAccountMetadataRequest:
-    shared.UpdateBankAccountMetadataRequest$outboundSchema,
+    payments.UpdateBankAccountMetadataRequest$outboundSchema,
   bankAccountId: z.string(),
 }).transform((v) => {
   return remap$(v, {

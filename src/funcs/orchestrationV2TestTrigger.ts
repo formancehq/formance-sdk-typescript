@@ -4,6 +4,7 @@
 
 import { SDKCore } from "../core.js";
 import { encodeJSON, encodeSimple } from "../lib/encodings.js";
+import { matchStatusCode } from "../lib/http.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -17,11 +18,12 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../sdk/models/errors/httpclienterrors.js";
-import * as errors from "../sdk/models/errors/index.js";
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
+import { TestTriggerServerList } from "../sdk/models/operations/testtrigger.js";
+import * as orchestration from "../sdk/models/orchestration/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -30,6 +32,8 @@ import { Result } from "../sdk/types/fp.js";
  *
  * @remarks
  * Test trigger
+ *
+ * If set, this operation will use {@link Security.clientID} from the global security.
  */
 export function orchestrationV2TestTrigger(
   client: SDKCore,
@@ -38,7 +42,7 @@ export function orchestrationV2TestTrigger(
 ): APIPromise<
   Result<
     operations.TestTriggerResponse,
-    | errors.V2Error
+    | orchestration.V2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -64,7 +68,7 @@ async function $do(
   [
     Result<
       operations.TestTriggerResponse,
-      | errors.V2Error
+      | orchestration.V2Error
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -88,13 +92,15 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
+  const baseURL = options?.serverURL
+    || pathToFunc(TestTriggerServerList[0], { charEncoding: "percent" })();
+
   const pathParams = {
     triggerID: encodeSimple("triggerID", payload.triggerID, {
       explode: false,
       charEncoding: "percent",
     }),
   };
-
   const path = pathToFunc("/api/orchestration/v2/triggers/{triggerID}/test")(
     pathParams,
   );
@@ -105,11 +111,11 @@ async function $do(
   }));
 
   const securityInput = await extractSecurity(client._options.security);
-  const requestSecurity = resolveGlobalSecurity(securityInput);
+  const requestSecurity = resolveGlobalSecurity(securityInput, [0]);
 
   const context = {
     options: client._options,
-    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    baseURL: baseURL ?? "",
     operationID: "testTrigger",
     oAuth2Scopes: ["orchestration:write"],
 
@@ -125,7 +131,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: options?.serverURL,
+    baseURL: baseURL,
     path: path,
     headers: headers,
     body: body,
@@ -139,7 +145,8 @@ async function $do(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["default"],
+    isErrorStatusCode: (statusCode: number) =>
+      !matchStatusCode({ status: statusCode } as Response, ["200"]),
     retryConfig: context.retryConfig,
     retryCodes: context.retryCodes,
   });
@@ -158,7 +165,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.TestTriggerResponse,
-    | errors.V2Error
+    | orchestration.V2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -171,7 +178,7 @@ async function $do(
     M.json(200, operations.TestTriggerResponse$inboundSchema, {
       key: "V2TestTriggerResponse",
     }),
-    M.jsonErr("default", errors.V2Error$inboundSchema),
+    M.jsonErr("default", orchestration.V2Error$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

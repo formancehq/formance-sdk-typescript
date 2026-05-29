@@ -7,10 +7,14 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as reconciliation from "../reconciliation/index.js";
+
+export const ReconcileServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type ReconcileRequest = {
-  reconciliationRequest: shared.ReconciliationRequest;
+  reconciliationRequest: reconciliation.ReconciliationRequest;
   /**
    * The policy ID.
    */
@@ -25,7 +29,7 @@ export type ReconcileResponse = {
   /**
    * OK
    */
-  reconciliationResponse?: shared.ReconciliationResponse | undefined;
+  reconciliationResponse?: reconciliation.ReconciliationResponse | undefined;
   /**
    * HTTP response status code for this operation
    */
@@ -38,7 +42,7 @@ export type ReconcileResponse = {
 
 /** @internal */
 export type ReconcileRequest$Outbound = {
-  ReconciliationRequest: shared.ReconciliationRequest$Outbound;
+  ReconciliationRequest: reconciliation.ReconciliationRequest$Outbound;
   policyID: string;
 };
 
@@ -48,7 +52,7 @@ export const ReconcileRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ReconcileRequest
 > = z.object({
-  reconciliationRequest: shared.ReconciliationRequest$outboundSchema,
+  reconciliationRequest: reconciliation.ReconciliationRequest$outboundSchema,
   policyID: z.string(),
 }).transform((v) => {
   return remap$(v, {
@@ -71,7 +75,7 @@ export const ReconcileResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   ContentType: z.string(),
-  ReconciliationResponse: shared.ReconciliationResponse$inboundSchema
+  ReconciliationResponse: reconciliation.ReconciliationResponse$inboundSchema
     .optional(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),

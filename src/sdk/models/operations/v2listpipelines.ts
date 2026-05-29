@@ -7,33 +7,17 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2ListPipelinesServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2ListPipelinesRequest = {
   /**
    * Name of the ledger.
    */
   ledger: string;
-};
-
-export type V2ListPipelinesCursor2 = {
-  data: Array<shared.V2Pipeline>;
-  hasMore: boolean;
-  next?: string | undefined;
-  pageSize: number;
-  previous?: string | undefined;
-};
-
-export type V2ListPipelinesCursor1 = {
-  cursor: V2ListPipelinesCursor2;
-  data?: Array<shared.V2Pipeline> | undefined;
-};
-
-/**
- * Pipelines list
- */
-export type V2ListPipelinesResponseBody = {
-  cursor?: V2ListPipelinesCursor1 | undefined;
 };
 
 export type V2ListPipelinesResponse = {
@@ -52,7 +36,7 @@ export type V2ListPipelinesResponse = {
   /**
    * Pipelines list
    */
-  object?: V2ListPipelinesResponseBody | undefined;
+  v2PipelinesCursorResponse?: ledger.V2PipelinesCursorResponse | undefined;
 };
 
 /** @internal */
@@ -78,68 +62,6 @@ export function v2ListPipelinesRequestToJSON(
 }
 
 /** @internal */
-export const V2ListPipelinesCursor2$inboundSchema: z.ZodType<
-  V2ListPipelinesCursor2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  data: z.array(shared.V2Pipeline$inboundSchema),
-  hasMore: z.boolean(),
-  next: z.string().optional(),
-  pageSize: z.number().int(),
-  previous: z.string().optional(),
-});
-
-export function v2ListPipelinesCursor2FromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListPipelinesCursor2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListPipelinesCursor2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListPipelinesCursor2' from JSON`,
-  );
-}
-
-/** @internal */
-export const V2ListPipelinesCursor1$inboundSchema: z.ZodType<
-  V2ListPipelinesCursor1,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.lazy(() => V2ListPipelinesCursor2$inboundSchema),
-  data: z.array(shared.V2Pipeline$inboundSchema).optional(),
-});
-
-export function v2ListPipelinesCursor1FromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListPipelinesCursor1, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListPipelinesCursor1$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListPipelinesCursor1' from JSON`,
-  );
-}
-
-/** @internal */
-export const V2ListPipelinesResponseBody$inboundSchema: z.ZodType<
-  V2ListPipelinesResponseBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  cursor: z.lazy(() => V2ListPipelinesCursor1$inboundSchema).optional(),
-});
-
-export function v2ListPipelinesResponseBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<V2ListPipelinesResponseBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V2ListPipelinesResponseBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2ListPipelinesResponseBody' from JSON`,
-  );
-}
-
-/** @internal */
 export const V2ListPipelinesResponse$inboundSchema: z.ZodType<
   V2ListPipelinesResponse,
   z.ZodTypeDef,
@@ -148,12 +70,14 @@ export const V2ListPipelinesResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  object: z.lazy(() => V2ListPipelinesResponseBody$inboundSchema).optional(),
+  V2PipelinesCursorResponse: ledger.V2PipelinesCursorResponse$inboundSchema
+    .optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
+    "V2PipelinesCursorResponse": "v2PipelinesCursorResponse",
   });
 });
 

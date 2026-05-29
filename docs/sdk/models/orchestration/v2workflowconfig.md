@@ -1,0 +1,29 @@
+# V2WorkflowConfig
+
+## Example Usage
+
+```typescript
+import { V2WorkflowConfig } from "@formance/formance-sdk/sdk/models/orchestration";
+
+let value: V2WorkflowConfig = {
+  stages: [
+    {
+      "key": "<value>",
+    },
+    {
+      "key": "<value>",
+    },
+    {
+      "key": "<value>",
+      "key1": "<value>",
+    },
+  ],
+};
+```
+
+## Fields
+
+| Field                   | Type                    | Required                | Description             |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| `name`                  | *string*                | :heavy_minus_sign:      | N/A                     |
+| `stages`                | Record<string, *any*>[] | :heavy_check_mark:      | N/A                     |

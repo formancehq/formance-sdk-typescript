@@ -7,14 +7,18 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2RevertTransactionServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2RevertTransactionRequest = {
   /**
    * Use an idempotency key
    */
   idempotencyKey?: string | undefined;
-  v2RevertTransactionRequest?: shared.V2RevertTransactionRequest | undefined;
+  v2RevertTransactionRequest?: ledger.V2RevertTransactionRequest | undefined;
   /**
    * Revert transaction at effective date of the original tx
    */
@@ -58,14 +62,14 @@ export type V2RevertTransactionResponse = {
   /**
    * OK
    */
-  v2RevertTransactionResponse?: shared.V2RevertTransactionResponse | undefined;
+  v2CreateTransactionResponse?: ledger.V2CreateTransactionResponse | undefined;
 };
 
 /** @internal */
 export type V2RevertTransactionRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
   V2RevertTransactionRequest?:
-    | shared.V2RevertTransactionRequest$Outbound
+    | ledger.V2RevertTransactionRequest$Outbound
     | undefined;
   atEffectiveDate?: boolean | undefined;
   dryRun?: boolean | undefined;
@@ -82,7 +86,7 @@ export const V2RevertTransactionRequest$outboundSchema: z.ZodType<
   V2RevertTransactionRequest
 > = z.object({
   idempotencyKey: z.string().optional(),
-  v2RevertTransactionRequest: shared.V2RevertTransactionRequest$outboundSchema
+  v2RevertTransactionRequest: ledger.V2RevertTransactionRequest$outboundSchema
     .optional(),
   atEffectiveDate: z.boolean().optional(),
   dryRun: z.boolean().optional(),
@@ -115,7 +119,7 @@ export const V2RevertTransactionResponse$inboundSchema: z.ZodType<
   Headers: z.record(z.array(z.string())).default({}),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  V2RevertTransactionResponse: shared.V2RevertTransactionResponse$inboundSchema
+  V2CreateTransactionResponse: ledger.V2CreateTransactionResponse$inboundSchema
     .optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -123,7 +127,7 @@ export const V2RevertTransactionResponse$inboundSchema: z.ZodType<
     "Headers": "headers",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "V2RevertTransactionResponse": "v2RevertTransactionResponse",
+    "V2CreateTransactionResponse": "v2CreateTransactionResponse",
   });
 });
 

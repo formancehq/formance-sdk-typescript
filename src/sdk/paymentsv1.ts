@@ -13,6 +13,7 @@ import { paymentsV1DeletePool } from "../funcs/paymentsV1DeletePool.js";
 import { paymentsV1DeleteTransferInitiation } from "../funcs/paymentsV1DeleteTransferInitiation.js";
 import { paymentsV1ForwardBankAccount } from "../funcs/paymentsV1ForwardBankAccount.js";
 import { paymentsV1GetAccountBalances } from "../funcs/paymentsV1GetAccountBalances.js";
+import { paymentsV1GetAccountPayments } from "../funcs/paymentsV1GetAccountPayments.js";
 import { paymentsV1GetBankAccount } from "../funcs/paymentsV1GetBankAccount.js";
 import { paymentsV1GetConnectorTask } from "../funcs/paymentsV1GetConnectorTask.js";
 import { paymentsV1GetConnectorTaskV1 } from "../funcs/paymentsV1GetConnectorTaskV1.js";
@@ -20,8 +21,10 @@ import { paymentsV1GetPayment } from "../funcs/paymentsV1GetPayment.js";
 import { paymentsV1GetPool } from "../funcs/paymentsV1GetPool.js";
 import { paymentsV1GetPoolBalances } from "../funcs/paymentsV1GetPoolBalances.js";
 import { paymentsV1GetPoolBalancesLatest } from "../funcs/paymentsV1GetPoolBalancesLatest.js";
+import { paymentsV1GetServerInfoPayments } from "../funcs/paymentsV1GetServerInfoPayments.js";
 import { paymentsV1GetTransferInitiation } from "../funcs/paymentsV1GetTransferInitiation.js";
 import { paymentsV1InstallConnector } from "../funcs/paymentsV1InstallConnector.js";
+import { paymentsV1ListAccountsPayments } from "../funcs/paymentsV1ListAccountsPayments.js";
 import { paymentsV1ListAllConnectors } from "../funcs/paymentsV1ListAllConnectors.js";
 import { paymentsV1ListBankAccounts } from "../funcs/paymentsV1ListBankAccounts.js";
 import { paymentsV1ListConfigsAvailableConnectors } from "../funcs/paymentsV1ListConfigsAvailableConnectors.js";
@@ -30,9 +33,6 @@ import { paymentsV1ListConnectorTasksV1 } from "../funcs/paymentsV1ListConnector
 import { paymentsV1ListPayments } from "../funcs/paymentsV1ListPayments.js";
 import { paymentsV1ListPools } from "../funcs/paymentsV1ListPools.js";
 import { paymentsV1ListTransferInitiations } from "../funcs/paymentsV1ListTransferInitiations.js";
-import { paymentsV1PaymentsgetAccount } from "../funcs/paymentsV1PaymentsgetAccount.js";
-import { paymentsV1PaymentsgetServerInfo } from "../funcs/paymentsV1PaymentsgetServerInfo.js";
-import { paymentsV1PaymentslistAccounts } from "../funcs/paymentsV1PaymentslistAccounts.js";
 import { paymentsV1ReadConnectorConfig } from "../funcs/paymentsV1ReadConnectorConfig.js";
 import { paymentsV1ReadConnectorConfigV1 } from "../funcs/paymentsV1ReadConnectorConfigV1.js";
 import { paymentsV1RemoveAccountFromPool } from "../funcs/paymentsV1RemoveAccountFromPool.js";
@@ -49,7 +49,7 @@ import { paymentsV1UpdatePoolQuery } from "../funcs/paymentsV1UpdatePoolQuery.js
 import { paymentsV1UpdateTransferInitiationStatus } from "../funcs/paymentsV1UpdateTransferInitiationStatus.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "./models/operations/index.js";
-import * as shared from "./models/shared/index.js";
+import * as payments from "./models/payments/index.js";
 import { unwrapAsync } from "./types/fp.js";
 
 export class PaymentsV1 extends ClientSDK {
@@ -94,7 +94,7 @@ export class PaymentsV1 extends ClientSDK {
    * Create an account
    */
   async createAccount(
-    request: shared.AccountRequest,
+    request: payments.AccountRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateAccountResponse> {
     return unwrapAsync(paymentsV1CreateAccount(
@@ -111,7 +111,7 @@ export class PaymentsV1 extends ClientSDK {
    * Create a bank account in Payments and on the PSP.
    */
   async createBankAccount(
-    request: shared.BankAccountRequest,
+    request: payments.BankAccountRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateBankAccountResponse> {
     return unwrapAsync(paymentsV1CreateBankAccount(
@@ -128,7 +128,7 @@ export class PaymentsV1 extends ClientSDK {
    * Create a payment
    */
   async createPayment(
-    request: shared.PaymentRequest,
+    request: payments.PaymentRequest,
     options?: RequestOptions,
   ): Promise<operations.CreatePaymentResponse> {
     return unwrapAsync(paymentsV1CreatePayment(
@@ -145,7 +145,7 @@ export class PaymentsV1 extends ClientSDK {
    * Create a Pool
    */
   async createPool(
-    request: shared.PoolRequest,
+    request: payments.PoolRequest,
     options?: RequestOptions,
   ): Promise<operations.CreatePoolResponse> {
     return unwrapAsync(paymentsV1CreatePool(
@@ -162,7 +162,7 @@ export class PaymentsV1 extends ClientSDK {
    * Create a transfer initiation
    */
   async createTransferInitiation(
-    request: shared.TransferInitiationRequest,
+    request: payments.TransferInitiationRequest,
     options?: RequestOptions,
   ): Promise<operations.CreateTransferInitiationResponse> {
     return unwrapAsync(paymentsV1CreateTransferInitiation(
@@ -228,6 +228,20 @@ export class PaymentsV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GetAccountBalancesResponse> {
     return unwrapAsync(paymentsV1GetAccountBalances(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get an account
+   */
+  async getAccountPayments(
+    request: operations.GetAccountPaymentsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetAccountPaymentsResponse> {
+    return unwrapAsync(paymentsV1GetAccountPayments(
       this,
       request,
       options,
@@ -341,6 +355,18 @@ export class PaymentsV1 extends ClientSDK {
   }
 
   /**
+   * Get server info
+   */
+  async getServerInfoPayments(
+    options?: RequestOptions,
+  ): Promise<operations.GetServerInfoPaymentsResponse> {
+    return unwrapAsync(paymentsV1GetServerInfoPayments(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * Get a transfer initiation
    */
   async getTransferInitiation(
@@ -365,6 +391,20 @@ export class PaymentsV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.InstallConnectorResponse> {
     return unwrapAsync(paymentsV1InstallConnector(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List accounts
+   */
+  async listAccountsPayments(
+    request: operations.ListAccountsPaymentsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ListAccountsPaymentsResponse> {
+    return unwrapAsync(paymentsV1ListAccountsPayments(
       this,
       request,
       options,
@@ -490,46 +530,6 @@ export class PaymentsV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.ListTransferInitiationsResponse> {
     return unwrapAsync(paymentsV1ListTransferInitiations(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get an account
-   */
-  async paymentsgetAccount(
-    request: operations.PaymentsgetAccountRequest,
-    options?: RequestOptions,
-  ): Promise<operations.PaymentsgetAccountResponse> {
-    return unwrapAsync(paymentsV1PaymentsgetAccount(
-      this,
-      request,
-      options,
-    ));
-  }
-
-  /**
-   * Get server info
-   */
-  async paymentsgetServerInfo(
-    options?: RequestOptions,
-  ): Promise<operations.PaymentsgetServerInfoResponse> {
-    return unwrapAsync(paymentsV1PaymentsgetServerInfo(
-      this,
-      options,
-    ));
-  }
-
-  /**
-   * List accounts
-   */
-  async paymentslistAccounts(
-    request: operations.PaymentslistAccountsRequest,
-    options?: RequestOptions,
-  ): Promise<operations.PaymentslistAccountsResponse> {
-    return unwrapAsync(paymentsV1PaymentslistAccounts(
       this,
       request,
       options,

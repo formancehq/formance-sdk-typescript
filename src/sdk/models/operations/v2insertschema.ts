@@ -7,14 +7,18 @@ import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import * as shared from "../shared/index.js";
+import * as ledger from "../ledger/index.js";
+
+export const V2InsertSchemaServerList = [
+  "http://localhost:8080/",
+] as const;
 
 export type V2InsertSchemaRequest = {
   /**
    * Use an idempotency key
    */
   idempotencyKey?: string | undefined;
-  v2SchemaData: shared.V2SchemaData;
+  v2SchemaData: ledger.V2SchemaData2;
   /**
    * Name of the ledger.
    */
@@ -44,7 +48,7 @@ export type V2InsertSchemaResponse = {
 /** @internal */
 export type V2InsertSchemaRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
-  V2SchemaData: shared.V2SchemaData$Outbound;
+  V2SchemaData: ledger.V2SchemaData2$Outbound;
   ledger: string;
   version: string;
 };
@@ -56,7 +60,7 @@ export const V2InsertSchemaRequest$outboundSchema: z.ZodType<
   V2InsertSchemaRequest
 > = z.object({
   idempotencyKey: z.string().optional(),
-  v2SchemaData: shared.V2SchemaData$outboundSchema,
+  v2SchemaData: ledger.V2SchemaData2$outboundSchema,
   ledger: z.string(),
   version: z.string(),
 }).transform((v) => {

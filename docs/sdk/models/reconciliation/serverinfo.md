@@ -1,0 +1,19 @@
+# ServerInfo
+
+Server information
+
+## Example Usage
+
+```typescript
+import { ServerInfo } from "@formance/formance-sdk/sdk/models/reconciliation";
+
+let value: ServerInfo = {
+  version: "<value>",
+};
+```
+
+## Fields
+
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `version`          | *string*           | :heavy_check_mark: | N/A                |
