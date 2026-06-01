@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const GetServerInfoAuthServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetServerInfoAuthResponse = {
   /**
    * HTTP response content type for this operation

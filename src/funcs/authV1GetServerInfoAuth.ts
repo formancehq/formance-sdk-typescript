@@ -19,7 +19,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { GetServerInfoAuthServerList } from "../sdk/models/operations/getserverinfoauth.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -70,11 +69,6 @@ async function $do(
     APICall,
   ]
 > {
-  const baseURL = options?.serverURL
-    || pathToFunc(GetServerInfoAuthServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const path = pathToFunc("/api/auth/_info")();
 
   const headers = new Headers(compactMap({
@@ -86,7 +80,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getServerInfo_auth",
     oAuth2Scopes: ["auth:read"],
 
@@ -102,7 +96,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     userAgent: client._options.userAgent,

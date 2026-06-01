@@ -28,7 +28,6 @@ import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as ledger from "../sdk/models/ledger/index.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { V2CountAccountsServerList } from "../sdk/models/operations/v2countaccounts.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -94,9 +93,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(V2CountAccountsServerList[0], { charEncoding: "percent" })();
-
   const pathParams = {
     ledger: encodeSimple("ledger", payload.ledger, {
       explode: false,
@@ -123,7 +119,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2CountAccounts",
     oAuth2Scopes: ["ledger:read"],
 
@@ -139,7 +135,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "HEAD",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,

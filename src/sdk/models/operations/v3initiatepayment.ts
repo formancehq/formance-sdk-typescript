@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as payments from "../payments/index.js";
 
-export const V3InitiatePaymentServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type V3InitiatePaymentRequest = {
   v3InitiatePaymentRequest?: payments.V3InitiatePaymentRequest | undefined;
   /**

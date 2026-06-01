@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as payments from "../payments/index.js";
 
-export const CreateAccountServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type CreateAccountResponse = {
   /**
    * OK

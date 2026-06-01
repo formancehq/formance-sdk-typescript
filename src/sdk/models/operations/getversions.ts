@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as gateway from "../gateway/index.js";
 
-export const GetVersionsServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetVersionsResponse = {
   /**
    * HTTP response content type for this operation

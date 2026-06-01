@@ -22,7 +22,6 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { V3UninstallConnectorServerList } from "../sdk/models/operations/v3uninstallconnector.js";
 import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -90,11 +89,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(V3UninstallConnectorServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const pathParams = {
     connectorID: encodeSimple("connectorID", payload.connectorID, {
       explode: false,
@@ -114,7 +108,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3UninstallConnector",
     oAuth2Scopes: ["payments:write"],
 
@@ -130,7 +124,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

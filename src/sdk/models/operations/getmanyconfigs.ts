@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as webhooks from "../webhooks/index.js";
 
-export const GetManyConfigsServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetManyConfigsRequest = {
   /**
    * Optional filter by endpoint URL

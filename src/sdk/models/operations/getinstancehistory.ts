@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as orchestration from "../orchestration/index.js";
 
-export const GetInstanceHistoryServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetInstanceHistoryRequest = {
   /**
    * The instance id

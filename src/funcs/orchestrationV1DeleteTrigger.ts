@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { DeleteTriggerServerList } from "../sdk/models/operations/deletetrigger.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as orchestration from "../sdk/models/orchestration/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -92,9 +91,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(DeleteTriggerServerList[0], { charEncoding: "percent" })();
-
   const pathParams = {
     triggerID: encodeSimple("triggerID", payload.triggerID, {
       explode: false,
@@ -114,7 +110,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "deleteTrigger",
     oAuth2Scopes: ["orchestration:write"],
 
@@ -130,7 +126,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

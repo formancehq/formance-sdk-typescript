@@ -22,7 +22,6 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { SearchServerList } from "../sdk/models/operations/search.js";
 import * as search from "../sdk/models/search/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -92,9 +91,6 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(SearchServerList[0], { charEncoding: "percent" })();
-
   const path = pathToFunc("/api/search/")();
 
   const headers = new Headers(compactMap({
@@ -107,7 +103,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "search",
     oAuth2Scopes: ["search:write"],
 
@@ -123,7 +119,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as payments from "../payments/index.js";
 
-export const V3ListOrdersServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type V3ListOrdersRequest = {
   /**
    * Parameter used in pagination requests. Set to the value of next for the next page of results. Set to the value of previous for the previous page of results. No other parameters can be set when this parameter is set.

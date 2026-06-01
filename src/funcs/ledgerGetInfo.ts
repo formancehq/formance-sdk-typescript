@@ -21,7 +21,6 @@ import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as ledger from "../sdk/models/ledger/index.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { V2GetInfoServerList } from "../sdk/models/operations/v2getinfo.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -73,9 +72,6 @@ async function $do(
     APICall,
   ]
 > {
-  const baseURL = options?.serverURL
-    || pathToFunc(V2GetInfoServerList[0], { charEncoding: "percent" })();
-
   const path = pathToFunc("/api/ledger/_/info")();
 
   const headers = new Headers(compactMap({
@@ -87,7 +83,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2GetInfo",
     oAuth2Scopes: ["ledger:read"],
 
@@ -103,7 +99,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     userAgent: client._options.userAgent,

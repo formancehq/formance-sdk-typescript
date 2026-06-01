@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
-export const GetBalancesServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetBalancesRequest = {
   /**
    * Filter balances involving given account, either as source or destination.

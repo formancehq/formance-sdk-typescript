@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as wallets from "../wallets/index.js";
 
-export const GetWalletSummaryServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetWalletSummaryRequest = {
   id: string;
 };

@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
-export const GetAccountLedgerServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetAccountLedgerRequest = {
   /**
    * Exact address of the account. It must match the following regular expressions pattern:

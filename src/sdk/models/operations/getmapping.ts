@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
-export const GetMappingServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetMappingRequest = {
   /**
    * Name of the ledger.

@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as search from "../search/index.js";
 
-export const GetServerInfoSearchServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetServerInfoSearchResponse = {
   /**
    * HTTP response content type for this operation

@@ -22,7 +22,6 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { UpdatePoolQueryServerList } from "../sdk/models/operations/updatepoolquery.js";
 import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -91,9 +90,6 @@ async function $do(
     explode: true,
   });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(UpdatePoolQueryServerList[0], { charEncoding: "percent" })();
-
   const pathParams = {
     poolId: encodeSimple("poolId", payload.poolId, {
       explode: false,
@@ -112,7 +108,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "updatePoolQuery",
     oAuth2Scopes: ["payments:write"],
 
@@ -128,7 +124,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "PATCH",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

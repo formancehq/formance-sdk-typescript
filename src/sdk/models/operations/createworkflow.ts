@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as orchestration from "../orchestration/index.js";
 
-export const CreateWorkflowServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type CreateWorkflowResponse = {
   /**
    * HTTP response content type for this operation
