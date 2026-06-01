@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { CreatePolicyServerList } from "../sdk/models/operations/createpolicy.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as reconciliation from "../sdk/models/reconciliation/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -92,9 +91,6 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload, { explode: true });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(CreatePolicyServerList[0], { charEncoding: "percent" })();
-
   const path = pathToFunc("/api/reconciliation/policies")();
 
   const headers = new Headers(compactMap({
@@ -107,7 +103,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createPolicy",
     oAuth2Scopes: ["reconciliation:write"],
 
@@ -123,7 +119,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

@@ -12,10 +12,6 @@ import {
   V2PipelineConfiguration$inboundSchema,
 } from "./v2pipelineconfiguration.js";
 
-export const V2GetPipelineStateServerList = [
-  "http://localhost:8080/",
-] as const;
-
 /**
  * Pipeline information
  */

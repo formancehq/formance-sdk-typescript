@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as reconciliation from "../reconciliation/index.js";
 
-export const ReconcileServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type ReconcileRequest = {
   reconciliationRequest: reconciliation.ReconciliationRequest;
   /**

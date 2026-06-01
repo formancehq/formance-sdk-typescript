@@ -12,10 +12,6 @@ import {
   V2ExporterConfiguration1$inboundSchema,
 } from "./v2exporterconfiguration1.js";
 
-export const V2GetExporterStateServerList = [
-  "http://localhost:8080/",
-] as const;
-
 /**
  * Exporter information
  */

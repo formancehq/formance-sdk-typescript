@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
-export const ListAccountsLedgerServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type ListAccountsLedgerRequest = {
   /**
    * Filter accounts by address pattern (regular expression placed between ^ and $).

@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { GetManyConfigsServerList } from "../sdk/models/operations/getmanyconfigs.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as webhooks from "../sdk/models/webhooks/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -92,9 +91,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(GetManyConfigsServerList[0], { charEncoding: "percent" })();
-
   const path = pathToFunc("/api/webhooks/configs")();
 
   const query = encodeFormQuery({
@@ -111,7 +107,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getManyConfigs",
     oAuth2Scopes: ["webhooks:read"],
 
@@ -127,7 +123,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,

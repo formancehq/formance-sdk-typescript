@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const ReadUserServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type ReadUserRequest = {
   /**
    * User ID

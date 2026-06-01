@@ -22,7 +22,6 @@ import { ResponseValidationError } from "../sdk/models/errors/responsevalidation
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { V3ListPaymentServiceUsersServerList } from "../sdk/models/operations/v3listpaymentserviceusers.js";
 import * as payments from "../sdk/models/payments/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -90,11 +89,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(V3ListPaymentServiceUsersServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const path = pathToFunc("/api/payments/v3/payment-service-users")();
 
   const query = encodeFormQuery({
@@ -111,7 +105,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v3ListPaymentServiceUsers",
     oAuth2Scopes: ["payments:read"],
 
@@ -127,7 +121,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     query: query,

@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
-export const V2GetBalancesAggregatedServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type V2GetBalancesAggregatedRequest = {
   /**
    * Name of the ledger.

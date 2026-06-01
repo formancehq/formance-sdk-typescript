@@ -8,10 +8,6 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export const V2ImportLogsServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type V2ImportLogsRequest = {
   v2ImportLogsRequest:
     | ReadableStream<Uint8Array>

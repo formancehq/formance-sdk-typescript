@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as webhooks from "../webhooks/index.js";
 
-export const InsertConfigServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type InsertConfigResponse = {
   /**
    * Config created successfully.

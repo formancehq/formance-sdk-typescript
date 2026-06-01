@@ -23,7 +23,6 @@ import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
 import * as ledger from "../sdk/models/ledger/index.js";
 import * as operations from "../sdk/models/operations/index.js";
-import { V2DeleteLedgerMetadataServerList } from "../sdk/models/operations/v2deleteledgermetadata.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
 
@@ -90,11 +89,6 @@ async function $do(
   const payload = parsed.value;
   const body = null;
 
-  const baseURL = options?.serverURL
-    || pathToFunc(V2DeleteLedgerMetadataServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const pathParams = {
     key: encodeSimple("key", payload.key, {
       explode: false,
@@ -116,7 +110,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "v2DeleteLedgerMetadata",
     oAuth2Scopes: ["ledger:write"],
 
@@ -132,7 +126,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "DELETE",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

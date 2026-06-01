@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { ChangeConfigSecretServerList } from "../sdk/models/operations/changeconfigsecret.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as webhooks from "../sdk/models/webhooks/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -97,11 +96,6 @@ async function $do(
     explode: true,
   });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(ChangeConfigSecretServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const pathParams = {
     id: encodeSimple("id", payload.id, {
       explode: false,
@@ -122,7 +116,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "changeConfigSecret",
     oAuth2Scopes: ["webhooks:write"],
 
@@ -138,7 +132,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "PUT",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

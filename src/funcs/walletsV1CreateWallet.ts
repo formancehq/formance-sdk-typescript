@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { CreateWalletServerList } from "../sdk/models/operations/createwallet.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as wallets from "../sdk/models/wallets/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -91,9 +90,6 @@ async function $do(
     explode: true,
   });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(CreateWalletServerList[0], { charEncoding: "percent" })();
-
   const path = pathToFunc("/api/wallets/wallets")();
 
   const headers = new Headers(compactMap({
@@ -111,7 +107,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createWallet",
     oAuth2Scopes: ["wallets:write"],
 
@@ -127,7 +123,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as webhooks from "../webhooks/index.js";
 
-export const UpdateConfigServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type UpdateConfigRequest = {
   configUser: webhooks.ConfigUser;
   /**

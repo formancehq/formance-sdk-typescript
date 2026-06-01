@@ -19,7 +19,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { GetServerInfoWalletsServerList } from "../sdk/models/operations/getserverinfowallets.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as wallets from "../sdk/models/wallets/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -73,11 +72,6 @@ async function $do(
     APICall,
   ]
 > {
-  const baseURL = options?.serverURL
-    || pathToFunc(GetServerInfoWalletsServerList[0], {
-      charEncoding: "percent",
-    })();
-
   const path = pathToFunc("/api/wallets/_info")();
 
   const headers = new Headers(compactMap({
@@ -89,7 +83,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "getServerInfo_wallets",
     oAuth2Scopes: ["wallets:read"],
 
@@ -105,7 +99,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "GET",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     userAgent: client._options.userAgent,

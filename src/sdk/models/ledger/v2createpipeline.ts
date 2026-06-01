@@ -12,10 +12,6 @@ import {
   V2PipelineConfiguration$inboundSchema,
 } from "./v2pipelineconfiguration.js";
 
-export const V2CreatePipelineServerList = [
-  "http://localhost:8080/",
-] as const;
-
 /**
  * Created ipeline
  */

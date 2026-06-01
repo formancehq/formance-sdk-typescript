@@ -9,10 +9,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as payments from "../payments/index.js";
 
-export const GetConnectorTaskServerList = [
-  "http://localhost:8080/",
-] as const;
-
 export type GetConnectorTaskRequest = {
   /**
    * The name of the connector.

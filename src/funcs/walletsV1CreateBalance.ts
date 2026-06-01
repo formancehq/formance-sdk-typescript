@@ -21,7 +21,6 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
-import { CreateBalanceServerList } from "../sdk/models/operations/createbalance.js";
 import * as operations from "../sdk/models/operations/index.js";
 import * as wallets from "../sdk/models/wallets/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
@@ -89,9 +88,6 @@ async function $do(
   const payload = parsed.value;
   const body = encodeJSON("body", payload.Balance, { explode: true });
 
-  const baseURL = options?.serverURL
-    || pathToFunc(CreateBalanceServerList[0], { charEncoding: "percent" })();
-
   const pathParams = {
     id: encodeSimple("id", payload.id, {
       explode: false,
@@ -115,7 +111,7 @@ async function $do(
 
   const context = {
     options: client._options,
-    baseURL: baseURL ?? "",
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "createBalance",
     oAuth2Scopes: ["wallets:write"],
 
@@ -131,7 +127,7 @@ async function $do(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
-    baseURL: baseURL,
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,
