@@ -7,7 +7,7 @@ import { CreateTransferInitiationResponse } from "@formance/formance-sdk/sdk/mod
 
 let value: CreateTransferInitiationResponse = {
   contentType: "<value>",
-  statusCode: 45205,
+  statusCode: 704408,
 };
 ```
 

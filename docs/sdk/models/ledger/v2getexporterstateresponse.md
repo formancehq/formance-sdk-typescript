@@ -8,7 +8,7 @@ Exporter information
 import { V2GetExporterStateResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2GetExporterStateResponse = {
-  v2ExporterConfiguration: {
+  data: {
     config: {},
     createdAt: new Date("2025-02-25T08:59:13.237Z"),
     driver: "<value>",
@@ -19,6 +19,6 @@ let value: V2GetExporterStateResponse = {
 
 ## Fields
 
-| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `v2ExporterConfiguration`                                                                 | [ledger.V2ExporterConfiguration1](../../../sdk/models/ledger/v2exporterconfiguration1.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `data`                                                        | [ledger.V2Exporter](../../../sdk/models/ledger/v2exporter.md) | :heavy_check_mark:                                            | N/A                                                           |

@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { BankAccount, BankAccount$inboundSchema } from "./bankaccount.js";
 
-export type BankAccountsCursorCursorBase = {
+export type BankAccountsCursorCursor = {
   data: Array<BankAccount>;
   hasMore: boolean;
   next?: string | undefined;
@@ -21,12 +20,12 @@ export type BankAccountsCursorCursorBase = {
  * OK
  */
 export type BankAccountsCursor = {
-  cursorBase: BankAccountsCursorCursorBase;
+  cursor: BankAccountsCursorCursor;
 };
 
 /** @internal */
-export const BankAccountsCursorCursorBase$inboundSchema: z.ZodType<
-  BankAccountsCursorCursorBase,
+export const BankAccountsCursorCursor$inboundSchema: z.ZodType<
+  BankAccountsCursorCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -37,13 +36,13 @@ export const BankAccountsCursorCursorBase$inboundSchema: z.ZodType<
   previous: z.string().optional(),
 });
 
-export function bankAccountsCursorCursorBaseFromJSON(
+export function bankAccountsCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<BankAccountsCursorCursorBase, SDKValidationError> {
+): SafeParseResult<BankAccountsCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => BankAccountsCursorCursorBase$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BankAccountsCursorCursorBase' from JSON`,
+    (x) => BankAccountsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BankAccountsCursorCursor' from JSON`,
   );
 }
 
@@ -53,11 +52,7 @@ export const BankAccountsCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => BankAccountsCursorCursorBase$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "cursorBase",
-  });
+  cursor: z.lazy(() => BankAccountsCursorCursor$inboundSchema),
 });
 
 export function bankAccountsCursorFromJSON(

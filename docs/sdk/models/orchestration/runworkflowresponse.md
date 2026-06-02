@@ -6,7 +6,7 @@
 import { RunWorkflowResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: RunWorkflowResponse = {
-  workflowInstance: {
+  data: {
     createdAt: new Date("2025-08-22T11:34:21.782Z"),
     id: "<id>",
     terminated: false,
@@ -20,4 +20,4 @@ let value: RunWorkflowResponse = {
 
 | Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `workflowInstance`                                                                      | [orchestration.WorkflowInstance](../../../sdk/models/orchestration/workflowinstance.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |
+| `data`                                                                                  | [orchestration.WorkflowInstance](../../../sdk/models/orchestration/workflowinstance.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |

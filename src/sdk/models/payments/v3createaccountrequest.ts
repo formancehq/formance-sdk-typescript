@@ -3,31 +3,30 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   V3AccountTypeEnum,
   V3AccountTypeEnum$outboundSchema,
 } from "./v3accounttypeenum.js";
 
 export type V3CreateAccountRequest = {
-  v3AccountTypeEnum: V3AccountTypeEnum;
-  v3Metadata?: { [k: string]: string } | null | undefined;
   accountName: string;
   connectorID: string;
   createdAt: Date;
   defaultAsset?: string | null | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
+  type: V3AccountTypeEnum;
 };
 
 /** @internal */
 export type V3CreateAccountRequest$Outbound = {
-  type: string;
-  metadata?: { [k: string]: string } | null | undefined;
   accountName: string;
   connectorID: string;
   createdAt: string;
   defaultAsset?: string | null | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
+  type: string;
 };
 
 /** @internal */
@@ -36,18 +35,13 @@ export const V3CreateAccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3CreateAccountRequest
 > = z.object({
-  v3AccountTypeEnum: V3AccountTypeEnum$outboundSchema,
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
   accountName: z.string(),
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   defaultAsset: z.nullable(z.string()).optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    v3AccountTypeEnum: "type",
-    v3Metadata: "metadata",
-  });
+  type: V3AccountTypeEnum$outboundSchema,
 });
 
 export function v3CreateAccountRequestToJSON(

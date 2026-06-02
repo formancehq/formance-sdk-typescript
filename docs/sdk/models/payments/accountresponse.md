@@ -8,21 +8,17 @@ OK
 import { AccountResponse, AccountType } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: AccountResponse = {
-  account: {
-    accountMetadata: {
-      "key": "<value>",
-      "key1": "<value>",
-      "key2": "<value>",
-    },
-    accountType: AccountType.Unknown,
+  data: {
     accountName: "<value>",
     connectorID: "<id>",
-    createdAt: new Date("2025-05-01T23:37:37.511Z"),
+    createdAt: new Date("2025-08-25T20:14:14.116Z"),
     defaultAsset: "<value>",
     defaultCurrency: "<value>",
     id: "<id>",
+    metadata: {},
     raw: {},
     reference: "<value>",
+    type: AccountType.External,
   },
 };
 ```
@@ -31,4 +27,4 @@ let value: AccountResponse = {
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `account`                                                   | [payments.Account](../../../sdk/models/payments/account.md) | :heavy_check_mark:                                          | N/A                                                         |
+| `data`                                                      | [payments.Account](../../../sdk/models/payments/account.md) | :heavy_check_mark:                                          | N/A                                                         |

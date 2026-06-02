@@ -3,28 +3,27 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { AccountType, AccountType$outboundSchema } from "./accounttype.js";
 
 export type AccountRequest = {
-  accountMetadata?: { [k: string]: string } | null | undefined;
-  accountType: AccountType;
   accountName?: string | undefined;
   connectorID: string;
   createdAt: Date;
   defaultAsset?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
+  type: AccountType;
 };
 
 /** @internal */
 export type AccountRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
-  type: string;
   accountName?: string | undefined;
   connectorID: string;
   createdAt: string;
   defaultAsset?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
+  type: string;
 };
 
 /** @internal */
@@ -33,18 +32,13 @@ export const AccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   AccountRequest
 > = z.object({
-  accountMetadata: z.nullable(z.record(z.string())).optional(),
-  accountType: AccountType$outboundSchema,
   accountName: z.string().optional(),
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   defaultAsset: z.string().optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    accountMetadata: "metadata",
-    accountType: "type",
-  });
+  type: AccountType$outboundSchema,
 });
 
 export function accountRequestToJSON(accountRequest: AccountRequest): string {

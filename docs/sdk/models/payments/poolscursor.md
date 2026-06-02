@@ -8,7 +8,7 @@ OK
 import { PoolsCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PoolsCursor = {
-  cursorBase: {
+  cursor: {
     data: [],
     hasMore: false,
     next: "",
@@ -20,6 +20,6 @@ let value: PoolsCursor = {
 
 ## Fields
 
-| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `cursorBase`                                                                            | [payments.PoolsCursorCursorBase](../../../sdk/models/payments/poolscursorcursorbase.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `cursor`                                                                        | [payments.PoolsCursorCursor](../../../sdk/models/payments/poolscursorcursor.md) | :heavy_check_mark:                                                              | N/A                                                                             |

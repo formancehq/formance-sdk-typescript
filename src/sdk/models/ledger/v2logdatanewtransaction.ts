@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,13 +16,13 @@ import {
  */
 export type V2LogDataNewTransaction = {
   /**
-   * Transaction structure as it appears in log payloads
-   */
-  v2LogTransaction: V2LogTransaction;
-  /**
    * Metadata applied to accounts involved in the transaction
    */
   accountMetadata: { [k: string]: { [k: string]: string } };
+  /**
+   * Transaction structure as it appears in log payloads
+   */
+  transaction: V2LogTransaction;
 };
 
 /** @internal */
@@ -32,12 +31,8 @@ export const V2LogDataNewTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  transaction: V2LogTransaction$inboundSchema,
   accountMetadata: z.record(z.record(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    "transaction": "v2LogTransaction",
-  });
+  transaction: V2LogTransaction$inboundSchema,
 });
 
 export function v2LogDataNewTransactionFromJSON(

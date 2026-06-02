@@ -3,13 +3,45 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  TaskBankingCircle,
+  TaskBankingCircle$inboundSchema,
+} from "./taskbankingcircle.js";
+import {
+  TaskCurrencyCloud,
+  TaskCurrencyCloud$inboundSchema,
+} from "./taskcurrencycloud.js";
+import { TaskDummyPay, TaskDummyPay$inboundSchema } from "./taskdummypay.js";
+import { TaskMangoPay, TaskMangoPay$inboundSchema } from "./taskmangopay.js";
+import { TaskModulr, TaskModulr$inboundSchema } from "./taskmodulr.js";
+import { TaskMoneycorp, TaskMoneycorp$inboundSchema } from "./taskmoneycorp.js";
+import { TaskStripe, TaskStripe$inboundSchema } from "./taskstripe.js";
+import { TaskWise, TaskWise$inboundSchema } from "./taskwise.js";
 
-export type TasksCursorCursorBase = {
-  data: Array<any>;
+export type TasksCursorData =
+  | TaskStripe
+  | TaskWise
+  | TaskCurrencyCloud
+  | TaskDummyPay
+  | TaskModulr
+  | TaskBankingCircle
+  | TaskMangoPay
+  | TaskMoneycorp;
+
+export type TasksCursorCursor = {
+  data: Array<
+    | TaskStripe
+    | TaskWise
+    | TaskCurrencyCloud
+    | TaskDummyPay
+    | TaskModulr
+    | TaskBankingCircle
+    | TaskMangoPay
+    | TaskMoneycorp
+  >;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -20,29 +52,66 @@ export type TasksCursorCursorBase = {
  * OK
  */
 export type TasksCursor = {
-  cursorBase: TasksCursorCursorBase;
+  cursor: TasksCursorCursor;
 };
 
 /** @internal */
-export const TasksCursorCursorBase$inboundSchema: z.ZodType<
-  TasksCursorCursorBase,
+export const TasksCursorData$inboundSchema: z.ZodType<
+  TasksCursorData,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  TaskStripe$inboundSchema,
+  TaskWise$inboundSchema,
+  TaskCurrencyCloud$inboundSchema,
+  TaskDummyPay$inboundSchema,
+  TaskModulr$inboundSchema,
+  TaskBankingCircle$inboundSchema,
+  TaskMangoPay$inboundSchema,
+  TaskMoneycorp$inboundSchema,
+]);
+
+export function tasksCursorDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TasksCursorData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TasksCursorData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TasksCursorData' from JSON`,
+  );
+}
+
+/** @internal */
+export const TasksCursorCursor$inboundSchema: z.ZodType<
+  TasksCursorCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(z.any()),
+  data: z.array(
+    z.union([
+      TaskStripe$inboundSchema,
+      TaskWise$inboundSchema,
+      TaskCurrencyCloud$inboundSchema,
+      TaskDummyPay$inboundSchema,
+      TaskModulr$inboundSchema,
+      TaskBankingCircle$inboundSchema,
+      TaskMangoPay$inboundSchema,
+      TaskMoneycorp$inboundSchema,
+    ]),
+  ),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),
   previous: z.string().optional(),
 });
 
-export function tasksCursorCursorBaseFromJSON(
+export function tasksCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<TasksCursorCursorBase, SDKValidationError> {
+): SafeParseResult<TasksCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => TasksCursorCursorBase$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TasksCursorCursorBase' from JSON`,
+    (x) => TasksCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TasksCursorCursor' from JSON`,
   );
 }
 
@@ -52,11 +121,7 @@ export const TasksCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => TasksCursorCursorBase$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "cursorBase",
-  });
+  cursor: z.lazy(() => TasksCursorCursor$inboundSchema),
 });
 
 export function tasksCursorFromJSON(

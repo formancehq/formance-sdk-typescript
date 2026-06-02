@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
 export type V2UpdateExporterRequest = {
-  v2ExporterConfiguration: ledger.V2ExporterConfiguration2;
+  v2ExporterConfiguration: ledger.V2ExporterConfiguration;
   /**
    * The exporter id
    */
@@ -34,7 +34,7 @@ export type V2UpdateExporterResponse = {
 
 /** @internal */
 export type V2UpdateExporterRequest$Outbound = {
-  V2ExporterConfiguration: ledger.V2ExporterConfiguration2$Outbound;
+  V2ExporterConfiguration: ledger.V2ExporterConfiguration$Outbound;
   exporterID: string;
 };
 
@@ -44,7 +44,7 @@ export const V2UpdateExporterRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2UpdateExporterRequest
 > = z.object({
-  v2ExporterConfiguration: ledger.V2ExporterConfiguration2$outboundSchema,
+  v2ExporterConfiguration: ledger.V2ExporterConfiguration$outboundSchema,
   exporterID: z.string(),
 }).transform((v) => {
   return remap$(v, {

@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
 export type V2CreateBulkRequest = {
-  requestBody: Array<any>;
+  requestBody: Array<ledger.V2BulkElement>;
   /**
    * Make bulk atomic
    */
@@ -54,7 +54,7 @@ export type V2CreateBulkResponse = {
 
 /** @internal */
 export type V2CreateBulkRequest$Outbound = {
-  RequestBody: Array<any>;
+  RequestBody: Array<ledger.V2BulkElement$Outbound>;
   atomic?: boolean | undefined;
   continueOnFailure?: boolean | undefined;
   ledger: string;
@@ -68,7 +68,7 @@ export const V2CreateBulkRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateBulkRequest
 > = z.object({
-  requestBody: z.array(z.any()),
+  requestBody: z.array(ledger.V2BulkElement$outboundSchema),
   atomic: z.boolean().optional(),
   continueOnFailure: z.boolean().optional(),
   ledger: z.string(),

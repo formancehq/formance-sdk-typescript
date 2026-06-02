@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -19,7 +18,7 @@ export type V3GetConversionResponse = {
    * Unlike orders, conversions do not carry an adjustment history —
    * Formance records the final state only.
    */
-  v3Conversion: V3Conversion;
+  data: V3Conversion;
 };
 
 /** @internal */
@@ -29,10 +28,6 @@ export const V3GetConversionResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3Conversion$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3Conversion",
-  });
 });
 
 export function v3GetConversionResponseFromJSON(

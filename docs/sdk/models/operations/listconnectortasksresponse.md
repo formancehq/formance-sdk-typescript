@@ -7,7 +7,7 @@ import { ListConnectorTasksResponse } from "@formance/formance-sdk/sdk/models/op
 
 let value: ListConnectorTasksResponse = {
   contentType: "<value>",
-  statusCode: 601643,
+  statusCode: 305503,
 };
 ```
 

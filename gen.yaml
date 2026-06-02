@@ -12,7 +12,7 @@ generation:
     securityFeb2025: false
     sharedErrorComponentsApr2025: false
     sharedNestedComponentsJan2026: false
-    nameOverrideFeb2026: false
+    nameOverrideFeb2026: true
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
@@ -29,7 +29,7 @@ generation:
   comments: {}
   telemetryEnabled: false
 typescript:
-  version: 6.1.0
+  version: 6.1.1
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}

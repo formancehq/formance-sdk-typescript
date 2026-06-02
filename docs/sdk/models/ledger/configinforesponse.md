@@ -6,9 +6,9 @@
 import { ConfigInfoResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: ConfigInfoResponse = {
-  configInfo: {
+  data: {
     config: {
-      ledgerStorage: {
+      storage: {
         driver: "<value>",
         ledgers: [],
       },
@@ -23,4 +23,4 @@ let value: ConfigInfoResponse = {
 
 | Field                                                         | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `configInfo`                                                  | [ledger.ConfigInfo](../../../sdk/models/ledger/configinfo.md) | :heavy_check_mark:                                            | N/A                                                           |
+| `data`                                                        | [ledger.ConfigInfo](../../../sdk/models/ledger/configinfo.md) | :heavy_check_mark:                                            | N/A                                                           |

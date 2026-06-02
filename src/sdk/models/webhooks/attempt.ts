@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./webhooksconfig.js";
 
 export type Attempt = {
-  webhooksConfig: WebhooksConfig;
+  config: WebhooksConfig;
   createdAt: Date;
   id: string;
   nextRetryAfter?: Date | undefined;
@@ -44,10 +43,6 @@ export const Attempt$inboundSchema: z.ZodType<Attempt, z.ZodTypeDef, unknown> =
       new Date(v)
     ),
     webhookID: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "config": "webhooksConfig",
-    });
   });
 
 export function attemptFromJSON(

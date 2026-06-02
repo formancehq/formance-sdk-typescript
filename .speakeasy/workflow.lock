@@ -1,4 +1,4 @@
-speakeasyVersion: 1.768.2
+speakeasyVersion: 1.770.0
 sources:
     stacks-source:
         sourceNamespace: stacks-source
@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:52a585542372908f37d09d16c6cf0a5d37eba0dbe34e348f50d20ea06067b6e5
         sourceBlobDigest: sha256:39314f693539da9f98b2ad1bfbe2ebbc2635e78f2c1efe5fd7c9664c17e661da
         codeSamplesNamespace: stacks-source-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:bf8ffce991c436282657554ab76c3d77e4a35824d1d73c06d2eb9b95eafe08ee
+        codeSamplesRevisionDigest: sha256:d9fc88f31912e31b9a5381eff1a5280a9827fc76fb73d20a4f3f81b76b7e9c83
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

@@ -8,13 +8,12 @@ import { ListWalletsResponseCursor } from "@formance/formance-sdk/sdk/models/orc
 let value: ListWalletsResponseCursor = {
   data: [
     {
-      createdAt: new Date("2025-06-28T01:10:46.423Z"),
-      id: "547d3f30-b54f-4b7e-af88-9d5b3570f784",
+      createdAt: new Date("2025-05-15T15:51:23.548Z"),
+      id: "46d17620-3d0d-44e5-abe5-a712a1d964ef",
       ledger: "<value>",
       metadata: {
         "key": "<value>",
         "key1": "<value>",
-        "key2": "<value>",
       },
       name: "<value>",
     },

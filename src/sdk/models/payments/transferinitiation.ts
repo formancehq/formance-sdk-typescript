@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -26,7 +25,6 @@ export enum TransferInitiationType {
 }
 
 export type TransferInitiation = {
-  transferInitiationStatus: TransferInitiationStatus;
   amount: bigint;
   asset: string;
   connectorID: string;
@@ -43,6 +41,7 @@ export type TransferInitiation = {
   relatedPayments?: Array<TransferInitiationPayments> | null | undefined;
   scheduledAt: Date;
   sourceAccountID: string;
+  status: TransferInitiationStatus;
   type: TransferInitiationType;
 };
 
@@ -57,7 +56,6 @@ export const TransferInitiation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: TransferInitiationStatus$inboundSchema,
   amount: z.number().transform(v => BigInt(v)),
   asset: z.string(),
   connectorID: z.string(),
@@ -78,11 +76,8 @@ export const TransferInitiation$inboundSchema: z.ZodType<
     new Date(v)
   ),
   sourceAccountID: z.string(),
+  status: TransferInitiationStatus$inboundSchema,
   type: TransferInitiationType$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "status": "transferInitiationStatus",
-  });
 });
 
 export function transferInitiationFromJSON(

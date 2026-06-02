@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Mapping, Mapping$inboundSchema } from "./mapping.js";
 
 export type MappingResponse = {
-  mapping?: Mapping | null | undefined;
+  data?: Mapping | null | undefined;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const MappingResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: z.nullable(Mapping$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "mapping",
-  });
 });
 
 export function mappingResponseFromJSON(

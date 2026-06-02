@@ -8,7 +8,7 @@ OK
 import { PoolBalancesResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PoolBalancesResponse = {
-  poolBalances: {
+  data: {
     balances: [],
   },
 };
@@ -18,4 +18,4 @@ let value: PoolBalancesResponse = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `poolBalances`                                                        | [payments.PoolBalances](../../../sdk/models/payments/poolbalances.md) | :heavy_check_mark:                                                    | N/A                                                                   |
+| `data`                                                                | [payments.PoolBalances](../../../sdk/models/payments/poolbalances.md) | :heavy_check_mark:                                                    | N/A                                                                   |

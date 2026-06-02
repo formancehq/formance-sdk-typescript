@@ -6,7 +6,7 @@
 import { ConfigResponse } from "@formance/formance-sdk/sdk/models/webhooks";
 
 let value: ConfigResponse = {
-  webhooksConfig: {
+  data: {
     active: true,
     createdAt: new Date("2024-11-13T13:49:09.341Z"),
     endpoint: "https://example.com",
@@ -25,4 +25,4 @@ let value: ConfigResponse = {
 
 | Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `webhooksConfig`                                                          | [webhooks.WebhooksConfig](../../../sdk/models/webhooks/webhooksconfig.md) | :heavy_check_mark:                                                        | N/A                                                                       |
+| `data`                                                                    | [webhooks.WebhooksConfig](../../../sdk/models/webhooks/webhooksconfig.md) | :heavy_check_mark:                                                        | N/A                                                                       |

@@ -125,7 +125,7 @@ export class LedgerV2 extends ClientSDK {
    * Create exporter
    */
   async createExporter(
-    request: ledger.V2ExporterConfiguration2,
+    request: ledger.V2ExporterConfiguration,
     options?: RequestOptions,
   ): Promise<operations.V2CreateExporterResponse> {
     return unwrapAsync(ledgerV2CreateExporter(

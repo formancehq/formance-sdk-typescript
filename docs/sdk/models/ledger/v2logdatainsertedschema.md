@@ -8,8 +8,8 @@ Payload for INSERTED_SCHEMA log entries. Contains the schema that was inserted i
 import { V2LogDataInsertedSchema } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2LogDataInsertedSchema = {
-  v2SchemaData: {
-    v2ChartOfAccounts: {
+  schema: {
+    chart: {
       "users": {
         additionalProperties: {
           "$userID": {
@@ -18,16 +18,16 @@ let value: V2LogDataInsertedSchema = {
         },
       },
     },
-    v2QueryTemplates: {
+    createdAt: new Date("2023-01-01T00:00:00Z"),
+    queries: {
       "key": {
-        v2QueryParams: {
+        params: {
           cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
           pageSize: 100,
           sort: "id:desc",
         },
       },
     },
-    createdAt: new Date("2023-01-01T00:00:00Z"),
     version: "v1.0.0",
   },
 };
@@ -35,6 +35,6 @@ let value: V2LogDataInsertedSchema = {
 
 ## Fields
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `v2SchemaData`                                                      | [ledger.V2SchemaData1](../../../sdk/models/ledger/v2schemadata1.md) | :heavy_check_mark:                                                  | Complete schema structure with metadata                             |
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `schema`                                                  | [ledger.V2Schema](../../../sdk/models/ledger/v2schema.md) | :heavy_check_mark:                                        | Complete schema structure with metadata                   |

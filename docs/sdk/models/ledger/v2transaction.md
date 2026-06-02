@@ -6,74 +6,42 @@
 import { V2Transaction } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2Transaction = {
-  v2AggregatedVolumes: {
-    "orders:1": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-    "orders:2": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-  },
-  v2AggregatedVolumes1: {
-    "orders:1": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-    "orders:2": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-  },
-  v2AggregatedVolumes2: {
-    "orders:1": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-    "orders:2": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-  },
-  v2AggregatedVolumes3: {
-    "orders:1": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-    "orders:2": {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-  },
-  v2Metadata: {
+  id: 918598n,
+  metadata: {
     "admin": "true",
   },
-  id: 918598n,
+  postCommitEffectiveVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+    "orders:2": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+  },
+  postCommitVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+    "orders:2": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+  },
   postings: [
     {
       amount: 100n,
@@ -82,6 +50,38 @@ let value: V2Transaction = {
       source: "users:001",
     },
   ],
+  preCommitEffectiveVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+    "orders:2": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+  },
+  preCommitVolumes: {
+    "orders:1": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+    "orders:2": {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
+  },
   reference: "ref:001",
   reverted: false,
   timestamp: new Date("2025-04-20T12:45:50.043Z"),
@@ -92,14 +92,14 @@ let value: V2Transaction = {
 
 | Field                                                                                                                                          | Type                                                                                                                                           | Required                                                                                                                                       | Description                                                                                                                                    | Example                                                                                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `v2AggregatedVolumes`                                                                                                                          | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
-| `v2AggregatedVolumes1`                                                                                                                         | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
-| `v2AggregatedVolumes2`                                                                                                                         | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
-| `v2AggregatedVolumes3`                                                                                                                         | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
-| `v2Metadata`                                                                                                                                   | Record<string, *string*>                                                                                                                       | :heavy_check_mark:                                                                                                                             | N/A                                                                                                                                            | {<br/>"admin": "true"<br/>}                                                                                                                    |
 | `id`                                                                                                                                           | *BigInt*                                                                                                                                       | :heavy_check_mark:                                                                                                                             | N/A                                                                                                                                            |                                                                                                                                                |
 | `insertedAt`                                                                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                  | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            |                                                                                                                                                |
+| `metadata`                                                                                                                                     | Record<string, *string*>                                                                                                                       | :heavy_check_mark:                                                                                                                             | N/A                                                                                                                                            | {<br/>"admin": "true"<br/>}                                                                                                                    |
+| `postCommitEffectiveVolumes`                                                                                                                   | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
+| `postCommitVolumes`                                                                                                                            | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
 | `postings`                                                                                                                                     | [ledger.V2Posting](../../../sdk/models/ledger/v2posting.md)[]                                                                                  | :heavy_check_mark:                                                                                                                             | N/A                                                                                                                                            |                                                                                                                                                |
+| `preCommitEffectiveVolumes`                                                                                                                    | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
+| `preCommitVolumes`                                                                                                                             | Record<string, Record<string, [ledger.V2Volume](../../../sdk/models/ledger/v2volume.md)>>                                                      | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | {<br/>"orders:1": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>},<br/>"orders:2": {<br/>"USD": {<br/>"input": 100,<br/>"output": 10,<br/>"balance": 90<br/>}<br/>}<br/>} |
 | `reference`                                                                                                                                    | *string*                                                                                                                                       | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            | ref:001                                                                                                                                        |
 | `reverted`                                                                                                                                     | *boolean*                                                                                                                                      | :heavy_check_mark:                                                                                                                             | N/A                                                                                                                                            |                                                                                                                                                |
 | `revertedAt`                                                                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                                  | :heavy_minus_sign:                                                                                                                             | N/A                                                                                                                                            |                                                                                                                                                |

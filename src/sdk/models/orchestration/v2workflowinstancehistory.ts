@@ -3,15 +3,14 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Stage, V2Stage$inboundSchema } from "./v2stage.js";
 
 export type V2WorkflowInstanceHistory = {
-  v2Stage: V2Stage;
   error?: string | undefined;
+  input: V2Stage;
   name: string;
   startedAt: Date;
   terminated: boolean;
@@ -24,18 +23,14 @@ export const V2WorkflowInstanceHistory$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  input: V2Stage$inboundSchema,
   error: z.string().optional(),
+  input: V2Stage$inboundSchema,
   name: z.string(),
   startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   terminated: z.boolean(),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "input": "v2Stage",
-  });
 });
 
 export function v2WorkflowInstanceHistoryFromJSON(

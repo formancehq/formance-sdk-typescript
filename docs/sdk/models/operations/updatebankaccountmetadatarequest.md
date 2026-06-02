@@ -7,7 +7,7 @@ import { UpdateBankAccountMetadataRequest } from "@formance/formance-sdk/sdk/mod
 
 let value: UpdateBankAccountMetadataRequest = {
   updateBankAccountMetadataRequest: {
-    bankAccountMetadata: {
+    metadata: {
       "key": "<value>",
     },
   },

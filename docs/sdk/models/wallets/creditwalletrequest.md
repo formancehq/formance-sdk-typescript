@@ -6,7 +6,7 @@
 import { CreditWalletRequest } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: CreditWalletRequest = {
-  monetary: {
+  amount: {
     amount: 100n,
     asset: "USD/2",
   },
@@ -21,7 +21,7 @@ let value: CreditWalletRequest = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `monetary`                                                                                    | [wallets.Monetary](../../../sdk/models/wallets/monetary.md)                                   | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `amount`                                                                                      | [wallets.Monetary](../../../sdk/models/wallets/monetary.md)                                   | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `balance`                                                                                     | *string*                                                                                      | :heavy_minus_sign:                                                                            | The balance to credit                                                                         |
 | `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_minus_sign:                                                                            | Metadata associated with the wallet.                                                          |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |

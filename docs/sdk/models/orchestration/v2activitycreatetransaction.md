@@ -6,8 +6,8 @@
 import { V2ActivityCreateTransaction } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2ActivityCreateTransaction = {
-  v2PostTransaction: {
-    v2Metadata: {
+  data: {
+    metadata: {
       "admin": "true",
     },
     postings: [
@@ -34,5 +34,5 @@ let value: V2ActivityCreateTransaction = {
 
 | Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `v2PostTransaction`                                                                       | [orchestration.V2PostTransaction](../../../sdk/models/orchestration/v2posttransaction.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `data`                                                                                    | [orchestration.V2PostTransaction](../../../sdk/models/orchestration/v2posttransaction.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
 | `ledger`                                                                                  | *string*                                                                                  | :heavy_minus_sign:                                                                        | N/A                                                                                       |

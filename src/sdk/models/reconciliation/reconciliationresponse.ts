@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,7 +15,7 @@ import {
  * OK
  */
 export type ReconciliationResponse = {
-  reconciliation: Reconciliation;
+  data: Reconciliation;
 };
 
 /** @internal */
@@ -26,10 +25,6 @@ export const ReconciliationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: Reconciliation$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "reconciliation",
-  });
 });
 
 export function reconciliationResponseFromJSON(

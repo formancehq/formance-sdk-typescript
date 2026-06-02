@@ -8,15 +8,15 @@ import { V3ConversionsCursorResponseCursor, V3ConversionStatusEnum } from "@form
 let value: V3ConversionsCursorResponseCursor = {
   data: [
     {
-      v3ConversionStatusEnum: V3ConversionStatusEnum.Failed,
       connectorID: "<value>",
-      createdAt: new Date("2025-03-25T16:04:21.278Z"),
+      createdAt: new Date("2026-08-15T11:32:15.751Z"),
       destinationAsset: "<value>",
       id: "<id>",
       provider: "<value>",
       reference: "<value>",
-      sourceAmount: 837731n,
+      sourceAmount: 410282n,
       sourceAsset: "<value>",
+      status: V3ConversionStatusEnum.Failed,
       updatedAt: new Date("2024-05-19T04:15:04.336Z"),
     },
   ],

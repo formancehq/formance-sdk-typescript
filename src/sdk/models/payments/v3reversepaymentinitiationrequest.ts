@@ -3,22 +3,21 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type V3ReversePaymentInitiationRequest = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
   amount: bigint;
   asset: string;
   description: string;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
 };
 
 /** @internal */
 export type V3ReversePaymentInitiationRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
   amount: number;
   asset: string;
   description: string;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
 };
 
@@ -28,15 +27,11 @@ export const V3ReversePaymentInitiationRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ReversePaymentInitiationRequest
 > = z.object({
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
   amount: z.bigint().transform(v => Number(v)),
   asset: z.string(),
   description: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    v3Metadata: "metadata",
-  });
 });
 
 export function v3ReversePaymentInitiationRequestToJSON(

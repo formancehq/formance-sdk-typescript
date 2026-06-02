@@ -6,7 +6,7 @@
 import { ActivityCreateTransaction } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: ActivityCreateTransaction = {
-  postTransaction: {
+  data: {
     metadata: {
       "admin": "true",
     },
@@ -34,5 +34,5 @@ let value: ActivityCreateTransaction = {
 
 | Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `postTransaction`                                                                     | [orchestration.PostTransaction](../../../sdk/models/orchestration/posttransaction.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `data`                                                                                | [orchestration.PostTransaction](../../../sdk/models/orchestration/posttransaction.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
 | `ledger`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |

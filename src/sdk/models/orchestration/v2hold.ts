@@ -3,15 +3,14 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Subject, V2Subject$inboundSchema } from "./v2subject.js";
 
 export type V2Hold = {
-  v2Subject?: V2Subject | undefined;
   description: string;
+  destination?: V2Subject | undefined;
   /**
    * The unique ID of the hold.
    */
@@ -29,15 +28,11 @@ export type V2Hold = {
 /** @internal */
 export const V2Hold$inboundSchema: z.ZodType<V2Hold, z.ZodTypeDef, unknown> = z
   .object({
-    destination: V2Subject$inboundSchema.optional(),
     description: z.string(),
+    destination: V2Subject$inboundSchema.optional(),
     id: z.string(),
     metadata: z.record(z.string()),
     walletID: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "destination": "v2Subject",
-    });
   });
 
 export function v2HoldFromJSON(

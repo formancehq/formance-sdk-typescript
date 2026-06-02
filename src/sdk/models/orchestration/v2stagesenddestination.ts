@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -21,9 +20,9 @@ import {
 } from "./v2stagesendsourcewallet.js";
 
 export type V2StageSendDestination = {
-  v2StageSendDestinationPayment?: V2StageSendDestinationPayment | undefined;
-  v2StageSendSourceAccount?: V2StageSendSourceAccount | undefined;
-  v2StageSendSourceWallet?: V2StageSendSourceWallet | undefined;
+  account?: V2StageSendSourceAccount | undefined;
+  payment?: V2StageSendDestinationPayment | undefined;
+  wallet?: V2StageSendSourceWallet | undefined;
 };
 
 /** @internal */
@@ -32,15 +31,9 @@ export const V2StageSendDestination$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  payment: V2StageSendDestinationPayment$inboundSchema.optional(),
   account: V2StageSendSourceAccount$inboundSchema.optional(),
+  payment: V2StageSendDestinationPayment$inboundSchema.optional(),
   wallet: V2StageSendSourceWallet$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "payment": "v2StageSendDestinationPayment",
-    "account": "v2StageSendSourceAccount",
-    "wallet": "v2StageSendSourceWallet",
-  });
 });
 
 export function v2StageSendDestinationFromJSON(

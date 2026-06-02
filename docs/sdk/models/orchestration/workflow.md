@@ -6,7 +6,7 @@
 import { Workflow } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: Workflow = {
-  workflowConfig: {
+  config: {
     stages: [],
   },
   createdAt: new Date("2025-01-04T11:44:20.070Z"),
@@ -19,7 +19,7 @@ let value: Workflow = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `workflowConfig`                                                                              | [orchestration.WorkflowConfig](../../../sdk/models/orchestration/workflowconfig.md)           | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `config`                                                                                      | [orchestration.WorkflowConfig](../../../sdk/models/orchestration/workflowconfig.md)           | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `updatedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |

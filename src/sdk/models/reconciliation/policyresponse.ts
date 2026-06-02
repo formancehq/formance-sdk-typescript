@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import { Policy, Policy$inboundSchema } from "./policy.js";
  * OK
  */
 export type PolicyResponse = {
-  policy: Policy;
+  data: Policy;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const PolicyResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: Policy$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "policy",
-  });
 });
 
 export function policyResponseFromJSON(

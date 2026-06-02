@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2updateaccount.js";
 
 export type V2Update = {
-  v2UpdateAccount?: V2UpdateAccount | undefined;
+  account?: V2UpdateAccount | undefined;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V2Update$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   account: V2UpdateAccount$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "account": "v2UpdateAccount",
-  });
 });
 
 export function v2UpdateFromJSON(

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -15,7 +14,7 @@ export type V2PostTransactionScript = {
 };
 
 export type V2PostTransaction = {
-  v2Metadata: { [k: string]: string };
+  metadata: { [k: string]: string };
   postings?: Array<V2Posting> | undefined;
   reference?: string | undefined;
   script?: V2PostTransactionScript | undefined;
@@ -54,10 +53,6 @@ export const V2PostTransaction$inboundSchema: z.ZodType<
   script: z.lazy(() => V2PostTransactionScript$inboundSchema).optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v2Metadata",
-  });
 });
 
 export function v2PostTransactionFromJSON(

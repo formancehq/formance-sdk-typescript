@@ -447,8 +447,8 @@ async function run() {
 
       // Depending on the method different errors may be thrown
       if (error instanceof errors.ErrorsV2ErrorResponse) {
-        console.log(error.data$.v2ErrorsEnum); // shared.V2ErrorsEnum
         console.log(error.data$.details); // string
+        console.log(error.data$.errorCode); // shared.V2ErrorsEnum
         console.log(error.data$.errorMessage); // string
       }
     }

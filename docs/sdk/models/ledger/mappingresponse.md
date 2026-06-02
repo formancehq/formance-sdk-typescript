@@ -6,7 +6,7 @@
 import { MappingResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: MappingResponse = {
-  mapping: {
+  data: {
     contracts: [],
   },
 };
@@ -16,4 +16,4 @@ let value: MappingResponse = {
 
 | Field                                                   | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `mapping`                                               | [ledger.Mapping](../../../sdk/models/ledger/mapping.md) | :heavy_minus_sign:                                      | N/A                                                     |
+| `data`                                                  | [ledger.Mapping](../../../sdk/models/ledger/mapping.md) | :heavy_minus_sign:                                      | N/A                                                     |

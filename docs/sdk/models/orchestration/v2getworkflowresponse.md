@@ -6,8 +6,8 @@
 import { V2GetWorkflowResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2GetWorkflowResponse = {
-  v2Workflow: {
-    v2WorkflowConfig: {
+  data: {
+    config: {
       stages: [
         {
           "key": "<value>",
@@ -26,4 +26,4 @@ let value: V2GetWorkflowResponse = {
 
 | Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `v2Workflow`                                                                | [orchestration.V2Workflow](../../../sdk/models/orchestration/v2workflow.md) | :heavy_check_mark:                                                          | N/A                                                                         |
+| `data`                                                                      | [orchestration.V2Workflow](../../../sdk/models/orchestration/v2workflow.md) | :heavy_check_mark:                                                          | N/A                                                                         |

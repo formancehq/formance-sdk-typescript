@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionResponse = {
-  transaction: Transaction;
+  data: Transaction;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const TransactionResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: Transaction$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "transaction",
-  });
 });
 
 export function transactionResponseFromJSON(

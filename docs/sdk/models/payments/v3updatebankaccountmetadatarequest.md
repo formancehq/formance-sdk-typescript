@@ -6,7 +6,7 @@
 import { V3UpdateBankAccountMetadataRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3UpdateBankAccountMetadataRequest = {
-  v3Metadata: {
+  metadata: {
     "key": "<value>",
   },
 };
@@ -16,4 +16,4 @@ let value: V3UpdateBankAccountMetadataRequest = {
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `v3Metadata`             | Record<string, *string*> | :heavy_check_mark:       | N/A                      |
+| `metadata`               | Record<string, *string*> | :heavy_check_mark:       | N/A                      |

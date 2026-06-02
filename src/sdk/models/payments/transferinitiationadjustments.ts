@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,11 +12,11 @@ import {
 } from "./transferinitiationstatus.js";
 
 export type TransferInitiationAdjustments = {
-  transferInitiationStatus: TransferInitiationStatus;
   adjustmentID: string;
   createdAt: Date;
   error?: string | null | undefined;
   metadata?: { [k: string]: string } | null | undefined;
+  status: TransferInitiationStatus;
 };
 
 /** @internal */
@@ -26,15 +25,11 @@ export const TransferInitiationAdjustments$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: TransferInitiationStatus$inboundSchema,
   adjustmentID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.nullable(z.string()).optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "transferInitiationStatus",
-  });
+  status: TransferInitiationStatus$inboundSchema,
 });
 
 export function transferInitiationAdjustmentsFromJSON(

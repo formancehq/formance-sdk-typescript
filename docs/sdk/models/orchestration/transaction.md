@@ -6,10 +6,10 @@
 import { Transaction } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: Transaction = {
+  id: 265587n,
   metadata: {
     "admin": "true",
   },
-  id: 265587n,
   postings: [
     {
       amount: 100n,
@@ -28,8 +28,8 @@ let value: Transaction = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | {<br/>"admin": "true"<br/>}                                                                   |
 | `id`                                                                                          | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | {<br/>"admin": "true"<br/>}                                                                   |
 | `postings`                                                                                    | [orchestration.Posting](../../../sdk/models/orchestration/posting.md)[]                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           | ref:001                                                                                       |
 | `reverted`                                                                                    | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

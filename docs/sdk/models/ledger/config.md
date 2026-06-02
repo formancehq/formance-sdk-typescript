@@ -6,7 +6,7 @@
 import { Config } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: Config = {
-  ledgerStorage: {
+  storage: {
     driver: "<value>",
     ledgers: [],
   },
@@ -17,4 +17,4 @@ let value: Config = {
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `ledgerStorage`                                                     | [ledger.LedgerStorage](../../../sdk/models/ledger/ledgerstorage.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `storage`                                                           | [ledger.LedgerStorage](../../../sdk/models/ledger/ledgerstorage.md) | :heavy_check_mark:                                                  | N/A                                                                 |

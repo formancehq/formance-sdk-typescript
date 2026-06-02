@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AggregateBalancesResponse = {
-  assetsBalances: { [k: string]: number };
+  data: { [k: string]: number };
 };
 
 /** @internal */
@@ -19,10 +18,6 @@ export const AggregateBalancesResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: z.record(z.number().int()),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "assetsBalances",
-  });
 });
 
 export function aggregateBalancesResponseFromJSON(

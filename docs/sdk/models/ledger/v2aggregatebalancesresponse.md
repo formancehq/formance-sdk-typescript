@@ -6,7 +6,7 @@
 import { V2AggregateBalancesResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2AggregateBalancesResponse = {
-  v2AssetsBalances: {
+  data: {
     "USD": 100n,
     "EUR": 12n,
   },
@@ -17,4 +17,4 @@ let value: V2AggregateBalancesResponse = {
 
 | Field                     | Type                      | Required                  | Description               | Example                   |
 | ------------------------- | ------------------------- | ------------------------- | ------------------------- | ------------------------- |
-| `v2AssetsBalances`        | Record<string, *BigInt*>  | :heavy_check_mark:        | N/A                       | {<br/>"USD": 100,<br/>"EUR": 12<br/>} |
+| `data`                    | Record<string, *BigInt*>  | :heavy_check_mark:        | N/A                       | {<br/>"USD": 100,<br/>"EUR": 12<br/>} |

@@ -6,7 +6,7 @@
 import { CreateBalanceResponse } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: CreateBalanceResponse = {
-  balance: {
+  data: {
     name: "<value>",
   },
 };
@@ -16,4 +16,4 @@ let value: CreateBalanceResponse = {
 
 | Field                                                     | Type                                                      | Required                                                  | Description                                               |
 | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `balance`                                                 | [wallets.Balance](../../../sdk/models/wallets/balance.md) | :heavy_check_mark:                                        | N/A                                                       |
+| `data`                                                    | [wallets.Balance](../../../sdk/models/wallets/balance.md) | :heavy_check_mark:                                        | N/A                                                       |

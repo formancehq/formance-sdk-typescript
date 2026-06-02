@@ -3,30 +3,25 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
 export type Account = {
-  volumes?: { [k: string]: Volume } | undefined;
-  volumes1?: { [k: string]: Volume } | undefined;
   address: string;
+  effectiveVolumes?: { [k: string]: Volume } | undefined;
   metadata: { [k: string]: string };
+  volumes?: { [k: string]: Volume } | undefined;
 };
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
   z.object({
-    volumes: z.record(Volume$inboundSchema).optional(),
-    effectiveVolumes: z.record(Volume$inboundSchema).optional(),
     address: z.string(),
+    effectiveVolumes: z.record(Volume$inboundSchema).optional(),
     metadata: z.record(z.string()),
-  }).transform((v) => {
-    return remap$(v, {
-      "effectiveVolumes": "volumes1",
-    });
+    volumes: z.record(Volume$inboundSchema).optional(),
   });
 
 export function accountFromJSON(

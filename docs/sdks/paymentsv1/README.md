@@ -250,10 +250,10 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.createAccount({
-    accountType: AccountType.Unknown,
     connectorID: "<id>",
     createdAt: new Date("2025-07-27T08:57:17.388Z"),
     reference: "<value>",
+    type: AccountType.Unknown,
   });
 
   console.log(result);
@@ -282,10 +282,10 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1CreateAccount(sdk, {
-    accountType: AccountType.Unknown,
     connectorID: "<id>",
     createdAt: new Date("2025-07-27T08:57:17.388Z"),
     reference: "<value>",
+    type: AccountType.Unknown,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -420,14 +420,14 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.createPayment({
-    paymentScheme: PaymentScheme.Rtp,
-    paymentStatus: PaymentStatus.RefundedFailure,
-    paymentType: PaymentType.Payout,
     amount: 100n,
     asset: "USD",
     connectorID: "<id>",
     createdAt: new Date("2025-08-26T06:29:11.777Z"),
     reference: "<value>",
+    scheme: PaymentScheme.Rtp,
+    status: PaymentStatus.RefundedFailure,
+    type: PaymentType.Payout,
   });
 
   console.log(result);
@@ -456,14 +456,14 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1CreatePayment(sdk, {
-    paymentScheme: PaymentScheme.Rtp,
-    paymentStatus: PaymentStatus.RefundedFailure,
-    paymentType: PaymentType.Payout,
     amount: 100n,
     asset: "USD",
     connectorID: "<id>",
     createdAt: new Date("2025-08-26T06:29:11.777Z"),
     reference: "<value>",
+    scheme: PaymentScheme.Rtp,
+    status: PaymentStatus.RefundedFailure,
+    type: PaymentType.Payout,
   });
   if (res.ok) {
     const { value: result } = res;
@@ -3481,7 +3481,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.updateBankAccountMetadata({
     updateBankAccountMetadataRequest: {
-      bankAccountMetadata: {
+      metadata: {
         "key": "<value>",
         "key1": "<value>",
         "key2": "<value>",
@@ -3516,7 +3516,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1UpdateBankAccountMetadata(sdk, {
     updateBankAccountMetadataRequest: {
-      bankAccountMetadata: {
+      metadata: {
         "key": "<value>",
         "key1": "<value>",
         "key2": "<value>",

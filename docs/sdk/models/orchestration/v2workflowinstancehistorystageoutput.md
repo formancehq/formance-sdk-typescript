@@ -11,74 +11,76 @@ import {
 } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2WorkflowInstanceHistoryStageOutput = {
-  v2AccountResponse: {
-    v2Account: {
-      v2Volumes: {
-        "USD": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
+  createTransaction: {
+    data: [
+      {
+        metadata: {
+          "admin": "true",
         },
-        "EUR": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
-        },
+        postings: [],
+        reference: "ref:001",
+        timestamp: new Date("2026-03-28T10:26:16.538Z"),
+        txid: 910526n,
       },
-      v2Volumes1: {
-        "USD": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
-        },
-        "EUR": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
-        },
-      },
+    ],
+  },
+  getAccount: {
+    data: {
       address: "users:001",
+      effectiveVolumes: {
+        "USD": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
+        },
+        "EUR": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
+        },
+      },
       metadata: {
         "admin": "true",
       },
-    },
-  },
-  v2CreateTransactionResponse: {
-    data: [],
-  },
-  v2ListWalletsResponse: {
-    v2Cursor: {
-      data: [
-        {
-          createdAt: new Date("2024-11-18T18:11:54.712Z"),
-          id: "be6dedcb-1035-4cf1-9638-36083616f1c8",
-          ledger: "<value>",
-          metadata: {},
-          name: "<value>",
+      volumes: {
+        "USD": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
         },
-      ],
-      hasMore: false,
-      next: "",
-      pageSize: 15,
-      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
+        "EUR": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
+        },
+      },
     },
   },
-  v2PaymentResponse: {
-    v2Payment: {
-      v2PaymentMetadata: {},
-      v2PaymentStatus: V2PaymentStatus.Failed,
+  getPayment: {
+    data: {
       adjustments: [],
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2026-02-11T04:04:45.176Z"),
+      createdAt: new Date("2026-06-20T02:05:25.894Z"),
       destinationAccountID: "<id>",
       id: "XXX",
       initialAmount: 100n,
+      metadata: {},
       raw: {},
       reference: "<value>",
       scheme: V2PaymentScheme.AchDebit,
       sourceAccountID: "<id>",
-      type: V2PaymentType.Transfer,
+      status: V2PaymentStatus.Succeeded,
+      type: V2PaymentType.PayIn,
+    },
+  },
+  listWallets: {
+    cursor: {
+      data: [],
+      hasMore: false,
+      next: "",
+      pageSize: 15,
+      previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
     },
   },
 };
@@ -88,9 +90,9 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
 
 | Field                                                                                                         | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `v2AccountResponse`                                                                                           | [orchestration.V2AccountResponse](../../../sdk/models/orchestration/v2accountresponse.md)                     | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
-| `v2CreateTransactionResponse`                                                                                 | [orchestration.V2CreateTransactionResponse](../../../sdk/models/orchestration/v2createtransactionresponse.md) | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
-| `v2DebitWalletResponse`                                                                                       | [orchestration.V2DebitWalletResponse](../../../sdk/models/orchestration/v2debitwalletresponse.md)             | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
-| `v2GetWalletResponse`                                                                                         | [orchestration.V2GetWalletResponse](../../../sdk/models/orchestration/v2getwalletresponse.md)                 | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
-| `v2ListWalletsResponse`                                                                                       | [orchestration.V2ListWalletsResponse](../../../sdk/models/orchestration/v2listwalletsresponse.md)             | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
-| `v2PaymentResponse`                                                                                           | [orchestration.V2PaymentResponse](../../../sdk/models/orchestration/v2paymentresponse.md)                     | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `createTransaction`                                                                                           | [orchestration.V2CreateTransactionResponse](../../../sdk/models/orchestration/v2createtransactionresponse.md) | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `debitWallet`                                                                                                 | [orchestration.V2DebitWalletResponse](../../../sdk/models/orchestration/v2debitwalletresponse.md)             | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `getAccount`                                                                                                  | [orchestration.V2AccountResponse](../../../sdk/models/orchestration/v2accountresponse.md)                     | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `getPayment`                                                                                                  | [orchestration.V2PaymentResponse](../../../sdk/models/orchestration/v2paymentresponse.md)                     | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `getWallet`                                                                                                   | [orchestration.V2GetWalletResponse](../../../sdk/models/orchestration/v2getwalletresponse.md)                 | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |
+| `listWallets`                                                                                                 | [orchestration.V2ListWalletsResponse](../../../sdk/models/orchestration/v2listwalletsresponse.md)             | :heavy_minus_sign:                                                                                            | N/A                                                                                                           |

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -27,20 +26,6 @@ export type V3OrderAdjustmentRaw = {};
  * events over its lifetime.
  */
 export type V3OrderAdjustment = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  /**
-   * Lifecycle of an order on the exchange.
-   *
-   * @remarks
-   * `PENDING` — accepted by the exchange, not yet working.
-   * `OPEN` — live on the book, no fills yet.
-   * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-   * `FILLED` — fully filled, terminal.
-   * `CANCELLED` — cancelled by the user or system, terminal.
-   * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-   * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-   */
-  v3OrderStatusEnum: V3OrderStatusEnum;
   /**
    * Base asset filled at this observation, at the base asset's precision.
    */
@@ -61,6 +46,7 @@ export type V3OrderAdjustment = {
    * Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID.
    */
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   /**
    * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
    */
@@ -69,6 +55,19 @@ export type V3OrderAdjustment = {
    * PSP reference the adjustment belongs to (equal to the parent order's `reference`).
    */
   reference: string;
+  /**
+   * Lifecycle of an order on the exchange.
+   *
+   * @remarks
+   * `PENDING` — accepted by the exchange, not yet working.
+   * `OPEN` — live on the book, no fills yet.
+   * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+   * `FILLED` — fully filled, terminal.
+   * `CANCELLED` — cancelled by the user or system, terminal.
+   * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+   * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+   */
+  status: V3OrderStatusEnum;
 };
 
 /** @internal */
@@ -94,21 +93,16 @@ export const V3OrderAdjustment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  status: V3OrderStatusEnum$inboundSchema,
   baseQuantityFilled: z.nullable(z.number().transform(v => BigInt(v)))
     .optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   fee: z.nullable(z.number().transform(v => BigInt(v))).optional(),
   feeAsset: z.nullable(z.string()).optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   raw: z.lazy(() => V3OrderAdjustmentRaw$inboundSchema).optional(),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v3Metadata",
-    "status": "v3OrderStatusEnum",
-  });
+  status: V3OrderStatusEnum$inboundSchema,
 });
 
 export function v3OrderAdjustmentFromJSON(

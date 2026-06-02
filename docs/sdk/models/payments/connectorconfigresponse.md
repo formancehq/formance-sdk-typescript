@@ -8,7 +8,7 @@ OK
 import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ConnectorConfigResponse = {
-  connectorConfig: {
+  data: {
     apiKey: "XXX",
     endpoint: "XXX",
     loginID: "XXX",
@@ -23,4 +23,4 @@ let value: ConnectorConfigResponse = {
 
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `connectorConfig`          | *payments.ConnectorConfig* | :heavy_check_mark:         | N/A                        |
+| `data`                     | *payments.ConnectorConfig* | :heavy_check_mark:         | N/A                        |

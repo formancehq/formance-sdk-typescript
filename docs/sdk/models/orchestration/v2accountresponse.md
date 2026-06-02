@@ -6,34 +6,34 @@
 import { V2AccountResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2AccountResponse = {
-  v2Account: {
-    v2Volumes: {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-      "EUR": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
-    v2Volumes1: {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-      "EUR": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
+  data: {
     address: "users:001",
+    effectiveVolumes: {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+      "EUR": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
     metadata: {
       "admin": "true",
+    },
+    volumes: {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+      "EUR": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
     },
   },
 };
@@ -43,4 +43,4 @@ let value: V2AccountResponse = {
 
 | Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `v2Account`                                                               | [orchestration.V2Account](../../../sdk/models/orchestration/v2account.md) | :heavy_check_mark:                                                        | N/A                                                                       |
+| `data`                                                                    | [orchestration.V2Account](../../../sdk/models/orchestration/v2account.md) | :heavy_check_mark:                                                        | N/A                                                                       |

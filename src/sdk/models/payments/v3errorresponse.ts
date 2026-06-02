@@ -3,19 +3,18 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { SDKBaseError } from "../errors/sdkbaseerror.js";
 import { V3ErrorsEnum, V3ErrorsEnum$inboundSchema } from "./v3errorsenum.js";
 
 export type V3ErrorResponseData = {
-  v3ErrorsEnum: V3ErrorsEnum;
   details?: string | undefined;
+  errorCode: V3ErrorsEnum;
   errorMessage: string;
 };
 
 export class V3ErrorResponse extends SDKBaseError {
-  v3ErrorsEnum: V3ErrorsEnum;
   details?: string | undefined;
+  errorCode: V3ErrorsEnum;
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */
@@ -30,8 +29,8 @@ export class V3ErrorResponse extends SDKBaseError {
       : `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
-    this.v3ErrorsEnum = err.v3ErrorsEnum;
     if (err.details != null) this.details = err.details;
+    this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
 
     this.name = "V3ErrorResponse";
@@ -44,19 +43,15 @@ export const V3ErrorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  errorCode: V3ErrorsEnum$inboundSchema,
   details: z.string().optional(),
+  errorCode: V3ErrorsEnum$inboundSchema,
   errorMessage: z.string(),
   request$: z.instanceof(Request),
   response$: z.instanceof(Response),
   body$: z.string(),
 })
   .transform((v) => {
-    const remapped = remap$(v, {
-      "errorCode": "v3ErrorsEnum",
-    });
-
-    return new V3ErrorResponse(remapped, {
+    return new V3ErrorResponse(v, {
       request: v.request$,
       response: v.response$,
       body: v.body$,

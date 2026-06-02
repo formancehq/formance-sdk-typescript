@@ -6,13 +6,71 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  TaskBankingCircle,
+  TaskBankingCircle$inboundSchema,
+} from "./taskbankingcircle.js";
+import {
+  TaskCurrencyCloud,
+  TaskCurrencyCloud$inboundSchema,
+} from "./taskcurrencycloud.js";
+import { TaskDummyPay, TaskDummyPay$inboundSchema } from "./taskdummypay.js";
+import { TaskMangoPay, TaskMangoPay$inboundSchema } from "./taskmangopay.js";
+import { TaskModulr, TaskModulr$inboundSchema } from "./taskmodulr.js";
+import { TaskMoneycorp, TaskMoneycorp$inboundSchema } from "./taskmoneycorp.js";
+import { TaskStripe, TaskStripe$inboundSchema } from "./taskstripe.js";
+import { TaskWise, TaskWise$inboundSchema } from "./taskwise.js";
+
+export type TaskResponseData =
+  | TaskStripe
+  | TaskWise
+  | TaskCurrencyCloud
+  | TaskDummyPay
+  | TaskModulr
+  | TaskBankingCircle
+  | TaskMangoPay
+  | TaskMoneycorp;
 
 /**
  * OK
  */
 export type TaskResponse = {
-  data?: any | undefined;
+  data:
+    | TaskStripe
+    | TaskWise
+    | TaskCurrencyCloud
+    | TaskDummyPay
+    | TaskModulr
+    | TaskBankingCircle
+    | TaskMangoPay
+    | TaskMoneycorp;
 };
+
+/** @internal */
+export const TaskResponseData$inboundSchema: z.ZodType<
+  TaskResponseData,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  TaskStripe$inboundSchema,
+  TaskWise$inboundSchema,
+  TaskCurrencyCloud$inboundSchema,
+  TaskDummyPay$inboundSchema,
+  TaskModulr$inboundSchema,
+  TaskBankingCircle$inboundSchema,
+  TaskMangoPay$inboundSchema,
+  TaskMoneycorp$inboundSchema,
+]);
+
+export function taskResponseDataFromJSON(
+  jsonString: string,
+): SafeParseResult<TaskResponseData, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TaskResponseData$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TaskResponseData' from JSON`,
+  );
+}
 
 /** @internal */
 export const TaskResponse$inboundSchema: z.ZodType<
@@ -20,7 +78,16 @@ export const TaskResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.any().optional(),
+  data: z.union([
+    TaskStripe$inboundSchema,
+    TaskWise$inboundSchema,
+    TaskCurrencyCloud$inboundSchema,
+    TaskDummyPay$inboundSchema,
+    TaskModulr$inboundSchema,
+    TaskBankingCircle$inboundSchema,
+    TaskMangoPay$inboundSchema,
+    TaskMoneycorp$inboundSchema,
+  ]),
 });
 
 export function taskResponseFromJSON(

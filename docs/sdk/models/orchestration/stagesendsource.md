@@ -6,7 +6,7 @@
 import { StageSendSource } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: StageSendSource = {
-  stageSendSourceAccount: {
+  account: {
     allowOverdraft: true,
     id: "<id>",
     throughAccount: "liabilities:payouts-pending",
@@ -18,6 +18,6 @@ let value: StageSendSource = {
 
 | Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `stageSendSourceAccount`                                                                            | [orchestration.StageSendSourceAccount](../../../sdk/models/orchestration/stagesendsourceaccount.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
-| `stageSendSourcePayment`                                                                            | [orchestration.StageSendSourcePayment](../../../sdk/models/orchestration/stagesendsourcepayment.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
-| `stageSendSourceWallet`                                                                             | [orchestration.StageSendSourceWallet](../../../sdk/models/orchestration/stagesendsourcewallet.md)   | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `account`                                                                                           | [orchestration.StageSendSourceAccount](../../../sdk/models/orchestration/stagesendsourceaccount.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `payment`                                                                                           | [orchestration.StageSendSourcePayment](../../../sdk/models/orchestration/stagesendsourcepayment.md) | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |
+| `wallet`                                                                                            | [orchestration.StageSendSourceWallet](../../../sdk/models/orchestration/stagesendsourcewallet.md)   | :heavy_minus_sign:                                                                                  | N/A                                                                                                 |

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,15 +16,13 @@ import {
 } from "./v2workflowinstancehistorystageoutput.js";
 
 export type V2WorkflowInstanceHistoryStage = {
-  v2WorkflowInstanceHistoryStageInput: V2WorkflowInstanceHistoryStageInput;
-  v2WorkflowInstanceHistoryStageOutput?:
-    | V2WorkflowInstanceHistoryStageOutput
-    | undefined;
   attempt: number;
   error?: string | undefined;
+  input: V2WorkflowInstanceHistoryStageInput;
   lastFailure?: string | undefined;
   name: string;
   nextExecution?: Date | undefined;
+  output?: V2WorkflowInstanceHistoryStageOutput | undefined;
   startedAt: Date;
   terminated: boolean;
   terminatedAt?: Date | undefined;
@@ -37,25 +34,20 @@ export const V2WorkflowInstanceHistoryStage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  input: V2WorkflowInstanceHistoryStageInput$inboundSchema,
-  output: V2WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
   attempt: z.number().int(),
   error: z.string().optional(),
+  input: V2WorkflowInstanceHistoryStageInput$inboundSchema,
   lastFailure: z.string().optional(),
   name: z.string(),
   nextExecution: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  output: V2WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
   startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   terminated: z.boolean(),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "input": "v2WorkflowInstanceHistoryStageInput",
-    "output": "v2WorkflowInstanceHistoryStageOutput",
-  });
 });
 
 export function v2WorkflowInstanceHistoryStageFromJSON(

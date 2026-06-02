@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2walletwithbalances.js";
 
 export type V2GetWalletResponse = {
-  v2WalletWithBalances: V2WalletWithBalances;
+  data: V2WalletWithBalances;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V2GetWalletResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V2WalletWithBalances$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2WalletWithBalances",
-  });
 });
 
 export function v2GetWalletResponseFromJSON(

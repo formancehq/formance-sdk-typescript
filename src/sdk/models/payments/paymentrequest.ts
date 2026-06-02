@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   PaymentScheme,
   PaymentScheme$outboundSchema,
@@ -15,30 +14,30 @@ import {
 import { PaymentType, PaymentType$outboundSchema } from "./paymenttype.js";
 
 export type PaymentRequest = {
-  paymentScheme: PaymentScheme;
-  paymentStatus: PaymentStatus;
-  paymentType: PaymentType;
   amount: bigint;
   asset: string;
   connectorID: string;
   createdAt: Date;
   destinationAccountID?: string | undefined;
   reference: string;
+  scheme: PaymentScheme;
   sourceAccountID?: string | undefined;
+  status: PaymentStatus;
+  type: PaymentType;
 };
 
 /** @internal */
 export type PaymentRequest$Outbound = {
-  scheme: string;
-  status: string;
-  type: string;
   amount: number;
   asset: string;
   connectorID: string;
   createdAt: string;
   destinationAccountID?: string | undefined;
   reference: string;
+  scheme: string;
   sourceAccountID?: string | undefined;
+  status: string;
+  type: string;
 };
 
 /** @internal */
@@ -47,22 +46,16 @@ export const PaymentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   PaymentRequest
 > = z.object({
-  paymentScheme: PaymentScheme$outboundSchema,
-  paymentStatus: PaymentStatus$outboundSchema,
-  paymentType: PaymentType$outboundSchema,
   amount: z.bigint().transform(v => Number(v)),
   asset: z.string(),
   connectorID: z.string(),
   createdAt: z.date().transform(v => v.toISOString()),
   destinationAccountID: z.string().optional(),
   reference: z.string(),
+  scheme: PaymentScheme$outboundSchema,
   sourceAccountID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    paymentScheme: "scheme",
-    paymentStatus: "status",
-    paymentType: "type",
-  });
+  status: PaymentStatus$outboundSchema,
+  type: PaymentType$outboundSchema,
 });
 
 export function paymentRequestToJSON(paymentRequest: PaymentRequest): string {

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -52,9 +51,6 @@ export enum V2PaymentType {
 }
 
 export type V2Payment = {
-  v2Connector?: V2Connector | undefined;
-  v2PaymentMetadata: V2PaymentMetadata | null;
-  v2PaymentStatus: V2PaymentStatus;
   adjustments: Array<V2PaymentAdjustment>;
   asset: string;
   connectorID: string;
@@ -62,10 +58,13 @@ export type V2Payment = {
   destinationAccountID: string;
   id: string;
   initialAmount: bigint;
+  metadata: V2PaymentMetadata | null;
+  provider?: V2Connector | undefined;
   raw: V2PaymentRaw | null;
   reference: string;
   scheme: V2PaymentScheme;
   sourceAccountID: string;
+  status: V2PaymentStatus;
   type: V2PaymentType;
 };
 
@@ -102,9 +101,6 @@ export const V2Payment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: V2Connector$inboundSchema.optional(),
-  metadata: z.nullable(V2PaymentMetadata$inboundSchema),
-  status: V2PaymentStatus$inboundSchema,
   adjustments: z.array(V2PaymentAdjustment$inboundSchema),
   asset: z.string(),
   connectorID: z.string(),
@@ -112,17 +108,14 @@ export const V2Payment$inboundSchema: z.ZodType<
   destinationAccountID: z.string(),
   id: z.string(),
   initialAmount: z.number().transform(v => BigInt(v)),
+  metadata: z.nullable(V2PaymentMetadata$inboundSchema),
+  provider: V2Connector$inboundSchema.optional(),
   raw: z.nullable(z.lazy(() => V2PaymentRaw$inboundSchema)),
   reference: z.string(),
   scheme: V2PaymentScheme$inboundSchema,
   sourceAccountID: z.string(),
+  status: V2PaymentStatus$inboundSchema,
   type: V2PaymentType$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "provider": "v2Connector",
-    "metadata": "v2PaymentMetadata",
-    "status": "v2PaymentStatus",
-  });
 });
 
 export function v2PaymentFromJSON(

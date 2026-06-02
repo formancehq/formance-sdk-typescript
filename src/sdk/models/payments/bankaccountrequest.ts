@@ -3,25 +3,24 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type BankAccountRequest = {
-  bankAccountMetadata?: { [k: string]: string } | null | undefined;
   accountNumber?: string | undefined;
   connectorID?: string | undefined;
   country: string;
   iban?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   swiftBicCode?: string | undefined;
 };
 
 /** @internal */
 export type BankAccountRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
   accountNumber?: string | undefined;
   connectorID?: string | undefined;
   country: string;
   iban?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   swiftBicCode?: string | undefined;
 };
@@ -32,17 +31,13 @@ export const BankAccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   BankAccountRequest
 > = z.object({
-  bankAccountMetadata: z.nullable(z.record(z.string())).optional(),
   accountNumber: z.string().optional(),
   connectorID: z.string().optional(),
   country: z.string(),
   iban: z.string().optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
   swiftBicCode: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    bankAccountMetadata: "metadata",
-  });
 });
 
 export function bankAccountRequestToJSON(

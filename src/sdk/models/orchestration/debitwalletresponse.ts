@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Hold, Hold$inboundSchema } from "./hold.js";
 
 export type DebitWalletResponse = {
-  hold: Hold;
+  data: Hold;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const DebitWalletResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: Hold$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "hold",
-  });
 });
 
 export function debitWalletResponseFromJSON(

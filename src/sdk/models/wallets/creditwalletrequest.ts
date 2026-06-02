@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   Monetary,
   Monetary$Outbound,
@@ -16,7 +15,7 @@ import {
 } from "./subject.js";
 
 export type CreditWalletRequest = {
-  monetary: Monetary;
+  amount: Monetary;
   /**
    * The balance to credit
    */
@@ -46,16 +45,12 @@ export const CreditWalletRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreditWalletRequest
 > = z.object({
-  monetary: Monetary$outboundSchema,
+  amount: Monetary$outboundSchema,
   balance: z.string().optional(),
   metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string().optional(),
   sources: z.nullable(z.array(Subject$outboundSchema)).optional(),
   timestamp: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    monetary: "amount",
-  });
 });
 
 export function creditWalletRequestToJSON(

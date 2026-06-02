@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./debitwalletrequest.js";
 
 export type ActivityDebitWallet = {
-  debitWalletRequest?: DebitWalletRequest | undefined;
+  data?: DebitWalletRequest | undefined;
   id?: string | undefined;
 };
 
@@ -25,10 +24,6 @@ export const ActivityDebitWallet$inboundSchema: z.ZodType<
 > = z.object({
   data: DebitWalletRequest$inboundSchema.optional(),
   id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "debitWalletRequest",
-  });
 });
 
 export function activityDebitWalletFromJSON(

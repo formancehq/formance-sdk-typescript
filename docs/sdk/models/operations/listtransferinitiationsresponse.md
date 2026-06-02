@@ -7,7 +7,7 @@ import { ListTransferInitiationsResponse } from "@formance/formance-sdk/sdk/mode
 
 let value: ListTransferInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 111162,
+  statusCode: 341270,
 };
 ```
 

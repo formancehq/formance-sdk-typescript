@@ -9,11 +9,11 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
 export type AccountWithVolumesAndBalances = {
-  volumes?: { [k: string]: Volume } | undefined;
   address: string;
   balances?: { [k: string]: bigint } | undefined;
   metadata?: { [k: string]: any } | undefined;
   type?: string | undefined;
+  volumes?: { [k: string]: Volume } | undefined;
 };
 
 /** @internal */
@@ -22,11 +22,11 @@ export const AccountWithVolumesAndBalances$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  volumes: z.record(Volume$inboundSchema).optional(),
   address: z.string(),
   balances: z.record(z.number().transform(v => BigInt(v))).optional(),
   metadata: z.record(z.any()).optional(),
   type: z.string().optional(),
+  volumes: z.record(Volume$inboundSchema).optional(),
 });
 
 export function accountWithVolumesAndBalancesFromJSON(

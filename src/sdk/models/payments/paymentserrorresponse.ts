@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { SDKBaseError } from "../errors/sdkbaseerror.js";
 import {
   PaymentsErrorsEnum,
@@ -14,7 +13,7 @@ import {
  * Error
  */
 export type PaymentsErrorResponseData = {
-  paymentsErrorsEnum: PaymentsErrorsEnum;
+  errorCode: PaymentsErrorsEnum;
   errorMessage: string;
 };
 
@@ -22,7 +21,7 @@ export type PaymentsErrorResponseData = {
  * Error
  */
 export class PaymentsErrorResponse extends SDKBaseError {
-  paymentsErrorsEnum: PaymentsErrorsEnum;
+  errorCode: PaymentsErrorsEnum;
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */
@@ -37,7 +36,7 @@ export class PaymentsErrorResponse extends SDKBaseError {
       : `API error occurred: ${JSON.stringify(err)}`;
     super(message, httpMeta);
     this.data$ = err;
-    this.paymentsErrorsEnum = err.paymentsErrorsEnum;
+    this.errorCode = err.errorCode;
     this.errorMessage = err.errorMessage;
 
     this.name = "PaymentsErrorResponse";
@@ -57,11 +56,7 @@ export const PaymentsErrorResponse$inboundSchema: z.ZodType<
   body$: z.string(),
 })
   .transform((v) => {
-    const remapped = remap$(v, {
-      "errorCode": "paymentsErrorsEnum",
-    });
-
-    return new PaymentsErrorResponse(remapped, {
+    return new PaymentsErrorResponse(v, {
       request: v.request$,
       response: v.response$,
       body: v.body$,

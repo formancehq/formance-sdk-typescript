@@ -61,19 +61,19 @@ import {
 } from "./stripetransferrequest.js";
 
 export type WorkflowInstanceHistoryStageInput = {
-  activityAddAccountMetadata?: ActivityAddAccountMetadata | undefined;
-  activityConfirmHold?: ActivityConfirmHold | undefined;
-  activityCreateTransaction?: ActivityCreateTransaction | undefined;
-  activityCreditWallet?: ActivityCreditWallet | undefined;
-  activityDebitWallet?: ActivityDebitWallet | undefined;
-  activityGetAccount?: ActivityGetAccount | undefined;
-  activityGetPayment?: ActivityGetPayment | undefined;
-  activityGetWallet?: ActivityGetWallet | undefined;
-  activityListWallets?: ActivityListWallets | undefined;
-  activityRevertTransaction?: ActivityRevertTransaction | undefined;
-  activityVoidHold?: ActivityVoidHold | undefined;
-  createTransferInitiationRequest?: CreateTransferInitiationRequest | undefined;
-  stripeTransferRequest?: StripeTransferRequest | undefined;
+  addAccountMetadata?: ActivityAddAccountMetadata | undefined;
+  confirmHold?: ActivityConfirmHold | undefined;
+  createTransaction?: ActivityCreateTransaction | undefined;
+  createTransferInitiation?: CreateTransferInitiationRequest | undefined;
+  creditWallet?: ActivityCreditWallet | undefined;
+  debitWallet?: ActivityDebitWallet | undefined;
+  getAccount?: ActivityGetAccount | undefined;
+  getPayment?: ActivityGetPayment | undefined;
+  getWallet?: ActivityGetWallet | undefined;
+  listWallets?: ActivityListWallets | undefined;
+  revertTransaction?: ActivityRevertTransaction | undefined;
+  stripeTransfer?: StripeTransferRequest | undefined;
+  voidHold?: ActivityVoidHold | undefined;
 };
 
 /** @internal */
@@ -85,6 +85,8 @@ export const WorkflowInstanceHistoryStageInput$inboundSchema: z.ZodType<
   AddAccountMetadata: ActivityAddAccountMetadata$inboundSchema.optional(),
   ConfirmHold: ActivityConfirmHold$inboundSchema.optional(),
   CreateTransaction: ActivityCreateTransaction$inboundSchema.optional(),
+  CreateTransferInitiation: CreateTransferInitiationRequest$inboundSchema
+    .optional(),
   CreditWallet: ActivityCreditWallet$inboundSchema.optional(),
   DebitWallet: ActivityDebitWallet$inboundSchema.optional(),
   GetAccount: ActivityGetAccount$inboundSchema.optional(),
@@ -92,25 +94,23 @@ export const WorkflowInstanceHistoryStageInput$inboundSchema: z.ZodType<
   GetWallet: ActivityGetWallet$inboundSchema.optional(),
   ListWallets: ActivityListWallets$inboundSchema.optional(),
   RevertTransaction: ActivityRevertTransaction$inboundSchema.optional(),
-  VoidHold: ActivityVoidHold$inboundSchema.optional(),
-  CreateTransferInitiation: CreateTransferInitiationRequest$inboundSchema
-    .optional(),
   StripeTransfer: StripeTransferRequest$inboundSchema.optional(),
+  VoidHold: ActivityVoidHold$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
-    "AddAccountMetadata": "activityAddAccountMetadata",
-    "ConfirmHold": "activityConfirmHold",
-    "CreateTransaction": "activityCreateTransaction",
-    "CreditWallet": "activityCreditWallet",
-    "DebitWallet": "activityDebitWallet",
-    "GetAccount": "activityGetAccount",
-    "GetPayment": "activityGetPayment",
-    "GetWallet": "activityGetWallet",
-    "ListWallets": "activityListWallets",
-    "RevertTransaction": "activityRevertTransaction",
-    "VoidHold": "activityVoidHold",
-    "CreateTransferInitiation": "createTransferInitiationRequest",
-    "StripeTransfer": "stripeTransferRequest",
+    "AddAccountMetadata": "addAccountMetadata",
+    "ConfirmHold": "confirmHold",
+    "CreateTransaction": "createTransaction",
+    "CreateTransferInitiation": "createTransferInitiation",
+    "CreditWallet": "creditWallet",
+    "DebitWallet": "debitWallet",
+    "GetAccount": "getAccount",
+    "GetPayment": "getPayment",
+    "GetWallet": "getWallet",
+    "ListWallets": "listWallets",
+    "RevertTransaction": "revertTransaction",
+    "StripeTransfer": "stripeTransfer",
+    "VoidHold": "voidHold",
   });
 });
 

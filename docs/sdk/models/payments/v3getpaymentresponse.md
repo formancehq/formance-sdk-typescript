@@ -6,18 +6,18 @@
 import { V3GetPaymentResponse, V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetPaymentResponse = {
-  v3Payment: {
-    v3PaymentStatusEnum: V3PaymentStatusEnum.Failed,
-    v3PaymentTypeEnum: V3PaymentTypeEnum.Payout,
-    amount: 121784n,
+  data: {
+    amount: 241792n,
     asset: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2024-07-31T20:31:17.047Z"),
+    createdAt: new Date("2025-03-21T20:04:47.256Z"),
     id: "<id>",
-    initialAmount: 615672n,
+    initialAmount: 121784n,
     provider: "<value>",
     reference: "<value>",
     scheme: "<value>",
+    status: V3PaymentStatusEnum.Cancelled,
+    type: V3PaymentTypeEnum.Transfer,
   },
 };
 ```
@@ -26,4 +26,4 @@ let value: V3GetPaymentResponse = {
 
 | Field                                                           | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `v3Payment`                                                     | [payments.V3Payment](../../../sdk/models/payments/v3payment.md) | :heavy_check_mark:                                              | N/A                                                             |
+| `data`                                                          | [payments.V3Payment](../../../sdk/models/payments/v3payment.md) | :heavy_check_mark:                                              | N/A                                                             |

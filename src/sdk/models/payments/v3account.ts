@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -19,17 +18,17 @@ import {
 export type V3AccountRaw = {};
 
 export type V3Account = {
-  v3AccountTypeEnum: V3AccountTypeEnum;
-  v3ConnectorBase?: V3ConnectorBase | undefined;
-  v3Metadata?: { [k: string]: string } | null | undefined;
+  connector?: V3ConnectorBase | undefined;
   connectorID: string;
   createdAt: Date;
   defaultAsset?: string | null | undefined;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   name?: string | null | undefined;
   provider: string;
   raw: V3AccountRaw;
   reference: string;
+  type: V3AccountTypeEnum;
 };
 
 /** @internal */
@@ -55,23 +54,17 @@ export const V3Account$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: V3AccountTypeEnum$inboundSchema,
   connector: V3ConnectorBase$inboundSchema.optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   defaultAsset: z.nullable(z.string()).optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.nullable(z.string()).optional(),
   provider: z.string(),
   raw: z.lazy(() => V3AccountRaw$inboundSchema),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "type": "v3AccountTypeEnum",
-    "connector": "v3ConnectorBase",
-    "metadata": "v3Metadata",
-  });
+  type: V3AccountTypeEnum$inboundSchema,
 });
 
 export function v3AccountFromJSON(

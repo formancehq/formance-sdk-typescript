@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2schemascursor.js";
 
 export type V2SchemasCursorResponse = {
-  v2SchemasCursor: V2SchemasCursor;
+  cursor: V2SchemasCursor;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V2SchemasCursorResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   cursor: V2SchemasCursor$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "v2SchemasCursor",
-  });
 });
 
 export function v2SchemasCursorResponseFromJSON(

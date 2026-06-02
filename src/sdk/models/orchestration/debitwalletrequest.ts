@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,10 +10,10 @@ import { Monetary, Monetary$inboundSchema } from "./monetary.js";
 import { Subject, Subject$inboundSchema } from "./subject.js";
 
 export type DebitWalletRequest = {
-  monetary: Monetary;
-  subject?: Subject | undefined;
+  amount: Monetary;
   balances?: Array<string> | undefined;
   description?: string | undefined;
+  destination?: Subject | undefined;
   /**
    * Metadata associated with the wallet.
    */
@@ -36,18 +35,13 @@ export const DebitWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   amount: Monetary$inboundSchema,
-  destination: Subject$inboundSchema.optional(),
   balances: z.array(z.string()).optional(),
   description: z.string().optional(),
+  destination: Subject$inboundSchema.optional(),
   metadata: z.record(z.string()),
   pending: z.boolean().optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "amount": "monetary",
-    "destination": "subject",
-  });
 });
 
 export function debitWalletRequestFromJSON(

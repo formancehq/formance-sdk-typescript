@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   V3CreatePaymentAdjustmentRequest,
   V3CreatePaymentAdjustmentRequest$Outbound,
@@ -15,8 +14,6 @@ import {
 } from "./v3paymenttypeenum.js";
 
 export type V3CreatePaymentRequest = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  v3PaymentTypeEnum: V3PaymentTypeEnum;
   adjustments?: Array<V3CreatePaymentAdjustmentRequest> | undefined;
   amount: bigint;
   asset: string;
@@ -24,15 +21,15 @@ export type V3CreatePaymentRequest = {
   createdAt: Date;
   destinationAccountID?: string | undefined;
   initialAmount: bigint;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   scheme: string;
   sourceAccountID?: string | undefined;
+  type: V3PaymentTypeEnum;
 };
 
 /** @internal */
 export type V3CreatePaymentRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
-  type: string;
   adjustments?: Array<V3CreatePaymentAdjustmentRequest$Outbound> | undefined;
   amount: number;
   asset: string;
@@ -40,9 +37,11 @@ export type V3CreatePaymentRequest$Outbound = {
   createdAt: string;
   destinationAccountID?: string | undefined;
   initialAmount: number;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   scheme: string;
   sourceAccountID?: string | undefined;
+  type: string;
 };
 
 /** @internal */
@@ -51,8 +50,6 @@ export const V3CreatePaymentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3CreatePaymentRequest
 > = z.object({
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
-  v3PaymentTypeEnum: V3PaymentTypeEnum$outboundSchema,
   adjustments: z.array(V3CreatePaymentAdjustmentRequest$outboundSchema)
     .optional(),
   amount: z.bigint().transform(v => Number(v)),
@@ -61,14 +58,11 @@ export const V3CreatePaymentRequest$outboundSchema: z.ZodType<
   createdAt: z.date().transform(v => v.toISOString()),
   destinationAccountID: z.string().optional(),
   initialAmount: z.bigint().transform(v => Number(v)),
+  metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string(),
   scheme: z.string(),
   sourceAccountID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v3Metadata: "metadata",
-    v3PaymentTypeEnum: "type",
-  });
+  type: V3PaymentTypeEnum$outboundSchema,
 });
 
 export function v3CreatePaymentRequestToJSON(

@@ -6,19 +6,7 @@
 import { AccountResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: AccountResponse = {
-  accountWithVolumesAndBalances: {
-    volumes: {
-      "USD": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-      "EUR": {
-        balance: 90n,
-        input: 100n,
-        output: 10n,
-      },
-    },
+  data: {
     address: "users:001",
     balances: {
       "COIN": 100n,
@@ -32,6 +20,18 @@ let value: AccountResponse = {
       },
     },
     type: "virtual",
+    volumes: {
+      "USD": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+      "EUR": {
+        balance: 90n,
+        input: 100n,
+        output: 10n,
+      },
+    },
   },
 };
 ```
@@ -40,4 +40,4 @@ let value: AccountResponse = {
 
 | Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
 | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `accountWithVolumesAndBalances`                                                                     | [ledger.AccountWithVolumesAndBalances](../../../sdk/models/ledger/accountwithvolumesandbalances.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `data`                                                                                              | [ledger.AccountWithVolumesAndBalances](../../../sdk/models/ledger/accountwithvolumesandbalances.md) | :heavy_check_mark:                                                                                  | N/A                                                                                                 |

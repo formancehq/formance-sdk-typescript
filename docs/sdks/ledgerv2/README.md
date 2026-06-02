@@ -550,7 +550,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [ledger.V2ExporterConfiguration2](../../sdk/models/ledger/v2exporterconfiguration2.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [ledger.V2ExporterConfiguration](../../sdk/models/ledger/v2exporterconfiguration.md)                                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -586,7 +586,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2.createLedger({
     v2CreateLedgerRequest: {
-      v2Metadata: {
+      metadata: {
         "admin": "true",
       },
     },
@@ -619,7 +619,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2CreateLedger(sdk, {
     v2CreateLedgerRequest: {
-      v2Metadata: {
+      metadata: {
         "admin": "true",
       },
     },
@@ -746,9 +746,6 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2.createTransaction({
     v2PostTransaction: {
-      v2Metadata: {
-        "admin": "true",
-      },
       accountMetadata: {
         "key": {
           "admin": "true",
@@ -759,6 +756,9 @@ async function run() {
         "key2": {
           "admin": "true",
         },
+      },
+      metadata: {
+        "admin": "true",
       },
       postings: [
         {
@@ -809,9 +809,6 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2CreateTransaction(sdk, {
     v2PostTransaction: {
-      v2Metadata: {
-        "admin": "true",
-      },
       accountMetadata: {
         "key": {
           "admin": "true",
@@ -822,6 +819,9 @@ async function run() {
         "key2": {
           "admin": "true",
         },
+      },
+      metadata: {
+        "admin": "true",
       },
       postings: [
         {
@@ -2245,7 +2245,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2.insertSchema({
     v2SchemaData: {
-      v2ChartOfAccounts: {
+      chart: {
         "users": {
           additionalProperties: {
             "$userID": {
@@ -2254,9 +2254,9 @@ async function run() {
           },
         },
       },
-      v2QueryTemplates: {
+      queries: {
         "key": {
-          v2QueryParams: {
+          params: {
             cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
             pageSize: 100,
             sort: "id:desc",
@@ -2294,7 +2294,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2InsertSchema(sdk, {
     v2SchemaData: {
-      v2ChartOfAccounts: {
+      chart: {
         "users": {
           additionalProperties: {
             "$userID": {
@@ -2303,9 +2303,9 @@ async function run() {
           },
         },
       },
-      v2QueryTemplates: {
+      queries: {
         "key": {
-          v2QueryParams: {
+          params: {
             cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
             pageSize: 100,
             sort: "id:desc",
@@ -3243,7 +3243,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.ledger.v2.runQuery({
     requestBody: {
-      v2QueryParams: {
+      params: {
         cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         pageSize: 100,
         sort: "id:desc",
@@ -3283,7 +3283,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await ledgerV2RunQuery(sdk, {
     requestBody: {
-      v2QueryParams: {
+      params: {
         cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
         pageSize: 100,
         sort: "id:desc",

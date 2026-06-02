@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Account, Account$inboundSchema } from "./account.js";
 
-export type AccountsCursorCursorBase = {
+export type AccountsCursorCursor = {
   data: Array<Account>;
   hasMore: boolean;
   next?: string | undefined;
@@ -21,12 +20,12 @@ export type AccountsCursorCursorBase = {
  * OK
  */
 export type AccountsCursor = {
-  cursorBase: AccountsCursorCursorBase;
+  cursor: AccountsCursorCursor;
 };
 
 /** @internal */
-export const AccountsCursorCursorBase$inboundSchema: z.ZodType<
-  AccountsCursorCursorBase,
+export const AccountsCursorCursor$inboundSchema: z.ZodType<
+  AccountsCursorCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -37,13 +36,13 @@ export const AccountsCursorCursorBase$inboundSchema: z.ZodType<
   previous: z.string().optional(),
 });
 
-export function accountsCursorCursorBaseFromJSON(
+export function accountsCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<AccountsCursorCursorBase, SDKValidationError> {
+): SafeParseResult<AccountsCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => AccountsCursorCursorBase$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountsCursorCursorBase' from JSON`,
+    (x) => AccountsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AccountsCursorCursor' from JSON`,
   );
 }
 
@@ -53,11 +52,7 @@ export const AccountsCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => AccountsCursorCursorBase$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "cursorBase",
-  });
+  cursor: z.lazy(() => AccountsCursorCursor$inboundSchema),
 });
 
 export function accountsCursorFromJSON(

@@ -8,7 +8,7 @@ OK
 import { PoolResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PoolResponse = {
-  pool: {
+  data: {
     accounts: [
       "<value 1>",
       "<value 2>",
@@ -24,4 +24,4 @@ let value: PoolResponse = {
 
 | Field                                                 | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `pool`                                                | [payments.Pool](../../../sdk/models/payments/pool.md) | :heavy_check_mark:                                    | N/A                                                   |
+| `data`                                                | [payments.Pool](../../../sdk/models/payments/pool.md) | :heavy_check_mark:                                    | N/A                                                   |

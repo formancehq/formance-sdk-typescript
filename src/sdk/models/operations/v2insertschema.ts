@@ -14,7 +14,7 @@ export type V2InsertSchemaRequest = {
    * Use an idempotency key
    */
   idempotencyKey?: string | undefined;
-  v2SchemaData: ledger.V2SchemaData2;
+  v2SchemaData: ledger.V2SchemaData;
   /**
    * Name of the ledger.
    */
@@ -44,7 +44,7 @@ export type V2InsertSchemaResponse = {
 /** @internal */
 export type V2InsertSchemaRequest$Outbound = {
   "Idempotency-Key"?: string | undefined;
-  V2SchemaData: ledger.V2SchemaData2$Outbound;
+  V2SchemaData: ledger.V2SchemaData$Outbound;
   ledger: string;
   version: string;
 };
@@ -56,7 +56,7 @@ export const V2InsertSchemaRequest$outboundSchema: z.ZodType<
   V2InsertSchemaRequest
 > = z.object({
   idempotencyKey: z.string().optional(),
-  v2SchemaData: ledger.V2SchemaData2$outboundSchema,
+  v2SchemaData: ledger.V2SchemaData$outboundSchema,
   ledger: z.string(),
   version: z.string(),
 }).transform((v) => {

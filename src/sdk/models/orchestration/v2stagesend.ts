@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,10 +17,10 @@ import {
 } from "./v2stagesendsource.js";
 
 export type V2StageSend = {
-  v2Monetary?: V2Monetary | undefined;
-  v2StageSendDestination?: V2StageSendDestination | undefined;
-  v2StageSendSource?: V2StageSendSource | undefined;
+  amount?: V2Monetary | undefined;
+  destination?: V2StageSendDestination | undefined;
   metadata?: { [k: string]: string } | undefined;
+  source?: V2StageSendSource | undefined;
   timestamp?: Date | undefined;
 };
 
@@ -33,16 +32,10 @@ export const V2StageSend$inboundSchema: z.ZodType<
 > = z.object({
   amount: V2Monetary$inboundSchema.optional(),
   destination: V2StageSendDestination$inboundSchema.optional(),
-  source: V2StageSendSource$inboundSchema.optional(),
   metadata: z.record(z.string()).optional(),
+  source: V2StageSendSource$inboundSchema.optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "amount": "v2Monetary",
-    "destination": "v2StageSendDestination",
-    "source": "v2StageSendSource",
-  });
 });
 
 export function v2StageSendFromJSON(

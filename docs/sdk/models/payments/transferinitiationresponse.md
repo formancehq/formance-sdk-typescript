@@ -8,22 +8,21 @@ OK
 import { TransferInitiationResponse, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TransferInitiationResponse = {
-  transferInitiation: {
-    transferInitiationStatus: TransferInitiationStatus.Validated,
-    amount: 514876n,
+  data: {
+    amount: 461665n,
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2025-07-28T06:54:28.449Z"),
-    description:
-      "bandwidth stage dearly waver singing brr gah through aha construe",
+    createdAt: new Date("2025-07-18T07:18:18.022Z"),
+    description: "inferior upwardly allegation mid oh yahoo wearily",
     destinationAccountID: "<id>",
     id: "XXX",
-    initialAmount: 15182n,
-    provider: null,
+    initialAmount: 470401n,
+    provider: "<value>",
     reference: "<value>",
-    scheduledAt: new Date("2025-05-26T00:58:08.174Z"),
+    scheduledAt: new Date("2026-01-05T14:17:24.024Z"),
     sourceAccountID: "<id>",
-    type: TransferInitiationType.Transfer,
+    status: TransferInitiationStatus.Rejected,
+    type: TransferInitiationType.Payout,
   },
 };
 ```
@@ -32,4 +31,4 @@ let value: TransferInitiationResponse = {
 
 | Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `transferInitiation`                                                              | [payments.TransferInitiation](../../../sdk/models/payments/transferinitiation.md) | :heavy_check_mark:                                                                | N/A                                                                               |
+| `data`                                                                            | [payments.TransferInitiation](../../../sdk/models/payments/transferinitiation.md) | :heavy_check_mark:                                                                | N/A                                                                               |

@@ -6,10 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Hold1, Hold1$inboundSchema } from "./hold1.js";
+import { Hold, Hold$inboundSchema } from "./hold.js";
 
 export type GetHoldsResponseCursor = {
-  data: Array<Hold1>;
+  data: Array<Hold>;
   hasMore?: boolean | undefined;
   next?: string | undefined;
   pageSize: number;
@@ -26,7 +26,7 @@ export const GetHoldsResponseCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(Hold1$inboundSchema),
+  data: z.array(Hold$inboundSchema),
   hasMore: z.boolean().optional(),
   next: z.string().optional(),
   pageSize: z.number().int(),

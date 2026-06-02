@@ -3,20 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  V2ExporterConfiguration1,
-  V2ExporterConfiguration1$inboundSchema,
-} from "./v2exporterconfiguration1.js";
+import { V2Exporter, V2Exporter$inboundSchema } from "./v2exporter.js";
 
 /**
  * Exporter information
  */
 export type V2GetExporterStateResponse = {
-  v2ExporterConfiguration: V2ExporterConfiguration1;
+  data: V2Exporter;
 };
 
 /** @internal */
@@ -25,11 +21,7 @@ export const V2GetExporterStateResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V2ExporterConfiguration1$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2ExporterConfiguration",
-  });
+  data: V2Exporter$inboundSchema,
 });
 
 export function v2GetExporterStateResponseFromJSON(

@@ -6,7 +6,7 @@
 import { WalletBalances } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: WalletBalances = {
-  assetHolder: {
+  main: {
     assets: {
       "key": 390928n,
     },
@@ -16,6 +16,6 @@ let value: WalletBalances = {
 
 ## Fields
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `assetHolder`                                                       | [wallets.AssetHolder1](../../../sdk/models/wallets/assetholder1.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `main`                                                            | [wallets.AssetHolder](../../../sdk/models/wallets/assetholder.md) | :heavy_check_mark:                                                | N/A                                                               |

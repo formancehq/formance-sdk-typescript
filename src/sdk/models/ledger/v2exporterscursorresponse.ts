@@ -6,13 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  V2ExporterConfiguration1,
-  V2ExporterConfiguration1$inboundSchema,
-} from "./v2exporterconfiguration1.js";
+import { V2Exporter, V2Exporter$inboundSchema } from "./v2exporter.js";
 
 export type V2ExportersCursorResponseCursor = {
-  data: Array<V2ExporterConfiguration1>;
+  data: Array<V2Exporter>;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -32,7 +29,7 @@ export const V2ExportersCursorResponseCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(V2ExporterConfiguration1$inboundSchema),
+  data: z.array(V2Exporter$inboundSchema),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),

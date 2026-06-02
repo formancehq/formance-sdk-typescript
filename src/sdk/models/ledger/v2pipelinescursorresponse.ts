@@ -6,13 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  V2PipelineConfiguration,
-  V2PipelineConfiguration$inboundSchema,
-} from "./v2pipelineconfiguration.js";
+import { V2Pipeline, V2Pipeline$inboundSchema } from "./v2pipeline.js";
 
 export type V2PipelinesCursorResponseCursor = {
-  data: Array<V2PipelineConfiguration>;
+  data: Array<V2Pipeline>;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -32,7 +29,7 @@ export const V2PipelinesCursorResponseCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(V2PipelineConfiguration$inboundSchema),
+  data: z.array(V2Pipeline$inboundSchema),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),

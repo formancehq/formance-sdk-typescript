@@ -6,11 +6,14 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { AssetHolder2, AssetHolder2$inboundSchema } from "./assetholder2.js";
+import {
+  BalanceWithAssets,
+  BalanceWithAssets$inboundSchema,
+} from "./balancewithassets.js";
 
 export type WalletSummary = {
   availableFunds: { [k: string]: bigint };
-  balances: Array<AssetHolder2>;
+  balances: Array<BalanceWithAssets>;
   expirableFunds: { [k: string]: bigint };
   expiredFunds: { [k: string]: bigint };
   holdFunds: { [k: string]: bigint };
@@ -23,7 +26,7 @@ export const WalletSummary$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   availableFunds: z.record(z.number().transform(v => BigInt(v))),
-  balances: z.array(AssetHolder2$inboundSchema),
+  balances: z.array(BalanceWithAssets$inboundSchema),
   expirableFunds: z.record(z.number().transform(v => BigInt(v))),
   expiredFunds: z.record(z.number().transform(v => BigInt(v))),
   holdFunds: z.record(z.number().transform(v => BigInt(v))),

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,13 +12,13 @@ import {
 } from "./v3paymentinitiationstatusenum.js";
 
 export type V3PaymentInitiationAdjustment = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  v3PaymentInitiationStatusEnum: V3PaymentInitiationStatusEnum;
   amount?: bigint | undefined;
   asset?: string | undefined;
   createdAt: Date;
   error?: string | null | undefined;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
+  status: V3PaymentInitiationStatusEnum;
 };
 
 /** @internal */
@@ -28,18 +27,13 @@ export const V3PaymentInitiationAdjustment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  status: V3PaymentInitiationStatusEnum$inboundSchema,
   amount: z.number().transform(v => BigInt(v)).optional(),
   asset: z.string().optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.nullable(z.string()).optional(),
   id: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v3Metadata",
-    "status": "v3PaymentInitiationStatusEnum",
-  });
+  metadata: z.nullable(z.record(z.string())).optional(),
+  status: V3PaymentInitiationStatusEnum$inboundSchema,
 });
 
 export function v3PaymentInitiationAdjustmentFromJSON(

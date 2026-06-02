@@ -3,17 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { V2SchemaData1, V2SchemaData1$inboundSchema } from "./v2schemadata1.js";
+import { V2Schema, V2Schema$inboundSchema } from "./v2schema.js";
 
 export type V2SchemaResponse = {
   /**
    * Complete schema structure with metadata
    */
-  v2SchemaData: V2SchemaData1;
+  data: V2Schema;
 };
 
 /** @internal */
@@ -22,11 +21,7 @@ export const V2SchemaResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V2SchemaData1$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2SchemaData",
-  });
+  data: V2Schema$inboundSchema,
 });
 
 export function v2SchemaResponseFromJSON(

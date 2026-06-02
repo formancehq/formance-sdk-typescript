@@ -6,10 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { V2SchemaData1, V2SchemaData1$inboundSchema } from "./v2schemadata1.js";
+import { V2Schema, V2Schema$inboundSchema } from "./v2schema.js";
 
 export type V2SchemasCursor = {
-  data: Array<V2SchemaData1>;
+  data: Array<V2Schema>;
   hasMore: boolean;
   next?: string | undefined;
   pageSize: number;
@@ -22,7 +22,7 @@ export const V2SchemasCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(V2SchemaData1$inboundSchema),
+  data: z.array(V2Schema$inboundSchema),
   hasMore: z.boolean(),
   next: z.string().optional(),
   pageSize: z.number().int(),

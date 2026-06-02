@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -19,11 +18,6 @@ import { PaymentType, PaymentType$inboundSchema } from "./paymenttype.js";
 export type PaymentRaw = {};
 
 export type Payment = {
-  connector?: Connector | undefined;
-  paymentMetadata: { [k: string]: string } | null;
-  paymentScheme: PaymentScheme;
-  paymentStatus: PaymentStatus;
-  paymentType: PaymentType;
   adjustments: Array<PaymentAdjustment>;
   amount: bigint;
   asset: string;
@@ -32,9 +26,14 @@ export type Payment = {
   destinationAccountID: string;
   id: string;
   initialAmount: bigint;
+  metadata: { [k: string]: string } | null;
+  provider?: Connector | undefined;
   raw: PaymentRaw | null;
   reference: string;
+  scheme: PaymentScheme;
   sourceAccountID: string;
+  status: PaymentStatus;
+  type: PaymentType;
 };
 
 /** @internal */
@@ -57,11 +56,6 @@ export function paymentRawFromJSON(
 /** @internal */
 export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
   z.object({
-    provider: Connector$inboundSchema.optional(),
-    metadata: z.nullable(z.record(z.string())),
-    scheme: PaymentScheme$inboundSchema,
-    status: PaymentStatus$inboundSchema,
-    type: PaymentType$inboundSchema,
     adjustments: z.array(PaymentAdjustment$inboundSchema),
     amount: z.number().transform(v => BigInt(v)),
     asset: z.string(),
@@ -72,17 +66,14 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     destinationAccountID: z.string(),
     id: z.string(),
     initialAmount: z.number().transform(v => BigInt(v)),
+    metadata: z.nullable(z.record(z.string())),
+    provider: Connector$inboundSchema.optional(),
     raw: z.nullable(z.lazy(() => PaymentRaw$inboundSchema)),
     reference: z.string(),
+    scheme: PaymentScheme$inboundSchema,
     sourceAccountID: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "provider": "connector",
-      "metadata": "paymentMetadata",
-      "scheme": "paymentScheme",
-      "status": "paymentStatus",
-      "type": "paymentType",
-    });
+    status: PaymentStatus$inboundSchema,
+    type: PaymentType$inboundSchema,
   });
 
 export function paymentFromJSON(

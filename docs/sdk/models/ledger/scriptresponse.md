@@ -6,25 +6,12 @@
 import { ErrorsEnum, ScriptResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: ScriptResponse = {
-  errorsEnum: ErrorsEnum.InsufficientFund,
+  details:
+    "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
+  errorCode: ErrorsEnum.InsufficientFund,
+  errorMessage: "account had insufficient funds",
   transaction: {
-    aggregatedVolumes: {
-      "orders:1": {
-        "USD": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
-        },
-      },
-      "orders:2": {
-        "USD": {
-          balance: 90n,
-          input: 100n,
-          output: 10n,
-        },
-      },
-    },
-    aggregatedVolumes1: {
+    postCommitVolumes: {
       "orders:1": {
         "USD": {
           balance: 90n,
@@ -48,13 +35,26 @@ let value: ScriptResponse = {
         source: "users:001",
       },
     ],
+    preCommitVolumes: {
+      "orders:1": {
+        "USD": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
+        },
+      },
+      "orders:2": {
+        "USD": {
+          balance: 90n,
+          input: 100n,
+          output: 10n,
+        },
+      },
+    },
     reference: "ref:001",
-    timestamp: new Date("2024-12-30T14:12:54.438Z"),
-    txid: 811899n,
+    timestamp: new Date("2024-12-23T18:02:59.726Z"),
+    txid: 482425n,
   },
-  details:
-    "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-  errorMessage: "account had insufficient funds",
 };
 ```
 
@@ -62,7 +62,7 @@ let value: ScriptResponse = {
 
 | Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `errorsEnum`                                                                                 | [ledger.ErrorsEnum](../../../sdk/models/ledger/errorsenum.md)                                | :heavy_minus_sign:                                                                           | N/A                                                                                          | INSUFFICIENT_FUND                                                                            |
-| `transaction`                                                                                | [ledger.Transaction](../../../sdk/models/ledger/transaction.md)                              | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
 | `details`                                                                                    | *string*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          | https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9 |
+| `errorCode`                                                                                  | [ledger.ErrorsEnum](../../../sdk/models/ledger/errorsenum.md)                                | :heavy_minus_sign:                                                                           | N/A                                                                                          | INSUFFICIENT_FUND                                                                            |
 | `errorMessage`                                                                               | *string*                                                                                     | :heavy_minus_sign:                                                                           | N/A                                                                                          | account had insufficient funds                                                               |
+| `transaction`                                                                                | [ledger.Transaction](../../../sdk/models/ledger/transaction.md)                              | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,7 +17,7 @@ export type V3GetOrderResponse = {
    * Status transitions are captured via the `adjustments` array; each
    * adjustment is a point-in-time snapshot from the PSP.
    */
-  v3Order: V3Order;
+  data: V3Order;
 };
 
 /** @internal */
@@ -28,10 +27,6 @@ export const V3GetOrderResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3Order$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3Order",
-  });
 });
 
 export function v3GetOrderResponseFromJSON(

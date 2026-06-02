@@ -3,37 +3,36 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   V3PaymentInitiationTypeEnum,
   V3PaymentInitiationTypeEnum$outboundSchema,
 } from "./v3paymentinitiationtypeenum.js";
 
 export type V3InitiatePaymentRequest = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum;
   amount: bigint;
   asset: string;
   connectorID: string;
   description: string;
   destinationAccountID?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   scheduledAt: Date;
   sourceAccountID?: string | null | undefined;
+  type: V3PaymentInitiationTypeEnum;
 };
 
 /** @internal */
 export type V3InitiatePaymentRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
-  type: string;
   amount: number;
   asset: string;
   connectorID: string;
   description: string;
   destinationAccountID?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   reference: string;
   scheduledAt: string;
   sourceAccountID?: string | null | undefined;
+  type: string;
 };
 
 /** @internal */
@@ -42,21 +41,16 @@ export const V3InitiatePaymentRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3InitiatePaymentRequest
 > = z.object({
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
-  v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum$outboundSchema,
   amount: z.bigint().transform(v => Number(v)),
   asset: z.string(),
   connectorID: z.string(),
   description: z.string(),
   destinationAccountID: z.string().optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   reference: z.string(),
   scheduledAt: z.date().transform(v => v.toISOString()),
   sourceAccountID: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v3Metadata: "metadata",
-    v3PaymentInitiationTypeEnum: "type",
-  });
+  type: V3PaymentInitiationTypeEnum$outboundSchema,
 });
 
 export function v3InitiatePaymentRequestToJSON(

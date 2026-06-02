@@ -6,9 +6,9 @@
 import { V2GetWalletResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2GetWalletResponse = {
-  v2WalletWithBalances: {
+  data: {
     balances: {
-      v2AssetHolder: {
+      main: {
         assets: {},
       },
     },
@@ -28,4 +28,4 @@ let value: V2GetWalletResponse = {
 
 | Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `v2WalletWithBalances`                                                                          | [orchestration.V2WalletWithBalances](../../../sdk/models/orchestration/v2walletwithbalances.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `data`                                                                                          | [orchestration.V2WalletWithBalances](../../../sdk/models/orchestration/v2walletwithbalances.md) | :heavy_check_mark:                                                                              | N/A                                                                                             |

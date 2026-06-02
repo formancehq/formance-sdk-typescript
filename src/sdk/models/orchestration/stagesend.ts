@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -18,10 +17,10 @@ import {
 } from "./stagesendsource.js";
 
 export type StageSend = {
-  monetary?: Monetary | undefined;
-  stageSendDestination?: StageSendDestination | undefined;
-  stageSendSource?: StageSendSource | undefined;
+  amount?: Monetary | undefined;
+  destination?: StageSendDestination | undefined;
   metadata?: { [k: string]: string } | undefined;
+  source?: StageSendSource | undefined;
   timestamp?: Date | undefined;
 };
 
@@ -33,16 +32,10 @@ export const StageSend$inboundSchema: z.ZodType<
 > = z.object({
   amount: Monetary$inboundSchema.optional(),
   destination: StageSendDestination$inboundSchema.optional(),
-  source: StageSendSource$inboundSchema.optional(),
   metadata: z.record(z.string()).optional(),
+  source: StageSendSource$inboundSchema.optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "amount": "monetary",
-    "destination": "stageSendDestination",
-    "source": "stageSendSource",
-  });
 });
 
 export function stageSendFromJSON(

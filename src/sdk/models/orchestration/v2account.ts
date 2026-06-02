@@ -3,17 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Volume, V2Volume$inboundSchema } from "./v2volume.js";
 
 export type V2Account = {
-  v2Volumes?: { [k: string]: V2Volume } | undefined;
-  v2Volumes1?: { [k: string]: V2Volume } | undefined;
   address: string;
+  effectiveVolumes?: { [k: string]: V2Volume } | undefined;
   metadata: { [k: string]: string };
+  volumes?: { [k: string]: V2Volume } | undefined;
 };
 
 /** @internal */
@@ -22,15 +21,10 @@ export const V2Account$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  volumes: z.record(V2Volume$inboundSchema).optional(),
-  effectiveVolumes: z.record(V2Volume$inboundSchema).optional(),
   address: z.string(),
+  effectiveVolumes: z.record(V2Volume$inboundSchema).optional(),
   metadata: z.record(z.string()),
-}).transform((v) => {
-  return remap$(v, {
-    "volumes": "v2Volumes",
-    "effectiveVolumes": "v2Volumes1",
-  });
+  volumes: z.record(V2Volume$inboundSchema).optional(),
 });
 
 export function v2AccountFromJSON(

@@ -6,7 +6,7 @@
 import { GetWalletSummaryResponse } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: GetWalletSummaryResponse = {
-  walletSummary: {
+  data: {
     availableFunds: {
       "key": 786190n,
       "key1": 711683n,
@@ -39,4 +39,4 @@ let value: GetWalletSummaryResponse = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `walletSummary`                                                       | [wallets.WalletSummary](../../../sdk/models/wallets/walletsummary.md) | :heavy_check_mark:                                                    | N/A                                                                   |
+| `data`                                                                | [wallets.WalletSummary](../../../sdk/models/wallets/walletsummary.md) | :heavy_check_mark:                                                    | N/A                                                                   |

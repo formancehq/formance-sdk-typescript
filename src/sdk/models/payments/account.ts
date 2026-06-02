@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,8 +11,6 @@ import { AccountType, AccountType$inboundSchema } from "./accounttype.js";
 export type AccountRaw = {};
 
 export type Account = {
-  accountMetadata: { [k: string]: string } | null;
-  accountType: AccountType;
   accountName: string;
   connectorID: string;
   createdAt: Date;
@@ -23,10 +20,12 @@ export type Account = {
    */
   defaultCurrency: string;
   id: string;
+  metadata: { [k: string]: string } | null;
   pools?: Array<string> | undefined;
   provider?: string | undefined;
   raw: AccountRaw | null;
   reference: string;
+  type: AccountType;
 };
 
 /** @internal */
@@ -49,8 +48,6 @@ export function accountRawFromJSON(
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
   z.object({
-    metadata: z.nullable(z.record(z.string())),
-    type: AccountType$inboundSchema,
     accountName: z.string(),
     connectorID: z.string(),
     createdAt: z.string().datetime({ offset: true }).transform(v =>
@@ -59,15 +56,12 @@ export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
     defaultAsset: z.string(),
     defaultCurrency: z.string(),
     id: z.string(),
+    metadata: z.nullable(z.record(z.string())),
     pools: z.array(z.string()).optional(),
     provider: z.string().optional(),
     raw: z.nullable(z.lazy(() => AccountRaw$inboundSchema)),
     reference: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "metadata": "accountMetadata",
-      "type": "accountType",
-    });
+    type: AccountType$inboundSchema,
   });
 
 export function accountFromJSON(

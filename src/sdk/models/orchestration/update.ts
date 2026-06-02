@@ -3,24 +3,19 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { UpdateAccount, UpdateAccount$inboundSchema } from "./updateaccount.js";
 
 export type Update = {
-  updateAccount?: UpdateAccount | undefined;
+  account?: UpdateAccount | undefined;
 };
 
 /** @internal */
 export const Update$inboundSchema: z.ZodType<Update, z.ZodTypeDef, unknown> = z
   .object({
     account: UpdateAccount$inboundSchema.optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "account": "updateAccount",
-    });
   });
 
 export function updateFromJSON(

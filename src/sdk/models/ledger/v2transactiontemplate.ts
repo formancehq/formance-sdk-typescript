@@ -13,11 +13,11 @@ import {
 } from "./runtime.js";
 
 export type V2TransactionTemplate = {
+  description?: string | undefined;
   /**
    * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
    */
   runtime?: Runtime | undefined;
-  description?: string | undefined;
   script: string;
 };
 
@@ -27,14 +27,14 @@ export const V2TransactionTemplate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  runtime: Runtime$inboundSchema.optional(),
   description: z.string().optional(),
+  runtime: Runtime$inboundSchema.optional(),
   script: z.string(),
 });
 /** @internal */
 export type V2TransactionTemplate$Outbound = {
-  runtime?: string | undefined;
   description?: string | undefined;
+  runtime?: string | undefined;
   script: string;
 };
 
@@ -44,8 +44,8 @@ export const V2TransactionTemplate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2TransactionTemplate
 > = z.object({
-  runtime: Runtime$outboundSchema.optional(),
   description: z.string().optional(),
+  runtime: Runtime$outboundSchema.optional(),
   script: z.string(),
 });
 

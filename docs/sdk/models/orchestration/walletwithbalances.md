@@ -7,7 +7,7 @@ import { WalletWithBalances } from "@formance/formance-sdk/sdk/models/orchestrat
 
 let value: WalletWithBalances = {
   balances: {
-    assetHolder: {
+    main: {
       assets: {
         "key": 913853n,
         "key1": 950258n,

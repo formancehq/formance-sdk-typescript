@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,11 +12,11 @@ import {
 } from "./v2workflowinstance.js";
 
 export type V2TriggerOccurrence = {
-  v2WorkflowInstance?: V2WorkflowInstance | undefined;
   date: Date;
   error?: string | undefined;
   event: { [k: string]: any };
   triggerID: string;
+  workflowInstance?: V2WorkflowInstance | undefined;
   workflowInstanceID?: string | undefined;
 };
 
@@ -27,16 +26,12 @@ export const V2TriggerOccurrence$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  workflowInstance: V2WorkflowInstance$inboundSchema.optional(),
   date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.string().optional(),
   event: z.record(z.any()),
   triggerID: z.string(),
+  workflowInstance: V2WorkflowInstance$inboundSchema.optional(),
   workflowInstanceID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "workflowInstance": "v2WorkflowInstance",
-  });
 });
 
 export function v2TriggerOccurrenceFromJSON(

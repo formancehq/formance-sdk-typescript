@@ -36,7 +36,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function orchestrationV1CreateTrigger(
   client: SDKCore,
-  request?: orchestration.TriggerData2 | undefined,
+  request?: orchestration.TriggerData | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -61,7 +61,7 @@ export function orchestrationV1CreateTrigger(
 
 async function $do(
   client: SDKCore,
-  request?: orchestration.TriggerData2 | undefined,
+  request?: orchestration.TriggerData | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -82,8 +82,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) =>
-      orchestration.TriggerData2$outboundSchema.optional().parse(value),
+    (value) => orchestration.TriggerData$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {

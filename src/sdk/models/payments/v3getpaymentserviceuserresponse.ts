@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v3paymentserviceuser.js";
 
 export type V3GetPaymentServiceUserResponse = {
-  v3PaymentServiceUser: V3PaymentServiceUser;
+  data: V3PaymentServiceUser;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V3GetPaymentServiceUserResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3PaymentServiceUser$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3PaymentServiceUser",
-  });
 });
 
 export function v3GetPaymentServiceUserResponseFromJSON(

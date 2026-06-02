@@ -7,7 +7,7 @@ import { V2WalletWithBalances } from "@formance/formance-sdk/sdk/models/orchestr
 
 let value: V2WalletWithBalances = {
   balances: {
-    v2AssetHolder: {
+    main: {
       assets: {},
     },
   },

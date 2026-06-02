@@ -9,10 +9,15 @@ let value: V2LogsCursorResponseCursor = {
   data: [
     {
       data: {
-        v2LogTransaction: {
-          v2Metadata: {},
+        accountMetadata: {
+          "users:001": {
+            "created_by": "system",
+          },
+        },
+        transaction: {
           id: 1234n,
           insertedAt: new Date("2024-01-15T10:30:00Z"),
+          metadata: {},
           postings: [
             {
               amount: 100n,
@@ -23,11 +28,6 @@ let value: V2LogsCursorResponseCursor = {
           ],
           reverted: false,
           timestamp: new Date("2024-01-15T10:30:00Z"),
-        },
-        accountMetadata: {
-          "users:001": {
-            "created_by": "system",
-          },
         },
       },
       date: new Date("2025-08-06T09:47:07.312Z"),

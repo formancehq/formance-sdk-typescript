@@ -3,17 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Connector, Connector$inboundSchema } from "./connector.js";
 
 export type ConnectorsResponseData = {
-  connector: Connector;
   connectorID: string;
   enabled?: boolean | undefined;
   name: string;
+  provider: Connector;
 };
 
 /**
@@ -29,14 +28,10 @@ export const ConnectorsResponseData$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  provider: Connector$inboundSchema,
   connectorID: z.string(),
   enabled: z.boolean().optional(),
   name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "provider": "connector",
-  });
+  provider: Connector$inboundSchema,
 });
 
 export function connectorsResponseDataFromJSON(

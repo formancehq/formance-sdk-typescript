@@ -7,7 +7,7 @@ import { TestConfigResponse } from "@formance/formance-sdk/sdk/models/operations
 
 let value: TestConfigResponse = {
   contentType: "<value>",
-  statusCode: 258393,
+  statusCode: 222371,
 };
 ```
 

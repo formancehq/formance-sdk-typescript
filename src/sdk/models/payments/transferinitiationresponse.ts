@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,7 +15,7 @@ import {
  * OK
  */
 export type TransferInitiationResponse = {
-  transferInitiation: TransferInitiation;
+  data: TransferInitiation;
 };
 
 /** @internal */
@@ -26,10 +25,6 @@ export const TransferInitiationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: TransferInitiation$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "transferInitiation",
-  });
 });
 
 export function transferInitiationResponseFromJSON(

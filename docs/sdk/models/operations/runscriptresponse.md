@@ -7,7 +7,7 @@ import { RunScriptResponse } from "@formance/formance-sdk/sdk/models/operations"
 
 let value: RunScriptResponse = {
   contentType: "<value>",
-  statusCode: 326416,
+  statusCode: 884133,
 };
 ```
 

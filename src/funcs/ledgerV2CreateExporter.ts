@@ -30,7 +30,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function ledgerV2CreateExporter(
   client: SDKCore,
-  request: ledger.V2ExporterConfiguration2,
+  request: ledger.V2ExporterConfiguration,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -55,7 +55,7 @@ export function ledgerV2CreateExporter(
 
 async function $do(
   client: SDKCore,
-  request: ledger.V2ExporterConfiguration2,
+  request: ledger.V2ExporterConfiguration,
   options?: RequestOptions,
 ): Promise<
   [
@@ -76,7 +76,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => ledger.V2ExporterConfiguration2$outboundSchema.parse(value),
+    (value) => ledger.V2ExporterConfiguration$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {

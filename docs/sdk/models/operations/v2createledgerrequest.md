@@ -7,7 +7,7 @@ import { V2CreateLedgerRequest } from "@formance/formance-sdk/sdk/models/operati
 
 let value: V2CreateLedgerRequest = {
   v2CreateLedgerRequest: {
-    v2Metadata: {
+    metadata: {
       "admin": "true",
     },
   },

@@ -6,7 +6,7 @@
 import { V2GetWorkflowInstanceResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2GetWorkflowInstanceResponse = {
-  v2WorkflowInstance: {
+  data: {
     createdAt: new Date("2024-11-03T15:17:55.065Z"),
     id: "<id>",
     terminated: false,
@@ -20,4 +20,4 @@ let value: V2GetWorkflowInstanceResponse = {
 
 | Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `v2WorkflowInstance`                                                                        | [orchestration.V2WorkflowInstance](../../../sdk/models/orchestration/v2workflowinstance.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `data`                                                                                      | [orchestration.V2WorkflowInstance](../../../sdk/models/orchestration/v2workflowinstance.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |

@@ -8,19 +8,19 @@ OK
 import { AccountsCursor, AccountType } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: AccountsCursor = {
-  cursorBase: {
+  cursor: {
     data: [
       {
-        accountMetadata: {},
-        accountType: AccountType.Unknown,
         accountName: "<value>",
         connectorID: "<id>",
-        createdAt: new Date("2024-09-07T06:59:05.942Z"),
+        createdAt: new Date("2025-11-09T04:37:38.058Z"),
         defaultAsset: "<value>",
         defaultCurrency: "<value>",
         id: "<id>",
-        raw: null,
+        metadata: null,
+        raw: {},
         reference: "<value>",
+        type: AccountType.Unknown,
       },
     ],
     hasMore: false,
@@ -33,6 +33,6 @@ let value: AccountsCursor = {
 
 ## Fields
 
-| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `cursorBase`                                                                                  | [payments.AccountsCursorCursorBase](../../../sdk/models/payments/accountscursorcursorbase.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `cursor`                                                                              | [payments.AccountsCursorCursor](../../../sdk/models/payments/accountscursorcursor.md) | :heavy_check_mark:                                                                    | N/A                                                                                   |

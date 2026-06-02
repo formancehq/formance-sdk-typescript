@@ -10,8 +10,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
 export type V2RunQueryRequestBody = {
-  v2QueryParams?: ledger.V2QueryParams | undefined;
   cursor?: string | undefined;
+  params?: ledger.V2QueryParams | undefined;
   vars?: { [k: string]: string } | undefined;
 };
 
@@ -104,8 +104,8 @@ export type V2RunQueryResponse = {
 
 /** @internal */
 export type V2RunQueryRequestBody$Outbound = {
-  params?: ledger.V2QueryParams$Outbound | undefined;
   cursor?: string | undefined;
+  params?: ledger.V2QueryParams$Outbound | undefined;
   vars?: { [k: string]: string } | undefined;
 };
 
@@ -115,13 +115,9 @@ export const V2RunQueryRequestBody$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2RunQueryRequestBody
 > = z.object({
-  v2QueryParams: ledger.V2QueryParams$outboundSchema.optional(),
   cursor: z.string().optional(),
+  params: ledger.V2QueryParams$outboundSchema.optional(),
   vars: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v2QueryParams: "params",
-  });
 });
 
 export function v2RunQueryRequestBodyToJSON(

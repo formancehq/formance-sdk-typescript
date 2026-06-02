@@ -6,18 +6,17 @@
 import { V3PaymentInitiation, V3PaymentInitiationStatusEnum, V3PaymentInitiationTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentInitiation = {
-  v3PaymentInitiationStatusEnum: V3PaymentInitiationStatusEnum.Processing,
-  v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum.Transfer,
-  amount: 455712n,
+  amount: 321409n,
   asset: "<value>",
   connectorID: "<value>",
-  createdAt: new Date("2025-08-24T05:35:22.077Z"),
-  description:
-    "amazing glaring pfft emulsify reclassify carelessly than within when",
+  createdAt: new Date("2025-11-23T00:31:39.339Z"),
+  description: "tusk regarding spear newsletter bah gosh",
   id: "<id>",
   provider: "<value>",
   reference: "<value>",
-  scheduledAt: new Date("2024-04-30T14:35:05.760Z"),
+  scheduledAt: new Date("2024-09-01T23:09:00.874Z"),
+  status: V3PaymentInitiationStatusEnum.Unknown,
+  type: V3PaymentInitiationTypeEnum.Payout,
 };
 ```
 
@@ -25,9 +24,6 @@ let value: V3PaymentInitiation = {
 
 | Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `v3Metadata`                                                                                            | Record<string, *string*>                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
-| `v3PaymentInitiationStatusEnum`                                                                         | [payments.V3PaymentInitiationStatusEnum](../../../sdk/models/payments/v3paymentinitiationstatusenum.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
-| `v3PaymentInitiationTypeEnum`                                                                           | [payments.V3PaymentInitiationTypeEnum](../../../sdk/models/payments/v3paymentinitiationtypeenum.md)     | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `amount`                                                                                                | *BigInt*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `asset`                                                                                                 | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `connectorID`                                                                                           | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
@@ -36,7 +32,10 @@ let value: V3PaymentInitiation = {
 | `destinationAccountID`                                                                                  | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `error`                                                                                                 | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `id`                                                                                                    | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `metadata`                                                                                              | Record<string, *string*>                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
 | `provider`                                                                                              | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `reference`                                                                                             | *string*                                                                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `scheduledAt`                                                                                           | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)           | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
 | `sourceAccountID`                                                                                       | *string*                                                                                                | :heavy_minus_sign:                                                                                      | N/A                                                                                                     |
+| `status`                                                                                                | [payments.V3PaymentInitiationStatusEnum](../../../sdk/models/payments/v3paymentinitiationstatusenum.md) | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
+| `type`                                                                                                  | [payments.V3PaymentInitiationTypeEnum](../../../sdk/models/payments/v3paymentinitiationtypeenum.md)     | :heavy_check_mark:                                                                                      | N/A                                                                                                     |

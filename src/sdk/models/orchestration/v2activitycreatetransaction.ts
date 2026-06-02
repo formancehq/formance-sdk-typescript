@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2posttransaction.js";
 
 export type V2ActivityCreateTransaction = {
-  v2PostTransaction?: V2PostTransaction | undefined;
+  data?: V2PostTransaction | undefined;
   ledger?: string | undefined;
 };
 
@@ -25,10 +24,6 @@ export const V2ActivityCreateTransaction$inboundSchema: z.ZodType<
 > = z.object({
   data: V2PostTransaction$inboundSchema.optional(),
   ledger: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2PostTransaction",
-  });
 });
 
 export function v2ActivityCreateTransactionFromJSON(

@@ -57,20 +57,18 @@ import {
 } from "./v2stripetransferrequest.js";
 
 export type V2WorkflowInstanceHistoryStageInput = {
-  v2ActivityAddAccountMetadata?: V2ActivityAddAccountMetadata | undefined;
-  v2ActivityConfirmHold?: V2ActivityConfirmHold | undefined;
-  v2ActivityCreateTransaction?: V2ActivityCreateTransaction | undefined;
-  v2ActivityCreditWallet?: V2ActivityCreditWallet | undefined;
-  v2ActivityDebitWallet?: V2ActivityDebitWallet | undefined;
-  v2ActivityGetAccount?: V2ActivityGetAccount | undefined;
-  v2ActivityGetPayment?: V2ActivityGetPayment | undefined;
-  v2ActivityGetWallet?: V2ActivityGetWallet | undefined;
-  v2ActivityListWallets?: V2ActivityListWallets | undefined;
-  v2ActivityVoidHold?: V2ActivityVoidHold | undefined;
-  v2CreateTransferInitiationRequest?:
-    | V2CreateTransferInitiationRequest
-    | undefined;
-  v2StripeTransferRequest?: V2StripeTransferRequest | undefined;
+  addAccountMetadata?: V2ActivityAddAccountMetadata | undefined;
+  confirmHold?: V2ActivityConfirmHold | undefined;
+  createTransaction?: V2ActivityCreateTransaction | undefined;
+  createTransferInitiation?: V2CreateTransferInitiationRequest | undefined;
+  creditWallet?: V2ActivityCreditWallet | undefined;
+  debitWallet?: V2ActivityDebitWallet | undefined;
+  getAccount?: V2ActivityGetAccount | undefined;
+  getPayment?: V2ActivityGetPayment | undefined;
+  getWallet?: V2ActivityGetWallet | undefined;
+  listWallets?: V2ActivityListWallets | undefined;
+  stripeTransfer?: V2StripeTransferRequest | undefined;
+  voidHold?: V2ActivityVoidHold | undefined;
 };
 
 /** @internal */
@@ -82,30 +80,30 @@ export const V2WorkflowInstanceHistoryStageInput$inboundSchema: z.ZodType<
   AddAccountMetadata: V2ActivityAddAccountMetadata$inboundSchema.optional(),
   ConfirmHold: V2ActivityConfirmHold$inboundSchema.optional(),
   CreateTransaction: V2ActivityCreateTransaction$inboundSchema.optional(),
+  CreateTransferInitiation: V2CreateTransferInitiationRequest$inboundSchema
+    .optional(),
   CreditWallet: V2ActivityCreditWallet$inboundSchema.optional(),
   DebitWallet: V2ActivityDebitWallet$inboundSchema.optional(),
   GetAccount: V2ActivityGetAccount$inboundSchema.optional(),
   GetPayment: V2ActivityGetPayment$inboundSchema.optional(),
   GetWallet: V2ActivityGetWallet$inboundSchema.optional(),
   ListWallets: V2ActivityListWallets$inboundSchema.optional(),
-  VoidHold: V2ActivityVoidHold$inboundSchema.optional(),
-  CreateTransferInitiation: V2CreateTransferInitiationRequest$inboundSchema
-    .optional(),
   StripeTransfer: V2StripeTransferRequest$inboundSchema.optional(),
+  VoidHold: V2ActivityVoidHold$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
-    "AddAccountMetadata": "v2ActivityAddAccountMetadata",
-    "ConfirmHold": "v2ActivityConfirmHold",
-    "CreateTransaction": "v2ActivityCreateTransaction",
-    "CreditWallet": "v2ActivityCreditWallet",
-    "DebitWallet": "v2ActivityDebitWallet",
-    "GetAccount": "v2ActivityGetAccount",
-    "GetPayment": "v2ActivityGetPayment",
-    "GetWallet": "v2ActivityGetWallet",
-    "ListWallets": "v2ActivityListWallets",
-    "VoidHold": "v2ActivityVoidHold",
-    "CreateTransferInitiation": "v2CreateTransferInitiationRequest",
-    "StripeTransfer": "v2StripeTransferRequest",
+    "AddAccountMetadata": "addAccountMetadata",
+    "ConfirmHold": "confirmHold",
+    "CreateTransaction": "createTransaction",
+    "CreateTransferInitiation": "createTransferInitiation",
+    "CreditWallet": "creditWallet",
+    "DebitWallet": "debitWallet",
+    "GetAccount": "getAccount",
+    "GetPayment": "getPayment",
+    "GetWallet": "getWallet",
+    "ListWallets": "listWallets",
+    "StripeTransfer": "stripeTransfer",
+    "VoidHold": "voidHold",
   });
 });
 

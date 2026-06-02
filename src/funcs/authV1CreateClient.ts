@@ -33,7 +33,7 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function authV1CreateClient(
   client: SDKCore,
-  request?: auth.ClientOptions2 | undefined,
+  request?: auth.ClientOptions | undefined,
   options?: RequestOptions,
 ): APIPromise<
   Result<
@@ -57,7 +57,7 @@ export function authV1CreateClient(
 
 async function $do(
   client: SDKCore,
-  request?: auth.ClientOptions2 | undefined,
+  request?: auth.ClientOptions | undefined,
   options?: RequestOptions,
 ): Promise<
   [
@@ -77,7 +77,7 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => auth.ClientOptions2$outboundSchema.optional().parse(value),
+    (value) => auth.ClientOptions$outboundSchema.optional().parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {

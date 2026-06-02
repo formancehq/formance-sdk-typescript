@@ -12,19 +12,19 @@ import {
 } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetOrderResponse = {
-  v3Order: {
-    v3OrderDirectionEnum: V3OrderDirectionEnum.Sell,
-    v3OrderStatusEnum: V3OrderStatusEnum.Expired,
-    v3OrderTypeEnum: V3OrderTypeEnum.Unknown,
-    v3TimeInForceEnum: V3TimeInForceEnum.GoodUntilDateTime,
-    baseQuantityOrdered: 625656n,
+  data: {
+    baseQuantityOrdered: 822213n,
     connectorID: "<value>",
-    createdAt: new Date("2024-01-21T16:55:46.625Z"),
+    createdAt: new Date("2026-10-13T19:35:43.823Z"),
     destinationAsset: "<value>",
+    direction: V3OrderDirectionEnum.Unknown,
     id: "<id>",
     provider: "<value>",
     reference: "<value>",
     sourceAsset: "<value>",
+    status: V3OrderStatusEnum.PartiallyFilled,
+    timeInForce: V3TimeInForceEnum.ImmediateOrCancel,
+    type: V3OrderTypeEnum.Unknown,
     updatedAt: new Date("2026-10-21T09:19:11.680Z"),
   },
 };
@@ -34,4 +34,4 @@ let value: V3GetOrderResponse = {
 
 | Field                                                                                                                                                                                                                                                               | Type                                                                                                                                                                                                                                                                | Required                                                                                                                                                                                                                                                            | Description                                                                                                                                                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `v3Order`                                                                                                                                                                                                                                                           | [payments.V3Order](../../../sdk/models/payments/v3order.md)                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                                                                  | A trade order submitted to an exchange-style PSP. Orders are read-only<br/>in the Formance API: they are fetched from the underlying connector.<br/>Status transitions are captured via the `adjustments` array; each<br/>adjustment is a point-in-time snapshot from the PSP.<br/> |
+| `data`                                                                                                                                                                                                                                                              | [payments.V3Order](../../../sdk/models/payments/v3order.md)                                                                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                                                                                  | A trade order submitted to an exchange-style PSP. Orders are read-only<br/>in the Formance API: they are fetched from the underlying connector.<br/>Status transitions are captured via the `adjustments` array; each<br/>adjustment is a point-in-time snapshot from the PSP.<br/> |
