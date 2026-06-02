@@ -6,10 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { TriggerData1, TriggerData1$inboundSchema } from "./triggerdata1.js";
+import { Trigger, Trigger$inboundSchema } from "./trigger.js";
 
 export type ListTriggersResponse = {
-  data: Array<TriggerData1>;
+  data: Array<Trigger>;
 };
 
 /** @internal */
@@ -18,7 +18,7 @@ export const ListTriggersResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(TriggerData1$inboundSchema),
+  data: z.array(Trigger$inboundSchema),
 });
 
 export function listTriggersResponseFromJSON(

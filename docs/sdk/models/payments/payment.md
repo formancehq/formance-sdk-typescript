@@ -6,25 +6,21 @@
 import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: Payment = {
-  paymentMetadata: {
-    "key": "<value>",
-    "key1": "<value>",
-    "key2": "<value>",
-  },
-  paymentScheme: PaymentScheme.Other,
-  paymentStatus: PaymentStatus.Pending,
-  paymentType: PaymentType.Other,
   adjustments: [],
   amount: 100n,
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2025-04-14T15:21:37.217Z"),
+  createdAt: new Date("2026-11-17T06:22:17.047Z"),
   destinationAccountID: "<id>",
   id: "XXX",
   initialAmount: 100n,
-  raw: {},
+  metadata: null,
+  raw: null,
   reference: "<value>",
+  scheme: PaymentScheme.A2a,
   sourceAccountID: "<id>",
+  status: PaymentStatus.Failed,
+  type: PaymentType.Payout,
 };
 ```
 
@@ -32,11 +28,6 @@ let value: Payment = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `connector`                                                                                   | [payments.Connector](../../../sdk/models/payments/connector.md)                               | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `paymentMetadata`                                                                             | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
-| `paymentScheme`                                                                               | [payments.PaymentScheme](../../../sdk/models/payments/paymentscheme.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
-| `paymentStatus`                                                                               | [payments.PaymentStatus](../../../sdk/models/payments/paymentstatus.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
-| `paymentType`                                                                                 | [payments.PaymentType](../../../sdk/models/payments/paymenttype.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `adjustments`                                                                                 | [payments.PaymentAdjustment](../../../sdk/models/payments/paymentadjustment.md)[]             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `amount`                                                                                      | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | 100                                                                                           |
 | `asset`                                                                                       | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | USD                                                                                           |
@@ -45,6 +36,11 @@ let value: Payment = {
 | `destinationAccountID`                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | XXX                                                                                           |
 | `initialAmount`                                                                               | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | 100                                                                                           |
+| `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `provider`                                                                                    | [payments.Connector](../../../sdk/models/payments/connector.md)                               | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 | `raw`                                                                                         | [payments.PaymentRaw](../../../sdk/models/payments/paymentraw.md)                             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `scheme`                                                                                      | [payments.PaymentScheme](../../../sdk/models/payments/paymentscheme.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `sourceAccountID`                                                                             | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `status`                                                                                      | [payments.PaymentStatus](../../../sdk/models/payments/paymentstatus.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `type`                                                                                        | [payments.PaymentType](../../../sdk/models/payments/paymenttype.md)                           | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

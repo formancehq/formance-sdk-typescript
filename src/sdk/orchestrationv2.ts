@@ -50,7 +50,7 @@ export class OrchestrationV2 extends ClientSDK {
    * Create trigger
    */
   async createTrigger(
-    request?: orchestration.V2TriggerData2 | undefined,
+    request?: orchestration.V2TriggerData | undefined,
     options?: RequestOptions,
   ): Promise<operations.V2CreateTriggerResponse> {
     return unwrapAsync(orchestrationV2CreateTrigger(

@@ -6,7 +6,7 @@
 import { GetHoldResponse } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: GetHoldResponse = {
-  hold: {
+  data: {
     asset: "<value>",
     description: "noisily since whispered helpfully blah implode",
     id: "3e139af1-c62d-4949-926a-783670366ad9",
@@ -22,6 +22,6 @@ let value: GetHoldResponse = {
 
 ## Fields
 
-| Field                                                 | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `hold`                                                | [wallets.Hold2](../../../sdk/models/wallets/hold2.md) | :heavy_check_mark:                                    | N/A                                                   |
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `data`                                                                        | [wallets.ExpandedDebitHold](../../../sdk/models/wallets/expandeddebithold.md) | :heavy_check_mark:                                                            | N/A                                                                           |

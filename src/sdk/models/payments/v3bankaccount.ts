@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,12 +12,12 @@ import {
 } from "./v3bankaccountrelatedaccount.js";
 
 export type V3BankAccount = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
   accountNumber?: string | null | undefined;
   country?: string | null | undefined;
   createdAt: Date;
   iban?: string | null | undefined;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   relatedAccounts?: Array<V3BankAccountRelatedAccount> | undefined;
   swiftBicCode?: string | null | undefined;
@@ -30,20 +29,16 @@ export const V3BankAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
   accountNumber: z.nullable(z.string()).optional(),
   country: z.nullable(z.string()).optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   iban: z.nullable(z.string()).optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
   relatedAccounts: z.array(V3BankAccountRelatedAccount$inboundSchema)
     .optional(),
   swiftBicCode: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v3Metadata",
-  });
 });
 
 export function v3BankAccountFromJSON(

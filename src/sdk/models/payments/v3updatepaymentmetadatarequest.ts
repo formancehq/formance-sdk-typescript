@@ -3,10 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type V3UpdatePaymentMetadataRequest = {
-  v3Metadata: { [k: string]: string } | null;
+  metadata: { [k: string]: string } | null;
 };
 
 /** @internal */
@@ -20,11 +19,7 @@ export const V3UpdatePaymentMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3UpdatePaymentMetadataRequest
 > = z.object({
-  v3Metadata: z.nullable(z.record(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    v3Metadata: "metadata",
-  });
+  metadata: z.nullable(z.record(z.string())),
 });
 
 export function v3UpdatePaymentMetadataRequestToJSON(

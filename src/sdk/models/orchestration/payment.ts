@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -49,9 +48,6 @@ export enum PaymentType {
 }
 
 export type Payment = {
-  connector?: Connector | undefined;
-  paymentMetadata: PaymentMetadata | null;
-  paymentStatus: PaymentStatus;
   adjustments: Array<PaymentAdjustment>;
   asset: string;
   connectorID: string;
@@ -59,10 +55,13 @@ export type Payment = {
   destinationAccountID: string;
   id: string;
   initialAmount: bigint;
+  metadata: PaymentMetadata | null;
+  provider?: Connector | undefined;
   raw: PaymentRaw | null;
   reference: string;
   scheme: PaymentScheme;
   sourceAccountID: string;
+  status: PaymentStatus;
   type: PaymentType;
 };
 
@@ -95,9 +94,6 @@ export const PaymentType$inboundSchema: z.ZodNativeEnum<typeof PaymentType> = z
 /** @internal */
 export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
   z.object({
-    provider: Connector$inboundSchema.optional(),
-    metadata: z.nullable(PaymentMetadata$inboundSchema),
-    status: PaymentStatus$inboundSchema,
     adjustments: z.array(PaymentAdjustment$inboundSchema),
     asset: z.string(),
     connectorID: z.string(),
@@ -107,17 +103,14 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     destinationAccountID: z.string(),
     id: z.string(),
     initialAmount: z.number().transform(v => BigInt(v)),
+    metadata: z.nullable(PaymentMetadata$inboundSchema),
+    provider: Connector$inboundSchema.optional(),
     raw: z.nullable(z.lazy(() => PaymentRaw$inboundSchema)),
     reference: z.string(),
     scheme: PaymentScheme$inboundSchema,
     sourceAccountID: z.string(),
+    status: PaymentStatus$inboundSchema,
     type: PaymentType$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "provider": "connector",
-      "metadata": "paymentMetadata",
-      "status": "paymentStatus",
-    });
   });
 
 export function paymentFromJSON(

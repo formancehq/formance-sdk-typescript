@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -15,11 +14,11 @@ import {
 export type V2PaymentAdjustmentRaw = {};
 
 export type V2PaymentAdjustment = {
-  v2PaymentStatus: V2PaymentStatus;
   absolute: boolean;
   amount: bigint;
   date: Date;
   raw: V2PaymentAdjustmentRaw;
+  status: V2PaymentStatus;
 };
 
 /** @internal */
@@ -45,15 +44,11 @@ export const V2PaymentAdjustment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: V2PaymentStatus$inboundSchema,
   absolute: z.boolean(),
   amount: z.number().transform(v => BigInt(v)),
   date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   raw: z.lazy(() => V2PaymentAdjustmentRaw$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "v2PaymentStatus",
-  });
+  status: V2PaymentStatus$inboundSchema,
 });
 
 export function v2PaymentAdjustmentFromJSON(

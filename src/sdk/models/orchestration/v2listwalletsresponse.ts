@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Wallet, V2Wallet$inboundSchema } from "./v2wallet.js";
 
-export type V2Cursor = {
+export type V2ListWalletsResponseCursor = {
   data: Array<V2Wallet>;
   hasMore?: boolean | undefined;
   next?: string | undefined;
@@ -18,12 +17,12 @@ export type V2Cursor = {
 };
 
 export type V2ListWalletsResponse = {
-  v2Cursor: V2Cursor;
+  cursor: V2ListWalletsResponseCursor;
 };
 
 /** @internal */
-export const V2Cursor$inboundSchema: z.ZodType<
-  V2Cursor,
+export const V2ListWalletsResponseCursor$inboundSchema: z.ZodType<
+  V2ListWalletsResponseCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -34,13 +33,13 @@ export const V2Cursor$inboundSchema: z.ZodType<
   previous: z.string().optional(),
 });
 
-export function v2CursorFromJSON(
+export function v2ListWalletsResponseCursorFromJSON(
   jsonString: string,
-): SafeParseResult<V2Cursor, SDKValidationError> {
+): SafeParseResult<V2ListWalletsResponseCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => V2Cursor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V2Cursor' from JSON`,
+    (x) => V2ListWalletsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2ListWalletsResponseCursor' from JSON`,
   );
 }
 
@@ -50,11 +49,7 @@ export const V2ListWalletsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => V2Cursor$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "v2Cursor",
-  });
+  cursor: z.lazy(() => V2ListWalletsResponseCursor$inboundSchema),
 });
 
 export function v2ListWalletsResponseFromJSON(

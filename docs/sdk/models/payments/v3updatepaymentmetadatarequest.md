@@ -6,7 +6,7 @@
 import { V3UpdatePaymentMetadataRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3UpdatePaymentMetadataRequest = {
-  v3Metadata: null,
+  metadata: null,
 };
 ```
 
@@ -14,4 +14,4 @@ let value: V3UpdatePaymentMetadataRequest = {
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `v3Metadata`             | Record<string, *string*> | :heavy_check_mark:       | N/A                      |
+| `metadata`               | Record<string, *string*> | :heavy_check_mark:       | N/A                      |

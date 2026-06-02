@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -26,10 +25,10 @@ import {
 } from "./v2querytemplatevar.js";
 
 export type V2QueryTemplate = {
-  v2QueryParams?: V2QueryParams | undefined;
-  v2QueryResource?: V2QueryResource | undefined;
   body?: { [k: string]: any } | undefined;
   description?: string | undefined;
+  params?: V2QueryParams | undefined;
+  resource?: V2QueryResource | undefined;
   vars?: { [k: string]: V2QueryTemplateVar } | undefined;
 };
 
@@ -39,23 +38,18 @@ export const V2QueryTemplate$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  params: V2QueryParams$inboundSchema.optional(),
-  resource: V2QueryResource$inboundSchema.optional(),
   body: z.record(z.any()).optional(),
   description: z.string().optional(),
+  params: V2QueryParams$inboundSchema.optional(),
+  resource: V2QueryResource$inboundSchema.optional(),
   vars: z.record(V2QueryTemplateVar$inboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "params": "v2QueryParams",
-    "resource": "v2QueryResource",
-  });
 });
 /** @internal */
 export type V2QueryTemplate$Outbound = {
-  params?: V2QueryParams$Outbound | undefined;
-  resource?: string | undefined;
   body?: { [k: string]: any } | undefined;
   description?: string | undefined;
+  params?: V2QueryParams$Outbound | undefined;
+  resource?: string | undefined;
   vars?: { [k: string]: V2QueryTemplateVar$Outbound } | undefined;
 };
 
@@ -65,16 +59,11 @@ export const V2QueryTemplate$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2QueryTemplate
 > = z.object({
-  v2QueryParams: V2QueryParams$outboundSchema.optional(),
-  v2QueryResource: V2QueryResource$outboundSchema.optional(),
   body: z.record(z.any()).optional(),
   description: z.string().optional(),
+  params: V2QueryParams$outboundSchema.optional(),
+  resource: V2QueryResource$outboundSchema.optional(),
   vars: z.record(V2QueryTemplateVar$outboundSchema).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v2QueryParams: "params",
-    v2QueryResource: "resource",
-  });
 });
 
 export function v2QueryTemplateToJSON(

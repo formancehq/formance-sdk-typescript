@@ -3,20 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  V2PipelineConfiguration,
-  V2PipelineConfiguration$inboundSchema,
-} from "./v2pipelineconfiguration.js";
+import { V2Pipeline, V2Pipeline$inboundSchema } from "./v2pipeline.js";
 
 /**
  * Pipeline information
  */
 export type V2GetPipelineStateResponse = {
-  v2PipelineConfiguration: V2PipelineConfiguration;
+  data: V2Pipeline;
 };
 
 /** @internal */
@@ -25,11 +21,7 @@ export const V2GetPipelineStateResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: V2PipelineConfiguration$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2PipelineConfiguration",
-  });
+  data: V2Pipeline$inboundSchema,
 });
 
 export function v2GetPipelineStateResponseFromJSON(

@@ -7,9 +7,6 @@ import { V2CreateTransactionRequest } from "@formance/formance-sdk/sdk/models/op
 
 let value: V2CreateTransactionRequest = {
   v2PostTransaction: {
-    v2Metadata: {
-      "admin": "true",
-    },
     accountMetadata: {
       "key": {
         "admin": "true",
@@ -17,6 +14,9 @@ let value: V2CreateTransactionRequest = {
       "key1": {
         "admin": "true",
       },
+    },
+    metadata: {
+      "admin": "true",
     },
     postings: [
       {

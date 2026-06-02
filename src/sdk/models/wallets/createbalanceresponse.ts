@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Balance, Balance$inboundSchema } from "./balance.js";
 
 export type CreateBalanceResponse = {
-  balance: Balance;
+  data: Balance;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const CreateBalanceResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: Balance$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "balance",
-  });
 });
 
 export function createBalanceResponseFromJSON(

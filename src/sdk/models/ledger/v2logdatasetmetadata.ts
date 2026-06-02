@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -22,7 +21,7 @@ export enum V2LogDataSetMetadataTargetType {
  * Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.
  */
 export type V2LogDataSetMetadata = {
-  v2Metadata: { [k: string]: string };
+  metadata: { [k: string]: string };
   targetId: string | bigint;
   /**
    * Type of the target entity
@@ -61,10 +60,6 @@ export const V2LogDataSetMetadata$inboundSchema: z.ZodType<
   metadata: z.record(z.string()),
   targetId: z.union([z.string(), z.number().transform(v => BigInt(v))]),
   targetType: V2LogDataSetMetadataTargetType$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v2Metadata",
-  });
 });
 
 export function v2LogDataSetMetadataFromJSON(

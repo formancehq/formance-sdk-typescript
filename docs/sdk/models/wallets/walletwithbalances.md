@@ -7,7 +7,7 @@ import { WalletWithBalances } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: WalletWithBalances = {
   balances: {
-    assetHolder: {
+    main: {
       assets: {
         "key": 390928n,
       },

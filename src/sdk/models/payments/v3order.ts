@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -37,42 +36,6 @@ import {
  * adjustment is a point-in-time snapshot from the PSP.
  */
 export type V3Order = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  /**
-   * Whether an order buys or sells the base asset.
-   */
-  v3OrderDirectionEnum: V3OrderDirectionEnum;
-  /**
-   * Lifecycle of an order on the exchange.
-   *
-   * @remarks
-   * `PENDING` — accepted by the exchange, not yet working.
-   * `OPEN` — live on the book, no fills yet.
-   * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
-   * `FILLED` — fully filled, terminal.
-   * `CANCELLED` — cancelled by the user or system, terminal.
-   * `FAILED` — rejected by the exchange, terminal. See `error` for details.
-   * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
-   */
-  v3OrderStatusEnum: V3OrderStatusEnum;
-  /**
-   * Exchange order type. Determines which price fields are meaningful on
-   *
-   * @remarks
-   * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
-   * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
-   */
-  v3OrderTypeEnum: V3OrderTypeEnum;
-  /**
-   * How long an order is valid on the exchange.
-   *
-   * @remarks
-   * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
-   * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
-   * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
-   * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
-   */
-  v3TimeInForceEnum: V3TimeInForceEnum;
   /**
    * Ordered history of state snapshots for this order. The most recent element reflects the current `status`.
    */
@@ -118,6 +81,10 @@ export type V3Order = {
    */
   destinationAsset: string;
   /**
+   * Whether an order buys or sells the base asset.
+   */
+  direction: V3OrderDirectionEnum;
+  /**
    * Human-readable error from the PSP (e.g. rejection reason) when `status` is `FAILED`. Null otherwise.
    */
   error?: string | null | undefined;
@@ -141,6 +108,7 @@ export type V3Order = {
    * Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise.
    */
   limitPrice?: bigint | null | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   /**
    * Currency + precision under which `limitPrice`, `stopPrice`, and
    *
@@ -187,9 +155,40 @@ export type V3Order = {
    */
   sourceAsset: string;
   /**
+   * Lifecycle of an order on the exchange.
+   *
+   * @remarks
+   * `PENDING` — accepted by the exchange, not yet working.
+   * `OPEN` — live on the book, no fills yet.
+   * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+   * `FILLED` — fully filled, terminal.
+   * `CANCELLED` — cancelled by the user or system, terminal.
+   * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+   * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+   */
+  status: V3OrderStatusEnum;
+  /**
    * Trigger price at which a STOP / STOP_LIMIT order activates, in `priceAsset` precision. Null for non-stop order types.
    */
   stopPrice?: bigint | null | undefined;
+  /**
+   * How long an order is valid on the exchange.
+   *
+   * @remarks
+   * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+   * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+   * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+   * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+   */
+  timeInForce: V3TimeInForceEnum;
+  /**
+   * Exchange order type. Determines which price fields are meaningful on
+   *
+   * @remarks
+   * `V3Order`: LIMIT-family types use `limitPrice`; STOP-family types use
+   * `stopPrice`; TWAP/VWAP are time-weighted execution algorithms.
+   */
+  type: V3OrderTypeEnum;
   /**
    * When Formance last observed a state change on the order. Equivalent to the latest adjustment's `createdAt`.
    */
@@ -199,11 +198,6 @@ export type V3Order = {
 /** @internal */
 export const V3Order$inboundSchema: z.ZodType<V3Order, z.ZodTypeDef, unknown> =
   z.object({
-    metadata: z.nullable(z.record(z.string())).optional(),
-    direction: V3OrderDirectionEnum$inboundSchema,
-    status: V3OrderStatusEnum$inboundSchema,
-    type: V3OrderTypeEnum$inboundSchema,
-    timeInForce: V3TimeInForceEnum$inboundSchema,
     adjustments: z.nullable(z.array(V3OrderAdjustment$inboundSchema))
       .optional(),
     averageFillPrice: z.nullable(z.number().transform(v => BigInt(v)))
@@ -218,6 +212,7 @@ export const V3Order$inboundSchema: z.ZodType<V3Order, z.ZodTypeDef, unknown> =
     ),
     destinationAccountID: z.nullable(z.string()).optional(),
     destinationAsset: z.string(),
+    direction: V3OrderDirectionEnum$inboundSchema,
     error: z.nullable(z.string()).optional(),
     expiresAt: z.nullable(
       z.string().datetime({ offset: true }).transform(v => new Date(v)),
@@ -226,6 +221,7 @@ export const V3Order$inboundSchema: z.ZodType<V3Order, z.ZodTypeDef, unknown> =
     feeAsset: z.nullable(z.string()).optional(),
     id: z.string(),
     limitPrice: z.nullable(z.number().transform(v => BigInt(v))).optional(),
+    metadata: z.nullable(z.record(z.string())).optional(),
     priceAsset: z.nullable(z.string()).optional(),
     provider: z.string(),
     quoteAmount: z.nullable(z.number().transform(v => BigInt(v))).optional(),
@@ -233,18 +229,13 @@ export const V3Order$inboundSchema: z.ZodType<V3Order, z.ZodTypeDef, unknown> =
     reference: z.string(),
     sourceAccountID: z.nullable(z.string()).optional(),
     sourceAsset: z.string(),
+    status: V3OrderStatusEnum$inboundSchema,
     stopPrice: z.nullable(z.number().transform(v => BigInt(v))).optional(),
+    timeInForce: V3TimeInForceEnum$inboundSchema,
+    type: V3OrderTypeEnum$inboundSchema,
     updatedAt: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
-  }).transform((v) => {
-    return remap$(v, {
-      "metadata": "v3Metadata",
-      "direction": "v3OrderDirectionEnum",
-      "status": "v3OrderStatusEnum",
-      "type": "v3OrderTypeEnum",
-      "timeInForce": "v3TimeInForceEnum",
-    });
   });
 
 export function v3OrderFromJSON(

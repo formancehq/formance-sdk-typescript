@@ -6,7 +6,7 @@
 import { V2CreateTriggerResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2CreateTriggerResponse = {
-  v2TriggerData: {
+  data: {
     createdAt: new Date("2024-05-06T18:07:16.547Z"),
     event: "<value>",
     id: "<id>",
@@ -17,6 +17,6 @@ let value: V2CreateTriggerResponse = {
 
 ## Fields
 
-| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `v2TriggerData`                                                                     | [orchestration.V2TriggerData1](../../../sdk/models/orchestration/v2triggerdata1.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `data`                                                                    | [orchestration.V2Trigger](../../../sdk/models/orchestration/v2trigger.md) | :heavy_check_mark:                                                        | N/A                                                                       |

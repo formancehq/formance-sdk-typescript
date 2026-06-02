@@ -7,7 +7,7 @@ import { ConfigInfo } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: ConfigInfo = {
   config: {
-    ledgerStorage: {
+    storage: {
       driver: "<value>",
       ledgers: [],
     },

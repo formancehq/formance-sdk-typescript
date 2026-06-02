@@ -6,7 +6,7 @@
 import { WalletWithBalancesBalances } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: WalletWithBalancesBalances = {
-  assetHolder: {
+  main: {
     assets: {
       "key": 913853n,
       "key1": 950258n,
@@ -20,4 +20,4 @@ let value: WalletWithBalancesBalances = {
 
 | Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `assetHolder`                                                                 | [orchestration.AssetHolder](../../../sdk/models/orchestration/assetholder.md) | :heavy_check_mark:                                                            | N/A                                                                           |
+| `main`                                                                        | [orchestration.AssetHolder](../../../sdk/models/orchestration/assetholder.md) | :heavy_check_mark:                                                            | N/A                                                                           |

@@ -12,7 +12,7 @@ let value: UpdateClientRequest = {
 
 ## Fields
 
-| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `clientOptions`                                                   | [auth.ClientOptions2](../../../sdk/models/auth/clientoptions2.md) | :heavy_minus_sign:                                                | N/A                                                               |
-| `clientId`                                                        | *string*                                                          | :heavy_check_mark:                                                | Client ID                                                         |
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `clientOptions`                                                 | [auth.ClientOptions](../../../sdk/models/auth/clientoptions.md) | :heavy_minus_sign:                                              | N/A                                                             |
+| `clientId`                                                      | *string*                                                        | :heavy_check_mark:                                              | Client ID                                                       |

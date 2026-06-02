@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,14 +12,13 @@ import {
 } from "./v3openbankingconnectionattemptstatusenum.js";
 
 export type V3PaymentServiceUserLinkAttempt = {
-  v3OpenBankingConnectionAttemptStatusEnum:
-    V3OpenBankingConnectionAttemptStatusEnum;
   clientRedirectURL: string;
   connectorID: string;
   createdAt: Date;
   error?: string | null | undefined;
   id: string;
   psuID: string;
+  status: V3OpenBankingConnectionAttemptStatusEnum;
 };
 
 /** @internal */
@@ -29,17 +27,13 @@ export const V3PaymentServiceUserLinkAttempt$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: V3OpenBankingConnectionAttemptStatusEnum$inboundSchema,
   clientRedirectURL: z.string(),
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.nullable(z.string()).optional(),
   id: z.string(),
   psuID: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "v3OpenBankingConnectionAttemptStatusEnum",
-  });
+  status: V3OpenBankingConnectionAttemptStatusEnum$inboundSchema,
 });
 
 export function v3PaymentServiceUserLinkAttemptFromJSON(

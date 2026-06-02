@@ -3,24 +3,19 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { LedgerStorage, LedgerStorage$inboundSchema } from "./ledgerstorage.js";
 
 export type Config = {
-  ledgerStorage: LedgerStorage;
+  storage: LedgerStorage;
 };
 
 /** @internal */
 export const Config$inboundSchema: z.ZodType<Config, z.ZodTypeDef, unknown> = z
   .object({
     storage: LedgerStorage$inboundSchema,
-  }).transform((v) => {
-    return remap$(v, {
-      "storage": "ledgerStorage",
-    });
   });
 
 export function configFromJSON(

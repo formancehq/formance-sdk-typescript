@@ -10,9 +10,9 @@ import { Connector, ConnectorsResponse } from "@formance/formance-sdk/sdk/models
 let value: ConnectorsResponse = {
   data: [
     {
-      connector: Connector.Wise,
       connectorID: "<id>",
       name: "<value>",
+      provider: Connector.Wise,
     },
   ],
 };

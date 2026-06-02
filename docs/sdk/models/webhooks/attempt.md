@@ -6,17 +6,17 @@
 import { Attempt } from "@formance/formance-sdk/sdk/models/webhooks";
 
 let value: Attempt = {
-  webhooksConfig: {
+  config: {
     active: true,
-    createdAt: new Date("2024-11-13T13:49:09.341Z"),
+    createdAt: new Date("2024-07-03T21:48:22.124Z"),
     endpoint: "https://example.com",
     eventTypes: [
       "TYPE1",
       "TYPE2",
     ],
-    id: "b8e390eb-003d-4426-ad52-6efeacc557f0",
+    id: "8632b3d4-b624-4cd0-8286-c8bbbd5a999f",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
-    updatedAt: new Date("2025-04-05T22:32:32.491Z"),
+    updatedAt: new Date("2024-06-28T22:55:29.320Z"),
   },
   createdAt: new Date("2025-02-05T21:49:20.167Z"),
   id: "fa3287d6-eb32-412c-a5e2-c48cb330876f",
@@ -33,7 +33,7 @@ let value: Attempt = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   | Example                                                                                       |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `webhooksConfig`                                                                              | [webhooks.WebhooksConfig](../../../sdk/models/webhooks/webhooksconfig.md)                     | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `config`                                                                                      | [webhooks.WebhooksConfig](../../../sdk/models/webhooks/webhooksconfig.md)                     | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `nextRetryAfter`                                                                              | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |

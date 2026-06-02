@@ -6,7 +6,7 @@
 import { V2DebitWalletResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2DebitWalletResponse = {
-  v2Hold: {
+  data: {
     description: "even nauseate evenly considering mill intensely",
     id: "2336e24c-b6af-4c61-bd33-500b23ffe41d",
     metadata: {
@@ -22,4 +22,4 @@ let value: V2DebitWalletResponse = {
 
 | Field                                                               | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `v2Hold`                                                            | [orchestration.V2Hold](../../../sdk/models/orchestration/v2hold.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| `data`                                                              | [orchestration.V2Hold](../../../sdk/models/orchestration/v2hold.md) | :heavy_check_mark:                                                  | N/A                                                                 |

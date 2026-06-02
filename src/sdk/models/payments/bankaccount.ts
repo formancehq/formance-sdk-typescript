@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,6 @@ import {
 } from "./bankaccountrelatedaccounts.js";
 
 export type BankAccount = {
-  bankAccountMetadata?: { [k: string]: string } | null | undefined;
   accountID?: string | undefined;
   accountNumber?: string | undefined;
   connectorID?: string | undefined;
@@ -21,6 +19,7 @@ export type BankAccount = {
   createdAt: Date;
   iban?: string | undefined;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   provider?: string | undefined;
   relatedAccounts?: Array<BankAccountRelatedAccounts> | undefined;
@@ -33,7 +32,6 @@ export const BankAccount$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
   accountID: z.string().optional(),
   accountNumber: z.string().optional(),
   connectorID: z.string().optional(),
@@ -41,14 +39,11 @@ export const BankAccount$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   iban: z.string().optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
   provider: z.string().optional(),
   relatedAccounts: z.array(BankAccountRelatedAccounts$inboundSchema).optional(),
   swiftBicCode: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "bankAccountMetadata",
-  });
 });
 
 export function bankAccountFromJSON(

@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { User, User$inboundSchema } from "./user.js";
 
 export type ReadUserResponse = {
-  user?: User | undefined;
+  data?: User | undefined;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const ReadUserResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: User$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "user",
-  });
 });
 
 export function readUserResponseFromJSON(

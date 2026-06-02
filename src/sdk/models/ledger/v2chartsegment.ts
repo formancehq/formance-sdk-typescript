@@ -31,8 +31,8 @@ export type DotSelf = {};
 export type V2ChartSegment = {
   dotMetadata?: { [k: string]: V2ChartAccountMetadata } | undefined;
   dotPattern?: string | undefined;
+  dotRules?: V2ChartAccountRules | undefined;
   dotSelf?: DotSelf | undefined;
-  v2ChartAccountRules?: V2ChartAccountRules | undefined;
   additionalProperties?: { [k: string]: V2ChartSegment } | undefined;
 };
 
@@ -71,8 +71,8 @@ export const V2ChartSegment$inboundSchema: z.ZodType<
   z.object({
     ".metadata": z.record(V2ChartAccountMetadata$inboundSchema).optional(),
     ".pattern": z.string().optional(),
-    ".self": z.lazy(() => DotSelf$inboundSchema).optional(),
     ".rules": V2ChartAccountRules$inboundSchema.optional(),
+    ".self": z.lazy(() => DotSelf$inboundSchema).optional(),
   }).catchall(z.lazy(() => V2ChartSegment$inboundSchema)),
   "additionalProperties",
   true,
@@ -80,16 +80,16 @@ export const V2ChartSegment$inboundSchema: z.ZodType<
   return remap$(v, {
     ".metadata": "dotMetadata",
     ".pattern": "dotPattern",
+    ".rules": "dotRules",
     ".self": "dotSelf",
-    ".rules": "v2ChartAccountRules",
   });
 });
 /** @internal */
 export type V2ChartSegment$Outbound = {
   ".metadata"?: { [k: string]: V2ChartAccountMetadata$Outbound } | undefined;
   ".pattern"?: string | undefined;
-  ".self"?: DotSelf$Outbound | undefined;
   ".rules"?: V2ChartAccountRules$Outbound | undefined;
+  ".self"?: DotSelf$Outbound | undefined;
   [additionalProperties: string]: unknown;
 };
 
@@ -101,19 +101,19 @@ export const V2ChartSegment$outboundSchema: z.ZodType<
 > = z.object({
   dotMetadata: z.record(V2ChartAccountMetadata$outboundSchema).optional(),
   dotPattern: z.string().optional(),
+  dotRules: V2ChartAccountRules$outboundSchema.optional(),
   dotSelf: z.lazy(() => DotSelf$outboundSchema).optional(),
   additionalProperties: z.record(z.lazy(() => V2ChartSegment$outboundSchema))
     .optional(),
-  v2ChartAccountRules: V2ChartAccountRules$outboundSchema.optional(),
 }).transform((v) => {
   return {
     ...v.additionalProperties,
     ...remap$(v, {
       dotMetadata: ".metadata",
       dotPattern: ".pattern",
+      dotRules: ".rules",
       dotSelf: ".self",
       additionalProperties: null,
-      v2ChartAccountRules: ".rules",
     }),
   };
 });

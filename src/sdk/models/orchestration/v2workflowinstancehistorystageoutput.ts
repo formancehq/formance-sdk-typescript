@@ -33,12 +33,12 @@ import {
 } from "./v2paymentresponse.js";
 
 export type V2WorkflowInstanceHistoryStageOutput = {
-  v2AccountResponse?: V2AccountResponse | undefined;
-  v2CreateTransactionResponse?: V2CreateTransactionResponse | undefined;
-  v2DebitWalletResponse?: V2DebitWalletResponse | undefined;
-  v2GetWalletResponse?: V2GetWalletResponse | undefined;
-  v2ListWalletsResponse?: V2ListWalletsResponse | undefined;
-  v2PaymentResponse?: V2PaymentResponse | undefined;
+  createTransaction?: V2CreateTransactionResponse | undefined;
+  debitWallet?: V2DebitWalletResponse | undefined;
+  getAccount?: V2AccountResponse | undefined;
+  getPayment?: V2PaymentResponse | undefined;
+  getWallet?: V2GetWalletResponse | undefined;
+  listWallets?: V2ListWalletsResponse | undefined;
 };
 
 /** @internal */
@@ -47,20 +47,20 @@ export const V2WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  GetAccount: V2AccountResponse$inboundSchema.optional(),
   CreateTransaction: V2CreateTransactionResponse$inboundSchema.optional(),
   DebitWallet: V2DebitWalletResponse$inboundSchema.optional(),
+  GetAccount: V2AccountResponse$inboundSchema.optional(),
+  GetPayment: V2PaymentResponse$inboundSchema.optional(),
   GetWallet: V2GetWalletResponse$inboundSchema.optional(),
   ListWallets: V2ListWalletsResponse$inboundSchema.optional(),
-  GetPayment: V2PaymentResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
-    "GetAccount": "v2AccountResponse",
-    "CreateTransaction": "v2CreateTransactionResponse",
-    "DebitWallet": "v2DebitWalletResponse",
-    "GetWallet": "v2GetWalletResponse",
-    "ListWallets": "v2ListWalletsResponse",
-    "GetPayment": "v2PaymentResponse",
+    "CreateTransaction": "createTransaction",
+    "DebitWallet": "debitWallet",
+    "GetAccount": "getAccount",
+    "GetPayment": "getPayment",
+    "GetWallet": "getWallet",
+    "ListWallets": "listWallets",
   });
 });
 

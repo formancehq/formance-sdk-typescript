@@ -6,10 +6,11 @@
 import { V2PaymentScheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2WorkflowInstanceHistoryStage = {
-  v2WorkflowInstanceHistoryStageInput: {
-    v2ActivityCreateTransaction: {
-      v2PostTransaction: {
-        v2Metadata: {
+  attempt: 282083,
+  input: {
+    createTransaction: {
+      data: {
+        metadata: {
           "admin": "true",
         },
         postings: [
@@ -30,9 +31,16 @@ let value: V2WorkflowInstanceHistoryStage = {
         },
       },
     },
-    v2ActivityCreditWallet: {
-      v2CreditWalletRequest: {
-        v2Monetary: {
+    createTransferInitiation: {
+      amount: 100n,
+      asset: "USD",
+      destination: "acct_1Gqj58KZcSIg2N2q",
+      metadata: {},
+      provider: "stripe",
+    },
+    creditWallet: {
+      data: {
+        amount: {
           amount: 100n,
           asset: "USD/2",
         },
@@ -42,9 +50,9 @@ let value: V2WorkflowInstanceHistoryStage = {
         sources: [],
       },
     },
-    v2ActivityDebitWallet: {
-      v2DebitWalletRequest: {
-        v2Monetary: {
+    debitWallet: {
+      data: {
+        amount: {
           amount: 100n,
           asset: "USD/2",
         },
@@ -54,96 +62,90 @@ let value: V2WorkflowInstanceHistoryStage = {
         pending: true,
       },
     },
-    v2CreateTransferInitiationRequest: {
-      amount: 100n,
-      asset: "USD",
-      destination: "acct_1Gqj58KZcSIg2N2q",
-      metadata: {},
-      provider: "stripe",
-    },
-    v2StripeTransferRequest: {
+    stripeTransfer: {
       amount: 100n,
       asset: "USD",
       destination: "acct_1Gqj58KZcSIg2N2q",
       metadata: {},
     },
   },
-  v2WorkflowInstanceHistoryStageOutput: {
-    v2AccountResponse: {
-      v2Account: {
-        v2Volumes: {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
+  name: "<value>",
+  output: {
+    createTransaction: {
+      data: [
+        {
+          metadata: {
+            "admin": "true",
           },
-          "EUR": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
+          postings: [],
+          reference: "ref:001",
+          timestamp: new Date("2026-03-28T10:26:16.538Z"),
+          txid: 910526n,
         },
-        v2Volumes1: {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-          "EUR": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
+      ],
+    },
+    getAccount: {
+      data: {
         address: "users:001",
+        effectiveVolumes: {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+          "EUR": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
         metadata: {
           "admin": "true",
         },
+        volumes: {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+          "EUR": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
       },
     },
-    v2CreateTransactionResponse: {
-      data: [],
+    getPayment: {
+      data: {
+        adjustments: [],
+        asset: "USD",
+        connectorID: "<id>",
+        createdAt: new Date("2026-06-20T02:05:25.894Z"),
+        destinationAccountID: "<id>",
+        id: "XXX",
+        initialAmount: 100n,
+        metadata: {},
+        raw: {},
+        reference: "<value>",
+        scheme: V2PaymentScheme.AchDebit,
+        sourceAccountID: "<id>",
+        status: V2PaymentStatus.Succeeded,
+        type: V2PaymentType.PayIn,
+      },
     },
-    v2ListWalletsResponse: {
-      v2Cursor: {
-        data: [
-          {
-            createdAt: new Date("2024-11-18T18:11:54.712Z"),
-            id: "be6dedcb-1035-4cf1-9638-36083616f1c8",
-            ledger: "<value>",
-            metadata: {},
-            name: "<value>",
-          },
-        ],
+    listWallets: {
+      cursor: {
+        data: [],
         hasMore: false,
         next: "",
         pageSize: 15,
         previous: "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=",
       },
     },
-    v2PaymentResponse: {
-      v2Payment: {
-        v2PaymentMetadata: {},
-        v2PaymentStatus: V2PaymentStatus.Failed,
-        adjustments: [],
-        asset: "USD",
-        connectorID: "<id>",
-        createdAt: new Date("2026-02-11T04:04:45.176Z"),
-        destinationAccountID: "<id>",
-        id: "XXX",
-        initialAmount: 100n,
-        raw: {},
-        reference: "<value>",
-        scheme: V2PaymentScheme.AchDebit,
-        sourceAccountID: "<id>",
-        type: V2PaymentType.Transfer,
-      },
-    },
   },
-  attempt: 24169,
-  name: "<value>",
-  startedAt: new Date("2024-05-03T04:36:11.622Z"),
-  terminated: false,
+  startedAt: new Date("2024-09-30T07:20:02.601Z"),
+  terminated: true,
 };
 ```
 
@@ -151,13 +153,13 @@ let value: V2WorkflowInstanceHistoryStage = {
 
 | Field                                                                                                                           | Type                                                                                                                            | Required                                                                                                                        | Description                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `v2WorkflowInstanceHistoryStageInput`                                                                                           | [orchestration.V2WorkflowInstanceHistoryStageInput](../../../sdk/models/orchestration/v2workflowinstancehistorystageinput.md)   | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
-| `v2WorkflowInstanceHistoryStageOutput`                                                                                          | [orchestration.V2WorkflowInstanceHistoryStageOutput](../../../sdk/models/orchestration/v2workflowinstancehistorystageoutput.md) | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |
 | `attempt`                                                                                                                       | *number*                                                                                                                        | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
 | `error`                                                                                                                         | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |
+| `input`                                                                                                                         | [orchestration.V2WorkflowInstanceHistoryStageInput](../../../sdk/models/orchestration/v2workflowinstancehistorystageinput.md)   | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
 | `lastFailure`                                                                                                                   | *string*                                                                                                                        | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |
 | `name`                                                                                                                          | *string*                                                                                                                        | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
 | `nextExecution`                                                                                                                 | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                   | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |
+| `output`                                                                                                                        | [orchestration.V2WorkflowInstanceHistoryStageOutput](../../../sdk/models/orchestration/v2workflowinstancehistorystageoutput.md) | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |
 | `startedAt`                                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                   | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
 | `terminated`                                                                                                                    | *boolean*                                                                                                                       | :heavy_check_mark:                                                                                                              | N/A                                                                                                                             |
 | `terminatedAt`                                                                                                                  | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                                   | :heavy_minus_sign:                                                                                                              | N/A                                                                                                                             |

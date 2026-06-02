@@ -33,13 +33,13 @@ import {
 } from "./paymentresponse.js";
 
 export type WorkflowInstanceHistoryStageOutput = {
-  accountResponse?: AccountResponse | undefined;
-  createTransactionResponse?: CreateTransactionResponse | undefined;
-  createTransactionResponse1?: CreateTransactionResponse | undefined;
-  debitWalletResponse?: DebitWalletResponse | undefined;
-  getWalletResponse?: GetWalletResponse | undefined;
-  listWalletsResponse?: ListWalletsResponse | undefined;
-  paymentResponse?: PaymentResponse | undefined;
+  createTransaction?: CreateTransactionResponse | undefined;
+  debitWallet?: DebitWalletResponse | undefined;
+  getAccount?: AccountResponse | undefined;
+  getPayment?: PaymentResponse | undefined;
+  getWallet?: GetWalletResponse | undefined;
+  listWallets?: ListWalletsResponse | undefined;
+  revertTransaction?: CreateTransactionResponse | undefined;
 };
 
 /** @internal */
@@ -48,22 +48,22 @@ export const WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  GetAccount: AccountResponse$inboundSchema.optional(),
   CreateTransaction: CreateTransactionResponse$inboundSchema.optional(),
-  RevertTransaction: CreateTransactionResponse$inboundSchema.optional(),
   DebitWallet: DebitWalletResponse$inboundSchema.optional(),
+  GetAccount: AccountResponse$inboundSchema.optional(),
+  GetPayment: PaymentResponse$inboundSchema.optional(),
   GetWallet: GetWalletResponse$inboundSchema.optional(),
   ListWallets: ListWalletsResponse$inboundSchema.optional(),
-  GetPayment: PaymentResponse$inboundSchema.optional(),
+  RevertTransaction: CreateTransactionResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
-    "GetAccount": "accountResponse",
-    "CreateTransaction": "createTransactionResponse",
-    "RevertTransaction": "createTransactionResponse1",
-    "DebitWallet": "debitWalletResponse",
-    "GetWallet": "getWalletResponse",
-    "ListWallets": "listWalletsResponse",
-    "GetPayment": "paymentResponse",
+    "CreateTransaction": "createTransaction",
+    "DebitWallet": "debitWallet",
+    "GetAccount": "getAccount",
+    "GetPayment": "getPayment",
+    "GetWallet": "getWallet",
+    "ListWallets": "listWallets",
+    "RevertTransaction": "revertTransaction",
   });
 });
 

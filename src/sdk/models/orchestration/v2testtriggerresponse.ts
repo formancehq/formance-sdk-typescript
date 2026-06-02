@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2TriggerTest, V2TriggerTest$inboundSchema } from "./v2triggertest.js";
 
 export type V2TestTriggerResponse = {
-  v2TriggerTest: V2TriggerTest;
+  data: V2TriggerTest;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V2TestTriggerResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V2TriggerTest$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2TriggerTest",
-  });
 });
 
 export function v2TestTriggerResponseFromJSON(

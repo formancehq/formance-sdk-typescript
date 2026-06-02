@@ -10,7 +10,6 @@ import { StageStatus, StageStatus$inboundSchema } from "./stagestatus.js";
 import { Workflow, Workflow$inboundSchema } from "./workflow.js";
 
 export type WorkflowInstance = {
-  workflow?: Workflow | undefined;
   createdAt: Date;
   error?: string | undefined;
   id: string;
@@ -18,6 +17,7 @@ export type WorkflowInstance = {
   terminated: boolean;
   terminatedAt?: Date | undefined;
   updatedAt: Date;
+  workflow?: Workflow | undefined;
   workflowID: string;
 };
 
@@ -27,7 +27,6 @@ export const WorkflowInstance$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  workflow: Workflow$inboundSchema.optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.string().optional(),
   id: z.string(),
@@ -37,6 +36,7 @@ export const WorkflowInstance$inboundSchema: z.ZodType<
     new Date(v)
   ).optional(),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  workflow: Workflow$inboundSchema.optional(),
   workflowID: z.string(),
 });
 

@@ -3,15 +3,14 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Subject, Subject$inboundSchema } from "./subject.js";
 
 export type Hold = {
-  subject?: Subject | undefined;
   description: string;
+  destination?: Subject | undefined;
   /**
    * The unique ID of the hold.
    */
@@ -29,15 +28,11 @@ export type Hold = {
 /** @internal */
 export const Hold$inboundSchema: z.ZodType<Hold, z.ZodTypeDef, unknown> = z
   .object({
-    destination: Subject$inboundSchema.optional(),
     description: z.string(),
+    destination: Subject$inboundSchema.optional(),
     id: z.string(),
     metadata: z.record(z.string()),
     walletID: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "destination": "subject",
-    });
   });
 
 export function holdFromJSON(

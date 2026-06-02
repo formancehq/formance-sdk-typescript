@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2creditwalletrequest.js";
 
 export type V2ActivityCreditWallet = {
-  v2CreditWalletRequest?: V2CreditWalletRequest | undefined;
+  data?: V2CreditWalletRequest | undefined;
   id?: string | undefined;
 };
 
@@ -25,10 +24,6 @@ export const V2ActivityCreditWallet$inboundSchema: z.ZodType<
 > = z.object({
   data: V2CreditWalletRequest$inboundSchema.optional(),
   id: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2CreditWalletRequest",
-  });
 });
 
 export function v2ActivityCreditWalletFromJSON(

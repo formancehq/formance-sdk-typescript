@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,18 +12,17 @@ import {
 } from "./v3pooltypeenum.js";
 
 export type V3Pool = {
-  v3PoolTypeEnum?: V3PoolTypeEnum | undefined;
   createdAt: Date;
   id: string;
   name: string;
   poolAccounts: Array<string>;
   query?: { [k: string]: any } | undefined;
+  type?: V3PoolTypeEnum | undefined;
 };
 
 /** @internal */
 export const V3Pool$inboundSchema: z.ZodType<V3Pool, z.ZodTypeDef, unknown> = z
   .object({
-    type: V3PoolTypeEnum$inboundSchema.optional(),
     createdAt: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
@@ -32,10 +30,7 @@ export const V3Pool$inboundSchema: z.ZodType<V3Pool, z.ZodTypeDef, unknown> = z
     name: z.string(),
     poolAccounts: z.array(z.string()),
     query: z.record(z.any()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "type": "v3PoolTypeEnum",
-    });
+    type: V3PoolTypeEnum$inboundSchema.optional(),
   });
 
 export function v3PoolFromJSON(

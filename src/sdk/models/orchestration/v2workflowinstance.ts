@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,7 +10,6 @@ import { V2StageStatus, V2StageStatus$inboundSchema } from "./v2stagestatus.js";
 import { V2Workflow, V2Workflow$inboundSchema } from "./v2workflow.js";
 
 export type V2WorkflowInstance = {
-  v2Workflow?: V2Workflow | undefined;
   createdAt: Date;
   error?: string | undefined;
   id: string;
@@ -19,6 +17,7 @@ export type V2WorkflowInstance = {
   terminated: boolean;
   terminatedAt?: Date | undefined;
   updatedAt: Date;
+  workflow?: V2Workflow | undefined;
   workflowID: string;
 };
 
@@ -28,7 +27,6 @@ export const V2WorkflowInstance$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  workflow: V2Workflow$inboundSchema.optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.string().optional(),
   id: z.string(),
@@ -38,11 +36,8 @@ export const V2WorkflowInstance$inboundSchema: z.ZodType<
     new Date(v)
   ).optional(),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  workflow: V2Workflow$inboundSchema.optional(),
   workflowID: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "workflow": "v2Workflow",
-  });
 });
 
 export function v2WorkflowInstanceFromJSON(

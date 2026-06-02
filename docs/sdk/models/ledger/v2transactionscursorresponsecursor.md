@@ -8,75 +8,75 @@ import { V2TransactionsCursorResponseCursor } from "@formance/formance-sdk/sdk/m
 let value: V2TransactionsCursorResponseCursor = {
   data: [
     {
-      v2AggregatedVolumes: {
-        "orders:1": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-        "orders:2": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-      },
-      v2AggregatedVolumes1: {
-        "orders:1": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-        "orders:2": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-      },
-      v2AggregatedVolumes2: {
-        "orders:1": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-        "orders:2": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-      },
-      v2AggregatedVolumes3: {
-        "orders:1": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-        "orders:2": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-      },
-      v2Metadata: {
+      id: 549671n,
+      metadata: {
         "admin": "true",
       },
-      id: 549671n,
+      postCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+      },
+      postCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+      },
       postings: [],
+      preCommitEffectiveVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+      },
+      preCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+      },
       reference: "ref:001",
       reverted: true,
       timestamp: new Date("2026-06-22T11:57:12.314Z"),

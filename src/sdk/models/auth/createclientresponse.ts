@@ -3,17 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ClientOptions1,
-  ClientOptions1$inboundSchema,
-} from "./clientoptions1.js";
+import { Client, Client$inboundSchema } from "./client.js";
 
 export type CreateClientResponse = {
-  clientOptions?: ClientOptions1 | undefined;
+  data?: Client | undefined;
 };
 
 /** @internal */
@@ -22,11 +18,7 @@ export const CreateClientResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: ClientOptions1$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "clientOptions",
-  });
+  data: Client$inboundSchema.optional(),
 });
 
 export function createClientResponseFromJSON(

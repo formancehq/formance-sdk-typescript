@@ -6,7 +6,7 @@
 import { GetBalanceResponse } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: GetBalanceResponse = {
-  assetHolder: {
+  data: {
     assets: {
       "key": 604106n,
     },
@@ -17,6 +17,6 @@ let value: GetBalanceResponse = {
 
 ## Fields
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `assetHolder`                                                       | [wallets.AssetHolder2](../../../sdk/models/wallets/assetholder2.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `data`                                                                        | [wallets.BalanceWithAssets](../../../sdk/models/wallets/balancewithassets.md) | :heavy_check_mark:                                                            | N/A                                                                           |

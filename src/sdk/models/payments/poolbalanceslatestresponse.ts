@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import { PoolBalance, PoolBalance$inboundSchema } from "./poolbalance.js";
  * OK
  */
 export type PoolBalancesLatestResponse = {
-  poolBalancesLatest: Array<PoolBalance>;
+  data: Array<PoolBalance>;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const PoolBalancesLatestResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: z.array(PoolBalance$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "poolBalancesLatest",
-  });
 });
 
 export function poolBalancesLatestResponseFromJSON(

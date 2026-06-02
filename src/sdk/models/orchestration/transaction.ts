@@ -9,8 +9,8 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Posting, Posting$inboundSchema } from "./posting.js";
 
 export type Transaction = {
-  metadata: { [k: string]: string };
   id: bigint;
+  metadata: { [k: string]: string };
   postings: Array<Posting>;
   reference?: string | undefined;
   reverted: boolean;
@@ -23,8 +23,8 @@ export const Transaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.record(z.string()),
   id: z.number().transform(v => BigInt(v)),
+  metadata: z.record(z.string()),
   postings: z.array(Posting$inboundSchema),
   reference: z.string().optional(),
   reverted: z.boolean(),

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,7 +10,7 @@ import { V2Monetary, V2Monetary$inboundSchema } from "./v2monetary.js";
 import { V2Subject, V2Subject$inboundSchema } from "./v2subject.js";
 
 export type V2CreditWalletRequest = {
-  v2Monetary: V2Monetary;
+  amount: V2Monetary;
   /**
    * The balance to credit
    */
@@ -38,10 +37,6 @@ export const V2CreditWalletRequest$inboundSchema: z.ZodType<
   sources: z.array(V2Subject$inboundSchema),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "amount": "v2Monetary",
-  });
 });
 
 export function v2CreditWalletRequestFromJSON(

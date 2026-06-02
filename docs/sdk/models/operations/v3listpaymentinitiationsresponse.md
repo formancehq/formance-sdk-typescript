@@ -7,7 +7,7 @@ import { V3ListPaymentInitiationsResponse } from "@formance/formance-sdk/sdk/mod
 
 let value: V3ListPaymentInitiationsResponse = {
   contentType: "<value>",
-  statusCode: 548608,
+  statusCode: 631008,
 };
 ```
 

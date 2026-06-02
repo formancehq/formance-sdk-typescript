@@ -6,7 +6,7 @@
 import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/wallets";
 
 let value: DebitWalletResponse = {
-  hold: {
+  data: {
     asset: "<value>",
     description:
       "weatherize portly legislature yuck duh decision hotfoot including",
@@ -22,6 +22,6 @@ let value: DebitWalletResponse = {
 
 ## Fields
 
-| Field                                                 | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `hold`                                                | [wallets.Hold1](../../../sdk/models/wallets/hold1.md) | :heavy_check_mark:                                    | N/A                                                   |
+| Field                                               | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `data`                                              | [wallets.Hold](../../../sdk/models/wallets/hold.md) | :heavy_check_mark:                                  | N/A                                                 |

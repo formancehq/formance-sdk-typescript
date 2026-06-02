@@ -3,17 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  SecretOptions2,
-  SecretOptions2$inboundSchema,
-} from "./secretoptions2.js";
+import { Secret, Secret$inboundSchema } from "./secret.js";
 
 export type CreateSecretResponse = {
-  secretOptions?: SecretOptions2 | undefined;
+  data?: Secret | undefined;
 };
 
 /** @internal */
@@ -22,11 +18,7 @@ export const CreateSecretResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: SecretOptions2$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "secretOptions",
-  });
+  data: Secret$inboundSchema.optional(),
 });
 
 export function createSecretResponseFromJSON(

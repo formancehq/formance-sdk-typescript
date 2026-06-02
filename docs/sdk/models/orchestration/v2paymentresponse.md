@@ -6,21 +6,21 @@
 import { V2PaymentResponse, V2PaymentScheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2PaymentResponse = {
-  v2Payment: {
-    v2PaymentMetadata: {},
-    v2PaymentStatus: V2PaymentStatus.Failed,
+  data: {
     adjustments: [],
     asset: "USD",
     connectorID: "<id>",
-    createdAt: new Date("2026-02-11T04:04:45.176Z"),
+    createdAt: new Date("2026-06-20T02:05:25.894Z"),
     destinationAccountID: "<id>",
     id: "XXX",
     initialAmount: 100n,
+    metadata: {},
     raw: {},
     reference: "<value>",
     scheme: V2PaymentScheme.AchDebit,
     sourceAccountID: "<id>",
-    type: V2PaymentType.Transfer,
+    status: V2PaymentStatus.Succeeded,
+    type: V2PaymentType.PayIn,
   },
 };
 ```
@@ -29,4 +29,4 @@ let value: V2PaymentResponse = {
 
 | Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `v2Payment`                                                               | [orchestration.V2Payment](../../../sdk/models/orchestration/v2payment.md) | :heavy_check_mark:                                                        | N/A                                                                       |
+| `data`                                                                    | [orchestration.V2Payment](../../../sdk/models/orchestration/v2payment.md) | :heavy_check_mark:                                                        | N/A                                                                       |

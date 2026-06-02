@@ -17,8 +17,8 @@ let value: V2Hold = {
 
 | Field                                             | Type                                              | Required                                          | Description                                       |
 | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| `v2Subject`                                       | *orchestration.V2Subject*                         | :heavy_minus_sign:                                | N/A                                               |
 | `description`                                     | *string*                                          | :heavy_check_mark:                                | N/A                                               |
+| `destination`                                     | *orchestration.V2Subject*                         | :heavy_minus_sign:                                | N/A                                               |
 | `id`                                              | *string*                                          | :heavy_check_mark:                                | The unique ID of the hold.                        |
 | `metadata`                                        | Record<string, *string*>                          | :heavy_check_mark:                                | Metadata associated with the hold.                |
 | `walletID`                                        | *string*                                          | :heavy_check_mark:                                | The ID of the wallet the hold is associated with. |

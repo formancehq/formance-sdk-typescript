@@ -6,10 +6,10 @@
 import { V2SchemasCursorResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2SchemasCursorResponse = {
-  v2SchemasCursor: {
+  cursor: {
     data: [
       {
-        v2ChartOfAccounts: {
+        chart: {
           "users": {
             additionalProperties: {
               "$userID": {
@@ -18,16 +18,16 @@ let value: V2SchemasCursorResponse = {
             },
           },
         },
-        v2QueryTemplates: {
+        createdAt: new Date("2023-01-01T00:00:00Z"),
+        queries: {
           "key": {
-            v2QueryParams: {
+            params: {
               cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
               pageSize: 100,
               sort: "id:desc",
             },
           },
         },
-        createdAt: new Date("2023-01-01T00:00:00Z"),
         version: "v1.0.0",
       },
     ],
@@ -43,4 +43,4 @@ let value: V2SchemasCursorResponse = {
 
 | Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `v2SchemasCursor`                                                       | [ledger.V2SchemasCursor](../../../sdk/models/ledger/v2schemascursor.md) | :heavy_check_mark:                                                      | N/A                                                                     |
+| `cursor`                                                                | [ledger.V2SchemasCursor](../../../sdk/models/ledger/v2schemascursor.md) | :heavy_check_mark:                                                      | N/A                                                                     |

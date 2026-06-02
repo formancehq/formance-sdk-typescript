@@ -6,9 +6,9 @@
 import { GetWalletResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: GetWalletResponse = {
-  walletWithBalances: {
+  data: {
     balances: {
-      assetHolder: {
+      main: {
         assets: {
           "key": 913853n,
           "key1": 950258n,
@@ -31,4 +31,4 @@ let value: GetWalletResponse = {
 
 | Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
 | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `walletWithBalances`                                                                        | [orchestration.WalletWithBalances](../../../sdk/models/orchestration/walletwithbalances.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |
+| `data`                                                                                      | [orchestration.WalletWithBalances](../../../sdk/models/orchestration/walletwithbalances.md) | :heavy_check_mark:                                                                          | N/A                                                                                         |

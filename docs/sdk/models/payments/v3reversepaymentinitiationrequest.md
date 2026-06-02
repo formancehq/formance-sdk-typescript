@@ -18,8 +18,8 @@ let value: V3ReversePaymentInitiationRequest = {
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `v3Metadata`             | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
 | `amount`                 | *BigInt*                 | :heavy_check_mark:       | N/A                      |
 | `asset`                  | *string*                 | :heavy_check_mark:       | N/A                      |
 | `description`            | *string*                 | :heavy_check_mark:       | N/A                      |
+| `metadata`               | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
 | `reference`              | *string*                 | :heavy_check_mark:       | N/A                      |

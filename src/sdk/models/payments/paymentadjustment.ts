@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,11 +11,11 @@ import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 export type PaymentAdjustmentRaw = {};
 
 export type PaymentAdjustment = {
-  paymentStatus: PaymentStatus;
   amount: bigint;
   createdAt: Date;
   raw: PaymentAdjustmentRaw;
   reference: string;
+  status: PaymentStatus;
 };
 
 /** @internal */
@@ -42,15 +41,11 @@ export const PaymentAdjustment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: PaymentStatus$inboundSchema,
   amount: z.number().transform(v => BigInt(v)),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   raw: z.lazy(() => PaymentAdjustmentRaw$inboundSchema),
   reference: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "paymentStatus",
-  });
+  status: PaymentStatus$inboundSchema,
 });
 
 export function paymentAdjustmentFromJSON(

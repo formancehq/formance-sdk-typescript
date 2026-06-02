@@ -6,13 +6,10 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import {
-  ClientOptions1,
-  ClientOptions1$inboundSchema,
-} from "./clientoptions1.js";
+import { Client, Client$inboundSchema } from "./client.js";
 
 export type ListClientsResponse = {
-  data?: Array<ClientOptions1> | undefined;
+  data?: Array<Client> | undefined;
 };
 
 /** @internal */
@@ -21,7 +18,7 @@ export const ListClientsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: z.array(ClientOptions1$inboundSchema).optional(),
+  data: z.array(Client$inboundSchema).optional(),
 });
 
 export function listClientsResponseFromJSON(

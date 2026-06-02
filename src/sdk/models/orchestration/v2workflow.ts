@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2workflowconfig.js";
 
 export type V2Workflow = {
-  v2WorkflowConfig: V2WorkflowConfig;
+  config: V2WorkflowConfig;
   createdAt: Date;
   id: string;
   updatedAt: Date;
@@ -29,10 +28,6 @@ export const V2Workflow$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "config": "v2WorkflowConfig",
-  });
 });
 
 export function v2WorkflowFromJSON(

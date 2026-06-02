@@ -3,14 +3,16 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { Hold2, Hold2$inboundSchema } from "./hold2.js";
+import {
+  ExpandedDebitHold,
+  ExpandedDebitHold$inboundSchema,
+} from "./expandeddebithold.js";
 
 export type GetHoldResponse = {
-  hold: Hold2;
+  data: ExpandedDebitHold;
 };
 
 /** @internal */
@@ -19,11 +21,7 @@ export const GetHoldResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: Hold2$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "hold",
-  });
+  data: ExpandedDebitHold$inboundSchema,
 });
 
 export function getHoldResponseFromJSON(

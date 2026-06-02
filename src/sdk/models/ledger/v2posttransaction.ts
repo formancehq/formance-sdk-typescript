@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { Runtime, Runtime$outboundSchema } from "./runtime.js";
 import {
   V2Posting,
@@ -18,15 +17,15 @@ export type V2PostTransactionScript = {
 };
 
 export type V2PostTransaction = {
+  accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
+  force?: boolean | undefined;
+  metadata: { [k: string]: string };
+  postings?: Array<V2Posting> | undefined;
+  reference?: string | undefined;
   /**
    * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
    */
   runtime?: Runtime | undefined;
-  v2Metadata: { [k: string]: string };
-  accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
-  force?: boolean | undefined;
-  postings?: Array<V2Posting> | undefined;
-  reference?: string | undefined;
   script?: V2PostTransactionScript | undefined;
   timestamp?: Date | undefined;
 };
@@ -59,12 +58,12 @@ export function v2PostTransactionScriptToJSON(
 
 /** @internal */
 export type V2PostTransaction$Outbound = {
-  runtime?: string | undefined;
-  metadata: { [k: string]: string };
   accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
   force?: boolean | undefined;
+  metadata: { [k: string]: string };
   postings?: Array<V2Posting$Outbound> | undefined;
   reference?: string | undefined;
+  runtime?: string | undefined;
   script?: V2PostTransactionScript$Outbound | undefined;
   timestamp?: string | undefined;
 };
@@ -75,18 +74,14 @@ export const V2PostTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2PostTransaction
 > = z.object({
-  runtime: Runtime$outboundSchema.optional(),
-  v2Metadata: z.record(z.string()),
   accountMetadata: z.record(z.record(z.string())).optional(),
   force: z.boolean().optional(),
+  metadata: z.record(z.string()),
   postings: z.array(V2Posting$outboundSchema).optional(),
   reference: z.string().optional(),
+  runtime: Runtime$outboundSchema.optional(),
   script: z.lazy(() => V2PostTransactionScript$outboundSchema).optional(),
   timestamp: z.date().transform(v => v.toISOString()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v2Metadata: "metadata",
-  });
 });
 
 export function v2PostTransactionToJSON(

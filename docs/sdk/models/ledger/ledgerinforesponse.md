@@ -6,7 +6,7 @@
 import { LedgerInfoResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: LedgerInfoResponse = {
-  ledgerInfo: {
+  data: {
     name: "ledger001",
     storage: {
       migrations: [
@@ -24,4 +24,4 @@ let value: LedgerInfoResponse = {
 
 | Field                                                         | Type                                                          | Required                                                      | Description                                                   |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `ledgerInfo`                                                  | [ledger.LedgerInfo](../../../sdk/models/ledger/ledgerinfo.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| `data`                                                        | [ledger.LedgerInfo](../../../sdk/models/ledger/ledgerinfo.md) | :heavy_minus_sign:                                            | N/A                                                           |

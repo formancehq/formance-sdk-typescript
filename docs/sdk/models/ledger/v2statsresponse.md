@@ -6,7 +6,7 @@
 import { V2StatsResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2StatsResponse = {
-  v2Stats: {
+  data: {
     accounts: 421587,
     transactions: 64851n,
   },
@@ -17,4 +17,4 @@ let value: V2StatsResponse = {
 
 | Field                                                   | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `v2Stats`                                               | [ledger.V2Stats](../../../sdk/models/ledger/v2stats.md) | :heavy_check_mark:                                      | N/A                                                     |
+| `data`                                                  | [ledger.V2Stats](../../../sdk/models/ledger/v2stats.md) | :heavy_check_mark:                                      | N/A                                                     |

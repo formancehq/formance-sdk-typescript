@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -14,14 +13,18 @@ import { V2Volume, V2Volume$inboundSchema } from "./v2volume.js";
  * Transaction structure as it appears in log payloads
  */
 export type V2LogTransaction = {
-  v2AggregatedVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
-  v2AggregatedVolumes1?: { [k: string]: { [k: string]: V2Volume } } | undefined;
-  v2AggregatedVolumes2?: { [k: string]: { [k: string]: V2Volume } } | undefined;
-  v2AggregatedVolumes3?: { [k: string]: { [k: string]: V2Volume } } | undefined;
-  v2Metadata: { [k: string]: string };
   id: bigint;
   insertedAt?: Date | undefined;
+  metadata: { [k: string]: string };
+  postCommitEffectiveVolumes?:
+    | { [k: string]: { [k: string]: V2Volume } }
+    | undefined;
+  postCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
   postings: Array<V2Posting>;
+  preCommitEffectiveVolumes?:
+    | { [k: string]: { [k: string]: V2Volume } }
+    | undefined;
+  preCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
   reference?: string | undefined;
   /**
    * Indicates if the transaction has been reverted
@@ -42,17 +45,17 @@ export const V2LogTransaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  postCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
-  postCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
-    .optional(),
-  preCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
-  preCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
-    .optional(),
-  metadata: z.record(z.string()),
   id: z.number().transform(v => BigInt(v)),
   insertedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
+  metadata: z.record(z.string()),
+  postCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
+    .optional(),
+  postCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
   postings: z.array(V2Posting$inboundSchema),
+  preCommitEffectiveVolumes: z.record(z.record(V2Volume$inboundSchema))
+    .optional(),
+  preCommitVolumes: z.record(z.record(V2Volume$inboundSchema)).optional(),
   reference: z.string().optional(),
   reverted: z.boolean(),
   revertedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
@@ -61,14 +64,6 @@ export const V2LogTransaction$inboundSchema: z.ZodType<
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "postCommitVolumes": "v2AggregatedVolumes",
-    "postCommitEffectiveVolumes": "v2AggregatedVolumes1",
-    "preCommitVolumes": "v2AggregatedVolumes2",
-    "preCommitEffectiveVolumes": "v2AggregatedVolumes3",
-    "metadata": "v2Metadata",
-  });
 });
 
 export function v2LogTransactionFromJSON(

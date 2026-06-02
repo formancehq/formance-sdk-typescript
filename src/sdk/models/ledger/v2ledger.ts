@@ -3,18 +3,17 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Ledger = {
-  v2Metadata?: { [k: string]: string } | undefined;
   addedAt: Date;
   bucket: string;
   deletedAt?: Date | null | undefined;
   features?: { [k: string]: string } | undefined;
   id?: number | undefined;
+  metadata?: { [k: string]: string } | undefined;
   name: string;
 };
 
@@ -24,7 +23,6 @@ export const V2Ledger$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.record(z.string()).optional(),
   addedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   bucket: z.string(),
   deletedAt: z.nullable(
@@ -32,11 +30,8 @@ export const V2Ledger$inboundSchema: z.ZodType<
   ).optional(),
   features: z.record(z.string()).optional(),
   id: z.number().int().optional(),
+  metadata: z.record(z.string()).optional(),
   name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v2Metadata",
-  });
 });
 
 export function v2LedgerFromJSON(

@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Transaction, V2Transaction$inboundSchema } from "./v2transaction.js";
 
-export type LedgerV2BulkElementResultErrorV2BaseBulkElementResult = {
+export type V2BulkElementResultError = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
@@ -17,178 +16,139 @@ export type LedgerV2BulkElementResultErrorV2BaseBulkElementResult = {
   responseType: string;
 };
 
-export type LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult = {
+export type V2BulkElementResultDeleteMetadata = {
   logID: number;
   responseType: string;
 };
 
-export type LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult =
-  {
-    v2Transaction: V2Transaction;
-    logID: number;
-    responseType: string;
-  };
-
-export type LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult = {
+export type V2BulkElementResultRevertTransaction = {
+  data: V2Transaction;
   logID: number;
   responseType: string;
 };
 
-export type LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult =
-  {
-    v2Transaction: V2Transaction;
-    logID: number;
-    responseType: string;
-  };
+export type V2BulkElementResultAddMetadata = {
+  logID: number;
+  responseType: string;
+};
+
+export type V2BulkElementResultCreateTransaction = {
+  data: V2Transaction;
+  logID: number;
+  responseType: string;
+};
 
 export type V2BulkElementResult =
-  | LedgerV2BulkElementResultErrorV2BaseBulkElementResult
-  | LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult
-  | LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult
-  | LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult
-  | LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult;
+  | V2BulkElementResultError
+  | V2BulkElementResultCreateTransaction
+  | V2BulkElementResultRevertTransaction
+  | V2BulkElementResultAddMetadata
+  | V2BulkElementResultDeleteMetadata;
 
 /** @internal */
-export const LedgerV2BulkElementResultErrorV2BaseBulkElementResult$inboundSchema:
-  z.ZodType<
-    LedgerV2BulkElementResultErrorV2BaseBulkElementResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    errorCode: z.string(),
-    errorDescription: z.string(),
-    errorDetails: z.string().optional(),
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultError$inboundSchema: z.ZodType<
+  V2BulkElementResultError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  errorCode: z.string(),
+  errorDescription: z.string(),
+  errorDetails: z.string().optional(),
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
-export function ledgerV2BulkElementResultErrorV2BaseBulkElementResultFromJSON(
+export function v2BulkElementResultErrorFromJSON(
   jsonString: string,
-): SafeParseResult<
-  LedgerV2BulkElementResultErrorV2BaseBulkElementResult,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultError, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      LedgerV2BulkElementResultErrorV2BaseBulkElementResult$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'LedgerV2BulkElementResultErrorV2BaseBulkElementResult' from JSON`,
+    (x) => V2BulkElementResultError$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultError' from JSON`,
   );
 }
 
 /** @internal */
-export const LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult$inboundSchema:
-  z.ZodType<
-    LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultDeleteMetadata$inboundSchema: z.ZodType<
+  V2BulkElementResultDeleteMetadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
-export function ledgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResultFromJSON(
+export function v2BulkElementResultDeleteMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<
-  LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultDeleteMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult' from JSON`,
+    (x) => V2BulkElementResultDeleteMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultDeleteMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult$inboundSchema:
-  z.ZodType<
-    LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    data: V2Transaction$inboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "data": "v2Transaction",
-    });
-  });
+export const V2BulkElementResultRevertTransaction$inboundSchema: z.ZodType<
+  V2BulkElementResultRevertTransaction,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: V2Transaction$inboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
-export function ledgerV2BulkElementResultRevertTransactionV2BaseBulkElementResultFromJSON(
+export function v2BulkElementResultRevertTransactionFromJSON(
   jsonString: string,
-): SafeParseResult<
-  LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultRevertTransaction, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult' from JSON`,
+      V2BulkElementResultRevertTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultRevertTransaction' from JSON`,
   );
 }
 
 /** @internal */
-export const LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult$inboundSchema:
-  z.ZodType<
-    LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    logID: z.number().int(),
-    responseType: z.string(),
-  });
+export const V2BulkElementResultAddMetadata$inboundSchema: z.ZodType<
+  V2BulkElementResultAddMetadata,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
-export function ledgerV2BulkElementResultAddMetadataV2BaseBulkElementResultFromJSON(
+export function v2BulkElementResultAddMetadataFromJSON(
   jsonString: string,
-): SafeParseResult<
-  LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultAddMetadata, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult' from JSON`,
+    (x) => V2BulkElementResultAddMetadata$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultAddMetadata' from JSON`,
   );
 }
 
 /** @internal */
-export const LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult$inboundSchema:
-  z.ZodType<
-    LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    data: V2Transaction$inboundSchema,
-    logID: z.number().int(),
-    responseType: z.string(),
-  }).transform((v) => {
-    return remap$(v, {
-      "data": "v2Transaction",
-    });
-  });
+export const V2BulkElementResultCreateTransaction$inboundSchema: z.ZodType<
+  V2BulkElementResultCreateTransaction,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: V2Transaction$inboundSchema,
+  logID: z.number().int(),
+  responseType: z.string(),
+});
 
-export function ledgerV2BulkElementResultCreateTransactionV2BaseBulkElementResultFromJSON(
+export function v2BulkElementResultCreateTransactionFromJSON(
   jsonString: string,
-): SafeParseResult<
-  LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult,
-  SDKValidationError
-> {
+): SafeParseResult<V2BulkElementResultCreateTransaction, SDKValidationError> {
   return safeParse(
     jsonString,
     (x) =>
-      LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult' from JSON`,
+      V2BulkElementResultCreateTransaction$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'V2BulkElementResultCreateTransaction' from JSON`,
   );
 }
 
@@ -198,21 +158,11 @@ export const V2BulkElementResult$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() =>
-    LedgerV2BulkElementResultErrorV2BaseBulkElementResult$inboundSchema
-  ),
-  z.lazy(() =>
-    LedgerV2BulkElementResultCreateTransactionV2BaseBulkElementResult$inboundSchema
-  ),
-  z.lazy(() =>
-    LedgerV2BulkElementResultRevertTransactionV2BaseBulkElementResult$inboundSchema
-  ),
-  z.lazy(() =>
-    LedgerV2BulkElementResultAddMetadataV2BaseBulkElementResult$inboundSchema
-  ),
-  z.lazy(() =>
-    LedgerV2BulkElementResultDeleteMetadataV2BaseBulkElementResult$inboundSchema
-  ),
+  z.lazy(() => V2BulkElementResultError$inboundSchema),
+  z.lazy(() => V2BulkElementResultCreateTransaction$inboundSchema),
+  z.lazy(() => V2BulkElementResultRevertTransaction$inboundSchema),
+  z.lazy(() => V2BulkElementResultAddMetadata$inboundSchema),
+  z.lazy(() => V2BulkElementResultDeleteMetadata$inboundSchema),
 ]);
 
 export function v2BulkElementResultFromJSON(

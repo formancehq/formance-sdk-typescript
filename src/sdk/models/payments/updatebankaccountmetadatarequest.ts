@@ -3,10 +3,9 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type UpdateBankAccountMetadataRequest = {
-  bankAccountMetadata: { [k: string]: string } | null;
+  metadata: { [k: string]: string } | null;
 };
 
 /** @internal */
@@ -20,11 +19,7 @@ export const UpdateBankAccountMetadataRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateBankAccountMetadataRequest
 > = z.object({
-  bankAccountMetadata: z.nullable(z.record(z.string())),
-}).transform((v) => {
-  return remap$(v, {
-    bankAccountMetadata: "metadata",
-  });
+  metadata: z.nullable(z.record(z.string())),
 });
 
 export function updateBankAccountMetadataRequestToJSON(

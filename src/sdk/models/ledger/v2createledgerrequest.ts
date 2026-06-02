@@ -3,19 +3,18 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type V2CreateLedgerRequest = {
-  v2Metadata?: { [k: string]: string } | undefined;
   bucket?: string | undefined;
   features?: { [k: string]: string } | undefined;
+  metadata?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
 export type V2CreateLedgerRequest$Outbound = {
-  metadata?: { [k: string]: string } | undefined;
   bucket?: string | undefined;
   features?: { [k: string]: string } | undefined;
+  metadata?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
@@ -24,13 +23,9 @@ export const V2CreateLedgerRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2CreateLedgerRequest
 > = z.object({
-  v2Metadata: z.record(z.string()).optional(),
   bucket: z.string().optional(),
   features: z.record(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v2Metadata: "metadata",
-  });
+  metadata: z.record(z.string()).optional(),
 });
 
 export function v2CreateLedgerRequestToJSON(

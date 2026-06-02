@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v3paymentinitiation.js";
 
 export type V3GetPaymentInitiationResponse = {
-  v3PaymentInitiation: V3PaymentInitiation;
+  data: V3PaymentInitiation;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V3GetPaymentInitiationResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3PaymentInitiation$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3PaymentInitiation",
-  });
 });
 
 export function v3GetPaymentInitiationResponseFromJSON(

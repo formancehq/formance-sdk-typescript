@@ -3,32 +3,27 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PoolTypeEnum, PoolTypeEnum$inboundSchema } from "./pooltypeenum.js";
 
 export type Pool = {
-  poolTypeEnum?: PoolTypeEnum | undefined;
   accounts: Array<string>;
   id: string;
   name: string;
   query?: { [k: string]: any } | undefined;
+  type?: PoolTypeEnum | undefined;
 };
 
 /** @internal */
 export const Pool$inboundSchema: z.ZodType<Pool, z.ZodTypeDef, unknown> = z
   .object({
-    type: PoolTypeEnum$inboundSchema.optional(),
     accounts: z.array(z.string()),
     id: z.string(),
     name: z.string(),
     query: z.record(z.any()).optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      "type": "poolTypeEnum",
-    });
+    type: PoolTypeEnum$inboundSchema.optional(),
   });
 
 export function poolFromJSON(

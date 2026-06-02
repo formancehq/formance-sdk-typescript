@@ -6,20 +6,21 @@
 import { TransferInitiation, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TransferInitiation = {
-  transferInitiationStatus: TransferInitiationStatus.ReverseProcessing,
-  amount: 745653n,
+  amount: 710672n,
   asset: "USD",
   connectorID: "<id>",
-  createdAt: new Date("2026-04-03T00:00:38.586Z"),
-  description: "ah delightfully till coal beyond",
+  createdAt: new Date("2026-03-28T05:39:45.281Z"),
+  description:
+    "tough astride step-mother merit determined given boohoo give fatally",
   destinationAccountID: "<id>",
   id: "XXX",
-  initialAmount: 531601n,
+  initialAmount: 989882n,
   provider: "<value>",
   reference: "<value>",
-  scheduledAt: new Date("2025-02-17T15:09:46.208Z"),
+  scheduledAt: new Date("2026-08-12T09:59:28.956Z"),
   sourceAccountID: "<id>",
-  type: TransferInitiationType.Transfer,
+  status: TransferInitiationStatus.AskRetried,
+  type: TransferInitiationType.Payout,
 };
 ```
 
@@ -27,7 +28,6 @@ let value: TransferInitiation = {
 
 | Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               | Example                                                                                                   |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `transferInitiationStatus`                                                                                | [payments.TransferInitiationStatus](../../../sdk/models/payments/transferinitiationstatus.md)             | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
 | `amount`                                                                                                  | *BigInt*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
 | `asset`                                                                                                   | *string*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       | USD                                                                                                       |
 | `connectorID`                                                                                             | *string*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
@@ -44,4 +44,5 @@ let value: TransferInitiation = {
 | `relatedPayments`                                                                                         | [payments.TransferInitiationPayments](../../../sdk/models/payments/transferinitiationpayments.md)[]       | :heavy_minus_sign:                                                                                        | N/A                                                                                                       |                                                                                                           |
 | `scheduledAt`                                                                                             | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)             | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
 | `sourceAccountID`                                                                                         | *string*                                                                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
+| `status`                                                                                                  | [payments.TransferInitiationStatus](../../../sdk/models/payments/transferinitiationstatus.md)             | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |
 | `type`                                                                                                    | [payments.TransferInitiationType](../../../sdk/models/payments/transferinitiationtype.md)                 | :heavy_check_mark:                                                                                        | N/A                                                                                                       |                                                                                                           |

@@ -6,7 +6,7 @@
 import { DebitWalletResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: DebitWalletResponse = {
-  hold: {
+  data: {
     description:
       "weatherize portly legislature yuck duh decision hotfoot including",
     id: "18d42f48-9941-4839-91c6-039cc91f19a3",
@@ -23,4 +23,4 @@ let value: DebitWalletResponse = {
 
 | Field                                                           | Type                                                            | Required                                                        | Description                                                     |
 | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `hold`                                                          | [orchestration.Hold](../../../sdk/models/orchestration/hold.md) | :heavy_check_mark:                                              | N/A                                                             |
+| `data`                                                          | [orchestration.Hold](../../../sdk/models/orchestration/hold.md) | :heavy_check_mark:                                              | N/A                                                             |

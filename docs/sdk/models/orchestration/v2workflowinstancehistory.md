@@ -6,7 +6,7 @@
 import { V2WorkflowInstanceHistory } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2WorkflowInstanceHistory = {
-  v2Stage: {
+  input: {
     event: "<value>",
   },
   name: "<value>",
@@ -19,8 +19,8 @@ let value: V2WorkflowInstanceHistory = {
 
 | Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `v2Stage`                                                                                     | *orchestration.V2Stage*                                                                       | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `error`                                                                                       | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `input`                                                                                       | *orchestration.V2Stage*                                                                       | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `startedAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `terminated`                                                                                  | *boolean*                                                                                     | :heavy_check_mark:                                                                            | N/A                                                                                           |

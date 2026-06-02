@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,9 +16,6 @@ import {
 } from "./v3paymentinitiationtypeenum.js";
 
 export type V3PaymentInitiation = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  v3PaymentInitiationStatusEnum: V3PaymentInitiationStatusEnum;
-  v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum;
   amount: bigint;
   asset: string;
   connectorID: string;
@@ -28,10 +24,13 @@ export type V3PaymentInitiation = {
   destinationAccountID?: string | undefined;
   error?: string | null | undefined;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   provider: string;
   reference: string;
   scheduledAt: Date;
   sourceAccountID?: string | undefined;
+  status: V3PaymentInitiationStatusEnum;
+  type: V3PaymentInitiationTypeEnum;
 };
 
 /** @internal */
@@ -40,9 +39,6 @@ export const V3PaymentInitiation$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  status: V3PaymentInitiationStatusEnum$inboundSchema,
-  type: V3PaymentInitiationTypeEnum$inboundSchema,
   amount: z.number().transform(v => BigInt(v)),
   asset: z.string(),
   connectorID: z.string(),
@@ -51,18 +47,15 @@ export const V3PaymentInitiation$inboundSchema: z.ZodType<
   destinationAccountID: z.string().optional(),
   error: z.nullable(z.string()).optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   provider: z.string(),
   reference: z.string(),
   scheduledAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ),
   sourceAccountID: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v3Metadata",
-    "status": "v3PaymentInitiationStatusEnum",
-    "type": "v3PaymentInitiationTypeEnum",
-  });
+  status: V3PaymentInitiationStatusEnum$inboundSchema,
+  type: V3PaymentInitiationTypeEnum$inboundSchema,
 });
 
 export function v3PaymentInitiationFromJSON(

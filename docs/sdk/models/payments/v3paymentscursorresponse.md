@@ -9,17 +9,17 @@ let value: V3PaymentsCursorResponse = {
   cursor: {
     data: [
       {
-        v3PaymentStatusEnum: V3PaymentStatusEnum.Pending,
-        v3PaymentTypeEnum: V3PaymentTypeEnum.Transfer,
-        amount: 121358n,
+        amount: 68747n,
         asset: "<value>",
         connectorID: "<value>",
-        createdAt: new Date("2024-09-05T03:45:38.027Z"),
+        createdAt: new Date("2025-11-06T22:03:38.430Z"),
         id: "<id>",
-        initialAmount: 915345n,
+        initialAmount: 121358n,
         provider: "<value>",
         reference: "<value>",
         scheme: "<value>",
+        status: V3PaymentStatusEnum.Cancelled,
+        type: V3PaymentTypeEnum.Other,
       },
     ],
     hasMore: false,

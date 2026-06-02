@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,10 +10,10 @@ import { Posting, Posting$inboundSchema } from "./posting.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
 export type Transaction = {
-  aggregatedVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
-  aggregatedVolumes1?: { [k: string]: { [k: string]: Volume } } | undefined;
   metadata?: { [k: string]: any } | null | undefined;
+  postCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
   postings: Array<Posting>;
+  preCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
   reference?: string | undefined;
   timestamp: Date;
   txid: bigint;
@@ -26,18 +25,13 @@ export const Transaction$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  preCommitVolumes: z.record(z.record(Volume$inboundSchema)).optional(),
-  postCommitVolumes: z.record(z.record(Volume$inboundSchema)).optional(),
   metadata: z.nullable(z.record(z.any())).optional(),
+  postCommitVolumes: z.record(z.record(Volume$inboundSchema)).optional(),
   postings: z.array(Posting$inboundSchema),
+  preCommitVolumes: z.record(z.record(Volume$inboundSchema)).optional(),
   reference: z.string().optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   txid: z.number().transform(v => BigInt(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "preCommitVolumes": "aggregatedVolumes",
-    "postCommitVolumes": "aggregatedVolumes1",
-  });
 });
 
 export function transactionFromJSON(

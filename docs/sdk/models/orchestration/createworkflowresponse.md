@@ -6,8 +6,8 @@
 import { CreateWorkflowResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: CreateWorkflowResponse = {
-  workflow: {
-    workflowConfig: {
+  data: {
+    config: {
       stages: [],
     },
     createdAt: new Date("2026-08-13T17:35:58.193Z"),
@@ -21,4 +21,4 @@ let value: CreateWorkflowResponse = {
 
 | Field                                                                   | Type                                                                    | Required                                                                | Description                                                             |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `workflow`                                                              | [orchestration.Workflow](../../../sdk/models/orchestration/workflow.md) | :heavy_check_mark:                                                      | N/A                                                                     |
+| `data`                                                                  | [orchestration.Workflow](../../../sdk/models/orchestration/workflow.md) | :heavy_check_mark:                                                      | N/A                                                                     |

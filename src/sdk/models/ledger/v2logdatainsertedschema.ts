@@ -3,11 +3,10 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { V2SchemaData1, V2SchemaData1$inboundSchema } from "./v2schemadata1.js";
+import { V2Schema, V2Schema$inboundSchema } from "./v2schema.js";
 
 /**
  * Payload for INSERTED_SCHEMA log entries. Contains the schema that was inserted into the ledger.
@@ -16,7 +15,7 @@ export type V2LogDataInsertedSchema = {
   /**
    * Complete schema structure with metadata
    */
-  v2SchemaData: V2SchemaData1;
+  schema: V2Schema;
 };
 
 /** @internal */
@@ -25,11 +24,7 @@ export const V2LogDataInsertedSchema$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  schema: V2SchemaData1$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "schema": "v2SchemaData",
-  });
+  schema: V2Schema$inboundSchema,
 });
 
 export function v2LogDataInsertedSchemaFromJSON(

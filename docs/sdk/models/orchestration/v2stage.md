@@ -7,19 +7,19 @@
 
 ```typescript
 const value: orchestration.V2StageSend = {
-  v2StageSendDestination: {
-    v2StageSendDestinationPayment: {
-      psp: "stripe",
-      type: V2StageSendDestinationPaymentType.Payout,
-    },
-    v2StageSendSourceAccount: {
+  destination: {
+    account: {
       allowOverdraft: true,
       id: "<id>",
       throughAccount: "liabilities:payouts-pending",
     },
+    payment: {
+      psp: "stripe",
+      type: V2StageSendDestinationPaymentType.Payout,
+    },
   },
-  v2StageSendSource: {
-    v2StageSendSourceAccount: {
+  source: {
+    account: {
       allowOverdraft: true,
       id: "<id>",
       throughAccount: "liabilities:payouts-pending",

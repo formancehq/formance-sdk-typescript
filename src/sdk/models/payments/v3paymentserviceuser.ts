@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -14,12 +13,12 @@ import {
 } from "./v3contactdetails.js";
 
 export type V3PaymentServiceUser = {
-  v3Address?: V3Address | undefined;
-  v3ContactDetails?: V3ContactDetails | undefined;
-  v3Metadata?: { [k: string]: string } | null | undefined;
+  address?: V3Address | undefined;
   bankAccountIDs?: Array<string> | null | undefined;
+  contactDetails?: V3ContactDetails | undefined;
   createdAt: Date;
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
 };
 
@@ -30,18 +29,12 @@ export const V3PaymentServiceUser$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   address: V3Address$inboundSchema.optional(),
-  contactDetails: V3ContactDetails$inboundSchema.optional(),
-  metadata: z.nullable(z.record(z.string())).optional(),
   bankAccountIDs: z.nullable(z.array(z.string())).optional(),
+  contactDetails: V3ContactDetails$inboundSchema.optional(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "address": "v3Address",
-    "contactDetails": "v3ContactDetails",
-    "metadata": "v3Metadata",
-  });
 });
 
 export function v3PaymentServiceUserFromJSON(

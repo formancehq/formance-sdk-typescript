@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,7 +12,7 @@ import {
 } from "./v2workflowinstance.js";
 
 export type V2GetWorkflowInstanceResponse = {
-  v2WorkflowInstance: V2WorkflowInstance;
+  data: V2WorkflowInstance;
 };
 
 /** @internal */
@@ -23,10 +22,6 @@ export const V2GetWorkflowInstanceResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V2WorkflowInstance$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2WorkflowInstance",
-  });
 });
 
 export function v2GetWorkflowInstanceResponseFromJSON(

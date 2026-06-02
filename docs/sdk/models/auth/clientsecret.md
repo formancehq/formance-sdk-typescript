@@ -16,7 +16,7 @@ let value: ClientSecret = {
 
 | Field                    | Type                     | Required                 | Description              |
 | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `metadata`               | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
 | `id`                     | *string*                 | :heavy_check_mark:       | N/A                      |
 | `lastDigits`             | *string*                 | :heavy_check_mark:       | N/A                      |
+| `metadata`               | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
 | `name`                   | *string*                 | :heavy_check_mark:       | N/A                      |

@@ -8,10 +8,15 @@ Payload for NEW_TRANSACTION log entries. Contains the created transaction and an
 import { V2LogDataNewTransaction } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2LogDataNewTransaction = {
-  v2LogTransaction: {
-    v2Metadata: {},
+  accountMetadata: {
+    "users:001": {
+      "created_by": "system",
+    },
+  },
+  transaction: {
     id: 1234n,
     insertedAt: new Date("2024-01-15T10:30:00Z"),
+    metadata: {},
     postings: [
       {
         amount: 100n,
@@ -23,11 +28,6 @@ let value: V2LogDataNewTransaction = {
     reverted: false,
     timestamp: new Date("2024-01-15T10:30:00Z"),
   },
-  accountMetadata: {
-    "users:001": {
-      "created_by": "system",
-    },
-  },
 };
 ```
 
@@ -35,5 +35,5 @@ let value: V2LogDataNewTransaction = {
 
 | Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `v2LogTransaction`                                                        | [ledger.V2LogTransaction](../../../sdk/models/ledger/v2logtransaction.md) | :heavy_check_mark:                                                        | Transaction structure as it appears in log payloads                       |
 | `accountMetadata`                                                         | Record<string, Record<string, *string*>>                                  | :heavy_check_mark:                                                        | Metadata applied to accounts involved in the transaction                  |
+| `transaction`                                                             | [ledger.V2LogTransaction](../../../sdk/models/ledger/v2logtransaction.md) | :heavy_check_mark:                                                        | Transaction structure as it appears in log payloads                       |

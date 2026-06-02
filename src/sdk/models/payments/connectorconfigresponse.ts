@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -16,7 +15,7 @@ import {
  * OK
  */
 export type ConnectorConfigResponse = {
-  connectorConfig: ConnectorConfig;
+  data: ConnectorConfig;
 };
 
 /** @internal */
@@ -26,10 +25,6 @@ export const ConnectorConfigResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: ConnectorConfig$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "connectorConfig",
-  });
 });
 
 export function connectorConfigResponseFromJSON(

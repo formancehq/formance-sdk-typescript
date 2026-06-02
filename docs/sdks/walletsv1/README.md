@@ -285,7 +285,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.v1.creditWallet({
     creditWalletRequest: {
-      monetary: {
+      amount: {
         amount: 100n,
         asset: "USD/2",
       },
@@ -323,7 +323,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await walletsV1CreditWallet(sdk, {
     creditWalletRequest: {
-      monetary: {
+      amount: {
         amount: 100n,
         asset: "USD/2",
       },
@@ -385,7 +385,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.wallets.v1.debitWallet({
     debitWalletRequest: {
-      monetary: {
+      amount: {
         amount: 100n,
         asset: "USD/2",
       },
@@ -423,7 +423,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await walletsV1DebitWallet(sdk, {
     debitWalletRequest: {
-      monetary: {
+      amount: {
         amount: 100n,
         asset: "USD/2",
       },

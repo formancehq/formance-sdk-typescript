@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,10 +10,10 @@ import { V2Monetary, V2Monetary$inboundSchema } from "./v2monetary.js";
 import { V2Subject, V2Subject$inboundSchema } from "./v2subject.js";
 
 export type V2DebitWalletRequest = {
-  v2Monetary: V2Monetary;
-  v2Subject?: V2Subject | undefined;
+  amount: V2Monetary;
   balances?: Array<string> | undefined;
   description?: string | undefined;
+  destination?: V2Subject | undefined;
   /**
    * Metadata associated with the wallet.
    */
@@ -36,18 +35,13 @@ export const V2DebitWalletRequest$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   amount: V2Monetary$inboundSchema,
-  destination: V2Subject$inboundSchema.optional(),
   balances: z.array(z.string()).optional(),
   description: z.string().optional(),
+  destination: V2Subject$inboundSchema.optional(),
   metadata: z.record(z.string()),
   pending: z.boolean().optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "amount": "v2Monetary",
-    "destination": "v2Subject",
-  });
 });
 
 export function v2DebitWalletRequestFromJSON(

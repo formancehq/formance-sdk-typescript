@@ -6,7 +6,7 @@
 import { V2GetWorkflowInstanceHistoryStageResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2GetWorkflowInstanceHistoryStageResponse = {
-  v2WorkflowInstanceHistoryStageList: [],
+  data: [],
 };
 ```
 
@@ -14,4 +14,4 @@ let value: V2GetWorkflowInstanceHistoryStageResponse = {
 
 | Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `v2WorkflowInstanceHistoryStageList`                                                                                  | [orchestration.V2WorkflowInstanceHistoryStage](../../../sdk/models/orchestration/v2workflowinstancehistorystage.md)[] | :heavy_check_mark:                                                                                                    | N/A                                                                                                                   |
+| `data`                                                                                                                | [orchestration.V2WorkflowInstanceHistoryStage](../../../sdk/models/orchestration/v2workflowinstancehistorystage.md)[] | :heavy_check_mark:                                                                                                    | N/A                                                                                                                   |

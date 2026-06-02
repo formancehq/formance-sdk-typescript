@@ -13,18 +13,17 @@ let value: V3PaymentInitiationsCursorResponse = {
   cursor: {
     data: [
       {
-        v3PaymentInitiationStatusEnum: V3PaymentInitiationStatusEnum.Rejected,
-        v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum.Unknown,
-        amount: 24585n,
+        amount: 625271n,
         asset: "<value>",
         connectorID: "<value>",
-        createdAt: new Date("2025-04-17T14:00:32.450Z"),
-        description:
-          "halt if stealthily dishearten determined diligently whose correctly of grouper",
+        createdAt: new Date("2024-05-18T16:35:49.970Z"),
+        description: "damaged futon tuba",
         id: "<id>",
         provider: "<value>",
         reference: "<value>",
-        scheduledAt: new Date("2026-02-20T15:36:51.779Z"),
+        scheduledAt: new Date("2024-07-28T07:43:00.321Z"),
+        status: V3PaymentInitiationStatusEnum.ReverseProcessing,
+        type: V3PaymentInitiationTypeEnum.Unknown,
       },
     ],
     hasMore: false,

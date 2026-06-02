@@ -49,7 +49,7 @@ export class OrchestrationV1 extends ClientSDK {
    * Create trigger
    */
   async createTrigger(
-    request?: orchestration.TriggerData2 | undefined,
+    request?: orchestration.TriggerData | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateTriggerResponse> {
     return unwrapAsync(orchestrationV1CreateTrigger(

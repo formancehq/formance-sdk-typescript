@@ -3,15 +3,14 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2ErrorsEnum, V2ErrorsEnum$inboundSchema } from "./v2errorsenum.js";
 
 export type V2ErrorResponse = {
-  v2ErrorsEnum: V2ErrorsEnum;
   details?: string | undefined;
+  errorCode: V2ErrorsEnum;
   errorMessage: string;
 };
 
@@ -21,13 +20,9 @@ export const V2ErrorResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  errorCode: V2ErrorsEnum$inboundSchema,
   details: z.string().optional(),
+  errorCode: V2ErrorsEnum$inboundSchema,
   errorMessage: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "errorCode": "v2ErrorsEnum",
-  });
 });
 
 export function v2ErrorResponseFromJSON(

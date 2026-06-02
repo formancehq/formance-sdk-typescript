@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -19,11 +18,11 @@ export type V2LogDataRevertedTransaction = {
   /**
    * Transaction structure as it appears in log payloads
    */
-  v2LogTransaction: V2LogTransaction;
+  revertedTransaction: V2LogTransaction;
   /**
    * Transaction structure as it appears in log payloads
    */
-  v2LogTransaction1: V2LogTransaction;
+  transaction: V2LogTransaction;
 };
 
 /** @internal */
@@ -34,11 +33,6 @@ export const V2LogDataRevertedTransaction$inboundSchema: z.ZodType<
 > = z.object({
   revertedTransaction: V2LogTransaction$inboundSchema,
   transaction: V2LogTransaction$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "revertedTransaction": "v2LogTransaction",
-    "transaction": "v2LogTransaction1",
-  });
 });
 
 export function v2LogDataRevertedTransactionFromJSON(

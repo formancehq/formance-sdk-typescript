@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,19 +12,18 @@ import {
 } from "./v3taskstatusenum.js";
 
 export type V3Task = {
-  v3TaskStatusEnum: V3TaskStatusEnum;
   connectorID?: string | undefined;
   createdAt: Date;
   createdObjectID?: string | undefined;
   error?: string | null | undefined;
   id: string;
+  status: V3TaskStatusEnum;
   updatedAt: Date;
 };
 
 /** @internal */
 export const V3Task$inboundSchema: z.ZodType<V3Task, z.ZodTypeDef, unknown> = z
   .object({
-    status: V3TaskStatusEnum$inboundSchema,
     connectorID: z.string().optional(),
     createdAt: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
@@ -33,13 +31,10 @@ export const V3Task$inboundSchema: z.ZodType<V3Task, z.ZodTypeDef, unknown> = z
     createdObjectID: z.string().optional(),
     error: z.nullable(z.string()).optional(),
     id: z.string(),
+    status: V3TaskStatusEnum$inboundSchema,
     updatedAt: z.string().datetime({ offset: true }).transform(v =>
       new Date(v)
     ),
-  }).transform((v) => {
-    return remap$(v, {
-      "status": "v3TaskStatusEnum",
-    });
   });
 
 export function v3TaskFromJSON(

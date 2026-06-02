@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Schedule, V3Schedule$inboundSchema } from "./v3schedule.js";
 
 export type V3ConnectorScheduleResponse = {
-  v3Schedule: V3Schedule;
+  data: V3Schedule;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V3ConnectorScheduleResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3Schedule$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3Schedule",
-  });
 });
 
 export function v3ConnectorScheduleResponseFromJSON(

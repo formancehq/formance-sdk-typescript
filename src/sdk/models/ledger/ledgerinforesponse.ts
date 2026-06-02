@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { LedgerInfo, LedgerInfo$inboundSchema } from "./ledgerinfo.js";
 
 export type LedgerInfoResponse = {
-  ledgerInfo?: LedgerInfo | undefined;
+  data?: LedgerInfo | undefined;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const LedgerInfoResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: LedgerInfo$inboundSchema.optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "ledgerInfo",
-  });
 });
 
 export function ledgerInfoResponseFromJSON(

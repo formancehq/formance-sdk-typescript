@@ -6,7 +6,7 @@
 import { V2GetWorkflowInstanceHistoryResponse } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2GetWorkflowInstanceHistoryResponse = {
-  v2WorkflowInstanceHistoryList: [],
+  data: [],
 };
 ```
 
@@ -14,4 +14,4 @@ let value: V2GetWorkflowInstanceHistoryResponse = {
 
 | Field                                                                                                       | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `v2WorkflowInstanceHistoryList`                                                                             | [orchestration.V2WorkflowInstanceHistory](../../../sdk/models/orchestration/v2workflowinstancehistory.md)[] | :heavy_check_mark:                                                                                          | N/A                                                                                                         |
+| `data`                                                                                                      | [orchestration.V2WorkflowInstanceHistory](../../../sdk/models/orchestration/v2workflowinstancehistory.md)[] | :heavy_check_mark:                                                                                          | N/A                                                                                                         |

@@ -8,9 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ClientSecret = {
-  metadata?: { [k: string]: string } | null | undefined;
   id: string;
   lastDigits: string;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
 };
 
@@ -20,9 +20,9 @@ export const ClientSecret$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
   id: z.string(),
   lastDigits: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
 });
 

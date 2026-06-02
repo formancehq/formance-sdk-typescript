@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3BankAccount, V3BankAccount$inboundSchema } from "./v3bankaccount.js";
 
 export type V3GetBankAccountResponse = {
-  v3BankAccount: V3BankAccount;
+  data: V3BankAccount;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V3GetBankAccountResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3BankAccount$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3BankAccount",
-  });
 });
 
 export function v3GetBankAccountResponseFromJSON(

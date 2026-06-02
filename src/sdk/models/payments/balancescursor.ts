@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,7 +11,7 @@ import {
   AccountBalance$inboundSchema,
 } from "./accountbalance.js";
 
-export type BalancesCursorCursorBase = {
+export type BalancesCursorCursor = {
   data: Array<AccountBalance>;
   hasMore: boolean;
   next?: string | undefined;
@@ -24,12 +23,12 @@ export type BalancesCursorCursorBase = {
  * OK
  */
 export type BalancesCursor = {
-  cursorBase: BalancesCursorCursorBase;
+  cursor: BalancesCursorCursor;
 };
 
 /** @internal */
-export const BalancesCursorCursorBase$inboundSchema: z.ZodType<
-  BalancesCursorCursorBase,
+export const BalancesCursorCursor$inboundSchema: z.ZodType<
+  BalancesCursorCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -40,13 +39,13 @@ export const BalancesCursorCursorBase$inboundSchema: z.ZodType<
   previous: z.string().optional(),
 });
 
-export function balancesCursorCursorBaseFromJSON(
+export function balancesCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<BalancesCursorCursorBase, SDKValidationError> {
+): SafeParseResult<BalancesCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => BalancesCursorCursorBase$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'BalancesCursorCursorBase' from JSON`,
+    (x) => BalancesCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BalancesCursorCursor' from JSON`,
   );
 }
 
@@ -56,11 +55,7 @@ export const BalancesCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => BalancesCursorCursorBase$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "cursorBase",
-  });
+  cursor: z.lazy(() => BalancesCursorCursor$inboundSchema),
 });
 
 export function balancesCursorFromJSON(

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -17,15 +16,13 @@ import {
 } from "./workflowinstancehistorystageoutput.js";
 
 export type WorkflowInstanceHistoryStage = {
-  workflowInstanceHistoryStageInput: WorkflowInstanceHistoryStageInput;
-  workflowInstanceHistoryStageOutput?:
-    | WorkflowInstanceHistoryStageOutput
-    | undefined;
   attempt: number;
   error?: string | undefined;
+  input: WorkflowInstanceHistoryStageInput;
   lastFailure?: string | undefined;
   name: string;
   nextExecution?: Date | undefined;
+  output?: WorkflowInstanceHistoryStageOutput | undefined;
   startedAt: Date;
   terminated: boolean;
   terminatedAt?: Date | undefined;
@@ -37,25 +34,20 @@ export const WorkflowInstanceHistoryStage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  input: WorkflowInstanceHistoryStageInput$inboundSchema,
-  output: WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
   attempt: z.number().int(),
   error: z.string().optional(),
+  input: WorkflowInstanceHistoryStageInput$inboundSchema,
   lastFailure: z.string().optional(),
   name: z.string(),
   nextExecution: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
+  output: WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
   startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   terminated: z.boolean(),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "input": "workflowInstanceHistoryStageInput",
-    "output": "workflowInstanceHistoryStageOutput",
-  });
 });
 
 export function workflowInstanceHistoryStageFromJSON(

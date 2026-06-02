@@ -1,0 +1,49 @@
+# V2BulkElementCreateTransaction
+
+## Example Usage
+
+```typescript
+import { V2BulkElementCreateTransaction } from "@formance/formance-sdk/sdk/models/ledger";
+
+let value: V2BulkElementCreateTransaction = {
+  action: "<value>",
+  data: {
+    accountMetadata: {
+      "key": {
+        "admin": "true",
+      },
+      "key1": {
+        "admin": "true",
+      },
+    },
+    metadata: {
+      "admin": "true",
+    },
+    postings: [
+      {
+        amount: 100n,
+        asset: "COIN",
+        destination: "users:002",
+        source: "users:001",
+      },
+    ],
+    reference: "ref:001",
+    script: {
+      plain:
+        "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n",
+      template: "CUSTOMER_DEPOSIT",
+      vars: {
+        "user": "users:042",
+      },
+    },
+  },
+};
+```
+
+## Fields
+
+| Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `action`                                                                    | *string*                                                                    | :heavy_check_mark:                                                          | N/A                                                                         |
+| `data`                                                                      | [ledger.V2PostTransaction](../../../sdk/models/ledger/v2posttransaction.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `ik`                                                                        | *string*                                                                    | :heavy_minus_sign:                                                          | N/A                                                                         |

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -12,7 +11,7 @@ import {
   TransferInitiation$inboundSchema,
 } from "./transferinitiation.js";
 
-export type TransferInitiationsCursorCursorBase = {
+export type TransferInitiationsCursorCursor = {
   data: Array<TransferInitiation>;
   hasMore: boolean;
   next?: string | undefined;
@@ -24,12 +23,12 @@ export type TransferInitiationsCursorCursorBase = {
  * OK
  */
 export type TransferInitiationsCursor = {
-  cursorBase: TransferInitiationsCursorCursorBase;
+  cursor: TransferInitiationsCursorCursor;
 };
 
 /** @internal */
-export const TransferInitiationsCursorCursorBase$inboundSchema: z.ZodType<
-  TransferInitiationsCursorCursorBase,
+export const TransferInitiationsCursorCursor$inboundSchema: z.ZodType<
+  TransferInitiationsCursorCursor,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -40,14 +39,13 @@ export const TransferInitiationsCursorCursorBase$inboundSchema: z.ZodType<
   previous: z.string().optional(),
 });
 
-export function transferInitiationsCursorCursorBaseFromJSON(
+export function transferInitiationsCursorCursorFromJSON(
   jsonString: string,
-): SafeParseResult<TransferInitiationsCursorCursorBase, SDKValidationError> {
+): SafeParseResult<TransferInitiationsCursorCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) =>
-      TransferInitiationsCursorCursorBase$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TransferInitiationsCursorCursorBase' from JSON`,
+    (x) => TransferInitiationsCursorCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TransferInitiationsCursorCursor' from JSON`,
   );
 }
 
@@ -57,11 +55,7 @@ export const TransferInitiationsCursor$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => TransferInitiationsCursorCursorBase$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "cursor": "cursorBase",
-  });
+  cursor: z.lazy(() => TransferInitiationsCursorCursor$inboundSchema),
 });
 
 export function transferInitiationsCursorFromJSON(

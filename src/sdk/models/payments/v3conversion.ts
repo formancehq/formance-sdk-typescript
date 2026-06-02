@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -22,16 +21,6 @@ import {
  * Formance records the final state only.
  */
 export type V3Conversion = {
-  /**
-   * Lifecycle of a conversion.
-   *
-   * @remarks
-   * `PENDING` — accepted by the PSP, not yet settled.
-   * `COMPLETED` — settled, terminal.
-   * `FAILED` — rejected or reverted, terminal. See `error`.
-   */
-  v3ConversionStatusEnum: V3ConversionStatusEnum;
-  v3Metadata?: { [k: string]: string } | null | undefined;
   /**
    * ID of the Formance connector this conversion was fetched from.
    */
@@ -68,6 +57,7 @@ export type V3Conversion = {
    * Formance-assigned unique conversion ID.
    */
   id: string;
+  metadata?: { [k: string]: string } | null | undefined;
   /**
    * Provider name of the connector (e.g. `coinbaseprime`).
    */
@@ -89,6 +79,15 @@ export type V3Conversion = {
    */
   sourceAsset: string;
   /**
+   * Lifecycle of a conversion.
+   *
+   * @remarks
+   * `PENDING` — accepted by the PSP, not yet settled.
+   * `COMPLETED` — settled, terminal.
+   * `FAILED` — rejected or reverted, terminal. See `error`.
+   */
+  status: V3ConversionStatusEnum;
+  /**
    * When Formance last observed a state change on the conversion.
    */
   updatedAt: Date;
@@ -100,8 +99,6 @@ export const V3Conversion$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: V3ConversionStatusEnum$inboundSchema,
-  metadata: z.nullable(z.record(z.string())).optional(),
   connectorID: z.string(),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   destinationAccountID: z.nullable(z.string()).optional(),
@@ -112,17 +109,14 @@ export const V3Conversion$inboundSchema: z.ZodType<
   fee: z.nullable(z.number().transform(v => BigInt(v))).optional(),
   feeAsset: z.nullable(z.string()).optional(),
   id: z.string(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   provider: z.string(),
   reference: z.string(),
   sourceAccountID: z.nullable(z.string()).optional(),
   sourceAmount: z.number().transform(v => BigInt(v)),
   sourceAsset: z.string(),
+  status: V3ConversionStatusEnum$inboundSchema,
   updatedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "v3ConversionStatusEnum",
-    "metadata": "v3Metadata",
-  });
 });
 
 export function v3ConversionFromJSON(

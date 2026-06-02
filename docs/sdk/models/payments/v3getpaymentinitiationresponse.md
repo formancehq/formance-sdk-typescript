@@ -10,18 +10,18 @@ import {
 } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetPaymentInitiationResponse = {
-  v3PaymentInitiation: {
-    v3PaymentInitiationStatusEnum: V3PaymentInitiationStatusEnum.Failed,
-    v3PaymentInitiationTypeEnum: V3PaymentInitiationTypeEnum.Unknown,
-    amount: 110646n,
+  data: {
+    amount: 582036n,
     asset: "<value>",
     connectorID: "<value>",
-    createdAt: new Date("2026-02-27T15:00:01.795Z"),
-    description: "cruelty times trim",
+    createdAt: new Date("2024-03-23T10:08:14.033Z"),
+    description: "vaguely row hello",
     id: "<id>",
     provider: "<value>",
     reference: "<value>",
-    scheduledAt: new Date("2026-11-20T18:04:44.133Z"),
+    scheduledAt: new Date("2026-02-05T06:41:14.397Z"),
+    status: V3PaymentInitiationStatusEnum.ReverseFailed,
+    type: V3PaymentInitiationTypeEnum.Payout,
   },
 };
 ```
@@ -30,4 +30,4 @@ let value: V3GetPaymentInitiationResponse = {
 
 | Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `v3PaymentInitiation`                                                               | [payments.V3PaymentInitiation](../../../sdk/models/payments/v3paymentinitiation.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |
+| `data`                                                                              | [payments.V3PaymentInitiation](../../../sdk/models/payments/v3paymentinitiation.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |

@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Task, V3Task$inboundSchema } from "./v3task.js";
 
 export type V3GetTaskResponse = {
-  v3Task: V3Task;
+  data: V3Task;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V3GetTaskResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3Task$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3Task",
-  });
 });
 
 export function v3GetTaskResponseFromJSON(

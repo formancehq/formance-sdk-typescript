@@ -12,11 +12,11 @@ import {
 } from "./workflowinstance.js";
 
 export type TriggerOccurrence = {
-  workflowInstance?: WorkflowInstance | undefined;
   date: Date;
   error?: string | undefined;
   event: { [k: string]: any };
   triggerID: string;
+  workflowInstance?: WorkflowInstance | undefined;
   workflowInstanceID?: string | undefined;
 };
 
@@ -26,11 +26,11 @@ export const TriggerOccurrence$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  workflowInstance: WorkflowInstance$inboundSchema.optional(),
   date: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.string().optional(),
   event: z.record(z.any()),
   triggerID: z.string(),
+  workflowInstance: WorkflowInstance$inboundSchema.optional(),
   workflowInstanceID: z.string().optional(),
 });
 

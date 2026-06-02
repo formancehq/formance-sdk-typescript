@@ -10,7 +10,7 @@ import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateSecretRequest = {
-  secretOptions?: auth.SecretOptions1 | undefined;
+  secretOptions?: auth.SecretOptions | undefined;
   /**
    * Client ID
    */
@@ -38,7 +38,7 @@ export type CreateSecretResponse = {
 
 /** @internal */
 export type CreateSecretRequest$Outbound = {
-  SecretOptions?: auth.SecretOptions1$Outbound | undefined;
+  SecretOptions?: auth.SecretOptions$Outbound | undefined;
   clientId: string;
 };
 
@@ -48,7 +48,7 @@ export const CreateSecretRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateSecretRequest
 > = z.object({
-  secretOptions: auth.SecretOptions1$outboundSchema.optional(),
+  secretOptions: auth.SecretOptions$outboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {

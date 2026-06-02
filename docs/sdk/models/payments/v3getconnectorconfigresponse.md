@@ -6,7 +6,7 @@
 import { V3GetConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetConnectorConfigResponse = {
-  v3ConnectorConfig: {
+  data: {
     authEndpoint: "<value>",
     clientID: "<id>",
     clientSecret: "<value>",
@@ -23,4 +23,4 @@ let value: V3GetConnectorConfigResponse = {
 
 | Field                        | Type                         | Required                     | Description                  |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `v3ConnectorConfig`          | *payments.V3ConnectorConfig* | :heavy_check_mark:           | N/A                          |
+| `data`                       | *payments.V3ConnectorConfig* | :heavy_check_mark:           | N/A                          |

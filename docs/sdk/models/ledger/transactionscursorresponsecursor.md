@@ -8,23 +8,7 @@ import { TransactionsCursorResponseCursor } from "@formance/formance-sdk/sdk/mod
 let value: TransactionsCursorResponseCursor = {
   data: [
     {
-      aggregatedVolumes: {
-        "orders:1": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-        "orders:2": {
-          "USD": {
-            balance: 90n,
-            input: 100n,
-            output: 10n,
-          },
-        },
-      },
-      aggregatedVolumes1: {
+      postCommitVolumes: {
         "orders:1": {
           "USD": {
             balance: 90n,
@@ -48,6 +32,22 @@ let value: TransactionsCursorResponseCursor = {
           source: "users:001",
         },
       ],
+      preCommitVolumes: {
+        "orders:1": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+        "orders:2": {
+          "USD": {
+            balance: 90n,
+            input: 100n,
+            output: 10n,
+          },
+        },
+      },
       reference: "ref:001",
       timestamp: new Date("2024-08-26T16:16:15.405Z"),
       txid: 837007n,

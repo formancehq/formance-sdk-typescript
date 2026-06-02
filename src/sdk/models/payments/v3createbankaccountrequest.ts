@@ -3,23 +3,22 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 
 export type V3CreateBankAccountRequest = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
   accountNumber?: string | undefined;
   country?: string | undefined;
   iban?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   swiftBicCode?: string | undefined;
 };
 
 /** @internal */
 export type V3CreateBankAccountRequest$Outbound = {
-  metadata?: { [k: string]: string } | null | undefined;
   accountNumber?: string | undefined;
   country?: string | undefined;
   iban?: string | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
   swiftBicCode?: string | undefined;
 };
@@ -30,16 +29,12 @@ export const V3CreateBankAccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3CreateBankAccountRequest
 > = z.object({
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
   accountNumber: z.string().optional(),
   country: z.string().optional(),
   iban: z.string().optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
   swiftBicCode: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    v3Metadata: "metadata",
-  });
 });
 
 export function v3CreateBankAccountRequestToJSON(

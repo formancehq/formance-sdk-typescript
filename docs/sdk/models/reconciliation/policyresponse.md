@@ -8,7 +8,7 @@ OK
 import { PolicyResponse } from "@formance/formance-sdk/sdk/models/reconciliation";
 
 let value: PolicyResponse = {
-  policy: {
+  data: {
     createdAt: new Date("2021-01-01T00:00:00.000Z"),
     id: "XXX",
     ledgerName: "default",
@@ -25,4 +25,4 @@ let value: PolicyResponse = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `policy`                                                              | [reconciliation.Policy](../../../sdk/models/reconciliation/policy.md) | :heavy_check_mark:                                                    | N/A                                                                   |
+| `data`                                                                | [reconciliation.Policy](../../../sdk/models/reconciliation/policy.md) | :heavy_check_mark:                                                    | N/A                                                                   |

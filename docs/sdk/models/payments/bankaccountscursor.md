@@ -8,7 +8,7 @@ OK
 import { BankAccountsCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: BankAccountsCursor = {
-  cursorBase: {
+  cursor: {
     data: [],
     hasMore: false,
     next: "",
@@ -20,6 +20,6 @@ let value: BankAccountsCursor = {
 
 ## Fields
 
-| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `cursorBase`                                                                                          | [payments.BankAccountsCursorCursorBase](../../../sdk/models/payments/bankaccountscursorcursorbase.md) | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `cursor`                                                                                      | [payments.BankAccountsCursorCursor](../../../sdk/models/payments/bankaccountscursorcursor.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |

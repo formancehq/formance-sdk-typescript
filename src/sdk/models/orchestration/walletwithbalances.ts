@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AssetHolder, AssetHolder$inboundSchema } from "./assetholder.js";
 
 export type WalletWithBalancesBalances = {
-  assetHolder: AssetHolder;
+  main: AssetHolder;
 };
 
 export type WalletWithBalances = {
@@ -35,10 +34,6 @@ export const WalletWithBalancesBalances$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   main: AssetHolder$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "main": "assetHolder",
-  });
 });
 
 export function walletWithBalancesBalancesFromJSON(

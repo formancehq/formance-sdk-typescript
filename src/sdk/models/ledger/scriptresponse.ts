@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -11,10 +10,10 @@ import { ErrorsEnum, ErrorsEnum$inboundSchema } from "./errorsenum.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type ScriptResponse = {
-  errorsEnum?: ErrorsEnum | undefined;
-  transaction?: Transaction | undefined;
   details?: string | undefined;
+  errorCode?: ErrorsEnum | undefined;
   errorMessage?: string | undefined;
+  transaction?: Transaction | undefined;
 };
 
 /** @internal */
@@ -23,14 +22,10 @@ export const ScriptResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  errorCode: ErrorsEnum$inboundSchema.optional(),
-  transaction: Transaction$inboundSchema.optional(),
   details: z.string().optional(),
+  errorCode: ErrorsEnum$inboundSchema.optional(),
   errorMessage: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "errorCode": "errorsEnum",
-  });
+  transaction: Transaction$inboundSchema.optional(),
 });
 
 export function scriptResponseFromJSON(

@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Posting, V2Posting$inboundSchema } from "./v2posting.js";
 
 export type V2Transaction = {
-  v2Metadata: { [k: string]: string };
+  metadata: { [k: string]: string };
   postings: Array<V2Posting>;
   reference?: string | undefined;
   timestamp: Date;
@@ -28,10 +27,6 @@ export const V2Transaction$inboundSchema: z.ZodType<
   reference: z.string().optional(),
   timestamp: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   txid: z.number().transform(v => BigInt(v)),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v2Metadata",
-  });
 });
 
 export function v2TransactionFromJSON(

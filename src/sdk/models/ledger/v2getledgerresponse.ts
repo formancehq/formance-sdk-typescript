@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Ledger, V2Ledger$inboundSchema } from "./v2ledger.js";
 
 export type V2GetLedgerResponse = {
-  v2Ledger: V2Ledger;
+  data: V2Ledger;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V2GetLedgerResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V2Ledger$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2Ledger",
-  });
 });
 
 export function v2GetLedgerResponseFromJSON(

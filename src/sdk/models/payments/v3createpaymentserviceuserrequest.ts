@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import {
   V3AddressRequest,
   V3AddressRequest$Outbound,
@@ -16,19 +15,19 @@ import {
 } from "./v3contactdetailsrequest.js";
 
 export type V3CreatePaymentServiceUserRequest = {
-  v3AddressRequest?: V3AddressRequest | undefined;
-  v3ContactDetailsRequest?: V3ContactDetailsRequest | undefined;
-  v3Metadata?: { [k: string]: string } | null | undefined;
+  address?: V3AddressRequest | undefined;
   bankAccountIDs?: Array<string> | null | undefined;
+  contactDetails?: V3ContactDetailsRequest | undefined;
+  metadata?: { [k: string]: string } | null | undefined;
   name: string;
 };
 
 /** @internal */
 export type V3CreatePaymentServiceUserRequest$Outbound = {
   address?: V3AddressRequest$Outbound | undefined;
+  bankAccountIDs?: Array<string> | null | undefined;
   contactDetails?: V3ContactDetailsRequest$Outbound | undefined;
   metadata?: { [k: string]: string } | null | undefined;
-  bankAccountIDs?: Array<string> | null | undefined;
   name: string;
 };
 
@@ -38,17 +37,11 @@ export const V3CreatePaymentServiceUserRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3CreatePaymentServiceUserRequest
 > = z.object({
-  v3AddressRequest: V3AddressRequest$outboundSchema.optional(),
-  v3ContactDetailsRequest: V3ContactDetailsRequest$outboundSchema.optional(),
-  v3Metadata: z.nullable(z.record(z.string())).optional(),
+  address: V3AddressRequest$outboundSchema.optional(),
   bankAccountIDs: z.nullable(z.array(z.string())).optional(),
+  contactDetails: V3ContactDetailsRequest$outboundSchema.optional(),
+  metadata: z.nullable(z.record(z.string())).optional(),
   name: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    v3AddressRequest: "address",
-    v3ContactDetailsRequest: "contactDetails",
-    v3Metadata: "metadata",
-  });
 });
 
 export function v3CreatePaymentServiceUserRequestToJSON(

@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -21,9 +20,6 @@ import {
 } from "./v3paymenttypeenum.js";
 
 export type V3Payment = {
-  v3Metadata?: { [k: string]: string } | null | undefined;
-  v3PaymentStatusEnum: V3PaymentStatusEnum;
-  v3PaymentTypeEnum: V3PaymentTypeEnum;
   adjustments?: Array<V3PaymentAdjustment> | null | undefined;
   amount: bigint;
   asset: string;
@@ -32,10 +28,13 @@ export type V3Payment = {
   destinationAccountID?: string | null | undefined;
   id: string;
   initialAmount: bigint;
+  metadata?: { [k: string]: string } | null | undefined;
   provider: string;
   reference: string;
   scheme: string;
   sourceAccountID?: string | null | undefined;
+  status: V3PaymentStatusEnum;
+  type: V3PaymentTypeEnum;
 };
 
 /** @internal */
@@ -44,9 +43,6 @@ export const V3Payment$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  metadata: z.nullable(z.record(z.string())).optional(),
-  status: V3PaymentStatusEnum$inboundSchema,
-  type: V3PaymentTypeEnum$inboundSchema,
   adjustments: z.nullable(z.array(V3PaymentAdjustment$inboundSchema))
     .optional(),
   amount: z.number().transform(v => BigInt(v)),
@@ -56,16 +52,13 @@ export const V3Payment$inboundSchema: z.ZodType<
   destinationAccountID: z.nullable(z.string()).optional(),
   id: z.string(),
   initialAmount: z.number().transform(v => BigInt(v)),
+  metadata: z.nullable(z.record(z.string())).optional(),
   provider: z.string(),
   reference: z.string(),
   scheme: z.string(),
   sourceAccountID: z.nullable(z.string()).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "metadata": "v3Metadata",
-    "status": "v3PaymentStatusEnum",
-    "type": "v3PaymentTypeEnum",
-  });
+  status: V3PaymentStatusEnum$inboundSchema,
+  type: V3PaymentTypeEnum$inboundSchema,
 });
 
 export function v3PaymentFromJSON(

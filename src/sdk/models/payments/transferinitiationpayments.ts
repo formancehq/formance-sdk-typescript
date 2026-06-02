@@ -3,7 +3,6 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
@@ -13,10 +12,10 @@ import {
 } from "./legacypaymentstatus.js";
 
 export type TransferInitiationPayments = {
-  legacyPaymentStatus: LegacyPaymentStatus;
   createdAt: Date;
   error?: string | null | undefined;
   paymentID: string;
+  status: LegacyPaymentStatus;
 };
 
 /** @internal */
@@ -25,14 +24,10 @@ export const TransferInitiationPayments$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status: LegacyPaymentStatus$inboundSchema,
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   error: z.nullable(z.string()).optional(),
   paymentID: z.string(),
-}).transform((v) => {
-  return remap$(v, {
-    "status": "legacyPaymentStatus",
-  });
+  status: LegacyPaymentStatus$inboundSchema,
 });
 
 export function transferInitiationPaymentsFromJSON(

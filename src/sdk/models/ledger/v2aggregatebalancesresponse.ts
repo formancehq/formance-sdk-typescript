@@ -3,13 +3,12 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2AggregateBalancesResponse = {
-  v2AssetsBalances: { [k: string]: bigint };
+  data: { [k: string]: bigint };
 };
 
 /** @internal */
@@ -19,10 +18,6 @@ export const V2AggregateBalancesResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: z.record(z.number().transform(v => BigInt(v))),
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v2AssetsBalances",
-  });
 });
 
 export function v2AggregateBalancesResponseFromJSON(

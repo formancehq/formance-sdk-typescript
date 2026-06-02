@@ -6,7 +6,7 @@
 import { V3PoolBalancesResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PoolBalancesResponse = {
-  v3PoolBalances: [],
+  data: [],
 };
 ```
 
@@ -14,4 +14,4 @@ let value: V3PoolBalancesResponse = {
 
 | Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `v3PoolBalances`                                                          | [payments.V3PoolBalance](../../../sdk/models/payments/v3poolbalance.md)[] | :heavy_check_mark:                                                        | N/A                                                                       |
+| `data`                                                                    | [payments.V3PoolBalance](../../../sdk/models/payments/v3poolbalance.md)[] | :heavy_check_mark:                                                        | N/A                                                                       |

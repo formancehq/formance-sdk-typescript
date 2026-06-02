@@ -23,7 +23,7 @@ export class AuthV1 extends ClientSDK {
    * Create client
    */
   async createClient(
-    request?: auth.ClientOptions2 | undefined,
+    request?: auth.ClientOptions | undefined,
     options?: RequestOptions,
   ): Promise<operations.CreateClientResponse> {
     return unwrapAsync(authV1CreateClient(

@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
-import { TriggerData1, TriggerData1$inboundSchema } from "./triggerdata1.js";
+import { Trigger, Trigger$inboundSchema } from "./trigger.js";
 
 export type CreateTriggerResponse = {
-  triggerData: TriggerData1;
+  data: Trigger;
 };
 
 /** @internal */
@@ -19,11 +18,7 @@ export const CreateTriggerResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  data: TriggerData1$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "triggerData",
-  });
+  data: Trigger$inboundSchema,
 });
 
 export function createTriggerResponseFromJSON(

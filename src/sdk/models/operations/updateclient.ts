@@ -10,7 +10,7 @@ import * as auth from "../auth/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateClientRequest = {
-  clientOptions?: auth.ClientOptions2 | undefined;
+  clientOptions?: auth.ClientOptions | undefined;
   /**
    * Client ID
    */
@@ -38,7 +38,7 @@ export type UpdateClientResponse = {
 
 /** @internal */
 export type UpdateClientRequest$Outbound = {
-  ClientOptions?: auth.ClientOptions2$Outbound | undefined;
+  ClientOptions?: auth.ClientOptions$Outbound | undefined;
   clientId: string;
 };
 
@@ -48,7 +48,7 @@ export const UpdateClientRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   UpdateClientRequest
 > = z.object({
-  clientOptions: auth.ClientOptions2$outboundSchema.optional(),
+  clientOptions: auth.ClientOptions$outboundSchema.optional(),
   clientId: z.string(),
 }).transform((v) => {
   return remap$(v, {

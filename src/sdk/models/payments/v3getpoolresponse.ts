@@ -3,14 +3,13 @@
  */
 
 import * as z from "zod/v3";
-import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Pool, V3Pool$inboundSchema } from "./v3pool.js";
 
 export type V3GetPoolResponse = {
-  v3Pool: V3Pool;
+  data: V3Pool;
 };
 
 /** @internal */
@@ -20,10 +19,6 @@ export const V3GetPoolResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   data: V3Pool$inboundSchema,
-}).transform((v) => {
-  return remap$(v, {
-    "data": "v3Pool",
-  });
 });
 
 export function v3GetPoolResponseFromJSON(
