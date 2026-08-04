@@ -115,3 +115,18 @@ actions:
       - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
   - target: $["paths"]["/api/payments/v3/conversions"]["get"]["requestBody"]
     remove: true
+  - target: $["paths"]["/api/reconciliation/rules"]["get"]["parameters"]
+    update:
+      - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
+  - target: $["paths"]["/api/reconciliation/rules"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/reconciliation/evaluations"]["get"]["parameters"]
+    update:
+      - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
+  - target: $["paths"]["/api/reconciliation/evaluations"]["get"]["requestBody"]
+    remove: true
+  - target: $["paths"]["/api/reconciliation/alerts"]["get"]["parameters"]
+    update:
+      - { 'name': 'query', 'in': 'query', 'content': { 'application/json': { 'schema': { 'type': 'object', 'additionalProperties': true } } } }
+  - target: $["paths"]["/api/reconciliation/alerts"]["get"]["requestBody"]
+    remove: true
