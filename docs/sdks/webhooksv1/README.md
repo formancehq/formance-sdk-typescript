@@ -8,8 +8,13 @@
 * [changeConfigSecret](#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](#deactivateconfig) - Deactivate one config
 * [deleteConfig](#deleteconfig) - Delete one config
+* [getDeliveries](#getdeliveries) - List webhook deliveries
+* [getDelivery](#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](#getmanyconfigs) - Get many configs
 * [insertConfig](#insertconfig) - Insert a new config
+* [replayDeliveries](#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](#testconfig) - Test one config
 * [updateConfig](#updateconfig) - Update one config
 
@@ -343,6 +348,242 @@ run();
 | webhooks.ErrorResponse | default                | application/json       |
 | errors.SDKError        | 4XX, 5XX               | \*/\*                  |
 
+## getDeliveries
+
+List webhook deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getDeliveries" method="get" path="/api/webhooks/deliveries" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.webhooks.v1.getDeliveries({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksV1GetDeliveries } from "@formance/formance-sdk/funcs/webhooksV1GetDeliveries.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksV1GetDeliveries(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksV1GetDeliveries failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDeliveriesRequest](../../sdk/models/operations/getdeliveriesrequest.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetDeliveriesResponse](../../sdk/models/operations/getdeliveriesresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| webhooks.ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## getDelivery
+
+Get a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getDelivery" method="get" path="/api/webhooks/deliveries/{id}" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.webhooks.v1.getDelivery({
+    id: "01e5cac6-75f1-4720-81ca-5563ce22d2e0",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksV1GetDelivery } from "@formance/formance-sdk/funcs/webhooksV1GetDelivery.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksV1GetDelivery(sdk, {
+    id: "01e5cac6-75f1-4720-81ca-5563ce22d2e0",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksV1GetDelivery failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDeliveryRequest](../../sdk/models/operations/getdeliveryrequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetDeliveryResponse](../../sdk/models/operations/getdeliveryresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| webhooks.ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## getDeliveryAttempts
+
+List attempts for a webhook delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getDeliveryAttempts" method="get" path="/api/webhooks/deliveries/{id}/attempts" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.webhooks.v1.getDeliveryAttempts({
+    id: "967e7a38-b11b-4809-92cf-6789e24dbe13",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksV1GetDeliveryAttempts } from "@formance/formance-sdk/funcs/webhooksV1GetDeliveryAttempts.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksV1GetDeliveryAttempts(sdk, {
+    id: "967e7a38-b11b-4809-92cf-6789e24dbe13",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksV1GetDeliveryAttempts failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.GetDeliveryAttemptsRequest](../../sdk/models/operations/getdeliveryattemptsrequest.md)                                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.GetDeliveryAttemptsResponse](../../sdk/models/operations/getdeliveryattemptsresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| webhooks.ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
 ## getManyConfigs
 
 Sorted by updated date descending
@@ -458,7 +699,6 @@ async function run() {
       "TYPE1",
       "TYPE2",
     ],
-    name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
 
@@ -492,7 +732,6 @@ async function run() {
       "TYPE1",
       "TYPE2",
     ],
-    name: "customer_payment",
     secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
   });
   if (res.ok) {
@@ -518,6 +757,174 @@ run();
 ### Response
 
 **Promise\<[operations.InsertConfigResponse](../../sdk/models/operations/insertconfigresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| webhooks.ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## replayDeliveries
+
+Replay a page of failed or pending deliveries
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="replayDeliveries" method="post" path="/api/webhooks/deliveries/replay" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.webhooks.v1.replayDeliveries({
+    idempotencyKey: "<value>",
+    replayDeliveriesRequest: {
+      createdAtFrom: new Date("2026-10-16T11:02:44.647Z"),
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksV1ReplayDeliveries } from "@formance/formance-sdk/funcs/webhooksV1ReplayDeliveries.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksV1ReplayDeliveries(sdk, {
+    idempotencyKey: "<value>",
+    replayDeliveriesRequest: {
+      createdAtFrom: new Date("2026-10-16T11:02:44.647Z"),
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksV1ReplayDeliveries failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ReplayDeliveriesRequest](../../sdk/models/operations/replaydeliveriesrequest.md)                                                                                   | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.ReplayDeliveriesResponse](../../sdk/models/operations/replaydeliveriesresponse.md)\>**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| webhooks.ErrorResponse | default                | application/json       |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |
+
+## replayDelivery
+
+Replay one failed or pending delivery
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="replayDelivery" method="post" path="/api/webhooks/deliveries/{id}/replay" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.webhooks.v1.replayDelivery({
+    idempotencyKey: "<value>",
+    id: "06a0d0bb-48de-45f0-b12f-6458a3a41bbe",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { webhooksV1ReplayDelivery } from "@formance/formance-sdk/funcs/webhooksV1ReplayDelivery.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await webhooksV1ReplayDelivery(sdk, {
+    idempotencyKey: "<value>",
+    id: "06a0d0bb-48de-45f0-b12f-6458a3a41bbe",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("webhooksV1ReplayDelivery failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.ReplayDeliveryRequest](../../sdk/models/operations/replaydeliveryrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.ReplayDeliveryResponse](../../sdk/models/operations/replaydeliveryresponse.md)\>**
 
 ### Errors
 
@@ -631,7 +1038,6 @@ async function run() {
         "TYPE1",
         "TYPE2",
       ],
-      name: "customer_payment",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",
@@ -668,7 +1074,6 @@ async function run() {
         "TYPE1",
         "TYPE2",
       ],
-      name: "customer_payment",
       secret: "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3",
     },
     id: "4997257d-dfb6-445b-929c-cbe2ab182818",

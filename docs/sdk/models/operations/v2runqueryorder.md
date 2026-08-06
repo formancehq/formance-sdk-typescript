@@ -7,11 +7,11 @@ Deprecated: Use sort param
 ```typescript
 import { V2RunQueryOrder } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2RunQueryOrder = V2RunQueryOrder.Effective;
+let value: V2RunQueryOrder = "effective";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Effective` | effective   |
+```typescript
+"effective"
+```

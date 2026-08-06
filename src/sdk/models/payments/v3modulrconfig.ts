@@ -17,7 +17,7 @@ export type V3ModulrConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Modulr";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3ModulrConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Modulr"),
+  provider: z.literal("Modulr"),
 });
 /** @internal */
 export type V3ModulrConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3ModulrConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Modulr";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3ModulrConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Modulr"),
+  provider: z.literal("Modulr"),
 });
 
 export function v3ModulrConfigToJSON(v3ModulrConfig: V3ModulrConfig): string {

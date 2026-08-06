@@ -17,7 +17,7 @@ export type V3MangopayConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Mangopay";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3MangopayConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Mangopay"),
+  provider: z.literal("Mangopay"),
 });
 /** @internal */
 export type V3MangopayConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3MangopayConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Mangopay";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3MangopayConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Mangopay"),
+  provider: z.literal("Mangopay"),
 });
 
 export function v3MangopayConfigToJSON(

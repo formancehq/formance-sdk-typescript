@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3OpenBankingConnectionAttemptStatusEnum, V3PaymentServiceUserLinkAttempt } from "@formance/formance-sdk/sdk/models/payments";
+import { V3PaymentServiceUserLinkAttempt } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentServiceUserLinkAttempt = {
   clientRedirectURL: "https://uncommon-convection.info/",
@@ -11,7 +11,7 @@ let value: V3PaymentServiceUserLinkAttempt = {
   createdAt: new Date("2026-03-26T12:08:12.230Z"),
   id: "<id>",
   psuID: "<id>",
-  status: V3OpenBankingConnectionAttemptStatusEnum.Pending,
+  status: "pending",
 };
 ```
 

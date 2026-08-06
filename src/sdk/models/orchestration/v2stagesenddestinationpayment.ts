@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -14,10 +15,20 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * - TRANSFER: Internal to internal account transfer
  * - PAYOUT: Internal to external account payout
  */
-export enum V2StageSendDestinationPaymentType {
-  Transfer = "TRANSFER",
-  Payout = "PAYOUT",
-}
+export const V2StageSendDestinationPaymentType = {
+  Transfer: "TRANSFER",
+  Payout: "PAYOUT",
+} as const;
+/**
+ * Type of transfer initiation:
+ *
+ * @remarks
+ * - TRANSFER: Internal to internal account transfer
+ * - PAYOUT: Internal to external account payout
+ */
+export type V2StageSendDestinationPaymentType = ClosedEnum<
+  typeof V2StageSendDestinationPaymentType
+>;
 
 export type V2StageSendDestinationPayment = {
   /**
@@ -57,9 +68,7 @@ export const V2StageSendDestinationPayment$inboundSchema: z.ZodType<
 > = z.object({
   psp: z.string(),
   sourceAccount: z.string().optional(),
-  type: V2StageSendDestinationPaymentType$inboundSchema.default(
-    V2StageSendDestinationPaymentType.Transfer,
-  ),
+  type: V2StageSendDestinationPaymentType$inboundSchema.default("TRANSFER"),
 });
 
 export function v2StageSendDestinationPaymentFromJSON(

@@ -5,12 +5,11 @@
 ```typescript
 import { TransferInitiationType } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: TransferInitiationType = TransferInitiationType.Transfer;
+let value: TransferInitiationType = "TRANSFER";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Transfer` | TRANSFER   |
-| `Payout`   | PAYOUT     |
+```typescript
+"TRANSFER" | "PAYOUT"
+```

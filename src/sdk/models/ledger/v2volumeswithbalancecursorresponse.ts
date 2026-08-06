@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -19,9 +20,12 @@ export type V2VolumesWithBalanceCursorResponseCursor = {
   previous?: string | undefined;
 };
 
-export enum V2VolumesWithBalanceCursorResponseResource {
-  Volumes = "volumes",
-}
+export const V2VolumesWithBalanceCursorResponseResource = {
+  Volumes: "volumes",
+} as const;
+export type V2VolumesWithBalanceCursorResponseResource = ClosedEnum<
+  typeof V2VolumesWithBalanceCursorResponseResource
+>;
 
 export type V2VolumesWithBalanceCursorResponse = {
   cursor: V2VolumesWithBalanceCursorResponseCursor;

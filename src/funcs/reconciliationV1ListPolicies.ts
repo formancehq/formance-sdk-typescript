@@ -42,7 +42,7 @@ export function reconciliationV1ListPolicies(
 ): APIPromise<
   Result<
     operations.ListPoliciesResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -68,7 +68,7 @@ async function $do(
   [
     Result<
       operations.ListPoliciesResponse,
-      | reconciliation.ErrorResponse
+      | reconciliation.ErrorsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -164,7 +164,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListPoliciesResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -177,7 +177,7 @@ async function $do(
     M.json(200, operations.ListPoliciesResponse$inboundSchema, {
       key: "PoliciesCursorResponse",
     }),
-    M.jsonErr("default", reconciliation.ErrorResponse$inboundSchema),
+    M.jsonErr("default", reconciliation.ErrorsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

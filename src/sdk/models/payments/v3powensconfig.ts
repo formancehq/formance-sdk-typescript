@@ -20,7 +20,7 @@ export type V3PowensConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Powens";
 };
 
 /** @internal */
@@ -38,7 +38,7 @@ export const V3PowensConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Powens"),
+  provider: z.literal("Powens"),
 });
 /** @internal */
 export type V3PowensConfig$Outbound = {
@@ -51,7 +51,7 @@ export type V3PowensConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Powens";
 };
 
 /** @internal */
@@ -69,7 +69,7 @@ export const V3PowensConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Powens"),
+  provider: z.literal("Powens"),
 });
 
 export function v3PowensConfigToJSON(v3PowensConfig: V3PowensConfig): string {

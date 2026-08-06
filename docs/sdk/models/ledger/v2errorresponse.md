@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { V2ErrorResponse, V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2ErrorResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2ErrorResponse = {
   details:
     "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-  errorCode: V2ErrorsEnum.Validation,
+  errorCode: "VALIDATION",
   errorMessage: "[VALIDATION] invalid 'cursor' query param",
 };
 ```

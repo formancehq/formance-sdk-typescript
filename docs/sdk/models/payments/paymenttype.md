@@ -5,14 +5,11 @@
 ```typescript
 import { PaymentType } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: PaymentType = PaymentType.Payout;
+let value: PaymentType = "PAYOUT";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `PayIn`    | PAY-IN     |
-| `Payout`   | PAYOUT     |
-| `Transfer` | TRANSFER   |
-| `Other`    | OTHER      |
+```typescript
+"PAY-IN" | "PAYOUT" | "TRANSFER" | "OTHER"
+```

@@ -5,12 +5,11 @@
 ```typescript
 import { PoolTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: PoolTypeEnum = PoolTypeEnum.Dynamic;
+let value: PoolTypeEnum = "DYNAMIC";
 ```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Static`  | STATIC    |
-| `Dynamic` | DYNAMIC   |
+```typescript
+"STATIC" | "DYNAMIC"
+```

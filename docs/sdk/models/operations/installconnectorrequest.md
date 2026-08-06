@@ -4,21 +4,16 @@
 
 ```typescript
 import { InstallConnectorRequest } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: InstallConnectorRequest = {
   connectorConfig: {
-    authorizationEndpoint: "XXX",
+    apiKey: "XXX",
     endpoint: "XXX",
-    name: "My Banking Circle Account",
-    password: "XXX",
+    name: "My Generic Account",
     pollingPeriod: "120m",
-    provider: "Bankingcircle",
-    userCertificate: "XXX",
-    userCertificateKey: "XXX",
-    username: "XXX",
+    provider: "Generic",
   },
-  connector: Connector.Wise,
+  connector: "WISE",
 };
 ```
 

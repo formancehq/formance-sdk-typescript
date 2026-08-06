@@ -3,15 +3,17 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V3ErrorsEnum {
-  Internal = "INTERNAL",
-  Validation = "VALIDATION",
-  InvalidId = "INVALID_ID",
-  MissingOrInvalidBody = "MISSING_OR_INVALID_BODY",
-  Conflict = "CONFLICT",
-  NotFound = "NOT_FOUND",
-}
+export const V3ErrorsEnum = {
+  Internal: "INTERNAL",
+  Validation: "VALIDATION",
+  InvalidId: "INVALID_ID",
+  MissingOrInvalidBody: "MISSING_OR_INVALID_BODY",
+  Conflict: "CONFLICT",
+  NotFound: "NOT_FOUND",
+} as const;
+export type V3ErrorsEnum = ClosedEnum<typeof V3ErrorsEnum>;
 
 /** @internal */
 export const V3ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof V3ErrorsEnum> =

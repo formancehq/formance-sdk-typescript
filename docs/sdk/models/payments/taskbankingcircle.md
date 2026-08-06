@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { TaskBankingCircle, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskBankingCircle } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskBankingCircle = {
   connectorID: "<id>",
   createdAt: new Date("2026-02-09T23:44:42.209Z"),
   descriptor: {},
   id: "13801384-7b39-4de4-a76c-637b036c5eef",
-  status: TaskStatus.Failed,
+  status: "FAILED",
   updatedAt: new Date("2026-01-28T08:33:30.639Z"),
 };
 ```

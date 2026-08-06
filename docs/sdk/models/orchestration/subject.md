@@ -8,7 +8,7 @@
 ```typescript
 const value: orchestration.LedgerAccountSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "ACCOUNT",
 };
 ```
 
@@ -17,7 +17,7 @@ const value: orchestration.LedgerAccountSubject = {
 ```typescript
 const value: orchestration.WalletSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "WALLET",
 };
 ```
 

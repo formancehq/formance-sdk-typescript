@@ -8,7 +8,7 @@
 ```typescript
 const value: wallets.LedgerAccountSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "ACCOUNT",
 };
 ```
 
@@ -17,7 +17,7 @@ const value: wallets.LedgerAccountSubject = {
 ```typescript
 const value: wallets.WalletSubject = {
   identifier: "<value>",
-  type: "<value>",
+  type: "WALLET",
 };
 ```
 

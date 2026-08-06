@@ -5,13 +5,11 @@
 ```typescript
 import { V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3AccountTypeEnum = V3AccountTypeEnum.Unknown;
+let value: V3AccountTypeEnum = "UNKNOWN";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Unknown`  | UNKNOWN    |
-| `Internal` | INTERNAL   |
-| `External` | EXTERNAL   |
+```typescript
+"UNKNOWN" | "INTERNAL" | "EXTERNAL"
+```

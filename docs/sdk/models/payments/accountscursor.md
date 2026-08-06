@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { AccountsCursor, AccountType } from "@formance/formance-sdk/sdk/models/payments";
+import { AccountsCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: AccountsCursor = {
   cursor: {
@@ -20,7 +20,7 @@ let value: AccountsCursor = {
         metadata: null,
         raw: {},
         reference: "<value>",
-        type: AccountType.Unknown,
+        type: "UNKNOWN",
       },
     ],
     hasMore: false,

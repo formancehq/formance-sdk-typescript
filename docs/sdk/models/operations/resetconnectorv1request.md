@@ -4,10 +4,9 @@
 
 ```typescript
 import { ResetConnectorV1Request } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ResetConnectorV1Request = {
-  connector: Connector.DummyPay,
+  connector: "DUMMY-PAY",
   connectorId: "XXX",
 };
 ```

@@ -17,7 +17,7 @@ export type DummyPayConfig = {
   numberOfAccountsPreGenerated?: number | undefined;
   numberOfPaymentsPreGenerated?: number | undefined;
   prefixFileToIngest?: string | undefined;
-  provider?: string | undefined;
+  provider: "Dummypay";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const DummyPayConfig$inboundSchema: z.ZodType<
   numberOfAccountsPreGenerated: z.number().int().optional(),
   numberOfPaymentsPreGenerated: z.number().int().optional(),
   prefixFileToIngest: z.string().optional(),
-  provider: z.string().default("Dummypay"),
+  provider: z.literal("Dummypay"),
 });
 /** @internal */
 export type DummyPayConfig$Outbound = {
@@ -42,7 +42,7 @@ export type DummyPayConfig$Outbound = {
   numberOfAccountsPreGenerated?: number | undefined;
   numberOfPaymentsPreGenerated?: number | undefined;
   prefixFileToIngest?: string | undefined;
-  provider: string;
+  provider: "Dummypay";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const DummyPayConfig$outboundSchema: z.ZodType<
   numberOfAccountsPreGenerated: z.number().int().optional(),
   numberOfPaymentsPreGenerated: z.number().int().optional(),
   prefixFileToIngest: z.string().optional(),
-  provider: z.string().default("Dummypay"),
+  provider: z.literal("Dummypay"),
 });
 
 export function dummyPayConfigToJSON(dummyPayConfig: DummyPayConfig): string {

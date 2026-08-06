@@ -3,12 +3,16 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V3OpenBankingConnectionAttemptStatusEnum {
-  Pending = "pending",
-  Completed = "completed",
-  Exited = "exited",
-}
+export const V3OpenBankingConnectionAttemptStatusEnum = {
+  Pending: "pending",
+  Completed: "completed",
+  Exited: "exited",
+} as const;
+export type V3OpenBankingConnectionAttemptStatusEnum = ClosedEnum<
+  typeof V3OpenBankingConnectionAttemptStatusEnum
+>;
 
 /** @internal */
 export const V3OpenBankingConnectionAttemptStatusEnum$inboundSchema:

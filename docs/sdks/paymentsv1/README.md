@@ -145,7 +145,6 @@ Execute a transfer between two accounts.
 <!-- UsageSnippet language="typescript" operationID="connectorsTransfer" method="post" path="/api/payments/connectors/{connector}/transfers" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -162,7 +161,7 @@ async function run() {
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
     },
-    connector: Connector.Generic,
+    connector: "GENERIC",
   });
 
   console.log(result);
@@ -178,7 +177,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ConnectorsTransfer } from "@formance/formance-sdk/funcs/paymentsV1ConnectorsTransfer.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -197,7 +195,7 @@ async function run() {
       destination: "acct_1Gqj58KZcSIg2N2q",
       source: "acct_1Gqj58KZcSIg2N2q",
     },
-    connector: Connector.Generic,
+    connector: "GENERIC",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -239,7 +237,6 @@ Create an account
 <!-- UsageSnippet language="typescript" operationID="createAccount" method="post" path="/api/payments/accounts" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { AccountType } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -253,7 +250,7 @@ async function run() {
     connectorID: "<id>",
     createdAt: new Date("2025-07-27T08:57:17.388Z"),
     reference: "<value>",
-    type: AccountType.Unknown,
+    type: "UNKNOWN",
   });
 
   console.log(result);
@@ -269,7 +266,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1CreateAccount } from "@formance/formance-sdk/funcs/paymentsV1CreateAccount.js";
-import { AccountType } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -285,7 +281,7 @@ async function run() {
     connectorID: "<id>",
     createdAt: new Date("2025-07-27T08:57:17.388Z"),
     reference: "<value>",
-    type: AccountType.Unknown,
+    type: "UNKNOWN",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -409,7 +405,6 @@ Create a payment
 <!-- UsageSnippet language="typescript" operationID="createPayment" method="post" path="/api/payments/payments" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -425,9 +420,9 @@ async function run() {
     connectorID: "<id>",
     createdAt: new Date("2025-08-26T06:29:11.777Z"),
     reference: "<value>",
-    scheme: PaymentScheme.Rtp,
-    status: PaymentStatus.RefundedFailure,
-    type: PaymentType.Payout,
+    scheme: "rtp",
+    status: "REFUNDED_FAILURE",
+    type: "PAYOUT",
   });
 
   console.log(result);
@@ -443,7 +438,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1CreatePayment } from "@formance/formance-sdk/funcs/paymentsV1CreatePayment.js";
-import { PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -461,9 +455,9 @@ async function run() {
     connectorID: "<id>",
     createdAt: new Date("2025-08-26T06:29:11.777Z"),
     reference: "<value>",
-    scheme: PaymentScheme.Rtp,
-    status: PaymentStatus.RefundedFailure,
-    type: PaymentType.Payout,
+    scheme: "rtp",
+    status: "REFUNDED_FAILURE",
+    type: "PAYOUT",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -585,7 +579,6 @@ Create a transfer initiation
 <!-- UsageSnippet language="typescript" operationID="createTransferInitiation" method="post" path="/api/payments/transfer-initiations" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -603,7 +596,7 @@ async function run() {
     reference: "XXX",
     scheduledAt: new Date("2025-07-09T05:18:01.065Z"),
     sourceAccountID: "<id>",
-    type: TransferInitiationRequestType.Transfer,
+    type: "TRANSFER",
     validated: false,
   });
 
@@ -620,7 +613,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1CreateTransferInitiation } from "@formance/formance-sdk/funcs/paymentsV1CreateTransferInitiation.js";
-import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -640,7 +632,7 @@ async function run() {
     reference: "XXX",
     scheduledAt: new Date("2025-07-09T05:18:01.065Z"),
     sourceAccountID: "<id>",
-    type: TransferInitiationRequestType.Transfer,
+    type: "TRANSFER",
     validated: false,
   });
   if (res.ok) {
@@ -1183,7 +1175,6 @@ Get a specific task associated to the connector.
 <!-- UsageSnippet language="typescript" operationID="getConnectorTask" method="get" path="/api/payments/connectors/{connector}/tasks/{taskId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -1194,7 +1185,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.getConnectorTask({
-    connector: Connector.Moneycorp,
+    connector: "MONEYCORP",
     taskId: "task1",
   });
 
@@ -1211,7 +1202,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1GetConnectorTask } from "@formance/formance-sdk/funcs/paymentsV1GetConnectorTask.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1224,7 +1214,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1GetConnectorTask(sdk, {
-    connector: Connector.Moneycorp,
+    connector: "MONEYCORP",
     taskId: "task1",
   });
   if (res.ok) {
@@ -1267,7 +1257,6 @@ Get a specific task associated to the connector.
 <!-- UsageSnippet language="typescript" operationID="getConnectorTaskV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks/{taskId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -1278,7 +1267,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.getConnectorTaskV1({
-    connector: Connector.Modulr,
+    connector: "MODULR",
     connectorId: "XXX",
     taskId: "task1",
   });
@@ -1296,7 +1285,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1GetConnectorTaskV1 } from "@formance/formance-sdk/funcs/paymentsV1GetConnectorTaskV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1309,7 +1297,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1GetConnectorTaskV1(sdk, {
-    connector: Connector.Modulr,
+    connector: "MODULR",
     connectorId: "XXX",
     taskId: "task1",
   });
@@ -1830,7 +1818,6 @@ Install a connector by its name and config.
 <!-- UsageSnippet language="typescript" operationID="installConnector" method="post" path="/api/payments/connectors/{connector}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -1848,7 +1835,7 @@ async function run() {
       pollingPeriod: "60s",
       provider: "Currencycloud",
     },
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
   });
 
   console.log(result);
@@ -1864,7 +1851,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1InstallConnector } from "@formance/formance-sdk/funcs/paymentsV1InstallConnector.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1884,7 +1870,7 @@ async function run() {
       pollingPeriod: "60s",
       provider: "Currencycloud",
     },
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -2258,7 +2244,6 @@ List all tasks associated with this connector.
 <!-- UsageSnippet language="typescript" operationID="listConnectorTasks" method="get" path="/api/payments/connectors/{connector}/tasks" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -2269,7 +2254,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.listConnectorTasks({
-    connector: Connector.Modulr,
+    connector: "MODULR",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
@@ -2287,7 +2272,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ListConnectorTasks } from "@formance/formance-sdk/funcs/paymentsV1ListConnectorTasks.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2300,7 +2284,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ListConnectorTasks(sdk, {
-    connector: Connector.Modulr,
+    connector: "MODULR",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
   });
@@ -2344,7 +2328,6 @@ List all tasks associated with this connector.
 <!-- UsageSnippet language="typescript" operationID="listConnectorTasksV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/tasks" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -2355,7 +2338,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.listConnectorTasksV1({
-    connector: Connector.Wise,
+    connector: "WISE",
     connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
@@ -2374,7 +2357,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ListConnectorTasksV1 } from "@formance/formance-sdk/funcs/paymentsV1ListConnectorTasksV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2387,7 +2369,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ListConnectorTasksV1(sdk, {
-    connector: Connector.Wise,
+    connector: "WISE",
     connectorId: "XXX",
     cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
     pageSize: 100,
@@ -2704,7 +2686,6 @@ Read connector config
 <!-- UsageSnippet language="typescript" operationID="readConnectorConfig" method="get" path="/api/payments/connectors/{connector}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -2715,7 +2696,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.readConnectorConfig({
-    connector: Connector.Modulr,
+    connector: "MODULR",
   });
 
   console.log(result);
@@ -2731,7 +2712,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ReadConnectorConfig } from "@formance/formance-sdk/funcs/paymentsV1ReadConnectorConfig.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2744,7 +2724,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ReadConnectorConfig(sdk, {
-    connector: Connector.Modulr,
+    connector: "MODULR",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -2786,7 +2766,6 @@ Read connector config
 <!-- UsageSnippet language="typescript" operationID="readConnectorConfigV1" method="get" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -2797,7 +2776,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.readConnectorConfigV1({
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
     connectorId: "XXX",
   });
 
@@ -2814,7 +2793,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ReadConnectorConfigV1 } from "@formance/formance-sdk/funcs/paymentsV1ReadConnectorConfigV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2827,7 +2805,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ReadConnectorConfigV1(sdk, {
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
     connectorId: "XXX",
   });
   if (res.ok) {
@@ -2956,7 +2934,6 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <!-- UsageSnippet language="typescript" operationID="resetConnector" method="post" path="/api/payments/connectors/{connector}/reset" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -2967,7 +2944,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.resetConnector({
-    connector: Connector.Wise,
+    connector: "WISE",
   });
 
   console.log(result);
@@ -2983,7 +2960,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ResetConnector } from "@formance/formance-sdk/funcs/paymentsV1ResetConnector.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -2996,7 +2972,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ResetConnector(sdk, {
-    connector: Connector.Wise,
+    connector: "WISE",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -3040,7 +3016,6 @@ It will remove the connector and ALL PAYMENTS generated with it.
 <!-- UsageSnippet language="typescript" operationID="resetConnectorV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/reset" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -3051,7 +3026,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.resetConnectorV1({
-    connector: Connector.Wise,
+    connector: "WISE",
     connectorId: "XXX",
   });
 
@@ -3068,7 +3043,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1ResetConnectorV1 } from "@formance/formance-sdk/funcs/paymentsV1ResetConnectorV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -3081,7 +3055,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1ResetConnectorV1(sdk, {
-    connector: Connector.Wise,
+    connector: "WISE",
     connectorId: "XXX",
   });
   if (res.ok) {
@@ -3304,7 +3278,6 @@ Uninstall a connector by its name.
 <!-- UsageSnippet language="typescript" operationID="uninstallConnector" method="delete" path="/api/payments/connectors/{connector}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -3315,7 +3288,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.uninstallConnector({
-    connector: Connector.Generic,
+    connector: "GENERIC",
   });
 
   console.log(result);
@@ -3331,7 +3304,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1UninstallConnector } from "@formance/formance-sdk/funcs/paymentsV1UninstallConnector.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -3344,7 +3316,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1UninstallConnector(sdk, {
-    connector: Connector.Generic,
+    connector: "GENERIC",
   });
   if (res.ok) {
     const { value: result } = res;
@@ -3386,7 +3358,6 @@ Uninstall a connector by its name.
 <!-- UsageSnippet language="typescript" operationID="uninstallConnectorV1" method="delete" path="/api/payments/connectors/{connector}/{connectorId}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -3397,7 +3368,7 @@ const sdk = new SDK({
 
 async function run() {
   const result = await sdk.payments.v1.uninstallConnectorV1({
-    connector: Connector.BankingCircle,
+    connector: "BANKING-CIRCLE",
     connectorId: "XXX",
   });
 
@@ -3414,7 +3385,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1UninstallConnectorV1 } from "@formance/formance-sdk/funcs/paymentsV1UninstallConnectorV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -3427,7 +3397,7 @@ const sdk = new SDKCore({
 
 async function run() {
   const res = await paymentsV1UninstallConnectorV1(sdk, {
-    connector: Connector.BankingCircle,
+    connector: "BANKING-CIRCLE",
     connectorId: "XXX",
   });
   if (res.ok) {
@@ -3564,7 +3534,6 @@ Update connector config
 <!-- UsageSnippet language="typescript" operationID="updateConnectorConfigV1" method="post" path="/api/payments/connectors/{connector}/{connectorId}/config" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -3582,7 +3551,7 @@ async function run() {
       pollingPeriod: "60s",
       provider: "Modulr",
     },
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
     connectorId: "XXX",
   });
 
@@ -3599,7 +3568,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1UpdateConnectorConfigV1 } from "@formance/formance-sdk/funcs/paymentsV1UpdateConnectorConfigV1.js";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -3619,7 +3587,7 @@ async function run() {
       pollingPeriod: "60s",
       provider: "Modulr",
     },
-    connector: Connector.Mangopay,
+    connector: "MANGOPAY",
     connectorId: "XXX",
   });
   if (res.ok) {
@@ -3838,7 +3806,6 @@ Update a transfer initiation status
 <!-- UsageSnippet language="typescript" operationID="updateTransferInitiationStatus" method="post" path="/api/payments/transfer-initiations/{transferId}/status" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
-import { Status } from "@formance/formance-sdk/sdk/models/payments";
 
 const sdk = new SDK({
   security: {
@@ -3850,7 +3817,7 @@ const sdk = new SDK({
 async function run() {
   const result = await sdk.payments.v1.updateTransferInitiationStatus({
     updateTransferInitiationStatusRequest: {
-      status: Status.Validated,
+      status: "VALIDATED",
     },
     transferId: "XXX",
   });
@@ -3868,7 +3835,6 @@ The standalone function version of this method:
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
 import { paymentsV1UpdateTransferInitiationStatus } from "@formance/formance-sdk/funcs/paymentsV1UpdateTransferInitiationStatus.js";
-import { Status } from "@formance/formance-sdk/sdk/models/payments";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -3882,7 +3848,7 @@ const sdk = new SDKCore({
 async function run() {
   const res = await paymentsV1UpdateTransferInitiationStatus(sdk, {
     updateTransferInitiationStatusRequest: {
-      status: Status.Validated,
+      status: "VALIDATED",
     },
     transferId: "XXX",
   });

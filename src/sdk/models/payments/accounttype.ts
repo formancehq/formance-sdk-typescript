@@ -3,12 +3,14 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum AccountType {
-  Unknown = "UNKNOWN",
-  Internal = "INTERNAL",
-  External = "EXTERNAL",
-}
+export const AccountType = {
+  Unknown: "UNKNOWN",
+  Internal: "INTERNAL",
+  External: "EXTERNAL",
+} as const;
+export type AccountType = ClosedEnum<typeof AccountType>;
 
 /** @internal */
 export const AccountType$inboundSchema: z.ZodNativeEnum<typeof AccountType> = z

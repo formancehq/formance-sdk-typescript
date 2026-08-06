@@ -15,7 +15,7 @@ export type V3StripeConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Stripe";
 };
 
 /** @internal */
@@ -28,7 +28,7 @@ export const V3StripeConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Stripe"),
+  provider: z.literal("Stripe"),
 });
 /** @internal */
 export type V3StripeConfig$Outbound = {
@@ -36,7 +36,7 @@ export type V3StripeConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Stripe";
 };
 
 /** @internal */
@@ -49,7 +49,7 @@ export const V3StripeConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Stripe"),
+  provider: z.literal("Stripe"),
 });
 
 export function v3StripeConfigToJSON(v3StripeConfig: V3StripeConfig): string {

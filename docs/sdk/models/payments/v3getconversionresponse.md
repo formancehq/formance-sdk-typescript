@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3ConversionStatusEnum, V3GetConversionResponse } from "@formance/formance-sdk/sdk/models/payments";
+import { V3GetConversionResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetConversionResponse = {
   data: {
@@ -15,7 +15,7 @@ let value: V3GetConversionResponse = {
     reference: "<value>",
     sourceAmount: 906994n,
     sourceAsset: "<value>",
-    status: V3ConversionStatusEnum.Unknown,
+    status: "UNKNOWN",
     updatedAt: new Date("2024-11-03T20:29:35.101Z"),
   },
 };

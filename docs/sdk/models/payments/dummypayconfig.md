@@ -9,6 +9,7 @@ let value: DummyPayConfig = {
   directory: "/tmp/dummypay",
   filePollingPeriod: "60s",
   name: "My DummyPay Account",
+  provider: "Dummypay",
 };
 ```
 
@@ -22,4 +23,4 @@ let value: DummyPayConfig = {
 | `numberOfAccountsPreGenerated`                                                                | *number*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 | `numberOfPaymentsPreGenerated`                                                                | *number*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 | `prefixFileToIngest`                                                                          | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `provider`                                                                                    | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
+| `provider`                                                                                    | *"Dummypay"*                                                                                  | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

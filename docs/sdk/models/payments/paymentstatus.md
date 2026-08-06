@@ -5,21 +5,11 @@
 ```typescript
 import { PaymentStatus } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: PaymentStatus = PaymentStatus.Refunded;
+let value: PaymentStatus = "REFUNDED";
 ```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `Pending`         | PENDING           |
-| `Succeeded`       | SUCCEEDED         |
-| `Cancelled`       | CANCELLED         |
-| `Failed`          | FAILED            |
-| `Expired`         | EXPIRED           |
-| `Refunded`        | REFUNDED          |
-| `RefundedFailure` | REFUNDED_FAILURE  |
-| `Dispute`         | DISPUTE           |
-| `DisputeWon`      | DISPUTE_WON       |
-| `DisputeLost`     | DISPUTE_LOST      |
-| `Other`           | OTHER             |
+```typescript
+"PENDING" | "SUCCEEDED" | "CANCELLED" | "FAILED" | "EXPIRED" | "REFUNDED" | "REFUNDED_FAILURE" | "DISPUTE" | "DISPUTE_WON" | "DISPUTE_LOST" | "OTHER"
+```

@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { V2BulkElementDeleteMetadataData, V2TargetType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2BulkElementDeleteMetadataData } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2BulkElementDeleteMetadataData = {
   key: "<key>",
   targetId: "<id>",
-  targetType: V2TargetType.Account,
+  targetType: "ACCOUNT",
 };
 ```
 

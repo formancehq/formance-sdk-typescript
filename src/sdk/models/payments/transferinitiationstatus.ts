@@ -3,21 +3,25 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum TransferInitiationStatus {
-  WaitingForValidation = "WAITING_FOR_VALIDATION",
-  Processing = "PROCESSING",
-  Processed = "PROCESSED",
-  Failed = "FAILED",
-  Rejected = "REJECTED",
-  Validated = "VALIDATED",
-  AskRetried = "ASK_RETRIED",
-  AskReversed = "ASK_REVERSED",
-  ReverseProcessing = "REVERSE_PROCESSING",
-  ReverseFailed = "REVERSE_FAILED",
-  PartiallyReversed = "PARTIALLY_REVERSED",
-  Reversed = "REVERSED",
-}
+export const TransferInitiationStatus = {
+  WaitingForValidation: "WAITING_FOR_VALIDATION",
+  Processing: "PROCESSING",
+  Processed: "PROCESSED",
+  Failed: "FAILED",
+  Rejected: "REJECTED",
+  Validated: "VALIDATED",
+  AskRetried: "ASK_RETRIED",
+  AskReversed: "ASK_REVERSED",
+  ReverseProcessing: "REVERSE_PROCESSING",
+  ReverseFailed: "REVERSE_FAILED",
+  PartiallyReversed: "PARTIALLY_REVERSED",
+  Reversed: "REVERSED",
+} as const;
+export type TransferInitiationStatus = ClosedEnum<
+  typeof TransferInitiationStatus
+>;
 
 /** @internal */
 export const TransferInitiationStatus$inboundSchema: z.ZodNativeEnum<

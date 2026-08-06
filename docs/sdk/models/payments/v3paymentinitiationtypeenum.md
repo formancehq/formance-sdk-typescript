@@ -5,13 +5,11 @@
 ```typescript
 import { V3PaymentInitiationTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3PaymentInitiationTypeEnum = V3PaymentInitiationTypeEnum.Unknown;
+let value: V3PaymentInitiationTypeEnum = "UNKNOWN";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Unknown`  | UNKNOWN    |
-| `Transfer` | TRANSFER   |
-| `Payout`   | PAYOUT     |
+```typescript
+"UNKNOWN" | "TRANSFER" | "PAYOUT"
+```

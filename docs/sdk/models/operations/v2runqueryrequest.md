@@ -8,9 +8,7 @@ import { V2RunQueryRequest } from "@formance/formance-sdk/sdk/models/operations"
 let value: V2RunQueryRequest = {
   requestBody: {
     params: {
-      cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-      pageSize: 100,
-      sort: "id:desc",
+      resource: "accounts",
     },
   },
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",

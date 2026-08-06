@@ -4,11 +4,10 @@
 
 ```typescript
 import { UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/operations";
-import { Status } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: UpdateTransferInitiationStatusRequest = {
   updateTransferInitiationStatusRequest: {
-    status: Status.Rejected,
+    status: "REJECTED",
   },
   transferId: "XXX",
 };

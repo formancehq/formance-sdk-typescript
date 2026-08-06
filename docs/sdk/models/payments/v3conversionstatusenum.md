@@ -11,14 +11,11 @@ Lifecycle of a conversion.
 ```typescript
 import { V3ConversionStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3ConversionStatusEnum = V3ConversionStatusEnum.Failed;
+let value: V3ConversionStatusEnum = "FAILED";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Unknown`   | UNKNOWN     |
-| `Pending`   | PENDING     |
-| `Completed` | COMPLETED   |
-| `Failed`    | FAILED      |
+```typescript
+"UNKNOWN" | "PENDING" | "COMPLETED" | "FAILED"
+```

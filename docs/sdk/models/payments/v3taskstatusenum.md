@@ -5,13 +5,11 @@
 ```typescript
 import { V3TaskStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3TaskStatusEnum = V3TaskStatusEnum.Succeeded;
+let value: V3TaskStatusEnum = "SUCCEEDED";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Processing` | PROCESSING   |
-| `Succeeded`  | SUCCEEDED    |
-| `Failed`     | FAILED       |
+```typescript
+"PROCESSING" | "SUCCEEDED" | "FAILED"
+```

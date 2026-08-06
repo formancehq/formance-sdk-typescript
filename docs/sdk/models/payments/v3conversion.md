@@ -10,7 +10,7 @@ Formance records the final state only.
 ## Example Usage
 
 ```typescript
-import { V3Conversion, V3ConversionStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3Conversion } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3Conversion = {
   connectorID: "<value>",
@@ -21,7 +21,7 @@ let value: V3Conversion = {
   reference: "<value>",
   sourceAmount: 923904n,
   sourceAsset: "<value>",
-  status: V3ConversionStatusEnum.Failed,
+  status: "FAILED",
   updatedAt: new Date("2026-04-30T00:08:20.274Z"),
 };
 ```

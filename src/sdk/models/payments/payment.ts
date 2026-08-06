@@ -15,8 +15,6 @@ import { PaymentScheme, PaymentScheme$inboundSchema } from "./paymentscheme.js";
 import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 import { PaymentType, PaymentType$inboundSchema } from "./paymenttype.js";
 
-export type PaymentRaw = {};
-
 export type Payment = {
   adjustments: Array<PaymentAdjustment>;
   amount: bigint;
@@ -28,30 +26,13 @@ export type Payment = {
   initialAmount: bigint;
   metadata: { [k: string]: string } | null;
   provider?: Connector | undefined;
-  raw: PaymentRaw | null;
+  raw: { [k: string]: any } | null;
   reference: string;
   scheme: PaymentScheme;
   sourceAccountID: string;
   status: PaymentStatus;
   type: PaymentType;
 };
-
-/** @internal */
-export const PaymentRaw$inboundSchema: z.ZodType<
-  PaymentRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function paymentRawFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentRaw' from JSON`,
-  );
-}
 
 /** @internal */
 export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
@@ -68,7 +49,7 @@ export const Payment$inboundSchema: z.ZodType<Payment, z.ZodTypeDef, unknown> =
     initialAmount: z.number().transform(v => BigInt(v)),
     metadata: z.nullable(z.record(z.string())),
     provider: Connector$inboundSchema.optional(),
-    raw: z.nullable(z.lazy(() => PaymentRaw$inboundSchema)),
+    raw: z.nullable(z.record(z.any())),
     reference: z.string(),
     scheme: PaymentScheme$inboundSchema,
     sourceAccountID: z.string(),

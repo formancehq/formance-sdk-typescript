@@ -8,6 +8,7 @@ import { V3RoutableConfig } from "@formance/formance-sdk/sdk/models/payments";
 let value: V3RoutableConfig = {
   apiKey: "<value>",
   name: "<value>",
+  provider: "Routable",
 };
 ```
 
@@ -21,4 +22,4 @@ let value: V3RoutableConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Routable"*                                                            | :heavy_check_mark:                                                      | N/A                                                                     |

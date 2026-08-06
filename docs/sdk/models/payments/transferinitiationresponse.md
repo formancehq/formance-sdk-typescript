@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { TransferInitiationResponse, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/payments";
+import { TransferInitiationResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TransferInitiationResponse = {
   data: {
@@ -21,8 +21,8 @@ let value: TransferInitiationResponse = {
     reference: "<value>",
     scheduledAt: new Date("2026-01-05T14:17:24.024Z"),
     sourceAccountID: "<id>",
-    status: TransferInitiationStatus.Rejected,
-    type: TransferInitiationType.Payout,
+    status: "REJECTED",
+    type: "PAYOUT",
   },
 };
 ```

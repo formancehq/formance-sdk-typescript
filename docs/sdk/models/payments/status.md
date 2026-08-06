@@ -5,12 +5,11 @@
 ```typescript
 import { Status } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: Status = Status.Validated;
+let value: Status = "VALIDATED";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Rejected`  | REJECTED    |
-| `Validated` | VALIDATED   |
+```typescript
+"REJECTED" | "VALIDATED"
+```

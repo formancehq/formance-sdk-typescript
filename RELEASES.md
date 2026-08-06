@@ -357,3 +357,13 @@ Based on:
 - [typescript v6.1.0] .
 ### Releases
 - [NPM v6.1.0] https://www.npmjs.com/package/@formance/formance-sdk/v/6.1.0 - .
+
+## 2026-08-06 15:33:16
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.770.0 (2.893.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v7.0.0] .
+### Releases
+- [NPM v7.0.0] https://www.npmjs.com/package/@formance/formance-sdk/v/7.0.0 - .

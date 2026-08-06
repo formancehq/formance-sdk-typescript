@@ -10,6 +10,7 @@ let value: GenericConfig = {
   endpoint: "XXX",
   name: "My Generic Account",
   pollingPeriod: "120m",
+  provider: "Generic",
 };
 ```
 
@@ -21,4 +22,4 @@ let value: GenericConfig = {
 | `endpoint`                                                                                           | *string*                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  | XXX                                                                                                  |
 | `name`                                                                                               | *string*                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  | My Generic Account                                                                                   |
 | `pollingPeriod`                                                                                      | *string*                                                                                             | :heavy_minus_sign:                                                                                   | The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.<br/> | 120m                                                                                                 |
-| `provider`                                                                                           | *string*                                                                                             | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| `provider`                                                                                           | *"Generic"*                                                                                          | :heavy_check_mark:                                                                                   | N/A                                                                                                  |                                                                                                      |

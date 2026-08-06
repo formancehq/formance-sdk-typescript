@@ -41,7 +41,7 @@ export function reconciliationV1DeletePolicy(
 ): APIPromise<
   Result<
     operations.DeletePolicyResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.DeletePolicyResponse,
-      | reconciliation.ErrorResponse
+      | reconciliation.ErrorsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -160,7 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.DeletePolicyResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -171,7 +171,7 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(204, operations.DeletePolicyResponse$inboundSchema),
-    M.jsonErr("default", reconciliation.ErrorResponse$inboundSchema),
+    M.jsonErr("default", reconciliation.ErrorsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

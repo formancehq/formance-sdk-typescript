@@ -3,12 +3,15 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum ErrorsEnum {
-  Internal = "INTERNAL",
-  Validation = "VALIDATION",
-  NotFound = "NOT_FOUND",
-}
+export const ErrorsEnum = {
+  Internal: "INTERNAL",
+  Validation: "VALIDATION",
+  NotFound: "NOT_FOUND",
+  Conflict: "CONFLICT",
+} as const;
+export type ErrorsEnum = ClosedEnum<typeof ErrorsEnum>;
 
 /** @internal */
 export const ErrorsEnum$inboundSchema: z.ZodNativeEnum<typeof ErrorsEnum> = z

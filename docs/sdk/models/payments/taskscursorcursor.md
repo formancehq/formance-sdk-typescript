@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TasksCursorCursor, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TasksCursorCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TasksCursorCursor = {
   data: [
@@ -12,7 +12,7 @@ let value: TasksCursorCursor = {
       createdAt: new Date("2024-11-10T01:47:54.767Z"),
       descriptor: {},
       id: "58d374f2-992c-450d-ab1d-d6bde271d329",
-      status: TaskStatus.Pending,
+      status: "PENDING",
       updatedAt: new Date("2024-05-05T10:16:45.820Z"),
     },
   ],

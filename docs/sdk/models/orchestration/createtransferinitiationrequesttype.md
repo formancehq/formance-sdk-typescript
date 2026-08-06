@@ -10,13 +10,11 @@ Type of transfer initiation:
 ```typescript
 import { CreateTransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: CreateTransferInitiationRequestType =
-  CreateTransferInitiationRequestType.Payout;
+let value: CreateTransferInitiationRequestType = "PAYOUT";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Transfer` | TRANSFER   |
-| `Payout`   | PAYOUT     |
+```typescript
+"TRANSFER" | "PAYOUT"
+```

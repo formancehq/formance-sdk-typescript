@@ -5,13 +5,11 @@
 ```typescript
 import { PaymentsErrorsEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: PaymentsErrorsEnum = PaymentsErrorsEnum.Validation;
+let value: PaymentsErrorsEnum = "VALIDATION";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Internal`   | INTERNAL     |
-| `Validation` | VALIDATION   |
-| `NotFound`   | NOT_FOUND    |
+```typescript
+"INTERNAL" | "VALIDATION" | "NOT_FOUND"
+```

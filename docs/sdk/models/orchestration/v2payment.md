@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V2Payment, V2PaymentScheme, V2PaymentStatus, V2PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+import { V2Payment } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2Payment = {
   adjustments: [
@@ -12,7 +12,7 @@ let value: V2Payment = {
       amount: 100n,
       date: new Date("2024-09-09T15:58:54.180Z"),
       raw: {},
-      status: V2PaymentStatus.Terminated,
+      status: "TERMINATED",
     },
   ],
   asset: "USD",
@@ -24,10 +24,10 @@ let value: V2Payment = {
   metadata: {},
   raw: null,
   reference: "<value>",
-  scheme: V2PaymentScheme.Amex,
+  scheme: "amex",
   sourceAccountID: "<id>",
-  status: V2PaymentStatus.Succeeded,
-  type: V2PaymentType.Payout,
+  status: "SUCCEEDED",
+  type: "PAYOUT",
 };
 ```
 

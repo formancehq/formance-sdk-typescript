@@ -3,10 +3,10 @@
 ## Example Usage
 
 ```typescript
-import { Status, UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/payments";
+import { UpdateTransferInitiationStatusRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: UpdateTransferInitiationStatusRequest = {
-  status: Status.Rejected,
+  status: "REJECTED",
 };
 ```
 

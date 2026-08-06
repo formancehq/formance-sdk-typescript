@@ -27,6 +27,7 @@
 * [getAccount](#getaccount) - Get an account by ID
 * [getAccountBalances](#getaccountbalances) - Get account balances
 * [getBankAccount](#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [getConnectorConfig](#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](#getconnectorschedule) - Get a connector schedule by ID
 * [getConversion](#getconversion) - Get a single conversion by its Formance ID
@@ -43,6 +44,7 @@
 * [installConnector](#installconnector) - Install a connector
 * [listAccounts](#listaccounts) - List all accounts
 * [listBankAccounts](#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [listConnectorConfigs](#listconnectorconfigs) - List all connector configurations
 * [listConnectorScheduleInstances](#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](#listconnectorschedules) - List all connector schedules
@@ -1650,6 +1652,87 @@ run();
 | payments.V3ErrorResponse | default                  | application/json         |
 | errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
 
+## getConnectorCapabilities
+
+Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3GetConnectorCapabilities" method="get" path="/api/payments/v3/connectors/{connectorID}/capabilities" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.getConnectorCapabilities({
+    connectorID: "<id>",
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3GetConnectorCapabilities } from "@formance/formance-sdk/funcs/paymentsV3GetConnectorCapabilities.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3GetConnectorCapabilities(sdk, {
+    connectorID: "<id>",
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3GetConnectorCapabilities failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3GetConnectorCapabilitiesRequest](../../sdk/models/operations/v3getconnectorcapabilitiesrequest.md)                                                               | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3GetConnectorCapabilitiesResponse](../../sdk/models/operations/v3getconnectorcapabilitiesresponse.md)\>**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
 ## getConnectorConfig
 
 Get a connector configuration by ID
@@ -2944,6 +3027,83 @@ run();
 ### Response
 
 **Promise\<[operations.V3ListBankAccountsResponse](../../sdk/models/operations/v3listbankaccountsresponse.md)\>**
+
+### Errors
+
+| Error Type               | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| payments.V3ErrorResponse | default                  | application/json         |
+| errors.SDKError          | 4XX, 5XX                 | \*/\*                    |
+
+## listConnectorCapabilities
+
+Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="v3ListConnectorCapabilities" method="get" path="/api/payments/v3/connectors/capabilities" -->
+```typescript
+import { SDK } from "@formance/formance-sdk";
+
+const sdk = new SDK({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const result = await sdk.payments.v3.listConnectorCapabilities({});
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { SDKCore } from "@formance/formance-sdk/core.js";
+import { paymentsV3ListConnectorCapabilities } from "@formance/formance-sdk/funcs/paymentsV3ListConnectorCapabilities.js";
+
+// Use `SDKCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const sdk = new SDKCore({
+  security: {
+    clientID: "<YOUR_CLIENT_ID_HERE>",
+    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
+  },
+});
+
+async function run() {
+  const res = await paymentsV3ListConnectorCapabilities(sdk, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("paymentsV3ListConnectorCapabilities failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                                                                                      | [operations.V3ListConnectorCapabilitiesRequest](../../sdk/models/operations/v3listconnectorcapabilitiesrequest.md)                                                             | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
+
+### Response
+
+**Promise\<[operations.V3ListConnectorCapabilitiesResponse](../../sdk/models/operations/v3listconnectorcapabilitiesresponse.md)\>**
 
 ### Errors
 

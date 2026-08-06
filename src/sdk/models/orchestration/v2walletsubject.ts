@@ -10,7 +10,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type V2WalletSubject = {
   balance?: string | undefined;
   identifier: string;
-  type: string;
+  type: "WALLET";
 };
 
 /** @internal */
@@ -21,7 +21,7 @@ export const V2WalletSubject$inboundSchema: z.ZodType<
 > = z.object({
   balance: z.string().optional(),
   identifier: z.string(),
-  type: z.string(),
+  type: z.literal("WALLET"),
 });
 
 export function v2WalletSubjectFromJSON(

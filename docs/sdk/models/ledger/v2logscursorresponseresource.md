@@ -5,11 +5,11 @@
 ```typescript
 import { V2LogsCursorResponseResource } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2LogsCursorResponseResource = V2LogsCursorResponseResource.Logs;
+let value: V2LogsCursorResponseResource = "logs";
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Logs` | logs   |
+```typescript
+"logs"
+```

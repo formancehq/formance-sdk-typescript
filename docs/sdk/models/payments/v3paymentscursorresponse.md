@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3PaymentsCursorResponse, V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3PaymentsCursorResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentsCursorResponse = {
   cursor: {
@@ -18,8 +18,8 @@ let value: V3PaymentsCursorResponse = {
         provider: "<value>",
         reference: "<value>",
         scheme: "<value>",
-        status: V3PaymentStatusEnum.Cancelled,
-        type: V3PaymentTypeEnum.Other,
+        status: "CANCELLED",
+        type: "OTHER",
       },
     ],
     hasMore: false,

@@ -5,13 +5,11 @@
 ```typescript
 import { AccountType } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: AccountType = AccountType.External;
+let value: AccountType = "EXTERNAL";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Unknown`  | UNKNOWN    |
-| `Internal` | INTERNAL   |
-| `External` | EXTERNAL   |
+```typescript
+"UNKNOWN" | "INTERNAL" | "EXTERNAL"
+```

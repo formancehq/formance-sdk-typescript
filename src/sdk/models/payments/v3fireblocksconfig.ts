@@ -17,7 +17,7 @@ export type V3FireblocksConfig = {
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
   privateKey: string;
-  provider?: string | undefined;
+  provider: "Fireblocks";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3FireblocksConfig$inboundSchema: z.ZodType<
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
   privateKey: z.string(),
-  provider: z.string().default("Fireblocks"),
+  provider: z.literal("Fireblocks"),
 });
 /** @internal */
 export type V3FireblocksConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3FireblocksConfig$Outbound = {
   pageSize: number;
   pollingPeriod: string;
   privateKey: string;
-  provider: string;
+  provider: "Fireblocks";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3FireblocksConfig$outboundSchema: z.ZodType<
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
   privateKey: z.string(),
-  provider: z.string().default("Fireblocks"),
+  provider: z.literal("Fireblocks"),
 });
 
 export function v3FireblocksConfigToJSON(

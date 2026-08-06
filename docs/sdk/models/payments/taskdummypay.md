@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { TaskDummyPay, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskDummyPay } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskDummyPay = {
   connectorID: "<id>",
   createdAt: new Date("2026-10-09T14:29:07.136Z"),
   descriptor: {},
   id: "523eba9a-ee19-4914-9377-3a887d589ebf",
-  status: TaskStatus.Failed,
+  status: "FAILED",
   updatedAt: new Date("2024-12-15T05:52:55.780Z"),
 };
 ```

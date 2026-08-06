@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { TaskStatus, TaskWise } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskWise } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskWise = {
   connectorID: "<id>",
   createdAt: new Date("2025-10-15T10:07:14.906Z"),
   descriptor: {},
   id: "24a5d2b6-06be-4ce5-98c8-dd49a985ef0e",
-  status: TaskStatus.Terminated,
+  status: "TERMINATED",
   updatedAt: new Date("2024-09-11T00:50:50.011Z"),
 };
 ```

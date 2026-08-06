@@ -128,12 +128,7 @@ run();
 * [readUser](docs/sdks/authv1/README.md#readuser) - Read user
 * [updateClient](docs/sdks/authv1/README.md#updateclient) - Update client
 
-### [Ledger](docs/sdks/ledger/README.md)
-
-* [getInfo](docs/sdks/ledger/README.md#getinfo) - Show server information
-* [getMetrics](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
-
-#### [Ledger.V1](docs/sdks/ledgerv1/README.md)
+### [Ledger.V1](docs/sdks/ledgerv1/README.md)
 
 * [createTransactions](docs/sdks/ledgerv1/README.md#createtransactions) - Create a new batch of transactions to a ledger
 * [addMetadataOnTransaction](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
@@ -156,7 +151,7 @@ run();
 * [~~runScript~~](docs/sdks/ledgerv1/README.md#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](docs/sdks/ledgerv1/README.md#updatemapping) - Update the mapping of a ledger
 
-#### [Ledger.V2](docs/sdks/ledgerv2/README.md)
+### [Ledger.V2](docs/sdks/ledgerv2/README.md)
 
 * [addMetadataOnTransaction](docs/sdks/ledgerv2/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 * [addMetadataToAccount](docs/sdks/ledgerv2/README.md#addmetadatatoaccount) - Add metadata to an account
@@ -177,8 +172,10 @@ run();
 * [getAccount](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 * [getBalancesAggregated](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 * [getExporterState](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
+* [getInfo](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
 * [getLedger](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 * [getLedgerInfo](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
+* [getMetrics](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
 * [getPipelineState](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 * [getSchema](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 * [getTransaction](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
@@ -316,6 +313,7 @@ run();
 * [getAccount](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 * [getAccountBalances](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 * [getBankAccount](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+* [getConnectorCapabilities](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 * [getConnectorConfig](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 * [getConnectorSchedule](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
 * [getConversion](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
@@ -332,6 +330,7 @@ run();
 * [installConnector](docs/sdks/v3/README.md#installconnector) - Install a connector
 * [listAccounts](docs/sdks/v3/README.md#listaccounts) - List all accounts
 * [listBankAccounts](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+* [listConnectorCapabilities](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 * [listConnectorConfigs](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
 * [listConnectorScheduleInstances](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
 * [listConnectorSchedules](docs/sdks/v3/README.md#listconnectorschedules) - List all connector schedules
@@ -358,14 +357,30 @@ run();
 
 ### [Reconciliation.V1](docs/sdks/reconciliationv1/README.md)
 
+* [acceptAlert](docs/sdks/reconciliationv1/README.md#acceptalert) - Accept an alert (accepted_by_business)
+* [ackAlert](docs/sdks/reconciliationv1/README.md#ackalert) - Acknowledge an alert
 * [createPolicy](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
+* [createRule](docs/sdks/reconciliationv1/README.md#createrule) - Create a rule
 * [deletePolicy](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
+* [deleteRule](docs/sdks/reconciliationv1/README.md#deleterule) - Delete a rule (cascades to evaluations + alerts + alert events)
+* [evaluateRule](docs/sdks/reconciliationv1/README.md#evaluaterule) - Evaluate a rule now
+* [getAlert](docs/sdks/reconciliationv1/README.md#getalert) - Get an alert
+* [getEvaluation](docs/sdks/reconciliationv1/README.md#getevaluation) - Get an evaluation
 * [getPolicy](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 * [getReconciliation](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+* [getRule](docs/sdks/reconciliationv1/README.md#getrule) - Get a rule
 * [getServerInfoReconciliation](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
+* [listAlertEvents](docs/sdks/reconciliationv1/README.md#listalertevents) - List alert events (append-only timeline)
+* [listAlerts](docs/sdks/reconciliationv1/README.md#listalerts) - List alerts
+* [listEvaluations](docs/sdks/reconciliationv1/README.md#listevaluations) - List evaluations
 * [listPolicies](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 * [listReconciliations](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
+* [listRules](docs/sdks/reconciliationv1/README.md#listrules) - List rules
+* [patchRule](docs/sdks/reconciliationv1/README.md#patchrule) - Patch a rule (partial update)
 * [reconcile](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
+* [resolveAlert](docs/sdks/reconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
+* [snoozeAlert](docs/sdks/reconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
+* [unsnoozeAlert](docs/sdks/reconciliationv1/README.md#unsnoozealert) - Lift a snooze early
 
 ### [~~Search.V1~~](docs/sdks/searchv1/README.md)
 
@@ -397,8 +412,13 @@ run();
 * [changeConfigSecret](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
 * [deactivateConfig](docs/sdks/webhooksv1/README.md#deactivateconfig) - Deactivate one config
 * [deleteConfig](docs/sdks/webhooksv1/README.md#deleteconfig) - Delete one config
+* [getDeliveries](docs/sdks/webhooksv1/README.md#getdeliveries) - List webhook deliveries
+* [getDelivery](docs/sdks/webhooksv1/README.md#getdelivery) - Get a webhook delivery
+* [getDeliveryAttempts](docs/sdks/webhooksv1/README.md#getdeliveryattempts) - List attempts for a webhook delivery
 * [getManyConfigs](docs/sdks/webhooksv1/README.md#getmanyconfigs) - Get many configs
 * [insertConfig](docs/sdks/webhooksv1/README.md#insertconfig) - Insert a new config
+* [replayDeliveries](docs/sdks/webhooksv1/README.md#replaydeliveries) - Replay a page of failed or pending deliveries
+* [replayDelivery](docs/sdks/webhooksv1/README.md#replaydelivery) - Replay one failed or pending delivery
 * [testConfig](docs/sdks/webhooksv1/README.md#testconfig) - Test one config
 * [updateConfig](docs/sdks/webhooksv1/README.md#updateconfig) - Update one config
 
@@ -434,7 +454,15 @@ const sdk = new SDK({
 
 async function run() {
   try {
-    const result = await sdk.ledger.getInfo();
+    const result = await sdk.ledger.v2.addMetadataOnTransaction({
+      requestBody: {
+        "admin": "true",
+      },
+      dryRun: true,
+      id: 1234n,
+      ledger: "ledger001",
+      schemaVersion: "v1.0.0",
+    });
 
     console.log(result);
   } catch (error) {
@@ -476,13 +504,13 @@ run();
 
 
 **Inherit from [`SDKBaseError`](./src/sdk/models/errors/sdkbaseerror.ts)**:
-* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 58 of 250 methods.*
-* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 46 of 250 methods.*
-* [`ErrorsV2ErrorResponse`](./src/sdk/models/errors/errorsv2errorresponse.ts): Applicable to 44 of 250 methods.*
-* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 31 of 250 methods.*
-* [`ErrorsErrorResponse`](./src/sdk/models/errors/errorserrorresponse.ts): Applicable to 19 of 250 methods.*
-* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 250 methods.*
-* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 250 methods.*
+* [`V3ErrorResponse`](./src/sdk/models/errors/v3errorresponse.ts): Error. Applicable to 60 of 273 methods.*
+* [`PaymentsErrorResponse`](./src/sdk/models/errors/paymentserrorresponse.ts): Error. Applicable to 46 of 273 methods.*
+* [`ErrorsV2ErrorResponse`](./src/sdk/models/errors/errorsv2errorresponse.ts): Applicable to 44 of 273 methods.*
+* [`ErrorsErrorResponse`](./src/sdk/models/errors/errorserrorresponse.ts): Applicable to 43 of 273 methods.*
+* [`ErrorResponse`](./src/sdk/models/errors/errorresponse.ts): Applicable to 28 of 273 methods.*
+* [`V2Error`](./src/sdk/models/errors/v2error.ts): General error. Applicable to 18 of 273 methods.*
+* [`ErrorT`](./src/sdk/models/errors/errort.ts): General error. Applicable to 17 of 273 methods.*
 * [`ResponseValidationError`](./src/sdk/models/errors/responsevalidationerror.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -664,8 +692,6 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`authV1ReadUser`](docs/sdks/authv1/README.md#readuser) - Read user
 - [`authV1UpdateClient`](docs/sdks/authv1/README.md#updateclient) - Update client
 - [`getVersions`](docs/sdks/sdk/README.md#getversions) - Show stack version information
-- [`ledgerGetInfo`](docs/sdks/ledger/README.md#getinfo) - Show server information
-- [`ledgerGetMetrics`](docs/sdks/ledger/README.md#getmetrics) - Read in memory metrics
 - [`ledgerV1AddMetadataOnTransaction`](docs/sdks/ledgerv1/README.md#addmetadataontransaction) - Set the metadata of a transaction by its ID
 - [`ledgerV1AddMetadataToAccount`](docs/sdks/ledgerv1/README.md#addmetadatatoaccount) - Add metadata to an account
 - [`ledgerV1CountAccounts`](docs/sdks/ledgerv1/README.md#countaccounts) - Count the accounts from a ledger
@@ -704,8 +730,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`ledgerV2GetAccount`](docs/sdks/ledgerv2/README.md#getaccount) - Get account by its address
 - [`ledgerV2GetBalancesAggregated`](docs/sdks/ledgerv2/README.md#getbalancesaggregated) - Get the aggregated balances from selected accounts
 - [`ledgerV2GetExporterState`](docs/sdks/ledgerv2/README.md#getexporterstate) - Get exporter state
+- [`ledgerV2GetInfo`](docs/sdks/ledgerv2/README.md#getinfo) - Show server information
 - [`ledgerV2GetLedger`](docs/sdks/ledgerv2/README.md#getledger) - Get a ledger
 - [`ledgerV2GetLedgerInfo`](docs/sdks/ledgerv2/README.md#getledgerinfo) - Get information about a ledger
+- [`ledgerV2GetMetrics`](docs/sdks/ledgerv2/README.md#getmetrics) - Read in memory metrics
 - [`ledgerV2GetPipelineState`](docs/sdks/ledgerv2/README.md#getpipelinestate) - Get pipeline state
 - [`ledgerV2GetSchema`](docs/sdks/ledgerv2/README.md#getschema) - Get a schema for a ledger by version
 - [`ledgerV2GetTransaction`](docs/sdks/ledgerv2/README.md#gettransaction) - Get transaction from a ledger by its ID
@@ -826,6 +854,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3GetAccount`](docs/sdks/v3/README.md#getaccount) - Get an account by ID
 - [`paymentsV3GetAccountBalances`](docs/sdks/v3/README.md#getaccountbalances) - Get account balances
 - [`paymentsV3GetBankAccount`](docs/sdks/v3/README.md#getbankaccount) - Get a Bank Account by ID
+- [`paymentsV3GetConnectorCapabilities`](docs/sdks/v3/README.md#getconnectorcapabilities) - Get the plugin capabilities of an installed connector
 - [`paymentsV3GetConnectorConfig`](docs/sdks/v3/README.md#getconnectorconfig) - Get a connector configuration by ID
 - [`paymentsV3GetConnectorSchedule`](docs/sdks/v3/README.md#getconnectorschedule) - Get a connector schedule by ID
 - [`paymentsV3GetConversion`](docs/sdks/v3/README.md#getconversion) - Get a single conversion by its Formance ID
@@ -842,6 +871,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3InstallConnector`](docs/sdks/v3/README.md#installconnector) - Install a connector
 - [`paymentsV3ListAccounts`](docs/sdks/v3/README.md#listaccounts) - List all accounts
 - [`paymentsV3ListBankAccounts`](docs/sdks/v3/README.md#listbankaccounts) - List all bank accounts
+- [`paymentsV3ListConnectorCapabilities`](docs/sdks/v3/README.md#listconnectorcapabilities) - List the plugin capabilities advertised by every supported provider
 - [`paymentsV3ListConnectorConfigs`](docs/sdks/v3/README.md#listconnectorconfigs) - List all connector configurations
 - [`paymentsV3ListConnectors`](docs/sdks/v3/README.md#listconnectors) - List all connectors
 - [`paymentsV3ListConnectorScheduleInstances`](docs/sdks/v3/README.md#listconnectorscheduleinstances) - List all connector schedule instances
@@ -865,14 +895,30 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`paymentsV3UpdatePaymentMetadata`](docs/sdks/v3/README.md#updatepaymentmetadata) - Update a payment's metadata
 - [`paymentsV3UpdatePoolQuery`](docs/sdks/v3/README.md#updatepoolquery) - Update the query of a pool
 - [`paymentsV3V3UpdateConnectorConfig`](docs/sdks/v3/README.md#v3updateconnectorconfig) - Update the config of a connector
+- [`reconciliationV1AcceptAlert`](docs/sdks/reconciliationv1/README.md#acceptalert) - Accept an alert (accepted_by_business)
+- [`reconciliationV1AckAlert`](docs/sdks/reconciliationv1/README.md#ackalert) - Acknowledge an alert
 - [`reconciliationV1CreatePolicy`](docs/sdks/reconciliationv1/README.md#createpolicy) - Create a policy
+- [`reconciliationV1CreateRule`](docs/sdks/reconciliationv1/README.md#createrule) - Create a rule
 - [`reconciliationV1DeletePolicy`](docs/sdks/reconciliationv1/README.md#deletepolicy) - Delete a policy
+- [`reconciliationV1DeleteRule`](docs/sdks/reconciliationv1/README.md#deleterule) - Delete a rule (cascades to evaluations + alerts + alert events)
+- [`reconciliationV1EvaluateRule`](docs/sdks/reconciliationv1/README.md#evaluaterule) - Evaluate a rule now
+- [`reconciliationV1GetAlert`](docs/sdks/reconciliationv1/README.md#getalert) - Get an alert
+- [`reconciliationV1GetEvaluation`](docs/sdks/reconciliationv1/README.md#getevaluation) - Get an evaluation
 - [`reconciliationV1GetPolicy`](docs/sdks/reconciliationv1/README.md#getpolicy) - Get a policy
 - [`reconciliationV1GetReconciliation`](docs/sdks/reconciliationv1/README.md#getreconciliation) - Get a reconciliation
+- [`reconciliationV1GetRule`](docs/sdks/reconciliationv1/README.md#getrule) - Get a rule
 - [`reconciliationV1GetServerInfoReconciliation`](docs/sdks/reconciliationv1/README.md#getserverinforeconciliation) - Get server info
+- [`reconciliationV1ListAlertEvents`](docs/sdks/reconciliationv1/README.md#listalertevents) - List alert events (append-only timeline)
+- [`reconciliationV1ListAlerts`](docs/sdks/reconciliationv1/README.md#listalerts) - List alerts
+- [`reconciliationV1ListEvaluations`](docs/sdks/reconciliationv1/README.md#listevaluations) - List evaluations
 - [`reconciliationV1ListPolicies`](docs/sdks/reconciliationv1/README.md#listpolicies) - List policies
 - [`reconciliationV1ListReconciliations`](docs/sdks/reconciliationv1/README.md#listreconciliations) - List reconciliations
+- [`reconciliationV1ListRules`](docs/sdks/reconciliationv1/README.md#listrules) - List rules
+- [`reconciliationV1PatchRule`](docs/sdks/reconciliationv1/README.md#patchrule) - Patch a rule (partial update)
 - [`reconciliationV1Reconcile`](docs/sdks/reconciliationv1/README.md#reconcile) - Reconcile using a policy
+- [`reconciliationV1ResolveAlert`](docs/sdks/reconciliationv1/README.md#resolvealert) - Resolve an alert (fixed_by_booking)
+- [`reconciliationV1SnoozeAlert`](docs/sdks/reconciliationv1/README.md#snoozealert) - Snooze an alert's notifications until a future instant
+- [`reconciliationV1UnsnoozeAlert`](docs/sdks/reconciliationv1/README.md#unsnoozealert) - Lift a snooze early
 - [`walletsV1ConfirmHold`](docs/sdks/walletsv1/README.md#confirmhold) - Confirm a hold
 - [`walletsV1CreateBalance`](docs/sdks/walletsv1/README.md#createbalance) - Create a balance
 - [`walletsV1CreateWallet`](docs/sdks/walletsv1/README.md#createwallet) - Create a new wallet
@@ -893,8 +939,13 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`webhooksV1ChangeConfigSecret`](docs/sdks/webhooksv1/README.md#changeconfigsecret) - Change the signing secret of a config
 - [`webhooksV1DeactivateConfig`](docs/sdks/webhooksv1/README.md#deactivateconfig) - Deactivate one config
 - [`webhooksV1DeleteConfig`](docs/sdks/webhooksv1/README.md#deleteconfig) - Delete one config
+- [`webhooksV1GetDeliveries`](docs/sdks/webhooksv1/README.md#getdeliveries) - List webhook deliveries
+- [`webhooksV1GetDelivery`](docs/sdks/webhooksv1/README.md#getdelivery) - Get a webhook delivery
+- [`webhooksV1GetDeliveryAttempts`](docs/sdks/webhooksv1/README.md#getdeliveryattempts) - List attempts for a webhook delivery
 - [`webhooksV1GetManyConfigs`](docs/sdks/webhooksv1/README.md#getmanyconfigs) - Get many configs
 - [`webhooksV1InsertConfig`](docs/sdks/webhooksv1/README.md#insertconfig) - Insert a new config
+- [`webhooksV1ReplayDeliveries`](docs/sdks/webhooksv1/README.md#replaydeliveries) - Replay a page of failed or pending deliveries
+- [`webhooksV1ReplayDelivery`](docs/sdks/webhooksv1/README.md#replaydelivery) - Replay one failed or pending delivery
 - [`webhooksV1TestConfig`](docs/sdks/webhooksv1/README.md#testconfig) - Test one config
 - [`webhooksV1UpdateConfig`](docs/sdks/webhooksv1/README.md#updateconfig) - Update one config
 - ~~[`ledgerV1RunScript`](docs/sdks/ledgerv1/README.md#runscript)~~ - Execute a Numscript :warning: **Deprecated**

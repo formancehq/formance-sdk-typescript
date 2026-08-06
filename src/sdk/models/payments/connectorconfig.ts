@@ -74,16 +74,16 @@ import {
 } from "./wiseconfig.js";
 
 export type ConnectorConfig =
-  | BankingCircleConfig
-  | MangoPayConfig
-  | MoneycorpConfig
-  | ModulrConfig
-  | CurrencyCloudConfig
-  | AtlarConfig
   | AdyenConfig
-  | GenericConfig
-  | StripeConfig
+  | AtlarConfig
+  | BankingCircleConfig
+  | CurrencyCloudConfig
   | DummyPayConfig
+  | GenericConfig
+  | MangoPayConfig
+  | ModulrConfig
+  | MoneycorpConfig
+  | StripeConfig
   | WiseConfig;
 
 /** @internal */
@@ -92,30 +92,30 @@ export const ConnectorConfig$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  BankingCircleConfig$inboundSchema,
-  MangoPayConfig$inboundSchema,
-  MoneycorpConfig$inboundSchema,
-  ModulrConfig$inboundSchema,
-  CurrencyCloudConfig$inboundSchema,
-  AtlarConfig$inboundSchema,
   AdyenConfig$inboundSchema,
-  GenericConfig$inboundSchema,
-  StripeConfig$inboundSchema,
+  AtlarConfig$inboundSchema,
+  BankingCircleConfig$inboundSchema,
+  CurrencyCloudConfig$inboundSchema,
   DummyPayConfig$inboundSchema,
+  GenericConfig$inboundSchema,
+  MangoPayConfig$inboundSchema,
+  ModulrConfig$inboundSchema,
+  MoneycorpConfig$inboundSchema,
+  StripeConfig$inboundSchema,
   WiseConfig$inboundSchema,
 ]);
 /** @internal */
 export type ConnectorConfig$Outbound =
-  | BankingCircleConfig$Outbound
-  | MangoPayConfig$Outbound
-  | MoneycorpConfig$Outbound
-  | ModulrConfig$Outbound
-  | CurrencyCloudConfig$Outbound
-  | AtlarConfig$Outbound
   | AdyenConfig$Outbound
-  | GenericConfig$Outbound
-  | StripeConfig$Outbound
+  | AtlarConfig$Outbound
+  | BankingCircleConfig$Outbound
+  | CurrencyCloudConfig$Outbound
   | DummyPayConfig$Outbound
+  | GenericConfig$Outbound
+  | MangoPayConfig$Outbound
+  | ModulrConfig$Outbound
+  | MoneycorpConfig$Outbound
+  | StripeConfig$Outbound
   | WiseConfig$Outbound;
 
 /** @internal */
@@ -124,16 +124,16 @@ export const ConnectorConfig$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   ConnectorConfig
 > = z.union([
-  BankingCircleConfig$outboundSchema,
-  MangoPayConfig$outboundSchema,
-  MoneycorpConfig$outboundSchema,
-  ModulrConfig$outboundSchema,
-  CurrencyCloudConfig$outboundSchema,
-  AtlarConfig$outboundSchema,
   AdyenConfig$outboundSchema,
-  GenericConfig$outboundSchema,
-  StripeConfig$outboundSchema,
+  AtlarConfig$outboundSchema,
+  BankingCircleConfig$outboundSchema,
+  CurrencyCloudConfig$outboundSchema,
   DummyPayConfig$outboundSchema,
+  GenericConfig$outboundSchema,
+  MangoPayConfig$outboundSchema,
+  ModulrConfig$outboundSchema,
+  MoneycorpConfig$outboundSchema,
+  StripeConfig$outboundSchema,
   WiseConfig$outboundSchema,
 ]);
 

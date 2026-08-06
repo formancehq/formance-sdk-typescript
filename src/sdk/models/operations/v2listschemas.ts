@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
@@ -12,17 +13,25 @@ import * as ledger from "../ledger/index.js";
 /**
  * The sort order
  */
-export enum V2ListSchemasOrder {
-  Asc = "asc",
-  Desc = "desc",
-}
+export const V2ListSchemasOrder = {
+  Asc: "asc",
+  Desc: "desc",
+} as const;
+/**
+ * The sort order
+ */
+export type V2ListSchemasOrder = ClosedEnum<typeof V2ListSchemasOrder>;
 
 /**
  * The field to sort by
  */
-export enum Sort {
-  CreatedAt = "created_at",
-}
+export const Sort = {
+  CreatedAt: "created_at",
+} as const;
+/**
+ * The field to sort by
+ */
+export type Sort = ClosedEnum<typeof Sort>;
 
 export type V2ListSchemasRequest = {
   /**
@@ -93,9 +102,9 @@ export const V2ListSchemasRequest$outboundSchema: z.ZodType<
 > = z.object({
   cursor: z.string().optional(),
   ledger: z.string(),
-  order: V2ListSchemasOrder$outboundSchema.default(V2ListSchemasOrder.Desc),
+  order: V2ListSchemasOrder$outboundSchema.default("desc"),
   pageSize: z.number().int().default(15),
-  sort: Sort$outboundSchema.default(Sort.CreatedAt),
+  sort: Sort$outboundSchema.default("created_at"),
 });
 
 export function v2ListSchemasRequestToJSON(

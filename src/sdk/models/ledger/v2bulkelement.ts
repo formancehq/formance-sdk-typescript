@@ -25,17 +25,17 @@ import {
 } from "./v2bulkelementreverttransaction.js";
 
 export type V2BulkElement =
-  | V2BulkElementCreateTransaction
   | V2BulkElementAddMetadata
-  | V2BulkElementRevertTransaction
-  | V2BulkElementDeleteMetadata;
+  | V2BulkElementCreateTransaction
+  | V2BulkElementDeleteMetadata
+  | V2BulkElementRevertTransaction;
 
 /** @internal */
 export type V2BulkElement$Outbound =
-  | V2BulkElementCreateTransaction$Outbound
   | V2BulkElementAddMetadata$Outbound
-  | V2BulkElementRevertTransaction$Outbound
-  | V2BulkElementDeleteMetadata$Outbound;
+  | V2BulkElementCreateTransaction$Outbound
+  | V2BulkElementDeleteMetadata$Outbound
+  | V2BulkElementRevertTransaction$Outbound;
 
 /** @internal */
 export const V2BulkElement$outboundSchema: z.ZodType<
@@ -43,10 +43,10 @@ export const V2BulkElement$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElement
 > = z.union([
-  V2BulkElementCreateTransaction$outboundSchema,
   V2BulkElementAddMetadata$outboundSchema,
-  V2BulkElementRevertTransaction$outboundSchema,
+  V2BulkElementCreateTransaction$outboundSchema,
   V2BulkElementDeleteMetadata$outboundSchema,
+  V2BulkElementRevertTransaction$outboundSchema,
 ]);
 
 export function v2BulkElementToJSON(v2BulkElement: V2BulkElement): string {

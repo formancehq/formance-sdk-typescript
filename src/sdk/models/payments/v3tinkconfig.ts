@@ -17,7 +17,7 @@ export type V3TinkConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Tink";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3TinkConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Tink"),
+  provider: z.literal("Tink"),
 });
 /** @internal */
 export type V3TinkConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3TinkConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Tink";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3TinkConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Tink"),
+  provider: z.literal("Tink"),
 });
 
 export function v3TinkConfigToJSON(v3TinkConfig: V3TinkConfig): string {

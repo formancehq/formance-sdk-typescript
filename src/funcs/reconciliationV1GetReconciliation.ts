@@ -38,7 +38,7 @@ export function reconciliationV1GetReconciliation(
 ): APIPromise<
   Result<
     operations.GetReconciliationResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -64,7 +64,7 @@ async function $do(
   [
     Result<
       operations.GetReconciliationResponse,
-      | reconciliation.ErrorResponse
+      | reconciliation.ErrorsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -158,7 +158,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetReconciliationResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -171,7 +171,7 @@ async function $do(
     M.json(200, operations.GetReconciliationResponse$inboundSchema, {
       key: "ReconciliationResponse",
     }),
-    M.jsonErr("default", reconciliation.ErrorResponse$inboundSchema),
+    M.jsonErr("default", reconciliation.ErrorsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

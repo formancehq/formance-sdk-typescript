@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Log, V2Log$inboundSchema } from "./v2log.js";
@@ -16,9 +17,12 @@ export type V2LogsCursorResponseCursor = {
   previous?: string | undefined;
 };
 
-export enum V2LogsCursorResponseResource {
-  Logs = "logs",
-}
+export const V2LogsCursorResponseResource = {
+  Logs: "logs",
+} as const;
+export type V2LogsCursorResponseResource = ClosedEnum<
+  typeof V2LogsCursorResponseResource
+>;
 
 export type V2LogsCursorResponse = {
   cursor: V2LogsCursorResponseCursor;

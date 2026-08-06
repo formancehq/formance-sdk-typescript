@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3CreatePaymentRequest, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3CreatePaymentRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3CreatePaymentRequest = {
   amount: 39658n,
@@ -13,7 +13,7 @@ let value: V3CreatePaymentRequest = {
   initialAmount: 711680n,
   reference: "<value>",
   scheme: "<value>",
-  type: V3PaymentTypeEnum.Payout,
+  type: "PAYOUT",
 };
 ```
 

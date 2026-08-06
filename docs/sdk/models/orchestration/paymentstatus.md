@@ -5,16 +5,11 @@
 ```typescript
 import { PaymentStatus } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: PaymentStatus = PaymentStatus.Failed;
+let value: PaymentStatus = "FAILED";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Pending`    | PENDING      |
-| `Active`     | ACTIVE       |
-| `Terminated` | TERMINATED   |
-| `Failed`     | FAILED       |
-| `Succeeded`  | SUCCEEDED    |
-| `Cancelled`  | CANCELLED    |
+```typescript
+"PENDING" | "ACTIVE" | "TERMINATED" | "FAILED" | "SUCCEEDED" | "CANCELLED"
+```
