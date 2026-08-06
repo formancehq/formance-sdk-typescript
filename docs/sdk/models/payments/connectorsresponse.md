@@ -5,14 +5,14 @@ OK
 ## Example Usage
 
 ```typescript
-import { Connector, ConnectorsResponse } from "@formance/formance-sdk/sdk/models/payments";
+import { ConnectorsResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ConnectorsResponse = {
   data: [
     {
       connectorID: "<id>",
       name: "<value>",
-      provider: Connector.Wise,
+      provider: "WISE",
     },
   ],
 };

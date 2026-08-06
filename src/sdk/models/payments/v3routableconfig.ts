@@ -17,7 +17,7 @@ export type V3RoutableConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Routable";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3RoutableConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Routable"),
+  provider: z.literal("Routable"),
 });
 /** @internal */
 export type V3RoutableConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3RoutableConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Routable";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3RoutableConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Routable"),
+  provider: z.literal("Routable"),
 });
 
 export function v3RoutableConfigToJSON(

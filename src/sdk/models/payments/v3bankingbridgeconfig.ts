@@ -18,7 +18,7 @@ export type V3BankingbridgeConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Bankingbridge";
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const V3BankingbridgeConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bankingbridge"),
+  provider: z.literal("Bankingbridge"),
 });
 /** @internal */
 export type V3BankingbridgeConfig$Outbound = {
@@ -45,7 +45,7 @@ export type V3BankingbridgeConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Bankingbridge";
 };
 
 /** @internal */
@@ -61,7 +61,7 @@ export const V3BankingbridgeConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bankingbridge"),
+  provider: z.literal("Bankingbridge"),
 });
 
 export function v3BankingbridgeConfigToJSON(

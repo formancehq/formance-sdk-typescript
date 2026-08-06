@@ -7,14 +7,16 @@ import { V3GetConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: V3GetConnectorConfigResponse = {
   data: {
-    authEndpoint: "<value>",
     clientID: "<id>",
     clientSecret: "<value>",
+    configurationToken: "<value>",
+    domain: "any-blossom.biz",
     endpoint: "<value>",
+    maxConnectionsPerLink: 891350,
     name: "<value>",
     pageSize: 25,
     pollingPeriod: "30m",
-    provider: "Bankingbridge",
+    provider: "Powens",
   },
 };
 ```

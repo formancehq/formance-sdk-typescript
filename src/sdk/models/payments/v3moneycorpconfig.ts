@@ -17,7 +17,7 @@ export type V3MoneycorpConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Moneycorp";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3MoneycorpConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Moneycorp"),
+  provider: z.literal("Moneycorp"),
 });
 /** @internal */
 export type V3MoneycorpConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3MoneycorpConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Moneycorp";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3MoneycorpConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Moneycorp"),
+  provider: z.literal("Moneycorp"),
 });
 
 export function v3MoneycorpConfigToJSON(

@@ -5,19 +5,11 @@
 ```typescript
 import { ErrorsEnum } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: ErrorsEnum = ErrorsEnum.InsufficientFund;
+let value: ErrorsEnum = "INSUFFICIENT_FUND";
 ```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `Internal`          | INTERNAL            |
-| `InsufficientFund`  | INSUFFICIENT_FUND   |
-| `Validation`        | VALIDATION          |
-| `Conflict`          | CONFLICT            |
-| `NoScript`          | NO_SCRIPT           |
-| `CompilationFailed` | COMPILATION_FAILED  |
-| `MetadataOverride`  | METADATA_OVERRIDE   |
-| `NotFound`          | NOT_FOUND           |
-| `Timeout`           | TIMEOUT             |
+```typescript
+"INTERNAL" | "INSUFFICIENT_FUND" | "VALIDATION" | "CONFLICT" | "NO_SCRIPT" | "COMPILATION_FAILED" | "METADATA_OVERRIDE" | "NOT_FOUND" | "TIMEOUT"
+```

@@ -5,14 +5,11 @@
 ```typescript
 import { V2PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: V2PaymentType = V2PaymentType.Payout;
+let value: V2PaymentType = "PAYOUT";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `PayIn`    | PAY-IN     |
-| `Payout`   | PAYOUT     |
-| `Transfer` | TRANSFER   |
-| `Other`    | OTHER      |
+```typescript
+"PAY-IN" | "PAYOUT" | "TRANSFER" | "OTHER"
+```

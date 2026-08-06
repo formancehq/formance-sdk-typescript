@@ -19,9 +19,7 @@ let value: V2InsertSchemaRequest = {
     queries: {
       "key": {
         params: {
-          cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
-          pageSize: 100,
-          sort: "id:desc",
+          resource: "transactions",
         },
       },
     },

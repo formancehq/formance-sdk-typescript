@@ -5,15 +5,11 @@
 ```typescript
 import { TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: TaskStatus = TaskStatus.Active;
+let value: TaskStatus = "ACTIVE";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Pending`    | PENDING      |
-| `Active`     | ACTIVE       |
-| `Stopped`    | STOPPED      |
-| `Terminated` | TERMINATED   |
-| `Failed`     | FAILED       |
+```typescript
+"PENDING" | "ACTIVE" | "STOPPED" | "TERMINATED" | "FAILED"
+```

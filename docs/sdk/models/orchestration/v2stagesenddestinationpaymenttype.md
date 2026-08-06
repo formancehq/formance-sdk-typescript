@@ -10,13 +10,11 @@ Type of transfer initiation:
 ```typescript
 import { V2StageSendDestinationPaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: V2StageSendDestinationPaymentType =
-  V2StageSendDestinationPaymentType.Payout;
+let value: V2StageSendDestinationPaymentType = "PAYOUT";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Transfer` | TRANSFER   |
-| `Payout`   | PAYOUT     |
+```typescript
+"TRANSFER" | "PAYOUT"
+```

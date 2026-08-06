@@ -4,13 +4,15 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export enum MigrationInfoState {
-  ToDo = "TO DO",
-  Done = "DONE",
-}
+export const MigrationInfoState = {
+  ToDo: "TO DO",
+  Done: "DONE",
+} as const;
+export type MigrationInfoState = ClosedEnum<typeof MigrationInfoState>;
 
 export type MigrationInfo = {
   date?: Date | undefined;

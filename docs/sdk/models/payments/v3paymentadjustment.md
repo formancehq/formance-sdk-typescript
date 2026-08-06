@@ -3,14 +3,16 @@
 ## Example Usage
 
 ```typescript
-import { V3PaymentAdjustment, V3PaymentStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3PaymentAdjustment } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentAdjustment = {
   createdAt: new Date("2025-08-08T08:33:25.241Z"),
   id: "<id>",
-  raw: {},
+  raw: {
+    "key": "<value>",
+  },
   reference: "<value>",
-  status: V3PaymentStatusEnum.Refunded,
+  status: "REFUNDED_FAILURE",
 };
 ```
 
@@ -23,6 +25,6 @@ let value: V3PaymentAdjustment = {
 | `createdAt`                                                                                   | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `raw`                                                                                         | [payments.V3PaymentAdjustmentRaw](../../../sdk/models/payments/v3paymentadjustmentraw.md)     | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `raw`                                                                                         | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `status`                                                                                      | [payments.V3PaymentStatusEnum](../../../sdk/models/payments/v3paymentstatusenum.md)           | :heavy_check_mark:                                                                            | N/A                                                                                           |

@@ -9,7 +9,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LedgerAccountSubject = {
   identifier: string;
-  type: string;
+  type: "ACCOUNT";
 };
 
 /** @internal */
@@ -19,7 +19,7 @@ export const LedgerAccountSubject$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   identifier: z.string(),
-  type: z.string(),
+  type: z.literal("ACCOUNT"),
 });
 
 export function ledgerAccountSubjectFromJSON(

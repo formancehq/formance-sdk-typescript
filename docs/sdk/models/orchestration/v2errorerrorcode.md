@@ -5,13 +5,11 @@
 ```typescript
 import { V2ErrorErrorCode } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: V2ErrorErrorCode = V2ErrorErrorCode.Validation;
+let value: V2ErrorErrorCode = "VALIDATION";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Validation` | VALIDATION   |
-| `NotFound`   | NOT_FOUND    |
-| `Internal`   | INTERNAL     |
+```typescript
+"VALIDATION" | "NOT_FOUND" | "INTERNAL"
+```

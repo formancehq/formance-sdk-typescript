@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3ConversionsCursorResponseCursor, V3ConversionStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3ConversionsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3ConversionsCursorResponseCursor = {
   data: [
@@ -16,7 +16,7 @@ let value: V3ConversionsCursorResponseCursor = {
       reference: "<value>",
       sourceAmount: 410282n,
       sourceAsset: "<value>",
-      status: V3ConversionStatusEnum.Failed,
+      status: "FAILED",
       updatedAt: new Date("2024-05-19T04:15:04.336Z"),
     },
   ],

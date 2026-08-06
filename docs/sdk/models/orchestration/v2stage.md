@@ -15,7 +15,7 @@ const value: orchestration.V2StageSend = {
     },
     payment: {
       psp: "stripe",
-      type: V2StageSendDestinationPaymentType.Payout,
+      type: "PAYOUT",
     },
   },
   source: {

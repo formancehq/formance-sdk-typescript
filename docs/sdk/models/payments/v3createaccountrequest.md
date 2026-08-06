@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { V3AccountTypeEnum, V3CreateAccountRequest } from "@formance/formance-sdk/sdk/models/payments";
+import { V3CreateAccountRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3CreateAccountRequest = {
   accountName: "<value>",
   connectorID: "<value>",
   createdAt: new Date("2026-01-20T05:59:45.636Z"),
   reference: "<value>",
-  type: V3AccountTypeEnum.Internal,
+  type: "INTERNAL",
 };
 ```
 

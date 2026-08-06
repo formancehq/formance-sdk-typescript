@@ -5,13 +5,11 @@
 ```typescript
 import { ErrorErrorCode } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: ErrorErrorCode = ErrorErrorCode.NotFound;
+let value: ErrorErrorCode = "NOT_FOUND";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Validation` | VALIDATION   |
-| `NotFound`   | NOT_FOUND    |
-| `Internal`   | INTERNAL     |
+```typescript
+"VALIDATION" | "NOT_FOUND" | "INTERNAL"
+```

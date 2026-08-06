@@ -3,13 +3,15 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 import { SDKBaseError } from "../errors/sdkbaseerror.js";
 
-export enum V2ErrorErrorCode {
-  Validation = "VALIDATION",
-  NotFound = "NOT_FOUND",
-  Internal = "INTERNAL",
-}
+export const V2ErrorErrorCode = {
+  Validation: "VALIDATION",
+  NotFound: "NOT_FOUND",
+  Internal: "INTERNAL",
+} as const;
+export type V2ErrorErrorCode = ClosedEnum<typeof V2ErrorErrorCode>;
 
 /**
  * General error

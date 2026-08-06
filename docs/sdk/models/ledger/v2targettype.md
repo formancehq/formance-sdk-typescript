@@ -5,12 +5,11 @@
 ```typescript
 import { V2TargetType } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2TargetType = V2TargetType.Account;
+let value: V2TargetType = "ACCOUNT";
 ```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Transaction` | TRANSACTION   |
-| `Account`     | ACCOUNT       |
+```typescript
+"TRANSACTION" | "ACCOUNT"
+```

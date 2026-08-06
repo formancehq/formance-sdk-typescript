@@ -3,16 +3,18 @@
 ## Example Usage
 
 ```typescript
-import { V2BulkResponse, V2ErrorsEnum } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2BulkResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2BulkResponse = {
   data: [
     {
+      errorCode: "<value>",
+      errorDescription: "<value>",
       logID: 416874,
-      responseType: "<value>",
+      responseType: "ERROR",
     },
   ],
-  errorCode: V2ErrorsEnum.Validation,
+  errorCode: "VALIDATION",
   errorMessage: "[VALIDATION] invalid 'cursor' query param",
 };
 ```

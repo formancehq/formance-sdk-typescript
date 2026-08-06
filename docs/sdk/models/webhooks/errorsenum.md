@@ -5,13 +5,11 @@
 ```typescript
 import { ErrorsEnum } from "@formance/formance-sdk/sdk/models/webhooks";
 
-let value: ErrorsEnum = ErrorsEnum.Validation;
+let value: ErrorsEnum = "VALIDATION";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Internal`   | INTERNAL     |
-| `Validation` | VALIDATION   |
-| `NotFound`   | NOT_FOUND    |
+```typescript
+"INTERNAL" | "VALIDATION" | "NOT_FOUND" | "CONFLICT"
+```

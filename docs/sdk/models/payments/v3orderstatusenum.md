@@ -15,18 +15,11 @@ Lifecycle of an order on the exchange.
 ```typescript
 import { V3OrderStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3OrderStatusEnum = V3OrderStatusEnum.Failed;
+let value: V3OrderStatusEnum = "FAILED";
 ```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `Unknown`         | UNKNOWN           |
-| `Pending`         | PENDING           |
-| `Open`            | OPEN              |
-| `PartiallyFilled` | PARTIALLY_FILLED  |
-| `Filled`          | FILLED            |
-| `Cancelled`       | CANCELLED         |
-| `Failed`          | FAILED            |
-| `Expired`         | EXPIRED           |
+```typescript
+"UNKNOWN" | "PENDING" | "OPEN" | "PARTIALLY_FILLED" | "FILLED" | "CANCELLED" | "FAILED" | "EXPIRED"
+```

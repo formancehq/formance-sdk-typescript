@@ -5,12 +5,12 @@ Payload for DELETE_METADATA log entries. Contains the target entity and the meta
 ## Example Usage
 
 ```typescript
-import { V2LogDataDeleteMetadata, V2LogDataDeleteMetadataTargetType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2LogDataDeleteMetadata } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2LogDataDeleteMetadata = {
   key: "temporary_flag",
   targetId: "users:001",
-  targetType: V2LogDataDeleteMetadataTargetType.Account,
+  targetType: "ACCOUNT",
 };
 ```
 

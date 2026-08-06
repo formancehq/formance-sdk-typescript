@@ -12,11 +12,6 @@ import {
 } from "./v3orderstatusenum.js";
 
 /**
- * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
- */
-export type V3OrderAdjustmentRaw = {};
-
-/**
  * Immutable snapshot of an order's state at a single observation.
  *
  * @remarks
@@ -50,7 +45,7 @@ export type V3OrderAdjustment = {
   /**
    * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.
    */
-  raw?: V3OrderAdjustmentRaw | undefined;
+  raw?: { [k: string]: any } | undefined;
   /**
    * PSP reference the adjustment belongs to (equal to the parent order's `reference`).
    */
@@ -71,23 +66,6 @@ export type V3OrderAdjustment = {
 };
 
 /** @internal */
-export const V3OrderAdjustmentRaw$inboundSchema: z.ZodType<
-  V3OrderAdjustmentRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function v3OrderAdjustmentRawFromJSON(
-  jsonString: string,
-): SafeParseResult<V3OrderAdjustmentRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3OrderAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3OrderAdjustmentRaw' from JSON`,
-  );
-}
-
-/** @internal */
 export const V3OrderAdjustment$inboundSchema: z.ZodType<
   V3OrderAdjustment,
   z.ZodTypeDef,
@@ -100,7 +78,7 @@ export const V3OrderAdjustment$inboundSchema: z.ZodType<
   feeAsset: z.nullable(z.string()).optional(),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  raw: z.lazy(() => V3OrderAdjustmentRaw$inboundSchema).optional(),
+  raw: z.record(z.any()).optional(),
   reference: z.string(),
   status: V3OrderStatusEnum$inboundSchema,
 });

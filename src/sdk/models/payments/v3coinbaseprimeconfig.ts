@@ -18,7 +18,7 @@ export type V3CoinbaseprimeConfig = {
   passphrase: string;
   pollingPeriod?: string | undefined;
   portfolioId: string;
-  provider?: string | undefined;
+  provider: "Coinbaseprime";
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const V3CoinbaseprimeConfig$inboundSchema: z.ZodType<
   passphrase: z.string(),
   pollingPeriod: z.string().default("30m"),
   portfolioId: z.string(),
-  provider: z.string().default("Coinbaseprime"),
+  provider: z.literal("Coinbaseprime"),
 });
 /** @internal */
 export type V3CoinbaseprimeConfig$Outbound = {
@@ -45,7 +45,7 @@ export type V3CoinbaseprimeConfig$Outbound = {
   passphrase: string;
   pollingPeriod: string;
   portfolioId: string;
-  provider: string;
+  provider: "Coinbaseprime";
 };
 
 /** @internal */
@@ -61,7 +61,7 @@ export const V3CoinbaseprimeConfig$outboundSchema: z.ZodType<
   passphrase: z.string(),
   pollingPeriod: z.string().default("30m"),
   portfolioId: z.string(),
-  provider: z.string().default("Coinbaseprime"),
+  provider: z.literal("Coinbaseprime"),
 });
 
 export function v3CoinbaseprimeConfigToJSON(

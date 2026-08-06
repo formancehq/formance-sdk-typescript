@@ -3,11 +3,13 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V2TargetType {
-  Transaction = "TRANSACTION",
-  Account = "ACCOUNT",
-}
+export const V2TargetType = {
+  Transaction: "TRANSACTION",
+  Account: "ACCOUNT",
+} as const;
+export type V2TargetType = ClosedEnum<typeof V2TargetType>;
 
 /** @internal */
 export const V2TargetType$outboundSchema: z.ZodNativeEnum<typeof V2TargetType> =

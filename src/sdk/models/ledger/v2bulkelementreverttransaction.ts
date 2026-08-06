@@ -12,7 +12,7 @@ export type V2BulkElementRevertTransactionData = {
 };
 
 export type V2BulkElementRevertTransaction = {
-  action: string;
+  action: "REVERT_TRANSACTION";
   data?: V2BulkElementRevertTransactionData | undefined;
   ik?: string | undefined;
 };
@@ -49,7 +49,7 @@ export function v2BulkElementRevertTransactionDataToJSON(
 
 /** @internal */
 export type V2BulkElementRevertTransaction$Outbound = {
-  action: string;
+  action: "REVERT_TRANSACTION";
   data?: V2BulkElementRevertTransactionData$Outbound | undefined;
   ik?: string | undefined;
 };
@@ -60,7 +60,7 @@ export const V2BulkElementRevertTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementRevertTransaction
 > = z.object({
-  action: z.string(),
+  action: z.literal("REVERT_TRANSACTION"),
   data: z.lazy(() => V2BulkElementRevertTransactionData$outboundSchema)
     .optional(),
   ik: z.string().optional(),

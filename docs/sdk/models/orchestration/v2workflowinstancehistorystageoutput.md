@@ -3,12 +3,7 @@
 ## Example Usage
 
 ```typescript
-import {
-  V2PaymentScheme,
-  V2PaymentStatus,
-  V2PaymentType,
-  V2WorkflowInstanceHistoryStageOutput,
-} from "@formance/formance-sdk/sdk/models/orchestration";
+import { V2WorkflowInstanceHistoryStageOutput } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2WorkflowInstanceHistoryStageOutput = {
   createTransaction: {
@@ -68,10 +63,10 @@ let value: V2WorkflowInstanceHistoryStageOutput = {
       metadata: {},
       raw: {},
       reference: "<value>",
-      scheme: V2PaymentScheme.AchDebit,
+      scheme: "ach debit",
       sourceAccountID: "<id>",
-      status: V2PaymentStatus.Succeeded,
-      type: V2PaymentType.PayIn,
+      status: "SUCCEEDED",
+      type: "PAY-IN",
     },
   },
   listWallets: {

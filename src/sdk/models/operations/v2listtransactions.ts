@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
@@ -12,9 +13,15 @@ import * as ledger from "../ledger/index.js";
 /**
  * Deprecated: Use sort param
  */
-export enum V2ListTransactionsOrder {
-  Effective = "effective",
-}
+export const V2ListTransactionsOrder = {
+  Effective: "effective",
+} as const;
+/**
+ * Deprecated: Use sort param
+ */
+export type V2ListTransactionsOrder = ClosedEnum<
+  typeof V2ListTransactionsOrder
+>;
 
 export type V2ListTransactionsRequest = {
   /**

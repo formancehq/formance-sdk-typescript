@@ -3,14 +3,16 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 import { SDKBaseError } from "../errors/sdkbaseerror.js";
 
-export enum ErrorCode {
-  Validation = "VALIDATION",
-  InternalError = "INTERNAL_ERROR",
-  InsufficientFund = "INSUFFICIENT_FUND",
-  HoldClosed = "HOLD_CLOSED",
-}
+export const ErrorCode = {
+  Validation: "VALIDATION",
+  InternalError: "INTERNAL_ERROR",
+  InsufficientFund: "INSUFFICIENT_FUND",
+  HoldClosed: "HOLD_CLOSED",
+} as const;
+export type ErrorCode = ClosedEnum<typeof ErrorCode>;
 
 export type ErrorResponseData = {
   errorCode: ErrorCode;

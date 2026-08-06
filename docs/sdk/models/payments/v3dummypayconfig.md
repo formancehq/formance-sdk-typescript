@@ -8,6 +8,7 @@ import { V3DummypayConfig } from "@formance/formance-sdk/sdk/models/payments";
 let value: V3DummypayConfig = {
   directory: "/rescue",
   name: "<value>",
+  provider: "Dummypay",
 };
 ```
 
@@ -20,5 +21,5 @@ let value: V3DummypayConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Dummypay"*                                                            | :heavy_check_mark:                                                      | N/A                                                                     |
 | `updateLinkFlowError`                                                   | *boolean*                                                               | :heavy_minus_sign:                                                      | N/A                                                                     |

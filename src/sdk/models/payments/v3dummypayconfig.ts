@@ -16,7 +16,7 @@ export type V3DummypayConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Dummypay";
   updateLinkFlowError?: boolean | undefined;
 };
 
@@ -31,7 +31,7 @@ export const V3DummypayConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Dummypay"),
+  provider: z.literal("Dummypay"),
   updateLinkFlowError: z.boolean().optional(),
 });
 /** @internal */
@@ -41,7 +41,7 @@ export type V3DummypayConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Dummypay";
   updateLinkFlowError?: boolean | undefined;
 };
 
@@ -56,7 +56,7 @@ export const V3DummypayConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Dummypay"),
+  provider: z.literal("Dummypay"),
   updateLinkFlowError: z.boolean().optional(),
 });
 

@@ -3,11 +3,15 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum TransferInitiationRequestType {
-  Transfer = "TRANSFER",
-  Payout = "PAYOUT",
-}
+export const TransferInitiationRequestType = {
+  Transfer: "TRANSFER",
+  Payout: "PAYOUT",
+} as const;
+export type TransferInitiationRequestType = ClosedEnum<
+  typeof TransferInitiationRequestType
+>;
 
 export type TransferInitiationRequest = {
   amount: bigint;

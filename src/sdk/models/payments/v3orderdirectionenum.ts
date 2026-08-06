@@ -3,15 +3,20 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
 /**
  * Whether an order buys or sells the base asset.
  */
-export enum V3OrderDirectionEnum {
-  Unknown = "UNKNOWN",
-  Buy = "BUY",
-  Sell = "SELL",
-}
+export const V3OrderDirectionEnum = {
+  Unknown: "UNKNOWN",
+  Buy: "BUY",
+  Sell: "SELL",
+} as const;
+/**
+ * Whether an order buys or sells the base asset.
+ */
+export type V3OrderDirectionEnum = ClosedEnum<typeof V3OrderDirectionEnum>;
 
 /** @internal */
 export const V3OrderDirectionEnum$inboundSchema: z.ZodNativeEnum<

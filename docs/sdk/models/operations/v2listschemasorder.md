@@ -7,12 +7,11 @@ The sort order
 ```typescript
 import { V2ListSchemasOrder } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListSchemasOrder = V2ListSchemasOrder.Asc;
+let value: V2ListSchemasOrder = "asc";
 ```
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `Asc`  | asc    |
-| `Desc` | desc   |
+```typescript
+"asc" | "desc"
+```

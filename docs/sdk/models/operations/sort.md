@@ -7,11 +7,11 @@ The field to sort by
 ```typescript
 import { Sort } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: Sort = Sort.CreatedAt;
+let value: Sort = "created_at";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `CreatedAt` | created_at  |
+```typescript
+"created_at"
+```

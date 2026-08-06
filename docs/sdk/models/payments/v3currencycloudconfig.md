@@ -10,6 +10,7 @@ let value: V3CurrencycloudConfig = {
   endpoint: "<value>",
   loginID: "<id>",
   name: "<value>",
+  provider: "Currencycloud",
 };
 ```
 
@@ -23,4 +24,4 @@ let value: V3CurrencycloudConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Currencycloud"*                                                       | :heavy_check_mark:                                                      | N/A                                                                     |

@@ -3,15 +3,17 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum PaymentStatus {
-  Pending = "PENDING",
-  Active = "ACTIVE",
-  Terminated = "TERMINATED",
-  Failed = "FAILED",
-  Succeeded = "SUCCEEDED",
-  Cancelled = "CANCELLED",
-}
+export const PaymentStatus = {
+  Pending: "PENDING",
+  Active: "ACTIVE",
+  Terminated: "TERMINATED",
+  Failed: "FAILED",
+  Succeeded: "SUCCEEDED",
+  Cancelled: "CANCELLED",
+} as const;
+export type PaymentStatus = ClosedEnum<typeof PaymentStatus>;
 
 /** @internal */
 export const PaymentStatus$inboundSchema: z.ZodNativeEnum<

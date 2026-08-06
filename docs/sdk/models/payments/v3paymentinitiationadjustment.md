@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { V3PaymentInitiationAdjustment, V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3PaymentInitiationAdjustment } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentInitiationAdjustment = {
   createdAt: new Date("2025-04-10T01:26:00.815Z"),
   id: "<id>",
-  status: V3PaymentInitiationStatusEnum.ReverseProcessing,
+  status: "REVERSE_PROCESSING",
 };
 ```
 

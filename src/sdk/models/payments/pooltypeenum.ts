@@ -3,11 +3,13 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum PoolTypeEnum {
-  Static = "STATIC",
-  Dynamic = "DYNAMIC",
-}
+export const PoolTypeEnum = {
+  Static: "STATIC",
+  Dynamic: "DYNAMIC",
+} as const;
+export type PoolTypeEnum = ClosedEnum<typeof PoolTypeEnum>;
 
 /** @internal */
 export const PoolTypeEnum$inboundSchema: z.ZodNativeEnum<typeof PoolTypeEnum> =

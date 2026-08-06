@@ -5,28 +5,11 @@
 ```typescript
 import { V2PaymentScheme } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: V2PaymentScheme = V2PaymentScheme.AchDebit;
+let value: V2PaymentScheme = "ach debit";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Visa`       | visa         |
-| `Mastercard` | mastercard   |
-| `Amex`       | amex         |
-| `Diners`     | diners       |
-| `Discover`   | discover     |
-| `Jcb`        | jcb          |
-| `Unionpay`   | unionpay     |
-| `SepaDebit`  | sepa debit   |
-| `SepaCredit` | sepa credit  |
-| `Sepa`       | sepa         |
-| `ApplePay`   | apple pay    |
-| `GooglePay`  | google pay   |
-| `A2a`        | a2a          |
-| `AchDebit`   | ach debit    |
-| `Ach`        | ach          |
-| `Rtp`        | rtp          |
-| `Unknown`    | unknown      |
-| `Other`      | other        |
+```typescript
+"visa" | "mastercard" | "amex" | "diners" | "discover" | "jcb" | "unionpay" | "sepa debit" | "sepa credit" | "sepa" | "apple pay" | "google pay" | "a2a" | "ach debit" | "ach" | "rtp" | "unknown" | "other"
+```

@@ -9,6 +9,7 @@ let value: V3FireblocksConfig = {
   apiKey: "<value>",
   name: "<value>",
   privateKey: "<value>",
+  provider: "Fireblocks",
 };
 ```
 
@@ -22,4 +23,4 @@ let value: V3FireblocksConfig = {
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `privateKey`                                                            | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Fireblocks"*                                                          | :heavy_check_mark:                                                      | N/A                                                                     |

@@ -22,7 +22,7 @@ export type StripeConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Stripe";
 };
 
 /** @internal */
@@ -35,7 +35,7 @@ export const StripeConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(100),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Stripe"),
+  provider: z.literal("Stripe"),
 });
 /** @internal */
 export type StripeConfig$Outbound = {
@@ -43,7 +43,7 @@ export type StripeConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Stripe";
 };
 
 /** @internal */
@@ -56,7 +56,7 @@ export const StripeConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(100),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Stripe"),
+  provider: z.literal("Stripe"),
 });
 
 export function stripeConfigToJSON(stripeConfig: StripeConfig): string {

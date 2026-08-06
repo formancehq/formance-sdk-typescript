@@ -22,6 +22,7 @@ import { paymentsV3ForwardPaymentServiceUserToProvider } from "../funcs/payments
 import { paymentsV3GetAccount } from "../funcs/paymentsV3GetAccount.js";
 import { paymentsV3GetAccountBalances } from "../funcs/paymentsV3GetAccountBalances.js";
 import { paymentsV3GetBankAccount } from "../funcs/paymentsV3GetBankAccount.js";
+import { paymentsV3GetConnectorCapabilities } from "../funcs/paymentsV3GetConnectorCapabilities.js";
 import { paymentsV3GetConnectorConfig } from "../funcs/paymentsV3GetConnectorConfig.js";
 import { paymentsV3GetConnectorSchedule } from "../funcs/paymentsV3GetConnectorSchedule.js";
 import { paymentsV3GetConversion } from "../funcs/paymentsV3GetConversion.js";
@@ -38,6 +39,7 @@ import { paymentsV3InitiatePayment } from "../funcs/paymentsV3InitiatePayment.js
 import { paymentsV3InstallConnector } from "../funcs/paymentsV3InstallConnector.js";
 import { paymentsV3ListAccounts } from "../funcs/paymentsV3ListAccounts.js";
 import { paymentsV3ListBankAccounts } from "../funcs/paymentsV3ListBankAccounts.js";
+import { paymentsV3ListConnectorCapabilities } from "../funcs/paymentsV3ListConnectorCapabilities.js";
 import { paymentsV3ListConnectorConfigs } from "../funcs/paymentsV3ListConnectorConfigs.js";
 import { paymentsV3ListConnectors } from "../funcs/paymentsV3ListConnectors.js";
 import { paymentsV3ListConnectorScheduleInstances } from "../funcs/paymentsV3ListConnectorScheduleInstances.js";
@@ -353,6 +355,23 @@ export class V3 extends ClientSDK {
   }
 
   /**
+   * Get the plugin capabilities of an installed connector
+   *
+   * @remarks
+   * Returns the list of plugin capabilities advertised by the provider backing this installed connector (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...). The same values are also inlined on each row of `v3ListConnectors`; prefer that endpoint when listing multiple connectors.
+   */
+  async getConnectorCapabilities(
+    request: operations.V3GetConnectorCapabilitiesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3GetConnectorCapabilitiesResponse> {
+    return unwrapAsync(paymentsV3GetConnectorCapabilities(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get a connector configuration by ID
    */
   async getConnectorConfig(
@@ -595,6 +614,23 @@ export class V3 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V3ListBankAccountsResponse> {
     return unwrapAsync(paymentsV3ListBankAccounts(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List the plugin capabilities advertised by every supported provider
+   *
+   * @remarks
+   * Returns the static map of provider name to the list of plugin capabilities (`FETCH_ACCOUNTS`, `CREATE_TRANSFER`, ...) compiled into this binary. The catalog is immutable for the lifetime of the process and is therefore safe to cache: the response carries a strong ETag and a `Cache-Control: public, max-age=3600, must-revalidate` directive. Stateless consumers (e.g. console) should set `If-None-Match` on subsequent requests to receive a `304 Not Modified`.
+   */
+  async listConnectorCapabilities(
+    request: operations.V3ListConnectorCapabilitiesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V3ListConnectorCapabilitiesResponse> {
+    return unwrapAsync(paymentsV3ListConnectorCapabilities(
       this,
       request,
       options,

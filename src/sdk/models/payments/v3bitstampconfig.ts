@@ -17,7 +17,7 @@ export type V3BitstampConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Bitstamp";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3BitstampConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bitstamp"),
+  provider: z.literal("Bitstamp"),
 });
 /** @internal */
 export type V3BitstampConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3BitstampConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Bitstamp";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3BitstampConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bitstamp"),
+  provider: z.literal("Bitstamp"),
 });
 
 export function v3BitstampConfigToJSON(

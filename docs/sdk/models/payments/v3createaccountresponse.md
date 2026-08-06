@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3AccountTypeEnum, V3CreateAccountResponse } from "@formance/formance-sdk/sdk/models/payments";
+import { V3CreateAccountResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3CreateAccountResponse = {
   data: {
@@ -11,9 +11,13 @@ let value: V3CreateAccountResponse = {
     createdAt: new Date("2026-10-23T12:24:43.460Z"),
     id: "<id>",
     provider: "<value>",
-    raw: {},
+    raw: {
+      "key": "<value>",
+      "key1": "<value>",
+      "key2": "<value>",
+    },
     reference: "<value>",
-    type: V3AccountTypeEnum.External,
+    type: "INTERNAL",
   },
 };
 ```

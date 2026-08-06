@@ -10,6 +10,7 @@ let value: V3BankingcircleConfig = {
   endpoint: "<value>",
   name: "<value>",
   password: "RNvxa5lbotb8LpY",
+  provider: "Bankingcircle",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
   username: "Elmore6",
@@ -26,7 +27,7 @@ let value: V3BankingcircleConfig = {
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `password`                                                              | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Bankingcircle"*                                                       | :heavy_check_mark:                                                      | N/A                                                                     |
 | `userCertificate`                                                       | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | `userCertificateKey`                                                    | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | `username`                                                              | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |

@@ -15,8 +15,6 @@ import {
   V3ConnectorBase$inboundSchema,
 } from "./v3connectorbase.js";
 
-export type V3AccountRaw = {};
-
 export type V3Account = {
   connector?: V3ConnectorBase | undefined;
   connectorID: string;
@@ -26,27 +24,10 @@ export type V3Account = {
   metadata?: { [k: string]: string } | null | undefined;
   name?: string | null | undefined;
   provider: string;
-  raw: V3AccountRaw;
+  raw: { [k: string]: any };
   reference: string;
   type: V3AccountTypeEnum;
 };
-
-/** @internal */
-export const V3AccountRaw$inboundSchema: z.ZodType<
-  V3AccountRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function v3AccountRawFromJSON(
-  jsonString: string,
-): SafeParseResult<V3AccountRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3AccountRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3AccountRaw' from JSON`,
-  );
-}
 
 /** @internal */
 export const V3Account$inboundSchema: z.ZodType<
@@ -62,7 +43,7 @@ export const V3Account$inboundSchema: z.ZodType<
   metadata: z.nullable(z.record(z.string())).optional(),
   name: z.nullable(z.string()).optional(),
   provider: z.string(),
-  raw: z.lazy(() => V3AccountRaw$inboundSchema),
+  raw: z.record(z.any()),
   reference: z.string(),
   type: V3AccountTypeEnum$inboundSchema,
 });

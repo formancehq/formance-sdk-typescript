@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { TaskCurrencyCloud, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskCurrencyCloud } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskCurrencyCloud = {
   connectorID: "<id>",
   createdAt: new Date("2024-03-22T19:21:05.320Z"),
   descriptor: {},
   id: "94e1d644-1360-4a9f-b0c4-90fec3355365",
-  status: TaskStatus.Active,
+  status: "ACTIVE",
   updatedAt: new Date("2026-12-30T14:54:09.236Z"),
 };
 ```

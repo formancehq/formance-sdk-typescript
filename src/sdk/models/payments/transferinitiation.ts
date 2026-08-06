@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -19,10 +20,11 @@ import {
   TransferInitiationStatus$inboundSchema,
 } from "./transferinitiationstatus.js";
 
-export enum TransferInitiationType {
-  Transfer = "TRANSFER",
-  Payout = "PAYOUT",
-}
+export const TransferInitiationType = {
+  Transfer: "TRANSFER",
+  Payout: "PAYOUT",
+} as const;
+export type TransferInitiationType = ClosedEnum<typeof TransferInitiationType>;
 
 export type TransferInitiation = {
   amount: bigint;

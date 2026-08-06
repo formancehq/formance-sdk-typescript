@@ -17,7 +17,7 @@ export type V2BulkElementDeleteMetadataData = {
 };
 
 export type V2BulkElementDeleteMetadata = {
-  action: string;
+  action: "DELETE_METADATA";
   data?: V2BulkElementDeleteMetadataData | undefined;
   ik?: string | undefined;
 };
@@ -52,7 +52,7 @@ export function v2BulkElementDeleteMetadataDataToJSON(
 
 /** @internal */
 export type V2BulkElementDeleteMetadata$Outbound = {
-  action: string;
+  action: "DELETE_METADATA";
   data?: V2BulkElementDeleteMetadataData$Outbound | undefined;
   ik?: string | undefined;
 };
@@ -63,7 +63,7 @@ export const V2BulkElementDeleteMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementDeleteMetadata
 > = z.object({
-  action: z.string(),
+  action: z.literal("DELETE_METADATA"),
   data: z.lazy(() => V2BulkElementDeleteMetadataData$outboundSchema).optional(),
   ik: z.string().optional(),
 });

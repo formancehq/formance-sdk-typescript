@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PaymentRequest, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
+import { PaymentRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PaymentRequest = {
   amount: 100n,
@@ -11,9 +11,9 @@ let value: PaymentRequest = {
   connectorID: "<id>",
   createdAt: new Date("2026-11-06T04:29:01.370Z"),
   reference: "<value>",
-  scheme: PaymentScheme.AchDebit,
-  status: PaymentStatus.DisputeWon,
-  type: PaymentType.PayIn,
+  scheme: "ach debit",
+  status: "DISPUTE_WON",
+  type: "PAY-IN",
 };
 ```
 

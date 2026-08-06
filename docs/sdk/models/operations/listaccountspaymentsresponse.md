@@ -7,7 +7,7 @@ import { ListAccountsPaymentsResponse } from "@formance/formance-sdk/sdk/models/
 
 let value: ListAccountsPaymentsResponse = {
   contentType: "<value>",
-  statusCode: 403179,
+  statusCode: 726303,
 };
 ```
 

@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { AccountResponse, AccountType } from "@formance/formance-sdk/sdk/models/payments";
+import { AccountResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: AccountResponse = {
   data: {
@@ -16,9 +16,13 @@ let value: AccountResponse = {
     defaultCurrency: "<value>",
     id: "<id>",
     metadata: {},
-    raw: {},
+    raw: {
+      "key": "<value>",
+      "key1": "<value>",
+      "key2": "<value>",
+    },
     reference: "<value>",
-    type: AccountType.External,
+    type: "INTERNAL",
   },
 };
 ```

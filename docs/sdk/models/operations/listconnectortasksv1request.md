@@ -4,10 +4,9 @@
 
 ```typescript
 import { ListConnectorTasksV1Request } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ListConnectorTasksV1Request = {
-  connector: Connector.DummyPay,
+  connector: "DUMMY-PAY",
   connectorId: "XXX",
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   pageSize: 100,

@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { PaymentResponse, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
+import { PaymentResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PaymentResponse = {
   data: {
@@ -20,12 +20,15 @@ let value: PaymentResponse = {
     metadata: {
       "key": "<value>",
     },
-    raw: {},
+    raw: {
+      "key": "<value>",
+      "key1": "<value>",
+    },
     reference: "<value>",
-    scheme: PaymentScheme.SepaCredit,
+    scheme: "sepa debit",
     sourceAccountID: "<id>",
-    status: PaymentStatus.Refunded,
-    type: PaymentType.Other,
+    status: "DISPUTE_WON",
+    type: "TRANSFER",
   },
 };
 ```

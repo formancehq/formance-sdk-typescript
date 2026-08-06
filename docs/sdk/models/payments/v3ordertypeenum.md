@@ -10,25 +10,11 @@ Exchange order type. Determines which price fields are meaningful on
 ```typescript
 import { V3OrderTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3OrderTypeEnum = V3OrderTypeEnum.Stop;
+let value: V3OrderTypeEnum = "STOP";
 ```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `Unknown`           | UNKNOWN             |
-| `Market`            | MARKET              |
-| `Limit`             | LIMIT               |
-| `StopLimit`         | STOP_LIMIT          |
-| `Stop`              | STOP                |
-| `Twap`              | TWAP                |
-| `Vwap`              | VWAP                |
-| `Peg`               | PEG                 |
-| `Block`             | BLOCK               |
-| `Rfq`               | RFQ                 |
-| `TrailingStop`      | TRAILING_STOP       |
-| `TrailingStopLimit` | TRAILING_STOP_LIMIT |
-| `TakeProfit`        | TAKE_PROFIT         |
-| `TakeProfitLimit`   | TAKE_PROFIT_LIMIT   |
-| `LimitMaker`        | LIMIT_MAKER         |
+```typescript
+"UNKNOWN" | "MARKET" | "LIMIT" | "STOP_LIMIT" | "STOP" | "TWAP" | "VWAP" | "PEG" | "BLOCK" | "RFQ" | "TRAILING_STOP" | "TRAILING_STOP_LIMIT" | "TAKE_PROFIT" | "TAKE_PROFIT_LIMIT" | "LIMIT_MAKER"
+```

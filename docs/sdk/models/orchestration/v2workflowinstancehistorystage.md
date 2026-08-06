@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V2PaymentScheme, V2PaymentStatus, V2PaymentType, V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/orchestration";
+import { V2WorkflowInstanceHistoryStage } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2WorkflowInstanceHistoryStage = {
   attempt: 282083,
@@ -128,10 +128,10 @@ let value: V2WorkflowInstanceHistoryStage = {
         metadata: {},
         raw: {},
         reference: "<value>",
-        scheme: V2PaymentScheme.AchDebit,
+        scheme: "ach debit",
         sourceAccountID: "<id>",
-        status: V2PaymentStatus.Succeeded,
-        type: V2PaymentType.PayIn,
+        status: "SUCCEEDED",
+        type: "PAY-IN",
       },
     },
     listWallets: {

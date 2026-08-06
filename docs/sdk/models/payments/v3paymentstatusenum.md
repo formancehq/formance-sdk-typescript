@@ -5,27 +5,11 @@
 ```typescript
 import { V3PaymentStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3PaymentStatusEnum = V3PaymentStatusEnum.Authorisation;
+let value: V3PaymentStatusEnum = "AUTHORISATION";
 ```
 
 ## Values
 
-| Name                | Value               |
-| ------------------- | ------------------- |
-| `Unknown`           | UNKNOWN             |
-| `Pending`           | PENDING             |
-| `Succeeded`         | SUCCEEDED           |
-| `Cancelled`         | CANCELLED           |
-| `Failed`            | FAILED              |
-| `Expired`           | EXPIRED             |
-| `Refunded`          | REFUNDED            |
-| `RefundedFailure`   | REFUNDED_FAILURE    |
-| `RefundReversed`    | REFUND_REVERSED     |
-| `Dispute`           | DISPUTE             |
-| `DisputeWon`        | DISPUTE_WON         |
-| `DisputeLost`       | DISPUTE_LOST        |
-| `AmountAdjustement` | AMOUNT_ADJUSTEMENT  |
-| `Authorisation`     | AUTHORISATION       |
-| `Capture`           | CAPTURE             |
-| `CaptureFailed`     | CAPTURE_FAILED      |
-| `Other`             | OTHER               |
+```typescript
+"UNKNOWN" | "PENDING" | "SUCCEEDED" | "CANCELLED" | "FAILED" | "EXPIRED" | "REFUNDED" | "REFUNDED_FAILURE" | "REFUND_REVERSED" | "DISPUTE" | "DISPUTE_WON" | "DISPUTE_LOST" | "AMOUNT_ADJUSTEMENT" | "AUTHORISATION" | "CAPTURE" | "CAPTURE_FAILED" | "OTHER"
+```

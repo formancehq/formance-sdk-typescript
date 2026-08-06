@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V2LogsCursorResponseCursor, V2LogType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2LogsCursorResponseCursor } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2LogsCursorResponseCursor = {
   data: [
@@ -34,7 +34,7 @@ let value: V2LogsCursorResponseCursor = {
       hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
       id: 1234n,
       schemaVersion: "v1.0.0",
-      type: V2LogType.SetMetadata,
+      type: "SET_METADATA",
     },
   ],
   hasMore: false,

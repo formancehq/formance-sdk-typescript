@@ -3,13 +3,7 @@
 ## Example Usage
 
 ```typescript
-import {
-  V3GetOrderResponse,
-  V3OrderDirectionEnum,
-  V3OrderStatusEnum,
-  V3OrderTypeEnum,
-  V3TimeInForceEnum,
-} from "@formance/formance-sdk/sdk/models/payments";
+import { V3GetOrderResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3GetOrderResponse = {
   data: {
@@ -17,14 +11,14 @@ let value: V3GetOrderResponse = {
     connectorID: "<value>",
     createdAt: new Date("2026-10-13T19:35:43.823Z"),
     destinationAsset: "<value>",
-    direction: V3OrderDirectionEnum.Unknown,
+    direction: "UNKNOWN",
     id: "<id>",
     provider: "<value>",
     reference: "<value>",
     sourceAsset: "<value>",
-    status: V3OrderStatusEnum.PartiallyFilled,
-    timeInForce: V3TimeInForceEnum.ImmediateOrCancel,
-    type: V3OrderTypeEnum.Unknown,
+    status: "PARTIALLY_FILLED",
+    timeInForce: "IMMEDIATE_OR_CANCEL",
+    type: "UNKNOWN",
     updatedAt: new Date("2026-10-21T09:19:11.680Z"),
   },
 };

@@ -18,7 +18,7 @@ export type MoneycorpConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Moneycorp";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const MoneycorpConfig$inboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Moneycorp"),
+  provider: z.literal("Moneycorp"),
 });
 /** @internal */
 export type MoneycorpConfig$Outbound = {
@@ -41,7 +41,7 @@ export type MoneycorpConfig$Outbound = {
   endpoint: string;
   name: string;
   pollingPeriod: string;
-  provider: string;
+  provider: "Moneycorp";
 };
 
 /** @internal */
@@ -55,7 +55,7 @@ export const MoneycorpConfig$outboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Moneycorp"),
+  provider: z.literal("Moneycorp"),
 });
 
 export function moneycorpConfigToJSON(

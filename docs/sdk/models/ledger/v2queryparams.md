@@ -9,6 +9,7 @@
 const value: ledger.QueryTemplateAccountParams = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   pageSize: 100,
+  resource: "accounts",
   sort: "id:desc",
 };
 ```
@@ -19,6 +20,7 @@ const value: ledger.QueryTemplateAccountParams = {
 const value: ledger.QueryTemplateTransactionParams = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   pageSize: 100,
+  resource: "transactions",
   sort: "id:desc",
 };
 ```
@@ -29,6 +31,7 @@ const value: ledger.QueryTemplateTransactionParams = {
 const value: ledger.QueryTemplateLogParams = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   pageSize: 100,
+  resource: "logs",
   sort: "id:desc",
 };
 ```
@@ -39,6 +42,7 @@ const value: ledger.QueryTemplateLogParams = {
 const value: ledger.QueryTemplateVolumeParams = {
   cursor: "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ==",
   pageSize: 100,
+  resource: "volumes",
   sort: "id:desc",
 };
 ```

@@ -3,6 +3,15 @@
 
 ## Supported Types
 
+### `ledger.V2BulkElementResultAddMetadata`
+
+```typescript
+const value: ledger.V2BulkElementResultAddMetadata = {
+  logID: 934456,
+  responseType: "ADD_METADATA",
+};
+```
+
 ### `ledger.V2BulkElementResultCreateTransaction`
 
 ```typescript
@@ -82,16 +91,27 @@ const value: ledger.V2BulkElementResultCreateTransaction = {
     timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 778245,
-  responseType: "<value>",
+  responseType: "CREATE_TRANSACTION",
 };
 ```
 
-### `ledger.V2BulkElementResultAddMetadata`
+### `ledger.V2BulkElementResultDeleteMetadata`
 
 ```typescript
-const value: ledger.V2BulkElementResultAddMetadata = {
-  logID: 934456,
-  responseType: "<value>",
+const value: ledger.V2BulkElementResultDeleteMetadata = {
+  logID: 699342,
+  responseType: "DELETE_METADATA",
+};
+```
+
+### `ledger.V2BulkElementResultError`
+
+```typescript
+const value: ledger.V2BulkElementResultError = {
+  errorCode: "<value>",
+  errorDescription: "<value>",
+  logID: 332853,
+  responseType: "ERROR",
 };
 ```
 
@@ -174,27 +194,7 @@ const value: ledger.V2BulkElementResultRevertTransaction = {
     timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 96956,
-  responseType: "<value>",
-};
-```
-
-### `ledger.V2BulkElementResultDeleteMetadata`
-
-```typescript
-const value: ledger.V2BulkElementResultDeleteMetadata = {
-  logID: 699342,
-  responseType: "<value>",
-};
-```
-
-### `ledger.V2BulkElementResultError`
-
-```typescript
-const value: ledger.V2BulkElementResultError = {
-  errorCode: "<value>",
-  errorDescription: "<value>",
-  logID: 332853,
-  responseType: "<value>",
+  responseType: "REVERT_TRANSACTION",
 };
 ```
 

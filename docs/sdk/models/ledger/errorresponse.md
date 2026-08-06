@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { ErrorResponse, ErrorsEnum } from "@formance/formance-sdk/sdk/models/ledger";
+import { ErrorResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: ErrorResponse = {
   details:
     "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-  errorCode: ErrorsEnum.InsufficientFund,
+  errorCode: "INSUFFICIENT_FUND",
   errorMessage: "[INSUFFICIENT_FUND] account had insufficient funds",
 };
 ```

@@ -7,13 +7,11 @@ Whether an order buys or sells the base asset.
 ```typescript
 import { V3OrderDirectionEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3OrderDirectionEnum = V3OrderDirectionEnum.Unknown;
+let value: V3OrderDirectionEnum = "UNKNOWN";
 ```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Unknown` | UNKNOWN   |
-| `Buy`     | BUY       |
-| `Sell`    | SELL      |
+```typescript
+"UNKNOWN" | "BUY" | "SELL"
+```

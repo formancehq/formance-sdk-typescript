@@ -3,26 +3,28 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V3PaymentStatusEnum {
-  Unknown = "UNKNOWN",
-  Pending = "PENDING",
-  Succeeded = "SUCCEEDED",
-  Cancelled = "CANCELLED",
-  Failed = "FAILED",
-  Expired = "EXPIRED",
-  Refunded = "REFUNDED",
-  RefundedFailure = "REFUNDED_FAILURE",
-  RefundReversed = "REFUND_REVERSED",
-  Dispute = "DISPUTE",
-  DisputeWon = "DISPUTE_WON",
-  DisputeLost = "DISPUTE_LOST",
-  AmountAdjustement = "AMOUNT_ADJUSTEMENT",
-  Authorisation = "AUTHORISATION",
-  Capture = "CAPTURE",
-  CaptureFailed = "CAPTURE_FAILED",
-  Other = "OTHER",
-}
+export const V3PaymentStatusEnum = {
+  Unknown: "UNKNOWN",
+  Pending: "PENDING",
+  Succeeded: "SUCCEEDED",
+  Cancelled: "CANCELLED",
+  Failed: "FAILED",
+  Expired: "EXPIRED",
+  Refunded: "REFUNDED",
+  RefundedFailure: "REFUNDED_FAILURE",
+  RefundReversed: "REFUND_REVERSED",
+  Dispute: "DISPUTE",
+  DisputeWon: "DISPUTE_WON",
+  DisputeLost: "DISPUTE_LOST",
+  AmountAdjustement: "AMOUNT_ADJUSTEMENT",
+  Authorisation: "AUTHORISATION",
+  Capture: "CAPTURE",
+  CaptureFailed: "CAPTURE_FAILED",
+  Other: "OTHER",
+} as const;
+export type V3PaymentStatusEnum = ClosedEnum<typeof V3PaymentStatusEnum>;
 
 /** @internal */
 export const V3PaymentStatusEnum$inboundSchema: z.ZodNativeEnum<

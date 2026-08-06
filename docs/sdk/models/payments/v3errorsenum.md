@@ -5,16 +5,11 @@
 ```typescript
 import { V3ErrorsEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3ErrorsEnum = V3ErrorsEnum.Validation;
+let value: V3ErrorsEnum = "VALIDATION";
 ```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `Internal`              | INTERNAL                |
-| `Validation`            | VALIDATION              |
-| `InvalidId`             | INVALID_ID              |
-| `MissingOrInvalidBody`  | MISSING_OR_INVALID_BODY |
-| `Conflict`              | CONFLICT                |
-| `NotFound`              | NOT_FOUND               |
+```typescript
+"INTERNAL" | "VALIDATION" | "INVALID_ID" | "MISSING_OR_INVALID_BODY" | "CONFLICT" | "NOT_FOUND"
+```

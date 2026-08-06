@@ -7,13 +7,11 @@ Type of the target entity
 ```typescript
 import { V2LogDataSetMetadataTargetType } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2LogDataSetMetadataTargetType =
-  V2LogDataSetMetadataTargetType.Account;
+let value: V2LogDataSetMetadataTargetType = "ACCOUNT";
 ```
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `Account`     | ACCOUNT       |
-| `Transaction` | TRANSACTION   |
+```typescript
+"ACCOUNT" | "TRANSACTION"
+```

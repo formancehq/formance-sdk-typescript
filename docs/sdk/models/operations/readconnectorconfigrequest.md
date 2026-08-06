@@ -4,10 +4,9 @@
 
 ```typescript
 import { ReadConnectorConfigRequest } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ReadConnectorConfigRequest = {
-  connector: Connector.Moneycorp,
+  connector: "MONEYCORP",
 };
 ```
 

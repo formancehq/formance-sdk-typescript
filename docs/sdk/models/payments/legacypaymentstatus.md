@@ -5,32 +5,11 @@
 ```typescript
 import { LegacyPaymentStatus } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: LegacyPaymentStatus = LegacyPaymentStatus.Processed;
+let value: LegacyPaymentStatus = "PROCESSED";
 ```
 
 ## Values
 
-| Name                   | Value                  |
-| ---------------------- | ---------------------- |
-| `Pending`              | PENDING                |
-| `Succeeded`            | SUCCEEDED              |
-| `Cancelled`            | CANCELLED              |
-| `Failed`               | FAILED                 |
-| `Expired`              | EXPIRED                |
-| `Refunded`             | REFUNDED               |
-| `RefundedFailure`      | REFUNDED_FAILURE       |
-| `Dispute`              | DISPUTE                |
-| `DisputeWon`           | DISPUTE_WON            |
-| `DisputeLost`          | DISPUTE_LOST           |
-| `Other`                | OTHER                  |
-| `WaitingForValidation` | WAITING_FOR_VALIDATION |
-| `Processing`           | PROCESSING             |
-| `Processed`            | PROCESSED              |
-| `Rejected`             | REJECTED               |
-| `Validated`            | VALIDATED              |
-| `AskRetried`           | ASK_RETRIED            |
-| `AskReversed`          | ASK_REVERSED           |
-| `ReverseProcessing`    | REVERSE_PROCESSING     |
-| `ReverseFailed`        | REVERSE_FAILED         |
-| `PartiallyReversed`    | PARTIALLY_REVERSED     |
-| `Reversed`             | REVERSED               |
+```typescript
+"PENDING" | "SUCCEEDED" | "CANCELLED" | "FAILED" | "EXPIRED" | "REFUNDED" | "REFUNDED_FAILURE" | "DISPUTE" | "DISPUTE_WON" | "DISPUTE_LOST" | "OTHER" | "WAITING_FOR_VALIDATION" | "PROCESSING" | "PROCESSED" | "REJECTED" | "VALIDATED" | "ASK_RETRIED" | "ASK_REVERSED" | "REVERSE_PROCESSING" | "REVERSE_FAILED" | "PARTIALLY_REVERSED" | "REVERSED"
+```

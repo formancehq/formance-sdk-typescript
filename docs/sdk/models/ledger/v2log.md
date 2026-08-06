@@ -8,7 +8,7 @@ The data field structure depends on the log type.
 ## Example Usage
 
 ```typescript
-import { V2Log, V2LogType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2Log } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2Log = {
   data: {
@@ -37,7 +37,7 @@ let value: V2Log = {
   hash: "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
   id: 1234n,
   schemaVersion: "v1.0.0",
-  type: V2LogType.SetMetadata,
+  type: "SET_METADATA",
 };
 ```
 

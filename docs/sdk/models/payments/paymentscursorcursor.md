@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { PaymentScheme, PaymentsCursorCursor, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
+import { PaymentsCursorCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: PaymentsCursorCursor = {
   data: [
@@ -12,25 +12,31 @@ let value: PaymentsCursorCursor = {
         {
           amount: 100n,
           createdAt: new Date("2025-04-17T17:26:19.824Z"),
-          raw: {},
+          raw: {
+            "key": "<value>",
+            "key1": "<value>",
+          },
           reference: "<value>",
-          status: PaymentStatus.RefundedFailure,
+          status: "DISPUTE_WON",
         },
       ],
       amount: 100n,
       asset: "USD",
       connectorID: "<id>",
-      createdAt: new Date("2026-04-29T16:23:53.207Z"),
+      createdAt: new Date("2024-07-13T23:49:47.992Z"),
       destinationAccountID: "<id>",
       id: "XXX",
       initialAmount: 100n,
-      metadata: {},
-      raw: {},
+      metadata: null,
+      raw: {
+        "key": "<value>",
+        "key1": "<value>",
+      },
       reference: "<value>",
-      scheme: PaymentScheme.Dragonpay,
+      scheme: "sepa credit",
       sourceAccountID: "<id>",
-      status: PaymentStatus.Refunded,
-      type: PaymentType.Payout,
+      status: "REFUNDED",
+      type: "PAY-IN",
     },
   ],
   hasMore: false,

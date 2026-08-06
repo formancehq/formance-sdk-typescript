@@ -5,12 +5,11 @@
 ```typescript
 import { LogType } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: LogType = LogType.SetMetadata;
+let value: LogType = "SET_METADATA";
 ```
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `NewTransaction` | NEW_TRANSACTION  |
-| `SetMetadata`    | SET_METADATA     |
+```typescript
+"NEW_TRANSACTION" | "SET_METADATA"
+```

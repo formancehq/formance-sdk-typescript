@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Account, AccountType } from "@formance/formance-sdk/sdk/models/payments";
+import { Account } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: Account = {
   accountName: "<value>",
@@ -15,7 +15,7 @@ let value: Account = {
   metadata: {},
   raw: {},
   reference: "<value>",
-  type: AccountType.Unknown,
+  type: "INTERNAL",
 };
 ```
 
@@ -32,6 +32,6 @@ let value: Account = {
 | `metadata`                                                                                                              | Record<string, *string*>                                                                                                | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
 | `pools`                                                                                                                 | *string*[]                                                                                                              | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
 | `provider`                                                                                                              | *string*                                                                                                                | :heavy_minus_sign:                                                                                                      | N/A                                                                                                                     |
-| `raw`                                                                                                                   | [payments.AccountRaw](../../../sdk/models/payments/accountraw.md)                                                       | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
+| `raw`                                                                                                                   | Record<string, *any*>                                                                                                   | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
 | `reference`                                                                                                             | *string*                                                                                                                | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |
 | `type`                                                                                                                  | [payments.AccountType](../../../sdk/models/payments/accounttype.md)                                                     | :heavy_check_mark:                                                                                                      | N/A                                                                                                                     |

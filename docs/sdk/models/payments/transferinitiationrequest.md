@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TransferInitiationRequest, TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/payments";
+import { TransferInitiationRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TransferInitiationRequest = {
   amount: 715956n,
@@ -13,7 +13,7 @@ let value: TransferInitiationRequest = {
   reference: "XXX",
   scheduledAt: new Date("2025-10-09T15:45:30.526Z"),
   sourceAccountID: "<id>",
-  type: TransferInitiationRequestType.Payout,
+  type: "PAYOUT",
   validated: true,
 };
 ```

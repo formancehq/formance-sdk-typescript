@@ -22,7 +22,7 @@ export type CurrencyCloudConfig = {
    * The frequency at which the connector will fetch transactions
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Currencycloud";
 };
 
 /** @internal */
@@ -36,7 +36,7 @@ export const CurrencyCloudConfig$inboundSchema: z.ZodType<
   loginID: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Currencycloud"),
+  provider: z.literal("Currencycloud"),
 });
 /** @internal */
 export type CurrencyCloudConfig$Outbound = {
@@ -45,7 +45,7 @@ export type CurrencyCloudConfig$Outbound = {
   loginID: string;
   name: string;
   pollingPeriod: string;
-  provider: string;
+  provider: "Currencycloud";
 };
 
 /** @internal */
@@ -59,7 +59,7 @@ export const CurrencyCloudConfig$outboundSchema: z.ZodType<
   loginID: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Currencycloud"),
+  provider: z.literal("Currencycloud"),
 });
 
 export function currencyCloudConfigToJSON(

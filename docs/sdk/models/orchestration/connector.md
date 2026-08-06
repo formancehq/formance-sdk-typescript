@@ -5,18 +5,11 @@
 ```typescript
 import { Connector } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: Connector = Connector.CurrencyCloud;
+let value: Connector = "CURRENCY-CLOUD";
 ```
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `Stripe`        | STRIPE          |
-| `DummyPay`      | DUMMY-PAY       |
-| `Wise`          | WISE            |
-| `Modulr`        | MODULR          |
-| `CurrencyCloud` | CURRENCY-CLOUD  |
-| `BankingCircle` | BANKING-CIRCLE  |
-| `Mangopay`      | MANGOPAY        |
-| `Moneycorp`     | MONEYCORP       |
+```typescript
+"STRIPE" | "DUMMY-PAY" | "WISE" | "MODULR" | "CURRENCY-CLOUD" | "BANKING-CIRCLE" | "MANGOPAY" | "MONEYCORP"
+```

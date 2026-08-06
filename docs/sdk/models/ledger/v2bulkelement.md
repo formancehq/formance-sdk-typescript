@@ -3,11 +3,19 @@
 
 ## Supported Types
 
+### `ledger.V2BulkElementAddMetadata`
+
+```typescript
+const value: ledger.V2BulkElementAddMetadata = {
+  action: "ADD_METADATA",
+};
+```
+
 ### `ledger.V2BulkElementCreateTransaction`
 
 ```typescript
 const value: ledger.V2BulkElementCreateTransaction = {
-  action: "<value>",
+  action: "CREATE_TRANSACTION",
   data: {
     accountMetadata: {
       "key": {
@@ -41,11 +49,11 @@ const value: ledger.V2BulkElementCreateTransaction = {
 };
 ```
 
-### `ledger.V2BulkElementAddMetadata`
+### `ledger.V2BulkElementDeleteMetadata`
 
 ```typescript
-const value: ledger.V2BulkElementAddMetadata = {
-  action: "<value>",
+const value: ledger.V2BulkElementDeleteMetadata = {
+  action: "DELETE_METADATA",
 };
 ```
 
@@ -53,21 +61,13 @@ const value: ledger.V2BulkElementAddMetadata = {
 
 ```typescript
 const value: ledger.V2BulkElementRevertTransaction = {
-  action: "<value>",
+  action: "REVERT_TRANSACTION",
   data: {
     id: 206224n,
     metadata: {
       "admin": "true",
     },
   },
-};
-```
-
-### `ledger.V2BulkElementDeleteMetadata`
-
-```typescript
-const value: ledger.V2BulkElementDeleteMetadata = {
-  action: "<value>",
 };
 ```
 

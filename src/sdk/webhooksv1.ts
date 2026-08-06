@@ -6,8 +6,13 @@ import { webhooksV1ActivateConfig } from "../funcs/webhooksV1ActivateConfig.js";
 import { webhooksV1ChangeConfigSecret } from "../funcs/webhooksV1ChangeConfigSecret.js";
 import { webhooksV1DeactivateConfig } from "../funcs/webhooksV1DeactivateConfig.js";
 import { webhooksV1DeleteConfig } from "../funcs/webhooksV1DeleteConfig.js";
+import { webhooksV1GetDeliveries } from "../funcs/webhooksV1GetDeliveries.js";
+import { webhooksV1GetDelivery } from "../funcs/webhooksV1GetDelivery.js";
+import { webhooksV1GetDeliveryAttempts } from "../funcs/webhooksV1GetDeliveryAttempts.js";
 import { webhooksV1GetManyConfigs } from "../funcs/webhooksV1GetManyConfigs.js";
 import { webhooksV1InsertConfig } from "../funcs/webhooksV1InsertConfig.js";
+import { webhooksV1ReplayDeliveries } from "../funcs/webhooksV1ReplayDeliveries.js";
+import { webhooksV1ReplayDelivery } from "../funcs/webhooksV1ReplayDelivery.js";
 import { webhooksV1TestConfig } from "../funcs/webhooksV1TestConfig.js";
 import { webhooksV1UpdateConfig } from "../funcs/webhooksV1UpdateConfig.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -88,6 +93,48 @@ export class WebhooksV1 extends ClientSDK {
   }
 
   /**
+   * List webhook deliveries
+   */
+  async getDeliveries(
+    request: operations.GetDeliveriesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetDeliveriesResponse> {
+    return unwrapAsync(webhooksV1GetDeliveries(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Get a webhook delivery
+   */
+  async getDelivery(
+    request: operations.GetDeliveryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetDeliveryResponse> {
+    return unwrapAsync(webhooksV1GetDelivery(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * List attempts for a webhook delivery
+   */
+  async getDeliveryAttempts(
+    request: operations.GetDeliveryAttemptsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetDeliveryAttemptsResponse> {
+    return unwrapAsync(webhooksV1GetDeliveryAttempts(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
    * Get many configs
    *
    * @remarks
@@ -123,6 +170,34 @@ export class WebhooksV1 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.InsertConfigResponse> {
     return unwrapAsync(webhooksV1InsertConfig(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Replay a page of failed or pending deliveries
+   */
+  async replayDeliveries(
+    request: operations.ReplayDeliveriesRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReplayDeliveriesResponse> {
+    return unwrapAsync(webhooksV1ReplayDeliveries(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Replay one failed or pending delivery
+   */
+  async replayDelivery(
+    request: operations.ReplayDeliveryRequest,
+    options?: RequestOptions,
+  ): Promise<operations.ReplayDeliveryResponse> {
+    return unwrapAsync(webhooksV1ReplayDelivery(
       this,
       request,
       options,

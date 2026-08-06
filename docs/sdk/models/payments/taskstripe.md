@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TaskStatus, TaskStripe } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskStripe } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskStripe = {
   connectorID: "<id>",
@@ -13,7 +13,7 @@ let value: TaskStripe = {
     name: "<value>",
   },
   id: "d7bbcd3f-23c2-471c-b974-71bba572df56",
-  status: TaskStatus.Terminated,
+  status: "TERMINATED",
   updatedAt: new Date("2026-08-06T15:33:18.930Z"),
 };
 ```

@@ -3,13 +3,15 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V2QueryResource {
-  Transactions = "transactions",
-  Accounts = "accounts",
-  Logs = "logs",
-  Volumes = "volumes",
-}
+export const V2QueryResource = {
+  Transactions: "transactions",
+  Accounts: "accounts",
+  Logs: "logs",
+  Volumes: "volumes",
+} as const;
+export type V2QueryResource = ClosedEnum<typeof V2QueryResource>;
 
 /** @internal */
 export const V2QueryResource$inboundSchema: z.ZodNativeEnum<

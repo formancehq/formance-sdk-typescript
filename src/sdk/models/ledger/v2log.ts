@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
@@ -47,13 +48,17 @@ export type Data =
 /**
  * The type of operation this log represents
  */
-export enum V2LogType {
-  NewTransaction = "NEW_TRANSACTION",
-  SetMetadata = "SET_METADATA",
-  RevertedTransaction = "REVERTED_TRANSACTION",
-  DeleteMetadata = "DELETE_METADATA",
-  InsertedSchema = "INSERTED_SCHEMA",
-}
+export const V2LogType = {
+  NewTransaction: "NEW_TRANSACTION",
+  SetMetadata: "SET_METADATA",
+  RevertedTransaction: "REVERTED_TRANSACTION",
+  DeleteMetadata: "DELETE_METADATA",
+  InsertedSchema: "INSERTED_SCHEMA",
+} as const;
+/**
+ * The type of operation this log represents
+ */
+export type V2LogType = ClosedEnum<typeof V2LogType>;
 
 /**
  * Represents an immutable log entry in the ledger. Each log captures an atomic operation

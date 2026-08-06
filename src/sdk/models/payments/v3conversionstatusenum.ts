@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
 /**
  * Lifecycle of a conversion.
@@ -12,12 +13,21 @@ import * as z from "zod/v3";
  * `COMPLETED` — settled, terminal.
  * `FAILED` — rejected or reverted, terminal. See `error`.
  */
-export enum V3ConversionStatusEnum {
-  Unknown = "UNKNOWN",
-  Pending = "PENDING",
-  Completed = "COMPLETED",
-  Failed = "FAILED",
-}
+export const V3ConversionStatusEnum = {
+  Unknown: "UNKNOWN",
+  Pending: "PENDING",
+  Completed: "COMPLETED",
+  Failed: "FAILED",
+} as const;
+/**
+ * Lifecycle of a conversion.
+ *
+ * @remarks
+ * `PENDING` — accepted by the PSP, not yet settled.
+ * `COMPLETED` — settled, terminal.
+ * `FAILED` — rejected or reverted, terminal. See `error`.
+ */
+export type V3ConversionStatusEnum = ClosedEnum<typeof V3ConversionStatusEnum>;
 
 /** @internal */
 export const V3ConversionStatusEnum$inboundSchema: z.ZodNativeEnum<

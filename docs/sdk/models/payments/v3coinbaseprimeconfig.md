@@ -11,6 +11,7 @@ let value: V3CoinbaseprimeConfig = {
   name: "<value>",
   passphrase: "<value>",
   portfolioId: "<id>",
+  provider: "Coinbaseprime",
 };
 ```
 
@@ -25,4 +26,4 @@ let value: V3CoinbaseprimeConfig = {
 | `passphrase`                                                            | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
 | `portfolioId`                                                           | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Coinbaseprime"*                                                       | :heavy_check_mark:                                                      | N/A                                                                     |

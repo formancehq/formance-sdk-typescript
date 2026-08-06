@@ -5,21 +5,11 @@
 ```typescript
 import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: Connector = Connector.Mangopay;
+let value: Connector = "MANGOPAY";
 ```
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `Stripe`        | STRIPE          |
-| `DummyPay`      | DUMMY-PAY       |
-| `Wise`          | WISE            |
-| `Modulr`        | MODULR          |
-| `CurrencyCloud` | CURRENCY-CLOUD  |
-| `BankingCircle` | BANKING-CIRCLE  |
-| `Mangopay`      | MANGOPAY        |
-| `Moneycorp`     | MONEYCORP       |
-| `Atlar`         | ATLAR           |
-| `Adyen`         | ADYEN           |
-| `Generic`       | GENERIC         |
+```typescript
+"STRIPE" | "DUMMY-PAY" | "WISE" | "MODULR" | "CURRENCY-CLOUD" | "BANKING-CIRCLE" | "MANGOPAY" | "MONEYCORP" | "ATLAR" | "ADYEN" | "GENERIC"
+```

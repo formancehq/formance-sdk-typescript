@@ -17,7 +17,7 @@ export type V3CurrencycloudConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Currencycloud";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3CurrencycloudConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Currencycloud"),
+  provider: z.literal("Currencycloud"),
 });
 /** @internal */
 export type V3CurrencycloudConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3CurrencycloudConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Currencycloud";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3CurrencycloudConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Currencycloud"),
+  provider: z.literal("Currencycloud"),
 });
 
 export function v3CurrencycloudConfigToJSON(

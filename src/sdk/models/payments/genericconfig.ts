@@ -17,7 +17,7 @@ export type GenericConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Generic";
 };
 
 /** @internal */
@@ -30,7 +30,7 @@ export const GenericConfig$inboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Generic"),
+  provider: z.literal("Generic"),
 });
 /** @internal */
 export type GenericConfig$Outbound = {
@@ -38,7 +38,7 @@ export type GenericConfig$Outbound = {
   endpoint: string;
   name: string;
   pollingPeriod: string;
-  provider: string;
+  provider: "Generic";
 };
 
 /** @internal */
@@ -51,7 +51,7 @@ export const GenericConfig$outboundSchema: z.ZodType<
   endpoint: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Generic"),
+  provider: z.literal("Generic"),
 });
 
 export function genericConfigToJSON(genericConfig: GenericConfig): string {

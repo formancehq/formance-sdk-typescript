@@ -3,16 +3,20 @@
 ## Example Usage
 
 ```typescript
-import { V3Account, V3AccountTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3Account } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3Account = {
   connectorID: "<value>",
   createdAt: new Date("2025-11-04T02:49:38.518Z"),
   id: "<id>",
   provider: "<value>",
-  raw: {},
+  raw: {
+    "key": "<value>",
+    "key1": "<value>",
+    "key2": "<value>",
+  },
   reference: "<value>",
-  type: V3AccountTypeEnum.External,
+  type: "EXTERNAL",
 };
 ```
 
@@ -28,6 +32,6 @@ let value: V3Account = {
 | `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `name`                                                                                        | *string*                                                                                      | :heavy_minus_sign:                                                                            | N/A                                                                                           |
 | `provider`                                                                                    | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
-| `raw`                                                                                         | [payments.V3AccountRaw](../../../sdk/models/payments/v3accountraw.md)                         | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `raw`                                                                                         | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
 | `type`                                                                                        | [payments.V3AccountTypeEnum](../../../sdk/models/payments/v3accounttypeenum.md)               | :heavy_check_mark:                                                                            | N/A                                                                                           |

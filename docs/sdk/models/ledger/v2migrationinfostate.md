@@ -5,13 +5,11 @@
 ```typescript
 import { V2MigrationInfoState } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2MigrationInfoState = V2MigrationInfoState.Progress;
+let value: V2MigrationInfoState = "PROGRESS";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `ToDo`     | TO DO      |
-| `Done`     | DONE       |
-| `Progress` | PROGRESS   |
+```typescript
+"TO DO" | "DONE" | "PROGRESS"
+```

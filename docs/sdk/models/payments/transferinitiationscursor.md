@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { TransferInitiationsCursor, TransferInitiationStatus, TransferInitiationType } from "@formance/formance-sdk/sdk/models/payments";
+import { TransferInitiationsCursor } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TransferInitiationsCursor = {
   cursor: {
@@ -23,8 +23,8 @@ let value: TransferInitiationsCursor = {
         reference: "<value>",
         scheduledAt: new Date("2026-02-25T06:58:15.455Z"),
         sourceAccountID: "<id>",
-        status: TransferInitiationStatus.Failed,
-        type: TransferInitiationType.Payout,
+        status: "FAILED",
+        type: "PAYOUT",
       },
     ],
     hasMore: false,
