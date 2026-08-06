@@ -3,14 +3,19 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
 /**
  * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
  */
-export enum Runtime {
-  ExperimentalInterpreter = "experimental-interpreter",
-  Machine = "machine",
-}
+export const Runtime = {
+  ExperimentalInterpreter: "experimental-interpreter",
+  Machine: "machine",
+} as const;
+/**
+ * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
+ */
+export type Runtime = ClosedEnum<typeof Runtime>;
 
 /** @internal */
 export const Runtime$inboundSchema: z.ZodNativeEnum<typeof Runtime> = z

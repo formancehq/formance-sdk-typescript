@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3PaymentInitiationAdjustmentsCursorResponse, V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3PaymentInitiationAdjustmentsCursorResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3PaymentInitiationAdjustmentsCursorResponse = {
   cursor: {
@@ -11,7 +11,7 @@ let value: V3PaymentInitiationAdjustmentsCursorResponse = {
       {
         createdAt: new Date("2026-06-07T01:49:10.843Z"),
         id: "<id>",
-        status: V3PaymentInitiationStatusEnum.Failed,
+        status: "FAILED",
       },
     ],
     hasMore: false,

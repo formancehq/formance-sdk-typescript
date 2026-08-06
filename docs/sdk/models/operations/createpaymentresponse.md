@@ -7,7 +7,7 @@ import { CreatePaymentResponse } from "@formance/formance-sdk/sdk/models/operati
 
 let value: CreatePaymentResponse = {
   contentType: "<value>",
-  statusCode: 64141,
+  statusCode: 3100,
 };
 ```
 

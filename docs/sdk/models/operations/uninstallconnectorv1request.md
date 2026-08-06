@@ -4,10 +4,9 @@
 
 ```typescript
 import { UninstallConnectorV1Request } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: UninstallConnectorV1Request = {
-  connector: Connector.CurrencyCloud,
+  connector: "CURRENCY-CLOUD",
   connectorId: "XXX",
 };
 ```

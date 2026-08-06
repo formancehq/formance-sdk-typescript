@@ -5,7 +5,7 @@ Payload for SET_METADATA log entries. Contains the target entity and the metadat
 ## Example Usage
 
 ```typescript
-import { V2LogDataSetMetadata, V2LogDataSetMetadataTargetType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2LogDataSetMetadata } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2LogDataSetMetadata = {
   metadata: {
@@ -13,7 +13,7 @@ let value: V2LogDataSetMetadata = {
     "tier": "premium",
   },
   targetId: "users:001",
-  targetType: V2LogDataSetMetadataTargetType.Account,
+  targetType: "ACCOUNT",
 };
 ```
 

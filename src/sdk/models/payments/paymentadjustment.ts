@@ -8,32 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 
-export type PaymentAdjustmentRaw = {};
-
 export type PaymentAdjustment = {
   amount: bigint;
   createdAt: Date;
-  raw: PaymentAdjustmentRaw;
+  raw: { [k: string]: any };
   reference: string;
   status: PaymentStatus;
 };
-
-/** @internal */
-export const PaymentAdjustmentRaw$inboundSchema: z.ZodType<
-  PaymentAdjustmentRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function paymentAdjustmentRawFromJSON(
-  jsonString: string,
-): SafeParseResult<PaymentAdjustmentRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PaymentAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PaymentAdjustmentRaw' from JSON`,
-  );
-}
 
 /** @internal */
 export const PaymentAdjustment$inboundSchema: z.ZodType<
@@ -43,7 +24,7 @@ export const PaymentAdjustment$inboundSchema: z.ZodType<
 > = z.object({
   amount: z.number().transform(v => BigInt(v)),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
-  raw: z.lazy(() => PaymentAdjustmentRaw$inboundSchema),
+  raw: z.record(z.any()),
   reference: z.string(),
   status: PaymentStatus$inboundSchema,
 });

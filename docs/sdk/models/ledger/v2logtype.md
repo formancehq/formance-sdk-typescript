@@ -7,15 +7,11 @@ The type of operation this log represents
 ```typescript
 import { V2LogType } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2LogType = V2LogType.DeleteMetadata;
+let value: V2LogType = "DELETE_METADATA";
 ```
 
 ## Values
 
-| Name                  | Value                 |
-| --------------------- | --------------------- |
-| `NewTransaction`      | NEW_TRANSACTION       |
-| `SetMetadata`         | SET_METADATA          |
-| `RevertedTransaction` | REVERTED_TRANSACTION  |
-| `DeleteMetadata`      | DELETE_METADATA       |
-| `InsertedSchema`      | INSERTED_SCHEMA       |
+```typescript
+"NEW_TRANSACTION" | "SET_METADATA" | "REVERTED_TRANSACTION" | "DELETE_METADATA" | "INSERTED_SCHEMA"
+```

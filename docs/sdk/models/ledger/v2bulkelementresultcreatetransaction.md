@@ -81,7 +81,7 @@ let value: V2BulkElementResultCreateTransaction = {
     timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 778245,
-  responseType: "<value>",
+  responseType: "CREATE_TRANSACTION",
 };
 ```
 
@@ -91,4 +91,4 @@ let value: V2BulkElementResultCreateTransaction = {
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `data`                                                              | [ledger.V2Transaction](../../../sdk/models/ledger/v2transaction.md) | :heavy_check_mark:                                                  | N/A                                                                 |
 | `logID`                                                             | *number*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
-| `responseType`                                                      | *string*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
+| `responseType`                                                      | *"CREATE_TRANSACTION"*                                              | :heavy_check_mark:                                                  | N/A                                                                 |

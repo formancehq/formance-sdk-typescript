@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V2StageSendDestination, V2StageSendDestinationPaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+import { V2StageSendDestination } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: V2StageSendDestination = {
   account: {
@@ -13,7 +13,7 @@ let value: V2StageSendDestination = {
   },
   payment: {
     psp: "stripe",
-    type: V2StageSendDestinationPaymentType.Payout,
+    type: "PAYOUT",
   },
 };
 ```

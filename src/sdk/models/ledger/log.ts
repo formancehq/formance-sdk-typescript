@@ -4,13 +4,15 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export enum LogType {
-  NewTransaction = "NEW_TRANSACTION",
-  SetMetadata = "SET_METADATA",
-}
+export const LogType = {
+  NewTransaction: "NEW_TRANSACTION",
+  SetMetadata: "SET_METADATA",
+} as const;
+export type LogType = ClosedEnum<typeof LogType>;
 
 export type Log = {
   data: { [k: string]: any };

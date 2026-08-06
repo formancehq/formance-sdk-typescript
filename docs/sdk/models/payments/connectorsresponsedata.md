@@ -3,12 +3,12 @@
 ## Example Usage
 
 ```typescript
-import { Connector, ConnectorsResponseData } from "@formance/formance-sdk/sdk/models/payments";
+import { ConnectorsResponseData } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ConnectorsResponseData = {
   connectorID: "<id>",
   name: "<value>",
-  provider: Connector.BankingCircle,
+  provider: "BANKING-CIRCLE",
 };
 ```
 

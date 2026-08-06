@@ -3,12 +3,16 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V3PaymentInitiationTypeEnum {
-  Unknown = "UNKNOWN",
-  Transfer = "TRANSFER",
-  Payout = "PAYOUT",
-}
+export const V3PaymentInitiationTypeEnum = {
+  Unknown: "UNKNOWN",
+  Transfer: "TRANSFER",
+  Payout: "PAYOUT",
+} as const;
+export type V3PaymentInitiationTypeEnum = ClosedEnum<
+  typeof V3PaymentInitiationTypeEnum
+>;
 
 /** @internal */
 export const V3PaymentInitiationTypeEnum$inboundSchema: z.ZodNativeEnum<

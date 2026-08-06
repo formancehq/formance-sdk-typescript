@@ -5,6 +5,7 @@
 import * as z from "zod/v3";
 import { remap as remap$ } from "../../../lib/primitives.js";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
@@ -18,9 +19,13 @@ export type V2RunQueryRequestBody = {
 /**
  * Deprecated: Use sort param
  */
-export enum V2RunQueryOrder {
-  Effective = "effective",
-}
+export const V2RunQueryOrder = {
+  Effective: "effective",
+} as const;
+/**
+ * Deprecated: Use sort param
+ */
+export type V2RunQueryOrder = ClosedEnum<typeof V2RunQueryOrder>;
 
 export type V2RunQueryRequest = {
   requestBody: V2RunQueryRequestBody;

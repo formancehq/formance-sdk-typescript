@@ -5,7 +5,7 @@ OK
 ## Example Usage
 
 ```typescript
-import { TaskResponse, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskResponse = {
   data: {
@@ -13,7 +13,7 @@ let value: TaskResponse = {
     createdAt: new Date("2025-03-18T01:23:01.719Z"),
     descriptor: {},
     id: "843d5b9c-ce89-4155-98c9-f5db2d82a9a3",
-    status: TaskStatus.Stopped,
+    status: "STOPPED",
     updatedAt: new Date("2026-08-30T13:05:32.300Z"),
   },
 };

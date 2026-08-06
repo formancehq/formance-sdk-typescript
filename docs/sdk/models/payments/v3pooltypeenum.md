@@ -5,12 +5,11 @@
 ```typescript
 import { V3PoolTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3PoolTypeEnum = V3PoolTypeEnum.Static;
+let value: V3PoolTypeEnum = "STATIC";
 ```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Static`  | STATIC    |
-| `Dynamic` | DYNAMIC   |
+```typescript
+"STATIC" | "DYNAMIC"
+```

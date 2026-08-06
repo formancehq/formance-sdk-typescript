@@ -3,11 +3,11 @@
 ## Example Usage
 
 ```typescript
-import { StageSendDestinationPayment, StageSendDestinationPaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+import { StageSendDestinationPayment } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: StageSendDestinationPayment = {
   psp: "stripe",
-  type: StageSendDestinationPaymentType.Payout,
+  type: "PAYOUT",
 };
 ```
 

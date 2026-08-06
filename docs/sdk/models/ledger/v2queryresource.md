@@ -5,14 +5,11 @@
 ```typescript
 import { V2QueryResource } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2QueryResource = V2QueryResource.Volumes;
+let value: V2QueryResource = "volumes";
 ```
 
 ## Values
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `Transactions` | transactions   |
-| `Accounts`     | accounts       |
-| `Logs`         | logs           |
-| `Volumes`      | volumes        |
+```typescript
+"transactions" | "accounts" | "logs" | "volumes"
+```

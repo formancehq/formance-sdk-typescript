@@ -81,7 +81,7 @@ let value: V2BulkElementResultRevertTransaction = {
     timestamp: new Date("2024-01-30T18:49:02.529Z"),
   },
   logID: 96956,
-  responseType: "<value>",
+  responseType: "REVERT_TRANSACTION",
 };
 ```
 
@@ -91,4 +91,4 @@ let value: V2BulkElementResultRevertTransaction = {
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `data`                                                              | [ledger.V2Transaction](../../../sdk/models/ledger/v2transaction.md) | :heavy_check_mark:                                                  | N/A                                                                 |
 | `logID`                                                             | *number*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
-| `responseType`                                                      | *string*                                                            | :heavy_check_mark:                                                  | N/A                                                                 |
+| `responseType`                                                      | *"REVERT_TRANSACTION"*                                              | :heavy_check_mark:                                                  | N/A                                                                 |

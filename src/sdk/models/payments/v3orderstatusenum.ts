@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
 /**
  * Lifecycle of an order on the exchange.
@@ -16,16 +17,29 @@ import * as z from "zod/v3";
  * `FAILED` — rejected by the exchange, terminal. See `error` for details.
  * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
  */
-export enum V3OrderStatusEnum {
-  Unknown = "UNKNOWN",
-  Pending = "PENDING",
-  Open = "OPEN",
-  PartiallyFilled = "PARTIALLY_FILLED",
-  Filled = "FILLED",
-  Cancelled = "CANCELLED",
-  Failed = "FAILED",
-  Expired = "EXPIRED",
-}
+export const V3OrderStatusEnum = {
+  Unknown: "UNKNOWN",
+  Pending: "PENDING",
+  Open: "OPEN",
+  PartiallyFilled: "PARTIALLY_FILLED",
+  Filled: "FILLED",
+  Cancelled: "CANCELLED",
+  Failed: "FAILED",
+  Expired: "EXPIRED",
+} as const;
+/**
+ * Lifecycle of an order on the exchange.
+ *
+ * @remarks
+ * `PENDING` — accepted by the exchange, not yet working.
+ * `OPEN` — live on the book, no fills yet.
+ * `PARTIALLY_FILLED` — live on the book, some base quantity filled.
+ * `FILLED` — fully filled, terminal.
+ * `CANCELLED` — cancelled by the user or system, terminal.
+ * `FAILED` — rejected by the exchange, terminal. See `error` for details.
+ * `EXPIRED` — `timeInForce` elapsed before full fill, terminal.
+ */
+export type V3OrderStatusEnum = ClosedEnum<typeof V3OrderStatusEnum>;
 
 /** @internal */
 export const V3OrderStatusEnum$inboundSchema: z.ZodNativeEnum<

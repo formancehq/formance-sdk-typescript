@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { PaymentAdjustment, PaymentStatus } from "@formance/formance-sdk/sdk/models/orchestration";
+import { PaymentAdjustment } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: PaymentAdjustment = {
   absolute: false,
   amount: 100n,
   date: new Date("2024-02-24T18:51:28.030Z"),
   raw: {},
-  status: PaymentStatus.Pending,
+  status: "PENDING",
 };
 ```
 

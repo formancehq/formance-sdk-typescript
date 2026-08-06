@@ -5,13 +5,11 @@
 ```typescript
 import { TransferInitiationRequestType } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: TransferInitiationRequestType =
-  TransferInitiationRequestType.Transfer;
+let value: TransferInitiationRequestType = "TRANSFER";
 ```
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `Transfer` | TRANSFER   |
-| `Payout`   | PAYOUT     |
+```typescript
+"TRANSFER" | "PAYOUT"
+```

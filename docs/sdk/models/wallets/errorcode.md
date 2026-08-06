@@ -5,14 +5,11 @@
 ```typescript
 import { ErrorCode } from "@formance/formance-sdk/sdk/models/wallets";
 
-let value: ErrorCode = ErrorCode.InsufficientFund;
+let value: ErrorCode = "INSUFFICIENT_FUND";
 ```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `Validation`       | VALIDATION         |
-| `InternalError`    | INTERNAL_ERROR     |
-| `InsufficientFund` | INSUFFICIENT_FUND  |
-| `HoldClosed`       | HOLD_CLOSED        |
+```typescript
+"VALIDATION" | "INTERNAL_ERROR" | "INSUFFICIENT_FUND" | "HOLD_CLOSED"
+```

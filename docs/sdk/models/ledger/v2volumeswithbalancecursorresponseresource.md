@@ -5,12 +5,11 @@
 ```typescript
 import { V2VolumesWithBalanceCursorResponseResource } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: V2VolumesWithBalanceCursorResponseResource =
-  V2VolumesWithBalanceCursorResponseResource.Volumes;
+let value: V2VolumesWithBalanceCursorResponseResource = "volumes";
 ```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Volumes` | volumes   |
+```typescript
+"volumes"
+```

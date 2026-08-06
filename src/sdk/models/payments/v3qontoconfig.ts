@@ -17,7 +17,7 @@ export type V3QontoConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Qonto";
   stagingToken?: string | undefined;
 };
 
@@ -33,7 +33,7 @@ export const V3QontoConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Qonto"),
+  provider: z.literal("Qonto"),
   stagingToken: z.string().optional(),
 });
 /** @internal */
@@ -44,7 +44,7 @@ export type V3QontoConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Qonto";
   stagingToken?: string | undefined;
 };
 
@@ -60,7 +60,7 @@ export const V3QontoConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Qonto"),
+  provider: z.literal("Qonto"),
   stagingToken: z.string().optional(),
 });
 

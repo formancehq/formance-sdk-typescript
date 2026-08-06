@@ -10,14 +10,14 @@ import {
 } from "./v2posttransaction.js";
 
 export type V2BulkElementCreateTransaction = {
-  action: string;
+  action: "CREATE_TRANSACTION";
   data?: V2PostTransaction | undefined;
   ik?: string | undefined;
 };
 
 /** @internal */
 export type V2BulkElementCreateTransaction$Outbound = {
-  action: string;
+  action: "CREATE_TRANSACTION";
   data?: V2PostTransaction$Outbound | undefined;
   ik?: string | undefined;
 };
@@ -28,7 +28,7 @@ export const V2BulkElementCreateTransaction$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementCreateTransaction
 > = z.object({
-  action: z.string(),
+  action: z.literal("CREATE_TRANSACTION"),
   data: V2PostTransaction$outboundSchema.optional(),
   ik: z.string().optional(),
 });

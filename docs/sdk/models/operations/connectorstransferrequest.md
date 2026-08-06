@@ -4,7 +4,6 @@
 
 ```typescript
 import { ConnectorsTransferRequest } from "@formance/formance-sdk/sdk/models/operations";
-import { Connector } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: ConnectorsTransferRequest = {
   transferRequest: {
@@ -13,7 +12,7 @@ let value: ConnectorsTransferRequest = {
     destination: "acct_1Gqj58KZcSIg2N2q",
     source: "acct_1Gqj58KZcSIg2N2q",
   },
-  connector: Connector.Stripe,
+  connector: "STRIPE",
 };
 ```
 

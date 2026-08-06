@@ -21,8 +21,10 @@ import { ledgerV2ExportLogs } from "../funcs/ledgerV2ExportLogs.js";
 import { ledgerV2GetAccount } from "../funcs/ledgerV2GetAccount.js";
 import { ledgerV2GetBalancesAggregated } from "../funcs/ledgerV2GetBalancesAggregated.js";
 import { ledgerV2GetExporterState } from "../funcs/ledgerV2GetExporterState.js";
+import { ledgerV2GetInfo } from "../funcs/ledgerV2GetInfo.js";
 import { ledgerV2GetLedger } from "../funcs/ledgerV2GetLedger.js";
 import { ledgerV2GetLedgerInfo } from "../funcs/ledgerV2GetLedgerInfo.js";
+import { ledgerV2GetMetrics } from "../funcs/ledgerV2GetMetrics.js";
 import { ledgerV2GetPipelineState } from "../funcs/ledgerV2GetPipelineState.js";
 import { ledgerV2GetSchema } from "../funcs/ledgerV2GetSchema.js";
 import { ledgerV2GetTransaction } from "../funcs/ledgerV2GetTransaction.js";
@@ -327,6 +329,18 @@ export class LedgerV2 extends ClientSDK {
   }
 
   /**
+   * Show server information
+   */
+  async getInfo(
+    options?: RequestOptions,
+  ): Promise<operations.V2GetInfoResponse> {
+    return unwrapAsync(ledgerV2GetInfo(
+      this,
+      options,
+    ));
+  }
+
+  /**
    * Get a ledger
    */
   async getLedger(
@@ -350,6 +364,18 @@ export class LedgerV2 extends ClientSDK {
     return unwrapAsync(ledgerV2GetLedgerInfo(
       this,
       request,
+      options,
+    ));
+  }
+
+  /**
+   * Read in memory metrics
+   */
+  async getMetrics(
+    options?: RequestOptions,
+  ): Promise<operations.GetMetricsResponse> {
+    return unwrapAsync(ledgerV2GetMetrics(
+      this,
       options,
     ));
   }

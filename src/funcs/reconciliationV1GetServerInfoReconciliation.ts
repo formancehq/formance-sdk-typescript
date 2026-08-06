@@ -35,7 +35,7 @@ export function reconciliationV1GetServerInfoReconciliation(
 ): APIPromise<
   Result<
     operations.GetServerInfoReconciliationResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -59,7 +59,7 @@ async function $do(
   [
     Result<
       operations.GetServerInfoReconciliationResponse,
-      | reconciliation.ErrorResponse
+      | reconciliation.ErrorsErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -132,7 +132,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.GetServerInfoReconciliationResponse,
-    | reconciliation.ErrorResponse
+    | reconciliation.ErrorsErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -145,7 +145,7 @@ async function $do(
     M.json(200, operations.GetServerInfoReconciliationResponse$inboundSchema, {
       key: "ServerInfo",
     }),
-    M.jsonErr("default", reconciliation.ErrorResponse$inboundSchema),
+    M.jsonErr("default", reconciliation.ErrorsErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

@@ -9,12 +9,10 @@ import { ConnectorConfigResponse } from "@formance/formance-sdk/sdk/models/payme
 
 let value: ConnectorConfigResponse = {
   data: {
-    apiKey: "XXX",
-    endpoint: "XXX",
-    loginID: "XXX",
-    name: "My CurrencyCloud Account",
-    pollingPeriod: "60s",
-    provider: "Currencycloud",
+    directory: "/tmp/dummypay",
+    filePollingPeriod: "60s",
+    name: "My DummyPay Account",
+    provider: "Dummypay",
   },
 };
 ```

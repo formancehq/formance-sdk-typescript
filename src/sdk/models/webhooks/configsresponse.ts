@@ -11,29 +11,32 @@ import {
   WebhooksConfig$inboundSchema,
 } from "./webhooksconfig.js";
 
-export type Cursor = {
+export type ConfigsResponseCursor = {
   data: Array<WebhooksConfig>;
   hasMore: boolean;
 };
 
 export type ConfigsResponse = {
-  cursor: Cursor;
+  cursor: ConfigsResponseCursor;
 };
 
 /** @internal */
-export const Cursor$inboundSchema: z.ZodType<Cursor, z.ZodTypeDef, unknown> = z
-  .object({
-    data: z.array(WebhooksConfig$inboundSchema),
-    hasMore: z.boolean(),
-  });
+export const ConfigsResponseCursor$inboundSchema: z.ZodType<
+  ConfigsResponseCursor,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  data: z.array(WebhooksConfig$inboundSchema),
+  hasMore: z.boolean(),
+});
 
-export function cursorFromJSON(
+export function configsResponseCursorFromJSON(
   jsonString: string,
-): SafeParseResult<Cursor, SDKValidationError> {
+): SafeParseResult<ConfigsResponseCursor, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Cursor$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Cursor' from JSON`,
+    (x) => ConfigsResponseCursor$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ConfigsResponseCursor' from JSON`,
   );
 }
 
@@ -43,7 +46,7 @@ export const ConfigsResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  cursor: z.lazy(() => Cursor$inboundSchema),
+  cursor: z.lazy(() => ConfigsResponseCursor$inboundSchema),
 });
 
 export function configsResponseFromJSON(

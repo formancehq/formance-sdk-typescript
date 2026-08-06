@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -21,10 +22,20 @@ export type V2CreateTransferInitiationRequestMetadata = {};
  * - TRANSFER: Internal to internal account transfer
  * - PAYOUT: Internal to external account payout
  */
-export enum V2CreateTransferInitiationRequestType {
-  Transfer = "TRANSFER",
-  Payout = "PAYOUT",
-}
+export const V2CreateTransferInitiationRequestType = {
+  Transfer: "TRANSFER",
+  Payout: "PAYOUT",
+} as const;
+/**
+ * Type of transfer initiation:
+ *
+ * @remarks
+ * - TRANSFER: Internal to internal account transfer
+ * - PAYOUT: Internal to external account payout
+ */
+export type V2CreateTransferInitiationRequestType = ClosedEnum<
+  typeof V2CreateTransferInitiationRequestType
+>;
 
 export type V2CreateTransferInitiationRequest = {
   amount?: bigint | undefined;
@@ -111,9 +122,7 @@ export const V2CreateTransferInitiationRequest$inboundSchema: z.ZodType<
   ).optional(),
   provider: z.string().optional(),
   source: z.string().optional(),
-  type: V2CreateTransferInitiationRequestType$inboundSchema.default(
-    V2CreateTransferInitiationRequestType.Transfer,
-  ),
+  type: V2CreateTransferInitiationRequestType$inboundSchema.default("TRANSFER"),
   waitingValidation: z.boolean().default(false),
 });
 

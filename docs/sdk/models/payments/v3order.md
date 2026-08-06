@@ -9,27 +9,21 @@ adjustment is a point-in-time snapshot from the PSP.
 ## Example Usage
 
 ```typescript
-import {
-  V3Order,
-  V3OrderDirectionEnum,
-  V3OrderStatusEnum,
-  V3OrderTypeEnum,
-  V3TimeInForceEnum,
-} from "@formance/formance-sdk/sdk/models/payments";
+import { V3Order } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3Order = {
   baseQuantityOrdered: 76681n,
   connectorID: "<value>",
   createdAt: new Date("2026-05-14T07:29:36.876Z"),
   destinationAsset: "<value>",
-  direction: V3OrderDirectionEnum.Sell,
+  direction: "SELL",
   id: "<id>",
   provider: "<value>",
   reference: "<value>",
   sourceAsset: "<value>",
-  status: V3OrderStatusEnum.PartiallyFilled,
-  timeInForce: V3TimeInForceEnum.ImmediateOrCancel,
-  type: V3OrderTypeEnum.Limit,
+  status: "PARTIALLY_FILLED",
+  timeInForce: "IMMEDIATE_OR_CANCEL",
+  type: "LIMIT",
   updatedAt: new Date("2026-07-09T01:50:01.037Z"),
 };
 ```

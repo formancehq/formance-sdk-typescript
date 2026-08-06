@@ -8,8 +8,6 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AccountType, AccountType$inboundSchema } from "./accounttype.js";
 
-export type AccountRaw = {};
-
 export type Account = {
   accountName: string;
   connectorID: string;
@@ -23,27 +21,10 @@ export type Account = {
   metadata: { [k: string]: string } | null;
   pools?: Array<string> | undefined;
   provider?: string | undefined;
-  raw: AccountRaw | null;
+  raw: { [k: string]: any } | null;
   reference: string;
   type: AccountType;
 };
-
-/** @internal */
-export const AccountRaw$inboundSchema: z.ZodType<
-  AccountRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function accountRawFromJSON(
-  jsonString: string,
-): SafeParseResult<AccountRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AccountRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AccountRaw' from JSON`,
-  );
-}
 
 /** @internal */
 export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
@@ -59,7 +40,7 @@ export const Account$inboundSchema: z.ZodType<Account, z.ZodTypeDef, unknown> =
     metadata: z.nullable(z.record(z.string())),
     pools: z.array(z.string()).optional(),
     provider: z.string().optional(),
-    raw: z.nullable(z.lazy(() => AccountRaw$inboundSchema)),
+    raw: z.nullable(z.record(z.any())),
     reference: z.string(),
     type: AccountType$inboundSchema,
   });

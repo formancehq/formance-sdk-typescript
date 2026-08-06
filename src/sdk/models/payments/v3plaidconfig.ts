@@ -17,7 +17,7 @@ export type V3PlaidConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Plaid";
 };
 
 /** @internal */
@@ -32,7 +32,7 @@ export const V3PlaidConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Plaid"),
+  provider: z.literal("Plaid"),
 });
 /** @internal */
 export type V3PlaidConfig$Outbound = {
@@ -42,7 +42,7 @@ export type V3PlaidConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Plaid";
 };
 
 /** @internal */
@@ -57,7 +57,7 @@ export const V3PlaidConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Plaid"),
+  provider: z.literal("Plaid"),
 });
 
 export function v3PlaidConfigToJSON(v3PlaidConfig: V3PlaidConfig): string {

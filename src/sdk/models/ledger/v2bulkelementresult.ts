@@ -13,37 +13,37 @@ export type V2BulkElementResultError = {
   errorDescription: string;
   errorDetails?: string | undefined;
   logID: number;
-  responseType: string;
+  responseType: "ERROR";
 };
 
 export type V2BulkElementResultDeleteMetadata = {
   logID: number;
-  responseType: string;
+  responseType: "DELETE_METADATA";
 };
 
 export type V2BulkElementResultRevertTransaction = {
   data: V2Transaction;
   logID: number;
-  responseType: string;
+  responseType: "REVERT_TRANSACTION";
 };
 
 export type V2BulkElementResultAddMetadata = {
   logID: number;
-  responseType: string;
+  responseType: "ADD_METADATA";
 };
 
 export type V2BulkElementResultCreateTransaction = {
   data: V2Transaction;
   logID: number;
-  responseType: string;
+  responseType: "CREATE_TRANSACTION";
 };
 
 export type V2BulkElementResult =
-  | V2BulkElementResultError
-  | V2BulkElementResultCreateTransaction
-  | V2BulkElementResultRevertTransaction
   | V2BulkElementResultAddMetadata
-  | V2BulkElementResultDeleteMetadata;
+  | V2BulkElementResultCreateTransaction
+  | V2BulkElementResultDeleteMetadata
+  | V2BulkElementResultError
+  | V2BulkElementResultRevertTransaction;
 
 /** @internal */
 export const V2BulkElementResultError$inboundSchema: z.ZodType<
@@ -55,7 +55,7 @@ export const V2BulkElementResultError$inboundSchema: z.ZodType<
   errorDescription: z.string(),
   errorDetails: z.string().optional(),
   logID: z.number().int(),
-  responseType: z.string(),
+  responseType: z.literal("ERROR"),
 });
 
 export function v2BulkElementResultErrorFromJSON(
@@ -75,7 +75,7 @@ export const V2BulkElementResultDeleteMetadata$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   logID: z.number().int(),
-  responseType: z.string(),
+  responseType: z.literal("DELETE_METADATA"),
 });
 
 export function v2BulkElementResultDeleteMetadataFromJSON(
@@ -96,7 +96,7 @@ export const V2BulkElementResultRevertTransaction$inboundSchema: z.ZodType<
 > = z.object({
   data: V2Transaction$inboundSchema,
   logID: z.number().int(),
-  responseType: z.string(),
+  responseType: z.literal("REVERT_TRANSACTION"),
 });
 
 export function v2BulkElementResultRevertTransactionFromJSON(
@@ -117,7 +117,7 @@ export const V2BulkElementResultAddMetadata$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   logID: z.number().int(),
-  responseType: z.string(),
+  responseType: z.literal("ADD_METADATA"),
 });
 
 export function v2BulkElementResultAddMetadataFromJSON(
@@ -138,7 +138,7 @@ export const V2BulkElementResultCreateTransaction$inboundSchema: z.ZodType<
 > = z.object({
   data: V2Transaction$inboundSchema,
   logID: z.number().int(),
-  responseType: z.string(),
+  responseType: z.literal("CREATE_TRANSACTION"),
 });
 
 export function v2BulkElementResultCreateTransactionFromJSON(
@@ -158,11 +158,11 @@ export const V2BulkElementResult$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => V2BulkElementResultError$inboundSchema),
-  z.lazy(() => V2BulkElementResultCreateTransaction$inboundSchema),
-  z.lazy(() => V2BulkElementResultRevertTransaction$inboundSchema),
   z.lazy(() => V2BulkElementResultAddMetadata$inboundSchema),
+  z.lazy(() => V2BulkElementResultCreateTransaction$inboundSchema),
   z.lazy(() => V2BulkElementResultDeleteMetadata$inboundSchema),
+  z.lazy(() => V2BulkElementResultError$inboundSchema),
+  z.lazy(() => V2BulkElementResultRevertTransaction$inboundSchema),
 ]);
 
 export function v2BulkElementResultFromJSON(

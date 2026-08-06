@@ -3,6 +3,7 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
 /**
  * How long an order is valid on the exchange.
@@ -13,13 +14,23 @@ import * as z from "zod/v3";
  * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
  * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
  */
-export enum V3TimeInForceEnum {
-  Unknown = "UNKNOWN",
-  GoodUntilCancelled = "GOOD_UNTIL_CANCELLED",
-  GoodUntilDateTime = "GOOD_UNTIL_DATE_TIME",
-  ImmediateOrCancel = "IMMEDIATE_OR_CANCEL",
-  FillOrKill = "FILL_OR_KILL",
-}
+export const V3TimeInForceEnum = {
+  Unknown: "UNKNOWN",
+  GoodUntilCancelled: "GOOD_UNTIL_CANCELLED",
+  GoodUntilDateTime: "GOOD_UNTIL_DATE_TIME",
+  ImmediateOrCancel: "IMMEDIATE_OR_CANCEL",
+  FillOrKill: "FILL_OR_KILL",
+} as const;
+/**
+ * How long an order is valid on the exchange.
+ *
+ * @remarks
+ * `GOOD_UNTIL_CANCELLED` — rests until explicitly cancelled.
+ * `GOOD_UNTIL_DATE_TIME` — rests until `expiresAt`.
+ * `IMMEDIATE_OR_CANCEL` — fill immediately, cancel any unfilled portion.
+ * `FILL_OR_KILL` — fill fully and immediately, or cancel entirely.
+ */
+export type V3TimeInForceEnum = ClosedEnum<typeof V3TimeInForceEnum>;
 
 /** @internal */
 export const V3TimeInForceEnum$inboundSchema: z.ZodNativeEnum<

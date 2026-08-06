@@ -7,12 +7,11 @@ The numscript runtime used to execute the script. Uses "machine" by default, unl
 ```typescript
 import { Runtime } from "@formance/formance-sdk/sdk/models/ledger";
 
-let value: Runtime = Runtime.Machine;
+let value: Runtime = "machine";
 ```
 
 ## Values
 
-| Name                      | Value                     |
-| ------------------------- | ------------------------- |
-| `ExperimentalInterpreter` | experimental-interpreter  |
-| `Machine`                 | machine                   |
+```typescript
+"experimental-interpreter" | "machine"
+```

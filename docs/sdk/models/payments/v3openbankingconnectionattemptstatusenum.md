@@ -5,14 +5,11 @@
 ```typescript
 import { V3OpenBankingConnectionAttemptStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3OpenBankingConnectionAttemptStatusEnum =
-  V3OpenBankingConnectionAttemptStatusEnum.Exited;
+let value: V3OpenBankingConnectionAttemptStatusEnum = "exited";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Pending`   | pending     |
-| `Completed` | completed   |
-| `Exited`    | exited      |
+```typescript
+"pending" | "completed" | "exited"
+```

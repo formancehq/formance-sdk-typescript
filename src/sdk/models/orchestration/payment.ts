@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Connector, Connector$inboundSchema } from "./connector.js";
@@ -19,33 +20,35 @@ import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 
 export type PaymentRaw = {};
 
-export enum PaymentScheme {
-  Visa = "visa",
-  Mastercard = "mastercard",
-  Amex = "amex",
-  Diners = "diners",
-  Discover = "discover",
-  Jcb = "jcb",
-  Unionpay = "unionpay",
-  SepaDebit = "sepa debit",
-  SepaCredit = "sepa credit",
-  Sepa = "sepa",
-  ApplePay = "apple pay",
-  GooglePay = "google pay",
-  A2a = "a2a",
-  AchDebit = "ach debit",
-  Ach = "ach",
-  Rtp = "rtp",
-  Unknown = "unknown",
-  Other = "other",
-}
+export const PaymentScheme = {
+  Visa: "visa",
+  Mastercard: "mastercard",
+  Amex: "amex",
+  Diners: "diners",
+  Discover: "discover",
+  Jcb: "jcb",
+  Unionpay: "unionpay",
+  SepaDebit: "sepa debit",
+  SepaCredit: "sepa credit",
+  Sepa: "sepa",
+  ApplePay: "apple pay",
+  GooglePay: "google pay",
+  A2a: "a2a",
+  AchDebit: "ach debit",
+  Ach: "ach",
+  Rtp: "rtp",
+  Unknown: "unknown",
+  Other: "other",
+} as const;
+export type PaymentScheme = ClosedEnum<typeof PaymentScheme>;
 
-export enum PaymentType {
-  PayIn = "PAY-IN",
-  Payout = "PAYOUT",
-  Transfer = "TRANSFER",
-  Other = "OTHER",
-}
+export const PaymentType = {
+  PayIn: "PAY-IN",
+  Payout: "PAYOUT",
+  Transfer: "TRANSFER",
+  Other: "OTHER",
+} as const;
+export type PaymentType = ClosedEnum<typeof PaymentType>;
 
 export type Payment = {
   adjustments: Array<PaymentAdjustment>;

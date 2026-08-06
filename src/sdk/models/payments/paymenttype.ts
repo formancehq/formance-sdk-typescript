@@ -3,13 +3,15 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum PaymentType {
-  PayIn = "PAY-IN",
-  Payout = "PAYOUT",
-  Transfer = "TRANSFER",
-  Other = "OTHER",
-}
+export const PaymentType = {
+  PayIn: "PAY-IN",
+  Payout: "PAYOUT",
+  Transfer: "TRANSFER",
+  Other: "OTHER",
+} as const;
+export type PaymentType = ClosedEnum<typeof PaymentType>;
 
 /** @internal */
 export const PaymentType$inboundSchema: z.ZodNativeEnum<typeof PaymentType> = z

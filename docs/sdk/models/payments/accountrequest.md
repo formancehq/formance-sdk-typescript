@@ -3,13 +3,13 @@
 ## Example Usage
 
 ```typescript
-import { AccountRequest, AccountType } from "@formance/formance-sdk/sdk/models/payments";
+import { AccountRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: AccountRequest = {
   connectorID: "<id>",
   createdAt: new Date("2026-09-21T06:36:02.437Z"),
   reference: "<value>",
-  type: AccountType.Internal,
+  type: "INTERNAL",
 };
 ```
 

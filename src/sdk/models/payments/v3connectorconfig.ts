@@ -79,6 +79,12 @@ import {
   V3IncreaseConfig$outboundSchema,
 } from "./v3increaseconfig.js";
 import {
+  V3KrakenproConfig,
+  V3KrakenproConfig$inboundSchema,
+  V3KrakenproConfig$Outbound,
+  V3KrakenproConfig$outboundSchema,
+} from "./v3krakenproconfig.js";
+import {
   V3MangopayConfig,
   V3MangopayConfig$inboundSchema,
   V3MangopayConfig$Outbound,
@@ -140,28 +146,29 @@ import {
 } from "./v3wiseconfig.js";
 
 export type V3ConnectorConfig =
-  | V3BankingcircleConfig
-  | V3PowensConfig
-  | V3BankingbridgeConfig
-  | V3CoinbaseprimeConfig
+  | V3AdyenConfig
   | V3AtlarConfig
+  | V3BankingbridgeConfig
+  | V3BankingcircleConfig
+  | V3BitstampConfig
+  | V3CoinbaseprimeConfig
+  | V3ColumnConfig
   | V3CurrencycloudConfig
+  | V3DummypayConfig
+  | V3FireblocksConfig
+  | V3GenericConfig
   | V3IncreaseConfig
+  | V3KrakenproConfig
   | V3MangopayConfig
   | V3ModulrConfig
   | V3MoneycorpConfig
-  | V3QontoConfig
-  | V3TinkConfig
-  | V3AdyenConfig
-  | V3ColumnConfig
-  | V3GenericConfig
   | V3PlaidConfig
-  | V3WiseConfig
-  | V3BitstampConfig
-  | V3FireblocksConfig
-  | V3DummypayConfig
+  | V3PowensConfig
+  | V3QontoConfig
+  | V3RoutableConfig
   | V3StripeConfig
-  | V3RoutableConfig;
+  | V3TinkConfig
+  | V3WiseConfig;
 
 /** @internal */
 export const V3ConnectorConfig$inboundSchema: z.ZodType<
@@ -169,53 +176,55 @@ export const V3ConnectorConfig$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  V3BankingcircleConfig$inboundSchema,
-  V3PowensConfig$inboundSchema,
-  V3BankingbridgeConfig$inboundSchema,
-  V3CoinbaseprimeConfig$inboundSchema,
+  V3AdyenConfig$inboundSchema,
   V3AtlarConfig$inboundSchema,
+  V3BankingbridgeConfig$inboundSchema,
+  V3BankingcircleConfig$inboundSchema,
+  V3BitstampConfig$inboundSchema,
+  V3CoinbaseprimeConfig$inboundSchema,
+  V3ColumnConfig$inboundSchema,
   V3CurrencycloudConfig$inboundSchema,
+  V3DummypayConfig$inboundSchema,
+  V3FireblocksConfig$inboundSchema,
+  V3GenericConfig$inboundSchema,
   V3IncreaseConfig$inboundSchema,
+  V3KrakenproConfig$inboundSchema,
   V3MangopayConfig$inboundSchema,
   V3ModulrConfig$inboundSchema,
   V3MoneycorpConfig$inboundSchema,
-  V3QontoConfig$inboundSchema,
-  V3TinkConfig$inboundSchema,
-  V3AdyenConfig$inboundSchema,
-  V3ColumnConfig$inboundSchema,
-  V3GenericConfig$inboundSchema,
   V3PlaidConfig$inboundSchema,
-  V3WiseConfig$inboundSchema,
-  V3BitstampConfig$inboundSchema,
-  V3FireblocksConfig$inboundSchema,
-  V3DummypayConfig$inboundSchema,
-  V3StripeConfig$inboundSchema,
+  V3PowensConfig$inboundSchema,
+  V3QontoConfig$inboundSchema,
   V3RoutableConfig$inboundSchema,
+  V3StripeConfig$inboundSchema,
+  V3TinkConfig$inboundSchema,
+  V3WiseConfig$inboundSchema,
 ]);
 /** @internal */
 export type V3ConnectorConfig$Outbound =
-  | V3BankingcircleConfig$Outbound
-  | V3PowensConfig$Outbound
-  | V3BankingbridgeConfig$Outbound
-  | V3CoinbaseprimeConfig$Outbound
+  | V3AdyenConfig$Outbound
   | V3AtlarConfig$Outbound
+  | V3BankingbridgeConfig$Outbound
+  | V3BankingcircleConfig$Outbound
+  | V3BitstampConfig$Outbound
+  | V3CoinbaseprimeConfig$Outbound
+  | V3ColumnConfig$Outbound
   | V3CurrencycloudConfig$Outbound
+  | V3DummypayConfig$Outbound
+  | V3FireblocksConfig$Outbound
+  | V3GenericConfig$Outbound
   | V3IncreaseConfig$Outbound
+  | V3KrakenproConfig$Outbound
   | V3MangopayConfig$Outbound
   | V3ModulrConfig$Outbound
   | V3MoneycorpConfig$Outbound
-  | V3QontoConfig$Outbound
-  | V3TinkConfig$Outbound
-  | V3AdyenConfig$Outbound
-  | V3ColumnConfig$Outbound
-  | V3GenericConfig$Outbound
   | V3PlaidConfig$Outbound
-  | V3WiseConfig$Outbound
-  | V3BitstampConfig$Outbound
-  | V3FireblocksConfig$Outbound
-  | V3DummypayConfig$Outbound
+  | V3PowensConfig$Outbound
+  | V3QontoConfig$Outbound
+  | V3RoutableConfig$Outbound
   | V3StripeConfig$Outbound
-  | V3RoutableConfig$Outbound;
+  | V3TinkConfig$Outbound
+  | V3WiseConfig$Outbound;
 
 /** @internal */
 export const V3ConnectorConfig$outboundSchema: z.ZodType<
@@ -223,28 +232,29 @@ export const V3ConnectorConfig$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3ConnectorConfig
 > = z.union([
-  V3BankingcircleConfig$outboundSchema,
-  V3PowensConfig$outboundSchema,
-  V3BankingbridgeConfig$outboundSchema,
-  V3CoinbaseprimeConfig$outboundSchema,
+  V3AdyenConfig$outboundSchema,
   V3AtlarConfig$outboundSchema,
+  V3BankingbridgeConfig$outboundSchema,
+  V3BankingcircleConfig$outboundSchema,
+  V3BitstampConfig$outboundSchema,
+  V3CoinbaseprimeConfig$outboundSchema,
+  V3ColumnConfig$outboundSchema,
   V3CurrencycloudConfig$outboundSchema,
+  V3DummypayConfig$outboundSchema,
+  V3FireblocksConfig$outboundSchema,
+  V3GenericConfig$outboundSchema,
   V3IncreaseConfig$outboundSchema,
+  V3KrakenproConfig$outboundSchema,
   V3MangopayConfig$outboundSchema,
   V3ModulrConfig$outboundSchema,
   V3MoneycorpConfig$outboundSchema,
-  V3QontoConfig$outboundSchema,
-  V3TinkConfig$outboundSchema,
-  V3AdyenConfig$outboundSchema,
-  V3ColumnConfig$outboundSchema,
-  V3GenericConfig$outboundSchema,
   V3PlaidConfig$outboundSchema,
-  V3WiseConfig$outboundSchema,
-  V3BitstampConfig$outboundSchema,
-  V3FireblocksConfig$outboundSchema,
-  V3DummypayConfig$outboundSchema,
-  V3StripeConfig$outboundSchema,
+  V3PowensConfig$outboundSchema,
+  V3QontoConfig$outboundSchema,
   V3RoutableConfig$outboundSchema,
+  V3StripeConfig$outboundSchema,
+  V3TinkConfig$outboundSchema,
+  V3WiseConfig$outboundSchema,
 ]);
 
 export function v3ConnectorConfigToJSON(

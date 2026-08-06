@@ -7,7 +7,6 @@ import * as z from "zod/v3";
 export type ConfigUser = {
   endpoint: string;
   eventTypes: Array<string>;
-  name?: string | undefined;
   secret?: string | undefined;
 };
 
@@ -15,7 +14,6 @@ export type ConfigUser = {
 export type ConfigUser$Outbound = {
   endpoint: string;
   eventTypes: Array<string>;
-  name?: string | undefined;
   secret?: string | undefined;
 };
 
@@ -27,7 +25,6 @@ export const ConfigUser$outboundSchema: z.ZodType<
 > = z.object({
   endpoint: z.string(),
   eventTypes: z.array(z.string()),
-  name: z.string().optional(),
   secret: z.string().optional(),
 });
 

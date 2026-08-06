@@ -15,7 +15,7 @@ const value: orchestration.StageSend = {
     },
     payment: {
       psp: "stripe",
-      type: StageSendDestinationPaymentType.Payout,
+      type: "PAYOUT",
     },
   },
   source: {

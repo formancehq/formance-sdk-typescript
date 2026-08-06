@@ -3,44 +3,18 @@
  */
 
 import * as z from "zod/v3";
-import { SDKBaseError } from "../errors/sdkbaseerror.js";
+import { safeParse } from "../../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Error response
  */
-export type ErrorResponseData = {
+export type ErrorResponse = {
   details?: string | undefined;
   errorCode: string;
   errorMessage: string;
 };
-
-/**
- * Error response
- */
-export class ErrorResponse extends SDKBaseError {
-  details?: string | undefined;
-  errorCode: string;
-  errorMessage: string;
-
-  /** The original data that was passed to this error instance. */
-  data$: ErrorResponseData;
-
-  constructor(
-    err: ErrorResponseData,
-    httpMeta: { response: Response; request: Request; body: string },
-  ) {
-    const message = "message" in err && typeof err.message === "string"
-      ? err.message
-      : `API error occurred: ${JSON.stringify(err)}`;
-    super(message, httpMeta);
-    this.data$ = err;
-    if (err.details != null) this.details = err.details;
-    this.errorCode = err.errorCode;
-    this.errorMessage = err.errorMessage;
-
-    this.name = "ErrorResponse";
-  }
-}
 
 /** @internal */
 export const ErrorResponse$inboundSchema: z.ZodType<
@@ -51,14 +25,14 @@ export const ErrorResponse$inboundSchema: z.ZodType<
   details: z.string().optional(),
   errorCode: z.string(),
   errorMessage: z.string(),
-  request$: z.instanceof(Request),
-  response$: z.instanceof(Response),
-  body$: z.string(),
-})
-  .transform((v) => {
-    return new ErrorResponse(v, {
-      request: v.request$,
-      response: v.response$,
-      body: v.body$,
-    });
-  });
+});
+
+export function errorResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ErrorResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ErrorResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ErrorResponse' from JSON`,
+  );
+}

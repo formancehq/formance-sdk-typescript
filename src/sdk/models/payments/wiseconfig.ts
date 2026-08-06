@@ -16,7 +16,7 @@ export type WiseConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Wise";
 };
 
 /** @internal */
@@ -28,14 +28,14 @@ export const WiseConfig$inboundSchema: z.ZodType<
   apiKey: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Wise"),
+  provider: z.literal("Wise"),
 });
 /** @internal */
 export type WiseConfig$Outbound = {
   apiKey: string;
   name: string;
   pollingPeriod: string;
-  provider: string;
+  provider: "Wise";
 };
 
 /** @internal */
@@ -47,7 +47,7 @@ export const WiseConfig$outboundSchema: z.ZodType<
   apiKey: z.string(),
   name: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Wise"),
+  provider: z.literal("Wise"),
 });
 
 export function wiseConfigToJSON(wiseConfig: WiseConfig): string {

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/orchestration";
+import { Payment } from "@formance/formance-sdk/sdk/models/orchestration";
 
 let value: Payment = {
   adjustments: [],
@@ -16,10 +16,10 @@ let value: Payment = {
   metadata: null,
   raw: null,
   reference: "<value>",
-  scheme: PaymentScheme.Rtp,
+  scheme: "rtp",
   sourceAccountID: "<id>",
-  status: PaymentStatus.Terminated,
-  type: PaymentType.Payout,
+  status: "TERMINATED",
+  type: "PAYOUT",
 };
 ```
 

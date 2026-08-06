@@ -16,7 +16,7 @@ export type V3AtlarConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Atlar";
   secret: string;
 };
 
@@ -31,7 +31,7 @@ export const V3AtlarConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Atlar"),
+  provider: z.literal("Atlar"),
   secret: z.string(),
 });
 /** @internal */
@@ -41,7 +41,7 @@ export type V3AtlarConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Atlar";
   secret: string;
 };
 
@@ -56,7 +56,7 @@ export const V3AtlarConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Atlar"),
+  provider: z.literal("Atlar"),
   secret: z.string(),
 });
 

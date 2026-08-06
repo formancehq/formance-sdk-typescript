@@ -13,6 +13,7 @@ let value: V3PowensConfig = {
   endpoint: "<value>",
   maxConnectionsPerLink: 110726,
   name: "<value>",
+  provider: "Powens",
 };
 ```
 
@@ -29,4 +30,4 @@ let value: V3PowensConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Powens"*                                                              | :heavy_check_mark:                                                      | N/A                                                                     |

@@ -7,11 +7,11 @@ Deprecated: Use sort param
 ```typescript
 import { V2ListTransactionsOrder } from "@formance/formance-sdk/sdk/models/operations";
 
-let value: V2ListTransactionsOrder = V2ListTransactionsOrder.Effective;
+let value: V2ListTransactionsOrder = "effective";
 ```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Effective` | effective   |
+```typescript
+"effective"
+```

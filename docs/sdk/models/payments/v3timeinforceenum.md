@@ -12,15 +12,11 @@ How long an order is valid on the exchange.
 ```typescript
 import { V3TimeInForceEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3TimeInForceEnum = V3TimeInForceEnum.FillOrKill;
+let value: V3TimeInForceEnum = "FILL_OR_KILL";
 ```
 
 ## Values
 
-| Name                 | Value                |
-| -------------------- | -------------------- |
-| `Unknown`            | UNKNOWN              |
-| `GoodUntilCancelled` | GOOD_UNTIL_CANCELLED |
-| `GoodUntilDateTime`  | GOOD_UNTIL_DATE_TIME |
-| `ImmediateOrCancel`  | IMMEDIATE_OR_CANCEL  |
-| `FillOrKill`         | FILL_OR_KILL         |
+```typescript
+"UNKNOWN" | "GOOD_UNTIL_CANCELLED" | "GOOD_UNTIL_DATE_TIME" | "IMMEDIATE_OR_CANCEL" | "FILL_OR_KILL"
+```

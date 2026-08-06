@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3CreatePaymentResponse, V3PaymentStatusEnum, V3PaymentTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3CreatePaymentResponse } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3CreatePaymentResponse = {
   data: {
@@ -16,8 +16,8 @@ let value: V3CreatePaymentResponse = {
     provider: "<value>",
     reference: "<value>",
     scheme: "<value>",
-    status: V3PaymentStatusEnum.Cancelled,
-    type: V3PaymentTypeEnum.Transfer,
+    status: "CANCELLED",
+    type: "TRANSFER",
   },
 };
 ```

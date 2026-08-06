@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { LogsCursorResponse, LogType } from "@formance/formance-sdk/sdk/models/ledger";
+import { LogsCursorResponse } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: LogsCursorResponse = {
   cursor: {
@@ -14,7 +14,7 @@ let value: LogsCursorResponse = {
         hash:
           "9ee060170400f556b7e1575cb13f9db004f150a08355c7431c62bc639166431e",
         id: 1234,
-        type: LogType.SetMetadata,
+        type: "SET_METADATA",
       },
     ],
     hasMore: false,

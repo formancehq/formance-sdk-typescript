@@ -3,17 +3,19 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V2Connector {
-  Stripe = "STRIPE",
-  DummyPay = "DUMMY-PAY",
-  Wise = "WISE",
-  Modulr = "MODULR",
-  CurrencyCloud = "CURRENCY-CLOUD",
-  BankingCircle = "BANKING-CIRCLE",
-  Mangopay = "MANGOPAY",
-  Moneycorp = "MONEYCORP",
-}
+export const V2Connector = {
+  Stripe: "STRIPE",
+  DummyPay: "DUMMY-PAY",
+  Wise: "WISE",
+  Modulr: "MODULR",
+  CurrencyCloud: "CURRENCY-CLOUD",
+  BankingCircle: "BANKING-CIRCLE",
+  Mangopay: "MANGOPAY",
+  Moneycorp: "MONEYCORP",
+} as const;
+export type V2Connector = ClosedEnum<typeof V2Connector>;
 
 /** @internal */
 export const V2Connector$inboundSchema: z.ZodNativeEnum<typeof V2Connector> = z

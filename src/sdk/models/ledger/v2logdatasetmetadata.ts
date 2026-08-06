@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -12,10 +13,16 @@ export type V2LogDataSetMetadataTargetId = string | bigint;
 /**
  * Type of the target entity
  */
-export enum V2LogDataSetMetadataTargetType {
-  Account = "ACCOUNT",
-  Transaction = "TRANSACTION",
-}
+export const V2LogDataSetMetadataTargetType = {
+  Account: "ACCOUNT",
+  Transaction: "TRANSACTION",
+} as const;
+/**
+ * Type of the target entity
+ */
+export type V2LogDataSetMetadataTargetType = ClosedEnum<
+  typeof V2LogDataSetMetadataTargetType
+>;
 
 /**
  * Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.

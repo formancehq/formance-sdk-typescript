@@ -16,7 +16,7 @@ export type V3ColumnConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Column";
 };
 
 /** @internal */
@@ -30,7 +30,7 @@ export const V3ColumnConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Column"),
+  provider: z.literal("Column"),
 });
 /** @internal */
 export type V3ColumnConfig$Outbound = {
@@ -39,7 +39,7 @@ export type V3ColumnConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Column";
 };
 
 /** @internal */
@@ -53,7 +53,7 @@ export const V3ColumnConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Column"),
+  provider: z.literal("Column"),
 });
 
 export function v3ColumnConfigToJSON(v3ColumnConfig: V3ColumnConfig): string {

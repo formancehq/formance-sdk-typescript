@@ -11,35 +11,16 @@ import {
   V3PaymentStatusEnum$inboundSchema,
 } from "./v3paymentstatusenum.js";
 
-export type V3PaymentAdjustmentRaw = {};
-
 export type V3PaymentAdjustment = {
   amount?: bigint | undefined;
   asset?: string | undefined;
   createdAt: Date;
   id: string;
   metadata?: { [k: string]: string } | null | undefined;
-  raw: V3PaymentAdjustmentRaw;
+  raw: { [k: string]: any };
   reference: string;
   status: V3PaymentStatusEnum;
 };
-
-/** @internal */
-export const V3PaymentAdjustmentRaw$inboundSchema: z.ZodType<
-  V3PaymentAdjustmentRaw,
-  z.ZodTypeDef,
-  unknown
-> = z.object({});
-
-export function v3PaymentAdjustmentRawFromJSON(
-  jsonString: string,
-): SafeParseResult<V3PaymentAdjustmentRaw, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => V3PaymentAdjustmentRaw$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'V3PaymentAdjustmentRaw' from JSON`,
-  );
-}
 
 /** @internal */
 export const V3PaymentAdjustment$inboundSchema: z.ZodType<
@@ -52,7 +33,7 @@ export const V3PaymentAdjustment$inboundSchema: z.ZodType<
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),
   metadata: z.nullable(z.record(z.string())).optional(),
-  raw: z.lazy(() => V3PaymentAdjustmentRaw$inboundSchema),
+  raw: z.record(z.any()),
   reference: z.string(),
   status: V3PaymentStatusEnum$inboundSchema,
 });

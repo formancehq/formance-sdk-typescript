@@ -10,6 +10,7 @@ const value: payments.V3AdyenConfig = {
   apiKey: "<value>",
   companyID: "<id>",
   name: "<value>",
+  provider: "Adyen",
 };
 ```
 
@@ -20,7 +21,21 @@ const value: payments.V3AtlarConfig = {
   accessKey: "<value>",
   baseUrl: "https://annual-mentor.net",
   name: "<value>",
+  provider: "Atlar",
   secret: "<value>",
+};
+```
+
+### `payments.V3BankingbridgeConfig`
+
+```typescript
+const value: payments.V3BankingbridgeConfig = {
+  authEndpoint: "<value>",
+  clientID: "<id>",
+  clientSecret: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  provider: "Bankingbridge",
 };
 ```
 
@@ -32,9 +47,34 @@ const value: payments.V3BankingcircleConfig = {
   endpoint: "<value>",
   name: "<value>",
   password: "RNvxa5lbotb8LpY",
+  provider: "Bankingcircle",
   userCertificate: "<value>",
   userCertificateKey: "<value>",
   username: "Elmore6",
+};
+```
+
+### `payments.V3BitstampConfig`
+
+```typescript
+const value: payments.V3BitstampConfig = {
+  apiKey: "<value>",
+  apiSecret: "<value>",
+  name: "<value>",
+  provider: "Bitstamp",
+};
+```
+
+### `payments.V3CoinbaseprimeConfig`
+
+```typescript
+const value: payments.V3CoinbaseprimeConfig = {
+  apiKey: "<value>",
+  apiSecret: "<value>",
+  name: "<value>",
+  passphrase: "<value>",
+  portfolioId: "<id>",
+  provider: "Coinbaseprime",
 };
 ```
 
@@ -45,6 +85,7 @@ const value: payments.V3ColumnConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Column",
 };
 ```
 
@@ -56,6 +97,7 @@ const value: payments.V3CurrencycloudConfig = {
   endpoint: "<value>",
   loginID: "<id>",
   name: "<value>",
+  provider: "Currencycloud",
 };
 ```
 
@@ -65,6 +107,18 @@ const value: payments.V3CurrencycloudConfig = {
 const value: payments.V3DummypayConfig = {
   directory: "/rescue",
   name: "<value>",
+  provider: "Dummypay",
+};
+```
+
+### `payments.V3FireblocksConfig`
+
+```typescript
+const value: payments.V3FireblocksConfig = {
+  apiKey: "<value>",
+  name: "<value>",
+  privateKey: "<value>",
+  provider: "Fireblocks",
 };
 ```
 
@@ -75,6 +129,7 @@ const value: payments.V3GenericConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Generic",
 };
 ```
 
@@ -85,7 +140,20 @@ const value: payments.V3IncreaseConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Increase",
   webhookSharedSecret: "<value>",
+};
+```
+
+### `payments.V3KrakenproConfig`
+
+```typescript
+const value: payments.V3KrakenproConfig = {
+  apiKey: "<value>",
+  apiSecret: "<value>",
+  endpoint: "<value>",
+  name: "<value>",
+  provider: "Krakenpro",
 };
 ```
 
@@ -97,6 +165,7 @@ const value: payments.V3MangopayConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Mangopay",
 };
 ```
 
@@ -108,6 +177,7 @@ const value: payments.V3ModulrConfig = {
   apiSecret: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Modulr",
 };
 ```
 
@@ -119,6 +189,7 @@ const value: payments.V3MoneycorpConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Moneycorp",
 };
 ```
 
@@ -129,6 +200,7 @@ const value: payments.V3PlaidConfig = {
   clientID: "<id>",
   clientSecret: "<value>",
   name: "<value>",
+  provider: "Plaid",
 };
 ```
 
@@ -143,6 +215,7 @@ const value: payments.V3PowensConfig = {
   endpoint: "<value>",
   maxConnectionsPerLink: 110726,
   name: "<value>",
+  provider: "Powens",
 };
 ```
 
@@ -154,6 +227,17 @@ const value: payments.V3QontoConfig = {
   clientID: "<id>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Qonto",
+};
+```
+
+### `payments.V3RoutableConfig`
+
+```typescript
+const value: payments.V3RoutableConfig = {
+  apiKey: "<value>",
+  name: "<value>",
+  provider: "Routable",
 };
 ```
 
@@ -163,6 +247,7 @@ const value: payments.V3QontoConfig = {
 const value: payments.V3StripeConfig = {
   apiKey: "<value>",
   name: "<value>",
+  provider: "Stripe",
 };
 ```
 
@@ -174,6 +259,7 @@ const value: payments.V3TinkConfig = {
   clientSecret: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Tink",
 };
 ```
 
@@ -183,60 +269,8 @@ const value: payments.V3TinkConfig = {
 const value: payments.V3WiseConfig = {
   apiKey: "<value>",
   name: "<value>",
+  provider: "Wise",
   webhookPublicKey: "<value>",
-};
-```
-
-### `payments.V3BankingbridgeConfig`
-
-```typescript
-const value: payments.V3BankingbridgeConfig = {
-  authEndpoint: "<value>",
-  clientID: "<id>",
-  clientSecret: "<value>",
-  endpoint: "<value>",
-  name: "<value>",
-};
-```
-
-### `payments.V3BitstampConfig`
-
-```typescript
-const value: payments.V3BitstampConfig = {
-  apiKey: "<value>",
-  apiSecret: "<value>",
-  name: "<value>",
-};
-```
-
-### `payments.V3CoinbaseprimeConfig`
-
-```typescript
-const value: payments.V3CoinbaseprimeConfig = {
-  apiKey: "<value>",
-  apiSecret: "<value>",
-  name: "<value>",
-  passphrase: "<value>",
-  portfolioId: "<id>",
-};
-```
-
-### `payments.V3FireblocksConfig`
-
-```typescript
-const value: payments.V3FireblocksConfig = {
-  apiKey: "<value>",
-  name: "<value>",
-  privateKey: "<value>",
-};
-```
-
-### `payments.V3RoutableConfig`
-
-```typescript
-const value: payments.V3RoutableConfig = {
-  apiKey: "<value>",
-  name: "<value>",
 };
 ```
 

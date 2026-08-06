@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Transaction, V2Transaction$inboundSchema } from "./v2transaction.js";
@@ -16,9 +17,12 @@ export type V2TransactionsCursorResponseCursor = {
   previous?: string | undefined;
 };
 
-export enum V2TransactionsCursorResponseResource {
-  Transactions = "transactions",
-}
+export const V2TransactionsCursorResponseResource = {
+  Transactions: "transactions",
+} as const;
+export type V2TransactionsCursorResponseResource = ClosedEnum<
+  typeof V2TransactionsCursorResponseResource
+>;
 
 export type V2TransactionsCursorResponse = {
   cursor: V2TransactionsCursorResponseCursor;

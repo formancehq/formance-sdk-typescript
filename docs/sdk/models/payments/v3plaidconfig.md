@@ -9,6 +9,7 @@ let value: V3PlaidConfig = {
   clientID: "<id>",
   clientSecret: "<value>",
   name: "<value>",
+  provider: "Plaid",
 };
 ```
 
@@ -22,4 +23,4 @@ let value: V3PlaidConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Plaid"*                                                               | :heavy_check_mark:                                                      | N/A                                                                     |

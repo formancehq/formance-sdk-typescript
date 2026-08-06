@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V3InitiatePaymentRequest, V3PaymentInitiationTypeEnum } from "@formance/formance-sdk/sdk/models/payments";
+import { V3InitiatePaymentRequest } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: V3InitiatePaymentRequest = {
   amount: 51037n,
@@ -13,7 +13,7 @@ let value: V3InitiatePaymentRequest = {
     "worriedly camouflage impossible inside unimportant instead hornet",
   reference: "<value>",
   scheduledAt: new Date("2025-05-26T13:28:26.343Z"),
-  type: V3PaymentInitiationTypeEnum.Unknown,
+  type: "UNKNOWN",
 };
 ```
 

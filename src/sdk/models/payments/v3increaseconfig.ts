@@ -16,7 +16,7 @@ export type V3IncreaseConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Increase";
   webhookSharedSecret: string;
 };
 
@@ -31,7 +31,7 @@ export const V3IncreaseConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Increase"),
+  provider: z.literal("Increase"),
   webhookSharedSecret: z.string(),
 });
 /** @internal */
@@ -41,7 +41,7 @@ export type V3IncreaseConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Increase";
   webhookSharedSecret: string;
 };
 
@@ -56,7 +56,7 @@ export const V3IncreaseConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Increase"),
+  provider: z.literal("Increase"),
   webhookSharedSecret: z.string(),
 });
 

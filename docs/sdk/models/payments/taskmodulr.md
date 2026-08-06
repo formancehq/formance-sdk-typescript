@@ -3,14 +3,14 @@
 ## Example Usage
 
 ```typescript
-import { TaskModulr, TaskStatus } from "@formance/formance-sdk/sdk/models/payments";
+import { TaskModulr } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: TaskModulr = {
   connectorID: "<id>",
   createdAt: new Date("2025-06-23T02:33:22.887Z"),
   descriptor: {},
   id: "b86ebf88-f7f3-4a90-850e-b08fe08de5a2",
-  status: TaskStatus.Pending,
+  status: "PENDING",
   updatedAt: new Date("2026-09-05T00:58:12.742Z"),
 };
 ```

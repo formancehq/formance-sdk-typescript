@@ -6,10 +6,15 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { V3Capability, V3Capability$inboundSchema } from "./v3capability.js";
 
 export type Config = {};
 
 export type V3Connector = {
+  /**
+   * Plugin capabilities advertised by the connector's provider.
+   */
+  capabilities?: Array<V3Capability> | undefined;
   config: Config;
   createdAt: Date;
   id: string;
@@ -40,6 +45,7 @@ export const V3Connector$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  capabilities: z.array(V3Capability$inboundSchema).optional(),
   config: z.lazy(() => Config$inboundSchema),
   createdAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   id: z.string(),

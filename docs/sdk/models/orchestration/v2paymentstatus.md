@@ -5,16 +5,11 @@
 ```typescript
 import { V2PaymentStatus } from "@formance/formance-sdk/sdk/models/orchestration";
 
-let value: V2PaymentStatus = V2PaymentStatus.Cancelled;
+let value: V2PaymentStatus = "CANCELLED";
 ```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Pending`    | PENDING      |
-| `Active`     | ACTIVE       |
-| `Terminated` | TERMINATED   |
-| `Failed`     | FAILED       |
-| `Succeeded`  | SUCCEEDED    |
-| `Cancelled`  | CANCELLED    |
+```typescript
+"PENDING" | "ACTIVE" | "TERMINATED" | "FAILED" | "SUCCEEDED" | "CANCELLED"
+```

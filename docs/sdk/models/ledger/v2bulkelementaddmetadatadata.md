@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { V2BulkElementAddMetadataData, V2TargetType } from "@formance/formance-sdk/sdk/models/ledger";
+import { V2BulkElementAddMetadataData } from "@formance/formance-sdk/sdk/models/ledger";
 
 let value: V2BulkElementAddMetadataData = {
   metadata: {
@@ -12,7 +12,7 @@ let value: V2BulkElementAddMetadataData = {
     "key2": "<value>",
   },
   targetId: 350871n,
-  targetType: V2TargetType.Transaction,
+  targetType: "TRANSACTION",
 };
 ```
 

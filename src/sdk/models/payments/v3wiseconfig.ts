@@ -15,7 +15,7 @@ export type V3WiseConfig = {
    */
   pageSize?: number | undefined;
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Wise";
   webhookPublicKey: string;
 };
 
@@ -29,7 +29,7 @@ export const V3WiseConfig$inboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Wise"),
+  provider: z.literal("Wise"),
   webhookPublicKey: z.string(),
 });
 /** @internal */
@@ -38,7 +38,7 @@ export type V3WiseConfig$Outbound = {
   name: string;
   pageSize: number;
   pollingPeriod: string;
-  provider: string;
+  provider: "Wise";
   webhookPublicKey: string;
 };
 
@@ -52,7 +52,7 @@ export const V3WiseConfig$outboundSchema: z.ZodType<
   name: z.string(),
   pageSize: z.number().int().default(25),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Wise"),
+  provider: z.literal("Wise"),
   webhookPublicKey: z.string(),
 });
 

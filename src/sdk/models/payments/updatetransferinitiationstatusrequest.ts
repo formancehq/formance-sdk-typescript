@@ -3,11 +3,13 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum Status {
-  Rejected = "REJECTED",
-  Validated = "VALIDATED",
-}
+export const Status = {
+  Rejected: "REJECTED",
+  Validated: "VALIDATED",
+} as const;
+export type Status = ClosedEnum<typeof Status>;
 
 export type UpdateTransferInitiationStatusRequest = {
   status: Status;

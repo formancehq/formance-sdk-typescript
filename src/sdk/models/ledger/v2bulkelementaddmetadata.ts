@@ -17,7 +17,7 @@ export type V2BulkElementAddMetadataData = {
 };
 
 export type V2BulkElementAddMetadata = {
-  action: string;
+  action: "ADD_METADATA";
   data?: V2BulkElementAddMetadataData | undefined;
   ik?: string | undefined;
 };
@@ -52,7 +52,7 @@ export function v2BulkElementAddMetadataDataToJSON(
 
 /** @internal */
 export type V2BulkElementAddMetadata$Outbound = {
-  action: string;
+  action: "ADD_METADATA";
   data?: V2BulkElementAddMetadataData$Outbound | undefined;
   ik?: string | undefined;
 };
@@ -63,7 +63,7 @@ export const V2BulkElementAddMetadata$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2BulkElementAddMetadata
 > = z.object({
-  action: z.string(),
+  action: z.literal("ADD_METADATA"),
   data: z.lazy(() => V2BulkElementAddMetadataData$outboundSchema).optional(),
   ik: z.string().optional(),
 });

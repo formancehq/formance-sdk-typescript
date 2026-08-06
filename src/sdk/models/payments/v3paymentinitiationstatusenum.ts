@@ -3,19 +3,23 @@
  */
 
 import * as z from "zod/v3";
+import { ClosedEnum } from "../../types/enums.js";
 
-export enum V3PaymentInitiationStatusEnum {
-  Unknown = "UNKNOWN",
-  WaitingForValidation = "WAITING_FOR_VALIDATION",
-  ScheduledForProcessing = "SCHEDULED_FOR_PROCESSING",
-  Processing = "PROCESSING",
-  Processed = "PROCESSED",
-  Failed = "FAILED",
-  Rejected = "REJECTED",
-  ReverseProcessing = "REVERSE_PROCESSING",
-  ReverseFailed = "REVERSE_FAILED",
-  Reversed = "REVERSED",
-}
+export const V3PaymentInitiationStatusEnum = {
+  Unknown: "UNKNOWN",
+  WaitingForValidation: "WAITING_FOR_VALIDATION",
+  ScheduledForProcessing: "SCHEDULED_FOR_PROCESSING",
+  Processing: "PROCESSING",
+  Processed: "PROCESSED",
+  Failed: "FAILED",
+  Rejected: "REJECTED",
+  ReverseProcessing: "REVERSE_PROCESSING",
+  ReverseFailed: "REVERSE_FAILED",
+  Reversed: "REVERSED",
+} as const;
+export type V3PaymentInitiationStatusEnum = ClosedEnum<
+  typeof V3PaymentInitiationStatusEnum
+>;
 
 /** @internal */
 export const V3PaymentInitiationStatusEnum$inboundSchema: z.ZodNativeEnum<

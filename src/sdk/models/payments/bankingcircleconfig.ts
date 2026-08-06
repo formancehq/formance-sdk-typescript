@@ -18,7 +18,7 @@ export type BankingCircleConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
-  provider?: string | undefined;
+  provider: "Bankingcircle";
   userCertificate: string;
   userCertificateKey: string;
   username: string;
@@ -35,7 +35,7 @@ export const BankingCircleConfig$inboundSchema: z.ZodType<
   name: z.string(),
   password: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bankingcircle"),
+  provider: z.literal("Bankingcircle"),
   userCertificate: z.string(),
   userCertificateKey: z.string(),
   username: z.string(),
@@ -47,7 +47,7 @@ export type BankingCircleConfig$Outbound = {
   name: string;
   password: string;
   pollingPeriod: string;
-  provider: string;
+  provider: "Bankingcircle";
   userCertificate: string;
   userCertificateKey: string;
   username: string;
@@ -64,7 +64,7 @@ export const BankingCircleConfig$outboundSchema: z.ZodType<
   name: z.string(),
   password: z.string(),
   pollingPeriod: z.string().default("30m"),
-  provider: z.string().default("Bankingcircle"),
+  provider: z.literal("Bankingcircle"),
   userCertificate: z.string(),
   userCertificateKey: z.string(),
   username: z.string(),

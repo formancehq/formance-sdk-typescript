@@ -7,7 +7,10 @@ Error response
 ```typescript
 import { ErrorResponse } from "@formance/formance-sdk/sdk/models/reconciliation";
 
-// No examples available for this model
+let value: ErrorResponse = {
+  errorCode: "VALIDATION",
+  errorMessage: "<value>",
+};
 ```
 
 ## Fields

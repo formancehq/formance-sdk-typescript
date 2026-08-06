@@ -4,6 +4,7 @@
 
 import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
+import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
@@ -12,10 +13,16 @@ export type V2LogDataDeleteMetadataTargetId = string | bigint;
 /**
  * Type of the target entity
  */
-export enum V2LogDataDeleteMetadataTargetType {
-  Account = "ACCOUNT",
-  Transaction = "TRANSACTION",
-}
+export const V2LogDataDeleteMetadataTargetType = {
+  Account: "ACCOUNT",
+  Transaction: "TRANSACTION",
+} as const;
+/**
+ * Type of the target entity
+ */
+export type V2LogDataDeleteMetadataTargetType = ClosedEnum<
+  typeof V2LogDataDeleteMetadataTargetType
+>;
 
 /**
  * Payload for DELETE_METADATA log entries. Contains the target entity and the metadata key that was deleted.

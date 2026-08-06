@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Payment, PaymentScheme, PaymentStatus, PaymentType } from "@formance/formance-sdk/sdk/models/payments";
+import { Payment } from "@formance/formance-sdk/sdk/models/payments";
 
 let value: Payment = {
   adjustments: [],
@@ -17,10 +17,10 @@ let value: Payment = {
   metadata: null,
   raw: null,
   reference: "<value>",
-  scheme: PaymentScheme.A2a,
+  scheme: "a2a",
   sourceAccountID: "<id>",
-  status: PaymentStatus.Failed,
-  type: PaymentType.Payout,
+  status: "FAILED",
+  type: "PAYOUT",
 };
 ```
 
@@ -38,7 +38,7 @@ let value: Payment = {
 | `initialAmount`                                                                               | *BigInt*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           | 100                                                                                           |
 | `metadata`                                                                                    | Record<string, *string*>                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `provider`                                                                                    | [payments.Connector](../../../sdk/models/payments/connector.md)                               | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
-| `raw`                                                                                         | [payments.PaymentRaw](../../../sdk/models/payments/paymentraw.md)                             | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
+| `raw`                                                                                         | Record<string, *any*>                                                                         | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `reference`                                                                                   | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `scheme`                                                                                      | [payments.PaymentScheme](../../../sdk/models/payments/paymentscheme.md)                       | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `sourceAccountID`                                                                             | *string*                                                                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |

@@ -9,6 +9,7 @@ let value: V3GenericConfig = {
   apiKey: "<value>",
   endpoint: "<value>",
   name: "<value>",
+  provider: "Generic",
 };
 ```
 
@@ -21,4 +22,4 @@ let value: V3GenericConfig = {
 | `name`                                                                  | *string*                                                                | :heavy_check_mark:                                                      | N/A                                                                     |
 | ~~`pageSize`~~                                                          | *number*                                                                | :heavy_minus_sign:                                                      | : warning: ** DEPRECATED **: From v3.1, this parameter will be ignored. |
 | `pollingPeriod`                                                         | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
-| `provider`                                                              | *string*                                                                | :heavy_minus_sign:                                                      | N/A                                                                     |
+| `provider`                                                              | *"Generic"*                                                             | :heavy_check_mark:                                                      | N/A                                                                     |

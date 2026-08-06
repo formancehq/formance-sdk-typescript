@@ -7,10 +7,6 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
-export enum V2QueryParamsResourceVolumes {
-  Volumes = "volumes",
-}
-
 export type QueryTemplateVolumeParams = {
   /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -31,7 +27,7 @@ export type QueryTemplateVolumeParams = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
-  resource?: V2QueryParamsResourceVolumes | undefined;
+  resource: "volumes";
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -40,10 +36,6 @@ export type QueryTemplateVolumeParams = {
    */
   sort?: string | undefined;
 };
-
-export enum V2QueryParamsResourceLogs {
-  Logs = "logs",
-}
 
 export type QueryTemplateLogParams = {
   /**
@@ -63,7 +55,7 @@ export type QueryTemplateLogParams = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
-  resource?: V2QueryParamsResourceLogs | undefined;
+  resource: "logs";
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -72,10 +64,6 @@ export type QueryTemplateLogParams = {
    */
   sort?: string | undefined;
 };
-
-export enum V2QueryParamsResourceTransactions {
-  Transactions = "transactions",
-}
 
 export type QueryTemplateTransactionParams = {
   /**
@@ -95,7 +83,7 @@ export type QueryTemplateTransactionParams = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
-  resource?: V2QueryParamsResourceTransactions | undefined;
+  resource: "transactions";
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -104,10 +92,6 @@ export type QueryTemplateTransactionParams = {
    */
   sort?: string | undefined;
 };
-
-export enum V2QueryParamsResourceAccounts {
-  Accounts = "accounts",
-}
 
 export type QueryTemplateAccountParams = {
   /**
@@ -127,7 +111,7 @@ export type QueryTemplateAccountParams = {
    */
   pageSize?: number | undefined;
   pit?: Date | undefined;
-  resource?: V2QueryParamsResourceAccounts | undefined;
+  resource: "accounts";
   /**
    * Sort results using a field name and order (ascending or descending).
    *
@@ -144,15 +128,6 @@ export type V2QueryParams =
   | QueryTemplateVolumeParams;
 
 /** @internal */
-export const V2QueryParamsResourceVolumes$inboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceVolumes
-> = z.nativeEnum(V2QueryParamsResourceVolumes);
-/** @internal */
-export const V2QueryParamsResourceVolumes$outboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceVolumes
-> = V2QueryParamsResourceVolumes$inboundSchema;
-
-/** @internal */
 export const QueryTemplateVolumeParams$inboundSchema: z.ZodType<
   QueryTemplateVolumeParams,
   z.ZodTypeDef,
@@ -165,7 +140,7 @@ export const QueryTemplateVolumeParams$inboundSchema: z.ZodType<
   pageSize: z.number().int().optional(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  resource: V2QueryParamsResourceVolumes$inboundSchema.optional(),
+  resource: z.literal("volumes"),
   sort: z.string().optional(),
 });
 /** @internal */
@@ -176,7 +151,7 @@ export type QueryTemplateVolumeParams$Outbound = {
   insertionDate?: boolean | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
-  resource?: string | undefined;
+  resource: "volumes";
   sort?: string | undefined;
 };
 
@@ -192,7 +167,7 @@ export const QueryTemplateVolumeParams$outboundSchema: z.ZodType<
   insertionDate: z.boolean().optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
-  resource: V2QueryParamsResourceVolumes$outboundSchema.optional(),
+  resource: z.literal("volumes"),
   sort: z.string().optional(),
 });
 
@@ -214,15 +189,6 @@ export function queryTemplateVolumeParamsFromJSON(
 }
 
 /** @internal */
-export const V2QueryParamsResourceLogs$inboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceLogs
-> = z.nativeEnum(V2QueryParamsResourceLogs);
-/** @internal */
-export const V2QueryParamsResourceLogs$outboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceLogs
-> = V2QueryParamsResourceLogs$inboundSchema;
-
-/** @internal */
 export const QueryTemplateLogParams$inboundSchema: z.ZodType<
   QueryTemplateLogParams,
   z.ZodTypeDef,
@@ -233,7 +199,7 @@ export const QueryTemplateLogParams$inboundSchema: z.ZodType<
   pageSize: z.number().int().optional(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  resource: V2QueryParamsResourceLogs$inboundSchema.optional(),
+  resource: z.literal("logs"),
   sort: z.string().optional(),
 });
 /** @internal */
@@ -242,7 +208,7 @@ export type QueryTemplateLogParams$Outbound = {
   expand?: string | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
-  resource?: string | undefined;
+  resource: "logs";
   sort?: string | undefined;
 };
 
@@ -256,7 +222,7 @@ export const QueryTemplateLogParams$outboundSchema: z.ZodType<
   expand: z.string().optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
-  resource: V2QueryParamsResourceLogs$outboundSchema.optional(),
+  resource: z.literal("logs"),
   sort: z.string().optional(),
 });
 
@@ -278,15 +244,6 @@ export function queryTemplateLogParamsFromJSON(
 }
 
 /** @internal */
-export const V2QueryParamsResourceTransactions$inboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceTransactions
-> = z.nativeEnum(V2QueryParamsResourceTransactions);
-/** @internal */
-export const V2QueryParamsResourceTransactions$outboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceTransactions
-> = V2QueryParamsResourceTransactions$inboundSchema;
-
-/** @internal */
 export const QueryTemplateTransactionParams$inboundSchema: z.ZodType<
   QueryTemplateTransactionParams,
   z.ZodTypeDef,
@@ -297,7 +254,7 @@ export const QueryTemplateTransactionParams$inboundSchema: z.ZodType<
   pageSize: z.number().int().optional(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  resource: V2QueryParamsResourceTransactions$inboundSchema.optional(),
+  resource: z.literal("transactions"),
   sort: z.string().optional(),
 });
 /** @internal */
@@ -306,7 +263,7 @@ export type QueryTemplateTransactionParams$Outbound = {
   expand?: string | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
-  resource?: string | undefined;
+  resource: "transactions";
   sort?: string | undefined;
 };
 
@@ -320,7 +277,7 @@ export const QueryTemplateTransactionParams$outboundSchema: z.ZodType<
   expand: z.string().optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
-  resource: V2QueryParamsResourceTransactions$outboundSchema.optional(),
+  resource: z.literal("transactions"),
   sort: z.string().optional(),
 });
 
@@ -344,15 +301,6 @@ export function queryTemplateTransactionParamsFromJSON(
 }
 
 /** @internal */
-export const V2QueryParamsResourceAccounts$inboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceAccounts
-> = z.nativeEnum(V2QueryParamsResourceAccounts);
-/** @internal */
-export const V2QueryParamsResourceAccounts$outboundSchema: z.ZodNativeEnum<
-  typeof V2QueryParamsResourceAccounts
-> = V2QueryParamsResourceAccounts$inboundSchema;
-
-/** @internal */
 export const QueryTemplateAccountParams$inboundSchema: z.ZodType<
   QueryTemplateAccountParams,
   z.ZodTypeDef,
@@ -363,7 +311,7 @@ export const QueryTemplateAccountParams$inboundSchema: z.ZodType<
   pageSize: z.number().int().optional(),
   pit: z.string().datetime({ offset: true }).transform(v => new Date(v))
     .optional(),
-  resource: V2QueryParamsResourceAccounts$inboundSchema.optional(),
+  resource: z.literal("accounts"),
   sort: z.string().optional(),
 });
 /** @internal */
@@ -372,7 +320,7 @@ export type QueryTemplateAccountParams$Outbound = {
   expand?: string | undefined;
   pageSize?: number | undefined;
   pit?: string | undefined;
-  resource?: string | undefined;
+  resource: "accounts";
   sort?: string | undefined;
 };
 
@@ -386,7 +334,7 @@ export const QueryTemplateAccountParams$outboundSchema: z.ZodType<
   expand: z.string().optional(),
   pageSize: z.number().int().optional(),
   pit: z.date().transform(v => v.toISOString()).optional(),
-  resource: V2QueryParamsResourceAccounts$outboundSchema.optional(),
+  resource: z.literal("accounts"),
   sort: z.string().optional(),
 });
 
