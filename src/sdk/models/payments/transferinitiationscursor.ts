@@ -11,11 +11,26 @@ import {
   TransferInitiation$inboundSchema,
 } from "./transferinitiation.js";
 
+/**
+ * Paginated cursor wrapping the list of transfer initiations
+ */
 export type TransferInitiationsCursorCursor = {
   data: Array<TransferInitiation>;
+  /**
+   * Whether further pages are available
+   */
   hasMore: boolean;
+  /**
+   * Cursor for the next page, absent on the last page
+   */
   next?: string | undefined;
+  /**
+   * Number of items requested per page
+   */
   pageSize: number;
+  /**
+   * Cursor for the previous page, absent on the first page
+   */
   previous?: string | undefined;
 };
 
@@ -23,6 +38,9 @@ export type TransferInitiationsCursorCursor = {
  * OK
  */
 export type TransferInitiationsCursor = {
+  /**
+   * Paginated cursor wrapping the list of transfer initiations
+   */
   cursor: TransferInitiationsCursorCursor;
 };
 

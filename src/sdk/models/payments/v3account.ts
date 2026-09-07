@@ -15,17 +15,53 @@ import {
   V3ConnectorBase$inboundSchema,
 } from "./v3connectorbase.js";
 
+/**
+ * An account held at a payment provider, surfaced through a connector
+ */
 export type V3Account = {
+  /**
+   * Summary of a connector, without its configuration
+   */
   connector?: V3ConnectorBase | undefined;
+  /**
+   * Identifier of the connector the account belongs to
+   */
   connectorID: string;
+  /**
+   * When the account was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Asset the account is denominated in by default
+   */
   defaultAsset?: string | null | undefined;
+  /**
+   * Unique identifier of the account within Formance
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name of the account
+   */
   name?: string | null | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string;
+  /**
+   * The provider's original payload, passed through untouched
+   */
   raw: { [k: string]: any };
+  /**
+   * Identifier the account carries at the provider
+   */
   reference: string;
+  /**
+   * Whether an account is internal to the provider or belongs to an external party
+   */
   type: V3AccountTypeEnum;
 };
 

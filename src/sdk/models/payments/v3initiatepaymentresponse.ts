@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the initiation, which completes asynchronously
+ */
 export type V3InitiatePaymentResponseData = {
   /**
    * Related payment initiation object ID created.
@@ -23,6 +26,9 @@ export type V3InitiatePaymentResponseData = {
 };
 
 export type V3InitiatePaymentResponse = {
+  /**
+   * The task tracking the initiation, which completes asynchronously
+   */
   data: V3InitiatePaymentResponseData;
 };
 

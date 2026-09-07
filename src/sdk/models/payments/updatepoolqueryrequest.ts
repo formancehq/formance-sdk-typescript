@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type UpdatePoolQueryRequest = {
+  /**
+   * Filter selecting the accounts a dynamic pool contains
+   */
   query: { [k: string]: any };
 };
 

@@ -12,6 +12,9 @@ import { Pool, Pool$inboundSchema } from "./pool.js";
  * OK
  */
 export type PoolResponse = {
+  /**
+   * A named group of accounts whose balances are aggregated together
+   */
   data: Pool;
 };
 

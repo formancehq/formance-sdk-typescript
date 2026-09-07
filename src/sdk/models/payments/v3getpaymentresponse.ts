@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Payment, V3Payment$inboundSchema } from "./v3payment.js";
 
 export type V3GetPaymentResponse = {
+  /**
+   * A payment observed at a provider and surfaced through a connector
+   */
   data: V3Payment;
 };
 

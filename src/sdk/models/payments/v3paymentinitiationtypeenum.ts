@@ -5,11 +5,17 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Kind of movement a payment initiation performs, such as a transfer or a payout
+ */
 export const V3PaymentInitiationTypeEnum = {
   Unknown: "UNKNOWN",
   Transfer: "TRANSFER",
   Payout: "PAYOUT",
 } as const;
+/**
+ * Kind of movement a payment initiation performs, such as a transfer or a payout
+ */
 export type V3PaymentInitiationTypeEnum = ClosedEnum<
   typeof V3PaymentInitiationTypeEnum
 >;

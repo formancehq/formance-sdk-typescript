@@ -9,6 +9,9 @@ export type V3PaymentServiceUserUpdateLinkRequest = {
    * The name of the application to be displayed to the user when they click the link (depending on the open banking provider). Note that this field might be mandatory for some open banking providers.
    */
   applicationName?: string | undefined;
+  /**
+   * URL to send the user back to once the provider's flow finishes
+   */
   clientRedirectURL: string;
 };
 

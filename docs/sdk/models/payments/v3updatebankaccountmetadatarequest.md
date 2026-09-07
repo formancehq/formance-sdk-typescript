@@ -14,6 +14,6 @@ let value: V3UpdateBankAccountMetadataRequest = {
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `metadata`               | Record<string, *string*> | :heavy_check_mark:       | N/A                      |
+| Field                                              | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `metadata`                                         | Record<string, *string*>                           | :heavy_check_mark:                                 | Arbitrary key/value pairs attached to the resource |

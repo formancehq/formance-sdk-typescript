@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3PoolBalance, V3PoolBalance$inboundSchema } from "./v3poolbalance.js";
 
 export type V3PoolBalancesResponse = {
+  /**
+   * Aggregated balances across a pool's accounts
+   */
   data: Array<V3PoolBalance>;
 };
 

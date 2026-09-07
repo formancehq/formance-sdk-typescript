@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the retry, which completes asynchronously
+ */
 export type V3RetryPaymentInitiationResponseData = {
   /**
    * Since this call is asynchronous, the response will contain the ID of the task that was created to retry the payment initiation to the PSP. You can use the task API to check the status of the task and get the resulting payment ID.
@@ -17,6 +20,9 @@ export type V3RetryPaymentInitiationResponseData = {
 };
 
 export type V3RetryPaymentInitiationResponse = {
+  /**
+   * The task tracking the retry, which completes asynchronously
+   */
   data: V3RetryPaymentInitiationResponseData;
 };
 

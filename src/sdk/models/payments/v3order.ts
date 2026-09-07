@@ -108,6 +108,9 @@ export type V3Order = {
    * Maximum price (for BUY) or minimum price (for SELL) at which the order may execute, in `priceAsset` precision. Required for LIMIT-family order types; null otherwise.
    */
   limitPrice?: bigint | null | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
   /**
    * Currency + precision under which `limitPrice`, `stopPrice`, and

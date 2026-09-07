@@ -15,6 +15,9 @@ import {
  * OK
  */
 export type TransferInitiationResponse = {
+  /**
+   * A transfer Formance asked a connector to execute
+   */
   data: TransferInitiation;
 };
 

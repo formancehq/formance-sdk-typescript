@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MangoPayConfig = {
+  /**
+   * API key issued by MangoPay, used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * Client ID issued by MangoPay
+   */
   clientID: string;
+  /**
+   * Base URL of the MangoPay API the connector calls
+   */
   endpoint: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from MangoPay API.
@@ -18,6 +30,9 @@ export type MangoPayConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Mangopay";
 };
 

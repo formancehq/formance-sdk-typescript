@@ -21,6 +21,9 @@ import { TaskMoneycorp, TaskMoneycorp$inboundSchema } from "./taskmoneycorp.js";
 import { TaskStripe, TaskStripe$inboundSchema } from "./taskstripe.js";
 import { TaskWise, TaskWise$inboundSchema } from "./taskwise.js";
 
+/**
+ * The requested task
+ */
 export type TaskResponseData =
   | TaskStripe
   | TaskWise
@@ -35,6 +38,9 @@ export type TaskResponseData =
  * OK
  */
 export type TaskResponse = {
+  /**
+   * The requested task
+   */
   data:
     | TaskStripe
     | TaskWise

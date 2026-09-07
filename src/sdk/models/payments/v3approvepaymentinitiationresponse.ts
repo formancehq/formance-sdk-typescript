@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the approval, which completes asynchronously
+ */
 export type V3ApprovePaymentInitiationResponseData = {
   /**
    * Since this call is asynchronous, the response will contain the ID of the task that was created to approve the payment initiation. You can use the task API to check the status of the task and get the resulting payment ID.
@@ -17,6 +20,9 @@ export type V3ApprovePaymentInitiationResponseData = {
 };
 
 export type V3ApprovePaymentInitiationResponse = {
+  /**
+   * The task tracking the approval, which completes asynchronously
+   */
   data: V3ApprovePaymentInitiationResponseData;
 };
 

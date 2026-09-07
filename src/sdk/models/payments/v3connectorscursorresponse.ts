@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Connector, V3Connector$inboundSchema } from "./v3connector.js";
 
+/**
+ * Paginated cursor wrapping the list of connectors
+ */
 export type V3ConnectorsCursorResponseCursor = {
   data: Array<V3Connector>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3ConnectorsCursorResponseCursor = {
 };
 
 export type V3ConnectorsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of connectors
+   */
   cursor: V3ConnectorsCursorResponseCursor;
 };
 

@@ -11,12 +11,33 @@ import {
   V3PoolTypeEnum$inboundSchema,
 } from "./v3pooltypeenum.js";
 
+/**
+ * A named group of accounts whose balances are aggregated together
+ */
 export type V3Pool = {
+  /**
+   * When the pool was created
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the pool
+   */
   id: string;
+  /**
+   * Human-readable name of the pool
+   */
   name: string;
+  /**
+   * Accounts currently in the pool
+   */
   poolAccounts: Array<string>;
+  /**
+   * Filter selecting the accounts a dynamic pool contains
+   */
   query?: { [k: string]: any } | undefined;
+  /**
+   * Whether a pool holds a fixed account list or is driven by a query
+   */
   type?: V3PoolTypeEnum | undefined;
 };
 

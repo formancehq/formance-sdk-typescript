@@ -14,15 +14,45 @@ import {
 import { PaymentType, PaymentType$outboundSchema } from "./paymenttype.js";
 
 export type PaymentRequest = {
+  /**
+   * Amount of the payment, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector the payment belongs to
+   */
   connectorID: string;
+  /**
+   * When the payment was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID?: string | undefined;
+  /**
+   * Identifier the payment carries at the provider
+   */
   reference: string;
+  /**
+   * Payment scheme or rail a payment travels over
+   */
   scheme: PaymentScheme;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID?: string | undefined;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: PaymentStatus;
+  /**
+   * Direction of a payment
+   */
   type: PaymentType;
 };
 

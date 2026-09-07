@@ -5,11 +5,29 @@
 import * as z from "zod/v3";
 
 export type V3CreateBankAccountRequest = {
+  /**
+   * Domestic account number. Supply this or an IBAN
+   */
   accountNumber?: string | undefined;
+  /**
+   * Country the account is held in, as an ISO 3166-1 alpha-2 code
+   */
   country?: string | undefined;
+  /**
+   * International bank account number. Supply this or an account number
+   */
   iban?: string | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name for the bank account
+   */
   name: string;
+  /**
+   * SWIFT/BIC code identifying the bank
+   */
   swiftBicCode?: string | undefined;
 };
 

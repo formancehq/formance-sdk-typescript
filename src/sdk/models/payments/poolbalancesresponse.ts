@@ -12,6 +12,9 @@ import { PoolBalances, PoolBalances$inboundSchema } from "./poolbalances.js";
  * OK
  */
 export type PoolBalancesResponse = {
+  /**
+   * Aggregated balances across a pool's accounts
+   */
   data: PoolBalances;
 };
 

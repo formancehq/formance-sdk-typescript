@@ -7,14 +7,32 @@ import { SDKBaseError } from "../errors/sdkbaseerror.js";
 import { V3ErrorsEnum, V3ErrorsEnum$inboundSchema } from "./v3errorsenum.js";
 
 export type V3ErrorResponseData = {
+  /**
+   * Optional link carrying additional context about the error
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: V3ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 
 export class V3ErrorResponse extends SDKBaseError {
+  /**
+   * Optional link carrying additional context about the error
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: V3ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */

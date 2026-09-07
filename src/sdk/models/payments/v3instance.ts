@@ -8,13 +8,37 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3Instance = {
+  /**
+   * Identifier of the connector this run belongs to
+   */
   connectorID: string;
+  /**
+   * When the run started
+   */
   createdAt: Date;
+  /**
+   * Why the run failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the run
+   */
   id: string;
+  /**
+   * Identifier of the schedule that started this run
+   */
   scheduleID: string;
+  /**
+   * Whether the run has finished, successfully or not
+   */
   terminated: boolean;
+  /**
+   * When the run finished, absent while it is still running
+   */
   terminatedAt?: Date | undefined;
+  /**
+   * When the run was last updated
+   */
   updatedAt: Date;
 };
 

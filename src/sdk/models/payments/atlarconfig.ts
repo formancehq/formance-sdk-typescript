@@ -21,6 +21,9 @@ export type AtlarConfig = {
    * @remarks
    */
   baseUrl?: string | undefined;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * Number of items to fetch when querying paginated APIs.
@@ -34,6 +37,9 @@ export type AtlarConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Atlar";
   /**
    * The secret used by the connector for authorizing requests to the Atlar API.

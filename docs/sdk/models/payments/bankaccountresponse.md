@@ -19,6 +19,6 @@ let value: BankAccountResponse = {
 
 ## Fields
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `data`                                                              | [payments.BankAccount](../../../sdk/models/payments/bankaccount.md) | :heavy_check_mark:                                                  | N/A                                                                 |
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `data`                                                                | [payments.BankAccount](../../../sdk/models/payments/bankaccount.md)   | :heavy_check_mark:                                                    | A bank account registered with Formance and forwardable to connectors |

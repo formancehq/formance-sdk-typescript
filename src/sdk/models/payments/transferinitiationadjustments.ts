@@ -12,10 +12,25 @@ import {
 } from "./transferinitiationstatus.js";
 
 export type TransferInitiationAdjustments = {
+  /**
+   * Unique identifier of the adjustment
+   */
   adjustmentID: string;
+  /**
+   * When the adjustment was recorded
+   */
   createdAt: Date;
+  /**
+   * Why this step failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the adjustment
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Where a transfer initiation stands in its lifecycle
+   */
   status: TransferInitiationStatus;
 };
 

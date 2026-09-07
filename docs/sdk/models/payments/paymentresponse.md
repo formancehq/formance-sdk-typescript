@@ -35,6 +35,6 @@ let value: PaymentResponse = {
 
 ## Fields
 
-| Field                                                       | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `data`                                                      | [payments.Payment](../../../sdk/models/payments/payment.md) | :heavy_check_mark:                                          | N/A                                                         |
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `data`                                                            | [payments.Payment](../../../sdk/models/payments/payment.md)       | :heavy_check_mark:                                                | A payment observed at a provider and surfaced through a connector |

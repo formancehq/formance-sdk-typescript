@@ -5,13 +5,22 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Whether to approve or reject the pending transfer
+ */
 export const Status = {
   Rejected: "REJECTED",
   Validated: "VALIDATED",
 } as const;
+/**
+ * Whether to approve or reject the pending transfer
+ */
 export type Status = ClosedEnum<typeof Status>;
 
 export type UpdateTransferInitiationStatusRequest = {
+  /**
+   * Whether to approve or reject the pending transfer
+   */
   status: Status;
 };
 

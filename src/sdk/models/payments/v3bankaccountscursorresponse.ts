@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3BankAccount, V3BankAccount$inboundSchema } from "./v3bankaccount.js";
 
+/**
+ * Paginated cursor wrapping the list of bank accounts
+ */
 export type V3BankAccountsCursorResponseCursor = {
   data: Array<V3BankAccount>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3BankAccountsCursorResponseCursor = {
 };
 
 export type V3BankAccountsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of bank accounts
+   */
   cursor: V3BankAccountsCursorResponseCursor;
 };
 

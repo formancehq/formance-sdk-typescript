@@ -14,16 +14,40 @@ export type TaskWiseDescriptor = {
   profileID?: number | undefined;
 };
 
+/**
+ * Internal progress state the task resumes from
+ */
 export type TaskWiseState = {};
 
 export type TaskWise = {
+  /**
+   * Identifier of the connector the task runs against
+   */
   connectorID: string;
+  /**
+   * When the task was created
+   */
   createdAt: Date;
   descriptor: TaskWiseDescriptor;
+  /**
+   * Why the task failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the task
+   */
   id: string;
+  /**
+   * Internal progress state the task resumes from
+   */
   state?: TaskWiseState | null | undefined;
+  /**
+   * Where a task stands, from pending or active through to stopped, terminated or failed
+   */
   status: TaskStatus;
+  /**
+   * When the task was last updated
+   */
   updatedAt: Date;
 };
 

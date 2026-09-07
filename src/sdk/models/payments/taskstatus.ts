@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Where a task stands, from pending or active through to stopped, terminated or failed
+ */
 export const TaskStatus = {
   Pending: "PENDING",
   Active: "ACTIVE",
@@ -12,6 +15,9 @@ export const TaskStatus = {
   Terminated: "TERMINATED",
   Failed: "FAILED",
 } as const;
+/**
+ * Where a task stands, from pending or active through to stopped, terminated or failed
+ */
 export type TaskStatus = ClosedEnum<typeof TaskStatus>;
 
 /** @internal */

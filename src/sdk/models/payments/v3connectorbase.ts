@@ -7,11 +7,29 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Summary of a connector, without its configuration
+ */
 export type V3ConnectorBase = {
+  /**
+   * When the connector was installed
+   */
   createdAt?: Date | undefined;
+  /**
+   * Unique identifier of the connector
+   */
   id?: string | undefined;
+  /**
+   * Human-readable name of the connector instance
+   */
   name?: string | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider?: string | undefined;
+  /**
+   * Stable reference identifying the connector
+   */
   reference?: string | undefined;
 };
 

@@ -9,12 +9,33 @@ import {
 } from "./v3accounttypeenum.js";
 
 export type V3CreateAccountRequest = {
+  /**
+   * Human-readable name of the account
+   */
   accountName: string;
+  /**
+   * Identifier of the connector the account belongs to
+   */
   connectorID: string;
+  /**
+   * When the account was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Asset the account is denominated in by default
+   */
   defaultAsset?: string | null | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Identifier the account carries at the provider
+   */
   reference: string;
+  /**
+   * Whether an account is internal to the provider or belongs to an external party
+   */
   type: V3AccountTypeEnum;
 };
 

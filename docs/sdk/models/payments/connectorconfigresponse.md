@@ -19,6 +19,6 @@ let value: ConnectorConfigResponse = {
 
 ## Fields
 
-| Field                      | Type                       | Required                   | Description                |
-| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `data`                     | *payments.ConnectorConfig* | :heavy_check_mark:         | N/A                        |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `data`                                                           | *payments.ConnectorConfig*                                       | :heavy_check_mark:                                               | A connector's configuration, whose shape depends on the provider |

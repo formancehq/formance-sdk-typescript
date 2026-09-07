@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3BankAccount, V3BankAccount$inboundSchema } from "./v3bankaccount.js";
 
 export type V3GetBankAccountResponse = {
+  /**
+   * A bank account registered with Formance and forwardable to connectors
+   */
   data: V3BankAccount;
 };
 

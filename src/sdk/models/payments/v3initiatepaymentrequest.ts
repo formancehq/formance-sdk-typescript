@@ -9,15 +9,45 @@ import {
 } from "./v3paymentinitiationtypeenum.js";
 
 export type V3InitiatePaymentRequest = {
+  /**
+   * Amount to move, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector to execute the payment through
+   */
   connectorID: string;
+  /**
+   * Human-readable description carried with the payment
+   */
   description: string;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID?: string | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Caller-supplied identifier for the initiation, used to deduplicate retries
+   */
   reference: string;
+  /**
+   * When the payment should be executed
+   */
   scheduledAt: Date;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID?: string | null | undefined;
+  /**
+   * Kind of movement a payment initiation performs, such as a transfer or a payout
+   */
   type: V3PaymentInitiationTypeEnum;
 };
 

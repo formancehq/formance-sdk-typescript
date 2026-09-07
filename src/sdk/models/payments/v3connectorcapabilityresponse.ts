@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Capability, V3Capability$inboundSchema } from "./v3capability.js";
 
 export type V3ConnectorCapabilityResponse = {
+  /**
+   * Operations this connector supports
+   */
   data: Array<V3Capability>;
 };
 

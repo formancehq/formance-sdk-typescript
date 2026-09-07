@@ -15,10 +15,25 @@ import {
 } from "./v3contactdetailsrequest.js";
 
 export type V3CreatePaymentServiceUserRequest = {
+  /**
+   * A postal address to record on the payment service user
+   */
   address?: V3AddressRequest | undefined;
+  /**
+   * Bank accounts to associate with the user
+   */
   bankAccountIDs?: Array<string> | null | undefined;
+  /**
+   * How to reach the payment service user
+   */
   contactDetails?: V3ContactDetailsRequest | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Full name of the payment service user
+   */
   name: string;
 };
 

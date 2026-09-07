@@ -12,6 +12,9 @@ import {
 } from "./v3paymentserviceuser.js";
 
 export type V3GetPaymentServiceUserResponse = {
+  /**
+   * An end user on whose behalf payments and open banking connections are made
+   */
   data: V3PaymentServiceUser;
 };
 

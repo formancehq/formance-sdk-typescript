@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PoolBalance, PoolBalance$inboundSchema } from "./poolbalance.js";
 
+/**
+ * Aggregated balances across a pool's accounts
+ */
 export type PoolBalances = {
+  /**
+   * Aggregated balance per asset across the pool's accounts
+   */
   balances: Array<PoolBalance>;
 };
 

@@ -12,12 +12,33 @@ import {
 } from "./v3openbankingconnectionattemptstatusenum.js";
 
 export type V3PaymentServiceUserLinkAttempt = {
+  /**
+   * URL the user is sent back to once the provider's flow finishes
+   */
   clientRedirectURL: string;
+  /**
+   * Identifier of the connector the user is linking to
+   */
   connectorID: string;
+  /**
+   * When the attempt was started
+   */
   createdAt: Date;
+  /**
+   * Why the attempt exited, absent when it completed
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the link attempt
+   */
   id: string;
+  /**
+   * Identifier of the payment service user the attempt belongs to
+   */
   psuID: string;
+  /**
+   * Where a link attempt stands, from pending through to completed on success or exited when the user abandoned the flow or the provider reported an error
+   */
   status: V3OpenBankingConnectionAttemptStatusEnum;
 };
 

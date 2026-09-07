@@ -23,4 +23,4 @@ let value: TaskResponse = {
 
 | Field                       | Type                        | Required                    | Description                 |
 | --------------------------- | --------------------------- | --------------------------- | --------------------------- |
-| `data`                      | *payments.TaskResponseData* | :heavy_check_mark:          | N/A                         |
+| `data`                      | *payments.TaskResponseData* | :heavy_check_mark:          | The requested task          |

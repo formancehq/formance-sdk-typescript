@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Where a payment initiation stands in its lifecycle
+ */
 export const V3PaymentInitiationStatusEnum = {
   Unknown: "UNKNOWN",
   WaitingForValidation: "WAITING_FOR_VALIDATION",
@@ -17,6 +20,9 @@ export const V3PaymentInitiationStatusEnum = {
   ReverseFailed: "REVERSE_FAILED",
   Reversed: "REVERSED",
 } as const;
+/**
+ * Where a payment initiation stands in its lifecycle
+ */
 export type V3PaymentInitiationStatusEnum = ClosedEnum<
   typeof V3PaymentInitiationStatusEnum
 >;

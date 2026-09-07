@@ -18,4 +18,4 @@ let value: V3ConnectorScheduleResponse = {
 
 | Field                                                             | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `data`                                                            | [payments.V3Schedule](../../../sdk/models/payments/v3schedule.md) | :heavy_check_mark:                                                | N/A                                                               |
+| `data`                                                            | [payments.V3Schedule](../../../sdk/models/payments/v3schedule.md) | :heavy_check_mark:                                                | A recurring job a connector runs to fetch data from its provider  |

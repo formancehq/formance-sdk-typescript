@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type PoolBalance = {
+  /**
+   * Total held across the pool for this asset, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the balance is denominated in
+   */
   asset: string;
+  /**
+   * Accounts contributing to this balance
+   */
   relatedAccounts?: Array<string> | null | undefined;
 };
 

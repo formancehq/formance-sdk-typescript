@@ -73,6 +73,9 @@ import {
   WiseConfig$outboundSchema,
 } from "./wiseconfig.js";
 
+/**
+ * A connector's configuration, whose shape depends on the provider
+ */
 export type ConnectorConfig =
   | AdyenConfig
   | AtlarConfig

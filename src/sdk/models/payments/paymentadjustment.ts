@@ -9,10 +9,25 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 
 export type PaymentAdjustment = {
+  /**
+   * Amount carried by this adjustment
+   */
   amount: bigint;
+  /**
+   * When the adjustment occurred at the provider
+   */
   createdAt: Date;
+  /**
+   * The provider's original payload for this adjustment
+   */
   raw: { [k: string]: any };
+  /**
+   * Identifier the adjustment carries at the provider
+   */
   reference: string;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: PaymentStatus;
 };
 

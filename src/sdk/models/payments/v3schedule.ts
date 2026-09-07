@@ -7,11 +7,29 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A recurring job a connector runs to fetch data from its provider
+ */
 export type V3Schedule = {
+  /**
+   * Identifier of the connector this schedule belongs to
+   */
   connectorID: string;
+  /**
+   * When the schedule was created
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the schedule
+   */
   id: string;
+  /**
+   * When the schedule was paused, absent while it is running
+   */
   pausedAt?: Date | null | undefined;
+  /**
+   * Why the schedule was paused
+   */
   pausedReason?: string | null | undefined;
 };
 

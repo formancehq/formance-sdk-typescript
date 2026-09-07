@@ -14,16 +14,40 @@ export type TaskMangoPayDescriptor = {
   userID?: string | undefined;
 };
 
+/**
+ * Internal progress state the task resumes from
+ */
 export type TaskMangoPayState = {};
 
 export type TaskMangoPay = {
+  /**
+   * Identifier of the connector the task runs against
+   */
   connectorID: string;
+  /**
+   * When the task was created
+   */
   createdAt: Date;
   descriptor: TaskMangoPayDescriptor;
+  /**
+   * Why the task failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the task
+   */
   id: string;
+  /**
+   * Internal progress state the task resumes from
+   */
   state?: TaskMangoPayState | null | undefined;
+  /**
+   * Where a task stands, from pending or active through to stopped, terminated or failed
+   */
   status: TaskStatus;
+  /**
+   * When the task was last updated
+   */
   updatedAt: Date;
 };
 

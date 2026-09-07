@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ModulrConfig = {
+  /**
+   * API key issued by Modulr, used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * API secret issued by Modulr, paired with the API key to sign requests
+   */
   apiSecret: string;
+  /**
+   * Base URL of the Modulr API the connector calls
+   */
   endpoint?: string | undefined;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Modulr API.
@@ -18,6 +30,9 @@ export type ModulrConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Modulr";
 };
 

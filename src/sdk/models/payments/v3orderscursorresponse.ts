@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Order, V3Order$inboundSchema } from "./v3order.js";
 
+/**
+ * Paginated cursor wrapping the list of orders
+ */
 export type V3OrdersCursorResponseCursor = {
   data: Array<V3Order>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3OrdersCursorResponseCursor = {
 };
 
 export type V3OrdersCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of orders
+   */
   cursor: V3OrdersCursorResponseCursor;
 };
 

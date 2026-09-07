@@ -15,21 +15,69 @@ import {
   V3PaymentInitiationTypeEnum$inboundSchema,
 } from "./v3paymentinitiationtypeenum.js";
 
+/**
+ * A payment Formance asked a connector to execute
+ */
 export type V3PaymentInitiation = {
+  /**
+   * Amount to move, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector executing the payment
+   */
   connectorID: string;
+  /**
+   * When the initiation was created
+   */
   createdAt: Date;
+  /**
+   * Human-readable description carried with the payment
+   */
   description: string;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID?: string | undefined;
+  /**
+   * Why the initiation failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the payment initiation
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string;
+  /**
+   * Caller-supplied identifier for the initiation
+   */
   reference: string;
+  /**
+   * When the payment is scheduled to execute
+   */
   scheduledAt: Date;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID?: string | undefined;
+  /**
+   * Where a payment initiation stands in its lifecycle
+   */
   status: V3PaymentInitiationStatusEnum;
+  /**
+   * Kind of movement a payment initiation performs, such as a transfer or a payout
+   */
   type: V3PaymentInitiationTypeEnum;
 };
 

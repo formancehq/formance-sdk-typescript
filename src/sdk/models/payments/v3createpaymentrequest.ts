@@ -14,17 +14,53 @@ import {
 } from "./v3paymenttypeenum.js";
 
 export type V3CreatePaymentRequest = {
+  /**
+   * Status and amount changes to record alongside the payment
+   */
   adjustments?: Array<V3CreatePaymentAdjustmentRequest> | undefined;
+  /**
+   * Current amount of the payment, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector the payment belongs to
+   */
   connectorID: string;
+  /**
+   * When the payment was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID?: string | undefined;
+  /**
+   * Amount the payment was created with, before any adjustment
+   */
   initialAmount: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Identifier the payment carries at the provider
+   */
   reference: string;
+  /**
+   * Payment scheme or rail the payment travels over
+   */
   scheme: string;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID?: string | undefined;
+  /**
+   * Direction of a payment
+   */
   type: V3PaymentTypeEnum;
 };
 

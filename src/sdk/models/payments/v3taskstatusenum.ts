@@ -5,11 +5,17 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Where a task stands, from processing through to succeeded or failed
+ */
 export const V3TaskStatusEnum = {
   Processing: "PROCESSING",
   Succeeded: "SUCCEEDED",
   Failed: "FAILED",
 } as const;
+/**
+ * Where a task stands, from processing through to succeeded or failed
+ */
 export type V3TaskStatusEnum = ClosedEnum<typeof V3TaskStatusEnum>;
 
 /** @internal */

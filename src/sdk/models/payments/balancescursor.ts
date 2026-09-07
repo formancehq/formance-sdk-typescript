@@ -11,11 +11,26 @@ import {
   AccountBalance$inboundSchema,
 } from "./accountbalance.js";
 
+/**
+ * Paginated cursor wrapping the list of balances
+ */
 export type BalancesCursorCursor = {
   data: Array<AccountBalance>;
+  /**
+   * Whether further pages are available
+   */
   hasMore: boolean;
+  /**
+   * Cursor for the next page, absent on the last page
+   */
   next?: string | undefined;
+  /**
+   * Number of items requested per page
+   */
   pageSize: number;
+  /**
+   * Cursor for the previous page, absent on the first page
+   */
   previous?: string | undefined;
 };
 
@@ -23,6 +38,9 @@ export type BalancesCursorCursor = {
  * OK
  */
 export type BalancesCursor = {
+  /**
+   * Paginated cursor wrapping the list of balances
+   */
   cursor: BalancesCursorCursor;
 };
 

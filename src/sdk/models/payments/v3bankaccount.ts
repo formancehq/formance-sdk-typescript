@@ -11,15 +11,45 @@ import {
   V3BankAccountRelatedAccount$inboundSchema,
 } from "./v3bankaccountrelatedaccount.js";
 
+/**
+ * A bank account registered with Formance and forwardable to connectors
+ */
 export type V3BankAccount = {
+  /**
+   * Domestic account number, when the account is identified that way
+   */
   accountNumber?: string | null | undefined;
+  /**
+   * Country the account is held in, as an ISO 3166-1 alpha-2 code
+   */
   country?: string | null | undefined;
+  /**
+   * When the bank account was registered
+   */
   createdAt: Date;
+  /**
+   * International bank account number, when the account is identified that way
+   */
   iban?: string | null | undefined;
+  /**
+   * Unique identifier of the bank account within Formance
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name of the bank account
+   */
   name: string;
+  /**
+   * Provider-side accounts this bank account has been forwarded to
+   */
   relatedAccounts?: Array<V3BankAccountRelatedAccount> | undefined;
+  /**
+   * SWIFT/BIC code identifying the bank
+   */
   swiftBicCode?: string | null | undefined;
 };
 

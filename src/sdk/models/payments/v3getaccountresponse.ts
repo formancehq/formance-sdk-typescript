@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Account, V3Account$inboundSchema } from "./v3account.js";
 
 export type V3GetAccountResponse = {
+  /**
+   * An account held at a payment provider, surfaced through a connector
+   */
   data: V3Account;
 };
 

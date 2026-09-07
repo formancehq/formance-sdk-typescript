@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Where a payment stands in its lifecycle
+ */
 export const V3PaymentStatusEnum = {
   Unknown: "UNKNOWN",
   Pending: "PENDING",
@@ -24,6 +27,9 @@ export const V3PaymentStatusEnum = {
   CaptureFailed: "CAPTURE_FAILED",
   Other: "OTHER",
 } as const;
+/**
+ * Where a payment stands in its lifecycle
+ */
 export type V3PaymentStatusEnum = ClosedEnum<typeof V3PaymentStatusEnum>;
 
 /** @internal */

@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type UpdateBankAccountMetadataRequest = {
+  /**
+   * Arbitrary key/value pairs attached to the bank account
+   */
   metadata: { [k: string]: string } | null;
 };
 

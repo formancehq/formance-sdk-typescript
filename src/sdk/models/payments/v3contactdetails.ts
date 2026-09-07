@@ -7,8 +7,17 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * How to reach a payment service user
+ */
 export type V3ContactDetails = {
+  /**
+   * Email address of the user
+   */
   email?: string | undefined;
+  /**
+   * Phone number of the user, in international format
+   */
   phoneNumber?: string | undefined;
 };
 

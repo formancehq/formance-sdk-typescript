@@ -11,18 +11,57 @@ import {
   BankAccountRelatedAccounts$inboundSchema,
 } from "./bankaccountrelatedaccounts.js";
 
+/**
+ * A bank account registered with Formance and forwardable to connectors
+ */
 export type BankAccount = {
+  /**
+   * Identifier of the provider-side account created by forwarding
+   */
   accountID?: string | undefined;
+  /**
+   * Domestic account number, when the account is identified that way
+   */
   accountNumber?: string | undefined;
+  /**
+   * Identifier of the connector the account has been forwarded to
+   */
   connectorID?: string | undefined;
+  /**
+   * Country the account is held in, as an ISO 3166-1 alpha-2 code
+   */
   country: string;
+  /**
+   * When the bank account was registered
+   */
   createdAt: Date;
+  /**
+   * International bank account number, when the account is identified that way
+   */
   iban?: string | undefined;
+  /**
+   * Unique identifier of the bank account within Formance
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the bank account
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name of the bank account
+   */
   name: string;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider?: string | undefined;
+  /**
+   * Provider-side accounts this bank account has been forwarded to
+   */
   relatedAccounts?: Array<BankAccountRelatedAccounts> | undefined;
+  /**
+   * SWIFT/BIC code identifying the bank
+   */
   swiftBicCode?: string | undefined;
 };
 

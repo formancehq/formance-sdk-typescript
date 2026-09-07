@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Schedule, V3Schedule$inboundSchema } from "./v3schedule.js";
 
 export type V3ConnectorScheduleResponse = {
+  /**
+   * A recurring job a connector runs to fetch data from its provider
+   */
   data: V3Schedule;
 };
 

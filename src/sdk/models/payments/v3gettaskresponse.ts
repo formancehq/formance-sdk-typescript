@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Task, V3Task$inboundSchema } from "./v3task.js";
 
 export type V3GetTaskResponse = {
+  /**
+   * An asynchronous unit of work, tracking an operation that completes in the background
+   */
   data: V3Task;
 };
 

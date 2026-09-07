@@ -4,12 +4,33 @@
 
 import * as z from "zod/v3";
 
+/**
+ * A postal address to record on the payment service user
+ */
 export type V3AddressRequest = {
+  /**
+   * City of the address
+   */
   city?: string | undefined;
+  /**
+   * Country of the address, as an ISO 3166-1 alpha-2 code
+   */
   country?: string | undefined;
+  /**
+   * Postal or ZIP code of the address
+   */
   postalCode?: string | undefined;
+  /**
+   * Region, state or province of the address
+   */
   region?: string | undefined;
+  /**
+   * Street name of the address
+   */
   streetName?: string | undefined;
+  /**
+   * Street number of the address
+   */
   streetNumber?: string | undefined;
 };
 
