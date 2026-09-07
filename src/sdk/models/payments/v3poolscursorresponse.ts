@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Pool, V3Pool$inboundSchema } from "./v3pool.js";
 
+/**
+ * Paginated cursor wrapping the list of pools
+ */
 export type V3PoolsCursorResponseCursor = {
   data: Array<V3Pool>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3PoolsCursorResponseCursor = {
 };
 
 export type V3PoolsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of pools
+   */
   cursor: V3PoolsCursorResponseCursor;
 };
 

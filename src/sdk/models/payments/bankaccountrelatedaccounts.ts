@@ -8,10 +8,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BankAccountRelatedAccounts = {
+  /**
+   * Identifier of the provider-side account
+   */
   accountID: string;
+  /**
+   * Identifier of the connector holding the provider-side account
+   */
   connectorID: string;
+  /**
+   * When the bank account was forwarded to this provider
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the link between the bank account and the provider
+   */
   id: string;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string;
 };
 

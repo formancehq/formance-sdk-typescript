@@ -15,22 +15,73 @@ import { PaymentScheme, PaymentScheme$inboundSchema } from "./paymentscheme.js";
 import { PaymentStatus, PaymentStatus$inboundSchema } from "./paymentstatus.js";
 import { PaymentType, PaymentType$inboundSchema } from "./paymenttype.js";
 
+/**
+ * A payment observed at a provider and surfaced through a connector
+ */
 export type Payment = {
+  /**
+   * Successive changes to the payment's amount and status
+   */
   adjustments: Array<PaymentAdjustment>;
+  /**
+   * Current amount of the payment after applying its adjustments
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector the payment belongs to
+   */
   connectorID: string;
+  /**
+   * When the payment was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Identifier of the account the funds reached
+   */
   destinationAccountID: string;
+  /**
+   * Unique identifier of the payment within Formance
+   */
   id: string;
+  /**
+   * Amount the payment was created with, before any adjustment
+   */
   initialAmount: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the payment
+   */
   metadata: { [k: string]: string } | null;
+  /**
+   * The payment provider behind a connector
+   */
   provider?: Connector | undefined;
+  /**
+   * The provider's original payload, passed through untouched
+   */
   raw: { [k: string]: any } | null;
+  /**
+   * Identifier the payment carries at the provider
+   */
   reference: string;
+  /**
+   * Payment scheme or rail a payment travels over
+   */
   scheme: PaymentScheme;
+  /**
+   * Identifier of the account the funds left
+   */
   sourceAccountID: string;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: PaymentStatus;
+  /**
+   * Direction of a payment
+   */
   type: PaymentType;
 };
 

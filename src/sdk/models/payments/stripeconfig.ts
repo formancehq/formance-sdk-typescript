@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type StripeConfig = {
+  /**
+   * API key issued by Stripe, used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * Number of BalanceTransaction to fetch at each polling interval.
@@ -22,6 +28,9 @@ export type StripeConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Stripe";
 };
 

@@ -12,6 +12,9 @@ export type ConnectorsResponseData = {
   connectorID: string;
   enabled?: boolean | undefined;
   name: string;
+  /**
+   * The payment provider behind a connector
+   */
   provider: Connector;
 };
 
@@ -19,6 +22,9 @@ export type ConnectorsResponseData = {
  * OK
  */
 export type ConnectorsResponse = {
+  /**
+   * The connectors installed on this stack
+   */
   data: Array<ConnectorsResponseData>;
 };
 

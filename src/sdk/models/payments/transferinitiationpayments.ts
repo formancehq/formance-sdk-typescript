@@ -12,9 +12,21 @@ import {
 } from "./legacypaymentstatus.js";
 
 export type TransferInitiationPayments = {
+  /**
+   * When the payment was produced
+   */
   createdAt: Date;
+  /**
+   * Why the payment failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Identifier of the payment produced by the initiation
+   */
   paymentID: string;
+  /**
+   * Status of a payment as reported by the legacy payments API
+   */
   status: LegacyPaymentStatus;
 };
 

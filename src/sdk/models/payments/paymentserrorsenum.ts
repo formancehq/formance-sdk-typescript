@@ -5,11 +5,21 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Machine-readable error code identifying the failure
+ */
 export const PaymentsErrorsEnum = {
   Internal: "INTERNAL",
   Validation: "VALIDATION",
+  InvalidId: "INVALID_ID",
+  MissingOrInvalidBody: "MISSING_OR_INVALID_BODY",
+  Conflict: "CONFLICT",
+  ConnectorCapabilityNotSupported: "CONNECTOR_CAPABILITY_NOT_SUPPORTED",
   NotFound: "NOT_FOUND",
 } as const;
+/**
+ * Machine-readable error code identifying the failure
+ */
 export type PaymentsErrorsEnum = ClosedEnum<typeof PaymentsErrorsEnum>;
 
 /** @internal */

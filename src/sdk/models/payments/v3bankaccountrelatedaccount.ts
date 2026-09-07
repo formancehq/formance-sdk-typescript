@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3BankAccountRelatedAccount = {
+  /**
+   * Identifier of the provider-side account
+   */
   accountID: string;
+  /**
+   * When the bank account was forwarded to this provider
+   */
   createdAt: Date;
 };
 

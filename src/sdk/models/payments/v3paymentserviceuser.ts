@@ -12,13 +12,37 @@ import {
   V3ContactDetails$inboundSchema,
 } from "./v3contactdetails.js";
 
+/**
+ * An end user on whose behalf payments and open banking connections are made
+ */
 export type V3PaymentServiceUser = {
+  /**
+   * A postal address
+   */
   address?: V3Address | undefined;
+  /**
+   * Bank accounts associated with the user
+   */
   bankAccountIDs?: Array<string> | null | undefined;
+  /**
+   * How to reach a payment service user
+   */
   contactDetails?: V3ContactDetails | undefined;
+  /**
+   * When the user was registered
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the payment service user
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Full name of the payment service user
+   */
   name: string;
 };
 

@@ -5,10 +5,25 @@
 import * as z from "zod/v3";
 
 export type V3ReversePaymentInitiationRequest = {
+  /**
+   * Amount to reverse, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the reversal is denominated in
+   */
   asset: string;
+  /**
+   * Human-readable reason for the reversal
+   */
   description: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Caller-supplied identifier for the reversal, used to deduplicate retries
+   */
   reference: string;
 };
 

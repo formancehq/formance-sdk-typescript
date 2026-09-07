@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Payment scheme or rail a payment travels over
+ */
 export const PaymentScheme = {
   Unknown: "unknown",
   Other: "other",
@@ -31,6 +34,9 @@ export const PaymentScheme = {
   Ach: "ach",
   Rtp: "rtp",
 } as const;
+/**
+ * Payment scheme or rail a payment travels over
+ */
 export type PaymentScheme = ClosedEnum<typeof PaymentScheme>;
 
 /** @internal */

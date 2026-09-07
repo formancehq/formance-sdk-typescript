@@ -12,6 +12,9 @@ import {
 } from "./v3paymentinitiation.js";
 
 export type V3GetPaymentInitiationResponse = {
+  /**
+   * A payment Formance asked a connector to execute
+   */
   data: V3PaymentInitiation;
 };
 

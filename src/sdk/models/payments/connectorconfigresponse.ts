@@ -15,6 +15,9 @@ import {
  * OK
  */
 export type ConnectorConfigResponse = {
+  /**
+   * A connector's configuration, whose shape depends on the provider
+   */
   data: ConnectorConfig;
 };
 

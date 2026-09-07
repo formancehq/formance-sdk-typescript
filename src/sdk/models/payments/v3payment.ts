@@ -19,21 +19,69 @@ import {
   V3PaymentTypeEnum$inboundSchema,
 } from "./v3paymenttypeenum.js";
 
+/**
+ * A payment observed at a provider and surfaced through a connector
+ */
 export type V3Payment = {
+  /**
+   * Successive changes to the payment's amount and status, newest first
+   */
   adjustments?: Array<V3PaymentAdjustment> | null | undefined;
+  /**
+   * Current amount of the payment after applying its adjustments
+   */
   amount: bigint;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector the payment belongs to
+   */
   connectorID: string;
+  /**
+   * When the payment was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Identifier of the account the funds reached
+   */
   destinationAccountID?: string | null | undefined;
+  /**
+   * Unique identifier of the payment within Formance
+   */
   id: string;
+  /**
+   * Amount the payment was created with, before any adjustment
+   */
   initialAmount: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string;
+  /**
+   * Identifier the payment carries at the provider
+   */
   reference: string;
+  /**
+   * Payment scheme or rail the payment travelled over
+   */
   scheme: string;
+  /**
+   * Identifier of the account the funds left
+   */
   sourceAccountID?: string | null | undefined;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: V3PaymentStatusEnum;
+  /**
+   * Direction of a payment
+   */
   type: V3PaymentTypeEnum;
 };
 

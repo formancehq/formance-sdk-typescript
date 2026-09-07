@@ -12,6 +12,9 @@ import { Payment, Payment$inboundSchema } from "./payment.js";
  * OK
  */
 export type PaymentResponse = {
+  /**
+   * A payment observed at a provider and surfaced through a connector
+   */
   data: Payment;
 };
 

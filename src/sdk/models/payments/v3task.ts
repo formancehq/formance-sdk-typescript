@@ -11,13 +11,37 @@ import {
   V3TaskStatusEnum$inboundSchema,
 } from "./v3taskstatusenum.js";
 
+/**
+ * An asynchronous unit of work, tracking an operation that completes in the background
+ */
 export type V3Task = {
+  /**
+   * Identifier of the connector the task runs against
+   */
   connectorID?: string | undefined;
+  /**
+   * When the task was created
+   */
   createdAt: Date;
+  /**
+   * Identifier of the object the task created, once it has succeeded
+   */
   createdObjectID?: string | undefined;
+  /**
+   * Why the task failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the task
+   */
   id: string;
+  /**
+   * Where a task stands, from processing through to succeeded or failed
+   */
   status: V3TaskStatusEnum;
+  /**
+   * When the task was last updated
+   */
   updatedAt: Date;
 };
 

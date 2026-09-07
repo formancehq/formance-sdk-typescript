@@ -57,6 +57,9 @@ export type V3Conversion = {
    * Formance-assigned unique conversion ID.
    */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
   /**
    * Provider name of the connector (e.g. `coinbaseprime`).

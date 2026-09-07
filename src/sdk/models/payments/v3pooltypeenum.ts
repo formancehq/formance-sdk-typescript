@@ -5,10 +5,16 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Whether a pool holds a fixed account list or is driven by a query
+ */
 export const V3PoolTypeEnum = {
   Static: "STATIC",
   Dynamic: "DYNAMIC",
 } as const;
+/**
+ * Whether a pool holds a fixed account list or is driven by a query
+ */
 export type V3PoolTypeEnum = ClosedEnum<typeof V3PoolTypeEnum>;
 
 /** @internal */

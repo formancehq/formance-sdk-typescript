@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type V3ForwardBankAccountRequest = {
+  /**
+   * Identifier of the connector to forward the bank account to
+   */
   connectorID: string;
 };
 

@@ -11,6 +11,9 @@ import {
   V3PaymentServiceUser$inboundSchema,
 } from "./v3paymentserviceuser.js";
 
+/**
+ * Paginated cursor wrapping the list of payment service users
+ */
 export type V3PaymentServiceUsersCursorResponseCursor = {
   data: Array<V3PaymentServiceUser>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V3PaymentServiceUsersCursorResponseCursor = {
 };
 
 export type V3PaymentServiceUsersCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of payment service users
+   */
   cursor: V3PaymentServiceUsersCursorResponseCursor;
 };
 

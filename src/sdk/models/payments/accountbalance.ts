@@ -8,14 +8,31 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type AccountBalance = {
+  /**
+   * Identifier of the account this balance belongs to
+   */
   accountId: string;
+  /**
+   * Asset the balance is denominated in
+   */
   asset: string;
+  /**
+   * Amount held, in the asset's smallest unit
+   */
   balance: bigint;
+  /**
+   * Start of the period this balance covers
+   */
   createdAt: Date;
   /**
+   * Deprecated alias of asset, kept for backwards compatibility
+   *
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   currency: string;
+  /**
+   * When the balance was last refreshed from the provider
+   */
   lastUpdatedAt: Date;
 };
 

@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Balance, V3Balance$inboundSchema } from "./v3balance.js";
 
+/**
+ * Paginated cursor wrapping the list of balances
+ */
 export type V3BalancesCursorResponseCursor = {
   data: Array<V3Balance>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3BalancesCursorResponseCursor = {
 };
 
 export type V3BalancesCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of balances
+   */
   cursor: V3BalancesCursorResponseCursor;
 };
 

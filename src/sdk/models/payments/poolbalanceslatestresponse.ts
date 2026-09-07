@@ -12,6 +12,9 @@ import { PoolBalance, PoolBalance$inboundSchema } from "./poolbalance.js";
  * OK
  */
 export type PoolBalancesLatestResponse = {
+  /**
+   * Most recent aggregated balances across a pool's accounts
+   */
   data: Array<PoolBalance>;
 };
 

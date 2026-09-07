@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the forwarding, which completes asynchronously
+ */
 export type V3ForwardBankAccountResponseData = {
   /**
    * Since this call is asynchronous, the response will contain the ID of the task that was created to forward the bank account to the PSP. You can use the task API to check the status of the task and get the resulting bank account ID.
@@ -17,6 +20,9 @@ export type V3ForwardBankAccountResponseData = {
 };
 
 export type V3ForwardBankAccountResponse = {
+  /**
+   * The task tracking the forwarding, which completes asynchronously
+   */
   data: V3ForwardBankAccountResponseData;
 };
 

@@ -1,5 +1,7 @@
 # PoolBalances
 
+Aggregated balances across a pool's accounts
+
 ## Example Usage
 
 ```typescript
@@ -14,4 +16,4 @@ let value: PoolBalances = {
 
 | Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
 | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `balances`                                                            | [payments.PoolBalance](../../../sdk/models/payments/poolbalance.md)[] | :heavy_check_mark:                                                    | N/A                                                                   |
+| `balances`                                                            | [payments.PoolBalance](../../../sdk/models/payments/poolbalance.md)[] | :heavy_check_mark:                                                    | Aggregated balance per asset across the pool's accounts               |

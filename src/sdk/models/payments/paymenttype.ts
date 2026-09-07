@@ -5,12 +5,18 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Direction of a payment
+ */
 export const PaymentType = {
   PayIn: "PAY-IN",
   Payout: "PAYOUT",
   Transfer: "TRANSFER",
   Other: "OTHER",
 } as const;
+/**
+ * Direction of a payment
+ */
 export type PaymentType = ClosedEnum<typeof PaymentType>;
 
 /** @internal */

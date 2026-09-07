@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type AddAccountToPoolRequest = {
+  /**
+   * Identifier of the account to add to the pool
+   */
   accountID: string;
 };
 

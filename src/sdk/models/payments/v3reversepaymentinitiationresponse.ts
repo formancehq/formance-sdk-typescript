@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the reversal, which completes asynchronously
+ */
 export type V3ReversePaymentInitiationResponseData = {
   /**
    * Related payment initiation reversal object ID created.
@@ -23,6 +26,9 @@ export type V3ReversePaymentInitiationResponseData = {
 };
 
 export type V3ReversePaymentInitiationResponse = {
+  /**
+   * The task tracking the reversal, which completes asynchronously
+   */
   data: V3ReversePaymentInitiationResponseData;
 };
 

@@ -8,10 +8,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3Balance = {
+  /**
+   * Identifier of the account this balance belongs to
+   */
   accountID: string;
+  /**
+   * Asset the balance is denominated in
+   */
   asset: string;
+  /**
+   * Amount held, in the asset's smallest unit
+   */
   balance: bigint;
+  /**
+   * Start of the period this balance covers
+   */
   createdAt: Date;
+  /**
+   * When the balance was last refreshed from the provider
+   */
   lastUpdatedAt: Date;
 };
 

@@ -13,7 +13,7 @@ let value: V3PaymentServiceUserUpdateLinkResponse = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `attemptID`        | *string*           | :heavy_check_mark: | N/A                |
-| `link`             | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `attemptID`                                              | *string*                                                 | :heavy_check_mark:                                       | Identifier of the link attempt this URL belongs to       |
+| `link`                                                   | *string*                                                 | :heavy_check_mark:                                       | URL to send the user to so they can renew the connection |

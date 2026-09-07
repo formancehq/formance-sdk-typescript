@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the uninstall, which completes asynchronously
+ */
 export type V3UninstallConnectorResponseData = {
   /**
    * Since this call is asynchronous, the response will contain the ID of the task that was created to uninstall the connector. You can use the task API to check the status of the task and get the results.
@@ -17,6 +20,9 @@ export type V3UninstallConnectorResponseData = {
 };
 
 export type V3UninstallConnectorResponse = {
+  /**
+   * The task tracking the uninstall, which completes asynchronously
+   */
   data: V3UninstallConnectorResponseData;
 };
 

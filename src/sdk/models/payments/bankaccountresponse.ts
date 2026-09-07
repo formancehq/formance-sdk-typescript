@@ -12,6 +12,9 @@ import { BankAccount, BankAccount$inboundSchema } from "./bankaccount.js";
  * OK
  */
 export type BankAccountResponse = {
+  /**
+   * A bank account registered with Formance and forwardable to connectors
+   */
   data: BankAccount;
 };
 

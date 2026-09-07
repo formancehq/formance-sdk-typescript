@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Pool, V3Pool$inboundSchema } from "./v3pool.js";
 
 export type V3GetPoolResponse = {
+  /**
+   * A named group of accounts whose balances are aggregated together
+   */
   data: V3Pool;
 };
 

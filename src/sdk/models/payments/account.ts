@@ -8,21 +8,59 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AccountType, AccountType$inboundSchema } from "./accounttype.js";
 
+/**
+ * An account held at a payment provider, surfaced through a connector
+ */
 export type Account = {
+  /**
+   * Human-readable name of the account
+   */
   accountName: string;
+  /**
+   * Identifier of the connector the account belongs to
+   */
   connectorID: string;
+  /**
+   * When the account was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Asset the account is denominated in by default
+   */
   defaultAsset: string;
   /**
+   * Deprecated alias of defaultAsset, kept for backwards compatibility
+   *
    * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
    */
   defaultCurrency: string;
+  /**
+   * Unique identifier of the account within Formance
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the account
+   */
   metadata: { [k: string]: string } | null;
+  /**
+   * Pools this account belongs to
+   */
   pools?: Array<string> | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider?: string | undefined;
+  /**
+   * The provider's original payload, passed through untouched
+   */
   raw: { [k: string]: any } | null;
+  /**
+   * Identifier the account carries at the provider
+   */
   reference: string;
+  /**
+   * Whether an account is internal to the provider or belongs to an external party
+   */
   type: AccountType;
 };
 

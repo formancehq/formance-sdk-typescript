@@ -17,6 +17,9 @@ export type ConnectorsConfigsResponseData = {
  * OK
  */
 export type ConnectorsConfigsResponse = {
+  /**
+   * Configuration schema of every available connector, keyed by provider
+   */
   data: { [k: string]: { [k: string]: ConnectorsConfigsResponseData } };
 };
 

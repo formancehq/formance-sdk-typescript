@@ -8,6 +8,7 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3PlaidConfig = {
+  baseURL?: string | undefined;
   clientID: string;
   clientSecret: string;
   isSandbox?: boolean | undefined;
@@ -26,6 +27,7 @@ export const V3PlaidConfig$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  baseURL: z.string().optional(),
   clientID: z.string(),
   clientSecret: z.string(),
   isSandbox: z.boolean().optional(),
@@ -36,6 +38,7 @@ export const V3PlaidConfig$inboundSchema: z.ZodType<
 });
 /** @internal */
 export type V3PlaidConfig$Outbound = {
+  baseURL?: string | undefined;
   clientID: string;
   clientSecret: string;
   isSandbox?: boolean | undefined;
@@ -51,6 +54,7 @@ export const V3PlaidConfig$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V3PlaidConfig
 > = z.object({
+  baseURL: z.string().optional(),
   clientID: z.string(),
   clientSecret: z.string(),
   isSandbox: z.boolean().optional(),

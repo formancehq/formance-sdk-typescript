@@ -9,11 +9,29 @@ import {
 } from "./v3paymentstatusenum.js";
 
 export type V3CreatePaymentAdjustmentRequest = {
+  /**
+   * Amount carried by this adjustment
+   */
   amount?: bigint | undefined;
+  /**
+   * Asset the adjustment is denominated in
+   */
   asset?: string | undefined;
+  /**
+   * When the adjustment occurred at the provider
+   */
   createdAt: Date;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Identifier the adjustment carries at the provider
+   */
   reference: string;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: V3PaymentStatusEnum;
 };
 

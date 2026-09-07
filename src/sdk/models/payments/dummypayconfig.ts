@@ -8,15 +8,33 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type DummyPayConfig = {
+  /**
+   * Filesystem directory the connector reads payment files from
+   */
   directory: string;
   /**
    * The frequency at which the connector will try to fetch new payment objects from the directory
    */
   filePollingPeriod?: string | undefined;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
+  /**
+   * How many synthetic accounts to create on startup
+   */
   numberOfAccountsPreGenerated?: number | undefined;
+  /**
+   * How many synthetic payments to create on startup
+   */
   numberOfPaymentsPreGenerated?: number | undefined;
+  /**
+   * Only ingest files whose name starts with this prefix
+   */
   prefixFileToIngest?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Dummypay";
 };
 

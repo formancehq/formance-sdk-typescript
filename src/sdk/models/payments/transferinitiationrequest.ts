@@ -5,25 +5,64 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Whether the funds move between your accounts or out to a third party
+ */
 export const TransferInitiationRequestType = {
   Transfer: "TRANSFER",
   Payout: "PAYOUT",
 } as const;
+/**
+ * Whether the funds move between your accounts or out to a third party
+ */
 export type TransferInitiationRequestType = ClosedEnum<
   typeof TransferInitiationRequestType
 >;
 
 export type TransferInitiationRequest = {
+  /**
+   * Amount to move, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the transfer is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector to execute the transfer through
+   */
   connectorID?: string | undefined;
+  /**
+   * Human-readable description carried with the transfer
+   */
   description: string;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID: string;
+  /**
+   * Arbitrary key/value pairs to attach to the initiation
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Caller-supplied identifier for the initiation, used to deduplicate retries
+   */
   reference: string;
+  /**
+   * When the transfer should be executed
+   */
   scheduledAt: Date;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID: string;
+  /**
+   * Whether the funds move between your accounts or out to a third party
+   */
   type: TransferInitiationRequestType;
+  /**
+   * When true, the transfer executes immediately instead of waiting for approval
+   */
   validated: boolean;
 };
 

@@ -20,30 +20,93 @@ import {
   TransferInitiationStatus$inboundSchema,
 } from "./transferinitiationstatus.js";
 
+/**
+ * Whether the funds move between your accounts or out to a third party
+ */
 export const TransferInitiationType = {
   Transfer: "TRANSFER",
   Payout: "PAYOUT",
 } as const;
+/**
+ * Whether the funds move between your accounts or out to a third party
+ */
 export type TransferInitiationType = ClosedEnum<typeof TransferInitiationType>;
 
+/**
+ * A transfer Formance asked a connector to execute
+ */
 export type TransferInitiation = {
+  /**
+   * Amount to move, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the transfer is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector executing the transfer
+   */
   connectorID: string;
+  /**
+   * When the initiation was created
+   */
   createdAt: Date;
+  /**
+   * Human-readable description carried with the transfer
+   */
   description: string;
+  /**
+   * Identifier of the account the funds reach
+   */
   destinationAccountID: string;
+  /**
+   * Why the initiation failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the transfer initiation
+   */
   id: string;
+  /**
+   * Amount the initiation was created with, before any adjustment
+   */
   initialAmount: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the initiation
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string | null;
+  /**
+   * Caller-supplied identifier for the initiation
+   */
   reference: string;
+  /**
+   * Successive status changes recorded against the initiation
+   */
   relatedAdjustments?: Array<TransferInitiationAdjustments> | undefined;
+  /**
+   * Payments produced by this initiation
+   */
   relatedPayments?: Array<TransferInitiationPayments> | null | undefined;
+  /**
+   * When the transfer is scheduled to execute
+   */
   scheduledAt: Date;
+  /**
+   * Identifier of the account the funds leave
+   */
   sourceAccountID: string;
+  /**
+   * Where a transfer initiation stands in its lifecycle
+   */
   status: TransferInitiationStatus;
+  /**
+   * Whether the funds move between your accounts or out to a third party
+   */
   type: TransferInitiationType;
 };
 

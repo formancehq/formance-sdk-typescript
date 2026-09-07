@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V3PaymentServiceUserCreateLinkResponse = {
+  /**
+   * Identifier of the link attempt this URL belongs to
+   */
   attemptID: string;
+  /**
+   * URL to send the user to so they can authorise the connection
+   */
   link: string;
 };
 

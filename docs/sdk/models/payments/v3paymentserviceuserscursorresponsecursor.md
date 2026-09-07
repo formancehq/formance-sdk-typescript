@@ -1,5 +1,7 @@
 # V3PaymentServiceUsersCursorResponseCursor
 
+Paginated cursor wrapping the list of payment service users
+
 ## Example Usage
 
 ```typescript

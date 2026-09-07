@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The connector that was installed
+ */
 export type ConnectorResponseData = {
   connectorID: string;
 };
@@ -15,6 +18,9 @@ export type ConnectorResponseData = {
  * OK
  */
 export type ConnectorResponse = {
+  /**
+   * The connector that was installed
+   */
   data: ConnectorResponseData;
 };
 

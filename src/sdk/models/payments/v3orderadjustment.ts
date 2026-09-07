@@ -41,6 +41,9 @@ export type V3OrderAdjustment = {
    * Adjustment ID, composed from the order ID plus the state fields that define uniqueness (status, filled quantity, fee). Idempotent — replaying the same observation produces the same ID.
    */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
   /**
    * Untransformed PSP response payload that produced this adjustment. Retained for debugging and replay.

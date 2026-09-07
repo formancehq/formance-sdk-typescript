@@ -11,7 +11,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Server information
  */
 export type ServerInfo = {
+  /**
+   * Whether the service is running in debug mode
+   */
   debug?: boolean | undefined;
+  /**
+   * Version of the payments service
+   */
   version?: string | undefined;
 };
 

@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Status of a payment as reported by the legacy payments API
+ */
 export const LegacyPaymentStatus = {
   Pending: "PENDING",
   Succeeded: "SUCCEEDED",
@@ -29,6 +32,9 @@ export const LegacyPaymentStatus = {
   PartiallyReversed: "PARTIALLY_REVERSED",
   Reversed: "REVERSED",
 } as const;
+/**
+ * Status of a payment as reported by the legacy payments API
+ */
 export type LegacyPaymentStatus = ClosedEnum<typeof LegacyPaymentStatus>;
 
 /** @internal */

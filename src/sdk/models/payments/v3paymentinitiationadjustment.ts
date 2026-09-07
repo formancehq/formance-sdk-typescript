@@ -12,12 +12,33 @@ import {
 } from "./v3paymentinitiationstatusenum.js";
 
 export type V3PaymentInitiationAdjustment = {
+  /**
+   * Amount carried by this adjustment
+   */
   amount?: bigint | undefined;
+  /**
+   * Asset the adjustment is denominated in
+   */
   asset?: string | undefined;
+  /**
+   * When the adjustment was recorded
+   */
   createdAt: Date;
+  /**
+   * Why this step failed, absent when it succeeded
+   */
   error?: string | null | undefined;
+  /**
+   * Unique identifier of the adjustment
+   */
   id: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Where a payment initiation stands in its lifecycle
+   */
   status: V3PaymentInitiationStatusEnum;
 };
 

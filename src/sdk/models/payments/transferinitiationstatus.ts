@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Where a transfer initiation stands in its lifecycle
+ */
 export const TransferInitiationStatus = {
   WaitingForValidation: "WAITING_FOR_VALIDATION",
   Processing: "PROCESSING",
@@ -19,6 +22,9 @@ export const TransferInitiationStatus = {
   PartiallyReversed: "PARTIALLY_REVERSED",
   Reversed: "REVERSED",
 } as const;
+/**
+ * Where a transfer initiation stands in its lifecycle
+ */
 export type TransferInitiationStatus = ClosedEnum<
   typeof TransferInitiationStatus
 >;

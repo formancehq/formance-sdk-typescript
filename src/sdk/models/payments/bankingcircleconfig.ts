@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BankingCircleConfig = {
+  /**
+   * URL the connector calls to obtain an access token
+   */
   authorizationEndpoint: string;
+  /**
+   * Base URL of the Banking Circle API the connector calls
+   */
   endpoint: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
+  /**
+   * Password issued by Banking Circle, used to authenticate the connector
+   */
   password: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.
@@ -18,9 +30,21 @@ export type BankingCircleConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Bankingcircle";
+  /**
+   * Client certificate presented on the mutual-TLS connection to Banking Circle
+   */
   userCertificate: string;
+  /**
+   * Private key matching the client certificate
+   */
   userCertificateKey: string;
+  /**
+   * Username issued by Banking Circle, used to authenticate the connector
+   */
   username: string;
 };
 

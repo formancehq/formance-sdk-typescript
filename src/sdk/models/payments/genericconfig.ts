@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenericConfig = {
+  /**
+   * API key used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * Base URL of the API the connector calls
+   */
   endpoint: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.
@@ -17,6 +26,9 @@ export type GenericConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Generic";
 };
 

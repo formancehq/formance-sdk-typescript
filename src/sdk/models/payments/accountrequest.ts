@@ -6,12 +6,33 @@ import * as z from "zod/v3";
 import { AccountType, AccountType$outboundSchema } from "./accounttype.js";
 
 export type AccountRequest = {
+  /**
+   * Human-readable name of the account
+   */
   accountName?: string | undefined;
+  /**
+   * Identifier of the connector the account belongs to
+   */
   connectorID: string;
+  /**
+   * When the account was created at the provider
+   */
   createdAt: Date;
+  /**
+   * Asset the account is denominated in by default
+   */
   defaultAsset?: string | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the account
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Identifier the account carries at the provider
+   */
   reference: string;
+  /**
+   * Whether an account is internal to the provider or belongs to an external party
+   */
   type: AccountType;
 };
 

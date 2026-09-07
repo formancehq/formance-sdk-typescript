@@ -1,5 +1,7 @@
 # PaymentsErrorsEnum
 
+Machine-readable error code identifying the failure
+
 ## Example Usage
 
 ```typescript
@@ -11,5 +13,5 @@ let value: PaymentsErrorsEnum = "VALIDATION";
 ## Values
 
 ```typescript
-"INTERNAL" | "VALIDATION" | "NOT_FOUND"
+"INTERNAL" | "VALIDATION" | "INVALID_ID" | "MISSING_OR_INVALID_BODY" | "CONFLICT" | "CONNECTOR_CAPABILITY_NOT_SUPPORTED" | "NOT_FOUND"
 ```

@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The task tracking the deletion, which completes asynchronously
+ */
 export type V3PaymentServiceUserDeleteConnectionResponseData = {
   /**
    * Since this call is asynchronous, the response will contain the ID of the task that was created to delete the connection. You can use the task API to check the status of the task.
@@ -17,6 +20,9 @@ export type V3PaymentServiceUserDeleteConnectionResponseData = {
 };
 
 export type V3PaymentServiceUserDeleteConnectionResponse = {
+  /**
+   * The task tracking the deletion, which completes asynchronously
+   */
   data: V3PaymentServiceUserDeleteConnectionResponseData;
 };
 

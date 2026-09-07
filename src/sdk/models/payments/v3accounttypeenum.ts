@@ -5,11 +5,17 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Whether an account is internal to the provider or belongs to an external party
+ */
 export const V3AccountTypeEnum = {
   Unknown: "UNKNOWN",
   Internal: "INTERNAL",
   External: "EXTERNAL",
 } as const;
+/**
+ * Whether an account is internal to the provider or belongs to an external party
+ */
 export type V3AccountTypeEnum = ClosedEnum<typeof V3AccountTypeEnum>;
 
 /** @internal */

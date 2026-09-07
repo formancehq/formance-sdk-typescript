@@ -12,6 +12,9 @@ import { Account, Account$inboundSchema } from "./account.js";
  * OK
  */
 export type AccountResponse = {
+  /**
+   * An account held at a payment provider, surfaced through a connector
+   */
   data: Account;
 };
 

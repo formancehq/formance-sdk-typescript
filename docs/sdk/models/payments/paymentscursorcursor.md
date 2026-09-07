@@ -1,5 +1,7 @@
 # PaymentsCursorCursor
 
+Paginated cursor wrapping the list of payments
+
 ## Example Usage
 
 ```typescript
@@ -51,7 +53,7 @@ let value: PaymentsCursorCursor = {
 | Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
 | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
 | `data`                                                        | [payments.Payment](../../../sdk/models/payments/payment.md)[] | :heavy_check_mark:                                            | N/A                                                           |                                                               |
-| `hasMore`                                                     | *boolean*                                                     | :heavy_check_mark:                                            | N/A                                                           | false                                                         |
-| `next`                                                        | *string*                                                      | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `pageSize`                                                    | *number*                                                      | :heavy_check_mark:                                            | N/A                                                           | 15                                                            |
-| `previous`                                                    | *string*                                                      | :heavy_minus_sign:                                            | N/A                                                           | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                  |
+| `hasMore`                                                     | *boolean*                                                     | :heavy_check_mark:                                            | Whether further pages are available                           | false                                                         |
+| `next`                                                        | *string*                                                      | :heavy_minus_sign:                                            | Cursor for the next page, absent on the last page             |                                                               |
+| `pageSize`                                                    | *number*                                                      | :heavy_check_mark:                                            | Number of items requested per page                            | 15                                                            |
+| `previous`                                                    | *string*                                                      | :heavy_minus_sign:                                            | Cursor for the previous page, absent on the first page        | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                  |

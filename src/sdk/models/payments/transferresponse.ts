@@ -11,6 +11,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * OK
  */
 export type TransferResponse = {
+  /**
+   * Identifier of the transfer created at the provider
+   */
   id?: string | undefined;
 };
 

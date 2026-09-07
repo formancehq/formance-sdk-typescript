@@ -13,7 +13,13 @@ import {
  * Error
  */
 export type PaymentsErrorResponseData = {
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: PaymentsErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 
@@ -21,7 +27,13 @@ export type PaymentsErrorResponseData = {
  * Error
  */
 export class PaymentsErrorResponse extends SDKBaseError {
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: PaymentsErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */

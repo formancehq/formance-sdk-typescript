@@ -11,6 +11,9 @@ import {
   V3PaymentInitiationAdjustment$inboundSchema,
 } from "./v3paymentinitiationadjustment.js";
 
+/**
+ * Paginated cursor wrapping the initiation's adjustments
+ */
 export type V3PaymentInitiationAdjustmentsCursorResponseCursor = {
   data: Array<V3PaymentInitiationAdjustment>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V3PaymentInitiationAdjustmentsCursorResponseCursor = {
 };
 
 export type V3PaymentInitiationAdjustmentsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the initiation's adjustments
+   */
   cursor: V3PaymentInitiationAdjustmentsCursorResponseCursor;
 };
 

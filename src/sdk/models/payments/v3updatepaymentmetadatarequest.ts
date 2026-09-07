@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type V3UpdatePaymentMetadataRequest = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string } | null;
 };
 

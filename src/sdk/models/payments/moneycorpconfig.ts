@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type MoneycorpConfig = {
+  /**
+   * API key issued by Moneycorp, used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * Client ID issued by Moneycorp
+   */
   clientID: string;
+  /**
+   * Base URL of the Moneycorp API the connector calls
+   */
   endpoint: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from MoneyCorp API.
@@ -18,6 +30,9 @@ export type MoneycorpConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Moneycorp";
 };
 

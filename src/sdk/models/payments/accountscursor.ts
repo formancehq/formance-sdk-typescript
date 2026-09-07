@@ -8,11 +8,26 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Account, Account$inboundSchema } from "./account.js";
 
+/**
+ * Paginated cursor wrapping the list of accounts
+ */
 export type AccountsCursorCursor = {
   data: Array<Account>;
+  /**
+   * Whether further pages are available
+   */
   hasMore: boolean;
+  /**
+   * Cursor for the next page, absent on the last page
+   */
   next?: string | undefined;
+  /**
+   * Number of items requested per page
+   */
   pageSize: number;
+  /**
+   * Cursor for the previous page, absent on the first page
+   */
   previous?: string | undefined;
 };
 
@@ -20,6 +35,9 @@ export type AccountsCursorCursor = {
  * OK
  */
 export type AccountsCursor = {
+  /**
+   * Paginated cursor wrapping the list of accounts
+   */
   cursor: AccountsCursorCursor;
 };
 

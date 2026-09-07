@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Schedule, V3Schedule$inboundSchema } from "./v3schedule.js";
 
+/**
+ * Paginated cursor wrapping the connector's schedules
+ */
 export type V3ConnectorSchedulesCursorResponseCursor = {
   data: Array<V3Schedule>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3ConnectorSchedulesCursorResponseCursor = {
 };
 
 export type V3ConnectorSchedulesCursorResponse = {
+  /**
+   * Paginated cursor wrapping the connector's schedules
+   */
   cursor: V3ConnectorSchedulesCursorResponseCursor;
 };
 

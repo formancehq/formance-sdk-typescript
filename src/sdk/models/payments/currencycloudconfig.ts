@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CurrencyCloudConfig = {
+  /**
+   * API key issued by Currencycloud, used to authenticate the connector's requests
+   */
   apiKey: string;
   /**
    * The endpoint to use for the API. Defaults to https://devapi.currencycloud.com
@@ -17,11 +20,17 @@ export type CurrencyCloudConfig = {
    * Username of the API Key holder
    */
   loginID: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will fetch transactions
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Currencycloud";
 };
 

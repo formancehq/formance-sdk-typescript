@@ -4,8 +4,17 @@
 
 import * as z from "zod/v3";
 
+/**
+ * How to reach the payment service user
+ */
 export type V3ContactDetailsRequest = {
+  /**
+   * Email address of the user
+   */
   email?: string | undefined;
+  /**
+   * Phone number of the user, in international format
+   */
   phoneNumber?: string | undefined;
 };
 

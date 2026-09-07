@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type WiseConfig = {
+  /**
+   * API key issued by Wise, used to authenticate the connector's requests
+   */
   apiKey: string;
+  /**
+   * Human-readable name identifying this connector instance
+   */
   name: string;
   /**
    * The frequency at which the connector will try to fetch new BalanceTransaction objects from Wise API.
@@ -16,6 +22,9 @@ export type WiseConfig = {
    * @remarks
    */
   pollingPeriod?: string | undefined;
+  /**
+   * Identifies the payment provider this configuration targets
+   */
   provider: "Wise";
 };
 

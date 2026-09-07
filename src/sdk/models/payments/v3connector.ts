@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Capability, V3Capability$inboundSchema } from "./v3capability.js";
 
+/**
+ * The connector's configuration, whose shape depends on the provider
+ */
 export type Config = {};
 
 export type V3Connector = {
@@ -15,13 +18,37 @@ export type V3Connector = {
    * Plugin capabilities advertised by the connector's provider.
    */
   capabilities?: Array<V3Capability> | undefined;
+  /**
+   * The connector's configuration, whose shape depends on the provider
+   */
   config: Config;
+  /**
+   * When the connector was installed
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the connector
+   */
   id: string;
+  /**
+   * Human-readable name of the connector instance
+   */
   name: string;
+  /**
+   * Name of the payment provider behind the connector
+   */
   provider: string;
+  /**
+   * Stable reference identifying the connector
+   */
   reference: string;
+  /**
+   * Whether the connector is being uninstalled
+   */
   scheduledForDeletion: boolean;
+  /**
+   * When the connector's configuration was last changed
+   */
   updatedAt?: Date | null | undefined;
 };
 

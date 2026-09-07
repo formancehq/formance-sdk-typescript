@@ -5,9 +5,21 @@
 import * as z from "zod/v3";
 
 export type TransferRequest = {
+  /**
+   * Amount to transfer, in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * Asset the transfer is denominated in
+   */
   asset: string;
+  /**
+   * Provider-side account receiving the funds
+   */
   destination: string;
+  /**
+   * Provider-side account the funds leave. Defaults to the connector's main account
+   */
   source?: string | undefined;
 };
 

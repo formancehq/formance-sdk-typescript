@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V3Conversion, V3Conversion$inboundSchema } from "./v3conversion.js";
 
+/**
+ * Paginated cursor wrapping the list of conversions
+ */
 export type V3ConversionsCursorResponseCursor = {
   data: Array<V3Conversion>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V3ConversionsCursorResponseCursor = {
 };
 
 export type V3ConversionsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of conversions
+   */
   cursor: V3ConversionsCursorResponseCursor;
 };
 

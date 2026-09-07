@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Direction of a payment
+ */
 export const V3PaymentTypeEnum = {
   Unknown: "UNKNOWN",
   PayIn: "PAY-IN",
@@ -12,6 +15,9 @@ export const V3PaymentTypeEnum = {
   Transfer: "TRANSFER",
   Other: "OTHER",
 } as const;
+/**
+ * Direction of a payment
+ */
 export type V3PaymentTypeEnum = ClosedEnum<typeof V3PaymentTypeEnum>;
 
 /** @internal */

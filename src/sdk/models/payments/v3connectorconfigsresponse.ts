@@ -14,6 +14,9 @@ export type V3ConnectorConfigsResponseData = {
 };
 
 export type V3ConnectorConfigsResponse = {
+  /**
+   * Configuration schema of every available connector, keyed by provider
+   */
   data: { [k: string]: { [k: string]: V3ConnectorConfigsResponseData } };
 };
 

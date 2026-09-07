@@ -8,10 +8,16 @@ import * as z from "zod/v3";
  * Query and dynamic pools are available from Connectivity v3.1
  */
 export type V3CreatePoolRequest = {
+  /**
+   * Accounts to place in the pool. Omit when the pool is driven by a query
+   */
   accountIDs?: Array<string> | undefined;
+  /**
+   * Human-readable name for the pool
+   */
   name: string;
   /**
-   * The same query than in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
+   * The same query as in ListAccount. Allowed properties are id, reference, connector_id, type, default_asset, name, psu_id, open_banking_connection_id and metadata.
    */
   query?: { [k: string]: any } | undefined;
 };
