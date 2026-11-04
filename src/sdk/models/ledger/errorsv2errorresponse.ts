@@ -7,14 +7,32 @@ import { SDKBaseError } from "../errors/sdkbaseerror.js";
 import { V2ErrorsEnum, V2ErrorsEnum$inboundSchema } from "./v2errorsenum.js";
 
 export type ErrorsV2ErrorResponseData = {
+  /**
+   * Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: V2ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 
 export class ErrorsV2ErrorResponse extends SDKBaseError {
+  /**
+   * Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: V2ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */

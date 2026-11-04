@@ -7,7 +7,13 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arguments for the activity that reads a wallet
+ */
 export type V2ActivityGetWallet = {
+  /**
+   * Identifier of the wallet to read
+   */
   id: string;
 };
 

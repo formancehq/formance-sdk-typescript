@@ -11,6 +11,14 @@ import * as ledger from "../ledger/index.js";
 
 export type V2GetBalancesAggregatedRequest = {
   /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
+  /**
    * Name of the ledger.
    */
   ledger: string;
@@ -43,6 +51,7 @@ export type V2GetBalancesAggregatedResponse = {
 
 /** @internal */
 export type V2GetBalancesAggregatedRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   ledger: string;
   pit?: string | undefined;
   query?: { [k: string]: any } | undefined;
@@ -55,10 +64,15 @@ export const V2GetBalancesAggregatedRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2GetBalancesAggregatedRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
   query: z.record(z.any()).optional(),
   useInsertionDate: z.boolean().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
+  });
 });
 
 export function v2GetBalancesAggregatedRequestToJSON(

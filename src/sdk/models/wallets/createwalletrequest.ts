@@ -9,6 +9,9 @@ export type CreateWalletRequest = {
    * Custom metadata to attach to this wallet.
    */
   metadata: { [k: string]: string };
+  /**
+   * Human-readable name for the wallet
+   */
   name: string;
 };
 

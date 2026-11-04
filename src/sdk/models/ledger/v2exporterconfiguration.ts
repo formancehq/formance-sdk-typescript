@@ -5,7 +5,13 @@
 import * as z from "zod/v3";
 
 export type V2ExporterConfiguration = {
+  /**
+   * Driver-specific configuration for the exporter
+   */
   config: { [k: string]: any };
+  /**
+   * Name of the exporter driver to use
+   */
   driver: string;
 };
 

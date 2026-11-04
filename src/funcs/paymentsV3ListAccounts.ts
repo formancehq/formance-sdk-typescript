@@ -37,11 +37,11 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function paymentsV3ListAccounts(
   client: SDKCore,
-  request: operations.V3ListAccountsRequest,
+  request: operations.V3ListAccountsPaymentsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3ListAccountsResponse,
+    operations.V3ListAccountsPaymentsResponse,
     | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -62,12 +62,12 @@ export function paymentsV3ListAccounts(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3ListAccountsRequest,
+  request: operations.V3ListAccountsPaymentsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3ListAccountsResponse,
+      operations.V3ListAccountsPaymentsResponse,
       | payments.V3ErrorResponse
       | SDKBaseError
       | ResponseValidationError
@@ -83,7 +83,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.V3ListAccountsRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.V3ListAccountsPaymentsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -114,7 +115,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3ListAccounts",
+    operationID: "v3ListAccounts_payments",
     oAuth2Scopes: ["payments:read"],
 
     resolvedSecurity: requestSecurity,
@@ -163,7 +164,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3ListAccountsResponse,
+    operations.V3ListAccountsPaymentsResponse,
     | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -174,7 +175,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.V3ListAccountsResponse$inboundSchema, {
+    M.json(200, operations.V3ListAccountsPaymentsResponse$inboundSchema, {
       key: "V3AccountsCursorResponse",
     }),
     M.jsonErr("default", payments.V3ErrorResponse$inboundSchema),

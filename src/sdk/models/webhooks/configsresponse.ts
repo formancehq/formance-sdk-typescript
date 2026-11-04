@@ -11,12 +11,21 @@ import {
   WebhooksConfig$inboundSchema,
 } from "./webhooksconfig.js";
 
+/**
+ * Paginated cursor wrapping the list of configurations
+ */
 export type ConfigsResponseCursor = {
   data: Array<WebhooksConfig>;
+  /**
+   * Whether further pages are available
+   */
   hasMore: boolean;
 };
 
 export type ConfigsResponse = {
+  /**
+   * Paginated cursor wrapping the list of configurations
+   */
   cursor: ConfigsResponseCursor;
 };
 

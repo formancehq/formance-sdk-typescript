@@ -5,7 +5,13 @@
 import * as z from "zod/v3";
 
 export type AckAlertRequest = {
+  /**
+   * Who is acknowledging the alert
+   */
   by: string;
+  /**
+   * Free-text note to record with the acknowledgement
+   */
   note?: string | undefined;
 };
 

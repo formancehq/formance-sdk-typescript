@@ -7,12 +7,33 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A reconciliation policy pairing a ledger query with a payments pool
+ */
 export type Policy = {
+  /**
+   * When the policy was created
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the policy
+   */
   id: string;
+  /**
+   * Name of the ledger the policy reconciles against
+   */
   ledgerName: string;
+  /**
+   * Filter selecting the ledger accounts whose balances are reconciled
+   */
   ledgerQuery: { [k: string]: any };
+  /**
+   * Human-readable name of the policy
+   */
   name: string;
+  /**
+   * Identifier of the payments pool the ledger side is compared against
+   */
   paymentsPoolID: string;
 };
 

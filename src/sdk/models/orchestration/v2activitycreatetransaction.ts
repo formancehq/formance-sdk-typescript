@@ -11,8 +11,17 @@ import {
   V2PostTransaction$inboundSchema,
 } from "./v2posttransaction.js";
 
+/**
+ * Arguments for the activity that writes a transaction to a ledger
+ */
 export type V2ActivityCreateTransaction = {
+  /**
+   * A transaction to write to a ledger
+   */
   data?: V2PostTransaction | undefined;
+  /**
+   * Name of the ledger to write the transaction to
+   */
   ledger?: string | undefined;
 };
 

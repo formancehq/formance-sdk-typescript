@@ -1,5 +1,7 @@
 # LedgerInfoStorage
 
+Storage backend information, including the applied migrations
+
 ## Example Usage
 
 ```typescript

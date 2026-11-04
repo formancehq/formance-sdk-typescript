@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Posting = {
+  /**
+   * Amount to move, as an arbitrary-precision integer expressed in the asset's smallest unit
+   */
   amount: bigint;
+  /**
+   * The asset being moved, optionally carrying a scale suffix such as USD/2
+   */
   asset: string;
+  /**
+   * Address of the account credited by this posting
+   */
   destination: string;
+  /**
+   * Address of the account debited by this posting
+   */
   source: string;
 };
 

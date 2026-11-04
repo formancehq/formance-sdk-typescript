@@ -7,16 +7,49 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * One run of a policy, comparing both sides and reporting the drift between them
+ */
 export type Reconciliation = {
+  /**
+   * When the reconciliation was run
+   */
   createdAt: Date;
+  /**
+   * Difference between the two sides, keyed by asset. All-zero means the sides agree
+   */
   driftBalances: { [k: string]: bigint };
+  /**
+   * Why the run failed, when its status reports an error
+   */
   error?: string | undefined;
+  /**
+   * Unique identifier of the reconciliation run
+   */
   id: string;
+  /**
+   * Balances observed on the ledger side, keyed by asset
+   */
   ledgerBalances: { [k: string]: bigint };
+  /**
+   * Balances observed on the payments side, keyed by asset
+   */
   paymentsBalances: { [k: string]: bigint };
+  /**
+   * Identifier of the policy this run applied
+   */
   policyID: string;
+  /**
+   * Point in time at which the ledger side was evaluated
+   */
   reconciledAtLedger: Date;
+  /**
+   * Point in time at which the payments side was evaluated
+   */
   reconciledAtPayments: Date;
+  /**
+   * Outcome of the reconciliation run
+   */
   status: string;
 };
 

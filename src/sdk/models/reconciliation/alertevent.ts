@@ -8,20 +8,35 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Status after this event
+ */
 export const NewStatus = {
   Open: "OPEN",
   Acknowledged: "ACKNOWLEDGED",
   Resolved: "RESOLVED",
 } as const;
+/**
+ * Status after this event
+ */
 export type NewStatus = ClosedEnum<typeof NewStatus>;
 
+/**
+ * Status before this event. Null only for the alert's inaugural event
+ */
 export const PrevStatus = {
   Open: "OPEN",
   Acknowledged: "ACKNOWLEDGED",
   Resolved: "RESOLVED",
 } as const;
+/**
+ * Status before this event. Null only for the alert's inaugural event
+ */
 export type PrevStatus = ClosedEnum<typeof PrevStatus>;
 
+/**
+ * What happened, whether an evaluation outcome or a manual transition
+ */
 export const Type = {
   Fail: "fail",
   Pass: "pass",
@@ -31,6 +46,9 @@ export const Type = {
   Snooze: "snooze",
   Unsnooze: "unsnooze",
 } as const;
+/**
+ * What happened, whether an evaluation outcome or a manual transition
+ */
 export type Type = ClosedEnum<typeof Type>;
 
 /**
@@ -46,11 +64,29 @@ export type Type = ClosedEnum<typeof Type>;
  * identical fail, or a fail muted by an active snooze).
  */
 export type AlertEvent = {
+  /**
+   * Identifier of the alert this event belongs to
+   */
   alertID: string;
+  /**
+   * When the event occurred
+   */
   at: Date;
+  /**
+   * Identifier of the evaluation that produced this event, absent for manual transitions
+   */
   evaluationID?: string | null | undefined;
+  /**
+   * Unique identifier of the event
+   */
   id: string;
+  /**
+   * True when a failure landed on an already-resolved alert, reopening it
+   */
   isReopen: boolean;
+  /**
+   * Status after this event
+   */
   newStatus: NewStatus;
   /**
    * Whether this transition was published to the message bus. false = recorded for audit but suppressed.
@@ -60,7 +96,13 @@ export type AlertEvent = {
    * Event-type-specific payload (evidence for fail, resolution for resolve/accept, ack object for ack, snooze object for snooze).
    */
   payload?: { [k: string]: any } | undefined;
+  /**
+   * Status before this event. Null only for the alert's inaugural event
+   */
   prevStatus?: PrevStatus | null | undefined;
+  /**
+   * What happened, whether an evaluation outcome or a manual transition
+   */
   type: Type;
 };
 

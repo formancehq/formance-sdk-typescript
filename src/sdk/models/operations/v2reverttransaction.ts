@@ -11,6 +11,14 @@ import * as ledger from "../ledger/index.js";
 
 export type V2RevertTransactionRequest = {
   /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
+  /**
    * Use an idempotency key
    */
   idempotencyKey?: string | undefined;
@@ -63,6 +71,7 @@ export type V2RevertTransactionResponse = {
 
 /** @internal */
 export type V2RevertTransactionRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   "Idempotency-Key"?: string | undefined;
   V2RevertTransactionRequest?:
     | ledger.V2RevertTransactionRequest$Outbound
@@ -81,6 +90,7 @@ export const V2RevertTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2RevertTransactionRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   idempotencyKey: z.string().optional(),
   v2RevertTransactionRequest: ledger.V2RevertTransactionRequest$outboundSchema
     .optional(),
@@ -92,6 +102,7 @@ export const V2RevertTransactionRequest$outboundSchema: z.ZodType<
   schemaVersion: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
     idempotencyKey: "Idempotency-Key",
     v2RevertTransactionRequest: "V2RevertTransactionRequest",
   });

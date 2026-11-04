@@ -5,12 +5,18 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Which built-in check a rule applies, determining the shape of its templateSpec
+ */
 export const TemplateKind = {
   LedgerVsPoolDrift: "ledger_vs_pool_drift",
   LedgerInvariant: "ledger_invariant",
   AccountThreshold: "account_threshold",
   SourceParity: "source_parity",
 } as const;
+/**
+ * Which built-in check a rule applies, determining the shape of its templateSpec
+ */
 export type TemplateKind = ClosedEnum<typeof TemplateKind>;
 
 /** @internal */

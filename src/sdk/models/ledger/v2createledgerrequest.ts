@@ -5,8 +5,17 @@
 import * as z from "zod/v3";
 
 export type V2CreateLedgerRequest = {
+  /**
+   * Name of the storage bucket backing the ledger. Ledgers sharing a bucket share a database schema
+   */
   bucket?: string | undefined;
+  /**
+   * Feature flags to enable on the ledger, keyed by feature name
+   */
   features?: { [k: string]: string } | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | undefined;
 };
 

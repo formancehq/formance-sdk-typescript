@@ -11,8 +11,17 @@ import {
   PostTransaction$inboundSchema,
 } from "./posttransaction.js";
 
+/**
+ * Arguments for the activity that writes a transaction to a ledger
+ */
 export type ActivityCreateTransaction = {
+  /**
+   * A transaction to write to a ledger
+   */
   data?: PostTransaction | undefined;
+  /**
+   * Name of the ledger to write the transaction to
+   */
   ledger?: string | undefined;
 };
 

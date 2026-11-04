@@ -8,7 +8,13 @@ import * as z from "zod/v3";
  * Business acceptance. `note` is required and the evidence is snapshotted onto the resolution.
  */
 export type AcceptAlertRequest = {
+  /**
+   * Who is accepting the break
+   */
   by: string;
+  /**
+   * Why the break is being accepted rather than corrected
+   */
   note: string;
 };
 

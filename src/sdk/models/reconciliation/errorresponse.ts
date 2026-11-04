@@ -11,8 +11,17 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Error response
  */
 export type ErrorResponse = {
+  /**
+   * Optional link carrying additional context about the error
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: string;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 

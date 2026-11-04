@@ -7,13 +7,37 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A webhook endpoint together with the event types it subscribes to
+ */
 export type WebhooksConfig = {
+  /**
+   * Whether the configuration is active. Deactivated configurations receive no deliveries
+   */
   active: boolean;
+  /**
+   * When the configuration was created
+   */
   createdAt: Date;
+  /**
+   * URL events are delivered to
+   */
   endpoint: string;
+  /**
+   * Types of event that trigger a delivery to this endpoint
+   */
   eventTypes: Array<string>;
+  /**
+   * Unique identifier of the configuration
+   */
   id: string;
+  /**
+   * Secret used to sign delivery payloads, letting the receiver verify their authenticity
+   */
   secret: string;
+  /**
+   * When the configuration was last modified
+   */
   updatedAt: Date;
 };
 

@@ -12,11 +12,17 @@ import { Resolution, Resolution$inboundSchema } from "./resolution.js";
 import { Severity, Severity$inboundSchema } from "./severity.js";
 import { Snooze, Snooze$inboundSchema } from "./snooze.js";
 
+/**
+ * Where the alert stands in its open, acknowledged, resolved lifecycle
+ */
 export const Status = {
   Open: "OPEN",
   Acknowledged: "ACKNOWLEDGED",
   Resolved: "RESOLVED",
 } as const;
+/**
+ * Where the alert stands in its open, acknowledged, resolved lifecycle
+ */
 export type Status = ClosedEnum<typeof Status>;
 
 /**
@@ -26,31 +32,67 @@ export type Status = ClosedEnum<typeof Status>;
  * reconciliation period. There is exactly one Alert per
  * (ruleID, fingerprint, periodID) — within a period, re-opens after resolve
  * flip the status back to OPEN in place; the same fingerprint failing in a
- * new period is a separate Alert. For a `continuous`-cadence rule there is
+ * new period is a separate Alert. For a `continuous` period type there is
  * one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).
  * The full history of transitions lives in alert_event
  * (see /alerts/{alertID}/events).
  */
 export type Alert = {
+  /**
+   * Record of who acknowledged an alert and when
+   */
   ack?: Ack | undefined;
+  /**
+   * When the alert was created
+   */
   createdAt: Date;
+  /**
+   * Data captured from the failing evaluation, explaining what broke
+   */
   evidence?: { [k: string]: any } | undefined;
+  /**
+   * Identifies what is failing within the rule, so the same break dedupes to one alert
+   */
   fingerprint: string;
+  /**
+   * When the fingerprint first failed within this period
+   */
   firstSeenAt: Date;
+  /**
+   * Unique identifier of the alert
+   */
   id: string;
+  /**
+   * Key/value pairs copied from the rule that raised the alert
+   */
   labels?: { [k: string]: string } | undefined;
+  /**
+   * Identifier of the evaluation that last touched the alert
+   */
   lastEvaluationID: string;
+  /**
+   * When the fingerprint most recently failed
+   */
   lastSeenAt: Date;
   /**
-   * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a continuous-cadence rule).
+   * Count of FAIL events on this alert across reopen cycles within its period (lifetime, for a `continuous` period type).
    */
   occurrenceCount: number;
   /**
    * Reconciliation period this alert is scoped to ('continuous' for live-monitoring rules).
    */
   periodID: string;
+  /**
+   * Record of how an alert was resolved and by whom
+   */
   resolution?: Resolution | undefined;
+  /**
+   * Identifier of the rule that raised the alert
+   */
   ruleID: string;
+  /**
+   * How serious an alert is, used to route and prioritise notifications
+   */
   severity: Severity;
   /**
    * A time-boxed, operator-initiated mute of an alert's notifications. While
@@ -60,7 +102,13 @@ export type Alert = {
    * against period-green — only its notifications are suppressed.
    */
   snooze?: Snooze | undefined;
+  /**
+   * Where the alert stands in its open, acknowledged, resolved lifecycle
+   */
   status: Status;
+  /**
+   * When the alert was last modified
+   */
   updatedAt: Date;
 };
 

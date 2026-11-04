@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Current state of a delivery in its retry lifecycle
+ */
 export const DeliveryStatus = {
   Pending: "pending",
   Delivering: "delivering",
@@ -12,6 +15,9 @@ export const DeliveryStatus = {
   Failed: "failed",
   Cancelled: "cancelled",
 } as const;
+/**
+ * Current state of a delivery in its retry lifecycle
+ */
 export type DeliveryStatus = ClosedEnum<typeof DeliveryStatus>;
 
 /** @internal */

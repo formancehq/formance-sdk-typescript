@@ -7,14 +7,35 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A rule that starts a workflow when a matching event arrives
+ */
 export type V2Trigger = {
   createdAt: Date;
+  /**
+   * Type of event that fires this trigger
+   */
   event: string;
+  /**
+   * Expression evaluated against the event. The workflow runs only when it matches
+   */
   filter?: string | undefined;
   id: string;
+  /**
+   * Human-readable name for the trigger
+   */
   name?: string | undefined;
+  /**
+   * Expressions evaluated against the event to build the workflow's input variables
+   */
   vars?: { [k: string]: any } | undefined;
+  /**
+   * Version of the trigger definition
+   */
   version?: string | undefined;
+  /**
+   * Identifier of the workflow to run when the trigger fires
+   */
   workflowID: string;
 };
 

@@ -1,5 +1,7 @@
 # V2PaymentAdjustmentRaw
 
+The provider's original payload for this adjustment
+
 ## Example Usage
 
 ```typescript

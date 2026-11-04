@@ -12,6 +12,9 @@ import { Evaluation, Evaluation$inboundSchema } from "./evaluation.js";
  * OK
  */
 export type EvaluationResponse = {
+  /**
+   * One run of a rule, carrying its outcome and cost
+   */
   data: Evaluation;
 };
 

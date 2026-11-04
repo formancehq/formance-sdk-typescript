@@ -14,6 +14,9 @@ import {
 } from "./v2stagewaitevent.js";
 import { V2Update, V2Update$inboundSchema } from "./v2update.js";
 
+/**
+ * One step of a workflow, whose shape depends on the stage type
+ */
 export type V2Stage = V2StageWaitEvent | V2StageSend | V2StageDelay | V2Update;
 
 /** @internal */

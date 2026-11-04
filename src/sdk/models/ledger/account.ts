@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Account = {
+  /**
+   * The account address, a colon-separated segmented path such as users:001
+   */
   address: string;
+  /**
+   * Arbitrary key/value pairs attached to the account
+   */
   metadata?: { [k: string]: any } | undefined;
+  /**
+   * Free-form classification of the account
+   */
   type?: string | undefined;
 };
 

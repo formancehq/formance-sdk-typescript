@@ -14,6 +14,9 @@ import {
 } from "./stagewaitevent.js";
 import { Update, Update$inboundSchema } from "./update.js";
 
+/**
+ * One step of a workflow, whose shape depends on the stage type
+ */
 export type Stage = StageWaitEvent | StageSend | StageDelay | Update;
 
 /** @internal */

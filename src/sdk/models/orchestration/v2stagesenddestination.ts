@@ -7,22 +7,34 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  V2StageSendDestinationAccount,
+  V2StageSendDestinationAccount$inboundSchema,
+} from "./v2stagesenddestinationaccount.js";
+import {
   V2StageSendDestinationPayment,
   V2StageSendDestinationPayment$inboundSchema,
 } from "./v2stagesenddestinationpayment.js";
 import {
-  V2StageSendSourceAccount,
-  V2StageSendSourceAccount$inboundSchema,
-} from "./v2stagesendsourceaccount.js";
-import {
-  V2StageSendSourceWallet,
-  V2StageSendSourceWallet$inboundSchema,
-} from "./v2stagesendsourcewallet.js";
+  V2StageSendDestinationWallet,
+  V2StageSendDestinationWallet$inboundSchema,
+} from "./v2stagesenddestinationwallet.js";
 
+/**
+ * Where a send stage puts the funds
+ */
 export type V2StageSendDestination = {
-  account?: V2StageSendSourceAccount | undefined;
+  /**
+   * Send the funds to a ledger account
+   */
+  account?: V2StageSendDestinationAccount | undefined;
+  /**
+   * Send the funds to a payment
+   */
   payment?: V2StageSendDestinationPayment | undefined;
-  wallet?: V2StageSendSourceWallet | undefined;
+  /**
+   * Send the funds to a wallet
+   */
+  wallet?: V2StageSendDestinationWallet | undefined;
 };
 
 /** @internal */
@@ -31,9 +43,9 @@ export const V2StageSendDestination$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account: V2StageSendSourceAccount$inboundSchema.optional(),
+  account: V2StageSendDestinationAccount$inboundSchema.optional(),
   payment: V2StageSendDestinationPayment$inboundSchema.optional(),
-  wallet: V2StageSendSourceWallet$inboundSchema.optional(),
+  wallet: V2StageSendDestinationWallet$inboundSchema.optional(),
 });
 
 export function v2StageSendDestinationFromJSON(

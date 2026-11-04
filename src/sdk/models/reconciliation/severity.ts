@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * How serious an alert is, used to route and prioritise notifications
+ */
 export const Severity = {
   Info: "info",
   Low: "low",
@@ -12,6 +15,9 @@ export const Severity = {
   High: "high",
   Critical: "critical",
 } as const;
+/**
+ * How serious an alert is, used to route and prioritise notifications
+ */
 export type Severity = ClosedEnum<typeof Severity>;
 
 /** @internal */

@@ -8,16 +8,34 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Current state of the migration
+ */
 export const MigrationInfoState = {
   ToDo: "TO DO",
   Done: "DONE",
 } as const;
+/**
+ * Current state of the migration
+ */
 export type MigrationInfoState = ClosedEnum<typeof MigrationInfoState>;
 
 export type MigrationInfo = {
+  /**
+   * When the migration was applied
+   */
   date?: Date | undefined;
+  /**
+   * Name of the migration
+   */
   name?: string | undefined;
+  /**
+   * Current state of the migration
+   */
   state?: MigrationInfoState | undefined;
+  /**
+   * Sequence number of the migration
+   */
   version?: string | undefined;
 };
 

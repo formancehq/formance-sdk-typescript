@@ -20,6 +20,10 @@ import {
   ActivityCreateTransaction$inboundSchema,
 } from "./activitycreatetransaction.js";
 import {
+  ActivityCreateTransferInitiation,
+  ActivityCreateTransferInitiation$inboundSchema,
+} from "./activitycreatetransferinitiation.js";
+import {
   ActivityCreditWallet,
   ActivityCreditWallet$inboundSchema,
 } from "./activitycreditwallet.js";
@@ -48,31 +52,69 @@ import {
   ActivityRevertTransaction$inboundSchema,
 } from "./activityreverttransaction.js";
 import {
+  ActivityStripeTransfer,
+  ActivityStripeTransfer$inboundSchema,
+} from "./activitystripetransfer.js";
+import {
   ActivityVoidHold,
   ActivityVoidHold$inboundSchema,
 } from "./activityvoidhold.js";
-import {
-  CreateTransferInitiationRequest,
-  CreateTransferInitiationRequest$inboundSchema,
-} from "./createtransferinitiationrequest.js";
-import {
-  StripeTransferRequest,
-  StripeTransferRequest$inboundSchema,
-} from "./stripetransferrequest.js";
 
+/**
+ * Arguments an activity was called with, keyed by activity name
+ */
 export type WorkflowInstanceHistoryStageInput = {
+  /**
+   * Arguments for the activity that sets metadata on a ledger account
+   */
   addAccountMetadata?: ActivityAddAccountMetadata | undefined;
+  /**
+   * Arguments for the activity that confirms a wallet hold
+   */
   confirmHold?: ActivityConfirmHold | undefined;
+  /**
+   * Arguments for the activity that writes a transaction to a ledger
+   */
   createTransaction?: ActivityCreateTransaction | undefined;
-  createTransferInitiation?: CreateTransferInitiationRequest | undefined;
+  /**
+   * Arguments for the activity that initiates a transfer through a connector
+   */
+  createTransferInitiation?: ActivityCreateTransferInitiation | undefined;
+  /**
+   * Arguments for the activity that credits a wallet
+   */
   creditWallet?: ActivityCreditWallet | undefined;
+  /**
+   * Arguments for the activity that debits a wallet
+   */
   debitWallet?: ActivityDebitWallet | undefined;
+  /**
+   * Arguments for the activity that reads a ledger account
+   */
   getAccount?: ActivityGetAccount | undefined;
+  /**
+   * Arguments for the activity that reads a payment
+   */
   getPayment?: ActivityGetPayment | undefined;
+  /**
+   * Arguments for the activity that reads a wallet
+   */
   getWallet?: ActivityGetWallet | undefined;
+  /**
+   * Arguments for the activity that lists wallets
+   */
   listWallets?: ActivityListWallets | undefined;
+  /**
+   * Arguments for the activity that reverts a ledger transaction
+   */
   revertTransaction?: ActivityRevertTransaction | undefined;
-  stripeTransfer?: StripeTransferRequest | undefined;
+  /**
+   * Arguments for the activity that transfers funds through Stripe
+   */
+  stripeTransfer?: ActivityStripeTransfer | undefined;
+  /**
+   * Arguments for the activity that releases a wallet hold
+   */
   voidHold?: ActivityVoidHold | undefined;
 };
 
@@ -85,7 +127,7 @@ export const WorkflowInstanceHistoryStageInput$inboundSchema: z.ZodType<
   AddAccountMetadata: ActivityAddAccountMetadata$inboundSchema.optional(),
   ConfirmHold: ActivityConfirmHold$inboundSchema.optional(),
   CreateTransaction: ActivityCreateTransaction$inboundSchema.optional(),
-  CreateTransferInitiation: CreateTransferInitiationRequest$inboundSchema
+  CreateTransferInitiation: ActivityCreateTransferInitiation$inboundSchema
     .optional(),
   CreditWallet: ActivityCreditWallet$inboundSchema.optional(),
   DebitWallet: ActivityDebitWallet$inboundSchema.optional(),
@@ -94,7 +136,7 @@ export const WorkflowInstanceHistoryStageInput$inboundSchema: z.ZodType<
   GetWallet: ActivityGetWallet$inboundSchema.optional(),
   ListWallets: ActivityListWallets$inboundSchema.optional(),
   RevertTransaction: ActivityRevertTransaction$inboundSchema.optional(),
-  StripeTransfer: StripeTransferRequest$inboundSchema.optional(),
+  StripeTransfer: ActivityStripeTransfer$inboundSchema.optional(),
   VoidHold: ActivityVoidHold$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

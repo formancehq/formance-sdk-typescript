@@ -1,5 +1,7 @@
 # ErrorErrorCode
 
+Machine-readable error code identifying the failure
+
 ## Example Usage
 
 ```typescript
@@ -11,5 +13,5 @@ let value: ErrorErrorCode = "NOT_FOUND";
 ## Values
 
 ```typescript
-"VALIDATION" | "NOT_FOUND" | "INTERNAL"
+"VALIDATION" | "NOT_FOUND" | "INTERNAL" | "CONFLICT"
 ```

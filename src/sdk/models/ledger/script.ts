@@ -5,12 +5,21 @@
 import * as z from "zod/v3";
 
 export type Script = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: any } | null | undefined;
+  /**
+   * The Numscript program to execute
+   */
   plain: string;
   /**
    * Reference to attach to the generated transaction
    */
   reference?: string | undefined;
+  /**
+   * Values bound to the script's declared variables, keyed by variable name
+   */
   vars?: { [k: string]: any } | undefined;
 };
 

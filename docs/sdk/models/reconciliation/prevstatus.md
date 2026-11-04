@@ -1,5 +1,7 @@
 # PrevStatus
 
+Status before this event. Null only for the alert's inaugural event
+
 ## Example Usage
 
 ```typescript

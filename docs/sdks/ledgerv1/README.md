@@ -13,7 +13,6 @@
 * [getAccountLedger](#getaccountledger) - Get account by its address
 * [getBalances](#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](#getinfo) - Show server information
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getMapping](#getmapping) - Get the mapping of a ledger
 * [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
@@ -949,81 +948,6 @@ run();
 ### Response
 
 **Promise\<[operations.GetBalancesAggregatedResponse](../../sdk/models/operations/getbalancesaggregatedresponse.md)\>**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| ledger.ErrorsErrorResponse | default                    | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
-## getInfo
-
-Show server information
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getInfo" method="get" path="/api/ledger/_info" -->
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const result = await sdk.ledger.v1.getInfo();
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@formance/formance-sdk/core.js";
-import { ledgerV1GetInfo } from "@formance/formance-sdk/funcs/ledgerV1GetInfo.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const res = await ledgerV1GetInfo(sdk);
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("ledgerV1GetInfo failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)\>**
 
 ### Errors
 

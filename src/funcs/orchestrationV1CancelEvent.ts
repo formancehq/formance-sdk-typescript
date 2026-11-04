@@ -41,7 +41,7 @@ export function orchestrationV1CancelEvent(
 ): APIPromise<
   Result<
     operations.CancelEventResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.CancelEventResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -160,7 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.CancelEventResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -171,7 +171,7 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(204, operations.CancelEventResponse$inboundSchema),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type ClientSecret = {
+  /**
+   * Unique identifier of the secret
+   */
   id: string;
+  /**
+   * Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed.
+   */
   lastDigits: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name identifying the secret
+   */
   name: string;
 };
 

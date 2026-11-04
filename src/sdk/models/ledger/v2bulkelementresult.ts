@@ -12,29 +12,65 @@ export type V2BulkElementResultError = {
   errorCode: string;
   errorDescription: string;
   errorDetails?: string | undefined;
+  /**
+   * Identifier of the log entry produced by this element
+   */
   logID: number;
+  /**
+   * The action this result corresponds to
+   */
   responseType: "ERROR";
 };
 
 export type V2BulkElementResultDeleteMetadata = {
+  /**
+   * Identifier of the log entry produced by this element
+   */
   logID: number;
+  /**
+   * The action this result corresponds to
+   */
   responseType: "DELETE_METADATA";
 };
 
 export type V2BulkElementResultRevertTransaction = {
+  /**
+   * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps
+   */
   data: V2Transaction;
+  /**
+   * Identifier of the log entry produced by this element
+   */
   logID: number;
+  /**
+   * The action this result corresponds to
+   */
   responseType: "REVERT_TRANSACTION";
 };
 
 export type V2BulkElementResultAddMetadata = {
+  /**
+   * Identifier of the log entry produced by this element
+   */
   logID: number;
+  /**
+   * The action this result corresponds to
+   */
   responseType: "ADD_METADATA";
 };
 
 export type V2BulkElementResultCreateTransaction = {
+  /**
+   * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps
+   */
   data: V2Transaction;
+  /**
+   * Identifier of the log entry produced by this element
+   */
   logID: number;
+  /**
+   * The action this result corresponds to
+   */
   responseType: "CREATE_TRANSACTION";
 };
 

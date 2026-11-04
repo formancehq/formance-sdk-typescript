@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type V2RevertTransactionRequest = {
+  /**
+   * Metadata to attach to the compensating transaction created by the revert
+   */
   metadata?: { [k: string]: string } | undefined;
 };
 

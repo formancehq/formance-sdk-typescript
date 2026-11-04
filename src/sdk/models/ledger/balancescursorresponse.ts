@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Paginated cursor wrapping the list of balances
+ */
 export type BalancesCursorResponseCursor = {
   data: Array<{ [k: string]: { [k: string]: number } }>;
   hasMore: boolean;
@@ -16,6 +19,9 @@ export type BalancesCursorResponseCursor = {
 };
 
 export type BalancesCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of balances
+   */
   cursor: BalancesCursorResponseCursor;
 };
 

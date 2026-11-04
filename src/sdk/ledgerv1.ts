@@ -11,7 +11,6 @@ import { ledgerV1CreateTransactions } from "../funcs/ledgerV1CreateTransactions.
 import { ledgerV1GetAccountLedger } from "../funcs/ledgerV1GetAccountLedger.js";
 import { ledgerV1GetBalances } from "../funcs/ledgerV1GetBalances.js";
 import { ledgerV1GetBalancesAggregated } from "../funcs/ledgerV1GetBalancesAggregated.js";
-import { ledgerV1GetInfo } from "../funcs/ledgerV1GetInfo.js";
 import { ledgerV1GetLedgerInfo } from "../funcs/ledgerV1GetLedgerInfo.js";
 import { ledgerV1GetMapping } from "../funcs/ledgerV1GetMapping.js";
 import { ledgerV1GetTransaction } from "../funcs/ledgerV1GetTransaction.js";
@@ -149,18 +148,6 @@ export class LedgerV1 extends ClientSDK {
     return unwrapAsync(ledgerV1GetBalancesAggregated(
       this,
       request,
-      options,
-    ));
-  }
-
-  /**
-   * Show server information
-   */
-  async getInfo(
-    options?: RequestOptions,
-  ): Promise<operations.GetInfoResponse> {
-    return unwrapAsync(ledgerV1GetInfo(
-      this,
       options,
     ));
   }

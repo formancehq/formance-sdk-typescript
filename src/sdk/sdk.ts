@@ -5,12 +5,12 @@
 import { getVersions } from "../funcs/getVersions.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import { Auth } from "./auth.js";
+import { Connectivity } from "./connectivity.js";
 import { Ledger } from "./ledger.js";
 import * as operations from "./models/operations/index.js";
 import { Orchestration } from "./orchestration.js";
 import { Payments } from "./payments.js";
 import { Reconciliation } from "./reconciliation.js";
-import { Search } from "./search.js";
 import { unwrapAsync } from "./types/fp.js";
 import { Wallets } from "./wallets.js";
 import { Webhooks } from "./webhooks.js";
@@ -19,6 +19,11 @@ export class SDK extends ClientSDK {
   private _auth?: Auth;
   get auth(): Auth {
     return (this._auth ??= new Auth(this._options));
+  }
+
+  private _connectivity?: Connectivity;
+  get connectivity(): Connectivity {
+    return (this._connectivity ??= new Connectivity(this._options));
   }
 
   private _ledger?: Ledger;
@@ -39,11 +44,6 @@ export class SDK extends ClientSDK {
   private _reconciliation?: Reconciliation;
   get reconciliation(): Reconciliation {
     return (this._reconciliation ??= new Reconciliation(this._options));
-  }
-
-  private _search?: Search;
-  get search(): Search {
-    return (this._search ??= new Search(this._options));
   }
 
   private _wallets?: Wallets;

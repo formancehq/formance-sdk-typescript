@@ -6,12 +6,36 @@ import * as z from "zod/v3";
 import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import { ActivityPause, ActivityPause$inboundSchema } from "./activitypause.js";
 
 export type StageStatus = {
+  /**
+   * Why the stage failed, absent when it succeeded
+   */
   error?: string | undefined;
+  /**
+   * Identifier of the workflow instance this stage belongs to
+   */
   instanceID: string;
+  /**
+   * True when Temporal pause state could not be read; display UNKNOWN rather than inferring active from absent pendingActivities. Omitted on successful reads and missing legacy executions.
+   */
+  pauseStateUnavailable?: boolean | undefined;
+  /**
+   * Paused activities hydrated on instance detail reads only; absent when none are paused or legacy Temporal execution is unavailable
+   */
+  pendingActivities?: Array<ActivityPause> | undefined;
+  /**
+   * Zero-based position of the stage within the workflow
+   */
   stage: number;
+  /**
+   * When the stage started
+   */
   startedAt: Date;
+  /**
+   * When the stage finished, absent while it is still running
+   */
   terminatedAt?: Date | undefined;
 };
 
@@ -23,6 +47,8 @@ export const StageStatus$inboundSchema: z.ZodType<
 > = z.object({
   error: z.string().optional(),
   instanceID: z.string(),
+  pauseStateUnavailable: z.boolean().optional(),
+  pendingActivities: z.array(ActivityPause$inboundSchema).optional(),
   stage: z.number(),
   startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>

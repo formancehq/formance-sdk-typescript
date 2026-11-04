@@ -11,8 +11,17 @@ import {
   V2CreditWalletRequest$inboundSchema,
 } from "./v2creditwalletrequest.js";
 
+/**
+ * Arguments for the activity that credits a wallet
+ */
 export type V2ActivityCreditWallet = {
+  /**
+   * A credit to apply to a wallet
+   */
   data?: V2CreditWalletRequest | undefined;
+  /**
+   * Identifier of the wallet to credit
+   */
   id?: string | undefined;
 };
 

@@ -12,11 +12,29 @@ export const Status = {
 export type Status = ClosedEnum<typeof Status>;
 
 export type ReplayDeliveriesRequest = {
+  /**
+   * Restrict the replay to deliveries targeting these webhook configurations
+   */
   configIds?: Array<string> | undefined;
+  /**
+   * Replay deliveries created at or after this time
+   */
   createdAtFrom: Date;
+  /**
+   * Replay deliveries created at or before this time. Defaults to now when omitted
+   */
   createdAtTo?: Date | undefined;
+  /**
+   * Pagination cursor from a previous replay response, used to continue a large replay
+   */
   cursor?: string | undefined;
+  /**
+   * Maximum number of deliveries to process in this call
+   */
   pageSize?: number | undefined;
+  /**
+   * Restrict the replay to deliveries in these statuses
+   */
   statuses?: Array<Status> | undefined;
 };
 

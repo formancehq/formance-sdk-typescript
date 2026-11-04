@@ -11,6 +11,14 @@ import * as ledger from "../ledger/index.js";
 
 export type V2GetAccountRequest = {
   /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
+  /**
    * Exact address of the account. It must match the following regular expressions pattern:
    *
    * @remarks
@@ -48,6 +56,7 @@ export type V2GetAccountResponse = {
 
 /** @internal */
 export type V2GetAccountRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   address: string;
   expand?: string | undefined;
   ledger: string;
@@ -60,10 +69,15 @@ export const V2GetAccountRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2GetAccountRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   address: z.string(),
   expand: z.string().optional(),
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
+  });
 });
 
 export function v2GetAccountRequestToJSON(

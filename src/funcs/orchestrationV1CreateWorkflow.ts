@@ -41,7 +41,7 @@ export function orchestrationV1CreateWorkflow(
 ): APIPromise<
   Result<
     operations.CreateWorkflowResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.CreateWorkflowResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -156,7 +156,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.CreateWorkflowResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -169,7 +169,7 @@ async function $do(
     M.json(201, operations.CreateWorkflowResponse$inboundSchema, {
       key: "CreateWorkflowResponse",
     }),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

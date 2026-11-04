@@ -1,5 +1,7 @@
 # V2ActivityVoidHold
 
+Arguments for the activity that releases a wallet hold
+
 ## Example Usage
 
 ```typescript
@@ -12,6 +14,6 @@ let value: V2ActivityVoidHold = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_check_mark: | N/A                |
+| Field                             | Type                              | Required                          | Description                       |
+| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| `id`                              | *string*                          | :heavy_check_mark:                | Identifier of the hold to release |

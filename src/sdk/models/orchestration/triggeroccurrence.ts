@@ -12,11 +12,29 @@ import {
 } from "./workflowinstance.js";
 
 export type TriggerOccurrence = {
+  /**
+   * When the trigger fired
+   */
   date: Date;
+  /**
+   * Why the trigger failed to start a run, absent when it succeeded
+   */
   error?: string | undefined;
+  /**
+   * The event that fired the trigger
+   */
   event: { [k: string]: any };
+  /**
+   * Identifier of the trigger that fired
+   */
   triggerID: string;
+  /**
+   * One run of a workflow, tracking its per-stage progress
+   */
   workflowInstance?: WorkflowInstance | undefined;
+  /**
+   * Identifier of the run the trigger started, absent when it started none
+   */
   workflowInstanceID?: string | undefined;
 };
 

@@ -8,38 +8,66 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  AccountResponse,
-  AccountResponse$inboundSchema,
-} from "./accountresponse.js";
+  ActivityCreateTransactionOutput,
+  ActivityCreateTransactionOutput$inboundSchema,
+} from "./activitycreatetransactionoutput.js";
 import {
-  CreateTransactionResponse,
-  CreateTransactionResponse$inboundSchema,
-} from "./createtransactionresponse.js";
+  ActivityDebitWalletOutput,
+  ActivityDebitWalletOutput$inboundSchema,
+} from "./activitydebitwalletoutput.js";
 import {
-  DebitWalletResponse,
-  DebitWalletResponse$inboundSchema,
-} from "./debitwalletresponse.js";
+  ActivityGetAccountOutput,
+  ActivityGetAccountOutput$inboundSchema,
+} from "./activitygetaccountoutput.js";
 import {
-  GetWalletResponse,
-  GetWalletResponse$inboundSchema,
-} from "./getwalletresponse.js";
+  ActivityGetPaymentOutput,
+  ActivityGetPaymentOutput$inboundSchema,
+} from "./activitygetpaymentoutput.js";
+import {
+  ActivityGetWalletOutput,
+  ActivityGetWalletOutput$inboundSchema,
+} from "./activitygetwalletoutput.js";
+import {
+  ActivityRevertTransactionOutput,
+  ActivityRevertTransactionOutput$inboundSchema,
+} from "./activityreverttransactionoutput.js";
 import {
   ListWalletsResponse,
   ListWalletsResponse$inboundSchema,
 } from "./listwalletsresponse.js";
-import {
-  PaymentResponse,
-  PaymentResponse$inboundSchema,
-} from "./paymentresponse.js";
 
+/**
+ * Result an activity returned, keyed by activity name
+ */
 export type WorkflowInstanceHistoryStageOutput = {
-  createTransaction?: CreateTransactionResponse | undefined;
-  debitWallet?: DebitWalletResponse | undefined;
-  getAccount?: AccountResponse | undefined;
-  getPayment?: PaymentResponse | undefined;
-  getWallet?: GetWalletResponse | undefined;
+  /**
+   * Result of the activity that writes a transaction to a ledger
+   */
+  createTransaction?: ActivityCreateTransactionOutput | undefined;
+  /**
+   * Result of the activity that debits a wallet
+   */
+  debitWallet?: ActivityDebitWalletOutput | undefined;
+  /**
+   * Result of the activity that reads a ledger account
+   */
+  getAccount?: ActivityGetAccountOutput | undefined;
+  /**
+   * Result of the activity that reads a payment
+   */
+  getPayment?: ActivityGetPaymentOutput | undefined;
+  /**
+   * Result of the activity that reads a wallet
+   */
+  getWallet?: ActivityGetWalletOutput | undefined;
+  /**
+   * A page of wallets
+   */
   listWallets?: ListWalletsResponse | undefined;
-  revertTransaction?: CreateTransactionResponse | undefined;
+  /**
+   * Result of the activity that reverts a ledger transaction
+   */
+  revertTransaction?: ActivityRevertTransactionOutput | undefined;
 };
 
 /** @internal */
@@ -48,13 +76,13 @@ export const WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  CreateTransaction: CreateTransactionResponse$inboundSchema.optional(),
-  DebitWallet: DebitWalletResponse$inboundSchema.optional(),
-  GetAccount: AccountResponse$inboundSchema.optional(),
-  GetPayment: PaymentResponse$inboundSchema.optional(),
-  GetWallet: GetWalletResponse$inboundSchema.optional(),
+  CreateTransaction: ActivityCreateTransactionOutput$inboundSchema.optional(),
+  DebitWallet: ActivityDebitWalletOutput$inboundSchema.optional(),
+  GetAccount: ActivityGetAccountOutput$inboundSchema.optional(),
+  GetPayment: ActivityGetPaymentOutput$inboundSchema.optional(),
+  GetWallet: ActivityGetWalletOutput$inboundSchema.optional(),
   ListWallets: ListWalletsResponse$inboundSchema.optional(),
-  RevertTransaction: CreateTransactionResponse$inboundSchema.optional(),
+  RevertTransaction: ActivityRevertTransactionOutput$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "CreateTransaction": "createTransaction",

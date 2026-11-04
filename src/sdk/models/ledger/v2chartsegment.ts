@@ -23,15 +23,30 @@ import {
   V2ChartAccountRules$outboundSchema,
 } from "./v2chartaccountrules.js";
 
+/**
+ * Rules and metadata applied to the segment's own account, as opposed to its children
+ */
 export type DotSelf = {};
 
 /**
  * Segment within a chart of accounts
  */
 export type V2ChartSegment = {
+  /**
+   * Metadata applied to accounts matching this segment, keyed by metadata key
+   */
   dotMetadata?: { [k: string]: V2ChartAccountMetadata } | undefined;
+  /**
+   * Regular expression every child segment name must match
+   */
   dotPattern?: string | undefined;
+  /**
+   * Rules applied to accounts matching a chart-of-accounts segment
+   */
   dotRules?: V2ChartAccountRules | undefined;
+  /**
+   * Rules and metadata applied to the segment's own account, as opposed to its children
+   */
   dotSelf?: DotSelf | undefined;
   additionalProperties?: { [k: string]: V2ChartSegment } | undefined;
 };

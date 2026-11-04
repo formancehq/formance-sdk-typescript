@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2WalletSubject = {
+  /**
+   * Name of the balance within the wallet. Defaults to the main balance when omitted
+   */
   balance?: string | undefined;
+  /**
+   * Identifier of the wallet
+   */
   identifier: string;
+  /**
+   * Discriminator identifying this subject as a wallet
+   */
   type: "WALLET";
 };
 

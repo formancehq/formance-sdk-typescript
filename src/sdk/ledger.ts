@@ -5,11 +5,17 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { LedgerV1 } from "./ledgerv1.js";
 import { LedgerV2 } from "./ledgerv2.js";
+import { LedgerV3 } from "./ledgerv3.js";
 
 export class Ledger extends ClientSDK {
   private _v2?: LedgerV2;
   get v2(): LedgerV2 {
     return (this._v2 ??= new LedgerV2(this._options));
+  }
+
+  private _v3?: LedgerV3;
+  get v3(): LedgerV3 {
+    return (this._v3 ??= new LedgerV3(this._options));
   }
 
   private _v1?: LedgerV1;

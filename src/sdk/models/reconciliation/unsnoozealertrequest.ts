@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type UnsnoozeAlertRequest = {
+  /**
+   * Who is lifting the snooze
+   */
   by: string;
 };
 

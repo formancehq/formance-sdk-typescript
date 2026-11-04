@@ -8,7 +8,7 @@ import { V3PaymentInitiationAdjustment } from "@formance/formance-sdk/sdk/models
 let value: V3PaymentInitiationAdjustment = {
   createdAt: new Date("2025-04-10T01:26:00.815Z"),
   id: "<id>",
-  status: "REVERSE_PROCESSING",
+  status: "REJECTED",
 };
 ```
 

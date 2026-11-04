@@ -17,8 +17,14 @@ export type V2BulkElementDeleteMetadataData = {
 };
 
 export type V2BulkElementDeleteMetadata = {
+  /**
+   * The bulk action this element performs
+   */
   action: "DELETE_METADATA";
   data?: V2BulkElementDeleteMetadataData | undefined;
+  /**
+   * Idempotency key scoped to this element, making it safe to retry the bulk request
+   */
   ik?: string | undefined;
 };
 

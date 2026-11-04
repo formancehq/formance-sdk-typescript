@@ -8,9 +8,21 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Subject, Subject$inboundSchema } from "./subject.js";
 
+/**
+ * A hold together with the amounts it currently locks and has already released
+ */
 export type ExpandedDebitHold = {
+  /**
+   * Asset the held funds are denominated in
+   */
   asset: string;
+  /**
+   * Human-readable reason the funds were held
+   */
   description: string;
+  /**
+   * The counterparty of a wallet movement, either a ledger account or another wallet
+   */
   destination?: Subject | undefined;
   /**
    * The unique ID of the hold.
