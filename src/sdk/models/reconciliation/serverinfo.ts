@@ -11,6 +11,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * Server information
  */
 export type ServerInfo = {
+  /**
+   * Version of the reconciliation service
+   */
   version: string;
 };
 

@@ -11,8 +11,17 @@ import * as z from "zod/v3";
  * resolution kind is recorded as `fixed_by_booking`.
  */
 export type ResolveAlertRequest = {
+  /**
+   * Who is resolving the alert
+   */
   by: string;
+  /**
+   * Free-text note to record with the resolution
+   */
   note?: string | undefined;
+  /**
+   * References of the transactions booked to correct the break. Supplying any records the resolution as fixed_by_booking
+   */
   transactionRefs?: Array<string> | undefined;
 };
 

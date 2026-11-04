@@ -1,5 +1,7 @@
 # DeliveryAttemptsResponseCursor
 
+Paginated cursor wrapping the list of delivery attempts
+
 ## Example Usage
 
 ```typescript

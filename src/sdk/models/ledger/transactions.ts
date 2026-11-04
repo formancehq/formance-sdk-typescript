@@ -10,6 +10,9 @@ import {
 } from "./transactiondata.js";
 
 export type Transactions = {
+  /**
+   * The transactions to create, applied in order
+   */
   transactions: Array<TransactionData>;
 };
 

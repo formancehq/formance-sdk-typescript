@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * An amount together with the asset it is denominated in
+ */
 export type V2Monetary = {
   /**
    * The amount of the monetary value.

@@ -15,6 +15,9 @@ export type GetDeliveriesRequest = {
   createdAtTo?: Date | undefined;
   cursor?: string | undefined;
   pageSize?: number | undefined;
+  /**
+   * Current state of a delivery in its retry lifecycle
+   */
   status?: webhooks.DeliveryStatus | undefined;
 };
 

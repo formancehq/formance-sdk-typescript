@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Trigger, V2Trigger$inboundSchema } from "./v2trigger.js";
 
 export type V2ReadTriggerResponse = {
+  /**
+   * A rule that starts a workflow when a matching event arrives
+   */
   data: V2Trigger;
 };
 

@@ -1,5 +1,7 @@
 # TemplateKind
 
+Which built-in check a rule applies, determining the shape of its templateSpec
+
 ## Example Usage
 
 ```typescript

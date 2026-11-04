@@ -1,5 +1,7 @@
 # Monetary
 
+An amount together with the asset it is denominated in
+
 ## Example Usage
 
 ```typescript

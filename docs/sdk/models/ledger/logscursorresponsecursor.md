@@ -1,5 +1,7 @@
 # LogsCursorResponseCursor
 
+Paginated cursor wrapping the list of logs
+
 ## Example Usage
 
 ```typescript

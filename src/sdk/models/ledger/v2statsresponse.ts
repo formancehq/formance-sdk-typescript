@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Stats, V2Stats$inboundSchema } from "./v2stats.js";
 
 export type V2StatsResponse = {
+  /**
+   * Aggregate counts for a ledger
+   */
   data: V2Stats;
 };
 

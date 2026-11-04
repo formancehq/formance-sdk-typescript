@@ -12,6 +12,9 @@ import { Policy, Policy$inboundSchema } from "./policy.js";
  * OK
  */
 export type PolicyResponse = {
+  /**
+   * A reconciliation policy pairing a ledger query with a payments pool
+   */
   data: Policy;
 };
 

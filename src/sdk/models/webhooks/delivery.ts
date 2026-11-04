@@ -11,26 +11,77 @@ import {
   DeliveryStatus$inboundSchema,
 } from "./deliverystatus.js";
 
+/**
+ * An event queued for delivery to a webhook endpoint, tracking its retry state
+ */
 export type Delivery = {
+  /**
+   * Number of attempts made in the current retry cycle. Reset when a failed delivery is replayed
+   */
   attemptCount: number;
+  /**
+   * When a worker claimed this delivery for the attempt in flight. Cleared when a failed delivery is replayed
+   */
   claimedAt?: Date | undefined;
+  /**
+   * Identifier of the webhook configuration this delivery targets
+   */
   configID: string;
+  /**
+   * When the delivery was created
+   */
   createdAt: Date;
+  /**
+   * When the current retry cycle began. Cleared when a failed delivery is replayed
+   */
   cycleStartedAt?: Date | undefined;
+  /**
+   * Identifier of the event being delivered
+   */
   eventID: string;
+  /**
+   * Type of the event being delivered
+   */
   eventType: string;
+  /**
+   * Unique identifier of the delivery
+   */
   id: string;
+  /**
+   * Key sent with the request so the receiver can deduplicate retries of the same delivery
+   */
   idempotencyKey?: string | undefined;
+  /**
+   * When the most recent attempt was made
+   */
   lastAttemptAt?: Date | undefined;
+  /**
+   * Error reported by the most recent attempt
+   */
   lastError?: string | undefined;
+  /**
+   * HTTP status code returned by the most recent attempt
+   */
   lastStatusCode?: number | undefined;
+  /**
+   * When the next delivery attempt is scheduled
+   */
   nextAttemptAt?: Date | undefined;
   /**
    * Present only on delivery detail responses.
    */
   payload?: string | undefined;
+  /**
+   * Incremented each time a failed delivery is replayed, grouping attempts into retry cycles. Replaying a pending delivery leaves it unchanged
+   */
   replayGeneration: number;
+  /**
+   * Current state of a delivery in its retry lifecycle
+   */
   status: DeliveryStatus;
+  /**
+   * When the delivery was last modified
+   */
   updatedAt: Date;
 };
 

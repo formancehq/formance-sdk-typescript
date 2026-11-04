@@ -8,6 +8,9 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+ */
 export type V2LogDataSetMetadataTargetId = string | bigint;
 
 /**
@@ -28,7 +31,13 @@ export type V2LogDataSetMetadataTargetType = ClosedEnum<
  * Payload for SET_METADATA log entries. Contains the target entity and the metadata that was set.
  */
 export type V2LogDataSetMetadata = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * Identifier of the entity the metadata was set on, either an account address or a transaction ID
+   */
   targetId: string | bigint;
   /**
    * Type of the target entity

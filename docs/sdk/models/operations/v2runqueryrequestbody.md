@@ -14,8 +14,8 @@ let value: V2RunQueryRequestBody = {
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `cursor`                 | *string*                 | :heavy_minus_sign:       | N/A                      |
-| `params`                 | *ledger.V2QueryParams*   | :heavy_minus_sign:       | N/A                      |
-| `vars`                   | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
+| Field                                            | Type                                             | Required                                         | Description                                      |
+| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
+| `cursor`                                         | *string*                                         | :heavy_minus_sign:                               | N/A                                              |
+| `params`                                         | *ledger.V2QueryParams*                           | :heavy_minus_sign:                               | Parameters applied when running a query template |
+| `vars`                                           | Record<string, *string*>                         | :heavy_minus_sign:                               | N/A                                              |

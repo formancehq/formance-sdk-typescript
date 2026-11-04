@@ -21,6 +21,7 @@ import {
 import { ResponseValidationError } from "../sdk/models/errors/responsevalidationerror.js";
 import { SDKBaseError } from "../sdk/models/errors/sdkbaseerror.js";
 import { SDKValidationError } from "../sdk/models/errors/sdkvalidationerror.js";
+import * as ledger from "../sdk/models/ledger/index.js";
 import * as operations from "../sdk/models/operations/index.js";
 import { APICall, APIPromise } from "../sdk/types/async.js";
 import { Result } from "../sdk/types/fp.js";
@@ -37,6 +38,7 @@ export function ledgerV2ExportLogs(
 ): APIPromise<
   Result<
     operations.V2ExportLogsResponse,
+    | ledger.ErrorsV2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -62,6 +64,7 @@ async function $do(
   [
     Result<
       operations.V2ExportLogsResponse,
+      | ledger.ErrorsV2ErrorResponse
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -94,7 +97,7 @@ async function $do(
   const path = pathToFunc("/api/ledger/v2/{ledger}/logs/export")(pathParams);
 
   const headers = new Headers(compactMap({
-    Accept: "*/*",
+    Accept: "application/octet-stream",
   }));
 
   const securityInput = await extractSecurity(client._options.security);
@@ -152,6 +155,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.V2ExportLogsResponse,
+    | ledger.ErrorsV2ErrorResponse
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -161,8 +165,10 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.nil(200, operations.V2ExportLogsResponse$inboundSchema),
-    M.fail("default"),
+    M.stream(200, operations.V2ExportLogsResponse$inboundSchema, {
+      key: "bytes",
+    }),
+    M.jsonErr("default", ledger.ErrorsV2ErrorResponse$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

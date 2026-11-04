@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Mapping, Mapping$inboundSchema } from "./mapping.js";
 
 export type MappingResponse = {
+  /**
+   * Contracts constraining the balances a ledger's accounts may hold
+   */
   data?: Mapping | null | undefined;
 };
 

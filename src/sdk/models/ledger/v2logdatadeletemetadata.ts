@@ -8,6 +8,9 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Identifier of the entity the metadata was deleted from, either an account address or a transaction ID
+ */
 export type V2LogDataDeleteMetadataTargetId = string | bigint;
 
 /**
@@ -32,6 +35,9 @@ export type V2LogDataDeleteMetadata = {
    * The metadata key that was deleted
    */
   key: string;
+  /**
+   * Identifier of the entity the metadata was deleted from, either an account address or a transaction ID
+   */
   targetId: string | bigint;
   /**
    * Type of the target entity

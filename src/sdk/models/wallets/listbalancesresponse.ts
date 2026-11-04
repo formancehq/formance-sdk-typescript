@@ -8,15 +8,33 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Balance, Balance$inboundSchema } from "./balance.js";
 
+/**
+ * Paginated cursor wrapping the list of balances
+ */
 export type ListBalancesResponseCursor = {
   data: Array<Balance>;
+  /**
+   * Whether further pages are available
+   */
   hasMore?: boolean | undefined;
+  /**
+   * Cursor for the next page, absent on the last page
+   */
   next?: string | undefined;
+  /**
+   * Number of items requested per page
+   */
   pageSize: number;
+  /**
+   * Cursor for the previous page, absent on the first page
+   */
   previous?: string | undefined;
 };
 
 export type ListBalancesResponse = {
+  /**
+   * Paginated cursor wrapping the list of balances
+   */
   cursor: ListBalancesResponseCursor;
 };
 

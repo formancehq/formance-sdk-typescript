@@ -11,6 +11,9 @@ import {
   DeliveryAttempt$inboundSchema,
 } from "./deliveryattempt.js";
 
+/**
+ * Paginated cursor wrapping the list of delivery attempts
+ */
 export type DeliveryAttemptsResponseCursor = {
   data: Array<DeliveryAttempt>;
   hasMore: boolean;
@@ -19,6 +22,9 @@ export type DeliveryAttemptsResponseCursor = {
 };
 
 export type DeliveryAttemptsResponse = {
+  /**
+   * Paginated cursor wrapping the list of delivery attempts
+   */
   cursor: DeliveryAttemptsResponseCursor;
 };
 

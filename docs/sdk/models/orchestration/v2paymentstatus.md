@@ -1,5 +1,7 @@
 # V2PaymentStatus
 
+Where a payment stands in its lifecycle
+
 ## Example Usage
 
 ```typescript

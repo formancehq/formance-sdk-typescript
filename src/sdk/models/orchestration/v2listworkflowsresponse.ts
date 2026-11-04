@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Workflow, V2Workflow$inboundSchema } from "./v2workflow.js";
 
+/**
+ * Paginated cursor wrapping the list of workflows
+ */
 export type V2ListWorkflowsResponseCursor = {
   data: Array<V2Workflow>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V2ListWorkflowsResponseCursor = {
 };
 
 export type V2ListWorkflowsResponse = {
+  /**
+   * Paginated cursor wrapping the list of workflows
+   */
   cursor: V2ListWorkflowsResponseCursor;
 };
 

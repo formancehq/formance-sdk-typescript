@@ -1,5 +1,7 @@
 # LogType
 
+The type of operation this log represents
+
 ## Example Usage
 
 ```typescript

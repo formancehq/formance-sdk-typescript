@@ -13,11 +13,17 @@ import {
 } from "./runtime.js";
 
 export type V2TransactionTemplate = {
+  /**
+   * Human-readable description of what the template does
+   */
   description?: string | undefined;
   /**
    * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
    */
   runtime?: Runtime | undefined;
+  /**
+   * The Numscript program the template executes
+   */
   script: string;
 };
 

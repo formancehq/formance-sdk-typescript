@@ -12,6 +12,9 @@ import {
 } from "./walletwithbalances.js";
 
 export type GetWalletResponse = {
+  /**
+   * A wallet together with the funds it currently holds
+   */
   data: WalletWithBalances;
 };
 

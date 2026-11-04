@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { LedgerInfo, LedgerInfo$inboundSchema } from "./ledgerinfo.js";
 
 export type LedgerInfoResponse = {
+  /**
+   * Runtime information about a ledger, including the state of its storage migrations
+   */
   data?: LedgerInfo | undefined;
 };
 

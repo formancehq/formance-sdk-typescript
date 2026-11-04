@@ -8,13 +8,37 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Volume, V2Volume$inboundSchema } from "./v2volume.js";
 
+/**
+ * An account in the ledger, identified by its address and carrying its metadata and volumes
+ */
 export type V2Account = {
+  /**
+   * The account address, a colon-separated segmented path such as users:001
+   */
   address: string;
+  /**
+   * Volumes per asset for a single account
+   */
   effectiveVolumes?: { [k: string]: V2Volume } | undefined;
+  /**
+   * Transaction time of the earliest transaction touching this account. Inserting a backdated transaction can move it earlier
+   */
   firstUsage?: Date | undefined;
+  /**
+   * When the account was first written to the ledger, on the request-time axis
+   */
   insertionDate?: Date | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the account. Metadata is bi-temporal, so a point-in-time query returns the metadata as it stood at that time
+   */
   metadata: { [k: string]: string };
+  /**
+   * When the account was last modified, for example by a metadata change
+   */
   updatedAt?: Date | undefined;
+  /**
+   * Volumes per asset for a single account
+   */
   volumes?: { [k: string]: V2Volume } | undefined;
 };
 

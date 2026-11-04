@@ -9,8 +9,17 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Version, Version$inboundSchema } from "./version.js";
 
 export type GetVersionsResponse = {
+  /**
+   * Environment the stack is deployed in
+   */
   env: string;
+  /**
+   * Region the stack is deployed in
+   */
   region: string;
+  /**
+   * Version and health of each component in the stack
+   */
   versions: Array<Version>;
 };
 

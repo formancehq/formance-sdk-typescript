@@ -17,6 +17,7 @@ import { orchestrationV2ListTriggers } from "../funcs/orchestrationV2ListTrigger
 import { orchestrationV2ListTriggersOccurrences } from "../funcs/orchestrationV2ListTriggersOccurrences.js";
 import { orchestrationV2ListWorkflows } from "../funcs/orchestrationV2ListWorkflows.js";
 import { orchestrationV2ReadTrigger } from "../funcs/orchestrationV2ReadTrigger.js";
+import { orchestrationV2ResumeActivity } from "../funcs/orchestrationV2ResumeActivity.js";
 import { orchestrationV2RunWorkflow } from "../funcs/orchestrationV2RunWorkflow.js";
 import { orchestrationV2SendEvent } from "../funcs/orchestrationV2SendEvent.js";
 import { orchestrationV2TestTrigger } from "../funcs/orchestrationV2TestTrigger.js";
@@ -270,6 +271,26 @@ export class OrchestrationV2 extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.V2ReadTriggerResponse> {
     return unwrapAsync(orchestrationV2ReadTrigger(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Resume a paused activity
+   *
+   * @remarks
+   * Resume a paused activity identified by temporalRunID and pausedAt.
+   * Use both values from the paused activity projection. A stale run id or
+   * pause timestamp returns a conflict, preventing a delayed resend from
+   * resuming an activity in a newer run or a subsequent pause generation.
+   */
+  async resumeActivity(
+    request: operations.V2ResumeActivityRequest,
+    options?: RequestOptions,
+  ): Promise<operations.V2ResumeActivityResponse> {
+    return unwrapAsync(orchestrationV2ResumeActivity(
       this,
       request,
       options,

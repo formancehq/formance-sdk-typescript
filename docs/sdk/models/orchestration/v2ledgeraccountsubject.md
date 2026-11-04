@@ -13,7 +13,7 @@ let value: V2LedgerAccountSubject = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `identifier`       | *string*           | :heavy_check_mark: | N/A                |
-| `type`             | *"ACCOUNT"*        | :heavy_check_mark: | N/A                |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `identifier`                                               | *string*                                                   | :heavy_check_mark:                                         | Address of the ledger account                              |
+| `type`                                                     | *"ACCOUNT"*                                                | :heavy_check_mark:                                         | Discriminator identifying this subject as a ledger account |

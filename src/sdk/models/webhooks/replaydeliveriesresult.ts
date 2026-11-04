@@ -7,12 +7,33 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Outcome of a bulk replay, counting the deliveries it moved
+ */
 export type ReplayDeliveriesResult = {
+  /**
+   * Upper time bound actually applied, echoed so a paginated replay stays on a fixed window
+   */
   createdAtTo: Date;
+  /**
+   * Number of already-pending deliveries whose next attempt was brought forward to now
+   */
   expedited: number;
+  /**
+   * Whether further deliveries match and can be processed with the returned cursor
+   */
   hasMore: boolean;
+  /**
+   * Cursor to pass to the next replay call to continue where this one stopped
+   */
   nextCursor?: string | undefined;
+  /**
+   * Number of failed deliveries moved back to pending and scheduled for a new retry cycle
+   */
   replayed: number;
+  /**
+   * Number of candidates left untouched, because their status changed before the replay applied
+   */
   skipped: number;
 };
 

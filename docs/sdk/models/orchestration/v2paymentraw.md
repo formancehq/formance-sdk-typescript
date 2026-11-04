@@ -1,5 +1,7 @@
 # V2PaymentRaw
 
+The provider's original payload, passed through untouched
+
 ## Example Usage
 
 ```typescript

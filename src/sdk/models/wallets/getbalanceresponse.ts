@@ -12,6 +12,9 @@ import {
 } from "./balancewithassets.js";
 
 export type GetBalanceResponse = {
+  /**
+   * A named balance within a wallet together with the amounts it holds per asset
+   */
   data: BalanceWithAssets;
 };
 

@@ -1,5 +1,7 @@
 # BalancesCursorResponseCursor
 
+Paginated cursor wrapping the list of balances
+
 ## Example Usage
 
 ```typescript

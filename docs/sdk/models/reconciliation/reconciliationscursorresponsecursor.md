@@ -1,5 +1,7 @@
 # ReconciliationsCursorResponseCursor
 
+Paginated cursor wrapping the list of reconciliations
+
 ## Example Usage
 
 ```typescript

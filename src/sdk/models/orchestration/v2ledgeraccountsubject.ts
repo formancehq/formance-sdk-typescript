@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2LedgerAccountSubject = {
+  /**
+   * Address of the ledger account
+   */
   identifier: string;
+  /**
+   * Discriminator identifying this subject as a ledger account
+   */
   type: "ACCOUNT";
 };
 

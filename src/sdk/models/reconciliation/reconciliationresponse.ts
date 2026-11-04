@@ -15,6 +15,9 @@ import {
  * OK
  */
 export type ReconciliationResponse = {
+  /**
+   * One run of a policy, comparing both sides and reporting the drift between them
+   */
   data: Reconciliation;
 };
 

@@ -11,8 +11,17 @@ import {
   V2DebitWalletRequest$inboundSchema,
 } from "./v2debitwalletrequest.js";
 
+/**
+ * Arguments for the activity that debits a wallet
+ */
 export type V2ActivityDebitWallet = {
+  /**
+   * A debit to apply to a wallet
+   */
   data?: V2DebitWalletRequest | undefined;
+  /**
+   * Identifier of the wallet to debit
+   */
   id?: string | undefined;
 };
 

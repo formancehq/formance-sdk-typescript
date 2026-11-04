@@ -14,6 +14,6 @@ let value: MappingResponse = {
 
 ## Fields
 
-| Field                                                   | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `data`                                                  | [ledger.Mapping](../../../sdk/models/ledger/mapping.md) | :heavy_minus_sign:                                      | N/A                                                     |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `data`                                                           | [ledger.Mapping](../../../sdk/models/ledger/mapping.md)          | :heavy_minus_sign:                                               | Contracts constraining the balances a ledger's accounts may hold |

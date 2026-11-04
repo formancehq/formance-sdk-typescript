@@ -1,5 +1,7 @@
 # V2SchemasCursor
 
+Paginated cursor over the ledger's schemas
+
 ## Example Usage
 
 ```typescript
@@ -39,8 +41,8 @@ let value: V2SchemasCursor = {
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 | Example                                                     |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `data`                                                      | [ledger.V2Schema](../../../sdk/models/ledger/v2schema.md)[] | :heavy_check_mark:                                          | N/A                                                         |                                                             |
-| `hasMore`                                                   | *boolean*                                                   | :heavy_check_mark:                                          | N/A                                                         |                                                             |
-| `next`                                                      | *string*                                                    | :heavy_minus_sign:                                          | N/A                                                         | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                            |
-| `pageSize`                                                  | *number*                                                    | :heavy_check_mark:                                          | N/A                                                         |                                                             |
-| `previous`                                                  | *string*                                                    | :heavy_minus_sign:                                          | N/A                                                         | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                |
+| `data`                                                      | [ledger.V2Schema](../../../sdk/models/ledger/v2schema.md)[] | :heavy_check_mark:                                          | The schemas on this page                                    |                                                             |
+| `hasMore`                                                   | *boolean*                                                   | :heavy_check_mark:                                          | Whether further pages are available                         |                                                             |
+| `next`                                                      | *string*                                                    | :heavy_minus_sign:                                          | Cursor for the next page, absent on the last page           | aW0gdmVuaWFtLCBxdWlzIG5vc3RydWQ=                            |
+| `pageSize`                                                  | *number*                                                    | :heavy_check_mark:                                          | Number of items requested per page                          |                                                             |
+| `previous`                                                  | *string*                                                    | :heavy_minus_sign:                                          | Cursor for the previous page, absent on the first page      | YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol=                |

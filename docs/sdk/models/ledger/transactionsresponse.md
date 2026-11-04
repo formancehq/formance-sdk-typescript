@@ -14,4 +14,4 @@ let value: TransactionsResponse = {
 
 | Field                                                             | Type                                                              | Required                                                          | Description                                                       |
 | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `data`                                                            | [ledger.Transaction](../../../sdk/models/ledger/transaction.md)[] | :heavy_check_mark:                                                | N/A                                                               |
+| `data`                                                            | [ledger.Transaction](../../../sdk/models/ledger/transaction.md)[] | :heavy_check_mark:                                                | The transactions that were created                                |

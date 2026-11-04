@@ -35,4 +35,4 @@ let value: AttemptResponse = {
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `data`                                                      | [webhooks.Attempt](../../../sdk/models/webhooks/attempt.md) | :heavy_check_mark:                                          | N/A                                                         |
+| `data`                                                      | [webhooks.Attempt](../../../sdk/models/webhooks/attempt.md) | :heavy_check_mark:                                          | A single delivery attempt made against a webhook endpoint   |

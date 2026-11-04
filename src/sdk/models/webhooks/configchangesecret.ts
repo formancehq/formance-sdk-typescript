@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type ConfigChangeSecret = {
+  /**
+   * The new signing secret, 24 random bytes encoded as base64
+   */
   secret: string;
 };
 

@@ -7,9 +7,21 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arguments for the activity that sets metadata on a ledger account
+ */
 export type ActivityAddAccountMetadata = {
+  /**
+   * Address of the ledger account to update
+   */
   id: string;
+  /**
+   * Name of the ledger holding the account
+   */
   ledger: string;
+  /**
+   * Metadata to set on the account
+   */
   metadata: { [k: string]: string };
 };
 

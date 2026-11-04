@@ -1,5 +1,7 @@
 # WalletWithBalancesBalances
 
+Aggregated funds held by the wallet, keyed by asset
+
 ## Example Usage
 
 ```typescript
@@ -7,11 +9,7 @@ import { WalletWithBalancesBalances } from "@formance/formance-sdk/sdk/models/or
 
 let value: WalletWithBalancesBalances = {
   main: {
-    assets: {
-      "key": 913853n,
-      "key1": 950258n,
-      "key2": 29699n,
-    },
+    assets: {},
   },
 };
 ```

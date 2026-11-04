@@ -25,10 +25,25 @@ import {
 } from "./v2querytemplatevar.js";
 
 export type V2QueryTemplate = {
+  /**
+   * The filter expression the query evaluates
+   */
   body?: { [k: string]: any } | undefined;
+  /**
+   * Human-readable description of what the query returns
+   */
   description?: string | undefined;
+  /**
+   * Parameters applied when running a query template
+   */
   params?: V2QueryParams | undefined;
+  /**
+   * The resource a query template targets
+   */
   resource?: V2QueryResource | undefined;
+  /**
+   * Variables the query accepts, keyed by variable name
+   */
   vars?: { [k: string]: V2QueryTemplateVar } | undefined;
 };
 

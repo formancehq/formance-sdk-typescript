@@ -12,6 +12,9 @@ import {
 } from "./expandeddebithold.js";
 
 export type GetHoldResponse = {
+  /**
+   * A hold together with the amounts it currently locks and has already released
+   */
   data: ExpandedDebitHold;
 };
 

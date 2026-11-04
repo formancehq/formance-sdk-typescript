@@ -17,7 +17,7 @@ let value: V3PaymentInitiation = {
   provider: "<value>",
   reference: "<value>",
   scheduledAt: new Date("2024-09-01T23:09:00.874Z"),
-  status: "UNKNOWN",
+  status: "WAITING_FOR_VALIDATION",
   type: "PAYOUT",
 };
 ```

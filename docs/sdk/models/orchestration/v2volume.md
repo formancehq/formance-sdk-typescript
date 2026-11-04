@@ -14,8 +14,8 @@ let value: V2Volume = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `balance`          | *BigInt*           | :heavy_minus_sign: | N/A                |
-| `input`            | *BigInt*           | :heavy_check_mark: | N/A                |
-| `output`           | *BigInt*           | :heavy_check_mark: | N/A                |
+| Field                                    | Type                                     | Required                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `balance`                                | *BigInt*                                 | :heavy_minus_sign:                       | Net balance, equal to input minus output |
+| `input`                                  | *BigInt*                                 | :heavy_check_mark:                       | Total amount credited for this asset     |
+| `output`                                 | *BigInt*                                 | :heavy_check_mark:                       | Total amount debited for this asset      |

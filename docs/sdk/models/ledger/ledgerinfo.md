@@ -1,5 +1,7 @@
 # LedgerInfo
 
+Runtime information about a ledger, including the state of its storage migrations
+
 ## Example Usage
 
 ```typescript
@@ -22,5 +24,5 @@ let value: LedgerInfo = {
 
 | Field                                                                       | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
 | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `name`                                                                      | *string*                                                                    | :heavy_minus_sign:                                                          | N/A                                                                         | ledger001                                                                   |
-| `storage`                                                                   | [ledger.LedgerInfoStorage](../../../sdk/models/ledger/ledgerinfostorage.md) | :heavy_minus_sign:                                                          | N/A                                                                         |                                                                             |
+| `name`                                                                      | *string*                                                                    | :heavy_minus_sign:                                                          | Name of the ledger                                                          | ledger001                                                                   |
+| `storage`                                                                   | [ledger.LedgerInfoStorage](../../../sdk/models/ledger/ledgerinfostorage.md) | :heavy_minus_sign:                                                          | Storage backend information, including the applied migrations               |                                                                             |

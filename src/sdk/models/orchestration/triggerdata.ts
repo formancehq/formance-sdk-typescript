@@ -5,11 +5,29 @@
 import * as z from "zod/v3";
 
 export type TriggerData = {
+  /**
+   * Type of event that fires this trigger
+   */
   event: string;
+  /**
+   * Expression evaluated against the event. The workflow runs only when it matches
+   */
   filter?: string | undefined;
+  /**
+   * Human-readable name for the trigger
+   */
   name?: string | undefined;
+  /**
+   * Expressions evaluated against the event to build the workflow's input variables
+   */
   vars?: { [k: string]: any } | undefined;
+  /**
+   * Version of the trigger definition
+   */
   version?: string | undefined;
+  /**
+   * Identifier of the workflow to run when the trigger fires
+   */
   workflowID: string;
 };
 

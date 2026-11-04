@@ -8,15 +8,33 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Wallet, Wallet$inboundSchema } from "./wallet.js";
 
+/**
+ * Paginated cursor wrapping the list of wallets
+ */
 export type ListWalletsResponseCursor = {
   data: Array<Wallet>;
+  /**
+   * Whether further pages are available
+   */
   hasMore?: boolean | undefined;
+  /**
+   * Cursor for the next page, absent on the last page
+   */
   next?: string | undefined;
+  /**
+   * Number of items requested per page
+   */
   pageSize: number;
+  /**
+   * Cursor for the previous page, absent on the first page
+   */
   previous?: string | undefined;
 };
 
 export type ListWalletsResponse = {
+  /**
+   * Paginated cursor wrapping the list of wallets
+   */
   cursor: ListWalletsResponseCursor;
 };
 

@@ -1,5 +1,7 @@
 # PaymentScheme
 
+Payment scheme or rail the payment travelled over
+
 ## Example Usage
 
 ```typescript

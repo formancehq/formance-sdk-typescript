@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Subject, V2Subject$inboundSchema } from "./v2subject.js";
 
+/**
+ * Funds locked by a pending wallet debit, later either confirmed or voided
+ */
 export type V2Hold = {
+  /**
+   * Human-readable reason the funds were held
+   */
   description: string;
+  /**
+   * The counterparty of a wallet movement, either a ledger account or another wallet
+   */
   destination?: V2Subject | undefined;
   /**
    * The unique ID of the hold.

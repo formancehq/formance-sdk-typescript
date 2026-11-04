@@ -9,19 +9,18 @@
 * [addMetadataToAccount](#addmetadatatoaccount) - Add metadata to an account
 * [countAccounts](#countaccounts) - Count the accounts from a ledger
 * [countTransactions](#counttransactions) - Count the transactions from a ledger
-* [createTransaction](#createtransaction) - Create a new transaction to a ledger
+* [createTransactionLedger](#createtransactionledger) - Create a new transaction to a ledger
 * [getAccountLedger](#getaccountledger) - Get account by its address
 * [getBalances](#getbalances) - Get the balances from a ledger's account
 * [getBalancesAggregated](#getbalancesaggregated) - Get the aggregated balances from selected accounts
-* [getInfo](#getinfo) - Show server information
 * [getLedgerInfo](#getledgerinfo) - Get information about a ledger
 * [getMapping](#getmapping) - Get the mapping of a ledger
-* [getTransaction](#gettransaction) - Get transaction from a ledger by its ID
+* [getTransactionLedger](#gettransactionledger) - Get transaction from a ledger by its ID
 * [listAccountsLedger](#listaccountsledger) - List accounts from a ledger
 * [listLogs](#listlogs) - List the logs from a ledger
 * [listTransactions](#listtransactions) - List transactions from a ledger
 * [readStats](#readstats) - Get statistics from a ledger
-* [revertTransaction](#reverttransaction) - Revert a ledger transaction by its ID
+* [revertTransactionLedger](#reverttransactionledger) - Revert a ledger transaction by its ID
 * [~~runScript~~](#runscript) - Execute a Numscript :warning: **Deprecated**
 * [updateMapping](#updatemapping) - Update the mapping of a ledger
 
@@ -591,13 +590,13 @@ run();
 | ledger.ErrorsErrorResponse | default                    | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## createTransaction
+## createTransactionLedger
 
 Create a new transaction to a ledger
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="createTransaction" method="post" path="/api/ledger/{ledger}/transactions" -->
+<!-- UsageSnippet language="typescript" operationID="createTransaction_ledger" method="post" path="/api/ledger/{ledger}/transactions" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -609,7 +608,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.ledger.v1.createTransaction({
+  const result = await sdk.ledger.v1.createTransactionLedger({
     postTransaction: {
       postings: [
         {
@@ -643,7 +642,7 @@ The standalone function version of this method:
 
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
-import { ledgerV1CreateTransaction } from "@formance/formance-sdk/funcs/ledgerV1CreateTransaction.js";
+import { ledgerV1CreateTransactionLedger } from "@formance/formance-sdk/funcs/ledgerV1CreateTransactionLedger.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -655,7 +654,7 @@ const sdk = new SDKCore({
 });
 
 async function run() {
-  const res = await ledgerV1CreateTransaction(sdk, {
+  const res = await ledgerV1CreateTransactionLedger(sdk, {
     postTransaction: {
       postings: [
         {
@@ -680,7 +679,7 @@ async function run() {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("ledgerV1CreateTransaction failed:", res.error);
+    console.log("ledgerV1CreateTransactionLedger failed:", res.error);
   }
 }
 
@@ -691,14 +690,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.CreateTransactionRequest](../../sdk/models/operations/createtransactionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.CreateTransactionLedgerRequest](../../sdk/models/operations/createtransactionledgerrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.CreateTransactionResponse](../../sdk/models/operations/createtransactionresponse.md)\>**
+**Promise\<[operations.CreateTransactionLedgerResponse](../../sdk/models/operations/createtransactionledgerresponse.md)\>**
 
 ### Errors
 
@@ -957,81 +956,6 @@ run();
 | ledger.ErrorsErrorResponse | default                    | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getInfo
-
-Show server information
-
-### Example Usage
-
-<!-- UsageSnippet language="typescript" operationID="getInfo" method="get" path="/api/ledger/_info" -->
-```typescript
-import { SDK } from "@formance/formance-sdk";
-
-const sdk = new SDK({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const result = await sdk.ledger.v1.getInfo();
-
-  console.log(result);
-}
-
-run();
-```
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { SDKCore } from "@formance/formance-sdk/core.js";
-import { ledgerV1GetInfo } from "@formance/formance-sdk/funcs/ledgerV1GetInfo.js";
-
-// Use `SDKCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const sdk = new SDKCore({
-  security: {
-    clientID: "<YOUR_CLIENT_ID_HERE>",
-    clientSecret: "<YOUR_CLIENT_SECRET_HERE>",
-  },
-});
-
-async function run() {
-  const res = await ledgerV1GetInfo(sdk);
-  if (res.ok) {
-    const { value: result } = res;
-    console.log(result);
-  } else {
-    console.log("ledgerV1GetInfo failed:", res.error);
-  }
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
-
-### Response
-
-**Promise\<[operations.GetInfoResponse](../../sdk/models/operations/getinforesponse.md)\>**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| ledger.ErrorsErrorResponse | default                    | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
-
 ## getLedgerInfo
 
 Get information about a ledger
@@ -1192,13 +1116,13 @@ run();
 | ledger.ErrorsErrorResponse | default                    | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## getTransaction
+## getTransactionLedger
 
 Get transaction from a ledger by its ID
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="getTransaction" method="get" path="/api/ledger/{ledger}/transactions/{txid}" -->
+<!-- UsageSnippet language="typescript" operationID="getTransaction_ledger" method="get" path="/api/ledger/{ledger}/transactions/{txid}" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1210,7 +1134,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.ledger.v1.getTransaction({
+  const result = await sdk.ledger.v1.getTransactionLedger({
     ledger: "ledger001",
     txid: 1234n,
   });
@@ -1227,7 +1151,7 @@ The standalone function version of this method:
 
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
-import { ledgerV1GetTransaction } from "@formance/formance-sdk/funcs/ledgerV1GetTransaction.js";
+import { ledgerV1GetTransactionLedger } from "@formance/formance-sdk/funcs/ledgerV1GetTransactionLedger.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1239,7 +1163,7 @@ const sdk = new SDKCore({
 });
 
 async function run() {
-  const res = await ledgerV1GetTransaction(sdk, {
+  const res = await ledgerV1GetTransactionLedger(sdk, {
     ledger: "ledger001",
     txid: 1234n,
   });
@@ -1247,7 +1171,7 @@ async function run() {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("ledgerV1GetTransaction failed:", res.error);
+    console.log("ledgerV1GetTransactionLedger failed:", res.error);
   }
 }
 
@@ -1258,14 +1182,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.GetTransactionRequest](../../sdk/models/operations/gettransactionrequest.md)                                                                                       | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.GetTransactionLedgerRequest](../../sdk/models/operations/gettransactionledgerrequest.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.GetTransactionResponse](../../sdk/models/operations/gettransactionresponse.md)\>**
+**Promise\<[operations.GetTransactionLedgerResponse](../../sdk/models/operations/gettransactionledgerresponse.md)\>**
 
 ### Errors
 
@@ -1729,13 +1653,13 @@ run();
 | ledger.ErrorsErrorResponse | default                    | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
-## revertTransaction
+## revertTransactionLedger
 
 Revert a ledger transaction by its ID
 
 ### Example Usage
 
-<!-- UsageSnippet language="typescript" operationID="revertTransaction" method="post" path="/api/ledger/{ledger}/transactions/{txid}/revert" -->
+<!-- UsageSnippet language="typescript" operationID="revertTransaction_ledger" method="post" path="/api/ledger/{ledger}/transactions/{txid}/revert" -->
 ```typescript
 import { SDK } from "@formance/formance-sdk";
 
@@ -1747,7 +1671,7 @@ const sdk = new SDK({
 });
 
 async function run() {
-  const result = await sdk.ledger.v1.revertTransaction({
+  const result = await sdk.ledger.v1.revertTransactionLedger({
     ledger: "ledger001",
     txid: 1234n,
   });
@@ -1764,7 +1688,7 @@ The standalone function version of this method:
 
 ```typescript
 import { SDKCore } from "@formance/formance-sdk/core.js";
-import { ledgerV1RevertTransaction } from "@formance/formance-sdk/funcs/ledgerV1RevertTransaction.js";
+import { ledgerV1RevertTransactionLedger } from "@formance/formance-sdk/funcs/ledgerV1RevertTransactionLedger.js";
 
 // Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -1776,7 +1700,7 @@ const sdk = new SDKCore({
 });
 
 async function run() {
-  const res = await ledgerV1RevertTransaction(sdk, {
+  const res = await ledgerV1RevertTransactionLedger(sdk, {
     ledger: "ledger001",
     txid: 1234n,
   });
@@ -1784,7 +1708,7 @@ async function run() {
     const { value: result } = res;
     console.log(result);
   } else {
-    console.log("ledgerV1RevertTransaction failed:", res.error);
+    console.log("ledgerV1RevertTransactionLedger failed:", res.error);
   }
 }
 
@@ -1795,14 +1719,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [operations.RevertTransactionRequest](../../sdk/models/operations/reverttransactionrequest.md)                                                                                 | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `request`                                                                                                                                                                      | [operations.RevertTransactionLedgerRequest](../../sdk/models/operations/reverttransactionledgerrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
 ### Response
 
-**Promise\<[operations.RevertTransactionResponse](../../sdk/models/operations/reverttransactionresponse.md)\>**
+**Promise\<[operations.RevertTransactionLedgerResponse](../../sdk/models/operations/reverttransactionledgerresponse.md)\>**
 
 ### Errors
 

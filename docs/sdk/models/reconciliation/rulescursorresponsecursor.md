@@ -1,5 +1,7 @@
 # RulesCursorResponseCursor
 
+Paginated cursor wrapping the list of rules
+
 ## Example Usage
 
 ```typescript

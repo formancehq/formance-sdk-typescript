@@ -8,22 +8,40 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { AssetHolder, AssetHolder$inboundSchema } from "./assetholder.js";
 
+/**
+ * Aggregated funds held by the wallet, keyed by asset
+ */
 export type WalletWithBalancesBalances = {
   main: AssetHolder;
 };
 
+/**
+ * A wallet together with the funds it currently holds
+ */
 export type WalletWithBalances = {
+  /**
+   * Aggregated funds held by the wallet, keyed by asset
+   */
   balances: WalletWithBalancesBalances;
+  /**
+   * When the wallet was created
+   */
   createdAt: Date;
   /**
    * The unique ID of the wallet.
    */
   id: string;
+  /**
+   * Name of the ledger backing this wallet
+   */
   ledger: string;
   /**
    * Metadata associated with the wallet.
    */
   metadata: { [k: string]: string };
+  /**
+   * Human-readable name of the wallet
+   */
   name: string;
 };
 

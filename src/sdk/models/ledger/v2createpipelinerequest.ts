@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 
 export type V2CreatePipelineRequest = {
+  /**
+   * Identifier of the exporter this pipeline feeds
+   */
   exporterID: string;
 };
 

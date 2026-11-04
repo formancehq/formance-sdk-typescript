@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Trigger, Trigger$inboundSchema } from "./trigger.js";
 
 export type ListTriggersResponse = {
+  /**
+   * The triggers defined on this stack
+   */
   data: Array<Trigger>;
 };
 

@@ -12,6 +12,9 @@ import {
   V2VolumesWithBalance$inboundSchema,
 } from "./v2volumeswithbalance.js";
 
+/**
+ * Paginated cursor wrapping the list of volumes
+ */
 export type V2VolumesWithBalanceCursorResponseCursor = {
   data: Array<V2VolumesWithBalance>;
   hasMore: boolean;
@@ -20,15 +23,27 @@ export type V2VolumesWithBalanceCursorResponseCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * The resource type carried by this cursor
+ */
 export const V2VolumesWithBalanceCursorResponseResource = {
   Volumes: "volumes",
 } as const;
+/**
+ * The resource type carried by this cursor
+ */
 export type V2VolumesWithBalanceCursorResponseResource = ClosedEnum<
   typeof V2VolumesWithBalanceCursorResponseResource
 >;
 
 export type V2VolumesWithBalanceCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of volumes
+   */
   cursor: V2VolumesWithBalanceCursorResponseCursor;
+  /**
+   * The resource type carried by this cursor
+   */
   resource?: V2VolumesWithBalanceCursorResponseResource | undefined;
 };
 

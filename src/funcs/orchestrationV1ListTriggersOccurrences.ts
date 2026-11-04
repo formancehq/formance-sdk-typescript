@@ -41,7 +41,7 @@ export function orchestrationV1ListTriggersOccurrences(
 ): APIPromise<
   Result<
     operations.ListTriggersOccurrencesResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.ListTriggersOccurrencesResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -161,7 +161,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListTriggersOccurrencesResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -174,7 +174,7 @@ async function $do(
     M.json(200, operations.ListTriggersOccurrencesResponse$inboundSchema, {
       key: "ListTriggersOccurrencesResponse",
     }),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

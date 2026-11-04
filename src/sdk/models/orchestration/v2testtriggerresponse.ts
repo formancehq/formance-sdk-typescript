@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2TriggerTest, V2TriggerTest$inboundSchema } from "./v2triggertest.js";
 
 export type V2TestTriggerResponse = {
+  /**
+   * Result of evaluating a trigger against a sample event, without running the workflow
+   */
   data: V2TriggerTest;
 };
 

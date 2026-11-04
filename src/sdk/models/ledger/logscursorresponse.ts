@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Log, Log$inboundSchema } from "./log.js";
 
+/**
+ * Paginated cursor wrapping the list of logs
+ */
 export type LogsCursorResponseCursor = {
   data: Array<Log>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type LogsCursorResponseCursor = {
 };
 
 export type LogsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of logs
+   */
   cursor: LogsCursorResponseCursor;
 };
 

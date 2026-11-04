@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Version = {
+  /**
+   * Whether the component is reporting itself healthy
+   */
   health: boolean;
+  /**
+   * Name of the component
+   */
   name: string;
+  /**
+   * Version of the component currently deployed
+   */
   version: string;
 };
 

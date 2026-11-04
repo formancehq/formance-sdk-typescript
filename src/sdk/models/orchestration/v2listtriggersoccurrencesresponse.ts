@@ -11,6 +11,9 @@ import {
   V2TriggerOccurrence$inboundSchema,
 } from "./v2triggeroccurrence.js";
 
+/**
+ * Paginated cursor wrapping the trigger's occurrences
+ */
 export type V2ListTriggersOccurrencesResponseCursor = {
   data: Array<V2TriggerOccurrence>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V2ListTriggersOccurrencesResponseCursor = {
 };
 
 export type V2ListTriggersOccurrencesResponse = {
+  /**
+   * Paginated cursor wrapping the trigger's occurrences
+   */
   cursor: V2ListTriggersOccurrencesResponseCursor;
 };
 

@@ -8,8 +8,14 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2Exporter = {
+  /**
+   * Driver-specific configuration for the exporter
+   */
   config: { [k: string]: any };
   createdAt: Date;
+  /**
+   * Name of the exporter driver to use
+   */
   driver: string;
   id: string;
 };

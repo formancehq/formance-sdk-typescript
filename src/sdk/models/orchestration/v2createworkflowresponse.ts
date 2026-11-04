@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Workflow, V2Workflow$inboundSchema } from "./v2workflow.js";
 
 export type V2CreateWorkflowResponse = {
+  /**
+   * A workflow definition and the stages it runs
+   */
   data: V2Workflow;
 };
 

@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2StageDelay = {
+  /**
+   * Wait for this long, expressed as a Go duration such as 10s. Mutually exclusive with until
+   */
   duration?: string | undefined;
+  /**
+   * Wait until this absolute point in time. Mutually exclusive with duration
+   */
   until?: Date | undefined;
 };
 

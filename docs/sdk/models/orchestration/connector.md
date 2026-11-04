@@ -1,5 +1,7 @@
 # Connector
 
+The payment provider behind a connector
+
 ## Example Usage
 
 ```typescript

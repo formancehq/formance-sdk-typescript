@@ -1,5 +1,7 @@
 # V2WalletWithBalances
 
+A wallet together with the funds it currently holds
+
 ## Example Usage
 
 ```typescript
@@ -8,7 +10,11 @@ import { V2WalletWithBalances } from "@formance/formance-sdk/sdk/models/orchestr
 let value: V2WalletWithBalances = {
   balances: {
     main: {
-      assets: {},
+      assets: {
+        "key": 657071n,
+        "key1": 59154n,
+        "key2": 638674n,
+      },
     },
   },
   createdAt: new Date("2024-09-18T05:08:10.815Z"),
@@ -27,9 +33,9 @@ let value: V2WalletWithBalances = {
 
 | Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `balances`                                                                                                      | [orchestration.V2WalletWithBalancesBalances](../../../sdk/models/orchestration/v2walletwithbalancesbalances.md) | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
-| `createdAt`                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                   | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `balances`                                                                                                      | [orchestration.V2WalletWithBalancesBalances](../../../sdk/models/orchestration/v2walletwithbalancesbalances.md) | :heavy_check_mark:                                                                                              | Aggregated funds held by the wallet, keyed by asset                                                             |
+| `createdAt`                                                                                                     | [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)                   | :heavy_check_mark:                                                                                              | When the wallet was created                                                                                     |
 | `id`                                                                                                            | *string*                                                                                                        | :heavy_check_mark:                                                                                              | The unique ID of the wallet.                                                                                    |
-| `ledger`                                                                                                        | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `ledger`                                                                                                        | *string*                                                                                                        | :heavy_check_mark:                                                                                              | Name of the ledger backing this wallet                                                                          |
 | `metadata`                                                                                                      | Record<string, *string*>                                                                                        | :heavy_check_mark:                                                                                              | Metadata associated with the wallet.                                                                            |
-| `name`                                                                                                          | *string*                                                                                                        | :heavy_check_mark:                                                                                              | N/A                                                                                                             |
+| `name`                                                                                                          | *string*                                                                                                        | :heavy_check_mark:                                                                                              | Human-readable name of the wallet                                                                               |

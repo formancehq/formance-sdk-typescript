@@ -1,5 +1,7 @@
 # V2PipelinesCursorResponseCursor
 
+Paginated cursor wrapping the list of pipelines
+
 ## Example Usage
 
 ```typescript

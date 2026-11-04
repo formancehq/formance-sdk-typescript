@@ -1,5 +1,7 @@
 # Filter
 
+How the trigger's filter evaluated against the sample event
+
 ## Example Usage
 
 ```typescript

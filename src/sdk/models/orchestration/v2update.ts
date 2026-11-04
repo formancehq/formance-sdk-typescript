@@ -12,6 +12,9 @@ import {
 } from "./v2updateaccount.js";
 
 export type V2Update = {
+  /**
+   * Metadata to set on a ledger account
+   */
   account?: V2UpdateAccount | undefined;
 };
 

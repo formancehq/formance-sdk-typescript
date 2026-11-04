@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Client, Client$inboundSchema } from "./client.js";
 
 export type ReadClientResponse = {
+  /**
+   * An OAuth2 client registered on the stack
+   */
   data?: Client | undefined;
 };
 
