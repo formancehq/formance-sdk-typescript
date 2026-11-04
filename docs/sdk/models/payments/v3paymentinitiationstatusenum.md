@@ -7,11 +7,11 @@ Where a payment initiation stands in its lifecycle
 ```typescript
 import { V3PaymentInitiationStatusEnum } from "@formance/formance-sdk/sdk/models/payments";
 
-let value: V3PaymentInitiationStatusEnum = "FAILED";
+let value: V3PaymentInitiationStatusEnum = "NOT_INITIATED";
 ```
 
 ## Values
 
 ```typescript
-"UNKNOWN" | "WAITING_FOR_VALIDATION" | "SCHEDULED_FOR_PROCESSING" | "PROCESSING" | "PROCESSED" | "FAILED" | "REJECTED" | "REVERSE_PROCESSING" | "REVERSE_FAILED" | "REVERSED"
+"UNKNOWN" | "WAITING_FOR_VALIDATION" | "SCHEDULED_FOR_PROCESSING" | "PROCESSING" | "PROCESSED" | "FAILED" | "NOT_INITIATED" | "REJECTED" | "REVERSE_PROCESSING" | "REVERSE_FAILED" | "REVERSED"
 ```

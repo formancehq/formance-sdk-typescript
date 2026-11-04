@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Alert, Alert$inboundSchema } from "./alert.js";
 
+/**
+ * Paginated cursor wrapping the list of alerts
+ */
 export type AlertsCursorResponseCursor = {
   data: Array<Alert>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type AlertsCursorResponseCursor = {
  * OK
  */
 export type AlertsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of alerts
+   */
   cursor: AlertsCursorResponseCursor;
 };
 

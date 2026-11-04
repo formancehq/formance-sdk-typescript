@@ -8,8 +8,17 @@ import * as z from "zod/v3";
  * Mute an alert's notifications until `until` (which must be in the future).
  */
 export type SnoozeAlertRequest = {
+  /**
+   * Who is snoozing the alert
+   */
   by: string;
+  /**
+   * Free-text note to record with the snooze
+   */
   note?: string | undefined;
+  /**
+   * When the mute expires and notifications resume. Must be in the future
+   */
   until: Date;
 };
 

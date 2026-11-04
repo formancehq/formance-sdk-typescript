@@ -8,19 +8,37 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Whether the rule runs only when triggered or on a recurring cron schedule
+ */
 export const ScheduleKind = {
   OnDemand: "on_demand",
   Cron: "cron",
 } as const;
+/**
+ * Whether the rule runs only when triggered or on a recurring cron schedule
+ */
 export type ScheduleKind = ClosedEnum<typeof ScheduleKind>;
 
+/**
+ * When a rule runs, either on demand or on a cron expression
+ */
 export type Schedule = {
+  /**
+   * Cron expression driving the schedule, required when kind is cron
+   */
   expr?: string | undefined;
+  /**
+   * Whether the rule runs only when triggered or on a recurring cron schedule
+   */
   kind: ScheduleKind;
   /**
    * Go duration string
    */
   safetyMargin?: string | undefined;
+  /**
+   * Timezone the cron expression is interpreted in
+   */
   tz?: string | undefined;
 };
 

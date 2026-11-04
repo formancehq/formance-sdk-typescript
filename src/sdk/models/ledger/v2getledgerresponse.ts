@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Ledger, V2Ledger$inboundSchema } from "./v2ledger.js";
 
 export type V2GetLedgerResponse = {
+  /**
+   * A ledger and its configuration
+   */
   data: V2Ledger;
 };
 

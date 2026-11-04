@@ -12,6 +12,9 @@ import {
 } from "./workflowinstance.js";
 
 export type GetWorkflowInstanceResponse = {
+  /**
+   * One run of a workflow, tracking its per-stage progress
+   */
   data: WorkflowInstance;
 };
 

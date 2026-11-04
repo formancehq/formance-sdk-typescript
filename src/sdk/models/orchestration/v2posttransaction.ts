@@ -8,16 +8,37 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Posting, V2Posting$inboundSchema } from "./v2posting.js";
 
+/**
+ * A Numscript program executed to produce the postings. Mutually exclusive with postings
+ */
 export type V2PostTransactionScript = {
   plain: string;
   vars?: { [k: string]: any } | undefined;
 };
 
+/**
+ * A transaction to write to a ledger
+ */
 export type V2PostTransaction = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * Fund movements to apply. Mutually exclusive with script
+   */
   postings?: Array<V2Posting> | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * A Numscript program executed to produce the postings. Mutually exclusive with postings
+   */
   script?: V2PostTransactionScript | undefined;
+  /**
+   * The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

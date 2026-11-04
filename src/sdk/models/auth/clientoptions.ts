@@ -5,13 +5,37 @@
 import * as z from "zod/v3";
 
 export type ClientOptions = {
+  /**
+   * Human-readable description of the client
+   */
   description?: string | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Display name of the client
+   */
   name: string;
+  /**
+   * URIs the authorization server may redirect to after logout
+   */
   postLogoutRedirectUris?: Array<string> | undefined;
+  /**
+   * Whether the client is public, meaning it cannot keep a secret and uses PKCE instead
+   */
   public?: boolean | undefined;
+  /**
+   * URIs the authorization server may redirect to after a successful authorization
+   */
   redirectUris?: Array<string> | undefined;
+  /**
+   * Scopes the client is allowed to request
+   */
   scopes?: Array<string> | undefined;
+  /**
+   * Whether the client is trusted, skipping the user consent screen
+   */
   trusted?: boolean | undefined;
 };
 

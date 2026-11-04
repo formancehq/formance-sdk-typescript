@@ -1,5 +1,7 @@
 # WorkflowConfig
 
+The stages a workflow runs, in order
+
 ## Example Usage
 
 ```typescript
@@ -14,7 +16,8 @@ let value: WorkflowConfig = {
 
 ## Fields
 
-| Field                   | Type                    | Required                | Description             |
-| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| `name`                  | *string*                | :heavy_minus_sign:      | N/A                     |
-| `stages`                | Record<string, *any*>[] | :heavy_check_mark:      | N/A                     |
+| Field                                                                                                                       | Type                                                                                                                        | Required                                                                                                                    | Description                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `activityMaxAttempts`                                                                                                       | *number*                                                                                                                    | :heavy_minus_sign:                                                                                                          | Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted. |
+| `name`                                                                                                                      | *string*                                                                                                                    | :heavy_minus_sign:                                                                                                          | Human-readable name for the workflow                                                                                        |
+| `stages`                                                                                                                    | Record<string, *any*>[]                                                                                                     | :heavy_check_mark:                                                                                                          | The stages executed in order when the workflow runs                                                                         |

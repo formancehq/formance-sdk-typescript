@@ -33,11 +33,11 @@ import { Result } from "../sdk/types/fp.js";
  */
 export function paymentsV3GetAccount(
   client: SDKCore,
-  request: operations.V3GetAccountRequest,
+  request: operations.V3GetAccountPaymentsRequest,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.V3GetAccountResponse,
+    operations.V3GetAccountPaymentsResponse,
     | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -58,12 +58,12 @@ export function paymentsV3GetAccount(
 
 async function $do(
   client: SDKCore,
-  request: operations.V3GetAccountRequest,
+  request: operations.V3GetAccountPaymentsRequest,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.V3GetAccountResponse,
+      operations.V3GetAccountPaymentsResponse,
       | payments.V3ErrorResponse
       | SDKBaseError
       | ResponseValidationError
@@ -79,7 +79,8 @@ async function $do(
 > {
   const parsed = safeParse(
     request,
-    (value) => operations.V3GetAccountRequest$outboundSchema.parse(value),
+    (value) =>
+      operations.V3GetAccountPaymentsRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -106,7 +107,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "v3GetAccount",
+    operationID: "v3GetAccount_payments",
     oAuth2Scopes: ["payments:read"],
 
     resolvedSecurity: requestSecurity,
@@ -154,7 +155,7 @@ async function $do(
   };
 
   const [result] = await M.match<
-    operations.V3GetAccountResponse,
+    operations.V3GetAccountPaymentsResponse,
     | payments.V3ErrorResponse
     | SDKBaseError
     | ResponseValidationError
@@ -165,7 +166,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.V3GetAccountResponse$inboundSchema, {
+    M.json(200, operations.V3GetAccountPaymentsResponse$inboundSchema, {
       key: "V3GetAccountResponse",
     }),
     M.jsonErr("default", payments.V3ErrorResponse$inboundSchema),

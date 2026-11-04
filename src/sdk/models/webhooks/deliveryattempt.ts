@@ -8,24 +8,63 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * How the attempt ended. A retryable failure is retried, a permanent failure is not
+ */
 export const Outcome = {
   Succeeded: "succeeded",
   RetryableFailure: "retryable_failure",
   PermanentFailure: "permanent_failure",
 } as const;
+/**
+ * How the attempt ended. A retryable failure is retried, a permanent failure is not
+ */
 export type Outcome = ClosedEnum<typeof Outcome>;
 
 export type DeliveryAttempt = {
+  /**
+   * Position of this attempt within its retry cycle
+   */
   attemptNumber: number;
+  /**
+   * When the attempt was made
+   */
   createdAt: Date;
+  /**
+   * Identifier of the delivery this attempt belongs to
+   */
   deliveryID: string;
+  /**
+   * How long the attempt took, in milliseconds
+   */
   durationMillis?: number | undefined;
+  /**
+   * URL the attempt was sent to
+   */
   endpoint: string;
+  /**
+   * Error reported by the attempt, when it did not succeed
+   */
   error?: string | undefined;
+  /**
+   * Unique identifier of the attempt
+   */
   id: string;
+  /**
+   * How the attempt ended. A retryable failure is retried, a permanent failure is not
+   */
   outcome: Outcome;
+  /**
+   * Retry cycle this attempt belongs to
+   */
   replayGeneration: number;
+  /**
+   * Truncated body returned by the endpoint, kept for troubleshooting
+   */
   responseExcerpt?: string | undefined;
+  /**
+   * HTTP status code returned by the endpoint
+   */
   statusCode: number;
 };
 

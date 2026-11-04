@@ -1,5 +1,7 @@
 # Type
 
+What happened, whether an evaluation outcome or a manual transition
+
 ## Example Usage
 
 ```typescript

@@ -11,11 +11,29 @@ import {
   BalanceWithAssets$inboundSchema,
 } from "./balancewithassets.js";
 
+/**
+ * Aggregated funds held by a wallet, broken down by availability
+ */
 export type WalletSummary = {
+  /**
+   * Funds available to debit, keyed by asset. Covers balances with no expiry and those not yet expired
+   */
   availableFunds: { [k: string]: bigint };
+  /**
+   * Each balance of the wallet with its per-asset amounts
+   */
   balances: Array<BalanceWithAssets>;
+  /**
+   * Funds held in balances carrying an expiry date that has not yet passed, keyed by asset
+   */
   expirableFunds: { [k: string]: bigint };
+  /**
+   * Funds held in balances whose expiry date has passed, keyed by asset
+   */
   expiredFunds: { [k: string]: bigint };
+  /**
+   * Funds currently locked by pending holds, keyed by asset
+   */
   holdFunds: { [k: string]: bigint };
 };
 

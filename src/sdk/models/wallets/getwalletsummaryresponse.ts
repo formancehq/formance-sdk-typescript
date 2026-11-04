@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { WalletSummary, WalletSummary$inboundSchema } from "./walletsummary.js";
 
 export type GetWalletSummaryResponse = {
+  /**
+   * Aggregated funds held by a wallet, broken down by availability
+   */
   data: WalletSummary;
 };
 

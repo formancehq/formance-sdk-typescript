@@ -12,6 +12,9 @@ import {
 } from "./triggeroccurrence.js";
 
 export type ListTriggersOccurrencesResponse = {
+  /**
+   * The trigger's occurrences
+   */
   data: Array<TriggerOccurrence>;
 };
 

@@ -1,5 +1,7 @@
 # AlertEventsCursorResponseCursor
 
+Paginated cursor wrapping the alert's event log
+
 ## Example Usage
 
 ```typescript

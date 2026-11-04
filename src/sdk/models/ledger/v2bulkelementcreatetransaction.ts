@@ -10,8 +10,14 @@ import {
 } from "./v2posttransaction.js";
 
 export type V2BulkElementCreateTransaction = {
+  /**
+   * The bulk action this element performs
+   */
   action: "CREATE_TRANSACTION";
   data?: V2PostTransaction | undefined;
+  /**
+   * Idempotency key scoped to this element, making it safe to retry the bulk request
+   */
   ik?: string | undefined;
 };
 

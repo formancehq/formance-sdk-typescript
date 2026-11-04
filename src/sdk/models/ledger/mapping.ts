@@ -13,7 +13,13 @@ import {
   Contract$outboundSchema,
 } from "./contract.js";
 
+/**
+ * Contracts constraining the balances a ledger's accounts may hold
+ */
 export type Mapping = {
+  /**
+   * Constraints enforced on the ledger's accounts
+   */
   contracts: Array<Contract>;
 };
 

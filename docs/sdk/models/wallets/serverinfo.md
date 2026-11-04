@@ -12,6 +12,6 @@ let value: ServerInfo = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `version`          | *string*           | :heavy_check_mark: | N/A                |
+| Field                          | Type                           | Required                       | Description                    |
+| ------------------------------ | ------------------------------ | ------------------------------ | ------------------------------ |
+| `version`                      | *string*                       | :heavy_check_mark:             | Version of the wallets service |

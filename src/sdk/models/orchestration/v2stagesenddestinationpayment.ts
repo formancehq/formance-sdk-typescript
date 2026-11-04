@@ -30,6 +30,9 @@ export type V2StageSendDestinationPaymentType = ClosedEnum<
   typeof V2StageSendDestinationPaymentType
 >;
 
+/**
+ * Send the funds to a payment
+ */
 export type V2StageSendDestinationPayment = {
   /**
    * Payment service provider name (e.g., stripe, wise, mangopay).

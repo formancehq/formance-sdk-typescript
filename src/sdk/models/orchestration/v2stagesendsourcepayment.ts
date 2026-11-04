@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Take the funds from a payment
+ */
 export type V2StageSendSourcePayment = {
   /**
    * Enables unbounded overdraft on the throughAccount when set to true.
@@ -22,6 +25,9 @@ export type V2StageSendSourcePayment = {
    * Defaults to "payment:{paymentID}" format.
    */
   holdingAccount?: string | undefined;
+  /**
+   * Identifier of the payment to take funds from
+   */
   id: string;
   /**
    * Ledger to use for payment ingestion.

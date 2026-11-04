@@ -9,6 +9,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Log, V2Log$inboundSchema } from "./v2log.js";
 
+/**
+ * Paginated cursor wrapping the list of logs
+ */
 export type V2LogsCursorResponseCursor = {
   data: Array<V2Log>;
   hasMore: boolean;
@@ -17,15 +20,27 @@ export type V2LogsCursorResponseCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * The resource type carried by this cursor
+ */
 export const V2LogsCursorResponseResource = {
   Logs: "logs",
 } as const;
+/**
+ * The resource type carried by this cursor
+ */
 export type V2LogsCursorResponseResource = ClosedEnum<
   typeof V2LogsCursorResponseResource
 >;
 
 export type V2LogsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of logs
+   */
   cursor: V2LogsCursorResponseCursor;
+  /**
+   * The resource type carried by this cursor
+   */
   resource?: V2LogsCursorResponseResource | undefined;
 };
 

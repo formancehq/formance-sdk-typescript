@@ -8,12 +8,33 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Posting, Posting$inboundSchema } from "./posting.js";
 
+/**
+ * A transaction recorded in the ledger, carrying its postings and metadata
+ */
 export type Transaction = {
+  /**
+   * Unique sequential identifier for this transaction within the ledger
+   */
   id: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<Posting>;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * Indicates if the transaction has been reverted
+   */
   reverted: boolean;
+  /**
+   * The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp: Date;
 };
 

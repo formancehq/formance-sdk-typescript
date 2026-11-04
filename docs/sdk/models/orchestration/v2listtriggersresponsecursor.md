@@ -1,5 +1,7 @@
 # V2ListTriggersResponseCursor
 
+Paginated cursor wrapping the list of triggers
+
 ## Example Usage
 
 ```typescript

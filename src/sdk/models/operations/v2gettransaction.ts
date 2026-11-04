@@ -10,6 +10,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import * as ledger from "../ledger/index.js";
 
 export type V2GetTransactionRequest = {
+  /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
   expand?: string | undefined;
   /**
    * Transaction ID.
@@ -43,6 +51,7 @@ export type V2GetTransactionResponse = {
 
 /** @internal */
 export type V2GetTransactionRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   expand?: string | undefined;
   id: number;
   ledger: string;
@@ -55,10 +64,15 @@ export const V2GetTransactionRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2GetTransactionRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   expand: z.string().optional(),
   id: z.bigint().transform(v => Number(v)),
   ledger: z.string(),
   pit: z.date().transform(v => v.toISOString()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
+  });
 });
 
 export function v2GetTransactionRequestToJSON(

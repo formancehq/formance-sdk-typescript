@@ -15,6 +15,9 @@ import {
 } from "./subject.js";
 
 export type CreditWalletRequest = {
+  /**
+   * An amount together with the asset it is denominated in
+   */
   amount: Monetary;
   /**
    * The balance to credit
@@ -24,8 +27,17 @@ export type CreditWalletRequest = {
    * Metadata associated with the wallet.
    */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Optional caller-supplied identifier used to deduplicate the credit
+   */
   reference?: string | undefined;
+  /**
+   * Where the funds come from. Defaults to the world account when omitted
+   */
   sources?: Array<Subject> | null | undefined;
+  /**
+   * The transaction time to record, letting you backdate or postdate the credit. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

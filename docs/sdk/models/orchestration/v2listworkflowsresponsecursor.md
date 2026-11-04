@@ -1,5 +1,7 @@
 # V2ListWorkflowsResponseCursor
 
+Paginated cursor wrapping the list of workflows
+
 ## Example Usage
 
 ```typescript

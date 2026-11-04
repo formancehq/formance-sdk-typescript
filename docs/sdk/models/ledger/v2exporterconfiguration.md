@@ -17,7 +17,7 @@ let value: V2ExporterConfiguration = {
 
 ## Fields
 
-| Field                 | Type                  | Required              | Description           |
-| --------------------- | --------------------- | --------------------- | --------------------- |
-| `config`              | Record<string, *any*> | :heavy_check_mark:    | N/A                   |
-| `driver`              | *string*              | :heavy_check_mark:    | N/A                   |
+| Field                                          | Type                                           | Required                                       | Description                                    |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `config`                                       | Record<string, *any*>                          | :heavy_check_mark:                             | Driver-specific configuration for the exporter |
+| `driver`                                       | *string*                                       | :heavy_check_mark:                             | Name of the exporter driver to use             |

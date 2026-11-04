@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Balance, Balance$inboundSchema } from "./balance.js";
 
 export type CreateBalanceResponse = {
+  /**
+   * A named balance within a wallet, optionally carrying an expiry date
+   */
   data: Balance;
 };
 

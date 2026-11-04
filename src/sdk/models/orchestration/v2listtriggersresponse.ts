@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Trigger, V2Trigger$inboundSchema } from "./v2trigger.js";
 
+/**
+ * Paginated cursor wrapping the list of triggers
+ */
 export type V2ListTriggersResponseCursor = {
   data: Array<V2Trigger>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V2ListTriggersResponseCursor = {
 };
 
 export type V2ListTriggersResponse = {
+  /**
+   * Paginated cursor wrapping the list of triggers
+   */
   cursor: V2ListTriggersResponseCursor;
 };
 

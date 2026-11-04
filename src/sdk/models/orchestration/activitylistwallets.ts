@@ -7,7 +7,13 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arguments for the activity that lists wallets
+ */
 export type ActivityListWallets = {
+  /**
+   * Restrict the listing to wallets with this name
+   */
   name?: string | undefined;
 };
 

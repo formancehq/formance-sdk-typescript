@@ -17,6 +17,7 @@ export * from "./evaluaterulerequest.js";
 export * from "./evaluation.js";
 export * from "./evaluationresponse.js";
 export * from "./evaluationscursorresponse.js";
+export * from "./periodtype.js";
 export * from "./policiescursorresponse.js";
 export * from "./policy.js";
 export * from "./policyrequest.js";

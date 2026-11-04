@@ -12,4 +12,4 @@ let value: ListClientsResponse = {};
 
 | Field                                               | Type                                                | Required                                            | Description                                         |
 | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
-| `data`                                              | [auth.Client](../../../sdk/models/auth/client.md)[] | :heavy_minus_sign:                                  | N/A                                                 |
+| `data`                                              | [auth.Client](../../../sdk/models/auth/client.md)[] | :heavy_minus_sign:                                  | The clients registered on this stack                |

@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ConfigInfo = {
+  /**
+   * Experimental feature flags enabled on this deployment
+   */
   experimentalFeatures?: Array<string> | undefined;
+  /**
+   * Name of the server serving the API
+   */
   server: string;
+  /**
+   * Version of the ledger service
+   */
   version: string;
 };
 

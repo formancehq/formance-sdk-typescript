@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionResponse = {
+  /**
+   * A transaction recorded in the ledger, carrying its postings and metadata
+   */
   data: Transaction;
 };
 

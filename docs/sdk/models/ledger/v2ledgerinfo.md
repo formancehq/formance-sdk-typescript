@@ -1,5 +1,7 @@
 # V2LedgerInfo
 
+Runtime information about a ledger, including the state of its storage migrations
+
 ## Example Usage
 
 ```typescript
@@ -20,7 +22,7 @@ let value: V2LedgerInfo = {
 
 ## Fields
 
-| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `name`                                                                          | *string*                                                                        | :heavy_minus_sign:                                                              | N/A                                                                             | ledger001                                                                       |
-| `storage`                                                                       | [ledger.V2LedgerInfoStorage](../../../sdk/models/ledger/v2ledgerinfostorage.md) | :heavy_minus_sign:                                                              | N/A                                                                             |                                                                                 |
+| Field                                                                                | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `name`                                                                               | *string*                                                                             | :heavy_minus_sign:                                                                   | Name of the ledger                                                                   | ledger001                                                                            |
+| `storage`                                                                            | [ledger.V2LedgerInfoStorage](../../../sdk/models/ledger/v2ledgerinfostorage.md)      | :heavy_minus_sign:                                                                   | Storage backend information, including the migrations applied to the ledger's bucket |                                                                                      |

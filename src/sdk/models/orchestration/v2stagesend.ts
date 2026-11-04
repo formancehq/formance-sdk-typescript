@@ -17,10 +17,25 @@ import {
 } from "./v2stagesendsource.js";
 
 export type V2StageSend = {
+  /**
+   * An amount together with the asset it is denominated in
+   */
   amount?: V2Monetary | undefined;
+  /**
+   * Where a send stage puts the funds
+   */
   destination?: V2StageSendDestination | undefined;
+  /**
+   * Metadata to attach to the resulting transaction
+   */
   metadata?: { [k: string]: string } | undefined;
+  /**
+   * Where a send stage takes the funds from
+   */
   source?: V2StageSendSource | undefined;
+  /**
+   * The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

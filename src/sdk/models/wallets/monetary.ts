@@ -4,6 +4,9 @@
 
 import * as z from "zod/v3";
 
+/**
+ * An amount together with the asset it is denominated in
+ */
 export type Monetary = {
   /**
    * The amount of the monetary value.

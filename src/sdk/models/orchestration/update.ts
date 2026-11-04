@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { UpdateAccount, UpdateAccount$inboundSchema } from "./updateaccount.js";
 
 export type Update = {
+  /**
+   * Metadata to set on a ledger account
+   */
   account?: UpdateAccount | undefined;
 };
 

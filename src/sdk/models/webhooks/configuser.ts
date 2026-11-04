@@ -5,8 +5,17 @@
 import * as z from "zod/v3";
 
 export type ConfigUser = {
+  /**
+   * URL events are delivered to
+   */
   endpoint: string;
+  /**
+   * Types of event that trigger a delivery to this endpoint
+   */
   eventTypes: Array<string>;
+  /**
+   * Secret used to sign delivery payloads. Generated automatically when omitted
+   */
   secret?: string | undefined;
 };
 

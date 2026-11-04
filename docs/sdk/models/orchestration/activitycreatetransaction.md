@@ -1,5 +1,7 @@
 # ActivityCreateTransaction
 
+Arguments for the activity that writes a transaction to a ledger
+
 ## Example Usage
 
 ```typescript
@@ -34,5 +36,5 @@ let value: ActivityCreateTransaction = {
 
 | Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `data`                                                                                | [orchestration.PostTransaction](../../../sdk/models/orchestration/posttransaction.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
-| `ledger`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `data`                                                                                | [orchestration.PostTransaction](../../../sdk/models/orchestration/posttransaction.md) | :heavy_minus_sign:                                                                    | A transaction to write to a ledger                                                    |
+| `ledger`                                                                              | *string*                                                                              | :heavy_minus_sign:                                                                    | Name of the ledger to write the transaction to                                        |

@@ -12,6 +12,9 @@ import {
 } from "./replaydeliveriesresult.js";
 
 export type ReplayDeliveriesResponse = {
+  /**
+   * Outcome of a bulk replay, counting the deliveries it moved
+   */
   data: ReplayDeliveriesResult;
 };
 

@@ -7,7 +7,13 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arguments for the activity that confirms a wallet hold
+ */
 export type ActivityConfirmHold = {
+  /**
+   * Identifier of the hold to confirm
+   */
   id: string;
 };
 

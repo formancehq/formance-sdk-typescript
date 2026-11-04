@@ -7,14 +7,32 @@ import { SDKBaseError } from "../errors/sdkbaseerror.js";
 import { ErrorsEnum, ErrorsEnum$inboundSchema } from "./errorsenum.js";
 
 export type ErrorResponseData = {
+  /**
+   * Optional link carrying additional context about the error
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 
 export class ErrorResponse extends SDKBaseError {
+  /**
+   * Optional link carrying additional context about the error
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */

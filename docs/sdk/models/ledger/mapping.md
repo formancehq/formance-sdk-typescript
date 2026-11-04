@@ -1,5 +1,7 @@
 # Mapping
 
+Contracts constraining the balances a ledger's accounts may hold
+
 ## Example Usage
 
 ```typescript
@@ -19,4 +21,4 @@ let value: Mapping = {
 
 | Field                                                       | Type                                                        | Required                                                    | Description                                                 |
 | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `contracts`                                                 | [ledger.Contract](../../../sdk/models/ledger/contract.md)[] | :heavy_check_mark:                                          | N/A                                                         |
+| `contracts`                                                 | [ledger.Contract](../../../sdk/models/ledger/contract.md)[] | :heavy_check_mark:                                          | Constraints enforced on the ledger's accounts               |

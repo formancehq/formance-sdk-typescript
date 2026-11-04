@@ -12,6 +12,9 @@ import {
 } from "./webhooksconfig.js";
 
 export type ConfigResponse = {
+  /**
+   * A webhook endpoint together with the event types it subscribes to
+   */
   data: WebhooksConfig;
 };
 

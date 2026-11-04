@@ -30,29 +30,62 @@ export type Evidence = {
  */
 export type EvidenceUnion = Array<Evidence> | { [k: string]: any };
 
+/**
+ * Whether the rule passed, failed, or could not be evaluated
+ */
 export const Result = {
   Pass: "PASS",
   Fail: "FAIL",
   Error: "ERROR",
 } as const;
+/**
+ * Whether the rule passed, failed, or could not be evaluated
+ */
 export type Result = ClosedEnum<typeof Result>;
 
+/**
+ * One run of a rule, carrying its outcome and cost
+ */
 export type Evaluation = {
+  /**
+   * Cumulative CEL runtime cost of the evaluation, used to track expensive rules
+   */
   costUnits?: number | undefined;
+  /**
+   * When the evaluation record was created
+   */
   createdAt: Date;
+  /**
+   * When the evaluation finished
+   */
   endedAt: Date;
+  /**
+   * Why the evaluation could not complete, when its result reports an error
+   */
   error?: string | undefined;
   /**
    * For PASS/FAIL: the per-fingerprint roster. Each PASS entry carries a compact `proof`: the observed balances that make the check hold, with self-describing keys — both sides where two are compared, e.g. {"ledger":"523500","pool":"-523500"} (drift), {"left":…,"right":…} (source_parity), {"positive":…,"negative":…} (ledger_invariant), or {"balance":…} (account_threshold). These reuse the FAIL balance keys, so under tolerance the residual (left−right) is visible without recomputation. Each FAIL entry carries the full `evidence` breakdown (balances, drift, tolerance, compiled CEL). Bounded by asset count (per-asset granularity; per-account is parked). An empty array means no outcomes were produced (no assets matched). For ERROR: an object describing the engine failure.
    */
   evidence?: Array<Evidence> | { [k: string]: any } | undefined;
+  /**
+   * Unique identifier of the evaluation
+   */
   id: string;
   /**
    * Effective historical PITs used by sources. For a Payments `latest` read, the value is the successful observation time because the upstream response has no snapshot timestamp; the evaluation evidence is frozen, but exact historical replay of that latest snapshot is not guaranteed.
    */
   pitPerSource?: { [k: string]: Date } | undefined;
+  /**
+   * Whether the rule passed, failed, or could not be evaluated
+   */
   result: Result;
+  /**
+   * Identifier of the rule that was evaluated
+   */
   ruleID: string;
+  /**
+   * When the evaluation started
+   */
   startedAt: Date;
 };
 

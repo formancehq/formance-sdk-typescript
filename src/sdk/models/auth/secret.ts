@@ -7,11 +7,20 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A client secret. The full value is returned only at creation and cannot be retrieved again
+ */
 export type Secret = {
   clear: string;
   id: string;
   lastDigits: string;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name identifying the secret
+   */
   name: string;
 };
 

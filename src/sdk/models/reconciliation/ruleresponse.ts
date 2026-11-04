@@ -12,6 +12,9 @@ import { Rule, Rule$inboundSchema } from "./rule.js";
  * OK
  */
 export type RuleResponse = {
+  /**
+   * A monitoring rule evaluated on a schedule, raising alerts when it fails
+   */
   data: Rule;
 };
 

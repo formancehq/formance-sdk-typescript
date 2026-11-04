@@ -1,5 +1,7 @@
 # V2PaymentType
 
+Direction of the payment
+
 ## Example Usage
 
 ```typescript

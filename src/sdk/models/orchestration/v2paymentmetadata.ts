@@ -7,7 +7,13 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arbitrary key/value pairs attached to a payment
+ */
 export type V2PaymentMetadata = {
+  /**
+   * Metadata value carried by the payment
+   */
   key?: string | undefined;
 };
 

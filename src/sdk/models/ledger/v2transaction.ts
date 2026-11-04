@@ -9,24 +9,69 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Posting, V2Posting$inboundSchema } from "./v2posting.js";
 import { V2Volume, V2Volume$inboundSchema } from "./v2volume.js";
 
+/**
+ * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps
+ */
 export type V2Transaction = {
+  /**
+   * Unique sequential identifier for this transaction within the ledger
+   */
   id: bigint;
+  /**
+   * The request time: when the transaction was actually written to the ledger. Set by the ledger, not the caller. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   insertedAt?: Date | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the transaction. Transaction metadata is bi-temporal, so a point-in-time query returns it as it stood at that time
+   */
   metadata: { [k: string]: string };
+  /**
+   * Volumes aggregated per account and per asset
+   */
   postCommitEffectiveVolumes?:
     | { [k: string]: { [k: string]: V2Volume } }
     | undefined;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   postCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<V2Posting>;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   preCommitEffectiveVolumes?:
     | { [k: string]: { [k: string]: V2Volume } }
     | undefined;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   preCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * Indicates if the transaction has been reverted
+   */
   reverted: boolean;
+  /**
+   * When the transaction was reverted, on the request-time axis. Absent if the transaction has not been reverted
+   */
   revertedAt?: Date | undefined;
+  /**
+   * Name of the transaction template this transaction was created from, if any
+   */
   template?: string | undefined;
+  /**
+   * The transaction time: when the transaction is considered to have occurred, also called the effective or booking date. This is the axis the ledger uses to compute balances and resolve point-in-time queries. Settable at creation, defaulting to current machine time if omitted, and immutable once written. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp: Date;
+  /**
+   * When the transaction row was last modified, for example by a metadata change or a revert
+   */
   updatedAt?: Date | undefined;
 };
 

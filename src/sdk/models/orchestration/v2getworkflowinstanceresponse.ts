@@ -12,6 +12,9 @@ import {
 } from "./v2workflowinstance.js";
 
 export type V2GetWorkflowInstanceResponse = {
+  /**
+   * One run of a workflow, tracking its per-stage progress
+   */
   data: V2WorkflowInstance;
 };
 

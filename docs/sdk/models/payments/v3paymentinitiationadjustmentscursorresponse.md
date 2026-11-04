@@ -11,7 +11,7 @@ let value: V3PaymentInitiationAdjustmentsCursorResponse = {
       {
         createdAt: new Date("2026-06-07T01:49:10.843Z"),
         id: "<id>",
-        status: "FAILED",
+        status: "NOT_INITIATED",
       },
     ],
     hasMore: false,

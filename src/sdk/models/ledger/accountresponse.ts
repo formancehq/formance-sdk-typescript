@@ -12,6 +12,9 @@ import {
 } from "./accountwithvolumesandbalances.js";
 
 export type AccountResponse = {
+  /**
+   * An account together with its volumes and net balances per asset
+   */
   data: AccountWithVolumesAndBalances;
 };
 

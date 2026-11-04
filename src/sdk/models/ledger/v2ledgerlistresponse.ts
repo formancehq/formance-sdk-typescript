@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Ledger, V2Ledger$inboundSchema } from "./v2ledger.js";
 
+/**
+ * Paginated cursor wrapping the list of ledgers
+ */
 export type V2LedgerListResponseCursor = {
   data: Array<V2Ledger>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type V2LedgerListResponseCursor = {
 };
 
 export type V2LedgerListResponse = {
+  /**
+   * Paginated cursor wrapping the list of ledgers
+   */
   cursor: V2LedgerListResponseCursor;
 };
 
