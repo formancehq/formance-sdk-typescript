@@ -7,9 +7,21 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Record of who acknowledged an alert and when
+ */
 export type Ack = {
+  /**
+   * When the alert was acknowledged
+   */
   at: Date;
+  /**
+   * Who acknowledged the alert
+   */
   by: string;
+  /**
+   * Free-text note left by whoever acknowledged the alert
+   */
   note?: string | undefined;
 };
 

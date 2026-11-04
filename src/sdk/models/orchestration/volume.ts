@@ -8,8 +8,17 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Volume = {
+  /**
+   * Net balance, equal to input minus output
+   */
   balance?: bigint | undefined;
+  /**
+   * Total amount credited for this asset
+   */
   input: bigint;
+  /**
+   * Total amount debited for this asset
+   */
   output: bigint;
 };
 

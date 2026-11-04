@@ -14,8 +14,8 @@ let value: Version = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `health`           | *boolean*          | :heavy_check_mark: | N/A                |
-| `name`             | *string*           | :heavy_check_mark: | N/A                |
-| `version`          | *string*           | :heavy_check_mark: | N/A                |
+| Field                                             | Type                                              | Required                                          | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `health`                                          | *boolean*                                         | :heavy_check_mark:                                | Whether the component is reporting itself healthy |
+| `name`                                            | *string*                                          | :heavy_check_mark:                                | Name of the component                             |
+| `version`                                         | *string*                                          | :heavy_check_mark:                                | Version of the component currently deployed       |

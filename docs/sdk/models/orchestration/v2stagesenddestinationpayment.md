@@ -1,5 +1,7 @@
 # V2StageSendDestinationPayment
 
+Send the funds to a payment
+
 ## Example Usage
 
 ```typescript

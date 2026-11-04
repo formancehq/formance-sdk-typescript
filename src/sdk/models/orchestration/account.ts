@@ -8,10 +8,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
+/**
+ * An account in the ledger, identified by its address
+ */
 export type Account = {
+  /**
+   * The account address, a colon-separated segmented path such as users:001
+   */
   address: string;
+  /**
+   * Volumes per asset for a single account
+   */
   effectiveVolumes?: { [k: string]: Volume } | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the account
+   */
   metadata: { [k: string]: string };
+  /**
+   * Volumes per asset for a single account
+   */
   volumes?: { [k: string]: Volume } | undefined;
 };
 

@@ -9,10 +9,25 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Posting, V2Posting$inboundSchema } from "./v2posting.js";
 
 export type V2Transaction = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<V2Posting>;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp: Date;
+  /**
+   * Unique sequential identifier for this transaction within the ledger
+   */
   txid: bigint;
 };
 

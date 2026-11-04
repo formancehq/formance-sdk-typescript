@@ -8,12 +8,21 @@ export type V2BulkElementRevertTransactionData = {
   atEffectiveDate?: boolean | undefined;
   force?: boolean | undefined;
   id: bigint;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | undefined;
 };
 
 export type V2BulkElementRevertTransaction = {
+  /**
+   * The bulk action this element performs
+   */
   action: "REVERT_TRANSACTION";
   data?: V2BulkElementRevertTransactionData | undefined;
+  /**
+   * Idempotency key scoped to this element, making it safe to retry the bulk request
+   */
   ik?: string | undefined;
 };
 

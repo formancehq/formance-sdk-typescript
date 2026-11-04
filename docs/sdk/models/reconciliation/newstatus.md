@@ -1,5 +1,7 @@
 # NewStatus
 
+Status after this event
+
 ## Example Usage
 
 ```typescript

@@ -5,12 +5,18 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * The resource a query template targets
+ */
 export const V2QueryResource = {
   Transactions: "transactions",
   Accounts: "accounts",
   Logs: "logs",
   Volumes: "volumes",
 } as const;
+/**
+ * The resource a query template targets
+ */
 export type V2QueryResource = ClosedEnum<typeof V2QueryResource>;
 
 /** @internal */

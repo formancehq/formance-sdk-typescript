@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Take the funds from a ledger account
+ */
 export type V2StageSendSourceAccount = {
   /**
    * Enables unbounded overdraft on the throughAccount when set to true.
@@ -17,7 +20,13 @@ export type V2StageSendSourceAccount = {
    * Only applies when throughAccount is not "world" (which already has unbounded overdraft).
    */
   allowOverdraft: boolean;
+  /**
+   * Address of the ledger account to take funds from
+   */
   id: string;
+  /**
+   * Name of the ledger holding the account
+   */
   ledger?: string | undefined;
   /**
    * Account used when this ledger account interacts with external systems (payments, cross-ledger).

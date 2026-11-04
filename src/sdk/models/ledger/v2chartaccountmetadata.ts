@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2ChartAccountMetadata = {
+  /**
+   * Value applied to this metadata key when an account matching the segment is created
+   */
   default?: string | undefined;
 };
 

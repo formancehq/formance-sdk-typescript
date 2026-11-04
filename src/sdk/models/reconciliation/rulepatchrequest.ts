@@ -15,13 +15,37 @@ import { TemplateKind, TemplateKind$outboundSchema } from "./templatekind.js";
  * Partial update — only fields supplied are applied.
  */
 export type RulePatchRequest = {
+  /**
+   * Whether the rule should be evaluated
+   */
   enabled?: boolean | undefined;
+  /**
+   * New set of key/value pairs attached to the rule
+   */
   labels?: { [k: string]: string } | undefined;
+  /**
+   * New human-readable name for the rule
+   */
   name?: string | undefined;
+  /**
+   * New set of channels to notify when this rule raises an alert
+   */
   notifications?: Array<string> | undefined;
+  /**
+   * When a rule runs, either on demand or on a cron expression
+   */
   schedule?: Schedule | undefined;
+  /**
+   * How serious an alert is, used to route and prioritise notifications
+   */
   severity?: Severity | undefined;
+  /**
+   * Which built-in check a rule applies, determining the shape of its templateSpec
+   */
   templateKind?: TemplateKind | undefined;
+  /**
+   * New parameters for the template, whose shape depends on templateKind
+   */
   templateSpec?: { [k: string]: any } | undefined;
 };
 

@@ -12,6 +12,9 @@ import {
 } from "./v2schemascursor.js";
 
 export type V2SchemasCursorResponse = {
+  /**
+   * Paginated cursor over the ledger's schemas
+   */
   cursor: V2SchemasCursor;
 };
 

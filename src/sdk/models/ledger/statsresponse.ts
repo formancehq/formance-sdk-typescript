@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Stats, Stats$inboundSchema } from "./stats.js";
 
 export type StatsResponse = {
+  /**
+   * Aggregate counts for a ledger
+   */
   data: Stats;
 };
 

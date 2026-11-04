@@ -16,15 +16,65 @@ import {
 } from "./workflowinstancehistorystageoutput.js";
 
 export type WorkflowInstanceHistoryStage = {
+  /**
+   * Stable identifier of the activity within its workflow execution
+   */
+  activityID?: string | undefined;
+  /**
+   * How many times the activity has been attempted
+   */
   attempt: number;
+  /**
+   * Why the activity failed, absent when it succeeded
+   */
   error?: string | undefined;
+  /**
+   * Arguments an activity was called with, keyed by activity name
+   */
   input: WorkflowInstanceHistoryStageInput;
+  /**
+   * Error reported by the most recent failed attempt
+   */
   lastFailure?: string | undefined;
+  /**
+   * Application failure type of the most recent failed attempt, when available
+   */
+  lastFailureType?: string | undefined;
+  /**
+   * Name of the activity this history entry records
+   */
   name: string;
+  /**
+   * When the next retry is scheduled, absent while paused, when no retry is scheduled, or once settled
+   */
   nextExecution?: Date | undefined;
+  /**
+   * Result an activity returned, keyed by activity name
+   */
   output?: WorkflowInstanceHistoryStageOutput | undefined;
+  /**
+   * Reason recorded by Temporal for the activity pause, when available
+   */
+  pauseReason?: string | undefined;
+  /**
+   * Whether Temporal has paused this pending activity; a pause is not a terminal failure
+   */
+  paused?: boolean | undefined;
+  /**
+   * When the activity started
+   */
   startedAt: Date;
+  /**
+   * Run identifier of the described stage workflow execution
+   */
+  temporalRunID?: string | undefined;
+  /**
+   * Whether the activity has finished
+   */
   terminated: boolean;
+  /**
+   * When the activity finished, absent while it is still running
+   */
   terminatedAt?: Date | undefined;
 };
 
@@ -34,16 +84,21 @@ export const WorkflowInstanceHistoryStage$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  activityID: z.string().optional(),
   attempt: z.number().int(),
   error: z.string().optional(),
   input: WorkflowInstanceHistoryStageInput$inboundSchema,
   lastFailure: z.string().optional(),
+  lastFailureType: z.string().optional(),
   name: z.string(),
   nextExecution: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)
   ).optional(),
   output: WorkflowInstanceHistoryStageOutput$inboundSchema.optional(),
+  pauseReason: z.string().optional(),
+  paused: z.boolean().optional(),
   startedAt: z.string().datetime({ offset: true }).transform(v => new Date(v)),
+  temporalRunID: z.string().optional(),
   terminated: z.boolean(),
   terminatedAt: z.string().datetime({ offset: true }).transform(v =>
     new Date(v)

@@ -7,8 +7,21 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The stages a workflow runs, in order
+ */
 export type V2WorkflowConfig = {
+  /**
+   * Total attempts per stage activity, including the initial attempt. Stored at workflow creation; defaults to 15 when omitted.
+   */
+  activityMaxAttempts?: number | undefined;
+  /**
+   * Human-readable name for the workflow
+   */
   name?: string | undefined;
+  /**
+   * The stages executed in order when the workflow runs
+   */
   stages: Array<{ [k: string]: any }>;
 };
 
@@ -18,11 +31,13 @@ export const V2WorkflowConfig$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
+  activityMaxAttempts: z.number().int().default(15),
   name: z.string().optional(),
   stages: z.array(z.record(z.any())),
 });
 /** @internal */
 export type V2WorkflowConfig$Outbound = {
+  activityMaxAttempts: number;
   name?: string | undefined;
   stages: Array<{ [k: string]: any }>;
 };
@@ -33,6 +48,7 @@ export const V2WorkflowConfig$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2WorkflowConfig
 > = z.object({
+  activityMaxAttempts: z.number().int().default(15),
   name: z.string().optional(),
   stages: z.array(z.record(z.any())),
 });

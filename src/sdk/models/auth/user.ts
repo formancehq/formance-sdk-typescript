@@ -7,9 +7,21 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A user known to the stack's identity provider
+ */
 export type User = {
+  /**
+   * Email address of the user
+   */
   email?: string | undefined;
+  /**
+   * Unique identifier of the user
+   */
   id?: string | undefined;
+  /**
+   * Subject claim identifying the user with the identity provider
+   */
   subject?: string | undefined;
 };
 

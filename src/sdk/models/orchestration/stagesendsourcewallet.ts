@@ -7,8 +7,17 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Take the funds from a wallet
+ */
 export type StageSendSourceWallet = {
+  /**
+   * Name of the balance within the wallet. Defaults to the main balance when omitted
+   */
   balance?: string | undefined;
+  /**
+   * Identifier of the wallet to take funds from
+   */
   id: string;
 };
 

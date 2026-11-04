@@ -10,16 +10,37 @@ import { Posting, Posting$inboundSchema } from "./posting.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
 export type Transaction = {
+  /**
+   * Unique sequential identifier for this transaction within the ledger
+   */
   id: number;
+  /**
+   * Name of the ledger the transaction was recorded in
+   */
   ledger?: string | undefined;
   /**
    * Metadata associated with the wallet.
    */
   metadata: { [k: string]: string };
+  /**
+   * Volumes aggregated per account and per asset
+   */
   postCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<Posting>;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   preCommitVolumes?: { [k: string]: { [k: string]: Volume } } | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * The transaction time: when the transaction is considered to have occurred. See [bi- temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp: Date;
 };
 

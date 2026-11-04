@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
+/**
+ * Paginated cursor wrapping the list of transactions
+ */
 export type TransactionsCursorResponseCursor = {
   data: Array<Transaction>;
   hasMore: boolean;
@@ -17,6 +20,9 @@ export type TransactionsCursorResponseCursor = {
 };
 
 export type TransactionsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of transactions
+   */
   cursor: TransactionsCursorResponseCursor;
 };
 

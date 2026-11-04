@@ -8,36 +8,57 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
-  V2AccountResponse,
-  V2AccountResponse$inboundSchema,
-} from "./v2accountresponse.js";
+  V2ActivityCreateTransactionOutput,
+  V2ActivityCreateTransactionOutput$inboundSchema,
+} from "./v2activitycreatetransactionoutput.js";
 import {
-  V2CreateTransactionResponse,
-  V2CreateTransactionResponse$inboundSchema,
-} from "./v2createtransactionresponse.js";
+  V2ActivityDebitWalletOutput,
+  V2ActivityDebitWalletOutput$inboundSchema,
+} from "./v2activitydebitwalletoutput.js";
 import {
-  V2DebitWalletResponse,
-  V2DebitWalletResponse$inboundSchema,
-} from "./v2debitwalletresponse.js";
+  V2ActivityGetAccountOutput,
+  V2ActivityGetAccountOutput$inboundSchema,
+} from "./v2activitygetaccountoutput.js";
 import {
-  V2GetWalletResponse,
-  V2GetWalletResponse$inboundSchema,
-} from "./v2getwalletresponse.js";
+  V2ActivityGetPaymentOutput,
+  V2ActivityGetPaymentOutput$inboundSchema,
+} from "./v2activitygetpaymentoutput.js";
+import {
+  V2ActivityGetWalletOutput,
+  V2ActivityGetWalletOutput$inboundSchema,
+} from "./v2activitygetwalletoutput.js";
 import {
   V2ListWalletsResponse,
   V2ListWalletsResponse$inboundSchema,
 } from "./v2listwalletsresponse.js";
-import {
-  V2PaymentResponse,
-  V2PaymentResponse$inboundSchema,
-} from "./v2paymentresponse.js";
 
+/**
+ * Result an activity returned, keyed by activity name
+ */
 export type V2WorkflowInstanceHistoryStageOutput = {
-  createTransaction?: V2CreateTransactionResponse | undefined;
-  debitWallet?: V2DebitWalletResponse | undefined;
-  getAccount?: V2AccountResponse | undefined;
-  getPayment?: V2PaymentResponse | undefined;
-  getWallet?: V2GetWalletResponse | undefined;
+  /**
+   * Result of the activity that writes a transaction to a ledger
+   */
+  createTransaction?: V2ActivityCreateTransactionOutput | undefined;
+  /**
+   * Result of the activity that debits a wallet
+   */
+  debitWallet?: V2ActivityDebitWalletOutput | undefined;
+  /**
+   * Result of the activity that reads a ledger account
+   */
+  getAccount?: V2ActivityGetAccountOutput | undefined;
+  /**
+   * Result of the activity that reads a payment
+   */
+  getPayment?: V2ActivityGetPaymentOutput | undefined;
+  /**
+   * Result of the activity that reads a wallet
+   */
+  getWallet?: V2ActivityGetWalletOutput | undefined;
+  /**
+   * A page of wallets
+   */
   listWallets?: V2ListWalletsResponse | undefined;
 };
 
@@ -47,11 +68,11 @@ export const V2WorkflowInstanceHistoryStageOutput$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  CreateTransaction: V2CreateTransactionResponse$inboundSchema.optional(),
-  DebitWallet: V2DebitWalletResponse$inboundSchema.optional(),
-  GetAccount: V2AccountResponse$inboundSchema.optional(),
-  GetPayment: V2PaymentResponse$inboundSchema.optional(),
-  GetWallet: V2GetWalletResponse$inboundSchema.optional(),
+  CreateTransaction: V2ActivityCreateTransactionOutput$inboundSchema.optional(),
+  DebitWallet: V2ActivityDebitWalletOutput$inboundSchema.optional(),
+  GetAccount: V2ActivityGetAccountOutput$inboundSchema.optional(),
+  GetPayment: V2ActivityGetPaymentOutput$inboundSchema.optional(),
+  GetWallet: V2ActivityGetWalletOutput$inboundSchema.optional(),
   ListWallets: V2ListWalletsResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {

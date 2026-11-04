@@ -15,6 +15,9 @@ import {
   V2WalletSubject$inboundSchema,
 } from "./v2walletsubject.js";
 
+/**
+ * The counterparty of a wallet movement, either a ledger account or another wallet
+ */
 export type V2Subject = V2LedgerAccountSubject | V2WalletSubject;
 
 /** @internal */

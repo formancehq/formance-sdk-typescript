@@ -13,8 +13,17 @@ import {
 import { V2ErrorsEnum, V2ErrorsEnum$inboundSchema } from "./v2errorsenum.js";
 
 export type V2BulkResponse = {
+  /**
+   * Result of each element of the bulk request, in submission order
+   */
   data?: Array<V2BulkElementResult> | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode?: V2ErrorsEnum | undefined;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage?: string | undefined;
 };
 

@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { User, User$inboundSchema } from "./user.js";
 
 export type ListUsersResponse = {
+  /**
+   * The users known to this stack
+   */
   data?: Array<User> | undefined;
 };
 

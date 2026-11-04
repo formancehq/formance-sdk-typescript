@@ -8,7 +8,13 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2QueryTemplateVar = {
+  /**
+   * Value used when the variable is not supplied at query time
+   */
   default?: any | undefined;
+  /**
+   * Type of the variable
+   */
   type: string;
 };
 

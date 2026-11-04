@@ -17,4 +17,4 @@ let value: V2StatsResponse = {
 
 | Field                                                   | Type                                                    | Required                                                | Description                                             |
 | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `data`                                                  | [ledger.V2Stats](../../../sdk/models/ledger/v2stats.md) | :heavy_check_mark:                                      | N/A                                                     |
+| `data`                                                  | [ledger.V2Stats](../../../sdk/models/ledger/v2stats.md) | :heavy_check_mark:                                      | Aggregate counts for a ledger                           |

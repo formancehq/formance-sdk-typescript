@@ -8,19 +8,46 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance
+ */
 export const ResolutionKind = {
   Auto: "auto",
   FixedByBooking: "fixed_by_booking",
   AcceptedByBusiness: "accepted_by_business",
 } as const;
+/**
+ * How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance
+ */
 export type ResolutionKind = ClosedEnum<typeof ResolutionKind>;
 
+/**
+ * Record of how an alert was resolved and by whom
+ */
 export type Resolution = {
+  /**
+   * When the alert was resolved
+   */
   at: Date;
+  /**
+   * Who resolved the alert
+   */
   by: string;
+  /**
+   * The alert's evidence captured at resolution time, kept for audit
+   */
   evidenceSnapshot?: { [k: string]: any } | undefined;
+  /**
+   * How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance
+   */
   kind: ResolutionKind;
+  /**
+   * Free-text note left by whoever resolved the alert
+   */
   note?: string | undefined;
+  /**
+   * References of the transactions booked to correct the break
+   */
   transactionRefs?: Array<string> | undefined;
 };
 

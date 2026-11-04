@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Exporter, V2Exporter$inboundSchema } from "./v2exporter.js";
 
+/**
+ * Paginated cursor wrapping the list of exporters
+ */
 export type V2ExportersCursorResponseCursor = {
   data: Array<V2Exporter>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V2ExportersCursorResponseCursor = {
  * Exporters list
  */
 export type V2ExportersCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of exporters
+   */
   cursor: V2ExportersCursorResponseCursor;
 };
 

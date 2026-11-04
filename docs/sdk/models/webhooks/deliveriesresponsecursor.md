@@ -1,5 +1,7 @@
 # DeliveriesResponseCursor
 
+Paginated cursor wrapping the list of deliveries
+
 ## Example Usage
 
 ```typescript

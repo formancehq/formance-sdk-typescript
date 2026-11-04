@@ -15,6 +15,7 @@ export const V3PaymentInitiationStatusEnum = {
   Processing: "PROCESSING",
   Processed: "PROCESSED",
   Failed: "FAILED",
+  NotInitiated: "NOT_INITIATED",
   Rejected: "REJECTED",
   ReverseProcessing: "REVERSE_PROCESSING",
   ReverseFailed: "REVERSE_FAILED",

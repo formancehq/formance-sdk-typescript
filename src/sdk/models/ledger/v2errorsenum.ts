@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Machine-readable error code identifying the failure
+ */
 export const V2ErrorsEnum = {
   Internal: "INTERNAL",
   InsufficientFund: "INSUFFICIENT_FUND",
@@ -27,6 +30,9 @@ export const V2ErrorsEnum = {
   SchemaNotSpecified: "SCHEMA_NOT_SPECIFIED",
   OutdatedSchema: "OUTDATED_SCHEMA",
 } as const;
+/**
+ * Machine-readable error code identifying the failure
+ */
 export type V2ErrorsEnum = ClosedEnum<typeof V2ErrorsEnum>;
 
 /** @internal */

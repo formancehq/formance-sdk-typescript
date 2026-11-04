@@ -12,6 +12,6 @@ let value: StageWaitEvent = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `event`            | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                  | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `event`                                                | *string*                                               | :heavy_check_mark:                                     | Type of event the workflow waits for before continuing |

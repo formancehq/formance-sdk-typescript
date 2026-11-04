@@ -1,5 +1,7 @@
 # ScheduleKind
 
+Whether the rule runs only when triggered or on a recurring cron schedule
+
 ## Example Usage
 
 ```typescript

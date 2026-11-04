@@ -19,9 +19,21 @@ import {
   StageSendSourceWallet$inboundSchema,
 } from "./stagesendsourcewallet.js";
 
+/**
+ * Where a send stage takes the funds from
+ */
 export type StageSendSource = {
+  /**
+   * Take the funds from a ledger account
+   */
   account?: StageSendSourceAccount | undefined;
+  /**
+   * Take the funds from a payment
+   */
   payment?: StageSendSourcePayment | undefined;
+  /**
+   * Take the funds from a wallet
+   */
   wallet?: StageSendSourceWallet | undefined;
 };
 

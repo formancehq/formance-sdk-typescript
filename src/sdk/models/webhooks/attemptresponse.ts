@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Attempt, Attempt$inboundSchema } from "./attempt.js";
 
 export type AttemptResponse = {
+  /**
+   * A single delivery attempt made against a webhook endpoint
+   */
   data: Attempt;
 };
 

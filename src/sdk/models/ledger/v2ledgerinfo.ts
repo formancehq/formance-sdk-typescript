@@ -11,12 +11,24 @@ import {
   V2MigrationInfo$inboundSchema,
 } from "./v2migrationinfo.js";
 
+/**
+ * Storage backend information, including the migrations applied to the ledger's bucket
+ */
 export type V2LedgerInfoStorage = {
   migrations?: Array<V2MigrationInfo> | undefined;
 };
 
+/**
+ * Runtime information about a ledger, including the state of its storage migrations
+ */
 export type V2LedgerInfo = {
+  /**
+   * Name of the ledger
+   */
   name?: string | undefined;
+  /**
+   * Storage backend information, including the migrations applied to the ledger's bucket
+   */
   storage?: V2LedgerInfoStorage | undefined;
 };
 

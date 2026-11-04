@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Hold, Hold$inboundSchema } from "./hold.js";
 
 export type DebitWalletResponse = {
+  /**
+   * Funds locked by a pending debit, later either confirmed or voided
+   */
   data: Hold;
 };
 

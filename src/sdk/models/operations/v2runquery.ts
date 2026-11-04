@@ -12,6 +12,9 @@ import * as ledger from "../ledger/index.js";
 
 export type V2RunQueryRequestBody = {
   cursor?: string | undefined;
+  /**
+   * Parameters applied when running a query template
+   */
   params?: ledger.V2QueryParams | undefined;
   vars?: { [k: string]: string } | undefined;
 };
@@ -28,6 +31,14 @@ export const V2RunQueryOrder = {
 export type V2RunQueryOrder = ClosedEnum<typeof V2RunQueryOrder>;
 
 export type V2RunQueryRequest = {
+  /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
   requestBody: V2RunQueryRequestBody;
   /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
@@ -140,6 +151,7 @@ export const V2RunQueryOrder$outboundSchema: z.ZodNativeEnum<
 
 /** @internal */
 export type V2RunQueryRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   RequestBody: V2RunQueryRequestBody$Outbound;
   cursor?: string | undefined;
   expand?: string | undefined;
@@ -159,6 +171,7 @@ export const V2RunQueryRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2RunQueryRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   requestBody: z.lazy(() => V2RunQueryRequestBody$outboundSchema),
   cursor: z.string().optional(),
   expand: z.string().optional(),
@@ -172,6 +185,7 @@ export const V2RunQueryRequest$outboundSchema: z.ZodType<
   sort: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
     requestBody: "RequestBody",
   });
 });

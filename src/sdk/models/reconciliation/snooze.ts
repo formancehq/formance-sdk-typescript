@@ -15,9 +15,21 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
  * against period-green — only its notifications are suppressed.
  */
 export type Snooze = {
+  /**
+   * When the alert was snoozed
+   */
   at: Date;
+  /**
+   * Who snoozed the alert
+   */
   by: string;
+  /**
+   * Free-text note left by whoever snoozed the alert
+   */
   note?: string | undefined;
+  /**
+   * When the mute expires and notifications resume. Must be in the future
+   */
   until: Date;
 };
 

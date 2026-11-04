@@ -19,7 +19,7 @@ export type AlertResponse = {
    * reconciliation period. There is exactly one Alert per
    * (ruleID, fingerprint, periodID) — within a period, re-opens after resolve
    * flip the status back to OPEN in place; the same fingerprint failing in a
-   * new period is a separate Alert. For a `continuous`-cadence rule there is
+   * new period is a separate Alert. For a `continuous` period type there is
    * one unbounded period, so it behaves as one Alert per (ruleID, fingerprint).
    * The full history of transitions lives in alert_event
    * (see /alerts/{alertID}/events).

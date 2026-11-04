@@ -16,6 +16,7 @@ export type V3RoutableConfig = {
    * @deprecated field: From v3.1, this parameter will be ignored.
    */
   pageSize?: number | undefined;
+  payoutsPerMinute?: number | undefined;
   pollingPeriod?: string | undefined;
   provider: "Routable";
 };
@@ -31,6 +32,7 @@ export const V3RoutableConfig$inboundSchema: z.ZodType<
   endpoint: z.string().optional(),
   name: z.string(),
   pageSize: z.number().int().default(25),
+  payoutsPerMinute: z.number().int().optional(),
   pollingPeriod: z.string().default("30m"),
   provider: z.literal("Routable"),
 });
@@ -41,6 +43,7 @@ export type V3RoutableConfig$Outbound = {
   endpoint?: string | undefined;
   name: string;
   pageSize: number;
+  payoutsPerMinute?: number | undefined;
   pollingPeriod: string;
   provider: "Routable";
 };
@@ -56,6 +59,7 @@ export const V3RoutableConfig$outboundSchema: z.ZodType<
   endpoint: z.string().optional(),
   name: z.string(),
   pageSize: z.number().int().default(25),
+  payoutsPerMinute: z.number().int().optional(),
   pollingPeriod: z.string().default("30m"),
   provider: z.literal("Routable"),
 });

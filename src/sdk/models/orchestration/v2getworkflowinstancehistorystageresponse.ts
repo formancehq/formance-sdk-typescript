@@ -12,6 +12,9 @@ import {
 } from "./v2workflowinstancehistorystage.js";
 
 export type V2GetWorkflowInstanceHistoryStageResponse = {
+  /**
+   * Per-activity history of a workflow stage
+   */
   data: Array<V2WorkflowInstanceHistoryStage>;
 };
 

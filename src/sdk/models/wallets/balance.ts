@@ -7,9 +7,21 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A named balance within a wallet, optionally carrying an expiry date
+ */
 export type Balance = {
+  /**
+   * When the funds in this balance expire. Expired funds stop counting towards available funds
+   */
   expiresAt?: Date | null | undefined;
+  /**
+   * Name of the balance within the wallet
+   */
   name: string;
+  /**
+   * Ordering hint when choosing which balances to debit first. Lower values are debited first, and it only breaks ties between balances that carry no expiry date
+   */
   priority?: bigint | undefined;
 };
 

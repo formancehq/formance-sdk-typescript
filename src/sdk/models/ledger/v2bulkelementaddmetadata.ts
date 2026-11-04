@@ -17,8 +17,14 @@ export type V2BulkElementAddMetadataData = {
 };
 
 export type V2BulkElementAddMetadata = {
+  /**
+   * The bulk action this element performs
+   */
   action: "ADD_METADATA";
   data?: V2BulkElementAddMetadataData | undefined;
+  /**
+   * Idempotency key scoped to this element, making it safe to retry the bulk request
+   */
   ik?: string | undefined;
 };
 

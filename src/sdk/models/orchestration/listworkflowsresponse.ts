@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Workflow, Workflow$inboundSchema } from "./workflow.js";
 
 export type ListWorkflowsResponse = {
+  /**
+   * The workflows defined on this stack
+   */
   data: Array<Workflow>;
 };
 

@@ -8,10 +8,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type V2VolumesWithBalance = {
+  /**
+   * The account address these volumes belong to
+   */
   account: string;
+  /**
+   * The asset these volumes are denominated in
+   */
   asset: string;
+  /**
+   * Net balance for this asset, equal to input minus output
+   */
   balance: bigint;
+  /**
+   * Total amount credited to the account for this asset
+   */
   input: bigint;
+  /**
+   * Total amount debited from the account for this asset
+   */
   output: bigint;
 };
 

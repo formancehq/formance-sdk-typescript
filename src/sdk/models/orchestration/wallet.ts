@@ -8,16 +8,25 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Wallet = {
+  /**
+   * When the wallet was created
+   */
   createdAt: Date;
   /**
    * The unique ID of the wallet.
    */
   id: string;
+  /**
+   * Name of the ledger backing this wallet
+   */
   ledger: string;
   /**
    * Metadata associated with the wallet.
    */
   metadata: { [k: string]: string };
+  /**
+   * Human-readable name of the wallet
+   */
   name: string;
 };
 

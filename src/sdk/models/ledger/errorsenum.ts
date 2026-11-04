@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * Machine-readable error code identifying the failure
+ */
 export const ErrorsEnum = {
   Internal: "INTERNAL",
   InsufficientFund: "INSUFFICIENT_FUND",
@@ -16,6 +19,9 @@ export const ErrorsEnum = {
   NotFound: "NOT_FOUND",
   Timeout: "TIMEOUT",
 } as const;
+/**
+ * Machine-readable error code identifying the failure
+ */
 export type ErrorsEnum = ClosedEnum<typeof ErrorsEnum>;
 
 /** @internal */

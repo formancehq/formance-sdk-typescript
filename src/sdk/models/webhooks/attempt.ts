@@ -11,16 +11,49 @@ import {
   WebhooksConfig$inboundSchema,
 } from "./webhooksconfig.js";
 
+/**
+ * A single delivery attempt made against a webhook endpoint
+ */
 export type Attempt = {
+  /**
+   * A webhook endpoint together with the event types it subscribes to
+   */
   config: WebhooksConfig;
+  /**
+   * When the attempt was created
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the attempt
+   */
   id: string;
+  /**
+   * When the next retry is scheduled, absent once the attempt is settled
+   */
   nextRetryAfter?: Date | undefined;
+  /**
+   * The event body sent to the endpoint
+   */
   payload: string;
+  /**
+   * Position of this attempt in the retry sequence
+   */
   retryAttempt: number;
+  /**
+   * Current status of the attempt
+   */
   status: string;
+  /**
+   * HTTP status code returned by the endpoint
+   */
   statusCode: number;
+  /**
+   * When the attempt was last modified
+   */
   updatedAt: Date;
+  /**
+   * Identifier of the webhook this attempt belongs to
+   */
   webhookID: string;
 };
 

@@ -12,6 +12,9 @@ import {
 } from "./ledgeraccountsubject.js";
 import { WalletSubject, WalletSubject$inboundSchema } from "./walletsubject.js";
 
+/**
+ * The counterparty of a wallet movement, either a ledger account or another wallet
+ */
 export type Subject = LedgerAccountSubject | WalletSubject;
 
 /** @internal */

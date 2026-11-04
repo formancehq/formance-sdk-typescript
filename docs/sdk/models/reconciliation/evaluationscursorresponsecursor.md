@@ -1,5 +1,7 @@
 # EvaluationsCursorResponseCursor
 
+Paginated cursor wrapping the list of evaluations
+
 ## Example Usage
 
 ```typescript

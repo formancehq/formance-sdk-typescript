@@ -1,0 +1,17 @@
+# IngestionStatus
+
+## Example Usage
+
+```typescript
+import { IngestionStatus } from "@formance/formance-sdk/sdk/models/connectivity";
+
+let value: IngestionStatus = {};
+```
+
+## Fields
+
+| Field                                                                                                                                                          | Type                                                                                                                                                           | Required                                                                                                                                                       | Description                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lastError`                                                                                                                                                    | *string*                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                             | Last recorded ingestion error string, possibly historical after retry. Presence alone does not indicate an active error. No occurrence timestamp is available. |
+| `progress`                                                                                                                                                     | [connectivity.IngestionProgress](../../../sdk/models/connectivity/ingestionprogress.md)                                                                        | :heavy_minus_sign:                                                                                                                                             | N/A                                                                                                                                                            |
+| `state`                                                                                                                                                        | [connectivity.State](../../../sdk/models/connectivity/state.md)                                                                                                | :heavy_minus_sign:                                                                                                                                             | Last recorded ingestion state; it can be stale. paused can represent requested suspension before ingestion exists. finished is successful bounded completion.  |

@@ -9,7 +9,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Monetary, V2Monetary$inboundSchema } from "./v2monetary.js";
 import { V2Subject, V2Subject$inboundSchema } from "./v2subject.js";
 
+/**
+ * A credit to apply to a wallet
+ */
 export type V2CreditWalletRequest = {
+  /**
+   * An amount together with the asset it is denominated in
+   */
   amount: V2Monetary;
   /**
    * The balance to credit
@@ -19,8 +25,17 @@ export type V2CreditWalletRequest = {
    * Metadata associated with the wallet.
    */
   metadata: { [k: string]: string };
+  /**
+   * Optional caller-supplied identifier used to deduplicate the credit
+   */
   reference?: string | undefined;
+  /**
+   * Where the funds come from
+   */
   sources: Array<V2Subject>;
+  /**
+   * The transaction time to record on the resulting transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

@@ -7,22 +7,34 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
+  StageSendDestinationAccount,
+  StageSendDestinationAccount$inboundSchema,
+} from "./stagesenddestinationaccount.js";
+import {
   StageSendDestinationPayment,
   StageSendDestinationPayment$inboundSchema,
 } from "./stagesenddestinationpayment.js";
 import {
-  StageSendSourceAccount,
-  StageSendSourceAccount$inboundSchema,
-} from "./stagesendsourceaccount.js";
-import {
-  StageSendSourceWallet,
-  StageSendSourceWallet$inboundSchema,
-} from "./stagesendsourcewallet.js";
+  StageSendDestinationWallet,
+  StageSendDestinationWallet$inboundSchema,
+} from "./stagesenddestinationwallet.js";
 
+/**
+ * Where a send stage puts the funds
+ */
 export type StageSendDestination = {
-  account?: StageSendSourceAccount | undefined;
+  /**
+   * Send the funds to a ledger account
+   */
+  account?: StageSendDestinationAccount | undefined;
+  /**
+   * Send the funds to a payment
+   */
   payment?: StageSendDestinationPayment | undefined;
-  wallet?: StageSendSourceWallet | undefined;
+  /**
+   * Send the funds to a wallet
+   */
+  wallet?: StageSendDestinationWallet | undefined;
 };
 
 /** @internal */
@@ -31,9 +43,9 @@ export const StageSendDestination$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  account: StageSendSourceAccount$inboundSchema.optional(),
+  account: StageSendDestinationAccount$inboundSchema.optional(),
   payment: StageSendDestinationPayment$inboundSchema.optional(),
-  wallet: StageSendSourceWallet$inboundSchema.optional(),
+  wallet: StageSendDestinationWallet$inboundSchema.optional(),
 });
 
 export function stageSendDestinationFromJSON(

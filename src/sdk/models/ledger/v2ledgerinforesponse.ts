@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2LedgerInfo, V2LedgerInfo$inboundSchema } from "./v2ledgerinfo.js";
 
 export type V2LedgerInfoResponse = {
+  /**
+   * Runtime information about a ledger, including the state of its storage migrations
+   */
   data?: V2LedgerInfo | undefined;
 };
 

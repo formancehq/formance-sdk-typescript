@@ -10,9 +10,21 @@ import {
 } from "./posting.js";
 
 export type TransactionData = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: any } | null | undefined;
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<Posting>;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

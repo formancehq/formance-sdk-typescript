@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { User, User$inboundSchema } from "./user.js";
 
 export type ReadUserResponse = {
+  /**
+   * A user known to the stack's identity provider
+   */
   data?: User | undefined;
 };
 

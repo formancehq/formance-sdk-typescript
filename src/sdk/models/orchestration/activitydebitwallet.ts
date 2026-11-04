@@ -11,8 +11,17 @@ import {
   DebitWalletRequest$inboundSchema,
 } from "./debitwalletrequest.js";
 
+/**
+ * Arguments for the activity that debits a wallet
+ */
 export type ActivityDebitWallet = {
+  /**
+   * A debit to apply to a wallet
+   */
   data?: DebitWalletRequest | undefined;
+  /**
+   * Identifier of the wallet to debit
+   */
   id?: string | undefined;
 };
 

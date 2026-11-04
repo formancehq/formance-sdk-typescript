@@ -13,29 +13,65 @@ import { V2Volume, V2Volume$inboundSchema } from "./v2volume.js";
  * Transaction structure as it appears in log payloads
  */
 export type V2LogTransaction = {
+  /**
+   * Unique sequential identifier for this transaction within the ledger
+   */
   id: bigint;
+  /**
+   * The request time: when the transaction was actually written to the ledger. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   insertedAt?: Date | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * Volumes aggregated per account and per asset
+   */
   postCommitEffectiveVolumes?:
     | { [k: string]: { [k: string]: V2Volume } }
     | undefined;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   postCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
+  /**
+   * The fund movements making up the transaction
+   */
   postings: Array<V2Posting>;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   preCommitEffectiveVolumes?:
     | { [k: string]: { [k: string]: V2Volume } }
     | undefined;
+  /**
+   * Volumes aggregated per account and per asset
+   */
   preCommitVolumes?: { [k: string]: { [k: string]: V2Volume } } | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger
+   */
   reference?: string | undefined;
   /**
    * Indicates if the transaction has been reverted
    */
   reverted: boolean;
+  /**
+   * When the transaction was reverted, on the request-time axis
+   */
   revertedAt?: Date | undefined;
   /**
    * Transaction template used
    */
   template?: string | undefined;
+  /**
+   * The transaction time: when the transaction is considered to have occurred. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp: Date;
+  /**
+   * When the transaction row was last modified
+   */
   updatedAt?: Date | undefined;
 };
 

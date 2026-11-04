@@ -1,5 +1,7 @@
 # WalletBalances
 
+The wallet's main balance, keyed by asset
+
 ## Example Usage
 
 ```typescript

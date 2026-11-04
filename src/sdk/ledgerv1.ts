@@ -6,20 +6,19 @@ import { ledgerV1AddMetadataOnTransaction } from "../funcs/ledgerV1AddMetadataOn
 import { ledgerV1AddMetadataToAccount } from "../funcs/ledgerV1AddMetadataToAccount.js";
 import { ledgerV1CountAccounts } from "../funcs/ledgerV1CountAccounts.js";
 import { ledgerV1CountTransactions } from "../funcs/ledgerV1CountTransactions.js";
-import { ledgerV1CreateTransaction } from "../funcs/ledgerV1CreateTransaction.js";
+import { ledgerV1CreateTransactionLedger } from "../funcs/ledgerV1CreateTransactionLedger.js";
 import { ledgerV1CreateTransactions } from "../funcs/ledgerV1CreateTransactions.js";
 import { ledgerV1GetAccountLedger } from "../funcs/ledgerV1GetAccountLedger.js";
 import { ledgerV1GetBalances } from "../funcs/ledgerV1GetBalances.js";
 import { ledgerV1GetBalancesAggregated } from "../funcs/ledgerV1GetBalancesAggregated.js";
-import { ledgerV1GetInfo } from "../funcs/ledgerV1GetInfo.js";
 import { ledgerV1GetLedgerInfo } from "../funcs/ledgerV1GetLedgerInfo.js";
 import { ledgerV1GetMapping } from "../funcs/ledgerV1GetMapping.js";
-import { ledgerV1GetTransaction } from "../funcs/ledgerV1GetTransaction.js";
+import { ledgerV1GetTransactionLedger } from "../funcs/ledgerV1GetTransactionLedger.js";
 import { ledgerV1ListAccountsLedger } from "../funcs/ledgerV1ListAccountsLedger.js";
 import { ledgerV1ListLogs } from "../funcs/ledgerV1ListLogs.js";
 import { ledgerV1ListTransactions } from "../funcs/ledgerV1ListTransactions.js";
 import { ledgerV1ReadStats } from "../funcs/ledgerV1ReadStats.js";
-import { ledgerV1RevertTransaction } from "../funcs/ledgerV1RevertTransaction.js";
+import { ledgerV1RevertTransactionLedger } from "../funcs/ledgerV1RevertTransactionLedger.js";
 import { ledgerV1RunScript } from "../funcs/ledgerV1RunScript.js";
 import { ledgerV1UpdateMapping } from "../funcs/ledgerV1UpdateMapping.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -100,11 +99,11 @@ export class LedgerV1 extends ClientSDK {
   /**
    * Create a new transaction to a ledger
    */
-  async createTransaction(
-    request: operations.CreateTransactionRequest,
+  async createTransactionLedger(
+    request: operations.CreateTransactionLedgerRequest,
     options?: RequestOptions,
-  ): Promise<operations.CreateTransactionResponse> {
-    return unwrapAsync(ledgerV1CreateTransaction(
+  ): Promise<operations.CreateTransactionLedgerResponse> {
+    return unwrapAsync(ledgerV1CreateTransactionLedger(
       this,
       request,
       options,
@@ -154,18 +153,6 @@ export class LedgerV1 extends ClientSDK {
   }
 
   /**
-   * Show server information
-   */
-  async getInfo(
-    options?: RequestOptions,
-  ): Promise<operations.GetInfoResponse> {
-    return unwrapAsync(ledgerV1GetInfo(
-      this,
-      options,
-    ));
-  }
-
-  /**
    * Get information about a ledger
    */
   async getLedgerInfo(
@@ -196,11 +183,11 @@ export class LedgerV1 extends ClientSDK {
   /**
    * Get transaction from a ledger by its ID
    */
-  async getTransaction(
-    request: operations.GetTransactionRequest,
+  async getTransactionLedger(
+    request: operations.GetTransactionLedgerRequest,
     options?: RequestOptions,
-  ): Promise<operations.GetTransactionResponse> {
-    return unwrapAsync(ledgerV1GetTransaction(
+  ): Promise<operations.GetTransactionLedgerResponse> {
+    return unwrapAsync(ledgerV1GetTransactionLedger(
       this,
       request,
       options,
@@ -278,11 +265,11 @@ export class LedgerV1 extends ClientSDK {
   /**
    * Revert a ledger transaction by its ID
    */
-  async revertTransaction(
-    request: operations.RevertTransactionRequest,
+  async revertTransactionLedger(
+    request: operations.RevertTransactionLedgerRequest,
     options?: RequestOptions,
-  ): Promise<operations.RevertTransactionResponse> {
-    return unwrapAsync(ledgerV1RevertTransaction(
+  ): Promise<operations.RevertTransactionLedgerResponse> {
+    return unwrapAsync(ledgerV1RevertTransactionLedger(
       this,
       request,
       options,

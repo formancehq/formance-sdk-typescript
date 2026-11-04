@@ -21,8 +21,14 @@ import {
   V2PaymentStatus$inboundSchema,
 } from "./v2paymentstatus.js";
 
+/**
+ * The provider's original payload, passed through untouched
+ */
 export type V2PaymentRaw = {};
 
+/**
+ * Payment scheme or rail the payment travelled over
+ */
 export const V2PaymentScheme = {
   Visa: "visa",
   Mastercard: "mastercard",
@@ -43,31 +49,88 @@ export const V2PaymentScheme = {
   Unknown: "unknown",
   Other: "other",
 } as const;
+/**
+ * Payment scheme or rail the payment travelled over
+ */
 export type V2PaymentScheme = ClosedEnum<typeof V2PaymentScheme>;
 
+/**
+ * Direction of the payment
+ */
 export const V2PaymentType = {
   PayIn: "PAY-IN",
   Payout: "PAYOUT",
   Transfer: "TRANSFER",
   Other: "OTHER",
 } as const;
+/**
+ * Direction of the payment
+ */
 export type V2PaymentType = ClosedEnum<typeof V2PaymentType>;
 
+/**
+ * A payment observed or initiated through a connector
+ */
 export type V2Payment = {
+  /**
+   * Successive changes to the payment's amount and status
+   */
   adjustments: Array<V2PaymentAdjustment>;
+  /**
+   * Asset the payment is denominated in
+   */
   asset: string;
+  /**
+   * Identifier of the connector that produced the payment
+   */
   connectorID: string;
+  /**
+   * When the payment was created
+   */
   createdAt: Date;
+  /**
+   * Identifier of the account the funds reached
+   */
   destinationAccountID: string;
+  /**
+   * Unique identifier of the payment
+   */
   id: string;
+  /**
+   * Amount the payment was created with, before any adjustment
+   */
   initialAmount: bigint;
+  /**
+   * Arbitrary key/value pairs attached to a payment
+   */
   metadata: V2PaymentMetadata | null;
+  /**
+   * The payment provider behind a connector
+   */
   provider?: V2Connector | undefined;
+  /**
+   * The provider's original payload, passed through untouched
+   */
   raw: V2PaymentRaw | null;
+  /**
+   * Identifier the payment carries at the provider
+   */
   reference: string;
+  /**
+   * Payment scheme or rail the payment travelled over
+   */
   scheme: V2PaymentScheme;
+  /**
+   * Identifier of the account the funds left
+   */
   sourceAccountID: string;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: V2PaymentStatus;
+  /**
+   * Direction of the payment
+   */
   type: V2PaymentType;
 };
 

@@ -7,13 +7,37 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * A ledger and its configuration
+ */
 export type V2Ledger = {
+  /**
+   * When the ledger was created
+   */
   addedAt: Date;
+  /**
+   * Name of the storage bucket backing the ledger
+   */
   bucket: string;
+  /**
+   * When the ledger was deleted, absent for active ledgers
+   */
   deletedAt?: Date | null | undefined;
+  /**
+   * Feature flags enabled on the ledger, keyed by feature name
+   */
   features?: { [k: string]: string } | undefined;
+  /**
+   * Unique sequential identifier for the ledger
+   */
   id?: number | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | undefined;
+  /**
+   * Name of the ledger
+   */
   name: string;
 };
 

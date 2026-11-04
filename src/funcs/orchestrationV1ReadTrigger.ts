@@ -41,7 +41,7 @@ export function orchestrationV1ReadTrigger(
 ): APIPromise<
   Result<
     operations.ReadTriggerResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.ReadTriggerResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -160,7 +160,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ReadTriggerResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -173,7 +173,7 @@ async function $do(
     M.json(200, operations.ReadTriggerResponse$inboundSchema, {
       key: "ReadTriggerResponse",
     }),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

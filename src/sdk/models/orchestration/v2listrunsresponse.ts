@@ -11,6 +11,9 @@ import {
   V2WorkflowInstance$inboundSchema,
 } from "./v2workflowinstance.js";
 
+/**
+ * Paginated cursor wrapping the list of runs
+ */
 export type V2ListRunsResponseCursor = {
   data: Array<V2WorkflowInstance>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V2ListRunsResponseCursor = {
 };
 
 export type V2ListRunsResponse = {
+  /**
+   * Paginated cursor wrapping the list of runs
+   */
   cursor: V2ListRunsResponseCursor;
 };
 

@@ -11,10 +11,25 @@ import {
   V2WorkflowConfig$inboundSchema,
 } from "./v2workflowconfig.js";
 
+/**
+ * A workflow definition and the stages it runs
+ */
 export type V2Workflow = {
+  /**
+   * The stages a workflow runs, in order
+   */
   config: V2WorkflowConfig;
+  /**
+   * When the workflow was created
+   */
   createdAt: Date;
+  /**
+   * Unique identifier of the workflow
+   */
   id: string;
+  /**
+   * When the workflow was last modified
+   */
   updatedAt: Date;
 };
 

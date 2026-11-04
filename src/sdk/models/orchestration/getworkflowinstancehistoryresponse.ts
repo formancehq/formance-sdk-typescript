@@ -12,6 +12,9 @@ import {
 } from "./workflowinstancehistory.js";
 
 export type GetWorkflowInstanceHistoryResponse = {
+  /**
+   * Per-stage history of a workflow run
+   */
   data: Array<WorkflowInstanceHistory>;
 };
 

@@ -5,7 +5,13 @@
 import * as z from "zod/v3";
 
 export type ReconciliationRequest = {
+  /**
+   * Point in time at which the ledger side is evaluated
+   */
   reconciledAtLedger: Date;
+  /**
+   * Point in time at which the payments side is evaluated
+   */
   reconciledAtPayments: Date;
 };
 

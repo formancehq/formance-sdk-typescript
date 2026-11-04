@@ -5,6 +5,9 @@
 import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 
+/**
+ * The payment provider behind a connector
+ */
 export const V2Connector = {
   Stripe: "STRIPE",
   DummyPay: "DUMMY-PAY",
@@ -15,6 +18,9 @@ export const V2Connector = {
   Mangopay: "MANGOPAY",
   Moneycorp: "MONEYCORP",
 } as const;
+/**
+ * The payment provider behind a connector
+ */
 export type V2Connector = ClosedEnum<typeof V2Connector>;
 
 /** @internal */

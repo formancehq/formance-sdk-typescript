@@ -13,7 +13,7 @@ let value: V2BulkElementResultAddMetadata = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `logID`            | *number*           | :heavy_check_mark: | N/A                |
-| `responseType`     | *"ADD_METADATA"*   | :heavy_check_mark: | N/A                |
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `logID`                                              | *number*                                             | :heavy_check_mark:                                   | Identifier of the log entry produced by this element |
+| `responseType`                                       | *"ADD_METADATA"*                                     | :heavy_check_mark:                                   | The action this result corresponds to                |

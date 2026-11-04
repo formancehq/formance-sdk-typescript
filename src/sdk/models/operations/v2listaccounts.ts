@@ -11,6 +11,14 @@ import * as ledger from "../ledger/index.js";
 
 export type V2ListAccountsRequest = {
   /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
+  /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
    *
    * @remarks
@@ -62,6 +70,7 @@ export type V2ListAccountsResponse = {
 
 /** @internal */
 export type V2ListAccountsRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   cursor?: string | undefined;
   expand?: string | undefined;
   ledger: string;
@@ -77,6 +86,7 @@ export const V2ListAccountsRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2ListAccountsRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   cursor: z.string().optional(),
   expand: z.string().optional(),
   ledger: z.string(),
@@ -84,6 +94,10 @@ export const V2ListAccountsRequest$outboundSchema: z.ZodType<
   pit: z.date().transform(v => v.toISOString()).optional(),
   query: z.record(z.any()).optional(),
   sort: z.string().optional(),
+}).transform((v) => {
+  return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
+  });
 });
 
 export function v2ListAccountsRequestToJSON(

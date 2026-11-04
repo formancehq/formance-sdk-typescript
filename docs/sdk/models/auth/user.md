@@ -1,5 +1,7 @@
 # User
 
+A user known to the stack's identity provider
+
 ## Example Usage
 
 ```typescript
@@ -14,8 +16,8 @@ let value: User = {
 
 ## Fields
 
-| Field                                | Type                                 | Required                             | Description                          | Example                              |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| `email`                              | *string*                             | :heavy_minus_sign:                   | N/A                                  | user1@orga1.com                      |
-| `id`                                 | *string*                             | :heavy_minus_sign:                   | N/A                                  | 3bb03708-312f-48a0-821a-e765837dc2c4 |
-| `subject`                            | *string*                             | :heavy_minus_sign:                   | N/A                                  | Jane Doe                             |
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `email`                                                       | *string*                                                      | :heavy_minus_sign:                                            | Email address of the user                                     | user1@orga1.com                                               |
+| `id`                                                          | *string*                                                      | :heavy_minus_sign:                                            | Unique identifier of the user                                 | 3bb03708-312f-48a0-821a-e765837dc2c4                          |
+| `subject`                                                     | *string*                                                      | :heavy_minus_sign:                                            | Subject claim identifying the user with the identity provider | Jane Doe                                                      |

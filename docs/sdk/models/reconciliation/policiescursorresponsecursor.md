@@ -1,5 +1,7 @@
 # PoliciesCursorResponseCursor
 
+Paginated cursor wrapping the list of policies
+
 ## Example Usage
 
 ```typescript
