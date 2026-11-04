@@ -1,5 +1,7 @@
 # ResolutionKind
 
+How the alert was resolved, whether automatically, by booking a correcting transaction, or by business acceptance
+
 ## Example Usage
 
 ```typescript

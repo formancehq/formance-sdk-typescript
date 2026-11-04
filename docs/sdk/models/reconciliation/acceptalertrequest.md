@@ -15,7 +15,7 @@ let value: AcceptAlertRequest = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `by`               | *string*           | :heavy_check_mark: | N/A                |
-| `note`             | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `by`                                                  | *string*                                              | :heavy_check_mark:                                    | Who is accepting the break                            |
+| `note`                                                | *string*                                              | :heavy_check_mark:                                    | Why the break is being accepted rather than corrected |

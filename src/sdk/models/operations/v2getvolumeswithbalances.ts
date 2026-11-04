@@ -11,6 +11,14 @@ import * as ledger from "../ledger/index.js";
 
 export type V2GetVolumesWithBalancesRequest = {
   /**
+   * When set to `true`, all bigint values in the response will be serialized
+   *
+   * @remarks
+   * as strings instead of JSON numbers.
+   * Useful for clients that cannot handle large numbers natively (e.g. JavaScript).
+   */
+  formanceBigintAsString?: boolean | undefined;
+  /**
    * Parameter used in pagination requests. Maximum page size is set to 15.
    *
    * @remarks
@@ -72,6 +80,7 @@ export type V2GetVolumesWithBalancesResponse = {
 
 /** @internal */
 export type V2GetVolumesWithBalancesRequest$Outbound = {
+  "Formance-Bigint-As-String": boolean;
   cursor?: string | undefined;
   endTime?: string | undefined;
   groupBy?: number | undefined;
@@ -89,6 +98,7 @@ export const V2GetVolumesWithBalancesRequest$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   V2GetVolumesWithBalancesRequest
 > = z.object({
+  formanceBigintAsString: z.boolean().default(false),
   cursor: z.string().optional(),
   endTime: z.date().transform(v => v.toISOString()).optional(),
   groupBy: z.number().int().optional(),
@@ -98,6 +108,10 @@ export const V2GetVolumesWithBalancesRequest$outboundSchema: z.ZodType<
   query: z.record(z.any()).optional(),
   sort: z.string().optional(),
   startTime: z.date().transform(v => v.toISOString()).optional(),
+}).transform((v) => {
+  return remap$(v, {
+    formanceBigintAsString: "Formance-Bigint-As-String",
+  });
 });
 
 export function v2GetVolumesWithBalancesRequestToJSON(

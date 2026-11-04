@@ -8,11 +8,29 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Volume, Volume$inboundSchema } from "./volume.js";
 
+/**
+ * An account together with its volumes and net balances per asset
+ */
 export type AccountWithVolumesAndBalances = {
+  /**
+   * The account address, a colon-separated segmented path such as users:001
+   */
   address: string;
+  /**
+   * Net balance per asset, equal to input minus output
+   */
   balances?: { [k: string]: bigint } | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the account
+   */
   metadata?: { [k: string]: any } | undefined;
+  /**
+   * Free-form classification of the account
+   */
   type?: string | undefined;
+  /**
+   * Volumes per asset for a single account
+   */
   volumes?: { [k: string]: Volume } | undefined;
 };
 

@@ -12,6 +12,9 @@ import {
 } from "./workflowinstance.js";
 
 export type ListRunsResponse = {
+  /**
+   * The runs of this workflow
+   */
   data: Array<WorkflowInstance>;
 };
 

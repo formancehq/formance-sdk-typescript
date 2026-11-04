@@ -5,9 +5,21 @@
 import * as z from "zod/v3";
 
 export type PolicyRequest = {
+  /**
+   * Name of the ledger the policy reconciles against
+   */
   ledgerName: string;
+  /**
+   * Filter selecting the ledger accounts whose balances are reconciled
+   */
   ledgerQuery: { [k: string]: any };
+  /**
+   * Human-readable name for the policy
+   */
   name: string;
+  /**
+   * Identifier of the payments pool the ledger side is compared against
+   */
   paymentsPoolID: string;
 };
 

@@ -15,9 +15,21 @@ import {
 } from "./subject.js";
 
 export type DebitWalletRequest = {
+  /**
+   * An amount together with the asset it is denominated in
+   */
   amount: Monetary;
+  /**
+   * Names of the balances to debit from, in order. Defaults to the main balance when omitted
+   */
   balances?: Array<string> | undefined;
+  /**
+   * Human-readable reason for the debit
+   */
   description?: string | undefined;
+  /**
+   * The counterparty of a wallet movement, either a ledger account or another wallet
+   */
   destination?: Subject | undefined;
   /**
    * Metadata associated with the wallet.

@@ -10,9 +10,15 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type V2Pipeline = {
   createdAt: Date;
   enabled?: boolean | undefined;
+  /**
+   * Identifier of the exporter the pipeline feeds
+   */
   exporterID: string;
   id: string;
   lastLogID?: number | undefined;
+  /**
+   * Name of the ledger the pipeline reads from
+   */
   ledger: string;
 };
 

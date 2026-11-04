@@ -1,5 +1,7 @@
 # Outcome
 
+How the attempt ended. A retryable failure is retried, a permanent failure is not
+
 ## Example Usage
 
 ```typescript

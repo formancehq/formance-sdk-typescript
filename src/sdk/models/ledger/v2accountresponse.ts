@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Account, V2Account$inboundSchema } from "./v2account.js";
 
 export type V2AccountResponse = {
+  /**
+   * An account in the ledger, identified by its address and carrying its metadata and volumes
+   */
   data: V2Account;
 };
 

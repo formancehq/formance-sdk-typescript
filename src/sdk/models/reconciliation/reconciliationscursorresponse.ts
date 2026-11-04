@@ -11,6 +11,9 @@ import {
   Reconciliation$inboundSchema,
 } from "./reconciliation.js";
 
+/**
+ * Paginated cursor wrapping the list of reconciliations
+ */
 export type ReconciliationsCursorResponseCursor = {
   data: Array<Reconciliation>;
   hasMore: boolean;
@@ -23,6 +26,9 @@ export type ReconciliationsCursorResponseCursor = {
  * OK
  */
 export type ReconciliationsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of reconciliations
+   */
   cursor: ReconciliationsCursorResponseCursor;
 };
 

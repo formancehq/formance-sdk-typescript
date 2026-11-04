@@ -1,5 +1,7 @@
 # ActivityRevertTransaction
 
+Arguments for the activity that reverts a ledger transaction
+
 ## Example Usage
 
 ```typescript
@@ -13,7 +15,7 @@ let value: ActivityRevertTransaction = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_check_mark: | N/A                |
-| `ledger`           | *string*           | :heavy_check_mark: | N/A                |
+| Field                                      | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `id`                                       | *string*                                   | :heavy_check_mark:                         | Identifier of the transaction to revert    |
+| `ledger`                                   | *string*                                   | :heavy_check_mark:                         | Name of the ledger holding the transaction |

@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Transaction, Transaction$inboundSchema } from "./transaction.js";
 
 export type TransactionsResponse = {
+  /**
+   * The transactions that were created
+   */
   data: Array<Transaction>;
 };
 

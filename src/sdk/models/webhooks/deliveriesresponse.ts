@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Delivery, Delivery$inboundSchema } from "./delivery.js";
 
+/**
+ * Paginated cursor wrapping the list of deliveries
+ */
 export type DeliveriesResponseCursor = {
   data: Array<Delivery>;
   hasMore: boolean;
@@ -16,6 +19,9 @@ export type DeliveriesResponseCursor = {
 };
 
 export type DeliveriesResponse = {
+  /**
+   * Paginated cursor wrapping the list of deliveries
+   */
   cursor: DeliveriesResponseCursor;
 };
 

@@ -1,5 +1,7 @@
 # V2PaymentMetadata
 
+Arbitrary key/value pairs attached to a payment
+
 ## Example Usage
 
 ```typescript
@@ -10,6 +12,6 @@ let value: V2PaymentMetadata = {};
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `key`              | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                 | Type                                  | Required                              | Description                           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| `key`                                 | *string*                              | :heavy_minus_sign:                    | Metadata value carried by the payment |

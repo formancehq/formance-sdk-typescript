@@ -9,6 +9,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Account, V2Account$inboundSchema } from "./v2account.js";
 
+/**
+ * Paginated cursor wrapping the list of accounts
+ */
 export type V2AccountsCursorResponseCursor = {
   data: Array<V2Account>;
   hasMore: boolean;
@@ -17,15 +20,27 @@ export type V2AccountsCursorResponseCursor = {
   previous?: string | undefined;
 };
 
+/**
+ * The resource type carried by this cursor
+ */
 export const V2AccountsCursorResponseResource = {
   Accounts: "accounts",
 } as const;
+/**
+ * The resource type carried by this cursor
+ */
 export type V2AccountsCursorResponseResource = ClosedEnum<
   typeof V2AccountsCursorResponseResource
 >;
 
 export type V2AccountsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of accounts
+   */
   cursor: V2AccountsCursorResponseCursor;
+  /**
+   * The resource type carried by this cursor
+   */
   resource?: V2AccountsCursorResponseResource | undefined;
 };
 

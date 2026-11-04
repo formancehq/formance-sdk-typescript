@@ -1,5 +1,7 @@
 # ErrorCode
 
+Machine-readable error code identifying the failure
+
 ## Example Usage
 
 ```typescript

@@ -1,5 +1,7 @@
 # V2Stats
 
+Aggregate counts for a ledger
+
 ## Example Usage
 
 ```typescript
@@ -13,7 +15,7 @@ let value: V2Stats = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `accounts`         | *number*           | :heavy_check_mark: | N/A                |
-| `transactions`     | *BigInt*           | :heavy_check_mark: | N/A                |
+| Field                                      | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `accounts`                                 | *number*                                   | :heavy_check_mark:                         | Total number of accounts in the ledger     |
+| `transactions`                             | *BigInt*                                   | :heavy_check_mark:                         | Total number of transactions in the ledger |

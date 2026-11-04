@@ -38,7 +38,7 @@ export function orchestrationV1ListWorkflows(
 ): APIPromise<
   Result<
     operations.ListWorkflowsResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -62,7 +62,7 @@ async function $do(
   [
     Result<
       operations.ListWorkflowsResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -135,7 +135,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.ListWorkflowsResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -148,7 +148,7 @@ async function $do(
     M.json(200, operations.ListWorkflowsResponse$inboundSchema, {
       key: "ListWorkflowsResponse",
     }),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

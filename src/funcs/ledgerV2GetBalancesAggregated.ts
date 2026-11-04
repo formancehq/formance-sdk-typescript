@@ -116,6 +116,11 @@ async function $do(
 
   const headers = new Headers(compactMap({
     Accept: "application/json",
+    "Formance-Bigint-As-String": encodeSimple(
+      "Formance-Bigint-As-String",
+      payload["Formance-Bigint-As-String"],
+      { explode: false, charEncoding: "none" },
+    ),
   }));
 
   const securityInput = await extractSecurity(client._options.security);

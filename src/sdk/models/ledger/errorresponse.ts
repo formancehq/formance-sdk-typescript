@@ -9,8 +9,17 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { ErrorsEnum, ErrorsEnum$inboundSchema } from "./errorsenum.js";
 
 export type ErrorResponse = {
+  /**
+   * Optional link carrying additional context about the error, such as a Numscript playground URL reproducing it
+   */
   details?: string | undefined;
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: ErrorsEnum;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 

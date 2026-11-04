@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Wallet, Wallet$inboundSchema } from "./wallet.js";
 
 export type CreateWalletResponse = {
+  /**
+   * A wallet backed by a set of ledger accounts
+   */
   data: Wallet;
 };
 

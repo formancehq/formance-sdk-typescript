@@ -17,6 +17,9 @@ export type QueryTemplateVolumeParams = {
    * No other parameters can be set when this parameter is set.
    */
   cursor?: string | undefined;
+  /**
+   * Additional data to include in the response, such as volumes
+   */
   expand?: string | undefined;
   groupBy?: number | undefined;
   insertionDate?: boolean | undefined;
@@ -26,6 +29,9 @@ export type QueryTemplateVolumeParams = {
    * @remarks
    */
   pageSize?: number | undefined;
+  /**
+   * Point-in-time. Returns the state as it existed at this timestamp
+   */
   pit?: Date | undefined;
   resource: "volumes";
   /**
@@ -47,6 +53,9 @@ export type QueryTemplateLogParams = {
    * No other parameters can be set when this parameter is set.
    */
   cursor?: string | undefined;
+  /**
+   * Additional data to include in the response, such as volumes
+   */
   expand?: string | undefined;
   /**
    * The maximum number of results to return per page.
@@ -54,6 +63,9 @@ export type QueryTemplateLogParams = {
    * @remarks
    */
   pageSize?: number | undefined;
+  /**
+   * Point-in-time. Returns the state as it existed at this timestamp
+   */
   pit?: Date | undefined;
   resource: "logs";
   /**
@@ -75,6 +87,9 @@ export type QueryTemplateTransactionParams = {
    * No other parameters can be set when this parameter is set.
    */
   cursor?: string | undefined;
+  /**
+   * Additional data to include in the response, such as volumes
+   */
   expand?: string | undefined;
   /**
    * The maximum number of results to return per page.
@@ -82,6 +97,9 @@ export type QueryTemplateTransactionParams = {
    * @remarks
    */
   pageSize?: number | undefined;
+  /**
+   * Point-in-time. Returns the state as it existed at this timestamp
+   */
   pit?: Date | undefined;
   resource: "transactions";
   /**
@@ -103,6 +121,9 @@ export type QueryTemplateAccountParams = {
    * No other parameters can be set when this parameter is set.
    */
   cursor?: string | undefined;
+  /**
+   * Additional data to include in the response, such as volumes
+   */
   expand?: string | undefined;
   /**
    * The maximum number of results to return per page.
@@ -110,6 +131,9 @@ export type QueryTemplateAccountParams = {
    * @remarks
    */
   pageSize?: number | undefined;
+  /**
+   * Point-in-time. Returns the state as it existed at this timestamp
+   */
   pit?: Date | undefined;
   resource: "accounts";
   /**
@@ -121,6 +145,9 @@ export type QueryTemplateAccountParams = {
   sort?: string | undefined;
 };
 
+/**
+ * Parameters applied when running a query template
+ */
 export type V2QueryParams =
   | QueryTemplateAccountParams
   | QueryTemplateTransactionParams

@@ -7,6 +7,9 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * How the trigger's filter evaluated against the sample event
+ */
 export type Filter = {
   error?: string | undefined;
   match?: boolean | undefined;
@@ -17,8 +20,17 @@ export type Variables = {
   value?: string | undefined;
 };
 
+/**
+ * Result of evaluating a trigger against a sample event, without running the workflow
+ */
 export type V2TriggerTest = {
+  /**
+   * How the trigger's filter evaluated against the sample event
+   */
   filter?: Filter | undefined;
+  /**
+   * The variables the trigger would build from the sample event
+   */
   variables?: { [k: string]: Variables } | undefined;
 };
 

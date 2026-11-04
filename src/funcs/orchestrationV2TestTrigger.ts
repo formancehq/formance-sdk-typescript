@@ -41,7 +41,7 @@ export function orchestrationV2TestTrigger(
 ): APIPromise<
   Result<
     operations.TestTriggerResponse,
-    | orchestration.V2Error
+    | orchestration.ErrorsV2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.TestTriggerResponse,
-      | orchestration.V2Error
+      | orchestration.ErrorsV2Error
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -161,7 +161,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.TestTriggerResponse,
-    | orchestration.V2Error
+    | orchestration.ErrorsV2Error
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -174,7 +174,7 @@ async function $do(
     M.json(200, operations.TestTriggerResponse$inboundSchema, {
       key: "V2TestTriggerResponse",
     }),
-    M.jsonErr("default", orchestration.V2Error$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsV2Error$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

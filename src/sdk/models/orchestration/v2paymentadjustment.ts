@@ -11,13 +11,31 @@ import {
   V2PaymentStatus$inboundSchema,
 } from "./v2paymentstatus.js";
 
+/**
+ * The provider's original payload for this adjustment
+ */
 export type V2PaymentAdjustmentRaw = {};
 
 export type V2PaymentAdjustment = {
+  /**
+   * Whether amount replaces the payment's amount rather than adding to it
+   */
   absolute: boolean;
+  /**
+   * Amount carried by this adjustment
+   */
   amount: bigint;
+  /**
+   * When the adjustment was recorded
+   */
   date: Date;
+  /**
+   * The provider's original payload for this adjustment
+   */
   raw: V2PaymentAdjustmentRaw;
+  /**
+   * Where a payment stands in its lifecycle
+   */
   status: V2PaymentStatus;
 };
 

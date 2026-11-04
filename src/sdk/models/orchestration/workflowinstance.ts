@@ -9,15 +9,45 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { StageStatus, StageStatus$inboundSchema } from "./stagestatus.js";
 import { Workflow, Workflow$inboundSchema } from "./workflow.js";
 
+/**
+ * One run of a workflow, tracking its per-stage progress
+ */
 export type WorkflowInstance = {
+  /**
+   * When the run was started
+   */
   createdAt: Date;
+  /**
+   * Why the run failed, absent when it succeeded
+   */
   error?: string | undefined;
+  /**
+   * Unique identifier of the run
+   */
   id: string;
+  /**
+   * Per-stage progress of the run
+   */
   status?: Array<StageStatus> | undefined;
+  /**
+   * Whether the run has finished, successfully or not
+   */
   terminated: boolean;
+  /**
+   * When the run finished, absent while it is still running
+   */
   terminatedAt?: Date | undefined;
+  /**
+   * When the run was last updated
+   */
   updatedAt: Date;
+  /**
+   * A workflow definition and the stages it runs
+   */
   workflow?: Workflow | undefined;
+  /**
+   * Identifier of the workflow this run belongs to
+   */
   workflowID: string;
 };
 

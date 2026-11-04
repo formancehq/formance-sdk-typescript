@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Secret, Secret$inboundSchema } from "./secret.js";
 
 export type CreateSecretResponse = {
+  /**
+   * A client secret. The full value is returned only at creation and cannot be retrieved again
+   */
   data?: Secret | undefined;
 };
 

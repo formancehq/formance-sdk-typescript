@@ -1,5 +1,7 @@
 # Result
 
+Whether the rule passed, failed, or could not be evaluated
+
 ## Example Usage
 
 ```typescript

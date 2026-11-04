@@ -7,8 +7,17 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Aggregate counts for a ledger
+ */
 export type Stats = {
+  /**
+   * Total number of accounts in the ledger
+   */
   accounts: number;
+  /**
+   * Total number of transactions in the ledger
+   */
   transactions: number;
 };
 

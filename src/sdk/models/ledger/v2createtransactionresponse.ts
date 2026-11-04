@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Transaction, V2Transaction$inboundSchema } from "./v2transaction.js";
 
 export type V2CreateTransactionResponse = {
+  /**
+   * A transaction recorded in the ledger, carrying its postings, metadata and both bi-temporal timestamps
+   */
   data: V2Transaction;
 };
 

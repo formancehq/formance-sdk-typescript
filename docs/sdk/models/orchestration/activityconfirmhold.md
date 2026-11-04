@@ -1,5 +1,7 @@
 # ActivityConfirmHold
 
+Arguments for the activity that confirms a wallet hold
+
 ## Example Usage
 
 ```typescript
@@ -12,6 +14,6 @@ let value: ActivityConfirmHold = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *string*           | :heavy_check_mark: | N/A                |
+| Field                             | Type                              | Required                          | Description                       |
+| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| `id`                              | *string*                          | :heavy_check_mark:                | Identifier of the hold to confirm |

@@ -7,8 +7,17 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Arguments for the activity that reads a ledger account
+ */
 export type V2ActivityGetAccount = {
+  /**
+   * Address of the ledger account to read
+   */
   id: string;
+  /**
+   * Name of the ledger holding the account
+   */
   ledger: string;
 };
 

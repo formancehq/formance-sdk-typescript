@@ -6,21 +6,39 @@ import * as z from "zod/v3";
 import { ClosedEnum } from "../../types/enums.js";
 import { SDKBaseError } from "../errors/sdkbaseerror.js";
 
+/**
+ * Machine-readable error code identifying the failure
+ */
 export const ErrorCode = {
   Validation: "VALIDATION",
   InternalError: "INTERNAL_ERROR",
   InsufficientFund: "INSUFFICIENT_FUND",
   HoldClosed: "HOLD_CLOSED",
 } as const;
+/**
+ * Machine-readable error code identifying the failure
+ */
 export type ErrorCode = ClosedEnum<typeof ErrorCode>;
 
 export type ErrorResponseData = {
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: ErrorCode;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 };
 
 export class ErrorResponse extends SDKBaseError {
+  /**
+   * Machine-readable error code identifying the failure
+   */
   errorCode: ErrorCode;
+  /**
+   * Human-readable description of the error
+   */
   errorMessage: string;
 
   /** The original data that was passed to this error instance. */

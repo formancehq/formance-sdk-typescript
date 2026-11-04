@@ -8,17 +8,38 @@ import { ClosedEnum } from "../../types/enums.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * The type of operation this log represents
+ */
 export const LogType = {
   NewTransaction: "NEW_TRANSACTION",
   SetMetadata: "SET_METADATA",
 } as const;
+/**
+ * The type of operation this log represents
+ */
 export type LogType = ClosedEnum<typeof LogType>;
 
 export type Log = {
+  /**
+   * The payload of the log entry, whose shape depends on the log type
+   */
   data: { [k: string]: any };
+  /**
+   * Timestamp when the operation was recorded
+   */
   date: Date;
+  /**
+   * SHA256 hash of the log entry, chained from the previous log for integrity verification
+   */
   hash: string;
+  /**
+   * Unique sequential identifier for this log entry within the ledger
+   */
   id: number;
+  /**
+   * The type of operation this log represents
+   */
   type: LogType;
 };
 

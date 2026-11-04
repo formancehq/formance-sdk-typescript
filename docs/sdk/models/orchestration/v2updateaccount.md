@@ -1,5 +1,7 @@
 # V2UpdateAccount
 
+Metadata to set on a ledger account
+
 ## Example Usage
 
 ```typescript
@@ -17,8 +19,8 @@ let value: V2UpdateAccount = {
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `id`                     | *string*                 | :heavy_check_mark:       | N/A                      |
-| `ledger`                 | *string*                 | :heavy_check_mark:       | N/A                      |
-| `metadata`               | Record<string, *string*> | :heavy_check_mark:       | N/A                      |
+| Field                                   | Type                                    | Required                                | Description                             |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| `id`                                    | *string*                                | :heavy_check_mark:                      | Address of the ledger account to update |
+| `ledger`                                | *string*                                | :heavy_check_mark:                      | Name of the ledger holding the account  |
+| `metadata`                              | Record<string, *string*>                | :heavy_check_mark:                      | Metadata to set on the account          |

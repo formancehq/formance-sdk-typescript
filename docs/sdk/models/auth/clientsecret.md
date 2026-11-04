@@ -14,9 +14,9 @@ let value: ClientSecret = {
 
 ## Fields
 
-| Field                    | Type                     | Required                 | Description              |
-| ------------------------ | ------------------------ | ------------------------ | ------------------------ |
-| `id`                     | *string*                 | :heavy_check_mark:       | N/A                      |
-| `lastDigits`             | *string*                 | :heavy_check_mark:       | N/A                      |
-| `metadata`               | Record<string, *string*> | :heavy_minus_sign:       | N/A                      |
-| `name`                   | *string*                 | :heavy_check_mark:       | N/A                      |
+| Field                                                                                          | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `id`                                                                                           | *string*                                                                                       | :heavy_check_mark:                                                                             | Unique identifier of the secret                                                                |
+| `lastDigits`                                                                                   | *string*                                                                                       | :heavy_check_mark:                                                                             | Last digits of the secret. The full plaintext is hidden, and only the last digits are exposed. |
+| `metadata`                                                                                     | Record<string, *string*>                                                                       | :heavy_minus_sign:                                                                             | Arbitrary key/value pairs attached to the resource                                             |
+| `name`                                                                                         | *string*                                                                                       | :heavy_check_mark:                                                                             | Human-readable name identifying the secret                                                     |

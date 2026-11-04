@@ -9,16 +9,34 @@ import {
   Posting$outboundSchema,
 } from "./posting.js";
 
+/**
+ * A Numscript program executed to produce the postings. Mutually exclusive with postings
+ */
 export type PostTransactionScript = {
   plain: string;
   vars?: { [k: string]: any } | undefined;
 };
 
 export type PostTransaction = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: any } | null | undefined;
+  /**
+   * Fund movements to apply. Mutually exclusive with script
+   */
   postings?: Array<Posting> | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
+  /**
+   * A Numscript program executed to produce the postings. Mutually exclusive with postings
+   */
   script?: PostTransactionScript | undefined;
+  /**
+   * The transaction time to record, letting you backdate or postdate the transaction. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

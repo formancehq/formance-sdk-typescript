@@ -41,7 +41,7 @@ export function orchestrationV1DeleteWorkflow(
 ): APIPromise<
   Result<
     operations.DeleteWorkflowResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -67,7 +67,7 @@ async function $do(
   [
     Result<
       operations.DeleteWorkflowResponse,
-      | orchestration.ErrorT
+      | orchestration.ErrorsError
       | SDKBaseError
       | ResponseValidationError
       | ConnectionError
@@ -158,7 +158,7 @@ async function $do(
 
   const [result] = await M.match<
     operations.DeleteWorkflowResponse,
-    | orchestration.ErrorT
+    | orchestration.ErrorsError
     | SDKBaseError
     | ResponseValidationError
     | ConnectionError
@@ -169,7 +169,7 @@ async function $do(
     | SDKValidationError
   >(
     M.nil(204, operations.DeleteWorkflowResponse$inboundSchema),
-    M.jsonErr("default", orchestration.ErrorT$inboundSchema),
+    M.jsonErr("default", orchestration.ErrorsError$inboundSchema),
   )(response, req, { extraFields: responseFields });
   if (!result.ok) {
     return [result, { status: "complete", request: req, response }];

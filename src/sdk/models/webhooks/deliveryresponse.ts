@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Delivery, Delivery$inboundSchema } from "./delivery.js";
 
 export type DeliveryResponse = {
+  /**
+   * An event queued for delivery to a webhook endpoint, tracking its retry state
+   */
   data: Delivery;
 };
 

@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Pipeline, V2Pipeline$inboundSchema } from "./v2pipeline.js";
 
+/**
+ * Paginated cursor wrapping the list of pipelines
+ */
 export type V2PipelinesCursorResponseCursor = {
   data: Array<V2Pipeline>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type V2PipelinesCursorResponseCursor = {
  * Pipelines list
  */
 export type V2PipelinesCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of pipelines
+   */
   cursor: V2PipelinesCursorResponseCursor;
 };
 

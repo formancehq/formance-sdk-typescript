@@ -9,11 +9,29 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { V2Stage, V2Stage$inboundSchema } from "./v2stage.js";
 
 export type V2WorkflowInstanceHistory = {
+  /**
+   * Why the stage failed, absent when it succeeded
+   */
   error?: string | undefined;
+  /**
+   * One step of a workflow, whose shape depends on the stage type
+   */
   input: V2Stage;
+  /**
+   * Name of the stage this history entry records
+   */
   name: string;
+  /**
+   * When the stage started
+   */
   startedAt: Date;
+  /**
+   * Whether the stage has finished
+   */
   terminated: boolean;
+  /**
+   * When the stage finished, absent while it is still running
+   */
   terminatedAt?: Date | undefined;
 };
 

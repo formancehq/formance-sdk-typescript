@@ -7,10 +7,19 @@ import { safeParse } from "../../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+/**
+ * Expression the account's balances must satisfy
+ */
 export type Expr = {};
 
 export type Contract = {
+  /**
+   * Account address, or pattern, the contract applies to
+   */
   account?: string | undefined;
+  /**
+   * Expression the account's balances must satisfy
+   */
   expr: Expr;
 };
 

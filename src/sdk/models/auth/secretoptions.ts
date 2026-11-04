@@ -5,7 +5,13 @@
 import * as z from "zod/v3";
 
 export type SecretOptions = {
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata?: { [k: string]: string } | null | undefined;
+  /**
+   * Human-readable name identifying the secret
+   */
   name: string;
 };
 

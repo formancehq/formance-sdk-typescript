@@ -28,6 +28,10 @@ export type V2ExportLogsResponse = {
    * Raw HTTP response; suitable for custom response parsing
    */
   rawResponse: Response;
+  /**
+   * Export OK
+   */
+  bytes?: ReadableStream<Uint8Array> | undefined;
 };
 
 /** @internal */
@@ -61,6 +65,7 @@ export const V2ExportLogsResponse$inboundSchema: z.ZodType<
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
+  bytes: z.instanceof(ReadableStream<Uint8Array>).optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",

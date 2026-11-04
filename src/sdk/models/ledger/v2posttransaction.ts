@@ -10,6 +10,9 @@ import {
   V2Posting$outboundSchema,
 } from "./v2posting.js";
 
+/**
+ * A Numscript program executed to produce the postings. Mutually exclusive with postings
+ */
 export type V2PostTransactionScript = {
   plain?: string | undefined;
   template?: string | undefined;
@@ -17,16 +20,37 @@ export type V2PostTransactionScript = {
 };
 
 export type V2PostTransaction = {
+  /**
+   * Metadata to set on the accounts involved in the transaction, keyed by account address
+   */
   accountMetadata?: { [k: string]: { [k: string]: string } } | undefined;
+  /**
+   * When true, lets source accounts overdraft without bound, bypassing the balance check. Applies to the postings form only
+   */
   force?: boolean | undefined;
+  /**
+   * Arbitrary key/value pairs attached to the resource
+   */
   metadata: { [k: string]: string };
+  /**
+   * Fund movements to apply. Mutually exclusive with script and template
+   */
   postings?: Array<V2Posting> | undefined;
+  /**
+   * Optional caller-supplied identifier, unique within the ledger, used to deduplicate transactions
+   */
   reference?: string | undefined;
   /**
    * The numscript runtime used to execute the script. Uses "machine" by default, unless the "--experimental-numscript-interpreter" feature flag is passed.
    */
   runtime?: Runtime | undefined;
+  /**
+   * A Numscript program executed to produce the postings. Mutually exclusive with postings
+   */
   script?: V2PostTransactionScript | undefined;
+  /**
+   * The transaction time to record, letting you backdate or postdate the transaction. Defaults to current machine time if omitted. See [bi-temporality](https://docs.formance.com/modules/ledger/working-with/bi-temporality)
+   */
   timestamp?: Date | undefined;
 };
 

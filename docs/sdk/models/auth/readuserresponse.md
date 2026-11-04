@@ -18,4 +18,4 @@ let value: ReadUserResponse = {
 
 | Field                                         | Type                                          | Required                                      | Description                                   |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `data`                                        | [auth.User](../../../sdk/models/auth/user.md) | :heavy_minus_sign:                            | N/A                                           |
+| `data`                                        | [auth.User](../../../sdk/models/auth/user.md) | :heavy_minus_sign:                            | A user known to the stack's identity provider |

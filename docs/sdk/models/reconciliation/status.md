@@ -1,5 +1,7 @@
 # Status
 
+Where the alert stands in its open, acknowledged, resolved lifecycle
+
 ## Example Usage
 
 ```typescript

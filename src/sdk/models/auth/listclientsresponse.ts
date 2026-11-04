@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Client, Client$inboundSchema } from "./client.js";
 
 export type ListClientsResponse = {
+  /**
+   * The clients registered on this stack
+   */
   data?: Array<Client> | undefined;
 };
 

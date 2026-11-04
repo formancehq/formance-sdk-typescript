@@ -48,14 +48,14 @@ let value: TransactionResponse = {
       },
     },
     reference: "ref:001",
-    timestamp: new Date("2024-12-30T14:12:54.438Z"),
-    txid: 811899n,
+    timestamp: new Date("2026-12-22T02:44:52.401Z"),
+    txid: 35028n,
   },
 };
 ```
 
 ## Fields
 
-| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `data`                                                          | [ledger.Transaction](../../../sdk/models/ledger/transaction.md) | :heavy_check_mark:                                              | N/A                                                             |
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `data`                                                                   | [ledger.Transaction](../../../sdk/models/ledger/transaction.md)          | :heavy_check_mark:                                                       | A transaction recorded in the ledger, carrying its postings and metadata |

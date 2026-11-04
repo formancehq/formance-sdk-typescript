@@ -1,5 +1,7 @@
 # V2ListRunsResponseCursor
 
+Paginated cursor wrapping the list of runs
+
 ## Example Usage
 
 ```typescript

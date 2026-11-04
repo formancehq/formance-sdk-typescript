@@ -1,5 +1,7 @@
 # ActivityListWallets
 
+Arguments for the activity that lists wallets
+
 ## Example Usage
 
 ```typescript
@@ -10,6 +12,6 @@ let value: ActivityListWallets = {};
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `name`             | *string*           | :heavy_minus_sign: | N/A                |
+| Field                                          | Type                                           | Required                                       | Description                                    |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| `name`                                         | *string*                                       | :heavy_minus_sign:                             | Restrict the listing to wallets with this name |

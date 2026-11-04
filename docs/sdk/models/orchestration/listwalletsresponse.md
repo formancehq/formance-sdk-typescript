@@ -1,5 +1,7 @@
 # ListWalletsResponse
 
+A page of wallets
+
 ## Example Usage
 
 ```typescript
@@ -20,4 +22,4 @@ let value: ListWalletsResponse = {
 
 | Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `cursor`                                                                                                  | [orchestration.ListWalletsResponseCursor](../../../sdk/models/orchestration/listwalletsresponsecursor.md) | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `cursor`                                                                                                  | [orchestration.ListWalletsResponseCursor](../../../sdk/models/orchestration/listwalletsresponsecursor.md) | :heavy_check_mark:                                                                                        | Paginated cursor wrapping the list of wallets                                                             |

@@ -8,6 +8,9 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Evaluation, Evaluation$inboundSchema } from "./evaluation.js";
 
+/**
+ * Paginated cursor wrapping the list of evaluations
+ */
 export type EvaluationsCursorResponseCursor = {
   data: Array<Evaluation>;
   hasMore: boolean;
@@ -20,6 +23,9 @@ export type EvaluationsCursorResponseCursor = {
  * OK
  */
 export type EvaluationsCursorResponse = {
+  /**
+   * Paginated cursor wrapping the list of evaluations
+   */
   cursor: EvaluationsCursorResponseCursor;
 };
 

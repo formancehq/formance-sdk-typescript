@@ -9,6 +9,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { Trigger, Trigger$inboundSchema } from "./trigger.js";
 
 export type CreateTriggerResponse = {
+  /**
+   * A rule that starts a workflow when a matching event arrives
+   */
   data: Trigger;
 };
 

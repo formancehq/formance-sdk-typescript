@@ -13,8 +13,8 @@ let value: V2ConfigInfo = {
 
 ## Fields
 
-| Field                  | Type                   | Required               | Description            |
-| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
-| `experimentalFeatures` | *string*[]             | :heavy_minus_sign:     | N/A                    |
-| `server`               | *string*               | :heavy_check_mark:     | N/A                    |
-| `version`              | *string*               | :heavy_check_mark:     | N/A                    |
+| Field                                                 | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `experimentalFeatures`                                | *string*[]                                            | :heavy_minus_sign:                                    | Experimental feature flags enabled on this deployment |
+| `server`                                              | *string*                                              | :heavy_check_mark:                                    | Name of the server serving the API                    |
+| `version`                                             | *string*                                              | :heavy_check_mark:                                    | Version of the ledger service                         |

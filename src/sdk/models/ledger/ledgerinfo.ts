@@ -8,12 +8,24 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import { MigrationInfo, MigrationInfo$inboundSchema } from "./migrationinfo.js";
 
+/**
+ * Storage backend information, including the applied migrations
+ */
 export type LedgerInfoStorage = {
   migrations?: Array<MigrationInfo> | undefined;
 };
 
+/**
+ * Runtime information about a ledger, including the state of its storage migrations
+ */
 export type LedgerInfo = {
+  /**
+   * Name of the ledger
+   */
   name?: string | undefined;
+  /**
+   * Storage backend information, including the applied migrations
+   */
   storage?: LedgerInfoStorage | undefined;
 };
 
